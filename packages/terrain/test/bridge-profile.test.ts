@@ -3,6 +3,55 @@ import { bridgeDeckHeightFn } from '../src/bridge-profile';
 import { terrainLinePath } from '../src/line-path';
 
 describe('authored bridge ground approaches', () => {
+  it('retains a graded height when the painted tile or traffic edge starts between samples', () => {
+    const path = terrainLinePath(
+      [
+        [0.125, 0],
+        [0.375, 0],
+      ],
+      40,
+    );
+    const height = bridgeDeckHeightFn(path, () => 5, {
+      clearance: 6,
+      approachLift: 0.32,
+      groundApproach: true,
+      connects: [true, true],
+      approachProfile: [
+        { point: [0, 0], elevation: 18, flatness: 1 },
+        { point: [10, 0], elevation: 20, flatness: 1 },
+        { point: [20, 0], elevation: 22, flatness: 1 },
+      ],
+    });
+    expect(height(5, 0)).toBeCloseTo(19);
+    expect(height(15, 0)).toBeCloseTo(21);
+  });
+  it('keeps bent, sampled approaches flat across the join and restores native crossfall beyond grading', () => {
+    const path = terrainLinePath(
+      [
+        [0, 0],
+        [0.5, 0],
+        [0.5, 0.5],
+      ],
+      40,
+    );
+    const ground = (x: number, z: number) => 5 + x * 0.1 + z * 0.3;
+    const height = bridgeDeckHeightFn(path, ground, {
+      clearance: 6,
+      approachLift: 0.32,
+      connects: [true, true],
+      groundApproach: true,
+      approachProfile: [
+        { point: [0, 0], elevation: 18, flatness: 1 },
+        { point: [20, 0], elevation: 18, flatness: 1 },
+        { point: [20, 10], elevation: 18, flatness: 1 },
+        { point: [20, 15], elevation: ground(20, 15) + 0.32, flatness: 0 },
+        { point: [20, 20], elevation: ground(20, 20) + 0.32, flatness: 0 },
+      ],
+    });
+    for (const z of [-5, 0, 5]) expect(height(0, z)).toBeCloseTo(18);
+    for (const x of [16, 20, 24]) expect(height(x, 6)).toBeCloseTo(18);
+    expect(height(23, 18)).toBeCloseTo(ground(23, 18) + 0.32);
+  });
   it('keeps an uphill bank above ground instead of flattening it toward the deck', () => {
     const path = terrainLinePath(
       [

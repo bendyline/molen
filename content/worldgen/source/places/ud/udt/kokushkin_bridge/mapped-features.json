@@ -1,0 +1,230 @@
+{
+  "id": "kokushkin_bridge",
+  "anchor": [
+    30.313628911972046,
+    59.92582028905424
+  ],
+  "heading": 2.0450069232296695,
+  "extent": 19.004823072900646,
+  "axis": "+X north-northwest toward Stolyarny Lane; -X south-southeast toward Kokushkin Lane; +Z east-northeast; -Z west-southwest.",
+  "identity": "Named PMTiles bridge35184750129947 fixes the traffic crossing axis; relation5636139/Q2390563 fixes its flared geographic footprint. The older minimum-area rectangle follows the broad flared width rather than the road axis and is not used as the span direction.",
+  "features": [
+    {
+      "id": 35184750129947,
+      "layer": "roads",
+      "properties": {
+        "kind_detail": "residential",
+        "is_bridge": true,
+        "sort_rank": 400,
+        "kind": "minor_road",
+        "min_zoom": 13,
+        "name": "Кокушкин мост",
+        "script": "Cyrillic"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.313706696033478,
+            59.92574434679716
+          ],
+          [
+            30.313551127910614,
+            59.92589623131133
+          ]
+        ]
+      }
+    }
+  ],
+  "outline": [
+    [
+      -7.650236237575931,
+      -11.884548434342852
+    ],
+    [
+      -5.738538667112709,
+      -6.369805414412941
+    ],
+    [
+      8.734626547627624,
+      -6.483906477084767
+    ],
+    [
+      12.859037161144677,
+      -9.985562682735166
+    ],
+    [
+      9.675584882618756,
+      -4.2707257912897365
+    ],
+    [
+      8.908517509133006,
+      -0.11876205504261339
+    ],
+    [
+      7.950287204541437,
+      5.0890744614937935
+    ],
+    [
+      9.1503054675863,
+      9.016441271987517
+    ],
+    [
+      6.160371325300385,
+      7.3808108653815045
+    ],
+    [
+      -7.048313562158255,
+      7.786736460929948
+    ],
+    [
+      -8.988235683122351,
+      10.39699946838138
+    ],
+    [
+      -9.770301885882997,
+      5.361446366746789
+    ],
+    [
+      -9.774712642951096,
+      0.7885616242068219
+    ],
+    [
+      -8.93032924283671,
+      -5.098665100200473
+    ],
+    [
+      -7.650236237575931,
+      -11.884548434342852
+    ]
+  ],
+  "waterMeters": 16.923997879028207,
+  "groundSamples": [
+    {
+      "x": -14.502411536450323,
+      "values": [
+        29.615064937067057,
+        27.52887247612843,
+        25.890203104173445
+      ]
+    },
+    {
+      "x": -9.502411536450323,
+      "values": [
+        26.52310050725854,
+        24.370884198704054,
+        22.323427230920537
+      ]
+    },
+    {
+      "x": -7.502411536450323,
+      "values": [
+        25.287187461070054,
+        23.113465576818005,
+        21.144430386271033
+      ]
+    },
+    {
+      "x": 0,
+      "values": [
+        21.592268276214817,
+        19.300299845395983,
+        17.86933471660194
+      ]
+    },
+    {
+      "x": 7.502411536450323,
+      "values": [
+        20.089582112029717,
+        18.9671861777544,
+        17.889924685113368
+      ]
+    },
+    {
+      "x": 9.502411536450323,
+      "values": [
+        20.108045913771868,
+        19.529334470591408,
+        18.86803967462137
+      ]
+    },
+    {
+      "x": 14.502411536450323,
+      "values": [
+        21.452967922067483,
+        22.182290898594363,
+        22.256873090518194
+      ]
+    }
+  ],
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-27 daily archive",
+      "url": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:4ff874eb5fb27b0dace4ace96b6abb09718fa1c033357200afb709ebf24eeaca"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 15,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        1,
+        55.80078125
+      ],
+      "flattenedSubseaSamples": 0,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:44f4a1fcab90d72c1e4550f315e3e023672cb1d6352522a600a5bc430af21656"
+    }
+  }
+}

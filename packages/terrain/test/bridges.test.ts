@@ -54,6 +54,19 @@ function vertices(object: THREE.Object3D, name: string) {
   return mesh.geometry.getAttribute('position');
 }
 describe('automatic bridge structures', () => {
+  it('keeps ferry routes available to transport consumers without painting a road over water', () => {
+    const tile = fixture(false);
+    tile.transportation[0] = {
+      ...(tile.transportation[0] as TerrainTransportationFeature),
+      class: 'ferry',
+    };
+    const before = JSON.stringify(tile);
+    const object = createTerrainSurfaceObject(tile, context());
+    expect(object.getObjectByName('semantic:transportation')).toBeUndefined();
+    expect(object.userData.surfaceStats.roads).toBe(0);
+    expect(JSON.stringify(tile)).toBe(before);
+    disposeTerrainSurfaceObject(object);
+  });
   it('seats a raised ground approach on supports without adding bridge barriers', () => {
     const tile = fixture(false);
     tile.transportation[0] = {

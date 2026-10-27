@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.tuntex_sky_tower",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:663c39ed2602423b911efdc71625ee172b7c8a1df96ee0f2fcd29175b6052c94",
+  "inputHash": "sha256:503d6c31d519f7dd5427053e85709f3dd43366f4ed1706eb701a4f2be22433bc",
   "sourceHash": "sha256:63e7ec338f969e02744abdc139774b3a92d9d3be88a8da290896755a4b483d65",
   "runtimeHash": "sha256:91382efc79b4f66dee449e8888a48ebf5563a948be5a815db8efd6e89367ea94",
-  "captureReportHash": "sha256:aff5f7fd4392ba82feabf7aa0066742bc3eac633729b9057b4fb226e9ef8ac2c",
+  "captureReportHash": "sha256:5a18f526eaacefcc87bead0befb2bffa068b4ea95d18a47ad929da439abcbd51",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,11 +25,12 @@
       "shots/whole-reviewed-tower.png",
       "shots/above-pagoda-roof.png"
     ],
-    "notes": "Actually inspected all 65 final frames: 15 portable, 15 shared and 35 medium-fi. Turntables and explicit whole cameras retain both lower prongs, the genuinely open elevated aperture, low decorated sill, elevated central shaft, scalloped crowns, layered hip roof and antenna. Near views show pale projecting glazing panels, pink upper-shaft relief, podium ribbon windows, open ground passage, brackets, transfer soffit and seated roof plant. Initial renders exposed thin vertical shaft/prong cracks from a hardcoded 27.3 m cutoff. The final geometry uses the independently mapped shaft boundary and matching roof/crown corners; all 65 frames were rerendered and reinspected after that repair. The bright join cracks are absent in both broad-face views. No missing primary wall, crown or mast was observed. North-up placement retains the signed rectangular envelope. Detail/block cameras deliberately crop the tower; explicit whole cameras show all four complete silhouettes. Glass remains an opaque approximation."
+    "notes": "Actually inspected all 65 final frames: 15 portable, 15 shared and 35 medium-fi. Turntables and explicit whole cameras retain both lower prongs, the genuinely open elevated aperture, low decorated sill, elevated central shaft, scalloped crowns, layered hip roof and antenna. Near views show pale projecting glazing panels, pink upper-shaft relief, podium ribbon windows, open ground passage, brackets, transfer soffit and seated roof plant. Initial renders exposed thin vertical shaft/prong cracks from a hardcoded 27.3 m cutoff. The final geometry uses the independently mapped shaft boundary and matching roof/crown corners; all 65 frames were rerendered and reinspected after that repair. The bright join cracks are absent in both broad-face views. No missing primary wall, crown or mast was observed. North-up placement retains the signed rectangular envelope. Detail/block cameras deliberately crop the tower; explicit whole cameras show all four complete silhouettes. Glass remains an opaque approximation.",
+    "captureReportHash": "sha256:5a18f526eaacefcc87bead0befb2bffa068b4ea95d18a47ad929da439abcbd51"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:2777be7f69c700b392b481fd3db1968ba32b507ce1445495a41b0e394bca398c",
+    "captureReportHash": "sha256:1c54fabffcb2c494302b749606b18223c1c6fcb6dab93d8da40b280db31ca410",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -303,5 +304,16 @@
   },
   "limitations": [
     "Original 108530-triangle, 11094712-byte detailed master remains exactly reproducible from unchanged world-tower recipe. Reviewed source/four levels preserve signed mapped podium, both prongs, low central sill and genuinely open 70–145 m aperture, separate 13.1 m ground passage, elevated main shaft, pale projecting panel rectangles, scalloped crown profiles, layered hip roof to 347.5 m and ringed antenna to 378 m. Continuous opaque facade backings with long mullion/spandrel strips replace independent bays. Skyline averages glazing/trim, omits podium ribbons/projection frames and reduces crown/antenna samples; district aggregates sixteen pane/floor pitches and omits podium piers, panel brackets and hip seams; street aggregates three pitches. Near levels retain pink relief frames, roof plant, underside transfer beams and finer hip roof seams. The hardcoded prong cutoff is replaced by separately mapped shaft edges, closing thin vertical join gaps; prong roofs/crowns use the same mapped corners. Original capped roof, antenna and sill piers remain closed; continuous scallop top strips replace thick segmented coping. Three canonical shared 256 px graphs, four near draw groups, opaque glass and zero images; tinted granite is an approximate stone-like exterior/foundation binding, not proof of actual stone species. CTBUH measured heights/completion 1997 differ from architect page height 408 m/completion 1999; both are documented, CTBUH adopted. Exact pane schedule, scallop thickness, projection depth, tunnel width and roof equipment inventory are reconstructions. Tenant lettering, interiors, moving equipment and animated night illumination are excluded. Finite-probe 1.5/.75/.3/.1 m allowances exclude omitted thin mullions, roof seams and antenna collars. No physical-device or surveyed grade claim."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:663c39ed2602423b911efdc71625ee172b7c8a1df96ee0f2fcd29175b6052c94",
+    "inputHash": "sha256:503d6c31d519f7dd5427053e85709f3dd43366f4ed1706eb701a4f2be22433bc",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 65,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

@@ -1,0 +1,328 @@
+{
+  "id": "inglisild",
+  "title": "Inglisild / Angel’s Bridge",
+  "wikidataId": "Q12364556",
+  "referenceCoordinate": {
+    "longitude": 26.717625,
+    "latitude": 58.37959444
+  },
+  "module": "content/worldgen/source/places/ud/ud6/inglisild/models/inglisild-model.mjs",
+  "generator": "content/worldgen/source/places/ud/ud6/inglisild/models/generate-inglisild.mjs",
+  "builder": "buildInglisildLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "stucco",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.4
+    }
+  },
+  "exportLabel": "Molen original Inglisild, Tartu",
+  "expectedDraftMasterHash": "sha256:c40d8370e0a22c4ae66da3c470ad9fdb452e74e60808e4fcd791d85dc0bb6389",
+  "visualBrief": "Tartu Inglisild: mustard-and-white classical footbridge with eight tall framed square piers around three Lossi street/walk bays, twelve shorter wing piers, asymmetric mapped bank wings, white open vertical railings, timber entablature and dentils, raised central portrait frieze and simplified bronze profile medallion.",
+  "nativeAxes": "+X southeast along the bridge; -X northwest along the bridge; +Z southwest/uphill on Lossi toward Toome Hill; -Z northeast/downhill on Lossi toward central Tartu.",
+  "sourceFacts": {
+    "identity": "Named Inglisild bridge footway35184405327539 and Angel’s Bridge POI17592517490936 in standard PMTiles; original Q12364556 reference. Anchor is refined to the crossing with Lossi for correctly centered portico bays; unequal bank wings retain the mapped footway ends. No exact-QID footprint claimed.",
+    "mappedPlan": {
+      "length": 31.40948950935123,
+      "width": 4.6
+    },
+    "orientation": "+X southeast along the bridge; -X northwest along the bridge; +Z southwest/uphill on Lossi toward Toome Hill; -Z northeast/downhill on Lossi toward central Tartu.",
+    "heightBasis": "Standard PMTiles/Mapzen only; approximate visualization grade and photo-led sections.",
+    "underpass": {
+      "name": "Lossi",
+      "roadId": 35184402069770,
+      "independent": true
+    }
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Tartu_asv2022-04_img13_Inglisild.jpg",
+      "author": "A.Savin",
+      "observedDate": "2022-04-17",
+      "license": "Free Art License",
+      "use": "Mustard-and-white framed square piers, three main street-level openings, shorter wing colonnades, white vertical railings, horizontal wooden frieze, central portrait panel, circular beam ornaments and dentils.",
+      "policy": "View-only reference. No photograph pixels, downloaded meshes or private textures are imported. Rights remain with the linked page."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Inglisild_-_Angel%27s_Bridge_-_Tartu.JPG",
+      "author": "Лорд Бъмбъри",
+      "observedDate": "2015-06-21",
+      "license": "CC-BY-SA-4.0",
+      "use": "Whole classical footbridge silhouette over the separate Lossi roadway and bank paths.",
+      "policy": "View-only reference. No photograph pixels, downloaded meshes or private textures are imported. Rights remain with the linked page."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Inglisild.jpg",
+      "author": "HartOve",
+      "observedDate": "2024-12-27",
+      "license": "CC-BY-4.0",
+      "use": "Additional ordinary view of the bridge.",
+      "policy": "View-only reference. No photograph pixels, downloaded meshes or private textures are imported. Rights remain with the linked page."
+    }
+  ],
+  "limitations": [
+    "Scoped classical bridge exterior only. Named PMTiles footway length 31.40949m and its unequal bank wings locate the model; the 4.6m width, pier spacing, ornament and vertical sections are visual approximations. No exact-QID bridge polygon or surveyed section is claimed.",
+    "Source datum 64.6m and floor 70.35m give clearance above the coarse standard Lossi road. Mapzen smooths the local cut and hill; connected upper footpaths are deliberately graded with bounded supports. Exact hill embankments, stairways and park landscaping are not reconstructed.",
+    "The bronze profile is an original shallow geometric abstraction of the photographed Parrot medallion, not a precise portrait likeness. Fine dedication/date lettering is omitted; the opposite Latin motto uses simple original stroke geometry. Exact carpentry and cast ornament are simplified.",
+    "Mustard timber, cream frames, white open rails and pale foundations use existing shared 256px material graphs with metric UVs and linear tints. Distant levels simplify pier moldings, rails, seams, portrait and text; physical phone/laptop timing is unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-portrait-side",
+      "position": [
+        -14,
+        11,
+        34
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-motto-side",
+      "position": [
+        18,
+        12,
+        -32
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "deck-and-wing-railings",
+      "position": [
+        -15,
+        9,
+        5
+      ],
+      "lookAt": [
+        7,
+        6.2,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "lossi-open-portico",
+      "position": [
+        0,
+        1.7,
+        18
+      ],
+      "lookAt": [
+        0,
+        2.8,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "portrait-frieze-and-dentils",
+      "position": [
+        -3,
+        7.2,
+        11
+      ],
+      "lookAt": [
+        0,
+        6.3,
+        2.2
+      ],
+      "fov": 50
+    },
+    {
+      "name": "wing-colonnade-and-white-rail",
+      "position": [
+        13,
+        5.5,
+        10
+      ],
+      "lookAt": [
+        12,
+        5.2,
+        2.2
+      ],
+      "fov": 53
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/ud6/inglisild/models/inglisild-model.mjs",
+    "export": "buildInglisildSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.4
+      }
+    },
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildInglisildDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.4
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildInglisildStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.4
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "closeup": {
+        "export": "buildInglisildCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.4
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  }
+}

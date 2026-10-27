@@ -1,0 +1,495 @@
+{
+  "planId": "richmond_bridge",
+  "id": "richmond_bridge",
+  "assetId": "molen.worldgen.structure.richmond_bridge",
+  "title": "Richmond Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q487356",
+  "referenceCoordinate": {
+    "longitude": -0.307319444,
+    "latitude": 51.45725
+  },
+  "visualBrief": "London Richmond Bridge: five unequal pale masonry arches with a larger central opening, a humpback deck, raised outside walks, open pear-shaped stone balusters and square interval posts, projecting cornice, rounded full-height pier heads with stepped coping, individual arch voussoirs and eight dark gas-style lanterns.",
+  "size": [
+    144.8979949951172,
+    12.060857385396957,
+    14.399999618530273
+  ],
+  "actualBounds": {
+    "min": [
+      -72.4489974975586,
+      -0.3499999940395355,
+      -7.199999809265137
+    ],
+    "max": [
+      72.4489974975586,
+      11.710857391357422,
+      7.199999809265137
+    ]
+  },
+  "nativeAxes": "+X northeast toward Richmond town centre; -X southwest toward St Margarets/Twickenham; +Z southeast/upstream along the Thames; -Z northwest/downstream toward the railway bridge.",
+  "sourceFacts": {
+    "identity": "Retained exact-QID bridge footprint OSM way 576808129/Q487356, confirmed against the named Richmond Bridge/A305 crossing in standard 2026-10-26 PMTiles and ordinary photographs. The neighboring railway/lock crossings are separate.",
+    "mappedPlan": {
+      "length": 141.898,
+      "width": 10.603
+    },
+    "openingWidthsMeters": [
+      21,
+      21.200000000000003,
+      27.4,
+      21.200000000000003,
+      21
+    ],
+    "orientation": "+X northeast toward Richmond town centre; -X southwest toward St Margarets/Twickenham; +Z southeast/upstream along the Thames; -Z northwest/downstream toward the railway bridge.",
+    "heightBasis": "Standard PMTiles/Mapzen and ordinary photographs; explicit visualization grades and approximate sections."
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Richmond_018_Richmond_Bridge_TT_panorama.JPG",
+    "https://commons.wikimedia.org/wiki/File:On_Richmond_Bridge_-_Richmond-upon-Thames_-_geograph.org.uk_-_3015154.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -0.307086178,
+      51.457362863
+    ],
+    "heading": 0.754105270811,
+    "elevationMode": "sea-level",
+    "elevationMeters": 2.0348180770874023,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 141.898,
+      "width": 10.603,
+      "outline": [
+        [
+          -70.948,
+          -5.297
+        ],
+        [
+          -70.945,
+          -0.468
+        ],
+        [
+          -70.949,
+          5.302
+        ],
+        [
+          70.949,
+          5.301
+        ],
+        [
+          70.939,
+          0.115
+        ],
+        [
+          70.945,
+          -5.302
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -70.949,
+          0
+        ],
+        [
+          70.949,
+          0
+        ]
+      ],
+      "deckHeights": [
+        3.9139999999999997,
+        4.914000000000001
+      ],
+      "deckProfile": [
+        [
+          -70.949,
+          3.9139999999999997,
+          0
+        ],
+        [
+          -55,
+          5.434,
+          0
+        ],
+        [
+          -35,
+          6.434,
+          0
+        ],
+        [
+          -17.5,
+          7.064,
+          0
+        ],
+        [
+          0,
+          7.414000000000001,
+          0
+        ],
+        [
+          17.5,
+          7.314,
+          0
+        ],
+        [
+          35,
+          6.924,
+          0
+        ],
+        [
+          55,
+          6.214,
+          0
+        ],
+        [
+          70.949,
+          4.914000000000001,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0e6d1d3777ceff01255527de85377d69f930ce8f844369b6518e2b9d46b272ad",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://www.openstreetmap.org/way/576808129",
+    "wikidataId": "Q487356"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/richmond_bridge/models/richmond-model.mjs",
+    "export": "buildRichmondSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#e8eadb",
+        "roughness": 0.2,
+        "metallic": 0,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.48
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRichmondDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e8eadb",
+            "roughness": 0.2,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.48
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.45
+      },
+      "street": {
+        "export": "buildRichmondStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e8eadb",
+            "roughness": 0.2,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.48
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.15
+      },
+      "closeup": {
+        "export": "buildRichmondCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#e8eadb",
+            "roughness": 0.2,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.48
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.05
+      }
+    }
+  },
+  "limitations": [
+    "Scoped bridge exterior only. Pinned map plan 141.898m by 10.603m is retained as a straightened millimetre-level outline; photo-led unequal arch proportions, height, deck crown, pier heads and ornament are visual approximations, not surveyed engineering sections.",
+    "Five opening widths 21/21.2/27.4/21.2/21m, elliptical rises and four 3.8m piers are inferred from ordinary photographs. Exact masonry bond, inscriptions, gas-lamp castings and widening construction joints are not reconstructed.",
+    "Source datum 2.0348180770874023m follows the native semantic water surface at 2.6348180770874023m and a declared bank/crown grade. Raw water polygons vary locally in height; no tide stage, surveyed threshold or historic water-level accuracy is claimed.",
+    "Connected map bank paving is deliberately graded to the authored deck. Small 1.5m flared apron overlaps cover generalized road/footway edges; raw roads, terrain and water remain inputs. Surrounding quays, steps, buildings, trees, signs, boats and newer crossings are procedural context.",
+    "Distant LODs simplify arch curves, rail infill, pier-head facets and lamp fittings; skyline uses a coarser crown and solid parapet band. Nearer levels retain open vase-shaped balusters, individual arch voussoirs, rounded heads and framed lantern panes. Physical laptop/phone timing remains unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-downstream",
+      "position": [
+        0,
+        20,
+        108
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-upstream",
+      "position": [
+        -90,
+        25,
+        -100
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "road-and-stone-balusters",
+      "position": [
+        -50,
+        10,
+        2
+      ],
+      "lookAt": [
+        20,
+        8,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "central-arch-and-pier",
+      "position": [
+        10,
+        2.6,
+        29
+      ],
+      "lookAt": [
+        3.5,
+        4.8,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "round-pier-lamp-and-balusters",
+      "position": [
+        -41,
+        8,
+        18
+      ],
+      "lookAt": [
+        -40.6,
+        7.6,
+        5.7
+      ],
+      "fov": 56
+    },
+    {
+      "name": "open-vault-and-soffit",
+      "position": [
+        -8,
+        0.9,
+        9
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ],
+      "fov": 58
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 137848,
+    "vertices": 413544,
+    "materials": 5,
+    "bytes": 16545092,
+    "sha256": "sha256:576891f3bc80b6ab56fc27fef4ac5884dadc98af7e64cd5cefe1e5b22547f5e4"
+  }
+}

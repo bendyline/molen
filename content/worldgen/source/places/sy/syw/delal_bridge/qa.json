@@ -1,0 +1,495 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.delal_bridge",
+  "reviewedOn": "2026-10-26",
+  "inputHash": "sha256:07e343ff4c3ab06ca7a29da83251c6feac2506902f163a6b498a8683b96b9aac",
+  "sourceHash": "sha256:fe08fdd36b2b1c0cdcd9b98cc35dcf5f652076cfe887b826f38829c5b0883a39",
+  "runtimeHash": "sha256:baddce9102d6c430fd20c0b9f90f5c9b1a6d7fe5b498b9ea3f93f0c1d8caecb9",
+  "captureReportHash": "sha256:770b0abc9e073318d579415a8120709964a94b1722841e3b0f3dd24b0bd634a6",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/complete-west-elevation.png",
+      "shots/opposite-arches-and-rock-beds.png",
+      "shots/sloping-stone-walk.png",
+      "shots/main-vault-and-piers.png"
+    ],
+    "captureReportHash": "sha256:770b0abc9e073318d579415a8120709964a94b1722841e3b0f3dd24b0bd634a6",
+    "notes": "Inspected 55 current images:9 portable,8 shared-material asset views,25 medium-fi context/LOD views and13 native frames. The asymmetric five-opening bridge, dominant pointed arch, sloping cobbled walk, raised parapets, arch rims and rock bases remain recognizable across the complete LODs. Both faces, vaults, walk, Economy/High, noon/late light, all four native levels, both approach joins and load failure were inspected. Flat shared asset views verify materials; native captures separately prove the geographic transforms and approximate terrain fit."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/complete-west-elevation.png",
+      "shots/shared/opposite-arches-and-rock-beds.png",
+      "shots/shared/sloping-stone-walk.png",
+      "shots/shared/main-vault-and-piers.png"
+    ],
+    "captureReportHash": "sha256:579b0d7c2c5b46c726700785854e2651ac0c9b00501123f9db39911aeb3db73a",
+    "notes": "Three existing256 px shared graphs: stone_sandstone, stone_sandstone_raw and stone_drywall, with metric UVs and linear component tints. No embedded/private bitmap images or copied photo pixels. Shared graph reads are deduplicated; material and model disposal pass."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/complete-west-elevation.png",
+      "medium-fi/opposite-arches-and-rock-beds.png",
+      "medium-fi/sloping-stone-walk.png",
+      "medium-fi/main-vault-and-piers.png",
+      "medium-fi/complete-delal-skyline.png",
+      "medium-fi/complete-delal-district.png",
+      "medium-fi/complete-delal-street.png",
+      "medium-fi/complete-delal-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:673a97e6a4a29a451aa26bfa4e4d4ae34bd4a3b2fec6d82b3a593ce040d7d626",
+    "notes": "Detailed source 11454 triangles; browser skyline/district/street/closeup542/914/2986/7118 triangles and50884/89548/283260/675924 bytes. Initial skyline plus district140432 bytes, below phone and laptop initial-download targets. Physical laptop/phone timing remains unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:1508b825e48962474798ce3f0fceaacca96e6b39b4cbbeebb3ccdf3fc74833a5",
+    "mapFrameHash": "sha256:064cdd75de210876e8925cb7494de616031f9a69d5010dcf6896455c9094a1fa",
+    "notes": "Named standard-PMTiles Delal Bridge footway at [42.695,37.136111], heading1.619969253844741 rad; +X north along the crossing, +Z east. This is a reviewed name/photo association with catalog Q2571655, not an exact-QID map match. Source origin435.1 m and native water436.371948 m are approximate Mapzen visualization controls. All four runtime levels meet the connected footways within 0.01226 m at the tested joins. Five bounded opening-channel caps and reconstructed rock beds keep the coarse native terrain out of the openings. No raw DEM or water edits. The114 m retained nominal length and121.07 m mapped approach route describe different extents;4.7 m width and arch profiles remain photo-based approximations."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped exterior and approximate native placement complete. Detailed source 11454 triangles; browser skyline/district/street/closeup542/914/2986/7118 triangles and50884/89548/283260/675924 bytes. Initial skyline plus district140432 bytes, below phone and laptop initial-download targets. Physical laptop/phone timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sy/syw/delal_bridge/models/source.glb\",\"hash\":\"sha256:fe08fdd36b2b1c0cdcd9b98cc35dcf5f652076cfe887b826f38829c5b0883a39\",\"bytes\":1376948,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/sy/syw/delal_bridge/model.glb\",\"hash\":\"sha256:baddce9102d6c430fd20c0b9f90f5c9b1a6d7fe5b498b9ea3f93f0c1d8caecb9\",\"bytes\":1376548,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sy/syw/delal_bridge/model.skyline.glb\",\"hash\":\"sha256:53e492440a239581cce16ba98e8d24d40220ac9e2c7a365fa7c6d7e7b211a544\",\"bytes\":50884,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sy/syw/delal_bridge/model.district.glb\",\"hash\":\"sha256:bdff97af8708b78f7fa72a808313f120849b69d081c9760728fe1a64fda29885\",\"bytes\":89548,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sy/syw/delal_bridge/model.street.glb\",\"hash\":\"sha256:9c84075ddbe5f5a414542e19f58ed0234258e3a5337634b30acc01de65cae0cc\",\"bytes\":283260,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sy/syw/delal_bridge/model.closeup.glb\",\"hash\":\"sha256:64aeafc17d5e0e45a3b6ce2a8522f3b0686d841c1f4d1f0d6d965f306ba98f54\",\"bytes\":675924,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "genuine-openings-solid-spandrels-continuous-walk",
+        "passed": true,
+        "notes": "138 actual front-face mesh probes across source, imported master and all four runtime levels. Endpoint probes lie3cm inside float32 boundaries and follow the authored threshold/crossfall, rather than assuming the central deck profile."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named standard-PMTiles Delal Bridge footway at [42.695,37.136111], heading1.619969253844741 rad; +X north along the crossing, +Z east. This is a reviewed name/photo association with catalog Q2571655, not an exact-QID map match. Source origin435.1 m and native water436.371948 m are approximate Mapzen visualization controls. All four runtime levels meet the connected footways within 0.01226 m at the tested joins. Five bounded opening-channel caps and reconstructed rock beds keep the coarse native terrain out of the openings. No raw DEM or water edits. The114 m retained nominal length and121.07 m mapped approach route describe different extents;4.7 m width and arch profiles remain photo-based approximations."
+    },
+    "inputHash": "sha256:07e343ff4c3ab06ca7a29da83251c6feac2506902f163a6b498a8683b96b9aac",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:07e343ff4c3ab06ca7a29da83251c6feac2506902f163a6b498a8683b96b9aac",
+      "reviewedOn": "2026-10-26",
+      "method": "Inspected 55 current images:9 portable,8 shared-material asset views,25 medium-fi context/LOD views and13 native frames. The asymmetric five-opening bridge, dominant pointed arch, sloping cobbled walk, raised parapets, arch rims and rock bases remain recognizable across the complete LODs. Both faces, vaults, walk, Economy/High, noon/late light, all four native levels, both approach joins and load failure were inspected. Flat shared asset views verify materials; native captures separately prove the geographic transforms and approximate terrain fit.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/preview.png",
+          "hash": "sha256:c70bd974474df5418def4cf4a22d62b942244a1e0f47e1aa77ccc6412c82fdd0"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:9eefb88836a68a0b9b28bf7fc00f0bb2a0462bc18c2af4302a8866ca6564cbb6"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:72cb2975ac6a8ece3e994fd8ecaa853746b34c02f23bed4b33ea9f7ad2f9129a"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:eb509e6c6c686aacf2dbc5ff949ef437f7e8b0d510c8317cc70aaabcc06e9981"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:cd74167d429ff18ee5533f1363c3900a54e33cdc5867ecf0f905b8cfbef6a4ca"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/complete-west-elevation.png",
+          "hash": "sha256:c70bd974474df5418def4cf4a22d62b942244a1e0f47e1aa77ccc6412c82fdd0"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/opposite-arches-and-rock-beds.png",
+          "hash": "sha256:a12ff6cf524c4a10468b0153026eff047bec6d85164089ff395cf78ed282195e"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/sloping-stone-walk.png",
+          "hash": "sha256:42d814b1cac67d333f6752e4c3d9071ef0029af056201321e0e27b1f7991b4da"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/main-vault-and-piers.png",
+          "hash": "sha256:1b2ee7a82cff8858335e15570307b1a260e7ffe618116dec596354d4ddcf65b4"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:785cee8f7df643910d56281f437341847500acd9859491d75569c199de8ca6bd"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:222c0f3661f3314dcdb51616354d2a5358369e9a9033528f626406ef51c8f9ce"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:d98c6409776fbf9e4edf96fbffbec85216adeb61ba8393c9381befc343ded27c"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:c267d321f52ebe6f9f0b98b1559ce37d7c36f3984482117103962e2ec283a364"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/shared/complete-west-elevation.png",
+          "hash": "sha256:4a4ac4cfa7d485d3c4da84e16649abe46dc5610f4a0783fdb744b61e96962208"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/shared/opposite-arches-and-rock-beds.png",
+          "hash": "sha256:2c88abb5c9ea83c5bd17ff3a6419001521e1158202da01de1972eb8d403c62de"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/shared/sloping-stone-walk.png",
+          "hash": "sha256:3e98b066cc2d01d68330bd93dc061c0914590aa3e3aa6e0a72d7887f8d7e79b7"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/shots/shared/main-vault-and-piers.png",
+          "hash": "sha256:b58121abd70bf187e02d28c5780f1e2add4d2baabe3fa314f47b3b6977f9312e"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:9077161fc000ec0508c9c93fe69c17235675a8f10e366bf6d301c8672b919bd9"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:c1d42022decf63919b0818ce4642a72d3c6ed3774cbb7e12899a387ecb7aeae5"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:cefd0a4844dd71c0324c525043704adba1f0a0cf8abae681c91c21f672524250"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:665cd5564bd10deb238051da0790cb3561ff9ffeb4cbc455a551ae7fd8816230"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:68d429eba2ba330ebd89af018641cd230c67be7b84a7e80d2b7c886618f6f8e8"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:2b1182368b01c9d18a5553fa97ebead6171bc1a72a1d975b3fd881842c3c07f3"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:c75d29dfaca82e9518a515bf85eadd821dba7b928581c10d6f27ede464e8e403"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:f971394f5c9f99ea59cb7a14a8ec9b667e9ad31216db5c0434eeddbe82ef5df1"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:08ef81699fc0e8f319b8ee6fe524b5c73d514deb825b1f5ff08548fdebce998b"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:8afa3a4b3542c0c9b7c00357eabafa48340bde0c25ae68b521bf42d4a11be4d9"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:14d974d87efb0276bab40016f713f03c386220eb0be0b4c6fdaa47019214b8d2"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:4b7e2a7441c658d4c58b7d7468dc855c8b18a68187750165377b96c2d38edf4b"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:7eec75cfa84636e71a1583fee24a9de8ee9f7f001773fa2b837c79817edce6e4"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/complete-west-elevation.png",
+          "hash": "sha256:9483751ac8b0cc30ffa2c168cd640b146e5b00b76bca710f18907c138ce63035"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/opposite-arches-and-rock-beds.png",
+          "hash": "sha256:f0025b69a0b031ec0f3f67b0c5c51d3622d71e18d576e52ffebdb47c707e6ab9"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/sloping-stone-walk.png",
+          "hash": "sha256:de61f643f1c317485e9051a121fc7ed30c020c33a9ce05dcd37363fdb576409f"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/main-vault-and-piers.png",
+          "hash": "sha256:55ca1cddd39833232bc0d959253279d8acd18536a3ca8574ec33141925448ba4"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/complete-delal-skyline.png",
+          "hash": "sha256:f089ca5d69e2d971969f66c8d6fe4cec61db791b1e1b42c1984cf6fd0c0294c2"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/complete-delal-district.png",
+          "hash": "sha256:386aefa0fd2f59b1031314badcbbb4664de89015377fd12e0f426a333fd2927e"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/complete-delal-street.png",
+          "hash": "sha256:9048a585584bc4c174c1061a6e375936ac0935f46065a516e1d352deffd4fe61"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/complete-delal-closeup.png",
+          "hash": "sha256:9483751ac8b0cc30ffa2c168cd640b146e5b00b76bca710f18907c138ce63035"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:865e1c0421999d0b86baae4610a8d0935d3edcecee22aa5df1a1d17966ed0652"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:2b1182368b01c9d18a5553fa97ebead6171bc1a72a1d975b3fd881842c3c07f3"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:c69f28737790e4609f972f9f4eaa7cbf159a31d7dbbb9a434408558a39521a0e"
+        },
+        {
+          "path": "content/worldgen/source/places/sy/syw/delal_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:f80d93c49ac35082b32b92a01f7929b8c3017a6e358fb51f38537bdf88023688"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-skyline-whole-crossing.png",
+          "hash": "sha256:5d1e62c45a7dd3989a79a07605d1b3191a868a25176382e946869c35f55695a1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-district-whole-crossing.png",
+          "hash": "sha256:33214047c3f330ad7c6c4e5c70696204a19debabc1d3ad4e85fe42b3ddfcda73"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-street-whole-crossing.png",
+          "hash": "sha256:014ea6aaad3a2dbd9ab7566ef9224dbbee88d05c81387ff11836910f806a828b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-street-opposite-arches.png",
+          "hash": "sha256:c0234800af8d3baca32cd09cdbed62f421fbd7db8dbf741050f4c671b1e27bfd"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-street-main-vault.png",
+          "hash": "sha256:ee390b0d5b538046396e3c61f5efc5c4046e605a39f32499eadd10e139feacea"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-street-stone-walk.png",
+          "hash": "sha256:4091876a8a8ebda1121da66b904f67e25fda3e9d6a5395055a83454088fb7d75"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-closeup-whole-crossing.png",
+          "hash": "sha256:b94a085cd6a76456b8557fd928ade6f59ae3808316e615c3a603911f540a9bbd"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-closeup-opposite-arches.png",
+          "hash": "sha256:6f495d57a1a662ac5ec1ad7d30c52fe87aebb8cc82984e61fb95292c376ba7a7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-closeup-main-vault.png",
+          "hash": "sha256:5363ec994a38d71214c7a110f8e39fd6f31cd4325b5dfaeaa5aff90ff0b887b3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-closeup-stone-walk.png",
+          "hash": "sha256:76eb1c7521cc4bf22a943d2251b264a4e0cec354ef121e8d57ac969a6ac3c1e9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-closeup-south-road-join.png",
+          "hash": "sha256:e3d6cf3ff836f30ff1e0fb44d2a8d699c6cbb40f35863b5c6bbaedbb4af70355"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-closeup-north-road-join.png",
+          "hash": "sha256:13fe89dfd7bd984f3651eefa825e140eeb1140c89416049dc0e966c49dea9da4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\delal-canonical-review/native/shots/canonical-failure-whole-crossing.png",
+          "hash": "sha256:2331b1dbee394daebb9332acd2d379bb37850fb94af0df4c9911d08630b4f6ae"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 268 independent buildings and1211 independent road records remain. Only 61 bridge-part slices are replaced. Source road records, raw heightfield and water remain unchanged. Load failure retains all 329 mapped parts/buildings. Unload restores original ground and releases all model/support geometry."
+    },
+    "nativeReport": {
+      "path": ".artifacts/delal-canonical-review/native/canonical-report.json",
+      "hash": "sha256:20172f844c1bcb7b22280508e6bcfeff91daefb3c7d056d6dca857259c977108",
+      "frozenViewerInputsHash": "sha256:ff05f5db2e4cabab1b0762296d15d45a5d2ee8850b20144c691ce25b45b4a529"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "remainingBuildings": 268,
+        "independentRoads": 1211,
+        "replacedBridgeParts": 61,
+        "maxJoinErrorMeters": 0.005139800893971369,
+        "rawHeightfieldUnchanged": true,
+        "waterUnchanged": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "remainingBuildings": 268,
+        "independentRoads": 1211,
+        "replacedBridgeParts": 61,
+        "maxJoinErrorMeters": 0.005139800893971369,
+        "rawHeightfieldUnchanged": true,
+        "waterUnchanged": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "remainingBuildings": 268,
+        "independentRoads": 1211,
+        "replacedBridgeParts": 61,
+        "maxJoinErrorMeters": 0.005139800893971369,
+        "rawHeightfieldUnchanged": true,
+        "waterUnchanged": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "remainingBuildings": 268,
+        "independentRoads": 1211,
+        "replacedBridgeParts": 61,
+        "maxJoinErrorMeters": 0.012258484630024213,
+        "rawHeightfieldUnchanged": true,
+        "waterUnchanged": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "remainingBuildings": 329,
+        "independentRoads": 1211,
+        "replacedBridgeParts": 0,
+        "maxJoinErrorMeters": null,
+        "rawHeightfieldUnchanged": true,
+        "waterUnchanged": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Original analytic exterior from ordinary pictures and standard PMTiles/Mapzen only. No engineering sources or private terrain survey.",
+    "Five visible openings are reconstructed; individual stone layouts, exact arch dimensions, concealed foundations and river stage are approximate.",
+    "Temporary flags, the hanging decorative spindle, people, modern quays, lighting and nearby buildings are excluded from the bridge source.",
+    "Three shared256px graphs and metric UVs are used; there are no embedded or private images.",
+    "Physical laptop/phone/tablet measurements remain pending."
+  ],
+  "integrationStatusReconciliation": {
+    "kind": "integration-status-reconciliation-only",
+    "oldInputHash": "sha256:71237e1880ef3766e00f2d9ef42d56d43da1283408c5bc801338892796cd41b5",
+    "inputHash": "sha256:07e343ff4c3ab06ca7a29da83251c6feac2506902f163a6b498a8683b96b9aac",
+    "beforeReportHash": "sha256:95ca434fac736de2d28e443d5d91c7e78f776c9ac497b699788de37129585698",
+    "afterReportHash": "sha256:632288c69ad82db12f78f46322d1790e195b5269009f0393949e498884c3ac0f",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 55,
+    "sourceHash": "sha256:fe08fdd36b2b1c0cdcd9b98cc35dcf5f652076cfe887b826f38829c5b0883a39",
+    "runtimeHash": "sha256:baddce9102d6c430fd20c0b9f90f5c9b1a6d7fe5b498b9ea3f93f0c1d8caecb9",
+    "lodHashes": [
+      {
+        "name": "skyline",
+        "hash": "sha256:53e492440a239581cce16ba98e8d24d40220ac9e2c7a365fa7c6d7e7b211a544"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:bdff97af8708b78f7fa72a808313f120849b69d081c9760728fe1a64fda29885"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:9c84075ddbe5f5a414542e19f58ed0234258e3a5337634b30acc01de65cae0cc"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:64aeafc17d5e0e45a3b6ce2a8522f3b0686d841c1f4d1f0d6d965f306ba98f54"
+      }
+    ],
+    "preservedFilesHash": "sha256:b7444eccdebda107bc3abd246736dd4107d8a5fa79baf3e2c651fb8465eec551",
+    "preservedFramesHash": "sha256:80ca6105198b716a41a20da3e6f9240e7b1e9dfb5072866262ec0361e71aed5e",
+    "method": "Corrected only the stale handoff status, current output statistics and pointers to already completed canonical reviews. All other source files, six GLBs and every bound inspected image were checked byte-for-byte unchanged. Existing reviews are retained with this explicit metadata-only provenance; no new visual review is claimed."
+  }
+}

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.blue_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:efcb5805102a07b51c789a06c8753c6c39a363511a7101e6ef9e7b30ee2a8334",
+  "inputHash": "sha256:86991993645c8d82f461a01c73f76b2783607f34099e1dd015c83ac32105f8d3",
   "sourceHash": "sha256:e04f0ec552d9c64277dc4dc84e5c0ad9a390ae99f87fad453e40c5da8ef6d466",
   "runtimeHash": "sha256:f5a4c78ba06ee1c587ebd9d44cbd2119b5ba7e18f7705d2b363bca64bf22297e",
-  "captureReportHash": "sha256:d617847afb6b182024bd235ac800927080e004aafc1afc1a4370bc39f03b9738",
+  "captureReportHash": "sha256:14f287b5ffe8217c4e0f49a6fde24ad92b2ad0dc8a972e001102ddab4afb4e1d",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,11 +26,12 @@
       "shots/parking-square.png",
       "shots/deck-plan.png"
     ],
-    "notes": "Inspected all16 final source views: canal/plaza overview, four turntables, upstream/downstream faces, cast ribs, both soffits, Moika railing, granite wings, lantern, sign, parking and plan. The blue circular/four-lobed rail and plain inner rail agree with two inspected street pictures. Corrected parking-face winding now makes the markings visible. The sign is deliberately unlettered; existing vault proportions are retained from the source."
+    "notes": "Inspected all16 final source views: canal/plaza overview, four turntables, upstream/downstream faces, cast ribs, both soffits, Moika railing, granite wings, lantern, sign, parking and plan. The blue circular/four-lobed rail and plain inner rail agree with two inspected street pictures. Corrected parking-face winding now makes the markings visible. The sign is deliberately unlettered; existing vault proportions are retained from the source.",
+    "captureReportHash": "sha256:14f287b5ffe8217c4e0f49a6fde24ad92b2ad0dc8a972e001102ddab4afb4e1d"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:0874f04cad4f9f22bf3a5fd20507a77172bc586cf5f1f1560265054421f3d64b",
+    "captureReportHash": "sha256:2143ac6c70f19e53182b79382a92c76b85dd4072c79a8464491377fbe52f5176",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -357,7 +358,7 @@
     "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
     "validatedOn": "2026-10-15",
     "previousInputHash": "sha256:66c2feecc89a84eef6eec360dc357892261d25aa33fe034d88bc0c793fe7fdef",
-    "inputHash": "sha256:efcb5805102a07b51c789a06c8753c6c39a363511a7101e6ef9e7b30ee2a8334",
+    "inputHash": "sha256:86991993645c8d82f461a01c73f76b2783607f34099e1dd015c83ac32105f8d3",
     "previousQaHash": "sha256:0ec7f625ca2701737ba33b8e42297fef34ce29bbfac4778068e6733b297da4bc",
     "sourceHash": "sha256:e04f0ec552d9c64277dc4dc84e5c0ad9a390ae99f87fad453e40c5da8ef6d466",
     "runtimeHash": "sha256:f5a4c78ba06ee1c587ebd9d44cbd2119b5ba7e18f7705d2b363bca64bf22297e",
@@ -415,5 +416,16 @@
     "framesVerified": 64,
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:efcb5805102a07b51c789a06c8753c6c39a363511a7101e6ef9e7b30ee2a8334",
+    "inputHash": "sha256:86991993645c8d82f461a01c73f76b2783607f34099e1dd015c83ac32105f8d3",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 64,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
   }
 }

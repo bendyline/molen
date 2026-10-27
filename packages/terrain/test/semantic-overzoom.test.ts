@@ -88,12 +88,16 @@ describe('semantic overzoom', () => {
         ],
       ],
       bridgeConnections: [{ point: [0.5, 0.25], elevation: 18, radius: 100 }],
+      bridgeApproachProfile: [{ point: [0.5, 0.25], elevation: 18, flatness: 1 }],
     });
     const zoomed = overzoomTerrainSemanticTile(tile, parent, child(1, 0));
     expect(zoomed.transportation[0]?.bridgeConnections).toEqual([
       { point: [0, 0.5], elevation: 18, radius: 100 },
     ]);
     expect(tile.transportation[0]?.bridgeConnections?.[0]?.point).toEqual([0.5, 0.25]);
+    expect(zoomed.transportation[0]?.bridgeApproachProfile).toEqual([
+      { point: [0, 0.5], elevation: 18, flatness: 1 },
+    ]);
   });
 
   it('keeps each building whole in exactly one descendant', () => {

@@ -1,0 +1,312 @@
+{
+  "planId": "les_ferreres_aqueduct",
+  "id": "les_ferreres_aqueduct",
+  "assetId": "molen.worldgen.structure.les_ferreres_aqueduct",
+  "title": "Les Ferreres Aqueduct",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q623448",
+  "referenceCoordinate": {
+    "longitude": 1.243889,
+    "latitude": 41.145556
+  },
+  "visualBrief": "Two-tier Roman aqueduct with25 upper and11 lower real open arches, tapered rusticated stone piers, broad projecting impost bands, pale voussoir rings, cornices, extended end walls and a continuous open dry water channel.",
+  "size": [
+    242.22549438476562,
+    26.974531250074506,
+    4.664865016937256
+  ],
+  "actualBounds": {
+    "min": [
+      -121.11274719238281,
+      0.025468749925494194,
+      -1.2599999904632568
+    ],
+    "max": [
+      121.11274719238281,
+      27,
+      3.404865026473999
+    ]
+  },
+  "nativeAxes": "+X north-northwest; -X south-southeast; +Z east-northeast; -Z west-southwest.",
+  "sourceFacts": {
+    "identity": "Named PMTiles elevated aqueduct channel35184459381762 and matching monument POI17594328805153. No exact-QID footprint claim.",
+    "mappedChannelExtentMeters": 242.22548988037525,
+    "catalogLengthMeters": 217,
+    "photoCaptionExtentMeters": 249,
+    "heightMeters": 27,
+    "openingMeters": 5.9,
+    "pitchMeters": 7.95
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aqueducte_de_les_Ferreres.jpg",
+    "https://commons.wikimedia.org/wiki/File:E5373-Tarragona-Aqueduct-channel.jpg",
+    "https://commons.wikimedia.org/wiki/File:Les_Ferreres_Aqueduct,_built_in_the_1st_century_AD_to_supply_water_to_the_ancient_city_of_Tarraco,_Spain_-_52635720275.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      1.2438972294330597,
+      41.14592823887574
+    ],
+    "heading": 1.9642307890327135,
+    "elevationMode": "sea-level",
+    "elevationMeters": 31.6,
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:58f1b32c217263639f0449f6df3bd7bdd04af190df14a3d525a3b3e4c81edd4e",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://commons.wikimedia.org/wiki/File:Aqueducte_de_les_Ferreres.jpg",
+    "wikidataId": "Q623448"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/models/ferreres-model.mjs",
+    "export": "buildFerreresSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "arch": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "channel": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFerreresDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "arch": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "channel": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "street": {
+        "export": "buildFerreresStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "arch": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "channel": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.15
+      },
+      "closeup": {
+        "export": "buildFerreresCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "arch": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "channel": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.06
+      }
+    }
+  },
+  "limitations": [
+    "25 upper and11 lower real arches,5.9m nominal openings/7.95m pitch,27m maximum height. Photo-led tapered piers, impost bands, ring stones, rusticated faces and open channel. Hill/support profiles and exact masonry dimensions remain approximate. Named242.225m mapped channel includes end walls; retained separately from older217m catalog and249m photo-caption figures.",
+    "Standard Mapzen z14 and z15 ground smooths the valley: roughly45–56m along the channel. Fitting upper end walls to those banks buries much of the lower arcade. Geographic entry must remain a disabled draft until a faithful generic terrain-fit method is available. No fabricated staircase, stretched piers or changed surrounding ground.",
+    "Full two-tier medium-fi exterior and open dry channel; exact stone damage, original waterproof lining, inscriptions, vegetation and hillside reconstruction are not claimed. Geometry is original and analytic, with no downloaded mesh or photograph texture.",
+    "Existing shared256px stone_sandstone_raw, stone_sandstone and stone_limestone_raw graphs, metric UVs and linear tints. No private or embedded images. Four runtime levels retain all36 open arch holes; distant arches are deliberately polygonal.",
+    "Source support bases/hill profile and tier dimensions are photo-led approximations. The27m height is the source maximum above its lowest reconstructed foot, not a claimed27m exposed height in coarse native terrain. Geographic readiness is withheld; physical laptop/phone timing is unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-east-arcades",
+      "position": [
+        80,
+        48,
+        165
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 65
+    },
+    {
+      "name": "complete-west-elevation",
+      "position": [
+        -15,
+        27,
+        -190
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 67
+    },
+    {
+      "name": "lower-and-upper-openings",
+      "position": [
+        12,
+        10,
+        24
+      ],
+      "lookAt": [
+        0,
+        14,
+        1
+      ],
+      "fov": 65
+    },
+    {
+      "name": "upper-arch-and-impost",
+      "position": [
+        2,
+        21,
+        14
+      ],
+      "lookAt": [
+        0,
+        22,
+        1
+      ],
+      "fov": 62
+    },
+    {
+      "name": "rusticated-pier-and-lower-vault",
+      "position": [
+        2,
+        5,
+        10
+      ],
+      "lookAt": [
+        3.975,
+        6,
+        1
+      ],
+      "fov": 62
+    },
+    {
+      "name": "open-channel-walk",
+      "position": [
+        -30,
+        26.5,
+        1.3010924022502512
+      ],
+      "lookAt": [
+        -8,
+        25.7,
+        1.451733888901928
+      ],
+      "fov": 58
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 27280,
+    "vertices": 54560,
+    "materials": 3,
+    "bytes": 2294000,
+    "sha256": "sha256:d6d81ae687e33c6fba0575dabf621eb325ed5b8869f5860fe2d223dae71c22ce"
+  }
+}

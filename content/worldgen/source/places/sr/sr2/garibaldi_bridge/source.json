@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.garibaldi_bridge",
+  "kind": "static-structure",
+  "title": "Ponte Garibaldi / Garibaldi Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.garibaldi_bridge",
+        "output": "assets/places/sr/sr2/garibaldi_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:413edc495192934686ee322fab21ae6fdafae1037589aaa5fe95f09e59857d15"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-garibaldi.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/garibaldi-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

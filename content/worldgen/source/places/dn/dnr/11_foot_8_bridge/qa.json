@@ -1,0 +1,826 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.11_foot_8_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:1758f28314557832e0662ced1051b2ff2daf2ad2a9d9c41eedb0220e862d03b9",
+  "sourceHash": "sha256:9afdbabd0323fd559a6f0097299080c4ebaba540dd322a0bbaab7499b86bb030",
+  "runtimeHash": "sha256:79adf200f9408acf32b954c015d4831c4ee71ee14ab2ea92bbd45e7e27015796",
+  "captureReportHash": "sha256:0ec907a6fcd5083bece8f4a038ccbb3c34974a778581a6d0c3621b9e0e286690",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-north-approach.png",
+      "shots/whole-south-side.png",
+      "shots/rail-deck-ties-and-girders.png",
+      "shots/current-clearance-sign.png",
+      "shots/crash-beam-and-open-road.png",
+      "shots/pier-bearing-and-diagonal-brace.png"
+    ],
+    "captureReportHash": "sha256:0ec907a6fcd5083bece8f4a038ccbb3c34974a778581a6d0c3621b9e0e286690",
+    "notes": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. Narrow brown plate girders, lower flanges/stiffeners, transverse floor beams, three lower openings, concrete supports/caps/bearings, two rails/ties, slender wire fence and separate yellow crash beam with outboard braces are present. Both north-facing diamonds retain outward-readable current 12 ft 4 digits and arrows. Historical 11 ft 8 signage and flashing-beacon layout are not presented as current. Lowered the initial native datum by about 0.345m in this same pass after actual clearance probes showed the first placement was too high."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-north-approach.png",
+      "shots/shared/whole-south-side.png",
+      "shots/shared/rail-deck-ties-and-girders.png",
+      "shots/shared/current-clearance-sign.png",
+      "shots/shared/crash-beam-and-open-road.png",
+      "shots/shared/pier-bearing-and-diagonal-brace.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:cd44fb80054ee2f391a76bfbba8e42fe51c5bff5e1df5ebbd5bbc2556f1b5e5e",
+    "notes": "Four existing shared 256px graphs: concrete_plain, metal_painted, wood_plain and gravel. Four merged material groups near, one mean-tinted group at skyline. Metric UVs and linear tints; no private/embedded images or copied photograph pixels. Each graph is fetched once in near native views. Runtime models use four separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-north-approach.png",
+      "medium-fi/whole-south-side.png",
+      "medium-fi/rail-deck-ties-and-girders.png",
+      "medium-fi/current-clearance-sign.png",
+      "medium-fi/crash-beam-and-open-road.png",
+      "medium-fi/pier-bearing-and-diagonal-brace.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:60e01694754941af3be331158118a30561052cc33d849eb5359be362eb52c5de",
+    "notes": "Master: 9876 triangles / 1188020 bytes. Runtime levels: 440 / 1400 / 2876 / 8020 triangles, 41200 / 129912 / 261684 / 668396 bytes and 1 / 4 / 4 / 4 draws. Initial skyline plus district 171112 bytes. Strict medium-fi budgets pass; physical-device timings remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f2a6bd74c1844afa47fe47bcbcbd0e2730a005b20a842f88dbb36871c17f6710",
+    "mapFrameHash": "sha256:bc16045982903462c8ebe0a592515ca92235c86aff94febc637db35d45faeaf6",
+    "notes": "Retained exact-QID OSM way 515431845/Q22905940 footprint, confirmed against named current PMTiles rail bridge 35184388610530 and separate South Gregson Street 35184388623460. Anchor [-78.910131576,35.999075515], heading -0.604004960215: +X east-southeast toward Durham station, -X west-northwest; +Z south-southwest toward West Pettigrew, -Z north-northeast toward West Peabody and the southbound Gregson approach. Crash beam and current clearance diamonds face -Z. Source plan 28.833m by 3.101m is retained; the 6.4m replacement width adapts the renderer’s default rail bed, not a wider claimed bridge. All 12 mapped rail-bed width samples have model support at every LOD; eight retain native paving and meet within 0.026536230180454368m, while four lie inside replacement and are not called pavement joins. Fifteen actual upward road-width/station raycasts retain at least 3.7800004245684704m beneath rendered girders/crash beam. This is approximate standard-terrain fit, not a surveyed or legal clearance certification."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped present-day rail overpass, separate crash beam and current clearance signs with approximate standard-terrain placement complete. Master: 9876 triangles / 1188020 bytes. Runtime levels: 440 / 1400 / 2876 / 8020 triangles, 41200 / 129912 / 261684 / 668396 bytes and 1 / 4 / 4 / 4 draws. Initial skyline plus district 171112 bytes. Strict medium-fi budgets pass; physical-device timings remain unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/dn/dnr/11_foot_8_bridge/models/source.glb\",\"hash\":\"sha256:9afdbabd0323fd559a6f0097299080c4ebaba540dd322a0bbaab7499b86bb030\",\"bytes\":1188020,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/dn/dnr/11_foot_8_bridge/model.glb\",\"hash\":\"sha256:79adf200f9408acf32b954c015d4831c4ee71ee14ab2ea92bbd45e7e27015796\",\"bytes\":1187540,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/dn/dnr/11_foot_8_bridge/model.skyline.glb\",\"hash\":\"sha256:bf2785abdf8f39f586a59ffdc08e7917fbb82291c109432126b838ecc03a7270\",\"bytes\":41200,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/dn/dnr/11_foot_8_bridge/model.district.glb\",\"hash\":\"sha256:3e3229c0e5f4b70cc30abc7847d042e61257c163e42e9b7c4566e4edc83c339a\",\"bytes\":129912,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/dn/dnr/11_foot_8_bridge/model.street.glb\",\"hash\":\"sha256:65ea952418a6d93d828e1143fbdbd5cdc895d1e86b4e1578b9ffbb2c3e01d209\",\"bytes\":261684,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/dn/dnr/11_foot_8_bridge/model.closeup.glb\",\"hash\":\"sha256:85bcdf0332923bb0b1a0170d8494280e27311b9650bf9c9de450651af52644e2\",\"bytes\":668396,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-track-bed-rails-I-girders-open-road-piers-signs-and-caps",
+        "passed": true,
+        "notes": "440 front-face, clearance and silhouette probes across six GLBs. Complete rail bed/heads, outward girder/crash-beam soffits, open lower road/walk corridor, concrete piers, rail landing caps, diamond fronts/corners and fence wires pass."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and 30 ticks pass; hash sha256:dc87bb96abc0a5aa07e208b8c71f65b36197725c467b5a1ae6720ea38d09b990. Scene and all GLB geometry stayed exact through the placement-only height correction."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:1758f28314557832e0662ced1051b2ff2daf2ad2a9d9c41eedb0220e862d03b9",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Retained exact-QID OSM way 515431845/Q22905940 footprint, confirmed against named current PMTiles rail bridge 35184388610530 and separate South Gregson Street 35184388623460. Anchor [-78.910131576,35.999075515], heading -0.604004960215: +X east-southeast toward Durham station, -X west-northwest; +Z south-southwest toward West Pettigrew, -Z north-northeast toward West Peabody and the southbound Gregson approach. Crash beam and current clearance diamonds face -Z. Source plan 28.833m by 3.101m is retained; the 6.4m replacement width adapts the renderer’s default rail bed, not a wider claimed bridge. All 12 mapped rail-bed width samples have model support at every LOD; eight retain native paving and meet within 0.026536230180454368m, while four lie inside replacement and are not called pavement joins. Fifteen actual upward road-width/station raycasts retain at least 3.7800004245684704m beneath rendered girders/crash beam. This is approximate standard-terrain fit, not a surveyed or legal clearance certification."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:1758f28314557832e0662ced1051b2ff2daf2ad2a9d9c41eedb0220e862d03b9",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. Narrow brown plate girders, lower flanges/stiffeners, transverse floor beams, three lower openings, concrete supports/caps/bearings, two rails/ties, slender wire fence and separate yellow crash beam with outboard braces are present. Both north-facing diamonds retain outward-readable current 12 ft 4 digits and arrows. Historical 11 ft 8 signage and flashing-beacon layout are not presented as current. Lowered the initial native datum by about 0.345m in this same pass after actual clearance probes showed the first placement was too high.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/scene-preview.png",
+          "hash": "sha256:638b3202330618a3b764e6099534b2f21993ca8b4324e7ed961c2eaa7547af08"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:bdebc3cadf585d8566a4b836ce6c57a33e6929625e64c7ef9ba93e2b8bbc93a5"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:6849a6bad5d2f7077564cc2ae5e11aacfd79bbd0d722289e0cd3514112a6f545"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:fe63867a10351b03d97382ab83afda191b98a104a39e70e36bdf28d8b7db82cb"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:31381ee90c48f89e0d4cb8b556c6dab29fe96c37fa213f3df3c71ec7eb91381a"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/whole-north-approach.png",
+          "hash": "sha256:638b3202330618a3b764e6099534b2f21993ca8b4324e7ed961c2eaa7547af08"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/whole-south-side.png",
+          "hash": "sha256:b0ce53cd8d554e4b8a1bd8fee59aa51ef1f8bbe8437ed73e0a65102b54d64f1d"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/rail-deck-ties-and-girders.png",
+          "hash": "sha256:a0207bf9a961c62da8d0ce00db0d08d8abd62cdd007643d6c329273cdaba61af"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/current-clearance-sign.png",
+          "hash": "sha256:75087b87187492e0f8a1061c6bc36a3d88b77a914a54699a6c9bb22cf6946bb0"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/crash-beam-and-open-road.png",
+          "hash": "sha256:7cb0b785f883c36301926c7c1fb426751c6193342448e20a14fe9621cfbec797"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/pier-bearing-and-diagonal-brace.png",
+          "hash": "sha256:79059d7f2d66c6ed1d232e711c8de21cf4af3ebd99ace840f73d87ab62c4a5b7"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:3aeb9285e52f9e6b8e2142156ac0c0ffcc46a3f95981f2fa2e5c9650f241b4a0"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:508bdeadbe5f318f62d079c2ee7085894be124844361fff483d59286d70f106a"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:64938734a9a9f25b148ad88e5aaefcb6c6d1571c10d89be7c5aa2b98a4d80942"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:161cca81d8339a42f07b5d10c6b7b55e415cd1afb3d6add17e60490502a74a65"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/whole-north-approach.png",
+          "hash": "sha256:824469ab50ffd5d3501ccaf9ecd9f46ad582da4ad8b26fd8f439a06c3b88ce06"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/whole-south-side.png",
+          "hash": "sha256:3e4bf060a75d6389b79913d3cd0d8ecbcef985f5ee8736f2cb1cbbf1ea4927ce"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/rail-deck-ties-and-girders.png",
+          "hash": "sha256:ed8f8e23a0d8ed90eeac54a873e1a7ee523753b7e5d6550aee157c4462d75b18"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/current-clearance-sign.png",
+          "hash": "sha256:9d4ee573560a501e8e203dd24c2a2abbb1db841ba3be4492166ac233c8110940"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/crash-beam-and-open-road.png",
+          "hash": "sha256:5fafa0b4f81b5166971cabf4c364db57be1b8f34d957724228fafca0f512b8ca"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/pier-bearing-and-diagonal-brace.png",
+          "hash": "sha256:6a880855b46ea28684e7e4a1931adc5077b33fa9a854eb52b0156bfde34da429"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/shots/shared/placement.png",
+          "hash": "sha256:301482a365afefa72290cae821575942300bb6e1f027972551f4abf8089f92d4"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:441bfa748ab92aa248388db103049dfa416f27917a99652c44a04700ffd64f30"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:2397299bf2df8a743a4ab584b4b4c32b0760c1536c403a738cce6b282eecca59"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:51104335249e24ecedef4b76dd67235482c47b233fc3b429a8478f70fd7a05a1"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:e58cecef9ce86b94470ac252e8bdc9dd44c24abaa19112165da95a94c9e28092"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:ec4ec814651c89942bdd9c3ae97f4db65ff6ed0e9d8ca86d19ba0f65a050757d"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:f815e05d17e4c59aec105082e4878f0cd3b4f426c46499f7aa2bbee250e4dc31"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:a2ab559d0c36f0e3c23c29ad6965184bcc73dc9f913dcd1c7223258abed7ca66"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:0d1e83df1ea0234e7b901b59337506b62801d141b13af594a53012a3986f4475"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:5606cf512b53256ccbeae69bbc1b57ab4fc74da530527c2e12e9a6b818f4e368"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:04614df364c35e17a01fead9c5a3b44138469ebfce52161323cf730dee6ec8e0"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:95652a7c2d11eab3188f09a74eefeda600af1a80c6634d59c1bad9d05d1ae751"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:5c55cb079b5f5045cc1ec587215faa5c91245b75a04ba212f7953500e3f4b476"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:82a0deb60b51d3d815c3c5b04120d25c4e9643c6a811809baa630ff863ba6377"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/whole-north-approach.png",
+          "hash": "sha256:9e5fe688f039f7352d001c15a03b720c506c4241ca3dcc0b8286a13bc0591d54"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/whole-south-side.png",
+          "hash": "sha256:78e6d66ae90f603ffcb95488f665ade2ffa5d026be127c300f8dad014770c02d"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/rail-deck-ties-and-girders.png",
+          "hash": "sha256:956e5689e558a94b8daa31acb7e00847057893098b1254927e46469ba2b36c40"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/current-clearance-sign.png",
+          "hash": "sha256:94dfa4f09a0fcc578135d9b7560ed6c14719967c63e248864a85bd8dec3fe55a"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/crash-beam-and-open-road.png",
+          "hash": "sha256:1e277e9c5137749cd9cf9de840d5230ccf7664c9e2cfddecfee71f48f0ad2256"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/pier-bearing-and-diagonal-brace.png",
+          "hash": "sha256:61a83bed79bcc6b15cbeb1067105007462281460aa86529f6c0c018596c2a224"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:c7031dd34366a14db05fb3de42b143d7e8a43020c982068d16affc69e328f5e8"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:f815e05d17e4c59aec105082e4878f0cd3b4f426c46499f7aa2bbee250e4dc31"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:b29d9703e7d0ef7a28e4ebf796c01b329f02603fd5eae6665329cb721101412e"
+        },
+        {
+          "path": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:1c092d16d0142b7202fe73edb6bf5a97eea6182ce6ac976c67a603aa0415f488"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:6a227f59828c0f5abc615fba6b89b56d7fcaba05dc0812d432db8204ffa14b15"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:cc4b15732ba674ea6a741841917b6999d14384296ef297566279c7f4eab28ad3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-street-whole-north-approach.png",
+          "hash": "sha256:83969de39ec42923233437e2f974130345ba1a9d320ce40c31a5bb85ede0969a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-street-whole-south-side.png",
+          "hash": "sha256:dcc75e24388871d0d8cb310ee0c6cfbc9fae75abc485d285a206d430756d599a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-street-rail-deck-ties-and-girders.png",
+          "hash": "sha256:53fc03f1c6b0b7a8272f73fda796990a2c69cdd314f5ef25e36f8a22a1176394"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-street-current-clearance-sign.png",
+          "hash": "sha256:e62b98bccd457287225e3c6b18a9e481dc82af4d64a02f9e379e45f6ba41ab32"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-whole-north-approach.png",
+          "hash": "sha256:cfd05e06dcea58cfd391f27d42bba9c99c7c436e7ba106c6091bfd4de79a67e4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-whole-south-side.png",
+          "hash": "sha256:f99c6a2a4dc279593cd2cc4a2f7049497fb56da48d1c79b849e7da980944d740"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-rail-deck-ties-and-girders.png",
+          "hash": "sha256:f35d6d026fc9e68c34c9ffbf842102a461672faa2c706c3c04732599b1e58db0"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-current-clearance-sign.png",
+          "hash": "sha256:b71be9de9caa0de55e1f8544e7d2bd5d80b92288111d2254bc52cc1c8021c614"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-crash-beam-and-open-road.png",
+          "hash": "sha256:2b1e70cc1de96b82a073b75558092d773a315655e21023fba0420bcc5c0c83f9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-pier-bearing-and-diagonal-brace.png",
+          "hash": "sha256:042c9165809b685ec87ae348629db56642472d5ddde0f8bddf92776e15c8f7a1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-northwest-rail-landing.png",
+          "hash": "sha256:4824a1519f34294484e6497324005e7a5685a6cf8f6bfd5ddc61923926493c98"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-southeast-rail-landing.png",
+          "hash": "sha256:c93e95a70ec1aa1ac3225424d098a071c768fabd87d8bd472766ec2c53e1cbfb"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:309c4a8ba7c9239820d80ad4a2f246e8652c614a805b34a4a8012498ad0464f2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:c002d2bdfe58a354a38439a935a50e43de17d246b1492b46fc641ad9ed483486"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\eleven-foot-eight-review/native/shots/final-failure-whole-north-approach.png",
+          "hash": "sha256:2d93bf6bd092ce911b9223cd74e01ec260e2d0f35f66461ebb9d5122c7d1594e"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 234 resident buildings, 524 input/output road records and 487 independent road records remain. The two lower Gregson records and four checked tunnel/sidewalk records retain their inputs and receive zero authored connections. Only the bridge rail feature and its connected rail approach record receive deliberate adaptation. Raw roads, DEM, displayed ground and water remain unchanged; failed loading keeps the map bridge and road, and unload releases every model/support geometry. No ground/building cutout is used."
+    },
+    "nativeReport": {
+      "path": ".artifacts/eleven-foot-eight-review/native/final-report.json",
+      "hash": "sha256:fa8a0fd2160c2e678e37514c7f4184f55491d1168f3fcaa703b5b16dda53fad9",
+      "frozenViewerInputsHash": "sha256:877041ff67e0d8afa93e1d38ac2737c58f1eb45f60498cf6f5723a3a97c4298c"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 12,
+        "pavedJoinSamples": 8,
+        "interiorReplacementSamples": 4,
+        "maximumJoinErrorMeters": 0.026536230180454368,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.7800004245684704,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [
+          {
+            "id": 35184388610530,
+            "class": "rail",
+            "bridge": true
+          },
+          {
+            "id": 35184399554970,
+            "class": "rail",
+            "bridge": false
+          }
+        ],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 12,
+        "pavedJoinSamples": 8,
+        "interiorReplacementSamples": 4,
+        "maximumJoinErrorMeters": 0.026536230180454368,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.7800004245684704,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [
+          {
+            "id": 35184388610530,
+            "class": "rail",
+            "bridge": true
+          },
+          {
+            "id": 35184399554970,
+            "class": "rail",
+            "bridge": false
+          }
+        ],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 12,
+        "pavedJoinSamples": 8,
+        "interiorReplacementSamples": 4,
+        "maximumJoinErrorMeters": 0.026536230180454368,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.7800004245684704,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [
+          {
+            "id": 35184388610530,
+            "class": "rail",
+            "bridge": true
+          },
+          {
+            "id": 35184399554970,
+            "class": "rail",
+            "bridge": false
+          }
+        ],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 12,
+        "pavedJoinSamples": 8,
+        "interiorReplacementSamples": 4,
+        "maximumJoinErrorMeters": 0.026536230180454368,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.7800004245684704,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [
+          {
+            "id": 35184388610530,
+            "class": "rail",
+            "bridge": true
+          },
+          {
+            "id": 35184399554970,
+            "class": "rail",
+            "bridge": false
+          }
+        ],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "pavedJoinSamples": 0,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": null,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 0,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Scoped current rail-overpass exterior with separate crash beam and two posted-clearance diamonds. Exact-QID plan 28.833m by 3.101m is retained; piers at -9.5/+7.8m are photo-led fit controls outside mapped sidewalks, not surveyed span or footing dimensions. The original 11 ft 8 name is historical; visible signs read 12 ft 4.",
+    "Source origin 118.61369353579312m is adjusted against15 actual native lower-road width/station raycasts to retain an approximately3.78m minimum geometric gap. Girder/crash-beam heights preserve an open low-clearance visualization. Mapzen smooths the railway embankment and road depression; a posted clearance label does not certify the modeled or legal passage height.",
+    "The 6.4m road-replacement width adapts the renderer’s default rail-bed width, not a wider claimed bridge. The body retains 3.101m width; small flared ballast landing overlaps cover the incoming generalized railway bed. Underlying Gregson Street and sidewalks must remain independent and ungraded.",
+    "The remote overheight detector, traffic signals, overhead warning portal, utility poles/cables, adjacent buildings, vegetation and complete retaining embankments are contextual features, not separate modeled landmarks. No old flashing beacon configuration is claimed to be current. The crash beam’s exact offset, support sections, fence/wire count, fasteners and wear are simplified.",
+    "Four existing shared 256px graphs concrete_plain, metal_painted, wood_plain and gravel, metric UVs and linear vertex tints; no embedded/private images or copied photo pixels. Far LOD omits text, fence wires, ties and stiffeners; close levels retain current clearance digits, arrows and beams. Physical laptop and phone timings remain unmeasured.",
+    "The posted 12 ft 4 label is supported by the primary operator and post-raise picture; the actual modeled minimum is about 3.78m only at the inspected standard-terrain samples. Coarse native road crown, embankment faces, approximate piers/abutments and rail sections remain explicit reconstruction limits.",
+    "Incoming native rail beds are generic procedural paving; the model preserves detailed rails/ties on the bridge but does not claim continuous detailed railway tracks beyond its landing caps. Native nearby utility wires and traffic furniture remain context."
+  ],
+  "metadataReconciliation": {
+    "kind": "placement-identity-normalization-only",
+    "oldInputHash": "sha256:8f2ef4846211f2562a767f708c38cae7c45d32445c744f39d307a0cd6bb4af5b",
+    "inputHash": "sha256:1758f28314557832e0662ced1051b2ff2daf2ad2a9d9c41eedb0220e862d03b9",
+    "oldId": "gregson.street.bridge",
+    "id": "11.foot.8.bridge",
+    "placementHash": "sha256:f2a6bd74c1844afa47fe47bcbcbd0e2730a005b20a842f88dbb36871c17f6710",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 62,
+    "previousInputReconciliation": {
+      "kind": "authoring-reference-correction-only",
+      "oldInputHash": "sha256:9e4fceae736c8394a92825a25bbb910588f5d300f1d5974527fd6d299cf74dc6",
+      "inputHash": "sha256:8f2ef4846211f2562a767f708c38cae7c45d32445c744f39d307a0cd6bb4af5b",
+      "beforeGeneratorHash": "sha256:f54a2b09c040703ca58892bcbbed326cd3297bc752589db22158d9ac9443a255",
+      "afterGeneratorHash": "sha256:275fe4438dff4ef0f963576c380bc9dabf6fe66308d871bdd2bd43b95e02a6a4",
+      "sourceHash": "sha256:9afdbabd0323fd559a6f0097299080c4ebaba540dd322a0bbaab7499b86bb030",
+      "runtimeHash": "sha256:79adf200f9408acf32b954c015d4831c4ee71ee14ab2ea92bbd45e7e27015796",
+      "lodHashes": [
+        {
+          "name": "skyline",
+          "hash": "sha256:bf2785abdf8f39f586a59ffdc08e7917fbb82291c109432126b838ecc03a7270"
+        },
+        {
+          "name": "district",
+          "hash": "sha256:3e3229c0e5f4b70cc30abc7847d042e61257c163e42e9b7c4566e4edc83c339a"
+        },
+        {
+          "name": "street",
+          "hash": "sha256:65ea952418a6d93d828e1143fbdbd5cdc895d1e86b4e1578b9ffbb2c3e01d209"
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:85bcdf0332923bb0b1a0170d8494280e27311b9650bf9c9de450651af52644e2"
+        }
+      ],
+      "glbsByteUnchanged": 6,
+      "inspectedImagesByteUnchanged": 62,
+      "method": "Only the emitted source-build manifest path and README command changed to use brief.generator. Exact expected generator text, unchanged geometry recipe/spec/scene/brief/map/placement, corrected manifest delta, six unchanged GLBs and all62 inspected image bytes were checked. No rendered behavior changed."
+    },
+    "method": "Only the placement id and its source filename changed to the required11.foot.8.bridge identity. Every other model input and every placement field was checked unchanged. Six GLBs and62 inspected pixels remain identical. Native capture snapshots retain their historical object name; the physical transform, map identity, replacement controls and rendered title are unchanged."
+  }
+}

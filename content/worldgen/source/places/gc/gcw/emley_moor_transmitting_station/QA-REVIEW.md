@@ -1,6 +1,6 @@
 # emley_moor_transmitting_station — Emley Moor review
 
-Reviewed 2026-10-09 against current source/import/browser hashes.
+Refreshed 2026-10-27 against current source/import/browser hashes. All **68 current frames** were freshly captured and inspected: 16 portable, 16 shared-material/geographic-flat-terrain and 36 medium-fi. The joined-path source/runtime/closeup meshes changed; skyline, district and street geometry remain byte-identical. Six current GLBs validate with zero errors/warnings, the detailed source reproduces, and all three focused geometry/LOD tests pass. Existing reference interpretation, approximate geographic registration and the limits below are retained.
 
 ## Source and compass frame
 
@@ -10,7 +10,7 @@ Named OSM communication-tower way476925020 supplies ring center[-1.6644702421052
 
 ## Actual visual review
 
-Inspected all16 final portable views. Complete tapered concrete shaft,20-bay turret with inset tinted/boarded panes, galleries and mounting tracks, four north-facing GPO platforms with actual recessed doors, lower dish gallery, eight-tier north crossed rack, west trough panels, two-stage modern radome/collar ladder and tip rails, and approximately east-facing entrance cage are visible. The exact original master remains independently reproducible; reviewed master has271836triangles and21.85MB.
+Inspected all16 final portable views. Complete tapered concrete shaft,20-bay turret with inset tinted/boarded panes, galleries and mounting tracks, four north-facing GPO platforms with actual recessed doors, lower dish gallery, eight-tier north crossed rack, west trough panels, two-stage modern radome/collar ladder and tip rails, and approximately east-facing entrance cage are visible. The historical master remains independently reproducible; the current detailed master has **271,260 triangles / 21,815,884 bytes**.
 
 Inspected all16 final shared-material views including north-up placement and north platform/east entrance cameras. Three canonical256px graphs supply concrete_plain,metal_painted and metal_copper. Turret tinted panes remain local opaque PBR; no photograph or embedded bitmap. Each shared graph is read once and unload disposes all model geometries. Source ground and geographic-flat-terrain are inspection surfaces, not measured site terrain.
 
@@ -18,7 +18,7 @@ Inspected all36 final browser frames: noon/late light under economy/high presets
 
 ## Browser/source structure
 
-Four independent browser models contain866/3978/15880/51680triangles, each within its1000/4000/16000/64000cap and8drawlimit. Skyline+district total369020bytes, under3MB phone/6MB laptop initial budgets. Close-up3.78MB and detailed21.85MB source/import load separately. Shared texture graphs are reused and the far level uses their baked mean colors. Physical laptop/phone frame-time and transfer benchmarks remain separate work.
+Four independent browser models contain **866 / 3,978 / 15,880 / 51,104 triangles**, each within its 1,000 / 4,000 / 16,000 / 64,000 cap and eight-draw limit. Skyline+district total **369,020 bytes**, under the 3 MB phone / 6 MB laptop initial budgets. The **3,744,784-byte closeup** and detailed 21.82 MB master load separately. Shared texture graphs are reused and the far level uses their baked mean colors. Physical laptop/phone frame-time and transfer benchmarks remain separate work.
 
 Six current Khronos validations pass with zero errors/warnings and no embedded images. Three focused tests pass: every browser level has full319m envelope, all four north platform decks and20turret bays; exact historical-source bytes and signed placement control with un-stretched engineering width; exact deterministic browser regeneration, strict triangle/draw/download caps, all three shared graph bindings and separate12-byte position streams. Test deck ray intentionally avoids the dish mounted above the second platform.
 

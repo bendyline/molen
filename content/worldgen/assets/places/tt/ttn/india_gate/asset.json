@@ -4,7 +4,13 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "collision": "collision.bin",
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
   "hash": "sha256:e4a7552ecefdc2d66e1ef1a42b8075959c29121bf1d56564d3602a4d1b4fc19f",
   "sourceHash": "sha256:7311a957b6f0339354f8f435ac5a1629b17172ff4d70459bcd3b427bb1079ec6",
@@ -89,7 +95,19 @@
           7.499
         ]
       }
-    ]
+    ],
+    "trimesh": {
+      "bin": "collision.bin",
+      "positions": {
+        "byteOffset": 0,
+        "count": 476
+      },
+      "indices": {
+        "byteOffset": 5712,
+        "count": 852
+      },
+      "hash": "sha256:0ee1ea52ca0a12913370727f2ee955d1f7024dc821d6aeac345f5f82db363233"
+    }
   },
   "extensionsUsed": [
     "KHR_mesh_quantization"

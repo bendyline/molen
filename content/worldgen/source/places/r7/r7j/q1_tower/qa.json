@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.q1_tower",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:96f8f55170743e56187572ac46380bc5cdb7ffb38db766941a853f6abb2db9eb",
+  "inputHash": "sha256:6094899ebbf11f6f511ecf92e2fce5f0690fb8c4979e6fc98b9659d20153f95f",
   "sourceHash": "sha256:43e080d45a9ffecc5c4c81573a0e4219d0b92360f21a361a8d78f1835ee9f5de",
   "runtimeHash": "sha256:1a18e7d12a79182aba2dd5a58a56d0e9da6b30db02e58a088904e8b8453d7265",
-  "captureReportHash": "sha256:a61c617c107004caa7082a716650842716b1079b24e955a0c4758f3001739e39",
+  "captureReportHash": "sha256:fc4504087ba1fd50bf1e212969838d4abe9e6660c494c365447fb827325d0733",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,11 +24,12 @@
       "shots/glazed-ceiling-and-open-crown.png",
       "shots/courtyard-canopy.png"
     ],
-    "notes": "Actually inspected all61 final images:14 portable,14 shared and33 medium-fi. Whole turntables and dedicated whole-level views retain the complete asymmetric shaft, independent low podium, sloping crown and322.5m mast. Crown views show clear/open volume above the sloping observation ceiling, exposed vertical ribs and northern exterior stairs/landing. Apartment closeups retain blue glass, continuous white floor rhythm and projecting rear slabs/glass guards; courtyard views show a small blade shade canopy above the podium. North-up placement overlay follows the asymmetric tower and mast at the eastern pointed end. Dedicated whole views include the tip; default street/block/transition cameras intentionally crop upper portions. No missing tower section observed. Crown glazing reflects pale or dark sky depending on environment; this is alpha-PBR glass rather than a solid crown cap."
+    "notes": "Actually inspected all61 final images:14 portable,14 shared and33 medium-fi. Whole turntables and dedicated whole-level views retain the complete asymmetric shaft, independent low podium, sloping crown and322.5m mast. Crown views show clear/open volume above the sloping observation ceiling, exposed vertical ribs and northern exterior stairs/landing. Apartment closeups retain blue glass, continuous white floor rhythm and projecting rear slabs/glass guards; courtyard views show a small blade shade canopy above the podium. North-up placement overlay follows the asymmetric tower and mast at the eastern pointed end. Dedicated whole views include the tip; default street/block/transition cameras intentionally crop upper portions. No missing tower section observed. Crown glazing reflects pale or dark sky depending on environment; this is alpha-PBR glass rather than a solid crown cap.",
+    "captureReportHash": "sha256:fc4504087ba1fd50bf1e212969838d4abe9e6660c494c365447fb827325d0733"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f43b5609e4b511c24309d7172a84f282fc0329acef9155bc48fb11a16a0118a1",
+    "captureReportHash": "sha256:0138b2288e418ac17bb05b598a360764d091797cb67f86fb6294bdaeb91a1e26",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -299,5 +300,16 @@
   },
   "limitations": [
     "Complete medium-fi tower/podium bundle retains asymmetric mapped apartment shaft, white floor bands, blue glazing, projecting rear balconies, glazed observation ceiling, open sloping crown sail/ribs, exposed northern climb and322.5m offset mast. Original106501-triangle detailed recipe remains unchanged and reproducible. Orrcon supplies322.5m total/90m crown assembly and curved pipe/RHS construction. Operator describes level77 observation230m, launch240m above street and summit270m above sea level; model uses nominal240/270m geometry and does not claim those published datums are identical. Apartment floors, reconstructed232.5m shaft top, sloping234.5–245m observation ceiling,245–279m sail outline, ribs, mast offset and stair bends are photo-informed approximations, not surveyed elevations. Orrcon historical80-storey wording differs from map78; facade rhythm is reconstructed without a literal floor-count assertion. Owner photographs show pool-side projecting canopy and white/blue facade; canopy geometry/position approximated on rear courtyard sector. Ground entrance locations, hotel rooms, landscaping, separate pool surfaces, surrounding villas and basement omitted. Independent two-storey podium remains modeled. Shared painted metal, concrete and stone graphs with component tint; opaque facade PBR and alpha ceiling/crown glazing; no source photos copied as textures. Tiny balcony balusters and repeated mullions simplify by level. Actual grade, night lights and physical-device timings remain unmeasured."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:96f8f55170743e56187572ac46380bc5cdb7ffb38db766941a853f6abb2db9eb",
+    "inputHash": "sha256:6094899ebbf11f6f511ecf92e2fce5f0690fb8c4979e6fc98b9659d20153f95f",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 61,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

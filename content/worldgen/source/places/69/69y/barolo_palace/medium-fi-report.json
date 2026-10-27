@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.barolo_palace",
-  "sourceHash": "sha256:fcb0a63abd36b33013ce8513ccd3d73b0e751e39956523368f0e595ce0f3881d",
-  "runtimeHash": "sha256:85f0ab073f1542a48b304c8c2615fde62cfba4bb42b82fe77e09454d30b40300",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.barolo_palace",
+    "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1"
+  },
+  "sourceHash": "sha256:a4186fde8a136189b80ac258b7e1b9f1f72ccf17dc60788531f695e7a3ac3548",
+  "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -40,36 +47,36 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:026b918257c92b74b7999f4fd6a75b248a9ac9d5517417329190c12d3cb7ded3",
-      "bytes": 292224,
-      "gzipBytes": 60889,
-      "triangles": 3788,
-      "cpuBytes": 286104,
-      "gpuBytes": 286104,
+      "hash": "sha256:27d909512d50e2767834c0d9529bad13f6c3d6f97d9011e6a6487b8e15e5a733",
+      "bytes": 293784,
+      "gzipBytes": 61390,
+      "triangles": 3820,
+      "cpuBytes": 287664,
+      "gpuBytes": 287664,
       "errorMeters": 1.8,
       "drawCalls": 5
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:2bbaf47b0894f8382626b258500b2f695df87ca1609db361bab2d657d7aaa598",
-      "bytes": 1072604,
-      "gzipBytes": 218792,
-      "triangles": 15004,
-      "cpuBytes": 1066488,
-      "gpuBytes": 1066488,
+      "hash": "sha256:4746318b71505ebbedd46504ceeee25ec624877d5ae90dc8eaa4b3ae27e90cf2",
+      "bytes": 1037012,
+      "gzipBytes": 213736,
+      "triangles": 14748,
+      "cpuBytes": 1030896,
+      "gpuBytes": 1030896,
       "errorMeters": 0.75,
       "drawCalls": 5
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:53a4ad4f300dd053e2db3fa520eab0a30f8f7ee2542c9f951d51fd7427044621",
-      "bytes": 5285628,
-      "gzipBytes": 1069924,
-      "triangles": 62940,
-      "cpuBytes": 5279472,
-      "gpuBytes": 5279472,
+      "hash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
+      "bytes": 4711400,
+      "gzipBytes": 979754,
+      "triangles": 59140,
+      "cpuBytes": 4705248,
+      "gpuBytes": 4705248,
       "errorMeters": 0.15,
       "drawCalls": 5
     }
@@ -90,14 +97,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:514b7f35c8d2e0b59a7eca19ec1272b8e63e33bfe6a1416c2d58313183a83580",
+      "hash": "sha256:3008e005853bb9e637bae78fca6504524f764d304536eaa1e968570ec6b177e6",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 89530,
+        "triangles": 85730,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -123,19 +133,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:206ed31015476fe68e8ec0f04555f529cf0276d1c5435ddca07f4ec1df79acc6",
+      "hash": "sha256:3a385fed15e02a0bb0c892465feb5f86fac917cc2c97404529a6dc851089ac65",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 89530,
+        "triangles": 85730,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -161,19 +175,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:a2fcaf38f6efc38a7cce810c808f8439ccc377d4ec887ebeabec4f4e872a72de",
+      "hash": "sha256:76f5afc67529ec854f78e5d8af4933d6a1608677960ee404ed9177d1ab22f528",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 89530,
+        "triangles": 85730,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -199,19 +217,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:26c109c328275ddc4990bf1b3614877ec99996fbd14f94a9d65c5bc7e13614ff",
+      "hash": "sha256:7f30411b1a2e57fc5a63987f5cce15ab604f433a85a9a269e68a7cbf45a387a3",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 89530,
+        "triangles": 85730,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -237,19 +259,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:4e1d980371d0884cb1576d6e7ea41f9b78ba43701399ef0f46c2f2624c6e7af5",
+      "hash": "sha256:03854c5d0fbaf0d26d0608e2c0c585537071b23453cc883d6f31a991b6e0a8d9",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:27d909512d50e2767834c0d9529bad13f6c3d6f97d9011e6a6487b8e15e5a733",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 30378,
+        "triangles": 30410,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -275,19 +301,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:883348a8e2f74e73cbce0416531585f356703774546ce86e4b1e6ded18dc36df",
+      "hash": "sha256:15ef3761ba9d5bdf4d024c0b9dd9db8bb64595357fe2f27c11cb86a367675d24",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:27d909512d50e2767834c0d9529bad13f6c3d6f97d9011e6a6487b8e15e5a733",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 30378,
+        "triangles": 30410,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -313,19 +343,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:1163700bd29f78607440040c1163a0fd5554d7d14087d582d5ee8eca154166a0",
+      "hash": "sha256:b70c48e62014286e3dd0191c05b4ad0d753ebd4e4ccdbd47d3ffc140b158b9c2",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:27d909512d50e2767834c0d9529bad13f6c3d6f97d9011e6a6487b8e15e5a733",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 30378,
+        "triangles": 30410,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -351,19 +385,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:74997dff4f9305e5a86ef8cd1e58504e3f45cf442f09116f8669c2d7aebed7df",
+      "hash": "sha256:4bbf2e731d8941935b1b651140d5a54a7af97e9776137aa24af9aa8f8489ee74",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:27d909512d50e2767834c0d9529bad13f6c3d6f97d9011e6a6487b8e15e5a733",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 30378,
+        "triangles": 30410,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -389,13 +427,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:f40f5b46676fd342fe1b0c9feb1f069c71a70b23a17ed9ae54b8c821453252ed",
+      "hash": "sha256:0baaaa46d5b3622aae7f8d4c6fd4f57eb9bd512d19466f45d672a570b1d5b206",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:2878cad8a8b0d89a6e7c9ac7e9c593a5f4238e8577745c4158bbc8c15bc5e98a",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -427,13 +469,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:87ae491ccfd03ab92febf6857e7ce235b54cf357c2437bf6258fd6e10d0402c0",
+      "hash": "sha256:b704efce161c20e38c2e7d7b4ae0f9f4f7da945a8d2a5b5c73ddd5178e1b1db4",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:2878cad8a8b0d89a6e7c9ac7e9c593a5f4238e8577745c4158bbc8c15bc5e98a",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -465,13 +511,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:273f0ad58188944a7dbf1a19f1763a5d52f4680fa4aaa68a6d2f4e7d060838f4",
+      "hash": "sha256:f94a6af26f14c19c97609daf7b3bc4582b129bbc3d6c6bb1bfa2d2ef279a10ab",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:2878cad8a8b0d89a6e7c9ac7e9c593a5f4238e8577745c4158bbc8c15bc5e98a",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -503,13 +553,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:72bd317993be1eb55a3f645182bc594d3bb5d36420edc8d248d52fa1911db92c",
+      "hash": "sha256:490cf9684e1cd380a9e6ee857d7ff91b329ac10dfa8a0e242f7d53025e4d189f",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:2878cad8a8b0d89a6e7c9ac7e9c593a5f4238e8577745c4158bbc8c15bc5e98a",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -541,13 +595,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:1b871909ed982d1188e5081299c428def7bd23f221c6c13510fcc65c500c558f",
+      "hash": "sha256:69ce15b2cce19fd81ef8f67bbd5024445242cf27504bb6cfa13261eefd4a49ba",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:2878cad8a8b0d89a6e7c9ac7e9c593a5f4238e8577745c4158bbc8c15bc5e98a",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -579,19 +637,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/avenida-front.png",
-      "hash": "sha256:9ec226b8363b9eb89af488bacc563a903033545cc9720e884478b2014ec8213e",
+      "hash": "sha256:560989e05aa354f12bab6b19dae4fbb6c53ef707f51309bc2cf8938f10d9ef4f",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -617,19 +679,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/bow-window-relief.png",
-      "hash": "sha256:c33007c9180a6d13e598ba05253f05c028a778bbe6efc31959e49410824be838",
+      "hash": "sha256:4ef4d2e77b3097a2419372f6c4e3c223b55a6d48b3eb8dde79c7763d3dc89b29",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -655,19 +721,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/portal.png",
-      "hash": "sha256:5fdac4202f1782cd457511f305676b3d4efb2ee7efc0cabe2963a2779de11840",
+      "hash": "sha256:83778e8e852ac512e50af61b62e6e59ebc5d0034b2f2c7b65691df8cfdb7ab1a",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -693,19 +763,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/through-passage.png",
-      "hash": "sha256:2828351223671d68f34316f82e9bed60fd7c9bbf44f24acbee1392feb5329d8b",
+      "hash": "sha256:34e0c74f5a649dbab11e138355462941e24c87d127857f43bc7d60c4c2e7c79b",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -731,19 +805,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/green-mansard.png",
-      "hash": "sha256:a82c5078bf21000c48a1e3471b8ebc82e9edb3176f8378797bfa5c57b8de75ed",
+      "hash": "sha256:643595ba237e4f5a06e816e1be5e34c28c4fe15cce9eb9e9ae47e0d7fad259a1",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -769,19 +847,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/tower-pointed-arch.png",
-      "hash": "sha256:09504cc15fe6ba34021e3c000022242bbe2a0fd4e230743a43e28765d3608176",
+      "hash": "sha256:b3ab431dbf3b35334d1cd37fb9096804ecd8c93b31f496d1096d1f6eb0e5bb1d",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 89286,
+        "triangles": 85486,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -807,19 +889,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/balconies.png",
-      "hash": "sha256:a5970b729c6037bde0a04b7b92419bba21da0e37b469beaa8fa6904e1b81b8ea",
+      "hash": "sha256:4b55683ddb7522e93dd51aab0f64e651eacbc10cb849f1fcdbcd22e75075e267",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 89286,
+        "triangles": 85486,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -845,19 +931,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/crown-and-lantern.png",
-      "hash": "sha256:1d800a429ccea3b521b9f763c31b5d5cc917017e5503859662973a071bc5824c",
+      "hash": "sha256:e8b6adcf4d508d9eea07c4479772c28e28f4f69325bb23fc5f00083df3c12d46",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 89470,
+        "triangles": 85670,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -883,19 +973,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/lantern-mechanism.png",
-      "hash": "sha256:ab8dd7ff119c682a558f3650d16e3ecfbee7e4af7d7b57fb96f38ea52d28cd81",
+      "hash": "sha256:3c8898be26c9c09609edc2be7134c1ef5dbf43766bc3675767909379e376c583",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 89470,
+        "triangles": 85670,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -921,19 +1015,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/rear-elevation.png",
-      "hash": "sha256:e233b96516da45de790d67f8f892b6891b364c955b2a999c3bf8b5f080c6acd3",
+      "hash": "sha256:fdf49ddf800da374ab7ddcd300112a296d017e4b384fd6a363e677a01659281d",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -959,19 +1057,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/courtyards.png",
-      "hash": "sha256:61b35ab36e9d37893a620b7eb922f9fb9025b89837fd34ffb6a81a9dd899b6dc",
+      "hash": "sha256:79919f48be91449303e315e8c53cb65aaa7275f53c086e52f6462633d739b6b6",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -997,19 +1099,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-reviewed-palacio.png",
-      "hash": "sha256:e2ae144a1fadc9f222a96a46bc2163867ed55a65342b5d62db6c04fa12dffe59",
+      "hash": "sha256:efc6c6e360a07cd7b85291fe7c1c4bacd1f4ce922df3132263cd3a8d83f9f73f",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 89530,
+        "triangles": 85730,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1035,19 +1141,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/open-passage-street.png",
-      "hash": "sha256:371e7b203471f3cb4561a0d9d0054cc26dba9a64a5f38b6a6bb7ca77c5515d00",
+      "hash": "sha256:652274ee7b027cb166e194fa495541e6eb54cfcf742098a38862abd774bf5a77",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1073,19 +1183,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/open-h-plan-courts.png",
-      "hash": "sha256:0fde01d3a394756d63122f2c1b942804289d96bac2b755cfe82c823ddda89448",
+      "hash": "sha256:86ed3598290079849cfc53a6b2a72b8649031ea82d8ee5f63b61c540563097ce",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 89346,
+        "triangles": 85546,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1111,13 +1225,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-barolo-skyline.png",
-      "hash": "sha256:99b4ac47018c7a6e336d792ee2e45bdd72c0dc528c0c6eabd057b37ba16115f6",
+      "hash": "sha256:8a1a895afca3c528adfac1a43e76e656bd7c9f720a47c9f9429d572bab3c319e",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:2878cad8a8b0d89a6e7c9ac7e9c593a5f4238e8577745c4158bbc8c15bc5e98a",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -1149,19 +1267,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-barolo-district.png",
-      "hash": "sha256:ff9f4a0a386113bb1546fb2d72d5b2dfc837f6a68ee2ed79fd8ecdf84bcba116",
+      "hash": "sha256:15ebb69b40032ff131b2db554c6049dfba4a3fd992badc2a73a86220153e9a99",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:27d909512d50e2767834c0d9529bad13f6c3d6f97d9011e6a6487b8e15e5a733",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 30378,
+        "triangles": 30410,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1187,19 +1309,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-barolo-street.png",
-      "hash": "sha256:663de5b04b4be7bd0287e9fc69436a3757901b071dd41867eb70a381c9320791",
+      "hash": "sha256:2713e57068b6557826da4a0ec0edf6bf6cc078e2394923b5547033701ece9f58",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:4746318b71505ebbedd46504ceeee25ec624877d5ae90dc8eaa4b3ae27e90cf2",
         "level": "street",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 41594,
+        "triangles": 41338,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1225,19 +1351,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-barolo-closeup.png",
-      "hash": "sha256:e2ae144a1fadc9f222a96a46bc2163867ed55a65342b5d62db6c04fa12dffe59",
+      "hash": "sha256:efc6c6e360a07cd7b85291fe7c1c4bacd1f4ce922df3132263cd3a8d83f9f73f",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 89530,
+        "triangles": 85730,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1263,89 +1393,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
-      }
-    },
-    {
-      "path": "medium-fi/open-passage-street.png",
-      "hash": "sha256:371e7b203471f3cb4561a0d9d0054cc26dba9a64a5f38b6a6bb7ca77c5515d00",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 10,
-        "triangles": 89346,
-        "groundY": -15,
-        "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
-          "heightmap": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.height.png"
-        },
-        "position": [
-          0,
-          5,
-          -35
-        ],
-        "lookAt": [
-          0,
-          5,
-          25
-        ],
-        "graphReads": {
-          "molen.worldgen.material.concrete_boardformed": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.metal_painted": 1
-        },
-        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
-        "reflections": "sky-pmrem"
-      }
-    },
-    {
-      "path": "medium-fi/open-h-plan-courts.png",
-      "hash": "sha256:0fde01d3a394756d63122f2c1b942804289d96bac2b755cfe82c823ddda89448",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 10,
-        "triangles": 89346,
-        "groundY": -15,
-        "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
-          "heightmap": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.height.png"
-        },
-        "position": [
-          55,
-          74,
-          35
-        ],
-        "lookAt": [
-          0,
-          25,
-          0
-        ],
-        "graphReads": {
-          "molen.worldgen.material.concrete_boardformed": 1,
-          "molen.worldgen.material.membrane": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.concrete_plain": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.metal_painted": 1
-        },
-        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:e860a908a10d103f9b8d480418dff495c392fe5bf5891d88e0a8f0848b998119",
+      "hash": "sha256:4ba29b28e0238ac5f9a15fb264bf8fa7930408e37c5ba24b3a351479e5890bce",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:2878cad8a8b0d89a6e7c9ac7e9c593a5f4238e8577745c4158bbc8c15bc5e98a",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -1377,19 +1435,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:883348a8e2f74e73cbce0416531585f356703774546ce86e4b1e6ded18dc36df",
+      "hash": "sha256:15ef3761ba9d5bdf4d024c0b9dd9db8bb64595357fe2f27c11cb86a367675d24",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:27d909512d50e2767834c0d9529bad13f6c3d6f97d9011e6a6487b8e15e5a733",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 30378,
+        "triangles": 30410,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1415,19 +1477,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:69eef4ab5bf8e07648209b62d4a7a01258a441d1cd5d19f1a4c1660b8b34332e",
+      "hash": "sha256:25deb7e630353b1eb449ce0bb0528aa69befac50ce2b6149ff34a61412ae623c",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:4746318b71505ebbedd46504ceeee25ec624877d5ae90dc8eaa4b3ae27e90cf2",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 41594,
+        "triangles": 41338,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1453,19 +1519,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:c14843bcab425b7b4f62e4ce232c09b1ea2e99a9df82b6ee1cac1dbba191f100",
+      "hash": "sha256:4472d1d7a32a5374d8a50535840bc6035917bc727aed8ed8c0dd23d8f0039860",
       "state": {
+        "assetId": "molen.worldgen.structure.barolo_palace",
+        "runtimeHash": "sha256:c57e52e5a9da16e98f12b104ac5600e2c76f57b5709598790635a229680ba0a1",
+        "lodHash": "sha256:0021d931b0bc3f3c3c9147add6cab9b0931613a8a7e405d547c6bf532b201a44",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 89530,
+        "triangles": 85730,
         "groundY": -15,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/69/69y/barolo_palace/terrain-fit.terrain.json",
@@ -1491,6 +1561,7 @@
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 1,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

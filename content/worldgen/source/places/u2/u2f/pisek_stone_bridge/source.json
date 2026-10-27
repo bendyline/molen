@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pisek_stone_bridge",
+  "kind": "static-structure",
+  "title": "Písek Stone Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pisek_stone_bridge",
+        "output": "assets/places/u2/u2f/pisek_stone_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6f5e2f01ea8c51545a8e0c2002985703503682c256baf1c0d9406e399afa5aad"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-pisek.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/pisek-model.mjs"
+      },
+      {
+        "id": "sculpture-ensembles",
+        "path": "models/pisek-statues.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "site-preview.png",
+      "placement-report.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

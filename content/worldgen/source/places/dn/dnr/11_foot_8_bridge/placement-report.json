@@ -1,0 +1,498 @@
+{
+  "format": "molen/structure-placement-report@1",
+  "assetId": "molen.worldgen.structure.11_foot_8_bridge",
+  "inputHash": "sha256:1758f28314557832e0662ced1051b2ff2daf2ad2a9d9c41eedb0220e862d03b9",
+  "placementHash": "sha256:f2a6bd74c1844afa47fe47bcbcbd0e2730a005b20a842f88dbb36871c17f6710",
+  "entry": {
+    "id": "11.foot.8.bridge",
+    "title": "11 foot 8 / Gregson Street Bridge",
+    "asset": "molen.worldgen.structure.11_foot_8_bridge",
+    "anchor": [
+      -78.910131576,
+      35.999075515
+    ],
+    "heading": -0.604004960215,
+    "datum": "sea-level",
+    "elevation": 118.61369353579312,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q22905940",
+      "maxDistance": 60
+    },
+    "replaceFootprint": false,
+    "minLevel": 14,
+    "status": "preview",
+    "source": "https://commons.wikimedia.org/wiki/File:12foot4.png",
+    "note": "Exact-QID mapped bridge plan, current PMTiles rail crossing and independent lower Gregson road. Current 12 ft 4 signs; section/grade/crash-beam offsets are visual approximations.",
+    "replaceRoads": {
+      "length": 28.832,
+      "width": 6.4,
+      "outline": [
+        [
+          -14.416,
+          -3.2
+        ],
+        [
+          14.416,
+          -3.2
+        ],
+        [
+          14.416,
+          3.2
+        ],
+        [
+          -14.416,
+          3.2
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -14.416,
+          0
+        ],
+        [
+          14.416,
+          0
+        ]
+      ],
+      "deckHeights": [
+        4.978,
+        4.978
+      ],
+      "includeConnectedApproaches": true
+    },
+    "bounds": [
+      -78.91033141219037,
+      35.99894458929058,
+      -78.90991912731235,
+      35.99922122819408
+    ]
+  },
+  "reviewedOn": "2026-10-27",
+  "basis": "Retained exact-QID OSM way 515431845/Q22905940 footprint, confirmed against named current PMTiles rail bridge 35184388610530 and separate South Gregson Street 35184388623460. Anchor [-78.910131576,35.999075515], heading -0.604004960215: +X east-southeast toward Durham station, -X west-northwest; +Z south-southwest toward West Pettigrew, -Z north-northeast toward West Peabody and the southbound Gregson approach. Crash beam and current clearance diamonds face -Z. Source plan 28.833m by 3.101m is retained; the 6.4m replacement width adapts the renderer’s default rail bed, not a wider claimed bridge. All 12 mapped rail-bed width samples have model support at every LOD; eight retain native paving and meet within 0.026536230180454368m, while four lie inside replacement and are not called pavement joins. Fifteen actual upward road-width/station raycasts retain at least 3.7800004245684704m beneath rendered girders/crash beam. This is approximate standard-terrain fit, not a surveyed or legal clearance certification.",
+  "nativeVerification": {
+    "report": ".artifacts/eleven-foot-eight-review/native/final-report.json",
+    "hash": "sha256:fa8a0fd2160c2e678e37514c7f4184f55491d1168f3fcaa703b5b16dda53fad9",
+    "scenarios": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 12,
+        "pavedJoinSamples": 8,
+        "interiorReplacementSamples": 4,
+        "maximumJoinErrorMeters": 0.026536230180454368,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.7800004245684704,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [
+          {
+            "id": 35184388610530,
+            "class": "rail",
+            "bridge": true
+          },
+          {
+            "id": 35184399554970,
+            "class": "rail",
+            "bridge": false
+          }
+        ],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 12,
+        "pavedJoinSamples": 8,
+        "interiorReplacementSamples": 4,
+        "maximumJoinErrorMeters": 0.026536230180454368,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.7800004245684704,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [
+          {
+            "id": 35184388610530,
+            "class": "rail",
+            "bridge": true
+          },
+          {
+            "id": 35184399554970,
+            "class": "rail",
+            "bridge": false
+          }
+        ],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 12,
+        "pavedJoinSamples": 8,
+        "interiorReplacementSamples": 4,
+        "maximumJoinErrorMeters": 0.026536230180454368,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.7800004245684704,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [
+          {
+            "id": 35184388610530,
+            "class": "rail",
+            "bridge": true
+          },
+          {
+            "id": 35184399554970,
+            "class": "rail",
+            "bridge": false
+          }
+        ],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 12,
+        "pavedJoinSamples": 8,
+        "interiorReplacementSamples": 4,
+        "maximumJoinErrorMeters": 0.026536230180454368,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.7800004245684704,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [
+          {
+            "id": 35184388610530,
+            "class": "rail",
+            "bridge": true
+          },
+          {
+            "id": 35184399554970,
+            "class": "rail",
+            "bridge": false
+          }
+        ],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "pavedJoinSamples": 0,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": null,
+        "sourceBuildings": 234,
+        "remainingBuildings": 234,
+        "sourceRoads": 524,
+        "outputRoadRecords": 524,
+        "independentRoadRecords": 487,
+        "changedTransportRecords": [],
+        "lowerGregsonRecords": [
+          {
+            "id": 35184388623460,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185013336359,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35185046255050,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185755818566,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184400007410,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 0,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Scoped current rail-overpass exterior with separate crash beam and two posted-clearance diamonds. Exact-QID plan 28.833m by 3.101m is retained; piers at -9.5/+7.8m are photo-led fit controls outside mapped sidewalks, not surveyed span or footing dimensions. The original 11 ft 8 name is historical; visible signs read 12 ft 4.",
+    "Source origin 118.61369353579312m is adjusted against15 actual native lower-road width/station raycasts to retain an approximately3.78m minimum geometric gap. Girder/crash-beam heights preserve an open low-clearance visualization. Mapzen smooths the railway embankment and road depression; a posted clearance label does not certify the modeled or legal passage height.",
+    "The 6.4m road-replacement width adapts the renderer’s default rail-bed width, not a wider claimed bridge. The body retains 3.101m width; small flared ballast landing overlaps cover the incoming generalized railway bed. Underlying Gregson Street and sidewalks must remain independent and ungraded.",
+    "The remote overheight detector, traffic signals, overhead warning portal, utility poles/cables, adjacent buildings, vegetation and complete retaining embankments are contextual features, not separate modeled landmarks. No old flashing beacon configuration is claimed to be current. The crash beam’s exact offset, support sections, fence/wire count, fasteners and wear are simplified.",
+    "Four existing shared 256px graphs concrete_plain, metal_painted, wood_plain and gravel, metric UVs and linear vertex tints; no embedded/private images or copied photo pixels. Far LOD omits text, fence wires, ties and stiffeners; close levels retain current clearance digits, arrows and beams. Physical laptop and phone timings remain unmeasured.",
+    "The posted 12 ft 4 label is supported by the primary operator and post-raise picture; the actual modeled minimum is about 3.78m only at the inspected standard-terrain samples. Coarse native road crown, embankment faces, approximate piers/abutments and rail sections remain explicit reconstruction limits.",
+    "Incoming native rail beds are generic procedural paving; the model preserves detailed rails/ties on the bridge but does not claim continuous detailed railway tracks beyond its landing caps. Native nearby utility wires and traffic furniture remain context."
+  ],
+  "metadataReconciliation": {
+    "kind": "placement-identity-normalization-only",
+    "oldInputHash": "sha256:8f2ef4846211f2562a767f708c38cae7c45d32445c744f39d307a0cd6bb4af5b",
+    "inputHash": "sha256:1758f28314557832e0662ced1051b2ff2daf2ad2a9d9c41eedb0220e862d03b9",
+    "oldId": "gregson.street.bridge",
+    "id": "11.foot.8.bridge",
+    "placementHash": "sha256:f2a6bd74c1844afa47fe47bcbcbd0e2730a005b20a842f88dbb36871c17f6710",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 62,
+    "previousInputReconciliation": {
+      "kind": "authoring-reference-correction-only",
+      "oldInputHash": "sha256:9e4fceae736c8394a92825a25bbb910588f5d300f1d5974527fd6d299cf74dc6",
+      "inputHash": "sha256:8f2ef4846211f2562a767f708c38cae7c45d32445c744f39d307a0cd6bb4af5b",
+      "beforeGeneratorHash": "sha256:f54a2b09c040703ca58892bcbbed326cd3297bc752589db22158d9ac9443a255",
+      "afterGeneratorHash": "sha256:275fe4438dff4ef0f963576c380bc9dabf6fe66308d871bdd2bd43b95e02a6a4",
+      "sourceHash": "sha256:9afdbabd0323fd559a6f0097299080c4ebaba540dd322a0bbaab7499b86bb030",
+      "runtimeHash": "sha256:79adf200f9408acf32b954c015d4831c4ee71ee14ab2ea92bbd45e7e27015796",
+      "lodHashes": [
+        {
+          "name": "skyline",
+          "hash": "sha256:bf2785abdf8f39f586a59ffdc08e7917fbb82291c109432126b838ecc03a7270"
+        },
+        {
+          "name": "district",
+          "hash": "sha256:3e3229c0e5f4b70cc30abc7847d042e61257c163e42e9b7c4566e4edc83c339a"
+        },
+        {
+          "name": "street",
+          "hash": "sha256:65ea952418a6d93d828e1143fbdbd5cdc895d1e86b4e1578b9ffbb2c3e01d209"
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:85bcdf0332923bb0b1a0170d8494280e27311b9650bf9c9de450651af52644e2"
+        }
+      ],
+      "glbsByteUnchanged": 6,
+      "inspectedImagesByteUnchanged": 62,
+      "method": "Only the emitted source-build manifest path and README command changed to use brief.generator. Exact expected generator text, unchanged geometry recipe/spec/scene/brief/map/placement, corrected manifest delta, six unchanged GLBs and all62 inspected image bytes were checked. No rendered behavior changed."
+    },
+    "method": "Only the placement id and its source filename changed to the required11.foot.8.bridge identity. Every other model input and every placement field was checked unchanged. Six GLBs and62 inspected pixels remain identical. Native capture snapshots retain their historical object name; the physical transform, map identity, replacement controls and rendered title are unchanged."
+  }
+}

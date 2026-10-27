@@ -1,0 +1,429 @@
+{
+  "planId": "muntplein",
+  "id": "muntplein",
+  "assetId": "molen.worldgen.structure.muntplein",
+  "title": "Muntplein / Muntsluis",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q683180",
+  "referenceCoordinate": {
+    "longitude": 4.893333,
+    "latitude": 52.366944
+  },
+  "visualBrief": "Amsterdam Muntplein plaza over the Singel: irregular mapped brick-paved deck, open canal passage, brick abutments and round footings, shallow green steel girders with flange/rivet detail, three-bar green iron rails, rounded granite caps and incised central stone panels, plus embedded mapped tram rails. The existing Munttoren remains separate.",
+  "size": [
+    55.880075454711914,
+    5.320000171661377,
+    55.72237968444824
+  ],
+  "actualBounds": {
+    "min": [
+      -25.52701759338379,
+      -1,
+      -27.52252197265625
+    ],
+    "max": [
+      30.353057861328125,
+      4.320000171661377,
+      28.199857711791992
+    ]
+  },
+  "nativeAxes": "+X north toward Rokin; -X south toward Vijzelstraat; +Z east toward Amstel/Reguliersbreestraat; -Z west toward Singel/flower market.",
+  "sourceFacts": {
+    "identity": "Original Muntplein/Q683180 plaza; Muntsluis/Q2308267 is its bridge component. Named map bridge/tram/cycle routes and ordinary photographs establish the bridge/plaza footprint; no exact-QID footprint is claimed.",
+    "mappedPlan": {
+      "length": 55.05890782250491,
+      "width": 54.69447045370678,
+      "min": [
+        -25.087206381679113,
+        -26.849793487883513
+      ],
+      "max": [
+        29.971701440825797,
+        27.844676965823265
+      ]
+    },
+    "orientation": "+X north toward Rokin; -X south toward Vijzelstraat; +Z east toward Amstel/Reguliersbreestraat; -Z west toward Singel/flower market.",
+    "component": {
+      "name": "Muntsluis",
+      "wikidata": "Q2308267"
+    },
+    "heightBasis": "Standard PMTiles/Mapzen and ordinary photographs; explicit approximate visualization grade.",
+    "boundaryBasis": "Composite map outline: exact pedestrian polygon retained in geometry-controls.json, with a 5.6m inferred northwest bank-edge expansion around actual mapped road/tram widths. Canal-mouth endpoints remain the mapped controls."
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/Category:Brug_1,_Muntsluis",
+    "https://commons.wikimedia.org/wiki/File:Brug_1,_overspanning.jpg",
+    "https://commons.wikimedia.org/wiki/File:Brug_1,_overspanning_oost.jpg",
+    "https://commons.wikimedia.org/wiki/File:Brug_1,_detail_balustrade.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      4.8935355078341525,
+      52.36707645884383
+    ],
+    "heading": 1.5707963267948966,
+    "elevationMode": "sea-level",
+    "elevationMeters": 6.7,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 55.05890782250491,
+      "width": 54.69447045370678,
+      "outline": [
+        [
+          -3.1860755041555517,
+          -17.789338492651382
+        ],
+        [
+          25.072609796189173,
+          11.56336065083792
+        ],
+        [
+          29.971701440825797,
+          18.36430208718075
+        ],
+        [
+          18.12132632158653,
+          27.844676965823265
+        ],
+        [
+          -20.347011256773868,
+          -12.993860972944464
+        ],
+        [
+          -25.087206381679113,
+          -25.573589177297023
+        ],
+        [
+          -11.778208590735188,
+          -26.849793487883513
+        ]
+      ],
+      "deckHeight": 3.212,
+      "includeConnectedApproaches": true,
+      "includeTransverseBridges": true
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -3.1860755041555517,
+          -17.789338492651382
+        ],
+        [
+          25.072609796189173,
+          11.56336065083792
+        ],
+        [
+          29.971701440825797,
+          18.36430208718075
+        ],
+        [
+          18.12132632158653,
+          27.844676965823265
+        ],
+        [
+          -20.347011256773868,
+          -12.993860972944464
+        ],
+        [
+          -25.087206381679113,
+          -25.573589177297023
+        ],
+        [
+          -11.778208590735188,
+          -26.849793487883513
+        ]
+      ],
+      "preservePaving": true,
+      "minHeight": 0.2,
+      "basis": "Bounded mapped plaza footprint only, to expose the canal below coarse urban DEM. Raw DEM and water are retained; original ground restores on unload."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c5bcf013e4dea05b18100c6c7e38521f762e2847906155a6feb9cedb0f3ec5d8",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://commons.wikimedia.org/wiki/Category:Brug_1,_Muntsluis",
+    "wikidataId": "Q683180"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u1/u17/muntplein/models/muntplein-model.mjs",
+    "export": "buildMuntpleinSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.66,
+        "metallic": 0.3
+      }
+    },
+    "errorMeters": 0.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMuntpleinDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildMuntpleinStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.12
+      },
+      "closeup": {
+        "export": "buildMuntpleinCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  },
+  "limitations": [
+    "Scope is the mapped Muntplein bridge/plaza exterior, including Muntsluis. The existing Munttoren is separate and is neither duplicated nor counted again. Former guardhouse, flower-market greenhouses, street furniture and the separate Doelensluis bridge remain context.",
+    "Map outline is pedestrian polygon 35185536723013, associated with named Muntplein roads/cycleways and tram bridge fragments. This is not an exact-QID footprint. Paving routes are generalized map controls; precise rail turnouts, road paint and present-day traffic details are not reconstructed.",
+    "Source datum 6.7m and flat paving at 9.9m absolute fit the standard native PMTiles/Mapzen renderer approximately. Urban DEM is coarse and water polygons have local height steps. No surveyed Amsterdam datum, canal clearance or bank accuracy is claimed.",
+    "Brick abutments, shallow steel girder, three-bar rail, rounded granite caps and incised stone-panel branches follow ordinary pictures. Exact structural internals, castings, inscriptions, brick courses and foundations are not engineering reconstructions.",
+    "A bounded ground cut under the mapped plaza removes coarse ground intersecting the canal opening; raw DEM and water remain intact. Connected native roads are deliberately graded. Distant levels simplify rails, caps, rivets and tram geometry. Physical laptop/phone timing remains unmeasured.",
+    "The pedestrian polygon covers only part of the transported plaza. Its northwest bank edge is expanded 5.6m to include mapped road/tram widths; this inferred composite boundary is not an exact surveyed bridge perimeter.",
+    "Native placement is pending: standard canal polygons differ by about 2.36m in water height at the two portals and hide much of the modeled clear passage. Do not approve the geographic fit or enable this draft by raising the whole plaza and burying the existing Munttoren base."
+  ],
+  "qaCameras": [
+    {
+      "name": "western-singel-mouth",
+      "position": [
+        -49,
+        11,
+        -63
+      ],
+      "lookAt": [
+        -12,
+        2.5,
+        -12
+      ],
+      "fov": 53
+    },
+    {
+      "name": "eastern-amstel-mouth",
+      "position": [
+        58,
+        13,
+        66
+      ],
+      "lookAt": [
+        7,
+        2.5,
+        7
+      ],
+      "fov": 53
+    },
+    {
+      "name": "plaza-tram-and-paving",
+      "position": [
+        -35,
+        28,
+        6
+      ],
+      "lookAt": [
+        6,
+        3.2,
+        2
+      ],
+      "fov": 54
+    },
+    {
+      "name": "western-open-canal",
+      "position": [
+        -20,
+        0.8,
+        -40
+      ],
+      "lookAt": [
+        -15,
+        1.8,
+        -16
+      ],
+      "fov": 56
+    },
+    {
+      "name": "eastern-stone-panel-and-rail",
+      "position": [
+        26,
+        6,
+        34
+      ],
+      "lookAt": [
+        24,
+        3.7,
+        23
+      ],
+      "fov": 55
+    },
+    {
+      "name": "brick-abutment-and-girder",
+      "position": [
+        -31,
+        2,
+        -31
+      ],
+      "lookAt": [
+        -24,
+        2.7,
+        -24
+      ],
+      "fov": 55
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8808,
+    "vertices": 26424,
+    "materials": 4,
+    "bytes": 1059884,
+    "sha256": "sha256:744c9997b238f44ca28bad01904bb18b01a22b44bb916758ba6aeb1b9f1a5068"
+  }
+}

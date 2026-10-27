@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.al_hamra_tower",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:6c2b36550aef5edaba67c2e5eecc8d276ced94d0dbf53de84983bd31c71878ce",
+  "inputHash": "sha256:f044ee9094582eca54fb197bb4c46e71a1ccc077181dc2cb139df7c45613edf9",
   "sourceHash": "sha256:59f5ca998d6ae6d4d3ef459aeacfdca2f7852cdddf7c25c9a063f5baa7eb9927",
   "runtimeHash": "sha256:805ed22542ac8a555869bf1e71ce2bcedc738bd4ad9d7ab78cd3ac9c0f9e201c",
-  "captureReportHash": "sha256:a04c3eaa4105a28ec3f99371d933e731923323369a9bcf70cfd8c3a4e7fda827",
+  "captureReportHash": "sha256:3255ad7750133cba35d93b9303c251d25ab2babec5e7a808e176a542e2cf7e06",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,11 +26,12 @@
       "shots/whole-reviewed-tower.png",
       "shots/above-sloping-crown.png"
     ],
-    "notes": "Actually inspected all 68 final images: 16 portable, 16 shared and 36 medium-fi. Complete turntables/whole cameras retain the fixed rounded glass envelope, moving southern courtyard, both limestone flares, 412.6 m eastern blade, inclined closed roof and northern canopy. Near views show all 960 deeply splayed south windows, curved entrance branches, two small repaired support pads, diamond lamella behind clear lobby glass, and opaque upper glazing. The first review exposed incorrect canopy pad bounds, simplified flare displacement, differing roof triangulations and a portable glass-reference collision that made the whole tower transparent. Each was repaired before these final renders. District windows retain their original small proportions with sparse representative stamps and average omitted window colour; the earlier stretched openings are gone. No missing primary wall, roof, flare or canopy was observed. Thin trim exhibits aliasing in portable distant images. North-up placement retains the signed mapped envelope. Detail/block cameras crop the building; explicit whole cameras show complete silhouettes."
+    "notes": "Actually inspected all 68 final images: 16 portable, 16 shared and 36 medium-fi. Complete turntables/whole cameras retain the fixed rounded glass envelope, moving southern courtyard, both limestone flares, 412.6 m eastern blade, inclined closed roof and northern canopy. Near views show all 960 deeply splayed south windows, curved entrance branches, two small repaired support pads, diamond lamella behind clear lobby glass, and opaque upper glazing. The first review exposed incorrect canopy pad bounds, simplified flare displacement, differing roof triangulations and a portable glass-reference collision that made the whole tower transparent. Each was repaired before these final renders. District windows retain their original small proportions with sparse representative stamps and average omitted window colour; the earlier stretched openings are gone. No missing primary wall, roof, flare or canopy was observed. Thin trim exhibits aliasing in portable distant images. North-up placement retains the signed mapped envelope. Detail/block cameras crop the building; explicit whole cameras show complete silhouettes.",
+    "captureReportHash": "sha256:3255ad7750133cba35d93b9303c251d25ab2babec5e7a808e176a542e2cf7e06"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cd6fa02661d47c513e5caf1072119d25dc5624b008c8f81b7d11c2d2e0ee90d9",
+    "captureReportHash": "sha256:f12300a36b3572e41e3cc2e582d86cf08bcf0e62cf5c245408f2e14200b8fec6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -306,5 +307,16 @@
   },
   "limitations": [
     "Original 155029-triangle, 18088600-byte master remains exactly reproducible from the unchanged original recipe. Reviewed source and four browser levels keep the fixed filleted glass envelope, continuously moving southern courtyard, two ruled limestone flares, deeply angled south-wall windows, inclined closed roof/east blade, 24 m north lamella and supported canopy. Whole backing panels with long trim strips replace independent framed cells; adjacent stone windows share continuous piers. Skyline averages thin glazing trim, omits individual apertures/door frames/hidden lamella and makes lobby glazing opaque. District uses twenty south-window rows/six columns and aggregates thin trim; street retains all 960 deeply splayed openings but aggregates facade rails; close-up restores finer rails and curved canopy branches. Canonical limestone approximates Jura/trencadis; painted metal approximates canopy stainless to share the glazing-trim graph. Near lobby and canopy clear glass uses distinct explicit portable/runtime references and a single transparent group, required to see the lamella; other glazing is opaque. Fixed non-planar roof triangulation is shared across levels; sampled ruled flares retain courtyard geometry. Far copings use flat strips. Canopy support bases are repaired from mistaken size-as-bounds arguments. Exact fillet radius, window schedule/reveal depth, lamella members, parapet profile and canopy dimensions are reconstructions from published photos/plans. Designer 74, Architectural Record 77 and CTBUH 80 storeys use different counts and remain recorded; 412.6 m top and 351.2 m occupied heights follow CTBUH. Mall, parking block, interior fittings, signage and animated lighting are excluded. Finite along-ray allowances 1.5/.75/.3/.1 m exclude thin mullions, coping edges and omitted/aggregated district apertures; they are not global surface-distance bounds. No physical-device or surveyed grade claim."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:6c2b36550aef5edaba67c2e5eecc8d276ced94d0dbf53de84983bd31c71878ce",
+    "inputHash": "sha256:f044ee9094582eca54fb197bb4c46e71a1ccc077181dc2cb139df7c45613edf9",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 68,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

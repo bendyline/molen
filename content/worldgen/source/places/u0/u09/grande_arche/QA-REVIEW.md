@@ -1,15 +1,17 @@
 # Grande Arche — reviewed medium-fi exterior
 
-Reviewed2026-10-09.45current frames inspected; six GLBs have zero validator errors/warnings. Current source preserves every original face and adds the photographed panelled soffit. Skyline and district are explicit open arches, and street uses a lighter continuous canopy.
+Refreshed 2026-10-27. **25 current medium-fi views inspected; 20 unchanged portable/shared/geographic views retained with exact input/output/pixel proofs.** Six current GLBs have zero validator errors/warnings. The detailed master and street/closeup geometry are unchanged. The new skyline and district roof-edge joints preserve the open arch, piers, top beam, stair terrace, lifts and reconstructed canopy. All four levels were inspected under the shipped ACES 1.05 lighting rig.
+
+![Current medium-fi block view](style-preview.png)
 
 | Level | Triangles | Bytes | Draws |
 | --- | ---: | ---: | ---: |
-| Skyline |838|70456|1|
-| District |3080|247592|4|
+| Skyline |822|69820|1|
+| District |3064|246344|4|
 | Street |15688|1234012|4|
 | Close-up |23716|2324540|4|
 
-Initial download318048bytes. Canonical granite, painted metal and fabric graphs are shared; glazing remains local PBR. Three focused geometry/source tests pass.
+Initial skyline-plus-district download **316,164 bytes**. Canonical granite, painted metal and fabric graphs are shared; glazing remains local PBR. The three existing geometry/source tests pass, including original-face preservation, the open upper span and deterministic four-level reproduction. The detailed source remains 23,716 triangles. This refresh retains the geographic scope and reconstruction limits below; it adds no claim of surveyed native parvis fit.
 
 ## References and geographic fit
 

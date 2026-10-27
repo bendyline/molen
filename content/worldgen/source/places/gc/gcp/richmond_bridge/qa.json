@@ -1,0 +1,1301 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.richmond_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:0817e96d64155a8ad799b165046dd466e44d64001d58938830f22130606d68ed",
+  "sourceHash": "sha256:576891f3bc80b6ab56fc27fef4ac5884dadc98af7e64cd5cefe1e5b22547f5e4",
+  "runtimeHash": "sha256:595734168f30724f60327de75168d6c1c8ec243ed7a580c251f96d7c0ad59d99",
+  "captureReportHash": "sha256:b19866fdef9378c4c1866988c5052ba5af2ac072732545fce6a5f9647ef1e225",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-downstream.png",
+      "shots/whole-upstream.png",
+      "shots/road-and-stone-balusters.png",
+      "shots/central-arch-and-pier.png",
+      "shots/round-pier-lamp-and-balusters.png",
+      "shots/open-vault-and-soffit.png"
+    ],
+    "captureReportHash": "sha256:b19866fdef9378c4c1866988c5052ba5af2ac072732545fce6a5f9647ef1e225",
+    "notes": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. Five unequal masonry arches with a larger centre, humpback deck, raised outside walks, open pear-shaped balusters and square interval posts, rounded full-height pier heads, stepped cornices, individual voussoirs and eight framed gas-style lanterns remain present. Fixed small baluster-to-rail gaps and added lantern base plates in this same authoring pass. Contact probes now verify both stone joints. Distant levels retain the silhouette and simplify curves, rail infill and lamp fittings."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-downstream.png",
+      "shots/shared/whole-upstream.png",
+      "shots/shared/road-and-stone-balusters.png",
+      "shots/shared/central-arch-and-pier.png",
+      "shots/shared/round-pier-lamp-and-balusters.png",
+      "shots/shared/open-vault-and-soffit.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:ac3e132c74bb1110c10d8c95d64b2d1f19dcb41476a330b4394bdda65608e183",
+    "notes": "Four existing shared 256px graphs: stone_limestone, stone_limestone_raw, concrete_plain and metal_painted. Metric UVs and linear vertex tints; carved balusters use raw stone rather than masonry coursing. One local transparent lantern-glass material adds no image. Near levels use five merged material groups; skyline uses one mean-tinted group. No embedded/private textures or copied photo pixels. Each graph is read once per native view; all runtime files use separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-downstream.png",
+      "medium-fi/whole-upstream.png",
+      "medium-fi/road-and-stone-balusters.png",
+      "medium-fi/central-arch-and-pier.png",
+      "medium-fi/round-pier-lamp-and-balusters.png",
+      "medium-fi/open-vault-and-soffit.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:cd3b1a2e85a1f8f846fdf7fe06ae7f9ca00ab80ba100504ccd4c5fc9b4942b0e",
+    "notes": "Detailed source master: 137848 triangles / 16545092 bytes. Runtime levels: 652 / 3772 / 15480 / 48280 triangles, 53464 / 320524 / 1270356 / 4294884 bytes, 1 / 4 / 5 / 5 draws. Initial skyline plus district is 373988 bytes. Strict medium-fi ceilings pass; physical laptop/phone timings remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:475f863ebed02af6693a7b69dbf6c6b29d934f18341ca94fb9abe2945ef0ef09",
+    "mapFrameHash": "sha256:0e6d1d3777ceff01255527de85377d69f930ce8f844369b6518e2b9d46b272ad",
+    "notes": "Retained exact-QID OSM way 576808129/Q487356 and fresh named Richmond Bridge/A305 PMTiles crossing establish the geographic identity. Anchor [-0.307086178,51.457362863], heading 0.754105270811: +X northeast toward Richmond town centre, -X southwest toward St Margarets/Twickenham, +Z southeast/upstream along the Thames. The 141.898 m by 10.603 m mapped plan is retained, with a declared approximate crown and source datum 2.0348180770874023m beneath native water 2.6348180770874023m. All 18 boundary width samples have model support. Twelve retain map paving and meet within 0.019912m; six lie inside the replacement, including two parapet-edge hits which are not described as road-floor joins. Ten additional outside-end lane/walk samples retain model/map paving within 0.023637m. These are renderer-fit results, not surveyed geographic accuracy."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped five-arch exterior and approximate standard-terrain placement complete. Detailed source master: 137848 triangles / 16545092 bytes. Runtime levels: 652 / 3772 / 15480 / 48280 triangles, 53464 / 320524 / 1270356 / 4294884 bytes, 1 / 4 / 5 / 5 draws. Initial skyline plus district is 373988 bytes. Strict medium-fi ceilings pass; physical laptop/phone timings remain unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/gc/gcp/richmond_bridge/models/source.glb\",\"hash\":\"sha256:576891f3bc80b6ab56fc27fef4ac5884dadc98af7e64cd5cefe1e5b22547f5e4\",\"bytes\":16545092,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/gc/gcp/richmond_bridge/model.glb\",\"hash\":\"sha256:595734168f30724f60327de75168d6c1c8ec243ed7a580c251f96d7c0ad59d99\",\"bytes\":16544632,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/gc/gcp/richmond_bridge/model.skyline.glb\",\"hash\":\"sha256:e2beb8830f18939d900e555da6c70e2fa74d0f8442b6a5dc552765d973740e0b\",\"bytes\":53464,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/gc/gcp/richmond_bridge/model.district.glb\",\"hash\":\"sha256:9830c414fece59496c1fc8d092f30076705dd821e8b995be98ffa218de9a07e8\",\"bytes\":320524,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/gc/gcp/richmond_bridge/model.street.glb\",\"hash\":\"sha256:adc1868d4f021012b6beea6b4ff07721b10ba2ea84cb196fb4743f93f2933a9b\",\"bytes\":1270356,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/gc/gcp/richmond_bridge/model.closeup.glb\",\"hash\":\"sha256:b146ebf9e835307d7a58e315ce9dbf839134220b57a8bf661f0dfeb853133067\",\"bytes\":4294884,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "five-open-vaults-spandrels-pier-heads-rail-gaps-and-contacts",
+        "passed": true,
+        "notes": "635 recorded front-face/clearance checks across six GLBs, including explicit outward voussoirs, both baluster support seams, open-infill ray batches, eight lamps and flared bank caps."
+      },
+      {
+        "check": "headless-scene",
+        "passed": true,
+        "notes": "Scene validation and30 ticks passed; state hash sha256:1600b803a9ce155b5f97e952c3f7986a80fa728b8a74b309c0a022202530da87."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Retained exact-QID OSM way 576808129/Q487356 and fresh named Richmond Bridge/A305 PMTiles crossing establish the geographic identity. Anchor [-0.307086178,51.457362863], heading 0.754105270811: +X northeast toward Richmond town centre, -X southwest toward St Margarets/Twickenham, +Z southeast/upstream along the Thames. The 141.898 m by 10.603 m mapped plan is retained, with a declared approximate crown and source datum 2.0348180770874023m beneath native water 2.6348180770874023m. All 18 boundary width samples have model support. Twelve retain map paving and meet within 0.019912m; six lie inside the replacement, including two parapet-edge hits which are not described as road-floor joins. Ten additional outside-end lane/walk samples retain model/map paving within 0.023637m. These are renderer-fit results, not surveyed geographic accuracy."
+    },
+    "inputHash": "sha256:0817e96d64155a8ad799b165046dd466e44d64001d58938830f22130606d68ed",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:0817e96d64155a8ad799b165046dd466e44d64001d58938830f22130606d68ed",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. Five unequal masonry arches with a larger centre, humpback deck, raised outside walks, open pear-shaped balusters and square interval posts, rounded full-height pier heads, stepped cornices, individual voussoirs and eight framed gas-style lanterns remain present. Fixed small baluster-to-rail gaps and added lantern base plates in this same authoring pass. Contact probes now verify both stone joints. Distant levels retain the silhouette and simplify curves, rail infill and lamp fittings.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/scene-preview.png",
+          "hash": "sha256:3cb48eccc735e7ba328d5b8e44bb5e3ed4e8f5ae22f6df39a6b92e67d24e0838"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:183269c31aa24b2ca191f3b3d9c70fdeef57a43287eddb6d6b31e165e9f43daf"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:905274974e0911484bba7f6be73b137c6d1f804e3a29b2ec86635f448f46e1d8"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:7d717932f1c828f9b56958e0db24139fe132b631d154eabee4e073ad14cad90e"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:4a308100cb7b16a74fd3fe3d3b9d65a2a7981e02c1cc5545ce17244de000ae5a"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/whole-downstream.png",
+          "hash": "sha256:3cb48eccc735e7ba328d5b8e44bb5e3ed4e8f5ae22f6df39a6b92e67d24e0838"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/whole-upstream.png",
+          "hash": "sha256:cca165c5ee47c969d8504dc23ce7dabfa03b2de2968e581369c7824f25359fd3"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/road-and-stone-balusters.png",
+          "hash": "sha256:cd0d581217ff7d6eda657e1b2944484dec62606edceeed8e14750c6b60998b93"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/central-arch-and-pier.png",
+          "hash": "sha256:4fe8008b6eac9d8dc81ffcef712c538999dd74c0d5aeb3733fc31a519806ae18"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/round-pier-lamp-and-balusters.png",
+          "hash": "sha256:d496afd6f0fc54ab0d931803fb4498074ec3d106dd1161b8abb5c9827cbf2b79"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/open-vault-and-soffit.png",
+          "hash": "sha256:adefd154144093d55ae1399134dd5c01c5e0da2b3d2921701e4aa6e7afe946fa"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:e2d6a7e9e345a142bda4ae60963b29628ab8e0ac511f36230f48b47070613165"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:f62c909d111fb078cd03494c84a9765b983f6832677436aebe64e6951859e70d"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:3add8802172702bff6a925434bcd7f4926c0b53e149d4db54383ff752d223ef4"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:63741df4f31a6dc223cc49125f59e38d1a081a5c0de5d93a43d2f226afad4c8f"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/whole-downstream.png",
+          "hash": "sha256:4b441d8e2fe3a8ed3e38378880c1bfc649537e476c9b3ffa62229f6b5c466dd0"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/whole-upstream.png",
+          "hash": "sha256:9439faeacbe0beafb62f6f6d97991d22643c042afed5c64da0cd20646d3535e3"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/road-and-stone-balusters.png",
+          "hash": "sha256:b56271f125151af431ea675fdcaa16ce97fc8e6c45413fed715bafe55b2d70d0"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/central-arch-and-pier.png",
+          "hash": "sha256:6e5154d17a8ca7ad25112d1ea32c123f20b19ee22d162c9815f203ef40f2027c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/round-pier-lamp-and-balusters.png",
+          "hash": "sha256:60691fd79a9ea5b4993fcd63915c0430e5fb0e7b37a96ca2a775de8fb0a3b92c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/open-vault-and-soffit.png",
+          "hash": "sha256:959690a57f86302d7b7579731835cb81087f252df243e7fb0e28c304c3c62e85"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/shots/shared/placement.png",
+          "hash": "sha256:fd8591cd4d4b59791a4a9b813007b8d8a57eeb6d51801aec20f9623d93eb0712"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:3768d23ed9f2ceae1db09e73a53765ffadfaa699bc5df508a3e70004f08ac784"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:ed18e0cc33e0cef738c74cc4a6664011d23384d4b821104b9a95643dcea37901"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:5c66ca1d8375657c684f1026d688cc56070337373d0501a1a5a5ac7efd8a77b6"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:c640549765ac8762ce12c4c8344e90c2269acbfbaa86833728f7d7115de71a93"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:641dec4cc77ce43d467b55c89888e28a9c854fda678dc1254c47e178b5f1734d"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:08c96b4d81c8d369df99025b68ff7a2dea7f9324746d60195a92ee4957059b0c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:67cdfb4dcd1d7a7bc2cff79be7a03ca46bda0f01691e61ffa146bf5c0a1474d6"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:640148a4710cfa4a0e286c7f9c67871450d53bfd5db422adc516b46a7fdcfe36"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:4cbecd5aa068956a6570b79036aa3bdd18dac230b501cfeb4d532d8dc2f64be7"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:a428ca167904d273d325ff0e8e9e2f9373526e30dd477def18b3aa9661dca0dd"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:d3ba33f9d9c9f9546da01b2c4936f6895e981e234dc70712f19e2c52ad292305"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:f87a2b8e9cd20f566d152850a6656ea2e96c93abe0fbeb1b49cecc04148c5e32"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:45a9dbcf7f6f614b0a3a700457fb1e274a1ef85aba4b37c2dbbd00c9436c151b"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/whole-downstream.png",
+          "hash": "sha256:571f8efdc05e7afecc15c1dc1903510980f9f5e0959a502524f177716b13359c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/whole-upstream.png",
+          "hash": "sha256:61fbb6703d6b83bc35dfb579b0142e75b888423cd28fc45aaf4952b9221a4051"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/road-and-stone-balusters.png",
+          "hash": "sha256:20e5e84e68b05ee932203411ef2379952cd6b4b61df6b950d6992ccb8396ab68"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/central-arch-and-pier.png",
+          "hash": "sha256:651b7610e4d9b11c95d2e47a7b6d1a5e24eddbe4a02dbead491236a02a6187b1"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/round-pier-lamp-and-balusters.png",
+          "hash": "sha256:c2a3dc651f12bf2d3b44bad8801bbae8c5eda14c637897c493f5ef13d70c985e"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/open-vault-and-soffit.png",
+          "hash": "sha256:83f20cd3c7c5a2d39414c89bf0c9910768380656798579837e1778cc7b5b5a7c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:d9614fa875af9404d502fc9b174c99997ebd5cc35456777d64b779099c2db866"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:08c96b4d81c8d369df99025b68ff7a2dea7f9324746d60195a92ee4957059b0c"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:8bc31a2853b9919a2dfac568b7c456717a78f4664cb76b5232067252c8ca0994"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/richmond_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:9c63a394149b345033524d9b5235e8c410a6daec6b2b278ec6bbe26dda5b8dd6"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:f0632ee13061c44cadf4f20e4bdbb891d4518f00b1ba20c48f59a4a4ef56f166"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:0fb206741bcba61063f7dcbc5d4f1736ad2c58bf333425a5d06bb2fb21aae7ca"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-street-whole-downstream.png",
+          "hash": "sha256:78cbc88f08dbc0d4cb3420d460a1689c647e2ccf3b8f8befce262eb86eced37f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-street-whole-upstream.png",
+          "hash": "sha256:f8294dcb3f55d5203a158192803ad151d4578b62177192ba40df13e2bab3683c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-street-road-and-stone-balusters.png",
+          "hash": "sha256:6f5b68b5922dd5732be5571ce1a962dd7aee525f618d4210b700ee2464fc6ce0"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-street-central-arch-and-pier.png",
+          "hash": "sha256:1641c3e8f3a7452e87e53a901ea04caeccc6db0da8ff266461a2c760346593b5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-whole-downstream.png",
+          "hash": "sha256:fb610ce275e00dea35f78f8c9516d9fbd6ef07d54a8f944134fa950c2f494edc"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-whole-upstream.png",
+          "hash": "sha256:23624d5cf737f5107abfe6e3e75aebda6f787ad39c5e56a894bf250c2fb84b63"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-road-and-stone-balusters.png",
+          "hash": "sha256:d64be245ac4d56aefa551314e07b8eba30d0841671edda78f2d443dfeb96ef95"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-central-arch-and-pier.png",
+          "hash": "sha256:274114689c98d787a5502208d540c42dcd8407a1ff3ac0681495692e8c643f7f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-round-pier-lamp-and-balusters.png",
+          "hash": "sha256:0bd646916f8fefc36f8e41cfad04540d93d189a54edbbbab0440e93463061cf1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-open-vault-and-soffit.png",
+          "hash": "sha256:fed2847f243169a174c9b211ee5a11c76125b432717a56aa397bbc70d63d2096"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-southwest-bank-join.png",
+          "hash": "sha256:984d22e434c5367a85a4c8ab4be01a3b4f6e4f328c0ad8c516672af112a1d5b5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-northeast-bank-join.png",
+          "hash": "sha256:c2e60f74f841fa7828e38a8c088c84952b57d2582155d42fb1be6c12313bd59f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:d34a5a9bd9132a2b4c2c4603caa8a2aab9dbe8874b78160c0eb41ac1f8fdaaa8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:aea113d4175d5b4fcd1acee0e487ea23915c9b9865abe88fdf3f710c0ed88268"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\richmond-review/native/shots/final-failure-whole-downstream.png",
+          "hash": "sha256:19ce4cc18eded9a2e3a0c6af1a70e8e8102886e4cc8e6c2603a157883a53ac4e"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 2857 resident buildings, 881 input road records and 806 independent road records remain. Four separate railway/lock crossing records and 26 checked tunnel/cross-bank path records retain their inputs and receive no authored connections. Raw roads, DEM samples, displayed ground and water remain unchanged; connected bank paving is deliberately graded. Failed loading retains the original map crossing; unload releases all model/support geometry. No ground cutout was used."
+    },
+    "nativeReport": {
+      "path": ".artifacts/richmond-review/native/final-report.json",
+      "hash": "sha256:2ef7c0ffa63418e463df941690ce2eafdc37a754af00747448b35ac137b8d52d",
+      "frozenViewerInputsHash": "sha256:53416eba912f21ee8bdecf2ebb584d387df77a28f6ab1b8d388307ab91c20b53"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 18,
+        "pavedWidthSamples": 12,
+        "replacementInteriorSamples": 6,
+        "maximumJoinErrorMeters": 0.01991108061565683,
+        "endpointWidthSamples": 10,
+        "maximumEndpointErrorMeters": 0.02363615981107614,
+        "buildings": 2857,
+        "independentRoadRecords": 806,
+        "totalRoadRecords": 881,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184397055390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184878125682,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35185249552943,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184507278205,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185051326361,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905143,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185296247549,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185239017216,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184782842922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376524890,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396953400,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184472716358,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185228455932,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 18,
+        "pavedWidthSamples": 12,
+        "replacementInteriorSamples": 6,
+        "maximumJoinErrorMeters": 0.01991108061565683,
+        "endpointWidthSamples": 10,
+        "maximumEndpointErrorMeters": 0.02363615981107614,
+        "buildings": 2857,
+        "independentRoadRecords": 806,
+        "totalRoadRecords": 881,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184397055390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184878125682,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35185249552943,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184507278205,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185051326361,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905143,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185296247549,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185239017216,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184782842922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376524890,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396953400,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184472716358,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185228455932,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 18,
+        "pavedWidthSamples": 12,
+        "replacementInteriorSamples": 6,
+        "maximumJoinErrorMeters": 0.01991108061565683,
+        "endpointWidthSamples": 10,
+        "maximumEndpointErrorMeters": 0.02363615981107614,
+        "buildings": 2857,
+        "independentRoadRecords": 806,
+        "totalRoadRecords": 881,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184397055390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184878125682,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35185249552943,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184507278205,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185051326361,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905143,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185296247549,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185239017216,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184782842922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376524890,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396953400,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184472716358,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185228455932,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 18,
+        "pavedWidthSamples": 12,
+        "replacementInteriorSamples": 6,
+        "maximumJoinErrorMeters": 0.01991108061565683,
+        "endpointWidthSamples": 10,
+        "maximumEndpointErrorMeters": 0.02363615981107614,
+        "buildings": 2857,
+        "independentRoadRecords": 806,
+        "totalRoadRecords": 881,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184397055390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184878125682,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35185249552943,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184507278205,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185051326361,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905143,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185296247549,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185239017216,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184782842922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376524890,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396953400,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184472716358,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185228455932,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "pavedWidthSamples": 0,
+        "replacementInteriorSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "endpointWidthSamples": 0,
+        "maximumEndpointErrorMeters": null,
+        "buildings": 2857,
+        "independentRoadRecords": 806,
+        "totalRoadRecords": 881,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184397055390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184878125682,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376929870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35185249552943,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184537363430,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184507278205,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185051326361,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905143,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185229905140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185296247549,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184819685922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185239017216,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184782842922,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184376524890,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184804874510,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185173826810,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185303468800,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185225097390,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396953400,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184472716358,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185228455932,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Scoped bridge exterior only. Pinned map plan 141.898m by 10.603m is retained as a straightened millimetre-level outline; photo-led unequal arch proportions, height, deck crown, pier heads and ornament are visual approximations, not surveyed engineering sections.",
+    "Five opening widths 21/21.2/27.4/21.2/21m, elliptical rises and four 3.8m piers are inferred from ordinary photographs. Exact masonry bond, inscriptions, gas-lamp castings and widening construction joints are not reconstructed.",
+    "Source datum 2.0348180770874023m follows the native semantic water surface at 2.6348180770874023m and a declared bank/crown grade. Raw water polygons vary locally in height; no tide stage, surveyed threshold or historic water-level accuracy is claimed.",
+    "Connected map bank paving is deliberately graded to the authored deck. Small 1.5m flared apron overlaps cover generalized road/footway edges; raw roads, terrain and water remain inputs. Surrounding quays, steps, buildings, trees, signs, boats and newer crossings are procedural context.",
+    "Distant LODs simplify arch curves, rail infill, pier-head facets and lamp fittings; skyline uses a coarser crown and solid parapet band. Nearer levels retain open vase-shaped balusters, individual arch voussoirs, rounded heads and framed lantern panes. Physical laptop/phone timing remains unmeasured.",
+    "Coarse present-day banks partly obscure the two outer arch openings in native views. All five complete openings remain in the model and asset views. Exact riverbanks, quays and under-bridge footpath levels are not reconstructed.",
+    "The six replacement-interior width samples include two hits on parapet edges; only the twelve remaining map-paving samples support the reported boundary join metric."
+  ]
+}

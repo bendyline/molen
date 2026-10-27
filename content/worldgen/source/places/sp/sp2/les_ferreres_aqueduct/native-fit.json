@@ -1,0 +1,293 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "status": "unresolved",
+  "originMeters": 31.6,
+  "basis": "Standard Mapzen z14 and z15 ground smooths the valley: roughly45–56m along the channel. Fitting upper end walls to those banks buries much of the lower arcade. Geographic entry must remain a disabled draft until a faithful generic terrain-fit method is available. No fabricated staircase, stretched piers or changed surrounding ground.",
+  "terrainDatumMeters": 45.79846925781699,
+  "terrainSources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "url": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:1f215d3a70b5a7bf9e13a7bdd390f9c27bf390bc4888c5b06fa1b39bdf15294a"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 15,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        0,
+        157.87890625
+      ],
+      "flattenedSubseaSamples": 280,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:551ce337dd1ff378ae767cabaeabb9e253687d476a0b053fa274551e88ce985e"
+    }
+  },
+  "reviewGrid": {
+    "origin": [
+      -500,
+      -500
+    ],
+    "stepMeters": 5,
+    "width": 201,
+    "height": 201,
+    "axes": "world east/south; model axis rotated separately"
+  },
+  "centerlineGround": [
+    [
+      -125,
+      55.14370770327302
+    ],
+    [
+      -120,
+      54.607641080232014
+    ],
+    [
+      -115,
+      53.99747645641989
+    ],
+    [
+      -110,
+      53.336443817755175
+    ],
+    [
+      -105,
+      52.63744840160338
+    ],
+    [
+      -100,
+      51.95296944636503
+    ],
+    [
+      -95,
+      51.303634821666165
+    ],
+    [
+      -90,
+      50.741679499250765
+    ],
+    [
+      -85,
+      50.246467530081944
+    ],
+    [
+      -80,
+      49.75964258308724
+    ],
+    [
+      -75,
+      49.34347900693974
+    ],
+    [
+      -70,
+      48.893690797245945
+    ],
+    [
+      -65,
+      48.47116493928295
+    ],
+    [
+      -60,
+      48.020135677581614
+    ],
+    [
+      -55,
+      47.55700144959452
+    ],
+    [
+      -50,
+      47.07638350698706
+    ],
+    [
+      -45,
+      46.5527394907905
+    ],
+    [
+      -40,
+      45.93399739876788
+    ],
+    [
+      -35,
+      45.441991987631816
+    ],
+    [
+      -30,
+      45.165004378224666
+    ],
+    [
+      -25,
+      45.02745149661671
+    ],
+    [
+      -20,
+      44.994979160073086
+    ],
+    [
+      -15,
+      45.089517745452284
+    ],
+    [
+      -10,
+      45.29717531977657
+    ],
+    [
+      -5,
+      45.57508167651021
+    ],
+    [
+      0,
+      45.7985
+    ],
+    [
+      5,
+      46.064518218985874
+    ],
+    [
+      10,
+      46.30901503829208
+    ],
+    [
+      15,
+      46.460655985609705
+    ],
+    [
+      20,
+      46.590857054221004
+    ],
+    [
+      25,
+      46.67517365268857
+    ],
+    [
+      30,
+      46.7533082419988
+    ],
+    [
+      35,
+      46.85125613417061
+    ],
+    [
+      40,
+      46.98712158309078
+    ],
+    [
+      45,
+      47.19739474899714
+    ],
+    [
+      50,
+      47.48710203714528
+    ],
+    [
+      55,
+      47.83699124725593
+    ],
+    [
+      60,
+      48.21198436622445
+    ],
+    [
+      65,
+      48.66799497700121
+    ],
+    [
+      70,
+      49.11715624148343
+    ],
+    [
+      75,
+      49.6303310540615
+    ],
+    [
+      80,
+      50.19634569572648
+    ],
+    [
+      85,
+      50.80278038775818
+    ],
+    [
+      90,
+      51.46422820927905
+    ],
+    [
+      95,
+      52.16515364552494
+    ],
+    [
+      100,
+      52.924358706354646
+    ],
+    [
+      105,
+      53.72450249450591
+    ],
+    [
+      110,
+      54.52695814822218
+    ],
+    [
+      115,
+      55.33315449261157
+    ],
+    [
+      120,
+      56.16317291967003
+    ],
+    [
+      125,
+      56.95570680804846
+    ]
+  ]
+}

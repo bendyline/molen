@@ -1,0 +1,288 @@
+{
+  "id": "kokushkin_bridge",
+  "title": "Kokushkin Bridge",
+  "wikidataId": "Q2390563",
+  "referenceCoordinate": {
+    "longitude": 30.313594444,
+    "latitude": 59.925844444
+  },
+  "module": "content/worldgen/source/places/ud/udt/kokushkin_bridge/models/kokushkin-model.mjs",
+  "generator": "content/worldgen/source/places/ud/udt/kokushkin_bridge/models/generate-kokushkin.mjs",
+  "builder": "buildKokushkinLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.68,
+      "metallic": 0.25
+    }
+  },
+  "sourceDefinitions": [
+    "models/kokushkin-controls.json"
+  ],
+  "exportLabel": "Molen original Kokushkin Bridge",
+  "expectedDraftMasterHash": "sha256:91145d2036b89d1c802e896dce92d9c96f94cc009ff1d5f1f534efbe674e36ae",
+  "visualBrief": "Complete shallow green panel-girder crossing with eight alternating circle/lozenge fascia panels, cast brackets, Empire wreath/rosette railings with small rings and swags, raised walks, granite abutments/flared end cheeks and the photographed navigation plaque/diamond. Preserve correct bridge proportions while native noisy-bank placement remains disabled.",
+  "nativeAxes": "+X north-northwest toward Stolyarny Lane; -X south-southeast toward Kokushkin Lane; +Z east-northeast; -Z west-southwest.",
+  "sourceFacts": {
+    "identity": "Named PMTiles bridge35184750129947 fixes the traffic crossing axis; relation5636139/Q2390563 fixes its flared geographic footprint. The older minimum-area rectangle follows the broad flared width rather than the road axis and is not used as the span direction.",
+    "relation": 5636139,
+    "namedPmtilesRoad": 35184750129947,
+    "mappedRoadExtentMeters": 19.004823072900646,
+    "catalogLengthMeters": 18.92,
+    "approximateClearSpanMeters": 15,
+    "approximateWidthMeters": 13.1,
+    "orientation": "+X north-northwest toward Stolyarny Lane; -X south-southeast toward Kokushkin Lane; +Z east-northeast; -Z west-southwest."
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kokushkin_Bridge_(img1).jpg",
+      "author": "Alex Florstein Fedorov",
+      "observedDate": "2016-03-19",
+      "license": "CC-BY-SA-4.0",
+      "use": "Inspected full canal-side crossing: shallow green panel girder, eight alternating circle/lozenge panels and brackets, wreath railings, granite end blocks/flared cheeks, permanent clearance plaque and white diamond. No pixels imported."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kokushkin_bridge_St_Petersburg_fence.jpg",
+      "author": "Alexei Kouprianov",
+      "observedDate": "2006-07-12",
+      "license": "CC-BY-SA-2.5",
+      "use": "Inspected close ironwork: seven thin bars, bottom rings, upper small rings/swags/spikes, central laurel wreath and rosette with cross arms, tall square post with inset diamond. Older pale paint is not copied; geometry informs the2016 green appearance."
+    }
+  ],
+  "limitations": [
+    "Original photo-led static exterior: mapped19.0048m road segment, flared relation5636139/Q2390563 footprint and approximate15m clear span/13.1m deck width. The map rectangle axis was corrected to the actual road. Metal panel count/details and granite sections are ordinary-photo reconstruction controls, not a measured engineering survey.",
+    "Three existing shared256px granite, plain-concrete and painted-metal graphs; all geometry authored, no photo pixels or downloaded mesh.",
+    "The 2016 green paint and geometric ironwork are the selected photo appearance; the2006 close ironwork photo has older pale paint. No present-day paint survey or engineering/navigation clearance claim.",
+    "Native placement stays disabled: both standard z14 and z15 terrain contain a large bank rise. The z15 fixture water is16.924m, southeast bank25–30m and northwest bank19–22m. Keep the bridge proportions; do not invent steep ramps or stretch its abutments to approve native fit.",
+    "The source is a full static bridge exterior reconstruction with approximate clear-span/skew, width, granite sections, ornamental leaf counts and navigation marker shapes. The fixed2.6 plaque reproduces a photograph, not an operational clearance promise. Neighboring historic buildings, temporary street signs and independent streetlamps remain outside the asset scope. Physical-device timings are unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-green-crossing",
+      "position": [
+        27,
+        15,
+        32
+      ],
+      "lookAt": [
+        1,
+        2.8,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "panel-girder-and-granite-cheeks",
+      "position": [
+        5,
+        2,
+        24
+      ],
+      "lookAt": [
+        1,
+        3.1,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "wreath-railing-detail",
+      "position": [
+        1.7,
+        5.5,
+        10
+      ],
+      "lookAt": [
+        1.7,
+        4.15,
+        6.45
+      ],
+      "fov": 51
+    },
+    {
+      "name": "road-and-raised-walks",
+      "position": [
+        -18,
+        5.7,
+        3
+      ],
+      "lookAt": [
+        8,
+        3.7,
+        0
+      ],
+      "fov": 63
+    },
+    {
+      "name": "open-canal-underpass",
+      "position": [
+        -1,
+        1.5,
+        -24
+      ],
+      "lookAt": [
+        1,
+        2,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "flared-granite-end",
+      "position": [
+        16,
+        6,
+        12
+      ],
+      "lookAt": [
+        9,
+        3,
+        6
+      ],
+      "fov": 58
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/udt/kokushkin_bridge/models/kokushkin-model.mjs",
+    "export": "buildKokushkinSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.25
+      }
+    },
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKokushkinDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "street": {
+        "export": "buildKokushkinStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        },
+        "errorMeters": 0.08
+      },
+      "closeup": {
+        "export": "buildKokushkinCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        },
+        "errorMeters": 0.03
+      }
+    }
+  }
+}

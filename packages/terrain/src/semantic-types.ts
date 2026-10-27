@@ -121,6 +121,9 @@ export interface TerrainTransportationFeature extends TerrainStructureIdentity {
    * Ground approaches blend back to terrain without generating bridge slabs.
    * Points use normalized tile coordinates. */
   bridgeConnections?: { point: TerrainSemanticPoint; elevation: number; radius: number }[];
+  /** Bounded, connected approach grading. Points are normalized tile coordinates;
+   * elevation is absolute Y and flatness (0..1) suppresses terrain crossfall at the deck. */
+  bridgeApproachProfile?: { point: TerrainSemanticPoint; elevation: number; flatness: number }[];
   tunnel?: boolean;
   /** Surveyed tunnel road-floor height in absolute world Y units. Otherwise inferred from portals. */
   tunnelFloorElevation?: number;
@@ -423,6 +426,14 @@ export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
       assertFinite(connection.elevation, 'bridge connection elevation');
       assertFinite(connection.radius, 'bridge connection radius');
       if (connection.radius <= 0) throw new Error('bridge connection radius must be positive');
+    }
+    for (const sample of feature.bridgeApproachProfile ?? []) {
+      assertFinite(sample.point[0], 'bridge approach x');
+      assertFinite(sample.point[1], 'bridge approach z');
+      assertFinite(sample.elevation, 'bridge approach elevation');
+      assertFinite(sample.flatness, 'bridge approach flatness');
+      if (sample.flatness < 0 || sample.flatness > 1)
+        throw new Error('bridge approach flatness must be between zero and one');
     }
     if (feature.service !== undefined)
       assertClass(feature.service, `/transportation/${index}/service`);

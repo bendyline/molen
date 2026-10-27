@@ -1,0 +1,390 @@
+{
+  "format": "molen/structure-placement-report@1",
+  "assetId": "molen.worldgen.structure.muntplein",
+  "inputHash": "sha256:0133ac1e65fb515be8dcc9e1eb203cf3b79c6b44967a09ee1542306880e87e9b",
+  "entry": {
+    "id": "muntplein",
+    "title": "Muntplein / Muntsluis",
+    "asset": "molen.worldgen.structure.muntplein",
+    "anchor": [
+      4.8935355078341525,
+      52.36707645884383
+    ],
+    "heading": 1.5707963267948966,
+    "datum": "sea-level",
+    "elevation": 6.7,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q683180",
+      "maxDistance": 80
+    },
+    "replaceFootprint": false,
+    "minLevel": 13,
+    "status": "draft",
+    "source": "https://commons.wikimedia.org/wiki/Category:Brug_1,_Muntsluis",
+    "note": "Mapped bridge/plaza outline and named Muntplein routes; no exact-QID footprint. Muntsluis is the physical bridge component. Munttoren and Doelensluis remain separate. Geographic review pending: coarse canal-water steps obstruct the modeled opening; disabled by default until resolved.",
+    "replaceRoads": {
+      "length": 55.05890782250491,
+      "width": 54.69447045370678,
+      "outline": [
+        [
+          -3.1860755041555517,
+          -17.789338492651382
+        ],
+        [
+          25.072609796189173,
+          11.56336065083792
+        ],
+        [
+          29.971701440825797,
+          18.36430208718075
+        ],
+        [
+          18.12132632158653,
+          27.844676965823265
+        ],
+        [
+          -20.347011256773868,
+          -12.993860972944464
+        ],
+        [
+          -25.087206381679113,
+          -25.573589177297023
+        ],
+        [
+          -11.778208590735188,
+          -26.849793487883513
+        ]
+      ],
+      "deckHeight": 3.212,
+      "includeConnectedApproaches": true,
+      "includeTransverseBridges": true
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -3.1860755041555517,
+          -17.789338492651382
+        ],
+        [
+          25.072609796189173,
+          11.56336065083792
+        ],
+        [
+          29.971701440825797,
+          18.36430208718075
+        ],
+        [
+          18.12132632158653,
+          27.844676965823265
+        ],
+        [
+          -20.347011256773868,
+          -12.993860972944464
+        ],
+        [
+          -25.087206381679113,
+          -25.573589177297023
+        ],
+        [
+          -11.778208590735188,
+          -26.849793487883513
+        ]
+      ],
+      "preservePaving": true,
+      "minHeight": 0.2,
+      "basis": "Bounded mapped plaza footprint only, to expose the canal below coarse urban DEM. Raw DEM and water are retained; original ground restores on unload."
+    },
+    "bounds": [
+      4.893090493639041,
+      52.366821096634546,
+      4.893995158756226,
+      52.36737569921879
+    ]
+  },
+  "placementHash": "sha256:a3dec214a529e1cbc62394e48a1d9c965bb81c1b8c30e959f7745c52cc8194f4",
+  "status": "pending",
+  "reviewedOn": "2026-10-27",
+  "nativeFixture": {
+    "path": ".artifacts/muntplein-review/native/final-report.json",
+    "hash": "sha256:9c0110b283b29ac41245cabc97b0ec366830a8c711deb8ba70a20b9c2d36a1a3",
+    "forcedDraftPreview": true,
+    "scenarios": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "companionLoaded": true,
+        "sourceBuildings": 1653,
+        "remainingBuildings": 1646,
+        "expectedMunttorenPartIds": [
+          35184429951560,
+          35185123772651,
+          35185123787214,
+          35185123787215,
+          35185123787216,
+          35185123772648,
+          35185123772649
+        ],
+        "sourceRoads": 509,
+        "remainingRoads": 502,
+        "independentRoads": 440,
+        "neighboringCrossings": [
+          {
+            "id": 35184401497432,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "groundCutoutActive": true,
+        "outsideGroundRetained": true,
+        "sourceGridRetained": true,
+        "waterRetained": true,
+        "rawRoadsRetained": true,
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "companionLoaded": true,
+        "sourceBuildings": 1653,
+        "remainingBuildings": 1646,
+        "expectedMunttorenPartIds": [
+          35184429951560,
+          35185123772651,
+          35185123787214,
+          35185123787215,
+          35185123787216,
+          35185123772648,
+          35185123772649
+        ],
+        "sourceRoads": 509,
+        "remainingRoads": 502,
+        "independentRoads": 440,
+        "neighboringCrossings": [
+          {
+            "id": 35184401497432,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "groundCutoutActive": true,
+        "outsideGroundRetained": true,
+        "sourceGridRetained": true,
+        "waterRetained": true,
+        "rawRoadsRetained": true,
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "companionLoaded": true,
+        "sourceBuildings": 1653,
+        "remainingBuildings": 1646,
+        "expectedMunttorenPartIds": [
+          35184429951560,
+          35185123772651,
+          35185123787214,
+          35185123787215,
+          35185123787216,
+          35185123772648,
+          35185123772649
+        ],
+        "sourceRoads": 509,
+        "remainingRoads": 502,
+        "independentRoads": 440,
+        "neighboringCrossings": [
+          {
+            "id": 35184401497432,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "groundCutoutActive": true,
+        "outsideGroundRetained": true,
+        "sourceGridRetained": true,
+        "waterRetained": true,
+        "rawRoadsRetained": true,
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "companionLoaded": true,
+        "sourceBuildings": 1653,
+        "remainingBuildings": 1646,
+        "expectedMunttorenPartIds": [
+          35184429951560,
+          35185123772651,
+          35185123787214,
+          35185123787215,
+          35185123787216,
+          35185123772648,
+          35185123772649
+        ],
+        "sourceRoads": 509,
+        "remainingRoads": 502,
+        "independentRoads": 440,
+        "neighboringCrossings": [
+          {
+            "id": 35184401497432,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "groundCutoutActive": true,
+        "outsideGroundRetained": true,
+        "sourceGridRetained": true,
+        "waterRetained": true,
+        "rawRoadsRetained": true,
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "companionLoaded": true,
+        "sourceBuildings": 1653,
+        "remainingBuildings": 1646,
+        "expectedMunttorenPartIds": [
+          35184429951560,
+          35185123772651,
+          35185123787214,
+          35185123787215,
+          35185123787216,
+          35185123772648,
+          35185123772649
+        ],
+        "sourceRoads": 509,
+        "remainingRoads": 509,
+        "independentRoads": 440,
+        "neighboringCrossings": [
+          {
+            "id": 35184401497432,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "groundCutoutActive": false,
+        "outsideGroundRetained": true,
+        "sourceGridRetained": true,
+        "waterRetained": true,
+        "rawRoadsRetained": true,
+        "graphReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ],
+    "companion": {
+      "entry": {
+        "id": "munttoren",
+        "title": "Munttoren",
+        "asset": "molen.worldgen.structure.munttoren",
+        "anchor": [
+          4.8932134,
+          52.3670565
+        ],
+        "heading": -0.982021760349,
+        "datum": "terrain",
+        "elevation": 0,
+        "orientation": "fixed",
+        "mapIdentity": {
+          "wikidata": "Q1429748",
+          "maxDistance": 80
+        },
+        "replaceFootprint": true,
+        "minLevel": 13,
+        "status": "preview",
+        "source": "https://www.openstreetmap.org/way/57862728",
+        "note": "Center is refined from the concentric tower parts instead of the bounding box containing asymmetric projections. Both southeast and northwest projections are reproduced from their exact map polygons; the octagonal clock stages retain their mapped directed axes. The adjoining former guard house is a separately mapped building; it is not included or used to scale the tower. Small stone ornament and restored openings follow current photographs. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+      },
+      "assetHash": "sha256:6e30b985ef9512ea4c978317e0ee994c82bb9ad8942717f73f2c133c5a2e7f77",
+      "sourceHash": "sha256:98d1051803b19c3eec7012c054dce862fad6d940efe0497607f8d590e412e9c5",
+      "lodHash": "sha256:c8202c5141460fce4db865356f49340bfb4ce5aaaddf2d92a47ebcb60f33b2fa",
+      "qaInputHash": "sha256:191fdb55b8a55c4a1d3b01cd80fba483c4ccbb5aeeeb7902ff6203c9be27439a"
+    }
+  },
+  "blockers": [
+    "Resolve the standard native canal-water/ground fit before enabling placement: west canal surface is too high relative to the modeled opening; local water polygons differ in height.",
+    "Reconcile the inferred northwest transport envelope and all actual junction width joins after the water/bank fit. Reuse the existing source, material and geometry checks; do not restart identity research.",
+    "Replace obstructed/below-cut native context cameras with informative bank and overhead views before final approval."
+  ],
+  "limitations": [
+    "Scope is the mapped Muntplein bridge/plaza exterior, including Muntsluis. The existing Munttoren is separate and is neither duplicated nor counted again. Former guardhouse, flower-market greenhouses, street furniture and the separate Doelensluis bridge remain context.",
+    "Map outline is pedestrian polygon 35185536723013, associated with named Muntplein roads/cycleways and tram bridge fragments. This is not an exact-QID footprint. Paving routes are generalized map controls; precise rail turnouts, road paint and present-day traffic details are not reconstructed.",
+    "Source datum 6.7m and flat paving at 9.9m absolute fit the standard native PMTiles/Mapzen renderer approximately. Urban DEM is coarse and water polygons have local height steps. No surveyed Amsterdam datum, canal clearance or bank accuracy is claimed.",
+    "Brick abutments, shallow steel girder, three-bar rail, rounded granite caps and incised stone-panel branches follow ordinary pictures. Exact structural internals, castings, inscriptions, brick courses and foundations are not engineering reconstructions.",
+    "A bounded ground cut under the mapped plaza removes coarse ground intersecting the canal opening; raw DEM and water remain intact. Connected native roads are deliberately graded. Distant levels simplify rails, caps, rivets and tram geometry. Physical laptop/phone timing remains unmeasured.",
+    "The pedestrian polygon covers only part of the transported plaza. Its northwest bank edge is expanded 5.6m to include mapped road/tram widths; this inferred composite boundary is not an exact surveyed bridge perimeter.",
+    "Native placement is pending: standard canal polygons differ by about 2.36m in water height at the two portals and hide much of the modeled clear passage. Do not approve the geographic fit or enable this draft by raising the whole plaza and burying the existing Munttoren base."
+  ],
+  "waterDiagnosis": {
+    "observedOn": "2026-10-27",
+    "basis": "Standard cached PMTiles/Mapzen and the shipped terrainWaterSurfaceHeight function, no bespoke data.",
+    "canalFeature": 740805812,
+    "canalHeightMeters": 7.24278154633492,
+    "westernConnectedWaterFeature": 677164950,
+    "westernFragmentHeightMeters": 9.606052187917216,
+    "conclusion": "Different DEM-derived water levels on adjoining polygons, not missing source geometry. Keep draft disabled pending native water/grade resolution; do not bury the existing tower by raising the plaza."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kizuna_bridge",
+  "kind": "static-structure",
+  "title": "Kizuna Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json",
+      "models/kizuna-controls.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kizuna_bridge",
+        "output": "assets/places/w6/w65/kizuna_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0148889e7fcebe1a2f4efa12af3c609d774106b198736a53555ec52930408abc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-kizuna.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/kizuna-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

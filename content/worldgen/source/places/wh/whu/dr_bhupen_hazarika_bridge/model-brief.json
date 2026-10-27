@@ -1,0 +1,300 @@
+{
+  "id": "dr_bhupen_hazarika_bridge",
+  "title": "Dr. Bhupen Hazarika Bridge",
+  "wikidataId": "Q24906291",
+  "referenceCoordinate": {
+    "latitude": 27.798611111,
+    "longitude": 95.676111111
+  },
+  "module": "content/worldgen/source/places/wh/whu/dr_bhupen_hazarika_bridge/models/bhupen-model.mjs",
+  "builder": "buildBhupenLevel",
+  "surfaces": {
+    "skyline": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.98,
+      "metallic": 0,
+      "doubleSided": true
+    },
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.74,
+      "metallic": 0.2
+    }
+  },
+  "exportLabel": "Bhupen draft",
+  "expectedDraftMasterHash": "sha256:65b24612280d253de238f2097300f2b23fea37670f349fd46685840955dd74e5",
+  "visualBrief": "Full 42-point OSM route, 183 regularized spans, single piers with flared heads and bearings, continuous girder, two lanes, raised walks, striped curbs, white barriers and yellow top rails.",
+  "nativeAxes": "+X northeast along the crossing; +Z southeast; +Y up. Full curved map route retained.",
+  "sourceFacts": {
+    "lengthMeters": 9169.80863340908,
+    "widthMeters": 12.9,
+    "spanRhythm": "Photo-based ~50m reconstruction assumption; not a surveyed as-built span schedule."
+  },
+  "limitations": [
+    "Original picture-based exterior proportions; no bespoke surveys or engineering sources used.",
+    "The 183-span approximately 50 m rhythm is a regularized reconstruction assumption, not a confirmed as-built span schedule.",
+    "Exact girder sections, bearings, individual rail/post spacing, foundations, river stage and terrain contact are provisional.",
+    "Ordinary pictures show different construction/opening states; temporary gantries, crowds, vehicles, signs and neighboring infrastructure are excluded.",
+    "Physical ordinary-laptop and phone/tablet measurements remain pending."
+  ],
+  "references": [
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:A_VIEW_OF_MAIN_BRIDGE.JPG",
+      "author": "DHOLA SADIYA RIVER BRIDGE",
+      "license": "CC-BY-SA-4.0",
+      "date": "2016-02-01",
+      "observed": "Whole southern approach bend, continuous main crossing, regular piers and broad segmented concrete deck during construction."
+    },
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:SMOOTHEST_CURVE_IN_VIADUCTS_MADE_THROUGH_SEGMENTS.JPG",
+      "author": "DHOLA SADIYA RIVER BRIDGE",
+      "license": "CC-BY-SA-4.0",
+      "date": "2015-11-12",
+      "observed": "Approach curvature and main girder/pier rhythm. Temporary construction gantries are not current bridge members."
+    },
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:Dr._Bhupen_hazarika_setu.jpg",
+      "author": "Rohit Rajkonwar",
+      "license": "CC-BY-SA-4.0",
+      "date": "2017-06-04",
+      "observed": "Two asphalt lanes, narrow concrete walks, tall white sloped concrete barrier and yellow top rail on small dark posts; curve chevrons. No photo pixels reused."
+    },
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:An_Aerial_view_of_the_Dhola-Sadiya_bridge_across_River_Brahmaputra,_inaugurated_by_the_Prime_Minister,_Shri_Narendra_Modi,_in_Assam_on_May_26,_2017_(1).jpg",
+      "author": "Prime Minister's Office, Government of India",
+      "license": "GODL-India",
+      "date": "2017-05-26",
+      "observed": "Completed channel crossing with single oblong pier stems, flared heads, shallow concrete girder and low rectangular visible pile caps. Opening-day crowds are excluded."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "full-curved-crossing",
+      "position": [
+        0,
+        4800,
+        6700
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "south-viaduct-and-rail",
+      "position": [
+        -3242.93206104516,
+        21.89,
+        856.9805387830228
+      ],
+      "lookAt": [
+        -3115.9093413539376,
+        12.1825,
+        895.5018271105968
+      ],
+      "fov": 55
+    },
+    {
+      "name": "main-pier-and-girder",
+      "position": [
+        -335.53765374890827,
+        12,
+        455.9049168900684
+      ],
+      "lookAt": [
+        -345.8630920972515,
+        12,
+        395.77292742657687
+      ],
+      "fov": 55
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wh/whu/dr_bhupen_hazarika_bridge/models/bhupen-model.mjs",
+    "export": "buildBhupenSkyline",
+    "surfaces": {
+      "skyline": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0,
+        "doubleSided": true
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.74,
+        "metallic": 0.2
+      }
+    },
+    "errorMeters": 5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBhupenDistrict",
+        "surfaces": {
+          "skyline": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 2
+      },
+      "street": {
+        "export": "buildBhupenStreet",
+        "surfaces": {
+          "skyline": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildBhupenCloseup",
+        "surfaces": {
+          "skyline": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 0.5
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "far": 30000
+  },
+  "appearance": {
+    "identity": "Full 42-point OSM route, 183 regularized spans, single piers with flared heads and bearings, continuous girder, two lanes, raised walks, striped curbs, white barriers and yellow top rails.",
+    "sourceMaster": "Original complete curved route with regularized span rhythm; detailed master retained separately from the four complete browser representations.",
+    "exclusions": "Survey-level span and girder schedules, concealed foundations, temporary construction equipment, traffic/crowds and nearby infrastructure."
+  },
+  "qaLodCameras": [
+    {
+      "name": "complete-bhupen-skyline",
+      "position": [
+        0,
+        4800,
+        6700
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 60,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "complete-bhupen-district",
+      "position": [
+        0,
+        4800,
+        6700
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 60,
+      "reviewLod": "district"
+    },
+    {
+      "name": "complete-bhupen-street",
+      "position": [
+        0,
+        4800,
+        6700
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 60,
+      "reviewLod": "street"
+    },
+    {
+      "name": "complete-bhupen-closeup",
+      "position": [
+        0,
+        4800,
+        6700
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 60,
+      "reviewLod": "closeup"
+    }
+  ],
+  "reviewSurface": "water"
+}

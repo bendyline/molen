@@ -92,6 +92,8 @@ export function isPaintedTransport(
 ): boolean {
   return !(
     feature.tunnel ||
+    feature.class === 'ferry' ||
+    feature.subclass === 'ferry' ||
     (feature.subclass === 'sidewalk' && !options.sidewalks) ||
     feature.subclass === 'crossing'
   );

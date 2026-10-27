@@ -1,0 +1,54 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pont_du_garigliano",
+  "kind": "static-structure",
+  "title": "Pont du Garigliano",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json",
+      "models/garigliano-controls.json",
+      "models/garigliano-landings.mjs"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pont_du_garigliano",
+        "output": "assets/places/u0/u09/pont_du_garigliano/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cceccbe1e0e1a88bc540d655a1ee7ee12e0ff5fc8f5dbd3aa2de4ccf24d30898"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-garigliano.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/garigliano-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

@@ -179,6 +179,51 @@ describe('transport graph', () => {
         expect(edge.ys[i]).toBeCloseTo(5.32 + (18 - 5.32) * (1 - t * t * (3 - 2 * t)), 5);
       }
   });
+  it('carries sampled approach elevations through world-coordinate conversion and graph splits', () => {
+    const net = new TransportNetwork();
+    net.registerTile({
+      key: 'graded',
+      origin: [1000, 2000],
+      tileSize: 100,
+      heightAt: () => 5,
+      features: [
+        {
+          class: 'residential',
+          lines: [
+            [
+              [0, 0.5],
+              [1, 0.5],
+            ],
+          ],
+          bridgeApproachProfile: [
+            { point: [0, 0.5], elevation: 18, flatness: 1 },
+            { point: [0.4, 0.5], elevation: 18, flatness: 1 },
+            { point: [0.8, 0.5], elevation: 5.32, flatness: 0 },
+            { point: [1, 0.5], elevation: 5.32, flatness: 0 },
+          ],
+        },
+        {
+          class: 'residential',
+          lines: [
+            [
+              [0.1, 0.5],
+              [0.1, 0.8],
+            ],
+          ],
+        },
+      ],
+    });
+    const edges = [...net.edgeList()].filter((e) =>
+      e.path.points.every((p) => Math.abs(p[1] - 2050) < 1e-6),
+    );
+    expect(edges.length).toBeGreaterThan(1);
+    for (const edge of edges)
+      for (const [i, p] of edge.path.points.entries()) {
+        const x = p[0] - 1000;
+        const expected = x <= 40 ? 18 : x >= 80 ? 5.32 : 18 + ((5.32 - 18) * (x - 40)) / 40;
+        expect(edge.ys[i]).toBeCloseTo(expected, 5);
+      }
+  });
   it('builds a signalised crossroads from a document', () => {
     const net = new TransportNetwork();
     net.addDocument(TRANSPORT_NETWORK_EXAMPLE);

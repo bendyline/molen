@@ -1,6 +1,15 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mediumFiAsset, verifyMediumFiRender } from './medium-fi-asset.mjs';
+import { mediumFiAsset, mediumFiLodFile, verifyMediumFiRender } from './medium-fi-asset.mjs';
+
+test('loads generated LODs without requiring hand-authored variants', () => {
+  const sidecar = {
+    files: { main: 'model.glb', variants: {} },
+    runtimeLods: { levels: [{ name: 'district', file: 'model.district.glb' }] },
+  };
+  assert.equal(mediumFiLodFile(sidecar, 'district'), 'model.district.glb');
+  assert.throws(() => mediumFiLodFile(sidecar, 'street'), /Missing review LOD street/);
+});
 
 test('an exact structure identity wins over a longer name with the same suffix', () => {
   const old = 'molen.worldgen.structure.old_parliament_house_canberra';

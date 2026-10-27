@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.merdeka_118",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:5ebabfd693e35aad0885994d843ddfbd608874509a8cfada33331762aaa2c5cd",
+  "inputHash": "sha256:0321c69842c3735dca05a4bf9a66b999eb5e8c20fe0bf8690850705abb7e8013",
   "sourceHash": "sha256:d72a82c71980f0136975e6bf0faddd3c5e6984905895c7ea8f5de6c5cdd1de59",
   "runtimeHash": "sha256:7956310e9ae8b013c1da9421ce20ae67a00072b596dc7784c1d6645c9e5deb79",
-  "captureReportHash": "sha256:ee7321fca908c1e6285139c77209084dfa302cb6823dc140cf9c8c37845d52b6",
+  "captureReportHash": "sha256:03785f9b56dd07f6941106d8b6ab1a63c8565ebfb45a8c4b995580a6065644f2",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,11 +26,12 @@
       "shots/whole-reviewed-tower.png",
       "shots/above-stepped-crown.png"
     ],
-    "notes": "Actually inspected all 68 final frames: 16 portable, 16 shared and 36 medium-fi. Whole views and turntables retain the clipped diamond shaft, inclined triangular glass facets, asymmetric stepped crown and offset angular spire. Near views show long mullion strips, diagonal stainless edge ribs, observation bands, lower maintenance deck and seated plant, four folded lobby canopies with V supports and travertine-toned piers. The spire skin is connected to the 509.2 m deck by collar faces and its tip is capped. No missing primary shaft plane, crown or mast was observed. North-up overlay retains the signed mapped outline and northeast mast. Default block/detail views crop the supertall deliberately; explicit whole cameras show its complete silhouette at all four levels. Glass is opaque and does not reproduce optical transparency."
+    "notes": "Actually inspected all 68 final frames: 16 portable, 16 shared and 36 medium-fi. Whole views and turntables retain the clipped diamond shaft, inclined triangular glass facets, asymmetric stepped crown and offset angular spire. Near views show long mullion strips, diagonal stainless edge ribs, observation bands, lower maintenance deck and seated plant, four folded lobby canopies with V supports and travertine-toned piers. The spire skin is connected to the 509.2 m deck by collar faces and its tip is capped. No missing primary shaft plane, crown or mast was observed. North-up overlay retains the signed mapped outline and northeast mast. Default block/detail views crop the supertall deliberately; explicit whole cameras show its complete silhouette at all four levels. Glass is opaque and does not reproduce optical transparency.",
+    "captureReportHash": "sha256:03785f9b56dd07f6941106d8b6ab1a63c8565ebfb45a8c4b995580a6065644f2"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:8e81f282b47007df40556746a366deb30abfadeed232f38fdef5ebc74e0e80bb",
+    "captureReportHash": "sha256:b3b62eec2b440f330b0c58b777ee967351f3b9c0fa09ee5f0dc89352a8ed5342",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -306,5 +307,16 @@
   },
   "limitations": [
     "Original 144834-triangle, 17086960-byte detailed master remains exactly reproducible from the unchanged world-tower recipe. Reviewed source/four levels preserve clipped diamond plans, every inclined triangular facade plane, lower 509.2 m mechanical deck, stepped 509.5/518.5 m crown and northeast angular spire to 678.9 m. Continuous planar glass backings with long clipped mullion strips replace independent framed cells. Near levels retain diagonal ribs, folded closed canopies/V supports, travertine-toned lobby columns, roof plant and observation bands. Skyline reduces pane/rail/plant details; district/street aggregate panes/floors. Glass tint contrast is reduced for medium-fi without flattening facet geometry. Source master uses independently linked published plans/photos; facet ring offsets, pane pitch, canopy projection and mast section widths remain reconstructions. Arup/PAM/main engineer text agree on 678.9 m; engineer abstract says 679.9 m and is documented as a conflicting figure. Three shared 256 px graphs, four near draw groups, opaque glass and zero images. Grey foundation reuses tinted travertine graph. Separate mall, landscape/water park, stadiums, below-grade parking, interiors, moving equipment, aircraft obstruction/night LEDs and tenant lettering are excluded. 1.5 / .75 / .3 / .1 m finite-probe allowances exclude omitted thin mullions/rail bars. No physical-device or surveyed grade claim."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:5ebabfd693e35aad0885994d843ddfbd608874509a8cfada33331762aaa2c5cd",
+    "inputHash": "sha256:0321c69842c3735dca05a4bf9a66b999eb5e8c20fe0bf8690850705abb7e8013",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 68,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

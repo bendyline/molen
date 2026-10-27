@@ -1,0 +1,338 @@
+{
+  "id": "ava_bridge",
+  "title": "Ava Bridge",
+  "wikidataId": "Q4827383",
+  "referenceCoordinate": {
+    "longitude": 95.9925,
+    "latitude": 21.87111111
+  },
+  "module": "content/worldgen/source/places/w5/w5u/ava_bridge/models/ava-model.mjs",
+  "generator": "content/worldgen/source/places/w5/w5u/ava_bridge/models/generate-ava.mjs",
+  "builder": "buildAvaLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.7,
+      "metallic": 0.2
+    },
+    "masonry": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original Ava Bridge, photographed intact 2010 state",
+  "expectedDraftMasterHash": "sha256:3c991b3ada432290d3ec2d11223c6400040296658ae5c0aad1ccb87b95dac322",
+  "visualBrief": "Dated intact Ava rail/road bridge: nine principal pale polygonal through-trusses, open vertical/diagonal webs, paired top crossframes, flanged steel members and gussets, central rails and sleepers, outside narrow roads/walks, red masonry pier shafts and pale chamfered footings. Original bridge only; the separate Yadanabon crossing remains map context.",
+  "nativeAxes": "+X southeast toward Inwa/Mandalay; -X northwest toward Sagaing; +Z southwest along the Ayeyawady.",
+  "sourceFacts": {
+    "identity": "Named Ava Bridge POI 17598272665331 and destroyed rail route 35184412388137; photograph-matched original bridge, not an exact-QID outline.",
+    "nominalLengthMeters": 1128,
+    "mappedRailExtentMeters": 1209.7709425250478,
+    "principalTrussBays": 9,
+    "principalLengthMeters": 966,
+    "inferredWidthMeters": 12.8,
+    "orientation": "+X southeast toward Inwa/Mandalay; -X northwest toward Sagaing; +Z southwest along the Ayeyawady.",
+    "heightBasis": "Standard viewer PMTiles and Mapzen, declared visualization grades. No bespoke terrain sources."
+  },
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2010-02-08",
+    "validFrom": "2010-02-08",
+    "validUntil": "2010-02-09"
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ava_and_Sagaing_bridges.jpg",
+      "observedDate": "2010-02-08",
+      "author": "Lim Yang",
+      "license": "CC-BY-2.0",
+      "use": "Intact principal through-trusses, polygonal chord, pale steel, red piers and distinct neighboring newer bridge.",
+      "policy": "Shape/identity viewing only. Image pixels are not imported; rights remain with the referenced author."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ava_Bridge_Over_Ayeyarwady_Sagaing_Myanmar.jpg",
+      "observedDate": "2004-01",
+      "author": "Jialiang Gao",
+      "use": "Broadside bay proportions, diagonal/vertical pattern, chord, pale footing and red pier bands. View-only reference.",
+      "policy": "Shape/identity viewing only. Image pixels are not imported; rights remain with the referenced author."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ava_Bridge.JPG",
+      "observedDate": "2009-11-14",
+      "author": "Wagaung",
+      "license": "CC-BY-SA-3.0",
+      "use": "Whole-crossing truss rhythm viewed from Inwa. Context temples are outside this asset.",
+      "policy": "Shape/identity viewing only. Image pixels are not imported; rights remain with the referenced author."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Collapsed_Ava_Bridge.jpg",
+      "observedDate": "2025-08-20",
+      "author": "Ninjastrikers",
+      "license": "CC-BY-SA-4.0",
+      "use": "Confirms an intact current crossing must not be auto-placed. Damaged geometry is outside this historical asset.",
+      "policy": "Shape/identity viewing only. Image pixels are not imported; rights remain with the referenced author."
+    }
+  ],
+  "limitations": [
+    "Intact exterior reconstructed from ordinary photographs, represented only on 2010-02-08. The one-day historical window is conservative evidence scope, not a claim that the bridge existed for only one day. It never appears in the default current world.",
+    "The 2025-08-20 photograph shows collapsed spans; standard 2026-10-26 PMTiles marks the old rail route destroyed. No October 2026 repair status or current damaged-geometry reconstruction is claimed.",
+    "Nine principal polygonal truss bays, 966 m principal length and three short approach bays per bank are photo-led visualization controls. The nominal 1128 m reference includes approaches; map rail extent is 1209.771 m and includes extra bank alignment. No surveyed span schedule is claimed.",
+    "The 12.8 m overall deck, 4.8 m truss spacing, central metre-gauge rail, two outside narrow road strips and raised walks are inferred visual proportions. They are not a traffic-safety, route-capacity or engineering representation.",
+    "Deck grade, pier footing depth, member sections, gussets, joint spacing and bank caps are approximate. Final bank aprons use source-local native paving/ground heights and 1.5m overlap beyond the mapped rail ends; distant levels simplify their cross-slopes. Coarse standard Mapzen/PMTiles provide fit; present-day terrain and neighboring buildings are context, not a 2010 city reconstruction.",
+    "The Yadanabon Bridge is a separate map feature and is preserved. No downloaded meshes, photo pixels, private images, microtexture, trains, vehicles, signs or transient objects are included. Physical-device performance remains unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-southwest",
+      "position": [
+        40,
+        155,
+        1100
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "whole-northeast",
+      "position": [
+        -390,
+        170,
+        -1050
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "truss-bay",
+      "position": [
+        -70,
+        35,
+        140
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "rail-and-cantilever-roads",
+      "position": [
+        15,
+        26,
+        14
+      ],
+      "lookAt": [
+        80,
+        27,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "pier-and-bearings",
+      "position": [
+        -176,
+        9,
+        30
+      ],
+      "lookAt": [
+        -161,
+        11,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "open-channel-and-floorbeams",
+      "position": [
+        -96,
+        6,
+        35
+      ],
+      "lookAt": [
+        -96,
+        18,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "sagaing-bank",
+      "position": [
+        -635,
+        38,
+        52
+      ],
+      "lookAt": [
+        -560,
+        19,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "inwa-bank",
+      "position": [
+        635,
+        44,
+        58
+      ],
+      "lookAt": [
+        560,
+        21,
+        0
+      ],
+      "fov": 57
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w5/w5u/ava_bridge/models/ava-model.mjs",
+    "export": "buildAvaSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.2
+      },
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAvaDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.55
+      },
+      "street": {
+        "export": "buildAvaStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "closeup": {
+        "export": "buildAvaCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.06
+      }
+    }
+  }
+}

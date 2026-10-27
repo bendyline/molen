@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.23_marina",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:e220578d118405d5e3c82cde0a97bd19cea949d94561ce86fbf815b40bd3117f",
+  "inputHash": "sha256:b67287c12611c3aefbbca4044be7c6cdcbdc5f05d74267c2088c58f03ab21640",
   "sourceHash": "sha256:c8636650140cd56ba016d9a6e200de0a7a7e3d28cf1cba74c89566cde6e69a08",
   "runtimeHash": "sha256:0c865d590daad2345a93797c8059cff54dbc28899e5c52757c2d9143aa0bcca0",
-  "captureReportHash": "sha256:d2f4324274c85b6fcab55cfb2486f848bd1bcd40b77c095e2cf0fe54ba2edfbf",
+  "captureReportHash": "sha256:ee6d70cdb442bd51817970fd8f55e10611003000fd7e01432807920b76ca2e2c",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,11 +26,12 @@
       "shots/whole-reviewed-tower.png",
       "shots/above-open-crown.png"
     ],
-    "notes": "Actually inspected all 68 final images: 16 portable, 16 shared and 36 medium-fi. Full turntables/whole views retain the octagonal blue tower, white corner frames and intermediate belts, 48 triangular terrace slabs, open alternating crown slots, four pale canopies and separately offset capped mast. Near views show static plunge basins, clear terrace guards, six-petal ornamental podium lattice, solid fan ribs, gray piers, slanted blue lobby and white W braces. Initial renders exposed disappearing fan ribs and narrow trim after their simplification; these were repaired with solid fan geometry and two-faced trim before all final captures. Close-up petals use hexagonal loops and aggregated spacing; street loops are coarser. No missing primary shaft, podium, terrace or canopy was observed. Thin lines still alias in portable far views. Some close cameras crop the top; explicit whole views include the complete mast. North-up placement retains the asymmetric podium and offset shaft."
+    "notes": "Actually inspected all 68 final images: 16 portable, 16 shared and 36 medium-fi. Full turntables/whole views retain the octagonal blue tower, white corner frames and intermediate belts, 48 triangular terrace slabs, open alternating crown slots, four pale canopies and separately offset capped mast. Near views show static plunge basins, clear terrace guards, six-petal ornamental podium lattice, solid fan ribs, gray piers, slanted blue lobby and white W braces. Initial renders exposed disappearing fan ribs and narrow trim after their simplification; these were repaired with solid fan geometry and two-faced trim before all final captures. Close-up petals use hexagonal loops and aggregated spacing; street loops are coarser. No missing primary shaft, podium, terrace or canopy was observed. Thin lines still alias in portable far views. Some close cameras crop the top; explicit whole views include the complete mast. North-up placement retains the asymmetric podium and offset shaft.",
+    "captureReportHash": "sha256:ee6d70cdb442bd51817970fd8f55e10611003000fd7e01432807920b76ca2e2c"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:47bb642e6dd8dbe9c8174da603fef369398a6aabf77273edbccde9ef1229b202",
+    "captureReportHash": "sha256:d2f56a1024568ed3bd2b9185d08d2158781fba190f0a43e373f636d3c758a80a",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -306,5 +307,16 @@
   },
   "limitations": [
     "Original 452069-triangle, 52876084-byte master remains exactly reproducible from unchanged recipe. Reviewed source/four browser levels retain independently mapped asymmetric podium, offset octagonal shaft/mast, white/blue facade zones and belts, 48 triangular terrace slabs, open four-canopy crown, braced slots and 392.4 m capped mast. Whole backing planes, continuous seam strips and two-faced flat strips for narrow near trim and crossed skyline strips replace separately framed cells. Close-up/street reconstruct the podium lattice with aggregated coarse six-petal motifs with hexagonal close-up and four-sided street petal loops rather than every tiny original petal; district keeps two solid outer fan ribs per bay, sparse beams and averaged lattice colour but omits pool basins and terrace top rails; skyline keeps white vertical corner frames, averages podium/trim colour and omits small screens, rails, pool basins, collars, canopy louvers and thin X bracing. Near terrace guards and static plunge basins remain explicit. Two canonical shared graphs approximate gray stone and white coated metal; four near draw groups, zero images. Exact floor/panel schedule, canopy datum, ornamental spacing, pool dimensions and door bay are reconstructions from architect photos. Architect introductory 380 m wording differs from final 393 m factbox and current CVU 392.4 m; completed dimension controls tip. Lobby interiors, landscaping, lettering and swimming simulation excluded. Finite along-ray 1.5/.75/.3/.1 m allowances exclude omitted/aggregated thin screens, mullions, rails and collars; no global surface-distance, physical-device or surveyed-grade claim."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:e220578d118405d5e3c82cde0a97bd19cea949d94561ce86fbf815b40bd3117f",
+    "inputHash": "sha256:b67287c12611c3aefbbca4044be7c6cdcbdc5f05d74267c2088c58f03ab21640",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 68,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

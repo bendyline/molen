@@ -1,0 +1,504 @@
+{
+  "id": "ponte_umberto_i",
+  "title": "Ponte Umberto I",
+  "wikidataId": "Q2785646",
+  "referenceCoordinate": {
+    "latitude": 41.9025,
+    "longitude": 12.471389
+  },
+  "module": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/models/umberto-model.mjs",
+  "builder": "buildUmbertoSiteLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_travertine",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "raw": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.35
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#fefdf8",
+      "roughness": 0.22,
+      "metallic": 0,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.55
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original Ponte Umberto I isolated draft",
+  "expectedDraftMasterHash": "sha256:2edb875f912c67edf4e949c0efa97d4808de3e404da4742538f82aa188655fcc",
+  "visualBrief": "Three genuine segmental masonry barrel arches; Two projecting semicircular pier heads with collar bands; Multi-band cornice, solid stone parapets and coping; Simplified shields and laurel on both elevations; Asymmetric walks/carriageways and raised median with six curved lamps and chain fencing",
+  "nativeAxes": "+X southeast toward old Rome; -X northwest toward Palace of Justice; +Z southwest/downstream.",
+  "sourceFacts": {
+    "identity": "Exact OSM relation5679034 / Wikidata Q2785646 retained footprint, checked against ordinary photos and named PMTiles road.",
+    "mapPlanMeters": {
+      "length": 105.107,
+      "width": 21.204
+    },
+    "orientation": "+X southeast toward old Rome; -X northwest toward Palace of Justice; +Z southwest/downstream.",
+    "heightBasis": "Photo-based arch profile and provisional9.3m source datum against standard Mapzen/native water11.264963m. No surveyed height or engineering dimensions claimed.",
+    "masterPreservation": {
+      "originalBodyHash": "sha256:50a78d62e9fd97926af796e55c3dd9efa9998b12d78dc331e7a898ea02b37bd3",
+      "builder": "buildUmbertoLevel",
+      "bodyTriangles": 20188,
+      "addedLandingTriangles": 120,
+      "basis": "Original arches, piers, parapets, cornices, walks, median, lamps and chains remain exact. Ten small paving prisms add 2m bank thresholds and connect offset map sidewalks, with 0.75m overlap at skewed map joins."
+    }
+  },
+  "limitations": [
+    "Arch rises, pier dimensions and absolute elevation are approximate picture-based reconstructions.",
+    "Six lamps and regular spacing are a simplified photo-based arrangement, not a verified as-built schedule.",
+    "Shield/cross/laurel is a simplified visual motif, not exact heraldry.",
+    "The 2m flared bank aprons are approximate visualization transitions for generalized PMTiles footways, not surveyed paving. They sit 1cm below map paving to avoid coplanar overlap. Coarse surrounding riverbank terrain and independent lower paths are retained."
+  ],
+  "references": [
+    {
+      "file": "Ponte_Umberto_I_in_Rome_(1).jpg",
+      "author": "Krzysztof Golik / Tournasol7",
+      "date": "2018-11-15",
+      "license": "CC-BY-SA-4.0",
+      "use": "Three segmental arches, coursed pier heads, cornices and silhouette.",
+      "url": "https://commons.wikimedia.org/wiki/File:Ponte_Umberto_I_in_Rome_(1).jpg",
+      "policy": "Viewed as a shape reference; no photo pixels included in the model."
+    },
+    {
+      "file": "2016_-_Ponte_Umberto_I.jpg",
+      "author": "Jordiferrer",
+      "date": "2016-08-03",
+      "license": "CC-BY-SA-4.0",
+      "use": "Distant context only.",
+      "url": "https://commons.wikimedia.org/wiki/File:2016_-_Ponte_Umberto_I.jpg",
+      "policy": "Viewed as a shape reference; no photo pixels included in the model."
+    },
+    {
+      "file": "Roma_-_Ponte_Umberto_I_-_2024-09-23_10-17-52_001.JPG",
+      "author": "BeshevI",
+      "date": "2014-11-19",
+      "license": "CC-BY-SA-4.0",
+      "use": "Street cross section, solid stone parapets, dark flag walk, curved median lamps and chain posts. Filename upload date is not photo date.",
+      "url": "https://commons.wikimedia.org/wiki/File:Roma_-_Ponte_Umberto_I_-_2024-09-23_10-17-52_001.JPG",
+      "policy": "Viewed as a shape reference; no photo pixels included in the model."
+    },
+    {
+      "file": "Ponte_Umberto_I_dal_Tevere_01.jpg",
+      "author": "Adalberto Cencetti",
+      "date": "2011-09-30",
+      "license": "CC-BY-SA-4.0",
+      "use": "Clear elevation and pier/cornice/shield arrangement.",
+      "url": "https://commons.wikimedia.org/wiki/File:Ponte_Umberto_I_dal_Tevere_01.jpg",
+      "policy": "Viewed as a shape reference; no photo pixels included in the model."
+    },
+    {
+      "file": "Roma_-_Ponte_Umberto_I_-_2024-09-26_18-31-46_001.jpg",
+      "author": "BeshevI",
+      "date": "2023-03-29",
+      "license": "CC-BY-SA-4.0",
+      "use": "River context only; filename upload date is not photo date.",
+      "url": "https://commons.wikimedia.org/wiki/File:Roma_-_Ponte_Umberto_I_-_2024-09-26_18-31-46_001.jpg",
+      "policy": "Viewed as a shape reference; no photo pixels included in the model."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-upstream-elevation",
+      "position": [
+        0,
+        12,
+        -125
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "downstream-arches-and-piers",
+      "position": [
+        15,
+        13,
+        105
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "road-walk-and-median",
+      "position": [
+        -45,
+        17.4,
+        8.2
+      ],
+      "lookAt": [
+        30,
+        15.8,
+        -1
+      ],
+      "fov": 55
+    },
+    {
+      "name": "pier-shield-and-cornice",
+      "position": [
+        -13,
+        10,
+        -20
+      ],
+      "lookAt": [
+        -16.75,
+        10.7,
+        -10.7
+      ],
+      "fov": 58
+    },
+    {
+      "name": "median-lantern",
+      "position": [
+        14,
+        21.5,
+        4.3
+      ],
+      "lookAt": [
+        11,
+        20.6,
+        -0.2
+      ],
+      "fov": 53
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/models/umberto-model.mjs",
+    "export": "buildUmbertoSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_travertine",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "raw": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fefdf8",
+        "roughness": 0.22,
+        "metallic": 0,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.55
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildUmbertoDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fefdf8",
+            "roughness": 0.22,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.8
+      },
+      "street": {
+        "export": "buildUmbertoStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fefdf8",
+            "roughness": 0.22,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "closeup": {
+        "export": "buildUmbertoCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fefdf8",
+            "roughness": 0.22,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "reviewSurface": "water",
+  "qaLodCameras": [
+    {
+      "name": "whole-umberto-skyline",
+      "position": [
+        0,
+        26,
+        -130
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-umberto-district",
+      "position": [
+        0,
+        26,
+        -130
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-umberto-street",
+      "position": [
+        0,
+        26,
+        -130
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-umberto-closeup",
+      "position": [
+        0,
+        26,
+        -130
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51,
+      "reviewLod": "closeup"
+    }
+  ]
+}

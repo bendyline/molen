@@ -1,0 +1,353 @@
+{
+  "id": "iber_bridge",
+  "title": "Ibër Bridge",
+  "wikidataId": "Q3656540",
+  "referenceCoordinate": {
+    "longitude": 20.866094805,
+    "latitude": 42.891627888
+  },
+  "module": "content/worldgen/source/places/sr/srw/iber_bridge/models/iber-model.mjs",
+  "generator": "content/worldgen/source/places/sr/srw/iber_bridge/models/generate-iber.mjs",
+  "builder": "buildIberLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.25
+    },
+    "canopy": {
+      "slot": "roof",
+      "graph": "metal_perforated_round",
+      "roughness": 0.72,
+      "metallic": 0.25,
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original main Ibër Bridge",
+  "expectedDraftMasterHash": "sha256:060b3107daec170d81ff8232545184e60e4b4204a0a710644cbec02bddeaafa5",
+  "visualBrief": "Main Ibar crossing in Mitrovica: paired swept perforated walkway canopies with inclined ribs, concrete haunched girders and flared piers, rounded cornices, outside walks, dark open railings and cable-linked lamps.",
+  "nativeAxes": "+X north/northwest toward the northern bank; -X south/southeast toward the southern bank; +Z east/northeast along the Ibar.",
+  "sourceFacts": {
+    "identity": "Named standard PMTiles crossing Ura e Ibrit / Most na Ibru, name:en Iber Bridge, photo-matched main bridge. This is not an exact-QID map-tag match. The distinct eastern Avni Koshtova crossing remains independent.",
+    "referenceBodyLengthMeters": 91.2,
+    "mappedTransportLengthMeters": 98.94915461915282,
+    "inferredWidthMeters": 23.2,
+    "orientation": "+X north/northwest toward the northern bank; -X south/southeast toward the southern bank; +Z east/northeast along the Ibar.",
+    "heightBasis": "Standard Mapzen and native semantic water; declared visualization grade. No bespoke terrain source."
+  },
+  "limitations": [
+    "The main bridge is identified by the named PMTiles road Ura e Ibrit / Most na Ibru (name:en Iber Bridge), nearby mapped sidewalks and ordinary photographs. There is no exact-QID footprint tag in the retained map snapshot; the distinct eastern Avni Koshtova crossing remains independent.",
+    "The mapped transport extent is 98.949m between road joins. The body uses the nominal 91.2m reference with short supported landing extensions. Width 23.2m is inferred from outside map sidewalks and photographs; small landing caps flare to 25.6 m to support generalized path edges. These are not surveyed dimensions.",
+    "Paired swept walkway canopies preserve the curved profile, inclined ribs and perforated sheet character. Transverse curvature, perforation pattern, individual rib/cable spacing and support sections are regularized visual interpretations.",
+    "Three haunched girder bays, two flared pier walls, rounded edge cornices, dark open railings, cable-linked masts and pale beacon caps follow ordinary photographs. Fine fixings, drainage, graffiti, murals and inscriptions are omitted.",
+    "A two-lane asphalt deck and raised outside walks represent the permanent crossing. Temporary barricades, military installations, vehicles, event banners and moveable furniture visible in older pictures are excluded.",
+    "Source datum 498.8518249511719m follows native water 499.651825m. The shallow deck crown and bank levels adapt the coarse standard PMTiles/Mapzen fixture; no as-built or surveyed curb, vault, foundation or river-stage accuracy is claimed.",
+    "The shared perforated-metal graph uses filtered fractional coverage for near-view holes; portable fallback and far levels use simplified solid surfaces. Closer levels restore inclined ribs, rounded carriers, railing pickets, lamp fittings and cable sag."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ibar_Main_Bridge.jpg",
+      "license": "CC-BY-SA-4.0",
+      "use": "Side view of the principal bridge: swept perforated canopies, inclined ribs, rounded concrete edge, open railing, haunches and flared piers.",
+      "policy": "View-only shape reference. Photo pixels are not imported; individual rights and credits remain on the linked page."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mitrovica_Bridge_1.JPG",
+      "license": "CC-BY-SA-3.0",
+      "use": "Road-facing view toward the northern bank: paired canopies, outside walks, tall masts, diagonal supports, streetlamp heads, pale caps and longitudinal cable sag.",
+      "policy": "View-only shape reference. Photo pixels are not imported; individual rights and credits remain on the linked page."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mitrovica_nga_lart.JPG",
+      "use": "Elevated plan/context view confirming the main crossing, canopy arrangement and signed orientation. Transient barricades and nearby buildings are not incorporated.",
+      "policy": "View-only shape reference. Photo pixels are not imported; individual rights and credits remain on the linked page."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-east",
+      "position": [
+        -22,
+        18,
+        95
+      ],
+      "lookAt": [
+        0,
+        7.5,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "whole-west",
+      "position": [
+        22,
+        18,
+        -95
+      ],
+      "lookAt": [
+        0,
+        7.5,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "swept-canopy-and-ribs",
+      "position": [
+        0,
+        16,
+        27
+      ],
+      "lookAt": [
+        0,
+        13,
+        8.7
+      ],
+      "fov": 54
+    },
+    {
+      "name": "road-and-cable-lamps",
+      "position": [
+        -43,
+        10.3,
+        0
+      ],
+      "lookAt": [
+        25,
+        9.7,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "walk-under-canopy",
+      "position": [
+        -25,
+        10.2,
+        8.5
+      ],
+      "lookAt": [
+        20,
+        10,
+        8.5
+      ],
+      "fov": 58
+    },
+    {
+      "name": "haunches-and-piers",
+      "position": [
+        0,
+        2.8,
+        32
+      ],
+      "lookAt": [
+        0,
+        4.6,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srw/iber_bridge/models/iber-model.mjs",
+    "export": "buildIberSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.25
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "metal_perforated_round",
+        "roughness": 0.72,
+        "metallic": 0.25,
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 0.75,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIberDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_perforated_round",
+            "roughness": 0.72,
+            "metallic": 0.25,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildIberStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_perforated_round",
+            "roughness": 0.72,
+            "metallic": 0.25,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.12
+      },
+      "closeup": {
+        "export": "buildIberCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_perforated_round",
+            "roughness": 0.72,
+            "metallic": 0.25,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.05
+      }
+    }
+  }
+}

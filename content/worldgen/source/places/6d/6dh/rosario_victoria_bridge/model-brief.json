@@ -1,0 +1,316 @@
+{
+  "id": "rosario_victoria_bridge",
+  "title": "Rosario–Victoria Bridge",
+  "wikidataId": "Q2385650",
+  "referenceCoordinate": {
+    "longitude": -60.678984,
+    "latitude": -32.869083
+  },
+  "module": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/models/rosario-model.mjs",
+  "generator": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/models/generate-rosario.mjs",
+  "builder": "buildRosarioLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.35
+    }
+  },
+  "sourceDefinitions": [
+    "models/rosario-controls.json"
+  ],
+  "exportLabel": "Molen original Rosario–Victoria Bridge",
+  "expectedDraftMasterHash": "sha256:79349b96c4b81a4ac77ef9b6c00ea3ee238d74fa0f4491b5495e7e823e8a8421",
+  "visualBrief": "Complete curved Paraná crossing: two H-pylon cable-stayed portals with hourglass crossbeams, pale outside stay fans, four-lane concrete-barrier deck, long wall-pier viaduct, flared bearing caps and twin-head median lamps.",
+  "nativeAxes": "+X east-northeast toward Victoria; -X west-southwest toward Rosario; +Z south-southeast/downstream Paraná; -Z north-northwest/upstream. The western approach bends north within the mapped plan.",
+  "sourceFacts": {
+    "identity": "Exact-QID OSM way368369459/Q2385650 retains the complete curved4.1km crossing and approaches. Current named paired RN174 PMTiles carriageways establish the landing centers; photos distinguish two H-pylon river portals and the long repeating wall-pier viaduct. The93.694m plan breadth is curvature, not bridge width.",
+    "mappedPlan": {
+      "length": 4117.072,
+      "width": 93.694
+    },
+    "mainSectionFact": {
+      "height": [
+        {
+          "meters": 50,
+          "statement": "Q2385650$460AE643-85ED-4A78-A628-F33BDEA59BA7",
+          "qualifiers": {},
+          "referenceUrls": []
+        }
+      ],
+      "width": [
+        {
+          "meters": 21.3,
+          "statement": "Q2385650$339613b1-48d2-b52a-1752-328d674bd495",
+          "qualifiers": {},
+          "referenceUrls": []
+        }
+      ],
+      "length": [
+        {
+          "meters": 610,
+          "statement": "Q2385650$9E368833-CF3A-416B-9689-224F2EA6AB63",
+          "qualifiers": {},
+          "referenceUrls": []
+        }
+      ],
+      "instanceOf": [
+        "Q12280"
+      ],
+      "architecturalStyles": []
+    },
+    "orientation": "+X east-northeast toward Victoria; -X west-southwest toward Rosario; +Z south-southeast/downstream Paraná; -Z north-northwest/upstream. The western approach bends north within the mapped plan."
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Puente_Rosario_victoria_y_Luna.JPG",
+      "author": "Nicolasmh",
+      "observedDate": "2013-01-26",
+      "license": "CC-BY-SA-3.0",
+      "use": "Inspected whole side photograph: two tall H-portals with upper/lower crossbeams, two outside cable planes, long descending viaduct and repeated single wall piers with flared caps. View-only, no pixels imported."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Rosario_Victoria_1.jpg",
+      "author": "Mushii",
+      "observedDate": "2007-11-11",
+      "license": "CC-BY-SA-4.0",
+      "use": "Inspected road-height picture: two lanes per carriageway, concrete outside/median barriers, twin-head median lamps, tall separate pylon heads, shallow hourglass upper brace and white cable sleeves. View-only, no pixels imported."
+    }
+  ],
+  "limitations": [
+    "Complete mapped4.1km curved bridge/approach exterior at nominal21.3m width. Separate floodplain bridges/causeways along the much longer Rosario–Victoria connection are outside this footprint and are not claimed modeled. Map tags disagree on bridge form; inspected photos establish cable-stayed H-portals, not suspension or cantilever form.",
+    "Main section610m,130/350/130m span rhythm, pylon stations-788/-438m,75m above deck, wall-pier spacing near50m, footing forms, cable counts and upper hourglass brace are photo-led geometric approximations. No exact pylon points or surveyed sections are supplied by the viewer map. The western bridge-way transition and bank drop place the main section near the Rosario bank, not centered on the whole4.1km footprint.",
+    "Source origin2m and deck profiles clear the maximum sampled standard Mapzen terrain across each paired PMTiles landing, rising to roughly62m above sea level at the main span. Short flat end plateaus accommodate skewed map cuts. Main-span clearance is approximate, not surveyed/legal clearance. Water is the unchanged standard viewer result; flat per-polygon water stages and bank slopes can be coarse.",
+    "Paired motorways carry a generalized default16m ribbon per direction in the viewer, wider than the nominal21.3m bridge body. Small7m-long flared landing aprons reach27.4m across to overlap incoming paving; they are renderer-fit adaptations. Independent roads, buildings, terrain and river are retained; connected landing paving is deliberately graded.",
+    "Two existing shared256px graphs concrete_plain and metal_painted, three merged semantic groups nearby, metric UVs and linear tints; no private or embedded images. Skyline reduces repeated piers and cables, district simplifies caps, close levels retain full viaduct supports, cable sleeves, barriers, four lanes and twin-head lamps. Physical laptop/phone timings remain unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-downstream-crossing",
+      "position": [
+        0,
+        800,
+        2350
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ],
+      "fov": 64
+    },
+    {
+      "name": "main-river-portals",
+      "position": [
+        -1100,
+        240,
+        420
+      ],
+      "lookAt": [
+        -610,
+        83,
+        -15
+      ],
+      "fov": 60
+    },
+    {
+      "name": "driver-through-h-pylons",
+      "position": [
+        -895,
+        64,
+        -26
+      ],
+      "lookAt": [
+        -430,
+        100,
+        -14
+      ],
+      "fov": 68
+    },
+    {
+      "name": "upper-hourglass-and-stays",
+      "position": [
+        -840,
+        125,
+        90
+      ],
+      "lookAt": [
+        -788,
+        111,
+        -25
+      ],
+      "fov": 58
+    },
+    {
+      "name": "long-east-viaduct",
+      "position": [
+        300,
+        150,
+        360
+      ],
+      "lookAt": [
+        550,
+        37,
+        8
+      ],
+      "fov": 65
+    },
+    {
+      "name": "pier-cap-bearing-and-footing",
+      "position": [
+        480,
+        49,
+        42
+      ],
+      "lookAt": [
+        495,
+        41,
+        5
+      ],
+      "fov": 58
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/models/rosario-model.mjs",
+    "export": "buildRosarioSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.35
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRosarioDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.35
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildRosarioStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.35
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "closeup": {
+        "export": "buildRosarioCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.35
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "originMeters": 16.923997879028207,
+  "waterMeters": 16.923997879028207,
+  "profile": [
+    [
+      -12.7,
+      3.58
+    ],
+    [
+      -9.5,
+      3.58
+    ],
+    [
+      -6.5,
+      3.58
+    ],
+    [
+      1,
+      3.61
+    ],
+    [
+      8.5,
+      3.58
+    ],
+    [
+      9.5,
+      3.58
+    ],
+    [
+      12.7,
+      3.58
+    ]
+  ],
+  "groundSamples": [
+    {
+      "x": -14.502411536450323,
+      "values": [
+        29.615064937067057,
+        27.52887247612843,
+        25.890203104173445
+      ]
+    },
+    {
+      "x": -9.502411536450323,
+      "values": [
+        26.52310050725854,
+        24.370884198704054,
+        22.323427230920537
+      ]
+    },
+    {
+      "x": -7.502411536450323,
+      "values": [
+        25.287187461070054,
+        23.113465576818005,
+        21.144430386271033
+      ]
+    },
+    {
+      "x": 0,
+      "values": [
+        21.592268276214817,
+        19.300299845395983,
+        17.86933471660194
+      ]
+    },
+    {
+      "x": 7.502411536450323,
+      "values": [
+        20.089582112029717,
+        18.9671861777544,
+        17.889924685113368
+      ]
+    },
+    {
+      "x": 9.502411536450323,
+      "values": [
+        20.108045913771868,
+        19.529334470591408,
+        18.86803967462137
+      ]
+    },
+    {
+      "x": 14.502411536450323,
+      "values": [
+        21.452967922067483,
+        22.182290898594363,
+        22.256873090518194
+      ]
+    }
+  ],
+  "basis": "Original photo-led static exterior: mapped19.0048m road segment, flared relation5636139/Q2390563 footprint and approximate15m clear span/13.1m deck width. The map rectangle axis was corrected to the actual road. Metal panel count/details and granite sections are ordinary-photo reconstruction controls, not a measured engineering survey.",
+  "limitation": "Native placement stays disabled: both standard z14 and z15 terrain contain a large bank rise. The z15 fixture water is16.924m, southeast bank25–30m and northwest bank19–22m. Keep the bridge proportions; do not invent steep ramps or stretch its abutments to approve native fit.",
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-27 daily archive",
+      "url": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:4ff874eb5fb27b0dace4ace96b6abb09718fa1c033357200afb709ebf24eeaca"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 15,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        1,
+        55.80078125
+      ],
+      "flattenedSubseaSamples": 0,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:44f4a1fcab90d72c1e4550f315e3e023672cb1d6352522a600a5bc430af21656"
+    }
+  }
+}

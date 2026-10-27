@@ -41,6 +41,7 @@ export interface EdgeDraft {
   name?: string;
   deckElevation?: number;
   bridgeConnections?: { point: Point2; elevation: number; radius: number }[];
+  bridgeApproachProfile?: { point: Point2; elevation: number; flatness: number }[];
 }
 
 /** Design speeds in m/s by kind. */
@@ -268,6 +269,11 @@ export function featureDrafts(input: TileDraftInput, options: FeatureDraftOption
             point: [origin[0] + c.point[0] * tileSize, origin[1] + c.point[1] * tileSize],
             elevation: c.elevation,
             radius: c.radius,
+          }));
+        if (feature.bridgeApproachProfile?.length)
+          draft.bridgeApproachProfile = feature.bridgeApproachProfile.map((sample) => ({
+            ...sample,
+            point: [origin[0] + sample.point[0] * tileSize, origin[1] + sample.point[1] * tileSize],
           }));
         drafts.push(draft);
       }

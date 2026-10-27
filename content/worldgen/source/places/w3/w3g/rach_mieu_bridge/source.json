@@ -1,0 +1,53 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.rach_mieu_bridge",
+  "kind": "static-structure",
+  "title": "Rạch Miễu Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json",
+      "models/rach-mieu-controls.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.rach_mieu_bridge",
+        "output": "assets/places/w3/w3g/rach_mieu_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fda7afa5fb9aad7693ccabdb20742e9a03bfe2f934b541655354b4ee544122fd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-rach-mieu.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/rach-mieu-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

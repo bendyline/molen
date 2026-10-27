@@ -1,0 +1,459 @@
+{
+  "planId": "red_bridge_saint_petersburg",
+  "id": "red_bridge_saint_petersburg",
+  "assetId": "molen.worldgen.structure.red_bridge_saint_petersburg",
+  "title": "Red Bridge, Saint Petersburg",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q2994703",
+  "referenceCoordinate": {
+    "longitude": 30.315261111,
+    "latitude": 59.932986111
+  },
+  "visualBrief": "A single shallow red iron arch on the mapped skew, red plate spandrels and ribs, broad raised stone walks, ornate open circular/floral railings and four tapered granite obelisks with gold finials and paired hanging black lanterns.",
+  "size": [
+    37.99589920043945,
+    7.173009872436523,
+    19.700000762939453
+  ],
+  "actualBounds": {
+    "min": [
+      -18.997949600219727,
+      0,
+      -9.850000381469727
+    ],
+    "max": [
+      18.997949600219727,
+      7.173009872436523,
+      9.850000381469727
+    ]
+  },
+  "nativeAxes": "+X southeast along Gorokhovaya Street; -X northwest; +Z southwest along the Moika River. The plan shear follows the retained skewed map footprint.",
+  "sourceFacts": {
+    "identity": "Exact-QID OSM relation/5552481 (Q2994703) supplies the skewed footprint and axis; standard PMTiles supplies the matching Красный мост roads and sidewalks.",
+    "referenceLengthMeters": 33.6,
+    "mapPlanMeters": {
+      "length": 25.999,
+      "width": 16.915
+    },
+    "mapRoadLengthMeters": 23.605916805765506,
+    "orientation": "+X southeast along Gorokhovaya Street; -X northwest; +Z southwest along the Moika River. The plan shear follows the retained skewed map footprint.",
+    "heightBasis": "Ordinary photograph proportions fitted to the retained standard PMTiles/Mapzen context, not a bespoke terrain survey."
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Red_Bridge_SPB_01.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      30.3153079,
+      59.9329842
+    ],
+    "heading": -0.936225120965,
+    "elevationMode": "sea-level",
+    "elevationMeters": 17.030528450012206,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 36.1,
+      "width": 17,
+      "outline": [
+        [
+          -15.4005,
+          -8.5
+        ],
+        [
+          17.8995,
+          -8.5
+        ],
+        [
+          15.4005,
+          8.5
+        ],
+        [
+          -17.8995,
+          8.5
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -11.422767261399109,
+          -1.9125024647823858
+        ],
+        [
+          12.18159817420416,
+          -2.1831325134097126
+        ]
+      ],
+      "deckHeights": [
+        4.0345813194274,
+        4.0333636683904235
+      ],
+      "deckProfile": [
+        [
+          -16.506,
+          3.995,
+          -2
+        ],
+        [
+          -11.356,
+          4.034999999999999,
+          -2
+        ],
+        [
+          0.294,
+          4.135,
+          -2
+        ],
+        [
+          11.944,
+          4.034999999999999,
+          -2
+        ],
+        [
+          17.094,
+          3.995,
+          -2
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -16.01675,
+          -9.75
+        ],
+        [
+          18.88325,
+          -9.75
+        ],
+        [
+          16.01675,
+          9.75
+        ],
+        [
+          -18.88325,
+          9.75
+        ]
+      ],
+      "preservePaving": true,
+      "minHeight": 3.7,
+      "basis": "Bounded34.9m by19.5m visualization cut within the modeled support footprint: coarse standard terrain otherwise rises through the eastern deck and rail. Source DEM and water stay unchanged; obstructing displayed ground/shore faces are removed while the bridge is resident."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:837d64b36891512065e163ab503a92d89a1cd28bf8620c2723ff9696cf196bf6",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://www.openstreetmap.org/relation/5552481",
+    "wikidataId": "Q2994703"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/models/red-bridge-model.mjs",
+    "export": "buildRedBridgeSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.66,
+        "metallic": 0.32
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#eef0e3",
+        "roughness": 0.2,
+        "metallic": 0,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.5
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRedBridgeDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.32
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#eef0e3",
+            "roughness": 0.2,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.5
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "street": {
+        "export": "buildRedBridgeStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.32
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#eef0e3",
+            "roughness": 0.2,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.5
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.12
+      },
+      "closeup": {
+        "export": "buildRedBridgeCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.32
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#eef0e3",
+            "roughness": 0.2,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.5
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  },
+  "mediumFiContext": {
+    "terrainGroundY": 0
+  },
+  "limitations": [
+    "Photo-based iron sections, arch rise, granite blocks and lamp heights are approximate; no as-built survey is claimed.",
+    "The retained 25.999m by16.915m map polygon describes the central crossing. The nominal33.6m reference length is interpreted along the sheared longitudinal coordinate including abutments; it is not substituted for the mapped clear deck.",
+    "Floral ironwork is a regularized open circle-and-rosette pattern. Rivet counts, internal ribs and lamp fittings are representative rather than surveyed.",
+    "The17.030528m source datum follows the17.555132m water surface in the complete retained native fixture. Water/ground levels depend on semantic tile context; this is a visualization datum rather than a survey. Coarse quays and neighboring architecture are outside this asset.",
+    "Skyline merges subpixel rail ornament into mean-color bands; district simplifies the pattern and hanging lanterns.",
+    "Thin bank paving and rectangular support wings overlap the generalized map lane/footway widths. A bounded34.9m by19.5m terrain cut follows those supports; native ground restores on unload. Surrounding quays retain the coarse standard terrain."
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-southwest",
+      "position": [
+        -23,
+        13,
+        44
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "whole-northeast",
+      "position": [
+        24,
+        12,
+        -42
+      ],
+      "lookAt": [
+        0,
+        3.3,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "under-arch",
+      "position": [
+        -4,
+        1.6,
+        24
+      ],
+      "lookAt": [
+        0,
+        2.6,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "road-and-walks",
+      "position": [
+        -21,
+        6.6,
+        1
+      ],
+      "lookAt": [
+        11,
+        4.4,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "floral-rail",
+      "position": [
+        -1,
+        5.5,
+        11
+      ],
+      "lookAt": [
+        0,
+        4.8,
+        8.33
+      ],
+      "fov": 54
+    },
+    {
+      "name": "granite-lantern",
+      "position": [
+        17,
+        8.5,
+        12
+      ],
+      "lookAt": [
+        11.3,
+        6,
+        8.35
+      ],
+      "fov": 49
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 36032,
+    "vertices": 108096,
+    "materials": 4,
+    "bytes": 4326680,
+    "sha256": "sha256:cf5934fc88a74ff3a7f56333b022a1fa4ea9a43622ca78f4736fb2082dc38469"
+  }
+}

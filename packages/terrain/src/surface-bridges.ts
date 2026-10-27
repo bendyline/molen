@@ -28,6 +28,10 @@ export function bridgeDeckProfile(
       clearance: road.kind === 'path' ? 3 : 6,
       approachLift: road.feature.bridge ? road.elevation - 4 : road.elevation,
       groundApproach: !road.feature.bridge,
+      approachProfile: road.feature.bridgeApproachProfile?.map((sample) => ({
+        ...sample,
+        point: [sample.point[0] * context.tileSize, sample.point[1] * context.tileSize],
+      })),
       connects: [connects(a), connects(b)],
       connections: (road.feature.bridgeConnections ?? []).map((connection) => ({
         point: [

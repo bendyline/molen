@@ -1,0 +1,288 @@
+{
+  "id": "kizuna_bridge",
+  "title": "Kizuna Bridge",
+  "wikidataId": "Q3396600",
+  "referenceCoordinate": {
+    "longitude": 105.470480555,
+    "latitude": 11.985347222
+  },
+  "module": "content/worldgen/source/places/w6/w65/kizuna_bridge/models/kizuna-model.mjs",
+  "generator": "content/worldgen/source/places/w6/w65/kizuna_bridge/models/generate-kizuna.mjs",
+  "builder": "buildKizunaLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.8,
+      "metallic": 0.3
+    }
+  },
+  "sourceDefinitions": [
+    "models/kizuna-controls.json"
+  ],
+  "exportLabel": "Molen original Kizuna Bridge",
+  "expectedDraftMasterHash": "sha256:0148889e7fcebe1a2f4efa12af3c609d774106b198736a53555ec52930408abc",
+  "visualBrief": "Continuous concrete Mekong box-girder crossing with deep rounded-profile pier haunches, tapered single wall piers, broad rounded pile caps/exposed piles, pale open concrete rails, raised edge walks, a two-way road and curved western approach.",
+  "nativeAxes": "+X east-southeast across the Mekong toward Tonle Bet; -X west-northwest toward Kampong Cham, bending farther northwest at the western approach; +Z south-southwest/downstream; -Z north-northeast/upstream.",
+  "sourceFacts": {
+    "identity": "Exact-QID OSM way303560657/Q3396600 retains the curved named main bridge axis. Current PMTiles Kizuna Bridge35184675649489 and its directly connected elevated western NR7 approach35184395998126 establish the complete authored route. The43.093m mapped bounding breadth reflects curvature, not deck width. No rescaling to the older1500m length fact.",
+    "mappedNamedPlan": {
+      "length": 1436.474,
+      "width": 43.093
+    },
+    "authoredRouteExtentMeters": 1557.7423858729605,
+    "historicalLengthMeters": 1500,
+    "orientation": "+X east-southeast across the Mekong toward Tonle Bet; -X west-northwest toward Kampong Cham, bending farther northwest at the western approach; +Z south-southwest/downstream; -Z north-northeast/upstream."
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kizuna_Bridge_(Kampong_Cham_-_Tboung_Khmum).jpg",
+      "author": "Kiensvay",
+      "observedDate": "2022-08-04",
+      "license": "CC-BY-SA-3.0",
+      "use": "Inspected aerial photograph: complete continuous low concrete crossing, curved western bank approach, long regular river spans, single broad piers and broad water-level footings. View-only; no pixels imported."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kizuna_Bridge_2020.jpg",
+      "author": "Kiensvay",
+      "observedDate": "2020-06-03",
+      "license": "CC-BY-SA-3.0",
+      "use": "Inspected riverbank side photograph: varying-depth box girder, deep pier haunches, tapered single concrete stems, rounded pile-cap platforms and exposed pile rhythm, pale open railings. View-only; no pixels imported."
+    }
+  ],
+  "limitations": [
+    "Complete mapped main bridge plus directly connected elevated western approach, retaining the western bend. The1557.742m authored x extent differs from the1436.474m named-way rectangle and older1500m fact because the connected approach is included. The43.093m named-plan breadth is curvature; nominal13.5m physical width is a photo-led approximation.",
+    "Ten river-pier stations spaced near120m, seven approach supports, box haunch depth2–6.5m, stem taper, pile-cap/pile sections, railing count and small fixtures are visual reconstruction controls, not surveyed structural dimensions. Main piers and caps are individually positioned along the measured centerline. Source master retains full support/railing/detail rhythm.",
+    "Source origin6m; the main deck rises to roughly27m above sea level, with separate bank approach grades. Landings clear the maximum sampled standard Mapzen ground across the current12m default road ribbon. Native water, banks, raw roads and surrounding buildings remain unchanged. No surveyed or legal navigation/road clearance is claimed.",
+    "Existing shared256px concrete_plain and metal_painted graphs, metric UVs and linear tints; no private/embedded images or photo pixels. Near concrete/road groups share one graph, while close detail adds the metal graph. Far LOD simplifies the underside to a uniform-depth silhouette and omits piles/railing bars; district/street retain real haunch rhythm with fewer railing posts/details.",
+    "Photos guide the continuous box-girder exterior, not interior reinforcement, drainage hydraulics, exact bearing sections, plaque text, shoreline retaining geometry or vegetation. No unsupported lighting/cable-pylon features are added. Physical laptop/phone timings remain unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-crossing-and-west-bend",
+      "position": [
+        0,
+        360,
+        1280
+      ],
+      "lookAt": [
+        -30,
+        18,
+        0
+      ],
+      "fov": 68
+    },
+    {
+      "name": "downstream-haunch-rhythm",
+      "position": [
+        160,
+        82,
+        360
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 64
+    },
+    {
+      "name": "pier-footing-and-pile-cap",
+      "position": [
+        -55,
+        13,
+        47
+      ],
+      "lookAt": [
+        -20,
+        10,
+        4
+      ],
+      "fov": 60
+    },
+    {
+      "name": "box-soffit-over-open-channel",
+      "position": [
+        45,
+        8,
+        42
+      ],
+      "lookAt": [
+        -20,
+        16,
+        4
+      ],
+      "fov": 61
+    },
+    {
+      "name": "two-way-road-and-open-railing",
+      "position": [
+        -110,
+        23,
+        4
+      ],
+      "lookAt": [
+        80,
+        21,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "western-curved-elevated-approach",
+      "position": [
+        -660,
+        53,
+        150
+      ],
+      "lookAt": [
+        -710,
+        17,
+        0
+      ],
+      "fov": 64
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w6/w65/kizuna_bridge/models/kizuna-model.mjs",
+    "export": "buildKizunaSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.3
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKizunaDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 1
+      },
+      "street": {
+        "export": "buildKizunaStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.25
+      },
+      "closeup": {
+        "export": "buildKizunaCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  }
+}

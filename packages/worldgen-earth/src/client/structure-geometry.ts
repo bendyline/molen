@@ -9,11 +9,13 @@ import {
   pointInPolygon,
   pointInRing,
   polygonBounds,
+  transportKind,
   wgs84ToWorld,
 } from '@bendyline/molen-terrain/kernel';
 import polygonClipping from 'polygon-clipping';
 import * as THREE from 'three';
 import type { StructurePlacement } from '../kernel/structure-index';
+import { gradeStructureApproaches } from './structure-approaches';
 
 /** Clip static triangles in tile space while retaining UV sets, vertex colors, tangents and
  * material groups. The source geometry remains shared and untouched. */
@@ -313,7 +315,13 @@ export function withoutStructureRoads(
     const nodeKey = ([u, v]: TerrainSemanticPoint) =>
       `${Math.round((context.origin[0] + u * context.tileSize) * 10)}/${Math.round((context.origin[1] + v * context.tileSize) * 10)}`;
     const bankJoins = new Map<string, (typeof connections)[number]>();
+    const coveredBridgeRoadEnds = new Set<string>();
+    const roadNode = (point: TerrainSemanticPoint, kind: string, layer = 0) =>
+      `${nodeKey(point)}/${kind}/${layer}`;
     const coveredBridgeEnds = new Set<string>();
+    const coveredBridgePathEnds = new Set<string>();
+    const pathEndPoints: { point: TerrainSemanticPoint; layer: number }[] = [];
+    const pathNode = (point: TerrainSemanticPoint, layer = 0) => `${nodeKey(point)}/${layer}`;
     // A removed bridge may end exactly where an untagged approach begins. Transfer
     // the height only through that shared endpoint and the outward aligned road;
     // nearby riverbank roads and perpendicular crossings retain their own elevation.
@@ -326,8 +334,22 @@ export function withoutStructureRoads(
           if (
             entry.replaceRoads.includeConnectedApproaches &&
             (outline ? coveredPoint([x, z], outline) : Math.abs(x) <= hx && Math.abs(z) <= hz)
-          )
-            coveredBridgeEnds.add(nodeKey(point));
+          ) {
+            coveredBridgeEnds.add(roadNode(point, transportKind(feature), feature.layer));
+            if (
+              transportKind(feature) === 'path' &&
+              connections.some(
+                (hint) =>
+                  Math.abs(localPoint(hint.point)[0] - x) <= 4.01 &&
+                  Math.hypot(point[0] - hint.point[0], point[1] - hint.point[1]) *
+                    context.tileSize <=
+                    hz + 4,
+              )
+            ) {
+              coveredBridgePathEnds.add(pathNode(point, feature.layer));
+              pathEndPoints.push({ point, layer: feature.layer ?? 0 });
+            }
+          }
           if (!connections.length) continue;
           const end = entry.replaceRoads.deckEndpoints?.[x < 0 ? 0 : 1];
           if (end) {
@@ -356,9 +378,144 @@ export function withoutStructureRoads(
             );
           if (edgeDistance > 0.5) continue;
           const hint = connections[x < 0 ? 0 : 1];
-          if (hint) bankJoins.set(nodeKey(point), { ...hint, point, radius: 20 });
+          if (hint) {
+            bankJoins.set(roadNode(point, transportKind(feature), feature.layer), {
+              ...hint,
+              point,
+              radius: 20,
+            });
+            if (transportKind(feature) !== 'path')
+              coveredBridgeRoadEnds.add(roadNode(point, transportKind(feature), feature.layer));
+          }
         }
       }
+    }
+    // Generalized tiles may omit a T-junction vertex where a bridge walk meets the
+    // interior of a bank walk. Restore only that authored end, within 10cm and on
+    // the same layer. Keep the source tile immutable and retain every other vertex.
+    if (pathEndPoints.length) {
+      transportation = transportation.flatMap((feature) => {
+        if (
+          feature.bridge ||
+          feature.tunnel ||
+          transportKind(feature) !== 'path' ||
+          /steps/.test(`${feature.class} ${feature.subclass ?? ''}`)
+        )
+          return [feature];
+        const lines: TerrainSemanticLine[] = [];
+        let changed = false;
+        for (const line of feature.lines) {
+          let current: TerrainSemanticLine = line.length ? [line[0] as TerrainSemanticPoint] : [];
+          for (let i = 1; i < line.length; i++) {
+            const a = line[i - 1] as TerrainSemanticPoint,
+              b = line[i] as TerrainSemanticPoint;
+            const dx = b[0] - a[0],
+              dz = b[1] - a[1],
+              length2 = dx * dx + dz * dz;
+            const cuts = pathEndPoints
+              .flatMap((end) => {
+                if (end.layer !== (feature.layer ?? 0) || !length2) return [];
+                const t = ((end.point[0] - a[0]) * dx + (end.point[1] - a[1]) * dz) / length2;
+                return t > 0.0001 &&
+                  t < 0.9999 &&
+                  Math.hypot(end.point[0] - a[0] - t * dx, end.point[1] - a[1] - t * dz) *
+                    context.tileSize <=
+                    0.1
+                  ? [{ t, point: end.point }]
+                  : [];
+              })
+              .sort((a, b) => a.t - b.t);
+            for (const cut of cuts) {
+              if (nodeKey(current.at(-1) as TerrainSemanticPoint) === nodeKey(cut.point)) continue;
+              current.push(cut.point);
+              lines.push(current);
+              current = [cut.point];
+              changed = true;
+            }
+            current.push(b);
+            if (i < line.length - 1 && coveredBridgePathEnds.has(pathNode(b, feature.layer))) {
+              lines.push(current);
+              current = [b];
+              changed = true;
+            }
+          }
+          if (current.length > 1) lines.push(current);
+        }
+        return changed ? lines.map((line) => ({ ...feature, lines: [line] })) : [feature];
+      });
+      // A short covered crossing can link a bridge walk to its bank sidewalk. Relay
+      // ownership through that covered geometry, never through a remote path or stair.
+      let expanded = true;
+      while (expanded) {
+        expanded = false;
+        for (const feature of transportation) {
+          if (
+            feature.bridge ||
+            feature.tunnel ||
+            transportKind(feature) !== 'path' ||
+            /steps/.test(`${feature.class} ${feature.subclass ?? ''}`)
+          )
+            continue;
+          for (const line of feature.lines) {
+            if (
+              line.length < 2 ||
+              !line.every((point) => {
+                const [x, z] = localPoint(point);
+                return outline
+                  ? coveredPoint([x, z], outline)
+                  : Math.abs(x) <= hx && Math.abs(z) <= hz;
+              })
+            )
+              continue;
+            const ends = [line[0], line.at(-1)] as TerrainSemanticPoint[];
+            if (!ends.some((p) => coveredBridgePathEnds.has(pathNode(p, feature.layer)))) continue;
+            for (const p of ends) {
+              const key = pathNode(p, feature.layer);
+              if (!coveredBridgePathEnds.has(key)) {
+                coveredBridgePathEnds.add(key);
+                expanded = true;
+              }
+            }
+          }
+        }
+      }
+    }
+    // A carriageway may be a long loop whose bridge junction is an existing interior
+    // vertex. Expose that shared node to the same landing/grade logic used for road
+    // endpoints. Never infer a junction from a nearby line or cross another layer.
+    if (entry.replaceRoads.includeConnectedApproaches && coveredBridgeRoadEnds.size) {
+      transportation = transportation.flatMap((feature) => {
+        const kind = transportKind(feature);
+        if (feature.bridge || feature.tunnel || kind === 'path') return [feature];
+        const lines: TerrainSemanticLine[] = [];
+        let changed = false;
+        for (const line of feature.lines) {
+          let current: TerrainSemanticLine = line.length ? [line[0] as TerrainSemanticPoint] : [];
+          for (let i = 1; i < line.length; i++) {
+            const point = line[i] as TerrainSemanticPoint;
+            current.push(point);
+            if (
+              i === line.length - 1 ||
+              !coveredBridgeRoadEnds.has(roadNode(point, kind, feature.layer))
+            )
+              continue;
+            const p = localPoint(point);
+            const outward = [line[i - 1], line[i + 1]].some((neighbor) => {
+              if (!neighbor) return false;
+              const q = localPoint(neighbor);
+              return (
+                Math.abs(q[0]) > Math.abs(p[0]) && Math.abs(q[1] - p[1]) <= Math.abs(q[0] - p[0])
+              );
+            });
+            if (!outward) continue;
+            lines.push(current);
+            current = [point];
+            changed = true;
+          }
+          if (current.length > 1) lines.push(current);
+        }
+        return changed ? lines.map((line) => ({ ...feature, lines: [line] })) : [feature];
+      });
     }
     const input = entry.replaceRoads.includeConnectedApproaches
       ? transportation.flatMap((feature) =>
@@ -370,20 +527,36 @@ export function withoutStructureRoads(
     const clippedBridges: typeof transportation = [];
     transportation = input.flatMap((feature) => {
       if (feature.tunnel) return [feature];
-      const coveredApproach =
+      if (!feature.bridge && /steps/.test(`${feature.class} ${feature.subclass ?? ''}`))
+        return [feature];
+      // A bridge sidewalk can turn along its bank immediately at the landing. Only a
+      // shared endpoint of a covered bridge path authorizes that turn; nearby quay
+      // walks, steps, road crossings and other layers are not proximity matches.
+      const coveredFootway =
         !feature.bridge &&
+        transportKind(feature) === 'path' &&
+        !/steps/.test(`${feature.class} ${feature.subclass ?? ''}`) &&
         feature.lines.some((line) =>
-          [0, line.length - 1].some((index) => {
-            if (line.length < 2) return false;
-            const point = line[index] as TerrainSemanticPoint;
-            if (!coveredBridgeEnds.has(nodeKey(point))) return false;
-            const p = localPoint(point),
-              q = localPoint(line[index === 0 ? 1 : index - 1] as TerrainSemanticPoint);
-            return (
-              Math.abs(q[0]) > Math.abs(p[0]) && Math.abs(q[1] - p[1]) <= Math.abs(q[0] - p[0])
-            );
-          }),
+          [line[0], line.at(-1)].some(
+            (point) => point && coveredBridgePathEnds.has(pathNode(point, feature.layer)),
+          ),
         );
+      const coveredApproach =
+        coveredFootway ||
+        (!feature.bridge &&
+          feature.lines.some((line) =>
+            [0, line.length - 1].some((index) => {
+              if (line.length < 2) return false;
+              const point = line[index] as TerrainSemanticPoint;
+              if (!coveredBridgeEnds.has(roadNode(point, transportKind(feature), feature.layer)))
+                return false;
+              const p = localPoint(point),
+                q = localPoint(line[index === 0 ? 1 : index - 1] as TerrainSemanticPoint);
+              return (
+                Math.abs(q[0]) > Math.abs(p[0]) && Math.abs(q[1] - p[1]) <= Math.abs(q[0] - p[0])
+              );
+            }),
+          ));
       const withBankJoins = () =>
         feature.lines.map((line) => {
           if (line.length < 2) return { ...feature, lines: [line] };
@@ -391,7 +564,7 @@ export function withoutStructureRoads(
           for (const index of [0, line.length - 1]) {
             const point = line[index] as TerrainSemanticPoint,
               next = line[index === 0 ? 1 : index - 1] as TerrainSemanticPoint;
-            const hint = bankJoins.get(nodeKey(point));
+            const hint = bankJoins.get(roadNode(point, transportKind(feature), feature.layer));
             if (!hint) continue;
             const p = localPoint(point),
               q = localPoint(next);
@@ -426,7 +599,7 @@ export function withoutStructureRoads(
         const ownsLine = line.slice(1).some((b, i) => {
           const p = localPoint(line[i] as TerrainSemanticPoint),
             q = localPoint(b);
-          if (Math.abs(q[1] - p[1]) > Math.abs(q[0] - p[0])) return false;
+          if (!coveredFootway && Math.abs(q[1] - p[1]) > Math.abs(q[0] - p[0])) return false;
           const cuts = polygonCuts(p, q, roadOutline);
           return cuts.slice(1).some((end, j) => {
             const t = ((cuts[j] as number) + end) / 2;
@@ -665,7 +838,10 @@ export function withoutStructureRoads(
         : feature;
     });
   }
-  return transportation === tile.transportation ? tile : { ...tile, transportation };
+  const result = transportation === tile.transportation ? tile : { ...tile, transportation };
+  return structures.some((entry) => entry.replaceRoads?.includeConnectedApproaches)
+    ? gradeStructureApproaches(result, context)
+    : result;
 }
 
 /**

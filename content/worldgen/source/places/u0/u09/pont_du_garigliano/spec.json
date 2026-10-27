@@ -1,0 +1,401 @@
+{
+  "planId": "pont_du_garigliano",
+  "id": "pont_du_garigliano",
+  "assetId": "molen.worldgen.structure.pont_du_garigliano",
+  "title": "Pont du Garigliano",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q2426843",
+  "referenceCoordinate": {
+    "longitude": 2.26833333,
+    "latitude": 48.83936111
+  },
+  "visualBrief": "Full three-span shallow green haunched steel crossing, six longitudinal girders and cross ribs, two paired tapered stone-clad piers with open trapezoid portals, raised broad walks, close vertical railings and curved green lamps. Exact sections are ordinary-photo reconstruction controls; short flared landing transitions meet standard mapped paving; current native review remains required.",
+  "size": [
+    215.51004791259766,
+    23.09000051021576,
+    37.20000076293945
+  ],
+  "actualBounds": {
+    "min": [
+      -109.20132446289062,
+      -0.8999999761581421,
+      -18.600000381469727
+    ],
+    "max": [
+      106.30872344970703,
+      22.190000534057617,
+      18.600000381469727
+    ]
+  },
+  "nativeAxes": "+X northwest toward Boulevard Exelmans/Auteuil; -X southeast toward Boulevard du General-Martial-Valin/Javel; +Z northeast/upstream toward Pont Mirabeau; -Z southwest/downstream toward Pont Aval.",
+  "sourceFacts": {
+    "identity": "Catalog way374027143/Q2426843 identifies the bridge footprint; relation11836164/Q2426843 and current named PMTiles road35184388972507 identify the traffic axis.",
+    "bridgeFootprintWay": 374027143,
+    "streetRelation": 11836164,
+    "namedPmtilesRoad": 35184388972507,
+    "mappedRoadExtentMeters": 205.9474411417337,
+    "catalogLengthMeters": 209,
+    "catalogHeightMeters": 18,
+    "approximateWidthMeters": 26,
+    "orientation": "+X northwest toward Boulevard Exelmans/Auteuil; -X southeast toward Boulevard du General-Martial-Valin/Javel; +Z northeast/upstream toward Pont Mirabeau; -Z southwest/downstream toward Pont Aval."
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Pont_du_Garigliano_Paris_FRA_001.JPG",
+    "https://commons.wikimedia.org/wiki/File:Paris_Pont_du_Garigliano_20160717_sidewalk.jpg",
+    "https://commons.wikimedia.org/wiki/File:Under_the_bridge_@_Paris_(24101800546).jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      2.268379032611847,
+      48.83932476764754
+    ],
+    "heading": 2.5366514902219626,
+    "elevationMode": "sea-level",
+    "elevationMeters": 29.031806945800895,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 205.98744114173368,
+      "width": 26,
+      "deckEndpoints": [
+        [
+          -102.97372057086685,
+          0
+        ],
+        [
+          102.97372057086685,
+          0
+        ]
+      ],
+      "deckHeights": [
+        12.4,
+        12.4
+      ],
+      "deckProfile": [
+        [
+          -102.97372057086685,
+          12.4,
+          0
+        ],
+        [
+          -85.8114338090557,
+          12.5375,
+          0
+        ],
+        [
+          -68.64914704724455,
+          12.65,
+          0
+        ],
+        [
+          -51.486860285433416,
+          12.7375,
+          0
+        ],
+        [
+          -34.32457352362228,
+          12.8,
+          0
+        ],
+        [
+          -17.162286761811146,
+          12.8375,
+          0
+        ],
+        [
+          1.4210854715202004e-14,
+          12.85,
+          0
+        ],
+        [
+          17.162286761811146,
+          12.8375,
+          0
+        ],
+        [
+          34.32457352362229,
+          12.8,
+          0
+        ],
+        [
+          51.48686028543341,
+          12.7375,
+          0
+        ],
+        [
+          68.64914704724455,
+          12.65,
+          0
+        ],
+        [
+          85.8114338090557,
+          12.5375,
+          0
+        ],
+        [
+          102.97372057086687,
+          12.4,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:209d56b51aacde5b99b55649b77fb71de69f0484bad60e7072ab31dfb18fec57",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://commons.wikimedia.org/wiki/File:Pont_du_Garigliano_Paris_FRA_001.JPG",
+    "wikidataId": "Q2426843"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/pont_du_garigliano/models/garigliano-model.mjs",
+    "export": "buildGariglianoSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.25
+      }
+    },
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGariglianoDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "street": {
+        "export": "buildGariglianoStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        },
+        "errorMeters": 0.08
+      },
+      "closeup": {
+        "export": "buildGariglianoCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        },
+        "errorMeters": 0.03
+      }
+    }
+  },
+  "limitations": [
+    "Original photo-led full static exterior. Exact-QID footprint and named PMTiles traffic line establish the geographic frame; mapped road extent205.947441m is retained separately from catalog length209m. Approximate span arrangement58/93/58m, sections and heights are reconstruction controls, not surveyed engineering dimensions.",
+    "Piers, girder haunch, stone-cladding grid, railing spacing and lamp sections are interpreted from three inspected ordinary photographs. The 18m catalog height does not establish a surveyed deck or water datum.",
+    "Selected green appearance and road/sidewalk layout use the2006 side elevation and2016 sidewalk/underside photographs. This is a static exterior reconstruction; temporary signs, vehicles, boats, quays, station and independent street furniture are separate context.",
+    "Native placement must be inspected against the standard PMTiles/Mapzen fixture before activation. No arbitrary neighboring terrain alteration or distorted bridge is approved by source generation.",
+    "Short visualization landings extend6.2m southeast and3.3m northwest to the standard mapped paving. The northwest road crown and terminal walk tapers meet the viewer surfaces; they are approximate reconstruction controls, not surveyed bridge engineering or vehicle navigation grades.",
+    "Independent Le Telephone artwork, neighboring quays, boats, tram/RER station, approach junction street furniture and buildings are not part of this bridge exterior asset. No photo pixels or downloaded model are used. Physical-device timings are unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-green-crossing",
+      "position": [
+        180,
+        80,
+        210
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "haunched-three-spans",
+      "position": [
+        5,
+        20,
+        190
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 66
+    },
+    {
+      "name": "tapered-pier-opening",
+      "position": [
+        -16,
+        5,
+        0
+      ],
+      "lookAt": [
+        46.5,
+        4,
+        0
+      ],
+      "fov": 63
+    },
+    {
+      "name": "curved-lamp-and-railing",
+      "position": [
+        7,
+        18,
+        21
+      ],
+      "lookAt": [
+        0,
+        16,
+        10
+      ],
+      "fov": 53
+    },
+    {
+      "name": "road-and-raised-walks",
+      "position": [
+        -110,
+        18,
+        4
+      ],
+      "lookAt": [
+        45,
+        12.6,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "underside-ribs",
+      "position": [
+        -28,
+        3,
+        15
+      ],
+      "lookAt": [
+        17,
+        10,
+        -1
+      ],
+      "fov": 66
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 51836,
+    "vertices": 153564,
+    "materials": 3,
+    "bytes": 6152840,
+    "sha256": "sha256:cceccbe1e0e1a88bc540d655a1ee7ee12e0ff5fc8f5dbd3aa2de4ccf24d30898"
+  }
+}

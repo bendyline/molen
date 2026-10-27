@@ -452,12 +452,17 @@ export class TransportNetwork implements GraphStore {
       } else if (draft.class === 'water') {
         // Unspecified water is sea level, never the terrain/seabed sampler.
         ys.fill(0);
-      } else if (draft.bridge || draft.bridgeConnections?.length) {
+      } else if (
+        draft.bridge ||
+        draft.bridgeConnections?.length ||
+        draft.bridgeApproachProfile?.length
+      ) {
         const deck = bridgeDeckHeightFn(path, heightAt, {
           ...(draft.deckElevation !== undefined ? { deckElevation: draft.deckElevation } : {}),
           clearance: draft.class === 'walk' ? 3 : 6,
           approachLift: lift,
           groundApproach: !draft.bridge,
+          approachProfile: draft.bridgeApproachProfile,
           connects: [gradeRoad.has(piece.from), gradeRoad.has(piece.to)],
           ...(draft.bridgeConnections !== undefined
             ? { connections: draft.bridgeConnections }

@@ -1,0 +1,349 @@
+{
+  "id": "delal_bridge",
+  "title": "Delal Bridge",
+  "wikidataId": "Q2571655",
+  "referenceCoordinate": {
+    "latitude": 37.136111,
+    "longitude": 42.695
+  },
+  "module": "content/worldgen/source/places/sy/syw/delal_bridge/models/delal-model.mjs",
+  "builder": "buildDelalLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "raw": {
+      "slot": "foundation",
+      "graph": "stone_sandstone_raw",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_drywall",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original Delal isolated draft",
+  "expectedDraftMasterHash": "sha256:fe08fdd36b2b1c0cdcd9b98cc35dcf5f652076cfe887b826f38829c5b0883a39",
+  "visualBrief": "Asymmetric five-opening stone bridge with a raised pointed main arch, sloping walk and parapets.",
+  "nativeAxes": "+X north along the crossing; +Z east; +Y up. Curved named PMTiles route retained.",
+  "sourceFacts": {
+    "referenceLengthMeters": 114,
+    "namedMapRouteMeters": 121.07004620020044,
+    "mapRouteScope": "Named PMTiles footway includes the approach ends; do not treat its121.07m as an independently surveyed bridge length.",
+    "identity": "PMTiles has the exact English label Delal Bridge and local names at the retained catalog coordinate; normal photos show the matching roughly north-south stone crossing. This is a named-feature fit, not an exact-QID OSM match.",
+    "widthMeters": 4.7,
+    "widthBasis": "Photo-based provisional exterior width; the simplified mapped bridge-part envelope is about8m wide and is retained separately for duplicate replacement.",
+    "heightBasis": "Photo-based main/side arch rises and sloping walk; no surveyed height statement retained."
+  },
+  "limitations": [
+    "Original analytic exterior from ordinary pictures and standard PMTiles/Mapzen only. No engineering sources or private terrain survey.",
+    "Five visible openings are reconstructed; individual stone layouts, exact arch dimensions, concealed foundations and river stage are approximate.",
+    "Temporary flags, the hanging decorative spindle, people, modern quays, lighting and nearby buildings are excluded from the bridge source.",
+    "Three shared256px graphs and metric UVs are used; there are no embedded or private images.",
+    "Physical laptop/phone/tablet measurements remain pending."
+  ],
+  "references": [
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:Delal_Bridge_01.jpg",
+      "author": "Khoshhat",
+      "date": "2025-04-28",
+      "license": "CC-BY-4.0",
+      "observed": "Current west side, asymmetric opening sequence and sloping stone top."
+    },
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:Delal_Bridge_07.jpg",
+      "author": "Khoshhat",
+      "date": "2025-04-28",
+      "license": "CC-BY-4.0",
+      "observed": "Main arch, adjacent arch, stone voussoirs and exposed rock bases."
+    },
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:Pra_Delal_(Delal_Bridge)_Zakho.jpg",
+      "author": "Ahmed Nihad",
+      "date": "2023-06-29",
+      "license": "Public Domain Mark as recorded on Commons",
+      "observed": "Aerial crossing, crown profile, approaches and nearby quays."
+    },
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:Delal_bridge_(2021_Basrat).jpg",
+      "author": "Hamaredha",
+      "date": "2021-08-23",
+      "license": "CC-BY-SA-4.0",
+      "observed": "Opposite-side vault depth, piers, smaller openings and uneven wall top."
+    },
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:Delal_bridge_2017_may.jpg",
+      "author": "Kurdistantolive",
+      "date": "2017-05-01",
+      "license": "CC-BY-SA-4.0",
+      "observed": "Successive south-side openings and irregular exposed river rocks."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-west-elevation",
+      "position": [
+        12,
+        25,
+        -155
+      ],
+      "lookAt": [
+        15,
+        6,
+        -7
+      ],
+      "fov": 51
+    },
+    {
+      "name": "opposite-arches-and-rock-beds",
+      "position": [
+        -5,
+        8,
+        78
+      ],
+      "lookAt": [
+        5,
+        6,
+        -7
+      ],
+      "fov": 57
+    },
+    {
+      "name": "sloping-stone-walk",
+      "position": [
+        62,
+        9.8,
+        -6.7
+      ],
+      "lookAt": [
+        9,
+        14,
+        -7
+      ],
+      "fov": 58
+    },
+    {
+      "name": "main-vault-and-piers",
+      "position": [
+        12,
+        4,
+        -28
+      ],
+      "lookAt": [
+        10,
+        8,
+        -7
+      ],
+      "fov": 60
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sy/syw/delal_bridge/models/delal-model.mjs",
+    "export": "buildDelalSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "raw": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDelalDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.8
+      },
+      "street": {
+        "export": "buildDelalStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "closeup": {
+        "export": "buildDelalCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "appearance": {
+    "identity": "Asymmetric five-opening stone bridge with a raised pointed main arch, sloping walk and parapets.",
+    "sourceMaster": "Original five-opening photo-based masonry exterior, curved route, raised stone parapets and sloping walk.",
+    "exclusions": "Nearby modern quays/buildings, temporary flags/furniture and survey-level stone or foundation detail."
+  },
+  "qaLodCameras": [
+    {
+      "name": "complete-delal-skyline",
+      "position": [
+        12,
+        25,
+        -155
+      ],
+      "lookAt": [
+        15,
+        6,
+        -7
+      ],
+      "fov": 51,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "complete-delal-district",
+      "position": [
+        12,
+        25,
+        -155
+      ],
+      "lookAt": [
+        15,
+        6,
+        -7
+      ],
+      "fov": 51,
+      "reviewLod": "district"
+    },
+    {
+      "name": "complete-delal-street",
+      "position": [
+        12,
+        25,
+        -155
+      ],
+      "lookAt": [
+        15,
+        6,
+        -7
+      ],
+      "fov": 51,
+      "reviewLod": "street"
+    },
+    {
+      "name": "complete-delal-closeup",
+      "position": [
+        12,
+        25,
+        -155
+      ],
+      "lookAt": [
+        15,
+        6,
+        -7
+      ],
+      "fov": 51,
+      "reviewLod": "closeup"
+    }
+  ],
+  "reviewSurface": "water"
+}

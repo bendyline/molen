@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.new_york_times_building",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:e9be82f94e2ff24357ab08b1066c91a97215d0c9e7110c721db3a9c09eaacdb4",
+  "inputHash": "sha256:a28f35d3c53503ccdcb0f27a0515044961e54a66a5b15636d365d22977f5928d",
   "sourceHash": "sha256:27f1515a5aac779df976e836c16bcb1a3f8cf401538c1689636f5ad0fdd161a1",
   "runtimeHash": "sha256:240f6d391d1e514f0c45543af4c0a6b0f350473e2113289b1ea202ba88c57a11",
-  "captureReportHash": "sha256:35b23fcfac053ff4cf092a53ec5512ec3eb6d8fe5b35b97a43ad00b9c06b7149",
+  "captureReportHash": "sha256:33023cf11f16a3a374e5e8dbe8b63a84e50380c8fd3a4894d3b7a691dd8bc85d",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -23,11 +23,12 @@
       "shots/western-glass-strip.png",
       "shots/whole-east-parcel.png"
     ],
-    "notes": "Actually inspected all60 final frames:13 portable,13 shared and34 medium-fi. Whole-parcel turntables and dedicated whole-LOD views retain the cruciform228m shaft, eastern24.6m podium, open court, fading260m ceramic veil and319m mast. Added west glass part260282089 fills the formerly omitted strip. Final courtyard views show white multi-stem birches, low sedge hillocks and a straight timber path below the open sky. Initial court camera was hidden by the podium roof and was moved above the opening; the final east whole camera includes the entire mast. Narrow facade cameras deliberately crop the tower."
+    "notes": "Actually inspected all60 final frames:13 portable,13 shared and34 medium-fi. Whole-parcel turntables and dedicated whole-LOD views retain the cruciform228m shaft, eastern24.6m podium, open court, fading260m ceramic veil and319m mast. Added west glass part260282089 fills the formerly omitted strip. Final courtyard views show white multi-stem birches, low sedge hillocks and a straight timber path below the open sky. Initial court camera was hidden by the podium roof and was moved above the opening; the final east whole camera includes the entire mast. Narrow facade cameras deliberately crop the tower.",
+    "captureReportHash": "sha256:33023cf11f16a3a374e5e8dbe8b63a84e50380c8fd3a4894d3b7a691dd8bc85d"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5ab4cd892230aac05b1c17a95bc9914f4ff4ed248f8a9b43d7dcb7ec33c54e82",
+    "captureReportHash": "sha256:09e38f8f17bbc24a9ff6525997c2e567ba8e180577dc69473a1fb7c7885f911e",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -298,5 +299,16 @@
   },
   "limitations": [
     "Complete medium-fi parcel exterior retains the cruciform228m shaft, mapped western glass strip, eastern courtyard-preserving podium,260m fading ceramic screen and319m mast. Original125459-triangle recipe is preserved unchanged in Git. Reviewed source adds omitted western glass part260282089 and the courtyard grove of paper birches, sedge hillocks and timber path described and photographed by HMWhite. Nine reconstructed trees are an illustrative grove, not a counted vegetation survey; birch height15.24m follows published50ft. Original facade rods, brackets and structural beams remain in the detailed source. Ceramic rods use the existing shared tile_ceramic coating instead of granite; tile pattern is a generic shared coating, not a photographed rod. Screen bases follow mapped6m north/south and12m east/west min_height values; historic2007 photos are distinguished from current mapped state. Source facade pitch, rod count, specific support connections, door hardware and grove layout are reconstructed. Browser closeup replaces rod cylinders with double-sided strips of identical diameter and row schedule; street uses coarser strips and merged curtain-wall bars; district merges screen rods into wider low-frequency strips. Skyline keeps courtyard void, full shaft, fading crown supports and mast. No embedded textures. Interiors, tenant signage and temporary barriers omitted. Ground grade, night and physical-device performance unmeasured. Skyline uses5.2m-pitch screen strips with fading coverage and a2.6m geometric allowance; district/street bracket and brace plates replace small beam thicknesses. Generic shared ceramic coating tints are raised to pale white; glass remains a muted palette material."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:e9be82f94e2ff24357ab08b1066c91a97215d0c9e7110c721db3a9c09eaacdb4",
+    "inputHash": "sha256:a28f35d3c53503ccdcb0f27a0515044961e54a66a5b15636d365d22977f5928d",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 60,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

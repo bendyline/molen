@@ -1,0 +1,338 @@
+{
+  "planId": "spean_thma",
+  "id": "spean_thma",
+  "assetId": "molen.worldgen.structure.spean_thma",
+  "title": "Spean Thma",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q1092616",
+  "referenceCoordinate": {
+    "longitude": 103.8775,
+    "latitude": 13.444722222
+  },
+  "visualBrief": "Surviving Angkor stone bridge ruin: squared stepped corbel passages, irregular sandstone courses, displaced roof slabs and eastern collapsed blocks, pale strangler roots and a second dark tree growing through the retained paving. Six visible passages and two broken channels; full ruin scope unverified. Provisional extent, not a restored intact road crossing.",
+  "size": [
+    20.29484748840332,
+    21.668665289878845,
+    15.694761753082275
+  ],
+  "actualBounds": {
+    "min": [
+      -9.971837997436523,
+      -0.4286121129989624,
+      -7.378048419952393
+    ],
+    "max": [
+      10.323009490966797,
+      21.240053176879883,
+      8.316713333129883
+    ]
+  },
+  "nativeAxes": "+X east-northeast; -X west-southwest; +Z south-southeast toward the nearby modern road; -Z north-northwest.",
+  "sourceFacts": {
+    "identity": "Named PMTiles Spean Thmor bridge POI17592756541329, about280m northeast of the older catalog coordinate, agrees with the21July2025 photo location. No exact-QID outline or dimensional survey is present. Heading follows the nearby older east-west road corridor and the inferred photo-facing south side; approximate rather than independently surveyed. The8-bay,16.8m visible-remnant interpretation and broken outer extent are provisional reconstruction controls; photographs establish stepped corbels, broken slabs and two root systems, not a measured complete bay schedule.",
+    "namedPoiId": 17592756541329,
+    "approximateReconstruction": {
+      "bays": 8,
+      "pitchMeters": 2.1,
+      "collapsedFromBay": 6,
+      "widthMeters": 6
+    },
+    "orientation": "+X east-northeast; -X west-southwest; +Z south-southeast toward the nearby modern road; -Z north-northwest."
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Spean_Thma_4070.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tree_growing_on_a_bridge_over_a_dried_river_(49449226211).jpg",
+    "https://helloangkor.com/attractions/spean-thma-10/",
+    "https://commons.wikimedia.org/wiki/File:Spean_Thma_-_Angkor_Archaeological_Park_2025_(1).jpg",
+    "https://commons.wikimedia.org/wiki/File:Angkor-Alte_Bruecke-02-2007-gje.jpg",
+    "https://commons.wikimedia.org/wiki/File:Spean_Thma_7151.jpg",
+    "https://commons.wikimedia.org/wiki/File:Speanthmasmall.JPG"
+  ],
+  "geographicProposal": {
+    "status": "draft",
+    "anchor": [
+      103.87960016727448,
+      13.446213881078847
+    ],
+    "heading": 0.1342,
+    "elevationMode": "sea-level",
+    "elevationMeters": 38.9785,
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7cbdcd76d5d72b242178d1f17b6a65f4f1cc52c2263355247b1f5b3e6cdf764a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://commons.wikimedia.org/wiki/File:Spean_Thma_4070.jpg",
+    "wikidataId": "Q1092616"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w6/w63/spean_thma/models/spean-model.mjs",
+    "export": "buildSpeanSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "cap": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "bark": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "leaf": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSpeanDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "bark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "leaf": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "street": {
+        "export": "buildSpeanStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "bark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "leaf": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "closeup": {
+        "export": "buildSpeanCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "bark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "leaf": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.05
+      }
+    }
+  },
+  "limitations": [
+    "Named PMTiles Spean Thmor bridge POI17592756541329, about280m northeast of the older catalog coordinate, agrees with the21July2025 photo location. No exact-QID outline or dimensional survey is present. Heading follows the nearby older east-west road corridor and the inferred photo-facing south side; approximate rather than independently surveyed. The8-bay,16.8m visible-remnant interpretation and broken outer extent are provisional reconstruction controls; photographs establish stepped corbels, broken slabs and two root systems, not a measured complete bay schedule.",
+    "Only the photographed visible remnant segment is interpreted: six passages with partial upper corbels/slabs and two broken eastern channels/pier stubs. The full surviving ruin footprint, total bay count and hidden masonry remain unverified. This source draft is not a completed unique-candidate model.",
+    "Two tree/root silhouettes are photo-led approximations, not botanical surveys. Portable GLBs use small opaque modeled leaf sprigs rather than alpha-card crowns; this avoids per-model atlases and unsupported portable shader bindings. Shared native scatter cards remain the standard for ordinary generated forest.",
+    "Stone blocks, irregular course heights, explicitly drawn creeping root paths and tree proportions are authored deterministically. The current model remains only a visible-remnant draft. No downloaded mesh or copied photo pixels. Native ground and both modern crossings must remain unchanged.",
+    "This is a photo-led surviving-ruin interpretation. No exact-QID outline, measured full bay schedule, complete hidden masonry, tree survey or verified full surviving footprint is available. Keep geographic/fidelity approval pending if the full extent and root-tree silhouette cannot be established in current inspection.",
+    "Two existing shared 256px stone_sandstone_raw and wood_plain graphs; muted linear vertex colors supply stone variation and leaves. Opaque modeled leaf sprigs are an explicit portable landmark-tree exception to native scatter-card foliage, not a claim to use that atlas. No private textures, embedded images, downloaded meshes or copied photo pixels. Physical-device timings remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "surviving-corbel-front-and-roots",
+      "position": [
+        16,
+        10,
+        32
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "stepped-passages-and-broken-slabs",
+      "position": [
+        5,
+        3.4,
+        16
+      ],
+      "lookAt": [
+        -2,
+        1.7,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "pale-strangler-root-detail",
+      "position": [
+        -11,
+        5.3,
+        11
+      ],
+      "lookAt": [
+        -3.9,
+        3.7,
+        2.1
+      ],
+      "fov": 58
+    },
+    {
+      "name": "rear-blockwork-and-dark-tree",
+      "position": [
+        -11,
+        8,
+        -17
+      ],
+      "lookAt": [
+        -4,
+        4,
+        -1
+      ],
+      "fov": 62
+    },
+    {
+      "name": "collapsed-eastern-courses",
+      "position": [
+        18,
+        6,
+        12
+      ],
+      "lookAt": [
+        10,
+        1,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "root-platform-and-crowns",
+      "position": [
+        -18,
+        20,
+        25
+      ],
+      "lookAt": [
+        -4,
+        10,
+        0
+      ],
+      "fov": 62
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63652,
+    "vertices": 190956,
+    "materials": 3,
+    "bytes": 7640608,
+    "sha256": "sha256:61ded4d30c68f6c0ff0caafaaf0c3dd1bb16258a377782799aa91be6432b575e"
+  }
+}

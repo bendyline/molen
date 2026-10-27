@@ -206,6 +206,14 @@ export function overzoomTerrainSemanticTile(
           {
             ...feature,
             lines: clipped,
+            ...(feature.bridgeApproachProfile
+              ? {
+                  bridgeApproachProfile: feature.bridgeApproachProfile.map((sample) => ({
+                    ...sample,
+                    point: transformPoint(sample.point, scale, ox, oy),
+                  })),
+                }
+              : {}),
             ...(feature.bridgeConnections
               ? {
                   bridgeConnections: feature.bridgeConnections.map((connection) => ({

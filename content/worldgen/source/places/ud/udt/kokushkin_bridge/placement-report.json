@@ -1,0 +1,503 @@
+{
+  "format": "molen/structure-placement-report@1",
+  "assetId": "molen.worldgen.structure.kokushkin_bridge",
+  "inputHash": "sha256:7e69d9b0c214852a7860cab462dc962fb21e6da72442345d4d5b6150318c9784",
+  "placementHash": "sha256:e6e22795f93ef12d558bc9e9c246e2e0cbed3861ffa23ecc7ec48f2ff7fad14d",
+  "entry": {
+    "id": "kokushkin.bridge",
+    "title": "Kokushkin Bridge",
+    "asset": "molen.worldgen.structure.kokushkin_bridge",
+    "anchor": [
+      30.313628911972046,
+      59.92582028905424
+    ],
+    "heading": 2.0450069232296695,
+    "datum": "sea-level",
+    "elevation": 16.923997879028207,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q2390563",
+      "maxDistance": 60
+    },
+    "replaceFootprint": false,
+    "minLevel": 14,
+    "status": "draft",
+    "source": "https://commons.wikimedia.org/wiki/File:Kokushkin_Bridge_(img1).jpg",
+    "note": "Named road axis corrects the old rectangle width-axis. Full exterior source; standard terrain bank rise prevents geographic approval. No road/ground/building replacement until fit is resolved.",
+    "bounds": [
+      30.313314749759435,
+      59.92565118625446,
+      30.313943074184657,
+      59.925989391854024
+    ]
+  },
+  "status": "pending",
+  "reviewedOn": "2026-10-27",
+  "basis": "Relation5636139/Q2390563 establishes the flared footprint; named current PMTiles bridge35184750129947 establishes the traffic crossing axis. Anchor[30.313628911972046,59.92582028905424], heading2.0450069232296695: +X NNW/Stolyarny Lane, -X SSE/Kokushkin Lane, +Z ENE. Corrected the old0.381882rad rectangle long side, which follows the broad flared width rather than the road. Road extent19.004823m is separate from the catalog18.92m length. Clear span15m, width13.1m and shear0.08 remain photo/map reconstruction controls.",
+  "fitFailure": "Geographic fit rejected and canonical placement remains draft. Standard Mapzen z14 and z15 both contain a steep bank rise. At z15, native water is16.923998m; the source road is about20.50m while southeast landing ground rises to25–30m and beyond. The unchanged-terrain fixture buries part of the source and retains the original procedural bridge. Some diagnostic cameras are below the noisy terrain; they are not placement evidence. An isolated test of existing road replacement, connected approaches and capped terrain exposes the bridge but leaves cliffs/holes and missing approach-width coverage. It is also rejected. No distorted bridge, fabricated steep ramp or canonical terrain change was used to claim readiness.",
+  "nativeVerification": {
+    "report": ".artifacts/kokushkin-review/native/reviewed-report.json",
+    "hash": "sha256:38a8c9b1d8199d3d017e2f4b698fe868b9248be920ef7a41852d2f3a3f498f92",
+    "status": "fit-rejected",
+    "runtimePreservation": "passed",
+    "scenarios": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997802734375
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997814175364
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997802734375
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997814175364
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997802734375
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997814175364
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997802734375
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997814175364
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": null
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": null
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "existingControlPrototype": {
+    "report": ".artifacts/kokushkin-review/native-fit-prototype/fit-controls-report.json",
+    "hash": "sha256:467e2e971356c49d55389cf4146b6bf92e51c541154250d97cf484b19b911354",
+    "status": "fit-rejected",
+    "frames": [
+      {
+        "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native-fit-prototype/shots/fit-controls-street-whole-green-crossing.png",
+        "hash": "sha256:1710c4f370066b9bd8f6d02cc3be282b275909cd34efc2c06d5a3cf0e4961d81",
+        "camera": {
+          "name": "whole-green-crossing",
+          "position": [
+            27,
+            15,
+            32
+          ],
+          "lookAt": [
+            1,
+            2.8,
+            0
+          ],
+          "fov": 62
+        },
+        "view": {
+          "draws": 18,
+          "triangles": 364955
+        }
+      },
+      {
+        "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native-fit-prototype/shots/fit-controls-street-panel-girder-and-granite-cheeks.png",
+        "hash": "sha256:ea79e263974367c584f0c8fe98598d4f8f01afeaba20d40a92c86b0d8f419506",
+        "camera": {
+          "name": "panel-girder-and-granite-cheeks",
+          "position": [
+            5,
+            2,
+            24
+          ],
+          "lookAt": [
+            1,
+            3.1,
+            0
+          ],
+          "fov": 59
+        },
+        "view": {
+          "draws": 18,
+          "triangles": 364955
+        }
+      },
+      {
+        "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native-fit-prototype/shots/fit-controls-street-wreath-railing-detail.png",
+        "hash": "sha256:2fb058f988bab07f2aa6f250fba2f0e01e48e7fa3149e9db2c001953c2c11664",
+        "camera": {
+          "name": "wreath-railing-detail",
+          "position": [
+            1.7,
+            5.5,
+            10
+          ],
+          "lookAt": [
+            1.7,
+            4.15,
+            6.45
+          ],
+          "fov": 51
+        },
+        "view": {
+          "draws": 17,
+          "triangles": 364859
+        }
+      },
+      {
+        "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native-fit-prototype/shots/fit-controls-street-road-and-raised-walks.png",
+        "hash": "sha256:b0be2e56c63df9eb70d2ac1f482f20d25e0bbae2514f6ccfa88513e1def68dac",
+        "camera": {
+          "name": "road-and-raised-walks",
+          "position": [
+            -18,
+            5.7,
+            3
+          ],
+          "lookAt": [
+            8,
+            3.7,
+            0
+          ],
+          "fov": 63
+        },
+        "view": {
+          "draws": 18,
+          "triangles": 364955
+        }
+      }
+    ],
+    "endpointSamples": [
+      {
+        "name": "south-lane--3",
+        "point": [
+          -12.799999999999999,
+          -3
+        ],
+        "expectedDeck": 20.518997879028205,
+        "roadPavingHeights": [],
+        "roadSurface": null,
+        "roadHeight": null,
+        "rawGround": 27.41732249991278,
+        "modelHeight": null,
+        "visibleHeight": null
+      },
+      {
+        "name": "south-lane-0",
+        "point": [
+          -12.799999999999999,
+          0
+        ],
+        "expectedDeck": 20.518997879028205,
+        "roadPavingHeights": [
+          20.497997
+        ],
+        "roadSurface": "semantic:transportation",
+        "roadHeight": 20.497997283935547,
+        "rawGround": 26.464687739091545,
+        "modelHeight": null,
+        "visibleHeight": 20.497997283935547
+      },
+      {
+        "name": "south-lane-3",
+        "point": [
+          -12.799999999999999,
+          3
+        ],
+        "expectedDeck": 20.518997879028205,
+        "roadPavingHeights": [
+          20.497997
+        ],
+        "roadSurface": "semantic:transportation",
+        "roadHeight": 20.497997283935547,
+        "rawGround": 25.587132556558338,
+        "modelHeight": 20.50399780273426,
+        "visibleHeight": 20.50399780273426
+      },
+      {
+        "name": "north-lane--3",
+        "point": [
+          12.799999999999999,
+          -3
+        ],
+        "expectedDeck": 20.518997879028205,
+        "roadPavingHeights": [
+          20.503998
+        ],
+        "roadSurface": "semantic:transportation",
+        "roadHeight": 20.503997802734375,
+        "rawGround": 20.74502152690082,
+        "modelHeight": 20.50399780273426,
+        "visibleHeight": 20.503997802734375
+      },
+      {
+        "name": "north-lane-0",
+        "point": [
+          12.799999999999999,
+          0
+        ],
+        "expectedDeck": 20.518997879028205,
+        "roadPavingHeights": [],
+        "roadSurface": null,
+        "roadHeight": null,
+        "rawGround": 21.07277081881701,
+        "modelHeight": null,
+        "visibleHeight": null
+      },
+      {
+        "name": "north-lane-3",
+        "point": [
+          12.799999999999999,
+          3
+        ],
+        "expectedDeck": 20.518997879028205,
+        "roadPavingHeights": [],
+        "roadSurface": null,
+        "roadHeight": null,
+        "rawGround": 21.152201550380248,
+        "modelHeight": null,
+        "visibleHeight": null
+      }
+    ]
+  },
+  "limitations": [
+    "Original photo-led static exterior: mapped19.0048m road segment, flared relation5636139/Q2390563 footprint and approximate15m clear span/13.1m deck width. The map rectangle axis was corrected to the actual road. Metal panel count/details and granite sections are ordinary-photo reconstruction controls, not a measured engineering survey.",
+    "Three existing shared256px granite, plain-concrete and painted-metal graphs; all geometry authored, no photo pixels or downloaded mesh.",
+    "The 2016 green paint and geometric ironwork are the selected photo appearance; the2006 close ironwork photo has older pale paint. No present-day paint survey or engineering/navigation clearance claim.",
+    "Native placement stays disabled: both standard z14 and z15 terrain contain a large bank rise. The z15 fixture water is16.924m, southeast bank25–30m and northwest bank19–22m. Keep the bridge proportions; do not invent steep ramps or stretch its abutments to approve native fit.",
+    "The source is a full static bridge exterior reconstruction with approximate clear-span/skew, width, granite sections, ornamental leaf counts and navigation marker shapes. The fixed2.6 plaque reproduces a photograph, not an operational clearance promise. Neighboring historic buildings, temporary street signs and independent streetlamps remain outside the asset scope. Physical-device timings are unmeasured."
+  ],
+  "fitDiagnosis": {
+    "status": "diagnosed; native-fit-unresolved",
+    "date": "2026-10-27",
+    "report": {
+      "path": ".artifacts/kokushkin-review/native-fit-prototype/fit-controls-report.json",
+      "hash": "sha256:467e2e971356c49d55389cf4146b6bf92e51c541154250d97cf484b19b911354"
+    },
+    "implementation": [
+      {
+        "path": "packages/worldgen-earth/src/client/structure-approaches.ts",
+        "hash": "sha256:803c4ce51cef89518ec5d7728a7fb1afc3436cb27f98b379b8e04befcf6d3153"
+      },
+      {
+        "path": "packages/terrain/src/ground-cutout.ts",
+        "hash": "sha256:111ecd821b5b987b035f4b26c769d55c563e3b178c1470209ea9761bd645a97b"
+      }
+    ],
+    "observed": {
+      "southeastApproach": [
+        {
+          "distance": 1,
+          "roadPavingHeights": [
+            20.497997
+          ],
+          "rawGround": 27.028672218867516
+        },
+        {
+          "distance": 2,
+          "roadPavingHeights": [
+            20.497997
+          ],
+          "rawGround": 27.65166295628931
+        },
+        {
+          "distance": 4,
+          "roadPavingHeights": [
+            29.203695,
+            20.497997
+          ],
+          "rawGround": 28.886090687320134
+        },
+        {
+          "distance": 8,
+          "roadPavingHeights": [
+            31.159598,
+            20.497997
+          ],
+          "rawGround": 30.827358328419763
+        },
+        {
+          "distance": 16,
+          "roadPavingHeights": [
+            20.497997
+          ],
+          "rawGround": 32.85053711937221
+        }
+      ],
+      "missingLandingWidthSamples": [
+        {
+          "name": "south-lane--3",
+          "point": [
+            -12.799999999999999,
+            -3
+          ]
+        },
+        {
+          "name": "north-lane-0",
+          "point": [
+            12.799999999999999,
+            0
+          ]
+        },
+        {
+          "name": "north-lane-3",
+          "point": [
+            12.799999999999999,
+            3
+          ]
+        }
+      ]
+    },
+    "conclusions": [
+      "The lowering branch has full fade weight over the first half of the approach radius. With one seed this algebraically becomes the constant seed elevation, rather than following the rising bank.",
+      "The terrain floor projects only the clipped interior down to minHeight. It has no feathered transition to unmodified exterior terrain, consistent with the inspected abrupt cut and gaps.",
+      "These are separate from the three uncovered landing-width samples. Fixing only the road height or only the terrain cap cannot establish full native fit.",
+      "The road graph uses feature object identity. Reused PMTiles feature IDs alone do not establish a graph-collision defect.",
+      "Current compiled bundles include the inspected algorithms; a package rebuild alone does not resolve the observed fit."
+    ],
+    "nextImplementationGate": [
+      "Use one coherent bounded terrain/paving grade with a continuous boundary and consistent surface sampling.",
+      "Cover the actual skewed approach widths rather than testing centerlines alone.",
+      "Keep independent streets, water and buildings; restore native terrain and release geometry on unload/failure.",
+      "Retain the reviewed exterior source, material bindings and LODs while their inputs remain unchanged."
+    ],
+    "changesThisDiagnostic": "Report only. No runtime algorithm, canonical placement, source geometry or native fixture changed."
+  }
+}

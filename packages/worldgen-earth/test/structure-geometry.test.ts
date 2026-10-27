@@ -79,6 +79,264 @@ const context = {
   }),
 } as TerrainPyramidTileLayerContext;
 describe('curved bridge road ends', () => {
+  it('joins carriageway branches at an existing interior bridge node, preserving unrelated roads', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    const junction = [0.25, 0.5] as [number, number];
+    const loop = [[0.05, 0.45], junction, [0.05, 0.55]] as [number, number][];
+    tile.transportation.push(
+      { id: 'bridge', class: 'major_road', bridge: true, lines: [[junction, [0.75, 0.5]]] },
+      { id: 'loop', class: 'major_road', lines: [loop] },
+      { id: 'other-layer', class: 'major_road', layer: 1, lines: [loop] },
+      { id: 'tunnel', class: 'major_road', tunnel: true, lines: [loop] },
+      {
+        id: 'nearby',
+        class: 'major_road',
+        lines: [
+          [
+            [0.03, 0.4],
+            [0.25, 0.51],
+            [0.03, 0.6],
+          ],
+        ],
+      },
+      { id: 'crossing', class: 'major_road', lines: [[[0.25, 0.1], junction, [0.25, 0.9]]] },
+      { id: 'rail', class: 'rail', lines: [loop] },
+      { id: 'endpoint-other-layer', class: 'major_road', layer: 1, lines: [[junction, [0, 0.5]]] },
+    );
+    const original = JSON.stringify(tile);
+    const model: StructurePlacement = {
+      ...entry,
+      replaceRoads: {
+        length: 100,
+        width: 20,
+        deckHeights: [8, 10],
+        includeConnectedApproaches: true,
+      },
+    };
+    const result = withoutStructureRoads(tile, context, [model], 1);
+    const branches = result.transportation.filter((feature) => feature.id === 'loop');
+    expect(branches).toHaveLength(2);
+    expect(branches.map((feature) => feature.lines[0])).toEqual([loop.slice(0, 2), loop.slice(1)]);
+    for (const branch of branches)
+      expect(branch.bridgeConnections).toEqual([{ point: junction, elevation: 8, radius: 20 }]);
+    for (const source of tile.transportation
+      .slice(2)
+      .filter((feature) => feature.id !== 'crossing'))
+      expect(result.transportation.find((feature) => feature.id === source.id)).toBe(source);
+    const crossing = result.transportation.find((feature) => feature.id === 'crossing');
+    expect(crossing?.lines).toEqual(tile.transportation[5]?.lines);
+    expect(crossing?.bridgeConnections).toBeUndefined();
+    expect(JSON.stringify(tile)).toBe(original);
+    const noApproaches: StructurePlacement = {
+      ...model,
+      replaceRoads: { length: 100, width: 20, deckHeights: [8, 10] },
+    };
+    expect(
+      withoutStructureRoads(tile, context, [noApproaches], 1).transportation.find(
+        (feature) => feature.id === 'loop',
+      ),
+    ).toBe(tile.transportation[1]);
+  });
+  it('splits a bank way at an existing interior bridge junction without changing source vertices', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push(
+      {
+        id: 'bridge',
+        class: 'path',
+        bridge: true,
+        lines: [
+          [
+            [0.25, 0.53],
+            [0.73, 0.53],
+          ],
+        ],
+      },
+      {
+        id: 'bank',
+        class: 'path',
+        lines: [
+          [
+            [0.73, 0.4],
+            [0.73, 0.53],
+            [0.73, 0.7],
+          ],
+        ],
+      },
+      {
+        id: 'other-layer',
+        class: 'path',
+        layer: 1,
+        lines: [
+          [
+            [0.73, 0.4],
+            [0.73, 0.53],
+            [0.73, 0.7],
+          ],
+        ],
+      },
+    );
+    const model: StructurePlacement = {
+      ...entry,
+      replaceRoads: {
+        length: 100,
+        width: 20,
+        deckHeights: [8, 10],
+        deckProfile: [
+          [-50, 8, 0],
+          [50, 10, 0],
+        ],
+        outline: [
+          [-50, -10],
+          [50, -10],
+          [50, 10],
+          [-50, 10],
+        ],
+        includeConnectedApproaches: true,
+      },
+    };
+    const original = JSON.stringify(tile),
+      result = withoutStructureRoads(tile, context, [model], 1);
+    const banks = result.transportation.filter((f) => f.id === 'bank');
+    expect(banks).toHaveLength(2);
+    expect(banks[0]?.lines[0]?.at(-1)).toEqual([0.73, 0.45]);
+    expect(banks[1]?.lines[0]?.[0]).toEqual([0.73, 0.55]);
+    for (const bank of banks) expect(bank.bridgeConnections?.[0]?.elevation).toBeCloseTo(9.92);
+    expect(result.transportation.find((f) => f.id === 'other-layer')).toBe(tile.transportation[2]);
+    expect(JSON.stringify(tile)).toBe(original);
+  });
+  it('restores a generalized bank T-junction and carries a covered footway crossing to its exit', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push(
+      {
+        id: 'bridge',
+        class: 'path',
+        bridge: true,
+        lines: [
+          [
+            [0.25, 0.53],
+            [0.73, 0.53],
+          ],
+        ],
+      },
+      {
+        id: 'crossing',
+        class: 'path',
+        subclass: 'crossing',
+        lines: [
+          [
+            [0.73, 0.5],
+            [0.73, 0.54],
+          ],
+        ],
+      },
+      {
+        id: 'bank',
+        class: 'path',
+        lines: [
+          [
+            [0.73, 0.54],
+            [0.9, 0.54],
+          ],
+        ],
+      },
+      {
+        id: 'other-layer',
+        class: 'path',
+        layer: 1,
+        lines: [
+          [
+            [0.73, 0.5],
+            [0.73, 0.54],
+          ],
+        ],
+      },
+      {
+        id: 'nearby',
+        class: 'path',
+        lines: [
+          [
+            [0.72, 0.5],
+            [0.72, 0.7],
+          ],
+        ],
+      },
+    );
+    const model: StructurePlacement = {
+      ...entry,
+      replaceRoads: {
+        length: 100,
+        width: 20,
+        deckHeights: [8, 10],
+        deckProfile: [
+          [-50, 8, 0],
+          [50, 10, 0],
+        ],
+        outline: [
+          [-50, -10],
+          [50, -10],
+          [50, 10],
+          [-50, 10],
+        ],
+        includeConnectedApproaches: true,
+      },
+    };
+    const before = JSON.stringify(tile),
+      result = withoutStructureRoads(tile, context, [model], 1);
+    expect(result.transportation.find((f) => f.id === 'bank')?.lines[0]?.[0]).toEqual([0.75, 0.54]);
+    expect(
+      result.transportation.find((f) => f.id === 'bank')?.bridgeApproachProfile?.[0]?.elevation,
+    ).toBeCloseTo(10);
+    expect(result.transportation.find((f) => f.id === 'crossing')).toBeUndefined();
+    expect(result.transportation.find((f) => f.id === 'other-layer')).toBe(tile.transportation[3]);
+    expect(result.transportation.find((f) => f.id === 'nearby')).toBe(tile.transportation[4]);
+    expect(JSON.stringify(tile)).toBe(before);
+  });
+  it('joins a bridge sidewalk that turns along the bank, preserving nearby unconnected walks and steps', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    const point: [number, number] = [0.73, 0.53];
+    tile.transportation.push(
+      { id: 'bridge-walk', class: 'path', bridge: true, lines: [[[0.25, 0.53], point]] },
+      { id: 'bank-walk', class: 'path', lines: [[point, [0.73, 0.8]]] },
+      {
+        id: 'independent',
+        class: 'path',
+        lines: [
+          [
+            [0.72, 0.53],
+            [0.72, 0.8],
+          ],
+        ],
+      },
+      { id: 'steps', class: 'path', subclass: 'steps', lines: [[point, [0.8, 0.6]]] },
+    );
+    const model: StructurePlacement = {
+      ...entry,
+      replaceRoads: {
+        length: 100,
+        width: 20,
+        deckHeights: [8, 10],
+        deckProfile: [
+          [-50, 8, 0],
+          [50, 10, 0],
+        ],
+        outline: [
+          [-50, -10],
+          [50, -10],
+          [50, 10],
+          [-50, 10],
+        ],
+        includeConnectedApproaches: true,
+      },
+    };
+    const result = withoutStructureRoads(tile, context, [model], 1),
+      bank = result.transportation.find((f) => f.id === 'bank-walk');
+    expect(bank?.lines[0]?.[0]).toEqual([0.73, 0.55]);
+    expect(bank?.bridgeConnections?.[0]?.elevation).toBeCloseTo(9.92);
+    expect(bank?.bridgeApproachProfile?.[0]?.elevation).toBeCloseTo(9.92);
+    expect(result.transportation.find((f) => f.id === 'independent')).toBe(tile.transportation[2]);
+    expect(result.transportation.find((f) => f.id === 'steps')).toBe(tile.transportation[3]);
+    expect(tile.transportation[1]?.lines[0]?.[0]).toEqual(point);
+  });
   it.each([
     false,
     true,

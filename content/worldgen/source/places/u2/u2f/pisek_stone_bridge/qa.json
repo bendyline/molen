@@ -1,0 +1,547 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.pisek_stone_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:cf0f6a0c7305c699d4f16fa75a6cd00db1420381939b6b6bee70b46d86f45b3e",
+  "sourceHash": "sha256:6f5e2f01ea8c51545a8e0c2002985703503682c256baf1c0d9406e399afa5aad",
+  "runtimeHash": "sha256:a09ca2bbfa18adeeea64868ea9b3035383dba32344ab75cf54008903b22327c8",
+  "captureReportHash": "sha256:19883d134009fc4fa783ffd33cd3f2f784d989ab0711b0c87069a4017286bb0c",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-south.png",
+      "shots/whole-north.png",
+      "shots/arch-and-cutwater.png",
+      "shots/cobbled-walk.png",
+      "shots/calvary.png",
+      "shots/nepomuk-and-angels.png",
+      "shots/saint-anne.png",
+      "shots/saint-anthony.png"
+    ],
+    "captureReportHash": "sha256:19883d134009fc4fa783ffd33cd3f2f784d989ab0711b0c87069a4017286bb0c",
+    "notes": "Inspected 70 current frames: 13 portable, 13 shared-material/geographic, 25 medium-fi and 19 native. The bent narrow deck, seven true arch openings (including the larger western span), solid parapets/coping, six individually mapped pointed cutwaters, six slatted wooden ice guards and four independent sculpture ensembles are present. Calvary has a metal crucifix and three stone companions; Nepomuk has a biretta, five-star halo and two full angels; Anne has young Mary and infant Jesus; Anthony carries a child. Corrected textured masonry joints on carved figures, missing Anne infant and buried angel bodies during the same build pass. Far levels intentionally simplify small sculpture and fittings."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-south.png",
+      "shots/shared/whole-north.png",
+      "shots/shared/arch-and-cutwater.png",
+      "shots/shared/cobbled-walk.png",
+      "shots/shared/calvary.png",
+      "shots/shared/nepomuk-and-angels.png",
+      "shots/shared/saint-anne.png",
+      "shots/shared/saint-anthony.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:837690f3265f535b7830b1a58766738e073d0a30978dbd2baba9714e4ac5d14b",
+    "notes": "Six existing shared 256px material graphs: stone_drywall, stone_sandstone, stone_sandstone_raw, stone_granite, wood_plain and metal_painted, with metric UVs and linear vertex tints. Raw sandstone keeps masonry joints off carved figures. No embedded/private images, copied photo pixels or downloaded meshes. Each graph is read once per native view; the four runtime GLBs use separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-south.png",
+      "medium-fi/whole-north.png",
+      "medium-fi/arch-and-cutwater.png",
+      "medium-fi/cobbled-walk.png",
+      "medium-fi/calvary.png",
+      "medium-fi/nepomuk-and-angels.png",
+      "medium-fi/saint-anne.png",
+      "medium-fi/saint-anthony.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:59996ab03a9015ca66ab44d1bd1c3cfdc094232191803bf1c0410658e92b6efd",
+    "notes": "Detailed source master: 54948 triangles / 6597612 bytes. Runtime levels: 956 / 2168 / 11280 / 24580 triangles, 80508 / 183632 / 955616 / 2089240 bytes and 1 / 6 / 6 / 6 draws. Initial skyline plus district is 264140 bytes. Strict medium-fi budgets pass; physical laptop/phone timing remains unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:3cde5aa8c0738bbcf85a3b852ac36da28affcfe2132dd324c7270964db5c60ea",
+    "mapFrameHash": "sha256:44e1051827b21a20263e06617b338c6669415f486bd0f7c720d8ada901b7fdc9",
+    "notes": "Exact-QID OSM way 557027632 / Q3133093 supplies the 110.801 m longitudinal plan and individual cutwater tips; the 14.569 m mapped width includes projecting piers, while the main deck is nominally 6.25 m. Standard PMTiles retains the bent pedestrian route and four artwork/cross points. Anchor [14.145583637,49.309829038], heading 0.095336761605: +X east/northeast toward the old town, -X west/southwest, +Z south/southeast along the Otava. Source datum 356.92734375 m follows native water 357.5273 m. Six width samples at the two actual mapped approach joins retain road and model support within 0.014064 m at every LOD. The western profile is raised for the coarse bank; these are visualization joins, not surveyed geographic accuracy."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped exterior and approximate standard-terrain placement complete. Detailed source master: 54948 triangles / 6597612 bytes. Runtime levels: 956 / 2168 / 11280 / 24580 triangles, 80508 / 183632 / 955616 / 2089240 bytes and 1 / 6 / 6 / 6 draws. Initial skyline plus district is 264140 bytes. Strict medium-fi budgets pass; physical laptop/phone timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u2/u2f/pisek_stone_bridge/models/source.glb\",\"hash\":\"sha256:6f5e2f01ea8c51545a8e0c2002985703503682c256baf1c0d9406e399afa5aad\",\"bytes\":6597612,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/u2/u2f/pisek_stone_bridge/model.glb\",\"hash\":\"sha256:a09ca2bbfa18adeeea64868ea9b3035383dba32344ab75cf54008903b22327c8\",\"bytes\":6596980,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u2/u2f/pisek_stone_bridge/model.skyline.glb\",\"hash\":\"sha256:a8751436abe7ee8e376ebe894ca383cfcc3b54ee008ce28e89a92165f3ffcc6a\",\"bytes\":80508,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u2/u2f/pisek_stone_bridge/model.district.glb\",\"hash\":\"sha256:2114826a0fb4f3df096da9d3c7d2389551d855d2d6311dc2efd182aaff90d7c6\",\"bytes\":183632,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u2/u2f/pisek_stone_bridge/model.street.glb\",\"hash\":\"sha256:dbbc75a2071d3ff2791dc4f94f24780992ee55521f4fe1acd4e06a31d188ab42\",\"bytes\":955616,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u2/u2f/pisek_stone_bridge/model.closeup.glb\",\"hash\":\"sha256:bfb9f18911c9608335081d61ab713884567aa2280db3445b8bc279d452b790a4\",\"bytes\":2089240,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "seven-passages-bent-deck-cutwaters-statues-iceguards-bank-paving",
+        "passed": true,
+        "notes": "524 front-face and clearance probes across source, imported master and four runtime levels. Includes all seven water passages, graded deck, both paving overlaps, twelve cutwater tips, four ensemble heights, Anne infant and both Nepomuk angel lower bodies."
+      },
+      {
+        "check": "headless-scene",
+        "passed": true,
+        "notes": "CLI scene validation and 30 ticks passed; state hash sha256:dcdd98366e599c17d2f08bab4cb37a514f4eed9a9b853c5d27df72f1d71467fe."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Exact-QID OSM way 557027632 / Q3133093 supplies the 110.801 m longitudinal plan and individual cutwater tips; the 14.569 m mapped width includes projecting piers, while the main deck is nominally 6.25 m. Standard PMTiles retains the bent pedestrian route and four artwork/cross points. Anchor [14.145583637,49.309829038], heading 0.095336761605: +X east/northeast toward the old town, -X west/southwest, +Z south/southeast along the Otava. Source datum 356.92734375 m follows native water 357.5273 m. Six width samples at the two actual mapped approach joins retain road and model support within 0.014064 m at every LOD. The western profile is raised for the coarse bank; these are visualization joins, not surveyed geographic accuracy."
+    },
+    "inputHash": "sha256:cf0f6a0c7305c699d4f16fa75a6cd00db1420381939b6b6bee70b46d86f45b3e",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:cf0f6a0c7305c699d4f16fa75a6cd00db1420381939b6b6bee70b46d86f45b3e",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 70 current frames: 13 portable, 13 shared-material/geographic, 25 medium-fi and 19 native. The bent narrow deck, seven true arch openings (including the larger western span), solid parapets/coping, six individually mapped pointed cutwaters, six slatted wooden ice guards and four independent sculpture ensembles are present. Calvary has a metal crucifix and three stone companions; Nepomuk has a biretta, five-star halo and two full angels; Anne has young Mary and infant Jesus; Anthony carries a child. Corrected textured masonry joints on carved figures, missing Anne infant and buried angel bodies during the same build pass. Far levels intentionally simplify small sculpture and fittings.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/scene-preview.png",
+          "hash": "sha256:90a6d3c7807d154f4435aec31afaaa2f9b6666dd653a9783cabe5be275f5cf11"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:7b2be4c587bf9ca0784c64eb5f23929d5c707d2201ab6ed7371575343c248f14"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:76a7cd5ea7dabeb00ad01b0250592b9fd4f53621dc7d1d797fd93145e562af0d"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:c8d3a36d95a35d9af827e9f56d320bf8813531c1b8e52eaed4d413c53a7ac5f9"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:fa2a0a61f0b95620f1703b9edc8dcbf395912cb89db70bd64e519d3a772aca3b"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/whole-south.png",
+          "hash": "sha256:90a6d3c7807d154f4435aec31afaaa2f9b6666dd653a9783cabe5be275f5cf11"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/whole-north.png",
+          "hash": "sha256:b6125efb45d34fcb88c0e575257a3df753b3f50e4a78b9266b7c059d861d9e9d"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/arch-and-cutwater.png",
+          "hash": "sha256:aabe1f10cadf66bddc010b63cdb883eebece350f7141030e45190472874e7d4e"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/cobbled-walk.png",
+          "hash": "sha256:66be1f08b9dda4a3edbdb4457545602ab610b25c368de446ce9020d8e23c3ffa"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/calvary.png",
+          "hash": "sha256:211b6eeed78c444a11cc0ef33fd86a0007b711e86851c0d0358fcc5e4d11bd86"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/nepomuk-and-angels.png",
+          "hash": "sha256:1621ce83fea9991dea7121fcc94d4083fe9713ec97f290d0d43a4f30bc238c17"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/saint-anne.png",
+          "hash": "sha256:c079bd3283b838f2e3507749fa281a90ef7eb089c4794401c4c41137f232f616"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/saint-anthony.png",
+          "hash": "sha256:1d3071822f7eb0612aa3945a57f5599e78f9e24f033103777bc6fcafe7b82203"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:89378dbb228fa2dc702c317dd9d487cd870a1757232d25d4f356e33544db0e8b"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:0c5c1f7d681a2bf0d2dc3f1c22e4dee7b8e93f8220a23549ad65537032d51fed"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:2c6a9b97c856b8c831c79ecac8bac4f4b7bcbe668cda769ec1e4ded6836ba417"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:3f0def5b7efaf1dcfdc02ec36761fddf772487882353ae8b878bfbd42ea82b69"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/whole-south.png",
+          "hash": "sha256:05ed5adb37e6fbf2b33558d2a1485f2d36663e30556196e9d3af84075d4fc07a"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/whole-north.png",
+          "hash": "sha256:3de9bc7b27b180ed46e34e723c2a3dff006e062117fe3f61fe77c3e7adb85cc5"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/arch-and-cutwater.png",
+          "hash": "sha256:a82adb680a227116db0f6297a21d73d8ad30bf420cd8924a43644421f71ec08d"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/cobbled-walk.png",
+          "hash": "sha256:9e0c78cfe94118e7ab317693b0436353f5b9f1a7956a9d17eaa6bfef117b5b5a"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/calvary.png",
+          "hash": "sha256:8a192d09691da4e867c169298f837c1589dfb94983ac509b3a45aad52b77dcb9"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/nepomuk-and-angels.png",
+          "hash": "sha256:e55e518569a9f72bcf789649cbf8b3ea84538b70e75107c872ef3284319d375e"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/saint-anne.png",
+          "hash": "sha256:3af6b33dfdc131f16328c646ec175641cbf38bc8e8ff4d1a2faba692cd9f2c77"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/saint-anthony.png",
+          "hash": "sha256:f92aa752bfcf473166e386c86717791705b22b7d8d86da0086d78c18d9771453"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/shots/shared/placement.png",
+          "hash": "sha256:e5c43169a7a8cf94a0c1c35117fd0f66d0d9d067605b5559f4f55f1653ea3a8a"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:92893bbbd6213b917be367b9dcd2c2af3ef18a1477fb9ac7c99465efbd0a0f71"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:8475b331dde6265064792e1fe2232acf19bcf37c40f0502fbaf836857451ce2a"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:66ec23a1c1122c09a1aaddeb3e9933c4190201bbb6655fcb75683db12c645880"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:a7561da7bd9e30a0420b25f78f6046259c5430a5d454663aea9538d4671ee1d7"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:47c95fbc0751dcd9a689b688b2651fab34aaf3c67c011a4c5106056bcfde4446"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:51c7304824c914a303b5c8fc903cb31b45b071219171f39f12e6312ba718293d"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:1245f6debf55c688e5b8916358ed255387c504d621e57e4920aeafa664ed9fc0"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:b10f9e53b0a7c9b930c76a9330f40623d1964373e6e80566c0502df7799f6f42"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:1d5dfc406f9bbb4182ec083788bbbeba6196bacf637ebdb5e18c099d6dfdab9d"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:18bb87c6f487644d582492e7bc7117cbd73ac703693470a815d4a0fc4802ec93"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:b29ea251f070415326714ec1bbd3512a26536a7322a8a947cf18b06334ddd16a"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:1fcd3f4ce127fb5edf679d51d83d6a85053357c5bedebe1cee5a45ad7d83649d"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:dea1dde59fac1d458b1d45c4cb69957741417fb300f8314171f7b73fb55319e4"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/whole-south.png",
+          "hash": "sha256:9b26bbf1b9cda3041416c70dfe0d1d67d2d148c31beae75928c3dc629806e68a"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/whole-north.png",
+          "hash": "sha256:e91a1f0b599e15e41f4e7bd516dc63a7793ffabfdb7c84d1c0f892a7a1aafb43"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/arch-and-cutwater.png",
+          "hash": "sha256:9eecc351167cc6e68104650397cae332d052cc363e0a8385b8a32525189969ba"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/cobbled-walk.png",
+          "hash": "sha256:6cd09718cea7059d30381c0ea9928c512328be3fba603a5f59474554d64b166e"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/calvary.png",
+          "hash": "sha256:6f88791b5308e31fefd7aaa3200504d68e27dd20ff61a67e6b7581c9fd5e0c2c"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/nepomuk-and-angels.png",
+          "hash": "sha256:2b60e35bb3452e4e358ac8672c087e2d66403c05fd65f57ac8e2bcac0b216f41"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/saint-anne.png",
+          "hash": "sha256:3753e73d97bca7426fe4571db17ffa0cde04e7463d5bd188e7651d3b64082e82"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/saint-anthony.png",
+          "hash": "sha256:2483b087b0b2fa1dfa021b5475c9a0e34ed11a4b2fd1000d91347cdfc1c8a7cd"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:b85a69fa8b428943fa9328d54ab1998ba497f82c8b2ab2f2707692e5cf296a00"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:51c7304824c914a303b5c8fc903cb31b45b071219171f39f12e6312ba718293d"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:f102c1682af92f2285cb2e9b77b3bb24de3c713a6d258aa949d05c4d18ebabef"
+        },
+        {
+          "path": "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:15ea0e60c1dc175d3e37415ce83be2493baf80da734e512fe6cf12f8569f2425"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-skyline-skyline-context.png",
+          "hash": "sha256:0031bfb63338ed40249edfb7d931da7d241fa442ab0255182dae6ad922cb3f01"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-district-district-context.png",
+          "hash": "sha256:b3d1f2b1fcb9b1768f90c51038bf6518c9eb7113dde37a0674bec5cae328eb73"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-street-whole-south.png",
+          "hash": "sha256:cc3cba87438ec00bcd13878fec29a00d1a4c0e84df8b258c4d2acc59c12c5f60"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-street-whole-north.png",
+          "hash": "sha256:1200bd0be192ba7284c6f056da79c7bb583a0165a7b0598e42194ddf41dba71d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-street-arch-and-cutwater.png",
+          "hash": "sha256:cb7f393322734f06127ec8fa89dba541da4a8967511f3ea179b21104d1202574"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-street-cobbled-walk.png",
+          "hash": "sha256:eac035726204d273070a4bac4b0655d72aa5d6aefebc9355a5a0df559f05c42f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-whole-south.png",
+          "hash": "sha256:2efe40417a3bf8771dcd3c6ed8c9ca6a1e3faca60fc93101fa61e15124e348ac"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-whole-north.png",
+          "hash": "sha256:b89949f423b9aa2a811ff49b15b30f8fbeb4cd99c0f6815a456514f8aedbdd7d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-arch-and-cutwater.png",
+          "hash": "sha256:8834c1438d31e56ecb5e819bd5a5340d88a91c638d86adf382fda383df101677"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-cobbled-walk.png",
+          "hash": "sha256:83749e6d97b6e44130d3a2b70892cb93f94b94c38cc6a1a1b48ebb0ac8ad4ae1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-calvary.png",
+          "hash": "sha256:018096e9f0858bbfb2896b788910fd69bd1d2f5ad2f1dcf80a18b7a268136623"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-nepomuk-and-angels.png",
+          "hash": "sha256:db7b82b5d15c6a05e0fed4e9f7dbf8d8ed2d32e303b8d6b17f1d445e85f7892c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-saint-anne.png",
+          "hash": "sha256:0fbd090ba3a4a0f0bc63de123c40653115a00cf8fe6c9ada136fb71ef52ae333"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-saint-anthony.png",
+          "hash": "sha256:3ca2086d686739b147e35c4be4adfea9a2806c9f08a9a4166d0b2922bcb8aa1f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-west-bank-join.png",
+          "hash": "sha256:2550419adcdf1cedfa9a6478490785f44f40074ab02eb6fa7b928a5d83727819"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-east-bank-join.png",
+          "hash": "sha256:d153d87ecc9e14893e8c96e783599c923613b341ec471d03c45b564f597d59c8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-district-context.png",
+          "hash": "sha256:fe4a3f040140f5a372104a3c37cd9064f3582a1bf58cab5dfc4121e0cdfe44ac"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-closeup-economy-context.png",
+          "hash": "sha256:e799da0c9fd21b764b555cc181181cb75474c5b1db79f74e461de8ecf7a56457"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pisek-review/native/shots/approved-failure-whole-south.png",
+          "hash": "sha256:3bd4cf4586026347244e868c9feb7b766749c780aed8cdffc9fa6a637f8e716c"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 914 resident buildings and 562 independent road records remain. Raw road inputs, DEM samples, displayed ground and water geometry stay unchanged. Connected approach paving is deliberately graded. Failed loading retains the original map crossing; unloading preserves native ground/water and releases all model/support geometry. The resampled review route uses all four map control points; exact join claims use the actual map approach samples."
+    },
+    "nativeReport": {
+      "path": ".artifacts/pisek-review/native/approved-report.json",
+      "hash": "sha256:99ae102b6c9ca22af9b8162500439e40eee8c7b1f9c1773d29bb3d82a6f9b65a",
+      "frozenViewerInputsHash": "sha256:3dd6df12538d2b4974b5d0f61c347442874060e7a3734c8fd81bfceb95ab761f"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 6,
+        "maximumJoinErrorMeters": 0.01406367003937703,
+        "buildings": 914,
+        "independentRoadRecords": 562,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 6,
+        "maximumJoinErrorMeters": 0.01406367003937703,
+        "buildings": 914,
+        "independentRoadRecords": 562,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 6,
+        "maximumJoinErrorMeters": 0.01406367003937703,
+        "buildings": 914,
+        "independentRoadRecords": 562,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 6,
+        "maximumJoinErrorMeters": 0.01406367003937703,
+        "buildings": 914,
+        "independentRoadRecords": 562,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "buildings": 914,
+        "independentRoadRecords": 562,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Ordinary photographs and the mapped plan guide the exterior. Arch heights, wall courses, height datum and foundations remain approximate; no as-built survey is claimed.",
+    "The 14.569m mapped width includes projecting piers. The main walking deck is nominally6.25m with a wider western approach; the mapped overall length is110.801m versus the nominal109.75m reference.",
+    "Statue ensembles preserve their main poses and attributes with faceted three-dimensional robes, heads, hands and children/angels. Faces, drapery, inscriptions, small attributes and exact carved surfaces are interpretive rather than replicas.",
+    "The Calvary crucifix and crucified figure are dark/patinated metal with restrained gold fittings; its lower companion figures and other ensembles are stone. Fine lettering is omitted.",
+    "The six wooden ice guards and simple lamp fittings are photo-led regularized approximations. They are not separate catalog landmarks.",
+    "Source datum356.92734375m follows the357.52734375m water surface in the retained raw-polygon standard fixture. Semantic water heights and bank terrain vary with tile context; this is not a surveyed river stage.",
+    "Skyline uses bounded faceted openings and statue markers; closer levels restore arch bands, ice guards, full poses, drapery and facial forms.",
+    "The surrounding procedural buildings, coarse quays, automatic retaining faces, power lines and approach terrain are context, not a historic reconstruction of Písek.",
+    "Statues are faceted exterior interpretations. Individual facial likenesses, exact drapery, carved base profiles and inscriptions are outside the reconstruction scope. The ice-guard slats are regularized; no structural engineering model is claimed.",
+    "The western endpoint visualization grade and small bank overlaps fit generalized standard map terrain. No surveyed curb, foundation, vault profile or river-stage accuracy is claimed."
+  ]
+}

@@ -1,0 +1,709 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.ponte_cavour",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:023600bef562049a0edb3022b6f9effecafbf077fa9de74970daff54ad2618a6",
+  "sourceHash": "sha256:2cae7d452d5938b3f807d488203b201c2109e9644afcf13d9aad2cecd5b7ccdd",
+  "runtimeHash": "sha256:352e71e92f0217b5075875b3108cc263feddce62ff848c25c48682e90dddd5ce",
+  "captureReportHash": "sha256:8347e4f62aafe5524515374db4860b8da788430274f3e64a628544c0ebdb2c14",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-downstream.png",
+      "shots/upstream-three-quarter.png",
+      "shots/deck-and-sidewalks.png",
+      "shots/pier-and-barrel.png",
+      "shots/balustrade.png",
+      "shots/paired-lantern.png"
+    ],
+    "captureReportHash": "sha256:8347e4f62aafe5524515374db4860b8da788430274f3e64a628544c0ebdb2c14",
+    "notes": "Inspected67 current frames:11 portable,11 shared-material/geographic,27 medium-fi and18 native views. All five real openings, round-ended piers, brick vaults, travertine cornices, open turned balustrades and eight paired-lantern posts remain distinct. The original52872-triangle body and every original grouped vertex attribute remain exact. Added288 source triangles for thin upper-bank paving around the retained asymmetric wings; the skyline/district use simpler paving. The full arch silhouette remains visible at intended distances, while baluster profiles, stone joints and lantern curvature enter nearer levels."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-downstream.png",
+      "shots/shared/upstream-three-quarter.png",
+      "shots/shared/deck-and-sidewalks.png",
+      "shots/shared/pier-and-barrel.png",
+      "shots/shared/balustrade.png",
+      "shots/shared/paired-lantern.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:3729b794b1ab096ac03f5635ec453d5693ca929bd895cef71566dfe8265dbd37",
+    "notes": "Six existing shared256px graphs: stone_travertine, stone_limestone_raw, brick, stone_granite, concrete_plain and metal_painted. Metric UVs and linear vertex tints provide variation; lantern glass is a local physical translucent material. No embedded/private images, copied photograph pixels or downloaded meshes. Each graph is read once and runtime geometry/support resources dispose on unload."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-downstream.png",
+      "medium-fi/upstream-three-quarter.png",
+      "medium-fi/deck-and-sidewalks.png",
+      "medium-fi/pier-and-barrel.png",
+      "medium-fi/balustrade.png",
+      "medium-fi/paired-lantern.png",
+      "medium-fi/whole-cavour-skyline.png",
+      "medium-fi/whole-cavour-district.png",
+      "medium-fi/whole-cavour-street.png",
+      "medium-fi/whole-cavour-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:177e881734cfe8a140f76d10dd653730df5eb2937c6e19ae10aa9c6cbe471f84",
+    "notes": "Detailed source master: 53160 triangles / 6383380 bytes. Browser levels: 685 / 3888 / 15552 / 39396 triangles and 56116 / 343392 / 1577340 / 4069356 bytes. Initial skyline plus district is 399508 bytes, below phone/laptop download targets. Physical-device timing remains unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c686c393c4891431636fbe5d40d6f33c1eb5751e6aacfbcf12f9ec70471c17a0",
+    "mapFrameHash": "sha256:dfc382445f563bab62bfbb18edd2e040f393e359bc7e53377cebf256d7906d17",
+    "notes": "Exact-QID OSM way/381471896 and ordinary photos establish the retained irregular112.529m by22.735m mapped outline; the modeled main body is20.5m wide. Named bridge-tagged roads cover106.249m inside those wings, not a separately surveyed overall length. Anchor[12.4742725,41.9049771], heading-0.104179996174: +X east/southeast toward Campo Marzio, -X west/northwest toward Prati, +Z south/southwest downstream. Corrected earlier compass wording without changing the numeric frame. Source origin9.5m and native water about10.700m are standard-Mapzen/photo visualization controls. Thin approximate upper-bank slabs meet actual mapped lanes/footways within0.011003m across all four levels. Four independent cycleway records have unchanged inputs, no authored connections and zero added grade; low rays through the west opening remain clear."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped exterior and approximate standard-terrain placement complete. Detailed source master: 53160 triangles / 6383380 bytes. Browser levels: 685 / 3888 / 15552 / 39396 triangles and 56116 / 343392 / 1577340 / 4069356 bytes. Initial skyline plus district is 399508 bytes, below phone/laptop download targets. Physical-device timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/ponte_cavour/models/source.glb\",\"hash\":\"sha256:2cae7d452d5938b3f807d488203b201c2109e9644afcf13d9aad2cecd5b7ccdd\",\"bytes\":6383380,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_cavour/model.glb\",\"hash\":\"sha256:352e71e92f0217b5075875b3108cc263feddce62ff848c25c48682e90dddd5ce\",\"bytes\":6382736,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_cavour/model.skyline.glb\",\"hash\":\"sha256:e88ac0b859438aa805047c9c38ae7ad316f81043cfb31b68c95bc8d6e4931619\",\"bytes\":56116,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_cavour/model.district.glb\",\"hash\":\"sha256:aa1d38bc82f7459e86a98db4d0655108b4b46f9ad4ca5705b1dc5b918a2360cb\",\"bytes\":343392,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_cavour/model.street.glb\",\"hash\":\"sha256:ca5e6edc648dbdb54e1266923aa6863ecab3d9804cacdf11370f01597fca281a\",\"bytes\":1577340,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_cavour/model.closeup.glb\",\"hash\":\"sha256:d15b2c56b5678ad009ab5b80b2f4200b7d756e3f1922e7a32719e5423ce697b2\",\"bytes\":4069356,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "five-arches-piers-abutments-cornices-lamps-bank-paving-lower-route",
+        "passed": true,
+        "notes": "308 front-face probes across source, imported master and four levels: all five arch voids and spring edges, solid piers/outward noses, skewed abutment walls, cornices, paired lamp tubes, landing surfaces and clear low passage."
+      },
+      {
+        "check": "original-body-retained",
+        "passed": true,
+        "notes": "{\"originalBodyHash\":\"sha256:67dc59945e41a8bfe0c03d6b947a4447071cec747e9f8bd1861c9e24dd59836b\",\"completedMasterHash\":\"sha256:2cae7d452d5938b3f807d488203b201c2109e9644afcf13d9aad2cecd5b7ccdd\",\"originalBodyTriangles\":52872,\"completedTriangles\":53160,\"allOriginalMaterialGroupVerticesAndAttributesUnchanged\":true,\"originalBuilderRetained\":\"buildCavourLevel\",\"scope\":\"Original mapped irregular masonry wings and 52872-triangle body retained. Thin approximate upper-bank paving connects map sidewalks around those wings; lower riverside routes and raw DEM/water remain separate. No surveyed river datum or as-built quay claim.\"}"
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Exact-QID OSM way/381471896 and ordinary photos establish the retained irregular112.529m by22.735m mapped outline; the modeled main body is20.5m wide. Named bridge-tagged roads cover106.249m inside those wings, not a separately surveyed overall length. Anchor[12.4742725,41.9049771], heading-0.104179996174: +X east/southeast toward Campo Marzio, -X west/northwest toward Prati, +Z south/southwest downstream. Corrected earlier compass wording without changing the numeric frame. Source origin9.5m and native water about10.700m are standard-Mapzen/photo visualization controls. Thin approximate upper-bank slabs meet actual mapped lanes/footways within0.011003m across all four levels. Four independent cycleway records have unchanged inputs, no authored connections and zero added grade; low rays through the west opening remain clear."
+    },
+    "inputHash": "sha256:023600bef562049a0edb3022b6f9effecafbf077fa9de74970daff54ad2618a6",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:023600bef562049a0edb3022b6f9effecafbf077fa9de74970daff54ad2618a6",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected67 current frames:11 portable,11 shared-material/geographic,27 medium-fi and18 native views. All five real openings, round-ended piers, brick vaults, travertine cornices, open turned balustrades and eight paired-lantern posts remain distinct. The original52872-triangle body and every original grouped vertex attribute remain exact. Added288 source triangles for thin upper-bank paving around the retained asymmetric wings; the skyline/district use simpler paving. The full arch silhouette remains visible at intended distances, while baluster profiles, stone joints and lantern curvature enter nearer levels.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/scene-preview.png",
+          "hash": "sha256:7e7bbd1af5899d720023f1438a3e5eb9338ae81815d30a7d58058d18eb4f24ca"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/turntable/angle_0.png",
+          "hash": "sha256:b371f81a1357bd4378c9740fbb5e94e3e0c430ac30d0b000d5f4a0cffc9152ee"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/turntable/angle_1.png",
+          "hash": "sha256:63e12502f1b52734f81c9c6e51b75a9bca350afc95647e980eba10f3aa0d7380"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/turntable/angle_2.png",
+          "hash": "sha256:3bee25c0d00540d6e3ac6a4400bf7ab74a53943f2b84a3164f1e01df5ec57856"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/turntable/angle_3.png",
+          "hash": "sha256:0c957240020227b7fcb781ecc891f416094f207fe43d853abe14f3b2ab1e4275"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/whole-downstream.png",
+          "hash": "sha256:7e7bbd1af5899d720023f1438a3e5eb9338ae81815d30a7d58058d18eb4f24ca"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/upstream-three-quarter.png",
+          "hash": "sha256:c6b4e0adefafe6e21c21b7a13a019cfcd7836ad7181fc5f9bcc42a47c5d8da48"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/deck-and-sidewalks.png",
+          "hash": "sha256:41d9edeea788fc0a104a0f2eea22f68036a668f0f18a7486e9586d5595b006ee"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/pier-and-barrel.png",
+          "hash": "sha256:6c685ec89af8e45fc3d5c493952326543341a7901b540ef33ccb31d5d4b0ea19"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/balustrade.png",
+          "hash": "sha256:2307e7db9f78a350bde354d2501a36f5cddefcf2351cfae26416eb11420904b3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/paired-lantern.png",
+          "hash": "sha256:004f808992ed1c13a40123c0678fb671d48e19caf3ac883e4908b242d31265d1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/angle-0.png",
+          "hash": "sha256:2057c8d84a47ce7bd0992a023a6fd15215409f75c93237fd82f5d7746965ef21"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/angle-1.png",
+          "hash": "sha256:3cc06d9f0288f6a60f0068264fc95fdbfbf96c3d62c009fd418a6511aed747a1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/angle-2.png",
+          "hash": "sha256:16c3c0ea2e2d01ac7ba29baeb3f94b37d97f1da611ebaf1e7fa0a017330c9eeb"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/angle-3.png",
+          "hash": "sha256:4f3f8bf172883441b402cb65ad2b7c128eb7a0904ffcd518ed5049ab16833193"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/whole-downstream.png",
+          "hash": "sha256:4892ba400f3a92cc27e915bfccc730561f406c9d0b32799aa72b0e71e6a891cb"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/upstream-three-quarter.png",
+          "hash": "sha256:cf9baf2fef914d0608b5bda0914ecc696e9d54c8a681c87e7a88686caf832780"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/deck-and-sidewalks.png",
+          "hash": "sha256:b80e4768d92c9ab31c6384c1b8f246c7c407cf418ec7ca8cfb9401a619af9f1b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/pier-and-barrel.png",
+          "hash": "sha256:c1d12f967a239e66fb81ac52e13a518af388a0e88a97312eebbf22106db6c455"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/balustrade.png",
+          "hash": "sha256:957acc82961bb5d96eb11e7afd8cd7177fa65d80639414b3b28809b76ca14b5f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/paired-lantern.png",
+          "hash": "sha256:6b236ce500093ce5e763dc8f09d28362012359337f50bca28aa2b59108c3c285"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/shots/shared/placement.png",
+          "hash": "sha256:7cb77bd5f71478fcbd286b9191fa0c74b06acb6e389c93250c9be96d1fe8d084"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/street-noon-economy.png",
+          "hash": "sha256:c63e57ad222df14f293c9a210976d7301f1994552df940eddebf9779021926f7"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/street-noon-high.png",
+          "hash": "sha256:353ae9f4ccb7a9f8dee3d6b46ba675ec5f7cec35e2113bc8d79ad514bc87b8d7"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/street-late-economy.png",
+          "hash": "sha256:66a1345a389cad05bb9e622bc01592900cddea0675a99fc581fd13c8c6ad2adc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/street-late-high.png",
+          "hash": "sha256:9f086978672c3160ecf4da065607a86488d8072b29b2442a9fb36442450c294c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/block-noon-economy.png",
+          "hash": "sha256:0808da81795d822a544fd1ca5aae85558c801e6511f99418292b70db89f4b4a7"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/block-noon-high.png",
+          "hash": "sha256:a645b22a106ef2746821f1f06b80182cb56c3559162cd8ae72d697a590236de5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/block-late-economy.png",
+          "hash": "sha256:341565451b97c1e3595f9a88baeb5e04ad482918918536db0ee6f2dd155c9dcc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/block-late-high.png",
+          "hash": "sha256:dee9d3292d12f4900e79e8e99d6a3d78f3c2024868bfca8ba535e90526dee611"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:81c9ba3b2c66e2a82854e2c7a5ec451cf64a1f245c58fb76da5186ba4edb6d65"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:1344f8d57a6e55aae4c9b858420a384a0423bd879ed24769760d7794790e3256"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:f4c425e0a0668257935dbae6d254d3b964a68e6759346d8e60b85c6b1e6b99f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/skyline-late-high.png",
+          "hash": "sha256:c07b015affae1ccefe7234b0adcf973958de93982991c9ec26d8fe5ba3b40a4f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/silhouette.png",
+          "hash": "sha256:f9fd738117c9ec564c4ae0de27a9528407aa5d7f0749b49e18e06a2853430432"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/whole-downstream.png",
+          "hash": "sha256:24d5c485490a6714a2a08265e7edf0c8fe5dc6d0c0fc81be00d5f3a0950ad9f2"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/upstream-three-quarter.png",
+          "hash": "sha256:e0b2f58abed8488bc5f39ea1dc92f87ae68152a319bfff3c41c478aa0e8eb9c5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/deck-and-sidewalks.png",
+          "hash": "sha256:c98027c378efcf478c87afa88b70aaac179f8abf8805f939615fda5d1b25c0f3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/pier-and-barrel.png",
+          "hash": "sha256:4b7a967b61a41e441d43b3b6c1216df9cc9f8152f979d75c21e95bbf2fcbe732"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/balustrade.png",
+          "hash": "sha256:69aa4befd070e8db7cad7113eb4c8a39d48e21125fe9727659d6ace0da97c5a6"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/paired-lantern.png",
+          "hash": "sha256:3e568357c6e3cf22f77f7cb8a86793f9ff4ab841e1dec18fbe386c21cb3d9097"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/whole-cavour-skyline.png",
+          "hash": "sha256:41ed9dc36da46734a48d3c44b7748a5acd5afa558d275bd4eb5c26e0614e54cc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/whole-cavour-district.png",
+          "hash": "sha256:1dd9a2e7f9091fb63f707284eb5f92183f85f49dfa8d68dbdf835db35c1f3fdd"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/whole-cavour-street.png",
+          "hash": "sha256:2a6b441dc94f003941c35c0af1161f4c12e33528a197c1fca2fd558f8b9b3c42"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/whole-cavour-closeup.png",
+          "hash": "sha256:e5710fd6fa0643051f4284886d7b522b2d6006e10b2759db8166388163086e8d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/transition-skyline.png",
+          "hash": "sha256:bbb9ae62b99c01d44e0a192655be2caa53a4c16c7eb9192476d2452e062ddd08"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/transition-district.png",
+          "hash": "sha256:a645b22a106ef2746821f1f06b80182cb56c3559162cd8ae72d697a590236de5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/transition-street.png",
+          "hash": "sha256:605941c19ae5e5ae3d407ce306e9e73764da262d310a84fc5f41473d08c216e4"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_cavour/medium-fi/transition-closeup.png",
+          "hash": "sha256:292810c89f91c8f4ae6ffc24dd0ff46041dab2cb98ffbc232f007104a3cd379a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:ffcf76f3b952a9913507ad332ca3b0cfe8c2856170f882259c9d621230d1f508"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:cabdd4bcfe9538c0c0a8d85d2bc6986b15dd3d0c0ebc8501092553cba000c463"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-street-whole-crossing.png",
+          "hash": "sha256:c147cc1175088068d67eccc9aa0fcdf074a05742400942b2aa39939bf4791a77"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-street-upstream-arches.png",
+          "hash": "sha256:d012f879377e71f74257453f95d045df72df8359a66924a9c7189f04f9fb91de"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-street-deck-and-sidewalks.png",
+          "hash": "sha256:da04b64d4773ef644938d273a51e0ed2b3e08a09071f5f2e5c862a5dc4a1f1dd"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-street-balustrade.png",
+          "hash": "sha256:2d9f94f63150201ee75381394bfba18c66209894bf99faae2e22d7c56461bcee"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-whole-crossing.png",
+          "hash": "sha256:0437661dae38188c5abce19c868119c20b54450bd60237e444b51054101d2aa7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-upstream-arches.png",
+          "hash": "sha256:c15c90c2a6599ff51ac6532db4559a0a19b2d12d1a8505bb105d022d3b36a18b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-deck-and-sidewalks.png",
+          "hash": "sha256:8d44193988468228010a02873683c0d771b7cea08282c8dbabbb9fd4d885d316"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-balustrade.png",
+          "hash": "sha256:603c3a8fb6e67447aec12fd7e6b4c539b9f3463bed31291a7edb0effe1d8f118"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-west-join.png",
+          "hash": "sha256:1f6028ff311512deeeefc8212fd5f3a868c872fd241714c0a89a2718d32ab1c9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-east-join.png",
+          "hash": "sha256:2cbbc9ad7e29f2c859de4cc36b2aa1687b054fe0dc7281e31498d6f53c9f7d13"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:666e788ef1d6caebb2df0c195bf6f158a33e9fb24ee65cd5e276009f043891e2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-afternoon-context.png",
+          "hash": "sha256:941812b08c8c0a418178e7595fcde99692042b7845db2556f5cab37a5544e5b0"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:fd19a1154d5496f7a8afccaec1bf0d5c973ea381287f17119558997210537583"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-west-upstream-footway.png",
+          "hash": "sha256:0a86b3bd9305b6d8842380e1b99352f14ca13ff3dd285457e013384d8f717c68"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-closeup-east-upstream-footway.png",
+          "hash": "sha256:7c37156e6706d76d76ec72f07eb7014753ab9335ec8b1327923f73f708742bbb"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\cavour-canonical-review/native/shots/final-failure-whole-crossing.png",
+          "hash": "sha256:0691eed329dd0d507eda46181b5fc050fff634325c5c6fdec08c20552b76050d"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All455 resident buildings and510 independent input road records remain. Four cycleways retain input geometry without authored grade. Raw road inputs, DEM, rendered ground and water are unchanged; connected upper paving is deliberately graded. Failed loading preserves the original map crossing, and unload releases all model/support resources."
+    },
+    "nativeReport": {
+      "path": ".artifacts/cavour-canonical-review/native/final-report.json",
+      "hash": "sha256:433717848ec66468a62682da674c5bce7237e8eb120d901742a060acd0079486",
+      "frozenViewerInputsHash": "sha256:2b9dc30e68dd5f9555ddf92e6ea6a2f7b7bc13e57dae4830e33436cfe800b966"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 18,
+        "maximumJoinErrorMeters": 0.00859778959011237,
+        "buildings": 455,
+        "independentRoadRecords": 510,
+        "lowerCycleways": [
+          {
+            "id": 35184456292650,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184486629100,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184423333600,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185762651923,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 18,
+        "maximumJoinErrorMeters": 0.00859778959011237,
+        "buildings": 455,
+        "independentRoadRecords": 510,
+        "lowerCycleways": [
+          {
+            "id": 35184456292650,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184486629100,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184423333600,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185762651923,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 18,
+        "maximumJoinErrorMeters": 0.011002663794897671,
+        "buildings": 455,
+        "independentRoadRecords": 510,
+        "lowerCycleways": [
+          {
+            "id": 35184456292650,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184486629100,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184423333600,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185762651923,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 18,
+        "maximumJoinErrorMeters": 0.011002663794897671,
+        "buildings": 455,
+        "independentRoadRecords": 510,
+        "lowerCycleways": [
+          {
+            "id": 35184456292650,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184486629100,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184423333600,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185762651923,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "buildings": 455,
+        "independentRoadRecords": 510,
+        "lowerCycleways": [
+          {
+            "id": 35184456292650,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184486629100,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184423333600,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185762651923,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "metadataReconciliation": {
+    "method": "Metadata-only source review-note cleanup and compass wording correction. Numeric map frame, scene bytes, source/master/four runtime GLBs, materials, cameras and all captured frame bytes are unchanged. Existing images retain their original provenance; no new rendering is claimed.",
+    "previousMapFrameHash": "sha256:233d358b23c548d8f130e1f31e88273122e3cae11b7d5ee6486ace3cd8dee063",
+    "mapFrameHash": "sha256:dfc382445f563bab62bfbb18edd2e040f393e359bc7e53377cebf256d7906d17",
+    "numericMapFrameUnchanged": true,
+    "renderedInputPins": {
+      "content/worldgen/source/places/sr/sr2/ponte_cavour/models/source.glb": "sha256:2cae7d452d5938b3f807d488203b201c2109e9644afcf13d9aad2cecd5b7ccdd",
+      "content/worldgen/assets/places/sr/sr2/ponte_cavour/model.glb": "sha256:352e71e92f0217b5075875b3108cc263feddce62ff848c25c48682e90dddd5ce",
+      "content/worldgen/assets/places/sr/sr2/ponte_cavour/model.skyline.glb": "sha256:e88ac0b859438aa805047c9c38ae7ad316f81043cfb31b68c95bc8d6e4931619",
+      "content/worldgen/assets/places/sr/sr2/ponte_cavour/model.district.glb": "sha256:aa1d38bc82f7459e86a98db4d0655108b4b46f9ad4ca5705b1dc5b918a2360cb",
+      "content/worldgen/assets/places/sr/sr2/ponte_cavour/model.street.glb": "sha256:ca5e6edc648dbdb54e1266923aa6863ecab3d9804cacdf11370f01597fca281a",
+      "content/worldgen/assets/places/sr/sr2/ponte_cavour/model.closeup.glb": "sha256:d15b2c56b5678ad009ab5b80b2f4200b7d756e3f1922e7a32719e5423ce697b2",
+      "content/worldgen/source/places/sr/sr2/ponte_cavour/scene.json": "sha256:4da2d49b021e3895406b9b0c2521c8f7baea4953cf18536bf4d99e83c880f18d"
+    },
+    "previousInputHash": "sha256:293c98c1854c4d89f808bb6586669437892dd10c5b2bdeb78d449337ee3aeb88",
+    "previousReportHash": "sha256:57a2a6f02a1daa8ba12b3c49e9c2a782302d5772841661453c938b1adc41239b"
+  },
+  "limitations": [
+    "Photo-based arch rises, pier profiles, height datum and lamp placement are approximate.",
+    "Baluster spacing and lamp intervals are regularized; no exact element count or as-built claim.",
+    "A<=7.5cm mapped facade sliver is snapped to the20.5m body plane to preserve the west arch opening.",
+    "Landmark LODs intentionally remove turned profiles and small fittings; skyline uses an opaque mean-color parapet band.",
+    "Surrounding quays, nearby architecture, boats, traffic and graffiti are outside this model.",
+    "Upper-bank paving around the irregular wings is approximate visualization support, not surveyed quay geometry. Thin slabs sit 1cm below map paving and leave lower riverside routes below; all surrounding coarse terrain remains approximate.",
+    "Coarse riverbanks, automatic retaining faces, nearby architecture, floating map objects and power lines remain context, not a reconstruction of the historic quays. Input preservation does not assert unchanged elevations on every connected street; bounded approach grades intentionally change connected upper paving."
+  ],
+  "integrationStatusReconciliation": {
+    "kind": "integration-status-reconciliation-only",
+    "oldInputHash": "sha256:6b0195a33bf95f42541e08175dccb9854e5f6c02c8c96121a2061ff540ec5eac",
+    "inputHash": "sha256:023600bef562049a0edb3022b6f9effecafbf077fa9de74970daff54ad2618a6",
+    "beforeReportHash": "sha256:8994561b0100f63b3cfb9f5f388c114d3a857918f8dd13cf4666968c20bac7ef",
+    "afterReportHash": "sha256:085326061626d97c750c877d3e51e58aa6b239837af38eddd83ecf4c3a78901a",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 67,
+    "sourceHash": "sha256:2cae7d452d5938b3f807d488203b201c2109e9644afcf13d9aad2cecd5b7ccdd",
+    "runtimeHash": "sha256:352e71e92f0217b5075875b3108cc263feddce62ff848c25c48682e90dddd5ce",
+    "lodHashes": [
+      {
+        "name": "skyline",
+        "hash": "sha256:e88ac0b859438aa805047c9c38ae7ad316f81043cfb31b68c95bc8d6e4931619"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:aa1d38bc82f7459e86a98db4d0655108b4b46f9ad4ca5705b1dc5b918a2360cb"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:ca5e6edc648dbdb54e1266923aa6863ecab3d9804cacdf11370f01597fca281a"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:d15b2c56b5678ad009ab5b80b2f4200b7d756e3f1922e7a32719e5423ce697b2"
+      }
+    ],
+    "preservedFilesHash": "sha256:fa682d3d3b5722acb541cf8c012a20f424af17661e6b7c6641827c4fe069e91e",
+    "preservedFramesHash": "sha256:f9c1f47c63edc4ea86884212c34d4abf4ce319e0e524fbcb11c4db92c21ff1a0",
+    "method": "Corrected only the stale handoff status, current output statistics and pointers to already completed canonical reviews. All other source files, six GLBs and every bound inspected image were checked byte-for-byte unchanged. Existing reviews are retained with this explicit metadata-only provenance; no new visual review is claimed."
+  }
+}

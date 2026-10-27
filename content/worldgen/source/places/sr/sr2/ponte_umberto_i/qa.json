@@ -1,0 +1,549 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.ponte_umberto_i",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:a4ad0378d067db6c820c46a7291b344fd178fc6fdcf36a5736b402a4ac7f2641",
+  "sourceHash": "sha256:2edb875f912c67edf4e949c0efa97d4808de3e404da4742538f82aa188655fcc",
+  "runtimeHash": "sha256:224486d0f54e7b3735e5f41a0482c4146ac0555c2bf751e9f97b66f6c728f80e",
+  "captureReportHash": "sha256:52ec89494f8ab2519dd3f2bcc818478831220fbeedecc96e29b90b686dbcbbf9",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-upstream-elevation.png",
+      "shots/downstream-arches-and-piers.png",
+      "shots/road-walk-and-median.png",
+      "shots/pier-shield-and-cornice.png",
+      "shots/median-lantern.png"
+    ],
+    "captureReportHash": "sha256:52ec89494f8ab2519dd3f2bcc818478831220fbeedecc96e29b90b686dbcbbf9",
+    "notes": "Inspected 61 current frames: 10 portable, 10 shared-material/geographic, 26 medium-fi and 15 native views. Three genuine segmental arches, two round-ended pier heads, cornices, solid parapets/coping, simplified shields/laurel, asymmetric walks, raised median, six curved lamps and chain fencing remain recognizable. The four runtime models retain the full arch silhouette at their intended distances; small relief, chains and lantern curvature enter nearer levels. The original 20188-triangle body and every original grouped vertex attribute remain exact; ten small paving prisms add 120 triangles for the bank landings."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-upstream-elevation.png",
+      "shots/shared/downstream-arches-and-piers.png",
+      "shots/shared/road-walk-and-median.png",
+      "shots/shared/pier-shield-and-cornice.png",
+      "shots/shared/median-lantern.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:2f8e2219a473e8401c0521e1aabd3f3deb0753276435868f2a024b06feaacab1",
+    "notes": "Five existing shared 256px graphs: stone_travertine, stone_limestone_raw, stone_granite, concrete_plain and metal_painted. Metric UVs and linear vertex tints provide variation; local lantern glass is a physical translucent material. No embedded or private images, copied photograph pixels or downloaded meshes. Each shared graph is read once and all model/support resources dispose on unload."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-upstream-elevation.png",
+      "medium-fi/downstream-arches-and-piers.png",
+      "medium-fi/road-walk-and-median.png",
+      "medium-fi/pier-shield-and-cornice.png",
+      "medium-fi/median-lantern.png",
+      "medium-fi/whole-umberto-skyline.png",
+      "medium-fi/whole-umberto-district.png",
+      "medium-fi/whole-umberto-street.png",
+      "medium-fi/whole-umberto-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:2fdde197a710721fca460fda626b40d0c8ee8966cdaba3e22f7f00e3b937e3ea",
+    "notes": "Detailed source master: 20308 triangles / 2440740 bytes. Browser levels: 956 / 1596 / 7532 / 14580 triangles and 80088 / 137572 / 730300 / 1422484 bytes. Initial skyline plus district is 217660 bytes, below the phone/laptop download targets. Physical-device timing is still unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:2ff7b2325671884c818b9de4ceacbac6e65dc9dc1d1c0ff469ed2c3580be4f4c",
+    "mapFrameHash": "sha256:f61b7c07f6c1dc0b34617995fbb4c9a6b1dcb443205769417434e6253ae4f1dc",
+    "notes": "Exact-QID OSM relation/5679034 and ordinary photos establish the retained 105.108m bridge body. Anchor [12.471329317,41.902655954], heading -1.170051815347: +X southeast toward old Rome, -X northwest toward the Palace of Justice, +Z southwest/downstream. The raw mapped outline is retained separately from the widened replacement mask. Source origin 9.3m and native water about 11.265m are standard-Mapzen/photo visualization controls. Approximate 2m flared bank aprons overlap skewed map ends, 1cm below native paving. Actual mapped lane/footway width samples meet within 0.010001m at all four levels. Restored the generalized southeast footway T-junction and kept the turning sidewalks connected; stairs and nearby disconnected paths remain separate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped exterior and approximate standard-terrain placement complete. Detailed source master: 20308 triangles / 2440740 bytes. Browser levels: 956 / 1596 / 7532 / 14580 triangles and 80088 / 137572 / 730300 / 1422484 bytes. Initial skyline plus district is 217660 bytes, below the phone/laptop download targets. Physical-device timing is still unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/ponte_umberto_i/models/source.glb\",\"hash\":\"sha256:2edb875f912c67edf4e949c0efa97d4808de3e404da4742538f82aa188655fcc\",\"bytes\":2440740,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.glb\",\"hash\":\"sha256:224486d0f54e7b3735e5f41a0482c4146ac0555c2bf751e9f97b66f6c728f80e\",\"bytes\":2440192,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.skyline.glb\",\"hash\":\"sha256:805c845c95055d33595a71244116b1f1b9be693919628dcb0db0990585b0d54b\",\"bytes\":80088,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.district.glb\",\"hash\":\"sha256:03a8beb61e7ecc3d3df2dfceecc7950c396ddc9b8cda60ac001f7ecdf5d2e54b\",\"bytes\":137572,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.street.glb\",\"hash\":\"sha256:e30f3589e8b9b0649bbec533a266c301e8a103bc05ec62a82c9f08caf7269107\",\"bytes\":730300,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.closeup.glb\",\"hash\":\"sha256:d68dcb8232d4a40a33fd3074685d282cbee25328f834703d79a7316f43711c5a\",\"bytes\":1422484,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "arches-piers-cornices-coping-relief-lamps-bank-landings",
+        "passed": true,
+        "notes": "184 front-face ray probes across source, imported master and four levels. Open arch voids, solid masonry, visible pier noses, relief/lamps and all landing corners pass."
+      },
+      {
+        "check": "original-body-retained",
+        "passed": true,
+        "notes": "{\"originalBodyHash\":\"sha256:50a78d62e9fd97926af796e55c3dd9efa9998b12d78dc331e7a898ea02b37bd3\",\"completedMasterHash\":\"sha256:2edb875f912c67edf4e949c0efa97d4808de3e404da4742538f82aa188655fcc\",\"originalBodyTriangles\":20188,\"completedTriangles\":20308,\"allOriginalMaterialGroupVerticesAndAttributesUnchanged\":true,\"originalBuilderRetained\":\"buildUmbertoLevel\",\"scope\":\"Original 105.108m bridge body retained. Approximate 2m flared bank paving connects generalized map footways around the parapet ends; replacement/height hints stop 0.75m inside the paving to cover skewed ends. Coarse context remains approximate.\"}"
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Exact-QID OSM relation/5679034 and ordinary photos establish the retained 105.108m bridge body. Anchor [12.471329317,41.902655954], heading -1.170051815347: +X southeast toward old Rome, -X northwest toward the Palace of Justice, +Z southwest/downstream. The raw mapped outline is retained separately from the widened replacement mask. Source origin 9.3m and native water about 11.265m are standard-Mapzen/photo visualization controls. Approximate 2m flared bank aprons overlap skewed map ends, 1cm below native paving. Actual mapped lane/footway width samples meet within 0.010001m at all four levels. Restored the generalized southeast footway T-junction and kept the turning sidewalks connected; stairs and nearby disconnected paths remain separate."
+    },
+    "inputHash": "sha256:a4ad0378d067db6c820c46a7291b344fd178fc6fdcf36a5736b402a4ac7f2641",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:a4ad0378d067db6c820c46a7291b344fd178fc6fdcf36a5736b402a4ac7f2641",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 61 current frames: 10 portable, 10 shared-material/geographic, 26 medium-fi and 15 native views. Three genuine segmental arches, two round-ended pier heads, cornices, solid parapets/coping, simplified shields/laurel, asymmetric walks, raised median, six curved lamps and chain fencing remain recognizable. The four runtime models retain the full arch silhouette at their intended distances; small relief, chains and lantern curvature enter nearer levels. The original 20188-triangle body and every original grouped vertex attribute remain exact; ten small paving prisms add 120 triangles for the bank landings.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/scene-preview.png",
+          "hash": "sha256:6399288b38946b07454f6fa30f663d25d3ecd29e14a8dcb48160a43e6eea69e5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/turntable/angle_0.png",
+          "hash": "sha256:0f65a1efdfab2f5c74b9b5c3e127ffdf7e684f691f1339dfdc64eac1c480331a"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/turntable/angle_1.png",
+          "hash": "sha256:3846460678ee7d7a0dad1ee6d7c20e98f7f21faccd0c9d59251442039d209e29"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/turntable/angle_2.png",
+          "hash": "sha256:30f900f7a42fd7ad7895af18a0a9becb7fdc44d569d0686d11183d738f68ceba"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/turntable/angle_3.png",
+          "hash": "sha256:d0a87c54b719d4f43694b82ebb255ba23d574bc407552e65f9ffe0cd70febfd8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/whole-upstream-elevation.png",
+          "hash": "sha256:6399288b38946b07454f6fa30f663d25d3ecd29e14a8dcb48160a43e6eea69e5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/downstream-arches-and-piers.png",
+          "hash": "sha256:0cb68583b9042b20e13fc23edc2f994c09d8c7ee2a11da440b7bd6c1ae5eedf8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/road-walk-and-median.png",
+          "hash": "sha256:a7de7eaf58c7b27034fed58303bdc77d5f94fed14e745921ea31e9735499a7ba"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/pier-shield-and-cornice.png",
+          "hash": "sha256:fb44cf8abd5d18504acfb1a9f2ec9dd96b77e72ac1c9725621ecfb03fe60492d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/median-lantern.png",
+          "hash": "sha256:89e57730d30cea1ea81d0b779d932af50cb968591fa385f74f3c0e877932b1ec"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/angle-0.png",
+          "hash": "sha256:cdd619d4332b7d2ad4fe9e4623437ad858ebc68b6d59041f5ee45c32c31abc3d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/angle-1.png",
+          "hash": "sha256:2f20f76316e5f6dd55dfb2229da9150d5d523380d5d59d4fe8b37a73a8617a82"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/angle-2.png",
+          "hash": "sha256:9bb0f1720636cccc935ea7446c298ad720437ed5bf7b02e9c458a30e0255d15e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/angle-3.png",
+          "hash": "sha256:489010d574bbc3e7bc681a5a548cf17e92c1401789d6ebe5e5f23efd7b4f0d33"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/whole-upstream-elevation.png",
+          "hash": "sha256:2db917e080ab3e70dc1e0ef569648dd05525734daa501748c354f0a9cb9c90c1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/downstream-arches-and-piers.png",
+          "hash": "sha256:a7d413426e66beb89e369b52677ad8a004773e0a9bd63c8bf2ee69fc4897d0ac"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/road-walk-and-median.png",
+          "hash": "sha256:2231ba22e629dccd68b5f1d192f4f69fb6008f49f725e0cc72eb2dd1e885922e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/pier-shield-and-cornice.png",
+          "hash": "sha256:f8641d9d8cd4f3182dae1eea8828283c9957297d5027eb77d5fb7be52c08db2c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/median-lantern.png",
+          "hash": "sha256:bace95d561d874867b1913092ab9a861373c8b6a5207aa483cbcf273acef995e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/shots/shared/placement.png",
+          "hash": "sha256:804a82b00c23f54a63513327ee9f9a72abe88ace05626d4d20709b06da9aed3b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/street-noon-economy.png",
+          "hash": "sha256:7aa92cb995d3c251bcfa95f5b7e213999f90fdb18e8ac7b67a35cfb0316b2622"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/street-noon-high.png",
+          "hash": "sha256:f96af5fa202aada5c79ed77dfaba89a98f826222ed18f38f5be24672addae333"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/street-late-economy.png",
+          "hash": "sha256:3a5578d7f58921998fdef6036ca285c98b834897ef55e19382f5b17a13e99e5d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/street-late-high.png",
+          "hash": "sha256:9e476916d8e9cc7a5ceb3bc7ddaa0b0f6a4e3c398e8708d1b0ac422c6ac35426"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/block-noon-economy.png",
+          "hash": "sha256:aa153ce1632f6b64a458f837595ae797e5273f8be357fc9f50a1760e11e987d2"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/block-noon-high.png",
+          "hash": "sha256:1b4b5156ebe10922a0e8372e0fcf42ee1176510b5cd7f8eb9dbd9de2618d3e02"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/block-late-economy.png",
+          "hash": "sha256:4d5ca946b94f69644b749af3c3c43fea4ef1d566605e4b987a14576139b72097"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/block-late-high.png",
+          "hash": "sha256:6fec7653af9e7748d8580e77c48596faaa80049277d056b0a6de49fb53956d2a"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:3ddc33f4a642f12ce2631f7d954121f886a5085dc1a259b85bb2ad123b263613"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:54289557411e032a56c016a9c3d6229a97fc4d664685e895b0768b4ab6425f1e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:3d0ba5bf5e7854ad00d07efb4708dab4919e97fc805439bf666db69e5f5a7491"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/skyline-late-high.png",
+          "hash": "sha256:d60cce47ab5fffe67111a4bbd4e3bb6978773f16e9013c1d97c20789569b3189"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/silhouette.png",
+          "hash": "sha256:caeec22154ddeb99bc4fbf21181b44c46020cfc07705835dc1930157f632f9ab"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/whole-upstream-elevation.png",
+          "hash": "sha256:0d6160d11b2b2cd1a332f73f4c6038111f3d6f3929408459e0d3622b7e24fcb6"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/downstream-arches-and-piers.png",
+          "hash": "sha256:11772aade8c7aad2863fb174154529117d7ed5f7853836c8182800d0ad5f08f2"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/road-walk-and-median.png",
+          "hash": "sha256:a98c978589dc61f2761c5e60234e313ec40a65381ec94a3ebb8d1a5fa74c416e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/pier-shield-and-cornice.png",
+          "hash": "sha256:efa4af5e5ae6809dae1e7a49cc2e225adb9f487045f7684f08b1b6181dd47037"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/median-lantern.png",
+          "hash": "sha256:c858aa59f6b184afc60d47b6b126c135a67243dc040f4d65f11a6fe7389e22da"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/whole-umberto-skyline.png",
+          "hash": "sha256:381abcece4502f64c150ffbec6cb41956b93d40fcd702ff76e9fb051b674f89c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/whole-umberto-district.png",
+          "hash": "sha256:ae4042e2216b9df2af2e59c27d14eecf4498a57473b121bfa572f32db1760497"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/whole-umberto-street.png",
+          "hash": "sha256:9a9357bc275541af3d707fc71348319cd2948fa3445babe805ed46901cabe668"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/whole-umberto-closeup.png",
+          "hash": "sha256:9fb40d8431d441cf1500206205cfe65e24f42820c6cbf234babd158fbf909e1e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/transition-skyline.png",
+          "hash": "sha256:af4f2085f01351f73fdd9ab514662f03b42c12fd9a12d0266cdd74b3620c6c1f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/transition-district.png",
+          "hash": "sha256:1b4b5156ebe10922a0e8372e0fcf42ee1176510b5cd7f8eb9dbd9de2618d3e02"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/transition-street.png",
+          "hash": "sha256:da5c9e6b4f22cfbbbb4bbcab0677fee748a6e375455665dbe063b2145d79c6eb"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/ponte_umberto_i/medium-fi/transition-closeup.png",
+          "hash": "sha256:8a4b4fc365ed2a483f9eaba041d3f4681bd81363b3cc7944e44974e5e171fc2f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-skyline-whole-crossing.png",
+          "hash": "sha256:c858e1f36b0fbe2cd565f54865cae125232cfdfd3004bc47e4e3b04384e1f153"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-district-whole-crossing.png",
+          "hash": "sha256:c072065477f0725e005cf7df6a259f9deb4ce671c00c9b3d7c9e5903e711a0a9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-street-whole-crossing.png",
+          "hash": "sha256:7fe5d7ef5bafb31613177d43dc25826b9e38ab0d8b01e5587c402a01f80906ec"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-street-downstream-arches.png",
+          "hash": "sha256:ed3c2f4fc3b10678791a961c608e9532be75dc5a45932130ce9648df7d3ba8cf"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-street-road-walk-and-median.png",
+          "hash": "sha256:fcedcd00a8a26058d5739df29fd6adb2d7cda531900ce5d3f1c221b099af8335"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-street-pier-shield.png",
+          "hash": "sha256:09c3606b37bed5fd21f004c2413ddebbe5fd735f41a16fad766e4cda8ac1a62a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-closeup-whole-crossing.png",
+          "hash": "sha256:54d8862ab301ff2288ad7e28d75a99d3da951fd1c292963bda359a60da1b763d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-closeup-downstream-arches.png",
+          "hash": "sha256:8154fe90ef68f6dd1e972cada514d26ca5ca006b0a3e7148f86cbcba7f8f0750"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-closeup-road-walk-and-median.png",
+          "hash": "sha256:8839c7e4f83cf30b271be72f87bd7815865b375f1df4f9bf40e81267ab871674"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-closeup-pier-shield.png",
+          "hash": "sha256:c07667850da9885d373e33866ed5530d9b03a02bc0cdec388fc48d302f481d24"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-closeup-northwest-joins.png",
+          "hash": "sha256:7e7f16d5c03880ea34828ff25aea6c490b87821ba6165ee5aedb9f210640267f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-closeup-southeast-joins.png",
+          "hash": "sha256:96bd5568df302f6d317aa0401b97357c633e92c2366fcb57ad4b914cadac8539"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-closeup-southeast-downstream-footway.png",
+          "hash": "sha256:c5086703cd7bffdb87f1edc5220d2e51e54912daef4033a1a650fa01899785a4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-closeup-northwest-downstream-footway.png",
+          "hash": "sha256:e0955c23b1dbe73eef4555031734713605e89c3ae9ba1b239432c61ec6ffa347"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\umberto-canonical-review/native/shots/final-failure-whole-crossing.png",
+          "hash": "sha256:2b9a862b0f300a879a375aef0a203df507ed097ea9a25371542165aac78e19ac"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 777 resident buildings and independent input road records remain. Raw source road polylines, DEM samples, rendered ground and water remain unchanged. Connected paving is deliberately graded; the scalar input-preservation test does not assert unchanged elevations on every street. Failed loading preserves the original map crossing; unload releases all model/support resources."
+    },
+    "nativeReport": {
+      "path": ".artifacts/umberto-canonical-review/native/final-report.json",
+      "hash": "sha256:d192aeea9f447a466e0fd7c0c9020b103a4dda42f9e586522ab69b389dd9abe3",
+      "frozenViewerInputsHash": "sha256:513291d63f3c98712e4b36599833858bac9d24fac002eba060186c838a8d62c5"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 36,
+        "maximumJoinErrorMeters": 0.010000228882063311,
+        "buildings": 777,
+        "independentRoadRecords": 579,
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 36,
+        "maximumJoinErrorMeters": 0.010000228882063311,
+        "buildings": 777,
+        "independentRoadRecords": 579,
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 36,
+        "maximumJoinErrorMeters": 0.010000228882063311,
+        "buildings": 777,
+        "independentRoadRecords": 579,
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 36,
+        "maximumJoinErrorMeters": 0.010000228882063311,
+        "buildings": 777,
+        "independentRoadRecords": 579,
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "buildings": 777,
+        "independentRoadRecords": 579,
+        "rawGridRetained": true,
+        "renderedGroundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Arch rises, pier dimensions and absolute elevation are approximate picture-based reconstructions.",
+    "Six lamps and regular spacing are a simplified photo-based arrangement, not a verified as-built schedule.",
+    "Shield/cross/laurel is a simplified visual motif, not exact heraldry.",
+    "The 2m flared bank aprons are approximate visualization transitions for generalized PMTiles footways, not surveyed paving. They sit 1cm below map paving to avoid coplanar overlap. Coarse surrounding riverbank terrain and independent lower paths are retained.",
+    "Surrounding coarse riverbanks, lower quay paths, independent transport slivers and automatic retaining faces are context, not a reconstruction of the historic embankments. No claim is made that every connected street elevation is unchanged; bounded approach grade metadata intentionally changes connected paving while raw map polylines, DEM and water are retained."
+  ],
+  "metadataReconciliation": {
+    "method": "Metadata-only source review-note cleanup and compass wording correction. Numeric map frame, scene bytes, source/master/four runtime GLBs, materials, cameras and all captured frame bytes are unchanged. Existing images retain their original provenance; no new rendering is claimed.",
+    "previousMapFrameHash": "sha256:3a8b3f794b406307c041c8ba99c7bedea4937ed97de46dc57a5bba9fb7337ee8",
+    "mapFrameHash": "sha256:f61b7c07f6c1dc0b34617995fbb4c9a6b1dcb443205769417434e6253ae4f1dc",
+    "numericMapFrameUnchanged": true,
+    "renderedInputPins": {
+      "content/worldgen/source/places/sr/sr2/ponte_umberto_i/models/source.glb": "sha256:2edb875f912c67edf4e949c0efa97d4808de3e404da4742538f82aa188655fcc",
+      "content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.glb": "sha256:224486d0f54e7b3735e5f41a0482c4146ac0555c2bf751e9f97b66f6c728f80e",
+      "content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.skyline.glb": "sha256:805c845c95055d33595a71244116b1f1b9be693919628dcb0db0990585b0d54b",
+      "content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.district.glb": "sha256:03a8beb61e7ecc3d3df2dfceecc7950c396ddc9b8cda60ac001f7ecdf5d2e54b",
+      "content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.street.glb": "sha256:e30f3589e8b9b0649bbec533a266c301e8a103bc05ec62a82c9f08caf7269107",
+      "content/worldgen/assets/places/sr/sr2/ponte_umberto_i/model.closeup.glb": "sha256:d68dcb8232d4a40a33fd3074685d282cbee25328f834703d79a7316f43711c5a",
+      "content/worldgen/source/places/sr/sr2/ponte_umberto_i/scene.json": "sha256:afd635c4395cac58fe26c2822ca825f3d153dea261f0c7e51aa6c717f7713e61"
+    },
+    "previousInputHash": "sha256:6b7bee7fb26e32dda64b0d0ac14c06736298afe60dfe636dce68694ba39a2dbd"
+  },
+  "integrationStatusReconciliation": {
+    "kind": "integration-status-reconciliation-only",
+    "oldInputHash": "sha256:850308665d2a6ab91bf6afd2f7dba7d7c2d0cf194a25a3167f62e1d21cdda741",
+    "inputHash": "sha256:a4ad0378d067db6c820c46a7291b344fd178fc6fdcf36a5736b402a4ac7f2641",
+    "beforeReportHash": "sha256:6e828be08501d606f280f22bdfbfad2869b6f2ecf5ef9f1160151f8509cc676a",
+    "afterReportHash": "sha256:98914f77a58feb230d69d1122733bf499657e4f9edb2042e4559b54d1df69507",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 61,
+    "sourceHash": "sha256:2edb875f912c67edf4e949c0efa97d4808de3e404da4742538f82aa188655fcc",
+    "runtimeHash": "sha256:224486d0f54e7b3735e5f41a0482c4146ac0555c2bf751e9f97b66f6c728f80e",
+    "lodHashes": [
+      {
+        "name": "skyline",
+        "hash": "sha256:805c845c95055d33595a71244116b1f1b9be693919628dcb0db0990585b0d54b"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:03a8beb61e7ecc3d3df2dfceecc7950c396ddc9b8cda60ac001f7ecdf5d2e54b"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:e30f3589e8b9b0649bbec533a266c301e8a103bc05ec62a82c9f08caf7269107"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:d68dcb8232d4a40a33fd3074685d282cbee25328f834703d79a7316f43711c5a"
+      }
+    ],
+    "preservedFilesHash": "sha256:122926100d3f58952255af3fa7e80f3edf1c0cab57e0a67e881be307ad6e4eae",
+    "preservedFramesHash": "sha256:78f57d0cea7298f7b97efe959f32e6bf76ceb5a73fd4728335a372653fa116ec",
+    "method": "Corrected only the stale handoff status, current output statistics and pointers to already completed canonical reviews. All other source files, six GLBs and every bound inspected image were checked byte-for-byte unchanged. Existing reviews are retained with this explicit metadata-only provenance; no new visual review is claimed."
+  }
+}

@@ -1,0 +1,587 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.kokushkin_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:7e69d9b0c214852a7860cab462dc962fb21e6da72442345d4d5b6150318c9784",
+  "sourceHash": "sha256:91145d2036b89d1c802e896dce92d9c96f94cc009ff1d5f1f534efbe674e36ae",
+  "runtimeHash": "sha256:d6c73c9cf89b84310f6e1695d9f95502bb191cbccdcaab8e097e1a1a7fe15bd6",
+  "captureReportHash": "sha256:34c045609b6b07c698abcb4bc987a18ca1905cccdfa4026652ef9ce3e460907a",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-green-crossing.png",
+      "shots/panel-girder-and-granite-cheeks.png",
+      "shots/wreath-railing-detail.png",
+      "shots/road-and-raised-walks.png",
+      "shots/open-canal-underpass.png",
+      "shots/flared-granite-end.png"
+    ],
+    "captureReportHash": "sha256:34c045609b6b07c698abcb4bc987a18ca1905cccdfa4026652ef9ce3e460907a",
+    "notes": "Inspected63 current frames:11 portable,10 shared-material asset views,23 medium-fi contexts,15 unchanged-terrain native diagnostics and4 isolated existing-fit-control diagnostics. The full scoped exterior is present: shallow green panel girder with eight alternating circle/lozenge bays per side, brackets, wreath/rosette railings with small rings/swags, raised walks, granite abutments/course joints/flared cheeks and photographed2.6/diamond markers. Fixed abutment caps covering the road, corrected outward wing faces, removed internal wing caps and made opposite-side digits readable during this same authoring pass. Full turntables are small; dedicated railing, fascia, road and end-wall cameras establish detail readability. Native diagnostics do not grant geographic approval."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-green-crossing.png",
+      "shots/shared/panel-girder-and-granite-cheeks.png",
+      "shots/shared/wreath-railing-detail.png",
+      "shots/shared/road-and-raised-walks.png",
+      "shots/shared/open-canal-underpass.png",
+      "shots/shared/flared-granite-end.png"
+    ],
+    "captureReportHash": "sha256:77b11ce64707ae449c53bbf7e4c1216905d34d4c2ab507f21e4f86bbe4ec0734",
+    "notes": "Three existing shared256px stone_granite, concrete_plain and metal_painted graphs with metric UVs and linear vertex tints. Three near semantic groups, one far tinted group; no private/embedded images or copied pixels. Each shared graph loads once and all model geometry disposes. Foliage/alpha cards are not used in this bridge."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-green-crossing.png",
+      "medium-fi/panel-girder-and-granite-cheeks.png",
+      "medium-fi/wreath-railing-detail.png",
+      "medium-fi/road-and-raised-walks.png",
+      "medium-fi/open-canal-underpass.png",
+      "medium-fi/flared-granite-end.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:b5a15e55c12043f7519846132bab856ae6463beedb4a10c4f468c9b33d1cd019",
+    "notes": "Source master 40512 triangles / 4863924 bytes. Runtime triangles 532 / 3856 / 15784 / 32888, bytes 44900 / 308712 / 1210144 / 2440292, draws 1 / 3 / 3 / 3. Initial skyline plus district 353612 bytes. All actual triangle budgets and separate GPU streams pass; physical laptop/phone timings are unmeasured."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:e6e22795f93ef12d558bc9e9c246e2e0cbed3861ffa23ecc7ec48f2ff7fad14d",
+    "mapFrameHash": "sha256:2678d1d63ab24d52e1a6d70dd3d39efcfc5cbc958c3112e0de5ac3da5c260fe1",
+    "notes": "Relation5636139/Q2390563 establishes the flared footprint; named current PMTiles bridge35184750129947 establishes the traffic crossing axis. Anchor[30.313628911972046,59.92582028905424], heading2.0450069232296695: +X NNW/Stolyarny Lane, -X SSE/Kokushkin Lane, +Z ENE. Corrected the old0.381882rad rectangle long side, which follows the broad flared width rather than the road. Road extent19.004823m is separate from the catalog18.92m length. Clear span15m, width13.1m and shear0.08 remain photo/map reconstruction controls. Geographic fit rejected and canonical placement remains draft. Standard Mapzen z14 and z15 both contain a steep bank rise. At z15, native water is16.923998m; the source road is about20.50m while southeast landing ground rises to25–30m and beyond. The unchanged-terrain fixture buries part of the source and retains the original procedural bridge. Some diagnostic cameras are below the noisy terrain; they are not placement evidence. An isolated test of existing road replacement, connected approaches and capped terrain exposes the bridge but leaves cliffs/holes and missing approach-width coverage. It is also rejected. No distorted bridge, fabricated steep ramp or canonical terrain change was used to claim readiness."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "pending",
+    "notes": "Scoped complete exterior source/LOD/material review passed. Native bank/approach fit remains rejected; do not count the candidate complete."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ud/udt/kokushkin_bridge/models/source.glb\",\"hash\":\"sha256:91145d2036b89d1c802e896dce92d9c96f94cc009ff1d5f1f534efbe674e36ae\",\"bytes\":4863924,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/ud/udt/kokushkin_bridge/model.glb\",\"hash\":\"sha256:d6c73c9cf89b84310f6e1695d9f95502bb191cbccdcaab8e097e1a1a7fe15bd6\",\"bytes\":4863544,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ud/udt/kokushkin_bridge/model.skyline.glb\",\"hash\":\"sha256:05bb3b08d900ee0b4de21e454c7aceb63836b2f98a7aa3a1a6b11403ffde59bb\",\"bytes\":44900,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ud/udt/kokushkin_bridge/model.district.glb\",\"hash\":\"sha256:fe9556dbc5395c9a72fcd3dcae1b6a46715f07334b7141661242f819b783f4f0\",\"bytes\":308712,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ud/udt/kokushkin_bridge/model.street.glb\",\"hash\":\"sha256:f7060169479d7ddc92c466566c2a986fbdd9d02986074d74d1dc68746f8466bc\",\"bytes\":1210144,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ud/udt/kokushkin_bridge/model.closeup.glb\",\"hash\":\"sha256:6b28478355fc92bca54d2574551391fed2c73662b15cb73f70803491d23344ae\",\"bytes\":2440292,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "deck-walks-underpass-abutments-fascia-and-outward-wing-faces",
+        "passed": true,
+        "notes": "486 actual geometry rays across six GLBs verify road/walk coverage, open underpass, solid abutments, all fascia bays and both visible curved-wing faces. Shared metric UVs and separate runtime GPU streams pass."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks pass; sha256:f64adf2daef16bbd393854fd082f49bd5af49b24ef256511f7105018bb7737f3."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "pending",
+    "inputHash": "sha256:7e69d9b0c214852a7860cab462dc962fb21e6da72442345d4d5b6150318c9784",
+    "visualFit": {
+      "status": "failed",
+      "basis": "Geographic fit rejected and canonical placement remains draft. Standard Mapzen z14 and z15 both contain a steep bank rise. At z15, native water is16.923998m; the source road is about20.50m while southeast landing ground rises to25–30m and beyond. The unchanged-terrain fixture buries part of the source and retains the original procedural bridge. Some diagnostic cameras are below the noisy terrain; they are not placement evidence. An isolated test of existing road replacement, connected approaches and capped terrain exposes the bridge but leaves cliffs/holes and missing approach-width coverage. It is also rejected. No distorted bridge, fabricated steep ramp or canonical terrain change was used to claim readiness."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:7e69d9b0c214852a7860cab462dc962fb21e6da72442345d4d5b6150318c9784",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected63 current frames:11 portable,10 shared-material asset views,23 medium-fi contexts,15 unchanged-terrain native diagnostics and4 isolated existing-fit-control diagnostics. The full scoped exterior is present: shallow green panel girder with eight alternating circle/lozenge bays per side, brackets, wreath/rosette railings with small rings/swags, raised walks, granite abutments/course joints/flared cheeks and photographed2.6/diamond markers. Fixed abutment caps covering the road, corrected outward wing faces, removed internal wing caps and made opposite-side digits readable during this same authoring pass. Full turntables are small; dedicated railing, fascia, road and end-wall cameras establish detail readability. Native diagnostics do not grant geographic approval.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/scene-preview.png",
+          "hash": "sha256:1d43a6aad4382dbd9f5908c5e2fe098fd7ab8d23cd7a00a6ec0ed09f4c1b89de"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:4f8cf7fb6111d0e7a6898bdb1707eda7420c2bf4793ef9e1de03432bcd827993"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:f5089062dc016980cd2212af798f61edfdc765558bcb54000c34d3567df80a00"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:694fe6a6870df8a40a126cae96c6572de04958fb9beb397be75e3d0c2e5f099d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:1cc6561e31a430f17bc7ec740d23038b29710d1da285e0968ce053704c5e2267"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/whole-green-crossing.png",
+          "hash": "sha256:1d43a6aad4382dbd9f5908c5e2fe098fd7ab8d23cd7a00a6ec0ed09f4c1b89de"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/panel-girder-and-granite-cheeks.png",
+          "hash": "sha256:d4cb883d84a24c67809ce818e9b30dfb154f18fa67fde5a31c31774ec62145a9"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/wreath-railing-detail.png",
+          "hash": "sha256:8b13a17b3cb2f2ade144433f67d0a861b1a351c90b41c1a4a757a05335aa2db3"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/road-and-raised-walks.png",
+          "hash": "sha256:c4b0cd9f6109f57f70e4e04b0469cd857e9e6092d5ecaf4228d5763e1e68e106"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/open-canal-underpass.png",
+          "hash": "sha256:6eed0abb817daec1e07068b56b03963c72b3098ca6ec3b634454916e2c0de761"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/flared-granite-end.png",
+          "hash": "sha256:5e90e52b5dc458463d362ab0e36aa3694fea0f44c564cc8dd272f7e84e578ca7"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:1b63c6331cf3626e9888c87a8eb40e1f5f560671e1128c4c9909b4ce78bf5c28"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:b884e321689ba07803d7c14da41be9bbe4088366d2e85f941aab97676094737e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:e937c3aee8cbab49eacf7cb4c556380a3e8d46f42b6b173558650638c8419c27"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:8126889862cefc1285f5594954ef41efbdb8d2d9516e9156770d4762f78da3e0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/whole-green-crossing.png",
+          "hash": "sha256:fa89109687f1a34cf54b20b8b7a3b0dd9aaaa8277ee7ca108ee74606912e91d1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/panel-girder-and-granite-cheeks.png",
+          "hash": "sha256:f6af16ad14eb475c2c38c8f0707db4b686e81623f0253480358bef803c67e522"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/wreath-railing-detail.png",
+          "hash": "sha256:25faca8b8dfafb7a3377eba9199f14abb22e2934d3e845aec72c2bae01c1b821"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/road-and-raised-walks.png",
+          "hash": "sha256:06e8981396a86abf120be186208d07ba948c40adb6478f15e9234538ca4badc9"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/open-canal-underpass.png",
+          "hash": "sha256:69259a6551c15c3c2a708cb21b0bfb1437046da69771d76a801319a28a06f0f2"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/shots/shared/flared-granite-end.png",
+          "hash": "sha256:9b97f53b6f04f8a0f69c57738ed65cdf8c958ba45ce354bc16895951042879a0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:303a044f19df12a8f37ea2a763ba73bc9fa7a9d251a9093cb51478f0258e5f69"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:1ff58ad3c6b92bafb5b341f116f53df935aaefe96958b8b9a15a697e4292c0c7"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:033e0f4c48d38ec796e554674b497ff094032d8094b42de4b777cd09b8201e18"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:cc30fa57945a1446f0d1f97e9f3728a7a62bb5a9c49be1fd7843c8c2b9adc680"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:576c2c4b5514bc8c61c45fcf37af57d0ffc6c2ea66524851d093e459901d7dfb"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:a24d195e54a5675ddd71691e859671040dfb7b4da4afd57a45ae5c868afe694d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:3404c4afb34ac133eda1c303c253394b6044ffe704b820173e89803a234a9527"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:f3cb17c79ab02290a4c55fd43f66c2e6e859e2a8a73606f7904580ec5dd3699e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:fd2e354ca1936f02ed9f44b78cd850a809c04a5f391b4cfd9aa8eb58af92baa0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:80a38aeaea161b4f686f0ec3aac4a1a7d70953e3110a52ad739719a8a9b8709d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:846806ec9b3a74c27903a6d072602c5ae631c6ab31ee7fb0615d04e699f328ec"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:2a5c06f531846203a9fdafc9e9aa759e792da4ab38d3ac94dc9ca75382238aaf"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:4c8920b14a36f0bc097af2b623d966b845305f4bf767842b968b68c8d1e05322"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/whole-green-crossing.png",
+          "hash": "sha256:60a86ead4a06087b866bb0093f003956f005ad9b62484b1261aead33506226e9"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/panel-girder-and-granite-cheeks.png",
+          "hash": "sha256:1a519c3a6d73a11725726e221046f139d08197b2e07cfcd294c51487a698ef65"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/wreath-railing-detail.png",
+          "hash": "sha256:d5280d4d1bb6d7f85d94b8cc06987fe75ae938b7d18e7d027408e29e5fc103fd"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/road-and-raised-walks.png",
+          "hash": "sha256:49ca6ade5f97420d7c52fa597050fb577e2905589ffabda1889b656d3f592335"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/open-canal-underpass.png",
+          "hash": "sha256:55f0a060acf4362f02b6ea5786c8b65dc740df784856375af4d2c1eb8f1c63d7"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/flared-granite-end.png",
+          "hash": "sha256:d8bdf1c38b8e85141eab700310d2b67da4dab69ef3f0934913affa6beec5447d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:b18adde93ea4b5373316b71bfcac15adb8beaf1a8ff84ac05ab4ee71a300babd"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:a24d195e54a5675ddd71691e859671040dfb7b4da4afd57a45ae5c868afe694d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:c666c89d43b28884ff6a75f73cc4c2d93c81f5f3a68db7ba19407bf0d6b0495e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/kokushkin_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:8e3acf768bbd3782c89fbf4d75a4c2fc89ed7fa7d55fc99814052051bbea5a4a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-skyline-skyline-context.png",
+          "hash": "sha256:589a4cd2b854ae28061e90b6dd0549fef028af2c52ec8681a386870aed800710"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-district-district-context.png",
+          "hash": "sha256:e55e69af8549d765b056ec26b3b0715901123cb97b861012b0e7f253e1032564"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-street-whole-green-crossing.png",
+          "hash": "sha256:60b787ec40c9a06c5f452ca074509b32c96f237c5e8ec8519bc547a4135f9ea5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-street-panel-girder-and-granite-cheeks.png",
+          "hash": "sha256:c6a9b2861a3b63ae8009170fc62f7723f2dd925226bf5c488947e3c5cc9482b8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-street-wreath-railing-detail.png",
+          "hash": "sha256:9335c2a3221aa223a7abede426d358172518d2b50de35753277d1f1807221ecb"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-street-road-and-raised-walks.png",
+          "hash": "sha256:9948c2741b6402a8a17a5398cf3bbf3a80620eb3188d227e24cf1058f4a68140"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-closeup-whole-green-crossing.png",
+          "hash": "sha256:dfd44da1b82074e93ee6940eb1fdd1ee69081c50d1bd13b008499b9dff1b0c44"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-closeup-panel-girder-and-granite-cheeks.png",
+          "hash": "sha256:3a4efbac99508d68d41233657195707ae0f2fddb3969e4d6b13ba21f5c0f95a9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-closeup-wreath-railing-detail.png",
+          "hash": "sha256:241967e9d0096be8f90db000445456662654dfd853fba4b425305785d2f314bf"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-closeup-road-and-raised-walks.png",
+          "hash": "sha256:232b0ec6498bc6e51c89257b48d5fda7d0c5b80abb838a6b9bd0e44cf3751e44"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-closeup-open-canal-underpass.png",
+          "hash": "sha256:b511c35145b57da0478da6ad21804d888438fe5e41b951ab1727ae8096d10b01"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-closeup-flared-granite-end.png",
+          "hash": "sha256:6eff7d26dd9ad34a3a6af001bc680942d9b568640d96393fcbaabe29f1682dcb"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-closeup-bank-rise-diagnostic.png",
+          "hash": "sha256:b595e6b542cbd3dd882f7a0e5f560499e7963245f5fa01e37af759c00dc7bf6c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-closeup-district-context.png",
+          "hash": "sha256:387aa0a704cc73e3ebfe29cc7177d45405d7ba8afc8298cccb7b422380ed2289"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native/shots/reviewed-failure-whole-green-crossing.png",
+          "hash": "sha256:64a869d77587358c7e4ee6480fadaa1817c6dff0176072544076107329fbd1ae"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native-fit-prototype/shots/fit-controls-street-whole-green-crossing.png",
+          "hash": "sha256:1710c4f370066b9bd8f6d02cc3be282b275909cd34efc2c06d5a3cf0e4961d81"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native-fit-prototype/shots/fit-controls-street-panel-girder-and-granite-cheeks.png",
+          "hash": "sha256:ea79e263974367c584f0c8fe98598d4f8f01afeaba20d40a92c86b0d8f419506"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native-fit-prototype/shots/fit-controls-street-wreath-railing-detail.png",
+          "hash": "sha256:2fb058f988bab07f2aa6f250fba2f0e01e48e7fa3149e9db2c001953c2c11664"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kokushkin-review/native-fit-prototype/shots/fit-controls-street-road-and-raised-walks.png",
+          "hash": "sha256:b0be2e56c63df9eb70d2ac1f482f20d25e0bbae2514f6ccfa88513e1def68dac"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "The canonical fixture retains all102 resident buildings,369 road records, raw DEM, displayed ground and three water features through four loaded LODs and load failure. Shared graphs load once and unload releases all model geometry. The separate rejected prototype intentionally clips two covered road records (369to367) and changes only its local displayed cutout; original raw inputs, outside ground and water remain, and unload restores ground. Canonical source/placement are unchanged by that experiment."
+    },
+    "nativeReport": {
+      "path": ".artifacts/kokushkin-review/native/reviewed-report.json",
+      "hash": "sha256:38a8c9b1d8199d3d017e2f4b698fe868b9248be920ef7a41852d2f3a3f498f92"
+    },
+    "rejectedFitPrototype": {
+      "path": ".artifacts/kokushkin-review/native-fit-prototype/fit-controls-report.json",
+      "hash": "sha256:467e2e971356c49d55389cf4146b6bf92e51c541154250d97cf484b19b911354"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997802734375
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997814175364
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997802734375
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997814175364
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997802734375
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997814175364
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997802734375
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": 20.503997814175364
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "buildings": 102,
+        "roads": 369,
+        "waterAtOrigin": 16.92399787902832,
+        "channelSamples": [
+          {
+            "station": 0,
+            "terrain": 26.401830234363626,
+            "water": null,
+            "expectedDeck": 20.503997879028205,
+            "model": null
+          },
+          {
+            "station": 21.2,
+            "terrain": 19.240174217327997,
+            "water": 16.92399787902832,
+            "expectedDeck": 20.503997879028205,
+            "model": null
+          }
+        ],
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Original photo-led static exterior: mapped19.0048m road segment, flared relation5636139/Q2390563 footprint and approximate15m clear span/13.1m deck width. The map rectangle axis was corrected to the actual road. Metal panel count/details and granite sections are ordinary-photo reconstruction controls, not a measured engineering survey.",
+    "Three existing shared256px granite, plain-concrete and painted-metal graphs; all geometry authored, no photo pixels or downloaded mesh.",
+    "The 2016 green paint and geometric ironwork are the selected photo appearance; the2006 close ironwork photo has older pale paint. No present-day paint survey or engineering/navigation clearance claim.",
+    "Native placement stays disabled: both standard z14 and z15 terrain contain a large bank rise. The z15 fixture water is16.924m, southeast bank25–30m and northwest bank19–22m. Keep the bridge proportions; do not invent steep ramps or stretch its abutments to approve native fit.",
+    "The source is a full static bridge exterior reconstruction with approximate clear-span/skew, width, granite sections, ornamental leaf counts and navigation marker shapes. The fixed2.6 plaque reproduces a photograph, not an operational clearance promise. Neighboring historic buildings, temporary street signs and independent streetlamps remain outside the asset scope. Physical-device timings are unmeasured."
+  ]
+}

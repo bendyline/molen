@@ -1,0 +1,550 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.rosario_victoria_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:87c305449ce3d6bb432ddbaec13144c8efd6627c2206cbd1d79bfacea95264c4",
+  "sourceHash": "sha256:79349b96c4b81a4ac77ef9b6c00ea3ee238d74fa0f4491b5495e7e823e8a8421",
+  "runtimeHash": "sha256:e67b20a5772d84e60f25729332692f91728ff7568e8595ca9b172e6cecaea404",
+  "captureReportHash": "sha256:92dba773a36fadd948539f9c01a28b26625a49583af364a509cbe25832796f5f",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-downstream-crossing.png",
+      "shots/main-river-portals.png",
+      "shots/driver-through-h-pylons.png",
+      "shots/upper-hourglass-and-stays.png",
+      "shots/long-east-viaduct.png",
+      "shots/pier-cap-bearing-and-footing.png"
+    ],
+    "captureReportHash": "sha256:92dba773a36fadd948539f9c01a28b26625a49583af364a509cbe25832796f5f",
+    "notes": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. The full curved crossing, two H-pylon portals and tall heads, hourglass upper/lower crossbeams, outside stay fans, four-lane deck/barriers, long wall-pier viaduct, flared caps, bearings, sleeves and twin-head lamps are present. Near driver and main-span views carry detail review; default turntables and generic street/block/silhouette cameras frame only a thin distant line or a small viaduct section at this 4.1km scale. Corrected skewed/full-width landings, terrain-buried eastern paving, footing tops and cable contacts in this same pass."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-downstream-crossing.png",
+      "shots/shared/main-river-portals.png",
+      "shots/shared/driver-through-h-pylons.png",
+      "shots/shared/upper-hourglass-and-stays.png",
+      "shots/shared/long-east-viaduct.png",
+      "shots/shared/pier-cap-bearing-and-footing.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:42e9220e626e095ac1f9795455533468e3cfaaccd454211592df998f2ec60457",
+    "notes": "Two existing shared 256px graphs concrete_plain and metal_painted; three merged semantic material groups near and one mean-tinted skyline group. Metric UVs and linear vertex colors; no private/embedded images or copied photograph pixels. Each graph is read once in near native views. Runtime uses four separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-downstream-crossing.png",
+      "medium-fi/main-river-portals.png",
+      "medium-fi/driver-through-h-pylons.png",
+      "medium-fi/upper-hourglass-and-stays.png",
+      "medium-fi/long-east-viaduct.png",
+      "medium-fi/pier-cap-bearing-and-footing.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:d8504187ffa9a1eba70455bd569df328799e78c51aed5c87a83780e74474b563",
+    "notes": "Master 24760 triangles / 2973680 bytes. Runtime 760 / 2600 / 15832 / 23992 triangles; 65240 / 216564 / 1302556 / 2013496 bytes; 1 / 3 / 3 / 3 draws. Initial skyline plus district 281804 bytes. Strict medium-fi budgets pass; physical-device timings remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:0b170d086bd4275d8e78c3b0ada4169efe1fd53c8d633ab90a69f9965e58dc55",
+    "mapFrameHash": "sha256:36f8e334e9ab40c0a6c4416c9879d4f49d940b2c9d087952d80bddf0f4448039",
+    "notes": "Exact-QID OSM way368369459/Q2385650 preserves the complete curved crossing and approaches. Anchor [-60.678950356,-32.869225439], heading0.179910612468: +X east-northeast/Victoria, -X west-southwest/Rosario; +Z downstream/south-southeast, -Z upstream/north-northwest. The93.694m plan breadth describes curvature; nominal deck width is21.3m. Paired named RN174 PMTiles carriageway endpoints set landing centers. All24 mapped road-width samples per LOD have model support;18 retain native paving and meet within 0.0019998550415039062m. Six samples are inside replacement, not pavement joins. Main section/pylon stations and source grade are approximate. Eastern grade clears the highest sampled cross-road DEM; flared aprons cover the viewer’s wider default road ribbons. This is standard-viewer fit, not survey or legal-clearance certification."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped complete curved bridge and approaches with approximate native placement complete. Master 24760 triangles / 2973680 bytes. Runtime 760 / 2600 / 15832 / 23992 triangles; 65240 / 216564 / 1302556 / 2013496 bytes; 1 / 3 / 3 / 3 draws. Initial skyline plus district 281804 bytes. Strict medium-fi budgets pass; physical-device timings remain unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/models/source.glb\",\"hash\":\"sha256:79349b96c4b81a4ac77ef9b6c00ea3ee238d74fa0f4491b5495e7e823e8a8421\",\"bytes\":2973680,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/6d/6dh/rosario_victoria_bridge/model.glb\",\"hash\":\"sha256:e67b20a5772d84e60f25729332692f91728ff7568e8595ca9b172e6cecaea404\",\"bytes\":2973296,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/6d/6dh/rosario_victoria_bridge/model.skyline.glb\",\"hash\":\"sha256:ee9c569c7e7265636732b281d9b9f3319724b9989d5ebd778466f185ab39b2d2\",\"bytes\":65240,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/6d/6dh/rosario_victoria_bridge/model.district.glb\",\"hash\":\"sha256:a7024b4a4d7873ea2fd4eddcdd22b36d494892be5d5b10856c5b3d058ae3867c\",\"bytes\":216564,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/6d/6dh/rosario_victoria_bridge/model.street.glb\",\"hash\":\"sha256:0899b7291e88720ff21e757ad7b3da9264eb8aa632fa24acc4cb58c80cf6eaed\",\"bytes\":1302556,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/6d/6dh/rosario_victoria_bridge/model.closeup.glb\",\"hash\":\"sha256:7bce72c01666efa1b11f743ebbf4a5ace074c9ef3699a2821d39a59b8da9c1e6\",\"bytes\":2013496,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "whole-curved-deck-H-portals-stays-piers-and-wide-landings",
+        "passed": true,
+        "notes": "1740 actual front-face and explicit source-contact probes across six GLBs: full curved road, flat rendered-width landings, two heads per H-portal, open portals, upper/lower braces, two outside stay planes, anchored cable ends and retained repeating wall piers."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks pass; sha256:88bd6f650b92d3b4c13ef9f7282f6b1899e96414623aa8942938910fb54e90c4."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:87c305449ce3d6bb432ddbaec13144c8efd6627c2206cbd1d79bfacea95264c4",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Exact-QID OSM way368369459/Q2385650 preserves the complete curved crossing and approaches. Anchor [-60.678950356,-32.869225439], heading0.179910612468: +X east-northeast/Victoria, -X west-southwest/Rosario; +Z downstream/south-southeast, -Z upstream/north-northwest. The93.694m plan breadth describes curvature; nominal deck width is21.3m. Paired named RN174 PMTiles carriageway endpoints set landing centers. All24 mapped road-width samples per LOD have model support;18 retain native paving and meet within 0.0019998550415039062m. Six samples are inside replacement, not pavement joins. Main section/pylon stations and source grade are approximate. Eastern grade clears the highest sampled cross-road DEM; flared aprons cover the viewer’s wider default road ribbons. This is standard-viewer fit, not survey or legal-clearance certification."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:87c305449ce3d6bb432ddbaec13144c8efd6627c2206cbd1d79bfacea95264c4",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. The full curved crossing, two H-pylon portals and tall heads, hourglass upper/lower crossbeams, outside stay fans, four-lane deck/barriers, long wall-pier viaduct, flared caps, bearings, sleeves and twin-head lamps are present. Near driver and main-span views carry detail review; default turntables and generic street/block/silhouette cameras frame only a thin distant line or a small viaduct section at this 4.1km scale. Corrected skewed/full-width landings, terrain-buried eastern paving, footing tops and cable contacts in this same pass.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/scene-preview.png",
+          "hash": "sha256:5b10763a4bd8d20a9e2d574c4e9f583ad4adb7fdbb2db9e82709fe12c8738f7f"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:f8a31e3eb894a1b09be14efed365b0eedb84bb489df7041839ca070cb0632fc6"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:e297fe00faf0fb31b651c03816a1daab42c4a04cf88ec4bdd5919638e7e194e5"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:31c0a164ef22fad7001eaa9c57b8fd4e99f342e0f31b41cf572338d3ebc70e13"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:2e33fc07b5de325605d6d71453d2becbdd0535a902671edcf3a78bed547549c3"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/whole-downstream-crossing.png",
+          "hash": "sha256:5b10763a4bd8d20a9e2d574c4e9f583ad4adb7fdbb2db9e82709fe12c8738f7f"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/main-river-portals.png",
+          "hash": "sha256:948e3123cd56c228a01105df094ef62548900c8fb20e8af74f5e3dd59a362229"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/driver-through-h-pylons.png",
+          "hash": "sha256:a43757aa6a52a5a1a45c066f67e8003b3e0bff529456988a600712b6b2d2fd61"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/upper-hourglass-and-stays.png",
+          "hash": "sha256:8d0dfb1aa2ccd1aeb2133d3d3395a1af90c5f14153b588c253abf6c554ea3cb9"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/long-east-viaduct.png",
+          "hash": "sha256:fd42a0f26dee3a456cc4edc05a027b6bd5ef4fecb0e49af511a8a0bd44e22f62"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/pier-cap-bearing-and-footing.png",
+          "hash": "sha256:c32087637a482aa68a00ca47bc3e7719058a4199d02bc99bf04c3bfc17804c0f"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:e7f17c5332e8465f80f6b85de3f15a475f8288647e46af182f5b920ef2a164a0"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:fc80bbfb18560fb331dddc18a712e386f45db893cc5290830194424570885b14"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:1ae1b13839f9ef95b80ddc6bb362ee6a9cc7f1811e83ae338085c4980aea5429"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:0855155a3875f3e38f3e8d4ddfccbf2618558f9e8161befdf832631777fe0931"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/whole-downstream-crossing.png",
+          "hash": "sha256:e9e451f27b63f19397ddb255eae8f912e39fce51a6a130a549feb090f8031a13"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/main-river-portals.png",
+          "hash": "sha256:c7a9037421c2530b9fe19fa9a5943bbfe74a6f114951ad55a837bd1c6a46ee9b"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/driver-through-h-pylons.png",
+          "hash": "sha256:e95b49dc46bd56d5d45205b574281363871dba60342ec1953d6de1f2617b0427"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/upper-hourglass-and-stays.png",
+          "hash": "sha256:9048d39948a0c9341f6110ba143feedf30bdfd6f879ab0df41f4fcf7d4fca52d"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/long-east-viaduct.png",
+          "hash": "sha256:9f5a2eede66d933732b53e37858b1846a432a391e265d196b908cd5e9a4c1cd0"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/pier-cap-bearing-and-footing.png",
+          "hash": "sha256:b40dbe681ebdb24d60bd3cebe8f96c0ad75d05df0e62ce47cbf5d34e7d53bc9d"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/shots/shared/placement.png",
+          "hash": "sha256:9917ab1c77ec85227a86e48592470df5f9951be6e995fcda726fab6860cb905c"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:f5ef1e0e2733c3ea1e9d28808b3f806e157f157de5d96870bd25b4ae5dabf398"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:bea33c646c8bc0d8d5fc3575fb6d33d4fbf9002fceac7bf5ca42a9ca66cb5b9c"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:67d6861ae975775e274d1a9be4870431473a37006f9e68aa9e0fcf6fa852bbf0"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:d4c7fe879a96bb422fe235ea533650bd80a0ac34ef7d57319129ad0aba72f294"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:6785b59d8b17738ce24808497ffb17693567b45f3a1ad9349c7fa8515d6e3f2b"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:9d8565eab2ad28f1f806a892a0c8f171ef1473723e7ff1d82e959e035fdc74b5"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:b73d3f11923e4dc2c00624575ffe50a200b61e3fc49638f7f6170597545eba63"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:4eaca85154b0626e4cf39ddda42cb6c0dcdeecfa4c6f41828bab7b1a5cac468d"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:77f8e96102e800c78097433f6f4c2b2f97398403dcb369e37d6e389c22f507e9"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:7d7bd6f6e733e7ba8646843c5697ac0bb9129d7a209d8ce4c79bf16c34b0f894"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:da269fe06cfe6bf30aa6868e33d4b640529455eea134b6acd9edcf2a25ec2aa5"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:43afa4f7b06384c06407ddc5897367b9fc9dd83a897416844396e052d8cc88b2"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:e1cd0e95d7a9d86b5f47ad703eae1321eca413a7f0b8b657736cf922eaa78ae0"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/whole-downstream-crossing.png",
+          "hash": "sha256:d982ff885c04103d75e9a9aed8e51d348efd74238ac328b4024d5165d2ffcded"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/main-river-portals.png",
+          "hash": "sha256:3c96a2a7ea379167cf944877c08faa222f71252d97777dfba597f8af6d65f8a3"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/driver-through-h-pylons.png",
+          "hash": "sha256:893dffbce2814aabf6b15dc5fee07f29db099b12e4339990ade5df2f15001606"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/upper-hourglass-and-stays.png",
+          "hash": "sha256:78e63b2461d5b1374db094ac418bafd4fc683a5d3278aba608a417b1339931f7"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/long-east-viaduct.png",
+          "hash": "sha256:732a133bd98dfc865c9c57afdfd11d26cd0922ba16229f978c0215ad92c50d2d"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/pier-cap-bearing-and-footing.png",
+          "hash": "sha256:e581fab5dc5f0c40051259ae12afbe5c07c027eb40f5e460a68ea142601e0688"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:2420343878412d202138824b67090fab7717e4a5632880e081e0dc361e98f244"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:9d8565eab2ad28f1f806a892a0c8f171ef1473723e7ff1d82e959e035fdc74b5"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:882c679dbfbd24f64b0608dea7cb9c87abbdf877b3f14151336b19ab1dec8b94"
+        },
+        {
+          "path": "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:15495852b54c03a70879160c63a47b1d3654421a617bb428c14d0837b1a27d89"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:b6ab5920ee89c9a3ec3aa9b80d97d568aadc14a7571c2f173602cc5a84747d0c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:8cd519a0b814d61a7c5511864180971f512d410c14b379dcc068f55765df0be1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-street-whole-downstream-crossing.png",
+          "hash": "sha256:3e87ce55b4622911f0f5c3e7669a8cbcdd7759244aa4f88be82ec4f4896e1009"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-street-main-river-portals.png",
+          "hash": "sha256:be5cbbae18de3c7f99dc21ecfe501fe43a3373b5e254d1ffc349905daa47f7a5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-street-driver-through-H-pylons.png",
+          "hash": "sha256:d6f17eafa7374ddb8ad0991baa23fb32fa3e3ffbcd68cee5ec975cf00f8a2159"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-street-upper-hourglass-and-stays.png",
+          "hash": "sha256:04d01cd42bac2e38bb51d2519c3380454c85f3f88312ce5c3d75a582b9e6c3b2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-whole-downstream-crossing.png",
+          "hash": "sha256:f875d4e5920e15ac0c2fb89852eec14752d8c1660f845447607d54b589839b35"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-main-river-portals.png",
+          "hash": "sha256:fa3e1b9550d84dd5df6710394ffecd7f851732c3c300a5c14e4d6634056b7eb5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-driver-through-H-pylons.png",
+          "hash": "sha256:615d1165fc27faabb3d11fa1554955ea94543c88389ff49d4174091a73d159c3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-upper-hourglass-and-stays.png",
+          "hash": "sha256:9cef27e994cc436e806c3a0e56931dcb778545712ffaf05c7632329a8281fd81"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-long-east-viaduct.png",
+          "hash": "sha256:d99e4c2aa6ad6f5122bf0415047979dbaa376533e84f46a68f58da738ae1a9a1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-pier-cap-bearing-and-footing.png",
+          "hash": "sha256:9993ed6d550d93465e0e6da9bc95dc3614cdee0ce2029ec4f2e4c2b229b0c329"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-rosario-west-landing.png",
+          "hash": "sha256:220dc605eb59e6b255437b7026483b4911559b01bdf09fb4e85e8ebfc4b1d675"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-victoria-east-landing.png",
+          "hash": "sha256:43d054bebdc7110569ebf7cebb3b5a5a07ede90b34cb8ee34fa625a33d732680"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:1e47df6703d0e5e2264ebde5b31c3db8c116cc589a26c4b7999ebd125f92cb5e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:a1d95cdbb7183f735ea84126afa28ae89d479e07d12f8e222888fc68c869fc95"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rosario-review/native/shots/final-failure-whole-downstream-crossing.png",
+          "hash": "sha256:6d75467a1b2288edafad2654da443e6008fbe810910f8fde7285750dc9c692e6"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 743 fixture buildings and458 independent transport records remain. Clipping/replacement removes11 fully replaced bridge fragments from505 input road records, leaving494 on successful load; failed loading retains all505. Raw road inputs, DEM, displayed ground and native river geometry remain unchanged. Only connected landing paving is deliberately graded. Load failure restores the map crossing; unload releases all model/support geometry. No ground/building cutout is used."
+    },
+    "nativeReport": {
+      "path": ".artifacts/rosario-review/native/final-report.json",
+      "hash": "sha256:4e1d826ce7934978e58d52b7fb73441b204ebb221fc9ab762be46a3125200ac9",
+      "frozenViewerInputsHash": "sha256:fa864779e52965cbe3cb48a3fabb22361510306e6cf9c9413449b921c685026d"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 24,
+        "pavedJoinSamples": 18,
+        "interiorReplacementSamples": 6,
+        "maximumJoinErrorMeters": 0.0019998550415039062,
+        "sourceBuildings": 743,
+        "remainingBuildings": 743,
+        "sourceRoads": 505,
+        "outputRoadRecords": 494,
+        "independentRoadRecords": 458,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 24,
+        "pavedJoinSamples": 18,
+        "interiorReplacementSamples": 6,
+        "maximumJoinErrorMeters": 0.0019998550415039062,
+        "sourceBuildings": 743,
+        "remainingBuildings": 743,
+        "sourceRoads": 505,
+        "outputRoadRecords": 494,
+        "independentRoadRecords": 458,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 24,
+        "pavedJoinSamples": 18,
+        "interiorReplacementSamples": 6,
+        "maximumJoinErrorMeters": 0.0019998550415039062,
+        "sourceBuildings": 743,
+        "remainingBuildings": 743,
+        "sourceRoads": 505,
+        "outputRoadRecords": 494,
+        "independentRoadRecords": 458,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 24,
+        "pavedJoinSamples": 18,
+        "interiorReplacementSamples": 6,
+        "maximumJoinErrorMeters": 0.0019998550415039062,
+        "sourceBuildings": 743,
+        "remainingBuildings": 743,
+        "sourceRoads": 505,
+        "outputRoadRecords": 494,
+        "independentRoadRecords": 458,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "pavedJoinSamples": 0,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "sourceBuildings": 743,
+        "remainingBuildings": 743,
+        "sourceRoads": 505,
+        "outputRoadRecords": 505,
+        "independentRoadRecords": 458,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 0,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Complete mapped4.1km curved bridge/approach exterior at nominal21.3m width. Separate floodplain bridges/causeways along the much longer Rosario–Victoria connection are outside this footprint and are not claimed modeled. Map tags disagree on bridge form; inspected photos establish cable-stayed H-portals, not suspension or cantilever form.",
+    "Main section610m,130/350/130m span rhythm, pylon stations-788/-438m,75m above deck, wall-pier spacing near50m, footing forms, cable counts and upper hourglass brace are photo-led geometric approximations. No exact pylon points or surveyed sections are supplied by the viewer map. The western bridge-way transition and bank drop place the main section near the Rosario bank, not centered on the whole4.1km footprint.",
+    "Source origin2m and deck profiles clear the maximum sampled standard Mapzen terrain across each paired PMTiles landing, rising to roughly62m above sea level at the main span. Short flat end plateaus accommodate skewed map cuts. Main-span clearance is approximate, not surveyed/legal clearance. Water is the unchanged standard viewer result; flat per-polygon water stages and bank slopes can be coarse.",
+    "Paired motorways carry a generalized default16m ribbon per direction in the viewer, wider than the nominal21.3m bridge body. Small7m-long flared landing aprons reach27.4m across to overlap incoming paving; they are renderer-fit adaptations. Independent roads, buildings, terrain and river are retained; connected landing paving is deliberately graded.",
+    "Two existing shared256px graphs concrete_plain and metal_painted, three merged semantic groups nearby, metric UVs and linear tints; no private or embedded images. Skyline reduces repeated piers and cables, district simplifies caps, close levels retain full viaduct supports, cable sleeves, barriers, four lanes and twin-head lamps. Physical laptop/phone timings remain unmeasured.",
+    "Standard native water stages in the main channel and eastern branches differ (about4.62m and9.00m); both remain untouched. Coarse bank slopes and automatic approach-retaining faces remain visible. The western pylon footing partly embeds in the coarse bank; exact bed/foundation levels are not claimed.",
+    "Far repeated supports and cable counts are deliberately reduced. Default scale-based turntables/context cameras are not a useful close inspection of this exceptionally long asset; dedicated main-span, driver, stay and native landing cameras provide that inspection. Separate remote floodplain bridges remain map-generated context."
+  ]
+}

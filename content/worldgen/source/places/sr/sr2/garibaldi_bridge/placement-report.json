@@ -1,0 +1,1681 @@
+{
+  "format": "molen/structure-placement-report@1",
+  "assetId": "molen.worldgen.structure.garibaldi_bridge",
+  "inputHash": "sha256:6e7a5147506a5d996561e0863ce865c49b081cb35fc504f0ecb4b4ac641e132b",
+  "placementHash": "sha256:0ee7080bce218778a508e8f5a91110047d6942372cafafc982f357e33a0fdd36",
+  "entry": {
+    "id": "garibaldi.bridge",
+    "title": "Ponte Garibaldi / Garibaldi Bridge",
+    "asset": "molen.worldgen.structure.garibaldi_bridge",
+    "anchor": [
+      12.474515587091446,
+      41.89107316243978
+    ],
+    "heading": 1.5001337686119638,
+    "datum": "sea-level",
+    "elevation": 7,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q2100416",
+      "maxDistance": 80
+    },
+    "replaceFootprint": false,
+    "minLevel": 13,
+    "status": "preview",
+    "source": "https://commons.wikimedia.org/wiki/File:Ponte_Garibaldi_in_Rome.jpg",
+    "note": "Photo-led two-vault exterior on named PMTiles crossing. Two carriageways, outer sidewalks and central tram lines retain their map identity. Source sections, grade and river stage are approximate; no exact-QID footprint claimed.",
+    "replaceRoads": {
+      "length": 123.916693374842,
+      "width": 23.5,
+      "outline": [
+        [
+          -62.0178015402837,
+          -11.75
+        ],
+        [
+          61.89889183455829,
+          -11.75
+        ],
+        [
+          61.89889183455829,
+          11.75
+        ],
+        [
+          -62.0178015402837,
+          11.75
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -62.0178015402837,
+          0
+        ],
+        [
+          61.89889183455829,
+          0
+        ]
+      ],
+      "deckHeights": [
+        14.613999999999999,
+        14.814
+      ],
+      "deckProfile": [
+        [
+          -62.0178015402837,
+          14.613999999999999,
+          0
+        ],
+        [
+          0,
+          14.963999999999999,
+          0
+        ],
+        [
+          61.89889183455829,
+          14.814,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "bounds": [
+      12.474253854044282,
+      41.89046185153488,
+      12.474777218827164,
+      41.891683407826335
+    ]
+  },
+  "reviewedOn": "2026-10-27",
+  "basis": "Named standard PMTiles bridge carriageways 35184397841630, sidewalks 35184396656430 and tram tracks 35185557817320 establish the crossing alongside original Q2100416 and two ordinary pictures; no exact-QID footprint claimed. Anchor [12.474515587091446,41.89107316243978], heading 1.5001337686119638. +X north-northeast toward Regola / Lungotevere dei Vallati and De’ Cenci, -X south-southwest toward Trastevere / Piazza Belli; +Z east-southeast/downstream toward Tiber Island, -Z west-northwest/upstream toward Ponte Sisto. Mapped carriageway extent 123.916693m, unequal endpoints and paired transport lines are retained. The inferred 23.5m outer width covers both sidewalk lines. All 48 actual mapped width samples have model support and retained native paving at every LOD: 12 road samples differ by at most 0.022683182868149743m, 24 sidewalk samples by 0.011999130248796064m, and 12 tram-bed samples by 0.06242930874486774m. The tram difference is explicitly larger; no uniform sub-3cm fit is claimed. Source datum 7m and deck 21.6–21.95m are approximate standard-terrain visualization controls, not surveyed thresholds.",
+  "nativeVerification": {
+    "report": ".artifacts/garibaldi-review/native/final-report.json",
+    "hash": "sha256:f0a470f96574a18343d66d3e593f005dd2b30ed6f220bcad6c0932aa97b1b7e4",
+    "scenarios": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 48,
+        "byKind": [
+          {
+            "kind": "street",
+            "samples": 12,
+            "maximumJoinErrorMeters": 0.022683182868149743
+          },
+          {
+            "kind": "path",
+            "samples": 24,
+            "maximumJoinErrorMeters": 0.011999130248796064
+          },
+          {
+            "kind": "rail",
+            "samples": 12,
+            "maximumJoinErrorMeters": 0.06242930874486774
+          }
+        ],
+        "sourceBuildings": 2285,
+        "remainingBuildings": 2285,
+        "sourceRoads": 1936,
+        "outputRoadRecords": 1931,
+        "independentRoadRecords": 1828,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "lowerCycleways": [
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185345432654,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184915714980,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35184500659403,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184500829042,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483119,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184506734270,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184582765137,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314830,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184879178950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184576272087,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184423522680,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674962,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184493637950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185516747342,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185937077518,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "neighboringCrossings": [
+          {
+            "id": 35184396698369,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184377040138,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396698371,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184753311983,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "sharedGraphReads": {},
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 48,
+        "byKind": [
+          {
+            "kind": "street",
+            "samples": 12,
+            "maximumJoinErrorMeters": 0.022683182868149743
+          },
+          {
+            "kind": "path",
+            "samples": 24,
+            "maximumJoinErrorMeters": 0.011999130248796064
+          },
+          {
+            "kind": "rail",
+            "samples": 12,
+            "maximumJoinErrorMeters": 0.06242930874486774
+          }
+        ],
+        "sourceBuildings": 2285,
+        "remainingBuildings": 2285,
+        "sourceRoads": 1936,
+        "outputRoadRecords": 1931,
+        "independentRoadRecords": 1828,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "lowerCycleways": [
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185345432654,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184915714980,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35184500659403,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184500829042,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483119,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184506734270,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184582765137,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314830,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184879178950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184576272087,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184423522680,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674962,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184493637950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185516747342,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185937077518,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "neighboringCrossings": [
+          {
+            "id": 35184396698369,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184377040138,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396698371,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184753311983,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 48,
+        "byKind": [
+          {
+            "kind": "street",
+            "samples": 12,
+            "maximumJoinErrorMeters": 0.022683182868149743
+          },
+          {
+            "kind": "path",
+            "samples": 24,
+            "maximumJoinErrorMeters": 0.011999130248796064
+          },
+          {
+            "kind": "rail",
+            "samples": 12,
+            "maximumJoinErrorMeters": 0.06242930874486774
+          }
+        ],
+        "sourceBuildings": 2285,
+        "remainingBuildings": 2285,
+        "sourceRoads": 1936,
+        "outputRoadRecords": 1931,
+        "independentRoadRecords": 1828,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "lowerCycleways": [
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185345432654,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184915714980,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35184500659403,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184500829042,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483119,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184506734270,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184582765137,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314830,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184879178950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184576272087,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184423522680,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674962,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184493637950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185516747342,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185937077518,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "neighboringCrossings": [
+          {
+            "id": 35184396698369,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184377040138,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396698371,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184753311983,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 48,
+        "byKind": [
+          {
+            "kind": "street",
+            "samples": 12,
+            "maximumJoinErrorMeters": 0.022683182868149743
+          },
+          {
+            "kind": "path",
+            "samples": 24,
+            "maximumJoinErrorMeters": 0.011999130248796064
+          },
+          {
+            "kind": "rail",
+            "samples": 12,
+            "maximumJoinErrorMeters": 0.06242930874486774
+          }
+        ],
+        "sourceBuildings": 2285,
+        "remainingBuildings": 2285,
+        "sourceRoads": 1936,
+        "outputRoadRecords": 1931,
+        "independentRoadRecords": 1828,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "lowerCycleways": [
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185345432654,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184915714980,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35184500659403,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184500829042,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483119,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184506734270,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184582765137,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314830,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184879178950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184576272087,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184423522680,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674962,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184493637950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185516747342,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185937077518,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "neighboringCrossings": [
+          {
+            "id": 35184396698369,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184377040138,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396698371,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184753311983,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "byKind": [],
+        "sourceBuildings": 2285,
+        "remainingBuildings": 2285,
+        "sourceRoads": 1936,
+        "outputRoadRecords": 1936,
+        "independentRoadRecords": 1828,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "lowerCycleways": [
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184456292657,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35185345432654,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184424671030,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184396035270,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          },
+          {
+            "id": 35184915714980,
+            "inputRetained": true,
+            "authoredConnections": 0,
+            "maximumGradeRaise": 0
+          }
+        ],
+        "underpasses": [
+          {
+            "id": 35184500659403,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184500829042,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483119,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184503009590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184506734270,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786483110,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184582765137,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314830,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184502896370,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184879178950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184576272087,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184423522680,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184467602500,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184495643140,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674953,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184499674962,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185150959010,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184493637950,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185516747342,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184496166300,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184497314850,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185937077518,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "neighboringCrossings": [
+          {
+            "id": 35184396698369,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396783870,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184377040138,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184396698371,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184753311983,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "sharedGraphReads": {},
+        "approachSupports": 0,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Scoped present-day bridge exterior: two shallow concrete vaults, three rounded masonry pier/abutment stations, raised walks, open metal rails, six paired lamps and central tram tracks. The older iron bridge and separate Ponte Cestio / Tiber Island structures are not duplicated.",
+    "Mapped carriageway extent 123.916693m and signed axis are retained. Width 23.5m follows the two mapped sidewalk lines and inferred outer paving edges. Opening widths 50.7/50.6m, arch rise, sections, rustication, lamp schedule and exact railing pattern are photo-led visual approximations, not surveyed engineering dimensions.",
+    "Source datum 7m and deck 21.6–21.95m use approximate standard PMTiles/Mapzen visualization grades. The DEM smooths the riverbanks and road cuts; exact quay walls, stairs, abutment footings and river stage remain outside the asset. Raw native ground/water are retained unless a bounded documented cut proves necessary.",
+    "Tram rails and two near-only contact wires retain the mapped central transit identity; exact track curvature, gauge, overhead fittings, operating status and signaling are not reconstructed. Fine lettering, plaques and graffiti are omitted. Distant LODs simplify rails, rustication and lamps.",
+    "Existing shared 256px concrete_plain, stone_limestone and metal_painted graphs provide metric surfaces, with separate paving/concrete semantic groups and linear vertex tints. No private or embedded textures. Physical laptop and phone measurements remain pending.",
+    "The native coarse banks, island tip and automatic retaining faces are preserved context, not an exact reconstruction of Rome’s quays, stairs or bank heights. The north abutment is partly embedded in the coarse bank. The current native water surface at sampled river points is approximately 10.12565m; this is renderer output, not an observed river stage.",
+    "Tram-bed paving can differ from the landing cap by up to 0.06243m at the inspected width samples. The source preserves the transit corridor but does not claim surveyed track fit or navigable transit simulation."
+  ],
+  "metadataReconciliation": {
+    "kind": "authoring-reference-correction-only",
+    "oldInputHash": "sha256:d309cfd7d61288bb835a454b1916664707c062c774138abf21374b5f1bfc866b",
+    "inputHash": "sha256:6e7a5147506a5d996561e0863ce865c49b081cb35fc504f0ecb4b4ac641e132b",
+    "beforeGeneratorHash": "sha256:459f0edd8f57403c71f61b8dc6d0f4b1e29efbdc13e3091ddde4525a9b812bbc",
+    "afterGeneratorHash": "sha256:61a2a557f2d368c16b4882301d642aea7795081a87d97cfcffc06d03c1702c81",
+    "sourceHash": "sha256:413edc495192934686ee322fab21ae6fdafae1037589aaa5fe95f09e59857d15",
+    "runtimeHash": "sha256:e37caae90e51a5bbebcdbfa09023ce4066bd88cff1aa41e634573fc69712528e",
+    "lodHashes": [
+      {
+        "name": "skyline",
+        "hash": "sha256:39d9b0f67ab6b7ba4716f7e4e383ea8a034b42f460e9b7dee5baa2cb24394e6a"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:2c159d0e744933fd191ac4a88468d7457fb23683e9b055935bffa7e5c96fbf16"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:7f1bd900c72333674443ecf25881de8cd7e2903248d1779442d519e058a684e7"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:1c73eaa4f1ead9deeb55763a5d432745c7e20b3b5744c29a469be99174265ceb"
+      }
+    ],
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 62,
+    "method": "Only the emitted source-build manifest path and README command changed to use brief.generator. Exact expected generator text, unchanged geometry recipe/spec/scene/brief/map/placement, corrected manifest delta, six unchanged GLBs and all62 inspected image bytes were checked. No rendered behavior changed."
+  }
+}

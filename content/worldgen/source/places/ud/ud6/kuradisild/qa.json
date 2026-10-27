@@ -1,0 +1,855 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.kuradisild",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:51ef46752f4ed4a6b6613483d209f0f14b98271fcdb4753fa8f3320525e94221",
+  "sourceHash": "sha256:7e00a554fb21dcfbcc66a906177a4799e7282dc4dbfd39901304774d4fc86d43",
+  "runtimeHash": "sha256:2ffffe809d948fd1252683dc2fb4abf25ef93c961fee2a7842a488ce53dc73d5",
+  "captureReportHash": "sha256:464954c734010c9b7d9f4d7674ae75e547c4fe936dfae30602e4a800391417ce",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-portrait-side.png",
+      "shots/whole-date-side.png",
+      "shots/walk-and-paneled-parapets.png",
+      "shots/open-arch-and-spandrels.png",
+      "shots/portrait-and-arch-caption.png",
+      "shots/date-wreath-and-panels.png"
+    ],
+    "captureReportHash": "sha256:464954c734010c9b7d9f4d7674ae75e547c4fe936dfae30602e4a800391417ce",
+    "notes": "Inspected 63 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 18 native. One open road span has paired exposed concrete arch ribs, slender open-spandrel posts, complete deck/caps, solid paneled parapets, raised oval portrait halo, outward-readable ALEXANDRO PRIMO caption, opposite 1613/1913 date wreath and two small under-deck lights. Corrected post-to-faceted-arch contacts at every LOD, attached lettering/leaves to their backing, and replaced the initial timber-like boardformed graph with existing plain concrete in this same authoring pass. Both Tartu bridges retain distinct geometry and locations in the paired native fixture."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-portrait-side.png",
+      "shots/shared/whole-date-side.png",
+      "shots/shared/walk-and-paneled-parapets.png",
+      "shots/shared/open-arch-and-spandrels.png",
+      "shots/shared/portrait-and-arch-caption.png",
+      "shots/shared/date-wreath-and-panels.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:483a038f7f14abc0445628f3095cb6368371159fdfb1b72c104a5bb3b2005220",
+    "notes": "Two existing shared 256px graphs: concrete_plain and metal_bronze_cast. Three semantic material groups near and one mean-tinted group at skyline. Metric UVs and linear vertex tints; no embedded/private images or copied photograph pixels. Six unique graphs across the two bridges are each fetched once in near native views; only the companion’s four graphs load for skyline or target failure. Runtime files use four separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-portrait-side.png",
+      "medium-fi/whole-date-side.png",
+      "medium-fi/walk-and-paneled-parapets.png",
+      "medium-fi/open-arch-and-spandrels.png",
+      "medium-fi/portrait-and-arch-caption.png",
+      "medium-fi/date-wreath-and-panels.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:a8cbc4a5fc82b61b4bc88f1d2adcf0355f8007e2fdee36d7be4c0a21e97b44ba",
+    "notes": "Master: 7784 triangles / 936560 bytes. Runtime levels: 612 / 3652 / 5304 / 6204 triangles, 54204 / 302968 / 448076 / 518856 bytes and 1 / 3 / 3 / 3 draws. Initial skyline plus district 357172 bytes. Strict medium-fi budgets pass; physical-device timings remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:9ebd2877add7710770483bee91ec8fd0168722380a26275cda5fe00df0c7d2ee",
+    "mapFrameHash": "sha256:5828e3ec1fd66c0cd622749d85bdc85e5bd681abf88c7961e29c5473d28ac9c6",
+    "notes": "Named PMTiles bridge footway 35184425968185 and Devil’s Bridge POI 17592516087228 establish original Kuradisild/Q12367783; no exact-QID footprint claimed. Anchor [26.715899572445203,58.37894049389129], heading -0.4926250291239677, is refined to the separate Lossi road crossing. +X east-southeast, -X west-northwest; +Z south-southwest/uphill, -Z north-northeast/downhill. Unequal endpoints [-12.487462442700435,0] / [11.676002584774675,0] retain the 24.163465m transport length. Width 4m, source datum 71.1m/floor 76.85m and sections are photo/standard-terrain approximations. All 18 mapped width samples have model support; 12 retain native paving and join within 0.003997802734602374m. Six samples are inside the replacement and are not called pavement joins. Fifteen actual upward raycasts at three road stations and five width offsets retain at least 3.6277746128079826m below the rendered geometry across four LODs. These are renderer-fit results, not surveyed/legal clearance."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped concrete arch bridge exterior and approximate standard-terrain placement complete. Master: 7784 triangles / 936560 bytes. Runtime levels: 612 / 3652 / 5304 / 6204 triangles, 54204 / 302968 / 448076 / 518856 bytes and 1 / 3 / 3 / 3 draws. Initial skyline plus district 357172 bytes. Strict medium-fi budgets pass; physical-device timings remain unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ud/ud6/kuradisild/models/source.glb\",\"hash\":\"sha256:7e00a554fb21dcfbcc66a906177a4799e7282dc4dbfd39901304774d4fc86d43\",\"bytes\":936560,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/ud/ud6/kuradisild/model.glb\",\"hash\":\"sha256:2ffffe809d948fd1252683dc2fb4abf25ef93c961fee2a7842a488ce53dc73d5\",\"bytes\":936204,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ud/ud6/kuradisild/model.skyline.glb\",\"hash\":\"sha256:95cd8682dbeadf08a6d8ea3dc9b22e84ea6533296b52d4bf1786c941852d7b6f\",\"bytes\":54204,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ud/ud6/kuradisild/model.district.glb\",\"hash\":\"sha256:baac55677bc1a67d19738696b9543a8d480eb89b2492cf640b1dc37633f9c08a\",\"bytes\":302968,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ud/ud6/kuradisild/model.street.glb\",\"hash\":\"sha256:f7c7080c095c9008803cb2992c24e0f5271b4b6159213e03de1b327ea87ff2ad\",\"bytes\":448076,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ud/ud6/kuradisild/model.closeup.glb\",\"hash\":\"sha256:49c8d2f8f7496d21d72382129765ec25237507fa3a0e6372e786cd17b79e170b\",\"bytes\":518856,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-deck-paired-open-ribs-spandrel-contacts-panels-and-relief",
+        "passed": true,
+        "notes": "636 front-face, clearance and contact probes across six GLBs. Complete floor/caps, open lower-road span, paired ribs/intrados, all spandrel bases against their actual faceted arches, solid parapets and projecting portrait/date faces pass."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and 30 ticks pass; hash sha256:c00a3f9c55cb9defe5bf946277b464a08d8f1910fd9e098fe3160339b68f079a."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:51ef46752f4ed4a6b6613483d209f0f14b98271fcdb4753fa8f3320525e94221",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named PMTiles bridge footway 35184425968185 and Devil’s Bridge POI 17592516087228 establish original Kuradisild/Q12367783; no exact-QID footprint claimed. Anchor [26.715899572445203,58.37894049389129], heading -0.4926250291239677, is refined to the separate Lossi road crossing. +X east-southeast, -X west-northwest; +Z south-southwest/uphill, -Z north-northeast/downhill. Unequal endpoints [-12.487462442700435,0] / [11.676002584774675,0] retain the 24.163465m transport length. Width 4m, source datum 71.1m/floor 76.85m and sections are photo/standard-terrain approximations. All 18 mapped width samples have model support; 12 retain native paving and join within 0.003997802734602374m. Six samples are inside the replacement and are not called pavement joins. Fifteen actual upward raycasts at three road stations and five width offsets retain at least 3.6277746128079826m below the rendered geometry across four LODs. These are renderer-fit results, not surveyed/legal clearance."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:51ef46752f4ed4a6b6613483d209f0f14b98271fcdb4753fa8f3320525e94221",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 63 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 18 native. One open road span has paired exposed concrete arch ribs, slender open-spandrel posts, complete deck/caps, solid paneled parapets, raised oval portrait halo, outward-readable ALEXANDRO PRIMO caption, opposite 1613/1913 date wreath and two small under-deck lights. Corrected post-to-faceted-arch contacts at every LOD, attached lettering/leaves to their backing, and replaced the initial timber-like boardformed graph with existing plain concrete in this same authoring pass. Both Tartu bridges retain distinct geometry and locations in the paired native fixture.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/scene-preview.png",
+          "hash": "sha256:968dd5a7b7e28b54b18aad64bac87b0efda4ce4282e752ee634c0338dc6b75a0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/turntable/angle_0.png",
+          "hash": "sha256:87cc115566d5e4a3f426f5d6078780de2706fe4c467a02ca5fd9cdbe326699cb"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/turntable/angle_1.png",
+          "hash": "sha256:22ab853d6d044d6d194af7a11ce12b937f2e1fb4e07849a40a867af7a75f711d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/turntable/angle_2.png",
+          "hash": "sha256:590b5b4cf9ca862aa44def9d64ebab821cc5006d28ebea6a815ef7a25e2d9f2f"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/turntable/angle_3.png",
+          "hash": "sha256:8f1860c2b20d5156c0e6bc71b067d1c9de3fd22f7fa8cebcc49bd5788f7583a1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/whole-portrait-side.png",
+          "hash": "sha256:968dd5a7b7e28b54b18aad64bac87b0efda4ce4282e752ee634c0338dc6b75a0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/whole-date-side.png",
+          "hash": "sha256:405c555e7872e6b7b142de8b4df157fdab54e1a0ca91108c806b9777429c54a6"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/walk-and-paneled-parapets.png",
+          "hash": "sha256:979fbe7c3f70da20f1785a49ed7793f8df240b20ad3e5f17a196b4559fcac63b"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/open-arch-and-spandrels.png",
+          "hash": "sha256:1be444cd9e2b0b552a2b2f2a80e19b95a6dc0c529a7741f884d4d5242aef6ff2"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/portrait-and-arch-caption.png",
+          "hash": "sha256:889ee3079faedcf98eadf07f5f858ab2a9b96448a4856d0b2f377268fbde127c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/date-wreath-and-panels.png",
+          "hash": "sha256:01735e2ac0a05d62f8755639ad287109226b64f275576cacae48981fefeac410"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/angle-0.png",
+          "hash": "sha256:474db1252a5b324728dd9cb9b2bdc561bb4f22568601c4446f5773729086bf46"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/angle-1.png",
+          "hash": "sha256:a3723ebe118e7d5c7fc13bfc40706ef7807abdd912d713ef5a9e87ea25a0f594"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/angle-2.png",
+          "hash": "sha256:3b5144a2c4d37ee517aedcb38bb68fe29691b7f2fec08af4888e251bbf655372"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/angle-3.png",
+          "hash": "sha256:e4e64ec524c868ba8585a5a2b88284c5302d7a1d56b046bdfb4d7126b72548d5"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/whole-portrait-side.png",
+          "hash": "sha256:1f3977becc48fdc58c7a792b8be8f0238ee2a168fc9de3fece246e813ad85411"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/whole-date-side.png",
+          "hash": "sha256:1c578c6ae8638befe512ec66be202a41a87645368f99bed5dd882f95fe0ebaf3"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/walk-and-paneled-parapets.png",
+          "hash": "sha256:2c59221ab99185418624ad7e050527dcf4f1cb53851d81291d143f10f1cf0f33"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/open-arch-and-spandrels.png",
+          "hash": "sha256:b411bb9e79fa1927daf878ca0aa112e5db2632624a0118dfc49493dc627c0bc9"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/portrait-and-arch-caption.png",
+          "hash": "sha256:d9ae999edb595c24a855d0c2fa77792ac461e3367942568519cb63b0bde82818"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/date-wreath-and-panels.png",
+          "hash": "sha256:c39ccef1827d4637c86fc8c9198cfea28ebe79b9f0ee180b45667b6caf7d658a"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/shots/shared/placement.png",
+          "hash": "sha256:6c5376b0bb156a86e742fbfa3810fc40c4cb7525eaf18c6b2b1aede966c1ac7e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/street-noon-economy.png",
+          "hash": "sha256:d34a1a1160e613b469cd55f7c68a5f5d0bc13cc26285fdb64a0d453156cf1734"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/street-noon-high.png",
+          "hash": "sha256:4d19541101c17d3160033b645fc0d5ba8c1fd755ea96ae8866cff1964035682a"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/street-late-economy.png",
+          "hash": "sha256:5caf8098ae59e8c150a35dc23dd21a813387ad5e120702758c9e891f62edfcf9"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/street-late-high.png",
+          "hash": "sha256:56b7b7f034b35fd404c4b8f5efede98cab031bc96beac526a34c435c2f3e06b7"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/block-noon-economy.png",
+          "hash": "sha256:5dd01d3030619f888923bb4c4f29fdc837627e629ca491a919d9fbd440ef33d0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/block-noon-high.png",
+          "hash": "sha256:762294e9b05bb82c8497fae39656966ed9e3c6d4c7847c0d1cd2955ada45d25c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/block-late-economy.png",
+          "hash": "sha256:5fbdc27579a910eb48acf910e8d9391a7a78441a73b4e0f4c79969fc4daf3d53"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/block-late-high.png",
+          "hash": "sha256:c2a5c5dac3139acb48071da732f3bcb7abce165108b423765a5072521b43e43e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:36d70c7f7f76a0f1adf7fde54569d77728480513489274c8f2ce454228191936"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:3550ccb432eaeff39dbbe87fbfee6554e569d9fa6298ceb642342bb6eede8b60"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:c8a52dd656f1763c165d48092ef6d6b99cbaf26313ff2e4a6a0f41f1ac1421b8"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/skyline-late-high.png",
+          "hash": "sha256:d3935eb1886f0a95bfb0695b17e76149034d82fab536c77d146ede3ad0c521e8"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/silhouette.png",
+          "hash": "sha256:a41e3f3ff66f8668ff9a68cd653d1742ccc175074fdfe970c82e97283fb17525"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/whole-portrait-side.png",
+          "hash": "sha256:e3fb6dcf7498ab32eb4f3d2cdcb92bdffa5e18ed3e08ba2b481c8882f3efbb73"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/whole-date-side.png",
+          "hash": "sha256:940a4a5725de0bb8dde2baa7fcc9f3b9c43e7224ae7a6efa58ddb635d8183399"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/walk-and-paneled-parapets.png",
+          "hash": "sha256:f5ded95b5982fa744ef5b0a78ad3bf613a8f4e8c9a809179035d4d919721c7d8"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/open-arch-and-spandrels.png",
+          "hash": "sha256:4b998bbea049b8e2753bbd0ed4909c3e5ea6dd44a69b9b5671503373979748b5"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/portrait-and-arch-caption.png",
+          "hash": "sha256:0db683d8b1eb55655bdd850ec3eb284dcd391a625d43387b304c8624ea782cda"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/date-wreath-and-panels.png",
+          "hash": "sha256:c26d5c911400d8994acb2641af5991f5c8a0119386404971450d9bfe8af1e4f0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/transition-skyline.png",
+          "hash": "sha256:a61acb298e5426970a414a925e3e91dd39009bfd613063cb0f8d512f55ce2c6e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/transition-district.png",
+          "hash": "sha256:762294e9b05bb82c8497fae39656966ed9e3c6d4c7847c0d1cd2955ada45d25c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/transition-street.png",
+          "hash": "sha256:e19e336317913b50ec9b243659b29090c4ada4ac6f3899204f1652f882e0a130"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/kuradisild/medium-fi/transition-closeup.png",
+          "hash": "sha256:4041edcf9c02fe82cce8f55625901f870c3bbc47b64661f15cc69109154ed17c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:dd4c0ded5683ca8e50bb114dc5935093a6de260c03696870ff898ef4ff284482"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:47d81d2ce5ccdb7dbd820813f36d9faeca8ff5dcacfe76d7ec439b3570e1229e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-street-whole-portrait-side.png",
+          "hash": "sha256:c1efb69d2770bbfca9c287929929eaaa6547019f51a909216152723f2d4988b2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-street-whole-date-side.png",
+          "hash": "sha256:45811fb624b31020bdd2bf735c8bbf3641ccccbdd8fd987c3c19015c4a2f0e9a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-street-walk-and-paneled-parapets.png",
+          "hash": "sha256:9616be0fe76941bd13d63824ff67efa60f744a5ffe0a2b8f7afd7fb95e2c2eec"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-street-open-arch-and-spandrels.png",
+          "hash": "sha256:f7981a87ee5e1f14a3544e338106b7c81a6d03be55f24709fda2dfa27c13ec58"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-whole-portrait-side.png",
+          "hash": "sha256:05f0b8775e9f4fd9ea32875c627f9d005c0ed5f94545eda3a27f690a06b96606"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-whole-date-side.png",
+          "hash": "sha256:d1465d9a616bef70759365281e5ea8444f204341a2e16af2d846311e63f38c3e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-walk-and-paneled-parapets.png",
+          "hash": "sha256:761bd7be3195fe2a8618c5a25e51475e4987dfc3b453dac08444658bd0f22a9e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-open-arch-and-spandrels.png",
+          "hash": "sha256:5bf8b5df5cae50c8ed80f50261c06a9d86c5425f9969fab15bd19f0632408a51"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-portrait-and-arch-caption.png",
+          "hash": "sha256:9122d262e2a9a8d4674f7c4b3ff5267bf8e4b1afec80d345f0d7cf662bbc220f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-date-wreath-and-panels.png",
+          "hash": "sha256:b4dcd810f0f2530214978e3045c6671895a10f498b05d6597d302fb3d0cf9111"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-northwest-bank-join.png",
+          "hash": "sha256:fd7de12292dae7b82077f48d9fe197805f1486a8df7171f005fef6a291dd472b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-southeast-bank-join.png",
+          "hash": "sha256:396502b23a2aaccb1d1311f845b02ab46d9b8308d44d152f3e853be9b4de2240"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:b70fc5b0f0c5b20d8aff44c10b84e58adbf6185edab2c060454486133af1ae5f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-both-tartu-bridges.png",
+          "hash": "sha256:dad8c8559bc5be2da0bb7cf56f99d4def2c125c6699c10a56a37ce427def93a8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:c465e8f3aaa9fe32c1e189e9ba886f1c734b80eacbbada28a19d19f0a85c7f01"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kuradisild-review/native/shots/final-failure-whole-portrait-side.png",
+          "hash": "sha256:9680c0a81471fab9ce2badfe05f6389662f27c1baa8dd3401b99965742481b5b"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 523 resident buildings and 605 independent road records remain. There are 678 raw road records; legitimate bridge clipping produces 680 output records with both models loaded, or 679 when Kuradisild fails and Inglisild remains. Only the shared upper path and the two mapped bridge paths receive deliberate adaptation. Four separate lower Lossi records retain their inputs and receive zero authored connections. Raw roads, DEM, displayed ground and water remain unchanged. Target failure preserves its mapped crossing and the real companion landmark; unload releases all model/support geometry. No ground or building cutout is used."
+    },
+    "nativeReport": {
+      "path": ".artifacts/kuradisild-review/native/final-report.json",
+      "hash": "sha256:0e16b6873944a537ad17adceeaa4e4478aed11db7adbef4a3d1b12ccf0878ed3",
+      "frozenViewerInputsHash": "sha256:7e344fc359162919a1b8c4bb55b6bc97bf9b6a1248e3e26d0aff7dab3e00b382"
+    },
+    "companion": {
+      "entry": {
+        "id": "inglisild",
+        "title": "Inglisild / Angel’s Bridge",
+        "asset": "molen.worldgen.structure.inglisild",
+        "anchor": [
+          26.717632704376012,
+          58.37959986270152
+        ],
+        "heading": -0.9482293478071121,
+        "datum": "sea-level",
+        "elevation": 64.6,
+        "orientation": "fixed",
+        "mapIdentity": {
+          "wikidata": "Q12364556",
+          "maxDistance": 65
+        },
+        "replaceFootprint": false,
+        "minLevel": 13,
+        "status": "preview",
+        "source": "https://commons.wikimedia.org/wiki/File:Tartu_asv2022-04_img13_Inglisild.jpg",
+        "note": "Named Inglisild PMTiles bridge and attraction match Q12364556. Signed axis and unequal wing endpoints are retained. Lossi is a separate lower crossing; no exact-QID footprint or surveyed height claim.",
+        "replaceRoads": {
+          "length": 31.40948950935123,
+          "width": 5.3,
+          "outline": [
+            [
+              -14.615345420985541,
+              -2.65
+            ],
+            [
+              16.794144088365687,
+              -2.65
+            ],
+            [
+              16.794144088365687,
+              2.65
+            ],
+            [
+              -14.615345420985541,
+              2.65
+            ]
+          ],
+          "deckEndpoints": [
+            [
+              -14.615345420985541,
+              0
+            ],
+            [
+              16.794144088365687,
+              0
+            ]
+          ],
+          "deckHeights": [
+            5.768,
+            5.768
+          ],
+          "includeConnectedApproaches": true
+        },
+        "bounds": [
+          26.717411019656502,
+          58.37944175420906,
+          26.717876157911114,
+          58.37974207081789
+        ]
+      },
+      "assetHash": "sha256:6ad16d9ae41f2f7b589440afbc25b1a20af039fbfdf115765b20ebb9e81c1f88",
+      "sourceHash": "sha256:c40d8370e0a22c4ae66da3c470ad9fdb452e74e60808e4fcd791d85dc0bb6389",
+      "lodHash": "sha256:6693b710d37c0723c14de8cfd3b6be51e3bdc28de0b7d60ce52ddd7294e26b4b",
+      "qaInputHash": "sha256:680d2a9b8feb21031a91275783632b0bee1529ef09831cea39618e87038a0d87"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "companionLoaded": true,
+        "mappedWidthSamples": 18,
+        "pavedJoinSamples": 12,
+        "interiorReplacementSamples": 6,
+        "maximumJoinErrorMeters": 0.003997802734602374,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.6277746128079826,
+        "sourceBuildings": 523,
+        "remainingBuildings": 523,
+        "sourceRoads": 678,
+        "outputRoadRecords": 680,
+        "independentRoadRecords": 605,
+        "changedTransportRecords": [
+          {
+            "id": 35184405327380,
+            "class": "path",
+            "bridge": false
+          },
+          {
+            "id": 35184405327539,
+            "class": "path",
+            "bridge": true
+          },
+          {
+            "id": 35184425968185,
+            "class": "path",
+            "bridge": true
+          }
+        ],
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "approachSupportsIncludingCompanion": 1,
+        "targetApproachesAbsentAfterFailure": null,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "companionLoaded": true,
+        "mappedWidthSamples": 18,
+        "pavedJoinSamples": 12,
+        "interiorReplacementSamples": 6,
+        "maximumJoinErrorMeters": 0.003997802734602374,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.6586504827924102,
+        "sourceBuildings": 523,
+        "remainingBuildings": 523,
+        "sourceRoads": 678,
+        "outputRoadRecords": 680,
+        "independentRoadRecords": 605,
+        "changedTransportRecords": [
+          {
+            "id": 35184405327380,
+            "class": "path",
+            "bridge": false
+          },
+          {
+            "id": 35184405327539,
+            "class": "path",
+            "bridge": true
+          },
+          {
+            "id": 35184425968185,
+            "class": "path",
+            "bridge": true
+          }
+        ],
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "approachSupportsIncludingCompanion": 1,
+        "targetApproachesAbsentAfterFailure": null,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "companionLoaded": true,
+        "mappedWidthSamples": 18,
+        "pavedJoinSamples": 12,
+        "interiorReplacementSamples": 6,
+        "maximumJoinErrorMeters": 0.003997802734602374,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.6852807788566935,
+        "sourceBuildings": 523,
+        "remainingBuildings": 523,
+        "sourceRoads": 678,
+        "outputRoadRecords": 680,
+        "independentRoadRecords": 605,
+        "changedTransportRecords": [
+          {
+            "id": 35184405327380,
+            "class": "path",
+            "bridge": false
+          },
+          {
+            "id": 35184405327539,
+            "class": "path",
+            "bridge": true
+          },
+          {
+            "id": 35184425968185,
+            "class": "path",
+            "bridge": true
+          }
+        ],
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "approachSupportsIncludingCompanion": 1,
+        "targetApproachesAbsentAfterFailure": null,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "companionLoaded": true,
+        "mappedWidthSamples": 18,
+        "pavedJoinSamples": 12,
+        "interiorReplacementSamples": 6,
+        "maximumJoinErrorMeters": 0.003997802734602374,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": 3.6871272700516613,
+        "sourceBuildings": 523,
+        "remainingBuildings": 523,
+        "sourceRoads": 678,
+        "outputRoadRecords": 680,
+        "independentRoadRecords": 605,
+        "changedTransportRecords": [
+          {
+            "id": 35184405327380,
+            "class": "path",
+            "bridge": false
+          },
+          {
+            "id": 35184405327539,
+            "class": "path",
+            "bridge": true
+          },
+          {
+            "id": 35184425968185,
+            "class": "path",
+            "bridge": true
+          }
+        ],
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "approachSupportsIncludingCompanion": 1,
+        "targetApproachesAbsentAfterFailure": null,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "companionLoaded": true,
+        "mappedWidthSamples": 0,
+        "pavedJoinSamples": 0,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "actualLowerRoadRaycasts": 15,
+        "minimumLowerStreetClearanceMeters": null,
+        "sourceBuildings": 523,
+        "remainingBuildings": 523,
+        "sourceRoads": 678,
+        "outputRoadRecords": 679,
+        "independentRoadRecords": 605,
+        "changedTransportRecords": [
+          {
+            "id": 35184405327380,
+            "class": "path",
+            "bridge": false
+          },
+          {
+            "id": 35184405327539,
+            "class": "path",
+            "bridge": true
+          }
+        ],
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "approachSupportsIncludingCompanion": 1,
+        "targetApproachesAbsentAfterFailure": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Scoped bridge exterior: one clear road opening, paired visible outer arch ribs and open spandrels. Named bridge footway retains 24.163465m transport extent and unequal banks; 4.0m width, rib/column sections and height are photo/standard-terrain visual approximations. No exact-QID footprint or surveyed section claimed.",
+    "Source datum 71.1m and floor 76.85m fit the coarse native Lossi road approximately. Mapzen smooths the road cut and hill; upper footpaths are deliberately graded with bounded supports. Exact slopes, historic stairs, retaining walls and park trees remain outside the asset.",
+    "The Alexander portrait is an original shallow geometric abstraction, not a precise likeness. The opposite dated wreath, rectangular panel frames and Latin arch caption retain distinctive shapes; exact leaf carving, casting and inscriptions are simplified.",
+    "Existing shared 256px concrete_plain and metal_bronze_cast graphs provide metric repeated surfaces and linear tints. No embedded/private textures or copied photo pixels. Distant levels simplify curves, posts, panel frames, portrait and date lettering. Physical-device timings remain unmeasured.",
+    "The standard coarse hill does not reconstruct the historic road cut, retaining walls, park trees or exact stairs/banks. Shared renderer approach grading is approximate visual support. Procedural neighboring buildings/streets/poles remain context. The portrait is an original geometric abstraction; exact casting, leaf carving and complete inscriptions are simplified. Physical laptop and phone performance remains unmeasured."
+  ]
+}

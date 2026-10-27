@@ -1,0 +1,162 @@
+{
+  "status": "canonical integration and scoped readiness verified",
+  "catalogReady": true,
+  "sourceHash": "sha256:fe08fdd36b2b1c0cdcd9b98cc35dcf5f652076cfe887b826f38829c5b0883a39",
+  "priorStatus": "isolated model and native review complete; canonical integration pending",
+  "savedReview": {
+    "report": ".artifacts/delal-review/completion-draft.json",
+    "hash": "sha256:b93f5e8e56c6c158696b5abebef73b4624de2808640475f0a2667000607b6e63",
+    "sourceFrames": [
+      {
+        "camera": {
+          "name": "complete-west-elevation",
+          "position": [
+            12,
+            25,
+            -155
+          ],
+          "lookAt": [
+            15,
+            6,
+            -7
+          ],
+          "fov": 51
+        },
+        "path": "D:\\gh\\molen\\.artifacts\\delal-review/complete-west-elevation.png",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "opposite-arches-and-rock-beds",
+          "position": [
+            -5,
+            8,
+            78
+          ],
+          "lookAt": [
+            5,
+            6,
+            -7
+          ],
+          "fov": 57
+        },
+        "path": "D:\\gh\\molen\\.artifacts\\delal-review/opposite-arches-and-rock-beds.png",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "sloping-stone-walk",
+          "position": [
+            62,
+            9.8,
+            -6.7
+          ],
+          "lookAt": [
+            9,
+            14,
+            -7
+          ],
+          "fov": 58
+        },
+        "path": "D:\\gh\\molen\\.artifacts\\delal-review/sloping-stone-walk.png",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "main-vault-and-piers",
+          "position": [
+            12,
+            4,
+            -28
+          ],
+          "lookAt": [
+            10,
+            8,
+            -7
+          ],
+          "fov": 60
+        },
+        "path": "D:\\gh\\molen\\.artifacts\\delal-review/main-vault-and-piers.png",
+        "inspected": true
+      }
+    ]
+  },
+  "nativeFit": {
+    "acceptedInSavedFixture": true,
+    "canonicalHostVerified": true,
+    "registeredPreview": true,
+    "currentReview": "qa.json#siteIntegrationReview"
+  },
+  "pending": [],
+  "limitations": [
+    "Original analytic exterior from ordinary pictures and standard PMTiles/Mapzen only. No engineering sources or private terrain survey.",
+    "Five visible openings are reconstructed; individual stone layouts, exact arch dimensions, concealed foundations and river stage are approximate.",
+    "Temporary flags, the hanging decorative spindle, people, modern quays, lighting and nearby buildings are excluded from the bridge source.",
+    "Three shared256px graphs and metric UVs are used; there are no embedded or private images.",
+    "Physical laptop/phone/tablet measurements remain pending."
+  ],
+  "canonical": {
+    "sourceHash": "sha256:fe08fdd36b2b1c0cdcd9b98cc35dcf5f652076cfe887b826f38829c5b0883a39",
+    "runtimeHash": "sha256:baddce9102d6c430fd20c0b9f90f5c9b1a6d7fe5b498b9ea3f93f0c1d8caecb9",
+    "assetInspectVerified": true,
+    "headlessScene": {
+      "validated": true,
+      "ticks": 1
+    },
+    "sharedMaterialBindingsVerified": true,
+    "embeddedImages": 0,
+    "runtimeLevels": [
+      {
+        "level": "skyline",
+        "bytes": 50884,
+        "hash": "sha256:53e492440a239581cce16ba98e8d24d40220ac9e2c7a365fa7c6d7e7b211a544",
+        "triangles": 542,
+        "draws": 1
+      },
+      {
+        "level": "district",
+        "bytes": 89548,
+        "hash": "sha256:bdff97af8708b78f7fa72a808313f120849b69d081c9760728fe1a64fda29885",
+        "triangles": 914,
+        "draws": 3
+      },
+      {
+        "level": "street",
+        "bytes": 283260,
+        "hash": "sha256:9c84075ddbe5f5a414542e19f58ed0234258e3a5337634b30acc01de65cae0cc",
+        "triangles": 2986,
+        "draws": 3
+      },
+      {
+        "level": "closeup",
+        "bytes": 675924,
+        "hash": "sha256:64aeafc17d5e0e45a3b6ce2a8522f3b0686d841c1f4d1f0d6d965f306ba98f54",
+        "triangles": 7118,
+        "draws": 3
+      }
+    ],
+    "initialGeometryBytes": 140432,
+    "budgets": "All four levels meet 1000/4000/16000/64000 triangles and 12 draws; skyline plus district below 3MB.",
+    "commands": [
+      "node packages/worldgen/scripts/generate-authored-bridge-models.mjs --ids=delal_bridge --check",
+      "node packages/worldgen/scripts/import-structure-models.mjs --ids=delal_bridge --check",
+      "node packages/tooling/scripts/check-medium-fi.mjs --ids=delal_bridge --strict"
+    ],
+    "previewBasis": "Current canonical source/runtime and the completed, hash-bound Molen render reviews in qa.json.",
+    "registrationIsReadinessApproval": false,
+    "sourceReproduced": true,
+    "runtimeImportVerified": true,
+    "reviewedOn": "2026-10-26",
+    "currentReview": "qa.json",
+    "inspectedFrames": 55,
+    "readinessBasis": "Completed canonical visual, shared-surface, medium-fi, geographic, fidelity and native-site reviews; not registration alone."
+  },
+  "packaging": "The merged branch uses input-addressed asset bundles; no asset-lock.json exists. The registered generator participates in Assets CI. No release was built or published in this integration pass.",
+  "supersededIntegration": {
+    "reportHash": "sha256:95ca434fac736de2d28e443d5d91c7e78f776c9ac497b699788de37129585698",
+    "status": "canonical source and runtime integration verified; final readiness review pending",
+    "sourceHash": "sha256:fe08fdd36b2b1c0cdcd9b98cc35dcf5f652076cfe887b826f38829c5b0883a39",
+    "runtimeHash": "sha256:baddce9102d6c430fd20c0b9f90f5c9b1a6d7fe5b498b9ea3f93f0c1d8caecb9",
+    "note": "This earlier handoff snapshot preceded the completed canonical reviews and approach corrections. Current scope and limits are recorded in qa.json and QA-REVIEW.md."
+  }
+}

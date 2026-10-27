@@ -1,0 +1,635 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.inglisild",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:680d2a9b8feb21031a91275783632b0bee1529ef09831cea39618e87038a0d87",
+  "sourceHash": "sha256:c40d8370e0a22c4ae66da3c470ad9fdb452e74e60808e4fcd791d85dc0bb6389",
+  "runtimeHash": "sha256:6ad16d9ae41f2f7b589440afbc25b1a20af039fbfdf115765b20ebb9e81c1f88",
+  "captureReportHash": "sha256:4917cc5115ab93c3148b9dbdba2af647687f6db0f8f81aad761410b5d5517426",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-portrait-side.png",
+      "shots/whole-motto-side.png",
+      "shots/deck-and-wing-railings.png",
+      "shots/lossi-open-portico.png",
+      "shots/portrait-frieze-and-dentils.png",
+      "shots/wing-colonnade-and-white-rail.png"
+    ],
+    "captureReportHash": "sha256:4917cc5115ab93c3148b9dbdba2af647687f6db0f8f81aad761410b5d5517426",
+    "notes": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. The mustard-and-white classical bridge retains eight tall framed square piers around three lower bays, twelve shorter wing piers, asymmetric mapped wings, open white rails, timber frieze, dentils, circular ornaments, raised central panel and a simplified shallow bronze profile. Corrected the reverse-face motto so it reads from outside, and widened the northwest landing cap to cover the mapped turning path in this same authoring pass. Source and current near models are complete for the scoped medium-fi exterior."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-portrait-side.png",
+      "shots/shared/whole-motto-side.png",
+      "shots/shared/deck-and-wing-railings.png",
+      "shots/shared/lossi-open-portico.png",
+      "shots/shared/portrait-frieze-and-dentils.png",
+      "shots/shared/wing-colonnade-and-white-rail.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:34ec4d4548499e43ad9f3b50823391f60f0ad5e847682a8447c7500947571f6d",
+    "notes": "Four existing shared 256px graphs: stucco, wood_plain, stone_limestone_raw and metal_painted. Metric UVs and linear vertex tints; no embedded/private images or copied photograph pixels. Near levels use four merged groups; skyline uses a single mean-tinted group. Each graph is fetched once per native view and runtime files use separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-portrait-side.png",
+      "medium-fi/whole-motto-side.png",
+      "medium-fi/deck-and-wing-railings.png",
+      "medium-fi/lossi-open-portico.png",
+      "medium-fi/portrait-frieze-and-dentils.png",
+      "medium-fi/wing-colonnade-and-white-rail.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:0b83b0beb72601960c222859627402203ec5469368418cc75f8c63ea547cd51c",
+    "notes": "Master: 10676 triangles / 1284040 bytes. Runtime levels: 600 / 3328 / 8804 / 9932 triangles, 55428 / 304212 / 787784 / 887000 bytes and 1 / 4 / 4 / 4 draws. Initial skyline plus district 359640 bytes. Strict medium-fi budgets pass; physical-device timing remains unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:6014b0dd21f3def6bb0edb44d89732af8ff7e8101cdb9b55de776a6e2f4ce1b7",
+    "mapFrameHash": "sha256:188dddbee9e2764444824db1f25b4a8c6389b05853aaa7791cc3ee00d8169137",
+    "notes": "Named PMTiles bridge footway 35184405327539 and Angel’s Bridge POI 17592517490936 establish the original Inglisild/Q12364556 identity; no exact-QID footprint claimed. Anchor [26.717632704376012,58.37959986270152], heading -0.9482293478071121, is refined to the independent Lossi crossing. +X southeast, -X northwest; +Z southwest/uphill toward Toome Hill, -Z northeast/downhill toward central Tartu. Unequal mapped endpoints [-14.615345420985541,0] / [16.794144088365687,0] retain the 31.40949m transport length. Width 4.6m and source datum 64.6m/floor 70.35m are explicit visual approximations. Nine actual mapped boundary width samples have support and retained paving at every LOD; maximum model/paving difference 0.00600433349609375m. Three lower-road probes retain at least 4.039500618940323m below the conservative beam datum; renderer-fit results, not surveyed legal clearance."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped classical footbridge exterior and approximate standard-terrain placement complete. Master: 10676 triangles / 1284040 bytes. Runtime levels: 600 / 3328 / 8804 / 9932 triangles, 55428 / 304212 / 787784 / 887000 bytes and 1 / 4 / 4 / 4 draws. Initial skyline plus district 359640 bytes. Strict medium-fi budgets pass; physical-device timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ud/ud6/inglisild/models/source.glb\",\"hash\":\"sha256:c40d8370e0a22c4ae66da3c470ad9fdb452e74e60808e4fcd791d85dc0bb6389\",\"bytes\":1284040,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/ud/ud6/inglisild/model.glb\",\"hash\":\"sha256:6ad16d9ae41f2f7b589440afbc25b1a20af039fbfdf115765b20ebb9e81c1f88\",\"bytes\":1283612,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ud/ud6/inglisild/model.skyline.glb\",\"hash\":\"sha256:687940c1831a6fbb587a00fd14ad36333960b2239a6a625275ae65475a96ee85\",\"bytes\":55428,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ud/ud6/inglisild/model.district.glb\",\"hash\":\"sha256:1a01628b01aa4e77ec32c854b94a67076e878c5b49adfb60f28dedfaa8bd2b1a\",\"bytes\":304212,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ud/ud6/inglisild/model.street.glb\",\"hash\":\"sha256:045dac7c6843adcb47dbc7f5a7f930f0baf4ab2a6c7178ce718a3296346f4ce2\",\"bytes\":787784,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ud/ud6/inglisild/model.closeup.glb\",\"hash\":\"sha256:6693b710d37c0723c14de8cfd3b6be51e3bdc28de0b7d60ce52ddd7294e26b4b\",\"bytes\":887000,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-deck-three-lower-bays-piers-caps-rails-relief",
+        "passed": true,
+        "notes": "514 recorded front-face/clearance checks across six GLBs. Floor, outward soffit, three open lower bays, all tall/short piers, landing caps, open white rail gaps and projecting portrait pass."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks pass; hash sha256:25d0b5d41d343d0a2f882184b67060d6b4dd9521a33dff1e0d3db2eddd5d4def."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:680d2a9b8feb21031a91275783632b0bee1529ef09831cea39618e87038a0d87",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named PMTiles bridge footway 35184405327539 and Angel’s Bridge POI 17592517490936 establish the original Inglisild/Q12364556 identity; no exact-QID footprint claimed. Anchor [26.717632704376012,58.37959986270152], heading -0.9482293478071121, is refined to the independent Lossi crossing. +X southeast, -X northwest; +Z southwest/uphill toward Toome Hill, -Z northeast/downhill toward central Tartu. Unequal mapped endpoints [-14.615345420985541,0] / [16.794144088365687,0] retain the 31.40949m transport length. Width 4.6m and source datum 64.6m/floor 70.35m are explicit visual approximations. Nine actual mapped boundary width samples have support and retained paving at every LOD; maximum model/paving difference 0.00600433349609375m. Three lower-road probes retain at least 4.039500618940323m below the conservative beam datum; renderer-fit results, not surveyed legal clearance."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:680d2a9b8feb21031a91275783632b0bee1529ef09831cea39618e87038a0d87",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. The mustard-and-white classical bridge retains eight tall framed square piers around three lower bays, twelve shorter wing piers, asymmetric mapped wings, open white rails, timber frieze, dentils, circular ornaments, raised central panel and a simplified shallow bronze profile. Corrected the reverse-face motto so it reads from outside, and widened the northwest landing cap to cover the mapped turning path in this same authoring pass. Source and current near models are complete for the scoped medium-fi exterior.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/scene-preview.png",
+          "hash": "sha256:5ebee4b4f181e8ef6b8222c61198f190153bbf6f520addba33d2f4fba0e5f836"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/turntable/angle_0.png",
+          "hash": "sha256:2a705057362aa98dfeb840ee3d6f3c7cfee7334a562ee376df749e0d8a3508ba"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/turntable/angle_1.png",
+          "hash": "sha256:1f19ae3ec66e6879b4477c419554f502b60933ca944e776d0a3ced93478594e1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/turntable/angle_2.png",
+          "hash": "sha256:f9d9b14aa320095503adce422842cb394189b4c4d2987060c5d434ca4bfe8e04"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/turntable/angle_3.png",
+          "hash": "sha256:20bac2ffe41f88ad5de5a7ad0512cd6a1f148b53bbf62d67b2c8624ba297f3e6"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/whole-portrait-side.png",
+          "hash": "sha256:5ebee4b4f181e8ef6b8222c61198f190153bbf6f520addba33d2f4fba0e5f836"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/whole-motto-side.png",
+          "hash": "sha256:7e1da3f18aaf7c7870016f27afd5cc6edeeb6349dd90c0c0af6b9810662cad0b"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/deck-and-wing-railings.png",
+          "hash": "sha256:27c4190e0b115c7a4e37bbe6310161efa1bec02b5879234de4804b1ff59dcc52"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/lossi-open-portico.png",
+          "hash": "sha256:a9d1351422803c140481063cb3941c31b82c20766686ddff63b9b1d32214434d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/portrait-frieze-and-dentils.png",
+          "hash": "sha256:640c18aafd6699e99c0fb68256712eeb5dcec2b34dc386da3b70d7ee40d5b9f6"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/wing-colonnade-and-white-rail.png",
+          "hash": "sha256:5618da94282bca643538949ea1387005ef324f4e1c0540ab5a30546f093d1124"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/angle-0.png",
+          "hash": "sha256:d9893b2b312447d2a0a8fc40d21dabc1419934c495897f126616c11497c9c125"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/angle-1.png",
+          "hash": "sha256:6d62dd69632cb88aa468a6d4a738572383e2fa0436511777e38b59cc089f4a2e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/angle-2.png",
+          "hash": "sha256:da6222b04f5d4d16054005adf91b058956b06c52fca36f52b3e71b3adc770b5c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/angle-3.png",
+          "hash": "sha256:2b0179703f912d72442cc540624ae33dbd895ae30ec9099eb69a62c49b576712"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/whole-portrait-side.png",
+          "hash": "sha256:8b5744f68a91de3cbe65e73d19f5d51178175f4ebc97cbae8bc5d3f15887865c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/whole-motto-side.png",
+          "hash": "sha256:dd095bd542e60728ea575f4152b88d41db604b7e8cd5e603a39e25b120cc5ccb"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/deck-and-wing-railings.png",
+          "hash": "sha256:76d8616cce0c3ffb687efdfa4f500078d95c51f225930811527e003c902ba096"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/lossi-open-portico.png",
+          "hash": "sha256:079ce42de57f735824caba1c8254b5a0b2d31ed1e1dc78bba2d8a5dc04d1afd1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/portrait-frieze-and-dentils.png",
+          "hash": "sha256:494b12e17ec538ce7a567e93e6f413114ce2292ca0b447e7c31fb148af6da508"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/wing-colonnade-and-white-rail.png",
+          "hash": "sha256:4cbec59c99a0b188fd8e216d42e883498c59e716186973b09a5060efe7d43269"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/shots/shared/placement.png",
+          "hash": "sha256:e79d85e7da697ddab353df8c5b8b4b76f9d0f08695670ecd11028ab3408a9382"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/street-noon-economy.png",
+          "hash": "sha256:0e5a6d97d8f87dc98522e00a5a4b61d07818227335df97d82a518129b96f1ccc"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/street-noon-high.png",
+          "hash": "sha256:ad3087b49fbfd5920729f21f5c4fb40ab4e5521e227302953451f64964e545d0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/street-late-economy.png",
+          "hash": "sha256:72e6101a17c95226b5a4abb8ac477a2922930d5c17e6b662409d46106259d9cc"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/street-late-high.png",
+          "hash": "sha256:f4b656dacf818a77b496121c1bb410086d41c8c3d59bf7650490cb51ea01b9d1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/block-noon-economy.png",
+          "hash": "sha256:f0fdb10427df9fd6869a54b33cc3f8f11f071b63fefdc887093ce63a59b81786"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/block-noon-high.png",
+          "hash": "sha256:55be140118e42f15a2e342388948856ea217ee81084729417f8425b74145ed34"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/block-late-economy.png",
+          "hash": "sha256:35462091804dd1294fb2e09f81478676a8c43b52f0ad2c14ebde2ad044b1d220"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/block-late-high.png",
+          "hash": "sha256:2dc1a78597ec667f3377995d132b7121638a8fa742033ed13ed6e3df1ea8497a"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:a272a6c28b050837c8996a9cd99b409f310f3c93c9c1806f75c58d03ae66a6bc"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:84aba111f7acb485a0c89aa6388136058af9ba39dbd3c1e88d1d2b704bfe91ac"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:b0581be03747e0cc3063628a12ade092f097a329f8b32e96cf9c6dcd5734508c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/skyline-late-high.png",
+          "hash": "sha256:dd0ec5f68c5f31e06d633257fe9b314a4a58c19cb610f2526b827e97b998d1fb"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/silhouette.png",
+          "hash": "sha256:6439a95de28e7341bfed054c6ce4834ca99d929b422935edbe221469a6384f6e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/whole-portrait-side.png",
+          "hash": "sha256:e9ce2641ad63f656c635552ee6b8ef1df3d038682ffa0c68c9ca8ac459b8c2d4"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/whole-motto-side.png",
+          "hash": "sha256:c373de57d7e79c8dbe8bae3ef7a3f589fccadeab9951c4cddd2b3725fdc3b65e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/deck-and-wing-railings.png",
+          "hash": "sha256:ff7f1ad5879c78aeb3ac97c9993b6009c9b9a42be4eccb6c36ebe4ac541cd0c0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/lossi-open-portico.png",
+          "hash": "sha256:dc8e498d2b9872a9d75f995f44ec62e8a5f97b81cf5dfbb2928f392317b3a012"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/portrait-frieze-and-dentils.png",
+          "hash": "sha256:c83e7f74ad72fbd3cacc4024bda3ab66d4c65c9ad5fbaac7935e6fbae738b5cf"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/wing-colonnade-and-white-rail.png",
+          "hash": "sha256:b24bcdf324f85d33da4958323ef85340a7ca15b2e32a98b321fa98382be5cfdb"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/transition-skyline.png",
+          "hash": "sha256:0bc6bb9940ff8209a4de8859257f938da5fae631e405cff87f3b3130475c3b20"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/transition-district.png",
+          "hash": "sha256:55be140118e42f15a2e342388948856ea217ee81084729417f8425b74145ed34"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/transition-street.png",
+          "hash": "sha256:c73ebfd41191b9abf054a89fecdb7e8c7bb9cae726369ba383221eb8169e2ea1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud6/inglisild/medium-fi/transition-closeup.png",
+          "hash": "sha256:90a1cb4e65ae75bf8386f810cba456e1497cc276d6a7c3609a2a95a5206dcdb6"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:e77c8cac2923f1cff85c19bc378088f2ce9947db25117cd2b6529c9acd75ba7c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:727c7d61cf6d043b0034078735f9b385cf4152aa6594bf8151009b6bb07f9845"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-street-whole-portrait-side.png",
+          "hash": "sha256:747f42fd5c0e3a860f050763355e887160a93ecc7ca4cfa0c8591a7bebcb9fa2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-street-whole-motto-side.png",
+          "hash": "sha256:8f72e36830f0edd2e234bcc23e5e97ff86453052e7f556ac8dc873461807e5b8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-street-deck-and-wing-railings.png",
+          "hash": "sha256:2ce9aa28fab514c420a5307aed95e91533ef42fe4a4f195f8b4048470a59ff88"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-street-lossi-open-portico.png",
+          "hash": "sha256:12842af8cdd287dd1c893122c91dfba18b5133719a0df481b24e312969b11c51"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-whole-portrait-side.png",
+          "hash": "sha256:61193469388288ed6b0324788bb333c08ca31aa09c1a38f5bafb7d4a78d0630d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-whole-motto-side.png",
+          "hash": "sha256:42adbda595af154448a6acefa3acf5d1a73c85013efbd13349f35657e1e83a5e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-deck-and-wing-railings.png",
+          "hash": "sha256:1cea23536a7b21902a77dfc6f3695d355698dc4f058465f3051ac09919eebc3f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-lossi-open-portico.png",
+          "hash": "sha256:2bd35fbafbd8030fe4493683ebe8fae75a5c1783b1abe77b38a91d490d75dab8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-portrait-frieze-and-dentils.png",
+          "hash": "sha256:8fd27a0902271f550f9ab98cf20f0f1364456a40ff1bd9aa09b3957b7ba2eaf2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-wing-colonnade-and-white-rail.png",
+          "hash": "sha256:4255ca6cdbf0dddd1abe7c09603ff8a13eb5dbe7b3f5e8c98fbd9a9e6d875d60"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-northwest-bank-join.png",
+          "hash": "sha256:2a9b8cb06712925ad8af98d7466b9fb5914a7c8b96fdbb3aec55ae83fd77d83d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-southeast-bank-join.png",
+          "hash": "sha256:05a3e4672705eefac4a5c0e7d64e3516a95d891a6705b663f8c724e0bb0f457c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:5a1ed022f138e4264ff538716cd5ceb660b2015059e40a91c6708115fc6e58e5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:22500f02571d37ab56baff7de472d11e8cd97704f9522799f411ced65ad7e972"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\inglisild-review/native/shots/final-failure-whole-portrait-side.png",
+          "hash": "sha256:9a921c59bafad66756890a91c106cb44f953e4bb11e2b849ab6bbd6f9566e0a3"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 630 resident buildings, 890 input roads and 830 independent road records remain. Four separate Lossi road records receive zero authored connections; upper footpaths alone are deliberately graded. Raw DEM, rendered ground and water remain unchanged. Failed loading preserves the map crossing; unload releases all model/support geometry. No ground cutout was used."
+    },
+    "nativeReport": {
+      "path": ".artifacts/inglisild-review/native/final-report.json",
+      "hash": "sha256:5dda46f4c8c8ecf20b68db8aae2a9b5003bbc6456bb05255b1d3a5ff3c38cff5",
+      "frozenViewerInputsHash": "sha256:706ccf25363a94cd1e6a3c46fe26e7393cf17fd924e10de11c1356be9f20e21b"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedBoundaryWidthSamples": 9,
+        "maximumJoinErrorMeters": 0.00600433349609375,
+        "minimumLowerStreetClearanceMeters": 4.039500618940323,
+        "sourceBuildings": 630,
+        "remainingBuildings": 630,
+        "totalRoadRecords": 890,
+        "independentRoadRecords": 830,
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedBoundaryWidthSamples": 9,
+        "maximumJoinErrorMeters": 0.00600433349609375,
+        "minimumLowerStreetClearanceMeters": 4.039500618940323,
+        "sourceBuildings": 630,
+        "remainingBuildings": 630,
+        "totalRoadRecords": 890,
+        "independentRoadRecords": 830,
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedBoundaryWidthSamples": 9,
+        "maximumJoinErrorMeters": 0.00600433349609375,
+        "minimumLowerStreetClearanceMeters": 4.039500618940323,
+        "sourceBuildings": 630,
+        "remainingBuildings": 630,
+        "totalRoadRecords": 890,
+        "independentRoadRecords": 830,
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedBoundaryWidthSamples": 9,
+        "maximumJoinErrorMeters": 0.00600433349609375,
+        "minimumLowerStreetClearanceMeters": 4.039500618940323,
+        "sourceBuildings": 630,
+        "remainingBuildings": 630,
+        "totalRoadRecords": 890,
+        "independentRoadRecords": 830,
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedBoundaryWidthSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "minimumLowerStreetClearanceMeters": null,
+        "sourceBuildings": 630,
+        "remainingBuildings": 630,
+        "totalRoadRecords": 890,
+        "independentRoadRecords": 830,
+        "lowerLossiRoadRecords": [
+          {
+            "id": 35184402069770,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302570,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184402069776,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185117302571,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "approachSupports": 0,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Scoped classical bridge exterior only. Named PMTiles footway length 31.40949m and its unequal bank wings locate the model; the 4.6m width, pier spacing, ornament and vertical sections are visual approximations. No exact-QID bridge polygon or surveyed section is claimed.",
+    "Source datum 64.6m and floor 70.35m give clearance above the coarse standard Lossi road. Mapzen smooths the local cut and hill; connected upper footpaths are deliberately graded with bounded supports. Exact hill embankments, stairways and park landscaping are not reconstructed.",
+    "The bronze profile is an original shallow geometric abstraction of the photographed Parrot medallion, not a precise portrait likeness. Fine dedication/date lettering is omitted; the opposite Latin motto uses simple original stroke geometry. Exact carpentry and cast ornament are simplified.",
+    "Mustard timber, cream frames, white open rails and pale foundations use existing shared 256px material graphs with metric UVs and linear tints. Distant levels simplify pier moldings, rails, seams, portrait and text; physical phone/laptop timing is unmeasured.",
+    "Coarse native hill geometry does not reproduce the historic cut, exact bank slopes, retaining walls or stairs. Upper paths use the current renderer’s bounded grade/support adaptation. Procedural streets, poles and neighboring buildings are retained context; physical-device performance remains unmeasured.",
+    "Fine Greek-key railing borders and complete dedication/date lettering are simplified or omitted. The portrait is an original low-relief abstraction, not a precise likeness."
+  ]
+}

@@ -1,11 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.emley_moor_transmitting_station",
-  "reviewedOn": "2026-10-09",
-  "inputHash": "sha256:b50c9c9614c6d1e9e5aba40e56b7c564eff80185595b5580e0bd1ea9448565e8",
-  "sourceHash": "sha256:13b243d97ccaf74044cb251b0cf0b987281939dc0e3639b85b771864e5f3b630",
-  "runtimeHash": "sha256:b20aba522b86870e67e3723c2db9e4f5dd5cf86de19d0ed2599e819344f13686",
-  "captureReportHash": "sha256:d5333f51de6b2ce3ebfeef73edf69e66905ae3c0e993171867e658eb4560fad6",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:05987cca016f0b92c2bfd3d89393654ca675cb754efa48d6a390385984ff1f4a",
+  "sourceHash": "sha256:de4f70d0099c207de14fe9321d3e719abdd586b466f8ebc676f487e64f97e07a",
+  "runtimeHash": "sha256:71f277cc37b4cac3bbb3341fdfeffd008d56541c3f2d4c5c48b2bc4bc44b59c6",
+  "captureReportHash": "sha256:ce24305fc8f62ca9f27bf78126963a0ecf33c57232d318aebf9f9ef78f4998da",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,11 +26,12 @@
       "shots/north-platform-control.png",
       "shots/east-entrance.png"
     ],
-    "notes": "Inspected all16 final portable views. Complete tapered concrete shaft,20-bay turret with inset tinted/boarded panes, galleries and mounting tracks, four north-facing GPO platforms with actual recessed doors, lower dish gallery, eight-tier north crossed rack, west trough panels, two-stage modern radome/collar ladder and tip rails, and approximately east-facing entrance cage are visible. The exact original master remains independently reproducible; reviewed master has271836triangles and21.85MB."
+    "notes": "Inspected all16 current portable views. The full319m interpreted envelope, tapered shaft,20-bay turret, galleries, four north cantilever platforms, north crossed rack, west panels, two-stage radome/collar ladder and approximately east entrance remain complete after joined-path changes. Long whole-tower/turntable views establish the envelope; dedicated base/platform/turret/array/collar cameras show the detail. Current source271260triangles/21815884bytes. Prior reference interpretation and uncertainty remain unchanged.",
+    "captureReportHash": "sha256:ce24305fc8f62ca9f27bf78126963a0ecf33c57232d318aebf9f9ef78f4998da"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:faf44fed5b1d03d3ba844890b676536289c84dd0d968761e4f8faaea2f0b085e",
+    "captureReportHash": "sha256:9fad984e1f26745b4979f0e4073d1535a749c733d82f966319fb2868e7457011",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -49,11 +50,11 @@
       "shots/shared/east-entrance.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all16 final shared-material views including north-up placement and north platform/east entrance cameras. Three canonical256px graphs supply concrete_plain,metal_painted and metal_copper. Turret tinted panes remain local opaque PBR; no photograph or embedded bitmap. Each shared graph is read once and unload disposes all model geometries. Source ground and geographic-flat-terrain are inspection surfaces, not measured site terrain."
+    "notes": "Inspected all16 current shared-material/geographic-flat-terrain views. Three existing256px concrete_plain, metal_painted and metal_copper graphs load once; turret glass remains local opaque PBR. North-up registration retains the north platform/west array/east entrance frame. The actual mapped17.6m ring supplies position only; the modeled24.38m engineering base is deliberately not stretched. Unload disposes all model geometry. Flat review ground is not a terrain survey."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:62562b2e84e141072800636f8df0ad0aea07335f36ef926564f956df70a5ecc8",
+    "captureReportHash": "sha256:10c918fa5c4493dfe2ebf6f73e5c53d885f5eaa8dc61a346f227a5ce5ba72feb",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -92,7 +93,7 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all36 final browser frames: noon/late light under economy/high presets, synthetic cottage scale context, named detail views, district north platforms, street east entrance, all four whole-tower levels, district/street upper antenna arrays and four transitions. Full319m silhouette,20-bay cabin,4north platforms and two-stage antenna persist. District reduces rack/dish/rail detail; skyline uses shared graph mean colors and local far panes. Default neighborhood/far camera crops this very tall tower; explicit whole-level cameras independently show every top and base. No missing geometry inferred from that intentional crop."
+    "notes": "Inspected all36 current ACES1.05 browser views: noon/late economy/high, details, north platform district view, east entrance street view, whole tower at each level, upper arrays and four transitions. Complete319m silhouette,20-bay turret, four north platforms and two-stage antenna persist. Generic neighborhood/transition cameras crop the top of this tall tower; explicit whole-level cameras show both base and tip. No missing section appears in the dedicated complete views. Skyline/district/street GLBs are unchanged; closeup joined rails/paths were reviewed with the rebuilt detailed mesh."
   },
   "geographicReview": {
     "status": "passed",
@@ -103,7 +104,7 @@
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Medium-fi exterior combines Arup engineering concrete274.32m/base24.38m/top6.4m/20radial-bay facts with inspected2011 ground and2023 upper-array photos. Four north platforms replace archival east-platform phase. Modern319m is the photo-proportioned modeled envelope, not a reported measured height; Arqiva2023 retains historical330.4m. Exact service-door phases, entrance bearing, minor equipment allocations, segment heights and cabin external radius are reconstructed. Detached site buildings, fences/ducts, hidden internal equipment and operating radio functions excluded. Original dense source remains unchanged through emleyMoor.build."
+    "notes": "Medium-fi exterior combines Arup engineering concrete274.32m/base24.38m/top6.4m/20radial-bay facts with inspected2011 ground and2023 upper-array photos. Four north platforms replace archival east-platform phase. Modern319m is the photo-proportioned modeled envelope, not a reported measured height; Arqiva2023 retains historical330.4m. Exact service-door phases, entrance bearing, minor equipment allocations, segment heights and cabin external radius are reconstructed. Detached site buildings, fences/ducts, hidden internal equipment and operating radio functions excluded. Original dense source remains unchanged through emleyMoor.build. Refreshed2026-10-27 against68 current inspected frames and6 clean GLBs after joined-path changes. Existing reconstruction/epoch/placement limits are retained; no new equipment inventory, surveyed height or terrain claim."
   },
   "legacyFidelityScope": {
     "target": "maximum",
@@ -117,9 +118,9 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/gc/gcw/emley_moor_transmitting_station/models/source.glb",
-        "hash": "sha256:13b243d97ccaf74044cb251b0cf0b987281939dc0e3639b85b771864e5f3b630",
-        "bytes": 21851308,
-        "triangles": 271836,
+        "hash": "sha256:de4f70d0099c207de14fe9321d3e719abdd586b466f8ebc676f487e64f97e07a",
+        "bytes": 21815884,
+        "triangles": 271260,
         "materials": 4,
         "images": 0,
         "min": [
@@ -138,9 +139,9 @@
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/gc/gcw/emley_moor_transmitting_station/model.glb",
-        "hash": "sha256:b20aba522b86870e67e3723c2db9e4f5dd5cf86de19d0ed2599e819344f13686",
-        "bytes": 21850852,
-        "triangles": 271836,
+        "hash": "sha256:71f277cc37b4cac3bbb3341fdfeffd008d56541c3f2d4c5c48b2bc4bc44b59c6",
+        "bytes": 21815428,
+        "triangles": 271260,
         "materials": 4,
         "images": 0,
         "min": [
@@ -222,9 +223,9 @@
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/gc/gcw/emley_moor_transmitting_station/model.closeup.glb",
-        "hash": "sha256:0dc0f435fb5fc4f2e964fe5ac755247321aac4b8c2c1376f840d7a3a975b8856",
-        "bytes": 3776752,
-        "triangles": 51680,
+        "hash": "sha256:83241a1f28d619ee5f51ec152ca8a88fa5bee95abe50de0d687c804fccbd895a",
+        "bytes": 3744784,
+        "triangles": 51104,
         "materials": 4,
         "images": 0,
         "min": [
@@ -247,7 +248,8 @@
       "check-medium-fi.mjs --ids=emley_moor_transmitting_station --strict:no findings",
       "check-landmark-lods.mjs --ids=emley_moor_transmitting_station:four pinned derivatives"
     ],
-    "notes": "Six current Khronos validations pass with zero errors/warnings and no embedded images. Three focused tests pass: every browser level has full319m envelope, all four north platform decks and20turret bays; exact historical-source bytes and signed placement control with un-stretched engineering width; exact deterministic browser regeneration, strict triangle/draw/download caps, all three shared graph bindings and separate12-byte position streams. Test deck ray intentionally avoids the dish mounted above the second platform."
+    "notes": "Six current Khronos validations pass with zero errors/warnings and no embedded images. Three focused tests pass: every browser level has full319m envelope, all four north platform decks and20turret bays; exact historical-source bytes and signed placement control with un-stretched engineering width; exact deterministic browser regeneration, strict triangle/draw/download caps, all three shared graph bindings and separate12-byte position streams. Test deck ray intentionally avoids the dish mounted above the second platform.",
+    "refreshedOn": "2026-10-27"
   },
   "runtimeLodReview": {
     "status": "passed",
@@ -292,20 +294,39 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:0dc0f435fb5fc4f2e964fe5ac755247321aac4b8c2c1376f840d7a3a975b8856",
-        "bytes": 3776752,
-        "gzipBytes": 663076,
-        "triangles": 51680,
-        "cpuBytes": 3771768,
-        "gpuBytes": 3771768,
+        "hash": "sha256:83241a1f28d619ee5f51ec152ca8a88fa5bee95abe50de0d687c804fccbd895a",
+        "bytes": 3744784,
+        "gzipBytes": 658734,
+        "triangles": 51104,
+        "cpuBytes": 3739800,
+        "gpuBytes": 3739800,
         "errorMeters": 0.06,
         "drawCalls": 4
       }
     ],
     "initialBytes": 369020,
-    "notes": "Four independent browser models contain866/3978/15880/51680triangles, each within its1000/4000/16000/64000cap and8drawlimit. Skyline+district total369020bytes, under3MB phone/6MB laptop initial budgets. Close-up3.78MB and detailed21.85MB source/import load separately. Shared texture graphs are reused and the far level uses their baked mean colors. Physical laptop/phone frame-time and transfer benchmarks remain separate work."
+    "notes": "866 /3978 /15880 /51104triangles;1 /3 /4 /4draws. Initial skyline+district369020bytes. Closeup3744784bytes; detailed master21815884bytes remains separate. All actual triangle/draw/download budgets pass. Three shared graphs and separate position streams remain; physical-device frame-time and transfer measurements are still pending."
   },
   "limitations": [
     "Arup1972 sets concrete274.32m,24.38m base/6.4m top and20-bay turret. The mapped17.6m ring is a position control, not a sizing survey. The modern319m modeled antenna envelope is photo-proportioned from February/September2023, not a verified measured current height; owner2023 still quotes historical330.4m. Segment heights, turret external7.05m radius, service-door phases, minor antenna inventory/cage details and entrance east bearing are reconstructed. Lower gallery uses2011 and upper arrays2023 references; detached station buildings, ducts/fences, hidden internals and operating radio equipment excluded. Host terrain supplies ground height; no footprint replacement. Original master is preserved separately."
-  ]
+  ],
+  "reviewRefresh": {
+    "kind": "changed-source-runtime-closeup-reviewed",
+    "oldInputHash": "sha256:b50c9c9614c6d1e9e5aba40e56b7c564eff80185595b5580e0bd1ea9448565e8",
+    "inputHash": "sha256:05987cca016f0b92c2bfd3d89393654ca675cb754efa48d6a390385984ff1f4a",
+    "oldSourceHash": "sha256:13b243d97ccaf74044cb251b0cf0b987281939dc0e3639b85b771864e5f3b630",
+    "sourceHash": "sha256:de4f70d0099c207de14fe9321d3e719abdd586b466f8ebc676f487e64f97e07a",
+    "oldRuntimeHash": "sha256:b20aba522b86870e67e3723c2db9e4f5dd5cf86de19d0ed2599e819344f13686",
+    "runtimeHash": "sha256:71f277cc37b4cac3bbb3341fdfeffd008d56541c3f2d4c5c48b2bc4bc44b59c6",
+    "scopeProof": "Exact prior input hash reconstructed with historical recipe bytes and all unchanged current local source inputs. Only source recipes changed; existing facts, coordinate/axis/scope and placement draft remain. All68 current frames were freshly captured and inspected; no old model render is relabeled.",
+    "currentFramesInspected": 68,
+    "unchangedLods": [
+      "skyline",
+      "district",
+      "street"
+    ],
+    "changedLods": [
+      "closeup"
+    ]
+  }
 }

@@ -45,7 +45,7 @@ export interface StructurePlacement {
     deckProfile?: [number, number, number][];
     /** Also replace transverse bridge-tagged segments inside the exact authored outline. */
     includeTransverseBridges?: boolean;
-    /** Also clip longitudinal grade approaches sharing a covered bridge endpoint. */
+    /** Also clip longitudinal road approaches and turning footways sharing a covered bridge endpoint. */
     includeConnectedApproaches?: boolean;
   };
   /** Only a contained, nongeneralized mapped footprint may be replaced. */

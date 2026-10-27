@@ -1,0 +1,185 @@
+{
+  "status": "canonical integration and scoped readiness verified",
+  "catalogReady": true,
+  "sourceHash": "sha256:2edb875f912c67edf4e949c0efa97d4808de3e404da4742538f82aa188655fcc",
+  "priorStatus": "isolated source model complete; native approach fit and canonical integration pending",
+  "savedReview": {
+    "report": ".artifacts/umberto-review/completion-draft.json",
+    "hash": "sha256:0dffe1e3be3b027b43a3cf1c996aa8b5aafd8994dbb81dce3c6d15e3795de6e9",
+    "sourceFrames": [
+      {
+        "camera": {
+          "name": "whole-upstream-elevation",
+          "position": [
+            0,
+            12,
+            -125
+          ],
+          "lookAt": [
+            0,
+            8,
+            0
+          ],
+          "fov": 52
+        },
+        "path": ".artifacts/umberto-review/whole-upstream-elevation.png",
+        "hash": "sha256:d696149b7c32a02575964a76a35cb8c4eed5c719ebacb9d2c62783c49e2e7f21",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "downstream-arches-and-piers",
+          "position": [
+            15,
+            13,
+            105
+          ],
+          "lookAt": [
+            0,
+            7,
+            0
+          ],
+          "fov": 55
+        },
+        "path": ".artifacts/umberto-review/downstream-arches-and-piers.png",
+        "hash": "sha256:13f10e7cc2b20d16ca13c59c2d2338f95b0a471d0b7c9d9102a14c05d3aa14a6",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "road-walk-and-median",
+          "position": [
+            -45,
+            17.4,
+            8.2
+          ],
+          "lookAt": [
+            30,
+            15.8,
+            -1
+          ],
+          "fov": 55
+        },
+        "path": ".artifacts/umberto-review/road-walk-and-median.png",
+        "hash": "sha256:68c69f3a2fc82c40cd27e7549d4a6d6017a1d6aa58117faa08416e7926c6c154",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "pier-shield-and-cornice",
+          "position": [
+            -13,
+            10,
+            -20
+          ],
+          "lookAt": [
+            -16.75,
+            10.7,
+            -10.7
+          ],
+          "fov": 58
+        },
+        "path": ".artifacts/umberto-review/pier-shield-and-cornice.png",
+        "hash": "sha256:0ff0af11568ac0ca0cb0185f7963226610c2b982e07c3a653b45dccbcd87eddf",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "median-lantern",
+          "position": [
+            14,
+            21.5,
+            4.3
+          ],
+          "lookAt": [
+            11,
+            20.6,
+            -0.2
+          ],
+          "fov": 53
+        },
+        "path": ".artifacts/umberto-review/median-lantern.png",
+        "hash": "sha256:5fee4d66818e91d19b422897e09e98069fa84fb0a52e2998548c1cd2d386b010",
+        "inspected": true
+      }
+    ]
+  },
+  "nativeFit": {
+    "acceptedInSavedFixture": false,
+    "canonicalHostVerified": true,
+    "registeredPreview": false,
+    "currentReview": "qa.json#siteIntegrationReview"
+  },
+  "pending": [],
+  "limitations": [
+    "Arch rises, pier dimensions and absolute elevation are approximate picture-based reconstructions.",
+    "Six lamps and regular spacing are a simplified photo-based arrangement, not a verified as-built schedule.",
+    "Shield/cross/laurel is a simplified visual motif, not exact heraldry.",
+    "The 2m flared bank aprons are approximate visualization transitions for generalized PMTiles footways, not surveyed paving. They sit 1cm below map paving to avoid coplanar overlap. Coarse surrounding riverbank terrain and independent lower paths are retained.",
+    "Surrounding coarse riverbanks, lower quay paths, independent transport slivers and automatic retaining faces are context, not a reconstruction of the historic embankments. No claim is made that every connected street elevation is unchanged; bounded approach grade metadata intentionally changes connected paving while raw map polylines, DEM and water are retained."
+  ],
+  "canonical": {
+    "sourceHash": "sha256:2edb875f912c67edf4e949c0efa97d4808de3e404da4742538f82aa188655fcc",
+    "runtimeHash": "sha256:224486d0f54e7b3735e5f41a0482c4146ac0555c2bf751e9f97b66f6c728f80e",
+    "assetInspectVerified": true,
+    "headlessScene": {
+      "validated": true,
+      "ticks": 1
+    },
+    "sharedMaterialBindingsVerified": true,
+    "embeddedImages": 0,
+    "runtimeLevels": [
+      {
+        "level": "skyline",
+        "bytes": 80088,
+        "hash": "sha256:805c845c95055d33595a71244116b1f1b9be693919628dcb0db0990585b0d54b",
+        "triangles": 956,
+        "draws": 1
+      },
+      {
+        "level": "district",
+        "bytes": 137572,
+        "hash": "sha256:03a8beb61e7ecc3d3df2dfceecc7950c396ddc9b8cda60ac001f7ecdf5d2e54b",
+        "triangles": 1596,
+        "draws": 5
+      },
+      {
+        "level": "street",
+        "bytes": 730300,
+        "hash": "sha256:e30f3589e8b9b0649bbec533a266c301e8a103bc05ec62a82c9f08caf7269107",
+        "triangles": 7532,
+        "draws": 6
+      },
+      {
+        "level": "closeup",
+        "bytes": 1422484,
+        "hash": "sha256:d68dcb8232d4a40a33fd3074685d282cbee25328f834703d79a7316f43711c5a",
+        "triangles": 14580,
+        "draws": 6
+      }
+    ],
+    "initialGeometryBytes": 217660,
+    "budgets": "All four levels meet 1000/4000/16000/64000 triangles and 12 draws; skyline plus district below 3MB.",
+    "commands": [
+      "node packages/worldgen/scripts/generate-authored-bridge-models.mjs --ids=ponte_umberto_i --check",
+      "node packages/worldgen/scripts/import-structure-models.mjs --ids=ponte_umberto_i --check",
+      "node packages/tooling/scripts/check-medium-fi.mjs --ids=ponte_umberto_i --strict"
+    ],
+    "previewBasis": "Current canonical source/runtime and the completed, hash-bound Molen render reviews in qa.json.",
+    "registrationIsReadinessApproval": false,
+    "sourceReproduced": true,
+    "runtimeImportVerified": true,
+    "reviewedOn": "2026-10-27",
+    "currentReview": "qa.json",
+    "inspectedFrames": 61,
+    "readinessBasis": "Completed canonical visual, shared-surface, medium-fi, geographic, fidelity and native-site reviews; not registration alone."
+  },
+  "packaging": "The merged branch uses input-addressed asset bundles; no asset-lock.json exists. The registered generator participates in Assets CI. No release was built or published in this integration pass.",
+  "supersededIntegration": {
+    "reportHash": "sha256:6e828be08501d606f280f22bdfbfad2869b6f2ecf5ef9f1160151f8509cc676a",
+    "status": "canonical source and runtime integration verified; final readiness review pending",
+    "sourceHash": "sha256:50a78d62e9fd97926af796e55c3dd9efa9998b12d78dc331e7a898ea02b37bd3",
+    "runtimeHash": "sha256:3bf46af1a70f74a7500595084f07fcfcf3bec45acd7a668f1fbca88522072b90",
+    "note": "This earlier handoff snapshot preceded the completed canonical reviews and approach corrections. Current scope and limits are recorded in qa.json and QA-REVIEW.md."
+  }
+}

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.kingdom_centre",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:c9224b8218174dd5d3f375021cc3d49ab104f584e829cd137d2aac5a345c1d49",
+  "inputHash": "sha256:f4034b67212f6364d31ccf3158c3aa8edd373d0f697329189dd865eddb661629",
   "sourceHash": "sha256:e941d6d0fa344a4f9631145ed04be03d814d45e05b065f2b971784b2f14b1e34",
   "runtimeHash": "sha256:ea1de69ae3132086a4eff77d11f339a2fd21ffd36a9fe799247f94687fc252ce",
-  "captureReportHash": "sha256:c27a4af0f2135f7de98ab1dc72ab26c45a6ac0a386fc10c62964845c62657ad2",
+  "captureReportHash": "sha256:cb93f29945635988c7f04c9f536ecbe0b2460a8a892c61f0a7bd5cf53253aecb",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -23,11 +23,12 @@
       "shots/east-shopping-roof.png",
       "shots/west-event-roof.png"
     ],
-    "notes": "Actually inspected all 59 final images: 13 portable, 13 shared, 33 medium-fi. Whole turntables retain the elliptical blue-grey tower, open inverted arch, curved crossbridge and both spreading podium wings. Added pale sloping roofs now have visible upward-facing planes; an earlier render revealed inward faces, corrected by triangulating each concave wing and clipping its triangles to four roof planes. Both wing notches and curved outer fronts remain complete. Crown cameras show the clear through-opening, metal inner roof and connected bridge ends; framing intentionally crops the lower shaft. Whole views include the complete complex. North-up overlay matches the full asymmetric podium outline. No missing structural volume observed."
+    "notes": "Actually inspected all 59 final images: 13 portable, 13 shared, 33 medium-fi. Whole turntables retain the elliptical blue-grey tower, open inverted arch, curved crossbridge and both spreading podium wings. Added pale sloping roofs now have visible upward-facing planes; an earlier render revealed inward faces, corrected by triangulating each concave wing and clipping its triangles to four roof planes. Both wing notches and curved outer fronts remain complete. Crown cameras show the clear through-opening, metal inner roof and connected bridge ends; framing intentionally crops the lower shaft. Whole views include the complete complex. North-up overlay matches the full asymmetric podium outline. No missing structural volume observed.",
+    "captureReportHash": "sha256:cb93f29945635988c7f04c9f536ecbe0b2460a8a892c61f0a7bd5cf53253aecb"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:43547a6f27682045f86b8b813a8ef941ef3f43b897617176019fd2a5c2b8681f",
+    "captureReportHash": "sha256:43fa900bd4b33f062dbb64157e0c7f9d9fe7695de6d0e2f61427c093deed9995",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -297,5 +298,16 @@
   },
   "limitations": [
     "Preserved217710-triangle/21120500byte original master is reproducible from unchanged global recipe. Reviewed exterior retains exact mapped elliptical tower, independently curved skybridge/end piers and full spreading shopping/conference podium.302.3m top published byCVU,302m engineer and300m architect rounded; CVU41floors/290.4m observatory retained as published facts, not imposed on detailed facade grid. Catenary205m center/2.1shape parameter and skybridge296.5–302.3m floors are reconstructed; bridge200feet architect length describes observation walkway, not exact full map envelope. Tower glazing is drawn once with full-length strips, aggregate rows and opaque PBR. Added pale faceted sloping roofs on both separately clipped mapped podium wings, reconstructed27m apex and15.75m eaves follow architect aerial and street photographs; not surveyed roof dimensions. Podium levels remain three physical facade bands despite four-level map tag. Exact doors, branded lettering, interior trusses, basement, rooftop recreation equipment/pool and night lighting excluded. No copied photograph used as texture; canonical256px granite/paintedmetal graphs shared, zero embedded images. Original speculative roof planters removed rather than intersecting new roof. Terrain slope and physical device performance unmeasured."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:c9224b8218174dd5d3f375021cc3d49ab104f584e829cd137d2aac5a345c1d49",
+    "inputHash": "sha256:f4034b67212f6364d31ccf3158c3aa8edd373d0f697329189dd865eddb661629",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 59,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

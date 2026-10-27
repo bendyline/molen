@@ -1,0 +1,241 @@
+{
+  "format": "molen/structure-placement-report@1",
+  "assetId": "molen.worldgen.structure.red_bridge_saint_petersburg",
+  "inputHash": "sha256:8957d1a0462619c687d227d05be83b0814e470f60b391133cde7028312888086",
+  "placementHash": "sha256:03286267d632d19fad7fb489813601f3ac65487d34ecf32ccdc445a919fa098e",
+  "entry": {
+    "id": "red.bridge.saint.petersburg",
+    "title": "Red Bridge, Saint Petersburg",
+    "asset": "molen.worldgen.structure.red_bridge_saint_petersburg",
+    "anchor": [
+      30.3153079,
+      59.9329842
+    ],
+    "heading": -0.936225120965,
+    "datum": "sea-level",
+    "elevation": 17.030528450012206,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q2994703",
+      "maxDistance": 45
+    },
+    "replaceFootprint": false,
+    "minLevel": 13,
+    "status": "preview",
+    "source": "https://www.openstreetmap.org/relation/5552481",
+    "note": "Original photo-led iron crossing on the exact mapped skew. Extended stone abutments and bank levels are approximate; adjacent quays and buildings remain independent.",
+    "replaceRoads": {
+      "length": 36.1,
+      "width": 17,
+      "outline": [
+        [
+          -15.4005,
+          -8.5
+        ],
+        [
+          17.8995,
+          -8.5
+        ],
+        [
+          15.4005,
+          8.5
+        ],
+        [
+          -17.8995,
+          8.5
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -11.422767261399109,
+          -1.9125024647823858
+        ],
+        [
+          12.18159817420416,
+          -2.1831325134097126
+        ]
+      ],
+      "deckHeights": [
+        4.0345813194274,
+        4.0333636683904235
+      ],
+      "deckProfile": [
+        [
+          -16.506,
+          3.995,
+          -2
+        ],
+        [
+          -11.356,
+          4.034999999999999,
+          -2
+        ],
+        [
+          0.294,
+          4.135,
+          -2
+        ],
+        [
+          11.944,
+          4.034999999999999,
+          -2
+        ],
+        [
+          17.094,
+          3.995,
+          -2
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "bounds": [
+      30.314912329186498,
+      59.932765398310906,
+      30.315703470813503,
+      59.933203001689094
+    ],
+    "groundCutout": {
+      "outline": [
+        [
+          -16.01675,
+          -9.75
+        ],
+        [
+          18.88325,
+          -9.75
+        ],
+        [
+          16.01675,
+          9.75
+        ],
+        [
+          -18.88325,
+          9.75
+        ]
+      ],
+      "preservePaving": true,
+      "minHeight": 3.7,
+      "basis": "Bounded34.9m by19.5m visualization cut within the modeled support footprint: coarse standard terrain otherwise rises through the eastern deck and rail. Source DEM and water stay unchanged; obstructing displayed ground/shore faces are removed while the bridge is resident."
+    }
+  },
+  "reviewedOn": "2026-10-27",
+  "basis": "Exact-QID OSM relation 5552481 / Q2994703 supplies the retained skewed 25.999m by 16.915m central footprint; standard PMTiles supplies the two named road directions and sidewalks. Anchor [30.3153079,59.9329842], heading -0.936225120965: +X southeast along Gorokhovaya Street, -X northwest, +Z southwest along the Moika. A 0.147 plan shear follows the mapped edges. The nominal 33.6m longitudinal extent includes approximate abutments; small supported bank aprons extend beyond it. A 17.030528m source datum fits the complete native fixture's 17.555132m water surface. All 27 actual mapped road/footway width probes have both road and model support, within 0.047155m at all four levels. These are renderer-to-model join differences, not surveyed geographic accuracy.",
+  "nativeVerification": {
+    "report": ".artifacts/red-bridge-review/native/final-report.json",
+    "hash": "sha256:1b0510676c4bf0820972a52d63b5dd5784f3b783efedd9ca3c1e49823d5f0720",
+    "scenarios": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 27,
+        "maximumJoinErrorMeters": 0.04715427353503543,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": true,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 27,
+        "maximumJoinErrorMeters": 0.04715427353503543,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": true,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 27,
+        "maximumJoinErrorMeters": 0.04715427353503543,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": true,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 27,
+        "maximumJoinErrorMeters": 0.04715427353503543,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": true,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": false,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Photo-based iron sections, arch rise, granite blocks and lamp heights are approximate; no as-built survey is claimed.",
+    "The retained 25.999m by16.915m map polygon describes the central crossing. The nominal33.6m reference length is interpreted along the sheared longitudinal coordinate including abutments; it is not substituted for the mapped clear deck.",
+    "Floral ironwork is a regularized open circle-and-rosette pattern. Rivet counts, internal ribs and lamp fittings are representative rather than surveyed.",
+    "The17.030528m source datum follows the17.555132m water surface in the complete retained native fixture. Water/ground levels depend on semantic tile context; this is a visualization datum rather than a survey. Coarse quays and neighboring architecture are outside this asset.",
+    "Skyline merges subpixel rail ornament into mean-color bands; district simplifies the pattern and hanging lanterns.",
+    "Thin bank paving and rectangular support wings overlap the generalized map lane/footway widths. A bounded34.9m by19.5m terrain cut follows those supports; native ground restores on unload. Surrounding quays retain the coarse standard terrain.",
+    "The surrounding procedural buildings, coarse quays, automatic retaining faces, power lines and approach terrain are context, not a reconstruction of historic Saint Petersburg. Some road-facing native cameras are obstructed by those coarse faces; whole-crossing and canal views show the bridge fit.",
+    "The final 4.8cm maximum paving join difference includes generalized skewed footway edges. The whole fixture is a standard-terrain approximation; no exact curb, foundation or river-stage claim."
+  ],
+  "metadataReconciliation": {
+    "previousInputHash": "sha256:bea79a2e613d41de6944823fe12509a2d98cf8cd0aaecfed4adfe4b70cc5777c",
+    "inputHash": "sha256:8957d1a0462619c687d227d05be83b0814e470f60b391133cde7028312888086",
+    "method": "Removed unreachable branches for three unrelated model IDs from the Red Bridge-only generator. The generator --check passed after cleanup. Source/master/four LODs, spec and scene bytes, shared material graphs, all cameras and all 62 inspected frame bytes remain unchanged. Existing images keep their provenance; no new rendering is claimed.",
+    "renderedInputsAndFramesHash": "sha256:8e73308c2d7c3f20c7467bd8105aca0cf7f6bf16180584e21feab12993ed58d5",
+    "framesUnchanged": 62
+  }
+}

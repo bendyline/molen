@@ -1,0 +1,558 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.kizuna_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:9a5031f3187df337c0bfe289d03764c721e865a1a4103ed5507853450d336a95",
+  "sourceHash": "sha256:0148889e7fcebe1a2f4efa12af3c609d774106b198736a53555ec52930408abc",
+  "runtimeHash": "sha256:b868c2fb8a1fc32c26eb70402defcab3871343a40a3149b4eba436c68ba4cf08",
+  "captureReportHash": "sha256:0c09043363aa22d9cc5dee86d4c49275bbb507048ce0652b58d053a5a6b5ca27",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-crossing-and-west-bend.png",
+      "shots/downstream-haunch-rhythm.png",
+      "shots/pier-footing-and-pile-cap.png",
+      "shots/box-soffit-over-open-channel.png",
+      "shots/two-way-road-and-open-railing.png",
+      "shots/western-curved-elevated-approach.png"
+    ],
+    "captureReportHash": "sha256:0c09043363aa22d9cc5dee86d4c49275bbb507048ce0652b58d053a5a6b5ca27",
+    "notes": "Inspected62 current frames:11 portable,11 shared-material/geographic,23 medium-fi and17 native. Full western bend and crossing, continuous box-girder body, deep repeated pier haunches/shallow midspans, single tapered wall piers, broad rounded pile caps/piles, pale open concrete railings, raised edge walks and two-way road are present. Corrected the curved landing apron edge, preserved shallow midspan control points and raised the short western approach by1.56219m above the original coarse terrain bump in this same pass. Whole-scale turntables and generic context cameras have limited detail readability; dedicated haunch, pier, underside, driver and native views provide detail inspection."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-crossing-and-west-bend.png",
+      "shots/shared/downstream-haunch-rhythm.png",
+      "shots/shared/pier-footing-and-pile-cap.png",
+      "shots/shared/box-soffit-over-open-channel.png",
+      "shots/shared/two-way-road-and-open-railing.png",
+      "shots/shared/western-curved-elevated-approach.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:0dfd30f056001dda66a7f1acc182ae40a124fc8d724101a6bf4e0018056b24c3",
+    "notes": "Two existing shared256px graphs concrete_plain and metal_painted, metric UVs and linear tints. Concrete/road groups share one graph; district/street use two draws and one graph, close/master add the metal detail group/graph, and skyline uses one mean-tinted group. No private/embedded images or photograph pixels. Each required graph is fetched once in native views. Runtime uses four separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-crossing-and-west-bend.png",
+      "medium-fi/downstream-haunch-rhythm.png",
+      "medium-fi/pier-footing-and-pile-cap.png",
+      "medium-fi/box-soffit-over-open-channel.png",
+      "medium-fi/two-way-road-and-open-railing.png",
+      "medium-fi/western-curved-elevated-approach.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:77b1c9222d6566fb95e2c4378c3556168832f4eadd0f5769aa011b0fcb2c9402",
+    "notes": "Master 28296 triangles / 3397972 bytes. Runtime 688 / 3568 / 9384 / 23584 triangles; 45960 / 285596 / 789564 / 2054404 bytes; 1 / 2 / 2 / 3 draws. Initial skyline plus district 331556 bytes. Strict medium-fi budgets pass; physical-device timings are unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:286451f89625119e31449570b8927acbb2f9aef5e65177751aab635da13a3302",
+    "mapFrameHash": "sha256:c5c150f66467da1b80845e1163554a505e1af52e5e9a132513d9875d65b1ac1f",
+    "notes": "Exact-QID OSM way303560657/Q3396600 retains the named curved main axis; current PMTiles35184675649489 and directly connected elevated NR7 approach35184395998126 establish the full authored route. Anchor [105.469988177,11.985278818], heading-0.131640809967: +X east-southeast/Tonle Bet, -X west-northwest/Kampong Cham; +Z south-southwest/downstream. The mapped43.093m breadth reflects curvature, not physical deck width. Nominal13.5m width,17 supports and120m river-pier rhythm are photo-led approximations. Authored1557.742m x extent includes the connected approach rather than rescaling to the1436.474m named-way rectangle or older1500m fact. All6 actual mapped road-width joins have paving/model support within 0.003999710083235186m per LOD. Fifty actual native western road-width samples retain at least0.482346m over raw ground at every LOD; the source grade adjustment also uses300 denser standard-DEM samples. This is approximate viewer fit, not surveyed sections or legal navigation clearance."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped continuous box-girder crossing and western elevated approach with approximate native placement complete. Master 28296 triangles / 3397972 bytes. Runtime 688 / 3568 / 9384 / 23584 triangles; 45960 / 285596 / 789564 / 2054404 bytes; 1 / 2 / 2 / 3 draws. Initial skyline plus district 331556 bytes. Strict medium-fi budgets pass; physical-device timings are unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w6/w65/kizuna_bridge/models/source.glb\",\"hash\":\"sha256:0148889e7fcebe1a2f4efa12af3c609d774106b198736a53555ec52930408abc\",\"bytes\":3397972,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/w6/w65/kizuna_bridge/model.glb\",\"hash\":\"sha256:b868c2fb8a1fc32c26eb70402defcab3871343a40a3149b4eba436c68ba4cf08\",\"bytes\":3397596,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w6/w65/kizuna_bridge/model.skyline.glb\",\"hash\":\"sha256:67b6d628797b359d4811afa5238a1dbba0b184a9e631d6f6e763cc2465236464\",\"bytes\":45960,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w6/w65/kizuna_bridge/model.district.glb\",\"hash\":\"sha256:b2cee56a71662236045e8fb183903c63c08b87e9c4263d0c9b419bd68e5fb4da\",\"bytes\":285596,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w6/w65/kizuna_bridge/model.street.glb\",\"hash\":\"sha256:4acf4e999d0bfaa82674bc7d3accb9c110e0aded50bcd09ed3e139d03f2f319c\",\"bytes\":789564,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w6/w65/kizuna_bridge/model.closeup.glb\",\"hash\":\"sha256:b3c48fcd0f991cdb7ed2e13078e4c6cb7684d69a15716cfcb61e198173121744\",\"bytes\":2054404,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-measured-deck-haunched-box-piers-pile-caps-and-open-rails",
+        "passed": true,
+        "notes": "1292 actual front-face/contact probes across six GLBs: complete measured curved deck, full landing aprons, single wall piers, outward box soffits, rounded pile caps, shallow/open midspans and open railing bars/gaps."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks pass; sha256:7d4d9b18fd79a47e875f275a044fe38b957b0dbe5ea100a3b98aacd90e575300."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:9a5031f3187df337c0bfe289d03764c721e865a1a4103ed5507853450d336a95",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Exact-QID OSM way303560657/Q3396600 retains the named curved main axis; current PMTiles35184675649489 and directly connected elevated NR7 approach35184395998126 establish the full authored route. Anchor [105.469988177,11.985278818], heading-0.131640809967: +X east-southeast/Tonle Bet, -X west-northwest/Kampong Cham; +Z south-southwest/downstream. The mapped43.093m breadth reflects curvature, not physical deck width. Nominal13.5m width,17 supports and120m river-pier rhythm are photo-led approximations. Authored1557.742m x extent includes the connected approach rather than rescaling to the1436.474m named-way rectangle or older1500m fact. All6 actual mapped road-width joins have paving/model support within 0.003999710083235186m per LOD. Fifty actual native western road-width samples retain at least0.482346m over raw ground at every LOD; the source grade adjustment also uses300 denser standard-DEM samples. This is approximate viewer fit, not surveyed sections or legal navigation clearance."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:9a5031f3187df337c0bfe289d03764c721e865a1a4103ed5507853450d336a95",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected62 current frames:11 portable,11 shared-material/geographic,23 medium-fi and17 native. Full western bend and crossing, continuous box-girder body, deep repeated pier haunches/shallow midspans, single tapered wall piers, broad rounded pile caps/piles, pale open concrete railings, raised edge walks and two-way road are present. Corrected the curved landing apron edge, preserved shallow midspan control points and raised the short western approach by1.56219m above the original coarse terrain bump in this same pass. Whole-scale turntables and generic context cameras have limited detail readability; dedicated haunch, pier, underside, driver and native views provide detail inspection.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/scene-preview.png",
+          "hash": "sha256:0d142a49bfd0bc1b5ae119d34da21115e6583fad87f348d27718edcdca429652"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:139da829ebe051b50e564453b7d8c6522ac744dc11c3360eaf834d828ce43e22"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:a3f06f7f91dbdddb119eebcc5b4cbf5f89cf3784fd32978556ddd706ba0d4391"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:e73c99f2aca5a46fb409b140cdc648b555148596042d4b1b2cf6867e0f035899"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:1fbc6432bab65cdb46c9b500bf8583130ebc17793ec2a969d6ddc34171a8558d"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/whole-crossing-and-west-bend.png",
+          "hash": "sha256:0d142a49bfd0bc1b5ae119d34da21115e6583fad87f348d27718edcdca429652"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/downstream-haunch-rhythm.png",
+          "hash": "sha256:e726fad1d5938b03e473d1687a1dfa676676ece7396d32c2528618c9d57d4059"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/pier-footing-and-pile-cap.png",
+          "hash": "sha256:101b25e1e5174dbcf9fb8eb4d893571bd5e3b4c53c6f225e7bbdb961b30110b1"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/box-soffit-over-open-channel.png",
+          "hash": "sha256:ec6dbcb8b647c7d7423f017d04d891d6c45db44a45c606bd44d37c2ea6fc3296"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/two-way-road-and-open-railing.png",
+          "hash": "sha256:7726691056a2252064a8fe899b1876d56f617f3ccdb658879d4e8d61840babb4"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/western-curved-elevated-approach.png",
+          "hash": "sha256:74c2999961036107c1bf1355a6251fcef1df34c9797f6cc670c1e0fba11b882b"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:bab9a33ed2d07482bc063f55615f9482d0268ca069f0e4bdf5cc7f2992e678f8"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:4aca92eea9d7e76f816316e96f912276eb0e52c41445468a5fedccd087459fb1"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:6004fe70c189aa419664b12e5f822d46afa411edf54f0941e3f02a72741668e1"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:13650f14f547cec97e96e772a69936f20cceef2f6845608318e42c608acb452c"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/whole-crossing-and-west-bend.png",
+          "hash": "sha256:93aafd37a3f3b4003c376bd8f8b4363e46e51f06c2be79993e3a72b5b65a5e38"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/downstream-haunch-rhythm.png",
+          "hash": "sha256:e527d809c7567a8b7dc01868931b88ee2a5c1f4c5989e79ace96cb4ab270f825"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/pier-footing-and-pile-cap.png",
+          "hash": "sha256:83e6eed1e88a718e728c665e00ff4d158eec6ccdfec4ea23dc3435798ad7d02f"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/box-soffit-over-open-channel.png",
+          "hash": "sha256:c28099c5f9195318b1fc7a7d033c8dc65f12679d20b1e93a9e02bf8a3f93fecc"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/two-way-road-and-open-railing.png",
+          "hash": "sha256:91bc362c8cece0a12bac59c796fee5fe41bfe208fbfddac5f4dec064b84117da"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/western-curved-elevated-approach.png",
+          "hash": "sha256:ceadaae73fa994edc516d0925a8dc75b4063786d254553e95e50129561206039"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/shots/shared/placement.png",
+          "hash": "sha256:559d993c834dfe04f935ac541a3290d6f47b1e3137567a733dde09f075fb8ab0"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:29e5630bda8c3414e3799e396a73273b30c1f6e3b6a42d2b830f86d412059444"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:ad3f078a7caa1a1be84fb58f5ae8e11e88d65b791badc344c63aa2e1d96bb3d9"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:19cf06df9157466644ea230e25e23252448f51ce518c28a3b96e23b277e6b229"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:456c8575b3baaa631cdb129851124cd910df0a12aff488cab21dee7fac1f5c05"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:afd6c0f581f0a52d41eb356cbf2e21ba1c050f04912f0ba7e005d3f69c243174"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:6870f6205afcae8cc5c0f77b7e78060e8a229519e65756c25a3aa0603903fd78"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:815b932c8dd6bfc6536837050adfb28d3986797c1a475bdbe00045c619908cc1"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:dc69bb1dd4c3830dcd5cba3aa141f29afec68319e332345d4eae9f1fa86961e0"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:5f178f3da35dc5df3414f8f1a096182c775ea40dd51e0e9930dcf2de3e5c25a2"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:b13bdbbfb72f63bdd273bb93f13e3907b4bcb4b4a88e82f9417dcadd5d727f59"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:8235c84408daa528151a40b7ac75fd02b00625be1e4553180edb302f45406f21"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:325da7aec7604ba79b219946bd63de355c5d6751a7503a561d6de5769b5f3fca"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:541e743435750f7bc0f1ad9fca8c68a23ef8f17de5398006f850a9d08b34ceb3"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/whole-crossing-and-west-bend.png",
+          "hash": "sha256:fa8501f9ccaf489e6020ba0956bcce0e063e85819c1d4ab21e3b5ad120f8a556"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/downstream-haunch-rhythm.png",
+          "hash": "sha256:dd8436b46e9d9cfaa9d16a6656fffb251ab3036ddb891195113dd0ff55204fc8"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/pier-footing-and-pile-cap.png",
+          "hash": "sha256:bafd447e305ba9f030bbb3740cdd0832ae822bac3d843006293d91d445695d8c"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/box-soffit-over-open-channel.png",
+          "hash": "sha256:b2ec57907eecf8d49c16fb533c4cd2cbed89387eb3e41acf67d53247db8803e0"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/two-way-road-and-open-railing.png",
+          "hash": "sha256:4bcec0ec98437b36f826655d445dba3941c5ebe1f1318bfe96882f4eb89bd023"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/western-curved-elevated-approach.png",
+          "hash": "sha256:3f7e01db69c9dcacb44f03704c29875c126b322792a3c3145cf280ed821be008"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:a2031d1e08f452d12a655dcc5c774d5d8b8e906843fe53e502a86f068f6ef087"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:6870f6205afcae8cc5c0f77b7e78060e8a229519e65756c25a3aa0603903fd78"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:61f49ce687c0247ed71d29e8c216635a92a363714d9dc9f31895288e937cdcf6"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w65/kizuna_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:7cfb1ac15d26b338df6593630baa055b4ede2b8e115ca737821b1f13300c8dba"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:8f216c83d22ef9d20d0f5825fb1ee1943de4e162d85a4b76050119dd003151f9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:d54565cf637c2c4cce99370e35ddcaa8aa863159578da70823dc01d9750f5e5e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-street-whole-crossing-and-west-bend.png",
+          "hash": "sha256:748edb999dcf65cab4155b61b433d5fda1f772ba912888b15751f63de0dde81c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-street-downstream-haunch-rhythm.png",
+          "hash": "sha256:cc56cbcac1e8ac895b724b6adad78ce7aaba83eea2af0e03b757cab4bf03b65b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-street-pier-footing-and-pile-cap.png",
+          "hash": "sha256:26db8a4c5912e4dfbb4009dfae71764af444ebc8213d6f2f87553b3a76853202"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-street-box-soffit-over-open-channel.png",
+          "hash": "sha256:110b5f88cef98f758062fb13a8881ee187296921f807d20cbbc80a9a1df44160"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-whole-crossing-and-west-bend.png",
+          "hash": "sha256:587beb164ebc873ba50b40003c0ac21b359ce758f8ce1b06d191883a00e7fe6b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-downstream-haunch-rhythm.png",
+          "hash": "sha256:62bc50134d0a52c7591200de902a13486900201a596bda50eb78787d99b83d20"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-pier-footing-and-pile-cap.png",
+          "hash": "sha256:39682c820987a804e528215eb23c6415bde6c08f6cebaca9134de3f0aa6938b3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-box-soffit-over-open-channel.png",
+          "hash": "sha256:57724c7a903ac4832976bdfc63ecb761044530f9e3f02499c57a2e60753d90ba"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-two-way-road-and-open-railing.png",
+          "hash": "sha256:3bc5278e784c31b87af59ab3e2500b5513767edd82ca8c9e16e02d26d9b325fe"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-western-curved-elevated-approach.png",
+          "hash": "sha256:e17be59f497e000cdc769b6f2370010a743905b0193246ae6f21d47e376a4428"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-kampong-cham-west-landing.png",
+          "hash": "sha256:6106ccf0a87084d34d70773709ef3a22ee35461eef0ecc5b442b36ca6403f202"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-tonle-bet-east-landing.png",
+          "hash": "sha256:4fc39eec78cbf03f313e071abdd5d98167d73ea77fcf327c782f2ec03bbf7ccd"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:587beb164ebc873ba50b40003c0ac21b359ce758f8ce1b06d191883a00e7fe6b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:e9eea782fcaf86cd982061db45242a347de8cbd000776d8fe47bba1c75a7e242"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\kizuna-review/native/shots/final-failure-whole-crossing-and-west-bend.png",
+          "hash": "sha256:53d515f0d115fd348d5513bb497120d47e1f2816dc32c9c7dbdbbe3fcd309b6e"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All100 fixture buildings and135 independent road records remain. Successful replacement removes4 fully replaced elevated-road fragments from170 input records, leaving166; failure retains all170. Raw road inputs, DEM, displayed ground and water remain unchanged; connected main landing paving is deliberately graded. Failed loading keeps original map features; unload releases all model/support geometry. No ground/building cutout is used."
+    },
+    "nativeReport": {
+      "path": ".artifacts/kizuna-review/native/final-report.json",
+      "hash": "sha256:469c96276ac1ec1d161c9dfcd55797ca37e189675445e688f99394a424975149",
+      "frozenViewerInputsHash": "sha256:deeb64212ba4b3c4d79377cd6cbfdee70cfcc240c175b6c2e2a7c91b1e31de1a"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 6,
+        "pavedJoinSamples": 6,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": 0.003999710083235186,
+        "westernWidthSamples": 50,
+        "minimumWesternRoadOverRawGroundMeters": 0.482346861155019,
+        "sourceBuildings": 100,
+        "remainingBuildings": 100,
+        "sourceRoads": 170,
+        "outputRoadRecords": 166,
+        "independentRoadRecords": 135,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 6,
+        "pavedJoinSamples": 6,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": 0.003999710083235186,
+        "westernWidthSamples": 50,
+        "minimumWesternRoadOverRawGroundMeters": 0.6233485840071502,
+        "sourceBuildings": 100,
+        "remainingBuildings": 100,
+        "sourceRoads": 170,
+        "outputRoadRecords": 166,
+        "independentRoadRecords": 135,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 6,
+        "pavedJoinSamples": 6,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": 0.003999710083235186,
+        "westernWidthSamples": 50,
+        "minimumWesternRoadOverRawGroundMeters": 0.6233485840071502,
+        "sourceBuildings": 100,
+        "remainingBuildings": 100,
+        "sourceRoads": 170,
+        "outputRoadRecords": 166,
+        "independentRoadRecords": 135,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 6,
+        "pavedJoinSamples": 6,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": 0.003999710083235186,
+        "westernWidthSamples": 50,
+        "minimumWesternRoadOverRawGroundMeters": 0.6233485840071502,
+        "sourceBuildings": 100,
+        "remainingBuildings": 100,
+        "sourceRoads": 170,
+        "outputRoadRecords": 166,
+        "independentRoadRecords": 135,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "pavedJoinSamples": 0,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "westernWidthSamples": 50,
+        "minimumWesternRoadOverRawGroundMeters": null,
+        "sourceBuildings": 100,
+        "remainingBuildings": 100,
+        "sourceRoads": 170,
+        "outputRoadRecords": 170,
+        "independentRoadRecords": 135,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 0,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Complete mapped main bridge plus directly connected elevated western approach, retaining the western bend. The1557.742m authored x extent differs from the1436.474m named-way rectangle and older1500m fact because the connected approach is included. The43.093m named-plan breadth is curvature; nominal13.5m physical width is a photo-led approximation.",
+    "Ten river-pier stations spaced near120m, seven approach supports, box haunch depth2–6.5m, stem taper, pile-cap/pile sections, railing count and small fixtures are visual reconstruction controls, not surveyed structural dimensions. Main piers and caps are individually positioned along the measured centerline. Source master retains full support/railing/detail rhythm.",
+    "Source origin6m; the main deck rises to roughly27m above sea level, with separate bank approach grades. Landings clear the maximum sampled standard Mapzen ground across the current12m default road ribbon. Native water, banks, raw roads and surrounding buildings remain unchanged. No surveyed or legal navigation/road clearance is claimed.",
+    "Existing shared256px concrete_plain and metal_painted graphs, metric UVs and linear tints; no private/embedded images or photo pixels. Near concrete/road groups share one graph, while close detail adds the metal graph. Far LOD simplifies the underside to a uniform-depth silhouette and omits piles/railing bars; district/street retain real haunch rhythm with fewer railing posts/details.",
+    "Photos guide the continuous box-girder exterior, not interior reinforcement, drainage hydraulics, exact bearing sections, plaque text, shoreline retaining geometry or vegetation. No unsupported lighting/cable-pylon features are added. Physical laptop/phone timings remain unmeasured.",
+    "The native main river stage is about7.70m. Piles and lower footing faces are partly submerged, and some bank-side supports embed in coarse terrain. Exact surveyed sections, high/low-water clearances and approach-retaining geometry are not claimed.",
+    "The western bank approach follows a coarse city DEM bump; a source-local1.56219m grade adjustment keeps the visible road above it while leaving ground/buildings intact. Native nearby poles, junctions, buildings and road crowns remain approximate context."
+  ]
+}
