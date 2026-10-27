@@ -108,6 +108,23 @@ const TURF: [number, number, number] = [0.82, 0.95, 0.8];
 const SOIL: [number, number, number] = [0.2, 0.15, 0.09];
 /** Relief amplitude in meters per noise layer (clumps, tufts, close grain). */
 const RELIEF: [number, number, number] = [0.08, 0.04, 0.016];
+/**
+ * Ground detail (the `landcoverDetail` attribute): shrub clumps in 4 m cells covering up to
+ * this share of the ground at full brush, and lighter bare-soil patches in 32 m cells. From an
+ * airplane, matched orthophotos of scrub and dry lots read as dark specks on soil and worn
+ * patches; single shrubs that small cannot be placed by the thousand, so the ground carries
+ * their sum. Specks fade in past the near range, where placed shrubs stand instead.
+ */
+const BRUSH_CELL = 4;
+/** Clumps stay distinct down to about half their cell per pixel, then settle to their share. */
+const BRUSH_RESOLVE: [number, number] = [0.4, 0.9];
+const BRUSH_SHARE = 0.32;
+const BRUSH_NEAR: [number, number] = [25, 60];
+/** Linear color of a shrub crown seen from above, a dark olive. */
+const BRUSH: [number, number, number] = [0.03, 0.045, 0.015];
+const BARE_CELL = 32;
+/** Linear lift of a worn, bare-soil patch over its ground. */
+const BARE: [number, number, number] = [1.3, 1.24, 1.14];
 const glslVec3 = (v: readonly number[]): string => `vec3(${v.map((x) => x.toFixed(3)).join(', ')})`;
 /**
  * Texels across the shared lattice texture, and the largest cell read from it. A cell of 4 m or
@@ -180,6 +197,37 @@ const GLSL = /* glsl */ `
     float c = terrainGroundHash(i + vec2(0.0, 1.0), period);
     float d = terrainGroundHash(i + vec2(1.0, 1.0), period);
     return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+  }
+
+  // Bare patches and shrub speckle (see BRUSH_SHARE). Where the 4 m cells fall below a pixel
+  // the speckle settles to its expected share, so scrubland keeps its tone from the air.
+  vec3 terrainGroundDetail(vec3 base, vec2 detail, float distance) {
+    vec2 p = vTerrainGround;
+    // Derivatives stay outside the branches: they are undefined in divergent control flow.
+    float footprint = max(max(length(dFdx(p)), length(dFdy(p))), 0.0001);
+    vec3 color = base;
+    if (detail.y > 0.0) {
+      float edge = 0.7 - 0.14 * detail.y;
+      float patchShare = smoothstep(edge - 0.05, edge + 0.05,
+        terrainGroundNoise(p + vec2(97.0, 41.0), ${BARE_CELL.toFixed(1)}));
+      color *= mix(vec3(1.0), ${glslVec3(BARE)}, patchShare);
+    }
+    float share = detail.x * ${BRUSH_SHARE.toFixed(2)} *
+      smoothstep(${BRUSH_NEAR[0].toFixed(1)}, ${BRUSH_NEAR[1].toFixed(1)}, distance);
+    if (share > 0.0) {
+      float resolved = 1.0 - smoothstep(${BRUSH_RESOLVE[0].toFixed(2)}, ${BRUSH_RESOLVE[1].toFixed(2)},
+        footprint / ${BRUSH_CELL.toFixed(1)});
+      float shrub = share;
+      if (resolved > 0.0) {
+        float edge = 0.78 - 0.6 * share;
+        // A half-size octave breaks the clumps out of the noise lattice's rows.
+        float n = terrainGroundNoise(p + vec2(43.0, 7.0), ${BRUSH_CELL.toFixed(1)}) * 0.7 +
+          terrainGroundNoise(p + vec2(11.0, 59.0), ${(BRUSH_CELL / 2).toFixed(1)}) * 0.3;
+        shrub = mix(share, smoothstep(edge - 0.04, edge + 0.04, n), resolved);
+      }
+      color = mix(color, ${glslVec3(BRUSH)}, shrub);
+    }
+    return color;
   }
 
   // The share of the neighboring class at this pixel: the interpolated weight thresholded
@@ -387,17 +435,17 @@ export function createTerrainGroundMaterial(
       terrainGroundNoiseMap: { value: groundNoiseLattice() },
     });
     shader.vertexShader = `
-      ${options.agriculture ? 'attribute vec4 agricultureRows; attribute vec3 agricultureSoil; attribute vec4 landcoverBlend; varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil; varying vec4 vLandcoverBlend;' : ''}
+      ${options.agriculture ? 'attribute vec4 agricultureRows; attribute vec3 agricultureSoil; attribute vec4 landcoverBlend; attribute vec2 landcoverDetail; varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil; varying vec4 vLandcoverBlend; varying vec2 vLandcoverDetail;' : ''}
       varying vec2 vTerrainGround;
       uniform vec2 terrainGroundOrigin;
     ${shader.vertexShader}`.replace(
       '#include <begin_vertex>',
       `#include <begin_vertex>
        vTerrainGround = (modelMatrix * vec4(transformed, 1.0)).xz + terrainGroundOrigin;
-       ${options.agriculture ? 'vAgricultureRows = agricultureRows; vAgricultureSoil = agricultureSoil; vLandcoverBlend = landcoverBlend;' : ''}`,
+       ${options.agriculture ? 'vAgricultureRows = agricultureRows; vAgricultureSoil = agricultureSoil; vLandcoverBlend = landcoverBlend; vLandcoverDetail = landcoverDetail;' : ''}`,
     );
     shader.fragmentShader = `${GLSL}
-      ${options.agriculture ? 'varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil; varying vec4 vLandcoverBlend;' : ''}
+      ${options.agriculture ? 'varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil; varying vec4 vLandcoverBlend; varying vec2 vLandcoverDetail;' : ''}
     ${shader.fragmentShader}`
       .replace(
         '#include <color_fragment>',
@@ -415,7 +463,8 @@ export function createTerrainGroundMaterial(
        vec3 fieldColor = mix(vAgricultureSoil, diffuseColor.rgb, coverage);
        float strip = (fract(phase / 8.0) < 0.5 ? 0.97 : 1.03);
        strip = mix(1.0, strip, 1.0 - smoothstep(0.18, 0.65, fwidth(phase / 8.0)));
-       diffuseColor.rgb = mix(diffuseColor.rgb, fieldColor * strip, vAgricultureRows.z);`
+       diffuseColor.rgb = mix(diffuseColor.rgb, fieldColor * strip, vAgricultureRows.z);
+       diffuseColor.rgb = terrainGroundDetail(diffuseColor.rgb, vLandcoverDetail, terrainGroundDistance);`
            : ''
 }
        float terrainGroundRelief = 0.0;
@@ -428,7 +477,7 @@ export function createTerrainGroundMaterial(
       );
   };
   material.customProgramCacheKey = (): string =>
-    `terrain-ground@32:${options.agriculture === true}`;
+    `terrain-ground@33:${options.agriculture === true}`;
   states.set(material, state);
   return material;
 }
@@ -615,6 +664,53 @@ export async function createTerrainGroundMaterialAsync(
     const planted = mix(base, field, rows.z).toVar() as unknown as V3;
     factor = factor.mul(planted.div(max(base, vec3(0.001)))) as unknown as V3;
     base = planted;
+    // Bare patches and shrub speckle, as terrainGroundDetail in the GLSL path.
+    const detail = varying(attribute('landcoverDetail', 'vec2')) as unknown as Node<'vec2'>;
+    const resolved = smoothstep(
+      BRUSH_RESOLVE[0],
+      BRUSH_RESOLVE[1],
+      footprint.div(BRUSH_CELL),
+    ).oneMinus();
+    const groundBase = base;
+    const detailed = Fn(() => {
+      const color = groundBase.toVar();
+      If(detail.y.greaterThan(0), () => {
+        const edge = detail.y.mul(-0.14).add(0.7);
+        const patchShare = smoothstep(
+          edge.sub(0.05),
+          edge.add(0.05),
+          noise(p.add(vec2(97, 41)) as unknown as V2, BARE_CELL),
+        );
+        color.mulAssign(mix(vec3(1), vec3(...BARE), patchShare));
+      });
+      const share = detail.x
+        .mul(BRUSH_SHARE)
+        .mul(smoothstep(BRUSH_NEAR[0], BRUSH_NEAR[1], distance))
+        .toVar();
+      If(share.greaterThan(0), () => {
+        const shrub = share.toVar();
+        If(resolved.greaterThan(0), () => {
+          const edge = share.mul(-0.6).add(0.78);
+          shrub.assign(
+            mix(
+              share,
+              smoothstep(
+                edge.sub(0.04),
+                edge.add(0.04),
+                noise(p.add(vec2(43, 7)) as unknown as V2, BRUSH_CELL)
+                  .mul(0.7)
+                  .add(noise(p.add(vec2(11, 59)) as unknown as V2, BRUSH_CELL / 2).mul(0.3)),
+              ),
+              resolved,
+            ),
+          );
+        });
+        color.assign(mix(color, vec3(...BRUSH), shrub));
+      });
+      return color;
+    })().toVar() as unknown as V3;
+    factor = factor.mul(detailed.div(max(base, vec3(0.001)))) as unknown as V3;
+    base = detailed;
   }
   const green = clamp(base.g.sub(max(base.r, base.b)).mul(10), 0, 1).toVar();
   const calm = green

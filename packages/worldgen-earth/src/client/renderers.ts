@@ -53,6 +53,7 @@ import type {
 import * as THREE from 'three';
 import { prepareAgricultureTile } from '../kernel/agriculture';
 import { coarseBuildingTile } from '../kernel/coarse-buildings';
+import { withDistrictLevels } from '../kernel/district-heights';
 import { isLandcoverDesignation } from '../kernel/labels';
 import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
@@ -93,6 +94,33 @@ const FOOTPRINT_SIZE_RATIO = 1.6;
 /** Share of the plant scatter a compact scene keeps (see `compact`). */
 const COMPACT_SCATTER_KEEP = 0.5;
 const FOOTPRINT_SLACK = 12;
+/**
+ * Distant shells take a roof and a wall each, so a city seen from an airplane is not one beige
+ * block. Weights follow matched orthophoto reviews of Seattle, Bellevue, Sydney and Yuma: pale
+ * membranes and grey decks lead, with dark shingle, gravel and a little tile.
+ */
+const DISTANT_BUILDING_COLORS: {
+  roofs: ReadonlyArray<readonly [string, number]>;
+  walls: ReadonlyArray<readonly [string, number]>;
+} = {
+  roofs: [
+    ['#e3e3df', 5],
+    ['#cccdc9', 4],
+    ['#b1b2ae', 3],
+    ['#929496', 2],
+    ['#6c6f73', 1.5],
+    ['#a69a86', 1],
+    ['#8b6c5b', 0.5],
+  ],
+  walls: [
+    ['#d2cec5', 5],
+    ['#b8bfc4', 4],
+    ['#ddd6c6', 3],
+    ['#9eacb8', 3],
+    ['#8f9397', 2],
+    ['#ae8b78', 1],
+  ],
+};
 
 export interface WorldgenRendererOptions {
   /** Bounded coarse building silhouettes below the detailed generation range. Opt-in. */
@@ -393,21 +421,14 @@ export function createWorldgenSemanticRenderers(
     // is admitted like the rest: run as tiles' sources resolved, several stacked into one frame.
     // For a dense town tile it was 8-16 ms in one piece, past any frame's budget, so the tile's
     // content hash and the generator's preparation (its ground grid) go first, each its own job.
-    // All three queue at once and run in order: awaiting each before queueing the next sent the
-    // tile to the back of the queue three times, and on a software renderer's few frames a second
-    // that held its generation behind tens of seconds of other tiles' work.
     const admitted = async <T>(label: string, work: () => T): Promise<T> =>
       context.admission ? context.admission.run(work, { signal: context.signal, label }) : work();
     let output: WorldgenTileOutput | undefined;
     try {
-      const prepared = Promise.all([
-        cache !== undefined ? admitted('worldgen-key', () => tileHash(tile)) : undefined,
-        generator.prepare !== undefined
-          ? admitted('worldgen-prepare', () => generator.prepare?.(input))
-          : undefined,
-      ]);
-      const request = admitted('worldgen-request', () => generator.generate(input, context.signal));
-      [, output] = await Promise.all([prepared, request]);
+      if (cache !== undefined) await admitted('worldgen-key', () => tileHash(tile));
+      if (generator.prepare !== undefined)
+        await admitted('worldgen-prepare', () => generator.prepare?.(input));
+      output = await admitted('worldgen-request', () => generator.generate(input, context.signal));
     } catch (error) {
       if (context.signal.aborted) return undefined;
       throw error;
@@ -433,25 +454,17 @@ export function createWorldgenSemanticRenderers(
   ): Promise<THREE.Object3D[]> {
     if (models === undefined) return [];
     const objects: THREE.Object3D[] = [];
-    // Every set's assembly queues as its models are ready, as building cells do: awaiting each
-    // admission before preparing the next set sent the tile to the back of the queue per set.
-    const assembly: Promise<void>[] = [];
-    const warn = (set: PlacementSet, error: unknown): void => {
-      if (context.signal.aborted || warnedModels.has(set.modelRef)) return;
-      warnedModels.add(set.modelRef);
-      console.warn(`[molen] worldgen model "${set.modelRef}": ${(error as Error).message}`);
-    };
     for (const set of sets) {
       if (buildingBoxGeometry(set.modelRef) !== undefined || set.count === 0) continue;
       try {
         const coarse = context.address.level < context.pyramid.maxLevel;
         const prepared = await models.prepare(set.modelRef, coarse);
-        if (context.signal.aborted) break;
+        if (context.signal.aborted) return objects;
         const medium =
           options.propLod !== false ? await models.prepare(set.modelRef, true) : prepared;
         const distant =
           options.propLod !== false ? await models.prepare(set.modelRef, 'distant') : prepared;
-        if (context.signal.aborted) break;
+        if (context.signal.aborted) return objects;
         // Instance matrices for every placement: admitted, as a tile's sources resolve together.
         const build = (): THREE.Object3D =>
           options.propLod !== false
@@ -484,28 +497,25 @@ export function createWorldgenSemanticRenderers(
                 prepared.material,
                 `${name}:${set.setId}`,
               );
-        const add = (object: THREE.Object3D): void => {
-          objects.push(object);
-          stats.props += set.count;
-          stats.geometryBytes += set.data.byteLength;
-        };
-        if (context.admission)
-          assembly.push(
-            context.admission
-              .run(build, {
+        objects.push(
+          context.admission
+            ? await context.admission.run(build, {
                 signal: context.signal,
                 label: 'prop-assembly',
                 bytes: set.data.byteLength,
               })
-              .then(add, (error: unknown) => warn(set, error)),
-          );
-        else add(build());
+            : build(),
+        );
+        stats.props += set.count;
+        stats.geometryBytes += set.data.byteLength;
       } catch (error) {
-        if (context.signal.aborted) break;
-        warn(set, error);
+        if (context.signal.aborted) return objects;
+        if (!warnedModels.has(set.modelRef)) {
+          warnedModels.add(set.modelRef);
+          console.warn(`[molen] worldgen model "${set.modelRef}": ${(error as Error).message}`);
+        }
       }
     }
-    await Promise.all(assembly);
     return objects;
   }
 
@@ -1149,13 +1159,18 @@ export function createWorldgenSemanticRenderers(
             nearbyFootprints(group, context),
           );
           group.add(
-            createTerrainSemanticObject(coarseBuildingTile(mapped), context, {
-              renderLandcover: false,
-              renderWater: false,
-              renderTransportation: false,
-              defaultBuildingHeight: 6.4,
-              defaultLevelHeight: 3.2,
-            }),
+            createTerrainSemanticObject(
+              coarseBuildingTile(withDistrictLevels(mapped, context.origin, context.tileSize)),
+              context,
+              {
+                renderLandcover: false,
+                renderWater: false,
+                renderTransportation: false,
+                defaultBuildingHeight: 6.4,
+                defaultLevelHeight: 3.2,
+                buildingColors: DISTANT_BUILDING_COLORS,
+              },
+            ),
           );
           if (context.signal.aborted) {
             disposeHumanTile(group);
@@ -1308,6 +1323,7 @@ export function createWorldgenSemanticRenderers(
                   : {}),
                 ...hostColors,
               },
+              ...(surface?.detail !== undefined ? { detail: surface.detail } : {}),
             };
           });
       // The same inferred ground label used by scatter supplies a neutral background beneath
@@ -1342,8 +1358,13 @@ export function createWorldgenSemanticRenderers(
           : { ...packColors, ...hostColors };
       const meshOptions: TerrainSemanticMeshOptions = {
         ...(models !== undefined ? { maxTreesPerTile: 0 } : {}),
+        // Unmapped ground between a dense block's buildings is paving, not the habitat's lawn.
+        urbanGround: {},
         ...options.landcover,
         ...(colors !== undefined ? { landcoverColors: colors } : {}),
+        ...(regionalSurface?.detail !== undefined
+          ? { landcoverDetail: regionalSurface.detail }
+          : {}),
         ...(paletteAreas !== undefined ? { landcoverPaletteAreas: paletteAreas } : {}),
         renderWater: false,
         renderTransportation: false,

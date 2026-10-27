@@ -253,6 +253,9 @@ export function generateBuilding(
       recipe.minHeight === 0
     ) {
       box.roof = 'gable';
+      // One color per stand-in: its roof's, since the roof is most of what a pitched building
+      // shows from above or afar. Wall-colored ridges made a tiled district read as plaster.
+      box.color = recipe.parts.roof.color;
       if (box.sz > box.sx) {
         [box.sx, box.sz] = [box.sz, box.sx];
         box.yaw += Math.PI / 2;

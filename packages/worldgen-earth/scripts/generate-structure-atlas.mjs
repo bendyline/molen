@@ -248,12 +248,18 @@ atlas.default.buildings = rulesFor(
 atlas.version = 4;
 atlas.fallbackDistanceMeters = 2500;
 // Conservative residential priors: ordinary North American yards get modest canopy;
-// denser PNW and arid Southwest overrides still win. Unconfigured regions remain unplanted.
+// denser PNW overrides still win. Matched orthophotos show Southwest yards irrigated under
+// mesquite, palm and citrus, and Delhi's compounds under heavy canopy. Unconfigured regions
+// remain unplanted.
 atlas.default.treeFillFactor = 0;
 for (const region of atlas.regions) {
-  const fill = { 'library.north_america': 0.35, 'us.pnw': 0.9, 'us.southwest': 0, jp: 0.3 }[
-    region.id
-  ];
+  const fill = {
+    'library.north_america': 0.35,
+    'us.pnw': 0.9,
+    'us.southwest': 0.35,
+    'library.south_asia': 0.6,
+    jp: 0.3,
+  }[region.id];
   if (fill !== undefined) region.bindings.treeFillFactor = fill;
 }
 atlas.doc =

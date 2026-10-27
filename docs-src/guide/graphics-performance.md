@@ -75,7 +75,10 @@ runs alone and is reported as over budget. `setLimits` changes the budget from t
 A job's `priority` is `'normal'`, `'background'` (only in budget normal jobs leave) or `'urgent'`
 (ahead of normal jobs, in its own order): the terrain stream admits ground that way, and marks a
 tile group `userData.admissionPriority = 'urgent'` so `prepareObject` queues its upload the same
-way, because a tile's residency otherwise waited behind every building cell's upload.
+way, because a tile's residency otherwise waited behind every building cell's upload. A root
+marked `'background'` prepares only in budget normal jobs leave: World Explorer's practice
+aircraft load with the world that way, as in the normal lane their ~200 jobs held terrain and
+buildings back by most of a minute on a software renderer.
 
 Main-thread work that runs as a tile's sources resolve is admitted too, because several tiles
 arriving together stacked it into one late frame: decoding vector tiles (the package semantic

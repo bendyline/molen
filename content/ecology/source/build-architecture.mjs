@@ -3,7 +3,12 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { aerialRoofPalette, towerWalls, urbanWalls } from './aerial-palettes.mjs';
+import {
+  aerialFlatRoofPalette,
+  aerialRoofPalette,
+  towerWalls,
+  urbanWalls,
+} from './aerial-palettes.mjs';
 import { architectureFamilies } from './architecture-families.mjs';
 import { architectureLotFences, architectureLotPlans } from './architecture-lots.mjs';
 import { architectureVariants } from './architecture-variants.mjs';
@@ -189,7 +194,7 @@ for (const family of architectureFamilies) {
       style.materials.roof.choices = material('membrane');
       // A 6 m repeat holds 1 m rolls, seams a camera above the street can still resolve.
       style.materials.roof.uvScale = [6, 6];
-      style.palettes.regional_roof = palette(['#a9aaa0', '#bab8a9']);
+      style.palettes.regional_roof = palette(aerialFlatRoofPalette(family.id));
     }
     style.facade.bays.width = range(shed ? 5.5 : family.bay, shed ? 7 : family.bay + 0.25);
     style.facade.windows.width = range(family.window, family.window + 0.2);

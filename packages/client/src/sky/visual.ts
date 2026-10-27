@@ -301,6 +301,16 @@ export class SkyVisual {
     this.ambientLight.groundColor.copy(this.palette.ground);
     this.ambientLight.intensity =
       (light?.nightAmbient ?? 0.025) * (1 - daylight) + (light?.dayAmbient ?? 0.6) * daylight;
+    // Exposure adaptation: above the reference elevation a level surface in sun keeps the light
+    // it gets at that elevation, so a midday scene is not brighter than its authored colors.
+    const reference = light?.referenceElevation;
+    if (reference !== undefined && altitude > reference) {
+      const level = (degrees: number): number =>
+        this.ambientLight.intensity + this.sunLight.intensity * Math.sin(degrees * RAD);
+      const scale = level(reference) / level(altitude);
+      this.sunLight.intensity *= scale;
+      this.ambientLight.intensity *= scale;
+    }
     this.sunLight.intensity *= 1 - this.cloudAttenuation * 0.92;
     this.moonLight.intensity *= 1 - this.cloudAttenuation * 0.9;
     this.ambientLight.intensity *= 1 - this.cloudAttenuation * 0.2;

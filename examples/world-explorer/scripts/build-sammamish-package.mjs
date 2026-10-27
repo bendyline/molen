@@ -497,6 +497,9 @@ const manifest = {
     encoding: 'mvt',
     layers: ['water', 'transportation', 'building', 'poi'],
     profile: 'protomaps-basemap@1',
+    // Protomaps keeps every footprint only at its last zoom. Coarser tiles take their buildings
+    // from it, or an airplane view shows a downtown as bare blocks of low generalized infill.
+    buildingDetail: { source: { kind: 'pmtiles', path: 'world.pmtiles' }, level: maxLevel },
   },
   // One entry per license the archives actually carry. The explorer renders the head of each
   // `text` (up to the first ';') as an always-visible corner credit and the full list in the HUD,

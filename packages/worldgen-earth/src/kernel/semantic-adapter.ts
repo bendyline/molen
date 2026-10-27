@@ -36,6 +36,7 @@ import {
 } from './building-infill';
 import { buildingPieces } from './building-parts';
 import { applyBusinessAppearance, associateBusinesses } from './businesses';
+import { withDistrictLevels } from './district-heights';
 import { corridor } from './infill-geometry';
 import { contextLabelForPolygon, isLandcoverDesignation, landcoverLabel } from './labels';
 import { mappedPropExclusions, mappedPropRequests } from './mapped-props';
@@ -250,6 +251,7 @@ export function semanticTileToBatch(
     );
     tile = { ...tile, buildings: [...tile.buildings, ...inferred] };
   }
+  tile = withDistrictLevels(tile, [geom.originX, geom.originZ], geom.size);
   const infillById = new Map(inferred.map((feature) => [feature.id, feature.infill]));
   const buffer = buildingClipBuffer(tile, geom.level, options.buffer ?? PROTOMAPS_TILE_BUFFER);
   const size = geom.size;

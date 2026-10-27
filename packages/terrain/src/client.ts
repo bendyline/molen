@@ -23,6 +23,11 @@ export {
   type TerrainArchiveSetArchiveOptions,
 } from './archive-set-client';
 export {
+  sampleTerrainBuildingCoverage,
+  type TerrainBuildingCoverage,
+  terrainBuildingCoverage,
+} from './building-coverage';
+export {
   createTerrainGroundMaterial,
   createTerrainGroundMaterialAsync,
   createTerrainPavementMaterial,
@@ -153,6 +158,7 @@ export {
   type TerrainSemanticPyramidLayerOptions,
   type TerrainSemanticTileRenderer,
   type TerrainSemanticTileSource,
+  type TerrainUrbanGround,
   type TerrainWaterMaterial,
   type TerrainWaterMaterialOptions,
   terrainWaterSurfaceHeight,

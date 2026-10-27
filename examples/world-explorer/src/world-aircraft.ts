@@ -224,7 +224,15 @@ export class WorldAircraft {
       dropTinyShadowCasters(visual.object);
       visual.object.traverse(skipWhenHidden);
       // Drawn before its shaders were built, each aircraft at the airfield built them in a frame.
-      await this.prepare?.(visual.object);
+      // The practice aircraft load with the world and nobody waits on them: in the normal lane
+      // their ~200 shader, texture and buffer jobs held terrain and buildings back, by most of a
+      // minute on a software renderer's few frames a second. One the pilot picks stays normal.
+      if (KINDS.includes(kind)) visual.object.userData.admissionPriority = 'background';
+      try {
+        await this.prepare?.(visual.object);
+      } finally {
+        delete visual.object.userData.admissionPriority;
+      }
       if (this.disposed || (!KINDS.includes(kind) && this.requested !== kind)) {
         visual.dispose();
         return;

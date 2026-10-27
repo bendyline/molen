@@ -18,7 +18,7 @@ export const EARTH_SKY_PALETTE: Required<SkyPalette> = {
   nightZenith: '#020510',
   nightHorizon: '#121c32',
   ground: '#9a8f70',
-  sun: '#fff1d8',
+  sun: '#fff8f0',
   moon: '#dae5f5',
 };
 
@@ -35,16 +35,31 @@ export const EARTH_SKY_DOME: { brightness: number } = { brightness: 0.52 };
  * swallowing the shaded side of a street seen against the sun. The fill is cool but far less saturated than the zenith
  * it comes from, as real skylight is: lit by the dome colors themselves, a roof turned from the
  * sun rendered navy whatever its palette.
+ *
+ * The balance is authored at the default 26° sun (EARTH_SUN_ELEVATION). A higher sun puts up to
+ * 1.6 times the light on level ground, so above it the rig adapts as a camera's exposure would:
+ * aerial comparisons with midday orthophotos found flat ground rendering half again too bright.
  */
 export const EARTH_LIGHTING: {
   sunIntensity: number;
   dayAmbient: number;
   nightAmbient: number;
   skyLightSaturation: number;
-} = { sunIntensity: 4.4, dayAmbient: 2, nightAmbient: 0.05, skyLightSaturation: 0.18 };
+  referenceElevation: number;
+} = {
+  sunIntensity: 6.1,
+  dayAmbient: 1.25,
+  nightAmbient: 0.05,
+  skyLightSaturation: 0.3,
+  referenceElevation: 26,
+};
 
-/** Open water: a clear teal-blue that stays blue under the sky's reflection. */
-export const EARTH_WATER_COLOR = '#356b78';
+/**
+ * Open water: a deep teal-blue that stays blue under the sky's reflection. Water absorbs most of
+ * the light entering it, so seen from above it is far darker than land; the earlier, lighter teal
+ * read as a bright painted sheet beside matched orthophotos.
+ */
+export const EARTH_WATER_COLOR = '#1b4450';
 
 /**
  * ACES filmic. Khronos PBR Neutral keeps base colors and saturation below the highlights, but its

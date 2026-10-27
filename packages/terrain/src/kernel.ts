@@ -19,6 +19,11 @@ export {
   terrainArchiveSetTierCells,
 } from './archive-set';
 export { type BridgeDeckOptions, bridgeDeckHeightFn } from './bridge-profile';
+export {
+  sampleTerrainBuildingCoverage,
+  type TerrainBuildingCoverage,
+  terrainBuildingCoverage,
+} from './building-coverage';
 export type {
   TerrainDescriptor,
   TerrainLayer,

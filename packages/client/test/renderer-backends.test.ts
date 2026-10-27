@@ -450,6 +450,28 @@ describe('renderer backend selection', () => {
     material.dispose();
   });
 
+  it('prepares a root marked background only in budget that normal work leaves', async () => {
+    const renderer = await Renderer.create({ admission: { schedule: () => {}, maxJobs: 1 } });
+    const parked = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
+    const tile = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial());
+    parked.userData.admissionPriority = 'background';
+    const compiled = (): THREE.Object3D[] => webgpu.compileAsync.mock.calls.map((args) => args[0]);
+    // Queued first, the parked model still waits for the work a view needs.
+    const parkedReady = renderer.prepareObject(parked);
+    const tileReady = renderer.prepareObject(tile);
+    renderer.admission.flush();
+    await tileReady;
+    expect(compiled()).toEqual([tile]);
+    renderer.admission.flush();
+    await parkedReady;
+    expect(compiled()).toEqual([tile, parked]);
+    renderer.dispose();
+    for (const mesh of [parked, tile]) {
+      mesh.geometry.dispose();
+      (mesh.material as THREE.Material).dispose();
+    }
+  });
+
   it('publishes before hidden geometry-switch LODs compile and guards their later reveal', async () => {
     const renderer = await Renderer.create({ admission: { schedule: () => {}, maxJobs: 1 } });
     const mesh = new THREE.InstancedMesh(

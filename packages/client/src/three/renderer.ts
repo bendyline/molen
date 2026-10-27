@@ -755,6 +755,9 @@ export class Renderer {
    * other levels afterwards in the background, so publication waits only for what can be seen.
    * Queued work is cancelled once every caller waiting for it has aborted, and background work
    * once its mesh or geometry is disposed.
+   *
+   * `root.userData.admissionPriority` admits the root's own work as `'urgent'` (ahead of normal
+   * work) or `'background'` (only in budget normal work leaves: content nobody waits on yet).
    */
   async prepareObject(
     root: THREE.Object3D,
@@ -766,7 +769,8 @@ export class Renderer {
     const lods = parent === undefined ? undefined : unselectedLodLevels(root, this.camera);
     const deferredLevels = lods === undefined ? undefined : new Set([...lods.values()].flat());
     // The terrain stream marks its ground this way: see AdmissionOptions.priority.
-    const foreground = createLane(false, root.userData.admissionPriority === 'urgent');
+    const priority = root.userData.admissionPriority;
+    const foreground = createLane(priority === 'background', priority === 'urgent');
     const background = createLane(true);
     const state = this.programState();
     const interest: WarmupInterest | 'pinned' =
@@ -1646,7 +1650,7 @@ class WarmupInterest {
 }
 
 interface PreparationLane {
-  /** Background work runs after normal admission work, and nobody awaits it. */
+  /** Background work runs after normal admission work; only a root marked background awaits it. */
   readonly background: boolean;
   /** Admitted ahead of normal work (AdmissionOptions.priority 'urgent'). */
   readonly urgent: boolean;

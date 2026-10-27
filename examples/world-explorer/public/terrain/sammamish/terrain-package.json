@@ -49,7 +49,14 @@
     "source": { "kind": "pmtiles", "path": "world.pmtiles" },
     "encoding": "mvt",
     "layers": ["water", "transportation", "building", "poi"],
-    "profile": "protomaps-basemap@1"
+    "profile": "protomaps-basemap@1",
+    "buildingDetail": {
+      "source": {
+        "kind": "pmtiles",
+        "path": "world.pmtiles"
+      },
+      "level": 15
+    }
   },
   "attribution": [
     {

@@ -174,6 +174,9 @@ export function* samplePlacementsSteps(
     base: string;
     rule: number;
     layer: 'canopy' | 'understory' | 'groundcover' | 'agriculture';
+    /** The rule's kept share at this tier, and how far its crowns may widen to hold cover. */
+    keep: number;
+    growth: number;
   }> = [];
   const scatterId = { id: doc.id, version: doc.version };
   let visited = 0;
@@ -417,7 +420,9 @@ export function* samplePlacementsSteps(
       );
       ruleCandidates.length = cap;
     }
-    for (const entry of ruleCandidates) accepted.push({ ...entry, rule: ruleIndex, layer });
+    const growth = Math.max(1, rule.lod?.coverGrowth ?? doc.defaults.lod.coverGrowth ?? 1);
+    for (const entry of ruleCandidates)
+      accepted.push({ ...entry, rule: ruleIndex, layer, keep, growth });
     yield { done: ruleIndex + 1, total: doc.rules.length };
   }
 
@@ -435,10 +440,31 @@ export function* samplePlacementsSteps(
     maxModels: number,
   ) => {
     const entries = accepted.filter((entry) => entry.layer === layer);
+    const sampled = entries.length;
     if (entries.length > maxInstances) {
       entries.sort(byDraw);
       entries.length = Math.max(0, maxInstances);
     }
+    // Thinned crowns widen to hold the cover the full stand would show from above.
+    const budgetShare = sampled > 0 ? entries.length / sampled : 1;
+    if (layer === 'canopy' || layer === 'understory')
+      for (let index = 0; index < entries.length; index++) {
+        const entry = entries[index] as (typeof entries)[number];
+        const grow = Math.min(
+          entry.growth,
+          1 / Math.sqrt(Math.max(1e-6, entry.keep * budgetShare)),
+        );
+        if (grow <= 1) continue;
+        const lift = Math.sqrt(grow);
+        entries[index] = {
+          ...entry,
+          candidate: {
+            ...entry.candidate,
+            scale: entry.candidate.scale * lift,
+            widthScale: entry.candidate.widthScale * lift,
+          },
+        };
+      }
     const counts = new Map<string, number>();
     for (const entry of entries) counts.set(entry.base, (counts.get(entry.base) ?? 0) + 1);
     // Reserve one fallback per species before spending spare draws on interchangeable forms.

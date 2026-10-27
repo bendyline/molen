@@ -63,6 +63,13 @@ const common = {
         .describe(
           'Saturation of the light the sky casts (fill and reflections) relative to the dome colors: 1 (default) lights with the dome palette, lower values toward its luminance. A saturated zenith otherwise tints every surface in shade blue.',
         ),
+      referenceElevation: number
+        .min(1)
+        .max(90)
+        .optional()
+        .describe(
+          'Sun elevation in degrees whose sunlit-ground brightness is kept as the sun climbs higher: above it, sun and sky light scale down together so a level surface in sun receives the same light, as a camera adapts its exposure. Omit for constant light, which renders midday ground brighter than its authored color.',
+        ),
       castShadow: z
         .boolean()
         .optional()
@@ -204,6 +211,7 @@ export interface SkyAppearance {
     dayAmbient?: number;
     nightAmbient?: number;
     skyLightSaturation?: number;
+    referenceElevation?: number;
     castShadow?: boolean;
   };
   dome?: { brightness?: number };

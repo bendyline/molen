@@ -1,5 +1,6 @@
 /** Off-thread terrain-grid draping and vertex welding. No WebGL context is created in workers. */
 import * as THREE from 'three';
+import { terrainBuildingCoverage } from './building-coverage';
 import { markTerrainGroundSurface } from './ground-cutout';
 import { createTerrainGroundMaterial } from './ground-material';
 import { Heightfield } from './heightfield';
@@ -43,7 +44,11 @@ interface Request {
   };
   options: Pick<
     TerrainSemanticMeshOptions,
-    'landcoverColors' | 'landcoverOffset' | 'landcoverPaletteAreas'
+    | 'landcoverColors'
+    | 'landcoverOffset'
+    | 'landcoverPaletteAreas'
+    | 'landcoverDetail'
+    | 'urbanGround'
   >;
 }
 interface Result {
@@ -55,6 +60,7 @@ interface Result {
     agricultureRows: Float32Array;
     agricultureSoil: Float32Array;
     landcoverBlend: Float32Array;
+    landcoverDetail: Float32Array;
     indices: Uint16Array | Uint32Array;
   };
   error?: string;
@@ -86,6 +92,7 @@ export function installTerrainLandcoverWorker(
           agricultureRows: mesh.geometry.getAttribute('agricultureRows').array as Float32Array,
           agricultureSoil: mesh.geometry.getAttribute('agricultureSoil').array as Float32Array,
           landcoverBlend: mesh.geometry.getAttribute('landcoverBlend').array as Float32Array,
+          landcoverDetail: mesh.geometry.getAttribute('landcoverDetail').array as Float32Array,
           indices: mesh.geometry.index?.array as Uint16Array | Uint32Array,
         };
         mesh.geometry.dispose();
@@ -152,6 +159,7 @@ export function createTerrainLandcoverWorkerBridge(
       geometry.setAttribute('agricultureRows', new THREE.BufferAttribute(data.agricultureRows, 4));
       geometry.setAttribute('agricultureSoil', new THREE.BufferAttribute(data.agricultureSoil, 3));
       geometry.setAttribute('landcoverBlend', new THREE.BufferAttribute(data.landcoverBlend, 4));
+      geometry.setAttribute('landcoverDetail', new THREE.BufferAttribute(data.landcoverDetail, 2));
       geometry.setIndex(new THREE.BufferAttribute(data.indices, 1));
       const mesh = new THREE.Mesh(geometry, job.options.materials?.landcover ?? material);
       markTerrainGroundSurface(mesh);
@@ -196,8 +204,18 @@ export function createTerrainLandcoverWorkerBridge(
           ...(options.landcoverPaletteAreas
             ? { landcoverPaletteAreas: options.landcoverPaletteAreas }
             : {}),
+          ...(options.landcoverDetail ? { landcoverDetail: options.landcoverDetail } : {}),
           ...(options.landcoverOffset !== undefined
             ? { landcoverOffset: options.landcoverOffset }
+            : {}),
+          // The worker's tile has no buildings; their coverage travels as a small grid.
+          ...(options.urbanGround
+            ? {
+                urbanGround: {
+                  ...options.urbanGround,
+                  coverage: options.urbanGround.coverage ?? terrainBuildingCoverage(tile),
+                },
+              }
             : {}),
         },
       };

@@ -743,6 +743,12 @@ async function main(): Promise<void> {
   const start = selectedStart();
   const cameraAngles = selectedCameraAngles();
   const params = new URLSearchParams(location.search);
+  // ?aerialOrtho=<meters> draws a north-up orthographic frame that many meters tall, centered
+  // under the camera, for comparison with orthophotos (scripts/aerial-color). Streaming and LOD
+  // still follow the ordinary pose, so pair it with ?pitch=-1.5 and an altitude near the height.
+  const aerialOrtho = Number(params.get('aerialOrtho') ?? 0);
+  if (!Number.isFinite(aerialOrtho) || aerialOrtho < 0)
+    throw new Error('aerialOrtho must be a finite, non-negative frame height in meters');
   let quality = selectedQuality();
   let automaticQuality =
     !params.has('level') && (!params.has('quality') || params.get('quality') === 'auto');
@@ -848,7 +854,7 @@ async function main(): Promise<void> {
   let occlusionOn = occlusionWanted;
   const waterMaterial = await createTerrainWaterMaterialAsync(
     {
-      color: EARTH_WATER_COLOR,
+      color: selectedRegion(params)?.water ?? EARTH_WATER_COLOR,
       swells: EARTH_WATER_CONDITIONS.waves ?? [],
       waveScale: 0.028,
       waveStrength: 0.045,
@@ -2051,18 +2057,25 @@ async function main(): Promise<void> {
       water.position.x = camera.pos[0];
       water.position.z = camera.pos[2];
     }
-    viewer.setCamera({
-      position: camera.pos,
-      ...(flightCamera
-        ? { rotation: flightCamera.rotation }
-        : {
-            lookAt: [
-              camera.pos[0] + viewDirection[0],
-              camera.pos[1] + viewDirection[1],
-              camera.pos[2] + viewDirection[2],
-            ],
-          }),
-    });
+    if (aerialOrtho > 0)
+      viewer.renderer.setTopDownOrtho({
+        center: [camera.pos[0], camera.pos[2]],
+        viewHeight: aerialOrtho,
+        cameraHeight: camera.pos[1],
+      });
+    else
+      viewer.setCamera({
+        position: camera.pos,
+        ...(flightCamera
+          ? { rotation: flightCamera.rotation }
+          : {
+              lookAt: [
+                camera.pos[0] + viewDirection[0],
+                camera.pos[1] + viewDirection[1],
+                camera.pos[2] + viewDirection[2],
+              ],
+            }),
+      });
     const waterOrigin = viewer.renderer.getWorldOrigin();
     dioramas.update({
       root: stream.object,
@@ -2154,7 +2167,13 @@ async function main(): Promise<void> {
       viewer.renderer.setShadowQuality(shadowQuality);
       appliedShadowQuality = shadowQuality;
     }
-    if (shadowQuality !== 'off') {
+    if (shadowQuality !== 'off' && aerialOrtho > 0) {
+      // The orthophoto frame is centered under the camera; cover exactly it.
+      viewer.renderer.setShadowFocus({
+        center: [camera.pos[0], sampleHeight(camera.pos[0], camera.pos[2]) ?? 0, camera.pos[2]],
+        radius: (aerialOrtho / 2) * Math.max(1, window.innerWidth / window.innerHeight) * 1.05,
+      });
+    } else if (shadowQuality !== 'off') {
       viewer.renderer.setShadowFocus(
         earthShadowFocus(
           navigation === 'walk' && !flight.mountedKind

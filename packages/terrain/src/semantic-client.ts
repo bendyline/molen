@@ -6,6 +6,11 @@ import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometr
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
 import { appendAgricultureAttributes } from './agriculture-surface';
 import {
+  sampleTerrainBuildingCoverage,
+  type TerrainBuildingCoverage,
+  terrainBuildingCoverage,
+} from './building-coverage';
+import {
   markTerrainGroundSurface,
   markTerrainWaterSurface,
   setTerrainShorelineCutouts,
@@ -371,6 +376,12 @@ const DEFAULT_BUILDING_MATERIAL = new THREE.MeshStandardMaterial({
   color: '#b9ab96',
   roughness: 0.84,
 });
+/** Plain extrusions painted per building (see `buildingColors`). */
+const PAINTED_BUILDING_MATERIAL = new THREE.MeshStandardMaterial({
+  color: '#ffffff',
+  roughness: 0.84,
+  vertexColors: true,
+});
 const DEFAULT_WATER_MATERIAL = createTerrainWaterMaterial();
 const DEFAULT_WATER_BANK_MATERIAL = new THREE.MeshStandardMaterial({
   color: '#77725b',
@@ -413,6 +424,29 @@ export interface TerrainSemanticMeshMaterials {
   water?: THREE.Material;
 }
 
+export interface TerrainUrbanGround {
+  color?: string;
+  /** Land-cover appearances that pave over; default unmapped ground and broad urban uses. */
+  classes?: readonly string[];
+  from?: number;
+  full?: number;
+  /** Precomputed coverage, for a tile whose buildings are not at hand (a landcover worker). */
+  coverage?: TerrainBuildingCoverage;
+}
+
+const URBAN_GROUND_CLASSES: readonly string[] = [
+  'open_ground',
+  'urban_area',
+  'residential',
+  'commercial',
+  'retail',
+  'industrial',
+  'civic',
+  'school',
+  'hospital',
+  'university',
+];
+
 export interface TerrainSemanticMeshOptions {
   /** Shared controller for live style changes across resident tiles. */
   surfaceRenderer?: TerrainSurfaceRenderer;
@@ -427,14 +461,38 @@ export interface TerrainSemanticMeshOptions {
   landcoverPaletteAreas?: ReadonlyArray<{
     bounds: readonly [number, number, number, number];
     colors: Readonly<Record<string, string>>;
+    /** This area's own ground detail, in place of `landcoverDetail`. */
+    detail?: Readonly<Record<string, readonly [number, number]>>;
   }>;
+  /**
+   * Exact land-cover appearance to [brush, bare] ground detail, each 0..1, carried per vertex
+   * as `landcoverDetail` for the ground material: dark shrub speckle, and lighter bare-soil
+   * patches. Paved urban ground (see `urbanGround`) shows neither.
+   */
+  landcoverDetail?: Readonly<Record<string, readonly [number, number]>>;
   landcoverOffset?: number;
+  /**
+   * Built-up ground. Unmapped ground and broad land-use classes blend toward `color` (default:
+   * the `urban_ground` land-cover color, else `pavement`) as the share of nearby ground under
+   * building footprints rises from `from` to `full` (defaults 0.15 and 0.45), so a downtown
+   * block between its buildings reads as paving while suburban lawns stay green.
+   */
+  urbanGround?: TerrainUrbanGround;
   treesPerSquareKilometer?: number;
   maxTreesPerTile?: number;
   maxTreeSlope?: number;
   treeHeight?: number;
   defaultBuildingHeight?: number;
   defaultLevelHeight?: number;
+  /**
+   * Weighted roof and wall colors for plain building extrusions, chosen per building from a
+   * stable hash of its id or outline, so a distant city is not one color. Without it every
+   * building takes the building material's own color.
+   */
+  buildingColors?: {
+    roofs: ReadonlyArray<readonly [string, number]>;
+    walls: ReadonlyArray<readonly [string, number]>;
+  };
   waterOffset?: number;
   /** Bank upper-edge lift; defaults to landcoverOffset or 0.18m, even in a separate water layer.
    * Set 0 for bare elevation without a raised landcover surface. */
@@ -459,6 +517,35 @@ function hash01(seed: number): number {
   value = Math.imul(value ^ (value >>> 16), 0x45d9f3b);
   value = Math.imul(value ^ (value >>> 16), 0x45d9f3b);
   return ((value ^ (value >>> 16)) >>> 0) / 4_294_967_296;
+}
+
+function weightedColor(entries: ReadonlyArray<readonly [string, number]>, t: number): THREE.Color {
+  const total = entries.reduce((sum, [, weight]) => sum + weight, 0);
+  let pick = t * total;
+  for (const [color, weight] of entries) {
+    pick -= weight;
+    if (pick < 0) return new THREE.Color(color);
+  }
+  return new THREE.Color(entries.at(-1)?.[0] ?? '#ffffff');
+}
+
+/** Stable per-building seed: its id when the source has one, else its outline's world position. */
+function buildingSeed(
+  id: string | number | undefined,
+  polygon: TerrainSemanticPolygon,
+  context: TerrainPyramidTileLayerContext,
+): number {
+  if (typeof id === 'number' && Number.isFinite(id))
+    return Math.floor(id) ^ Math.floor(id / 2 ** 32);
+  let seed = 0;
+  if (typeof id === 'string')
+    for (let i = 0; i < id.length; i++) seed = Math.imul(seed, 31) + id.charCodeAt(i);
+  else {
+    const [u, v] = polygon.outer[0] ?? [0, 0];
+    seed = Math.imul(Math.round(context.origin[0] + u * context.tileSize), 73856093);
+    seed ^= Math.imul(Math.round(context.origin[1] + v * context.tileSize), 19349663);
+  }
+  return seed;
 }
 
 function normalizedClass(value: string): string {
@@ -716,19 +803,35 @@ export function createLandcoverMesh(
   const visible = visibleLandcoverPolygons(tile.landcover);
   const ranges: LandcoverBlendRange[] = [];
   const colorsAt: ((x: number, z: number) => THREE.Color)[] = [];
+  const urban = options.urbanGround;
+  const coverage = urban ? (urban.coverage ?? terrainBuildingCoverage(tile)) : undefined;
+  const urbanClasses = new Set(urban?.classes ?? URBAN_GROUND_CLASSES);
+  const urbanColor = new THREE.Color(
+    urban?.color ??
+      options.landcoverColors?.urban_ground ??
+      options.landcoverColors?.pavement ??
+      DEFAULT_LANDCOVER_COLORS.pavement,
+  );
+  const urbanFrom = urban?.from ?? 0.15;
+  const urbanFull = Math.max(urbanFrom + 0.01, urban?.full ?? 0.45);
   for (let featureIndex = 0; featureIndex < tile.landcover.length; featureIndex++) {
     const feature = tile.landcover[featureIndex];
     if (feature === undefined) continue;
     const color = feature.cultivation
       ? new THREE.Color(feature.cultivation.color)
       : landcoverColor(landcoverAppearance(feature), options);
+    const appearance = landcoverAppearance(feature);
     const palettes = options.landcoverPaletteAreas?.map((area) => ({
       bounds: area.bounds,
-      color: landcoverColor(landcoverAppearance(feature), {
+      color: landcoverColor(appearance, {
         landcoverColors: { ...options.landcoverColors, ...area.colors },
       }),
+      detail: feature.cultivation
+        ? undefined
+        : (area.detail ?? options.landcoverDetail)?.[appearance],
     }));
-    const colorAt =
+    const ownDetail = feature.cultivation ? undefined : options.landcoverDetail?.[appearance];
+    const natural =
       palettes === undefined || feature.cultivation !== undefined
         ? color
         : (x: number, z: number): THREE.Color => {
@@ -741,6 +844,26 @@ export function createLandcoverMesh(
               )?.color ?? color
             );
           };
+    // Each feature paints into its own scratch color: both consumers copy it before the next
+    // call for this feature, and the boundary blend reads two different features' colors.
+    const paved = new THREE.Color();
+    const pavedAt =
+      coverage === undefined || feature.cultivation !== undefined || !urbanClasses.has(appearance)
+        ? undefined
+        : (x: number, z: number): number =>
+            THREE.MathUtils.smoothstep(
+              sampleTerrainBuildingCoverage(coverage, x / context.tileSize, z / context.tileSize),
+              urbanFrom,
+              urbanFull,
+            );
+    const colorAt =
+      pavedAt === undefined
+        ? natural
+        : (x: number, z: number): THREE.Color => {
+            const base = typeof natural === 'function' ? natural(x, z) : natural;
+            const t = pavedAt(x, z);
+            return t > 0 ? paved.copy(base).lerp(urbanColor, t) : base;
+          };
     // One height for every class: covered faces were removed above, so neighbors meet edge to
     // edge. Staggered layers left a sliver at each boundary that a grazing view saw through
     // once the covered terrain beneath stopped drawing.
@@ -749,6 +872,17 @@ export function createLandcoverMesh(
     for (const polygon of visible[featureIndex] ?? [])
       appendTerrainSurfaceArea(builder, polygon, colorAt, offset);
     appendAgricultureAttributes(builder, start, feature);
+    builder.attributeSince('landcoverDetail', 2, start, (x, z) => {
+      const worldX = context.origin[0] + x,
+        worldZ = context.origin[1] + z;
+      const detail =
+        palettes?.find(
+          ({ bounds: b }) => worldX >= b[0] && worldX < b[2] && worldZ >= b[1] && worldZ < b[3],
+        )?.detail ?? ownDetail;
+      if (detail === undefined) return [0, 0];
+      const open = 1 - (pavedAt?.(x, z) ?? 0);
+      return [detail[0] * open, detail[1] * open];
+    });
     colorsAt[featureIndex] = typeof colorAt === 'function' ? colorAt : () => colorAt;
     if (builder.vertexCount > start)
       ranges.push({ start, end: builder.vertexCount, feature: featureIndex });
@@ -837,6 +971,7 @@ function createBuildingMesh(
   options: TerrainSemanticMeshOptions,
 ): THREE.Mesh | undefined {
   const geometries: THREE.BufferGeometry[] = [];
+  const palette = options.buildingColors;
   for (const feature of tile.buildings) {
     const height = Math.max(
       0.5,
@@ -855,6 +990,18 @@ function createBuildingMesh(
       });
       geometry.rotateX(-Math.PI / 2);
       geometry.translate(0, averageGroundHeight(polygon, context) + (feature.minHeight ?? 0), 0);
+      if (palette) {
+        const seed = buildingSeed(feature.id, polygon, context);
+        const roof = weightedColor(palette.roofs, hash01(seed));
+        const wall = weightedColor(palette.walls, hash01(seed ^ 0x5bd1e995));
+        const normals = geometry.getAttribute('normal');
+        const colors = new Float32Array(normals.count * 3);
+        for (let index = 0; index < normals.count; index++) {
+          const color = normals.getY(index) > 0.5 ? roof : wall;
+          colors.set([color.r, color.g, color.b], index * 3);
+        }
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      }
       geometries.push(geometry);
     }
   }
@@ -862,7 +1009,11 @@ function createBuildingMesh(
   const geometry = mergeGeometries(geometries, false);
   for (const source of geometries) source.dispose();
   if (geometry === null) return undefined;
-  const mesh = new THREE.Mesh(geometry, options.materials?.building ?? DEFAULT_BUILDING_MATERIAL);
+  const mesh = new THREE.Mesh(
+    geometry,
+    options.materials?.building ??
+      (palette ? PAINTED_BUILDING_MATERIAL : DEFAULT_BUILDING_MATERIAL),
+  );
   mesh.name = 'semantic:buildings';
   mesh.userData.terrainOwnedGeometry = true;
   return mesh;

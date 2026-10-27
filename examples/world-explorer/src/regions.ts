@@ -6,6 +6,11 @@ export interface WorldRegion {
   /** West, south, east, north; street detail and wider coarse elevation coverage. */
   detailBounds: [number, number, number, number];
   coverageBounds: [number, number, number, number];
+  /**
+   * Open-water color seen from above, from matched orthophotos: deep or turbid water is far
+   * darker than the sky it reflects at a glance. Defaults to the shared Earth water color.
+   */
+  water?: string;
 }
 
 export const DEFAULT_WORLD_REGION: WorldRegion = {
@@ -15,6 +20,8 @@ export const DEFAULT_WORLD_REGION: WorldRegion = {
   latitude: 47.6163,
   detailBounds: [-122.46, 47.55, -121.95, 47.7],
   coverageBounds: [-123.15, 46.95, -120.9, 48.3],
+  // Puget Sound and Lake Washington read near-black navy in summer NAIP imagery.
+  water: '#071f2b',
 };
 
 /** Shared by the viewer and the regional PMTiles builder. */
@@ -27,6 +34,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     latitude: -33.8688,
     detailBounds: [151.04, -33.99, 151.31, -33.77],
     coverageBounds: [150.3, -34.5, 151.8, -33.2],
+    // Port Jackson's harbour water is a dark green-teal in NSW imagery.
+    water: '#2a5a4a',
   },
   {
     id: 'kyoto',
@@ -43,6 +52,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     latitude: 32.7253,
     detailBounds: [-114.78, 32.57, -114.47, 32.81],
     coverageBounds: [-115.4, 32.1, -113.8, 33.5],
+    // The Colorado and its canals run dark olive-green under algae and silt.
+    water: '#0c2416',
   },
   {
     id: 'new-delhi',
