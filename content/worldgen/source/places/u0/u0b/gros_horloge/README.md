@@ -25,6 +25,6 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs gro
 - The architecture is a detailed original polygonal reconstruction. Carved angels, lambs, pastoral figures and the fountain group preserve placement and silhouette without claiming exact restoration-grade sculpture; no invented inscription text is added.
 - The two clock faces are static at ten o’clock. Lunar hemispheres and the weekday cart are illustrative exterior states, not a live astronomical clock simulation.
 - The 31 m dome-support datum is primary; approximately 43 m finial height and intermediate levels are proportional reconstruction. The adjacent historic town hall/apartment blocks are separate buildings and are intentionally excluded.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Current far representation aggregates sculpture, Gothic tracery, numeral strokes and tiny ornaments while preserving the full ensemble, clock/arch identities and open bell lantern. Current host street grade and device performance are not surveyed/measured.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

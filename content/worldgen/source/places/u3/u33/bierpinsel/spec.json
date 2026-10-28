@@ -34,9 +34,9 @@
   },
   "scaleBasis": "The exact OSM outline and original architect floor plan govern the nine radial capsules and rectangular rear wing. Berlin’s March 2026 LoD2 building DEBE06YYB0000lX5 gives local ground 45.816 m and maximum roof 88.33 m, or 42.514 m above ground; this measured exterior envelope is used instead of silently stretching to the undatumed tourism height 47 m. Occupied tiers and details follow contemporary and September 2026 district photographs. The generalized LoD2 mesh is evidence only, not redistributed geometry.",
   "appearance": {
-    "kind": "current",
-    "representedDate": "2026-09-23",
-    "currentWorldEligible": true
+    "identity": "September2026 Bierpinsel exterior: nine radial telescoping aluminum restaurant capsules with three window tiers, D-shaped lift stem,12 branching steel cantilevers, rectangular service wing, six-flight external dogleg stair, lower public stair/attached landing and roof machinery. Broad current mural color fields remain original polygonal interpretations.",
+    "master": "Preserve the104849triangle detailed source/master. The42.514m retained exterior envelope is distinct from undatumed47m tourism height.",
+    "browser": "Four complete source-local levels preserve the whole attached building. Skyline keeps all nine capsule/window sets,12 branching supports, wing/window rows, rooftop enclosures, full landing and six-flight stair ramps. District adds7 treads per escape flight and15 public treads, relief and sparse louvers. Street has original13/35 stair treads, more louvers and mural forms; closeup adds finer cassette seams, fasteners, core joints and crack motifs. Shared concrete/painted metal supply texture; no private mural bitmap."
   },
   "geographicProposal": {
     "anchor": [
@@ -47,7 +47,7 @@
     "elevationMode": "terrain-contact",
     "status": "preview-proposal",
     "source": "https://www.openstreetmap.org/way/28503881",
-    "notes": "undefined undefined",
+    "notes": "Exact-QID way28503881 is the projected head/wing envelope rather than ground-contact footprint. Separate way28503882 fixes the stem. Native+X southeast away from the northwest wing, +Z southwest. Retained map axes/anchor and local street datum; road bridge and external bridge-level connection remain host map/terrain.",
     "mapGeometrySource": "map-frame.json",
     "mapGeometryHash": "sha256:5cedb3edf811c1bf754f089c6007c667bbd2da92f49e10202b9541da3cbba088"
   },
@@ -105,13 +105,11 @@
     }
   ],
   "limitations": [
-    "Current September 2026 exterior; the restaurant is closed and the district reports recent facade-panel loss. This model does not claim the proposed restoration or reopening has occurred.",
-    "Berlin’s measured 42.514 m exterior envelope differs from the tourism description of 47 m. The difference is preserved in the source evidence; no unverified foundation or roof extension is invented to reconcile it.",
-    "Facade cassette profiles, stair landings and occupied-floor heights are proportionally reconstructed from primary photographs and the architect plan. The street-art mural retains broad color fields and forms without reproducing every painted face, tag, stain or missing panel.",
-    "Adjacent road bridge, subway entrances, commercial signs and interiors are outside the tower asset. The attached street stair and pedestrian landing are included; their connection elevation remains a local photographic reconstruction.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Retained September2026 closed-building exterior and42.514m envelope; no proposed restoration or reopening is represented. Current facade art is abstracted as original color fields/forms, not copied artwork or a panel-by-panel damage inventory.",
+    "Mapped projected head footprint and smaller D-shaped street stem remain separate controls. Surrounding road bridge, subway entrances, neighboring buildings, commercial signs and interiors remain excluded. Attached stair-to-road landing fit is photographic and unverified against native host terrain/road elevation.",
+    "Detailed masters remain intact. Stair treads aggregate to ramps at skyline, louver/cassette density and tiny fittings aggregate with distance. Shared256px graphs are reused; exact mural marks and stains are excluded. Physical-device timings remain pending."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -232,6 +230,158 @@
         21,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "mesh": {
+    "triangles": 104849,
+    "vertices": 295745,
+    "groups": 3,
+    "bytes": 11907372,
+    "sha256": "sha256:71dfb6202da0720eebe2dc54a3e1ed75ee4156c5b1eba12c9cf2f85e814f264d",
+    "min": [
+      -15.65999984741211,
+      0,
+      -11.944999694824219
+    ],
+    "max": [
+      11.944999694824219,
+      42.513999938964844,
+      11.944999694824219
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u33/bierpinsel/models/bierpinsel-lods.mjs",
+    "export": "bierpinselSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "bierpinselDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.68
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "bierpinselStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.68
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "bierpinselCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.68
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-nine-capsules-wing-and-complete-stairs",
+      "position": [
+        -55,
+        35,
+        49
+      ],
+      "lookAt": [
+        -2,
+        22,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-branching-supports-and-stair-flights",
+      "position": [
+        -24,
+        17,
+        25
+      ],
+      "lookAt": [
+        -3,
+        18,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-three-window-tiers-and-cyan-ribbon",
+      "position": [
+        25,
+        28,
+        8
+      ],
+      "lookAt": [
+        8,
+        28,
+        2
+      ],
+      "reviewLod": "street"
     }
   ]
 }

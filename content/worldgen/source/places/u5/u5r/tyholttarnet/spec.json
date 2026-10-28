@@ -87,12 +87,11 @@
     }
   ],
   "limitations": [
-    "Current owner photographs determine permanent form. Intermediate platforms, roof and base heights are proportional reconstructions; the 74/75 m restaurant-floor descriptions are compatible approximate public values rather than exact floor survey datums.",
-    "Antennas, cable ladders and service fittings form a representative arrangement; telecommunications equipment changes over time. Nighttime projection lighting and restaurant interiors are outside this exterior asset scope.",
-    "The low attached H-shaped office building remains a separate mapped building and is not duplicated. Raw map part material/class labels conflict and are explicitly overridden using the photographed narrow shaft and broad flared pod.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "The base follows retained co-centered mapped parts. Conflicting restaurant/shaft map labels are preserved as source data and overridden by the photographed narrow shaft and broad pod.",
+    "Antenna phases, intermediate levels and ground contact are approximate. The attached H-shaped office building remains independent; restaurant interiors and projection lighting are excluded.",
+    "Distant hardware, rail/ladder density, formwork points and dish depth aggregate. Physical laptop and phone timings remain pending."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -187,6 +186,148 @@
         58,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "The124m communications tower: mapped hipped square base, narrow concrete shaft, five circular equipment platforms,26 representative dishes, twelve-faceted flared restaurant glazing and stepped white roof, tapering open lattice mast and red tip beacon.",
+    "master": "Preserve the133426triangle detailed source and imported master unchanged.",
+    "browser": "Four complete source-local derivatives retain the tower from ground to tip. Skyline uses all five platforms,26 two-sided dish silhouettes and open mast bracing. District restores major frames/guards and dish mounts. Street restores bowl-shaped dishes, denser glazing, mast lattice and ladders. Closeup restores cast lift joints, denser equipment, curved rails and dish feed details. Subpixel formwork points and rail/ladder spacing aggregate."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "mesh": {
+    "triangles": 133426,
+    "vertices": 266556,
+    "groups": 3,
+    "bytes": 11199476,
+    "sha256": "sha256:a0b0f767ea45efc6c79522606c417991f1e67723ba9ddb2eea6fa7276daa4fea",
+    "min": [
+      -8.880755424499512,
+      0,
+      -8.513813972473145
+    ],
+    "max": [
+      8.550129890441895,
+      124,
+      8.513813972473145
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u5/u5r/tyholttarnet/models/tyholt-lods.mjs",
+    "export": "tyholtSkyline",
+    "errorMeters": 0.6,
+    "authoredLevels": {
+      "district": {
+        "export": "tyholtDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      },
+      "street": {
+        "export": "tyholtStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      },
+      "closeup": {
+        "export": "tyholtCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-base-to-tip",
+      "position": [
+        115,
+        85,
+        190
+      ],
+      "lookAt": [
+        0,
+        61,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-five-platforms-and-flared-pod",
+      "position": [
+        29,
+        65,
+        48
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-open-mast-and-pod-roof",
+      "position": [
+        16,
+        103,
+        30
+      ],
+      "lookAt": [
+        0,
+        96,
+        0
+      ],
+      "reviewLod": "street"
     }
   ]
 }

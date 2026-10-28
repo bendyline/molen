@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.klaipeda_lighthouse",
-  "inputHash": "sha256:789beac5d2f49e1d56eb4c242be3060797f77f24c3e9ba35e24751ca6dbe3716",
-  "captureReportHash": "sha256:708419f91d4dc6b9b266bb172600fa88ce2f6ccad619d3742200d3de0bb03b6b",
+  "inputHash": "sha256:3ab1cfcef1fc998fa20c513d9a874614abf2baece2cf56f29e0ed1e05674c82f",
+  "captureReportHash": "sha256:236a87458ea177d30b7824bf3993ab8fb5630581a211327270905311c2153657",
   "visualReview": {
     "status": "passed",
     "scope": "Detailed exterior and portable materials.",
@@ -18,12 +18,13 @@
       "shots/near-daymark.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "All ten final portable and ten final shared frames inspected after adding the compact visible optic. Broad historic plinth, arched entrance, two metal shoulders, ten shaft bands, seaward vertical stripe, molded capital, square gallery and partly enclosed orange lantern remain connected. Glass now reveals a physically supported lamp silhouette."
+    "notes": "All10 portable and10 shared master frames inspected; after the skyline-only camera correction their20 actual PNG hashes remain byte-identical to the first inspected frames. Broad historic base, real arched wood entry, two entry steps, two folded metal shoulders, ten black/white bands, seaward vertical stripe, rounded capital, square gallery and partly enclosed orange lantern form a complete40m tower. Near views retain compact supported optic visible through glazing, dish, paired aerials and gallery floodlights. The57618triangle detailed source/imported masters remain byte-for-byte unchanged.",
+    "captureReportHash": "sha256:236a87458ea177d30b7824bf3993ab8fb5630581a211327270905311c2153657"
   },
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:c4c2bc792fd8b8abaca48742734fc56d3123fca9ba1669a12d2cd08a9e741f72",
+    "captureReportHash": "sha256:38231b973b0dd41392d263c6e04704411ef6d7d2e7da76b62b0dff89a9d97400",
     "fixtureHash": "sha256:30a01c038a2fc391e1d7ec2c992fc210adc9fcf8831e2d419cf8aa0531f1e6cf",
     "inputHash": "sha256:789beac5d2f49e1d56eb4c242be3060797f77f24c3e9ba35e24751ca6dbe3716",
     "materialGraphs": {
@@ -56,17 +57,259 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All current shared frames inspected. Shared mineral and painted-metal surfaces retain the correct daymark and metric scale, clear glazing retains the visible lamp and frame. Shared material and geographic unload assertions pass."
+    "notes": "Four reused256px graphs bind plaster_lime, metal_painted, wood_plain and concrete_plain; local glass and translucent lantern glass remain local surface definitions. Shared graph hashes and scale bindings checked; no embedded images in any of the six GLBs. Shared geographic fixture, eviction and disposal assertions pass. Skyline uses an opaque distance average for lantern glass; district/street/closeup restore visible glazing and optic."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:93d19ade896ce62a08fb27e58bad9fb71e8a569b8d86bfc7b4642f6e35ff70b7",
-    "notes": "Exact-QID broad-base footprint fixes the tower center, correcting the former southwest catalog point. Public-library aerial and mapped forecourt resolve the entry quadrant; square gallery overlay is centered. Facade angle remains a photographic reconstruction rather than a surveyed bearing."
+    "notes": "Retained Q5764622 / way350070453 broad-base center [21.095725009,55.727682701], heading1.06rad; +Z entrance toward the southeast/east forecourt and -X seaward stripe toward southwest. The mapped footprint correction replaces an older point about58m southwest. Base width8.46m and40m structural height retained;44m denotes focal elevation above sea level. Entrance quadrant and gallery/lantern facing are photographic approximations, not surveyed bearings. North-up synthetic footprint overlay inspected. GroundY0 is the broad-base contact; host terrain clearance and neighboring station buildings remain outside this tower review."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Current acceptance follows the medium-fi guide. The detailed source master is preserved; complete source-local skyline/district/street/closeup derivatives use1000/3734/14574/30322 triangles and1/6/6/6 draws. Four shared256px material graphs retain a consistent mineral, painted-metal and wood vocabulary. No generic stand-in substitutes for the lighthouse. Physical laptop/phone timings remain unmeasured."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:c34dc76368216e6d6e05fb4cf37c9fd9a1520e5cd9ce8b6f7665526433c04b84",
+  "runtimeHash": "sha256:da10a9d3bdb44c2a96ae0f298fee4e183abe30d02d2b774b438a3539500711f9",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:c5440a87950826ac69dd2eb9eaee42345fab776a99ab36bccb2f26a3e8092a57",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-historic-base.png",
+      "medium-fi/near-capital.png",
+      "medium-fi/near-lantern.png",
+      "medium-fi/near-daymark.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/skyline-full-daymark-gallery-and-lantern.png",
+      "medium-fi/district-arched-base-and-folded-shoulders.png",
+      "medium-fi/street-seaward-glazing-and-visible-optic.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All25 final medium-fi frames actually inspected, including street/block/skyline noon and late lighting, silhouette, historic base, capital, lantern, daymark, far profile, three level-specific close views and four matched transition views. The corrected skyline camera now frames the full tower. Authored levels preserve the complete outline and characteristic paint geometry; near views keep true door/window recesses and connected gallery posts. Coarse skyline curves and sparse guards are intentional at distance; district rounds the stripe width and aggregates fine seams, guards and optic fins. Synthetic neighboring houses show contextual scale only and do not prove native terrain contact."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "LTSA40m height and municipal/public-library photographs constrain the broad surviving base, cylindrical shaft, daymarks and capital/lantern architecture. Compact optic is a reconstructed visible silhouette rather than an optical prescription. Temporary flags, site-spanning cables and detached service buildings remain context."
-  }
+    "notes": "LTSA40m height and municipal/public-library photographs constrain the broad surviving base, cylindrical shaft, daymarks and capital/lantern architecture. Compact optic is a reconstructed visible silhouette rather than an optical prescription. Temporary flags, site-spanning cables and detached service buildings remain context.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u3/u3z/klaipeda_lighthouse/models/source.glb",
+        "hash": "sha256:c34dc76368216e6d6e05fb4cf37c9fd9a1520e5cd9ce8b6f7665526433c04b84",
+        "bytes": 5196328,
+        "triangles": 57618,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -4.455999851226807,
+          0,
+          -4.455999851226807
+        ],
+        "max": [
+          4.455999851226807,
+          40,
+          5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u3/u3z/klaipeda_lighthouse/model.glb",
+        "hash": "sha256:da10a9d3bdb44c2a96ae0f298fee4e183abe30d02d2b774b438a3539500711f9",
+        "bytes": 5195824,
+        "triangles": 57618,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -4.455999851226807,
+          0,
+          -4.455999851226807
+        ],
+        "max": [
+          4.455999851226807,
+          40,
+          5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u3/u3z/klaipeda_lighthouse/model.skyline.glb",
+        "hash": "sha256:278be4687128826845ecb5b95c219ef26b529ec8b91727eabb772aa97f8f1fc3",
+        "bytes": 76936,
+        "triangles": 1000,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -4.429999828338623,
+          0,
+          -4.429999828338623
+        ],
+        "max": [
+          4.429999828338623,
+          40,
+          5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u3/u3z/klaipeda_lighthouse/model.district.glb",
+        "hash": "sha256:1c75910a219e1e8217a6a9215e59d2f29bba2c778020e1f346fc341a2c1cbb3a",
+        "bytes": 264116,
+        "triangles": 3734,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -4.429999828338623,
+          0,
+          -4.429999828338623
+        ],
+        "max": [
+          4.429999828338623,
+          40,
+          5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u3/u3z/klaipeda_lighthouse/model.street.glb",
+        "hash": "sha256:9070f32e5388ba4fc4cd60f5fa00322f02e701508d379eb428548fd9c24eb404",
+        "bytes": 978548,
+        "triangles": 14574,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -4.455999851226807,
+          0,
+          -4.455999851226807
+        ],
+        "max": [
+          4.455999851226807,
+          40,
+          5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u3/u3z/klaipeda_lighthouse/model.closeup.glb",
+        "hash": "sha256:5d2c29e151052e4c735b118f3b11d5e1c6ceb3ffe5ca40ad4179c84699108dc6",
+        "bytes": 2037020,
+        "triangles": 30322,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -4.454124450683594,
+          0,
+          -4.454124450683594
+        ],
+        "max": [
+          4.454124450683594,
+          40,
+          5
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six Khronos Validator results have zero errors and warnings. Two focused tests pass: real master plus every level retain ten bands, continuous seaward stripe,40m tip, broad base, arched entry and ascending steps, both shoulders and supported full-square gallery; near levels retain six shaft windows and compact optic through a between-mullion ray. Deterministic copied-fixture reconstruction matches registered bytes, source/master hashes, separate12byte vertex streams, budgets and material bindings. Selected source generation/import checks pass; scene validation and30tick headless run report zero events, state hash sha256:f1260bcbbc67379e6b4e9a8beef478bf373ee64417b38ffdf55c03f3e52919da."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:6bdbc75231c02e998f4c788e8445b2b0fd853e5de4883f0f25971dc404f06ada",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:278be4687128826845ecb5b95c219ef26b529ec8b91727eabb772aa97f8f1fc3",
+        "bytes": 76936,
+        "gzipBytes": 13470,
+        "triangles": 1000,
+        "cpuBytes": 75552,
+        "gpuBytes": 75552,
+        "errorMeters": 0.4,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:1c75910a219e1e8217a6a9215e59d2f29bba2c778020e1f346fc341a2c1cbb3a",
+        "bytes": 264116,
+        "gzipBytes": 47478,
+        "triangles": 3734,
+        "cpuBytes": 256836,
+        "gpuBytes": 256836,
+        "errorMeters": 0.25,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:9070f32e5388ba4fc4cd60f5fa00322f02e701508d379eb428548fd9c24eb404",
+        "bytes": 978548,
+        "gzipBytes": 167419,
+        "triangles": 14574,
+        "cpuBytes": 971244,
+        "gpuBytes": 971244,
+        "errorMeters": 0.12,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:5d2c29e151052e4c735b118f3b11d5e1c6ceb3ffe5ca40ad4179c84699108dc6",
+        "bytes": 2037020,
+        "gzipBytes": 368465,
+        "triangles": 30322,
+        "cpuBytes": 2029668,
+        "gpuBytes": 2029668,
+        "errorMeters": 0.06,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 341052,
+    "notes": "Skyline/district/street/closeup use76936/264116/978548/2037020bytes. Initial skyline+district total341052bytes is below phone and laptop budgets. Every level is a complete model, six or fewer draws, with separate position/normal/color streams and no embedded images. Source/master sha256:c34dc76368216e6d6e05fb4cf37c9fd9a1520e5cd9ce8b6f7665526433c04b84 and runtime master sha256:da10a9d3bdb44c2a96ae0f298fee4e183abe30d02d2b774b438a3539500711f9 remain unchanged."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:3ab1cfcef1fc998fa20c513d9a874614abf2baece2cf56f29e0ed1e05674c82f",
+    "sourceHash": "sha256:c34dc76368216e6d6e05fb4cf37c9fd9a1520e5cd9ce8b6f7665526433c04b84",
+    "runtimeHash": "sha256:da10a9d3bdb44c2a96ae0f298fee4e183abe30d02d2b774b438a3539500711f9",
+    "framesInspected": 45,
+    "note": "One continuous targeted authoring and actual render inspection pass using retained ordinary photographs and map work. Fresh current-output captures and all file hashes are bound to the final input; the final camera-only change preserves all20 inspected master/shared pixels. No bespoke research, terrain download, engine CI or dependency audit. Source-local recipe, source index and current reports are retained; bulk images stay ignored."
+  },
+  "limitations": [
+    "Current review covers the individual lighthouse exterior. Adjacent station buildings, vegetation, temporary flags and site-spanning wires are excluded; native terrain contact and physical-device timing remain unverified. Current paint/equipment may change. Photographic facing is approximate and no optical-sector/navigation certification is implied. Skyline glazing and tiny fittings aggregate; district stripe/curves, guards, roundels, seams and optical fins aggregate."
+  ]
 }

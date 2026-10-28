@@ -101,13 +101,11 @@
     }
   ],
   "limitations": [
-    "Uses the current operator/installer height of 372 m. The maintenance contractor says 374 m and older map tags say 367 m; these conflicting figures are recorded rather than silently combined.",
-    "Balcony elevations, small antenna count and phase, shaft-window compass phase and guy bands at 122/302/350 m are photographic reconstructions. The 226 m guy band, approximately 220 m cabin, 2 m mast diameter and twelve-guy topology are separately published.",
-    "The 2002 operator statement describes one 309 m cable, 225 m anchor distance and 226 m attachment height. These rounded figures do not form an exact right triangle; model follows the actual mapped anchor positions and photographic attachment bands, with modest illustrative cable sag.",
-    "Three guy foundations share the tower local ground datum across the nearly flat polder. Below-ground concrete, independent generator buildings and seasonal Christmas light strings are excluded from the permanent tower asset.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Retained372m envelope,100m shaft,2m pipe and mapped three-anchor topology govern the model. Alternate374/367m figures remain recorded in the detailed source. Balcony/equipment elevations, window phase and guy bands at122/302/350m remain photographic reconstruction;226m band and approximately220m cabin use retained published controls.",
+    "All three foundations share the shaft terrain datum. Native polder grading/anchor contact has not been newly verified. Independent equipment buildings, below-ground works and seasonal Christmas strings remain outside this permanent tower asset.",
+    "Detailed source equipment and dimensions are retained; inverted foundation winding and concrete/glazing clipping are corrected. Skyline aggregates window coverage and thin antenna/rail details; district uses sparse guards, seven aggregate racks and two-sided thin mast platforms. Street/closeup restore finer details; cable paths keep all12 connections with illustrative sag. No physical-device timing or engineering tension/collision certification."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -241,6 +239,148 @@
         175,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "372m hybrid broadcast tower with100m concrete shaft, lower and upper glazed balconies plus narrow top glazing, six open equipment galleries, nine radomes,2m pipe mast, octagonal reportage cabin, antenna banks and twelve guy cables reaching all three unequal mapped foundations.",
+    "master": "Retain the full detailed master and original equipment. Normalize one inverted mapped foundation ring, and refine the narrow top glazing facets so they stay outside the concrete core. Heights, radii and equipment stations are retained.",
+    "browser": "Four complete source-local levels retain the whole tower and guy-anchor layout. Skyline has996triangles, all twelve continuously joined cables, three foundations, all gallery/platform stations, glazed rings, cabin and digital tip; tiny windows, rails and antenna racks aggregate. District retains all92 window positions, seven aggregate racks per side and coarse thin mast platforms; street restores full14-rack banks, curved guards and window openings. Closeup restores detailed fittings, real window-frame reveals, bolt-head faces and fine connected cable paths. Shared concrete and painted-metal graphs are reused without images."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "mesh": {
+    "triangles": 141970,
+    "vertices": 269236,
+    "groups": 3,
+    "bytes": 11398488,
+    "sha256": "sha256:e99fc388a8d5e7f2f34586b2c20b45442a0257671fec3af4c55b583844b6c3c6",
+    "min": [
+      -139.03504943847656,
+      0,
+      -209.17510986328125
+    ],
+    "max": [
+      221.94064331054688,
+      372,
+      178.4504852294922
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u1/u15/gerbrandy_tower/models/gerbrandy-lods.mjs",
+    "export": "gerbrandySkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "gerbrandyDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      },
+      "street": {
+        "export": "gerbrandyStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      },
+      "closeup": {
+        "export": "gerbrandyCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-full-twelve-guys-three-anchors",
+      "position": [
+        510,
+        250,
+        600
+      ],
+      "lookAt": [
+        0,
+        178,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-open-galleries-and-glazed-rings",
+      "position": [
+        30,
+        82,
+        38
+      ],
+      "lookAt": [
+        0,
+        79,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-reportage-cabin-and-guy-band",
+      "position": [
+        17,
+        224,
+        20
+      ],
+      "lookAt": [
+        0,
+        220,
+        0
+      ],
+      "reviewLod": "street"
     }
   ]
 }

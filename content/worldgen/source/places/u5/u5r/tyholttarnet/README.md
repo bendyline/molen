@@ -22,9 +22,8 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs tyh
 
 ## Remaining detail and review
 
-- Current owner photographs determine permanent form. Intermediate platforms, roof and base heights are proportional reconstructions; the 74/75 m restaurant-floor descriptions are compatible approximate public values rather than exact floor survey datums.
-- Antennas, cable ladders and service fittings form a representative arrangement; telecommunications equipment changes over time. Nighttime projection lighting and restaurant interiors are outside this exterior asset scope.
-- The low attached H-shaped office building remains a separate mapped building and is not duplicated. Raw map part material/class labels conflict and are explicitly overridden using the photographed narrow shaft and broad flared pod.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- The base follows retained co-centered mapped parts. Conflicting restaurant/shaft map labels are preserved as source data and overridden by the photographed narrow shaft and broad pod.
+- Antenna phases, intermediate levels and ground contact are approximate. The attached H-shaped office building remains independent; restaurant interiors and projection lighting are excluded.
+- Distant hardware, rail/ladder density, formwork points and dish depth aggregate. Physical laptop and phone timings remain pending.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

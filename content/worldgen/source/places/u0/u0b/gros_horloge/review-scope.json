@@ -1,0 +1,164 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Rouen’s complete landmark ensemble: a true lowered street arch with carved pastoral soffit and arms of Rouen; two raised Renaissance dials with Roman numerals, 24 sun rays, single lamb-tipped hour hands, lunar globes and weekday reliefs; metal-panel pavilion roof with dormers and ornate crest; adjoining buttressed Gothic belfry, tracery windows, ribbed dome and open bell lantern; original loggia/workshop and Rococo fountain.",
+    "master": "Preserve the current273346triangle detailed ensemble and imported master byte-identically.",
+    "browser": "Complete authored skyline and district ensembles preserve the43m cross, full street arch, both clocks, belfry and open lantern, stair turret, workshop and fountain. District adds Roman numeral strokes, Gothic cards/mullions, clock frames, relief proxies and workshop joinery. Street uses a bounded original-mesh derivative. Closeup retains detailed dials, all Roman strokes and24sun rays, principal sculptures and roof crest; shallow ornamental tube paths and fine beam strokes become surface ribbons, cloud-ring bumps become flat scallops and small figures use8x3facets. No district component pruning is used."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u0b/gros_horloge/models/gros-lods.mjs",
+    "export": "grosSkyline",
+    "errorMeters": 0.5,
+    "caps": {
+      "street": {
+        "triangles": 16000,
+        "errorMeters": 0.06
+      }
+    },
+    "authoredLevels": {
+      "closeup": {
+        "export": "grosCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          },
+          "carvedstone": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 0.94
+          }
+        }
+      },
+      "district": {
+        "export": "grosDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          },
+          "carvedstone": {
+            "localRef": "palette:#ffffff",
+            "slot": "trim",
+            "roughness": 0.94
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The architecture is a detailed original polygonal reconstruction. Carved angels, lambs, pastoral figures and the fountain group preserve placement and silhouette without claiming exact restoration-grade sculpture; no invented inscription text is added.",
+    "The two clock faces are static at ten o’clock. Lunar hemispheres and the weekday cart are illustrative exterior states, not a live astronomical clock simulation.",
+    "The 31 m dome-support datum is primary; approximately 43 m finial height and intermediate levels are proportional reconstruction. The adjacent historic town hall/apartment blocks are separate buildings and are intentionally excluded.",
+    "Current far representation aggregates sculpture, Gothic tracery, numeral strokes and tiny ornaments while preserving the full ensemble, clock/arch identities and open bell lantern. Current host street grade and device performance are not surveyed/measured."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "skyline-whole",
+      "position": [
+        40,
+        27,
+        55
+      ],
+      "lookAt": [
+        -4,
+        20,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-clock-and-arch",
+      "position": [
+        8,
+        10,
+        21
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-dial",
+      "position": [
+        5,
+        10,
+        12
+      ],
+      "lookAt": [
+        0,
+        9.7,
+        2.2
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/gros-lods.mjs"
+  ]
+}

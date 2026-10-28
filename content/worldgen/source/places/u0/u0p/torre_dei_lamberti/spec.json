@@ -137,12 +137,11 @@
     }
   ],
   "limitations": [
-    "Intermediate gallery elevations, individual repaired masonry and minor stone moulding profiles are proportionally reconstructed from current operator photographs. The small coats of arms retain shield relief rather than copied heraldic artwork.",
-    "Clock hands represent a fixed decorative display, not live time. Bell mounting positions are reconstructed from the visible open belfry; the four-bell identity and largest bell mouth diameter are sourced.",
-    "The tower is modeled independently of its attached palace wings; interiors, neighboring palace roofs and Arco della Costa are excluded.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "The tower is independent of attached Palazzo della Ragione wings, palace roofs and Arco della Costa. Interiors are excluded.",
+    "Retained mapped shaft anchor/orientation and photo-proportioned intermediate levels remain approximate at ordinary host ground contact.",
+    "Clock hands are a fixed decorative display. Shields carry plain relief; tiny corbel ornament, putlog depth, railing density and bell fittings aggregate at distance. No physical-device performance measurements are claimed."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -224,6 +223,223 @@
         40,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "The84m tower with alternating tuff/cotto lower shaft, southwest clock, four triple-arched open galleries, projecting terraces/corbels, octagonal brick drum, white paired-arched belfry with four bells and shallow copper roof/vane.",
+    "master": "Preserve the89562triangle detailed source and imported master unchanged.",
+    "browser": "Four complete source-local derivatives keep the connected tower and true open gallery/belfry bays. Distant stripes, corbels, rails, putlogs, shield outlines, clock relief and bell fittings aggregate. Street restores full lower stripe rhythm; closeup restores recessed putlogs and denser rails/arches. All browser vanes have reverse faces."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "mesh": {
+    "triangles": 89562,
+    "vertices": 181972,
+    "groups": 8,
+    "bytes": 7630404,
+    "sha256": "sha256:b741403ffec1690b3a0b8c29847dc72f2fe58fffc447627e6d0d8739c2793dd3",
+    "min": [
+      -5.317999839782715,
+      0,
+      -5.433000087738037
+    ],
+    "max": [
+      5.317999839782715,
+      84,
+      5.433000087738037
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u0p/torre_dei_lamberti/models/lamberti-lods.mjs",
+    "export": "lambertiSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "lambertiDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.6
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "lambertiStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.6
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "lambertiCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.6
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-clock-and-belfry",
+      "position": [
+        70,
+        57,
+        110
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-trifora-and-octagonal-gallery",
+      "position": [
+        21,
+        75,
+        33
+      ],
+      "lookAt": [
+        0,
+        67,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-clock-and-corbels",
+      "position": [
+        9,
+        55,
+        29
+      ],
+      "lookAt": [
+        0,
+        50,
+        0
+      ],
+      "reviewLod": "street"
     }
   ]
 }

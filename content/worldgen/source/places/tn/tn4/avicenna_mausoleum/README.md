@@ -22,9 +22,8 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs avi
 
 ## Remaining detail and review
 
-- The broad exterior, rib count, cone and portico dimensions are published; stair and ramp grades, roof planting limits, small lightwell widths and individual granite stones are proportioned reconstructions.
-- The architectural 28.5 m dimension fixes the tower composition; the broader connected museum platform follows the current mapped outline. Its full extent is inferred from the museum mapping rather than forced into a 28.5 m square.
-- No interior museum displays, library contents, grave chamber, exact inscription glyphs or temporary site furniture are represented.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Ordinary host ground contact is retained. The surrounding garden, separate Aref Qazvini grave, freestanding Avicenna statue and interiors are outside this building asset.
+- Retained published proportions and mapped footprint guide the reconstruction; small openings, stonework, roof planting boundaries, ramps and stairs are approximate.
+- Distant openings use flat cards and stairs become graded volumes. Physical phone and laptop timings remain unmeasured.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

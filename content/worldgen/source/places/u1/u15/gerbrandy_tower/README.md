@@ -16,16 +16,14 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/gerbrandy-tower-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-140,946 triangles; 267,316 vertices; 3 material groups; 11,317,080 source bytes. Source hash: `sha256:7e2a95aff5e04df38ab7155c2242d79390814e5c959deaeddfb12c1c2d9f4505`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+141,970 triangles; 269,236 vertices; 3 material groups; 11,398,488 source bytes. Source hash: `sha256:e99fc388a8d5e7f2f34586b2c20b45442a0257671fec3af4c55b583844b6c3c6`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs gerbrandy_tower`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 
 ## Remaining detail and review
 
-- Uses the current operator/installer height of 372 m. The maintenance contractor says 374 m and older map tags say 367 m; these conflicting figures are recorded rather than silently combined.
-- Balcony elevations, small antenna count and phase, shaft-window compass phase and guy bands at 122/302/350 m are photographic reconstructions. The 226 m guy band, approximately 220 m cabin, 2 m mast diameter and twelve-guy topology are separately published.
-- The 2002 operator statement describes one 309 m cable, 225 m anchor distance and 226 m attachment height. These rounded figures do not form an exact right triangle; model follows the actual mapped anchor positions and photographic attachment bands, with modest illustrative cable sag.
-- Three guy foundations share the tower local ground datum across the nearly flat polder. Below-ground concrete, independent generator buildings and seasonal Christmas light strings are excluded from the permanent tower asset.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Retained372m envelope,100m shaft,2m pipe and mapped three-anchor topology govern the model. Alternate374/367m figures remain recorded in the detailed source. Balcony/equipment elevations, window phase and guy bands at122/302/350m remain photographic reconstruction;226m band and approximately220m cabin use retained published controls.
+- All three foundations share the shaft terrain datum. Native polder grading/anchor contact has not been newly verified. Independent equipment buildings, below-ground works and seasonal Christmas strings remain outside this permanent tower asset.
+- Detailed source equipment and dimensions are retained; inverted foundation winding and concrete/glazing clipping are corrected. Skyline aggregates window coverage and thin antenna/rail details; district uses sparse guards, seven aggregate racks and two-sided thin mast platforms. Street/closeup restore finer details; cable paths keep all12 connections with illustrative sag. No physical-device timing or engineering tension/collision certification.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

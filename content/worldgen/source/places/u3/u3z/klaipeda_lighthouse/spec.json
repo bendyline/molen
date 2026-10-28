@@ -41,9 +41,9 @@
     "notes": "Exact-QID base center corrects the catalog coordinate approximately58m southwest. Entry faces the southeastern/eastern station forecourt, reconstructed from the public-library aerial and present mapped service court. Square gallery and the seaward glazed lantern share this station axis; facade angle is a photographed quadrant, not a survey bearing."
   },
   "limitations": [
-    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
-    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
-    "Component proportions below the 40m total are reference-photo reconstructions. The exact restored2025 paint tone and movable communications equipment may change; temporary flags, cables spanning the site and detached service buildings remain outside this tower model. The preserved broad base is modeled separately from the modern shaft. No claim of optical-sector navigational accuracy."
+    "Retained40m structural height and mapped broad-base footprint;44m is focal elevation above sea level. Intermediate component sizes, entrance quadrant and gallery/lantern facing remain photo-based reconstructions rather than surveyed controls.",
+    "Host terrain contact isY0 at the broad base. Adjacent station buildings, vegetation, temporary flags/site-spanning cables and native local terrain clearance remain outside this individual tower review. Current paint/equipment can change; no optical-sector navigation certification.",
+    "Detailed masters remain intact. Skyline uses opaque glazing and omits tiny lamp/hardware details; near levels restore the compact visible optic and hardware. District stripe width/curves, guards, roundels, seams and optical fins aggregate. Physical-device timings remain pending."
   ],
   "previewCamera": {
     "position": [
@@ -134,6 +134,205 @@
   "assetId": "molen.worldgen.structure.klaipeda_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "40m black/white daymark lighthouse: broad historic base with arched entry, two stepped metal shoulders, ten bands and a seaward vertical stripe, rounded capital, square iron gallery, partly enclosed orange lantern, roof guard and finial. Near views retain compact optic, dish, paired aerials and gallery lights.",
+    "master": "Preserve the57618triangle detailed source/imported master unchanged.",
+    "browser": "Four complete source-local levels retain the whole base, shoulders, daymark, capital, square gallery, orange lantern and40m tip. Skyline has a real arched entry, exact stripe boundaries and opaque average glazing. District retains the true door/window recesses, compact optic and all major hardware, with sparse seams/guards and coarse roundels; street restores more guard/seam/optic detail; closeup restores finer curves and seams. Shared256px mineral, painted-metal and wood graphs are reused. Tiny source fittings aggregate with distance."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u3z/klaipeda_lighthouse/models/klaipeda-lods.mjs",
+    "export": "klaipedaSkyline",
+    "errorMeters": 0.4,
+    "authoredLevels": {
+      "district": {
+        "export": "klaipedaDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.16,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "klaipedaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.16,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "klaipedaCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.96
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.16,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-full-daymark-gallery-and-lantern",
+      "position": [
+        38,
+        24,
+        52
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-arched-base-and-folded-shoulders",
+      "position": [
+        9,
+        6,
+        12
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-seaward-glazing-and-visible-optic",
+      "position": [
+        -7.5,
+        38.8,
+        8
+      ],
+      "lookAt": [
+        0,
+        37.7,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
   "actualBounds": {
     "min": [
       -4.455999851226807,

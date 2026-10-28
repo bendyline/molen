@@ -1,0 +1,198 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Current1965 IJzertoren: mapped octagonal stone platform, twin exterior entrance stairs, stepped diagonal corner pavilions with open terraces, six-lobed taper, slit rhythm, four projecting balconies, glazed cross crown withAVV/VVK lettering and open roofs, northeast37-bell carillon and plain variable banner.",
+    "master": "Preserve the current48463triangle detailed source and imported master unchanged.",
+    "browser": "Complete authored skyline/district/street keep the whole connected landmark. Distant pixel inscriptions, stone relief, small frame subdivisions and rail posts aggregate; district retains37 flat bell silhouettes and street restores37 faceted bell bodies. Closeup preserves the detailed exterior while adding the reverse of its single-sided plain banner. Structural84m tower and89.8m flagpole top remain distinct."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u1/u14/yser_tower/models/yser-lods.mjs",
+    "export": "yserSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "yserDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "yser_stone": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.96
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "yserStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "yser_stone": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.96
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "yserCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "yser_stone": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.96
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "This is the current1965 tower. Independent Pax gate, ruined1930 tower/crypt, forecourt ticket building, park and interiors remain separate structures.",
+    "The retained mapped ground frame and photo-proportioned fittings do not certify a surveyed forecourt grade.84m is structural height;89.8m is the modeled flagpole top.",
+    "Distant stone relief, pixel inscriptions, tiny bell/clapper fittings and guard/frame spacing aggregate. The flag is a plain variable banner, with no invented heraldic texture or live flag motion. Physical laptop/phone measurements remain pending."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-current-tower",
+      "position": [
+        125,
+        65,
+        170
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-cross-and-terraces",
+      "position": [
+        32,
+        80,
+        55
+      ],
+      "lookAt": [
+        0,
+        77,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-carillon-and-entry",
+      "position": [
+        22,
+        18,
+        46
+      ],
+      "lookAt": [
+        0,
+        14,
+        7
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/yser-lods.mjs"
+  ]
+}
