@@ -3,11 +3,12 @@ import '../../../../../../../../packages/worldgen/scripts/install-deterministic-
 import fs from 'node:fs';
 import { ShapeUtils, Vector2 } from 'three';
 import {
-  normalFor,
-  cross,
   beam,
+  cross,
+  normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+
 const p = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
 export const surfaces = {
   wall: { slot: 'wall', graph: 'plaster_lime', roughness: 0.96, metallic: 0 },

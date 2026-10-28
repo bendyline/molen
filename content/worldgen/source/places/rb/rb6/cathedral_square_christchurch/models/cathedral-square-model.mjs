@@ -7,6 +7,7 @@ import {
   normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+
 const p = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url))),
   A = p.cathedral,
   R = p.nativeOutline,

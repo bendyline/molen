@@ -77,8 +77,7 @@ for (const [d, build] of [
   );
   gltf.scene.updateMatrixWorld(true);
   let triangles = 0,
-    concreteSurface = false,
-    woodSurface = false;
+    concreteSurface = false;
   gltf.scene.traverse((o) => {
     if (!o.geometry) return;
     const p = o.geometry.getAttribute('position'),
@@ -93,7 +92,6 @@ for (const [d, build] of [
     for (const m of Array.isArray(o.material) ? o.material : [o.material]) {
       m.side = T.FrontSide;
       if (JSON.stringify(m.userData).includes('concrete_plain')) concreteSurface = true;
-      if (JSON.stringify(m.userData).includes('wood_plain')) woodSurface = true;
     }
   });
   assert.equal(triangles, source.triangleCount);
