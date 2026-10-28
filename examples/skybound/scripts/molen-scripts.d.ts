@@ -176,6 +176,22 @@ type MolenAircraftData = {
     hardLandingPitch: number;
     maxSupportStep: number;
     collisionProbes: [number, number, number][];
+    collisionParts?: {
+      id: string;
+      role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'gear' | 'engine';
+      probes: [number, number, number][];
+      radius: number;
+      center: [number, number, number];
+      massFraction: number;
+      breakSpeed?: number;
+      nodes: string[];
+      fragments?: {
+        nodes: string[];
+        min: [number, number, number];
+        max: [number, number, number];
+      };
+      engines?: string[];
+    }[];
     visual: {
       rotors: {
         node: string;
@@ -281,6 +297,18 @@ type MolenAircraftInputData = {
 };
 /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
 type MolenAircraftStateData = {
+  damage?: Record<string, {
+      integrity: number;
+      detached: boolean;
+    }>;
+  debris?: {
+    part: string;
+    pos: [number, number, number];
+    rot: [number, number, number, number];
+    velocity: [number, number, number];
+    angularVelocity: [number, number, number];
+    age: number;
+  }[];
   boosted?: boolean;
   mach?: number;
   equivalentAirspeed?: number;
