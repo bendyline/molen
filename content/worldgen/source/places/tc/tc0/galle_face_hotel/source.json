@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.galle_face_hotel",
+  "kind": "static-structure",
+  "title": "Galle Face Hotel, Colombo (2022)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.galle_face_hotel",
+        "output": "assets/places/tc/tc0/galle_face_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:199461056f08678a4ce81a7b43b4e40168db3ca206586cc78834550cc71d5387"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-structural-facts.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/cave-1908-original.pdf",
+      "reference-rights/cave-1908-native.json",
+      "reference-rights/cave-1908-library-catalog.json",
+      "native-map/complete-hotel-context.json",
+      "native-map/building-identity.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-23651-15752.png",
+      "import-report.json",
+      "geometry-review.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json"
+    ]
+  }
+}

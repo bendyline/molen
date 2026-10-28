@@ -1,0 +1,419 @@
+{
+  "planId": "qantas_hangar_longreach",
+  "id": "qantas_hangar_longreach",
+  "assetId": "molen.worldgen.structure.qantas_hangar_longreach",
+  "title": "Qantas Hangar, Longreach (2008)",
+  "category": "transport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 144.2712266230769,
+    "latitude": -23.439348792307694
+  },
+  "size": [
+    36.394039154052734,
+    10.800000429153442,
+    45.22189140319824
+  ],
+  "actualBounds": {
+    "min": [
+      -19.43720054626465,
+      -1.2000000476837158,
+      -22.41450309753418
+    ],
+    "max": [
+      16.956838607788086,
+      9.600000381469727,
+      22.807388305664062
+    ]
+  },
+  "visualBrief": "Whole surviving1922QANTAShangar as museum-era2008 architecturaldescription: complete13vertexnativeoldhangar998728731, large uninterrupted aircraftbay/tubularsteeltrusses/gabledroof/ventilatedridge/corrugatedgalvanisedwallsandroof, intrinsicwest/east/rearannexes, northfrontslidingdoorsandsteeloutriggerframes/tophingedflapwindows/westoffices. Mainconcretefloor/raisedwoodannexfloors, northQANTASLTD andsouthQANTASLTDAIRSERVICES factualsigns fromheritagetext. Exactheights/sections/census/finish/registration/grade are boundedestimates; photographisclearconstructioncontext ratherthan wholeexterior reference. Exclude modernmuseum172840395/airpark/terminal/otherhangars/aircraft/exhibits/people/landscape/interiorfurnishings.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2008-03-11",
+    "validFrom": "2008-01-01",
+    "validUntil": "2009-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Construction_of_a_Qantas_aeroplane_at_Longreach_circa_1928.jpg"
+  ],
+  "stories": [
+    {
+      "id": "qantas-hangar-longreach-wp",
+      "url": "https://qualla.com/qantas-hangar-longreach/"
+    }
+  ],
+  "referenceInputHash": "13b7774ccfe44cdd301a8fe33b81b94b0a9048957ffba39c551001e03102d230",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r5/r5y/qantas_hangar_longreach/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r5/r5y/qantas_hangar_longreach/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "sheet": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.84,
+        "metallic": 0.2
+      },
+      "roof": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.84,
+        "metallic": 0.2
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.25
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "sheet": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "sheet": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "sheet": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_corrugated",
+    "metal_painted",
+    "wood_plain",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 2500,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Originalnorth-upframe andindependent256m129²field/16641heights/2rawzoom15tiles/datum194.0423m frozen BEFORE allfloors/roof/mainsections/geometry. Nowfixedmainconcretefloor+.25/annexwood+.45/foundation−1.2; native-derived18.344m mainclearwidth/36.837mlength/northfront−20.978/rear15.859, maineave5.6/ridge8.8/vent+.55, west/east/steppedeast/rearannexes overwhole13outeredges with3.35/3.3moutereaves; northpartlyopenslidingdoors6.8mclear/5.15mheight/outrigger4.1m, flapwindows1.3x.85m, sevensteeltrussgroups fixed. Allnumericheight/section/census/finish/registration/gradeestimated fromnativeoutline andprimaryheritagearchitecturaldescription. Originalfieldmayobscurelowerparts; nogroundcontactsurvey or laterfloor/roof/fieldrefit.",
+    "anchor": [
+      144.2712266230769,
+      -23.439348792307694
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        144.2712034725625,
+        -23.439104793743017
+      ],
+      "modelHeight": 0,
+      "basis": "Native northmainfront midpoint6m ontoapron, set beforeindependentfield andallfloors/mainsections. Historicgrade approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/998728731"
+    ],
+    "source": "https://www.openstreetmap.org/way/998728731",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:707a82223707f5533e0053ebc4cf4a3b8aa2bc4df88489dd55ed4a06c282a02a",
+    "notes": "ExactnamedOriginalQ.A.N.T.A.S.FoundersWorkshopway998728731/13uniqueoutercontrols; federalAHCPlace106064/QHR600664scopewholeoldhangar, distinctmodernmuseum/airpark/terminal. Nativeheadingandfootprintfixsite, mainsections/side-rearannexregistration andmuseum-era2008approximate. No airportQID borrowed orunknownQID invented. Allcurrentreservedcandidates/collectionmember IDs/aliases clear. Whole surviving1922QANTAShangar as museum-era2008 architecturaldescription: complete13vertexnativeoldhangar998728731, large uninterrupted aircraftbay/tubularsteeltrusses/gabledroof/ventilatedridge/corrugatedgalvanisedwallsandroof, intrinsicwest/east/rearannexes, northfrontslidingdoorsandsteeloutriggerframes/tophingedflapwindows/westoffices. Mainconcretefloor/raisedwoodannexfloors, northQANTASLTD andsouthQANTASLTDAIRSERVICES factualsigns fromheritagetext. Exactheights/sections/census/finish/registration/grade are boundedestimates; photographisclearconstructioncontext ratherthan wholeexterior reference. Exclude modernmuseum172840395/airpark/terminal/otherhangars/aircraft/exhibits/people/landscape/interiorfurnishings."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "ExactnamedOriginalQ.A.N.T.A.S.FoundersWorkshopway998728731/13uniqueoutercontrols; federalAHCPlace106064/QHR600664scopewholeoldhangar, distinctmodernmuseum/airpark/terminal. Nativeheadingandfootprintfixsite, mainsections/side-rearannexregistration andmuseum-era2008approximate. No airportQID borrowed orunknownQID invented. Allcurrentreservedcandidates/collectionmember IDs/aliases clear.",
+    "Whole surviving1922QANTAShangar as museum-era2008 architecturaldescription: complete13vertexnativeoldhangar998728731, large uninterrupted aircraftbay/tubularsteeltrusses/gabledroof/ventilatedridge/corrugatedgalvanisedwallsandroof, intrinsicwest/east/rearannexes, northfrontslidingdoorsandsteeloutriggerframes/tophingedflapwindows/westoffices. Mainconcretefloor/raisedwoodannexfloors, northQANTASLTD andsouthQANTASLTDAIRSERVICES factualsigns fromheritagetext. Exactheights/sections/census/finish/registration/grade are boundedestimates; photographisclearconstructioncontext ratherthan wholeexterior reference. Exclude modernmuseum172840395/airpark/terminal/otherhangars/aircraft/exhibits/people/landscape/interiorfurnishings.",
+    "Originalindependent256mfield/frame BEFORE allfloors/mainsections/geometry, thenpreserve. No flattening/reacquisition/reframing/fitting afterrenders.",
+    "Onlyprimarydescriptivegeometry establishesgable/ventridge/steeltrusses/corrugatedcladding/sideandrearannexes/northslidingdoorsandoutriggers/flapwindows/westoffices; heights/census/sections/finish/grade estimated. No fakewholeexteriorphotogrammetryclaim.",
+    "Onlyalreadycleared1928constructionphoto isimagery; no aircraft/people/props/interiorfurnishing/streetlandscape/phototextures/protectedarchiveimagery. Factualgablelettering may be authoredasoriginalgeometricstrokes from heritageTEXT.",
+    "Whole13vertexnativebuilding retainsmainhangar/westofficeworkshop/eastwidethennarrowannex/rearrooms, not wholemodernmuseum orairpark. Primarydescriptionestablishesgableventedroof/tubularsteel/sideandrearannexes/corrugatedcladding/slidingdoorframes/flapwindows/north-southfactuallettering.",
+    "Exact18.344mwidth/36.837m mainbay andannexsplit deriveapproximately fromnativeoutline; allheights/roofpitch/sections/7trusscensus/doorleafpositions/windowcensus/finishingcolour/historicgrade are estimates. Galvanisedneutralcolour is uncalibrated, not inferredfromblownout1928background.",
+    "Photois1928constructioncontextonly; represented2008museum-eraexterior comesfromprimarygovernmentdescriptivetext andnativefootprint. No claimofwholeexteriorphotographiccomparison orsurvey. No wrongArcherfieldfleet/NLAunboundphoto/protectedwebsitepixels adopted.",
+    "Originalfield194.0423mdatum/range189.6482..196.227m mayincludeairport/compositeartifacts andbury lowerparts. Independentfield/frame/allmainparameters preserved afterrenders; no mask/cutout/flattening/reacquisition/refitting.",
+    "Mainnorthdoorspartlyopen toempty aircraftbay, withactualsteeltrusses/concretefloor/roofundersides; intrinsicannexwoodfloors modeled, no exhibitaircraft/people/interiorfurnishings. Geometricgabletextstatesfactualheritagewords, no bitmaptrademarkart."
+  ],
+  "sourceLicense": "Originalauthoredgeometry/repositorylicense. OnlyexactalreadyclearedpublishedSLQ/JohnOxleyLibrary1928constructioncontext/PD-Australia/nativepublicationcitation/originalSHA17fb2a9bf4ce748ff5e1c89088cca5965e087564c used asimagery, notassertedaswholeexteriorphotography. Completeexteriortypes fromQHR600664governmentarchitecturaldescription licensedtextreprint; primaryAHC2008PDFPlace106064wholehangarscope. Protectedwebsite/archivalimages neverviewed/adopted. OSMODbLactualnamed998728731/13outercontrols, separate modernmuseum/airpark/terminal/allreservedworkclear. Allnumericmetrics/census/finishingcolour/grade/phase-registrationestimated. North/southfactualgablewords authoredasoriginalvectorstrokes, no copiedfontbitmap/logoart. No aircraft/exhibit/people/props/interiorfurnishings/landscape/phototextures/generatedbitmap orQuallamedia/rightsrepair.",
+  "qaLodCameras": [
+    {
+      "name": "whole-qantas-hangar-skyline",
+      "position": [
+        57.636794062103405,
+        34,
+        -60.745369949014886
+      ],
+      "lookAt": [
+        -0.9983015624772585,
+        3,
+        -0.05825796388017884
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-qantas-hangar-district",
+      "position": [
+        57.636794062103405,
+        34,
+        -60.745369949014886
+      ],
+      "lookAt": [
+        -0.9983015624772585,
+        3,
+        -0.05825796388017884
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-qantas-hangar-street",
+      "position": [
+        57.636794062103405,
+        34,
+        -60.745369949014886
+      ],
+      "lookAt": [
+        -0.9983015624772585,
+        3,
+        -0.05825796388017884
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-qantas-hangar-closeup",
+      "position": [
+        57.636794062103405,
+        34,
+        -60.745369949014886
+      ],
+      "lookAt": [
+        -0.9983015624772585,
+        3,
+        -0.05825796388017884
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-hangar-gabled-roof-and-all-intrinsic-annexes",
+      "position": [
+        57.636794062103405,
+        34,
+        -60.745369949014886
+      ],
+      "lookAt": [
+        -0.9983015624772585,
+        3,
+        -0.05825796388017884
+      ]
+    },
+    {
+      "name": "north-sliding-doors-steel-outriggers-and-open-structural-bay",
+      "position": [
+        -1.4323285719706833,
+        4.1,
+        -43.13474521970851
+      ],
+      "lookAt": [
+        -3.2383254522562273,
+        3.5,
+        -12.1873967829135
+      ]
+    },
+    {
+      "name": "whole-west-office-rear-annex-flap-windows-and-south-gable",
+      "position": [
+        -51.00614708455789,
+        24,
+        50.11360054504612
+      ],
+      "lookAt": [
+        -2.2878929443554115,
+        3,
+        4.874991884625935
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3047,
+    "vertices": 9141,
+    "materials": 4,
+    "bytes": 488352,
+    "sha256": "sha256:9b45fcbc3af23352ca7429708d0d53b451df8bc8911b65096bbb2aa4161b2e38"
+  }
+}

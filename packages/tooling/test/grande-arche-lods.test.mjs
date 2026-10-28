@@ -80,4 +80,4 @@ it('reproduces the current source and four strict-budget derivatives without alt
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3000000,
   );
-}, 10000);
+});

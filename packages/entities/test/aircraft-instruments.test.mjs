@@ -76,7 +76,8 @@ it('places each rotating heading card cardinal at the upper index, including eas
       if (n.isMesh) n.geometry.dispose();
     });
   }
-});
+  // Parses 24 production GLBs: ~3 s on a CI runner, over the 5 s default on a loaded release job.
+}, 30000);
 
 it('keeps C-17 displays, four engine readings and swept control hinges consistent', async () => {
   const doc = JSON.parse(await readFile(new URL('source/aircraft/c-17a/entity.types.json', base))),

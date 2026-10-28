@@ -176,6 +176,40 @@ export function inspectNamedBookPhotographReference(dir, reference, root = model
   };
 }
 
+/** Explicit named federal staff credit and reviewed official State Department original. */
+export function inspectStateDepartmentReference(dir, reference, root = modelRightsRoot) {
+  const image = localBytes(dir, reference.path),
+    snapshot = localBytes(dir, reference.rightsEvidence?.path),
+    proof = reference.publicDomainEvidence,
+    blockers = [];
+  if (!image || digest(image) !== plainHash(reference.sha256))
+    blockers.push('supplemental-image-bytes-unbound');
+  if (
+    !snapshot ||
+    digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256) ||
+    proof?.sha256 !== plainHash(reference.rightsEvidence?.sha256) ||
+    path.resolve(root, proof?.path ?? '') !==
+      path.resolve(dir, reference.rightsEvidence?.path ?? '')
+  )
+    blockers.push('supplemental-rights-snapshot-unbound');
+  if (
+    reference.origin !== 'commons-state-department-government-photo' ||
+    proof?.kind !== 'commons-native-state-department-staff-photo' ||
+    reference.originalReview?.status !== 'inspected' ||
+    reference.originalReview?.rendition !== 'native-original' ||
+    reference.visuallyReviewedForThisPolicy !== true ||
+    !image ||
+    !inspectQuallaPrimaryRights(reference, image, root)?.eligible
+  )
+    blockers.push('supplemental-state-department-staff-photo-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
 /** The cultural archive distinguishes the digital object's licence from its description.
  * Require the selected object, named creator, offered image and object-specific CC0 grant. */
 export function inspectTaiwanCultureReference(dir, reference) {
@@ -821,6 +855,7 @@ export function inspectDvidsReference(dir, reference) {
       plainText(html.match(new RegExp(`<td>${name}:</td>\\s*<td>([^<]+)</td>`))?.[1]),
     caption = html.match(/<meta property="og:description" content="([^"]*)"/i)?.[1] ?? '',
     navy = reference.origin === 'dvids-usnavy-public-domain',
+    army = reference.origin === 'dvids-usarmy-public-domain',
     captionCredit = navy
       ? caption.match(
           /\(U\.S\. Navy photo by ((?:Seaman|Petty Officer (?:1st|2nd|3rd) Class|Mass Communication Specialist (?:1st|2nd|3rd) Class) [A-Za-z'. -]+)\/Released\)$/,
@@ -836,20 +871,39 @@ export function inspectDvidsReference(dir, reference) {
       reference.originalReview?.creditFormat === 'coast-guard-unit-and-staff-byline' &&
       /<h3 class="the_unit"><a href="\/unit\/USCGEast">U\.S\. Coast Guard East<\/a>/.test(html) &&
       portfolioCredit === portfolioByline,
-    credit = captionCredit ?? (!navy && unitStaffCredit ? portfolioCredit : undefined),
+    armyStaffCredit =
+      army &&
+      reference.originalReview?.creditFormat === 'army-unit-and-staff-byline' &&
+      /^<h3 class="the_unit"><a href="\/unit\/(?:CJTF101|101SB-101ABN)">/.test(
+        html.match(/<h3 class="the_unit">[^\n]+/)?.[0] ?? '',
+      ) &&
+      /^(?:Spc\.|Sgt\.) [A-Za-z'. -]+$/.test(portfolioByline),
+    credit = army
+      ? armyStaffCredit
+        ? portfolioByline
+        : undefined
+      : (captionCredit ?? (!navy && unitStaffCredit ? portfolioCredit : undefined)),
     rendition = reference.downloadUrl?.match(
       /^https:\/\/d1ldvf68ux039x\.cloudfront\.net\/thumbs\/photos\/\d{4}\/(\d+)\/(1000|2000)w_q95\.jpg$/,
     );
   // A published rendition is useful photographic evidence; never call it the
   // native original. Courtesy labels alone do not establish a government author.
   if (
-    !['dvids-uscg-public-domain', 'dvids-usnavy-public-domain'].includes(reference.origin) ||
+    ![
+      'dvids-uscg-public-domain',
+      'dvids-usnavy-public-domain',
+      'dvids-usarmy-public-domain',
+    ].includes(reference.origin) ||
     reference.license !== 'Public domain' ||
     !id ||
     tableField('Photo ID') !== id ||
-    !(navy ? /^\d{6}-N-[A-Z0-9]{5}-\d{3,4}$/ : /^\d{6}-G-[A-Z0-9]{5}-\d{3,4}$/).test(
-      tableField('VIRIN'),
-    ) ||
+    !(
+      army
+        ? /^\d{6}-A-[A-Z0-9]{5}-\d{3,4}$/
+        : navy
+          ? /^\d{6}-N-[A-Z0-9]{5}-\d{3,4}$/
+          : /^\d{6}-G-[A-Z0-9]{5}-\d{3,4}$/
+    ).test(tableField('VIRIN')) ||
     !credit ||
     reference.artist !== credit ||
     /copyright|contractor|courtesy|provided by/i.test(caption) ||
@@ -2347,86 +2401,92 @@ export function inspectImageryInventory({
                   ? inspectNamedBookPhotographReference(dir, r)
                   : r.origin === 'commons-expired-historical-print'
                     ? inspectHistoricalPrintReference(dir, r)
-                    : r.origin === 'commons-whitehouse-government-photo'
-                      ? (() => {
-                          const bytes = localBytes(dir, r.path),
-                            proof = bytes && inspectQuallaPrimaryRights(r, bytes, modelRightsRoot);
-                          return {
-                            path: r.path,
-                            sourceUrl: r.sourceUrl,
-                            eligible: proof?.eligible === true,
-                            blockers:
-                              proof?.eligible === true
-                                ? []
-                                : ['supplemental-whitehouse-government-photo-unverified'],
-                          };
-                        })()
-                      : r.origin === 'commons-new-zealand-embassy-government-photo'
-                        ? inspectNewZealandEmbassyReference(dir, r)
-                        : r.origin === 'commons-us-embassy-government-photo'
-                          ? inspectCommonsEmbassyReference(dir, r)
-                          : r.origin === 'nhhc-official-navy-public-domain'
-                            ? inspectHistoricalNavyReference(dir, r)
-                            : r.origin === 'california-library-expired-postcard'
-                              ? inspectCaliforniaPostcardReference(dir, r)
-                              : r.origin === 'taiwan-culture-object-cc0'
-                                ? inspectTaiwanCultureReference(dir, r)
-                                : r.origin === 'gutenberg-original-public-domain-illustration'
-                                  ? inspectGutenbergReference(dir, r)
-                                  : r.origin === 'expired-south-african-photographic-postcard'
-                                    ? inspectExpiredPostcardReference(dir, r)
-                                    : r.origin === 'commons-nypl-wpa-public-domain'
-                                      ? inspectCommonsWpaReference(dir, r)
-                                      : r.origin === 'wien-museum-cc0'
-                                        ? inspectWienMuseumReference(dir, r)
-                                        : r.origin === 'museo-egizio-archive-cc0'
-                                          ? inspectMuseoEgizioArchiveReference(dir, r)
-                                          : r.origin === 'nps-historical-public-domain'
-                                            ? inspectNpsHistoricalReference(dir, r)
-                                            : r.origin === 'nasa-gsfc-civil-servant-photograph'
-                                              ? inspectNasaStaffReference(dir, r)
-                                              : [
-                                                    'dvids-uscg-public-domain',
-                                                    'dvids-usnavy-public-domain',
-                                                  ].includes(r.origin)
-                                                ? inspectDvidsReference(dir, r)
-                                                : r.origin === 'commons-flickr-cc0'
-                                                  ? inspectFlickrCc0Reference(dir, r)
-                                                  : [
-                                                        'commons-self-public-domain',
-                                                        'commons-author-public-domain',
-                                                      ].includes(r.origin)
-                                                    ? inspectCommonsSelfReference(dir, r)
+                    : r.origin === 'commons-state-department-government-photo'
+                      ? inspectStateDepartmentReference(dir, r)
+                      : r.origin === 'commons-whitehouse-government-photo'
+                        ? (() => {
+                            const bytes = localBytes(dir, r.path),
+                              proof =
+                                bytes && inspectQuallaPrimaryRights(r, bytes, modelRightsRoot);
+                            return {
+                              path: r.path,
+                              sourceUrl: r.sourceUrl,
+                              eligible: proof?.eligible === true,
+                              blockers:
+                                proof?.eligible === true
+                                  ? []
+                                  : ['supplemental-whitehouse-government-photo-unverified'],
+                            };
+                          })()
+                        : r.origin === 'commons-new-zealand-embassy-government-photo'
+                          ? inspectNewZealandEmbassyReference(dir, r)
+                          : r.origin === 'commons-us-embassy-government-photo'
+                            ? inspectCommonsEmbassyReference(dir, r)
+                            : r.origin === 'nhhc-official-navy-public-domain'
+                              ? inspectHistoricalNavyReference(dir, r)
+                              : r.origin === 'california-library-expired-postcard'
+                                ? inspectCaliforniaPostcardReference(dir, r)
+                                : r.origin === 'taiwan-culture-object-cc0'
+                                  ? inspectTaiwanCultureReference(dir, r)
+                                  : r.origin === 'gutenberg-original-public-domain-illustration'
+                                    ? inspectGutenbergReference(dir, r)
+                                    : r.origin === 'expired-south-african-photographic-postcard'
+                                      ? inspectExpiredPostcardReference(dir, r)
+                                      : r.origin === 'commons-nypl-wpa-public-domain'
+                                        ? inspectCommonsWpaReference(dir, r)
+                                        : r.origin === 'wien-museum-cc0'
+                                          ? inspectWienMuseumReference(dir, r)
+                                          : r.origin === 'museo-egizio-archive-cc0'
+                                            ? inspectMuseoEgizioArchiveReference(dir, r)
+                                            : r.origin === 'nps-historical-public-domain'
+                                              ? inspectNpsHistoricalReference(dir, r)
+                                              : r.origin === 'nasa-gsfc-civil-servant-photograph'
+                                                ? inspectNasaStaffReference(dir, r)
+                                                : [
+                                                      'dvids-uscg-public-domain',
+                                                      'dvids-usnavy-public-domain',
+                                                      'dvids-usarmy-public-domain',
+                                                    ].includes(r.origin)
+                                                  ? inspectDvidsReference(dir, r)
+                                                  : r.origin === 'commons-flickr-cc0'
+                                                    ? inspectFlickrCc0Reference(dir, r)
                                                     : [
-                                                          'publicdomainpictures-creator-cc0',
-                                                          'pxhere-creator-cc0',
+                                                          'commons-self-public-domain',
+                                                          'commons-author-public-domain',
                                                         ].includes(r.origin)
-                                                      ? inspectCreatorCc0Reference(dir, r)
-                                                      : r.origin === 'loc-abdul-hamid-public-domain'
-                                                        ? inspectAbdulHamidReference(dir, r)
-                                                        : r.origin === 'loc-highsmith-public-domain'
-                                                          ? inspectHighsmithReference(dir, r)
-                                                          : r.origin === 'nationaal-archief-cc0'
-                                                            ? inspectNationaalArchiefReference(
-                                                                dir,
-                                                                r,
-                                                              )
-                                                            : r.origin ===
-                                                                'loc-habs-original-public-domain'
-                                                              ? inspectHabsReference(dir, r)
+                                                      ? inspectCommonsSelfReference(dir, r)
+                                                      : [
+                                                            'publicdomainpictures-creator-cc0',
+                                                            'pxhere-creator-cc0',
+                                                          ].includes(r.origin)
+                                                        ? inspectCreatorCc0Reference(dir, r)
+                                                        : r.origin ===
+                                                            'loc-abdul-hamid-public-domain'
+                                                          ? inspectAbdulHamidReference(dir, r)
+                                                          : r.origin ===
+                                                              'loc-highsmith-public-domain'
+                                                            ? inspectHighsmithReference(dir, r)
+                                                            : r.origin === 'nationaal-archief-cc0'
+                                                              ? inspectNationaalArchiefReference(
+                                                                  dir,
+                                                                  r,
+                                                                )
                                                               : r.origin ===
-                                                                  'expired-australian-newspaper-photograph'
-                                                                ? inspectExpiredAustralianNewsReference(
-                                                                    dir,
-                                                                    r,
-                                                                  )
+                                                                  'loc-habs-original-public-domain'
+                                                                ? inspectHabsReference(dir, r)
                                                                 : r.origin ===
-                                                                    'awm-expired-archive-photograph'
-                                                                  ? inspectAwmArchiveReference(
+                                                                    'expired-australian-newspaper-photograph'
+                                                                  ? inspectExpiredAustralianNewsReference(
                                                                       dir,
                                                                       r,
                                                                     )
-                                                                  : inspectNpsReference(dir, r),
+                                                                  : r.origin ===
+                                                                      'awm-expired-archive-photograph'
+                                                                    ? inspectAwmArchiveReference(
+                                                                        dir,
+                                                                        r,
+                                                                      )
+                                                                    : inspectNpsReference(dir, r),
   );
   if (additionalProof.some((r) => !r.eligible))
     blockers.push('supplemental-public-domain-source-unverified');

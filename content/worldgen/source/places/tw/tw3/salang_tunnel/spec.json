@@ -1,0 +1,357 @@
+{
+  "planId": "salang_tunnel",
+  "id": "salang_tunnel",
+  "assetId": "molen.worldgen.structure.salang_tunnel",
+  "title": "Salang Tunnel and protective galleries (2011)",
+  "wikidataId": "Q1917594",
+  "category": "transport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 69.0377071,
+    "latitude": 35.31915255
+  },
+  "size": [
+    4036.90869140625,
+    158.59208393096924,
+    4793.91552734375
+  ],
+  "actualBounds": {
+    "min": [
+      -2019.848388671875,
+      -148.5899658203125,
+      -2395.9326171875
+    ],
+    "max": [
+      2017.060302734375,
+      10.002118110656738,
+      2397.98291015625
+    ]
+  },
+  "visualBrief": "Whole Salang Tunnel in a coherent approximate 2011 appearance: complete named main bore and both intrinsic northern and southern avalanche galleries along all original mapped centerline controls; both tunnel ends, continuous road floor, lining/roof, concrete gallery roof/walls/open bays and structural supports, portal piers/beams and short retaining returns. Do not substitute one photographed portal for the full tunnel. Native current centerlines register the older structure approximately; precise historic gallery extents, profiles, grade, bay census and unseen southern portal details are estimated. Exclude the wider pass highway, unrelated culverts, natural mountain body, vehicles, soldiers, snow, signage and later 2013/2023 reconstruction finishes.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2011-03-29",
+    "validFrom": "2011-01-01",
+    "validUntil": "2012-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://www.dvidshub.net/image/148040/salang-tunnel-hindu-kush-mountain-range",
+    "https://www.dvidshub.net/image/148041/salang-tunnel-hindu-kush-mountain-range",
+    "https://www.dvidshub.net/image/384432/snow-never-melts-push-through-salang-pass",
+    "https://www.dvidshub.net/image/384435/snow-never-melts-push-through-salang-pass"
+  ],
+  "stories": [
+    {
+      "id": "salang-tunnel-wp",
+      "url": "https://qualla.com/salang-tunnel/"
+    }
+  ],
+  "referenceInputHash": "a9e80e5019b9e55b08e09c3147746e0add07ec5377d1b519e14a064bb573d43f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tw/tw3/salang_tunnel/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tw/tw3/salang_tunnel/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -170,
+    "far": 25000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original north-up frame and independent 8192 m field, 129 squared/16641 heights, six zoom12 raw tiles, datum3390.4595 m, frozen BEFORE all road floor grades and structural sections. Whole original native 2/22/24 centerline controls retained. Main bore2518.057 m, north gallery1988.827 m and south gallery1701.979 m use their actual mapped plan; route lengths are contemporary controls registered approximately to2011. Road grades are independently fixed endpoint-linear estimates from the original field, not terrain changes. Nominal bore6.8x5.2 m with an estimated6.1x4.88 m constriction, complete hollow lining; full7.8 m protective-gallery sections, open bays and estimated6 m support pitch; both portal assemblies fixed before geometry. No late floor/roof/field fitting or historical ground-contact certification.",
+    "anchor": [
+      69.0377071,
+      35.31915255
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        69.02690571622222,
+        35.32211353021955
+      ],
+      "modelHeight": 0,
+      "basis": "Main north portal centerline continued 8 m onto the approach; fixed before independent field and all road floors/sections/geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/154569112",
+      "way/694576600",
+      "way/864579290"
+    ],
+    "source": "https://www.openstreetmap.org/way/154569112",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:36f3e8e8c8fbdc8f0d0bfecd1001d2e0dbaca89276e5ced1594a40a5ccbf7baa",
+    "notes": "Whole Salang Tunnel in a coherent approximate 2011 appearance: complete named main bore and both intrinsic northern and southern avalanche galleries along all original mapped centerline controls; both tunnel ends, continuous road floor, lining/roof, concrete gallery roof/walls/open bays and structural supports, portal piers/beams and short retaining returns. Do not substitute one photographed portal for the full tunnel. Native current centerlines register the older structure approximately; precise historic gallery extents, profiles, grade, bay census and unseen southern portal details are estimated. Exclude the wider pass highway, unrelated culverts, natural mountain body, vehicles, soldiers, snow, signage and later 2013/2023 reconstruction finishes."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole Salang Tunnel in a coherent approximate 2011 appearance: complete named main bore and both intrinsic northern and southern avalanche galleries along all original mapped centerline controls; both tunnel ends, continuous road floor, lining/roof, concrete gallery roof/walls/open bays and structural supports, portal piers/beams and short retaining returns. Do not substitute one photographed portal for the full tunnel. Native current centerlines register the older structure approximately; precise historic gallery extents, profiles, grade, bay census and unseen southern portal details are estimated. Exclude the wider pass highway, unrelated culverts, natural mountain body, vehicles, soldiers, snow, signage and later 2013/2023 reconstruction finishes.",
+    "Named Army photographs from 2009 and 2011 show the same portal type. Represent 2011; do not claim current 2026 appearance. Current OSM centerlines provide approximate geographic registration of the historical bore/galleries. Post-2013/2023 work is outside this appearance. Neither exact historical route shape nor every hidden section is certified.",
+    "Primary engineering dimensions constrain the variable bore; exact section/lining thickness/ventilation census/gallery column pitch/portal returns and historical road grade are explicit estimates, not unavailable Soviet plans.",
+    "No mountain mesh/landscape plate, wider highway, unrelated culverts, copied signs/graffiti, vehicles, people or snow. Complete structural scope with both ends and both native protective galleries required.",
+    "Original independent field and north-up frame must be frozen before choosing all road floors, grades, roof and main sections. Preserve them after geometry/renders; no terrain masking, cutout, flattening, reacquisition, reframing or late refitting.",
+    "Nominal tube dimensions and location/length of the tight section, gallery side-opening profiles/support census, both portal depths and southern facade are estimated. Whole physical scope is retained; exact Soviet drawings are unavailable.",
+    "Native current main tube plan is2518 m versus approximately1.6 miles in USACE prose; no stretching of native route controls to a rounded published length. Gallery extents/positions and reconstructed historical appearance remain approximate.",
+    "Only the north portal has detailed photographic evidence; complete bore and both gallery exteriors derive from all mapped controls and primary engineering description with explicit hidden-section estimates.",
+    "Independent terrain is coarse mountain relief: output pixel spacing31.184 m and64 m review grid, not local road or historic grade survey. Raw heights and frame remain unchanged; lower structural parts can be concealed in source context. No terrain cutout/mask/flattening/reacquisition/reframing.",
+    "Primary imagery is four exact Army DVIDS public-domain published1000px renditions, not native originals. No uncertain regional archival imagery or attribution-only sources."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Four exact named U.S. Army DVIDS public-domain published renditions, with official units, Army VIRIN and primary release records, used after prior published-corpus search. USACE 2012 primary engineering TEXT supplies curved tube/variable constriction/galleries/road/walkway context. OSM ODbL whole main bore and northern/southern gallery centerlines: all2/22/24 controls retained. Approximate2011 phase, not current2026 repairs. Hidden section, exact historical route registration, bay census, southern portal and road grade are estimates. No copied banners/graffiti/insignia/vehicles/people/snow, mountain mesh, unrelated culverts, copyrighted images or phototextures. Original field/frame/floors/main sections remain unchanged.",
+  "qaLodCameras": [
+    {
+      "name": "north-portal-and-bore-skyline",
+      "position": [
+        -992.6111145256534,
+        10.324885147610075,
+        -361.12009150062926
+      ],
+      "lookAt": [
+        -971.6484460137968,
+        4.924885147610075,
+        -320.6903186981262
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "north-portal-and-bore-district",
+      "position": [
+        -992.6111145256534,
+        10.324885147610075,
+        -361.12009150062926
+      ],
+      "lookAt": [
+        -971.6484460137968,
+        4.924885147610075,
+        -320.6903186981262
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "north-portal-and-bore-street",
+      "position": [
+        -992.6111145256534,
+        10.324885147610075,
+        -361.12009150062926
+      ],
+      "lookAt": [
+        -971.6484460137968,
+        4.924885147610075,
+        -320.6903186981262
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "north-portal-and-bore-closeup",
+      "position": [
+        -992.6111145256534,
+        10.324885147610075,
+        -361.12009150062926
+      ],
+      "lookAt": [
+        -971.6484460137968,
+        4.924885147610075,
+        -320.6903186981262
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-bore-and-both-kilometer-scale-native-protective-galleries",
+      "position": [
+        6200,
+        4200,
+        6100
+      ],
+      "lookAt": [
+        0,
+        -55,
+        0
+      ]
+    },
+    {
+      "name": "north-portal-full-piers-beam-true-opening-and-retaining-returns",
+      "position": [
+        -989.5414086948628,
+        6.324885147610075,
+        -352.7190852446853
+      ],
+      "lookAt": [
+        -971.6484460137968,
+        5.0248851476100755,
+        -320.6903186981262
+      ]
+    },
+    {
+      "name": "north-protective-gallery-open-valley-bays-whole-roof-and-uphill-wall",
+      "position": [
+        -1329.8888782003428,
+        -4.020997708547611,
+        -1663.8886505643234
+      ],
+      "lookAt": [
+        -1389.8426160583244,
+        -25.52099770854761,
+        -1627.7562645808819
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17976,
+    "vertices": 53928,
+    "materials": 3,
+    "bytes": 2224876,
+    "sha256": "sha256:7761b0134b9e883eb9efc29701889aae7713488490fc29fd6d07717db219334f"
+  }
+}

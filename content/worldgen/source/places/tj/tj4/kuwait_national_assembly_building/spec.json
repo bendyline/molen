@@ -1,0 +1,411 @@
+{
+  "planId": "kuwait_national_assembly_building",
+  "id": "kuwait_national_assembly_building",
+  "assetId": "molen.worldgen.structure.kuwait_national_assembly_building",
+  "title": "Kuwait National Assembly Building (2021)",
+  "wikidataId": "Q15156679",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 47.96416667,
+    "latitude": 29.37027778
+  },
+  "size": [
+    151.5800018310547,
+    23.969134092330933,
+    179.87942504882812
+  ],
+  "actualBounds": {
+    "min": [
+      -72,
+      -1.7999999523162842,
+      -112.28042602539062
+    ],
+    "max": [
+      79.58000183105469,
+      22.16913414001465,
+      67.5989990234375
+    ]
+  },
+  "visualBrief": "Whole original Utzon National Assembly, approximate2021: orthogonal courtyard office compound, complete assembly and conference volumes, seaward public shell canopy, covered central street and photographed entrance. Native154717742 merges original and later southwest curved construction; original rectangular core/junction is an explicit estimate around the exact building/story coordinate. Retain the five native seaward canopy/NE boundary controls and eastern rear edge; exclude curved southwest HOK Members extension, separate Information Centre, northeast National Museum and all neighbors. No single entrance-only substitute.",
+  "nativeAxes": {
+    "x": "northeast along native rear edge",
+    "y": "up",
+    "z": "southeast, away from coast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2021-07-29",
+    "validFrom": "2021-01-01",
+    "validUntil": "2022-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Secretary_Blinken_Tours_the_Kuwaiti_National_Assembly_and_Meets_with_Speaker_of_the_Kuwaiti_National_Assembly_Marzouq_Ali_Mohammed_Al-Ghanim_(51345149997).jpg"
+  ],
+  "stories": [
+    {
+      "id": "kuwait-national-assembly-building-wp",
+      "url": "https://qualla.com/kuwait-national-assembly-building/"
+    }
+  ],
+  "referenceInputHash": "e11973e25d711560bf4982d9182de7758706cd58ebea4a11b78ec4d1b3117500",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tj/tj4/kuwait_national_assembly_building/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tj/tj4/kuwait_national_assembly_building/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#3a4543",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "alphaMode": "OPAQUE"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3a4543",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3a4543",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3a4543",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "alphaMode": "OPAQUE"
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_limestone",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 2500,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent1024m129-square field (16641heights,4rawzoom15tiles,datum15.9095m) and rotated native/story frame frozen before all floors and main sections. Now fixed floor+1m/foundation-1.8m/officeheight10.8m, originalcore151.58x130.879m, six estimated patios, whole43x42mconference block,82x35massembly shell, native roughly91x47mseaward public canopy,130.879x10mcentral undulating covered street. Public roof20m seaward/13m rear/7m sag, assembly18/12m/4msag,11roofbays, hollowtaperedcolumn sections/census explicit estimates. No later field/floor/roof/main-section refit.",
+    "anchor": [
+      47.96416667,
+      29.37027778
+    ],
+    "heading": 0.9519465962597954,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        47.96416667,
+        29.37027778
+      ],
+      "modelHeight": 0,
+      "basis": "Original building-centre source datum at model zero, selected before independent field and all floors/main sections; approximate historical foundation contact."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/154717742"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=47.96016667,29.366277779999997,47.968166669999995,29.37427778",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0c99f286b7b61bcce6521fb96a13cda621bffb7fec9e5d4fdfec17f7706a09d1"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole original Utzon National Assembly, approximate2021: orthogonal courtyard office compound, complete assembly and conference volumes, seaward public shell canopy, covered central street and photographed entrance. Native154717742 merges original and later southwest curved construction; original rectangular core/junction is an explicit estimate around the exact building/story coordinate. Retain the five native seaward canopy/NE boundary controls and eastern rear edge; exclude curved southwest HOK Members extension, separate Information Centre, northeast National Museum and all neighbors. No single entrance-only substitute.",
+    "Only the clear government2021 entrance original supplies photographic architectural detail. Whole roof/court layout uses primary architectural text and approximate native registration; no whole-exterior photography or exact hidden census claimed.",
+    "Original field/frame chosen before all floors/roof/main sections; preserve without refit after viewing.",
+    "The generic native6storey/30m tag is not applied to the original two-level courtyard offices. Existing northeast Museum group explicitly excluded.",
+    "Original/extension join near southwest edge is an explicit geometric estimate. Native154717742 includes later curved construction and is not extruded as a solid original building; exactoriginal151.58x130.879m compound proportions, courts and interior partitions are approximate. No certified native component segmentation.",
+    "All numeric heights, shell curvature/thickness, six patio positions, hidden walls, column dimensions/census, screen mullion spacing and historical registration are estimates. Photo supports only smooth white entry concrete/chevron screen/stone threshold; primary architecture establishes whole building typology.",
+    "Original coastal terrain has large composite DEM artifacts, absolute-40.5917..29.7003m; field15.9095m datum preserved. Context may obscure floors or lower walls; no ground-contact/survey/current2026 claim.",
+    "Exclude separate HOK extension/Information Centre, National Museum, mosques, site landscape, guards/people, flags/emblems, protected archive images, copied ornament and photographic textures. Public plaza and empty intrinsic assembly volume have structural floors/roof/supports only."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Exact RonPrzysucha2021 StateDepartment staff entrance original/PD-USGov-DOS/official statephotos account/native release and original SHA1 bound in reference records; only entrance concrete/glazing/stone detail adopted. Primary Pritzker architectural essay and Muslimin2020 original structural research used as TEXT facts only; no protected photographs or diagrams adopted. OSM numerical merged institution envelope under ODbL, with approximate original-core/extension split explicitly recorded. Public Terrarium source bytes frozen before all main parameters. Hidden partition/heights/census/curves/grade/registration estimated. No copied artwork, emblems, people, props, phototextures or generated bitmap.",
+  "qaLodCameras": [
+    {
+      "name": "whole-assembly-skyline",
+      "position": [
+        188,
+        126,
+        -230
+      ],
+      "lookAt": [
+        0,
+        7,
+        -15
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-assembly-district",
+      "position": [
+        188,
+        126,
+        -230
+      ],
+      "lookAt": [
+        0,
+        7,
+        -15
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-assembly-street",
+      "position": [
+        188,
+        126,
+        -230
+      ],
+      "lookAt": [
+        0,
+        7,
+        -15
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-assembly-closeup",
+      "position": [
+        188,
+        126,
+        -230
+      ],
+      "lookAt": [
+        0,
+        7,
+        -15
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-assembly-canopies-and-patio-compound",
+      "position": [
+        188,
+        126,
+        -230
+      ],
+      "lookAt": [
+        0,
+        7,
+        -15
+      ]
+    },
+    {
+      "name": "seaward-open-public-hall-shell-soffits-and-tapered-supports",
+      "position": [
+        12,
+        10,
+        -154
+      ],
+      "lookAt": [
+        0,
+        12,
+        -85
+      ]
+    },
+    {
+      "name": "whole-original-courtyard-offices-and-chevron-entrance",
+      "position": [
+        -176,
+        108,
+        192
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20986,
+    "vertices": 62958,
+    "materials": 4,
+    "bytes": 2654508,
+    "sha256": "sha256:559e894e67886ee4969f54d3c4085281a73a113a8b551586cab842fa746d82b7"
+  }
+}
