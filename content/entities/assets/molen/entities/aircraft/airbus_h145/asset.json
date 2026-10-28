@@ -6,13 +6,13 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:d1e9b9dc6c8a9cdd93a5f3bc3e2d6a203e3b11bdbfbaa29e5001f90aad6a40c4",
-  "sourceHash": "sha256:b9a6371a912289be3305c9ec0ba55f9517f71f82990c6c44f684d2a31492d95e",
+  "hash": "sha256:abd92ab9299ee5f395e21748368eab220add53e28d4fd7231ea7ca714c522cb3",
+  "sourceHash": "sha256:6f06466728750434931496e7daa183a7db7a86fb8489660f744f0d4a0603e19c",
   "bounds": {
     "aabb": {
       "min": [
         -5.3614,
-        -0.0003,
+        0.0064,
         -8.19
       ],
       "max": [
@@ -24,26 +24,26 @@
     "sphere": {
       "center": [
         -0.2662,
-        2.0249,
+        2.0282,
         -1.4247
       ],
-      "radius": 6.9746
+      "radius": 6.9737
     }
   },
   "stats": {
-    "triangles": 34964,
-    "vertices": 72962,
-    "meshes": 59,
-    "primitives": 59,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 18404,
+    "vertices": 23652,
+    "meshes": 70,
+    "primitives": 70,
+    "materials": 32,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 1417200
+    "sizeBytes": 1018788
   },
   "nodes": [
     {
       "name": "H145-airframe-H145-white",
-      "triangles": 2176
+      "triangles": 1216
     },
     {
       "name": "H145-airframe-H145-glass",
@@ -51,11 +51,11 @@
     },
     {
       "name": "H145-airframe-H145-trim",
-      "triangles": 3040
+      "triangles": 1804
     },
     {
       "name": "H145-airframe-H145-metal",
-      "triangles": 3096
+      "triangles": 2496
     },
     {
       "name": "H145-airframe-H145-blue",
@@ -151,7 +151,7 @@
     },
     {
       "name": "H145-cockpit-H145-trim",
-      "triangles": 847
+      "triangles": 775
     },
     {
       "name": "H145-cockpit-detail-trim",
@@ -168,10 +168,6 @@
     {
       "name": "H145-cockpit-avionics-earth",
       "triangles": 12
-    },
-    {
-      "name": "H145-cockpit-detail-lettering",
-      "triangles": 11676
     },
     {
       "name": "H145-cockpit-avionics-route",
@@ -223,7 +219,7 @@
     },
     {
       "name": "H145-cockpit-H145-metal",
-      "triangles": 736
+      "triangles": 640
     },
     {
       "name": "H145-cockpit-detail-amber",
@@ -236,6 +232,18 @@
     {
       "name": "H145-cockpit-H145-harness",
       "triangles": 32
+    },
+    {
+      "name": "H145-cockpit-detail-lettering",
+      "triangles": 3768
+    },
+    {
+      "name": "H145-cockpit-detail-lettering-display-print",
+      "triangles": 78
+    },
+    {
+      "name": "H145-cockpit-detail-lettering-panel-print",
+      "triangles": 48
     },
     {
       "name": "horizon-detail-amber",
@@ -263,19 +271,11 @@
     },
     {
       "name": "pedestal-avionics-water",
-      "triangles": 144
-    },
-    {
-      "name": "pedestal-detail-lettering",
-      "triangles": 3072
+      "triangles": 96
     },
     {
       "name": "pedestal-avionics-route",
-      "triangles": 48
-    },
-    {
-      "name": "pedestal-detail-green",
-      "triangles": 3396
+      "triangles": 36
     },
     {
       "name": "pedestal-detail-alloy",
@@ -291,19 +291,35 @@
     },
     {
       "name": "pedestal-avionics-water",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "pedestal-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "pedestal-H145-trim",
       "triangles": 36
     },
     {
+      "name": "pedestal-detail-lettering",
+      "triangles": 336
+    },
+    {
+      "name": "pedestal-detail-lettering-display-print",
+      "triangles": 44
+    },
+    {
+      "name": "pedestal-detail-green",
+      "triangles": 96
+    },
+    {
+      "name": "pedestal-detail-green-panel-print",
+      "triangles": 62
+    },
+    {
       "name": "cyclic-H145-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -331,7 +347,7 @@
     },
     {
       "name": "cyclic-H145-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -364,6 +380,30 @@
     {
       "name": "overhead-H145-metal",
       "triangles": 504
+    },
+    {
+      "name": "flight-control-mounts-flight-control-panel",
+      "triangles": 60
+    },
+    {
+      "name": "flight-control-mounts-flight-control-alloy",
+      "triangles": 128
+    },
+    {
+      "name": "flight-control-mounts-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend-panel-print",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-master",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-legend",
+      "triangles": 12
     }
   ],
   "nodesTruncated": false,
@@ -434,9 +474,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "H145-panel",
+      "name": "H145-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "H145-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -474,14 +528,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-lettering",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "avionics-route",
       "slots": [
         "baseColor"
@@ -490,9 +536,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "H145-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -522,6 +582,32 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "detail-lettering",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-lettering-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "avionics-terrain",
       "slots": [
         "baseColor"
@@ -536,6 +622,73 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-green-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -543,29 +696,29 @@
       {
         "node": "H145-airframe-H145-white",
         "points": [
-          -1.3549,
-          0.4498,
-          -7.6209,
-          -1.3549,
-          0.4498,
+          -1.3551,
+          0.4499,
+          -7.6176,
+          -1.3551,
+          0.4499,
           3.5,
-          -1.3549,
-          2.7211,
-          -7.6209,
-          -1.3549,
-          2.7211,
+          -1.3551,
+          2.7177,
+          -7.6176,
+          -1.3551,
+          2.7177,
           3.5,
-          1.3549,
-          0.4498,
-          -7.6209,
-          1.3549,
-          0.4498,
+          1.3551,
+          0.4499,
+          -7.6176,
+          1.3551,
+          0.4499,
           3.5,
-          1.3549,
-          2.7211,
-          -7.6209,
-          1.3549,
-          2.7211,
+          1.3551,
+          2.7177,
+          -7.6176,
+          1.3551,
+          2.7177,
           3.5
         ]
       },
@@ -601,58 +754,58 @@
       {
         "node": "H145-airframe-H145-trim",
         "points": [
-          -1.1934,
-          -0.0003,
+          -1.2002,
+          0.0064,
           -7.595,
-          -1.1934,
-          -0.0003,
-          3.5142,
-          -1.1934,
+          -1.2002,
+          0.0064,
+          3.5145,
+          -1.2002,
           2.8032,
           -7.595,
-          -1.1934,
+          -1.2002,
           2.8032,
-          3.5142,
-          1.1934,
-          -0.0003,
+          3.5145,
+          1.2002,
+          0.0064,
           -7.595,
-          1.1934,
-          -0.0003,
-          3.5142,
-          1.1934,
+          1.2002,
+          0.0064,
+          3.5145,
+          1.2002,
           2.8032,
           -7.595,
-          1.1934,
+          1.2002,
           2.8032,
-          3.5142
+          3.5145
         ]
       },
       {
         "node": "H145-airframe-H145-metal",
         "points": [
           -1.1643,
-          0.0704,
+          0.0703,
           -7.3293,
           -1.1643,
-          0.0704,
+          0.0703,
           2.04,
           -1.1643,
-          2.8329,
+          2.8328,
           -7.3293,
           -1.1643,
-          2.8329,
+          2.8328,
           2.04,
           1.1643,
-          0.0704,
+          0.0703,
           -7.3293,
           1.1643,
-          0.0704,
+          0.0703,
           2.04,
           1.1643,
-          2.8329,
+          2.8328,
           -7.3293,
           1.1643,
-          2.8329,
+          2.8328,
           2.04
         ]
       },
@@ -1469,35 +1622,6 @@
         ]
       },
       {
-        "node": "H145-cockpit-detail-lettering",
-        "points": [
-          -0.5175,
-          1.3141,
-          2.07,
-          -0.5175,
-          1.3141,
-          2.0905,
-          -0.5175,
-          1.864,
-          2.07,
-          -0.5175,
-          1.864,
-          2.0905,
-          0.5382,
-          1.3141,
-          2.07,
-          0.5382,
-          1.3141,
-          2.0905,
-          0.5382,
-          1.864,
-          2.07,
-          0.5382,
-          1.864,
-          2.0905
-        ]
-      },
-      {
         "node": "H145-cockpit-avionics-route",
         "points": [
           0.4229,
@@ -1962,6 +2086,93 @@
         ]
       },
       {
+        "node": "H145-cockpit-detail-lettering",
+        "points": [
+          -0.5175,
+          1.3141,
+          2.07,
+          -0.5175,
+          1.3141,
+          2.081,
+          -0.5175,
+          1.7027,
+          2.07,
+          -0.5175,
+          1.7027,
+          2.081,
+          0.5195,
+          1.3141,
+          2.07,
+          0.5195,
+          1.3141,
+          2.081,
+          0.5195,
+          1.7027,
+          2.07,
+          0.5195,
+          1.7027,
+          2.081
+        ]
+      },
+      {
+        "node": "H145-cockpit-detail-lettering-display-print",
+        "points": [
+          -0.5099,
+          1.5846,
+          2.078,
+          -0.5099,
+          1.5846,
+          2.078,
+          -0.5099,
+          1.7181,
+          2.078,
+          -0.5099,
+          1.7181,
+          2.078,
+          0.5367,
+          1.5846,
+          2.078,
+          0.5367,
+          1.5846,
+          2.078,
+          0.5367,
+          1.7181,
+          2.078,
+          0.5367,
+          1.7181,
+          2.078
+        ]
+      },
+      {
+        "node": "H145-cockpit-detail-lettering-panel-print",
+        "points": [
+          -0.1414,
+          1.3396,
+          2.073,
+          -0.1414,
+          1.3396,
+          2.09,
+          -0.1414,
+          1.8634,
+          2.073,
+          -0.1414,
+          1.8634,
+          2.09,
+          0.0265,
+          1.3396,
+          2.073,
+          0.0265,
+          1.3396,
+          2.09,
+          0.0265,
+          1.8634,
+          2.073,
+          0.0265,
+          1.8634,
+          2.09
+        ]
+      },
+      {
         "node": "horizon-detail-amber",
         "points": [
           0.3851,
@@ -2165,35 +2376,6 @@
         ]
       },
       {
-        "node": "pedestal-detail-lettering",
-        "points": [
-          -0.2303,
-          0.7916,
-          1.5329,
-          -0.2303,
-          0.7916,
-          1.8649,
-          -0.2303,
-          1.1823,
-          1.5329,
-          -0.2303,
-          1.1823,
-          1.8649,
-          0.2254,
-          0.7916,
-          1.5329,
-          0.2254,
-          0.7916,
-          1.8649,
-          0.2254,
-          1.1823,
-          1.5329,
-          0.2254,
-          1.1823,
-          1.8649
-        ]
-      },
-      {
         "node": "pedestal-avionics-route",
         "points": [
           -0.1992,
@@ -2220,35 +2402,6 @@
           -0.0927,
           1.1659,
           1.8513
-        ]
-      },
-      {
-        "node": "pedestal-detail-green",
-        "points": [
-          -0.0522,
-          0.7769,
-          1.5455,
-          -0.0522,
-          0.7769,
-          1.8551,
-          -0.0522,
-          1.1673,
-          1.5455,
-          -0.0522,
-          1.1673,
-          1.8551,
-          0.2222,
-          0.7769,
-          1.5455,
-          0.2222,
-          0.7769,
-          1.8551,
-          0.2222,
-          1.1673,
-          1.5455,
-          0.2222,
-          1.1673,
-          1.8551
         ]
       },
       {
@@ -2426,6 +2579,122 @@
         ]
       },
       {
+        "node": "pedestal-detail-lettering",
+        "points": [
+          -0.2303,
+          0.7916,
+          1.5329,
+          -0.2303,
+          0.7916,
+          1.8612,
+          -0.2303,
+          1.1778,
+          1.5329,
+          -0.2303,
+          1.1778,
+          1.8612,
+          0.2045,
+          0.7916,
+          1.5329,
+          0.2045,
+          0.7916,
+          1.8612,
+          0.2045,
+          1.1778,
+          1.5329,
+          0.2045,
+          1.1778,
+          1.8612
+        ]
+      },
+      {
+        "node": "pedestal-detail-lettering-display-print",
+        "points": [
+          -0.1429,
+          1.0556,
+          1.7582,
+          -0.1429,
+          1.0556,
+          1.8638,
+          -0.1429,
+          1.1811,
+          1.7582,
+          -0.1429,
+          1.1811,
+          1.8638,
+          0.2249,
+          1.0556,
+          1.7582,
+          0.2249,
+          1.0556,
+          1.8638,
+          0.2249,
+          1.1811,
+          1.7582,
+          0.2249,
+          1.1811,
+          1.8638
+        ]
+      },
+      {
+        "node": "pedestal-detail-green",
+        "points": [
+          -0.0522,
+          1.0587,
+          1.7631,
+          -0.0522,
+          1.0587,
+          1.8551,
+          -0.0522,
+          1.1673,
+          1.7631,
+          -0.0522,
+          1.1673,
+          1.8551,
+          0.2222,
+          1.0587,
+          1.7631,
+          0.2222,
+          1.0587,
+          1.8551,
+          0.2222,
+          1.1673,
+          1.7631,
+          0.2222,
+          1.1673,
+          1.8551
+        ]
+      },
+      {
+        "node": "pedestal-detail-green-panel-print",
+        "points": [
+          -0.0479,
+          0.7765,
+          1.5453,
+          -0.0479,
+          0.7765,
+          1.6739,
+          -0.0479,
+          0.9292,
+          1.5453,
+          -0.0479,
+          0.9292,
+          1.6739,
+          0.048,
+          0.7765,
+          1.5453,
+          0.048,
+          0.7765,
+          1.6739,
+          0.048,
+          0.9292,
+          1.5453,
+          0.048,
+          0.9292,
+          1.6739
+        ]
+      },
+      {
         "node": "cyclic-H145-trim",
         "points": [
           -0.4625,
@@ -2433,25 +2702,25 @@
           1.505,
           -0.4625,
           0.58,
-          1.768,
+          1.7656,
           -0.4625,
           1.23,
           1.505,
           -0.4625,
           1.23,
-          1.768,
+          1.7656,
           -0.3975,
           0.58,
           1.505,
           -0.3975,
           0.58,
-          1.768,
+          1.7656,
           -0.3975,
           1.23,
           1.505,
           -0.3975,
           1.23,
-          1.768
+          1.7656
         ]
       },
       {
@@ -2636,25 +2905,25 @@
           1.505,
           0.3975,
           0.58,
-          1.768,
+          1.7656,
           0.3975,
           1.23,
           1.505,
           0.3975,
           1.23,
-          1.768,
+          1.7656,
           0.4625,
           0.58,
           1.505,
           0.4625,
           0.58,
-          1.768,
+          1.7656,
           0.4625,
           1.23,
           1.505,
           0.4625,
           1.23,
-          1.768
+          1.7656
         ]
       },
       {
@@ -2887,6 +3156,180 @@
           0.0885,
           2.276,
           1.3539
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-panel",
+        "points": [
+          -0.055,
+          1.32,
+          2.0475,
+          -0.055,
+          1.32,
+          2.154,
+          -0.055,
+          1.6,
+          2.0475,
+          -0.055,
+          1.6,
+          2.154,
+          0.055,
+          1.32,
+          2.0475,
+          0.055,
+          1.32,
+          2.154,
+          0.055,
+          1.6,
+          2.0475,
+          0.055,
+          1.6,
+          2.154
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-alloy",
+        "points": [
+          -0.0465,
+          1.3305,
+          2.0435,
+          -0.0465,
+          1.3305,
+          2.0465,
+          -0.0465,
+          1.4295,
+          2.0435,
+          -0.0465,
+          1.4295,
+          2.0465,
+          0.0465,
+          1.3305,
+          2.0435,
+          0.0465,
+          1.3305,
+          2.0465,
+          0.0465,
+          1.4295,
+          2.0435,
+          0.0465,
+          1.4295,
+          2.0465
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-grip",
+        "points": [
+          -0.0045,
+          1.3465,
+          2.045,
+          -0.0045,
+          1.3465,
+          2.047,
+          -0.0045,
+          1.3955,
+          2.045,
+          -0.0045,
+          1.3955,
+          2.047,
+          0.0045,
+          1.3465,
+          2.045,
+          0.0045,
+          1.3465,
+          2.047,
+          0.0045,
+          1.3955,
+          2.045,
+          0.0045,
+          1.3955,
+          2.047
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend-panel-print",
+        "points": [
+          -0.0184,
+          1.4079,
+          2.045,
+          -0.0184,
+          1.4079,
+          2.045,
+          -0.0184,
+          1.4162,
+          2.045,
+          -0.0184,
+          1.4162,
+          2.045,
+          0.018,
+          1.4079,
+          2.045,
+          0.018,
+          1.4079,
+          2.045,
+          0.018,
+          1.4162,
+          2.045,
+          0.018,
+          1.4162,
+          2.045
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-master",
+        "points": [
+          -0.016,
+          1.3575,
+          2.0255,
+          -0.016,
+          1.3575,
+          2.0425,
+          -0.016,
+          1.3865,
+          2.0255,
+          -0.016,
+          1.3865,
+          2.0425,
+          0.016,
+          1.3575,
+          2.0255,
+          0.016,
+          1.3575,
+          2.0425,
+          0.016,
+          1.3865,
+          2.0255,
+          0.016,
+          1.3865,
+          2.0425
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-legend",
+        "points": [
+          -0.007,
+          1.3777,
+          2.0245,
+          -0.007,
+          1.3777,
+          2.0255,
+          -0.007,
+          1.3803,
+          2.0245,
+          -0.007,
+          1.3803,
+          2.0255,
+          0.007,
+          1.3777,
+          2.0245,
+          0.007,
+          1.3777,
+          2.0255,
+          0.007,
+          1.3803,
+          2.0245,
+          0.007,
+          1.3803,
+          2.0255
         ]
       }
     ]

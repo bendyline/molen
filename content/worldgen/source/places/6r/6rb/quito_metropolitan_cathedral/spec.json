@@ -1,0 +1,681 @@
+{
+  "planId": "quito_metropolitan_cathedral",
+  "id": "quito_metropolitan_cathedral",
+  "assetId": "molen.worldgen.structure.quito_metropolitan_cathedral",
+  "title": "Quito Metropolitan Cathedral",
+  "wikidataId": "Q5758380",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -78.51248525,
+    "latitude": -0.22050785
+  },
+  "size": [
+    85.05005645751953,
+    39.279998779296875,
+    66.33390808105469
+  ],
+  "actualBounds": {
+    "min": [
+      -42.58755111694336,
+      -0.5,
+      -33.19966125488281
+    ],
+    "max": [
+      42.46250534057617,
+      38.779998779296875,
+      33.134246826171875
+    ]
+  },
+  "visualBrief": "Whole11-control surviving Quito cathedral: three-aisle tiled roof/clerestory, presbytery hexagonal drum/cupola/lantern, full38.78mwestern intrinsic tower/open belfry, exact mapped lateral stoneportico/openarchedentry/greenroof and intrinsic semicircular accesssteps. FirstsignedphotographerPD-self original documents limited2004lateralappearance; hidden vertical/roof/windowsections original explicit estimates. No neighboring ElSagrariochurch, NationalBasilica or cityplaza monument.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Quito_Cathedral_Church_2004_at_night.jpg"
+  ],
+  "stories": [
+    {
+      "id": "quito-metropolitan-cathedral-wp",
+      "url": "https://qualla.com/quito-metropolitan-cathedral/"
+    }
+  ],
+  "referenceInputHash": "3161176a814831b8a4b64313f8e7b62a440030978c293ccb4be14235f4dc458a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6r/6rb/quito_metropolitan_cathedral/models/quito-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/quito-cathedral-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "quitoCathedralSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "lime": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glaze": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.5,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "quitoCathedralDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "quitoCathedralStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "quitoCathedralCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.5,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_weathered",
+    "tile_ceramic",
+    "tile_glazed",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.5,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "far": 2200
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Originalfield frozenfirst. Original exteriorsection estimate: cathedralfloor+2.4mabove fixedplazaapproach, base-.5mrelativeapproach, lowerwall/eaves11.2mabovefloor/upperclerestory15.2m/mainridge18.2m. Mainapsehexdrum17mabovefloor/dome6.5mrise/lantern. Porticowall8mabovefloor/archedentry5.8mhigh/greenhalf-dome4mrise/lantern. Wholebell-towertop38.78maboveapproach from2022primaryresearch, original stage splits/shape estimated.12curvedentrytreads rise2.4m/outerradius14m/innerradius7.5m. Every verticalsection/windowcensus/roofdivision/finialandcurrentcontact notobservedinacceptedphoto isexplicitestimate. Fixedbeforegeometry, neveradjusttosourcefield orrenders. Geographicpreview/replacementfalse.",
+    "anchor": [
+      -78.51248525,
+      -0.22050785
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -78.51229835015907,
+        -0.22023994123979376
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exterior point in front of lateralportico before originalfield/floor/mainsections/geometry; not a surveyed threshold."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -22.11345307710366,
+          -33.13424643461904
+        ],
+        [
+          4.191147788853469,
+          -14.198801050682505
+        ],
+        [
+          9.00011417741888,
+          -20.844574651040467
+        ],
+        [
+          1.2652525064139981,
+          -26.214266287306454
+        ],
+        [
+          2.011231982623526,
+          -27.181320044400604
+        ],
+        [
+          2.838657070185172,
+          -28.07967747466394
+        ],
+        [
+          3.74123056456966,
+          -28.902501535609133
+        ],
+        [
+          4.712083336495951,
+          -29.643530039297612
+        ],
+        [
+          5.743826610152747,
+          -30.29712331137108
+        ],
+        [
+          6.828608196243906,
+          -30.858307112378643
+        ],
+        [
+          7.958172251890247,
+          -31.3228104947426
+        ],
+        [
+          9.123922112578867,
+          -31.687098307248338
+        ],
+        [
+          10.316985717970915,
+          -31.9483980996797
+        ],
+        [
+          11.528283133637862,
+          -32.104721222839146
+        ],
+        [
+          12.7485956548451,
+          -32.15487796336897
+        ],
+        [
+          13.968635966461402,
+          -32.09848659818826
+        ],
+        [
+          15.179118825034887,
+          -31.935976299636067
+        ],
+        [
+          16.37083172510227,
+          -31.66858386921079
+        ],
+        [
+          17.53470501191812,
+          -31.29834432476392
+        ],
+        [
+          18.661880907003866,
+          -30.828075412785456
+        ],
+        [
+          19.74378092119048,
+          -30.261356163651687
+        ],
+        [
+          20.772171142100923,
+          -29.602499653042948
+        ],
+        [
+          21.73922489919507,
+          -28.85652017683342
+        ],
+        [
+          22.63758232945841,
+          -28.02909508927177
+        ],
+        [
+          23.4604063904036,
+          -27.126521594887283
+        ],
+        [
+          24.20143489409208,
+          -26.155668822960994
+        ],
+        [
+          24.85502816616555,
+          -25.1239255493042
+        ],
+        [
+          25.416211967173112,
+          -24.03914396321304
+        ],
+        [
+          25.880715349537073,
+          -22.909579907566695
+        ],
+        [
+          26.245003162042806,
+          -21.743830046878077
+        ],
+        [
+          26.50630295447417,
+          -20.550766441486033
+        ],
+        [
+          26.662626077633625,
+          -19.33946902581908
+        ],
+        [
+          26.71278281816344,
+          -18.119156504611837
+        ],
+        [
+          26.656391452982724,
+          -16.899116192995542
+        ],
+        [
+          26.493881154430536,
+          -15.688633334422056
+        ],
+        [
+          26.22648872400526,
+          -14.496920434354672
+        ],
+        [
+          25.856249179558393,
+          -13.333047147538819
+        ],
+        [
+          25.385980267579928,
+          -12.205871252453079
+        ],
+        [
+          24.819261018446152,
+          -11.123971238266467
+        ],
+        [
+          24.16040450783742,
+          -10.095581017356022
+        ],
+        [
+          16.40280549058337,
+          -15.49010714388453
+        ],
+        [
+          11.604970969577291,
+          -8.855465492606205
+        ],
+        [
+          42.46250529080036,
+          12.32863360535424
+        ],
+        [
+          26.677518398347004,
+          33.13424643461594
+        ],
+        [
+          -36.91883570659651,
+          -12.562404536020669
+        ],
+        [
+          -42.4625052923823,
+          -16.692357644452464
+        ],
+        [
+          -38.176736636393215,
+          -22.625686503734627
+        ],
+        [
+          -32.58853958353397,
+          -18.584788987936918
+        ],
+        [
+          -22.11345307710366,
+          -33.13424643461904
+        ]
+      ],
+      "basis": "Actualcathedral building footprint plus modeledintrinsicsemicircularaccesssteps only. Neighborchurch/plaza/streets remain outsidecutout; alloriginalsourceheights unchanged."
+    },
+    "featureIds": [
+      "way/253234080"
+    ],
+    "source": "https://www.openstreetmap.org/way/253234080",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:71ad0da2bd76a1f0970b330c9b2f5a5977ca1918fb9d15d370c43cb90036933b",
+    "notes": "Whole surviving Catedral Metropolitana de Quito on actual11controlway253234080/Q5758380: all main walls/three-aisle pitched roof, eastern presbytery cupola, western intrinsic shared bell-tower projection, mapped projecting lateral domed portico and semicircular access steps. Do not include independent adjacent ElSagrariochurch159408376/Q6446453, its parishhouse, the citypalace/plaza monument or a whole city block. Original medium-fi section/opening/detail estimates remain explicit."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual complete named cathedralway253234080/Q5758380/11perimetercontrols including mapped lateralporticoandwesternbell-towerprojection. SeparateElSagrarioway159408376/Q6446453 not substituted or included. No wholecathedralproperty/cityblock extrusion.",
+    "Whole surviving Catedral Metropolitana de Quito on actual11controlway253234080/Q5758380: all main walls/three-aisle pitched roof, eastern presbytery cupola, western intrinsic shared bell-tower projection, mapped projecting lateral domed portico and semicircular access steps. Do not include independent adjacent ElSagrariochurch159408376/Q6446453, its parishhouse, the citypalace/plaza monument or a whole city block. Original medium-fi section/opening/detail estimates remain explicit.",
+    "Originalfield frozenfirst. Original exteriorsection estimate: cathedralfloor+2.4mabove fixedplazaapproach, base-.5mrelativeapproach, lowerwall/eaves11.2mabovefloor/upperclerestory15.2m/mainridge18.2m. Mainapsehexdrum17mabovefloor/dome6.5mrise/lantern. Porticowall8mabovefloor/archedentry5.8mhigh/greenhalf-dome4mrise/lantern. Wholebell-towertop38.78maboveapproach from2022primaryresearch, original stage splits/shape estimated.12curvedentrytreads rise2.4m/outerradius14m/innerradius7.5m. Every verticalsection/windowcensus/roofdivision/finialandcurrentcontact notobservedinacceptedphoto isexplicitestimate. Fixedbeforegeometry, neveradjusttosourcefield orrenders. Geographicpreview/replacementfalse.",
+    "Accepted640x480nightphoto is limited/noisy and shows only lateralportico/partialbroadside. Wholeactualnativeplan and originalresearchtowerheight retained; hiddenpresbyteryroof/drums/towerstages/daylightcolors/windowcensus/finials andsemicircularstairs are explicitlyoriginalmedium-fiestimates. Sculpture/inscriptions/clockdetail/interiorchapels/museumdisplays not reproduced. No currentrestoration/survey/photogrammetry claim.",
+    "Originalfield/frame/floor/mainsections frozen beforegeometry. UnclassifiedurbanDEM mayinclude roof/canopyartifact; actual thresholds/grade/contact remainunverified. Physicalcathedral/stepcutout only, geographicpreview/replacementfalse. No photographicpixels embedded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Photographer-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaLodCameras": [
+    {
+      "name": "whole-cathedral-skyline",
+      "position": [
+        128.36849068390978,
+        77,
+        -59.27204668458628
+      ],
+      "lookAt": [
+        3.5355162762200205,
+        10,
+        -5.293083184634988
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-cathedral-district",
+      "position": [
+        128.36849068390978,
+        77,
+        -59.27204668458628
+      ],
+      "lookAt": [
+        3.5355162762200205,
+        10,
+        -5.293083184634988
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-cathedral-street",
+      "position": [
+        128.36849068390978,
+        77,
+        -59.27204668458628
+      ],
+      "lookAt": [
+        3.5355162762200205,
+        10,
+        -5.293083184634988
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-cathedral-closeup",
+      "position": [
+        128.36849068390978,
+        77,
+        -59.27204668458628
+      ],
+      "lookAt": [
+        3.5355162762200205,
+        10,
+        -5.293083184634988
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-actual-cathedral-and-lateral-portico",
+      "position": [
+        128.36849068390978,
+        77,
+        -59.27204668458628
+      ],
+      "lookAt": [
+        3.5355162762200205,
+        10,
+        -5.293083184634988
+      ]
+    },
+    {
+      "name": "whole-native-plan",
+      "position": [
+        2.084598211992561,
+        195,
+        -4.969298115648728
+      ],
+      "lookAt": [
+        2.142164945099527,
+        0,
+        -5.051066515653812
+      ]
+    },
+    {
+      "name": "lateral-open-arch-green-cupola-and-all-curved-treads",
+      "position": [
+        37.28373551277453,
+        15,
+        -34.121154545054715
+      ],
+      "lookAt": [
+        11.594858911195237,
+        7,
+        -16.740659185346697
+      ]
+    },
+    {
+      "name": "western-tower-open-belfry-and-front",
+      "position": [
+        -34.162559781310875,
+        37,
+        -61.184541043243534
+      ],
+      "lookAt": [
+        -35.262167698598496,
+        20,
+        -17.93190109574163
+      ]
+    },
+    {
+      "name": "whole-rear-roof-presbytery-cupola-and-aisles",
+      "position": [
+        2.1469625037807276,
+        77,
+        114.80301133313458
+      ],
+      "lookAt": [
+        3.1102316210242362,
+        12,
+        0.5223388088281666
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11161,
+    "vertices": 33483,
+    "materials": 6,
+    "bytes": 1613200,
+    "sha256": "sha256:fd7ad65e45563396315cd29ff2177752c9f6608aec132731ff5fd871293d316c"
+  }
+}

@@ -21,7 +21,7 @@ References are used for dimensional and visual analysis only; no reference photo
 
 ## Authored geometry and materials
 
-692,648 triangles, 1,349,624 vertices, 6 surface groups; 56,901,772 source bytes. SHA-256: `sha256:7aeb8347218bcd69d39afc560d6c7eff2506c0e4c29767da3c39a46760090722`. Actual bounds: -264.000, -0.102, -164.340 to 264.000, 38.815, 164.340 m.
+645,600 triangles, 1,361,072 vertices, 6 surface groups; 56,749,324 source bytes. SHA-256: `sha256:181bf937e85af8f8f9ccc8ee698bb747c96399b84e8a081cf5727de703832b2d`. Actual bounds: -264.000, -0.102, -164.340 to 264.000, 38.815, 164.340 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped playing-pitch center at local pitch/site grade. Native+Z follows the pitch toward the southern goal; +X follows its short axis east-southeast."}.
 

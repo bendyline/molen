@@ -1,3 +1,5 @@
+import type { TerrainSurfaceStyle } from '@bendyline/molen-terrain/client';
+
 export interface WorldRegion {
   id: string;
   label: string;
@@ -6,6 +8,13 @@ export interface WorldRegion {
   /** West, south, east, north; street detail and wider coarse elevation coverage. */
   detailBounds: [number, number, number, number];
   coverageBounds: [number, number, number, number];
+  /**
+   * Open-water color seen from above, from matched orthophotos: deep or turbid water is far
+   * darker than the sky it reflects at a glance. Defaults to the shared Earth water color.
+   */
+  water?: string;
+  /** Surface colors over the selected street style, where local paving reads differently. */
+  surfaces?: Partial<Pick<TerrainSurfaceStyle, 'road' | 'parking' | 'sidewalk' | 'curb'>>;
 }
 
 export const DEFAULT_WORLD_REGION: WorldRegion = {
@@ -15,6 +24,8 @@ export const DEFAULT_WORLD_REGION: WorldRegion = {
   latitude: 47.6163,
   detailBounds: [-122.46, 47.55, -121.95, 47.7],
   coverageBounds: [-123.15, 46.95, -120.9, 48.3],
+  // Puget Sound and Lake Washington read near-black navy in summer NAIP imagery.
+  water: '#071f2b',
 };
 
 /** Shared by the viewer and the regional PMTiles builder. */
@@ -27,6 +38,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     latitude: -33.8688,
     detailBounds: [151.04, -33.99, 151.31, -33.77],
     coverageBounds: [150.3, -34.5, 151.8, -33.2],
+    // Port Jackson's harbour water is a dark green-teal in NSW imagery.
+    water: '#22493f',
   },
   {
     id: 'kyoto',
@@ -43,6 +56,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     latitude: 32.7253,
     detailBounds: [-114.78, 32.57, -114.47, 32.81],
     coverageBounds: [-115.4, 32.1, -113.8, 33.5],
+    // The Colorado and its canals run dark olive-green under algae and silt.
+    water: '#0c2416',
   },
   {
     id: 'new-delhi',
@@ -51,6 +66,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     latitude: 28.6139,
     detailBounds: [77.08, 28.49, 77.34, 28.75],
     coverageBounds: [76.4, 27.9, 78, 29.4],
+    // Dust settles on Delhi's roads and footpaths: Sentinel-2 reads them warm grey-brown.
+    surfaces: { road: '#625a4e', parking: '#685f52', sidewalk: '#94876f', curb: '#ab9d85' },
   },
 ];
 

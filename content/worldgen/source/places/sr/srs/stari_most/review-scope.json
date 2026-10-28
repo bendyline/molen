@@ -1,0 +1,72 @@
+{
+  "fidelityTarget": "medium-fi",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "native-fit.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/stari-most-model.mjs",
+    "export": "buildStariMostSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStariMostDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roughstone": {
+            "graph": "stone_drywall",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "geographic": {
+    "anchor": [
+      17.8150293,
+      43.3372672
+    ],
+    "heading": -0.004339929494839471,
+    "elevationMode": "sea-level",
+    "elevationMeters": 40.05,
+    "bounds": [
+      17.814793206652645,
+      43.33723411631929,
+      17.815265393347353,
+      43.33730028368071
+    ],
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 32.4,
+      "width": 5.2,
+      "deckHeights": [
+        17.19,
+        17
+      ],
+      "includeConnectedApproaches": true
+    },
+    "source": "https://www.openstreetmap.org/way/33924615",
+    "featureIds": [
+      "way/33924615"
+    ],
+    "notes": "Confirmed mapped east-west crossing, fixed heading and historical low-water40.05m ASL datum retained. Only the modeled longitudinal bridge-road corridor is replaced. Its native bent tails retain the corresponding deck height and transfer it into the two connected streets. Automatic retaining supports seat raised approaches into the original terrain. Raw DEM bank levels remain coarse and differ from the bridge deck; preserve all mapped buildings and unrelated roads, native river and every DEM sample. Adjacent towers/town buildings remain independent native context. Geographic approval is recorded separately after inspection.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The original coarse DEM is retained. The viewer transfers the authored bank height through short retained bridge tails and one short covered gateway, then blends into the actual adjoining mapped street. Raised ground approaches receive retaining supports down to native ground. Corrected native join heights and unload/fallback are checked in qa.json; this is a photo/map-led visualization, not a surveyed quay reconstruction."
+  }
+}

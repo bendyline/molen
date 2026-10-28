@@ -1,0 +1,850 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.iber_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:149898b45995579b23b947c3edbaa5e85ce4a6b8c5bd80dc98bbef81bd1609bc",
+  "sourceHash": "sha256:060b3107daec170d81ff8232545184e60e4b4204a0a710644cbec02bddeaafa5",
+  "runtimeHash": "sha256:82ef7c20a71f905b800017bd88a704fc5163e786ce6c310309fd18c4949919ed",
+  "captureReportHash": "sha256:d1d1af6298abc56c779002e40da94f7c6d4b34cc3b50485f64ab7bd811011548",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-east.png",
+      "shots/whole-west.png",
+      "shots/swept-canopy-and-ribs.png",
+      "shots/road-and-cable-lamps.png",
+      "shots/walk-under-canopy.png",
+      "shots/haunches-and-piers.png"
+    ],
+    "captureReportHash": "sha256:d1d1af6298abc56c779002e40da94f7c6d4b34cc3b50485f64ab7bd811011548",
+    "notes": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. The main crossing retains paired swept walkway canopies, inclined ribs, curved tubular carriers, concrete haunched girders and flared pier walls, rounded cornices, outside walks, dark open railings, cable-linked lamps and pale beacon caps. Small landing caps were widened for one generalized map path edge. Replaced an aliased hard-cut perforation graph with the existing filtered fractional-coverage graph; canopy form remains legible across views and modes. Far levels simplify fittings while retaining the distinctive paired canopy silhouette."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-east.png",
+      "shots/shared/whole-west.png",
+      "shots/shared/swept-canopy-and-ribs.png",
+      "shots/shared/road-and-cable-lamps.png",
+      "shots/shared/walk-under-canopy.png",
+      "shots/shared/haunches-and-piers.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:a0960e4367c7b6ef7b9e11733823306228c12e657ccc0d81b3c24187c7de44a2",
+    "notes": "Four existing shared 256px material graphs: concrete_plain, stone_granite, metal_painted and metal_perforated_round, in five semantic material groups with metric UVs and linear vertex tints. The perforated sheet uses filtered fractional alpha coverage; portable fallback and skyline are simplified solid surfaces. No embedded/private images, copied photo pixels or downloaded meshes. Each graph is read once per native view, and all four runtime files use separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-east.png",
+      "medium-fi/whole-west.png",
+      "medium-fi/swept-canopy-and-ribs.png",
+      "medium-fi/road-and-cable-lamps.png",
+      "medium-fi/walk-under-canopy.png",
+      "medium-fi/haunches-and-piers.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:5fac8b2720390aebe0fc1d1e4a3dbf792792f177cdf966c3789708d6232d2859",
+    "notes": "Detailed source master: 35906 triangles / 4312148 bytes. Runtime levels: 924 / 3908 / 11330 / 22802 triangles, 78324 / 366428 / 1015388 / 2058472 bytes and 1 / 5 / 5 / 5 draws. Initial skyline plus district is 444752 bytes. Strict medium-fi budgets pass; physical laptop/phone timing remains unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:dbf43079ee467f114e73475497eecf345b4cd70d528af20b3b00d681e6adfb69",
+    "mapFrameHash": "sha256:a6d66a650a4e7489c84d373564b81a5c6e73373c685c67471151a054b20eac2e",
+    "notes": "The named standard PMTiles main crossing Ura e Ibrit / Most na Ibru (name:en Iber Bridge), mapped outside sidewalks and ordinary-photo location match resolve the previously unknown axis. No exact-QID map footprint is claimed. Anchor [20.86601972579956,42.891292885499894], heading 1.848488636959144: +X north/northwest toward the northern bank, -X south/southeast, +Z east/northeast along the Ibar. The mapped transport extent is 98.949 m; the body uses the nominal 91.2 m reference and an inferred 23.2 m width with flared landing caps. Source datum 498.8518249511719 m follows native water 499.651825 m and a declared bank/crown grade. All 24 actual map boundary width samples have model support at every LOD. Nearest upward-facing pavement meets within 0.042936 m. Two higher native bank-edge surfaces remain 0.113463 m and 0.177719 m above the cap, with joining pavement verified beneath them; those steps are recorded separately. These are renderer checks, not surveyed geographic accuracy."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped exterior and approximate standard-terrain placement complete. Detailed source master: 35906 triangles / 4312148 bytes. Runtime levels: 924 / 3908 / 11330 / 22802 triangles, 78324 / 366428 / 1015388 / 2058472 bytes and 1 / 5 / 5 / 5 draws. Initial skyline plus district is 444752 bytes. Strict medium-fi budgets pass; physical laptop/phone timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/srw/iber_bridge/models/source.glb\",\"hash\":\"sha256:060b3107daec170d81ff8232545184e60e4b4204a0a710644cbec02bddeaafa5\",\"bytes\":4312148,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/sr/srw/iber_bridge/model.glb\",\"hash\":\"sha256:82ef7c20a71f905b800017bd88a704fc5163e786ce6c310309fd18c4949919ed\",\"bytes\":4311628,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/srw/iber_bridge/model.skyline.glb\",\"hash\":\"sha256:07939864378ccadf5f04d77f948fbfc30fb602b4d20633c7477846d0bf327e46\",\"bytes\":78324,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/srw/iber_bridge/model.district.glb\",\"hash\":\"sha256:a63f9e5155caaa1ab87749f176860539c4aa7a7af8187f5dca37919498dd8f3b\",\"bytes\":366428,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/srw/iber_bridge/model.street.glb\",\"hash\":\"sha256:b52c83ba32487e03605feefaeccbc71cc61e1bccaeccd5ed7045d095d67651bd\",\"bytes\":1015388,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/srw/iber_bridge/model.closeup.glb\",\"hash\":\"sha256:fec8d5b97f0cbd598e8d1c399db664fbd1562d7b595a92e463a52545e278e4ab\",\"bytes\":2058472,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "swept-canopies-deck-walks-haunches-piers-masts-landings",
+        "passed": true,
+        "notes": "888 front-face and clearance probes across source, imported master and four runtime levels. Includes the road and raised walks, flared landing caps, both swept canopy skins, girder side faces, clear under-span passages, both pier walls and all fourteen masts/caps."
+      },
+      {
+        "check": "headless-scene",
+        "passed": true,
+        "notes": "CLI scene validation and 30 ticks passed; state hash sha256:b262e2681b614558a0ffe1308c80256ffca8d9185807d705bc159e1af9071c45."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "The named standard PMTiles main crossing Ura e Ibrit / Most na Ibru (name:en Iber Bridge), mapped outside sidewalks and ordinary-photo location match resolve the previously unknown axis. No exact-QID map footprint is claimed. Anchor [20.86601972579956,42.891292885499894], heading 1.848488636959144: +X north/northwest toward the northern bank, -X south/southeast, +Z east/northeast along the Ibar. The mapped transport extent is 98.949 m; the body uses the nominal 91.2 m reference and an inferred 23.2 m width with flared landing caps. Source datum 498.8518249511719 m follows native water 499.651825 m and a declared bank/crown grade. All 24 actual map boundary width samples have model support at every LOD. Nearest upward-facing pavement meets within 0.042936 m. Two higher native bank-edge surfaces remain 0.113463 m and 0.177719 m above the cap, with joining pavement verified beneath them; those steps are recorded separately. These are renderer checks, not surveyed geographic accuracy."
+    },
+    "inputHash": "sha256:149898b45995579b23b947c3edbaa5e85ce4a6b8c5bd80dc98bbef81bd1609bc",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:149898b45995579b23b947c3edbaa5e85ce4a6b8c5bd80dc98bbef81bd1609bc",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. The main crossing retains paired swept walkway canopies, inclined ribs, curved tubular carriers, concrete haunched girders and flared pier walls, rounded cornices, outside walks, dark open railings, cable-linked lamps and pale beacon caps. Small landing caps were widened for one generalized map path edge. Replaced an aliased hard-cut perforation graph with the existing filtered fractional-coverage graph; canopy form remains legible across views and modes. Far levels simplify fittings while retaining the distinctive paired canopy silhouette.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/scene-preview.png",
+          "hash": "sha256:ab1ce1ac2d622b98c091e43722a1b0353dbef140c5d6da119ae5d0b43b6a552a"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:737856f030bb122cc50c9b36919d7a82177b87317ae8324ec62ea346cf8dd733"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:2bc526284ce0322d3a4558041a0fe9364985478a274987ba895523b4172f08f7"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:dc92f668b405cebf135cd60723cb534530bcef21b51d7007f514d060e7285b08"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:0e61bf444a9a0613b76dbd30e4f9623849aa33261dd9322622e090e22695d2a5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/whole-east.png",
+          "hash": "sha256:ab1ce1ac2d622b98c091e43722a1b0353dbef140c5d6da119ae5d0b43b6a552a"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/whole-west.png",
+          "hash": "sha256:c796f3264784ebad9220feb5597f1666211b47d801aec693f825b126980fd3cf"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/swept-canopy-and-ribs.png",
+          "hash": "sha256:98d0d34c05340f90c0c2de1371e280a2783847e53449f69c7f6f7a31b8d236a3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/road-and-cable-lamps.png",
+          "hash": "sha256:e10cc3343e03635d9ee61d9cdc6b553ee68f7e5a9a9aa20616fa5a2db2f33aee"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/walk-under-canopy.png",
+          "hash": "sha256:6b0100bbaaea56ea606cefc9ff489dd287c6236a3d3da0afac46c8030be20525"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/haunches-and-piers.png",
+          "hash": "sha256:a574812fbcfe4aa75c78004a41b5ac551f3acf48471512dd2403eb369dfcbe1d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:8500999eef01de44b86aa9c252acccfba78fc25941c04b2393dfc6e51a12a548"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:8a452c98f18112d65f9e4c3d8b75ba1ca0c2905637d2089c7b9168ec925f4de4"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:cd5376862836c21a2f8ae009e46949dadca04c2fe4fb392182beba0e6bb10b04"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:d25123ca88e037805970594308f9799095d94657c625dff32829de80d2fc2b53"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/whole-east.png",
+          "hash": "sha256:e7bb987739416a229279b18306166b97152e6169293434e25532823a4e060509"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/whole-west.png",
+          "hash": "sha256:24d6aa452dabf5cb3091966c2aaa29faeb2e6edbefe3af1ae6e67d649e5edb55"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/swept-canopy-and-ribs.png",
+          "hash": "sha256:45a822523ef6858a53298a635e0e9de51be242f8bca5ccd331c206ac5ce318d5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/road-and-cable-lamps.png",
+          "hash": "sha256:2cf9de247824e72704d39b318ddf6bc9b13631d6a553066af492bdab1941199f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/walk-under-canopy.png",
+          "hash": "sha256:178aaadafb52b7af86d6dd2fd110f4e3ecdc99a1bfccc13f73b350ba3fd4d638"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/haunches-and-piers.png",
+          "hash": "sha256:33e661512babf3d348114af57d1a6eadf31cc172bcd139f411708208218bb5f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/shots/shared/placement.png",
+          "hash": "sha256:7e750354b2e625fc546d2f9c419bb91fc8149d12af97aa215ea477b7caeb60b3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:febb4923aab7f21db2fdecc581523ba0cd77f2e1164336f85f7e97453456c01e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:e08604861d216508d1183f76bac95a583e5c09bc00442d1239a274414d4f96ee"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:8e3e3c3e1ad39bb93d51c29f41aae76944b6d5d7ad6faf2ebe10df227d0aebb5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:46c1a2a796a7655543d1e08d9d4982be22d40f178f62eda2eff1fd9a660d34f9"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:f0105d3cc836563f14fbe247349531abc2420fe291574b38d6a4f1658cf6f97f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:545c6cf68b3718269ca7c1c102b3e4d3e7186fd1c092e227d6053a5f00de0a21"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:d5abe194cd897d10c7957f93e05ff28963f1d21304f9f6f48799c26aa7431cfb"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:1a141babfa8135f072cff981aa82c51a4ac4bf6325ddd3f42622352e7ca8083b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:fbc7408f1f0832e3b8d7b9abf01000051804f55c06836b5109420c400ecbc53b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:685896aeaaca233c6f9837e43e9747b00649de7cf23de610f653291adaae9040"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:c8159a443e7c5c04bbc1940d004942e2ef61a81d3c83b4f1c387c333acda7553"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:5144def39800710e27955172294ed12becda26eff8f8dcade503f15b1be1ca7f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:ec563850cb407d1b20b886b95beb18824a5c664d451b1c3fcfa10fccf7accb4e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/whole-east.png",
+          "hash": "sha256:541fa0801b617fb0ed2ef681be637a7f06b21e673f7e9c35509622a9a7fb6c92"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/whole-west.png",
+          "hash": "sha256:f915cae8cc0eeaf1e17e2dcbd712b3a82d6f592120a7f37a387b77876e0d0735"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/swept-canopy-and-ribs.png",
+          "hash": "sha256:ac11363460d99f4e355e166aee8db39d8222db6c8258512ad4db524b7a6bc5af"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/road-and-cable-lamps.png",
+          "hash": "sha256:522dc73dc0f454d80832612377b2f92615e200a3ae74229c4735deac2552bd7d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/walk-under-canopy.png",
+          "hash": "sha256:3e20c5a6324719ea497f185528ecc37ccd5c70ccfad62da0ff4742706da538ce"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/haunches-and-piers.png",
+          "hash": "sha256:49175217a203da1a7af1dd3539260722e6aed015f8d309df868e07404644a210"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:81760fbd9df293ec0159b250be7d0eec06a8e50c1a859f877aeb88a496675238"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:545c6cf68b3718269ca7c1c102b3e4d3e7186fd1c092e227d6053a5f00de0a21"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:99f6bfff58cd1f46837cae154f33c6a462f05b9acb28aa5ad0ac5f0f439d9b76"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srw/iber_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:eac44bf44d67dd3ef9ce40fff4ecd7b9ffd2292371f8e3674c94c2165a199a7e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:21aac70ad03215f483dab2350435a9ce2f021390f8d01d41ef1a8696e6c4bc1a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:d8b93aa9f1863a44399200020024a5f7982ea4aa2780f636efcccc14749f34db"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-street-whole-east.png",
+          "hash": "sha256:46666a6fb0a754eb1730fd9e52200c7347c7c308f5366ecada0e6a32cdc09428"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-street-whole-west.png",
+          "hash": "sha256:034a90a8e5020e9e98171c7e3badaf80c4ff546119afe7aefee38f0a1962104d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-street-swept-canopy-and-ribs.png",
+          "hash": "sha256:803c725ac4e5a654537e10f53e6f2a26dd9d9d1337ebb4f8f992c35df8d3ab7a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-street-road-and-cable-lamps.png",
+          "hash": "sha256:39d8a268b9c450f4fa43f3ccf8ec9d83e7cdd0545cb3bfee30582d25042e546c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-whole-east.png",
+          "hash": "sha256:b3014708f6416220706d713e04d60c95c5d56009b9ac0a4a07f1e0439e468a50"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-whole-west.png",
+          "hash": "sha256:7ab22e59a664d122d58f283faa54cf3e1de22110f542e26170064994ea6c7aa3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-swept-canopy-and-ribs.png",
+          "hash": "sha256:a0c093cfb2db8895635e863283eb45306a275cb348ee5d5d310177ec32b954f8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-road-and-cable-lamps.png",
+          "hash": "sha256:0fe9e215f13a3e9868d65c069707081479f2ee0ed08a9631245092dafa642c50"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-walk-under-canopy.png",
+          "hash": "sha256:cd257bdc1a2b57d5129ea0cf4cacf935fef6f98cb0b9abb641eb747e5c6572f4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-haunches-and-piers.png",
+          "hash": "sha256:d9b41081ce8aa6ead539549cc8c6bd2b0a1bcefacae0bbbcfba9d4a1aa607a08"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-southern-bank-join.png",
+          "hash": "sha256:a56f0064dcf52ed97986a4f8606e971d6219e7da8cd23e649e4fc1ac268dbbb6"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-northern-bank-join.png",
+          "hash": "sha256:bd8c803d49ae72baeacc8ca81b5a7826be8081e22c7ff535b1ecaa93e57d7eb0"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:006084b98dd318f4728e5d6079c89cae9c90d0b5ecd6f97faad654307abeec0b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:481290afc1636a80a6063f6e4724259b0460e51bc43b6a89234abb79133ac96d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\iber-review/native/shots/final-failure-whole-east.png",
+          "hash": "sha256:16bfabdd6f5ed68a9152e3eb66895896163a7d47c9675f5dd72c013ce639413e"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 1121 resident buildings and 248 independent input road records remain. Five records for the distinct Avni Koshtova crossing east of this bridge and six underpass records retain their input paths and receive no authored connection metadata. Raw road inputs, DEM samples, displayed ground and water geometry stay unchanged; connected bank paving is deliberately graded. Failed loading retains the original map crossing, and unloading releases every model/support geometry resource while preserving ground/water. No ground cutout was needed."
+    },
+    "nativeReport": {
+      "path": ".artifacts/iber-review/native/final-report.json",
+      "hash": "sha256:f8cb90c19985e74c895eded96d2b498fb7e6043fdb0ddf29d3f9ff30a5c20fea",
+      "frozenViewerInputsHash": "sha256:5f773070bdc6c3e6f077d30fbc44eb6a5831461f404f73394129c37db87f9a37"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 24,
+        "maximumBankEdgeStepMeters": 0.17771812142768795,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184546590590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185685427343,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786784525,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185059816082,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "roadAndModelSamples": 24,
+        "replacementInteriorSamples": 0,
+        "maximumJoinErrorMeters": 0.042935649130356524,
+        "buildings": 1121,
+        "independentRoadRecords": 248,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 24,
+        "maximumBankEdgeStepMeters": 0.17771812142768795,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184546590590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185685427343,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786784525,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185059816082,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "roadAndModelSamples": 24,
+        "replacementInteriorSamples": 0,
+        "maximumJoinErrorMeters": 0.042935649130356524,
+        "buildings": 1121,
+        "independentRoadRecords": 248,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 24,
+        "maximumBankEdgeStepMeters": 0.17771812142768795,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184546590590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185685427343,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786784525,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185059816082,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "roadAndModelSamples": 24,
+        "replacementInteriorSamples": 0,
+        "maximumJoinErrorMeters": 0.042935649130356524,
+        "buildings": 1121,
+        "independentRoadRecords": 248,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 24,
+        "maximumBankEdgeStepMeters": 0.17771812142768795,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184546590590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185685427343,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786784525,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185059816082,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "roadAndModelSamples": 24,
+        "replacementInteriorSamples": 0,
+        "maximumJoinErrorMeters": 0.042935649130356524,
+        "buildings": 1121,
+        "independentRoadRecords": 248,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "maximumBankEdgeStepMeters": null,
+        "neighboringCrossingRecords": [
+          {
+            "id": 35184546590590,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185813751760,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185685427343,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185786784525,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "underpassRecords": [
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184619543920,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184673201100,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35185059816082,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "roadAndModelSamples": 0,
+        "replacementInteriorSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "buildings": 1121,
+        "independentRoadRecords": 248,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "The main bridge is identified by the named PMTiles road Ura e Ibrit / Most na Ibru (name:en Iber Bridge), nearby mapped sidewalks and ordinary photographs. There is no exact-QID footprint tag in the retained map snapshot; the distinct eastern Avni Koshtova crossing remains independent.",
+    "The mapped transport extent is 98.949m between road joins. The body uses the nominal 91.2m reference with short supported landing extensions. Width 23.2m is inferred from outside map sidewalks and photographs; small landing caps flare to 25.6 m to support generalized path edges. These are not surveyed dimensions.",
+    "Paired swept walkway canopies preserve the curved profile, inclined ribs and perforated sheet character. Transverse curvature, perforation pattern, individual rib/cable spacing and support sections are regularized visual interpretations.",
+    "Three haunched girder bays, two flared pier walls, rounded edge cornices, dark open railings, cable-linked masts and pale beacon caps follow ordinary photographs. Fine fixings, drainage, graffiti, murals and inscriptions are omitted.",
+    "A two-lane asphalt deck and raised outside walks represent the permanent crossing. Temporary barricades, military installations, vehicles, event banners and moveable furniture visible in older pictures are excluded.",
+    "Source datum 498.8518249511719m follows native water 499.651825m. The shallow deck crown and bank levels adapt the coarse standard PMTiles/Mapzen fixture; no as-built or surveyed curb, vault, foundation or river-stage accuracy is claimed.",
+    "The shared perforated-metal graph uses filtered fractional coverage for near-view holes; portable fallback and far levels use simplified solid surfaces. Closer levels restore inclined ribs, rounded carriers, railing pickets, lamp fittings and cable sag.",
+    "The two higher native bank-edge surfaces are ordinary procedural context; the lower joining pavement is also present and checked. Their maximum 17.8 cm step is retained, not described as a sub-5cm top-surface match.",
+    "Surrounding buildings, banks, automatic retaining faces and surface fixtures are procedural context, not a reconstruction of Mitrovica. Some side-bay foundations merge into coarse bank ground."
+  ],
+  "metadataReconciliation": {
+    "kind": "semantics-preserving-import-order",
+    "oldInputHash": "sha256:1acb89c3bef0c5c83e1dc00a01d892fbaa6f55518a7983ae5099fd72cd25e3d3",
+    "inputHash": "sha256:149898b45995579b23b947c3edbaa5e85ce4a6b8c5bd80dc98bbef81bd1609bc",
+    "beforeRecipeHash": "sha256:94022710e2361843175a11450835a3ae5650519d5f1b92ad9ba9338f2164280e",
+    "afterRecipeHash": "sha256:246ea655b26e820cad9c8af289b10aacdae215aa3467546bdc83f779f456414f",
+    "beforeLodRecipeHash": "sha256:52fac8ce6ddcd2c9bccd87049688dd14457345380d2c3d1a7d0a639fb09049eb",
+    "afterLodRecipeHash": "sha256:1c88380463bf5dc0c8836eff6ce34edc5e752aefd171712eac8b3d64fbd7c37d",
+    "sourceHash": "sha256:060b3107daec170d81ff8232545184e60e4b4204a0a710644cbec02bddeaafa5",
+    "runtimeHash": "sha256:82ef7c20a71f905b800017bd88a704fc5163e786ce6c310309fd18c4949919ed",
+    "lodHashes": [
+      {
+        "name": "skyline",
+        "hash": "sha256:07939864378ccadf5f04d77f948fbfc30fb602b4d20633c7477846d0bf327e46"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:a63f9e5155caaa1ab87749f176860539c4aa7a7af8187f5dca37919498dd8f3b"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:b52c83ba32487e03605feefaeccbc71cc61e1bccaeccd5ed7045d095d67651bd"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:fec8d5b97f0cbd598e8d1c399db664fbd1562d7b595a92e463a52545e278e4ab"
+      }
+    ],
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 62,
+    "method": "Biome reordered normalize/normalFor in one ESM named import. The remainder of the recipe is byte-equivalent after line-ending normalization. Source regeneration/import checks passed; targeted LOD rebuilding updated its recipe fingerprint while preserving every GLB, level metadata and inspected image byte."
+  }
+}

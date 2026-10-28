@@ -1,10 +1,16 @@
 /** Off-thread terrain-grid draping and vertex welding. No WebGL context is created in workers. */
 import * as THREE from 'three';
+import { terrainBuildingCoverage } from './building-coverage';
 import { markTerrainGroundSurface } from './ground-cutout';
 import { createTerrainGroundMaterial } from './ground-material';
 import { Heightfield } from './heightfield';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { createLandcoverMesh, type TerrainSemanticMeshOptions } from './semantic-client';
+import {
+  type TerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+  terrainSemanticTilePacket,
+} from './semantic-packet';
 import type { TerrainSemanticTile } from './semantic-types';
 
 export interface TerrainLandcoverGenerator {
@@ -31,7 +37,11 @@ export interface TerrainLandcoverWorker {
 
 interface Request {
   id: number;
-  tile: TerrainSemanticTile;
+  /** The whole tile as the packet it arrived in (see terrainSemanticTilePacket): the worker
+   * sets aside what land cover does not draw, after measuring building coverage from it. */
+  packet?: TerrainSemanticTilePacket;
+  /** Otherwise the land cover alone, its building coverage measured by the host. */
+  tile?: TerrainSemanticTile;
   context: Omit<TerrainPyramidTileLayerContext, 'heightfield' | 'signal' | 'admission'>;
   ground: {
     samples: Float32Array;
@@ -43,7 +53,11 @@ interface Request {
   };
   options: Pick<
     TerrainSemanticMeshOptions,
-    'landcoverColors' | 'landcoverOffset' | 'landcoverPaletteAreas'
+    | 'landcoverColors'
+    | 'landcoverOffset'
+    | 'landcoverPaletteAreas'
+    | 'landcoverDetail'
+    | 'urbanGround'
   >;
 }
 interface Result {
@@ -55,6 +69,7 @@ interface Result {
     agricultureRows: Float32Array;
     agricultureSoil: Float32Array;
     landcoverBlend: Float32Array;
+    landcoverDetail: Float32Array;
     indices: Uint16Array | Uint32Array;
   };
   error?: string;
@@ -68,11 +83,29 @@ export function installTerrainLandcoverWorker(
     const request = event.data as Request;
     try {
       const ground = request.ground;
-      const heightfield = new Heightfield(ground.samples, ground.cols, ground.rows, ground);
+      const heightfield = new Heightfield(ground.samples, ground.cols, ground.rows, {
+        ...ground,
+        validated: true,
+      });
+      const whole = request.packet
+        ? terrainSemanticTileFromPacket(request.packet)
+        : (request.tile as TerrainSemanticTile);
+      const urban = request.options.urbanGround;
       const mesh = createLandcoverMesh(
-        request.tile,
+        // Land cover draws none of the buildings, roads or water; only buildings' coverage.
+        { ...whole, buildings: [], transportation: [], water: [] },
         { ...request.context, heightfield, signal: new AbortController().signal },
-        request.options,
+        {
+          ...request.options,
+          ...(urban
+            ? {
+                urbanGround: {
+                  ...urban,
+                  coverage: urban.coverage ?? terrainBuildingCoverage(whole),
+                },
+              }
+            : {}),
+        },
       );
       const result: Result = { id: request.id };
       if (mesh) {
@@ -83,6 +116,7 @@ export function installTerrainLandcoverWorker(
           agricultureRows: mesh.geometry.getAttribute('agricultureRows').array as Float32Array,
           agricultureSoil: mesh.geometry.getAttribute('agricultureSoil').array as Float32Array,
           landcoverBlend: mesh.geometry.getAttribute('landcoverBlend').array as Float32Array,
+          landcoverDetail: mesh.geometry.getAttribute('landcoverDetail').array as Float32Array,
           indices: mesh.geometry.index?.array as Uint16Array | Uint32Array,
         };
         mesh.geometry.dispose();
@@ -149,6 +183,7 @@ export function createTerrainLandcoverWorkerBridge(
       geometry.setAttribute('agricultureRows', new THREE.BufferAttribute(data.agricultureRows, 4));
       geometry.setAttribute('agricultureSoil', new THREE.BufferAttribute(data.agricultureSoil, 3));
       geometry.setAttribute('landcoverBlend', new THREE.BufferAttribute(data.landcoverBlend, 4));
+      geometry.setAttribute('landcoverDetail', new THREE.BufferAttribute(data.landcoverDetail, 2));
       geometry.setIndex(new THREE.BufferAttribute(data.indices, 1));
       const mesh = new THREE.Mesh(geometry, job.options.materials?.landcover ?? material);
       markTerrainGroundSurface(mesh);
@@ -176,9 +211,12 @@ export function createTerrainLandcoverWorkerBridge(
     generate(tile, context, options) {
       if (disposed || context.signal.aborted) return Promise.resolve(undefined);
       const { heightfield, signal, admission: _admission, ...rest } = context;
+      const packet = terrainSemanticTilePacket(tile);
       const request: Request = {
         id: nextId++,
-        tile: { ...tile, buildings: [], transportation: [], water: [] },
+        ...(packet
+          ? { packet }
+          : { tile: { ...tile, buildings: [], transportation: [], water: [] } }),
         context: rest,
         ground: {
           samples: heightfield.copySamples(),
@@ -193,8 +231,20 @@ export function createTerrainLandcoverWorkerBridge(
           ...(options.landcoverPaletteAreas
             ? { landcoverPaletteAreas: options.landcoverPaletteAreas }
             : {}),
+          ...(options.landcoverDetail ? { landcoverDetail: options.landcoverDetail } : {}),
           ...(options.landcoverOffset !== undefined
             ? { landcoverOffset: options.landcoverOffset }
+            : {}),
+          // A packet carries the buildings, measured in the worker; else coverage travels.
+          ...(options.urbanGround
+            ? {
+                urbanGround: {
+                  ...options.urbanGround,
+                  ...(packet === undefined
+                    ? { coverage: options.urbanGround.coverage ?? terrainBuildingCoverage(tile) }
+                    : {}),
+                },
+              }
             : {}),
         },
       };

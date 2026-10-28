@@ -1,0 +1,614 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "wood_log",
+      "slot": "wall",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "wood_vertical",
+      "slot": "roof",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "canopy": {
+      "graph": "metal_corrugated",
+      "slot": "roof",
+      "roughness": 0.76,
+      "metallic": 0.2
+    },
+    "trim": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "brick": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.92,
+      "metallic": 0
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      36.34706681404528,
+      14,
+      -1.9724943638267085
+    ],
+    "lookAt": [
+      0,
+      2.2,
+      0
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-smithy-log-room-board-hip-and-open-side-canopy",
+      "position": [
+        30.593207397142987,
+        9,
+        -1.027453724211254
+      ],
+      "lookAt": [
+        0.7627698578136797,
+        2.2,
+        -0.6466700426112987
+      ],
+      "fov": 52
+    },
+    {
+      "name": "recessed-double-door-supported-hood-and-brick-chimney",
+      "position": [
+        7.49535664493801,
+        5,
+        -22.08663914599013
+      ],
+      "lookAt": [
+        3.2832790616594805,
+        2,
+        -5.405559971295151
+      ],
+      "fov": 56
+    },
+    {
+      "name": "open-lean-to-posts-beams-and-original-ground",
+      "position": [
+        12.402830624817057,
+        6,
+        13.083187398034937
+      ],
+      "lookAt": [
+        1.810676119311636,
+        1.7,
+        2.135755601878303
+      ],
+      "fov": 56
+    },
+    {
+      "name": "map-derived-rear-roof-and-downhill-plinth",
+      "position": [
+        -29.94653735453169,
+        12,
+        1.7902235820249324
+      ],
+      "lookAt": [
+        -0.7627698578136797,
+        2.2,
+        0.6466700426112987
+      ],
+      "fov": 52
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/models/smithy-carpentry-yasnaya-polyana-model.mjs",
+    "export": "buildSmithySkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSmithyDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "canopy": {
+            "graph": "metal_corrugated",
+            "slot": "roof",
+            "roughness": 0.76,
+            "metallic": 0.2
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSmithyStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "canopy": {
+            "graph": "metal_corrugated",
+            "slot": "roof",
+            "roughness": 0.76,
+            "metallic": 0.2
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSmithyCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "canopy": {
+            "graph": "metal_corrugated",
+            "slot": "roof",
+            "roughness": 0.76,
+            "metallic": 0.2
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.52468612502881,
+      54.07340789404078
+    ],
+    "heading": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[2.3,10] supplies205.2228043360681m datum. Whole boundary grades-1.487..0.038m, floor+0.2m and closed room foundation/support bottoms-1.7m. Original ground remains under the open side canopy; occupied room,11 post feet and two entry aprons alone cut it. Coarse downhill plinth/support exposure can reach about1.7m, higher than the visible front-photo plinth; hidden levels remain approximate. No flattening or bespoke terrain. Independent neighbors, approach, roads and ponds remain. Inspected native whole/front-door/open-canopy/rear views. The road wraps around the northwest and southwest sides; the northeast door approach and valley-facing view remain a photo/map interpretation, rather than being rotated solely toward the nearest road segment. The room/roof, hood, brick chimney and open lean-to read coherently; original ground remains beneath the canopy. One owned record is replaced while242 resident independent buildings, roads and40070.675m² pond water remain. Hidden rear extent and downhill plinth exposure remain approximate.",
+    "bounds": [
+      37.52451874364906,
+      54.073311269133704,
+      37.52485357175774,
+      54.07350300611103
+    ],
+    "terrainReference": {
+      "anchor": [
+        37.52478013818343,
+        54.07348174517898
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[2.3,10] supplies205.2228043360681m datum. Whole boundary grades-1.487..0.038m, floor+0.2m and closed room foundation/support bottoms-1.7m. Original ground remains under the open side canopy; occupied room,11 post feet and two entry aprons alone cut it. Coarse downhill plinth/support exposure can reach about1.7m, higher than the visible front-photo plinth; hidden levels remain approximate. No flattening or bespoke terrain. Independent neighbors, approach, roads and ponds remain."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.93231592174331,
+          0.6973699522880281
+        ],
+        [
+          -1.924904138301755,
+          8.756235453088692
+        ],
+        [
+          8.936584126032656,
+          -0.5289779177265928
+        ],
+        [
+          2.1043576371771446,
+          -8.587827228900977
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.93231592174331,
+            0.6973699522880281
+          ],
+          [
+            -1.924904138301755,
+            8.756235453088692
+          ],
+          [
+            8.936584126032656,
+            -0.5289779177265928
+          ],
+          [
+            2.1043576371771446,
+            -8.587827228900977
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Named Кузня и плотницкая POI and way617403594 identify this range independently from the other estate buildings. The mapped10.7m frontage and14.3m depth describe the whole room/canopy envelope. The photo-visible log room occupies the right frontage and the open lean-to the left; hidden depth is reconstructed along the map outline. X northwest across the northeast approach; Z northeast toward the front door, native east/up/south axes baked with heading0 at the unchanged assigned member anchor. This is an explicit photo/map interpretation of the complete mapped exterior, not a survey or claim that every hidden bay has been photographed."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -8.93231592174331,
+          0.6973699522880281
+        ],
+        [
+          -4.769077426905884,
+          5.485297380348021
+        ],
+        [
+          6.1717251309402945,
+          -3.790225483866169
+        ],
+        [
+          2.1043576371771446,
+          -8.587827228900977
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.93231592174331,
+            0.6973699522880281
+          ],
+          [
+            -4.769077426905884,
+            5.485297380348021
+          ],
+          [
+            6.1717251309402945,
+            -3.790225483866169
+          ],
+          [
+            2.1043576371771446,
+            -8.587827228900977
+          ]
+        ],
+        [
+          [
+            -1.8832826509549991,
+            8.681618753945378
+          ],
+          [
+            -1.9738164569205812,
+            8.574830973851462
+          ],
+          [
+            -1.8670286768266657,
+            8.484297167885881
+          ],
+          [
+            -1.7764948708610837,
+            8.591084947979795
+          ]
+        ],
+        [
+          [
+            1.648840649410522,
+            5.6871135283421
+          ],
+          [
+            1.55830684344494,
+            5.5803257482481845
+          ],
+          [
+            1.665094623538855,
+            5.4897919422826025
+          ],
+          [
+            1.755628429504437,
+            5.596579722376518
+          ]
+        ],
+        [
+          [
+            5.233858981134817,
+            2.647764328068996
+          ],
+          [
+            5.143325175169235,
+            2.5409765479750805
+          ],
+          [
+            5.25011295526315,
+            2.450442742009499
+          ],
+          [
+            5.340646761228731,
+            2.5572305221034144
+          ]
+        ],
+        [
+          [
+            8.787322420668483,
+            -0.3648328928639737
+          ],
+          [
+            8.6967886147029,
+            -0.4716206729578891
+          ],
+          [
+            8.803576394796815,
+            -0.5621544789234711
+          ],
+          [
+            8.894110200762398,
+            -0.4553666988295557
+          ]
+        ],
+        [
+          [
+            -4.556755402158276,
+            5.5281644481459935
+          ],
+          [
+            -4.647289208123858,
+            5.421376668052078
+          ],
+          [
+            -4.540501428029943,
+            5.330842862086497
+          ],
+          [
+            -4.449967622064361,
+            5.4376306421804115
+          ]
+        ],
+        [
+          [
+            -1.0246321017927553,
+            2.533659222542716
+          ],
+          [
+            -1.1151659077583371,
+            2.426871442448801
+          ],
+          [
+            -1.0083781276644221,
+            2.3363376364832193
+          ],
+          [
+            -0.9178443216988403,
+            2.443125416577135
+          ]
+        ],
+        [
+          [
+            2.560386229931539,
+            -0.5056899777303878
+          ],
+          [
+            2.4698524239659574,
+            -0.612477757824303
+          ],
+          [
+            2.5766402040598724,
+            -0.7030115637898846
+          ],
+          [
+            2.6671740100254544,
+            -0.5962237836959694
+          ]
+        ],
+        [
+          [
+            6.113849669465205,
+            -3.5182871986633577
+          ],
+          [
+            6.023315863499623,
+            -3.6250749787572727
+          ],
+          [
+            6.1301036435935385,
+            -3.7156087847228547
+          ],
+          [
+            6.220637449559121,
+            -3.6088210046289397
+          ]
+        ],
+        [
+          [
+            7.450586045066843,
+            -1.9415600457636661
+          ],
+          [
+            7.360052239101261,
+            -2.048347825857581
+          ],
+          [
+            7.4668400191951765,
+            -2.138881631823163
+          ],
+          [
+            7.5573738251607585,
+            -2.032093851729248
+          ]
+        ],
+        [
+          [
+            5.769913539516937,
+            -5.563138553765428
+          ],
+          [
+            5.692313134403581,
+            -5.654670936703069
+          ],
+          [
+            5.783845517341223,
+            -5.732271341816426
+          ],
+          [
+            5.861445922454578,
+            -5.640738958878784
+          ]
+        ],
+        [
+          [
+            3.8299034116830413,
+            -7.851448127206467
+          ],
+          [
+            3.752303006569685,
+            -7.942980510144109
+          ],
+          [
+            3.8438353895073267,
+            -8.020580915257465
+          ],
+          [
+            3.921435794620683,
+            -7.929048532319824
+          ]
+        ],
+        [
+          [
+            4.8273994891040815,
+            -4.973844684143188
+          ],
+          [
+            3.0167233697924454,
+            -7.109600286021491
+          ],
+          [
+            3.9396748977469978,
+            -7.892071037581163
+          ],
+          [
+            5.750351017058634,
+            -5.756315435702859
+          ]
+        ],
+        [
+          [
+            5.782684519189199,
+            -5.718176942812176
+          ],
+          [
+            3.9073413956164327,
+            -7.930209530471847
+          ],
+          [
+            4.17431084585122,
+            -8.156544045385802
+          ],
+          [
+            6.049653969423987,
+            -5.94451145772613
+          ]
+        ]
+      ],
+      "basis": "Occupied log room,11 timber post feet and two entrance aprons only; preserve original ground under the open side canopy and outside approach."
+    },
+    "notes": "Named Кузня и плотницкая POI and way617403594 identify this range independently from the other estate buildings. The mapped10.7m frontage and14.3m depth describe the whole room/canopy envelope. The photo-visible log room occupies the right frontage and the open lean-to the left; hidden depth is reconstructed along the map outline. X northwest across the northeast approach; Z northeast toward the front door, native east/up/south axes baked with heading0 at the unchanged assigned member anchor. This is an explicit photo/map interpretation of the complete mapped exterior, not a survey or claim that every hidden bay has been photographed. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[2.3,10] supplies205.2228043360681m datum. Whole boundary grades-1.487..0.038m, floor+0.2m and closed room foundation/support bottoms-1.7m. Original ground remains under the open side canopy; occupied room,11 post feet and two entry aprons alone cut it. Coarse downhill plinth/support exposure can reach about1.7m, higher than the visible front-photo plinth; hidden levels remain approximate. No flattening or bespoke terrain. Independent neighbors, approach, roads and ponds remain.",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 16
+    },
+    "maxDistance": 16
+  }
+}

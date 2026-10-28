@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Live cockpit controls</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101a22;color:#eef3f6;font:14px system-ui}header{height:76px;padding:12px 20px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #344550}h1{font-size:18px;margin:0}select,button{font:inherit;padding:7px;border:1px solid #667b87;border-radius:5px;background:#243540;color:inherit}main{position:relative;height:calc(100vh - 76px)}canvas{display:block;width:100%;height:100%;outline:none}#readings{position:absolute;left:16px;top:14px;pointer-events:none;white-space:pre-line;background:#101a22dc;padding:10px 14px;border-radius:6px;font:12px/1.7 ui-monospace,monospace}#help{font-size:12px;color:#b2c4cf;max-width:400px}#error{position:absolute;top:25%;left:10%;color:#ffbca8;background:#281b1b;padding:20px;display:none}
+</style></head>
+<body><header><h1>Live cockpits</h1><select id="aircraft" aria-label="Aircraft"></select><button type="button" id="view">Exterior view</button><button type="button" id="reset">Reset parked</button><button type="button" id="airborne">Start airborne</button><span id="help">Click switches and gear handles. Drag yokes, pedals, throttle, mixture, propeller and flap levers. Drag empty space to look around.</span></header><main><canvas id="view3d" tabindex="0"></canvas><output id="readings"></output><div id="error"></div></main><script type="module" src="./cockpit-controls.mjs"></script></body></html>

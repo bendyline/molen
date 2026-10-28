@@ -2,8 +2,8 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { validate } from '@bendyline/molen-schema';
 import { Raycaster, Vector3 } from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { describe, expect, it } from 'vitest';
+import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
 const base = new URL('../../../content/entities/', import.meta.url);
 const json = async (path) => JSON.parse(await readFile(new URL(path, base), 'utf8'));
@@ -33,7 +33,7 @@ it('adds fifty distinct aircraft and meets each requested category minimum', () 
     expect(aircraft.some((a) => a.slug === slug)).toBe(true);
 });
 describe.each(aircraft)('$slug imported aircraft', (s) => {
-  it('has a valid controllable type, pinned source/runtime and bounded texture-free geometry', async () => {
+  it('has a valid controllable type, pinned source/runtime and bounded geometry/textures', async () => {
     const source = await json(`source/aircraft/${s.slug}/source.json`);
     const definition = await json(`source/aircraft/${s.slug}/entity.types.json`);
     expect(validate('types', definition).ok).toBe(true);
@@ -53,7 +53,9 @@ describe.each(aircraft)('$slug imported aircraft', (s) => {
     expect(hash(bytes)).toBe(asset.hash);
     expect(bytes.length).toBeLessThan(4_000_000);
     expect(asset.stats.triangles).toBeLessThan(100_000);
-    expect(asset.stats.textures).toBe(0);
+    expect(asset.stats.textures).toBe(source.files.textures.length);
+    // Up to eight shared PBR finishes (three maps each), plus a cockpit font atlas.
+    expect(asset.stats.textures).toBeLessThanOrEqual(27); // Shared finishes + per-role font atlases.
     const { scene } = await new GLTFLoader().parseAsync(
       bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
       '',

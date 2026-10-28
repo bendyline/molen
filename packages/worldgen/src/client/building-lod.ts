@@ -66,6 +66,13 @@ export function createBuildingCellLod(
   lod.position.copy(center);
   lod.updateMatrix();
   lod.matrixAutoUpdate = false;
+  const nightSource = new THREE.BufferGeometry();
+  nightSource.setAttribute('position', attributes.position);
+  nightSource.setIndex(fullIndex);
+  const night = materials.nightWindows?.createGeometry(
+    nightSource,
+    cell.groups.filter((g) => g.slot === 'window'),
+  );
   for (let detail = 0; detail < 3; detail++) {
     const geometry = new THREE.BufferGeometry();
     for (const [key, value] of Object.entries(attributes)) geometry.setAttribute(key, value);
@@ -81,9 +88,17 @@ export function createBuildingCellLod(
     mesh.updateMatrix();
     mesh.matrixAutoUpdate = false;
     mesh.receiveShadow = true;
-    // The middle level is the same geometry; its shadows keep a street from flattening out.
-    mesh.castShadow = detail <= 1;
+    // Every level casts: the structural level is what an airplane sees, and its walls and roofs
+    // shade the streets around them. Hosts that judge casters by height marked most such cells
+    // anyway, but rebuilt cells kept this flag, leaving shadowless holes in a downtown.
+    mesh.castShadow = true;
     mesh.userData.worldgenOwnedGeometry = true;
+    if (night && materials.nightWindows) {
+      const light = materials.nightWindows.mesh(night);
+      // All levels share the same glass layer, including the structural far level.
+      light.userData.worldgenOwnedGeometry = detail === 0;
+      mesh.add(light);
+    }
     lod.addDetail(mesh, [0, 0.35, 0.9][detail] as number);
   }
   return lod;

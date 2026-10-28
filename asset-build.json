@@ -7,6 +7,8 @@
     "data": [
       "assets/structures",
       "content/entities/source",
+      "content/entities/fonts",
+      "content/earth/source/fonts",
       "content/worldgen/source",
       "content/worldgen/materials",
       "content/earth/structures/georeferencing.json",
@@ -88,6 +90,10 @@
     {
       "id": "worldgen-researched-bridges",
       "command": ["node", "packages/worldgen/scripts/generate-researched-bridges.mjs"]
+    },
+    {
+      "id": "worldgen-authored-bridges",
+      "command": ["node", "packages/worldgen/scripts/generate-authored-bridge-models.mjs"]
     },
     {
       "id": "worldgen-heritage-towers",
@@ -210,6 +216,850 @@
     {
       "id": "worldgen-authored-places",
       "command": ["node", "packages/worldgen/scripts/generate-authored-places.mjs"]
+    },
+    {
+      "id": "worldgen-tomioka-silk-mill",
+      "command": [
+        "node",
+        "content/worldgen/source/places/xn/xn6/tomioka_silk_mill/models/generate-tomioka-silk-mill.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-maniguin-island-lighthouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/wd/wdn/maniguin_island_lighthouse/models/generate-maniguin-island-lighthouse.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-democracy-monument",
+      "command": [
+        "node",
+        "content/worldgen/source/places/w4/w4r/democracy_monument/models/generate-democracy-monument.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-dalat-palace-hotel",
+      "command": [
+        "node",
+        "content/worldgen/source/places/w6/w6j/dalat_palace_hotel/models/generate-dalat-palace-hotel.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-kwai-tsing-theatre",
+      "command": [
+        "node",
+        "content/worldgen/source/places/we/wec/kwai_tsing_theatre/models/generate-kwai-tsing-theatre.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-bai-dinh-temple",
+      "command": [
+        "node",
+        "content/worldgen/source/places/w7/w7e/bai_dinh_temple/models/generate-bai-dinh-temple.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-canton-tower",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ws/ws0/canton_tower/models/generate-canton-tower.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-cairn-gorm-weather-station",
+      "command": [
+        "node",
+        "content/worldgen/source/places/gf/gfj/cairn_gorm_weather_station/models/generate-cairn-gorm-weather-station.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-aqueduct-of-valens",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sx/sxk/aqueduct_of_valens/models/generate-aqueduct-of-valens.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-brussels-town-hall",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u1/u15/brussels_town_hall/models/generate-brussels-town-hall.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-gran-hotel-palma",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sp/sp1/gran_hotel_palma/models/generate-gran-hotel-palma.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-derby-silk-mill",
+      "command": [
+        "node",
+        "content/worldgen/source/places/gc/gcq/derby_silk_mill/models/generate-derby-silk-mill.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-courtrai-newfoundland-memorial",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u1/u14/courtrai_newfoundland_memorial/models/generate-courtrai-newfoundland-memorial.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-national-observatory-of-athens",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sw/swb/national_observatory_of_athens/models/generate-national-observatory-of-athens.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-alferaki-palace",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ub/ub7/alferaki_palace/models/generate-alferaki-palace.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-apollon-theater-syros",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sw/sw9/apollon_theater_syros/models/generate-apollon-theater-syros.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-big-four-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dn/dng/big_four_bridge/models/generate-big-four-bridge.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-arkansas-state-capitol",
+      "command": [
+        "node",
+        "content/worldgen/source/places/9y/9yn/arkansas_state_capitol/models/generate-arkansas-state-capitol.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-catharine-furnace",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dq/dqb/catharine_furnace/models/generate-catharine-furnace.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-cape-may-lighthouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dq/dqf/cape_may_lighthouse/models/generate-cape-may-lighthouse.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-griffith-observatory",
+      "command": [
+        "node",
+        "content/worldgen/source/places/9q/9q5/griffith_observatory/models/generate-griffith-observatory.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-sather-tower",
+      "command": [
+        "node",
+        "content/worldgen/source/places/9q/9q9/sather_tower/models/generate-sather-tower.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-st-peters-basilica-columbia",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dn/dnn/basilica_of_st_peter_columbia_south_carolina/models/generate-st-peters-basilica-columbia.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-victoria-bridge-brisbane",
+      "command": [
+        "node",
+        "content/worldgen/source/places/r7/r7h/victoria_bridge_brisbane/models/generate-victoria-bridge-brisbane.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-trial-bay-gaol",
+      "command": [
+        "node",
+        "content/worldgen/source/places/r6/r6s/trial_bay_gaol/models/generate-trial-bay-gaol.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-puente-de-la-mujer",
+      "command": [
+        "node",
+        "content/worldgen/source/places/69/69y/puente_de_la_mujer/models/generate-puente-de-la-mujer.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-cordoba-cathedral",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6d/6d6/cathedral_of_cordoba_argentina/models/generate-cordoba-cathedral.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-larnach-castle",
+      "command": [
+        "node",
+        "content/worldgen/source/places/pz/pzc/larnach_castle/models/generate-larnach-castle.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-emlen-physick-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dq/dqf/emlen_physick_house/models/generate-emlen-physick-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-bank-of-america-stadium",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dn/dnq/bank_of_america_stadium/models/generate-bank-of-america-stadium.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-mortuary-temple-of-hatshepsut",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ss/ssx/mortuary_temple_of_hatshepsut/models/generate-mortuary-temple-of-hatshepsut.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-bethlehem-steel-administration-building",
+      "command": [
+        "node",
+        "content/worldgen/source/places/9q/9q8/bethlehem_steel_administration_building/models/generate-bethlehem-steel-administration-building.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-chatham-manor",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dq/dqb/chatham_manor/models/generate-chatham-manor.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-kashmiri-gate-delhi",
+      "command": [
+        "node",
+        "content/worldgen/source/places/tt/ttn/kashmiri_gate_delhi/models/generate-kashmiri-gate-delhi.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-national-congress-palace",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6v/6vj/national_congress_palace/models/generate-national-congress-palace.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-birdsville-hotel",
+      "command": [
+        "node",
+        "content/worldgen/source/places/r5/r57/birdsville_hotel/models/generate-birdsville-hotel.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-sardar-sarovar-dam",
+      "command": [
+        "node",
+        "content/worldgen/source/places/te/teu/sardar_sarovar_dam/models/generate-sardar-sarovar-dam.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-national-flag-memorial",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6d/6dh/national_flag_memorial/models/generate-national-flag-memorial.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-ahmad-shahi-pavilion",
+      "command": [
+        "node",
+        "content/worldgen/source/places/tn/tnk/ahmad_shahi_pavilion/models/generate-ahmad-shahi-pavilion.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-black-eagle-dam",
+      "command": [
+        "node",
+        "content/worldgen/source/places/c8/c82/black_eagle_dam/models/generate-black-eagle-dam.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-jimbour-homestead",
+      "command": [
+        "node",
+        "content/worldgen/source/places/r7/r75/jimbour_homestead/models/generate-jimbour-homestead.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-gurdwara-sis-ganj-sahib",
+      "command": [
+        "node",
+        "content/worldgen/source/places/tt/ttn/gurdwara_sis_ganj_sahib/models/generate-gurdwara-sis-ganj-sahib.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-canonbury-house-and-tower",
+      "command": [
+        "node",
+        "content/worldgen/source/places/gc/gcp/canonbury_house_and_canonbury_tower/models/generate-canonbury-house-and-tower.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-dublin-tunnel",
+      "command": [
+        "node",
+        "content/worldgen/source/places/gc/gc7/dublin_port_tunnel/models/generate-dublin-tunnel.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-boughton-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/gc/gcr/boughton_house/models/generate-boughton-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-india-gate",
+      "command": ["node", "packages/worldgen/scripts/generate-india-gate.mjs"]
+    },
+    {
+      "id": "worldgen-place-sr2-palazzo-dei-conservatori",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/models/generate-palazzo-dei-conservatori.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-sr2-palazzo-nuovo-capitoline",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/sr2/palazzo_nuovo_capitoline/models/generate-palazzo-nuovo-capitoline.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-sr2-palazzo-senatorio-tabularium",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/sr2/palazzo_senatorio_tabularium/models/generate-palazzo-senatorio-tabularium.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-leo-tolstoy-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/generate-leo-tolstoy-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-kuzminsky-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/models/generate-kuzminsky-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-volkonsky-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/models/generate-volkonsky-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-coachmans-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/coachmans_house_yasnaya_polyana/models/generate-coachmans-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-granary",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/models/generate-granary-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-smithy-carpentry",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/models/generate-smithy-carpentry-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-pavilion",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/pavilion_yasnaya_polyana/models/generate-pavilion-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-garden-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/garden_house_yasnaya_polyana/models/generate-garden-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-gate-towers",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/models/generate-gate-towers-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-bathhouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/bathhouse_yasnaya_polyana/models/generate-bathhouse-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-birch-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/models/generate-birch-bridge-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-tower-gazebo",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/models/generate-tower-gazebo-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-stable-carriage-shed",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/stable_carriage_shed_yasnaya_polyana/models/generate-stable-carriage-shed-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-greenhouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/greenhouse_yasnaya_polyana/models/generate-greenhouse-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-poultry-house",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/poultry_house_yasnaya_polyana/models/generate-poultry-house-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-equipment-shed",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/models/generate-equipment-shed-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-riga",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/riga_yasnaya_polyana/models/generate-riga-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-white-kitchen",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/models/generate-white-kitchen-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ucd-icehouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/uc/ucd/icehouse_yasnaya_polyana/models/generate-icehouse-yasnaya-polyana.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-great-pyramid-of-cholula",
+      "command": [
+        "node",
+        "content/worldgen/source/places/9g/9g6/great_pyramid_of_cholula/models/generate-great-pyramid-of-cholula.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-durham-confederate-monument",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dn/dnr/confederate_soldiers_monument_durham_north_carolina/models/generate-durham-confederate-monument.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-canterbury-earthquake-memorial",
+      "command": [
+        "node",
+        "content/worldgen/source/places/rb/rb6/canterbury_earthquake_national_memorial/models/generate-canterbury-earthquake-memorial.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-fort-orange",
+      "command": [
+        "node",
+        "content/worldgen/source/places/7n/7nx/fort_orange_dutch_brazil/models/generate-fort-orange.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-quito-cathedral",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6r/6rb/quito_metropolitan_cathedral/models/generate-quito-cathedral.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-buffavento",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sw/swr/buffavento_castle/models/generate-buffavento.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-sher-garhi",
+      "command": [
+        "node",
+        "content/worldgen/source/places/tw/twj/sher_garhi_palace/models/generate-sher-garhi.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-yuya",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ss/ssx/tomb_of_yuya_and_thuya/models/generate-yuya.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-refinery",
+      "command": [
+        "node",
+        "content/worldgen/source/places/r7/r7h/csr_refinery_new_farm/models/generate-refinery.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-castle-campus",
+      "command": [
+        "node",
+        "content/worldgen/source/places/9q/9qd/castle_air_force_base/models/generate-castle.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-cathedral-square",
+      "command": [
+        "node",
+        "content/worldgen/source/places/rb/rb6/cathedral_square_christchurch/models/generate-cathedral-square.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-kha",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ss/ssx/tomb_of_kha_and_merit/models/generate-kha.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-caseros",
+      "command": [
+        "node",
+        "content/worldgen/source/places/69/69y/caseros_prison/models/generate-caseros.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-copeton-dam",
+      "command": [
+        "node",
+        "content/worldgen/source/places/r6/r6e/copeton_dam/models/generate-copeton-dam.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-canyon-hotel",
+      "command": [
+        "node",
+        "content/worldgen/source/places/9x/9xc/canyon_hotel/models/generate-canyon-hotel.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-fortress-of-humaita",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6e/6en/fortress_of_humaita/models/generate-humaita.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-marib-dam",
+      "command": [
+        "node",
+        "content/worldgen/source/places/t4/t48/marib_dam/models/generate-marib.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-tomb-of-tutankhamun",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ss/ssx/tomb_of_tutankhamun/models/generate-tomb.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-house-of-wonders",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ky/kyg/house_of_wonders/models/generate-palace.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-yellow-house-venezuela",
+      "command": [
+        "node",
+        "content/worldgen/source/places/d9/d9b/yellow_house_venezuela/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-paleontological-museum-villa-de-leyva",
+      "command": [
+        "node",
+        "content/worldgen/source/places/d3/d35/paleontological_museum_villa_de_leyva/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-empire-theatre-toowoomba",
+      "command": [
+        "node",
+        "content/worldgen/source/places/r7/r7h/empire_theatre_toowoomba/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-municipal-theatre-of-santiago",
+      "command": [
+        "node",
+        "content/worldgen/source/places/66/66j/municipal_theatre_of_santiago/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-abbey-of-santo-domingo-de-silos",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ez/ezm/abbey_of_santo_domingo_de_silos/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-basilica-of-our-lady-of-copacabana",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6m/6mn/basilica_of_our_lady_of_copacabana/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-queens-hotel-townsville",
+      "command": [
+        "node",
+        "content/worldgen/source/places/rk/rk8/queen_s_hotel_townsville/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-hotel-okura-tokyo",
+      "command": [
+        "node",
+        "content/worldgen/source/places/xn/xn7/hotel_okura_tokyo/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-government-house-hong-kong",
+      "command": [
+        "node",
+        "content/worldgen/source/places/we/wec/government_house_hong_kong/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-fort-of-santa-catalina-lima",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6m/6mc/fort_of_santa_catalina_lima/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-hibiya-open-air-concert-hall",
+      "command": [
+        "node",
+        "content/worldgen/source/places/xn/xn7/hibiya_open_air_concert_hall/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-frere-hall",
+      "command": [
+        "node",
+        "content/worldgen/source/places/tk/tkr/frere_hall/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-happisburgh-lighthouse",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u1/u13/happisburgh_lighthouse/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-juscelino-kubitschek-de-oliveira-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6y/6yy/juscelino_kubitschek_de_oliveira_bridge/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-governor-nobre-de-carvalho-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/we/web/governor_nobre_de_carvalho_bridge/models/generate-house.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-udt-red-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/models/generate-red-bridge.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-u2f-pisek-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u2/u2f/pisek_stone_bridge/models/generate-pisek.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-sry-pupin-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/sry/pupin_bridge/models/generate-pupin.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-srw-iber-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/srw/iber_bridge/models/generate-iber.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-w5u-ava-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/w5/w5u/ava_bridge/models/generate-ava.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-gcp-richmond-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/gc/gcp/richmond_bridge/models/generate-richmond.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-u17-muntplein",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u1/u17/muntplein/models/generate-muntplein.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ud6-inglisild",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ud/ud6/inglisild/models/generate-inglisild.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-ud6-kuradisild",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ud/ud6/kuradisild/models/generate-kuradisild.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-sr2-garibaldi-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sr/sr2/garibaldi_bridge/models/generate-garibaldi.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-dnr-gregson-street-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/models/generate-eleven-foot-eight.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-6dh-rosario-victoria-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/6d/6dh/rosario_victoria_bridge/models/generate-rosario.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-w3g-rach-mieu-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/models/generate-rach-mieu.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-w65-kizuna-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/w6/w65/kizuna_bridge/models/generate-kizuna.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-sp2-les-ferreres-aqueduct",
+      "command": [
+        "node",
+        "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/models/generate-ferreres.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-w6u-han-river-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/w6/w6u/han_river_bridge/models/generate-han.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-w63-spean-thma",
+      "command": [
+        "node",
+        "content/worldgen/source/places/w6/w63/spean_thma/models/generate-spean.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-udt-kokushkin-bridge",
+      "command": [
+        "node",
+        "content/worldgen/source/places/ud/udt/kokushkin_bridge/models/generate-kokushkin.mjs"
+      ]
+    },
+    {
+      "id": "worldgen-place-u09-pont-du-garigliano",
+      "command": [
+        "node",
+        "content/worldgen/source/places/u0/u09/pont_du_garigliano/models/generate-garigliano.mjs"
+      ]
     }
   ],
   "afterImport": [

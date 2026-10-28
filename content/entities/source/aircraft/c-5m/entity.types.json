@@ -257,7 +257,48 @@
                     "scale": 1,
                     "missing": "hide"
                   }
-                ]
+                ],
+                "derived": {
+                  "gearExposed": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.02
+                    ]
+                  }
+                },
+                "sources": {
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -10513,9 +10554,9 @@
                 "propulsion": "jet",
                 "densityExponent": 0.85,
                 "dryThrust": 228000,
-                "ramRise": 0.15,
                 "highAltitudeDensityRatio": 0.33514656526304276,
-                "highAltitudeExponent": 1.2
+                "highAltitudeExponent": 1.2,
+                "ramRise": 0.15
               },
               {
                 "id": "engine-2",
@@ -10539,9 +10580,9 @@
                 "propulsion": "jet",
                 "densityExponent": 0.85,
                 "dryThrust": 228000,
-                "ramRise": 0.15,
                 "highAltitudeDensityRatio": 0.33514656526304276,
-                "highAltitudeExponent": 1.2
+                "highAltitudeExponent": 1.2,
+                "ramRise": 0.15
               },
               {
                 "id": "engine-3",
@@ -10565,9 +10606,9 @@
                 "propulsion": "jet",
                 "densityExponent": 0.85,
                 "dryThrust": 228000,
-                "ramRise": 0.15,
                 "highAltitudeDensityRatio": 0.33514656526304276,
-                "highAltitudeExponent": 1.2
+                "highAltitudeExponent": 1.2,
+                "ramRise": 0.15
               },
               {
                 "id": "engine-4",
@@ -10591,9 +10632,9 @@
                 "propulsion": "jet",
                 "densityExponent": 0.85,
                 "dryThrust": 228000,
-                "ramRise": 0.15,
                 "highAltitudeDensityRatio": 0.33514656526304276,
-                "highAltitudeExponent": 1.2
+                "highAltitudeExponent": 1.2,
+                "ramRise": 0.15
               }
             ]
           }
@@ -10628,7 +10669,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

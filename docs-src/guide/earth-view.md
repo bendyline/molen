@@ -12,6 +12,13 @@ composes:
 
 You speak latitude and longitude; the view keeps its metric world frame internally.
 
+[Night lighting](night-lighting.md) follows the skyâ€™s Sun position: occupied windows and street
+lamps fade in through dusk. Existing model glass can opt in with material lighting metadata.
+
+[Boost mode](boost-mode.md) makes walking, driving and flying four times faster: press **T**, or
+call `view.setBoostMode(true)`. Pass `boostMode: true` at mount to start enabled; read
+`view.boostMode` and listen for `boostchange` to keep a host's toggle in sync.
+
 ```ts
 import {
   loadEarthContent,
@@ -44,8 +51,10 @@ creditsElement.textContent = view.credits.map((credit) => credit.label).join(' Â
 ```
 
 Each worker file is one line, for example `import '@bendyline/molen-earth/workers/elevation';`.
-There are entries for `elevation`, `landcover`, `surface`, `worldgen` and `material`. Any worker
-you omit does its work on the main thread instead.
+There are entries for `elevation`, `landcover`, `surface`, `worldgen`, `material` and `semantic`
+(map tiles decoded off the main thread, where a town tile took 10-18 ms of a frame; hosts using
+`createProfiledTerrainPackageSemanticLayers` directly pass such a worker as `decoderWorker`). Any
+worker you omit does its work on the main thread instead.
 
 Buildings appear with vertex colors while shared material textures bake in the background.
 Completed textures update the existing materials without regenerating buildings. Terrain detail
@@ -86,6 +95,11 @@ shadow map follows that focus in whole texels, so edges hold still as it moves. 
 turns shadows off at its two lowest levels; `shadows: false` turns them off entirely. Only layer
 parts taller than `EARTH_SHADOW_CASTER_HEIGHT` (3.5 m) cast: shrubs, brambles and saplings stay
 out of the shadow pass, where their shadows would mostly fall inside the canopy's.
+
+In flight the shadow footprint widens with height above the local ground: its half-width is
+four times that height, capped at 5 km, with a tighter footprint near the ground. This pushes
+the shadow boundary farther into the distance in aerial views, trading some shadow sharpness
+for coverage at the same map resolution. Walking and driving keep their tighter footprints.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
@@ -405,7 +419,22 @@ for `terrainchange` to refresh an attribution panel when the package changes. Di
 completed flights resolve the destination immediately; manual panning rechecks the host source
 after about five kilometers. A second jump while a region is loading follows the latest target.
 
-## Byte cache and prefetch
+## Tile preparation, byte cache and prefetch
+
+During flight and fast driving, nearby terrain is prepared ahead of travel automatically, even
+without a byte cache. The view predicts camera positions 2, 4, 8 and 12 seconds ahead (up to 4 km),
+following the measured turn rate through a bank as well as straight travel,
+selects their tiles at the current detail budget, and builds terrain, enabled layers and GPU
+resources into the hidden resident cache. Arrival reuses that work. Predictions reset after
+teleports, re-anchoring and camera-entry animations, and follow turns with a short velocity filter.
+
+Preparation is bounded to the larger of 16 tiles or a quarter of the selected-tile budget,
+limited by spare residency, and shares the existing tile,
+layer and memory limits. With three or more load slots, up to half can advance the predicted route
+while visible work remains queued; smaller budgets use spare slots. Displayed coverage takes
+priority under memory pressure. `view.stats()` reports `preloadingTiles` and `preloadedTiles` counts.
+This reduces late detail but cannot guarantee readiness when downloads or generation take longer
+than the available lead time. The separate byte prefetch below warms a longer route.
 
 Terrain, landcover, feature and building tiles, content packs and the small documents that name
 them can persist across visits in a byte cache from `@bendyline/molen-pack/cache`. Ground a viewer
@@ -551,13 +580,46 @@ footprint polygon. It replaces the rectangle for suppression, including concave 
 parallel road segments outside it remain intact. Connection stations use the outline's outer
 intersections with native Z=0, ordered negative to positive X. Without an intersecting outline,
 they fall back to X=-length/2 and X=+length/2. `deckHeights` keeps that endpoint order.
+When a curved crossing's actual ends lie away from native Z=0, supply
+`replaceRoads.deckEndpoints: [[negativeEndX, negativeEndZ], [positiveEndX, positiveEndZ]]`.
+These native coordinates override the inferred connection stations and follow the model's
+heading and X/Z scale. They require `deckHeight` or `deckHeights`, with the same endpoint order.
+For side connections on a sloping or curved deck, add `deckProfile: [[x, y, z], ...]` in
+increasing X order. Remaining bridge fragments join at their actual outline cut using the
+nearest profile segment's interpolated height. The model's scale and resolved datum apply.
+`includeTransverseBridges: true` also replaces bridge-tagged side connectors that terminate
+inside the exact outline, such as paths covered by viewing pods. It requires an outline;
+untagged ground crossings, tunnels, through crossings with both endpoints outside the model,
+and bridge segments outside the outline remain independent.
 If the asset includes its retaining walls and approach pavement, set
 `replaceRoads.includeConnectedApproaches: true`. A grade road is then clipped inside the outline
 only if it shares a covered endpoint with a mapped bridge and continues outward along the bridge
 axis. The remaining grade fragment receives a 20 m terrain blend. Nearby roads, transverse paths
 and tunnels remain intact. This requires the source tile to retain the shared bridge/approach
 endpoint; disconnected or generalized map geometry is left in place.
+For this opted-in mode, a retained mapped bridge tail up to 32 m can carry its deck height
+to the connected street, including through one covered gateway up to 8 m long. The gateway
+itself stays unchanged. Raised ground approaches receive retaining side and end faces down
+to the original terrain; their paving supplies the top. These supports follow the model's
+load and unload lifetime. They provide approximate continuity where coarse elevation data
+misses a bank or quay; they do not establish surveyed ground levels.
 Sunken structures can declare `groundCutout: { outline: [[x, z], ...], basis: 'source evidence' }` on a placement. The simple polygon uses native model metres and follows the same heading and scale as the model. It should bound the ground opening covered by the authored concourse or rim. The terrain pyramid subtracts the polygon from actual elevation and draped ground triangles across tile and LOD boundaries, preserving interpolated heights and surface attributes along its edge. The cutout becomes active only when its successfully loaded structure is visible, and the original ground returns on layer hiding or eviction. Failed or cancelled models leave the ground intact. Heights remain available for anchoring; an opening does not itself author walkable floors or collision. Separate excavations can add `additionalOutlines: [[[x, z], ...], ...]` to the same object (up to 64 total polygons). Ground between those outlines stays intact; every opening needs matching model geometry. Client integrations can register the same set with `setTerrainGroundCutouts(object, outlines)`. The singular `setTerrainGroundCutout` remains available for one polygon.
+
+Bridge openings can set `groundCutout.minHeight` to a native model Y threshold. Only ground
+above that threshold is removed inside the outlines and capped at the threshold; lower dry
+riverbanks remain visible. This explicitly reconstructs a bounded rendered bank without changing
+source height samples. It must be supported by the model's site-fit evidence.
+When `preservePaving` is set, `groundCutout.pavingOutlines` can still name smaller explicit
+paving areas that need the same treatment, such as a river walk passing below a bridge.
+Approach roads outside those paving outlines retain their deck-connection heights and geometry.
+Custom owners pass `{ minHeight }` as the fourth argument to `setTerrainGroundCutouts`.
+The threshold follows the owner's vertical translation and scale, like the existing ceiling.
+
+Bridge landings can set `groundCutout.preservePaving: true` to open coarse terrain and
+generated shoreline walls while retaining native approach roads and sidewalks. The default
+also removes covered paving, as required by sunken buildings. Custom paving adapters use
+`markTerrainPavementSurface`; custom owners pass `{ preservePaving: true }` as the fourth
+argument to `setTerrainGroundCutouts`. Water and source elevation samples remain independent.
 
 For separated parts, `groundCutout.outlines` supplies the complete set of up to 64 simple polygons
 and supersedes the single `outline`. Keep `outline` as the primary boundary for compatibility.
@@ -940,7 +1002,8 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   switch to the high preset, which rebuilds them across the view). Where the browser can time the GPU (`renderer.createGpuTimer()`), the view
   reports GPU and CPU work per frame, so slow frames while tiles stream in lower the level only
   when rendering itself is the cost; without GPU timing it goes by frame times alone. The view
-  first calibrates quickly, so a slow device settles within seconds. Once a level has held for
+  first calibrates quickly, so a slow device settles within seconds (it lowers detail after 2.5 s
+  of overload, not one burst of streaming as a takeoff reveals the view). Once a level has held for
   12 s it turns sticky, because a level change swaps resolution and detail across the view: down
   after 2.5 s of sustained overload, up after 20 s of headroom, at least 6 s apart. Any change
   waits until the camera has been still for 0.6 s (at most 4 s); memory pressure above 1.25
@@ -1012,3 +1075,40 @@ pieces such as a football game, apron traffic or a market. Each geographic place
 a lazy scene loader, optional calendar policy, and entry/exit distances. It waits for terrain,
 plays nearby, and releases its local world when out of range. See [Dioramas](dioramas.md) for
 the full contract and current prototype limits.
+
+## Airport layouts
+
+The `molen.earth` content pack supplies a lazy worldwide runway catalog and a detailed Boeing
+Field layout. Both Earth hosts use measured runway endpoints and widths, draw runway numbers,
+thresholds and centre lines, and keep airport pavement visible from flight altitude. Mapped
+taxiways and aprons have airport markings; airside areas do not become car parks or city streets.
+The airport overlay also supplies mapped hangar/building footprints and suppresses inferred
+vegetation and buildings on the airfield. Aircraft traffic uses the runway approach/departure
+corridors and remains simulated, rather than live aviation tracking.
+
+The runway snapshot covers 10,746 airports with complete endpoint and width records. Detailed
+aprons, taxiways and hangars are currently bundled for Boeing Field; elsewhere these depend on
+the map's coverage. Building heights and untagged taxiway widths are interpreted. Runways with
+missing endpoints, closed runways and water runways are omitted. Supplemental airports also
+render when the basemap has no tile (Boeing Field lies south of the bundled Seattle street-detail
+coverage). No airport data is fetched without a supplied pack. Hosts composing their own
+terrain renderer can use `withEarthAirports`
+around semantic renderers and observers, passing `content.airports` from `loadEarthContent`.
+
+Mapped layouts also populate their aprons with boardable aircraft. Fleet profiles distinguish
+general aviation, regional service, airline hubs and mixed operations; Boeing Field uses a mix
+of light aircraft, business aircraft and larger jets. Aircraft are fitted inside apron polygons
+with clearance from buildings, taxiways, runways, other aircraft and reserved diorama areas.
+The fleet and parking positions are simulated, not live aircraft tracking or exact stand assignments.
+
+Walk to an aircraft's door and press **E** to board, **I** to start, and **Shift/Ctrl** to adjust
+power. The same aircraft taxis and flies away; its original stand remains empty for the session.
+Land, stop and shut down before exiting. Automatic parking keeps at most twelve unclaimed
+aircraft within 1.8 km; claimed aircraft remain owned vehicles across terrain re-anchors.
+Set `airportTraffic: false` on `mountEarthView`, or `?airportTraffic=0` in World Explorer, to
+disable automatic parking. Hosts composing their own loop can use `planAirportApron` and
+`EarthAirportPopulation` with callbacks into their aircraft world.
+
+Detailed apron population currently ships for Boeing Field. Runway-only catalog records do
+not invent parking ground. The **Living places** picker also offers flight-school briefing and
+cargo handling there; these ground scenes reserve space beside the boardable fleet.

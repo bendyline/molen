@@ -1,0 +1,378 @@
+{
+  "planId": "11_foot_8_bridge",
+  "id": "11_foot_8_bridge",
+  "assetId": "molen.worldgen.structure.11_foot_8_bridge",
+  "title": "11 foot 8 / Gregson Street Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q22905940",
+  "referenceCoordinate": {
+    "longitude": -78.910138888,
+    "latitude": 35.999111111
+  },
+  "visualBrief": "Durham Gregson Street: narrow brown steel plate-girder rail bridge, three open lower bays, concrete piers/caps and bearings, rail deck/ties, slender wire fence, separate yellow crash beam with outboard braces and current 12 ft 4 clearance diamonds facing the north approach.",
+  "size": [
+    32.03200149536133,
+    6.460000038146973,
+    8.575500249862671
+  ],
+  "actualBounds": {
+    "min": [
+      -16.016000747680664,
+      -0.5,
+      -5.375500202178955
+    ],
+    "max": [
+      16.016000747680664,
+      5.960000038146973,
+      3.200000047683716
+    ]
+  },
+  "nativeAxes": "+X east-southeast toward Durham station; -X west-northwest along the rail line; +Z south-southwest toward West Pettigrew Street; -Z north-northeast toward West Peabody Street and the southbound Gregson approach. Warning beam and clearance-sign fronts face -Z.",
+  "sourceFacts": {
+    "identity": "Retained exact-QID OSM way 515431845/Q22905940 bridge footprint, confirmed by the current named PMTiles NS Danville District H Line bridge 35184388610530 and independent South Gregson Street 35184388623460. Photos distinguish the steel rail bridge from the separate yellow crash beam.",
+    "mappedPlan": {
+      "length": 28.833,
+      "width": 3.101
+    },
+    "orientation": "+X east-southeast toward Durham station; -X west-northwest along the rail line; +Z south-southwest toward West Pettigrew Street; -Z north-northeast toward West Peabody Street and the southbound Gregson approach. Warning beam and clearance-sign fronts face -Z.",
+    "postedClearance": "12 feet 4 inches, primary operator FAQ and2019 post-raise photograph; not a surveyed model clearance"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Durham--Gregson_Street_Guillotine_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:12foot4.png",
+    "https://11foot8.com/11foot8-faq/"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -78.910131576,
+      35.999075515
+    ],
+    "heading": -0.604004960215,
+    "elevationMode": "sea-level",
+    "elevationMeters": 118.61369353579312,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 28.832,
+      "width": 6.4,
+      "outline": [
+        [
+          -14.416,
+          -3.2
+        ],
+        [
+          14.416,
+          -3.2
+        ],
+        [
+          14.416,
+          3.2
+        ],
+        [
+          -14.416,
+          3.2
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -14.416,
+          0
+        ],
+        [
+          14.416,
+          0
+        ]
+      ],
+      "deckHeights": [
+        4.978,
+        4.978
+      ],
+      "includeConnectedApproaches": true
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bc16045982903462c8ebe0a592515ca92235c86aff94febc637db35d45faeaf6",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://commons.wikimedia.org/wiki/File:12foot4.png",
+    "wikidataId": "Q22905940"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dn/dnr/11_foot_8_bridge/models/eleven-foot-eight-model.mjs",
+    "export": "buildElevenSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.4
+      },
+      "wood": {
+        "slot": "roof",
+        "graph": "wood_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "ballast": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 0.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildElevenDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.4
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildElevenStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.4
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "closeup": {
+        "export": "buildElevenCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.4
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  },
+  "limitations": [
+    "Scoped current rail-overpass exterior with separate crash beam and two posted-clearance diamonds. Exact-QID plan 28.833m by 3.101m is retained; piers at -9.5/+7.8m are photo-led fit controls outside mapped sidewalks, not surveyed span or footing dimensions. The original 11 ft 8 name is historical; visible signs read 12 ft 4.",
+    "Source origin 118.61369353579312m is adjusted against15 actual native lower-road width/station raycasts to retain an approximately3.78m minimum geometric gap. Girder/crash-beam heights preserve an open low-clearance visualization. Mapzen smooths the railway embankment and road depression; a posted clearance label does not certify the modeled or legal passage height.",
+    "The 6.4m road-replacement width adapts the renderer’s default rail-bed width, not a wider claimed bridge. The body retains 3.101m width; small flared ballast landing overlaps cover the incoming generalized railway bed. Underlying Gregson Street and sidewalks must remain independent and ungraded.",
+    "The remote overheight detector, traffic signals, overhead warning portal, utility poles/cables, adjacent buildings, vegetation and complete retaining embankments are contextual features, not separate modeled landmarks. No old flashing beacon configuration is claimed to be current. The crash beam’s exact offset, support sections, fence/wire count, fasteners and wear are simplified.",
+    "Four existing shared 256px graphs concrete_plain, metal_painted, wood_plain and gravel, metric UVs and linear vertex tints; no embedded/private images or copied photo pixels. Far LOD omits text, fence wires, ties and stiffeners; close levels retain current clearance digits, arrows and beams. Physical laptop and phone timings remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-north-approach",
+      "position": [
+        -15,
+        9,
+        -30
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        -0.5
+      ],
+      "fov": 54
+    },
+    {
+      "name": "whole-south-side",
+      "position": [
+        18,
+        9,
+        25
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "rail-deck-ties-and-girders",
+      "position": [
+        -20,
+        8,
+        4
+      ],
+      "lookAt": [
+        8,
+        4.9,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "current-clearance-sign",
+      "position": [
+        -7.8,
+        3,
+        -9.5
+      ],
+      "lookAt": [
+        -10.2,
+        2.72,
+        -5.3
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crash-beam-and-open-road",
+      "position": [
+        -1,
+        1.5,
+        -11
+      ],
+      "lookAt": [
+        -1,
+        3.5,
+        -1.5
+      ],
+      "fov": 57
+    },
+    {
+      "name": "pier-bearing-and-diagonal-brace",
+      "position": [
+        5,
+        3,
+        -8
+      ],
+      "lookAt": [
+        7.8,
+        3,
+        -0.5
+      ],
+      "fov": 55
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9876,
+    "vertices": 29628,
+    "materials": 4,
+    "bytes": 1188020,
+    "sha256": "sha256:9afdbabd0323fd559a6f0097299080c4ebaba540dd322a0bbaab7499b86bb030"
+  }
+}

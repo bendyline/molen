@@ -18,7 +18,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-32,902 triangles; 74,290 vertices; 4 material groups; 3,071,984 bytes. Native bounds: -48.761, 0.000, -30.632 to 49.200, 328.879, 30.632. Source hash: `sha256:2c3871a64cecdf8642836e38bcc58d8cc5819306178cb549f9b7285d1f0ddd68`.
+32,886 triangles; 74,290 vertices; 4 material groups; 3,071,792 bytes. Native bounds: -48.775, 0.000, -30.632 to 49.200, 328.879, 30.632. Source hash: `sha256:5bb257e7c9cf57a1187216ac946522b62c0c7e817a14a6177720d0550ccc3ffa`.
 
 {"up":"+Y","front":"-X toward Greenwich Street and the memorial","north":"-Z toward Dey Street"}
 

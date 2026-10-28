@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.emlen_physick_house",
+  "kind": "static-structure",
+  "title": "Emlen Physick House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.emlen_physick_house",
+        "output": "assets/places/dq/dqf/emlen_physick_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:180e184c1e2ab7fd81230ad0442ac9ff0cb01e20d755cedfe0ff099abb0eecc8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-emlen-physick-house",
+        "path": "models/generate-emlen-physick-house.mjs"
+      },
+      {
+        "id": "emlen-physick-house-model",
+        "path": "models/emlen-physick-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/whole-physick-house.json",
+      "dimension-evidence.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9564-12530.png",
+      "terrain-sources/terrarium-15-9565-12530.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -4,7 +4,7 @@ import { transformed } from './lighthouse-models.mjs';
 import { mhpPlan } from './mhp-plan.mjs';
 import { letterAt, lettering } from './stadium-lettering.mjs';
 import { chair, face, soccerPitch } from './stadium-models.mjs';
-import { box, tube } from './structure-mesh.mjs';
+import { box, tube, tubePath } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2,
   white = [0.93, 0.945, 0.94],
@@ -41,9 +41,7 @@ const upperY = (a) => 38.5 + 8.6 * main(a),
   oldY = (a) => 34.3 + 3.5 * main(a),
   newY = (a) => oldY(a) - 1.2;
 function path(out, ps, r = 0.035, col = steel, slot = 'metal', sides = 8) {
-  for (let i = 1; i < ps.length; i++)
-    if (Math.hypot(...ps[i].map((v, k) => v - ps[i - 1][k])) > 0.0001)
-      tube(out, slot, ps[i - 1], ps[i], r, col, sides);
+  tubePath(out, slot, ps, r, col, sides);
 }
 function rail(out, ps) {
   for (const y of [0.52, 1.06])

@@ -336,6 +336,13 @@ anchors repeat every 16 projected meters, with small gaps and varied widths. Eve
 unobstructed approach from its street to its entrance or garage; homes never form landlocked rows
 inside a block. Visible ground-following paths and driveways connect the entrances to the roadside.
 Separately mapped sidewalks move the building setback behind the sidewalk while retaining access.
+Inferred homes without an attached garage also receive a simple driveway to the front of the
+house when the corridor is clear. Garage approaches and paths connect to the roadside. Weighted
+`lotFences` (`none`, `timber`, `masonry`, `rail`) select low decorative yard boundaries, including
+some fully open yards. Front fences leave gaps around every path and driveway and stay behind
+mapped sidewalks. Fences follow the terrain, exclude vegetation, use a cheaper shape with simplified
+nearby buildings, and disappear on distant tiles. They do not add physical collision barriers. Yard choices use an
+independent identity salt, so decorating a lot does not move or re-roll its house.
 Mapped footprints, occupied landmark extents, other streets, water and incompatible land uses
 such as parks, farmland, schools and parking exclude the entire parcel, including its approach.
 Slopes above 0.3 or more than three meters of height variation also exclude it.
@@ -380,9 +387,10 @@ source supplies matching semantic layers.
 ### Inferred trees around homes
 
 Atlas region bindings and the worldwide default accept `treeFillFactor` from 0 to 1. The
-shipped atlas uses 0.9 in the Pacific Northwest, 0.3 in Japan, and 0 in the Southwest and
-unclassified regions. These are configurable visual priors, not measured canopy percentages
-or a global climate dataset. Fill is resolved at each home's location, including region edges.
+shipped atlas uses 0.35 in North America, overridden by 0.9 in the Pacific Northwest and 0 in
+the Southwest; Japan uses 0.3 and unclassified regions use 0. These are configurable visual priors,
+not measured canopy percentages or a global climate dataset. Fill is resolved at each home's
+location, including region edges.
 
 For complete low-rise footprints of 45–700 m², the Earth adapter adds an irregular yard patch
 roughly 18–26 meters beyond the home. Explicit house classifications qualify; small untyped
@@ -401,7 +409,10 @@ Mapped woodland, parks, parking, playing fields, farmland, barren ground, and ot
 land cover are cut out before planting. Road, building, water, and mapped-tree exclusions still
 apply, as do slope/altitude limits and instance budgets. Neighboring buffered footprints
 participate even when their building mesh belongs to another tile; trees emit only inside the
-current tile. Coverage still depends on the footprints supplied in the source tile buffer.
+current tile. Coverage still depends on the footprints supplied in the source tile buffer. When
+a terrain package declares `features.buildingDetail`, classification and building rendering share its
+detailed footprints and mapped trees. The same depth limit and missing-coverage fallback apply
+to both; water rendering does not wait for building detail.
 
 The dedicated `home_canopy` scatter rule controls species, spacing, setbacks, and detail tiers;
 custom packs opt in by supplying this rule label. Species use the tile's regional scatter set,
@@ -518,7 +529,11 @@ scatter material: a shader that can discard switches off hidden-surface removal 
 GPUs, so a distant forest drawn with the card material shaded every layer of crowns behind the
 first. For the same reason a level drawn with cards hands over to the next at a quarter of the
 projected error its geometry alone would allow (a crown's cards overlap several deep), and the
-distant level neither casts nor receives sun shadows. Buildings retain their structural faces while distant materials and facade details
+distant level neither casts nor receives sun shadows. With `vanishPixels` a batch stops drawing
+once its largest instance spans fewer pixels than that from the batch's nearest point (15%
+hysteresis): the semantic renderers pass 1.5 for street props and signs, which from a few
+kilometers were a draw each for a pixel or less, but not for plants, as a distant forest is the
+sum of its trees. Buildings retain their structural faces while distant materials and facade details
 simplify; geometry attributes are shared across spatial cells and levels. `setQuality(preset)`
 changes future generation and queues resident architecture for replacement, one building batch
 at a time. The previous buildings stay visible until their replacements are ready; roads remain

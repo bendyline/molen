@@ -3,6 +3,7 @@ import { audioEnvironmentSchema, audioSourceSchema, audioZoneSchema } from './au
 import { boatInputSchema, boatSpecSchema, boatStateSchema, waterSettingsSchema } from './boats';
 import type { ValidationIssue } from './issues';
 import type { JsonObject, JsonValue } from './json';
+import { liverySchema } from './livery';
 import { type ModelSignalSpec, modelSignalSpecSchema, modelSignalsSchema } from './model-signals';
 import { unsafePatterns } from './regex-safety';
 import { skySchema } from './sky';
@@ -578,6 +579,20 @@ const environmentSchema = z.strictObject({
     .optional(),
 });
 
+registerComponent(
+  'boostMode',
+  z.strictObject({
+    enabled: z.boolean().describe('Enable 4× travel speed for people and vehicles.'),
+  }),
+  {
+    description:
+      'World-wide 4× travel assist for people and vehicles. Control response times stay normal.',
+    owner: 'kernel',
+    examples: [{ enabled: true }],
+    docsRef: 'guide/boost-mode.md',
+  },
+);
+
 registerComponent('weather', weatherSchema, {
   description:
     'Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md.',
@@ -758,6 +773,27 @@ function registerRenderableComponent(): void {
   );
 }
 registerRenderableComponent();
+
+registerComponent('livery', liverySchema, {
+  description:
+    'Reusable model paint slots, bound surface markings and selectable liveries. Visual only.',
+  owner: 'client',
+  docsRef: 'guide/liveries.md',
+  examples: [
+    {
+      selected: 'red',
+      slots: { body: { materials: ['body-paint'] } },
+      variants: [
+        {
+          id: 'red',
+          label: 'Red',
+          provenance: { kind: 'original', note: 'Original paint.', references: [] },
+          paints: { body: { color: '#b8463d' } },
+        },
+      ],
+    },
+  ],
+});
 
 registerComponent('model.signals', modelSignalsSchema, {
   description:
@@ -1677,6 +1713,7 @@ registerComponent(
 registerComponent(
   'vehicleState',
   z.strictObject({
+    boosted: z.boolean().optional().describe('Speeds include the 4× travel boost; kernel-owned.'),
     speed: num.describe('Signed forward speed in meters per second.'),
     steer: num.describe('Current front wheel steering angle in radians. Positive turns right.'),
     yaw: num.describe('Chassis rotation about Y in radians; zero faces +Z.'),
@@ -2058,6 +2095,19 @@ const helicopterPhysicsSchema = z.strictObject(
 );
 const aircraftEngineSchema = z.strictObject(
   describedFields({
+    mixtureControl: z
+      .boolean()
+      .optional()
+      .describe('Manual piston mixture; omitted leaves fuel scheduling automatic.'),
+    propellerControl: z
+      .strictObject({
+        minRpm: num
+          .min(0.3)
+          .max(0.95)
+          .describe('Minimum governed RPM as a fraction of rated propeller RPM.'),
+      })
+      .optional()
+      .describe('Constant-speed propeller; the lever selects RPM and the governor varies pitch.'),
     propulsion: z
       .enum(['propeller', 'jet'])
       .optional()
@@ -2210,6 +2260,59 @@ const aircraftSpecSchema = z
       hardLandingPitch: num.positive(),
       maxSupportStep: num.nonnegative(),
       collisionProbes: z.array(vec3).min(1),
+      collisionParts: z
+        .array(
+          z.strictObject({
+            id: z
+              .string()
+              .regex(/^[a-zA-Z][a-zA-Z0-9_-]*$/)
+              .describe('Unique section id used by damage and debris state.'),
+            role: z
+              .enum(['body', 'leftWing', 'rightWing', 'tail', 'rotor', 'gear', 'engine'])
+              .describe('Flight role; +X is the left wing. Body sections cannot detach.'),
+            probes: z
+              .array(vec3)
+              .min(1)
+              .max(64)
+              .describe('Local collision sphere centers, meters.'),
+            radius: num.positive().describe('Probe and detached-piece collision radius, meters.'),
+            center: vec3.describe('Section center in model coordinates, meters.'),
+            massFraction: num
+              .positive()
+              .max(1)
+              .describe('Share of the original mass removed on separation.'),
+            breakSpeed: num
+              .positive()
+              .optional()
+              .describe(
+                'Joint failure speed in m/s for a normal impact. Loaded sliding also causes shear damage. Omit for an unbreakable section.',
+              ),
+            nodes: z
+              .array(z.string().min(1))
+              .describe('GLB node names belonging to this section, including attached controls.'),
+            fragments: z
+              .strictObject({
+                nodes: z
+                  .array(z.string().min(1))
+                  .min(1)
+                  .describe('Shared static meshes to partition by triangle centroid.'),
+                min: vec3.describe('Minimum corner of the section region in model meters.'),
+                max: vec3.describe('Maximum corner of the section region in model meters.'),
+              })
+              .optional()
+              .describe('Optional region for splitting shared markings and detail meshes.'),
+            engines: z
+              .array(aircraftEngineId)
+              .optional()
+              .describe('Engine ids that fail when this section detaches.'),
+          }),
+        )
+        .min(1)
+        .max(64)
+        .optional()
+        .describe(
+          'Breakable airframe sections: local probe spheres, section center, mass fraction, normal break speed (m/s), GLB nodes and attached engines. Replaces collisionProbes.',
+        ),
       visual: z.strictObject(
         describedFields({
           rotors: z.array(
@@ -2255,6 +2358,21 @@ const aircraftSpecSchema = z
       });
     for (const [index, engine] of installations.entries()) {
       const path = value.engine ? ['engine'] : ['engines', index];
+      if (engine.propulsion === 'jet' && (engine.mixtureControl || engine.propellerControl))
+        ctx.addIssue({
+          code: 'custom',
+          path,
+          message: 'Jets cannot have manual piston mixture or propeller controls.',
+        });
+      if (
+        engine.propellerControl &&
+        (value.model !== 'airplane' || engine.propellerControl.minRpm <= engine.idleRpm)
+      )
+        ctx.addIssue({
+          code: 'custom',
+          path,
+          message: 'Propeller governing requires an airplane and minimum RPM above idle.',
+        });
       if (
         engine.propulsion === 'jet' &&
         (engine.dryThrust === undefined || value.model !== 'airplane')
@@ -2312,6 +2430,59 @@ const aircraftSpecSchema = z
       ids.add(engine.id);
     }
     exclusiveAnimationChannels(value.visual, ctx, ['visual']);
+    const partIds = new Set<string>();
+    const partNodes = new Set<string>();
+    let detachedMass = 0;
+    for (const [index, part] of (value.collisionParts ?? []).entries()) {
+      if (partIds.has(part.id))
+        ctx.addIssue({
+          code: 'custom',
+          path: ['collisionParts', index, 'id'],
+          message: 'Collision part ids must be unique.',
+        });
+      partIds.add(part.id);
+      if (part.fragments && part.fragments.min.some((v, i) => v >= (part.fragments?.max[i] ?? 0)))
+        ctx.addIssue({
+          code: 'custom',
+          path: ['collisionParts', index, 'fragments'],
+          message: 'Fragment bounds must have positive size on every axis.',
+        });
+      if (part.breakSpeed !== undefined) detachedMass += part.massFraction;
+      if (part.role === 'body' && part.breakSpeed !== undefined)
+        ctx.addIssue({
+          code: 'custom',
+          path: ['collisionParts', index, 'breakSpeed'],
+          message: 'The body cannot detach.',
+        });
+      for (const node of part.nodes) {
+        if (partNodes.has(node))
+          ctx.addIssue({
+            code: 'custom',
+            path: ['collisionParts', index, 'nodes'],
+            message: 'A node can belong to only one collision part.',
+          });
+        partNodes.add(node);
+      }
+      for (const engine of part.engines ?? [])
+        if (!ids.has(engine))
+          ctx.addIssue({
+            code: 'custom',
+            path: ['collisionParts', index, 'engines'],
+            message: `Unknown engine id ${engine}.`,
+          });
+    }
+    if (detachedMass >= 0.8)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['collisionParts'],
+        message: 'Detachable sections must leave at least 20% of the aircraft mass.',
+      });
+    if (value.collisionParts && !value.collisionParts.some((part) => part.role === 'body'))
+      ctx.addIssue({
+        code: 'custom',
+        path: ['collisionParts'],
+        message: 'Collision parts must include a body.',
+      });
     for (const [index, rotor] of value.visual.rotors.entries())
       if (rotor.engine !== undefined && !ids.has(rotor.engine))
         ctx.addIssue({
@@ -2414,6 +2585,16 @@ registerComponent(
 registerComponent(
   'aircraftInput',
   z.strictObject({
+    mixture: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('Common mixture: 0 idle cutoff, 1 full rich (default).'),
+    propeller: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('Common propeller lever: 0 minimum governed RPM, 1 maximum (default).'),
     power: num
       .min(0)
       .max(1)
@@ -2432,6 +2613,16 @@ registerComponent(
             .max(1)
             .optional()
             .describe('Absolute throttle override; omitted inherits common power.'),
+          mixture: num
+            .min(0)
+            .max(1)
+            .optional()
+            .describe('Individual mixture override; inherits common mixture.'),
+          propeller: num
+            .min(0)
+            .max(1)
+            .optional()
+            .describe('Individual propeller RPM override; inherits common propeller.'),
           enabled: z
             .boolean()
             .optional()
@@ -2464,6 +2655,39 @@ registerComponent(
 registerComponent(
   'aircraftState',
   z.strictObject({
+    damage: z
+      .record(
+        z.string(),
+        z.strictObject({
+          integrity: num.min(0).max(1).describe('Remaining joint integrity, 0 broken to 1 intact.'),
+          detached: z
+            .boolean()
+            .describe('Section has separated and no longer supplies lift or collision probes.'),
+        }),
+      )
+      .optional()
+      .describe('Persistent section integrity and separation, keyed by collision part id.'),
+    debris: z
+      .array(
+        z.strictObject({
+          part: z.string().min(1).describe('Owning collision section id.'),
+          pos: vec3.describe('Section center in world meters.'),
+          rot: quat.describe('World-space section orientation quaternion.'),
+          velocity: vec3.describe(
+            'World velocity in m/s, inherited at separation including travel boost.',
+          ),
+          angularVelocity: vec3.describe('Local angular velocity about +X, +Y and +Z, rad/s.'),
+          age: num
+            .nonnegative()
+            .describe('Simulated seconds since separation; expires at 20 seconds.'),
+        }),
+      )
+      .max(64)
+      .optional()
+      .describe(
+        'Detached sections in world coordinates, simulated for 20 seconds. Their removal does not repair the aircraft.',
+      ),
+    boosted: z.boolean().optional().describe('Speeds include the 4× travel boost; kernel-owned.'),
     mach: num.nonnegative().optional().describe('True airspeed divided by local speed of sound.'),
     equivalentAirspeed: num
       .nonnegative()
@@ -2530,6 +2754,8 @@ registerComponent(
         aircraftEngineId,
         z.strictObject({
           rpm: num.min(0).max(1),
+          shaftPower: num.nonnegative().optional(),
+          combustion: num.min(0).max(1).optional(),
           rotorAngle: num,
           failed: z.boolean(),
           afterburner: num.min(0).max(1).optional(),
@@ -2557,7 +2783,9 @@ registerComponent(
     grounded: z.boolean().describe('Supported by landing surface.'),
     crashed: z
       .boolean()
-      .describe('Hard landing or obstruction impact; explicit recovery required.'),
+      .describe(
+        'Airframe damage requiring recovery. Motion continues under forces and collision impulses.',
+      ),
     waitingForTerrain: z
       .boolean()
       .describe('Paused at last known position while terrain is unavailable.'),

@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 
 const plan = JSON.parse(
@@ -533,7 +533,7 @@ function entrance(o, d) {
       const a = (j * Math.PI) / m;
       return f.P(u + 1.03 * Math.cos(a), y + 2.68 + 0.72 * Math.sin(a), 0.13);
     });
-  for (let j = 1; j < pts.length; j++) beam(o, 'stone', pts[j - 1], pts[j], 0.19, 0.24, C.stone);
+  beamPath(o, 'stone', pts, 0.19, 0.24, C.stone);
   B(o, 'stone', f, u - 1.34, y + 3.54, u + 1.34, y + 3.54, 0.15, 0.19, 0.34);
   const top = [
     f.P(u - 1.08, y + 3.63, 0.11),

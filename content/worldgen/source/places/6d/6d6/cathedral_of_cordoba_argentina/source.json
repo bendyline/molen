@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cathedral_of_cordoba_argentina",
+  "kind": "static-structure",
+  "title": "Cathedral of Córdoba, Argentina",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cathedral_of_cordoba_argentina",
+        "output": "assets/places/6d/6d6/cathedral_of_cordoba_argentina/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f0525463d77ec12f74524c99b2ae0379e0190bd85cf86c12e5ec17e3d03d6fd4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cordoba-cathedral",
+        "path": "models/generate-cordoba-cathedral.mjs"
+      },
+      {
+        "id": "cordoba-cathedral-model",
+        "path": "models/cordoba-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/whole-cathedral-and-fifteen-parts.json",
+      "dimension-evidence.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10541-19398.png",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 /** Shared, metric line construction for roads, tracks, fences and utility corridors. */
 import * as THREE from 'three';
-import { markTerrainGroundSurface } from './ground-cutout';
+import { markTerrainGroundSurface, markTerrainPavementSurface } from './ground-cutout';
 import {
   joinTerrainLines,
   sampleTerrainLine,
@@ -271,6 +271,7 @@ export class TerrainSurfaceMeshBuilder {
     name: string,
     material: THREE.Material = SURFACE_MATERIAL,
     groundSurface = true,
+    shoreline = false,
   ): THREE.Mesh | undefined {
     if (this.positions.length === 0) return undefined;
     const geometry = new THREE.BufferGeometry();
@@ -285,7 +286,10 @@ export class TerrainSurfaceMeshBuilder {
     mesh.name = name;
     mesh.receiveShadow = true;
     mesh.userData.terrainOwnedGeometry = true;
-    if (groundSurface) markTerrainGroundSurface(mesh);
+    if (groundSurface) {
+      if (shoreline) markTerrainGroundSurface(mesh);
+      else markTerrainPavementSurface(mesh);
+    }
     return mesh;
   }
 }

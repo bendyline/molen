@@ -4,6 +4,7 @@ import type {
   EntityId,
   JsonObject,
   Keyframe,
+  LiveryData,
   ModelSignalSpec,
   Quat,
   Vec3,
@@ -51,6 +52,7 @@ export interface SceneBackend {
   destroy(id: EntityId): void;
   setTransform(id: EntityId, transform: InterpTransform): void;
   setModelSignals?(id: EntityId, spec: ModelSignalSpec | undefined, signals: ModelSignals): void;
+  setLivery?(id: EntityId, data: LiveryData | undefined): void;
   /** Optional light surface (per-entity `light` components). */
   createLight?(id: EntityId, light: LightData): void;
   updateLight?(id: EntityId, light: LightData): void;
@@ -208,6 +210,7 @@ export class SceneMirror {
       backend.updateRenderable(id, renderable);
       this.bound.set(id, key);
     }
+    backend.setLivery?.(id, comps?.livery as LiveryData | undefined);
     if (backend.setModelSignals) {
       const spec = comps?.['model.signals'] as ModelSignalSpec | undefined;
       backend.setModelSignals(

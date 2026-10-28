@@ -51,6 +51,34 @@ function headRotation(mesh: THREE.SkinnedMesh): THREE.Quaternion {
 }
 
 describe('AmbientFigures for host characters', () => {
+  it('builds a few new bodies a frame, nearest first, when many come into range at once', () => {
+    const figures = new AmbientFigures();
+    const crowd = Array.from({ length: 6 }, (_, i) => walker({ id: `w${i}` }));
+    figures.update(crowd, CAMERA, 30, 30);
+    expect(figures.count).toBe(2);
+    figures.update(crowd, CAMERA, 30, 30);
+    figures.update(crowd, CAMERA, 30, 30);
+    expect(figures.count).toBe(6);
+  });
+
+  it('leaves a pooled, hidden body out of the world-matrix walk until it shows again', () => {
+    const figures = new AmbientFigures();
+    const body = draw(figures, [walker()]) as THREE.SkinnedMesh;
+    let root: THREE.Object3D = body;
+    while (root.parent !== figures.group && root.parent !== null) root = root.parent;
+    // Out of range: the body returns to the pool, hidden.
+    figures.update([], CAMERA, 30, 30);
+    expect(root.visible).toBe(false);
+    const before = body.matrixWorld.clone();
+    figures.group.position.set(100, 0, 0);
+    figures.group.updateMatrixWorld();
+    expect(body.matrixWorld.equals(before)).toBe(true);
+    // Shown again, it takes the move.
+    root.visible = true;
+    figures.group.updateMatrixWorld();
+    expect(body.matrixWorld.equals(before)).toBe(false);
+  });
+
   it('anchors a figure at its eye instead of its feet', () => {
     const standing = draw(new AmbientFigures(), [walker()]);
     if (standing === undefined) throw new Error('no figure drawn');

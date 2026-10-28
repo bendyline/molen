@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cairn_gorm_weather_station",
+  "kind": "static-structure",
+  "title": "Cairn Gorm summit weather station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cairn_gorm_weather_station",
+        "output": "assets/places/gf/gfj/cairn_gorm_weather_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:425f15937b6d00d31bad8e47eaf600de1ee2409acc4b161fc42fcba9d1a02600"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cairn-gorm-weather-station",
+        "path": "models/generate-cairn-gorm-weather-station.mjs"
+      },
+      {
+        "id": "cairn-gorm-weather-station-model",
+        "path": "models/cairn-gorm-weather-station-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "reference-rights/supplemental-native.json",
+      "native-map/station-point.json",
+      "terrain-acquisition-envelope.json",
+      "architectural-facts.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16052-10019.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "reference-images/weather-station-north.jpg"
+    ]
+  }
+}

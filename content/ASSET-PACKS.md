@@ -58,6 +58,9 @@ Keep these durable artifacts in Git:
 - One or two curated small summary previews per model, normally `preview.png` beside its
   source bundle. Prefer a web-sized image, roughly 1024 pixels on the long edge; do not promote
   an entire capture set. Source textures are separate assets, not review screenshots.
+  To judge a generator change before importing it, `node packages/entities/scripts/model-sheet.mjs`
+  renders source GLBs (and figure or wildlife bodies) from calibrated views, side by side or as
+  before/after pairs; see [entity model quality](entities/MODEL-QUALITY.md).
   For the entity fleet, `node packages/entities/scripts/preview-fleet.mjs` composes each
   bundle's `preview.png` (exterior and operator view, listed in `source.json` and linked from the
   README) and the per-collection contact sheets in `content/entities/` from the local
@@ -216,6 +219,14 @@ The owner reiterated this on2026-10-12: normally inspect one or two useful pictu
 existing source facts, and decide fit from the standard PMTiles. Additional bespoke evidence
 is not a completion gate for this backlog. Record unresolved precision as a limitation and
 continue with a reasonable visualization fit; do not start a new research campaign per model.
+
+An independent site building can be absent from the map. A collection with
+`identityKind: "site-members"` lists all required `membershipEvidence.memberIds` and retains
+`featureIds` for the members that actually have OSM features. An unmapped member needs an
+attributed `positionReference` with a source URL and an explicit approximation basis. Never
+invent an OSM ID or take ownership of a neighboring building to register it. Its ordinary
+source frame, position, material, terrain-contact and visual checks still apply. Shared site
+QIDs retain independent, disjoint position ranges.
 
 Structure bundles can keep per-model review scope in `review-scope.json` and attributed
 signed map controls in `map-frame.json`; the source generator preserves these documents.

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.csr_refinery_new_farm",
+  "kind": "static-structure",
+  "title": "CSR Refinery, New Farm — historic refining block",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.csr_refinery_new_farm",
+        "output": "assets/places/r7/r7h/csr_refinery_new_farm/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8dd02b34b165a37e95a4a41300fe3c8d810b0910f0c470f86d4f2a690de13de5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-refinery",
+        "path": "models/generate-refinery.mjs"
+      },
+      {
+        "id": "refinery-model",
+        "path": "models/refinery-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "architectural-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/slq-published-native.json",
+      "native-map/principal-refinery-current.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-30315-18985.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

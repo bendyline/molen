@@ -1,7 +1,8 @@
-import type { EntityId, ModelSignalSpec } from '@bendyline/molen-schema';
+import type { EntityId, LiveryData, ModelSignalSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import type { AssetCache } from '../assets';
 import type { InterpTransform } from '../interpolation';
+import { applyLivery, type LiveryVisual } from '../livery';
 import {
   createModelSignalVisual,
   type ModelSignals,
@@ -154,6 +155,10 @@ export class ThreeSceneBackend implements SceneBackend {
   private animationTickRate = 30;
   private readonly objects = new Map<EntityId, THREE.Object3D>();
   private readonly gltf = new Map<EntityId, GltfBinding>();
+  private readonly liveries = new Map<
+    EntityId,
+    { key: string; data: LiveryData; visual?: LiveryVisual }
+  >();
   private readonly modelSignals = new Map<
     EntityId,
     {
@@ -436,6 +441,7 @@ export class ThreeSceneBackend implements SceneBackend {
           return;
         }
         group.add(instance);
+        this.bindLivery(id, instance);
         binding.clips = clips;
         this.bindModelSignals(id, instance);
         this.applyAnimation(id, binding, instance);
@@ -520,6 +526,30 @@ export class ThreeSceneBackend implements SceneBackend {
   }
 
   /** Latest mirrored values are retained while the model loads. No simulation state is changed. */
+  setLivery(id: EntityId, data: LiveryData | undefined): void {
+    const previous = this.liveries.get(id);
+    const key = data === undefined ? undefined : JSON.stringify(data);
+    if (previous?.key === key) return;
+    this.batches?.remove(id);
+    this.batchDirty.add(id);
+    previous?.visual?.dispose();
+    this.liveries.delete(id);
+    if (data !== undefined) {
+      this.liveries.set(id, { key: key as string, data });
+      const instance = this.gltf.has(id) ? this.objects.get(id)?.children[0] : undefined;
+      if (instance) this.bindLivery(id, instance);
+    }
+  }
+
+  private bindLivery(id: EntityId, instance: THREE.Object3D): void {
+    const state = this.liveries.get(id);
+    if (!state) return;
+    state.visual = applyLivery(instance, state.data);
+    for (const warning of state.visual.warnings)
+      console.warn(`[molen] entity "${id}": livery ${warning}`);
+  }
+
+  /** Latest mirrored values are retained while the model loads. No simulation state is changed. */
   setModelSignals(id: EntityId, spec: ModelSignalSpec | undefined, signals: ModelSignals): void {
     const previous = this.modelSignals.get(id);
     const key = spec === undefined ? undefined : JSON.stringify(spec);
@@ -569,6 +599,8 @@ export class ThreeSceneBackend implements SceneBackend {
   }
 
   destroy(id: EntityId): void {
+    this.liveries.get(id)?.visual?.dispose();
+    this.liveries.delete(id);
     this.modelSignals.delete(id);
     this.batches?.remove(id);
     this.batchDirty.delete(id);

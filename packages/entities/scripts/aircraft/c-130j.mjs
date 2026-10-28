@@ -621,8 +621,8 @@ function cockpit(root, m) {
       );
       ii.readout('speed', [0.096, 0.06, -0.018], 'knots', 3, 0.009, ink, false, true);
       ii.readout('altitude', [-0.096, 0.06, -0.018], 'feet', 5, 0.007, ink, true, true);
-      dd.text('TAS', [0.096, 0.105, -0.019], 0.006, Math.PI, ink);
-      dd.text('GEO FT', [-0.096, 0.105, -0.019], 0.006, Math.PI, ink);
+      dd.text('TAS', [0.096, 0.105, -0.019], 0.006, Math.PI, ink, 'display');
+      dd.text('GEO FT', [-0.096, 0.105, -0.019], 0.006, Math.PI, ink, 'display');
       const rose = group(g, `C130J-${label}-heading`, [0, -0.075, -0.018]),
         rr = detailKit(rose, rose.name);
       for (let deg = 0; deg < 360; deg += 10) {
@@ -650,11 +650,11 @@ function cockpit(root, m) {
       });
       ii.available('heading', 'trueHeading', rose.name);
       dd.rod([0, -0.014, -0.02], [0, -0.027, -0.02], 0.001, amber);
-      dd.text('TRUE', [0, -0.004, -0.02], 0.006, Math.PI, ink);
+      dd.text('TRUE', [0, -0.004, -0.02], 0.006, Math.PI, ink, 'display');
       ii.readout('vertical', [-0.091, -0.075, -0.018], 'verticalFpm', 4, 0.007, ink, true, true);
       dd.text('FPM', [-0.091, -0.11, -0.02], 0.006, Math.PI, ink);
-      dd.text('NAV --', [0.09, -0.095, -0.02], 0.006, Math.PI, green);
-      dd.text('SIM FLIGHT', [0, 0.148, -0.019], 0.006, Math.PI, green);
+      dd.text('NAV --', [0.09, -0.095, -0.02], 0.006, Math.PI, green, 'display');
+      dd.text('SIM FLIGHT', [0, 0.148, -0.019], 0.006, Math.PI, green, 'display');
       dd.finish();
       bindings.push(...ii.bindings);
       Object.assign(derived, ii.derived);
@@ -703,7 +703,7 @@ function cockpit(root, m) {
           d.text('--', [xx, y - 0.035 - row * 0.039, z - 0.002], 0.007, Math.PI, green);
         }
       }
-      d.text('TRQ ITT NG OIL --', [x, y - 0.145, z], 0.007, Math.PI, green);
+      d.text('TRQ ITT NG OIL --', [x, y - 0.145, z], 0.007, Math.PI, green, 'display');
     } else {
       sheet(d, rectangle(x, y, w, h, z + 0.008), black, [0, 0, -1]);
       const g = group(cabin, 'C130J-navigation-heading', [x, y + 0.02, z]),
@@ -732,7 +732,7 @@ function cockpit(root, m) {
         responseSeconds: 0.15,
       });
       ins.available('nav-heading', 'trueHeading', g.name);
-      d.text('TRUE HEADING', [x, y + 0.145, z - 0.01], 0.009, Math.PI, green);
+      d.text('TRUE HEADING', [x, y + 0.145, z - 0.01], 0.009, Math.PI, green, 'display');
       d.text('MAP / RADIO INOP', [x, y - 0.12, z - 0.01], 0.008, Math.PI, green);
       d.rod([x, y + 0.113, z - 0.01], [x, y + 0.1, z - 0.01], 0.0015, amber);
     }
@@ -775,7 +775,7 @@ function cockpit(root, m) {
     [370, 0.137],
   ]) {
     d.box([w, 0.105, 0.02], at(u, 210, -0.018), black);
-    d.text('CNI --', at(u, 210, -0.03), 0.01, Math.PI, green);
+    d.text('CNI --', at(u, 210, -0.03), 0.01, Math.PI, green, 'display');
     pt.knob(px(u) - w * 0.44, py(222), z - 0.03, 0.009);
   }
   for (const u of [63, 479])
@@ -837,7 +837,7 @@ function cockpit(root, m) {
   for (const x of [-0.205, 0.205]) {
     td.box([0.18, 0.39, 0.025], [x, 0.34, -0.073], black);
     td.box([0.15, 0.11, 0.008], [x, 0.43, -0.09], m.dark);
-    td.text('CNI --', [x, 0.43, -0.096], 0.011, Math.PI, green);
+    td.text('CNI --', [x, 0.43, -0.096], 0.011, Math.PI, green, 'display');
     for (let row = 0; row < 5; row++)
       for (let col = 0; col < 5; col++)
         td.box([0.022, 0.023, 0.009], [x - 0.06 + col * 0.03, 0.34 - row * 0.031, -0.093], m.dark);
@@ -862,7 +862,7 @@ function cockpit(root, m) {
   }
   td.box([0.21, 0.35, 0.025], [0, -0.83, -0.073], black);
   td.box([0.18, 0.1, 0.008], [0, -0.72, -0.09], m.dark);
-  td.text('CNI --', [0, -0.72, -0.096], 0.011, Math.PI, green);
+  td.text('CNI --', [0, -0.72, -0.096], 0.011, Math.PI, green, 'display');
   for (let row = 0; row < 5; row++)
     for (let col = 0; col < 5; col++)
       td.box([0.025, 0.022, 0.009], [-0.07 + col * 0.035, -0.8 - row * 0.031, -0.093], m.dark);

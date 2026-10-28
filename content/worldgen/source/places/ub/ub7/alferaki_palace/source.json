@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.alferaki_palace",
+  "kind": "static-structure",
+  "title": "Alferaki Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.alferaki_palace",
+        "output": "assets/places/ub/ub7/alferaki_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:552c11fbb5da818400cb8bbc08833f8721604d407c8779c144447e4281f4761c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-alferaki-palace",
+        "path": "models/generate-alferaki-palace.mjs"
+      },
+      {
+        "id": "alferaki-palace-model",
+        "path": "models/alferaki-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "native-map/whole-palace.json",
+      "terrain-acquisition-envelope.json",
+      "reference-rights/creator-cc0-2024.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19927-11496.png",
+      "terrain-sources/terrarium-15-19927-11497.png",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

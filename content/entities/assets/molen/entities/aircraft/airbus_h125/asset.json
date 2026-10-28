@@ -6,14 +6,14 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:ab9d69d89f733ddb643263a47c77ed31a21d5787e45adefead641a888af04308",
-  "sourceHash": "sha256:53530998122f130ccf5948c99766dc6bde35062b3ea91739945bf73a72e00dfe",
+  "hash": "sha256:86020b11796aaaadb0de6eb0429b47dcad044dbe13bd5a6557300051d528f0ff",
+  "sourceHash": "sha256:7cde61d30788bd119e97ba07417554c778747c3bb2a01b194f3514eb821edeaa",
   "bounds": {
     "aabb": {
       "min": [
         -4.7139,
-        0.0001,
-        -7.6521
+        0.0068,
+        -7.6518
       ],
       "max": [
         4.7139,
@@ -24,26 +24,26 @@
     "sphere": {
       "center": [
         0,
-        1.665,
-        -1.1545
+        1.6683,
+        -1.1544
       ],
-      "radius": 6.6363
+      "radius": 6.6355
     }
   },
   "stats": {
-    "triangles": 23544,
-    "vertices": 49231,
-    "meshes": 56,
-    "primitives": 56,
-    "materials": 23,
-    "textures": 0,
+    "triangles": 13420,
+    "vertices": 17250,
+    "meshes": 65,
+    "primitives": 65,
+    "materials": 34,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 968380
+    "sizeBytes": 853304
   },
   "nodes": [
     {
       "name": "H125-airframe-H125-white",
-      "triangles": 808
+      "triangles": 652
     },
     {
       "name": "H125-airframe-H125-glass",
@@ -51,11 +51,11 @@
     },
     {
       "name": "H125-airframe-H125-trim",
-      "triangles": 2116
+      "triangles": 1180
     },
     {
       "name": "H125-airframe-H125-metal",
-      "triangles": 2576
+      "triangles": 1844
     },
     {
       "name": "H125-airframe-H125-blue",
@@ -123,7 +123,7 @@
     },
     {
       "name": "H125-cockpit-H125-trim",
-      "triangles": 386
+      "triangles": 316
     },
     {
       "name": "H125-cockpit-detail-trim",
@@ -139,15 +139,11 @@
     },
     {
       "name": "H125-cockpit-avionics-water",
-      "triangles": 144
-    },
-    {
-      "name": "H125-cockpit-detail-lettering",
-      "triangles": 7848
+      "triangles": 96
     },
     {
       "name": "H125-cockpit-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "H125-cockpit-detail-green",
@@ -199,11 +195,11 @@
     },
     {
       "name": "H125-cockpit-avionics-water",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "H125-cockpit-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "H125-cockpit-detail-red",
@@ -219,6 +215,18 @@
     },
     {
       "name": "H125-cockpit-H125-belts",
+      "triangles": 24
+    },
+    {
+      "name": "H125-cockpit-detail-lettering",
+      "triangles": 1920
+    },
+    {
+      "name": "H125-cockpit-detail-lettering-display-print",
+      "triangles": 70
+    },
+    {
+      "name": "H125-cockpit-detail-lettering-panel-print",
       "triangles": 24
     },
     {
@@ -238,10 +246,6 @@
       "triangles": 36
     },
     {
-      "name": "H125-console-detail-lettering",
-      "triangles": 2064
-    },
-    {
       "name": "H125-console-H125-metal",
       "triangles": 120
     },
@@ -254,16 +258,24 @@
       "triangles": 108
     },
     {
-      "name": "H125-console-detail-green",
-      "triangles": 564
-    },
-    {
       "name": "H125-console-detail-alloy",
       "triangles": 96
     },
     {
+      "name": "H125-console-detail-lettering",
+      "triangles": 96
+    },
+    {
+      "name": "H125-console-detail-lettering-panel-print",
+      "triangles": 34
+    },
+    {
+      "name": "H125-console-detail-green-panel-print",
+      "triangles": 10
+    },
+    {
       "name": "cyclic-H125-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -291,7 +303,7 @@
     },
     {
       "name": "cyclic-H125-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -316,6 +328,30 @@
     {
       "name": "pedal-H125-metal",
       "triangles": 24
+    },
+    {
+      "name": "flight-control-mounts-flight-control-panel",
+      "triangles": 60
+    },
+    {
+      "name": "flight-control-mounts-flight-control-alloy",
+      "triangles": 128
+    },
+    {
+      "name": "flight-control-mounts-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend-panel-print",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-master",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-legend",
+      "triangles": 12
     }
   ],
   "nodesTruncated": false,
@@ -378,9 +414,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "H125-panel",
+      "name": "H125-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "H125-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -418,14 +468,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-lettering",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "avionics-route",
       "slots": [
         "baseColor"
@@ -450,9 +492,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -490,6 +535,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "H125-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "H125-seats",
       "slots": [
         "baseColor"
@@ -504,6 +560,99 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-lettering-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-green-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -512,10 +661,10 @@
         "node": "H125-airframe-H125-white",
         "points": [
           -1.2651,
-          0.0001,
+          0.0068,
           -7.6,
           -1.2651,
-          0.0001,
+          0.0068,
           3.28,
           -1.2651,
           3.2399,
@@ -524,10 +673,10 @@
           3.2399,
           3.28,
           1.2651,
-          0.0001,
+          0.0068,
           -7.6,
           1.2651,
-          0.0001,
+          0.0068,
           3.28,
           1.2651,
           3.2399,
@@ -569,58 +718,58 @@
       {
         "node": "H125-airframe-H125-trim",
         "points": [
-          -0.9418,
-          0.6699,
+          -0.9434,
+          0.6663,
           -3.5553,
-          -0.9418,
-          0.6699,
+          -0.9434,
+          0.6663,
           3.112,
-          -0.9418,
-          2.8253,
+          -0.9434,
+          2.825,
           -3.5553,
-          -0.9418,
-          2.8253,
+          -0.9434,
+          2.825,
           3.112,
-          0.9418,
-          0.6699,
+          0.9434,
+          0.6663,
           -3.5553,
-          0.9418,
-          0.6699,
+          0.9434,
+          0.6663,
           3.112,
-          0.9418,
-          2.8253,
+          0.9434,
+          2.825,
           -3.5553,
-          0.9418,
-          2.8253,
+          0.9434,
+          2.825,
           3.112
         ]
       },
       {
         "node": "H125-airframe-H125-metal",
         "points": [
-          -0.9654,
+          -0.9653,
           0.4633,
-          -7.6521,
-          -0.9654,
-          0.4633,
-          1.69,
-          -0.9654,
-          2.6826,
-          -7.6521,
-          -0.9654,
-          2.6826,
-          1.69,
-          0.9654,
-          0.4633,
-          -7.6521,
-          0.9654,
+          -7.6518,
+          -0.9653,
           0.4633,
           1.69,
-          0.9654,
-          2.6826,
-          -7.6521,
-          0.9654,
-          2.6826,
+          -0.9653,
+          2.6825,
+          -7.6518,
+          -0.9653,
+          2.6825,
+          1.69,
+          0.9653,
+          0.4633,
+          -7.6518,
+          0.9653,
+          0.4633,
+          1.69,
+          0.9653,
+          2.6825,
+          -7.6518,
+          0.9653,
+          2.6825,
           1.69
         ]
       },
@@ -1234,35 +1383,6 @@
         ]
       },
       {
-        "node": "H125-cockpit-detail-lettering",
-        "points": [
-          -0.3197,
-          1.5804,
-          1.95,
-          -0.3197,
-          1.5804,
-          1.9848,
-          -0.3197,
-          1.8796,
-          1.95,
-          -0.3197,
-          1.8796,
-          1.9848,
-          0.208,
-          1.5804,
-          1.95,
-          0.208,
-          1.5804,
-          1.9848,
-          0.208,
-          1.8796,
-          1.95,
-          0.208,
-          1.8796,
-          1.9848
-        ]
-      },
-      {
         "node": "H125-cockpit-avionics-route",
         "points": [
           -0.1475,
@@ -1814,6 +1934,93 @@
         ]
       },
       {
+        "node": "H125-cockpit-detail-lettering",
+        "points": [
+          -0.3197,
+          1.5804,
+          1.95,
+          -0.3197,
+          1.5804,
+          1.9848,
+          -0.3197,
+          1.8796,
+          1.95,
+          -0.3197,
+          1.8796,
+          1.9848,
+          0.208,
+          1.5804,
+          1.95,
+          0.208,
+          1.5804,
+          1.9848,
+          0.208,
+          1.8796,
+          1.95,
+          0.208,
+          1.8796,
+          1.9848
+        ]
+      },
+      {
+        "node": "H125-cockpit-detail-lettering-display-print",
+        "points": [
+          -0.2897,
+          1.5821,
+          1.957,
+          -0.2897,
+          1.5821,
+          1.963,
+          -0.2897,
+          1.7491,
+          1.957,
+          -0.2897,
+          1.7491,
+          1.963,
+          0.101,
+          1.5821,
+          1.957,
+          0.101,
+          1.5821,
+          1.963,
+          0.101,
+          1.7491,
+          1.957,
+          0.101,
+          1.7491,
+          1.963
+        ]
+      },
+      {
+        "node": "H125-cockpit-detail-lettering-panel-print",
+        "points": [
+          0.051,
+          1.6653,
+          1.978,
+          0.051,
+          1.6653,
+          1.978,
+          0.051,
+          1.7651,
+          1.978,
+          0.051,
+          1.7651,
+          1.978,
+          0.0783,
+          1.6653,
+          1.978,
+          0.0783,
+          1.6653,
+          1.978,
+          0.0783,
+          1.7651,
+          1.978,
+          0.0783,
+          1.7651,
+          1.978
+        ]
+      },
+      {
         "node": "horizon-detail-amber",
         "points": [
           -0.2568,
@@ -1930,35 +2137,6 @@
         ]
       },
       {
-        "node": "H125-console-detail-lettering",
-        "points": [
-          -0.097,
-          1.3782,
-          1.7615,
-          -0.097,
-          1.3782,
-          1.9036,
-          -0.097,
-          1.5799,
-          1.7615,
-          -0.097,
-          1.5799,
-          1.9036,
-          0.137,
-          1.3782,
-          1.7615,
-          0.137,
-          1.3782,
-          1.9036,
-          0.137,
-          1.5799,
-          1.7615,
-          0.137,
-          1.5799,
-          1.9036
-        ]
-      },
-      {
         "node": "H125-console-H125-metal",
         "points": [
           -0.0495,
@@ -2046,35 +2224,6 @@
         ]
       },
       {
-        "node": "H125-console-detail-green",
-        "points": [
-          -0.0014,
-          1.3896,
-          1.7834,
-          -0.0014,
-          1.3896,
-          1.791,
-          -0.0014,
-          1.3997,
-          1.7834,
-          -0.0014,
-          1.3997,
-          1.791,
-          0.0438,
-          1.3896,
-          1.7834,
-          0.0438,
-          1.3896,
-          1.791,
-          0.0438,
-          1.3997,
-          1.7834,
-          0.0438,
-          1.3997,
-          1.791
-        ]
-      },
-      {
         "node": "H125-console-detail-alloy",
         "points": [
           -0.098,
@@ -2104,6 +2253,93 @@
         ]
       },
       {
+        "node": "H125-console-detail-lettering",
+        "points": [
+          -0.097,
+          1.3782,
+          1.7615,
+          -0.097,
+          1.3782,
+          1.8492,
+          -0.097,
+          1.4761,
+          1.7615,
+          -0.097,
+          1.4761,
+          1.8492,
+          0.137,
+          1.3782,
+          1.7615,
+          0.137,
+          1.3782,
+          1.8492,
+          0.137,
+          1.4761,
+          1.7615,
+          0.137,
+          1.4761,
+          1.8492
+        ]
+      },
+      {
+        "node": "H125-console-detail-lettering-panel-print",
+        "points": [
+          -0.0977,
+          1.5734,
+          1.8988,
+          -0.0977,
+          1.5734,
+          1.9029,
+          -0.0977,
+          1.5791,
+          1.8988,
+          -0.0977,
+          1.5791,
+          1.9029,
+          0.1346,
+          1.5734,
+          1.8988,
+          0.1346,
+          1.5734,
+          1.9029,
+          0.1346,
+          1.5791,
+          1.8988,
+          0.1346,
+          1.5791,
+          1.9029
+        ]
+      },
+      {
+        "node": "H125-console-detail-green-panel-print",
+        "points": [
+          -0.0025,
+          1.3888,
+          1.783,
+          -0.0025,
+          1.3888,
+          1.79,
+          -0.0025,
+          1.3987,
+          1.783,
+          -0.0025,
+          1.3987,
+          1.79,
+          0.0422,
+          1.3888,
+          1.783,
+          0.0422,
+          1.3888,
+          1.79,
+          0.0422,
+          1.3987,
+          1.783,
+          0.0422,
+          1.3987,
+          1.79
+        ]
+      },
+      {
         "node": "cyclic-H125-trim",
         "points": [
           -0.45,
@@ -2111,25 +2347,25 @@
           1.4,
           -0.45,
           0.72,
-          1.647,
+          1.6447,
           -0.45,
           1.365,
           1.4,
           -0.45,
           1.365,
-          1.647,
+          1.6447,
           -0.39,
           0.72,
           1.4,
           -0.39,
           0.72,
-          1.647,
+          1.6447,
           -0.39,
           1.365,
           1.4,
           -0.39,
           1.365,
-          1.647
+          1.6447
         ]
       },
       {
@@ -2314,25 +2550,25 @@
           1.4,
           0.39,
           0.72,
-          1.647,
+          1.6447,
           0.39,
           1.365,
           1.4,
           0.39,
           1.365,
-          1.647,
+          1.6447,
           0.45,
           0.72,
           1.4,
           0.45,
           0.72,
-          1.647,
+          1.6447,
           0.45,
           1.365,
           1.4,
           0.45,
           1.365,
-          1.647
+          1.6447
         ]
       },
       {
@@ -2507,6 +2743,180 @@
           0.5604,
           0.8094,
           2.2075
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-panel",
+        "points": [
+          -0.055,
+          1.47,
+          1.9275,
+          -0.055,
+          1.47,
+          2.034,
+          -0.055,
+          1.75,
+          1.9275,
+          -0.055,
+          1.75,
+          2.034,
+          0.055,
+          1.47,
+          1.9275,
+          0.055,
+          1.47,
+          2.034,
+          0.055,
+          1.75,
+          1.9275,
+          0.055,
+          1.75,
+          2.034
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-alloy",
+        "points": [
+          -0.0465,
+          1.4805,
+          1.9235,
+          -0.0465,
+          1.4805,
+          1.9265,
+          -0.0465,
+          1.5795,
+          1.9235,
+          -0.0465,
+          1.5795,
+          1.9265,
+          0.0465,
+          1.4805,
+          1.9235,
+          0.0465,
+          1.4805,
+          1.9265,
+          0.0465,
+          1.5795,
+          1.9235,
+          0.0465,
+          1.5795,
+          1.9265
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-grip",
+        "points": [
+          -0.0045,
+          1.4965,
+          1.925,
+          -0.0045,
+          1.4965,
+          1.927,
+          -0.0045,
+          1.5455,
+          1.925,
+          -0.0045,
+          1.5455,
+          1.927,
+          0.0045,
+          1.4965,
+          1.925,
+          0.0045,
+          1.4965,
+          1.927,
+          0.0045,
+          1.5455,
+          1.925,
+          0.0045,
+          1.5455,
+          1.927
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend-panel-print",
+        "points": [
+          -0.0184,
+          1.5579,
+          1.925,
+          -0.0184,
+          1.5579,
+          1.925,
+          -0.0184,
+          1.5662,
+          1.925,
+          -0.0184,
+          1.5662,
+          1.925,
+          0.018,
+          1.5579,
+          1.925,
+          0.018,
+          1.5579,
+          1.925,
+          0.018,
+          1.5662,
+          1.925,
+          0.018,
+          1.5662,
+          1.925
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-master",
+        "points": [
+          -0.016,
+          1.5075,
+          1.9055,
+          -0.016,
+          1.5075,
+          1.9225,
+          -0.016,
+          1.5365,
+          1.9055,
+          -0.016,
+          1.5365,
+          1.9225,
+          0.016,
+          1.5075,
+          1.9055,
+          0.016,
+          1.5075,
+          1.9225,
+          0.016,
+          1.5365,
+          1.9055,
+          0.016,
+          1.5365,
+          1.9225
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-legend",
+        "points": [
+          -0.007,
+          1.5277,
+          1.9045,
+          -0.007,
+          1.5277,
+          1.9055,
+          -0.007,
+          1.5303,
+          1.9045,
+          -0.007,
+          1.5303,
+          1.9055,
+          0.007,
+          1.5277,
+          1.9045,
+          0.007,
+          1.5277,
+          1.9055,
+          0.007,
+          1.5303,
+          1.9045,
+          0.007,
+          1.5303,
+          1.9055
         ]
       }
     ]

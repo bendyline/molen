@@ -20,6 +20,12 @@ export interface InteriorStreamingOptions extends InteriorGenerateOptions {
   maxBytes?: number;
   /** Cooperative main-thread budget; one indivisible geometry operation may exceed this. */
   frameBudgetMs?: number;
+  /**
+   * Builds a finished interior's shaders before it is shown (a renderer's `prepareObject`),
+   * given the region root it will join; the entrance covers stay until it settles. Without it
+   * the first frame drawing a new interior built its programs mid-frame, 100 ms or more each.
+   */
+  prepare?: (object: THREE.Object3D, signal: AbortSignal, parent: THREE.Object3D) => Promise<void>;
 }
 export interface InteriorStreamingStats {
   sites: number;
@@ -36,6 +42,8 @@ interface Entry {
   region: Region;
   range: [number, number];
   object?: THREE.Group;
+  /** Set while `object` is being prepared, before it joins the region. */
+  preparing?: AbortController;
   bytes: number;
   failed: boolean;
   estimatedBytes?: number;
@@ -74,6 +82,7 @@ export class InteriorStreamer {
     >
   >;
   private readonly generation: InteriorGenerateOptions;
+  private readonly prepare: InteriorStreamingOptions['prepare'];
   private readonly solids = createInteriorMaterialSet();
   // Seen from a sunlit street, a pane is darker than the day outside: a smoky film that keeps the
   // room dim behind it and a near-mirror finish that picks up the sky. A pale film read as frost.
@@ -116,7 +125,9 @@ export class InteriorStreamer {
       throw new RangeError(
         'Interior streaming needs positive finite budgets, an integer resident cap, and unloadDistance > loadDistance',
       );
-    this.generation = { ...options, catalog: validateInteriorCatalog(options.catalog) };
+    const { prepare, ...generation } = options;
+    this.prepare = prepare;
+    this.generation = { ...generation, catalog: validateInteriorCatalog(generation.catalog) };
   }
 
   register(root: THREE.Object3D, sites: readonly InteriorSite[], origin: Vec2 = [0, 0]): void {
@@ -200,7 +211,7 @@ export class InteriorStreamer {
     const index = region.gates.geometry.index as THREE.BufferAttribute;
     let count = 0;
     for (const entry of region.entries) {
-      if (entry.object) continue;
+      if (entry.object && entry.preparing === undefined) continue;
       const values = region.indices.subarray(entry.range[0], entry.range[1]);
       (index.array as Uint32Array).set(values, count);
       count += values.length;
@@ -210,6 +221,8 @@ export class InteriorStreamer {
   }
   private evict(entry: Entry, updateGates = true): void {
     if (!entry.object) return;
+    entry.preparing?.abort();
+    delete entry.preparing;
     entry.object.removeFromParent();
     disposeWorldgenObject(entry.object);
     delete entry.object;
@@ -335,11 +348,22 @@ export class InteriorStreamer {
         }
         entry.object = root;
         entry.bytes = geometry.bytes;
-        entry.region.root.add(root);
         this.active.add(entry);
         this.counters.bytes += geometry.bytes;
         this.counters.generated++;
-        this.gates(entry.region);
+        if (this.prepare === undefined) this.publish(entry);
+        else {
+          const preparing = new AbortController();
+          entry.preparing = preparing;
+          // A failed preparation still shows the interior; its shaders build when first drawn.
+          void this.prepare(root, preparing.signal, entry.region.root)
+            .catch(() => {})
+            .then(() => {
+              if (entry.preparing !== preparing) return;
+              delete entry.preparing;
+              this.publish(entry);
+            });
+        }
         break; // At most one upload per frame.
       }
     } catch (error) {
@@ -349,6 +373,12 @@ export class InteriorStreamer {
       console.warn('[molen] interior generation:', error);
     }
     this.counters.lastWorkMs = performance.now() - started;
+  }
+
+  private publish(entry: Entry): void {
+    if (entry.object === undefined) return;
+    entry.region.root.add(entry.object);
+    this.gates(entry.region);
   }
 
   private *generate(site: InteriorSite): Generator<void, InteriorGeometry, void> {

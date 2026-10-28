@@ -25,6 +25,7 @@ import {
   type BuildingMaterialDecorator,
   createResolvedMaterialSet,
   ModelLibrary,
+  NightWindowLighting,
   type ScreenSpaceLodPolicy,
   StructureLodStreamer,
   StructureModelLibrary,
@@ -65,9 +66,13 @@ export interface EarthViewWorkers {
   worldgen?: () => Worker;
   /** A worker importing `@bendyline/molen-earth/workers/material` (two are started). */
   material?: () => Worker;
+  /** A worker importing `@bendyline/molen-earth/workers/semantic`: map tiles decode there. */
+  semantic?: () => Worker;
 }
 
 export interface EarthWorldgen extends WorldgenSemanticRenderers {
+  /** Fade building/model lights with a 0 (day) to 1 (night) factor. */
+  setNightFactor(factor: number): void;
   readonly environment: RegionalEnvironment | undefined;
   /** Wait for the initial requested surfaces; later visible buildings request textures on demand. */
   prepareMaterials(): Promise<void>;
@@ -100,6 +105,11 @@ export interface CreateEarthWorldgenOptions {
     signal: AbortSignal,
     parent?: THREE.Object3D,
   ) => Promise<void>;
+  /**
+   * Build a baked building material's shaders before it upgrades its flat stand-in in place,
+   * usually the renderer's `prepareMaterialChange`.
+   */
+  prepareMaterialChange?: (current: THREE.Material, next: THREE.Material) => Promise<void>;
   /** Called with material failures after baking (ref → reason). */
   onMaterialFailures?: (failures: ReadonlyMap<string, string>) => void;
   /** Generate building interiors near the walker (default true). */
@@ -210,9 +220,14 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     prepareOnUse: true,
     concurrency: 2,
     ...(options.buildingDecorator !== undefined ? { decorate: options.buildingDecorator } : {}),
+    ...(options.prepareMaterialChange !== undefined
+      ? { prepareChange: options.prepareMaterialChange }
+      : {}),
     maxTextureBytes:
       streamingOptions.budget?.maxTextureBytes ?? structureStreamingBudget(mobile).maxTextureBytes,
   });
+  const nightWindows = new NightWindowLighting();
+  materials.nightWindows = nightWindows;
   const sharedRefs = new Set(Object.entries(pack.materials).map(([ref, kind]) => `${kind}:${ref}`));
   const structureLoader = new GLTFLoader();
   const ownedImageScenes = new WeakSet<THREE.Object3D>();
@@ -227,6 +242,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
             return parsed.scene;
           },
           {
+            nightWindows,
             ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
             resolveSurface: ({ ref, slot }) =>
               sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
@@ -270,6 +286,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
           },
           {
             ...options.landmarkStreaming,
+            nightWindows,
             ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
             ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
             resolveSurface: ({ ref, slot }) =>
@@ -304,6 +321,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
         })
       : undefined;
   const renderers = createWorldgenSemanticRenderers(pack, {
+    distantBuildings: true,
     buildingInfill: options.buildingInfill ?? true,
     places,
     structures,
@@ -343,7 +361,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     ...(workers.landcover !== undefined
       ? {
           landcoverGenerator: landcoverPool(
-            Array.from({ length: Math.min(2, generationWorkers()) }, () =>
+            Array.from({ length: surfaceWorkers() }, () =>
               createTerrainLandcoverWorkerBridge((workers.landcover as () => Worker)()),
             ),
           ),
@@ -355,6 +373,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   });
   return {
     ...renderers,
+    setNightFactor: (factor) => nightWindows.setNightFactor(factor),
     environment,
     prepareMaterials,
     updateStructures: (view) => streamingStructures?.update(view),
@@ -369,6 +388,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       renderers.dispose();
       generator?.dispose();
       structureObjects.dispose();
+      nightWindows.dispose();
       materials.dispose();
       models.dispose();
       assets.dispose();
@@ -377,13 +397,26 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
 }
 
 /**
- * Generation workers per kind: half the logical cores, at most four. Tile generation is the
- * slowest part of revealing a new view, and one worker per kind left most cores idle while it
- * worked through a city's tiles one at a time.
+ * World generation workers: a quarter of the logical cores, at most two. One worked through a
+ * city's tiles one at a time; four, beside as many for land cover and road surfaces, took the
+ * cores the frame needs: on a 12-core laptop a jet's frames drew the same scene up to twice as
+ * slowly while a town streamed in, and a frame over 33 ms came every few seconds. Two halved those
+ * for a tile generated ~170 ms later (most of it hidden by the predicted views loading ahead).
  */
-function generationWorkers(): number {
+export function generationWorkers(): number {
   const cores = typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency ?? 4) : 4;
-  return Math.max(1, Math.min(4, Math.floor(cores / 2)));
+  return Math.max(1, Math.min(2, Math.floor(cores / 4)));
+}
+
+/**
+ * Land cover and road surface workers: one each. Their jobs are short beside world generation's,
+ * and a second of each still took the frame's cores: with two, panning low over Kyoto, Sydney or
+ * Seattle drew the same scene up to three times as slowly in some frames (a few a minute over
+ * 50 ms, at about 80-90 fps); with one, none, at 100+ fps. A low flight streamed just as fast;
+ * the first view loaded about a fifth later.
+ */
+export function surfaceWorkers(): number {
+  return 1;
 }
 
 /** Landcover tiles go to whichever worker has the fewest in flight. */

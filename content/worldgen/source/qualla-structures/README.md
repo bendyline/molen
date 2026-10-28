@@ -44,6 +44,12 @@ For a dated US architectural journal published by 1922, the same optional proof 
 the native scan to its primary publisher, exact issue date, archival plate and explicit
 PD-US release. A creation date or public-domain label alone cannot establish publication.
 
+Supplemental New Zealand US Embassy photographs bind the exact Commons original and
+specific `PD-USGov-DOS` grant to the same agency's primary Flickr photo release and
+immutable creator account. A bare Public Domain Mark, another creator, a different
+photo or missing transfer review fails this separate proof class. Published Qualla
+screening remains required; existing proof classes are unchanged.
+
 After replacing references, record `qa.imageryReview` with the current policy,
 model input and reference input hashes, all accepted reference paths, excluded
 historical imagery and the actual fidelity review. Its scope is
@@ -447,6 +453,16 @@ a selected story identity are parsed; corruption in a relevant bundle still bloc
 The full scanner and `sync-qualla.mjs` retain their corpus-wide freshness requirement and remain
 responsible for withdrawals and global reconciliation. A successful bounded completion sync
 does not certify that the complete corpus scan is current.
+
+For an additional story inside an already accepted building, record an explicit
+`existingModelReuse` identity decision in the batch and use
+`link-accepted-existing-story.mjs --batch=qualla-002 --alias=<story-model-key> --write`,
+then `--check`. This preserves the accepted source, QA and all runtime bytes. It records
+the association as `needs-review` without renewing current readiness or requiring new
+renders. The resolved batch entry reuses the existing physical model; it does not count
+as a newly built model or add strict-ready credit. A newer ready link is preserved.
+The source and runtime master must match the saved acceptance; differences between
+current derivatives and old LOD approvals are reported without approving those derivatives.
 
 `batches/readiness.json` is the local batch's readiness export; the scanner also reads the
 separate structure catalog ledger. Neither process transfers model ownership. Capture archives remain

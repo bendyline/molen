@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { loadFontLibrary } from '@bendyline/molen-materials/text';
-import type * as THREE from 'three';
+import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { Heightfield } from '../src/heightfield';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
@@ -10,6 +10,12 @@ import {
   createDefaultTerrainSemanticRenderer,
   disposeTerrainSemanticObject,
 } from '../src/semantic-client';
+import {
+  deriveTerrainSemanticTilePacket,
+  packTerrainSemanticTile,
+  rememberTerrainSemanticTilePacket,
+  terrainSemanticTilePacket,
+} from '../src/semantic-packet';
 import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
 import {
   createTerrainSurfaceObject,
@@ -18,6 +24,7 @@ import {
 } from '../src/surface-client';
 import {
   createTerrainSurfaceWorkerBridge,
+  createTerrainSurfaceWorkerPool,
   installTerrainSurfaceWorker,
   type TerrainSurfaceWorker,
 } from '../src/surface-worker';
@@ -169,6 +176,54 @@ const readFont = async (path: string) =>
   );
 const fonts = await loadFontLibrary(await readFont('catalog.json'), readFont);
 describe('surface worker', () => {
+  it('keeps night lamps and draped pools identical across the worker path, reload and daytime changes', async () => {
+    const thread = worker(),
+      bridge = createTerrainSurfaceWorkerBridge(thread.bridge);
+    const ctx = context(),
+      tile = fixture();
+    const renderer = createTerrainSurfaceRenderer({}, bridge);
+    renderer.setNightFactor(1);
+    const pending = renderer.createTileAsync(tile, ctx);
+    thread.run();
+    const root = await pending;
+    if (!root?.children[0]) throw new Error('Missing surface result');
+    const scene = new THREE.Group();
+    scene.add(root);
+    let visited = 0;
+    renderer.visitStreetLights(() => visited++);
+    expect(visited).toBeGreaterThan(0);
+    scene.visible = false;
+    renderer.visitStreetLights(() => {
+      throw Error('Hidden lamps must not illuminate');
+    });
+    scene.visible = true;
+    const actual = root.children[0];
+    const direct = createTerrainSurfaceObject(tile, ctx);
+    expect(actual.userData.streetLights.length).toBeGreaterThan(0);
+    expect(actual.userData.streetLights).toEqual(direct.userData.streetLights);
+    const pools = actual.getObjectByName('surface:night-pools') as THREE.Mesh;
+    const reference = direct.getObjectByName('surface:night-pools') as THREE.Mesh;
+    expect(pools.geometry.getAttribute('position').array).toEqual(
+      reference.geometry.getAttribute('position').array,
+    );
+    const material = pools.material as THREE.MeshBasicMaterial;
+    expect(material.visible).toBe(true);
+    renderer.setNightFactor(0);
+    expect(material.visible).toBe(false);
+    renderer.setNightFactor(1);
+    expect(material.visible).toBe(true);
+    const disposed = vi.spyOn(material, 'dispose');
+    const replacement = renderer.setOptions({ details: { maxStreetlightsPerTile: 8 } });
+    thread.run();
+    await replacement;
+    const replaced = root.getObjectByName('surface:night-pools') as THREE.Mesh;
+    expect((replaced.material as THREE.Material).visible).toBe(true);
+    expect(renderer.stats().streetlights).toBeLessThanOrEqual(8);
+    renderer.dispose();
+    expect(disposed).toHaveBeenCalledTimes(1);
+    disposeTerrainSurfaceObject(direct);
+    bridge.dispose();
+  });
   it('caches route artwork and renders identical direct/worker geometry, including clear and reload', async () => {
     const shields = terrainRouteShieldLibrarySchema.parse(
       JSON.parse(
@@ -217,6 +272,21 @@ describe('surface worker', () => {
     }
     bridge.dispose();
   }, 30_000); // Rebuilds and compares route geometry through both paths, including cache reloads.
+  it('spreads tiles over a pool of workers, each to the least busy', async () => {
+    const threads = [worker(), worker()];
+    const pool = createTerrainSurfaceWorkerPool(threads.map((thread) => thread.bridge));
+    const ctx = context();
+    const first = pool.generate(fixture(), ctx, { fonts });
+    const second = pool.generate(fixture(), ctx, { fonts });
+    // One tile each, in flight together.
+    expect(threads.map((thread) => thread.requests.length)).toEqual([1, 1]);
+    for (const thread of threads) thread.run();
+    const [a, b] = await Promise.all([first, second]);
+    expect(a?.children.length).toBeGreaterThan(0);
+    expect(b?.children.length).toBe(a?.children.length);
+    for (const group of [a, b]) if (group) disposeTerrainSurfaceObject(group);
+    pool.dispose();
+  });
   it('transfers regional geometry and metadata and honors an explicit profile over the tile resolver', async () => {
     const tile = fixture();
     const main = tile.transportation[0];
@@ -382,6 +452,64 @@ describe('surface worker', () => {
       disposeTerrainSurfaceObject(actual);
       disposeTerrainSurfaceObject(direct);
     }
+    bridge.dispose();
+  });
+
+  it('renders a derived tile from its base packet and edits as it renders the tile itself', async () => {
+    const base = fixture();
+    rememberTerrainSemanticTilePacket(base, packTerrainSemanticTile(base));
+    // Roads a landmark replaced: the bridge dropped, the primary road split in two.
+    const [primary, ...rest] = base.transportation;
+    if (primary === undefined) throw new Error('fixture has no roads');
+    const derived = {
+      ...base,
+      transportation: [
+        ...primary.lines.map((line) => ({ ...primary, lines: [line] })),
+        ...rest.filter((feature) => feature.bridge !== true),
+      ],
+    };
+    deriveTerrainSemanticTilePacket(base, derived);
+    const packet = terrainSemanticTilePacket(derived);
+    expect(packet?.edits).toHaveLength(1);
+    const ctx = context();
+    const thread = worker();
+    const bridge = createTerrainSurfaceWorkerBridge(thread.bridge);
+    const direct = createTerrainSurfaceObject(derived, ctx, { style: 'modern', fonts });
+    const generated = bridge.generate(derived, ctx, { style: 'modern', fonts });
+    expect((thread.requests[0] as { packet?: unknown }).packet).toBeDefined();
+    thread.run();
+    const actual = (await generated) as THREE.Group;
+    const meshes = (group: THREE.Object3D) => {
+      const found: THREE.Mesh[] = [];
+      group.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) found.push(child as THREE.Mesh);
+      });
+      return found;
+    };
+    const wanted = meshes(direct);
+    const got = meshes(actual);
+    expect(got.map((mesh) => mesh.name)).toEqual(wanted.map((mesh) => mesh.name));
+    for (const [index, expected] of wanted.entries()) {
+      const mesh = got[index] as THREE.Mesh;
+      for (const attr of ['position', 'normal', 'color']) {
+        const a = mesh.geometry.getAttribute(attr)?.array;
+        const b = expected.geometry.getAttribute(attr)?.array;
+        expect(a?.length).toBe(b?.length);
+        if (a && b)
+          expect(
+            Buffer.from(a.buffer, a.byteOffset, a.byteLength).equals(
+              Buffer.from(b.buffer, b.byteOffset, b.byteLength),
+            ),
+          ).toBe(true);
+      }
+      const instances = mesh as THREE.InstancedMesh;
+      if (instances.isInstancedMesh)
+        expect(instances.instanceMatrix.array).toEqual(
+          (expected as THREE.InstancedMesh).instanceMatrix.array,
+        );
+    }
+    disposeTerrainSurfaceObject(actual);
+    disposeTerrainSurfaceObject(direct);
     bridge.dispose();
   });
 

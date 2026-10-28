@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.dalat_palace_hotel",
+  "kind": "static-structure",
+  "title": "Dalat Palace Hotel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.dalat_palace_hotel",
+        "output": "assets/places/w6/w6j/dalat_palace_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e38fe8b5cbb9a4fceb6431ffd67c5bc7be08afd5435a83ccea2fb5ba6dffc856"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-dalat-palace-hotel",
+        "path": "models/generate-dalat-palace-hotel.mjs"
+      },
+      {
+        "id": "dalat-palace-hotel-model",
+        "path": "models/dalat-palace-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "architectural-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/main-building-and-stair-axis.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-26254-15289.png",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

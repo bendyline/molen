@@ -6,11 +6,14 @@ import {
   createViewer,
   type MolenClient,
 } from '@bendyline/molen-client';
+import { bindAircraftCockpitPointer } from '@bendyline/molen-client/aircraft';
 import {
   applyCameraLookDelta,
   cameraForward,
   cameraPlanarForward,
   cameraRight,
+  createNavigationControls,
+  NavigationInputSource,
   viewNeedsImmediateUpdate,
   WALK_EYE_HEIGHT,
   WALK_PLACEMENT_RADIUS,
@@ -19,34 +22,45 @@ import {
 } from '@bendyline/molen-client/navigation';
 import {
   ambientContentFromTypes,
+  createEarthAdmissionGovernor,
   createEarthFleet,
   createEarthFog,
   createEarthRoadSigns,
   createEarthSky,
+  createEarthTilePreloader,
   createEarthWorldgen,
   createRegionalGroundColor,
+  EARTH_CALIBRATION_QUALITY,
+  EARTH_QUALITY_CALIBRATION_MS,
   EARTH_SHADOW_CASTER_HEIGHT,
+  EARTH_STICKY_QUALITY,
   EARTH_WATER_COLOR,
   EARTH_WATER_CONDITIONS,
+  EarthAirportPopulation,
   EarthAmbient,
   type EarthAudio,
   EarthAudioTerrain,
   type EarthFleet,
+  EarthNightLighting,
   type EarthRoadSigns,
   EarthVehicles,
   EarthWildlife,
   type EarthWorldgen,
+  earthAdmission,
   earthMemoryBudget,
+  earthNightFactor,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
   earthShadowFocus,
+  earthTerrainCacheBudget,
   observeSemanticTiles,
   regionalEarthAttribution,
   SemanticTileBuffer,
   updateEarthFog,
+  withEarthAirports,
 } from '@bendyline/molen-earth/client';
-import { type AircraftData, validateByKind } from '@bendyline/molen-schema';
+import { validateByKind } from '@bendyline/molen-schema';
 import type { TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
 import {
   createDefaultTerrainSemanticRenderer,
@@ -65,6 +79,7 @@ import {
   type TerrainPyramidHeightSource,
   type TerrainPyramidStreamStats,
   type TerrainPyramidTileLayer,
+  type TerrainPyramidView,
   type TerrainQualityPreset,
   type TerrainStreamStats,
   type TerrainTileArchive,
@@ -111,7 +126,6 @@ const DEMO_LEVEL = 13;
 const DEMO_MIN_LEVEL = 8;
 const DEMO_RESOLUTION = 33;
 type AircraftKind = string;
-const aircraftEntityId = (kind: AircraftKind) => `molen.entities.aircraft.${kind}` as const;
 
 const DEMO_PACKAGE: TerrainPackageDescriptor = {
   format: 'molen/terrain-package@1',
@@ -461,6 +475,7 @@ async function loadWorldgen(options: {
     signal: AbortSignal,
     parent?: THREE.Object3D,
   ) => Promise<void>;
+  prepareMaterialChange?: (current: THREE.Material, next: THREE.Material) => Promise<void>;
   content: ExplorerWorldgenContent;
   /** Every pack's assets: entity models, style-pack props and material documents. */
   assets: AssetProvider;
@@ -504,6 +519,9 @@ async function loadWorldgen(options: {
     compact: options.compact,
     lodPolicy: options.lodPolicy,
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
+    ...(options.prepareMaterialChange
+      ? { prepareMaterialChange: options.prepareMaterialChange }
+      : {}),
     // Shared texture work starts after the first camera frame; buildings gain textures as it finishes.
     // Vite bundles a worker only from the literal `new Worker(new URL(...))` pattern.
     workers: options.worker
@@ -728,11 +746,27 @@ async function main(): Promise<void> {
   const start = selectedStart();
   const cameraAngles = selectedCameraAngles();
   const params = new URLSearchParams(location.search);
+  // ?aerialOrtho=<meters> draws a north-up orthographic frame that many meters tall, centered
+  // under the camera, for comparison with orthophotos (scripts/aerial-color). Streaming and LOD
+  // still follow the ordinary pose, so pair it with ?pitch=-1.5 and an altitude near the height.
+  const aerialOrtho = Number(params.get('aerialOrtho') ?? 0);
+  if (!Number.isFinite(aerialOrtho) || aerialOrtho < 0)
+    throw new Error('aerialOrtho must be a finite, non-negative frame height in meters');
   let quality = selectedQuality();
   let automaticQuality =
     !params.has('level') && (!params.has('quality') || params.get('quality') === 'auto');
   let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
-  const qualityController = new AdaptiveQualityController({ initialLevel: performanceLevel });
+  // Auto climbs no higher than Balanced, as EarthView's default maxQualityLevel: High switches
+  // buildings to the high preset, which rebuilds them across the view and hitches mid-flight.
+  const automaticMaxLevel = 3;
+  // Quick recovery while calibrating, then sticky (see EARTH_QUALITY_CALIBRATION_MS), as EarthView.
+  let qualityController = new AdaptiveQualityController({
+    initialLevel: performanceLevel,
+    maxLevel: automaticMaxLevel,
+    ...EARTH_CALIBRATION_QUALITY,
+  });
+  let qualityCalibrated = false;
+  let levelSince = performance.now();
   const memoryBudget = earthMemoryBudget();
   // The tier's object error; the frame loop scales it with height above the ground.
   let objectPixelError = automaticQuality
@@ -761,9 +795,12 @@ async function main(): Promise<void> {
     (x, z) => roadSigns?.profileAt(x, z),
     content.roadSigns?.shields,
   );
-  const pyramidBudget = automaticQuality
-    ? earthPerformanceTier(performanceLevel).terrain
-    : terrainPyramidBudgetForQuality(quality);
+  const pyramidBudget = earthTerrainCacheBudget(
+    automaticQuality
+      ? earthPerformanceTier(performanceLevel).terrain
+      : terrainPyramidBudgetForQuality(quality),
+    memoryBudget,
+  );
   const fixedBudget = terrainStreamBudgetForQuality(quality);
   // Adaptive coverage is the normal perspective path at every altitude. ?level=N intentionally
   // pins the old fixed-grid path for diagnostics and orthographic experiments.
@@ -778,6 +815,7 @@ async function main(): Promise<void> {
   const viewer = await createViewer({
     reflections: true,
     admission: {
+      ...earthAdmission(selectedRendererBackend(params), false),
       onSample: (sample) => {
         graphics.record(sample.label, sample.workMs);
         graphics.record(
@@ -819,7 +857,7 @@ async function main(): Promise<void> {
   let occlusionOn = occlusionWanted;
   const waterMaterial = await createTerrainWaterMaterialAsync(
     {
-      color: EARTH_WATER_COLOR,
+      color: selectedRegion(params)?.water ?? EARTH_WATER_COLOR,
       swells: EARTH_WATER_CONDITIONS.waves ?? [],
       waveScale: 0.028,
       waveStrength: 0.045,
@@ -885,6 +923,8 @@ async function main(): Promise<void> {
                 signal: AbortSignal,
                 parent?: THREE.Object3D,
               ) => viewer.renderer.prepareObject(object, signal, parent),
+              prepareMaterialChange: (current: THREE.Material, next: THREE.Material) =>
+                viewer.renderer.prepareMaterialChange(current, next),
             }
           : {}),
         content: content.worldgen,
@@ -938,14 +978,27 @@ async function main(): Promise<void> {
   ): WorldgenSemanticRenderers['humanFeatures'] => {
     const observed =
       wildlifeFeatures !== undefined ? observeSemanticTiles(renderer, wildlifeFeatures) : renderer;
-    return observeSemanticTiles(
-      ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
-      audioTerrain.observer,
+    return withEarthAirports(
+      observeSemanticTiles(
+        ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
+        audioTerrain.observer,
+      ),
+      content.airports,
     );
   };
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
     try {
       const opened = await createProfiledTerrainPackageSemanticLayers(loaded.descriptor, {
+        admission: viewer.renderer.admission,
+        // Map tiles decode in a worker: on the main thread a town tile took 10-18 ms of a frame.
+        ...(useWorker && params.get('semanticWorker') !== '0'
+          ? {
+              decoderWorker: new Worker(new URL('./semantic-worker.ts', import.meta.url), {
+                type: 'module',
+              }),
+            }
+          : {}),
+        distantCoverage: worldgen !== undefined,
         tunnels: {
           heights: {
             load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
@@ -975,25 +1028,30 @@ async function main(): Promise<void> {
         ...(worldgen !== undefined
           ? {
               landcoverLayer: {
-                renderer:
+                renderer: withEarthAirports(
                   wildlifeCover !== undefined
                     ? observeSemanticTiles(
                         observeSemanticTiles(worldgen.classification, wildlifeCover),
                         audioTerrain.observer,
                       )
                     : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                  content.airports,
+                ),
               },
               featuresLayer: { renderer: observeRoads(worldgen.humanFeatures) },
             }
           : {
               landcoverLayer: {
-                renderer: observeSemanticTiles(
-                  createDefaultTerrainSemanticRenderer({
-                    renderWater: false,
-                    renderTransportation: false,
-                    renderBuildings: false,
-                  }),
-                  audioTerrain.observer,
+                renderer: withEarthAirports(
+                  observeSemanticTiles(
+                    createDefaultTerrainSemanticRenderer({
+                      renderWater: false,
+                      renderTransportation: false,
+                      renderBuildings: false,
+                    }),
+                    audioTerrain.observer,
+                  ),
+                  content.airports,
                 ),
               },
               featuresLayer: {
@@ -1064,6 +1122,7 @@ async function main(): Promise<void> {
   qualitySelect.value = automaticQuality ? 'auto' : quality;
   const allAttribution = [
     ...loaded.descriptor.attribution,
+    ...(content.airports?.attribution ?? []),
     ...regionalEarthAttribution(content.worldgen?.environment),
   ];
   for (const attribution of allAttribution) {
@@ -1243,6 +1302,15 @@ async function main(): Promise<void> {
     (error) => console.warn(`[molen] star catalog unavailable: ${(error as Error).message}`),
   );
   const skyControls = createSkyControls(viewer.renderer, params);
+  // The sky's sun, fog and reflections now rather than at the first frame: every shader prepared
+  // while terrain loads is built for the scene's lighting, so none is rebuilt when it first draws.
+  {
+    const [longitude, latitude] = webMercatorToWgs84(
+      camera.pos[0] / metersPerUnit,
+      camera.pos[2] / metersPerUnit,
+    );
+    skyControls.update({ latitude, longitude, elevation: camera.pos[1] });
+  }
   startupStage('environment-controls');
   viewer.renderer.worldRoot.add(stream.object);
   const gpuTimer = viewer.renderer.createGpuTimer();
@@ -1260,39 +1328,58 @@ async function main(): Promise<void> {
     lodPolicy.viewportHeight = canvas.height;
   };
   // Sun shadows follow the performance tier; `?shadows=0` turns them off for comparison. Applied
-  // once the sky's sun exists (its first frame), then whenever the tier changes.
+  // in the frame loop whenever the tier changes.
   let shadowQuality = 'off' as 'off' | 'medium' | 'high';
   let appliedShadowQuality: 'off' | 'medium' | 'high' | undefined;
-  const applyPerformanceLevel = (): void => {
+  // Shadows on once, now that the sky's sun exists: lit shaders are then built for them from the
+  // start, and a tier without shadows parks the map instead of rebuilding every shader in view.
+  if (shadowsWanted) {
+    viewer.renderer.setShadowQuality('medium');
+    viewer.renderer.setShadowQuality('off');
+    appliedShadowQuality = 'off';
+  }
+  // A level change swaps resolution, terrain detail, building quality, surfaces, ambient life and
+  // shadows. Applied together mid-flight, their one-off costs (a canvas reallocation, a terrain
+  // visibility pass, surface rebuilds, a shadow map) stacked into one long frame at every change;
+  // the frame loop applies them a frame apart instead. Startup and the menu apply them at once.
+  const levelSteps: Array<() => void> = [];
+  const applyPerformanceLevel = (staged = false): void => {
     const tier = earthPerformanceTier(performanceLevel);
     if (automaticQuality) quality = tier.quality;
-    objectPixelError = automaticQuality ? tier.objectPixelError : 2;
-    lodPolicy.maxPixelError = objectPixelError;
-    const budget = automaticQuality ? tier.terrain : terrainPyramidBudgetForQuality(quality);
-    // Explicit undefined clears the automatic byte cap when the user takes manual control.
-    pyramidEarth?.stream.setBudget({ ...budget, maxResidentBytes: budget.maxResidentBytes });
-    worldgen?.setQuality(quality);
-    worldgen?.setCacheBudget(automaticQuality ? tier.cacheBytes : 192 * 1024 * 1024);
-    void surfaceRenderer
-      .setPerformanceScale(automaticQuality ? tier.surfaceScale : 1, quality)
-      .catch((error: unknown) => console.warn('Surface detail update failed:', error));
-    fogViewDistance = budget.viewDistance;
-    shadowQuality = shadowsWanted
-      ? earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
-          .shadows
-      : 'off';
-    ambient?.setBudget(
-      earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
-        .ambient,
-    );
-    wildlife?.setBudget(
-      earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
-        .ambient,
-    );
-    resizeRenderer();
-    performanceStatus.dataset.mode = automaticQuality ? 'auto' : 'manual';
-    performanceStatus.dataset.level = String(performanceLevel);
-    performanceStatus.dataset.maxPixels = automaticQuality ? String(tier.maxPixels) : '';
+    const stepQuality = quality;
+    const level = automaticQuality ? performanceLevel : earthQualityLevel(stepQuality);
+    const budget = automaticQuality ? tier.terrain : terrainPyramidBudgetForQuality(stepQuality);
+    const steps: Array<() => void> = [
+      () => {
+        objectPixelError = automaticQuality ? tier.objectPixelError : 2;
+        lodPolicy.maxPixelError = objectPixelError;
+        fogViewDistance = budget.viewDistance;
+        resizeRenderer();
+        performanceStatus.dataset.mode = automaticQuality ? 'auto' : 'manual';
+        performanceStatus.dataset.level = String(performanceLevel);
+        performanceStatus.dataset.maxPixels = automaticQuality ? String(tier.maxPixels) : '';
+      },
+      () => pyramidEarth?.stream.setBudget(earthTerrainCacheBudget(budget, memoryBudget)),
+      () => {
+        worldgen?.setQuality(stepQuality);
+        worldgen?.setCacheBudget(automaticQuality ? tier.cacheBytes : 192 * 1024 * 1024);
+      },
+      () => {
+        void surfaceRenderer
+          .setPerformanceScale(automaticQuality ? tier.surfaceScale : 1, stepQuality)
+          .catch((error: unknown) => console.warn('Surface detail update failed:', error));
+      },
+      () => {
+        ambient?.setBudget(earthPerformanceTier(level).ambient);
+        wildlife?.setBudget(earthPerformanceTier(level).ambient);
+      },
+      () => {
+        shadowQuality = shadowsWanted ? earthPerformanceTier(level).shadows : 'off';
+      },
+    ];
+    levelSteps.length = 0;
+    if (staged) levelSteps.push(...steps);
+    else for (const step of steps) step();
   };
   qualitySelect.addEventListener('change', () => {
     const next = new URL(location.href);
@@ -1304,7 +1391,7 @@ async function main(): Promise<void> {
     automaticQuality = qualitySelect.value === 'auto';
     if (!automaticQuality) quality = qualitySelect.value as TerrainQualityPreset;
     performanceLevel = automaticQuality
-      ? Math.min(performanceLevel, 3)
+      ? Math.min(performanceLevel, automaticMaxLevel)
       : earthQualityLevel(quality);
     qualityController.setLevel(performanceLevel);
     applyPerformanceLevel();
@@ -1367,10 +1454,21 @@ async function main(): Promise<void> {
     });
   }
 
-  const keys = new Set<string>();
+  const input = new NavigationInputSource({ element: canvas, keyTarget: window, profile: 'fly' });
+  let jumpRequested = false;
+  input.map.onPress('nav-jump', () => {
+    jumpRequested = true;
+  });
+  input.map.onReset(() => {
+    jumpRequested = false;
+  });
+  const controllerControls = createNavigationControls(input, {
+    container: document.getElementById('navigation') as HTMLElement,
+    focusTarget: canvas,
+    storageKey: 'molen:navigation-controls:v1',
+  });
   if (selectedDiorama(params.get('diorama')) !== undefined || params.get('mode') === 'human')
     setMode('human');
-  let jumpRequested = false;
   const walker = new WalkController();
   // A full scan of the streamed scene each frame was the walk mode's largest fixed cost; 5 Hz
   // rescans still catch streamed changes, and placement forces one.
@@ -1422,8 +1520,48 @@ async function main(): Promise<void> {
     camera.pos,
     loadEntityModel,
     content.types,
+    params.get('warmup') !== '0' ? (object) => viewer.renderer.prepareObject(object) : undefined,
   );
   const flight = aircraft;
+  const nightLighting = new EarthNightLighting({
+    root: stream.object,
+    world: vehicles.world,
+    surface: surfaceRenderer,
+    vehicleHeights: roadContent.heights,
+    sampleHeight,
+  });
+  const airportPopulation =
+    content.airports && params.get('airportTraffic') !== '0'
+      ? new EarthAirportPopulation(content.airports, content.types, {
+          spawn: (stand) => {
+            // Let the supporting airport pavement arrive before models compete for admission.
+            if (surfaceRenderer.stats().aprons === 0) return false;
+            const [x, z] = wgs84ToWebMercator(stand.longitude, stand.latitude);
+            return flight.spawnApron(
+              stand.id,
+              stand.type,
+              x * metersPerUnit,
+              z * metersPerUnit,
+              stand.heading,
+            );
+          },
+          remove: (id) => flight.removeApron(id),
+          pose: (id) => {
+            const pose = flight.apronPose(id);
+            if (!pose) return undefined;
+            const [longitude, latitude] = webMercatorToWgs84(
+              pose.position[0] / metersPerUnit,
+              pose.position[2] / metersPerUnit,
+            );
+            return { longitude, latitude, occupied: pose.occupied, speed: pose.speed };
+          },
+        })
+      : undefined;
+  const cockpitPointer = bindAircraftCockpitPointer({
+    element: canvas,
+    camera: viewer.renderer.camera,
+    session: () => (vehicles.view === 'cockpit' ? flight.cockpitSession() : undefined),
+  });
   if (ambientTiles !== undefined) {
     ambient = new EarthAmbient({
       world: vehicles.world,
@@ -1439,6 +1577,7 @@ async function main(): Promise<void> {
         }
       }),
       prepare: (object) => viewer.renderer.prepareObject(object),
+      admission: viewer.renderer.admission,
       ground: (x, z) => stream.sampleHeight(x, z),
     });
     ambient.setBudget(
@@ -1494,7 +1633,7 @@ async function main(): Promise<void> {
     walker.waitingForTerrain = false;
     camera.pos = [feet[0], feet[1] + WALK_EYE_HEIGHT, feet[2]];
     camera.pitch = 0;
-    keys.clear();
+    input.map.reset();
     help.textContent = walkHelp;
     return true;
   };
@@ -1506,7 +1645,12 @@ async function main(): Promise<void> {
       wildlifeFeatures?.detach();
       wildlife?.dispose();
       audioTerrain.clear();
+      controllerControls.dispose();
+      input.dispose();
+      airportPopulation?.dispose();
       flight.dispose();
+      cockpitPointer.dispose();
+      nightLighting.dispose();
       vehicles.dispose();
     }
   });
@@ -1517,8 +1661,8 @@ async function main(): Promise<void> {
       return;
     }
     navigation = mode;
-    keys.clear();
-    jumpRequested = false;
+    input.setProfile(mode);
+    input.map.reset();
     if (mode === 'walk') {
       walker.reset(camera.pos[0], camera.pos[2]);
       camera.pitch = 0;
@@ -1580,116 +1724,40 @@ async function main(): Promise<void> {
       visitingTransit = button.dataset.transit as 'bus' | 'lightrail';
     });
   }
+  const interact = (): void => {
+    if (navigation !== 'walk' || (!vehicles.mountedId && !walker.ready)) return;
+    if (vehicles.mountedId) exitVehicle();
+    else if (flight.enter(camera.pos) || vehicles.enter(camera.pos)) {
+      if (flight.mountedKind) airportPopulation?.claim(flight.mountedKind);
+      input.map.reset();
+      vehicles.view = 'cockpit';
+      vehicles.lookYaw = 0;
+      vehicles.lookPitch = -0.18;
+      help.textContent = flight.mountedKind
+        ? AIRCRAFT_HELP
+        : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
+          ? boatHelp
+          : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · E exit · V change view · drag to look';
+    }
+  };
   window.addEventListener('keydown', (event) => {
+    if (event.defaultPrevented || event.repeat || event.ctrlKey || event.altKey || event.metaKey)
+      return;
     if (
       event.target instanceof HTMLElement &&
-      (event.target.closest('input, select, textarea, button, a, summary') ||
+      (event.target.closest('input, select, textarea, button, a, summary, dialog') ||
         event.target.isContentEditable)
     )
       return;
-    if (
-      [
-        'KeyW',
-        'KeyA',
-        'KeyS',
-        'KeyD',
-        'KeyQ',
-        'KeyE',
-        'Space',
-        'ShiftLeft',
-        'ShiftRight',
-        'KeyR',
-        'KeyV',
-        'KeyL',
-        'KeyB',
-        'KeyI',
-        'KeyG',
-        'KeyF',
-        'KeyJ',
-        'KeyZ',
-        'ControlLeft',
-        'ControlRight',
-      ].includes(event.code)
-    ) {
-      event.preventDefault();
-      keys.add(event.code);
-      if (!event.repeat) flight.key(event.code);
-      if (event.code === 'KeyB' && !event.repeat) spawnBoat();
-      if (event.code === 'Space' && !event.repeat) jumpRequested = true;
-      if (
-        event.code === 'KeyE' &&
-        !event.repeat &&
-        navigation === 'walk' &&
-        (vehicles.mountedId || walker.ready)
-      ) {
-        if (vehicles.mountedId) exitVehicle();
-        else if (flight.enter(camera.pos) || vehicles.enter(camera.pos)) {
-          keys.clear();
-          vehicles.view = 'cockpit';
-          vehicles.lookYaw = 0;
-          vehicles.lookPitch = -0.18;
-          help.textContent = flight.mountedKind
-            ? AIRCRAFT_HELP
-            : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
-              ? boatHelp
-              : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · E exit · V change view · drag to look';
-        }
-      }
-      if (event.code === 'KeyL' && !event.repeat && ambient !== undefined) {
-        ambient.setEnabled(!ambient.isEnabled);
-        wildlife?.setEnabled(ambient.isEnabled);
-      }
-      if (event.code === 'KeyV' && !event.repeat && vehicles.mountedId) {
-        vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
-      }
+    if (event.code === 'KeyB') spawnBoat();
+    if (event.code === 'KeyR' && !flight.mountedKind)
+      viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
+    if (event.code === 'KeyL' && ambient !== undefined) {
+      ambient.setEnabled(!ambient.isEnabled);
+      wildlife?.setEnabled(ambient.isEnabled);
     }
   });
-  window.addEventListener('keyup', (event) => keys.delete(event.code));
-  let dragPointer: { id: number; x: number; y: number } | undefined;
-  const clearInput = (): void => {
-    keys.clear();
-    jumpRequested = false;
-    dragPointer = undefined;
-  };
-  window.addEventListener('blur', clearInput);
-  document.getElementById('hud')?.addEventListener('focusin', clearInput);
-  document.addEventListener('visibilitychange', clearInput);
-  document.addEventListener('pointerlockchange', clearInput);
-  canvas.addEventListener('pointerdown', (event) => {
-    if (event.button !== 0) return;
-    canvas.focus();
-    if (navigation === 'walk' && document.pointerLockElement !== canvas) {
-      // Drag-look remains available when the host does not grant pointer lock.
-      void canvas.requestPointerLock?.()?.catch(() => {});
-    }
-    dragPointer = { id: event.pointerId, x: event.clientX, y: event.clientY };
-    canvas.setPointerCapture(event.pointerId);
-  });
-  canvas.addEventListener('pointermove', (event) => {
-    const locked = document.pointerLockElement === canvas;
-    if (!locked && dragPointer?.id !== event.pointerId) return;
-    const dx = locked ? event.movementX : event.clientX - (dragPointer?.x ?? event.clientX);
-    const dy = locked ? event.movementY : event.clientY - (dragPointer?.y ?? event.clientY);
-    if (dragPointer !== undefined) {
-      dragPointer.x = event.clientX;
-      dragPointer.y = event.clientY;
-    }
-    if (vehicles.mountedId) {
-      vehicles.lookYaw = Math.max(-1.45, Math.min(1.45, vehicles.lookYaw + dx * 0.003));
-      vehicles.lookPitch = Math.max(-0.8, Math.min(0.8, vehicles.lookPitch - dy * 0.003));
-      return;
-    }
-    const orientation = applyCameraLookDelta(camera.yaw, camera.pitch, dx, dy);
-    camera.yaw = orientation.yaw;
-    camera.pitch = orientation.pitch;
-  });
-  const finishDrag = (event: PointerEvent): void => {
-    if (dragPointer?.id !== event.pointerId) return;
-    dragPointer = undefined;
-    if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
-  };
-  canvas.addEventListener('pointerup', finishDrag);
-  canvas.addEventListener('pointercancel', finishDrag);
+  document.getElementById('hud')?.addEventListener('focusin', () => input.map.reset());
   window.addEventListener('resize', resizeRenderer);
 
   if (params.get('navigation') === 'walk') setNavigation('walk');
@@ -1697,7 +1765,9 @@ async function main(): Promise<void> {
     visitAircraft(params.get('aircraft') as AircraftKind);
   let lastTime = performance.now();
   let statusTime = 0;
+  let graphicsTime = 0;
   let streamTime = -Infinity;
+  const tilePreloader = createEarthTilePreloader();
   let streamedPosition: [number, number, number] = [...camera.pos];
   let streamedDirection: [number, number, number] = [...initialDirection];
   const immediateStreamMove = Math.max(8, finestTileSize / 8);
@@ -1706,10 +1776,18 @@ async function main(): Promise<void> {
   let frameCount = 0;
   let frameMax = 0;
   let previousCpuMs = 0;
+  const admissionGovernor = createEarthAdmissionGovernor(viewer.renderer.backend);
   let lastGpuMs: number | undefined;
   let lastGpuTime = -Infinity;
   let surfaceGeometryRevision = -1;
+  let memoryRefreshTime = Number.NEGATIVE_INFINITY;
   let streamingBusy = true;
+  // Quality adapts once the first view has finished loading (or after 20 s). Until then frames
+  // carry one-time work: the first ground refining under the camera, collision trees rebuilt
+  // for each refinement, models and materials arriving. Measured as overload, it stepped a fast
+  // desktop down to the lowest level before the visitor had moved.
+  let qualitySettled = false;
+  const qualityGraceUntil = performance.now() + 20_000;
   canvas.addEventListener('webglcontextlost', () => {
     lastGpuMs = undefined;
   });
@@ -1736,8 +1814,12 @@ async function main(): Promise<void> {
     } else if (now - lastGpuTime > 2000) lastGpuMs = undefined;
     if (automaticQuality) {
       const pressure = pyramidEarth?.stream.pressure();
+      if (!qualitySettled && (!streamingBusy || now > qualityGraceUntil)) {
+        qualitySettled = true;
+        levelSince = now;
+      }
       const change = qualityController.sample(frameMs, {
-        active: !document.hidden,
+        active: !document.hidden && qualitySettled,
         loading: streamingBusy,
         cpuFrameMs: previousCpuMs,
         ...(completedGpuMs === undefined ? {} : { gpuFrameMs: completedGpuMs }),
@@ -1748,15 +1830,55 @@ async function main(): Promise<void> {
       });
       if (change) {
         performanceLevel = change.level;
-        applyPerformanceLevel();
+        levelSince = now;
+        applyPerformanceLevel(true);
+      } else if (
+        qualitySettled &&
+        !qualityCalibrated &&
+        now - levelSince >= EARTH_QUALITY_CALIBRATION_MS
+      ) {
+        qualityController = new AdaptiveQualityController({
+          initialLevel: performanceLevel,
+          maxLevel: automaticMaxLevel,
+          ...EARTH_STICKY_QUALITY,
+        });
+        qualityCalibrated = true;
       }
     }
+    // One step of a level change per frame (see applyPerformanceLevel).
+    levelSteps.shift()?.();
     frameTotal += frameMs;
     frameCount++;
     frameMax = Math.max(frameMax, frameMs);
     const dt = Math.max(0, Math.min(0.1, (now - lastTime) / 1000));
     lastTime = now;
-    const sprint = keys.has('ShiftLeft') || keys.has('ShiftRight');
+    input.setProfile(flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation);
+    input.map.setEnabled(!document.hidden && document.hasFocus());
+    let frameInput = input.read(dt);
+    frameInput.jump ||= jumpRequested;
+    jumpRequested = false;
+    if (frameInput.interact > 0) {
+      interact();
+      input.setProfile(flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation);
+      frameInput = input.read(0);
+    }
+    if (frameInput.view % 2 === 1 && vehicles.mountedId)
+      vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
+    if (vehicles.mountedId) {
+      vehicles.lookYaw = Math.max(
+        -1.45,
+        Math.min(1.45, vehicles.lookYaw + frameInput.look[0] * 0.003),
+      );
+      vehicles.lookPitch = Math.max(
+        -0.8,
+        Math.min(0.8, vehicles.lookPitch - frameInput.look[1] * 0.003),
+      );
+    } else {
+      const orientation = applyCameraLookDelta(camera.yaw, camera.pitch, ...frameInput.look);
+      camera.yaw = orientation.yaw;
+      camera.pitch = orientation.pitch;
+    }
+    const sprint = frameInput.sprint;
     const tunnelBefore = sampleTerrainTunnel(stream.object, ...camera.pos);
     const previousFlyPosition: [number, number, number] = [...camera.pos];
     const groundBelow = sampleHeight(camera.pos[0], camera.pos[2]);
@@ -1848,18 +1970,27 @@ async function main(): Promise<void> {
         ? [{ x: camera.pos[0], z: camera.pos[2], radius: 0.5 }]
         : [],
     );
-    flight.input(dt, keys, !document.hidden && document.hasFocus());
+    // Visiting or spawning a vehicle can change the mode after the frame began.
+    const activeProfile = flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation;
+    if (input.map.activeProfile !== activeProfile) {
+      input.setProfile(activeProfile);
+      frameInput = input.read(0);
+    }
+    flight.input(dt, frameInput);
     vehicles.update(dt, {
-      throttle: Number(keys.has('KeyW')) - Number(keys.has('KeyS')),
-      steering: Number(keys.has('KeyD')) - Number(keys.has('KeyA')),
-      brake: keys.has('Space') || document.hidden || !document.hasFocus(),
-      handbrake: keys.has('ShiftLeft') || keys.has('ShiftRight'),
+      throttle: frameInput.move.forward,
+      steering: frameInput.move.right,
+      brake: frameInput.jump || document.hidden || !document.hasFocus(),
+      handbrake: frameInput.sprint,
     });
-    flight.render();
+    // Last frame's camera: parked and distant aircraft draw without their cockpits.
+    flight.render(camera.pos);
+    cockpitPointer.update();
     surfaceRenderer.updateSignals(
       params.has('freeze') ? 0 : vehicles.world.tick / vehicles.world.tickRate,
       ambient?.surfaceSignalColor,
     );
+    surfaceRenderer.updateDetail(viewer.renderer.camera.position);
     if (ambient !== undefined) {
       const ambientStarted = performance.now();
       ambient.render(camera.pos, dt);
@@ -1877,7 +2008,6 @@ async function main(): Promise<void> {
         .sub(new THREE.Vector3().fromArray(camera.pos))
         .normalize();
       viewDirection = direction.toArray();
-      jumpRequested = false;
     } else if (navigation === 'walk') {
       walkCollision.update(stream.object, camera.pos[0], camera.pos[2]);
       if (!walker.ready) {
@@ -1895,28 +2025,24 @@ async function main(): Promise<void> {
       walker.update(
         dt,
         {
-          forward: Number(keys.has('KeyW')) - Number(keys.has('KeyS')),
-          right: Number(keys.has('KeyD')) - Number(keys.has('KeyA')),
+          forward: frameInput.move.forward,
+          right: frameInput.move.right,
           yaw: camera.yaw,
           sprint,
-          jump: keys.has('Space') || jumpRequested,
+          jump: frameInput.jump,
         },
         walkCollision,
         sampleHeight,
       );
-      jumpRequested = false;
       if (walker.ready) {
         camera.pos[0] = walker.feet.x;
         camera.pos[1] = walker.feet.y + WALK_EYE_HEIGHT;
         camera.pos[2] = walker.feet.z;
       }
     } else {
-      if (keys.has('KeyW')) move(forward, speed);
-      if (keys.has('KeyS')) move(forward, -speed);
-      if (keys.has('KeyA')) move(right, -speed);
-      if (keys.has('KeyD')) move(right, speed);
-      if (keys.has('KeyE')) move([0, 1, 0], speed);
-      if (keys.has('KeyQ')) move([0, 1, 0], -speed);
+      move(forward, speed * frameInput.move.forward);
+      move(right, speed * frameInput.move.right);
+      move([0, 1, 0], speed * frameInput.move.up);
       // Probe at the previous height so raising the camera cannot jump through a bore's roof.
       const tunnel = sampleTerrainTunnel(
         stream.object,
@@ -1960,21 +2086,19 @@ async function main(): Promise<void> {
       streamTime = now;
       if (fixedEarth !== undefined) fixedEarth.stream.update(camera.pos);
       else {
-        pyramidEarth?.stream.update({
+        const streamView: TerrainPyramidView = {
           position: camera.pos,
           verticalFov: THREE.MathUtils.degToRad(60),
           viewportHeight: canvas.height,
           direction: viewDirection,
           aspect: window.innerWidth / window.innerHeight,
-        });
+        };
+        pyramidEarth?.stream.update(streamView, tilePreloader.views(now, streamView, true));
       }
       streamedPosition = [...camera.pos];
       streamedDirection = [...viewDirection];
     }
 
-    if (keys.delete('KeyR')) {
-      viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
-    }
     if (
       water !== undefined &&
       Math.hypot(camera.pos[0] - water.position.x, camera.pos[2] - water.position.z) >
@@ -1983,19 +2107,33 @@ async function main(): Promise<void> {
       water.position.x = camera.pos[0];
       water.position.z = camera.pos[2];
     }
-    viewer.setCamera({
-      position: camera.pos,
-      ...(flightCamera
-        ? { rotation: flightCamera.rotation }
-        : {
-            lookAt: [
-              camera.pos[0] + viewDirection[0],
-              camera.pos[1] + viewDirection[1],
-              camera.pos[2] + viewDirection[2],
-            ],
-          }),
-    });
+    if (aerialOrtho > 0)
+      viewer.renderer.setTopDownOrtho({
+        center: [camera.pos[0], camera.pos[2]],
+        viewHeight: aerialOrtho,
+        cameraHeight: camera.pos[1],
+      });
+    else
+      viewer.setCamera({
+        position: camera.pos,
+        ...(flightCamera
+          ? { rotation: flightCamera.rotation }
+          : {
+              lookAt: [
+                camera.pos[0] + viewDirection[0],
+                camera.pos[1] + viewDirection[1],
+                camera.pos[2] + viewDirection[2],
+              ],
+            }),
+      });
     const waterOrigin = viewer.renderer.getWorldOrigin();
+    if (airportPopulation) {
+      const [longitude, latitude] = webMercatorToWgs84(
+        camera.pos[0] / metersPerUnit,
+        camera.pos[2] / metersPerUnit,
+      );
+      airportPopulation.update(now, { longitude, latitude });
+    }
     dioramas.update({
       root: stream.object,
       camera: viewer.renderer.camera,
@@ -2033,7 +2171,11 @@ async function main(): Promise<void> {
     if (dioramaStatus.textContent !== dioramaText) dioramaStatus.textContent = dioramaText;
     // Fit the visit once local terrain has arrived. Explicit camera parameters and navigation win.
     if (fitDioramaCamera && requestedDiorama) {
-      if (keys.size > 0 || camera.pos[0] !== startX || camera.pos[2] !== startZ)
+      if (
+        input.map.activeActions().size > 0 ||
+        camera.pos[0] !== startX ||
+        camera.pos[2] !== startZ
+      )
         fitDioramaCamera = false;
       else if (dioramaState === 'playing') {
         const [mx, mz] = wgs84ToWebMercator(requestedDiorama.longitude, requestedDiorama.latitude);
@@ -2078,11 +2220,30 @@ async function main(): Promise<void> {
       longitude: skyLocation[0],
       elevation: camera.pos[1],
     });
+    const sunY = viewer.renderer.sky?.frame.sunDirection[1];
+    const night =
+      sunY === undefined
+        ? 0
+        : earthNightFactor((Math.asin(Math.max(-1, Math.min(1, sunY))) * 180) / Math.PI);
+    worldgen?.setNightFactor(night);
+    surfaceRenderer.setNightFactor(night);
+    nightLighting.update({
+      camera: camera.pos,
+      direction: viewDirection,
+      factor: night,
+      drivenVehicleId: vehicles.mountedId,
+    });
     if (appliedShadowQuality !== shadowQuality) {
       viewer.renderer.setShadowQuality(shadowQuality);
       appliedShadowQuality = shadowQuality;
     }
-    if (shadowQuality !== 'off') {
+    if (shadowQuality !== 'off' && aerialOrtho > 0) {
+      // The orthophoto frame is centered under the camera; cover exactly it.
+      viewer.renderer.setShadowFocus({
+        center: [camera.pos[0], sampleHeight(camera.pos[0], camera.pos[2]) ?? 0, camera.pos[2]],
+        radius: (aerialOrtho / 2) * Math.max(1, window.innerWidth / window.innerHeight) * 1.05,
+      });
+    } else if (shadowQuality !== 'off') {
       viewer.renderer.setShadowFocus(
         earthShadowFocus(
           navigation === 'walk' && !flight.mountedKind
@@ -2181,7 +2342,12 @@ async function main(): Promise<void> {
 
     if (now - statusTime > 250) {
       statusTime = now;
-      const stats: TerrainStreamStats | TerrainPyramidStreamStats = stream.stats();
+      // The tracked byte estimate: the measured totals walk every resident tile's objects, a
+      // stall four times a second over a warm cache.
+      const stats: TerrainStreamStats | TerrainPyramidStreamStats =
+        pyramidEarth?.stream.stats({ geometry: 'tracked' }) ?? stream.stats();
+      status.dataset.preloading = String(isPyramidStats(stats) ? stats.preloading : 0);
+      status.dataset.preloaded = String(isPyramidStats(stats) ? stats.preloaded : 0);
       const rendered = viewer.renderer.stats();
       const surfaceStats = surfaceRenderer.stats();
       streamingBusy =
@@ -2189,9 +2355,17 @@ async function main(): Promise<void> {
         stats.loadingLayers > 0 ||
         (isPyramidStats(stats) && stats.retryingLayers > 0) ||
         surfaceStats.loading > 0;
-      if (surfaceStats.loading === 0 && surfaceStats.geometryRevision !== surfaceGeometryRevision) {
-        pyramidEarth?.stream.refreshMemoryUsage();
+      // Surface detail changes in place on tiles in view; the rest of the cache is counted. The
+      // recount walks every displayed mesh (4-6 ms in a city), so a pan's constant surface changes
+      // recount every two seconds rather than at every status update.
+      if (
+        surfaceStats.loading === 0 &&
+        surfaceStats.geometryRevision !== surfaceGeometryRevision &&
+        now - memoryRefreshTime >= 2000
+      ) {
+        pyramidEarth?.stream.refreshMemoryUsage('displayed');
         surfaceGeometryRevision = surfaceStats.geometryRevision;
+        memoryRefreshTime = now;
       }
       const nearVehicle =
         navigation === 'walk' && walker.ready ? vehicles.nearest(camera.pos) : undefined;
@@ -2200,7 +2374,7 @@ async function main(): Promise<void> {
       const navigationText = flight.mountedKind
         ? flight.status()
         : nearAircraft
-          ? `E · Board ${content.types.component<AircraftData>(aircraftEntityId(nearAircraft), 'aircraft').spec.label} · I starts the engine`
+          ? `E · Board ${flight.label(nearAircraft)} · I starts the engine`
           : flight.message ||
             (vehicles.mountedId
               ? `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${vehicles.speed < -0.1 ? 'Reverse' : 'Drive'} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`
@@ -2227,6 +2401,8 @@ async function main(): Promise<void> {
       );
       navigationStatus.dataset.speed = (flight.state?.airspeed ?? vehicles.speed).toFixed(3);
       navigationStatus.dataset.aircraft = flight.mountedKind ?? '';
+      navigationStatus.dataset.apronAircraft = String(flight.apronCount);
+      navigationStatus.dataset.apronLoading = String(flight.apronPending);
       navigationStatus.dataset.agl = (flight.state?.altitudeAGL ?? 0).toFixed(2);
       navigationStatus.dataset.crashed = String(flight.state?.crashed ?? false);
       navigationStatus.dataset.power = String(Math.round(flight.power * 100));
@@ -2326,7 +2502,7 @@ async function main(): Promise<void> {
           : []),
         (() => {
           const s = surfaceStats;
-          return `surfaces ${s.style} · ${s.parkingAreas} lots · ${s.parkingBays} bays · ${s.junctions} junctions · ${s.streetlights} lights · ${s.parkedCars} cars`;
+          return `surfaces ${s.style} · airport fragments: ${s.runways} runway / ${s.taxiways} taxiway / ${s.aprons} apron · ${s.parkingAreas} lots · ${s.parkingBays} bays · ${s.junctions} junctions · ${s.streetlights} lights · ${s.parkedCars} cars`;
         })(),
         ...(ambient === undefined
           ? []
@@ -2351,17 +2527,24 @@ async function main(): Promise<void> {
         `rendered ${rendered.drawCalls} draws / ${(rendered.triangles / 1_000).toFixed(0)}k triangles`,
         ...(pressure
           ? [
-              `resident buffers ${(pressure.residentBytes / 1_048_576).toFixed(1)}MiB${automaticQuality ? ` / ${((pressure.maxResidentBytes ?? 0) / 1_048_576).toFixed(0)}MiB` : ''}`,
+              `resident buffers ${(pressure.residentBytes / 1_048_576).toFixed(1)}MiB${automaticQuality ? ` / ${((pressure.maxResidentBytes ?? 0) / 1_048_576).toFixed(0)}MiB` : ''} · shown ${(pressure.displayedBytes / 1_048_576).toFixed(0)}MiB`,
             ]
           : []),
       ].join('\n');
       frameTotal = 0;
-      performanceStatus.dataset.graphics = JSON.stringify(graphics.snapshot());
+      // The distributions sort every stage's samples: a few milliseconds, so every two seconds.
+      if (now - graphicsTime >= 2000) {
+        graphicsTime = now;
+        performanceStatus.dataset.graphics = JSON.stringify(graphics.snapshot());
+      }
       frameCount = 0;
       frameMax = 0;
     }
     previousCpuMs = performance.now() - cpuStarted;
     graphics.record(streamingBusy ? 'loading-frame-cpu' : 'steady-frame-cpu', previousCpuMs);
+    // A larger streaming budget only while frames have time to spare (see earthAdmission).
+    const admission = admissionGovernor.sample(previousCpuMs, frameMs);
+    if (admission !== undefined) viewer.renderer.admission.setLimits(admission);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

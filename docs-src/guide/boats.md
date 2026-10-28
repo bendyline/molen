@@ -23,14 +23,19 @@ A host can supply measured depths through `waterAt`.
 
 Swells lift, pitch and roll the hull, and turns produce a small bank. Currents carry an unanchored
 boat; the helm needs forward motion or propeller wash to turn. Rendered water uses the same
-analytic swell slopes and simulation time as the hull. The shoreline polygons stay flat: this
-version adds moving normals, not displaced surf, breaking waves, tides or a fluid simulation.
+analytic swell slopes and simulation time as the hull, with smaller visual wind ripples layered
+over them. Those ripples drift in several directions and scales, with varying local strength;
+both the base reflection and clearcoat follow their normals. Mip filtering smooths the fine
+detail at a distance, and subpixel swells fade to avoid shimmering bands. The shoreline polygons
+stay flat: this version adds moving normals, not displaced surf, breaking waves, tides or a fluid
+simulation.
 Wind-driven sailing, capsize/damage, deck walking, and carrying loose cars/cargo are not included.
 
 ## Host API
 
-`mountEarthView` accepts `water: { waves, current }`. Empty `waves` gives calm water;
-`current` is `[east, south]` in meters per second. Each swell has `amplitude` and `wavelength`
+`mountEarthView` accepts `water: { waves, current }`. Empty `waves` removes hull swells while
+keeping fine visual wind ripples. `current` is `[east, south]` in meters per second. Each swell
+has `amplitude` and `wavelength`
 in meters, `direction` in radians (zero towards +Z/south), and propagation `speed` in m/s.
 The default is mild coastal chop with no current. A host can author stronger seas and currents
 for a route or challenge; these are authored conditions, not live ocean observations.

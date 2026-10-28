@@ -114,14 +114,53 @@ if (!molen.state.built) {
     person(`rider-${n}`, [-15, 3.5, -8], paint[(n + 1) % 4], 0, 1.5);
     molen.set(`rider-${n}`, 'figureIntent', { mode: 'sit' });
   }
+  // Carousel: a peaked, scalloped canopy over a rounding board, and a ring of horses on poles.
+  shape('carousel-step', [16, 0.12, -9], [15, 0.24, 15], '#8f7458', 'cylinder');
   shape('carousel-deck', [16, 0.4, -9], [14, 0.5, 14], '#b98c67', 'cylinder');
   shape('carousel-roof', [16, 4.5, -9], [15, 0.4, 15], '#a95e50', 'cylinder');
+  shape('carousel-roof-tier', [16, 5, -9], [10, 0.6, 10], '#efe3c4', 'cylinder');
+  shape('carousel-roof-crown', [16, 5.6, -9], [5, 0.7, 5], '#a95e50', 'cylinder');
+  shape('carousel-finial', [16, 6.25, -9], [0.7, 0.7, 0.7], '#d3ae59', 'sphere');
   shape('carousel-mast', [16, 2.4, -9], [0.5, 4.8, 0.5], '#d3ae59', 'cylinder');
-  for (let n = 0; n < 6; n++) {
+  shape('carousel-drum', [16, 3.7, -9], [3.2, 1.2, 3.2], '#5c8a9a', 'cylinder');
+  for (let k = 0; k < 24; k++) {
+    const a = (k * tau) / 24;
+    const pos: Point = [16 + molen.math.cos(a) * 7.45, 4.05, -9 + molen.math.sin(a) * 7.45];
+    shape(`carousel-valance-${k}`, pos, [1.95, 0.55, 0.1], k % 2 ? '#efe3c4' : '#a95e50');
+    pose(`carousel-valance-${k}`, pos, -(a + molen.math.PI / 2));
+  }
+  for (let n = 0; n < 12; n++) {
+    const color = paint[n % 4] as string;
     shape(`carousel-pole-${n}`, [16, 2.5, -9], [0.08, 4, 0.08], '#d3ae59');
-    shape(`carousel-seat-${n}`, [16, 1.3, -9], [1.1, 0.6, 1.7], paint[n % 4]);
-    person(`carousel-rider-${n}`, [16, 1.7, -9], paint[(n + 1) % 4], 0, 1.25);
-    molen.set(`carousel-rider-${n}`, 'figureIntent', { mode: 'sit' });
+    shape(`carousel-seat-${n}`, [16, 1.3, -9], [0.55, 0.55, 1.5], color);
+    shape(
+      `carousel-neck-${n}`,
+      [0, 0.45, 0.62],
+      [0.32, 0.8, 0.32],
+      color,
+      'box',
+      `carousel-seat-${n}`,
+    );
+    shape(
+      `carousel-head-${n}`,
+      [0, 0.82, 0.86],
+      [0.3, 0.32, 0.62],
+      color,
+      'box',
+      `carousel-seat-${n}`,
+    );
+    shape(
+      `carousel-saddle-${n}`,
+      [0, 0.3, -0.05],
+      [0.6, 0.08, 0.55],
+      '#efe3c4',
+      'box',
+      `carousel-seat-${n}`,
+    );
+    if (n % 2) continue;
+    // Every other horse carries a rider.
+    person(`carousel-rider-${n / 2}`, [16, 1.7, -9], paint[(n + 1) % 4] as string, 0, 1.25);
+    molen.set(`carousel-rider-${n / 2}`, 'figureIntent', { mode: 'sit' });
   }
   for (let n = 0; n < 3; n++) {
     booth(`booth-${n}`, -20 + n * 20, 23, paint[n]);
@@ -159,14 +198,14 @@ molen.on('tick', () => {
       ],
     });
   }
-  for (let n = 0; n < 6; n++) {
-    const angle = (time * tau) / 18 + (n * tau) / 6;
+  for (let n = 0; n < 12; n++) {
+    const angle = (time * tau) / 18 + (n * tau) / 12;
     const x = 16 + molen.math.cos(angle) * 5,
       z = -9 + molen.math.sin(angle) * 5;
     const bob = molen.math.sin(time * 2 + n) * 0.3;
     pose(`carousel-pole-${n}`, [x, 2.5, z]);
     pose(`carousel-seat-${n}`, [x, 1.3 + bob, z], -angle);
-    pose(`carousel-rider-${n}`, [x, 1.65 + bob, z], -angle);
+    if (n % 2 === 0) pose(`carousel-rider-${n / 2}`, [x, 1.7 + bob, z], -angle);
   }
   for (let n = 0; n < 22; n++)
     route(

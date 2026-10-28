@@ -7,6 +7,7 @@
  * noise to draw an organic, ragged transition in place of the polygon edge.
  */
 import type * as THREE from 'three';
+import { crispLandcover } from './landcover-appearance';
 import type { TerrainLandcoverFeature } from './semantic-types';
 
 /** Raster cells across one tile; boundary radius is at least 1.5 cells. */
@@ -155,7 +156,7 @@ export function applyLandcoverBlend(
   const scale = size / (1 + margin * 2);
   const near = nearBoundary(cells, size, Math.ceil((radius / tileSize) * scale) + 1);
   const xyz = position.array;
-  const crisp = features.map((feature) => feature.cultivation !== undefined);
+  const crisp = features.map(crispLandcover);
   const lookup = (x: number, z: number): number => {
     const col = Math.floor((x / tileSize + margin) * scale);
     const row = Math.floor((z / tileSize + margin) * scale);

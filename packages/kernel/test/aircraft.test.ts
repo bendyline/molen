@@ -8,8 +8,10 @@ import {
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
   installAircraft,
+  levelFlightAngleOfAttack,
   stepAircraft,
 } from '../src/aircraft';
+import { setBoostMode } from '../src/boost';
 import { Transform, type TransformData } from '../src/component';
 import { applyKeyframeTo, stateHash, takeKeyframe } from '../src/snapshot';
 import { Mounted, mountEntity, unmountEntity, vehicleRotation } from '../src/vehicles';
@@ -39,6 +41,86 @@ function setup(kind: TestAircraft) {
   return w;
 }
 describe('aircraft flight and mounting', () => {
+  it.each([
+    'p51d',
+    'oh6',
+    'f_16b',
+  ] as const)('keeps %s flyable with four times travel speed and normal control response', (kind) => {
+    const spec = molenAircraft(`molen.entities.aircraft.${kind}`).spec;
+    const speed = kind === 'p51d' ? 250 * 0.514444 : kind === 'f_16b' ? 200 : 25;
+    const pitch =
+      spec.model === 'airplane'
+        ? levelFlightAngleOfAttack(spec, speed, 1.225 * Math.exp(-1000 / 8500))
+        : 0;
+    const start = {
+      transform: { pos: [0, 1000, 0], rot: vehicleRotation(0, -pitch, 0) } as TransformData,
+      state: {
+        ...initialAircraftState(),
+        velocity: [0, 0, speed] as [number, number, number],
+        airspeed: speed,
+        pitch,
+        pitchTrim: pitch,
+        rpm: 1,
+        grounded: false,
+      },
+    };
+    const controls = {
+      ...running,
+      gear: false,
+      power: spec.model === 'airplane' ? 0.7 : 0.56,
+      roll: 0.2,
+    };
+    const normal = stepAircraft(start.transform, start.state, controls, spec, 1 / 1200, flat);
+    let boosted = stepAircraft(start.transform, start.state, controls, spec, 1 / 1200, {
+      ...flat,
+      boostMode: true,
+    });
+    expect(boosted.state.airspeed).toBeCloseTo(normal.state.airspeed * 4, 6);
+    expect(boosted.state.rollRate).toBeCloseTo(normal.state.rollRate, 6);
+    expect(boosted.state.overspeed).toBe(normal.state.overspeed);
+    expect(boosted.state.stalled).toBe(normal.state.stalled);
+    const off = stepAircraft(boosted.transform, boosted.state, controls, spec, 1 / 1200, flat);
+    expect(off.state.airspeed).toBeCloseTo(normal.state.airspeed, 0);
+    expect(off.state.boosted).toBeUndefined();
+    // Sustained powered flight, including banking and releasing the controls.
+    for (let tick = 0; tick < 1800; tick++) {
+      boosted = stepAircraft(
+        boosted.transform,
+        boosted.state,
+        { ...controls, roll: tick < 60 ? 0.1 : 0, pitch: 0 },
+        spec,
+        1 / 60,
+        { ...flat, boostMode: true },
+      );
+      expect(boosted.state.crashed).toBe(false);
+      expect(boosted.transform.pos.every(Number.isFinite)).toBe(true);
+      expect(Math.abs(boosted.state.rollRate)).toBeLessThan(3);
+    }
+    expect(boosted.transform.pos[1]).toBeGreaterThan(0);
+    expect(boosted.transform.pos[2]).toBeGreaterThan(500);
+  });
+
+  it('checks boosted flight obstacles at one-meter intervals and preserves state at unloaded terrain', () => {
+    const t: TransformData = { pos: [0, 1000, 0], rot: [0, 0, 0, 1] };
+    const state = {
+      ...initialAircraftState(),
+      velocity: [0, 0, 130] as [number, number, number],
+      grounded: false,
+    };
+    let last = t.pos;
+    const result = stepAircraft(t, state, running, specFor('p51d'), 0.1, {
+      boostMode: true,
+      groundHeight: (_x, z) => (z > 10 ? undefined : 0),
+      canOccupy: (candidate) => {
+        expect(Math.hypot(...candidate.pos.map((v, i) => v - (last[i] ?? 0)))).toBeLessThan(1.02);
+        last = candidate.pos;
+        return true;
+      },
+    });
+    expect(result.transform.pos[2]).toBeLessThanOrEqual(10);
+    expect(result.state.waitingForTerrain).toBe(true);
+    expect(result.state.velocity[2]).toBeGreaterThan(500);
+  });
   it('uses shared weather wind and pressure for airspeed and aerodynamic forces', () => {
     const transform: TransformData = { pos: [0, 1000, 0], rot: [0, 0, 0, 1] };
     const state = {
@@ -168,7 +250,9 @@ describe('aircraft flight and mounting', () => {
       canOccupy: () => false,
     });
     expect(hit.state.crashed).toBe(true);
-    expect(hit.state.velocity).toEqual([0, 0, 0]);
+    // A legacy boolean obstacle has no surface normal: recoil instead of freezing in midair.
+    expect(Math.abs(hit.state.velocity[2])).toBeLessThan(5);
+    expect(Math.hypot(...hit.state.velocity)).toBeGreaterThan(0);
     const landing = stepAircraft(
       { ...t, pos: [0, 0.02, 0] },
       s,
@@ -188,15 +272,19 @@ describe('aircraft flight and mounting', () => {
     expect(w.has('pilot', Mounted)).toBe(false);
   });
   it.each([
-    'p51d',
-    'oh6',
-  ] as const)('restores %s flight, control, rotor phase, and pilot state exactly', (kind) => {
+    { kind: 'p51d', boosted: false },
+    { kind: 'oh6', boosted: false },
+    { kind: 'p51d', boosted: true },
+    { kind: 'oh6', boosted: true },
+  ] as const)('restores $kind flight and boost=$boosted exactly', ({ kind, boosted }) => {
     const a = setup(kind);
+    setBoostMode(a, boosted);
     mountEntity(a, 'pilot', 'craft');
     a.patch('craft', Transform, { pos: [0, 1000, 0] });
     a.patch('craft', AircraftState, { grounded: false, velocity: [0, 0, 60], rpm: 1 });
     flyAircraft(a, 'pilot', { ...running, power: 0.58 });
     a.stepN(450);
+    expect(a.get('craft', AircraftState)?.boosted ?? false).toBe(boosted);
     const b = setup(kind);
     applyKeyframeTo(b, takeKeyframe(a));
     a.stepN(120);

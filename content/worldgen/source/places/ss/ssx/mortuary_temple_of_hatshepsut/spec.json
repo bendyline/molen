@@ -1,0 +1,651 @@
+{
+  "planId": "mortuary_temple_of_hatshepsut",
+  "id": "mortuary_temple_of_hatshepsut",
+  "assetId": "molen.worldgen.structure.mortuary_temple_of_hatshepsut",
+  "title": "Mortuary Temple of Hatshepsut",
+  "wikidataId": "Q660692",
+  "category": "terraced-mortuary-temple",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 32.607463249999995,
+    "latitude": 25.73784585
+  },
+  "size": [
+    285.1134033203125,
+    22.69999885559082,
+    188.13785552978516
+  ],
+  "actualBounds": {
+    "min": [
+      -142.55670166015625,
+      -39.09339904785156,
+      -93.94808197021484
+    ],
+    "max": [
+      142.55670166015625,
+      -16.393400192260742,
+      94.18977355957031
+    ]
+  },
+  "visualBrief": "Whole restored three-terrace Mortuary Temple of Hatshepsut: true open square-pier colonnades/upper Osirian pilasters, intrinsic courts/two rising central ramps/stone rails and stepped lanes, native165 pier footprints/seventeen architectural components, attached Hathor/Anubis chapels and upper open peristyle/solar-cult/sanctuary wall complexes. Five exact distinct creator PD-self/CC0 originals after Qualla-first assessment. Actual plan/whole native parts, bounded original vertical sections/hidden architecture/fine statue and unmapped column census, no cliff/neighboring temples/modern facilities/copied images.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Temple_of_Hatshepsut_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Temple_of_Hatshepsut_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Temple_of_Hatshepsut_8.jpg",
+    "https://commons.wikimedia.org/wiki/File:Temple_of_Hatshepsut_10.jpg",
+    "https://commons.wikimedia.org/wiki/File:Temple_of_Hatshepsut.jpg"
+  ],
+  "stories": [
+    {
+      "id": "mortuary-temple-of-hatshepsut-wp",
+      "url": "https://qualla.com/mortuary-temple-of-hatshepsut/"
+    }
+  ],
+  "referenceInputHash": "4062b10b3a4b078dd1621a87d4cdc00637a5f441e6fa7e95ca988af6962e52e9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ss/ssx/mortuary_temple_of_hatshepsut/models/mortuary-temple-of-hatshepsut-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/mortuary-temple-of-hatshepsut-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "mortuaryTempleOfHatshepsutSkyline",
+    "errorMeters": 5,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "cap": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "rough": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "mortuaryTempleOfHatshepsutDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "mortuaryTempleOfHatshepsutStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "mortuaryTempleOfHatshepsutCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cap": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rough": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_weathered",
+    "stone_sandstone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.3",
+    "groundY": -38.5934,
+    "cameraYaw": 0.9
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent512m129x12916641samples/two rawtiles/SW151.2759m providerrelative datum/nativecomponentunionanchor/heading0 frozen before once-only lower-ramp-foot floor-38.4934m and all architectural choices. Photo-bounded decks.15/7.2/14.4m, principal colonnade roofs6.3/13.5/20.7m, backparapet22.1m, uppercourtpiers19.7/walls20.4/solar17.8and15.7m, Anubis12.8/Hathor12.9m, intrinsic ramprails1.1m. All heights/roof and damagedstatue/pier census/platform hull/hidden rooms/currentfinish and contact original estimates, not native surveyed vertical sections. No late field/floor/frame/section retune or raising. Raw cliff/host relief retained; native architecture-bounded preview openings only, replacementfalse.",
+    "anchor": [
+      32.607463249999995,
+      25.73784585
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        32.605568479280464,
+        25.736139058767517
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest source datum before all independent field/floor/section/geometry choices; not surveyed courtyard/threshold or foundation."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -15.287003965502807,
+          22.792665739722324
+        ],
+        [
+          -17.016544432958394,
+          26.139153174020088
+        ],
+        [
+          -99.39811532518551,
+          2.6438379063884625
+        ],
+        [
+          -112.68462254389982,
+          -3.5121299344403027
+        ],
+        [
+          -121.147876953307,
+          -14.098613509203581
+        ],
+        [
+          -117.96914277332269,
+          -20.254581350032346
+        ],
+        [
+          -68.0720409461706,
+          -89.02776276217872
+        ],
+        [
+          -60.200412141010744,
+          -89.37285318332027
+        ],
+        [
+          -54.745423517228296,
+          -89.55096436869353
+        ],
+        [
+          -53.792806018791524,
+          -89.05002666020206
+        ],
+        [
+          -44.91842195151928,
+          -84.29668440314936
+        ],
+        [
+          -40.71687740466481,
+          -81.80312780950607
+        ],
+        [
+          -26.698358844836424,
+          -72.8753046479625
+        ],
+        [
+          11.84755341868027,
+          -34.02480236111751
+        ],
+        [
+          0.5565291707431319,
+          -10.079979891271638
+        ],
+        [
+          -15.287003965502807,
+          22.792665739722324
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            -99.20759182535566,
+            -18.35101805736937
+          ],
+          [
+            -109.31536486408567,
+            -19.252705932653967
+          ],
+          [
+            -110.13762417839082,
+            -19.697983895889305
+          ],
+          [
+            -129.7916273098089,
+            -33.935746768233145
+          ],
+          [
+            -142.55670179270928,
+            -72.26304744856333
+          ],
+          [
+            -139.62865642825307,
+            -76.79375072380066
+          ],
+          [
+            -102.5166841887591,
+            -89.55096436869353
+          ],
+          [
+            -91.60670694048167,
+            -90.7754787674918
+          ],
+          [
+            -89.6613617326676,
+            -90.73095097104964
+          ],
+          [
+            -86.01133257983247,
+            -88.8941793728522
+          ],
+          [
+            -73.50697446519531,
+            -74.48943726434453
+          ],
+          [
+            -87.83634715625001,
+            -43.063945013568784
+          ]
+        ]
+      ],
+      "basis": "Intrinsic constructed terrace slabs bounded by original envelopes from actual portico/retaining-wall controls; not a changed source heightfield or the archaeological site boundary. Exact edge/contact remains approximate preview."
+    },
+    "featureIds": [
+      "way/255034087",
+      "way/255034089",
+      "way/255034091",
+      "way/255034093",
+      "way/255174684",
+      "way/1148195911",
+      "way/255038430",
+      "way/255034090",
+      "way/255034092",
+      "way/255042397",
+      "way/255042404",
+      "way/298119233",
+      "way/298149870",
+      "way/255183533",
+      "way/255034095",
+      "way/255169869",
+      "way/255188564",
+      "way/255165273",
+      "way/255165275",
+      "way/255165277",
+      "way/255165278",
+      "way/255165280",
+      "way/255165282",
+      "way/255165283",
+      "way/255165285",
+      "way/255165287",
+      "way/255165288",
+      "way/255165290",
+      "way/255165291",
+      "way/255165293",
+      "way/255165295",
+      "way/255165296",
+      "way/255165298",
+      "way/255165299",
+      "way/255165301",
+      "way/255165303",
+      "way/255165304",
+      "way/255165306",
+      "way/255165307",
+      "way/255165308",
+      "way/255165309",
+      "way/255165310",
+      "way/255165312",
+      "way/255165313",
+      "way/255165315",
+      "way/255165316",
+      "way/255165318",
+      "way/255165320",
+      "way/255165321",
+      "way/255165325",
+      "way/255165326",
+      "way/255165328",
+      "way/255165329",
+      "way/255165331",
+      "way/255165333",
+      "way/255165336",
+      "way/255165337",
+      "way/255165341",
+      "way/255165342",
+      "way/255165344",
+      "way/255165345",
+      "way/255165346",
+      "way/255165347",
+      "way/255165348",
+      "way/255165350",
+      "way/255165352",
+      "way/255165353",
+      "way/255165355",
+      "way/255165357",
+      "way/255165358",
+      "way/255165360",
+      "way/255165361",
+      "way/255165363",
+      "way/255165364",
+      "way/255165366",
+      "way/255165368",
+      "way/255165369",
+      "way/255165371",
+      "way/255165373",
+      "way/255165374",
+      "way/255165376",
+      "way/255165377",
+      "way/255165379",
+      "way/255165380",
+      "way/255165382",
+      "way/255165383",
+      "way/255165384",
+      "way/255165385",
+      "way/255165386",
+      "way/255165388",
+      "way/255165389",
+      "way/255165391",
+      "way/255165393",
+      "way/255165394",
+      "way/255165396",
+      "way/255165397",
+      "way/255165399",
+      "way/255165401",
+      "way/255165402",
+      "way/255165404",
+      "way/255165405",
+      "way/255165407",
+      "way/255165413",
+      "way/255165414",
+      "way/255165415",
+      "way/255165417",
+      "way/255165419",
+      "way/298087847",
+      "way/298087849",
+      "way/298087850",
+      "way/298087852",
+      "way/298087853",
+      "way/298087854",
+      "way/298087855",
+      "way/298087856",
+      "way/298087857",
+      "way/298087858",
+      "way/298087859",
+      "way/298087860",
+      "way/298087861",
+      "way/298087862",
+      "way/298087864",
+      "way/298087865",
+      "way/298087867",
+      "way/298087868",
+      "way/298087869",
+      "way/298087871",
+      "way/298087872",
+      "way/298087874",
+      "way/298087875",
+      "way/298087877",
+      "way/298087878",
+      "way/298087880",
+      "way/298087882",
+      "way/298087883",
+      "way/298087885",
+      "way/298087886",
+      "way/298087888",
+      "way/298087889",
+      "way/298087891",
+      "way/298087892",
+      "way/298087894",
+      "way/298087895",
+      "way/298087897",
+      "way/298087898",
+      "way/298087903",
+      "way/298087904",
+      "way/298087906",
+      "way/298087908",
+      "way/298087909",
+      "way/298087911",
+      "way/298087912",
+      "way/298093326",
+      "way/298093327",
+      "way/298093328",
+      "way/298093329",
+      "way/298093330",
+      "way/298093331",
+      "way/298093332",
+      "way/298093333",
+      "way/298093334",
+      "way/298093335",
+      "way/298093336",
+      "way/298093337",
+      "way/298093338",
+      "way/298093339",
+      "way/298093341",
+      "way/298118538",
+      "way/298118539",
+      "way/298118540",
+      "way/298150804",
+      "way/298150806",
+      "way/298150808",
+      "way/298150810",
+      "way/298150812",
+      "way/298150813",
+      "way/298150814",
+      "way/298150815",
+      "way/298150816",
+      "way/298150817",
+      "way/298150818",
+      "way/298150819",
+      "way/1468423328",
+      "way/1079542368",
+      "way/25850686",
+      "way/1447168992"
+    ],
+    "source": "https://www.openstreetmap.org/way/1079542368",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e590d7c9213be74fbb30cf69e17862c5ddc4e6ed6947a684cd67d679f4a30cf9",
+    "notes": "Whole current restored Mortuary Temple of Hatshepsut/Q660692: all three colonnaded terraces and intrinsic open courts, two central stone ramps/steps/masonry rails, square-pier porticos/upper Osirian pilasters, attached Hathor/Anubis chapels and upper solar-cult/sanctuary wall complexes. Native individual architecture/column footprints control physical parts. Site1079542368 is only archaeological context boundary, not a filled building extrusion. Separate ThutmoseIII/ MentuhotepII temples, natural cliff, modern shelter/visitors/furniture/scaffolds/free-standing art/landscape excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual individual mapped Hatshepsut terrace/portico/ramp/chapel/retaining-wall and square-pier controls, union of physical component bounds/heading0 fixed before original independent field/floor/sections/geometry. Archaeological site perimeter is context only; no complete solid temple box or natural-cliff substitute.",
+    "Actual seventeen portico/ramp/chapel/court/retaining-wall polygons and165 individual square-pier footprints control detailed architecture, not a site-property extrusion. Lower porticos have44 native piers and Anubis12; middle/frontupper portico pier census is not mapped and is an original photo-bounded two-row inference within actual roof polygons. Upper court/peristyle native piers retained, historic=pillory is a source tag and does not prove every pier is a complete standing statue. Platform envelopes derive original bounded hulls from actual retained walls/colonnade controls, not the entire archaeological site boundary. All three terraces, open courts/two axial ramps/attached chapels/cult/sanctuary wings remain intrinsic whole model; neighboringThutmose/Mentuhotep temples/naturalcliff/modernfacilities excluded. Named standalone Osiris statue298087912 was one of the166 initial small barrier footprints; excluded as free-standing art, not raised into a column. Native raw coordinates remain in provenance.",
+    "Original independent512m129x12916641samples/two rawtiles/SW151.2759m providerrelative datum/nativecomponentunionanchor/heading0 frozen before once-only lower-ramp-foot floor-38.4934m and all architectural choices. Photo-bounded decks.15/7.2/14.4m, principal colonnade roofs6.3/13.5/20.7m, backparapet22.1m, uppercourtpiers19.7/walls20.4/solar17.8and15.7m, Anubis12.8/Hathor12.9m, intrinsic ramprails1.1m. All heights/roof and damagedstatue/pier census/platform hull/hidden rooms/currentfinish and contact original estimates, not native surveyed vertical sections. No late field/floor/frame/section retune or raising. Raw cliff/host relief retained; native architecture-bounded preview openings only, replacementfalse.",
+    "Published Qualla corpus assessed first; two exact CC0 relief originals inspected but not used for architectural scope. Five distinct clear direct creator-own PD-self/CC0 exteriors actually used, exact native hashes/inventory passed. No questionable1946 plan, Flickr binding repair, media metadata changes, protected supplemental pixels or copied imagery. Standing2010/2016 shell/current native parts; later fine conservation condition not surveyed.",
+    "Native lower44/Anubis12/peristyle piers retained in close levels; middle/frontupper pier rows, six simplified original mummiform pilasters/partial damaged census and horizontal platform envelope hulls are photo-bounded estimates. Hidden sanctuary/chapel/peristyle roof/wall profiles/ancient fine ornament simplified. Lower court remains open ground with intrinsic perimeter/path, not filled property building. Neighboring temples/natural cliff/scaffolds/people/modern shelters excluded.",
+    "Original independent512m129field/two raw tiles/floor fixed before all vertical sections and geometry; no fitting, flattening, reacquire/reframe/late raising. Intrinsic terrace preview openings only; precise courtyard/retaining/cliff/entry/foundation contacts unverified. Portable flat ground and context houses are fixtures; replacementfalse."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-three-terraces-and-attached-chapels",
+      "position": [
+        86.59523176280086,
+        66.50659999999999,
+        213.60305671021376
+      ],
+      "lookAt": [
+        -35.534775766604966,
+        -30.4934,
+        -18.36517659095889
+      ]
+    },
+    {
+      "name": "whole-native-architecture-open-courts-and-ramps-plan",
+      "position": [
+        -8.791868058696448,
+        371.5066,
+        -4.768968026572747
+      ],
+      "lookAt": [
+        -8.883693941651241,
+        -38.4934,
+        -4.591294147739722
+      ]
+    },
+    {
+      "name": "lower-and-middle-open-pier-porticos-and-ramp",
+      "position": [
+        54.13906784062641,
+        -25.4934,
+        -35.056544800479834
+      ],
+      "lookAt": [
+        -31.981298189944468,
+        -31.4934,
+        -16.528658931863
+      ]
+    },
+    {
+      "name": "upper-osirian-portico-and-real-colonnade-depth",
+      "position": [
+        -76.96766717047426,
+        -15.493400000000001,
+        2.996366188418577
+      ],
+      "lookAt": [
+        -87.94857002234728,
+        -21.4934,
+        -45.45381206262325
+      ]
+    },
+    {
+      "name": "upper-peristyle-solar-cult-and-sanctuary-complex",
+      "position": [
+        -98.85059245210351,
+        15.506599999999999,
+        -133.26124857537593
+      ],
+      "lookAt": [
+        -109.23954604692744,
+        -21.4934,
+        -58.708786220302805
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 39265,
+    "vertices": 117795,
+    "materials": 3,
+    "bytes": 4973396,
+    "sha256": "sha256:43fa162c020fdf6e4c489d48b0aebaf44f35675c16cfe7f916adf60198bc3258"
+  }
+}

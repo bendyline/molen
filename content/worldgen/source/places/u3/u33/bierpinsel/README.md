@@ -16,7 +16,7 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/bierpinsel-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-104,857 triangles; 286,649 vertices; 3 material groups; 11,580,012 source bytes. Source hash: `sha256:feece029d3416606887ec94cca4d2a94d7c5d30bb60ec350b4ddb3037c644fdc`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+104,849 triangles; 295,745 vertices; 3 material groups; 11,907,372 source bytes. Source hash: `sha256:71dfb6202da0720eebe2dc54a3e1ed75ee4156c5b1eba12c9cf2f85e814f264d`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs bierpinsel`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 

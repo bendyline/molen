@@ -185,7 +185,76 @@
                     "property": "visible",
                     "scale": 1
                   }
-                ]
+                ],
+                "derived": {
+                  "elevonRight": {
+                    "op": "add",
+                    "args": [
+                      "pitchDeflection",
+                      "rollDeflection"
+                    ]
+                  },
+                  "pitchDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "pitchInput",
+                      0.28
+                    ]
+                  },
+                  "rollDeflection": {
+                    "op": "multiply",
+                    "args": [
+                      "rollInput",
+                      0.24
+                    ]
+                  },
+                  "elevonLeft": {
+                    "op": "subtract",
+                    "args": [
+                      "pitchDeflection",
+                      "rollDeflection"
+                    ]
+                  },
+                  "gearExposed": {
+                    "op": "greater",
+                    "args": [
+                      "gear",
+                      0.02
+                    ]
+                  }
+                },
+                "sources": {
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "roll"
+                    ]
+                  },
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -5800,11 +5869,11 @@
                 "propulsion": "jet",
                 "densityExponent": 0.44348858849348005,
                 "dryThrust": 54000,
+                "highAltitudeDensityRatio": 0.29779561455293435,
+                "highAltitudeExponent": 1.2,
                 "ramRise": 0.2,
                 "afterburnerThrust": 80500,
-                "afterburnerDetent": 0.85,
-                "highAltitudeDensityRatio": 0.29779561455293435,
-                "highAltitudeExponent": 1.2
+                "afterburnerDetent": 0.85
               }
             ]
           }
@@ -5839,7 +5908,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

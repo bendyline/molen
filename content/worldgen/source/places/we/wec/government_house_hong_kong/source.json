@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.government_house_hong_kong",
+  "kind": "static-structure",
+  "title": "Government House, Hong Kong (original house,1870s)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.government_house_hong_kong",
+        "output": "assets/places/we/wec/government_house_hong_kong/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:929d095ccfbc6337a4fd8572e3d602f26e56b28c807bbc56016671fc2a6d62fd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-building-history.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/lai-afong-1870s-original.jpg",
+      "reference-rights/lai-afong-native.json",
+      "reference-rights/getty-archive-caption.json",
+      "native-map/current-house-and-open-residential-estate-context.json",
+      "native-map/house-wikidata-binding.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-26774-14302.png",
+      "terrain-sources/terrarium-15-26774-14303.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.les_ferreres_aqueduct",
+  "kind": "static-structure",
+  "title": "Les Ferreres Aqueduct",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json",
+      "models/ferreres-controls.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.les_ferreres_aqueduct",
+        "output": "assets/places/sp/sp2/les_ferreres_aqueduct/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d6d81ae687e33c6fba0575dabf621eb325ed5b8869f5860fe2d223dae71c22ce"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-ferreres.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/ferreres-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

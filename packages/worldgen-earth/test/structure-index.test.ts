@@ -90,7 +90,7 @@ describe('geographic structures', () => {
     };
     const pnw = suggestStructureStyles(atlas, -122.3, 47.6, metrics);
     expect(pnw?.regionId).toBe('us.pnw');
-    expect(pnw?.variants.map((item) => item.weight)).toEqual([4, 1, 1, 1]);
+    expect(pnw?.variants.map((item) => item.weight)).toEqual([4, 1, 1]);
     expect(pnw?.variants.reduce((sum, item) => sum + item.share, 0)).toBeCloseTo(1);
     const japan = suggestStructureStyles(atlas, 139.7, 35.7, metrics);
     expect(japan?.regionId).toBe('jp');

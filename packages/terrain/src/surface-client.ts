@@ -2,6 +2,7 @@
 import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
 import type { VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
+import { appendAirportSurfaces } from './airport-surfaces';
 import { sampleTerrainLine } from './line-path';
 import {
   appendTerrainLineBand,
@@ -17,13 +18,23 @@ import {
 import { normalizeRing, pointInPolygon, polygonBounds } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { DEFAULT_ROAD_SIGN_PROFILE, type TerrainRoadSignProfile } from './road-sign-styles';
+import { keepTerrainSemanticTile } from './semantic-packet';
 import type {
   TerrainSemanticPoint,
   TerrainSemanticPolygon,
   TerrainSemanticTile,
 } from './semantic-types';
-import { appendBridgeStructure, bridgeDeckProfile } from './surface-bridges';
+import {
+  appendBridgeApproachSupport,
+  appendBridgeStructure,
+  bridgeDeckProfile,
+} from './surface-bridges';
 import { incomingArm, surfaceJunctionControls } from './surface-controls';
+import {
+  appendTerrainStreetLights,
+  type TerrainStreetLight,
+  updateTerrainStreetLights,
+} from './surface-lights';
 import { isSurfaceLink, SurfaceNetwork, type SurfaceRoad } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
 import { appendSurfaceSign } from './surface-sign-mesh';
@@ -39,9 +50,14 @@ import {
   type TerrainParkedVehicle,
   type TerrainSurfaceOptions,
 } from './surface-styles';
+import { tagTerrainObject } from './tagged-objects';
 import { inferLaneCount } from './transport-features';
 
 export interface TerrainSurfaceStats {
+  /** Resident tile fragments; a runway crossing tiles contributes more than once. */
+  runways: number;
+  taxiways: number;
+  aprons: number;
   roads: number;
   parkingAreas: number;
   junctions: number;
@@ -66,6 +82,11 @@ export function disposeTerrainSurfaceObject(object: THREE.Object3D): void {
     if (mesh.userData.terrainOwnedInstances) {
       (mesh as THREE.InstancedMesh).dispose();
       mesh.userData.terrainOwnedInstances = false;
+    }
+    if (mesh.userData.terrainOwnedMaterial) {
+      for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
+        material.dispose();
+      mesh.userData.terrainOwnedMaterial = false;
     }
   });
 }
@@ -176,6 +197,9 @@ export function createTerrainSurfaceObject(
   group.userData.shadowCaster = false;
   group.userData.surfaceStyle = style.id;
   const stats: TerrainSurfaceStats = {
+    runways: tile.transportation.filter((f) => (f.subclass ?? f.class) === 'runway').length,
+    taxiways: tile.transportation.filter((f) => (f.subclass ?? f.class) === 'taxiway').length,
+    aprons: tile.landcover.filter((f) => (f.subclass ?? f.class) === 'apron').length,
     roads: 0,
     parkingAreas: 0,
     junctions: 0,
@@ -188,6 +212,7 @@ export function createTerrainSurfaceObject(
     detailLimited: false,
   };
   group.userData.surfaceStats = stats;
+  appendAirportSurfaces(group, tile, context, options, roadMaterial);
   const network = new SurfaceNetwork(tile, context.tileSize, style);
   if (detailed) {
     network.findJunctions();
@@ -214,6 +239,7 @@ export function createTerrainSurfaceObject(
   const edges = new TerrainSurfaceMeshBuilder(context);
   const marks = new TerrainSurfaceMeshBuilder(context);
   const bridges = new TerrainSurfaceMeshBuilder(context);
+  const approachSupports = new TerrainSurfaceMeshBuilder(context);
   // Every pavement mesh carries surfaceDetail, so one material program serves them all.
   for (const builder of [pavement, roads, edges, marks])
     builder.ensureAttribute('surfaceDetail', 4);
@@ -224,24 +250,39 @@ export function createTerrainSurfaceObject(
       for (const [x, z] of [road.path.points[0], road.path.points.at(-1)] as TerrainSemanticPoint[])
         groundEnds.add(`${Math.round(x * 10)}/${Math.round(z * 10)}`);
   for (const road of network.roads) {
-    if (!road.feature.bridge && !road.feature.bridgeConnections?.length) continue;
+    if (
+      !road.feature.bridge &&
+      !road.feature.bridgeConnections?.length &&
+      !road.feature.bridgeApproachProfile?.length
+    )
+      continue;
     const profile = bridgeDeckProfile(road, bridges, groundEnds);
     bridgeProfiles.set(road, profile);
     if (road.feature.bridge) appendBridgeStructure(bridges, road, profile, detailed ? 6 : 16);
+    else appendBridgeApproachSupport(approachSupports, road, profile, detailed ? 2 : 6);
   }
   const bridgeMesh = bridges.mesh('surfaces:bridges', roadMaterial);
   if (bridgeMesh) {
     bridgeMesh.castShadow = true;
     group.add(bridgeMesh);
   }
+  const supportMesh = approachSupports.mesh('surfaces:approach-supports', roadMaterial);
+  if (supportMesh) {
+    supportMesh.castShadow = true;
+    supportMesh.receiveShadow = true;
+    group.add(supportMesh);
+  }
   const fixtures: TerrainBoxPlacement[] = [];
   const signalHeads: TerrainSignalHead[] = [];
+  const streetLights: TerrainStreetLight[] = [];
   const vehicles: VehiclePlacement[] = [];
   group.userData.vehicles = vehicles;
+  tagTerrainObject('parked-vehicles', group);
   let fixtureCount = 0;
   let remaining = details.maxDetailElements ?? 16_000;
   const parkingReserve = Math.floor(remaining * 0.35);
   const maxFixtures = details.maxFixturesPerTile ?? 160;
+  const maxStreetlights = details.maxStreetlightsPerTile ?? Math.round(maxFixtures * 1.5);
   // Poles, lines and hydrants have their own budget, so they never crowd out lights and signals.
   // A finest tile can hold well over ten kilometers of suburban street; at a box or two per
   // element these budgets furnish all of it rather than only the roads that come first.
@@ -444,6 +485,72 @@ export function createTerrainSurfaceObject(
           { spacing: 6, ...clipPath, heightAt: bridgeProfiles.get(road) },
         );
     if (!detailed) continue;
+    // Lit urban blocks get regular fixtures between intersections, including long roads with
+    // no junctions in the tile. Respect explicit unlit roads and omit bridges/tunnels here.
+    if (
+      style.streetlights &&
+      grounded &&
+      !road.feature.tunnel &&
+      !road.unpaved &&
+      sidewalked(road) &&
+      road.feature.tags?.lit !== 'no'
+    ) {
+      for (
+        let d = 18;
+        d < road.path.length - 12 && streetLights.length < Math.floor(maxStreetlights * 0.65);
+        d += 28
+      ) {
+        const side = Math.floor(d / 28) % 2 === 0 ? 1 : -1;
+        const p = sampleTerrainLine(road.path, d, side * (road.width / 2 + 0.7));
+        if (!inTile(p.x, p.z) || blocked(p.x, p.z) || network.occupied(p.x, p.z, 0.4, road))
+          continue;
+        if (
+          details.preferMappedProps &&
+          (tile.pois ?? []).some(
+            (poi) =>
+              poi.class === 'street_lamp' &&
+              Math.hypot(
+                poi.point[0] * context.tileSize - p.x,
+                poi.point[1] * context.tileSize - p.z,
+              ) < 18,
+          )
+        )
+          continue;
+        const dx = side * p.dz,
+          dz = -side * p.dx;
+        const yaw = Math.atan2(dx, dz);
+        const ground =
+          context.heightfield.sampleHeight(context.origin[0] + p.x, context.origin[1] + p.z) +
+          elevation;
+        fixtures.push(
+          { x: p.x, z: p.z, y: ground + 3.7, yaw, size: [0.16, 7.4, 0.16], color: '#667078' },
+          {
+            x: p.x + dx * 0.9,
+            z: p.z + dz * 0.9,
+            y: ground + 7.35,
+            yaw,
+            size: [0.12, 0.12, 1.9],
+            color: '#667078',
+          },
+          {
+            x: p.x + dx * 1.8,
+            z: p.z + dz * 1.8,
+            y: ground + 7.3,
+            yaw,
+            size: [0.48, 0.18, 0.85],
+            color: '#efe8ba',
+          },
+        );
+        streetLights.push({
+          x: p.x + dx * 1.8,
+          z: p.z + dz * 1.8,
+          y: ground + 7.2,
+          yaw,
+          groundLift: Math.max(0.5, elevation + 0.06),
+        });
+        stats.streetlights++;
+      }
+    }
     if (road.kind === 'rail') {
       for (const offset of [-0.72, 0.72])
         band(marks, road, {
@@ -508,9 +615,30 @@ export function createTerrainSurfaceObject(
           context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z);
         let previous: { x: number; z: number; top: number } | undefined;
         const back = road.width / 2 + style.sidewalkWidth + 0.8;
+        const overheadUtilities =
+          !road.feature.bridge &&
+          !road.feature.tunnel &&
+          road.feature.tags?.location !== 'underground' &&
+          road.feature.tags?.power !== 'cable' &&
+          ['residential', 'unclassified', 'tertiary', 'living_street'].includes(
+            road.feature.subclass ?? road.feature.class,
+          ) &&
+          !tile.buildings.some(
+            (building) =>
+              (building.height ?? (building.levels ?? 0) * 3) > 25 &&
+              building.polygons.some((polygon) => {
+                const bounds = polygonBounds(polygon);
+                return (
+                  Math.hypot(
+                    ((bounds[0] + bounds[2]) * context.tileSize) / 2 - first[0],
+                    ((bounds[1] + bounds[3]) * context.tileSize) / 2 - first[1],
+                  ) < 120
+                );
+              }),
+          );
         for (
           let d = 10 + hash(first[1], first[0]) * 14;
-          d < road.path.length - 10 && furniture + 4 <= maxFurniture;
+          overheadUtilities && d < road.path.length - 10 && furniture + 4 <= maxFurniture;
           d += 38
         ) {
           const p = sampleTerrainLine(road.path, d, side * back);
@@ -899,8 +1027,20 @@ export function createTerrainSurfaceObject(
             p.class === 'street_lamp' &&
             Math.hypot(p.point[0] * context.tileSize - x, p.point[1] * context.tileSize - z) < 18,
         );
-      if (style.streetlights && !mappedLampNearby) {
+      if (
+        style.streetlights &&
+        !mappedLampNearby &&
+        streetLights.length < maxStreetlights &&
+        arms.some((arm) => arm.road.feature.tags?.lit !== 'no')
+      ) {
         stats.streetlights++;
+        streetLights.push({
+          x: x + dx * 1.8,
+          z: z + dz * 1.8,
+          y: y + 7.2,
+          yaw,
+          groundLift: Math.max(0.5, a.road.elevation + a.road.stack + 0.06),
+        });
         fixtures.push(
           { x, z, y: y + 3.7, yaw, size: [0.16, 7.4, 0.16], color: '#667078' },
           { x, z, y: y + 0.15, yaw, size: [0.45, 0.3, 0.45], color: '#888d8b' },
@@ -1073,6 +1213,48 @@ export function createTerrainSurfaceObject(
         );
       if (kind !== 'parking') continue;
       stats.parkingAreas++;
+      if (!detailed && context.address.level === context.pyramid.maxLevel - 1 && style.parkedCars) {
+        // Distant parked-car color patches share the lot mesh; no vehicle meshes/textures.
+        const bounds = polygonBounds(polygon);
+        const step = 8 / context.tileSize;
+        for (
+          let u = Math.ceil(bounds[0] / step) * step;
+          u < bounds[2] && fixtureCount < Math.min(32, maxFixtures);
+          u += step
+        )
+          for (
+            let v = Math.ceil(bounds[1] / step) * step;
+            v < bounds[3] && fixtureCount < Math.min(32, maxFixtures);
+            v += step
+          ) {
+            const x = u * context.tileSize,
+              z = v * context.tileSize;
+            const seed = hash(context.origin[0] + x, context.origin[1] + z);
+            const w = 0.9 / context.tileSize,
+              d = 2.2 / context.tileSize;
+            const patch = {
+              outer: [
+                [u - w, v - d],
+                [u + w, v - d],
+                [u + w, v + d],
+                [u - w, v + d],
+              ] as TerrainSemanticPoint[],
+            };
+            if (
+              seed >= (details.parkingOccupancy ?? 0.7) ||
+              blocked(x, z) ||
+              network.occupied(x, z, 2) ||
+              !patch.outer.every((p) => pointInPolygon(p, polygon))
+            )
+              continue;
+            const tint = ['#a5afb2', '#59656b', '#bcbab0', '#777a77'][
+              Math.floor(seed * 31) % 4
+            ] as string;
+            appendTerrainSurfaceArea(pavement, patch, new THREE.Color(tint), elevation + 0.06);
+            fixtureCount++;
+            stats.parkedCars++;
+          }
+      }
       if (!detailed || (!style.parkingStalls && !style.parkedCars) || remaining <= 0) continue;
       // Align stalls to the longest mapped boundary, and anchor the lattice in world space.
       let angle = 0,
@@ -1220,11 +1402,11 @@ export function createTerrainSurfaceObject(
               const kind = vehicle.id;
               const spec = vehicle.spec;
               const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((wheelZ) =>
-                [-spec.width * 0.42, spec.width * 0.42].map(
+                [-spec.wheelTrack / 2, spec.wheelTrack / 2].map(
                   (wheelX) =>
-                    context.heightfield.sampleHeight(
-                      wx + Math.cos(yaw) * wheelX + Math.sin(yaw) * wheelZ,
-                      wz - Math.sin(yaw) * wheelX + Math.cos(yaw) * wheelZ,
+                    pavement.groundHeight(
+                      x + Math.cos(yaw) * wheelX + Math.sin(yaw) * wheelZ,
+                      z - Math.sin(yaw) * wheelX + Math.cos(yaw) * wheelZ,
                     ) + 0.3,
                 ),
               );
@@ -1237,7 +1419,7 @@ export function createTerrainSurfaceObject(
                 position: [wx, (fl + fr + rl + rr) / 4, wz],
                 yaw,
                 pitch: Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase),
-                roll: Math.atan2((fr + rr - fl - rl) / 2, spec.width * 0.84),
+                roll: Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack),
               });
             }
           }
@@ -1264,7 +1446,13 @@ export function createTerrainSurfaceObject(
   if (renderVehicles && vehicles.length)
     group.add(createParkedVehicleBatch(vehicles, context.origin));
   appendTerrainSignalLenses(group, signalHeads);
-  stats.detailLimited = remaining <= 0 || fixtureCount >= maxFixtures || signs.length >= 48;
+  appendTerrainStreetLights(group, streetLights, context);
+  markTerrainSurfaceDetail(group);
+  stats.detailLimited =
+    remaining <= 0 ||
+    fixtureCount >= maxFixtures ||
+    streetLights.length >= maxStreetlights ||
+    signs.length >= 48;
   return group;
 }
 
@@ -1296,6 +1484,17 @@ export interface TerrainSurfaceRenderer {
   setMaterial(material: THREE.Material | undefined): void;
   /** Absolute simulation time in seconds; optionally resolve colours from a traffic graph. */
   updateSignals(elapsedSeconds: number, resolve?: TerrainTrafficSignalResolver): void;
+  /** Fade streetlamp emission and pavement pools, 0 (day) to 1 (night). */
+  setNightFactor(factor: number): void;
+  /** Visit lamps on attached, visible tiles; positions are local to each source object. */
+  visitStreetLights(visit: (light: TerrainStreetLight, source: THREE.Object3D) => void): void;
+  /**
+   * Hide each tile's small street detail (signs, fixtures, signal lenses, lane markings, parked
+   * cars) when the tile lies farther from `position` (the scene camera's world position) than
+   * the detail's `userData.detailDistance`, and show it again as the camera nears. Call every
+   * frame; it works only after the camera has moved or tiles have changed.
+   */
+  updateDetail(position: THREE.Vector3): void;
   stats(): TerrainSurfaceStats & {
     tiles: number;
     loading: number;
@@ -1304,6 +1503,30 @@ export interface TerrainSurfaceRenderer {
     geometryRevision: number;
   };
   dispose(): void;
+}
+
+/**
+ * Draw distances (meters from the camera to the detail's bounds) for a surface tile's small
+ * detail; see `TerrainSurfaceRenderer.updateDetail`. From a jet, a view held hundreds of these
+ * draws for tiles kilometers away, where a sign, a signal lens or a lane line is under a pixel.
+ */
+const FIXTURE_DISTANCE = 900;
+const MARKING_DISTANCE = 1500;
+const PARKED_CAR_DISTANCE = 1500;
+
+/** Give a surface tile's small detail its draw distance (`userData.detailDistance`). */
+export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
+  for (const child of group.children) {
+    const distance =
+      child.name === 'surface:markings'
+        ? MARKING_DISTANCE
+        : child.name === 'surface:parked-cars'
+          ? PARKED_CAR_DISTANCE
+          : /^surface:(road-signs|street-fixtures|signal-|night-)/.test(child.name)
+            ? FIXTURE_DISTANCE
+            : undefined;
+    if (distance !== undefined) child.userData.detailDistance = distance;
+  }
 }
 
 /** One controller can be shared by all semantic renderers in a viewer. */
@@ -1330,7 +1553,8 @@ export function createTerrainSurfaceRenderer(
   };
   resolveTerrainSurfaceStyle(options.style, options.details);
   interface Entry {
-    tile: TerrainSemanticTile;
+    /** The tile, for rebuilds when options change (see keepTerrainSemanticTile). */
+    tile: () => TerrainSemanticTile;
     context: TerrainPyramidTileLayerContext;
     controller?: AbortController;
     pending?: Promise<void>;
@@ -1341,10 +1565,16 @@ export function createTerrainSurfaceRenderer(
   let geometryRevision = 0;
   let disposed = false;
   let signalTime = 0;
+  let nightFactor = 0;
   let signalResolver: TerrainTrafficSignalResolver | undefined;
+  let detailRevision = -1;
+  const detailAt = new THREE.Vector3(Number.POSITIVE_INFINITY, 0, 0);
+  const detailMin = new THREE.Vector3();
+  const detailMax = new THREE.Vector3();
   let pavement: THREE.Material | undefined;
   const plain = new WeakMap<THREE.Mesh, THREE.Material | THREE.Material[]>();
   const dress = (object: THREE.Object3D): void => {
+    updateTerrainStreetLights(object, nightFactor);
     object.traverse((child) => {
       const mesh = child as THREE.Mesh;
       if (!mesh.isMesh || mesh.userData[TERRAIN_PAVEMENT] !== true) return;
@@ -1362,7 +1592,7 @@ export function createTerrainSurfaceRenderer(
     const abort = (): void => renderer.disposeTile(root);
     context.signal.addEventListener('abort', abort, { once: true });
     tiles.set(root, {
-      tile,
+      tile: keepTerrainSemanticTile(tile),
       context,
       cleanup: () => context.signal.removeEventListener('abort', abort),
     });
@@ -1377,11 +1607,11 @@ export function createTerrainSurfaceRenderer(
     const build = async (): Promise<void> => {
       const object = generator
         ? await generator.generate(
-            entry.tile,
+            entry.tile(),
             { ...entry.context, signal: controller.signal },
             requested,
           )
-        : createTerrainSurfaceObject(entry.tile, entry.context, requested);
+        : createTerrainSurfaceObject(entry.tile(), entry.context, requested);
       if (!object) return;
       if (disposed || controller.signal.aborted || !tiles.has(root)) {
         disposeTerrainSurfaceObject(object);
@@ -1460,6 +1690,57 @@ export function createTerrainSurfaceRenderer(
       pavement = material;
       for (const root of tiles.keys()) dress(root);
     },
+    setNightFactor(factor) {
+      if (!Number.isFinite(factor)) throw new Error('Night factor must be finite');
+      const next = Math.max(0, Math.min(1, factor));
+      if (next === nightFactor) return;
+      nightFactor = next;
+      for (const root of tiles.keys()) {
+        const object = root.children[0];
+        if (object) updateTerrainStreetLights(object, nightFactor);
+      }
+    },
+    visitStreetLights(visit) {
+      for (const root of tiles.keys()) {
+        const source = root.children[0];
+        if (!source || !root.parent) continue;
+        let visible = true;
+        for (let parent: THREE.Object3D | null = source; parent; parent = parent.parent)
+          if (!parent.visible) visible = false;
+        if (!visible) continue;
+        for (const light of (source.userData.streetLights ?? []) as TerrainStreetLight[])
+          visit(light, source);
+      }
+    },
+    updateDetail(position) {
+      if (detailRevision === geometryRevision && detailAt.distanceToSquared(position) < 625) return;
+      detailRevision = geometryRevision;
+      detailAt.copy(position);
+      // Measured to the tile's footprint, not each mesh's bounds: computing those for every
+      // newly arrived tile's meshes was a 10 ms frame under a jet.
+      for (const [root, entry] of tiles) {
+        const object = root.children[0];
+        if (object === undefined) continue;
+        const size = entry.context.tileSize;
+        detailMin.set(0, 0, 0).applyMatrix4(root.matrixWorld);
+        detailMax.set(size, 0, size).applyMatrix4(root.matrixWorld);
+        const dx = Math.max(
+          Math.min(detailMin.x, detailMax.x) - position.x,
+          0,
+          position.x - Math.max(detailMin.x, detailMax.x),
+        );
+        const dz = Math.max(
+          Math.min(detailMin.z, detailMax.z) - position.z,
+          0,
+          position.z - Math.max(detailMin.z, detailMax.z),
+        );
+        const distance = Math.hypot(dx, dz);
+        for (const child of object.children) {
+          const limit = child.userData.detailDistance as number | undefined;
+          if (limit !== undefined) child.visible = distance <= limit;
+        }
+      }
+    },
     updateSignals(elapsedSeconds, resolve) {
       if (!Number.isFinite(elapsedSeconds)) throw new Error('Signal time must be finite');
       signalTime = elapsedSeconds;
@@ -1471,6 +1752,9 @@ export function createTerrainSurfaceRenderer(
     },
     stats() {
       const sum = {
+        runways: 0,
+        taxiways: 0,
+        aprons: 0,
         roads: 0,
         parkingAreas: 0,
         junctions: 0,
@@ -1491,6 +1775,9 @@ export function createTerrainSurfaceRenderer(
         const stats = root.children[0]?.userData.surfaceStats as TerrainSurfaceStats | undefined;
         if (!stats) continue;
         for (const key of [
+          'runways',
+          'taxiways',
+          'aprons',
           'roads',
           'parkingAreas',
           'junctions',

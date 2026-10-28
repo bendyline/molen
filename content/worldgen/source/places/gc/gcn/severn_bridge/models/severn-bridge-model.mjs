@@ -249,7 +249,7 @@ function cutwaterRing(x, y, inset = 0) {
   ];
 }
 
-function tower(out, x) {
+function tower(out, x, { details = true } = {}) {
   loft(
     out,
     'foundation',
@@ -290,15 +290,16 @@ function tower(out, x) {
         [faceX + 0.065, y + 1.83, z + 0.3],
         edgeWhite,
       );
-      tube(
-        out,
-        'metal',
-        [faceX + side * 0.085, y + 0.85, z + 0.2],
-        [faceX + side * 0.085, y + 1.02, z + 0.2],
-        0.018,
-        steel,
-        8,
-      );
+      if (details)
+        tube(
+          out,
+          'metal',
+          [faceX + side * 0.085, y + 0.85, z + 0.2],
+          [faceX + side * 0.085, y + 1.02, z + 0.2],
+          0.018,
+          steel,
+          8,
+        );
     }
   }
   const beamLevels = [
@@ -309,7 +310,7 @@ function tower(out, x) {
   for (const [y, height] of beamLevels) {
     box(out, 'wall', [x - 1.8, y, -legZ], [x + 1.8, y + height, legZ], white);
     // Plate seams are subtle construction divisions, not exposed internal bracing.
-    for (const side of [-1, 1])
+    for (const side of details ? [-1, 1] : [])
       for (const z of [-7.5, -2.5, 2.5, 7.5])
         box(
           out,
@@ -320,7 +321,7 @@ function tower(out, x) {
         );
   }
   // Top-level inspection railing, with no invented interior floors visible outside.
-  for (const side of [-1, 1]) {
+  for (const side of details ? [-1, 1] : []) {
     const xx = x + side * 1.64;
     for (const y of [133.38, 133.85])
       tube(out, 'metal', [xx, y, -10.1], [xx, y, 10.1], 0.025, steel, 8);
@@ -442,3 +443,11 @@ export function buildSevern(out) {
   }
   suspension(out);
 }
+
+export {
+  anchorage as buildSevernAnchorage,
+  cableY as severnCableY,
+  deckRing as severnDeckRing,
+  deckY as severnDeckY,
+  tower as buildSevernTower,
+};

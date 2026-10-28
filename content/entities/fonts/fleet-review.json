@@ -1,0 +1,392 @@
+{
+  "version": 1,
+  "scope": "Baked cockpit font textures across all 53 authored aircraft variants",
+  "method": "Pinned OFL font outlines -> SVG paths -> WASM rasterizer -> 1024x1024 white/alpha PNG atlases embedded in GLBs; no image-generation prompt or runtime font loading.",
+  "profiles": "cockpit-profiles.json",
+  "checks": {
+    "sourcePinsAndImportedHashes": {
+      "passed": 53,
+      "command": "node packages/tooling/dist/cli.mjs asset inspect <aircraft asset.json> --verify"
+    },
+    "byteIdenticalSourceRebuilds": {
+      "passed": 53,
+      "commands": [
+        "node packages/entities/scripts/generate-aircraft.mjs",
+        "node content/entities/source/aircraft/{p-51,oh-6,airliner}/models/generate.mjs"
+      ]
+    },
+    "regression": {
+      "files": 7,
+      "passed": 156,
+      "cwd": "packages/entities",
+      "command": "node node_modules/vitest/vitest.mjs run test/cockpit-font-authoring.test.mjs test/cockpit-lettering.test.mjs test/cockpit-surfaces.test.mjs test/aircraft-instruments.test.mjs test/aircraft-controls.test.mjs test/aircraft-interactions.test.mjs test/aircraft-expansion.test.mjs --no-file-parallelism",
+      "note": "The earlier full 884-test entities run exposed one OH-6 stencil UV loss; preserving UVs during static batching fixed it. The final targeted run covers that regression and all fleet surfaces."
+    },
+    "catalog": {
+      "passed": true,
+      "bundles": 198,
+      "command": "node packages/entities/scripts/generate-models.mjs --check"
+    },
+    "lint": {
+      "passed": true,
+      "files": 44,
+      "note": "Shared implementation/tests: no diagnostics. Aircraft builders: 11 existing warnings and 1 info; no errors."
+    },
+    "scene": {
+      "valid": true,
+      "aircraft": 53,
+      "ticks": 30,
+      "hash": "sha256:1136e1439502018229a2f3c698ac674b2216d76eafdd2a63c516800459a962a6",
+      "commands": [
+        "node packages/tooling/dist/cli.mjs validate .artifacts/cockpit-fonts/fleet/review.scene.json --project content/entities/project.json",
+        "node packages/tooling/dist/cli.mjs sim run .artifacts/cockpit-fonts/fleet/review.scene.json --project content/entities/project.json --ticks 30 --hash"
+      ]
+    },
+    "visual": {
+      "aircraft": 53,
+      "currentCockpitCaptures": 69,
+      "command": "node packages/entities/scripts/cockpit-gallery.mjs",
+      "review": "Inspected every cabin and representative close panels. Shared dial captions moved inward to clear scale numerals. Text orientation, transparent edges, material colors and control geometry checked.",
+      "exteriorTurntables": ["dc-3", "cessna-172s", "f-35a", "oh-6"]
+    },
+    "liveryPreviews": {
+      "currentAircraft": 53,
+      "command": "node packages/entities/scripts/preview-liveries.mjs --capture --ids=<53 aircraft ids>",
+      "note": "All 53 aircraft sheets were rendered and their model, recipe and image hashes verified. The capture command stopped on an unrelated stale Ford F-150 entry before its final manifest write; completed aircraft entries were recovered from the actual captured outputs. Unrelated vehicle entries remain unchanged.",
+      "unrelatedStaleEntries": 112
+    }
+  },
+  "statistics": {
+    "trianglesBefore": 3227051,
+    "trianglesAfter": 1834489,
+    "runtimeBytesMin": 779504,
+    "runtimeBytesMax": 2178148
+  },
+  "limitations": [
+    "Typeface selections approximate the authored variant and instrument style; they do not identify exact manufacturer fonts.",
+    "Animated seven-segment numeric readouts remain geometry; this change covers fixed lettering and rotating instrument cards.",
+    "Existing cockpit layout simplifications and some seat/camera occlusion remain. Screens remain diagrammatic and unavailable systems retain their labels.",
+    "Import warnings about UVs outside [0,1] concern repeating cockpit finish maps; those UVs intentionally remain unquantized. Font UVs are bounded."
+  ],
+  "localEvidence": ".artifacts/cockpit-fonts/fleet/ and .artifacts/cockpit-gallery/",
+  "models": [
+    {
+      "slug": "a220-300",
+      "sourceHash": "sha256:435dbded51a02b0cbf06dddd67df756a27461c4376931355dd0bd85618597229",
+      "runtimeHash": "sha256:61eb2b8a4f2d2b13acd9e5c24708a0f363411f69816a1cdb08bf90ca71534c93",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "a400m",
+      "sourceHash": "sha256:73449bf9dc98b32c513298bc407d9d9bd3d70d7b37da28882b163ab2ab447618",
+      "runtimeHash": "sha256:f642b2a2923487b9f626a42721e9a6b36473578ed6951b02114985f78ad6dedb",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "airbus-a320neo",
+      "sourceHash": "sha256:0ec6d846e36cc0401fc850419d4166977a17f8d4526b751711891f94aea1824a",
+      "runtimeHash": "sha256:6a1e821500c64e6e1830e4256ea30deeed5d9b1b1487fff8d413330037e3a061",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "airbus-h125",
+      "sourceHash": "sha256:7cde61d30788bd119e97ba07417554c778747c3bb2a01b194f3514eb821edeaa",
+      "runtimeHash": "sha256:86020b11796aaaadb0de6eb0429b47dcad044dbe13bd5a6557300051d528f0ff",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "airbus-h145",
+      "sourceHash": "sha256:6f06466728750434931496e7daa183a7db7a86fb8489660f744f0d4a0603e19c",
+      "runtimeHash": "sha256:abd92ab9299ee5f395e21748368eab220add53e28d4fd7231ea7ca714c522cb3",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "airliner",
+      "sourceHash": "sha256:ca8fb51a545bed873c181ee667071d95081a867a905c45a3f8b305626cdbfd28",
+      "runtimeHash": "sha256:706085985184e5feeaf71f74606f36246d47ece918a650cec1889ec9cd57e31f",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "an-124",
+      "sourceHash": "sha256:5ee4f029553c445aac81f8ff1765c37d92bc5709fd029a86f4633fd9cc6c311f",
+      "runtimeHash": "sha256:825e1567d696d104f724d38aa7250a368a0517e58ce2d1bee171fc4c44b0e496",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "atr-72-600",
+      "sourceHash": "sha256:98e6b7acaa36c81bd75fafeaf6907fc7458143f848021dd48f6b252fe5fd8a78",
+      "runtimeHash": "sha256:4553efb78cc80d03b2f7ae54e3d7f0d0a54ba265f0fc2aa4fa135ecec068763f",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "av-8b",
+      "sourceHash": "sha256:218ee14c5048a59b0654831e04560a558d560e3081c22fe831cc1f04c14d799f",
+      "runtimeHash": "sha256:6949e88eb5a17ed1769456510366926936a352e955247588c5bdc4e6d8d3854d",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "aw139",
+      "sourceHash": "sha256:3af92a46b2d253dae65a9e03892c45b13e7afd71cbcad52e261d6b6310b92d66",
+      "runtimeHash": "sha256:f75218563034fe6f245360d7b4198d965bad2635eb9576f5c22388bbe86b3153",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "baron-g58",
+      "sourceHash": "sha256:78841042fe3e184e418aebf01ae1cda7e1fff7bf4bfb6eb613cac39ed1037fdd",
+      "runtimeHash": "sha256:a5d88559563d513e4ba871e5f3a39b389ef9c8fe8f841b767a1c7d776fa8fe83",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "beech-18",
+      "sourceHash": "sha256:d782dccea2408ffed1461aceb1967d9b1528c77aa69bcfc141d946040c30b43e",
+      "runtimeHash": "sha256:e04eeb63969ab57d0a197f0962c53fcaceb552003f1d2ba0881408b0aeb9d2ae",
+      "fonts": ["cockpit-font-period"]
+    },
+    {
+      "slug": "bell-206b",
+      "sourceHash": "sha256:2a35169b527fef85114d6ad12137829f314748b887a059427ddf16d35d335618",
+      "runtimeHash": "sha256:630d7b573e0171e2ece778cbb9c94a7863f951adb90ee734a96d991447df4669",
+      "fonts": ["cockpit-font-technical"]
+    },
+    {
+      "slug": "bell-407",
+      "sourceHash": "sha256:64beaa56930d61383d7ca764ef3e55f5676daff2c4ef78437f8d9f777d60e0dc",
+      "runtimeHash": "sha256:744ba1c57f8f1635d8b2df40556eb43d6fdb590770bd2ec813d360d29ca7d06f",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "bell-412ep",
+      "sourceHash": "sha256:e7be6f0ca639986614852c85f07b9efa8d465be4c751c8bb04b3a309280c5a57",
+      "runtimeHash": "sha256:df59d5f07c8d5c2e98b57410141eea948387e6699830b21273c079668554a0a2",
+      "fonts": ["cockpit-font-technical"]
+    },
+    {
+      "slug": "boeing-737-800",
+      "sourceHash": "sha256:000ae1142ea4d51aa24fb9debc11cbb02897d5e5d1308b385a48260ebac5cba5",
+      "runtimeHash": "sha256:2eab28cab4fd0cd8f1b1328964569d14917bf098753266109219a0e392570c05",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "bonanza-g36",
+      "sourceHash": "sha256:bbcc8c2df8be79c9d4ab83221fc40b54d0192a15f4b4948fc302c377706c32a3",
+      "runtimeHash": "sha256:36bef4cea4a9b2f9cda7208e236cd10435097e1fac050843f10692f00e5ee16d",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "c-130j",
+      "sourceHash": "sha256:25c4e18ae32250bacb9212316b7191cfa61656972cc21a99ee16701572a7674a",
+      "runtimeHash": "sha256:e49a7f203fdd909d88cd76ef576a8a53687f029fc59797260b9df6bf7aa2553f",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "c-17a",
+      "sourceHash": "sha256:b957c78b9b8b56da32bd952e17c0872ff28006c96c27ddc60983fd64ccfd0bbd",
+      "runtimeHash": "sha256:ab8342719e5fa702776e272106ef4e8840c29e09d0ee8006036a7ff39f30914a",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "c-5m",
+      "sourceHash": "sha256:2080033437c89aaa685a01a8b521703d15ff2e7ec4264f0c5ffc643221b496c1",
+      "runtimeHash": "sha256:69aab988cc25cb0cd2237ea9bce00fa44e9d841c2145a52cb190441f52ef676c",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "cessna-172s",
+      "sourceHash": "sha256:7f07b60625b8b651f19438f646ebfabec407d54846c8d9ac6aec6238fb1c60d7",
+      "runtimeHash": "sha256:f7e667b40d8a3764255dc035ed58c341f4731157d17b452682363d20802f16b6",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "cessna-182t",
+      "sourceHash": "sha256:2c8bb04dc5423622cebbcc0916889365f970662835b8c23926241394a75ddd0e",
+      "runtimeHash": "sha256:dd36d0f2f5dbf67c848e6074fd3bc835c8a3cc1323a6bee5ac7d6405e82dbb99",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "cessna-208b",
+      "sourceHash": "sha256:ca34f1e0e51b17b2437b9a7a1c756e0eb05b1f53834f5f08e4e666f075f2adde",
+      "runtimeHash": "sha256:c9a4b35238db43da9cb7adaed362dd690a3394624db1fd736c1b3dea1122485e",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "ch-47f",
+      "sourceHash": "sha256:137c8601f080e23598346d31054c2e0c8ba8557409ad4fcb9c4bfce3b27dfe6d",
+      "runtimeHash": "sha256:bb1ed7790d4e6230e3179184c22424c012fcd0880c0b55c3350d51e1c40f4800",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "cirrus-sr22t",
+      "sourceHash": "sha256:9ea244bc45f6e0d4bc53d6414a2e2c8da1a055a2c2ad1fb27ab3d5e78c572138",
+      "runtimeHash": "sha256:3ff6634afcd0d10f2ff47dbf0dde9c70ceba156aaabdd4686c2e447e97c1692d",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "citation-cj4",
+      "sourceHash": "sha256:dcef321f64344520383057dd9224cec95f2c8476ede0580071b31acc37e66300",
+      "runtimeHash": "sha256:a41105d1c97fe37aab44c2f1623516aa53fc7fb145dd05e96d6694d9900f189e",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "dash-8-q400",
+      "sourceHash": "sha256:16cc1c781dc354d0ee6ad2e85822823168b54a74ea7c9340e8932d41a8990e56",
+      "runtimeHash": "sha256:747059ad6a9f98fb7137b13f21ef10df9562b0c56a03c4b0cf5ded7470a7b163",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "dc-3",
+      "sourceHash": "sha256:b5b9fc18d7e395562a6763d955312fdf1c07f7296fc97e29fefa9aaf337d30ce",
+      "runtimeHash": "sha256:9af6637ea30854da1e88411ecbdcc08c6efdafbf91d89f4c492dbab0e56889e9",
+      "fonts": ["cockpit-font-display", "cockpit-font-period"]
+    },
+    {
+      "slug": "dhc-2",
+      "sourceHash": "sha256:20357578d3743e0e454cfd37caf94ce1b5d7c22121542098c5e7601476047a6d",
+      "runtimeHash": "sha256:16a6968cdcd1c8db0d09a3543f28b37932d1fdc096e8d4196ecbc1cba1e1b408",
+      "fonts": ["cockpit-font-display", "cockpit-font-period"]
+    },
+    {
+      "slug": "dhc-6",
+      "sourceHash": "sha256:68f77a910b29181ea72f0da1dc61f845af3e463ca4e14c6e8a48eb2cc325360f",
+      "runtimeHash": "sha256:b84e9afe314a564b8ea07de07b749bf44c0c4b9a52969cabbfa9142bec34b132",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "diamond-da42",
+      "sourceHash": "sha256:8b8af1faf81c68ec54c483d90cc342a95efdc933e553e157c1b12d5dd16ea7e9",
+      "runtimeHash": "sha256:90cf918552a0460bc837d59c2cd94af8996a5722d79704759b106fc0a4fc0e9a",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "embraer-e175",
+      "sourceHash": "sha256:1932f990fa8d3f1b9524a1d5a66bdb37809967b04e51c6836de0e15c76e09fda",
+      "runtimeHash": "sha256:fa8e4ea6544d2282707bc8e67054ca2b2c9dcf9ca66c7353349ef1f94e2c8712",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "f-14d",
+      "sourceHash": "sha256:5fb28ded9cd51d4285a4819dde89d90b5b83511b6bffc3579f34bfe27ce46f5e",
+      "runtimeHash": "sha256:889f38166d9da21ffc11ea7a3a15ae180b5a9cb3bd14281cbedc72438ee4ee73",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "f-15c",
+      "sourceHash": "sha256:3fe3bec0a892871e6ada47302e29a11f34d1aa31fc71057cc1634831b23b58cc",
+      "runtimeHash": "sha256:3c33f53f04c9de9bbdc35e5e71b53d585bf04123886ac6b8f2aa77027895332b",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "f-16b",
+      "sourceHash": "sha256:06882b115bd78463f3baf4e8bc04ef6618f0fd19341e1fd2c320ecca07474ff0",
+      "runtimeHash": "sha256:37ff5f7ba0fcadd2789010ed6269edda4540da4398f55acc46c9e511ba2bc02a",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "f-22a",
+      "sourceHash": "sha256:7cbcf456ef4f739093d7b96f919a55c88a0fd02b73469d787bcedb56407ebdd0",
+      "runtimeHash": "sha256:4e03e2c34786a06b48659c9126068a32f6fc624c9de299d967890a802138fae1",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "f-35a",
+      "sourceHash": "sha256:89c935a61df8492ebbd362f36c8ed4745d8721ceb1b7e508b0e752c0eccbe472",
+      "runtimeHash": "sha256:8de22adaeabcb7b4ec19a1518807a6e1d9a1e85230e36e166d42e0b1e6aa192e",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "fa-18c",
+      "sourceHash": "sha256:899bde0fc364acce4a5070393fbeea1f8e1d891d1803d00bae3d01798be9bacf",
+      "runtimeHash": "sha256:67a9adf97defdc2973b3e744daa08711e3c057d541f825aca70aba2f8647cf21",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "gripen-c",
+      "sourceHash": "sha256:1c2acd687b758a1db7ad4855fe64b697b3105791800e6838e8fa32ecf973c19d",
+      "runtimeHash": "sha256:196fb0057a6dc3395d6e8e4547531db26da621ff4825a0b168a70b7b02ec1cbd",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "gulfstream-g650er",
+      "sourceHash": "sha256:48d0b2aa1800b066543934db0fb7463ec3aff78b94ff188efc65bcee2c9a690d",
+      "runtimeHash": "sha256:d24f3e29cb890ce9d97c310fcdcd69c5f9600e9bdf59624578db0d5db3cd0575",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "king-air-350i",
+      "sourceHash": "sha256:7c9500bafa307ccc20bc6aedbfea7b436a11cb1f4bc2789d8ed39bd68edc45e5",
+      "runtimeHash": "sha256:03b6fe569cc4719af47c3bdc904334dc47beb1de14e5075b3586f04cf338716b",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "mig-29a",
+      "sourceHash": "sha256:47953c2b41bf4f3aa7f9873d50a92488670b5e009a0927ecfadd17458af18354",
+      "runtimeHash": "sha256:127d68831f987f4e1d24c7b63b68fbf7dc0732213ff9630cdc4d2c07af46057e",
+      "fonts": ["cockpit-font-technical"]
+    },
+    {
+      "slug": "mv-22b",
+      "sourceHash": "sha256:4e845cdcfd313af48afacbdf847bfcc98cbb824090ff7f1c45a1f00bbfea0d15",
+      "runtimeHash": "sha256:4f75188a165426cb066bd1afe289b796f5ff3bc45c091b7ac490913b3b59f8a9",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "oh-6",
+      "sourceHash": "sha256:2b447b3ab74e81d27ef642b51a7dac003b946ace8c8ef114a7c9a74bb40781e5",
+      "runtimeHash": "sha256:a1dd0dac2f7b35443ad2764f400a4825af23827a4521843b0790d9b0bcce1cc5",
+      "fonts": ["cockpit-font-technical"]
+    },
+    {
+      "slug": "p-51",
+      "sourceHash": "sha256:f9a9353d8a3357fdd161919fa393d5daf6207f3158e6b0d9aed9c4af8ccca8e5",
+      "runtimeHash": "sha256:935cd6d2903a023b54911dd8d2006ed8ee2d505da62aaa011301e4b412939561",
+      "fonts": ["cockpit-font-period"]
+    },
+    {
+      "slug": "pa-28-180",
+      "sourceHash": "sha256:ed639a30932f0c114a7c8d95bee0dba3b5a8cd379558fe88feb27d9bceef988a",
+      "runtimeHash": "sha256:63a8c5739f4cf74545ae91a92fdf9e6e8402d9eb48cab34b5f8b7ef5753dc959",
+      "fonts": ["cockpit-font-technical"]
+    },
+    {
+      "slug": "pc-6",
+      "sourceHash": "sha256:a485279dac79fe82b24033058c1205449dd81c9798e7178d49b663cafcb9e6b5",
+      "runtimeHash": "sha256:1216c591c255a6fe85d5bce892d4f2d348b852ed0c45a13cefaa77299bda2905",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "pilatus-pc12",
+      "sourceHash": "sha256:d3662384cee0519a8c8612be336f2120ee36365b53e859b69fc23ae75d284021",
+      "runtimeHash": "sha256:16ba6124f721e9129629f1ba46c4747b98d6d8b768188e2b52f58e3124c63bb8",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    },
+    {
+      "slug": "rafale-c",
+      "sourceHash": "sha256:685821c8685a7a6fd60c3aa8e8397687c2d23e5f5a1d1a781ce98eb983891e6c",
+      "runtimeHash": "sha256:a2449542e2cb0d260c42354fadda34ce3ff8ee24f5004fe5f4cd68a140304fd6",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "robinson-r44",
+      "sourceHash": "sha256:f21ad3c9832170020d133b497568f67c542ea119b0289f2efe6223bb34622ffb",
+      "runtimeHash": "sha256:10c7decd59c7451df036e65b2b8674995fcd6bc2ed0c37b084a1e6a248c6a9b8",
+      "fonts": ["cockpit-font-technical"]
+    },
+    {
+      "slug": "typhoon",
+      "sourceHash": "sha256:76668d6376fc192d774d56cea5bf25df1e03ee61b6d6029e421b61dee80153be",
+      "runtimeHash": "sha256:a81265869497836a0d9c0a43c0e4b90cc901de3ea382a57c88d9940819d03c8c",
+      "fonts": ["cockpit-font-display", "cockpit-font-technical"]
+    },
+    {
+      "slug": "uh-1h",
+      "sourceHash": "sha256:5ed38b65a5d7d72ae0760d84f29d32a8cd1d321bf033181678ac8530a835a20e",
+      "runtimeHash": "sha256:412bdcca282d0b05fcdbb5d2b27af2efe250beb2a2e6d15df18dc12b32facc11",
+      "fonts": ["cockpit-font-technical"]
+    },
+    {
+      "slug": "uh-60m",
+      "sourceHash": "sha256:070b1cac81ac1eab685240812e60cc59e5f2876ec7e1b9af81b492a6bef987b6",
+      "runtimeHash": "sha256:2840ac99d12aced3890c4492a2be4f847cab047958539ac847f20b5fa2f0ae0c",
+      "fonts": ["cockpit-font-modern", "cockpit-font-technical"]
+    }
+  ]
+}

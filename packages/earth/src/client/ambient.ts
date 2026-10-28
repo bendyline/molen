@@ -15,6 +15,7 @@ import {
   type AmbientHandle,
   type AmbientKind,
   type AmbientRoleData,
+  type AmbientTileInput,
   type AmbientTypes,
   type AmbientVehicleType,
   installAmbient,
@@ -23,6 +24,7 @@ import {
   signalTiming,
   type TransportJunction,
 } from '@bendyline/molen-ambient/kernel';
+import type { SceneAdmission } from '@bendyline/molen-client';
 import { World } from '@bendyline/molen-kernel/world';
 import type { AircraftSpec, VehicleData } from '@bendyline/molen-schema';
 import type {
@@ -102,15 +104,24 @@ export interface EarthAmbientOptions {
   /** Geographic road fleet; ships, rail and aircraft retain their independent pools. */
   carsAt?: (x: number, z: number) => readonly AmbientVehicleType[];
   prepare?: (object: THREE.Object3D) => Promise<void> | void;
+  /** Main-thread admission (e.g. `renderer.admission`) for building aircraft models. */
+  admission?: SceneAdmission;
   /** Ground height for aircraft altitudes (the stream's finest displayed heights). */
   ground?: (x: number, z: number) => number | undefined;
 }
 
 interface Entry {
   key: string;
-  tile: TerrainSemanticTile;
+  /**
+   * The tile's roads and places, all its kernel parts read. The rest of the decoded tile is not
+   * kept: tiles held whole by this, audio and wildlife until they left the stream were 40 MB of a
+   * 240 MB main heap, walked by every collection.
+   */
+  roads: Pick<TerrainSemanticTile, 'transportation' | 'pois'>;
   context: TerrainPyramidTileLayerContext;
   registered: boolean;
+  /** The keys it is registered under: the tile's own, or one per part (see PART_SIZE). */
+  parts: string[];
   /** When the object was first seen detached from the stream (for forgetting stale tiles). */
   detachedAt?: number;
 }
@@ -149,6 +160,26 @@ function tileDistance(context: TerrainPyramidTileLayerContext, x: number, z: num
 /** A tile object detached this long (ms) without a dispose is forgotten. */
 const DETACHED_MS = 30_000;
 
+/**
+ * Road tiles join the traffic network only up to this size (m), and not while the observer moves
+ * faster than this (m/s) or did in the last few seconds. A coarse tile shown beneath a climbing
+ * aircraft carried a whole town's roads, and building its network held one frame for half a
+ * second; a jet passes a tile's traffic in seconds, too briefly to see, for a dropped frame per
+ * tile. One sample between syncs is noisy (a dip let tiles through at 300 m/s), hence the hold.
+ */
+const MAX_TILE_SIZE = 3000;
+const MAX_REGISTER_SPEED = 80;
+const FAST_HOLD_MS = 3000;
+/**
+ * Tiles of SPLIT_SIZE (m) and more join in square parts at least PART_SIZE wide, nearest first,
+ * one per frame (see `feed`): a dense Kyoto tile of 1-2 km built its network in 20-95 ms at once,
+ * and 250 m parts of Sydney's centre still took 10-20 ms.
+ */
+const SPLIT_SIZE = 500;
+const PART_SIZE = 125;
+/** How often (ms) at most a changing network's signalized junctions are indexed again. */
+const SIGNAL_CELLS_MS = 1000;
+
 export class EarthAmbient implements SemanticTileObserver {
   readonly world: World;
   readonly handle: AmbientHandle;
@@ -157,24 +188,50 @@ export class EarthAmbient implements SemanticTileObserver {
   private readonly root: THREE.Object3D;
   private readonly drivingSideAt: (x: number, z: number) => 'right' | 'left';
   private readonly entries = new Map<THREE.Object3D, Entry>();
+  /**
+   * Parts waiting for the kernel, nearest first, and those handed over. One is handed over per
+   * sync (per frame): the kernel applies one a tick, and a late frame's catch-up ticks then
+   * built up to three parts' networks in the frame already running long.
+   */
+  private readonly feed: AmbientTileInput[] = [];
+  private readonly fed = new Set<string>();
   private accumulator = 0;
   private lastSync = Number.NEGATIVE_INFINITY;
+  private lastObserver: { x: number; z: number; time: number } | undefined;
+  private fastUntil = Number.NEGATIVE_INFINITY;
   private enabled = true;
   private budget: EarthAmbientBudget | undefined;
   private disposed = false;
-  private signalVersion = -1;
+  /**
+   * Signalized junctions by 64 m cell, for matching rendered signal heads; rebuilt for a changed
+   * network at most once a second (SIGNAL_CELLS_MS). `signalCellsBuilt` counts the rebuilds.
+   */
+  private readonly signalCells = new Map<string, TransportJunction[]>();
+  private signalCellsVersion = -1;
+  private signalCellsAt = Number.NEGATIVE_INFINITY;
+  private signalCellsBuilt = 0;
+  /** Each head's match, kept while its junction stays in the network (see surfaceSignalColor). */
   private signalMatches = new WeakMap<
     TerrainTrafficSignal,
-    { junction: TransportJunction; group: number; timing: SignalTiming } | undefined
+    {
+      match: { junction: TransportJunction; group: number; timing: SignalTiming } | undefined;
+      cells: number;
+    }
   >();
-  private readonly signalCells = new Map<string, TransportJunction[]>();
 
   /** Resolve rendered signal heads against the same phase and tick that controls NPC cars. */
   readonly surfaceSignalColor: TerrainTrafficSignalResolver = (head) => {
     if (this.disposed) return undefined;
     const network = this.handle.network;
-    if (this.signalVersion !== network.version) {
-      this.signalMatches = new WeakMap();
+    // Tile parts join the network a frame apart while a view streams: rebuilding the cells, and
+    // matching every head again, at each change put half a million entries a minute through the
+    // match table (and its garbage collection). A match stands while its junction is in the
+    // network; a head with none looks again once the cells have been rebuilt.
+    const now = performance.now();
+    if (
+      this.signalCellsVersion !== network.version &&
+      now - this.signalCellsAt >= SIGNAL_CELLS_MS
+    ) {
       this.signalCells.clear();
       for (const junction of network.junctionList()) {
         if (junction.control !== 'signal') continue;
@@ -183,9 +240,19 @@ export class EarthAmbient implements SemanticTileObserver {
         cell.push(junction);
         this.signalCells.set(key, cell);
       }
-      this.signalVersion = network.version;
+      this.signalCellsVersion = network.version;
+      this.signalCellsAt = now;
+      this.signalCellsBuilt++;
     }
-    if (!this.signalMatches.has(head)) {
+    const live = (junction: TransportJunction): boolean =>
+      network.junction(junction.id) === junction && junction.control === 'signal';
+    let entry = this.signalMatches.get(head);
+    if (
+      entry === undefined ||
+      (entry.match !== undefined
+        ? !live(entry.match.junction)
+        : entry.cells !== this.signalCellsBuilt)
+    ) {
       let match: { junction: TransportJunction; group: number; timing: SignalTiming } | undefined;
       let distance = Math.max(12, head.radius);
       const minX = Math.floor((head.junction[0] - distance) / 64);
@@ -196,6 +263,7 @@ export class EarthAmbient implements SemanticTileObserver {
       for (let x = minX; x <= maxX; x++)
         for (let z = minZ; z <= maxZ; z++)
           for (const junction of this.signalCells.get(`${x}/${z}`) ?? []) {
+            if (!live(junction)) continue;
             const d = Math.hypot(junction.x - head.junction[0], junction.z - head.junction[1]);
             if (d >= distance) continue;
             let alignment = 0.7;
@@ -211,9 +279,15 @@ export class EarthAmbient implements SemanticTileObserver {
               distance = d;
             }
           }
-      this.signalMatches.set(head, match);
+      if (entry === undefined) {
+        entry = { match, cells: this.signalCellsBuilt };
+        this.signalMatches.set(head, entry);
+      } else {
+        entry.match = match;
+        entry.cells = this.signalCellsBuilt;
+      }
     }
-    const match = this.signalMatches.get(head);
+    const match = entry.match;
     return match
       ? signalColor(match.junction, match.group, this.world.tick, this.world.tickRate, match.timing)
       : undefined;
@@ -247,6 +321,10 @@ export class EarthAmbient implements SemanticTileObserver {
         boat: { perLaneKm: 0.8 * density },
       },
       seed: 'earth-ambient',
+      // One tile (or part) a tick: each network build stays a few milliseconds. A tile leaving
+      // takes its parts with it, a few a tick.
+      registrationsPerTick: 1,
+      removalsPerTick: 4,
     });
     const content = options.content;
     this.renderer = createAmbientRenderer({
@@ -262,6 +340,7 @@ export class EarthAmbient implements SemanticTileObserver {
       world: this.world,
       parent: options.parent,
       ...(options.prepare !== undefined ? { prepare: options.prepare } : {}),
+      ...(options.admission !== undefined ? { admission: options.admission } : {}),
       ...(content !== undefined
         ? {
             heights: content.heights,
@@ -284,12 +363,17 @@ export class EarthAmbient implements SemanticTileObserver {
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
   ): void {
-    if (this.disposed) return;
+    // Too coarse to register (see MAX_TILE_SIZE): not kept at all.
+    if (this.disposed || context.tileSize > MAX_TILE_SIZE) return;
     this.entries.set(object, {
       key: terrainPyramidTileKey(context.address),
-      tile,
+      roads: {
+        transportation: tile.transportation,
+        ...(tile.pois !== undefined ? { pois: tile.pois } : {}),
+      },
       context,
       registered: false,
+      parts: [],
     });
   }
 
@@ -297,12 +381,31 @@ export class EarthAmbient implements SemanticTileObserver {
     const entry = this.entries.get(object);
     if (entry === undefined) return;
     this.entries.delete(object);
-    if (entry.registered) this.handle.unregisterTile(entry.key);
+    if (entry.registered) this.unregister(entry);
+  }
+
+  /** Hand the kernel the next queued part, if any. */
+  private handOver(): void {
+    const next = this.feed.shift();
+    if (next === undefined) return;
+    this.handle.registerTile(next);
+    this.fed.add(next.key);
+  }
+
+  private unregister(entry: Entry): void {
+    entry.registered = false;
+    for (const key of entry.parts.splice(0)) {
+      if (this.fed.delete(key)) this.handle.unregisterTile(key);
+      else {
+        const queued = this.feed.findIndex((part) => part.key === key);
+        if (queued >= 0) this.feed.splice(queued, 1);
+      }
+    }
   }
 
   /**
-   * A few times a second: drop hidden tiles, register one newly displayed tile (nearest first)
-   * and move the observer.
+   * Every frame: hand the kernel the next queued tile part. A few times a second: drop hidden
+   * tiles, queue one newly displayed tile's parts (nearest first) and move the observer.
    */
   sync(
     now: number,
@@ -312,9 +415,23 @@ export class EarthAmbient implements SemanticTileObserver {
     },
     solids: readonly { x: number; z: number; radius: number }[] = [],
   ): void {
-    if (this.disposed || now - this.lastSync < 200) return;
+    if (this.disposed) return;
+    // Every call (every frame) hands the kernel the next queued part, if any (see `feed`); a
+    // full sync does so once it has dropped hidden tiles and queued a new one.
+    if (now - this.lastSync < 200) {
+      this.handOver();
+      return;
+    }
     this.lastSync = now;
     const [x, , z] = observer.position;
+    const last = this.lastObserver;
+    const speed =
+      last === undefined || now <= last.time
+        ? 0
+        : (Math.hypot(x - last.x, z - last.z) * 1000) / (now - last.time);
+    this.lastObserver = { x, z, time: now };
+    if (speed > MAX_REGISTER_SPEED) this.fastUntil = now + FAST_HOLD_MS;
+    const registering = this.enabled && now >= this.fastUntil;
     // Roads only matter within reach of the spawn rings (the activity radius plus a margin).
     const reach = Math.max(600, this.budget?.activityRadius ?? 600) + 250;
     for (const [object, entry] of this.entries) {
@@ -331,10 +448,8 @@ export class EarthAmbient implements SemanticTileObserver {
         (!this.enabled ||
           !displayed(object, this.root) ||
           tileDistance(entry.context, x, z) > reach * 1.5)
-      ) {
-        entry.registered = false;
-        this.handle.unregisterTile(entry.key);
-      }
+      )
+        this.unregister(entry);
     }
     // One new tile per call keeps a busy tile from stalling a frame. A tile overlapping one still
     // registered (its parent or child mid-transition) waits its turn.
@@ -342,7 +457,8 @@ export class EarthAmbient implements SemanticTileObserver {
     let nearest: Entry | undefined;
     let nearestDistance = Number.POSITIVE_INFINITY;
     for (const [object, entry] of this.entries) {
-      if (entry.registered || !this.enabled || !displayed(object, this.root)) continue;
+      if (entry.registered || !registering) continue;
+      if (entry.context.tileSize > MAX_TILE_SIZE || !displayed(object, this.root)) continue;
       const distance = tileDistance(entry.context, x, z);
       if (distance > reach || distance >= nearestDistance) continue;
       if (registered.some((other) => overlaps(other.context, entry.context))) continue;
@@ -350,26 +466,52 @@ export class EarthAmbient implements SemanticTileObserver {
       nearest = entry;
     }
     if (nearest !== undefined) {
-      const { context, tile } = nearest;
+      const { context, roads } = nearest;
       nearest.registered = true;
-      this.handle.registerTile({
-        key: nearest.key,
+      const [ox, oz] = context.origin;
+      const size = context.tileSize;
+      const base = {
         origin: context.origin,
-        tileSize: context.tileSize,
-        drivingSide: this.drivingSideAt(
-          context.origin[0] + context.tileSize / 2,
-          context.origin[1] + context.tileSize / 2,
-        ),
-        features: tile.transportation,
-        ...(tile.pois !== undefined ? { pois: tile.pois } : {}),
+        tileSize: size,
+        drivingSide: this.drivingSideAt(ox + size / 2, oz + size / 2),
+        features: roads.transportation,
+        ...(roads.pois !== undefined ? { pois: roads.pois } : {}),
         heightAt: renderedGroundSampler(
           context.heightfield,
           context.origin,
-          context.tileSize,
+          size,
           context.surfaceResolution,
         ),
-      });
+      };
+      const count = size < SPLIT_SIZE ? 1 : Math.floor(size / PART_SIZE);
+      if (count <= 1) {
+        nearest.parts = [nearest.key];
+        this.feed.push({ ...base, key: nearest.key });
+      } else {
+        const step = size / count;
+        const parts: { key: string; bounds: [number, number, number, number]; d: number }[] = [];
+        for (let i = 0; i < count; i++)
+          for (let j = 0; j < count; j++) {
+            const x0 = ox + i * step;
+            const z0 = oz + j * step;
+            // Neighboring parts share each border value exactly, and the last row and column
+            // end on the tile's edge, where neighboring tiles stitch.
+            const x1 = i === count - 1 ? ox + size : ox + (i + 1) * step;
+            const z1 = j === count - 1 ? oz + size : oz + (j + 1) * step;
+            const dx = Math.max(x0 - x, 0, x - x1);
+            const dz = Math.max(z0 - z, 0, z - z1);
+            parts.push({
+              key: `${nearest.key}:${i},${j}`,
+              bounds: [x0, z0, x1, z1],
+              d: dx * dx + dz * dz,
+            });
+          }
+        parts.sort((a, b) => a.d - b.d || (a.key < b.key ? -1 : 1));
+        nearest.parts = parts.map((part) => part.key);
+        for (const part of parts) this.feed.push({ ...base, key: part.key, bounds: part.bounds });
+      }
     }
+    this.handOver();
     const [dx, , dz] = observer.direction;
     const flat = Math.hypot(dx, dz);
     this.handle.setObserver({
@@ -473,7 +615,8 @@ export class EarthAmbient implements SemanticTileObserver {
 
   stats(): EarthAmbientStats {
     const s = this.renderer.stats();
-    const network = this.handle.network.stats();
+    // Counts only: the full network stats walk every lane, a few milliseconds per status update.
+    const network = this.handle.network.sizes();
     return {
       cars: s.cars,
       pedestrians: s.pedestrians,
@@ -493,7 +636,10 @@ export class EarthAmbient implements SemanticTileObserver {
     this.renderer.dispose();
     this.handle.dispose();
     this.entries.clear();
+    this.feed.length = 0;
+    this.fed.clear();
     this.signalCells.clear();
+    this.signalCellsVersion = -1;
     this.signalMatches = new WeakMap();
   }
 }

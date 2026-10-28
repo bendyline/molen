@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:417ec7ea5267afd2291051940637316227c746f99d927093474e69c8a315b381",
-  "sourceHash": "sha256:dbe48a0e1d328e57af6120615a9726dc9c3b1dd4d9d7b38b48d38ea71418f798",
+  "hash": "sha256:a2449542e2cb0d260c42354fadda34ce3ff8ee24f5004fe5f4cd68a140304fd6",
+  "sourceHash": "sha256:685821c8685a7a6fd60c3aa8e8397687c2d23e5f5a1d1a781ce98eb983891e6c",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 36226,
-    "vertices": 75999,
-    "meshes": 77,
-    "primitives": 77,
-    "materials": 20,
-    "textures": 0,
+    "triangles": 16434,
+    "vertices": 16754,
+    "meshes": 99,
+    "primitives": 99,
+    "materials": 31,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 1500196
+    "sizeBytes": 896148
   },
   "nodes": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "name": "Rafale-airframe-Rafale-gray",
-      "triangles": 3488
+      "triangles": 2228
     },
     {
       "name": "Rafale-airframe-Rafale-seal",
-      "triangles": 2736
+      "triangles": 1824
     },
     {
       "name": "Rafale-airframe-Rafale-glass",
@@ -63,7 +63,7 @@
     },
     {
       "name": "Rafale-airframe-Rafale-duct",
-      "triangles": 282
+      "triangles": 284
     },
     {
       "name": "Rafale-airframe-Rafale-exhaust",
@@ -159,23 +159,23 @@
     },
     {
       "name": "Rafale-cabin-Rafale-instrument-black",
-      "triangles": 570
+      "triangles": 426
     },
     {
       "name": "Rafale-cabin-Rafale-key",
       "triangles": 416
     },
     {
-      "name": "Rafale-cabin-Rafale-display",
-      "triangles": 2424
+      "name": "Rafale-cabin-Rafale-display-panel-print",
+      "triangles": 50
     },
     {
-      "name": "Rafale-cabin-Rafale-instrument-amber",
-      "triangles": 2160
+      "name": "Rafale-cabin-Rafale-instrument-amber-panel-print",
+      "triangles": 44
     },
     {
-      "name": "Rafale-cabin-Rafale-instrument-ink",
-      "triangles": 3636
+      "name": "Rafale-cabin-Rafale-instrument-ink-panel-print",
+      "triangles": 72
     },
     {
       "name": "Rafale-HLD-Rafale-instrument-black",
@@ -183,19 +183,27 @@
     },
     {
       "name": "Rafale-HLD-Rafale-panel",
-      "triangles": 96
-    },
-    {
-      "name": "Rafale-HLD-Rafale-display",
-      "triangles": 1512
+      "triangles": 48
     },
     {
       "name": "Rafale-HLD-Rafale-instrument-ink",
       "triangles": 24
     },
     {
+      "name": "Rafale-HLD-Rafale-display-panel-print",
+      "triangles": 20
+    },
+    {
+      "name": "Rafale-HLD-Rafale-display-display-print",
+      "triangles": 8
+    },
+    {
       "name": "Rafale-heading-Rafale-display",
-      "triangles": 3840
+      "triangles": 1728
+    },
+    {
+      "name": "Rafale-heading-Rafale-display-panel-print",
+      "triangles": 40
     },
     {
       "name": "Rafale-HLD-vertical-speed-0-0-Rafale-display",
@@ -359,7 +367,11 @@
     },
     {
       "name": "Rafale-attitude-card-Rafale-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "Rafale-attitude-card-Rafale-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "Rafale-speed-0-0-Rafale-display",
@@ -540,18 +552,6 @@
     {
       "name": "Rafale-altitude-3-2-Rafale-display",
       "triangles": 12
-    },
-    {
-      "name": "Rafale-altitude-3-3-Rafale-display",
-      "triangles": 12
-    },
-    {
-      "name": "Rafale-altitude-3-4-Rafale-display",
-      "triangles": 12
-    },
-    {
-      "name": "Rafale-altitude-3-5-Rafale-display",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -638,9 +638,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Rafale-panel",
+      "name": "Rafale-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -662,6 +665,50 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Rafale-display-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Rafale-instrument-amber-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Rafale-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Rafale-instrument-ink",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Rafale-display-display-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "Rafale-display",
       "slots": [
         "baseColor"
@@ -671,14 +718,6 @@
     },
     {
       "name": "Rafale-instrument-amber",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "Rafale-instrument-ink",
       "slots": [
         "baseColor"
       ],
@@ -702,6 +741,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Rafale-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Rafale-cushion",
       "slots": [
         "baseColor"
@@ -711,6 +761,64 @@
     },
     {
       "name": "Rafale-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -783,25 +891,25 @@
         "points": [
           -5.4524,
           1.3851,
-          -5.9408,
+          -5.9407,
           -5.4524,
           1.3851,
           5.956,
           -5.4524,
           2.4249,
-          -5.9408,
+          -5.9407,
           -5.4524,
           2.4249,
           5.956,
           5.4524,
           1.3851,
-          -5.9408,
+          -5.9407,
           5.4524,
           1.3851,
           5.956,
           5.4524,
           2.4249,
-          -5.9408,
+          -5.9407,
           5.4524,
           2.4249,
           5.956
@@ -1564,28 +1672,28 @@
       {
         "node": "Rafale-cabin-Rafale-instrument-black",
         "points": [
-          -0.4878,
+          -0.488,
           1.9925,
           3.615,
-          -0.4878,
-          1.9925,
-          4.925,
-          -0.4878,
-          2.7278,
-          3.615,
-          -0.4878,
-          2.7278,
-          4.925,
-          0.4878,
-          1.9925,
-          3.615,
-          0.4878,
+          -0.488,
           1.9925,
           4.925,
-          0.4878,
+          -0.488,
           2.7278,
           3.615,
-          0.4878,
+          -0.488,
+          2.7278,
+          4.925,
+          0.488,
+          1.9925,
+          3.615,
+          0.488,
+          1.9925,
+          4.925,
+          0.488,
+          2.7278,
+          3.615,
+          0.488,
           2.7278,
           4.925
         ]
@@ -1620,90 +1728,90 @@
         ]
       },
       {
-        "node": "Rafale-cabin-Rafale-display",
+        "node": "Rafale-cabin-Rafale-display-panel-print",
         "points": [
-          -0.2567,
-          2.5211,
-          4.8895,
-          -0.2567,
-          2.5211,
-          4.8905,
-          -0.2567,
+          -0.2574,
+          2.5203,
+          4.89,
+          -0.2574,
+          2.5203,
+          4.89,
+          -0.2574,
           2.6215,
-          4.8895,
-          -0.2567,
+          4.89,
+          -0.2574,
           2.6215,
-          4.8905,
-          0.2709,
-          2.5211,
-          4.8895,
-          0.2709,
-          2.5211,
-          4.8905,
-          0.2709,
+          4.89,
+          0.2705,
+          2.5203,
+          4.89,
+          0.2705,
+          2.5203,
+          4.89,
+          0.2705,
           2.6215,
-          4.8895,
-          0.2709,
+          4.89,
+          0.2705,
           2.6215,
-          4.8905
+          4.89
         ]
       },
       {
-        "node": "Rafale-cabin-Rafale-instrument-amber",
+        "node": "Rafale-cabin-Rafale-instrument-amber-panel-print",
         "points": [
-          -0.2635,
-          2.5197,
-          4.8895,
-          -0.2635,
-          2.5197,
-          4.8905,
-          -0.2635,
+          -0.2643,
+          2.5188,
+          4.89,
+          -0.2643,
+          2.5188,
+          4.89,
+          -0.2643,
           2.5773,
-          4.8895,
-          -0.2635,
+          4.89,
+          -0.2643,
           2.5773,
-          4.8905,
-          -0.2073,
-          2.5197,
-          4.8895,
-          -0.2073,
-          2.5197,
-          4.8905,
-          -0.2073,
+          4.89,
+          -0.2078,
+          2.5188,
+          4.89,
+          -0.2078,
+          2.5188,
+          4.89,
+          -0.2078,
           2.5773,
-          4.8895,
-          -0.2073,
+          4.89,
+          -0.2078,
           2.5773,
-          4.8905
+          4.89
         ]
       },
       {
-        "node": "Rafale-cabin-Rafale-instrument-ink",
+        "node": "Rafale-cabin-Rafale-instrument-ink-panel-print",
         "points": [
-          -0.4062,
-          2.2777,
-          4.8895,
-          -0.4062,
-          2.2777,
-          4.8905,
-          -0.4062,
-          2.6226,
-          4.8895,
-          -0.4062,
-          2.6226,
-          4.8905,
-          0.4071,
-          2.2777,
-          4.8895,
-          0.4071,
-          2.2777,
-          4.8905,
-          0.4071,
-          2.6226,
-          4.8895,
-          0.4071,
-          2.6226,
-          4.8905
+          -0.4067,
+          2.2773,
+          4.89,
+          -0.4067,
+          2.2773,
+          4.89,
+          -0.4067,
+          2.622,
+          4.89,
+          -0.4067,
+          2.622,
+          4.89,
+          0.4067,
+          2.2773,
+          4.89,
+          0.4067,
+          2.2773,
+          4.89,
+          0.4067,
+          2.622,
+          4.89,
+          0.4067,
+          2.622,
+          4.89
         ]
       },
       {
@@ -1765,35 +1873,6 @@
         ]
       },
       {
-        "node": "Rafale-HLD-Rafale-display",
-        "points": [
-          -0.0271,
-          2.3662,
-          4.876,
-          -0.0271,
-          2.3662,
-          4.9587,
-          -0.0271,
-          2.5712,
-          4.876,
-          -0.0271,
-          2.5712,
-          4.9587,
-          0.0287,
-          2.3662,
-          4.876,
-          0.0287,
-          2.3662,
-          4.9587,
-          0.0287,
-          2.5712,
-          4.876,
-          0.0287,
-          2.5712,
-          4.9587
-        ]
-      },
-      {
         "node": "Rafale-HLD-Rafale-instrument-ink",
         "points": [
           -0.0013,
@@ -1823,6 +1902,64 @@
         ]
       },
       {
+        "node": "Rafale-HLD-Rafale-display-panel-print",
+        "points": [
+          -0.026,
+          2.366,
+          4.8763,
+          -0.026,
+          2.366,
+          4.9582,
+          -0.026,
+          2.5711,
+          4.8763,
+          -0.026,
+          2.5711,
+          4.9582,
+          0.0261,
+          2.366,
+          4.8763,
+          0.0261,
+          2.366,
+          4.9582,
+          0.0261,
+          2.5711,
+          4.8763,
+          0.0261,
+          2.5711,
+          4.9582
+        ]
+      },
+      {
+        "node": "Rafale-HLD-Rafale-display-display-print",
+        "points": [
+          -0.0118,
+          2.4609,
+          4.9142,
+          -0.0118,
+          2.4609,
+          4.9171,
+          -0.0118,
+          2.4681,
+          4.9142,
+          -0.0118,
+          2.4681,
+          4.9171,
+          0.012,
+          2.4609,
+          4.9142,
+          0.012,
+          2.4609,
+          4.9171,
+          0.012,
+          2.4681,
+          4.9142,
+          0.012,
+          2.4681,
+          4.9171
+        ]
+      },
+      {
         "node": "Rafale-heading-Rafale-display",
         "points": [
           -0.092,
@@ -1849,6 +1986,35 @@
           0.092,
           2.5512,
           4.9563
+        ]
+      },
+      {
+        "node": "Rafale-heading-Rafale-display-panel-print",
+        "points": [
+          -0.0678,
+          2.3999,
+          4.8953,
+          -0.0678,
+          2.3999,
+          4.9469,
+          -0.0678,
+          2.5293,
+          4.8953,
+          -0.0678,
+          2.5293,
+          4.9469,
+          0.0718,
+          2.3999,
+          4.8953,
+          0.0718,
+          2.3999,
+          4.9469,
+          0.0718,
+          2.5293,
+          4.8953,
+          0.0718,
+          2.5293,
+          4.9469
         ]
       },
       {
@@ -3015,29 +3181,58 @@
         "node": "Rafale-attitude-card-Rafale-instrument-ink",
         "points": [
           0.1461,
-          2.5442,
+          2.5453,
           4.9283,
           0.1461,
-          2.5442,
+          2.5453,
           4.9297,
           0.1461,
-          2.5967,
+          2.5947,
           4.9283,
           0.1461,
-          2.5967,
+          2.5947,
           4.9297,
           0.3259,
-          2.5442,
+          2.5453,
           4.9283,
           0.3259,
-          2.5442,
+          2.5453,
           4.9297,
           0.3259,
-          2.5967,
+          2.5947,
           4.9283,
           0.3259,
-          2.5967,
+          2.5947,
           4.9297
+        ]
+      },
+      {
+        "node": "Rafale-attitude-card-Rafale-instrument-ink-dial-print",
+        "points": [
+          0.2513,
+          2.5439,
+          4.929,
+          0.2513,
+          2.5439,
+          4.929,
+          0.2513,
+          2.5961,
+          4.929,
+          0.2513,
+          2.5961,
+          4.929,
+          0.2573,
+          2.5439,
+          4.929,
+          0.2573,
+          2.5439,
+          4.929,
+          0.2573,
+          2.5961,
+          4.929,
+          0.2573,
+          2.5961,
+          4.929
         ]
       },
       {
@@ -4342,93 +4537,6 @@
           4.8916,
           0.1979,
           2.5106,
-          4.8924
-        ]
-      },
-      {
-        "node": "Rafale-altitude-3-3-Rafale-display",
-        "points": [
-          0.1979,
-          2.5078,
-          4.8916,
-          0.1979,
-          2.5078,
-          4.8924,
-          0.1979,
-          2.5082,
-          4.8916,
-          0.1979,
-          2.5082,
-          4.8924,
-          0.2001,
-          2.5078,
-          4.8916,
-          0.2001,
-          2.5078,
-          4.8924,
-          0.2001,
-          2.5082,
-          4.8916,
-          0.2001,
-          2.5082,
-          4.8924
-        ]
-      },
-      {
-        "node": "Rafale-altitude-3-4-Rafale-display",
-        "points": [
-          0.2002,
-          2.5084,
-          4.8916,
-          0.2002,
-          2.5084,
-          4.8924,
-          0.2002,
-          2.5106,
-          4.8916,
-          0.2002,
-          2.5106,
-          4.8924,
-          0.2006,
-          2.5084,
-          4.8916,
-          0.2006,
-          2.5084,
-          4.8924,
-          0.2006,
-          2.5106,
-          4.8916,
-          0.2006,
-          2.5106,
-          4.8924
-        ]
-      },
-      {
-        "node": "Rafale-altitude-3-5-Rafale-display",
-        "points": [
-          0.2002,
-          2.5114,
-          4.8916,
-          0.2002,
-          2.5114,
-          4.8924,
-          0.2002,
-          2.5136,
-          4.8916,
-          0.2002,
-          2.5136,
-          4.8924,
-          0.2006,
-          2.5114,
-          4.8916,
-          0.2006,
-          2.5114,
-          4.8924,
-          0.2006,
-          2.5136,
-          4.8916,
-          0.2006,
-          2.5136,
           4.8924
         ]
       }

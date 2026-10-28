@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.queen_s_hotel_townsville",
+  "kind": "static-structure",
+  "title": "Queen’s Hotel, Townsville (circa1932)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.queen_s_hotel_townsville",
+        "output": "assets/places/rk/rk8/queen_s_hotel_townsville/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d08dad57828b005d29d304f48d30f9b779b1a29126f88d1bcf05100d74d0f8de"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/slq1932-original.jpg",
+      "reference-rights/slq1932-native.json",
+      "native-map/hotel-wikidata-binding.json",
+      "native-map/whole-current-hotel-context.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-29748-18170.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

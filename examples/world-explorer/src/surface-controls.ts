@@ -1,7 +1,8 @@
+import { surfaceWorkers } from '@bendyline/molen-earth/client';
 import type { FontLibrary } from '@bendyline/molen-materials/text';
 import {
   createTerrainSurfaceRenderer,
-  createTerrainSurfaceWorkerBridge,
+  createTerrainSurfaceWorkerPool,
   resolveTerrainSurfaceStyle,
   TERRAIN_SURFACE_STYLES,
   type TerrainParkedVehicle,
@@ -12,6 +13,7 @@ import {
   type TerrainSurfaceRenderer,
   type TerrainSurfaceStyleId,
 } from '@bendyline/molen-terrain/client';
+import { selectedRegion } from './regions';
 
 export interface SurfaceControls extends TerrainSurfaceRenderer {
   /** Device adaptation changes budgets without overwriting the user's style or detail choices. */
@@ -59,10 +61,11 @@ export function createSurfaceControls(
   });
   let budgets = budgetsForQuality(quality);
   let performanceScale = 1;
+  const regional = selectedRegion(params)?.surfaces;
   const options = () => ({
     fonts,
     routeShields,
-    style,
+    style: regional ? { ...TERRAIN_SURFACE_STYLES[style], ...regional } : style,
     details: {
       ...details,
       maxFixturesPerTile: Math.round(budgets.maxFixturesPerTile * performanceScale),
@@ -74,8 +77,12 @@ export function createSurfaceControls(
     typeof Worker !== 'undefined' &&
     params.get('worker') !== '0' &&
     params.get('surfaceWorker') !== '0'
-      ? createTerrainSurfaceWorkerBridge(
-          new Worker(new URL('./surface-worker.ts', import.meta.url), { type: 'module' }),
+      ? // One surface worker (see surfaceWorkers).
+        createTerrainSurfaceWorkerPool(
+          Array.from(
+            { length: surfaceWorkers() },
+            () => new Worker(new URL('./surface-worker.ts', import.meta.url), { type: 'module' }),
+          ),
         )
       : undefined;
   const renderer = createTerrainSurfaceRenderer(

@@ -1,3 +1,7 @@
+/**
+ * Exercises deterministic yard-tree placement through the production semantic adapter and
+ * shipped atlas. Covers regional density, mapped exclusions, generalized data, and tile seams.
+ */
 import {
   createEmptyTerrainSemanticTile,
   pointInPolygon,
@@ -93,6 +97,27 @@ describe('residential tree infill', () => {
     expect(batch(tile).buildings).toEqual([]);
   });
 
+  it('plants modest residential canopy in Pleasanton without changing explicit regional overrides', () => {
+    const tile = neighborhood();
+    tile.landcover = [{ class: 'residential', polygons: [{ outer: rect(0, 0, 1, 1) }] }];
+    const pleasanton = geometry(-121.8816, 37.6699);
+    const result = trees(tile, pleasanton);
+    expect(result.length).toBeGreaterThan(20);
+    expect(result.length).toBeLessThan(trees(tile).length);
+    expect(trees(tile, pleasanton)).toEqual(result);
+    expect(batch(tile, pleasanton).scatter?.polygons.some((p) => p.label === 'home_canopy')).toBe(
+      true,
+    );
+    // The Southwest's own, sparser factor still wins over the North American default.
+    const phoenix = batch(tile, geometry(-112, 33.45)).scatter?.polygons.filter(
+      (p) => p.label === 'home_canopy',
+    );
+    expect(phoenix?.length).toBeGreaterThan(0);
+    for (const patch of phoenix ?? []) expect(patch.density).toBeLessThanOrEqual(0.3);
+    tile.buildingsGeneralized = true;
+    expect(trees(tile, pleasanton)).toEqual([]);
+  });
+
   it('uses the house identity and keeps thinning nested without moving surviving trees', () => {
     const tile = neighborhood();
     const full = trees(tile);
@@ -108,9 +133,11 @@ describe('residential tree infill', () => {
     expect(trees(tile)).not.toEqual(full);
   });
 
-  it('does not infer canopy in deserts, unconfigured regions, or generalized building data', () => {
+  it('plants sparse irrigated canopy in Southwest yards and none in unconfigured regions or generalized building data', () => {
     const tile = neighborhood();
-    expect(trees(tile, geometry(-112, 33.45))).toEqual([]);
+    const desert = trees(tile, geometry(-112, 33.45));
+    expect(desert.length).toBeGreaterThan(0);
+    expect(desert.length).toBeLessThan(trees(tile).length);
     expect(trees(tile, geometry(20, 20))).toEqual([]);
     tile.buildingsGeneralized = true;
     expect(trees(tile)).toEqual([]);

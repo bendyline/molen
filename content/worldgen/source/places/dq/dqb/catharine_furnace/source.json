@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.catharine_furnace",
+  "kind": "static-structure",
+  "title": "Catharine Furnace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.catharine_furnace",
+        "output": "assets/places/dq/dqb/catharine_furnace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:270ebbcda622005a77236625d19c53e35af6e40185ca623b2b58c14e581cae05"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-catharine-furnace",
+        "path": "models/generate-catharine-furnace.mjs"
+      },
+      {
+        "id": "catharine-furnace-model",
+        "path": "models/catharine-furnace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/named-ruin-point.json",
+      "terrain-acquisition-envelope.json",
+      "original-photo-plan.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9316-12606.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

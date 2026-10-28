@@ -1,0 +1,201 @@
+{
+  "identity": "Original Muntplein/Q683180 plaza; Muntsluis/Q2308267 is its bridge component. Named map bridge/tram/cycle routes and ordinary photographs establish the bridge/plaza footprint; no exact-QID footprint is claimed.",
+  "anchor": [
+    4.8935355078341525,
+    52.36707645884383
+  ],
+  "heading": 1.5707963267948966,
+  "plan": {
+    "length": 55.05890782250491,
+    "width": 54.69447045370678,
+    "min": [
+      -25.087206381679113,
+      -26.849793487883513
+    ],
+    "max": [
+      29.971701440825797,
+      27.844676965823265
+    ]
+  },
+  "featureIds": [
+    35185536723013
+  ],
+  "outline": [
+    [
+      -3.1860755041555517,
+      -17.789338492651382
+    ],
+    [
+      25.072609796189173,
+      11.56336065083792
+    ],
+    [
+      29.971701440825797,
+      18.36430208718075
+    ],
+    [
+      18.12132632158653,
+      27.844676965823265
+    ],
+    [
+      -20.347011256773868,
+      -12.993860972944464
+    ],
+    [
+      -25.087206381679113,
+      -25.573589177297023
+    ],
+    [
+      -11.778208590735188,
+      -26.849793487883513
+    ]
+  ],
+  "roadPaths": [
+    [
+      [
+        2.260009953020468,
+        -6.248209674480008
+      ],
+      [
+        -11.231264046979533,
+        -4.789690674480008
+      ]
+    ],
+    [
+      [
+        8.094048953020469,
+        0.8620533255199909
+      ],
+      [
+        -1.0216510469795335,
+        -0.5964466744800081
+      ],
+      [
+        -11.231251046979533,
+        -4.789646674480009
+      ]
+    ],
+    [
+      [
+        9.370248953020468,
+        18.91125332551999
+      ],
+      [
+        13.563448953020469,
+        12.347953325519992
+      ],
+      [
+        17.75674895302047,
+        9.066253325519991
+      ]
+    ]
+  ],
+  "tramPaths": [
+    [
+      [
+        3.9008489530204677,
+        -1.6903466744800077
+      ],
+      [
+        -4.850251046979533,
+        -3.878146674480009
+      ],
+      [
+        -10.502001046979533,
+        -6.065846674480008
+      ],
+      [
+        -14.148301046979533,
+        -8.071346674480008
+      ]
+    ],
+    [
+      [
+        12.469598953020466,
+        2.502953325519993
+      ],
+      [
+        -0.6570510469795323,
+        0.6797533255199912
+      ],
+      [
+        -3.9386510469795333,
+        -0.049546674480009045
+      ],
+      [
+        -9.225801046979534,
+        -2.2372466744800086
+      ]
+    ]
+  ],
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "url": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:d0c0c10da3b70e20998221946efd02e9f87be15ff86b2f6cda9df003953156af"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        0,
+        15.3359375
+      ],
+      "flattenedSubseaSamples": 1117,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:6a91f522cef2445ec835a98ace3dc207690bd4b42f7af13c03368b7984547d83"
+    }
+  }
+}

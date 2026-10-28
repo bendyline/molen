@@ -1,0 +1,370 @@
+{
+  "planId": "dalat_palace_hotel",
+  "id": "dalat_palace_hotel",
+  "assetId": "molen.worldgen.structure.dalat_palace_hotel",
+  "title": "Dalat Palace Hotel",
+  "wikidataId": "Q5210229",
+  "category": "hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 108.44041010000001,
+    "latitude": 11.93752425
+  },
+  "size": [
+    97.8499984741211,
+    16.84999990463257,
+    46.192983627319336
+  ],
+  "actualBounds": {
+    "min": [
+      -48.79999923706055,
+      -2.5999999046325684,
+      -28.799999237060547
+    ],
+    "max": [
+      49.04999923706055,
+      14.25,
+      17.39298439025879
+    ]
+  },
+  "visualBrief": "Whole original mapped main building with native16control plan/signed bearing: cream stepped Art Deco front/crown, dark green shuttered physical windowrecesses, lower hipped-roof endwings, original rear projections, long bracketed cornices/central balcony, real open baluster parapets, glazed ground veranda/curved dark canopies and immediate stone entrance flight. Detached modern hotel/conference blocks/property grounds and interiors excluded; hidden elevations/sections/census bounded.",
+  "nativeAxes": {
+    "x": "southeast along original native main facade",
+    "y": "up",
+    "z": "southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Dalat_Palace_Hotel.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dalat_Palace_Hotel_02.JPG",
+    "https://commons.wikimedia.org/wiki/File:Dalat_Palace_Hotel_03.JPG",
+    "https://commons.wikimedia.org/wiki/File:Dalat_Palace_Hotel_05.JPG",
+    "https://commons.wikimedia.org/wiki/File:Dalat_Palace_Hotel_06.JPG"
+  ],
+  "stories": [
+    {
+      "id": "dalat-palace-hotel-wp",
+      "url": "https://qualla.com/dalat-palace-hotel/"
+    }
+  ],
+  "referenceInputHash": "84d0937999ea9051b2e89448d184fdc903a97e40f455298d0733af92a7cbf4ba",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w6/w6j/dalat_palace_hotel/models/dalat-palace-hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/dalat-palace-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "dalatSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.47,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "dalatDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "dalatStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "dalatCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1",
+    "groundY": -2.9
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floor/section/geometry choices made after immutable400m129x129 sourcefield freeze. Floor0 at fixed1507.9154m provider-relative SW datum, nofit/flatten/reacquire. Whole16control ground outline retained. Signed original bearing/front-Z fixed fromnativefacadeandaxialstairs. Original bounded photo-based estimates: central11.6m eave/12.6m openparapet/14.25m steppedcrown, lower7.7m endwings with2.4m hippedroof, ground3.8m veranda, upperfacade setbacks/projections, .28m windows/.42m closedentry physicalrecesses, immediateentry stair-2.6to0. Hiddenrearroof/room-windowcensus/bracketprofiles/louverpositions/condition/grade unsurveyed. Nativecontrols are plan evidence, not measuredheight/thresholds. Onlyoriginalmainbuilding; modernblocks/longgardenstairwalk excluded.",
+    "anchor": [
+      108.44041010000001,
+      11.93752425
+    ],
+    "heading": -0.8817087729089538,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        108.43994064613543,
+        11.937767389795848
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW5m beyond whole mapped building before all floor/section decisions; provider-relative unsurveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/407699702",
+      "way/99661291"
+    ],
+    "source": "https://www.openstreetmap.org/way/407699702",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a7594426448b0e70e3524dc21f68d4bb04c816063affd59e46d4fe703b17b43f",
+    "notes": "Whole original mapped Dalat Palace Hotel main building/way407699702: central three-storey stepped Art Deco facade and parapets, lower original hipped-roof end wings, complete native rear projections/service enclosure, physical window and closed entrance recesses/shutters, bracketed cornices/balcony/open parapet panels, intrinsic ground veranda/canopies and immediate entrance steps. Detached modern hotel/conference blocks, detached boundary signs/fence, lawns/roads/long garden stairwalk, trees/car/people/interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "All16 native main-building exterior controls retained without rectification in a signed frame derived from native long facade edge2-to3. +X toward southeast, +Z southwest; lake-facing facade is-Z, confirmed by native axial stair approach99661291 at x~0/z-38m. Native coordinate frame/whole footprint retained; no rectangular whole-property extrusion.",
+    "All floor/section/geometry choices made after immutable400m129x129 sourcefield freeze. Floor0 at fixed1507.9154m provider-relative SW datum, nofit/flatten/reacquire. Whole16control ground outline retained. Signed original bearing/front-Z fixed fromnativefacadeandaxialstairs. Original bounded photo-based estimates: central11.6m eave/12.6m openparapet/14.25m steppedcrown, lower7.7m endwings with2.4m hippedroof, ground3.8m veranda, upperfacade setbacks/projections, .28m windows/.42m closedentry physicalrecesses, immediateentry stair-2.6to0. Hiddenrearroof/room-windowcensus/bracketprofiles/louverpositions/condition/grade unsurveyed. Nativecontrols are plan evidence, not measuredheight/thresholds. Onlyoriginalmainbuilding; modernblocks/longgardenstairwalk excluded.",
+    "Five exact already-published2011Own/PD-self exterior originals by Diane Selwyn only.016 lacks bound local publicdomain basis and is unselected/not used; protected photos/interiors/former1920s facade/modern additions unselected. No copied image pixels/generated bitmap/article/media/rightsmetadata repair. Hidden rear elevations/roof stations/window census/baluster profiles/slat positions/finish are original bounded estimates. No garden/road/site plate/long axial stairwalk/trees/car/people/interior/signage.",
+    "Independent400m129x129 field/16641values/one raw tile frozen before floor0 and all architecture. Fixed1507.9154m SW provider datum unchanged. Construction-grade foundation/threshold contact unsurveyed, geographic preview/replaceFootprint=false; no terrain fit/flatten/reacquire."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-lake-facing-art-deco-facade-and-lower-endwings",
+      "position": [
+        66,
+        32,
+        -90
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "whole-native-rear-projections-and-roof-envelopes",
+      "position": [
+        -75,
+        38,
+        92
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "stepped-crown-open-parapet-cornice-brackets-and-shutters",
+      "position": [
+        17,
+        16,
+        -33
+      ],
+      "lookAt": [
+        0,
+        9,
+        -12
+      ]
+    },
+    {
+      "name": "veranda-curved-canopies-closed-entrance-and-immediate-steps",
+      "position": [
+        15,
+        7,
+        -43
+      ],
+      "lookAt": [
+        0,
+        2,
+        -17
+      ]
+    },
+    {
+      "name": "whole-native-plan-and-hipped-end-roofs",
+      "position": [
+        23,
+        115,
+        -12
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19896,
+    "vertices": 59688,
+    "materials": 5,
+    "bytes": 2390780,
+    "sha256": "sha256:e38fe8b5cbb9a4fceb6431ffd67c5bc7be08afd5435a83ccea2fb5ba6dffc856"
+  }
+}

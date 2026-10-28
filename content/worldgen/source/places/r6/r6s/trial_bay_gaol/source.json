@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.trial_bay_gaol",
+  "kind": "static-structure",
+  "title": "Trial Bay Gaol",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.trial_bay_gaol",
+        "output": "assets/places/r6/r6s/trial_bay_gaol/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:574cec6d2a9866d17bc7b28e43c3fb6756853bd55fee267296b246fb25538f33"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-trial-bay-gaol",
+        "path": "models/generate-trial-bay-gaol.mjs"
+      },
+      {
+        "id": "trial-bay-gaol-model",
+        "path": "models/trial-bay-gaol-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/whole-gaol-compound.json",
+      "dimension-evidence.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-30316-19341.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

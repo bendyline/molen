@@ -3,6 +3,7 @@ import { BoatState } from '@bendyline/molen-kernel/boats';
 import { createTypeLibrary } from '@bendyline/molen-kernel/content';
 import { Mounted, mountEntity } from '@bendyline/molen-kernel/vehicles';
 import { Transform } from '@bendyline/molen-kernel/world';
+import { tagTerrainObject } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { EarthVehicles } from '../src/client/vehicles';
@@ -101,6 +102,7 @@ describe('Earth boats', () => {
     water.rotation.x = -Math.PI / 2;
     water.position.set(1000, 48, 2000);
     water.userData.terrainWaterSurface = true;
+    tagTerrainObject('water', water);
     root.add(water);
     const field = new EarthWater(root, () => 40);
     field.sync();

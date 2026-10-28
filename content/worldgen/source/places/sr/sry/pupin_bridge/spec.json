@@ -1,0 +1,456 @@
+{
+  "planId": "pupin_bridge",
+  "id": "pupin_bridge",
+  "assetId": "molen.worldgen.structure.pupin_bridge",
+  "title": "Pupin Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q3397334",
+  "referenceCoordinate": {
+    "longitude": 20.3817,
+    "latitude": 44.8675
+  },
+  "visualBrief": "Complete mapped Danube crossing: twin concrete box-girder decks, three deep haunched river spans, long regular approach viaduct, paired supports, six traffic lanes, outside paths, open metal barriers and double-arm lights.",
+  "size": [
+    1495.7900390625,
+    36.156618475914,
+    30.5
+  ],
+  "actualBounds": {
+    "min": [
+      -747.89501953125,
+      -0.056620001792907715,
+      -15.25
+    ],
+    "max": [
+      747.89501953125,
+      36.099998474121094,
+      15.25
+    ]
+  },
+  "nativeAxes": "+X northeast toward Borča; -X southwest toward Zemun; +Z southeast downstream along the Danube.",
+  "sourceFacts": {
+    "identity": "Exact-QID OSM way662893894 / Q3397334 and named standard PMTiles carriageways/cycleways.",
+    "referenceLengthMeters": 1507,
+    "referenceHeightMeters": 22.8,
+    "mapPlanMeters": {
+      "length": 1492.189,
+      "width": 29.107
+    },
+    "orientation": "+X northeast toward Borča; -X southwest toward Zemun; +Z southeast downstream along the Danube.",
+    "spanScheduleStatus": "Photo-led and regularized; not an as-built schedule.",
+    "heightBasis": "Standard Mapzen terrain and native semantic water only; declared visualization grade."
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Pupinov_most.jpg",
+    "https://commons.wikimedia.org/wiki/File:Pupinov_Most.jpg",
+    "https://commons.wikimedia.org/wiki/File:Kineski_most.JPG"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      20.383373068,
+      44.867175721
+    ],
+    "heading": 1.020039121409,
+    "elevationMode": "sea-level",
+    "elevationMeters": 64.2,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 1492.19,
+      "width": 29.107,
+      "outline": [
+        [
+          -746.087,
+          -14.554
+        ],
+        [
+          -746.093,
+          -13.161
+        ],
+        [
+          -746.087,
+          -4.027
+        ],
+        [
+          -746.09,
+          8.965
+        ],
+        [
+          -746.092,
+          13.642
+        ],
+        [
+          -746.095,
+          14.552
+        ],
+        [
+          746.095,
+          14.555
+        ],
+        [
+          746.096,
+          12.11
+        ],
+        [
+          746.094,
+          7.621
+        ],
+        [
+          746.088,
+          -5.366
+        ],
+        [
+          746.087,
+          -11.791
+        ],
+        [
+          746.09,
+          -14.552
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -746.095,
+          0
+        ],
+        [
+          746.095,
+          0
+        ]
+      ],
+      "deckHeights": [
+        24.815,
+        4.8149999999999995
+      ],
+      "deckProfile": [
+        [
+          -746.095,
+          24.815,
+          0
+        ],
+        [
+          -651.095,
+          25.315,
+          0
+        ],
+        [
+          -479.095,
+          25.315,
+          0
+        ],
+        [
+          -384.095,
+          25.015,
+          0
+        ],
+        [
+          0,
+          23.815,
+          0
+        ],
+        [
+          300,
+          19.515,
+          0
+        ],
+        [
+          550,
+          12.715,
+          0
+        ],
+        [
+          746.095,
+          4.8149999999999995,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:10192ddfb5e16b5438576d451ad65b85b53fb178b8ed9a6caf019a409666e3a4",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://www.openstreetmap.org/way/662893894",
+    "wikidataId": "Q3397334"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/sry/pupin_bridge/models/pupin-model.mjs",
+    "export": "buildPupinSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.74,
+        "metallic": 0.2
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPupinDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "street": {
+        "export": "buildPupinStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "closeup": {
+        "export": "buildPupinCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  },
+  "limitations": [
+    "Exterior geometry uses ordinary photographs and the mapped overall plan. Span proportions, girder sections, pier/railing profiles and foundations are regularized visual approximations; no as-built engineering survey is claimed.",
+    "The exact mapped footprint is 1492.189m long and 29.107m wide, versus the nominal 1507m reference. The model follows that span; small 3.6 m long landing caps widen 0.7 m beyond each side to support the current mapped path edges.",
+    "Three haunched river spans use a photo-led 95/172/95m schedule, followed by 24 regularized approach spans of about 47.09m. These inferred dimensions/counts are authoring controls, not independently established construction facts.",
+    "The two carriageways, outside paths, open metal barriers, paired supports and repeating double-arm lights preserve the photo-led visual identity. Fine joints, fasteners, surface wear, inscriptions and exact lamp housings are omitted or simplified.",
+    "The standard native water surface is 65.6534m and the source datum 64.2m. The deck profile meets the steep coarse Zemun bank and descends toward Borča; it is a visualization grade, not a surveyed roadway profile.",
+    "Support bases sample the retained standard terrain. The lowest approach spans merge into the coarse landing ground; adjacent streets, floodplain, riverbanks and buildings remain independent context.",
+    "Skyline retains the two slabs, haunches and paired supports. Closer levels restore tapered piers, bearings, lane markings, rail posts, expansion joints and lamp fittings."
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-downstream",
+      "position": [
+        -300,
+        260,
+        1100
+      ],
+      "lookAt": [
+        -100,
+        12,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "whole-upstream",
+      "position": [
+        150,
+        210,
+        -1100
+      ],
+      "lookAt": [
+        -100,
+        12,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "main-haunches",
+      "position": [
+        -565,
+        10,
+        150
+      ],
+      "lookAt": [
+        -565,
+        15,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "river-pier-and-bearings",
+      "position": [
+        -640,
+        8,
+        28
+      ],
+      "lookAt": [
+        -651.095,
+        16,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "six-lane-deck",
+      "position": [
+        -705,
+        27.5,
+        -6
+      ],
+      "lookAt": [
+        -475,
+        25.3,
+        -6
+      ],
+      "fov": 58
+    },
+    {
+      "name": "approach-pier-rhythm",
+      "position": [
+        200,
+        17,
+        180
+      ],
+      "lookAt": [
+        150,
+        17,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "outside-walk-and-lights",
+      "position": [
+        -600,
+        28,
+        13
+      ],
+      "lookAt": [
+        -540,
+        26,
+        13
+      ],
+      "fov": 58
+    },
+    {
+      "name": "borca-landing",
+      "position": [
+        775,
+        11,
+        50
+      ],
+      "lookAt": [
+        735,
+        6,
+        0
+      ],
+      "fov": 54
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 51228,
+    "vertices": 153684,
+    "materials": 3,
+    "bytes": 6149812,
+    "sha256": "sha256:0bd3807ebabefca98a70dd857cf1d708534d9a1506cda965cbb418451467e8a3"
+  }
+}

@@ -24,6 +24,7 @@ import {
 } from '../components';
 import type { TransportNetwork } from '../graph/network';
 import { laneCoordinate, laneSample, sampleLaneBody } from '../graph/sample';
+import type { EdgeSpan } from '../graph/spatial';
 import type { TransportClass, TransportEdge, TransportLane } from '../graph/types';
 import { fmix32, q4, unit01 } from '../ids';
 import {
@@ -217,6 +218,17 @@ interface SpawnContext {
   rng: Rng;
   occupancy: Map<string, { s: number; length: number }[]>;
   state: { nextSeq: number; spawned: number };
+  /** Each kind's weighted spawn spans, gathered once per run: the ring does not move within it. */
+  candidates: Map<LaneKind, SpawnCandidates>;
+}
+
+type LaneKind = Exclude<AmbientKind, 'aircraft'>;
+
+interface SpawnCandidates {
+  spans: EdgeSpan[];
+  edges: TransportEdge[];
+  weights: number[];
+  total: number;
 }
 
 /** Spawn toward each class's density target, within the per-run budget. */
@@ -243,7 +255,15 @@ export function spawnAgents(
     if (list === undefined) occupancy.set(a.lane, [{ s: a.s, length: a.length }]);
     else list.push({ s: a.s, length: a.length });
   }
-  const ctx: SpawnContext = { world, env, observer, rng, occupancy, state };
+  const ctx: SpawnContext = {
+    world,
+    env,
+    observer,
+    rng,
+    occupancy,
+    state,
+    candidates: new Map(),
+  };
   const targets = {} as Record<AmbientKind, number>;
   for (const kind of AMBIENT_KINDS) targets[kind] = target(ctx, kind);
   let budget = policy.spawnBudget;
@@ -277,9 +297,10 @@ function target(ctx: SpawnContext, kind: AmbientKind): number {
   return dmath.min(c.max, dmath.round(wanted));
 }
 
-function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
-  if (kind === 'aircraft') return spawnAircraft(ctx);
-  const { env, observer, rng } = ctx;
+function spawnCandidates(ctx: SpawnContext, kind: LaneKind): SpawnCandidates {
+  const cached = ctx.candidates.get(kind);
+  if (cached !== undefined) return cached;
+  const { env, observer } = ctx;
   const { net } = env;
   const c = classPolicy(env.policy, kind);
   const cls = LANE_CLASS[kind];
@@ -288,16 +309,26 @@ function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
   const edges: TransportEdge[] = [];
   let total = 0;
   for (const span of spans) {
-    const edge = net.edge(span.edge) as TransportEdge;
-    let lanes = 0;
-    for (const id of edge.lanes) if (net.lane(id)?.class === cls) lanes++;
-    let w = lanes * (span.d1 - span.d0);
+    const edge = span.ref;
+    let w = span.lanes[cls] * (span.d1 - span.d0);
     // Spread traffic onto city streets: wide motorways would otherwise take most spawns.
     if (kind === 'car') w *= SPAWN_WEIGHT[edge.kind] ?? 1;
     weights.push(w);
     edges.push(edge);
     total += w;
   }
+  const candidates = { spans, edges, weights, total };
+  ctx.candidates.set(kind, candidates);
+  return candidates;
+}
+
+function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
+  if (kind === 'aircraft') return spawnAircraft(ctx);
+  const { env, observer, rng } = ctx;
+  const { net } = env;
+  const c = classPolicy(env.policy, kind);
+  const cls = LANE_CLASS[kind];
+  const { spans, edges, weights, total } = spawnCandidates(ctx, kind);
   if (total <= 0) return false;
   const types = env.types[kind === 'pedestrian' ? 'pedestrian' : kind];
   for (let attempt = 0; attempt < 6; attempt++) {
@@ -493,9 +524,11 @@ function spawnAircraft(ctx: SpawnContext): boolean {
   const runways = env.net
     .runways()
     .filter(
-      (r) => dmath.hypot((r.ax + r.bx) / 2 - observer.x, (r.az + r.bz) / 2 - observer.z) < 6000,
+      (r) =>
+        dmath.hypot((r.ax + r.bx) / 2 - observer.x, (r.az + r.bz) / 2 - observer.z) < 6000 &&
+        dmath.hypot(r.bx - r.ax, r.bz - r.az) >= dmath.max(350, length * 35),
     );
-  if (runways.length > 0 && rng.next() < 0.4) {
+  if (runways.length > 0 && rng.next() < 0.85) {
     const runway = runways[rng.int(runways.length)] as (typeof runways)[number];
     const flip = rng.next() < 0.5;
     const ax = flip ? runway.bx : runway.ax;

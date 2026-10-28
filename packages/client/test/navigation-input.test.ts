@@ -194,6 +194,23 @@ describe('navigation input source', () => {
     expect(source.read(0).pilot?.gear).toBe(0);
     source.dispose();
   });
+  it.each([
+    'walk',
+    'drive',
+    'pilot',
+  ] as const)('toggles travel boost once per T press in %s', (profile) => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile });
+    surface.emit('keydown', { code: 'KeyT' });
+    surface.emit('keydown', { code: 'KeyT', repeat: true });
+    expect(source.read(0).boost).toBe(1);
+    expect(source.read(0).boost ?? 0).toBe(0);
+    surface.emit('keyup', { code: 'KeyT' });
+    surface.emit('keydown', { code: 'KeyT' });
+    surface.emit('blur', {});
+    expect(source.read(0).boost ?? 0).toBe(0);
+    source.dispose();
+  });
   it('combines keys, gamepad sticks and gestures, and counts interact presses', () => {
     const surface = new FakeSurface();
     const pad = {
@@ -277,6 +294,29 @@ describe('navigation input source', () => {
     expect(next.pilot?.engine).toBe(0);
     expect(next.pilot?.vector).toBe(0);
     expect(next.pilot?.throttle).toBe(1);
+    source.dispose();
+  });
+  it('distinguishes an idle throttle lever from a disconnected or suspended one', () => {
+    const surface = new FakeSurface();
+    const pad = { id: 'stick', index: 2, connected: true, mapping: '', axes: [1], buttons: [] };
+    const source = new NavigationInputSource({
+      element: surface,
+      profile: 'pilot',
+      getGamepads: () => (pad.connected ? [pad] : []),
+    });
+    source.map.defineProfile('pilot', {
+      bindings: {},
+      axes: [{ axis: 0, action: A.power, mode: 'unit', invert: true }],
+    });
+    expect(source.read(0).pilot?.power).toBe(0);
+    pad.axes[0] = -1;
+    expect(source.read(0).pilot?.power).toBe(1);
+    const resume = source.map.suspend();
+    expect(source.read(0).pilot?.power).toBeUndefined();
+    resume();
+    expect(source.read(0).pilot?.power).toBe(1);
+    pad.connected = false;
+    expect(source.read(0).pilot?.power).toBeUndefined();
     source.dispose();
   });
 });

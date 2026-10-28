@@ -1,0 +1,389 @@
+{
+  "planId": "tomioka_silk_mill",
+  "id": "tomioka_silk_mill",
+  "assetId": "molen.worldgen.structure.tomioka_silk_mill",
+  "title": "Tomioka Silk Mill — Silk-reeling Plant",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 138.8873683,
+    "latitude": 36.2551785
+  },
+  "size": [
+    153.74030303955078,
+    13.710000231862068,
+    31.387086868286133
+  ],
+  "actualBounds": {
+    "min": [
+      -76.86993408203125,
+      -0.20000000298023224,
+      -15.693543434143066
+    ],
+    "max": [
+      76.87036895751953,
+      13.510000228881836,
+      15.693543434143066
+    ]
+  },
+  "visualBrief": "Complete physical timber-framed brick reeling hall, native four-control envelope, long two-tier glazed elevations, gray tiled gable/raised ventilation monitor, stone base, exposed timber and red rainwater fittings. Separate mill warehouses/residences are independent structures and excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tomioka_Silk_Mill_Silk-reeling_Mill_01.JPG",
+    "https://commons.wikimedia.org/wiki/File:Tomioka_Silk_Mill_Main_Building.JPG"
+  ],
+  "stories": [
+    {
+      "id": "tomioka-silk-mill-wp",
+      "url": "https://qualla.com/tomioka-silk-mill/"
+    }
+  ],
+  "referenceInputHash": "4ca6ae14c68e1551f54593a9132290d73899991f11ffff7e96e04ce5a1112d76",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn6/tomioka_silk_mill/models/tomioka-silk-mill-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/tomioka-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "tomiokaSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0.08
+      },
+      "metal": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tomiokaDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "tomiokaStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "tomiokaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "2.2",
+    "groundY": -0.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original bounded medium-fi sections chosen only after immutable independent400m field freeze: flatfloor0 relative fixed166.0464m provider datum; stoneplinth.6m/eaves7.7m/mainridge10.3m/monitor12.2m,42pairedtallglazedbays perlongside/.22mactualrecess. Nativeoverallmappedroof-wall envelope151m differsfromoperatorabout140m halllength; noforcedfootprintrectification or surveyclaim. Endlowenclosure/monitorstations/hiddenfacade census simplified estimates from two clearQuallaoriginals; exactgrade/thresholdcontact unresolved. No terrainfitting/flattening/reacquisition.",
+    "anchor": [
+      138.8873683,
+      36.2551785
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        138.8864653044074,
+        36.25499908505649
+      ],
+      "modelHeight": 0,
+      "basis": "FixedSW5m beyond whole mapped hall before all floor/section decisions; provider-relative unsurveyed datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/427041089"
+    ],
+    "source": "https://www.openstreetmap.org/way/427041089",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:be78392268080d366c709604ccc00509decdb34afea5b733b363f4213647ebff",
+    "notes": "Complete standalone Silk-reeling Plant at Tomioka Silk Mill, Q107020325/nativeway427041089: long single-storey timber-framed brick hall, raised stone base, tall two-tier glazed bays, tiled gable roof and raised ventilation monitor, end gables and intrinsic low end enclosure. Site Q7818931 is broader; detached east/west cocoon warehouses/residences/chimney are separate structures, excluded from this asset and not claimed complete. Hidden openings/roof stations/sections are original bounded estimates. No interiors, machines, people, signs or surrounding campus."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "All four original native exterior controls of Silk-reeling Plant, way427041089/Q107020325, retained without rectifying the footprint. Site boundary313782668/Q7818931 is not a building outline and is not extruded. Fixed native bbox midpoint/+Xeast/+Zsouth/heading0; independent ground datum set before floor or architectural sections.",
+    "Original bounded medium-fi sections chosen only after immutable independent400m field freeze: flatfloor0 relative fixed166.0464m provider datum; stoneplinth.6m/eaves7.7m/mainridge10.3m/monitor12.2m,42pairedtallglazedbays perlongside/.22mactualrecess. Nativeoverallmappedroof-wall envelope151m differsfromoperatorabout140m halllength; noforcedfootprintrectification or surveyclaim. Endlowenclosure/monitorstations/hiddenfacade census simplified estimates from two clearQuallaoriginals; exactgrade/thresholdcontact unresolved. No terrainfitting/flattening/reacquisition.",
+    "Physical Silk-reeling Plant Q107020325 only; broader site Q7818931/east and west cocoon warehouses/residences/chimney remain separate uncompleted structures. Exact two published creator-PD/CC0 exterior originals only, no copied photos or generated bitmap textures. Native151m envelope differs from operator about140m length and is not survey geometry. Sections/monitor stations/hidden elevations/opening census/low end enclosure are original bounded estimates. Side windows have physical .22m recesses; end glazing is a closed opaque exterior inset without an interior claim. Fine tile relief/roof ornaments/aging/individual brick layout simplified.",
+    "Independent400m129x129 source field,16641 values/two rawtiles frozen before floor0/sections; fixed166.0464m provider datum retained. Exact threshold/footing/grade contact unresolved; geographic preview/replaceFootprint=false. No fitting, flattening, reacquisition, landscaping or surrounding ground plate."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-reeling-hall-long-glazed-elevation-monitor-and-native-envelope",
+      "position": [
+        15,
+        58,
+        145
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "opposite-long-elevation-and-roof-monitor",
+      "position": [
+        -20,
+        55,
+        -150
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "end-gable-and-intrinsic-low-enclosure",
+      "position": [
+        115,
+        21,
+        45
+      ],
+      "lookAt": [
+        60,
+        5,
+        5
+      ]
+    },
+    {
+      "name": "physical-window-recesses-gray-timber-brick-stone-and-gutters",
+      "position": [
+        15,
+        9,
+        29
+      ],
+      "lookAt": [
+        0,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "whole-native-roof-outline-monitor-and-end-closures",
+      "position": [
+        35,
+        140,
+        75
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21828,
+    "vertices": 65484,
+    "materials": 6,
+    "bytes": 2622992,
+    "sha256": "sha256:e47443384eb054d1910ae43c24eeae9d451034113d3fc75b4bd40711bbfc96d1"
+  }
+}

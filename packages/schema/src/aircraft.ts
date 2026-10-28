@@ -6,7 +6,25 @@ import type { VehicleInteriorSpec } from './vehicle-interior';
 export type AircraftKind = string;
 export type FlightModel = 'airplane' | 'helicopter';
 
+/** World-space sphere for an attached section or detached piece. */
+export interface AircraftCollisionProbe {
+  part: string;
+  center: [number, number, number];
+  radius: number;
+}
+/** Normal points out of the obstacle. Point and depth are in world meters. */
+export interface AircraftContact {
+  part: string;
+  point: [number, number, number];
+  normal: [number, number, number];
+  depth: number;
+}
+
 export interface AircraftEngineSpec extends JsonObject {
+  /** Manually metered piston fuel mixture; omitted/false leaves fuel scheduling automatic. */
+  mixtureControl?: boolean;
+  /** Constant-speed propeller governor. Lever selects normalized RPM, not blade angle directly. */
+  propellerControl?: { minRpm: number };
   /** Omitted retains legacy constant-power propulsion. Jets produce thrust, not shaft power. */
   propulsion?: 'propeller' | 'jet';
   /** Sea-level static dry jet thrust, N. */
@@ -49,6 +67,10 @@ export interface AircraftNamedEngineSpec extends AircraftEngineSpec {
 }
 
 export interface AircraftEngineInputData extends JsonObject {
+  /** Fuel mixture: 0 idle cutoff, 1 full rich; omitted inherits common mixture. */
+  mixture?: number;
+  /** Propeller RPM lever: 0 minimum governed RPM, 1 maximum; inherits common propeller. */
+  propeller?: number;
   /** Absolute throttle override, 0–1. Omitted inherits the common throttle. */
   power?: number;
   /** Individual engine switch. The common engine switch remains a master cutoff. */
@@ -56,6 +78,10 @@ export interface AircraftEngineInputData extends JsonObject {
 }
 
 export interface AircraftEngineStateData extends JsonObject {
+  /** Available delivered shaft power in watts; zero for jet engines. */
+  shaftPower?: number;
+  /** Mixture-dependent combustion effectiveness, 0..1; zero when switched off or failed. */
+  combustion?: number;
   rpm: number;
   rotorAngle: number;
   /** Latched failure; pilot throttle/switch changes cannot clear it. */
@@ -233,6 +259,43 @@ export interface AircraftVisualSpec extends JsonObject {
   animation?: ModelSignalSpec;
 }
 
+/** A rigid airframe section; +X is the aircraft's left side. */
+export interface AircraftCollisionPart extends JsonObject {
+  id: string;
+  role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'gear' | 'engine';
+  /** Collision sphere centers in model coordinates, meters. */
+  probes: [number, number, number][];
+  radius: number;
+  /** Center of the detached section in model coordinates. */
+  center: [number, number, number];
+  /** Fraction of the original aircraft mass carried away on separation. */
+  massFraction: number;
+  /** Normal impact speed in m/s that exhausts an undamaged joint. Omit for an unbreakable body. */
+  breakSpeed?: number;
+  /** Exact GLB node names, including attached controls, markings and gear. */
+  nodes: string[];
+  /** Split shared static detail meshes by triangle centroid in model coordinates. */
+  fragments?: { nodes: string[]; min: [number, number, number]; max: [number, number, number] };
+  /** Engines disabled when this section separates. */
+  engines?: string[];
+}
+
+export interface AircraftPartDamage extends JsonObject {
+  integrity: number;
+  detached: boolean;
+}
+
+export interface AircraftDebris extends JsonObject {
+  part: string;
+  /** World-space section center and orientation; meters and quaternion. */
+  pos: [number, number, number];
+  rot: [number, number, number, number];
+  velocity: [number, number, number];
+  /** Local angular velocity about +X, +Y and +Z, rad/s. */
+  angularVelocity: [number, number, number];
+  age: number;
+}
+
 /** Complete data-driven tuning consumed by the generic aircraft solver and client. */
 export interface AircraftSpec extends JsonObject {
   label: string;
@@ -269,6 +332,8 @@ export interface AircraftSpec extends JsonObject {
   hardLandingPitch: number;
   maxSupportStep: number;
   collisionProbes: [number, number, number][];
+  /** Optional authored breakable sections. Replaces collisionProbes when present. */
+  collisionParts?: AircraftCollisionPart[];
   visual: AircraftVisualSpec;
 }
 
@@ -278,6 +343,10 @@ export interface AircraftData extends JsonObject {
   spec: AircraftSpec;
 }
 export interface AircraftInputData extends JsonObject {
+  /** Common fuel mixture: 0 idle cutoff, 1 full rich (default). Only manually metered pistons. */
+  mixture?: number;
+  /** Common propeller governor lever: 0 minimum RPM, 1 maximum (default). */
+  propeller?: number;
   /** Absolute engine throttle (airplane) or collective (helicopter), retained when keys release. */
   power: number;
   pitch: number;
@@ -293,6 +362,12 @@ export interface AircraftInputData extends JsonObject {
   thrustVector?: number;
 }
 export interface AircraftStateData extends JsonObject {
+  /** Persistent joint damage. Recovery starts with a fresh aircraft state. */
+  damage?: Record<string, AircraftPartDamage>;
+  /** Detached sections, simulated for 20 seconds; damage remains after debris expires. */
+  debris?: AircraftDebris[];
+  /** Kernel-owned: velocity and speed telemetry include the 4× travel boost. */
+  boosted?: boolean;
   /** Air-relative speed divided by local speed of sound. */
   mach?: number;
   /** Equivalent airspeed (density-corrected TAS), m/s; not compressible calibrated IAS. */

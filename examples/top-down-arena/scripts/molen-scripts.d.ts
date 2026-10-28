@@ -18,6 +18,10 @@ type MolenAircraftData = {
     centerOfMass: [number, number, number];
     pilotEye: [number, number, number];
     engine?: {
+      mixtureControl?: boolean;
+      propellerControl?: {
+        minRpm: number;
+      };
       propulsion?: 'propeller' | 'jet';
       dryThrust?: number;
       afterburnerThrust?: number;
@@ -41,6 +45,10 @@ type MolenAircraftData = {
       propellerInertia?: number;
     };
     engines?: {
+      mixtureControl?: boolean;
+      propellerControl?: {
+        minRpm: number;
+      };
       propulsion?: 'propeller' | 'jet';
       dryThrust?: number;
       afterburnerThrust?: number;
@@ -168,6 +176,22 @@ type MolenAircraftData = {
     hardLandingPitch: number;
     maxSupportStep: number;
     collisionProbes: [number, number, number][];
+    collisionParts?: {
+      id: string;
+      role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'gear' | 'engine';
+      probes: [number, number, number][];
+      radius: number;
+      center: [number, number, number];
+      massFraction: number;
+      breakSpeed?: number;
+      nodes: string[];
+      fragments?: {
+        nodes: string[];
+        min: [number, number, number];
+        max: [number, number, number];
+      };
+      engines?: string[];
+    }[];
     visual: {
       rotors: {
         node: string;
@@ -253,6 +277,8 @@ type MolenAircraftData = {
 };
 /** Pilot flight controls. Power is retained when input keys are released. */
 type MolenAircraftInputData = {
+  mixture?: number;
+  propeller?: number;
   power: number;
   pitch: number;
   roll: number;
@@ -261,6 +287,8 @@ type MolenAircraftInputData = {
   engine: boolean;
   engines?: Record<string, {
       power?: number;
+      mixture?: number;
+      propeller?: number;
       enabled?: boolean;
     }>;
   gear: boolean;
@@ -269,6 +297,19 @@ type MolenAircraftInputData = {
 };
 /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
 type MolenAircraftStateData = {
+  damage?: Record<string, {
+      integrity: number;
+      detached: boolean;
+    }>;
+  debris?: {
+    part: string;
+    pos: [number, number, number];
+    rot: [number, number, number, number];
+    velocity: [number, number, number];
+    angularVelocity: [number, number, number];
+    age: number;
+  }[];
+  boosted?: boolean;
   mach?: number;
   equivalentAirspeed?: number;
   overspeed?: boolean;
@@ -290,6 +331,8 @@ type MolenAircraftStateData = {
   loadFactor?: number;
   engines?: Record<string, {
       rpm: number;
+      shaftPower?: number;
+      combustion?: number;
       rotorAngle: number;
       failed: boolean;
       afterburner?: number;
@@ -314,6 +357,7 @@ type MolenAmbientAgentData = {
   lane: string;
   s: number;
   speed: number;
+  boosted?: boolean;
   cruise?: number;
   prev?: string;
   next?: string;
@@ -597,6 +641,7 @@ type MolenBoatInputData = {
 };
 /** Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats. */
 type MolenBoatStateData = {
+  boosted?: boolean;
   speed: number;
   lateralSpeed: number;
   velocity: [number, number];
@@ -609,6 +654,10 @@ type MolenBoatStateData = {
   anchored: boolean;
   grounded: boolean;
   waitingForWater: boolean;
+};
+/** World-wide 4× travel assist for people and vehicles. Control response times stay normal. */
+type MolenBoostModeData = {
+  enabled: boolean;
 };
 /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
 type MolenCharacterData = {
@@ -691,6 +740,7 @@ type MolenEnvironmentData = {
       dayAmbient?: number;
       nightAmbient?: number;
       skyLightSaturation?: number;
+      referenceElevation?: number;
       castShadow?: boolean;
     };
     dome?: {
@@ -739,6 +789,7 @@ type MolenEnvironmentData = {
       dayAmbient?: number;
       nightAmbient?: number;
       skyLightSaturation?: number;
+      referenceElevation?: number;
       castShadow?: boolean;
     };
     dome?: {
@@ -927,6 +978,52 @@ type MolenLightData = {
   angleDeg?: number;
   penumbra?: number;
   castShadow?: boolean;
+};
+/** Reusable model paint slots, bound surface markings and selectable liveries. Visual only. */
+type MolenLiveryData = {
+  selected: string;
+  slots: Record<string, {
+      materials: string[];
+      node?: string;
+    }>;
+  anchors?: Record<string, {
+      slot: string;
+      position: [number, number, number];
+      size: [number, number, number];
+      rotation: [number, number, number];
+    }>;
+  variants: {
+    id: string;
+    label: string;
+    provenance: {
+      kind: 'photo' | 'inspired' | 'original';
+      note: string;
+      references: {
+        title: string;
+        url: string;
+      }[];
+    };
+    paints: Record<string, {
+        color: string;
+        roughness?: number;
+        metalness?: number;
+        camouflage?: {
+          colors: string[];
+          scale: number;
+          seed: number;
+        };
+      }>;
+    markings?: {
+      anchor: string;
+      graphic: {
+        label?: string;
+        shapes: {
+          color: string;
+          points: [number, number][];
+        }[];
+      };
+    }[];
+  }[];
 };
 /** Parent-relative transform for entities carrying `parent`. */
 type MolenLocalTransformData = {
@@ -1207,6 +1304,7 @@ type MolenVehicleInputData = {
 };
 /** Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. */
 type MolenVehicleStateData = {
+  boosted?: boolean;
   speed: number;
   steer: number;
   yaw: number;
@@ -1326,6 +1424,8 @@ interface MolenComponentData {
   'boatInput': MolenBoatInputData;
   /** Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats. */
   'boatState': MolenBoatStateData;
+  /** World-wide 4× travel assist for people and vehicles. Control response times stay normal. */
+  'boostMode': MolenBoostModeData;
   /** Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). */
   'character': MolenCharacterData;
   /** 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. */
@@ -1358,6 +1458,8 @@ interface MolenComponentData {
   'lifetime': MolenLifetimeData;
   /** A light source at the entity transform (directional/point/spot). */
   'light': MolenLightData;
+  /** Reusable model paint slots, bound surface markings and selectable liveries. Visual only. */
+  'livery': MolenLiveryData;
   /** Parent-relative transform for entities carrying `parent`. */
   'localTransform': MolenLocalTransformData;
   /** Bind same-entity simulation fields and named numeric expressions to GLB transforms and visibility. Supports calibration, cyclic needles and timed response. Visual only; no physics writes. */

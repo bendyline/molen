@@ -36,7 +36,7 @@ describe('terrain water rendering backends', () => {
   it('keeps the asynchronous default on the original WebGL material', async () => {
     const material = await createTerrainWaterMaterialAsync();
     expect(material).toBeInstanceOf(THREE.MeshPhysicalMaterial);
-    expect(material.customProgramCacheKey()).toBe('terrain-water@2:[]');
+    expect(material.customProgramCacheKey()).toBe('terrain-water@3:[]');
     material.dispose();
   });
 
@@ -69,6 +69,8 @@ describe('terrain water rendering backends', () => {
     if (!('isMeshPhysicalNodeMaterial' in material)) throw new Error('Expected node water');
     expect(material.colorNode).not.toBeNull();
     expect(material.roughnessNode).not.toBeNull();
+    expect(material.normalNode).not.toBeNull();
+    expect(material.clearcoatNormalNode).toBe(material.normalNode);
     material.dispose();
     legacy.dispose();
   });

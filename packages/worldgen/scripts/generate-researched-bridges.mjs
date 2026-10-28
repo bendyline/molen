@@ -3,7 +3,10 @@ import './install-deterministic-math.mjs';
 import { mkdir, readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { arslanagicStudy } from '../../../content/worldgen/source/places/sr/srt/arslanagic_bridge/models/arslanagic-model.mjs';
+import { davtashenStudy } from '../../../content/worldgen/source/places/sz/szp/davtashen_bridge/models/davtashen-model.mjs';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
+import { antonivkaStudy } from './antonivka-bridge-model.mjs';
 import { archevecheStudy } from './archeveche-bridge-model.mjs';
 import {
   cross,
@@ -28,6 +31,7 @@ import { kyivMetroStudy } from './kyiv-metro-bridge-model.mjs';
 import { kyrkbronStudy } from './kyrkbron-model.mjs';
 import { mesStudy } from './mes-bridge-model.mjs';
 import { monnowStudy } from './monnow-bridge-model.mjs';
+import { pivnichnyiStudy } from './pivnichnyi-bridge-model.mjs';
 import { poniatowskiStudy } from './poniatowski-bridge-model.mjs';
 import { pontAvalStudy } from './pont-aval-model.mjs';
 import { pontDelDiableStudy } from './pont-del-diable-model.mjs';
@@ -151,6 +155,10 @@ async function emit(path, bytes) {
   await writeIndex(path, bytes);
 }
 for (let study of [
+  arslanagicStudy,
+  davtashenStudy,
+  pivnichnyiStudy,
+  antonivkaStudy,
   stariMostStudy,
   helixStudy,
   skopjeStudy,
@@ -221,9 +229,11 @@ for (let study of [
     ? await readFile(resolve(dir, study.mapFrameDocument))
     : undefined;
   let priorDocs = [];
+  let priorGenerators = [];
   try {
     const src = JSON.parse(await readFile(resolve(dir, 'source.json')));
     priorDocs = src.files.documents;
+    priorGenerators = src.files.generators ?? [];
     if (hashBytes(await readFile(modelPath)) !== src.files.models[0].sha256)
       throw new Error(`${study.id}: preserve artist-edited source before regenerating`);
   } catch (e) {
@@ -311,6 +321,7 @@ for (let study of [
     sourceLicense:
       'Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.',
     materialMethod:
+      study.materialMethod ??
       'Canonical shared material graphs with metric UV repeats and per-component vertex tints; separate transparent glazing; no model-specific bitmap textures.',
     sharedSurfaces: [...used.entries()]
       .filter(([, s]) => s.graph)
@@ -332,6 +343,7 @@ for (let study of [
     qaCameras: study.qaCameras,
     importOptions: { optimize: false },
     importReason:
+      study.importReason ??
       'Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.',
     mesh: {
       triangles: mesh.triangleCount,
@@ -413,6 +425,7 @@ for (let study of [
           sha256: hashBytes(glb),
         },
       ],
+      generators: priorGenerators,
       scripts: [],
       textures: [],
       sounds: [],

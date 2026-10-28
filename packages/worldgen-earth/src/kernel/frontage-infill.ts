@@ -20,12 +20,21 @@ import {
   unit01,
   type Vec2,
 } from '@bendyline/molen-worldgen/kernel';
-import { around, corridor, InfillBins, lineNearPolygon, polygonsNear } from './infill-geometry';
+import { createFrontageYard } from './frontage-yard';
+import {
+  around,
+  corridor,
+  InfillBins,
+  lineNearPolygon,
+  polygonsNear,
+  segmentDistance,
+} from './infill-geometry';
 import { contextLabelAt, landcoverLabel } from './labels';
 import type { TileGeometry } from './semantic-adapter';
 
 export interface BuildingInfillOptions {
-  seed?: number /** Stable keep fraction, 0..1. */;
+  seed?: number;
+  /** Stable keep fraction, 0..1. */
   density?: number;
 }
 export interface InferredBuildingFeature extends TerrainBuildingFeature {
@@ -37,6 +46,7 @@ export interface InferredBuildingFeature extends TerrainBuildingFeature {
     parcel: TerrainSemanticPolygon;
     groundOutline: Vec2[];
     access: NonNullable<BuildingRequest['access']>;
+    yard?: BuildingRequest['yard'];
     style?: string;
   };
 }
@@ -232,11 +242,22 @@ export function inferBuildingFootprints(
           gz = Math.round(((anchor[1] + geom.originZ) / scale) * 100);
         const id = `infill:v3:${seed}:${gx}:${gz}:${side}`,
           hash = hashString(id);
+        // A 128 m neighborhood cell shares character while individual lots retain variety.
+        // World coordinates keep it stable across tile cuts and camera moves.
+        const blockId = `block:${seed}:${Math.floor(gx / 12800)}:${Math.floor(gz / 12800)}`;
+        const blockHash = hashString(blockId);
+        const districtStyle = styleAt?.(anchor, 'house', blockId);
+        const compact = districtStyle?.id.includes('.east_asian.') === true;
         if (lots.has(id)) continue;
         // Derive metric offsets from the geographic location, not the camera's latitude scale.
         const northing = (anchor[1] + geom.originZ) / scale / WEB_MERCATOR_EARTH_RADIUS_METERS;
         const metricScale = (scale * (dmath.exp(northing) + dmath.exp(-northing))) / 2;
-        let front = (road.width / 2 + 3.2 + unit01(hash, 1) * 2.1) * metricScale;
+        let front =
+          (road.width / 2 +
+            (compact ? 1.5 : 2.5 + unit01(blockHash, 1) * 2) +
+            unit01(hash, 1) * 1.1) *
+          metricScale;
+        let fenceFront = (road.width / 2 + 1.3) * metricScale;
         // Separately mapped sidewalks often sit beyond the road's estimated width. Move the
         // frontage behind them instead of rejecting a whole side of an otherwise suitable street.
         for (const path of segments.query(around(...anchor, 40))) {
@@ -249,8 +270,10 @@ export function inferBuildingFootprints(
           if (t < 0 || t > 1) continue;
           const offset =
             (path.a[0] + px * t - anchor[0]) * nx + (path.a[1] + pz * t - anchor[1]) * nz;
-          if (offset > 0 && offset < (road.width / 2 + 16) * metricScale)
+          if (offset > 0 && offset < (road.width / 2 + 16) * metricScale) {
             front = Math.max(front, offset + (path.width / 2 + 1.5) * metricScale);
+            fenceFront = Math.max(fenceFront, offset + (path.width / 2 + 0.5) * metricScale);
+          }
         }
         const setback = front - (road.width / 2) * metricScale;
         const at = (x: number, z: number): Vec2 => [
@@ -299,13 +322,23 @@ export function inferBuildingFootprints(
             : streetLength < 650 * observed || !hasNetwork(neighborhood, center)
         )
           continue;
-        const style = styleAt?.(center, use, id);
+        const style = styleAt?.(center, use, blockId);
         const shape = choosePlan(
           style?.lotPlans ?? (commercial ? [{ shape: 'shopfront', weight: 1 }] : DEFAULT_PLANS),
-          hash,
+          unit01(hash, 8) < 0.7 ? blockHash : hash,
         );
-        const width = PITCH * scale * (0.77 + unit01(hash, 2) * 0.09);
-        const depth = (commercial ? 19 : 14 + unit01(hash, 3) * 5) * scale;
+        const width =
+          PITCH *
+          scale *
+          (compact
+            ? 0.88 + unit01(hash, 2) * 0.04
+            : 0.68 + unit01(blockHash, 2) * 0.13 + unit01(hash, 2) * 0.08);
+        const depth =
+          (commercial
+            ? 19
+            : compact
+              ? 17 + unit01(hash, 3) * 3
+              : 13 + unit01(blockHash, 3) * 4 + unit01(hash, 3) * 3) * scale;
         const plan = createLotBuildingPlan(commercial ? 'shopfront' : shape, width, depth);
         const rect = (x0: number, z0: number, x1: number, z1: number): TerrainSemanticPolygon => ({
           outer: [
@@ -377,6 +410,32 @@ export function inferBuildingFootprints(
           )
             continue;
         }
+        const yard = commercial
+          ? undefined
+          : createFrontageYard({
+              identity: id,
+              style,
+              width,
+              halfLot: (PITCH * scale) / 2 - 0.7,
+              front: Math.max(-setback + 0.9, fenceFront - front),
+              back: depth + 0.65,
+              curb: -setback + 0.02,
+              hasGarage: plan.garage !== undefined,
+              at,
+              entrances: [
+                { x: plan.entrance[0], width: 1.2 },
+                ...(plan.garage
+                  ? [{ x: plan.garage.entrance[0], width: Math.min(3.4, width * 0.3) }]
+                  : []),
+              ],
+              clear: (a, b, padding, driveway) =>
+                !localRoads.some(
+                  (r) =>
+                    !(driveway && (r.walkable || r.key === road.key)) &&
+                    segmentDistance(a, b, r.a, r.b) < r.width / 2 + padding,
+                ) &&
+                !obstacles.query(bounds).some((o) => lineNearPolygon(a, b, o.polygon, padding)),
+            });
         const feature = (
           outline: Vec2[],
           entrance: Vec2,
@@ -384,7 +443,15 @@ export function inferBuildingFootprints(
         ): InferredBuildingFeature => ({
           id: garage ? `${id}:garage` : id,
           class: garage ? 'garage' : use,
-          levels: garage ? 1 : unit01(hash, 4) < 0.72 ? 1 : 2,
+          levels: garage
+            ? 1
+            : compact
+              ? unit01(hash, 4) < 0.8
+                ? 2
+                : 3
+              : unit01(hash, 4) < 0.55 + unit01(blockHash, 4) * 0.3
+                ? 1
+                : 2,
           tags: {
             'molen:inferred': 'street-frontage-v3',
             'molen:lot-plan': shape,
@@ -399,7 +466,12 @@ export function inferBuildingFootprints(
             part: garage ? 'garage' : 'home',
             parcel,
             groundOutline: envelope.outer,
-            access: access(entrance, garage),
+            access: {
+              ...access(entrance, garage),
+              from: at(entrance[0], -setback + 0.02),
+              lift: garage ? 0.28 : 0.25,
+            },
+            ...(!garage && yard ? { yard } : {}),
             ...(style ? { style: style.id } : {}),
           },
         });

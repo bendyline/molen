@@ -661,8 +661,8 @@ function twinOtterCockpit(root, m) {
         true,
         true,
       );
-      d.text('TAS', [x + 0.097, y + 0.067, z - 0.012], 0.0045, Math.PI, ink);
-      d.text('GEO FT', [x - 0.09, y + 0.067, z - 0.012], 0.004, Math.PI, ink);
+      d.text('TAS', [x + 0.097, y + 0.067, z - 0.012], 0.0045, Math.PI, ink, 'display');
+      d.text('GEO FT', [x - 0.09, y + 0.067, z - 0.012], 0.004, Math.PI, ink, 'display');
       ins.dial(
         `PFD-${i}-VSI`,
         [x + 0.096, y - 0.048, z - 0.015],
@@ -676,7 +676,7 @@ function twinOtterCockpit(root, m) {
         [-3000, 0, 3000],
         'VSI',
       );
-      d.text('SIM ATT', [hx, y + 0.074, z - 0.012], 0.004, Math.PI, ink);
+      d.text('SIM ATT', [hx, y + 0.074, z - 0.012], 0.004, Math.PI, ink, 'display');
       const rose = group(cabin, `TwinOtter-PFD-${i}-rose`, [hx, y - 0.047, z - 0.015]),
         rd = detailKit(rose, rose.name);
       for (let deg = 0; deg < 360; deg += 30) {
@@ -696,13 +696,13 @@ function twinOtterCockpit(root, m) {
         responseSeconds: 0.15,
       });
       ins.available(`PFD-${i}-heading`, 'trueHeading', rose.name);
-      d.text('TRUE', [hx, y - 0.08, z - 0.016], 0.004, Math.PI, ink);
+      d.text('TRUE', [hx, y - 0.08, z - 0.016], 0.004, Math.PI, ink, 'display');
     } else {
       sheet(d, rect(x, y, sw, sh, z + 0.005), black, [0, 0, -1]);
       if (i === 1) {
         d.text('NAV DATA', [x, y + 0.03, z - 0.01], 0.013, Math.PI, ink);
-        d.text('UNAVAILABLE', [x, y, z - 0.01], 0.011, Math.PI, ink);
-        d.text('COM --  NAV --', [x, y - 0.045, z - 0.01], 0.008, Math.PI, ink);
+        d.text('UNAVAILABLE', [x, y, z - 0.01], 0.011, Math.PI, ink, 'display');
+        d.text('COM --  NAV --', [x, y - 0.045, z - 0.01], 0.008, Math.PI, ink, 'display');
       } else {
         for (const [j, dx] of [0.046, -0.046].entries())
           ins.dial(

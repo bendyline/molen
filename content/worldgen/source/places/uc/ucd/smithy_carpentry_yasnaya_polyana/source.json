@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.smithy_carpentry_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Smithy and Carpentry — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.smithy_carpentry_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e2d3472a3ef46760ec01c70c8f15267b07e28bc90804eef479b1853eb5537d73"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-smithy-carpentry-yasnaya-polyana",
+        "path": "models/generate-smithy-carpentry-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "smithy-carpentry-yasnaya-polyana-model",
+        "path": "models/smithy-carpentry-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "smithy-carpentry-yasnaya-polyana-geometry",
+        "path": "models/smithy-carpentry-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

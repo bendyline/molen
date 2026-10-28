@@ -30,6 +30,16 @@ export {
   type EarthRunwayPlacementOptions,
   type EarthWhenNearOptions,
 } from './client/airfields';
+export type { EarthAirportPopulationHost, EarthAirportStand } from './client/airport-population';
+export { EarthAirportPopulation, planAirportApron } from './client/airport-population';
+export {
+  createEarthAirports,
+  type EarthAirport,
+  type EarthAirportIndex,
+  type EarthAirportLayout,
+  type EarthAirports,
+  withEarthAirports,
+} from './client/airports';
 export {
   ambientContentFromTypes,
   EarthAmbient,
@@ -117,6 +127,7 @@ export {
   EARTH_TONE_MAPPING,
   EARTH_WATER_COLOR,
   earthHazeColor,
+  earthNightFactor,
   earthShadowFocus,
 } from './client/look';
 export {
@@ -126,13 +137,24 @@ export {
   withModelArchives,
 } from './client/model-archives';
 export {
+  EarthNightLighting,
+  type EarthNightLightingFrame,
+  type EarthNightLightingOptions,
+} from './client/night-lighting';
+export {
+  createEarthAdmissionGovernor,
+  EARTH_CALIBRATION_QUALITY,
+  EARTH_QUALITY_CALIBRATION_MS,
+  EARTH_STICKY_QUALITY,
   type EarthDeviceMemory,
   type EarthPerformanceTier,
+  earthAdmission,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainCacheBudget,
 } from './client/performance';
 export {
   createEarthPrefetcher,
@@ -150,6 +172,7 @@ export {
   earthPrefetchTargets,
   extrapolateTrack,
 } from './client/prefetch';
+export { createEarthTilePreloader } from './client/preload';
 export { createRegionalGroundColor } from './client/regional-ground';
 export {
   createEarthRoadSigns,
@@ -168,4 +191,6 @@ export {
   createEarthWorldgen,
   type EarthViewWorkers,
   type EarthWorldgen,
+  generationWorkers,
+  surfaceWorkers,
 } from './client/worldgen';

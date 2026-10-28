@@ -68,5 +68,16 @@ node packages/tooling/dist/cli.mjs asset import content/entities/source/aircraft
 ```
 
 The reference-informed cockpit and exterior pass is documented in [REFERENCES.md](REFERENCES.md).
-Instrument parts live in `models/instruments.mjs`; each source bundle carries its own copy so it
-remains portable. Materials and dial printing are procedural geometry with no bitmap textures.
+Instrument parts live in `models/instruments.mjs`. Dial numerals, captions and placards use
+Jost Medium baked into an antialiased texture atlas, shared by all lettering in the model.
+The GLB embeds the atlas; it needs no installed fonts at runtime. The repository helper and
+licensed font sources are documented in [cockpit lettering](../../../fonts/README.md).
+Cockpit enamel, upholstery and harnesses also use procedural finish textures.
+
+The lower cockpit has an inward-facing fuselage lining, fitted olive-green side panels,
+reinforced canopy channels, trim wheels and right-side equipment. Its floor and dark footboards
+clear the wing crown. The 2026-10-27 enclosure correction and pilot-eye review are recorded in
+[COCKPIT-REVIEW.json](COCKPIT-REVIEW.json); [cockpit preview](cockpit-preview.png).
+The follow-up reference pass narrows the panel crown and gives its silver support long sloping
+legs. A clipped two-column "BEFORE TAKE OFF / BEFORE LANDING" card and a cream canopy-release
+warning sit above the instruments; their lettering uses the existing period font atlas.

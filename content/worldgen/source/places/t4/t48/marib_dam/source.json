@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.marib_dam",
+  "kind": "static-structure",
+  "title": "Ancient Marib Dam, Yemen (1843 remains)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.marib_dam",
+        "output": "assets/places/t4/t48/marib_dam/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a3947b36cc5da526a22c5e2dc8647490a4a277d44184c3678a6c366fa6b984a6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-marib",
+        "path": "models/generate-marib.mjs"
+      },
+      {
+        "id": "marib-model",
+        "path": "models/marib-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "imagery-evidence.json",
+      "native-map/northern-sluice-identity.json",
+      "native-map/southern-sluice-identity.json",
+      "native-map/ancient-dam-identity.json",
+      "reference-rights/arnaud-original-bnf-map-native.json",
+      "reference-rights/arnaud-bnf-author.html",
+      "reference-rights/published-ruins-photo-native.json",
+      "references/arnaud-1843-whole-dam-plan.jpg",
+      "construction-preparation.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-14-10251-7482.png",
+      "terrain-sources/terrarium-14-10252-7482.png",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

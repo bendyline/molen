@@ -1,0 +1,387 @@
+{
+  "planId": "apollon_theater_syros",
+  "id": "apollon_theater_syros",
+  "assetId": "molen.worldgen.structure.apollon_theater_syros",
+  "title": "Apollon Municipal Theater, Syros",
+  "wikidataId": "Q16327379",
+  "category": "historic-theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 24.94375395,
+    "latitude": 37.4457045
+  },
+  "size": [
+    31.756319999694824,
+    12.100000381469727,
+    40.020097732543945
+  ],
+  "actualBounds": {
+    "min": [
+      -15.878289222717285,
+      0,
+      -20.425317764282227
+    ],
+    "max": [
+      15.878030776977539,
+      12.100000381469727,
+      19.59477996826172
+    ]
+  },
+  "visualBrief": "Whole actual fifteen-control Apollon Municipal Theater/auditorium envelope with projecting marblethree-bayfront/three realroundarched shutredwood doors/opaqueglazed griddedfanlights/three tall upperwindows, four fullheightflutedmarblepilasters/capitals, peachupper-creamground sidewings/lowerarchedwindowrecesses, intrinsic three shallow frontsteps/dentilcornice/visible lowflatgreyroof/parapet and whole irregularrearbody/opennative side service recess. Two exactpublished2015creatorCC0 front originals; hiddenrear/roof/profiles/census/sections/currentfinefinish bounded estimates. No interior/ceilingpaintings/inscriptions/banner/bust/streetlamps/neighborhotel/publicpaving/trees/people/sourcepixels copied.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Apollon_Theater,_front_view.JPG",
+    "https://commons.wikimedia.org/wiki/File:Apollon_Theater.JPG"
+  ],
+  "stories": [
+    {
+      "id": "apollon-theater-syros-wp",
+      "url": "https://qualla.com/apollon-theater-syros/"
+    }
+  ],
+  "referenceInputHash": "8220a89cdb8e846c5c886d38fc1ce51d932992b33c7f203c6283eff1d3fb5257",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/sw9/apollon_theater_syros/models/apollon-theater-syros-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/apollon-theater-syros-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "apollonTheaterSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.37,
+        "metallic": 0.025
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "apollonTheaterDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.025
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "apollonTheaterStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.025
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "apollonTheaterCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.025
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_marble",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "native-map-frame",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All source floors/sections/geometry follow original400m129x12916641sample/one rawtile/fixedSW21.5244m provider-relative datum freeze. Whole native15control theatre envelope retained, actual projecting16m centralfrontnative2to3 and shorter flanking0to1/4to5 faces; side service recess stays open. Two published2015creatorCC0front originals inform originalphoto estimates: landing+.45m/three .15m risers, roundarched2.8mwide4.7mhigh shutdoors/.34m physicalreveal, lowerfacade5.75m/upper10.25m/cornice11.25m/lowflatgreyroof11m/parapet12.1m; four fullheightfluted marblepilasters. Three centralupper1.6x2.85mwindows and sideupperrect/groundarchedwindows, griddedredwood fanlights/closedpaneleddoors/opaqueglass. Nativeflatgreyroof/threelevels metadata does not establish surveyed hiddenstage/roof heights; hidden elevations/windowcensus/exact section/currentfinish bounded estimates. Sourcephoto inscription/bust/banner/noticeboard/streetlamps/publicpaving/art/interior notcopied. No terrainfit/flatten/reacquire/modelraising; preview/replacementfalse/exactfoundation and thresholds unresolved.",
+    "anchor": [
+      24.94375395,
+      37.4457045
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        24.943520527098137,
+        37.44548578523626
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSWreference5m beyond actual bbox before all floors/sections/geometry; provider-relative unsurveyed datum, not a surveyed front threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/173785893"
+    ],
+    "source": "https://www.openstreetmap.org/way/173785893",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6b58aee613d1a0f829e7ff9a4dc7a87194f34a58ada5c51e42a96cebcb262cd8",
+    "notes": "Whole actual Apollon Municipal Theater in Ermoupolis/Syros native173785893/Q16327379 fifteen-control irregular envelope including intrinsic auditorium/stage/rearbody. Defining three-bay pale marblefront/four giant flutedpilasters/roundarched shutwood-and-glass entrances/griddedfanlights/three tall upperwindows/redwood frames, peachupper-creamground sidewings/closedarched lowerwindows/rectangularupperwindows, shallow intrinsicfrontsteps/dentilcornice/lowflatgreyroof/parapet. Keep whole nativebody; hiddenrear/sections/windowcensus/currentfinish conservative original estimates. Apollonion Palacehotel/nearbyhouses/wholecityblock/interiors/auditorium paintings/ceiling/bust/statue/lamps/banner/inscriptions/arttext/paving/trees/people/sourcepixels excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole native namedApollon Municipal Theater173785893/Q16327379, closed16point ring/fifteenunique controls. Exact actualbboxanchor/+Xeast/+Zsouth/heading0, wholeirregularauditorium/stage/rear envelope retained ratherthanfrontfacade-onlyrectangle. Nativeflatgreyroof/palebuildingcolour and three levels metadata; observed two-storey frontage, height/roof/hidden stages/census notsurveyed. All sourcefloor/section/roofchoices awaitoriginalindependentfieldfreeze.",
+    "All source floors/sections/geometry follow original400m129x12916641sample/one rawtile/fixedSW21.5244m provider-relative datum freeze. Whole native15control theatre envelope retained, actual projecting16m centralfrontnative2to3 and shorter flanking0to1/4to5 faces; side service recess stays open. Two published2015creatorCC0front originals inform originalphoto estimates: landing+.45m/three .15m risers, roundarched2.8mwide4.7mhigh shutdoors/.34m physicalreveal, lowerfacade5.75m/upper10.25m/cornice11.25m/lowflatgreyroof11m/parapet12.1m; four fullheightfluted marblepilasters. Three centralupper1.6x2.85mwindows and sideupperrect/groundarchedwindows, griddedredwood fanlights/closedpaneleddoors/opaqueglass. Nativeflatgreyroof/threelevels metadata does not establish surveyed hiddenstage/roof heights; hidden elevations/windowcensus/exact section/currentfinish bounded estimates. Sourcephoto inscription/bust/banner/noticeboard/streetlamps/publicpaving/art/interior notcopied. No terrainfit/flatten/reacquire/modelraising; preview/replacementfalse/exactfoundation and thresholds unresolved.",
+    "Two exactpublished2015ZachariasMitzelos/Zmitzieown-selfCC0 near/widefront originals individuallyinspected/nativeSHA1matched/passed unchanged publishedinventory. No supplemental/questionable imagery. Fourflutedpilasters/three mainarchedcloseddoors/fanlightwoodgrids/upperwindows/completewings/steps/roofparapet retained; hiddenrear/stage/roof/profiles/windowcensus/currentfinefinish/sections are bounded original estimates. Actualdoorbacks terminate exteriorrecesses; no auditoriuminterior reconstruction or traversalclaim. Sourceinscription/bust/ceilingpaintings/banner/lamps/publicpaving/trees/neighborhotels/houses/people/photo pixels notcopied.",
+    "Original400m129x12916641sample field/one rawtile/fixedSW21.5244m providerrelative datum frozen before all floors/sections/geometry. No terrainfit/flatten/reacquire/modelraising. Preview/replacementfalse/exact foundation/threshold contact unresolved. Isolatedflatground and syntheticneighbors are fixtures only."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-rear-auditorium-and-native-side-recess",
+      "position": [
+        -40.01261253573939,
+        28,
+        24.347735358398843
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "three-roundarched-shut-doors-and-gridded-fanlights",
+      "position": [
+        10.803420306208317,
+        4.2,
+        -34.13072910678775
+      ],
+      "lookAt": [
+        5.419897013899911,
+        3.4,
+        -16.954650480943815
+      ]
+    },
+    {
+      "name": "four-fluted-pilasters-upper-windows-and-dentil-cornice",
+      "position": [
+        12.355816151233913,
+        10.1,
+        -35.740097660086604
+      ],
+      "lookAt": [
+        5.419897013899911,
+        8.7,
+        -16.954650480943815
+      ]
+    },
+    {
+      "name": "cream-peach-wing-closed-arched-window-and-intrinsic-steps",
+      "position": [
+        -3.096948504764635,
+        4.9,
+        -33.2476963107205
+      ],
+      "lookAt": [
+        -4.421453516697184,
+        3.8,
+        -18.991270164123822
+      ]
+    },
+    {
+      "name": "whole-native-fifteen-control-envelope-flat-roof-and-parapet",
+      "position": [
+        0,
+        78,
+        3
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11733,
+    "vertices": 35199,
+    "materials": 6,
+    "bytes": 1512808,
+    "sha256": "sha256:dd5f84ac43dc2a8d13210ba67b4dbe39965f5d4342f3399028472ee62d9e9b05"
+  }
+}

@@ -1,0 +1,1097 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.palazzo_dei_conservatori",
+  "reviewedOn": "2026-10-24",
+  "inputHash": "sha256:b809e1b95c7702273e4ed52ea1b13943d9a656edb3292192e27e219976ca4973",
+  "sourceHash": "sha256:5947aa261f2bafdc3b2bec19534951f4cbaac4e43d72d350fb171b2527350f57",
+  "runtimeHash": "sha256:a836c28bf2f3bf57b14ec1ae828ef2b4ac36faa99b3a7a2fb85f59e4a147133d",
+  "captureReportHash": "sha256:a4972ac7437def8d2497742814a3fcf021573ccb7084fd1a270446a2027b4906",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/seven-bay-front-pilasters-and-pedimented-windows.png",
+      "shots/open-portico-paired-columns-and-supported-entrance.png",
+      "shots/open-courtyard-and-connected-roof-ranges.png"
+    ],
+    "notes": "Inspected all44 current frames:8 portable,8 shared-material,20 medium-fi,8 native, in six labeled contact sheets. Also inspected full-resolution native front/portico/courtyard/whole views during construction. Seven-bay front, eight giant pilasters, fourteen physical round portico supports, seven recessed doors, upper pediments, deep cornice/balustrade, connected irregular ranges, roofs and open court read coherently beside procedural buildings. Roof figures/capitals are original abstractions. One ordinary front photograph and standard PMTiles guided this continuous round."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/seven-bay-front-pilasters-and-pedimented-windows.png",
+      "shots/shared/open-portico-paired-columns-and-supported-entrance.png",
+      "shots/shared/open-courtyard-and-connected-roof-ranges.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five existing256px shared graphs, metric UVs and linear tints; five textured draws/one skyline. No embedded image, private atlas or new graph. Each used graph reads once and unload releases all geometry. Separate vertex streams and equal CPU/GPU accounting.",
+    "captureReportHash": "sha256:eeda3dd5f4768dc7be5205b5556dfa92882f96c46769a56b0c840cf8f16ab455"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/seven-bay-front-pilasters-and-pedimented-windows.png",
+      "medium-fi/open-portico-paired-columns-and-supported-entrance.png",
+      "medium-fi/open-courtyard-and-connected-roof-ranges.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "LODs936/3004/4268/4664 triangles; initial skyline+district362744bytes; closeup435004bytes. Skyline omits nearby fenestration, small columns and balustrade detail while retaining the open portico envelope, giant pilasters, full massing and court. Synthetic contexts test style/LOD; they do not establish geographic fit.",
+    "captureReportHash": "sha256:8614ed0dd84edac4773a306a396a8a5b925f9c23661af37d3e853cc82d7d1cd4"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:0dda07adff8367a53ac5b33e4f81e15481be9850eaf71c67b44c403bff3421ae",
+    "mapFrameHash": "sha256:00dca35c52a4771da3d35802dbd0ac71c0a4bd9a96f1f6ca453fbb196bea6eac",
+    "notes": "Named Palazzo dei Conservatori POI and actual main way123817455 identify the piazza front. Complete connected parent way1111783175 and eight mapped integral parts determine scale and ownership; courtyard remains open. X southeast along the front, Z northeast into Piazza del Campidoglio; axes baked east/up/south, heading0. Palazzo Nuovo and Palazzo Senatorio remain separate. Standard Protomaps20261020 and Mapzen ground retained. Outside piazza provider[0,10] supplies 46.33481771174452m datum. Main facade floor+.25m, boundary grades -3.411..0.862m. Rear ranges use local approximate floor levels and closed foundations following sampled lower grades. Original courtyard, piazza, roads/water and independent buildings retained. No bespoke terrain or ground flattening; historic thresholds/accessibility and rear basement levels approximate. Initial native views inspected: portico/treads supported, open mapped court and all independent structures retained; rear floor and basement levels remain approximate. All9 owned records are replaced while2504 resident independent buildings, original terrain/roads and127008.089m² water remain unchanged. Failure retains2513 originals; all LODs/failure/unload restore ground/water and release geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Medium-fi exterior, not measured architectural reproduction. Main front and court follow standard map footprints; historic rear roofs/bays/floor levels, modern hall profile, column capitals, upper figures, thresholds and accessibility approximate. Main boundary -3.411..+.862m around floor+.25m yields low-side exposure and high-side burial. Rear grades vary by up to10.77m across a mapped part; per-range floor/closed foundation levels approximate the hill. Flat review planes bury some grade-specific bases; cropped detail frames cover local features, with whole/source/native views covering complete massing. Separate Senatorio/Tabularium and Nuovo remain procedural until their own models are finished. No copied sculpture/art/text or furnished galleries. Physical phone/laptop/dense-city timings pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/models/source.glb\",\"hash\":\"sha256:5947aa261f2bafdc3b2bec19534951f4cbaac4e43d72d350fb171b2527350f57\",\"bytes\":547904,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.glb\",\"hash\":\"sha256:a836c28bf2f3bf57b14ec1ae828ef2b4ac36faa99b3a7a2fb85f59e4a147133d\",\"bytes\":547372,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.skyline.glb\",\"hash\":\"sha256:da6341dba7c343bf0acc86547682e5457fb98cdb27f6c8281f7305f0f528bde1\",\"bytes\":82684,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.district.glb\",\"hash\":\"sha256:0a25d3051a08a7bb8fdecdf6f20ecf0a96e44cd9c46b2b5a9f5e3d5de2872c5c\",\"bytes\":280060,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.street.glb\",\"hash\":\"sha256:60276ffd42da9a4198bba2d5edd921e26b79eb3eb6b385bd849479ea3184426c\",\"bytes\":400876,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.closeup.glb\",\"hash\":\"sha256:e9dbb68121c8dd482d14f577631a51aee4a147bf3892052b86b587b3f5a7761b\",\"bytes\":435004,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "mapped-court-open-portico-columns-roofs-foundation-and-budgets",
+        "passed": true,
+        "notes": "88 actual mesh/contact probes; finite attributes, shared bindings, hashes, separate vertex streams and all strict LOD caps passed."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Palazzo dei Conservatori POI and actual main way123817455 identify the piazza front. Complete connected parent way1111783175 and eight mapped integral parts determine scale and ownership; courtyard remains open. X southeast along the front, Z northeast into Piazza del Campidoglio; axes baked east/up/south, heading0. Palazzo Nuovo and Palazzo Senatorio remain separate. Standard Protomaps20261020 and Mapzen ground retained. Outside piazza provider[0,10] supplies 46.33481771174452m datum. Main facade floor+.25m, boundary grades -3.411..0.862m. Rear ranges use local approximate floor levels and closed foundations following sampled lower grades. Original courtyard, piazza, roads/water and independent buildings retained. No bespoke terrain or ground flattening; historic thresholds/accessibility and rear basement levels approximate. Initial native views inspected: portico/treads supported, open mapped court and all independent structures retained; rear floor and basement levels remain approximate. All9 owned records are replaced while2504 resident independent buildings, original terrain/roads and127008.089m² water remain unchanged. Failure retains2513 originals; all LODs/failure/unload restore ground/water and release geometry."
+    },
+    "inputHash": "sha256:b809e1b95c7702273e4ed52ea1b13943d9a656edb3292192e27e219976ca4973",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:b809e1b95c7702273e4ed52ea1b13943d9a656edb3292192e27e219976ca4973",
+      "reviewedOn": "2026-10-24",
+      "method": "Inspected all44 current frames:8 portable,8 shared-material,20 medium-fi,8 native, in six labeled contact sheets. Also inspected full-resolution native front/portico/courtyard/whole views during construction. Seven-bay front, eight giant pilasters, fourteen physical round portico supports, seven recessed doors, upper pediments, deep cornice/balustrade, connected irregular ranges, roofs and open court read coherently beside procedural buildings. Roof figures/capitals are original abstractions. One ordinary front photograph and standard PMTiles guided this continuous round.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/preview.png",
+          "hash": "sha256:0c3fe732eccd1152de683353004d65acc79e36f7a4412674188d10f11464986a"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/turntable/angle_0.png",
+          "hash": "sha256:8d60157138cd6775b5cc6fc9575ebd6b2c334a0c4c250955faa746f231cee8cf"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/turntable/angle_1.png",
+          "hash": "sha256:5ebc9bb293f99e99831102c3ce0129ca8c74bbd217ec3a18c021f68a214e5bc4"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/turntable/angle_2.png",
+          "hash": "sha256:1314efe4b71f347d1aeed989f470efcb60a211d26756cb8a25fdc3df7eb62b22"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/turntable/angle_3.png",
+          "hash": "sha256:a89350af7374dc567f558762f5d89f5a0b9c368487e397d4fad5dcae9684c365"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/seven-bay-front-pilasters-and-pedimented-windows.png",
+          "hash": "sha256:52726c3845612b9e86e260d31b7969bf9b2fbcd136daee7b304da08614a458fc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/open-portico-paired-columns-and-supported-entrance.png",
+          "hash": "sha256:f59b02216ffc7f61917f9a5f3d4626e34eab015037f30d550c56ef8239f5a6dc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/open-courtyard-and-connected-roof-ranges.png",
+          "hash": "sha256:37f04c78b7e033deb9b32c23318b268786bbb2aeb311eb6406ab47f22bc5853e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/shared/angle-0.png",
+          "hash": "sha256:75b157ded04d2aac4a08e2008c26541dad75bd79fb0ffdcc326a53b1ae2359ff"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/shared/angle-1.png",
+          "hash": "sha256:b485da5ede239c63d1f50bb1193cac877d008c2e0f8088bcaef027a367833f20"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/shared/angle-2.png",
+          "hash": "sha256:612aba2395d563e44647769c7bf98f6f2c4edfde21c0b6cfa1a8f7c541fd2e7d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/shared/angle-3.png",
+          "hash": "sha256:493b7a70a3ed9e82acdec2cf231719b92400e73ca142ce671d32d5994e476a5f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/shared/seven-bay-front-pilasters-and-pedimented-windows.png",
+          "hash": "sha256:f3c2c420d5ad3ffb7e5e8a240c7118e77e257017b46f69a89e28351871437dd0"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/shared/open-portico-paired-columns-and-supported-entrance.png",
+          "hash": "sha256:96101e0e7067e54d5e0681b92539d215d46998fdfa49f1f56068c163895b2bb2"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/shared/open-courtyard-and-connected-roof-ranges.png",
+          "hash": "sha256:8d2f4fe2782e1965ef6129c7fe2da5f81e97022a78e7e15b95fccb4f44363ade"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/shots/shared/placement.png",
+          "hash": "sha256:1d6b3e6b1eb7a6456c6983dff31ddce1fff0202f0fd6359b034d464155f1b689"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/street-noon-economy.png",
+          "hash": "sha256:17211ed2c6ad3cfb56f648c5f74e95f8e815ae1d393fa6f5860a52718b793eff"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/street-noon-high.png",
+          "hash": "sha256:9d2c309a6f152e2ff76bdcce2ae89c47b20c94429c2244afb93fcb47096e32d3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/street-late-economy.png",
+          "hash": "sha256:8db740ca5363155aea20c27dde7fc1d83ef293134dfb0411f82311e1b2058120"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/street-late-high.png",
+          "hash": "sha256:ce7b3f4b924d06329928916aa6fc89711377bf50746aca1cde1b4ecf899ecc9a"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/block-noon-economy.png",
+          "hash": "sha256:479d9ecc5a5ab05b243595982e2a4457aaf615b48c7445e5306f5202601e6043"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/block-noon-high.png",
+          "hash": "sha256:87f2e71e6a72d78571cbe93511ff5ea3dc72b183056911311adeda87f9dad507"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/block-late-economy.png",
+          "hash": "sha256:097bcbc97b5a4095f5b77e85a5b3aca933b0fcdcb41cbbbc5e76875d7fef67f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/block-late-high.png",
+          "hash": "sha256:628a7838ab86604bf1f517814163df2420fb108972b5378f2ba4f448fbd55986"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:5d613769165ac34cffacee89c86acecd06f2ffe80e4d2436435b40219da8e96e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:c52ac7a71a41b1149b46eda9b9e3d2c069de0a1d6f97205d9611c68cd9fda19e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:a422db34c70da9f70a42a7ab4ca20a7e8088c5addcad67869461a0cc57584688"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/skyline-late-high.png",
+          "hash": "sha256:0c46927b3d276cc71e0c371d254cc53ccbb26a5741c8ead7e9a1e8f6ed1cedba"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/silhouette.png",
+          "hash": "sha256:e894aac7964964c57f8db724a9466ab1506bb38a2137d1593113e270f6d7ce5b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/seven-bay-front-pilasters-and-pedimented-windows.png",
+          "hash": "sha256:692b56df8c03cbe4f80afeb4f2b7c091210c877963a60ecc6eb6ade765412c71"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/open-portico-paired-columns-and-supported-entrance.png",
+          "hash": "sha256:318513d354b86bb14daa3358797bc8e16b30e16e66d4f3f9373addf2e9e794ff"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/open-courtyard-and-connected-roof-ranges.png",
+          "hash": "sha256:cc2c38cad60aca922d21b6c3faaa1c55e9dfd5355221780c4d0b0d50d2b6a9ea"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/transition-skyline.png",
+          "hash": "sha256:987af7b54e261fda69ffa448862deb2d99cdfd936d4e345a3b56b624066677d5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/transition-district.png",
+          "hash": "sha256:87f2e71e6a72d78571cbe93511ff5ea3dc72b183056911311adeda87f9dad507"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/transition-street.png",
+          "hash": "sha256:24f33ea3ca83caacea2eba30922b5f3440eb7177ed48a9ee26fd5e2feab0a423"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/medium-fi/transition-closeup.png",
+          "hash": "sha256:425f845090b4ce9584fcd5e187a99e5374716834506fa29e5ab50a03378766b9"
+        },
+        {
+          "path": ".artifacts/capitoline-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:b486951973ee18d1bb70913b96db12ca3364a28e2e1376e7ee30c224ea9f2840"
+        },
+        {
+          "path": ".artifacts/capitoline-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:774975a15186a1e0af40c36f699c592d75ac86fd6363990711d55e96cbfd9434"
+        },
+        {
+          "path": ".artifacts/capitoline-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:6cb642f2a5de377df2443eaa5ae14d6455845b13457c028468a48d9e5bf2464f"
+        },
+        {
+          "path": ".artifacts/capitoline-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:5accfce1c7b7db3642c613bd323567fb2be2f99d10dedbb05a43da33a9021a02"
+        },
+        {
+          "path": ".artifacts/capitoline-integration/shots/final-closeup-seven-bay-front-pilasters-and-pedimented-windows.png",
+          "hash": "sha256:fe45885b7d54fc2658ff13b849cab1e2852888183dd414bbf6c74ca131919326"
+        },
+        {
+          "path": ".artifacts/capitoline-integration/shots/final-closeup-open-portico-paired-columns-and-supported-entrance.png",
+          "hash": "sha256:ccec761f39d47c5d55f150cb0479857f6ad2d1193d1382fed17d252b05151289"
+        },
+        {
+          "path": ".artifacts/capitoline-integration/shots/final-closeup-open-courtyard-and-connected-roof-ranges.png",
+          "hash": "sha256:c4935560925c5153edbc61ceb0e9584ad5a34117b30cb64737daf156c45dd622"
+        },
+        {
+          "path": ".artifacts/capitoline-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:b7193c5032d16598bf662ec222b1bc22f345964cc8707aa6dbc9242586157769"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:b809e1b95c7702273e4ed52ea1b13943d9a656edb3292192e27e219976ca4973",
+      "sourceHash": "sha256:5947aa261f2bafdc3b2bec19534951f4cbaac4e43d72d350fb171b2527350f57",
+      "runtimeHash": "sha256:a836c28bf2f3bf57b14ec1ae828ef2b4ac36faa99b3a7a2fb85f59e4a147133d",
+      "files": {
+        "content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori/models/source.glb": "sha256:5947aa261f2bafdc3b2bec19534951f4cbaac4e43d72d350fb171b2527350f57",
+        "content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.glb": "sha256:a836c28bf2f3bf57b14ec1ae828ef2b4ac36faa99b3a7a2fb85f59e4a147133d",
+        "content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.skyline.glb": "sha256:da6341dba7c343bf0acc86547682e5457fb98cdb27f6c8281f7305f0f528bde1",
+        "content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.district.glb": "sha256:0a25d3051a08a7bb8fdecdf6f20ecf0a96e44cd9c46b2b5a9f5e3d5de2872c5c",
+        "content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.street.glb": "sha256:60276ffd42da9a4198bba2d5edd921e26b79eb3eb6b385bd849479ea3184426c",
+        "content/worldgen/assets/places/sr/sr2/palazzo_dei_conservatori/model.closeup.glb": "sha256:e9dbb68121c8dd482d14f577631a51aee4a147bf3892052b86b587b3f5a7761b"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184495906284,
+        35184495906286,
+        35184495906287,
+        35184495906316,
+        35184495906346,
+        35184495906404,
+        35184495906409,
+        35185483872007,
+        35185558001176
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "tile": [
+            4380,
+            3044
+          ],
+          "id": 35184395365770,
+          "owned": false,
+          "covered": 0.002793722818469384,
+          "area": 2209712.6826937892,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 13,
+          "tile": [
+            4380,
+            3044
+          ],
+          "id": 35184396002970,
+          "owned": false,
+          "covered": 6.514632714464884e-7,
+          "area": 736425.0164519993,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8760,
+            6088
+          ],
+          "id": 35184395365770,
+          "owned": false,
+          "covered": 0.00854698082137394,
+          "area": 724650.5780724799,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8760,
+            6088
+          ],
+          "id": 35184395679820,
+          "owned": false,
+          "covered": 2.6366124038491074e-7,
+          "area": 138870.110452967,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8760,
+            6088
+          ],
+          "id": 35184495906280,
+          "owned": false,
+          "covered": 0.2568389808258926,
+          "area": 14286.765551351687,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8760,
+            6088
+          ],
+          "id": 35184495906287,
+          "owned": true,
+          "covered": 0.9986665488091109,
+          "area": 1862.4007291625867,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8760,
+            6088
+          ],
+          "id": 35184495906316,
+          "owned": true,
+          "covered": 0.9935879836202494,
+          "area": 267.1582170912228,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            8760,
+            6088
+          ],
+          "id": 35185558001176,
+          "owned": true,
+          "covered": 1.0000000225190788,
+          "area": 308.85336946137954,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35184495906284,
+          "owned": true,
+          "covered": 0.9999999999923322,
+          "area": 790.289092216465,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35184495906286,
+          "owned": true,
+          "covered": 0.9999993374571726,
+          "area": 1406.8613738569115,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35184495906287,
+          "owned": true,
+          "covered": 0.9999998825027655,
+          "area": 1872.206720463786,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35184495906316,
+          "owned": true,
+          "covered": 0.9999999720217065,
+          "area": 268.0968350224994,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35184495906346,
+          "owned": true,
+          "covered": 0.9996512353693607,
+          "area": 1576.4593003024243,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35184495906404,
+          "owned": true,
+          "covered": 0.9999989954960326,
+          "area": 564.1330384216931,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35184495906409,
+          "owned": true,
+          "covered": 1.0000000028033338,
+          "area": 220.35153947154538,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35185483872007,
+          "owned": true,
+          "covered": 0.9999992765981757,
+          "area": 6213.007051940065,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            17520,
+            12177
+          ],
+          "id": 35185558001176,
+          "owned": true,
+          "covered": 1.000000016367701,
+          "area": 324.80980034533127,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 2504,
+      "widerIndependent": 2936,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -1.0451891796492419e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 2513,
+          "independentBuildings": 2504,
+          "remainingBuildings": 2504,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.palazzo_dei_conservatori"
+          ],
+          "rawTerrainRange": {
+            "min": -39.10941771174452,
+            "max": 10.810282288255479
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127008.08874345991,
+          "remainingWaterArea": 127008.08874345991,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:b486951973ee18d1bb70913b96db12ca3364a28e2e1376e7ee30c224ea9f2840",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 15,
+              "triangles": 604563
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                162.57799444037278,
+                105,
+                -8.270170720494065
+              ],
+              "lookAt": [
+                -35.057122249396016,
+                8,
+                42.379218723224504
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -1.0451891796492419e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 2513,
+          "independentBuildings": 2504,
+          "remainingBuildings": 2504,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.palazzo_dei_conservatori"
+          ],
+          "rawTerrainRange": {
+            "min": -39.10941771174452,
+            "max": 10.810282288255479
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127008.08874345991,
+          "remainingWaterArea": 127008.08874345991,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:774975a15186a1e0af40c36f699c592d75ac86fd6363990711d55e96cbfd9434",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 606631
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                162.57799444037278,
+                105,
+                -8.270170720494065
+              ],
+              "lookAt": [
+                -35.057122249396016,
+                8,
+                42.379218723224504
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -1.0451891796492419e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 2513,
+          "independentBuildings": 2504,
+          "remainingBuildings": 2504,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.palazzo_dei_conservatori"
+          ],
+          "rawTerrainRange": {
+            "min": -39.10941771174452,
+            "max": 10.810282288255479
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127008.08874345991,
+          "remainingWaterArea": 127008.08874345991,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:6cb642f2a5de377df2443eaa5ae14d6455845b13457c028468a48d9e5bf2464f",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 607895
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                162.57799444037278,
+                105,
+                -8.270170720494065
+              ],
+              "lookAt": [
+                -35.057122249396016,
+                8,
+                42.379218723224504
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": -1.0451891796492419e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 2513,
+          "independentBuildings": 2504,
+          "remainingBuildings": 2504,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.tile_ceramic": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.palazzo_dei_conservatori"
+          ],
+          "rawTerrainRange": {
+            "min": -39.10941771174452,
+            "max": 10.810282288255479
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127008.08874345991,
+          "remainingWaterArea": 127008.08874345991,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:5accfce1c7b7db3642c613bd323567fb2be2f99d10dedbb05a43da33a9021a02",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 608291
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                162.57799444037278,
+                105,
+                -8.270170720494065
+              ],
+              "lookAt": [
+                -35.057122249396016,
+                8,
+                42.379218723224504
+              ],
+              "fov": 51
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-seven-bay-front-pilasters-and-pedimented-windows.png",
+            "hash": "sha256:fe45885b7d54fc2658ff13b849cab1e2852888183dd414bbf6c74ca131919326",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 608291
+            },
+            "camera": {
+              "name": "seven-bay-front-pilasters-and-pedimented-windows",
+              "position": [
+                36.96932891754489,
+                19,
+                -44.69081247176402
+              ],
+              "lookAt": [
+                -0.6374022227162912,
+                10,
+                0.7705312495131728
+              ],
+              "fov": 61
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-portico-paired-columns-and-supported-entrance.png",
+            "hash": "sha256:ccec761f39d47c5d55f150cb0479857f6ad2d1193d1382fed17d252b05151289",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 19,
+              "triangles": 608291
+            },
+            "camera": {
+              "name": "open-portico-paired-columns-and-supported-entrance",
+              "position": [
+                21.252131110238842,
+                4.5,
+                -0.589001929723759
+              ],
+              "lookAt": [
+                -0.9561033340744368,
+                4,
+                1.155796874269759
+              ],
+              "fov": 64
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-courtyard-and-connected-roof-ranges.png",
+            "hash": "sha256:c4935560925c5153edbc61ceb0e9584ad5a34117b30cb64737daf156c45dd622",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 606467
+            },
+            "camera": {
+              "name": "open-courtyard-and-connected-roof-ranges",
+              "position": [
+                -55.631536373469736,
+                90,
+                -17.468032537389927
+              ],
+              "lookAt": [
+                -28.683100022233106,
+                9,
+                34.673906228092775
+              ],
+              "fov": 61
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 2513,
+          "independentBuildings": 2504,
+          "remainingBuildings": 2513,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184495906284,
+              "area": 790.2898250359103
+            },
+            {
+              "id": 35184495906286,
+              "area": 1406.8626784116045
+            },
+            {
+              "id": 35184495906287,
+              "area": 1872.208456524036
+            },
+            {
+              "id": 35184495906316,
+              "area": 268.09708362337756
+            },
+            {
+              "id": 35184495906346,
+              "area": 1576.4607621220096
+            },
+            {
+              "id": 35184495906404,
+              "area": 564.1335615310927
+            },
+            {
+              "id": 35184495906409,
+              "area": 220.35174379920974
+            },
+            {
+              "id": 35185483872007,
+              "area": 6213.0128131386655
+            },
+            {
+              "id": 35185558001176,
+              "area": 324.81010153509794
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.palazzo_dei_conservatori"
+          ],
+          "rawTerrainRange": {
+            "min": -39.10941771174452,
+            "max": 10.810282288255479
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 127008.08874345991,
+          "remainingWaterArea": 127008.08874345991,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:b7193c5032d16598bf662ec222b1bc22f345964cc8707aa6dbc9242586157769",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 603378
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                162.57799444037278,
+                105,
+                -8.270170720494065
+              ],
+              "lookAt": [
+                -35.057122249396016,
+                8,
+                42.379218723224504
+              ],
+              "fov": 51
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Medium-fi exterior, not measured architectural reproduction. Main front and court follow standard map footprints; historic rear roofs/bays/floor levels, modern hall profile, column capitals, upper figures, thresholds and accessibility approximate. Main boundary -3.411..+.862m around floor+.25m yields low-side exposure and high-side burial. Rear grades vary by up to10.77m across a mapped part; per-range floor/closed foundation levels approximate the hill. Flat review planes bury some grade-specific bases; cropped detail frames cover local features, with whole/source/native views covering complete massing. Separate Senatorio/Tabularium and Nuovo remain procedural until their own models are finished. No copied sculpture/art/text or furnished galleries. Physical phone/laptop/dense-city timings pending."
+  ]
+}

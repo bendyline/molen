@@ -1,0 +1,604 @@
+{
+  "planId": "csr_refinery_new_farm",
+  "id": "csr_refinery_new_farm",
+  "assetId": "molen.worldgen.structure.csr_refinery_new_farm",
+  "title": "CSR Refinery, New Farm — historic refining block",
+  "category": "historic-industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.05258302916667,
+    "latitude": -27.46589523333333
+  },
+  "size": [
+    99.56000137329102,
+    36.49999928474426,
+    30.399999618530273
+  ],
+  "actualBounds": {
+    "min": [
+      -59.68000030517578,
+      -1.2000000476837158,
+      -20.399999618530273
+    ],
+    "max": [
+      39.880001068115234,
+      35.29999923706055,
+      10
+    ]
+  },
+  "visualBrief": "Whole circa1902 principal CSR refining building: thirteen brick bays, four/five storeys, arched twelve-pane openings and pilasters, five/eight-bay firewall, stepped corrugated upper storeys/ventilated gables, hexagonal char tower with coved cap/brackets/finial, suspended entrance awning and connected lower laboratory. Exact published Qualla public-domain SLQ originals. Historical approximate native registration and hidden rear sections; not modern apartment conversion or entire industrial site.",
+  "nativeAxes": {
+    "x": "southeast along main refining block",
+    "y": "up",
+    "z": "southwest landside"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1902-01-01",
+    "validFrom": "1898-01-01",
+    "validUntil": "1908-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_171479_Brisbane_River,_between_New_Farm_and_Hawthorne,_during_the_1931_flood.jpg",
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_174443_Colonial_Sugar_Refinery,_New_Farm,_Brisbane,_ca._1902.jpg"
+  ],
+  "stories": [
+    {
+      "id": "csr-refinery-new-farm-wp",
+      "url": "https://qualla.com/csr-refinery-new-farm/"
+    }
+  ],
+  "referenceInputHash": "395a14cecf628d3bc48bf212bce11464d3e9d34f95b53a58812c0ac36d8366fa",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r7h/csr_refinery_new_farm/models/refinery-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/refinery-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "refinerySkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.86,
+        "metallic": 0.12
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.08
+      },
+      "glass": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.08
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "refineryDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.08
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "refineryStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.08
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "refineryCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.08
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "metal_corrugated",
+    "metal_painted",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "groundY": -1.6,
+    "far": 2000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original256m129x129 field acquired before all floors/main sections/mesh. Floor datum0 fixed at original landside[0,25] provider reference; foundation-1.2m. Four-storey south eave17.2m, middle18.2m, five-storey north22.2m. Setback metal storey24.0m/central raised section27.8m, hexagonal char tower body31.2m/coved cap33.8m/finial35.3m. Monochrome photo, primary bay/storey facts and original visual estimates; no surveyed historical grades, exact colors or current conversion claim.",
+    "anchor": [
+      153.05258302916667,
+      -27.46589523333333
+    ],
+    "heading": -0.7091780349581678,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.0524182035876,
+        -27.466065664838073
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed landside reference before independent field and any floors/main sections. Current DEM cannot certify circa1902 ground or historic threshold."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          1.5,
+          -8
+        ],
+        [
+          39.5,
+          -8
+        ],
+        [
+          39.5,
+          9.600000000000001
+        ],
+        [
+          1.5,
+          9.600000000000001
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            1.5,
+            -8
+          ],
+          [
+            39.5,
+            -8
+          ],
+          [
+            39.5,
+            9.600000000000001
+          ],
+          [
+            1.5,
+            9.600000000000001
+          ]
+        ],
+        [
+          [
+            -36.5,
+            -8
+          ],
+          [
+            1.5,
+            -8
+          ],
+          [
+            1.5,
+            9.600000000000001
+          ],
+          [
+            -36.5,
+            9.600000000000001
+          ]
+        ],
+        [
+          [
+            -59.3,
+            -8
+          ],
+          [
+            -36.5,
+            -8
+          ],
+          [
+            -36.5,
+            9.600000000000001
+          ],
+          [
+            -59.3,
+            9.600000000000001
+          ]
+        ],
+        [
+          [
+            -25.3,
+            -20
+          ],
+          [
+            -15.7,
+            -20
+          ],
+          [
+            -15.7,
+            -8
+          ],
+          [
+            -25.3,
+            -8
+          ]
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            -36.5,
+            -8
+          ],
+          [
+            1.5,
+            -8
+          ],
+          [
+            1.5,
+            9.600000000000001
+          ],
+          [
+            -36.5,
+            9.600000000000001
+          ]
+        ],
+        [
+          [
+            -59.3,
+            -8
+          ],
+          [
+            -36.5,
+            -8
+          ],
+          [
+            -36.5,
+            9.600000000000001
+          ],
+          [
+            -59.3,
+            9.600000000000001
+          ]
+        ],
+        [
+          [
+            -25.3,
+            -20
+          ],
+          [
+            -15.7,
+            -20
+          ],
+          [
+            -15.7,
+            -8
+          ],
+          [
+            -25.3,
+            -8
+          ]
+        ]
+      ],
+      "basis": "Four physical historic architectural volumes only, not property or full native modern footprint. Original field retained, historic contact unverified."
+    },
+    "featureIds": [
+      "way/494955643"
+    ],
+    "source": "https://www.openstreetmap.org/way/494955643",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:09b5f54ea9b7a3e413e86704eced9d7937708de56ba1433429053e31024fa2e7",
+    "notes": "Qualla first: all11 source families checked, zero metadata conflicts. Two exact already-published SLQ public-domain originals personally inspected: ca1902 principal riverfront and1931 distant flood context. Original native revisions/SHA1/bytes and explicit PD-Australia/StateLibQld-License/item handles bound without inventing an artist. Only ca1902 photo controls detailed historic architecture; flood photograph corroborates older massing at low resolution. Later copyrighted operator/heritage/attribution-only photos not used. Primary government text establishes building parts and chronology, and current operator text confirms changed modern openings/balconies. Model therefore explicitly represents the documented industrial era, not current conversion details. Current whole24-control The Refinery building establishes location/heading/approximate length/depth only; rear addition and laboratory projection are not blindly claimed measured1902 walls. Exact historical positions/heights/depths are bounded original photographic estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole principal thirteen-bay1893 refining building and its photographed connected laboratory circa1902. Single unwarped orthogonal native frame; current way494955643 gives approximate99m length/17.5m depth, not measured historical wall vertices. Current rear projection omitted and historic laboratory depth12m is an original photographic interpretation. Main industrial block is complete on all sides, not a facade, whole parcel or detached-office substitution.",
+    "Original256m129x129 field acquired before all floors/main sections/mesh. Floor datum0 fixed at original landside[0,25] provider reference; foundation-1.2m. Four-storey south eave17.2m, middle18.2m, five-storey north22.2m. Setback metal storey24.0m/central raised section27.8m, hexagonal char tower body31.2m/coved cap33.8m/finial35.3m. Monochrome photo, primary bay/storey facts and original visual estimates; no surveyed historical grades, exact colors or current conversion claim.",
+    "Explicit historical circa1902 architecture only, nominal date1902 and interpretive1898..1908 availability; modern apartment openings/balconies are not documented by adopted images. No default current-world activation.",
+    "Current native whole outline retained independently. Historical lengths/depths/rear closure/connected laboratory phase/roof profiles/window census/frame detail/height/colors are original bounded estimates. Government text describes later industrial conditions and is used only for enduring form/bay/storey facts, not as proof of every1902 detail.",
+    "The1931 flood photo is low-resolution silhouette context, not independent detailed coverage. No neighboring works, detached office, boiler stack, wharf, river, people or modern apartments.",
+    "Original current coarse elevation may contain structures/canopy and cannot establish historical contact/ground classification/river level. Fixed frame/field/floors/main sections will not be fitted after modeling."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Photographer-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaLodCameras": [
+    {
+      "name": "whole-refinery-skyline",
+      "position": [
+        80,
+        46,
+        -125
+      ],
+      "lookAt": [
+        -10,
+        13,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-refinery-district",
+      "position": [
+        80,
+        46,
+        -125
+      ],
+      "lookAt": [
+        -10,
+        13,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-refinery-street",
+      "position": [
+        80,
+        46,
+        -125
+      ],
+      "lookAt": [
+        -10,
+        13,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-refinery-closeup",
+      "position": [
+        80,
+        46,
+        -125
+      ],
+      "lookAt": [
+        -10,
+        13,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-industrial-riverfront",
+      "position": [
+        80,
+        40,
+        -125
+      ],
+      "lookAt": [
+        -10,
+        13,
+        0
+      ]
+    },
+    {
+      "name": "char-tower-stepped-roof",
+      "position": [
+        -85,
+        42,
+        -62
+      ],
+      "lookAt": [
+        -43,
+        24,
+        0
+      ]
+    },
+    {
+      "name": "arched-bays-and-laboratory",
+      "position": [
+        -4,
+        13,
+        -50
+      ],
+      "lookAt": [
+        -13,
+        9,
+        -7
+      ]
+    },
+    {
+      "name": "whole-rear-and-roof-sections",
+      "position": [
+        70,
+        55,
+        95
+      ],
+      "lookAt": [
+        -10,
+        13,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12608,
+    "vertices": 37824,
+    "materials": 4,
+    "bytes": 1704988,
+    "sha256": "sha256:8dd02b34b165a37e95a4a41300fe3c8d810b0910f0c470f86d4f2a690de13de5"
+  }
+}

@@ -1,3 +1,4 @@
+import { boostSpeedMultiplier } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import type { WalkCollision } from './walk-collision';
@@ -34,6 +35,8 @@ export interface WalkInput {
  * terrain pauses movement (it is never a bottomless pit) until coverage arrives.
  */
 export class WalkController {
+  /** Four times walking/running speed; jump height and look response stay normal. */
+  boostMode: boolean = false;
   readonly feet: THREE.Vector3 = new THREE.Vector3();
   readonly velocity: THREE.Vector3 = new THREE.Vector3();
   grounded: boolean = false;
@@ -53,10 +56,14 @@ export class WalkController {
     this.jumpHeld = false;
   }
 
-  /** Find open ground near the fly camera, rather than dropping through a building's roof. */
+  /**
+   * Find supported open ground. A separate `groundCollision` can exclude vehicles from the
+   * landing ray while `collision` still rejects body overlaps, placing people beside cars.
+   */
   place(
     collision: WalkCollision,
     sampleHeight: (x: number, z: number) => number | undefined,
+    groundCollision: WalkCollision = collision,
   ): boolean {
     const centerX = this.feet.x;
     const centerZ = this.feet.z;
@@ -68,10 +75,14 @@ export class WalkController {
         const ground = sampleHeight(x, z);
         if (ground === undefined) continue;
         const ray = new THREE.Ray(
-          new THREE.Vector3(x - collision.origin.x, ground + 10_000, z - collision.origin.z),
+          new THREE.Vector3(
+            x - groundCollision.origin.x,
+            ground + 10_000,
+            z - groundCollision.origin.z,
+          ),
           new THREE.Vector3(0, -1, 0),
         );
-        const hit = collision.octree.rayIntersect(ray);
+        const hit = groundCollision.octree.rayIntersect(ray);
         // Small offsets cover terrain-draped roads. Roofs require another landing position.
         if (!hit || hit.position.y > ground + 3) continue;
         this.feet.set(x, hit.position.y + 0.02, z);
@@ -121,7 +132,7 @@ export class WalkController {
       this.grounded = false;
     }
     const length = Math.max(1, Math.hypot(input.forward, input.right));
-    const speed = input.sprint ? RUN_SPEED : WALK_SPEED;
+    const speed = (input.sprint ? RUN_SPEED : WALK_SPEED) * boostSpeedMultiplier(this.boostMode);
     const vx =
       ((Math.cos(input.yaw) * input.forward - Math.sin(input.yaw) * input.right) / length) * speed;
     const vz =

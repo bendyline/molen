@@ -31,3 +31,7 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 - The bridge is modeled in its operating form. Temporary work platforms, construction machinery, buried foundation caissons, underwater piers and adjoining roads beyond the1446.2m bridge are omitted.
 - Nakaumi water elevation is provisionally0m in the viewer; source tourist height is treated as road crest and is not a surveyed absolute vertical datum.
 - Maintenance bay side/length, lamps, drain hardware, rail infill spacing, asphalt color and minor weathering follow available photographs rather than a current inspection inventory.
+- Detailed source master is retained byte-exact; all four runtime representations are authored independently on the source alignment and height profile.
+- Skyline retains every approach pier with coarse cross-sections. District uses representative lamps and a continuous open top rail. Near levels retain both footways, source lamp rhythm, transparent bay screens and supporting ribs.
+- Street posts are spaced 12m; closeup 2m. Fine 0.2m infill, form ties, drain gratings, navigation lettering and comb teeth stay in the detailed master.
+- Standard PMTiles/Mapzen and ordinary photos guide placement; end grades and lake water zero remain approximate. Physical device timings remain pending.

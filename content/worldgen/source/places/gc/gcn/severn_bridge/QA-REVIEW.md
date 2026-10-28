@@ -1,27 +1,34 @@
-# Severn Bridge — reviewed medium-fi exterior
+# Severn Bridge — completed current medium-fi pass
 
-Reviewed2026-10-12. **52 final rendered views inspected.**
+Reviewed 2026-10-25. **Complete scoped suspension/anchorage exterior and approximate native placement. Detailed source master preserved.**
 
-Inspected all12 final source views: PMTiles shoreline overview, four object turntables, white portal tower, dual road/footways, inclined hanger fittings, shallow deck underside, full crossing and both cable anchorages. The suspension silhouette matches the two inspected reference pictures; separate approach structures are outside scope.
+![Native estuary crossing](site-preview.png)
 
-Inspected all12 shared-viewer views, including the cached mapped-road placement overlay. Shared painted-metal and concrete graphs bind without embedded images; near cable/rail hardware and road tints remain visible. Bounded geographic selection, locality, cache reuse and unload checks passed. This harness uses flat terrain; source/medium views separately show the PMTiles shore/water fixture.
+## Geometry and shared materials
 
-Inspected all28 medium-fi lighting and browser-level views. Skyline preserves the paired portals, sagging main cables and representative inclined hangers; district adds paired cable/hanger structure, street and closeup retain the thin deck and finer rail/socket impressions. Closer reductions simplify or unevenly retain fine cable clamps and markings, accepted for the browser levels; the source retains them.
+Inspected 63 current frames during one author/inspect/fix pass: 12 portable, 12 shared, 28 medium-fi and 11 native. Paired white portal towers, continuous main cables with exact saddle knots, inclined hangers, full shallow aerofoil deck and separate footways, piers and anchorages remain. Automatic near reductions had fragmented rails/cables; street and closeup now use independent analytic structural geometry with the complete 344-hanger schedule and continuous rails. Distant anchorage bases were lowered beneath the road, retaining separate side cable blocks and an open outer walking route. The 308648-triangle detailed shared-material source and canonical runtime master remain byte-exact.
 
-## Placement and runtime
+Two existing 256px shared graphs, metal_painted and concrete_plain, supply painted steel and low-frequency aggregate. Metric UVs and restrained source paint/road tints; no embedded images, private atlas or copied photographic pixels. Three textured material groups/draws share these two graph resources, read once each; skyline bakes shared means into vertex colors in one draw. Separate GPU attribute streams and complete model geometry disposal pass. Source parapet pickets retain their fine original rhythm; runtime levels choose explicitly spaced rails/pickets instead of noisy decimation.
 
-Two inspected pictures confirm white portal towers, paired inclined hangers, continuous suspension cables and a thin deck. Standard viewer PMTiles named M48 bridge roads and tower-adjacent path offsets establish the main-span midpoint and east/southeast Aust-facing native+X. Mapped tower spacing986.5m matches the retained987.5m source within about1m. The named road includes a separate eastern approach, which remains outside this1637.5m suspension/anchorage asset. LocalY0 is deliberately accepted as an approximate global sea plane; no tidal or engineering datum certification. PMTiles water masks and raw terrain provide the surrounding review fixture; physical road endpoints remain approximate.
+| Level | Triangles | Bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 994 | 82804 | 1 |
+| district | 3952 | 354180 | 3 |
+| street | 14792 | 1089632 | 3 |
+| closeup | 53752 | 4103664 | 3 |
 
-skyline: 832 triangles, 69232 bytes, 1 draws; district: 3280 triangles, 293700 bytes, 3 draws; street: 15943 triangles, 1762388 bytes, 3 draws; closeup: 63117 triangles, 7135712 bytes, 3 draws. Initial skyline+district 362932 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured.
+Four complete authored LODs: 994/3952/14792/53752 triangles; initial skyline + district 436984 bytes. Closeup is 4103664 bytes. Skyline/district use representative paired hangers; near levels retain the full hanger schedule and source portal shapes. Street pickets are spaced 16m, closeup 2m, detailed master 0.75m. Economy/high, noon/late, near/far, silhouette and four transitions inspected under the shared Earth rig. Geometry/download budgets pass; physical laptop/phone timings remain pending.
 
-## Checks and accepted limits
+## Native placement
 
-Six GLBs validate with zero errors, zero warnings and zero embedded images. Original308648-triangle,24003148-byte master was reproduced exactly at sha256:41a39bb8d560fad968924a5f1cd2dc687f8af781a35c039da0be20e415d29450. Shared-material source geometry retains the same count and bounds. Browser levels832/3280/15943/63117 satisfy1k/4k/16k/64k limits; initial download362932bytes. Current source/runtime/LOD hashes and material/placement bindings verified.
+Approximate native fit approved at [-2.6399325393140316,51.609817360632036], heading -0.5492121314969372, with +X toward Aust (east/southeast). Original M48 crossing Q1850537; not the second Severn crossing. Retains 987.5m main span, 305m side spans and 1597.5m suspended road. Simplified anchorage exteriors extend to 1637.5m. Local Y=0 is an approximate sea-plane reference, not a reconciled tidal/survey datum. All four mapped carriageway joins at x=±799m meet the 32m end deck within 0.005m. The independent eastern approach begins its inferred descent (31.28m at x=820m); the western approach remains near32m. These grades fit ordinary pictures and current PMTiles/Mapzen but are not surveyed engineering profiles.
 
-Accepted medium-fi exterior and approximate PMTiles bridge placement. Mapped path-offset tower spacing986.5m agrees with987.5m source. Authored localY0 is explicitly an approximate global sea plane, without tidal/datum certification. Separate Aust/Beachley/Wye approach bridges, real traffic, interiors and precise endpoint joins are excluded. Preview mapped water is not bathymetry; physical laptop/phone timing remains unmeasured.
+All 33 resident / 97 wider original mapped buildings remain; no building footprint is replaced. Native Aust/Beachley/Wye approach bridge geometry and unrelated roads stay independent. Only road geometry overlapping the authored suspension footprint is replaced, with connected approach height hints. Every original DEM sample, source road input and native estuary/shoreline behavior remains. Failed model load retains the original procedural crossing without inferred supports. Unload releases all model geometry and restores native content. Native captures use the actual client directional-shadow focus helper; fixture and engine source hashes are pinned. Separate unique approach viaduct models, traffic, interiors, exact tide and engineering grades remain outside this scoped suspension/anchorage asset.
 
-## Pictures and map
+## Checks
 
-- [Inspected picture 1](https://www.roads.org.uk/sites/default/files/motorway/m48/title.jpg) — actual pixels inspected; image not redistributed.
-- [Inspected picture 2](https://upload.wikimedia.org/wikipedia/commons/5/5e/Severn_Bridge_-_Public_Access2cropped.jpg) — actual pixels inspected; image not redistributed.
-- Standard viewer Protomaps20261008/Mapzen Terrarium PMTiles; controls/hashes retained in pmtiles-fit.json. ©OpenStreetMap contributors/ODbL, elevation attribution retained with the fit data.
+Targeted generator --check, strict medium-fi, scene validation and 30-tick simulation pass. Six GLBs have zero Khronos errors/warnings; 508 geometry probes pass. All 63 current frames were inspected and bind source/runtime/LOD, fixture and engine hashes. Bulk captures stay local; two small summary previews stay with source. No global source rebuild, full engine suite or dependency audit was run for this model.
+
+## References and limits
+
+Ordinary [roads.org.uk aerial](https://www.roads.org.uk/sites/default/files/motorway/m48/title.jpg) and [public-access view](https://upload.wikimedia.org/wikipedia/commons/5/5e/Severn_Bridge_-_Public_Access2cropped.jpg), reference only; no photo pixels redistributed. Existing source dimensions remain approximate without bespoke re-research. Standard 2026-10-20 Protomaps/Mapzen data establishes fit. Nominal 340 vs reconstructed 344 hangers, historic datum differences and modern fittings remain explicit in source. Sea plane and separate approach grades are visual approximations. Physical device timings remain pending.

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.white_kitchen_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "White Kitchen — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.white_kitchen_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/white_kitchen_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:52dfda61f5f51dca0ac94a18e746763eb327927772a0ed87a5002df2d07714ec"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-white-kitchen-yasnaya-polyana",
+        "path": "models/generate-white-kitchen-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "white-kitchen-yasnaya-polyana-model",
+        "path": "models/white-kitchen-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "white-kitchen-yasnaya-polyana-geometry",
+        "path": "models/white-kitchen-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

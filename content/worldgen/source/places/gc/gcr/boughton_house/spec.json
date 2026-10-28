@@ -1,0 +1,379 @@
+{
+  "planId": "boughton_house",
+  "id": "boughton_house",
+  "assetId": "molen.worldgen.structure.boughton_house",
+  "title": "Boughton House",
+  "wikidataId": "Q4949432",
+  "category": "historic-residence",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.67798545,
+    "latitude": 52.42433575
+  },
+  "size": [
+    80.19733047485352,
+    20.489999890327454,
+    80.36690139770508
+  ],
+  "actualBounds": {
+    "min": [
+      -40.0986442565918,
+      -0.8960000276565552,
+      -40.1834831237793
+    ],
+    "max": [
+      40.09868621826172,
+      19.5939998626709,
+      40.18341827392578
+    ]
+  },
+  "visualBrief": "Whole native23-control Boughton House with eight-control open court, north half-H stone range/three mansard roofs/physical dormers, nine real open loggia bays/upper sash windows, long west balustraded range, eastern and earlier brick courtyard ranges, stone stacks and intrinsic entry treads. Four exact public-domain CharlesLatham1909 photographs after Qualla-first31family search. Roof/court subdivisions/heights/hidden/current details bounded original estimates.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:In_English_Homes_Vol_3_Boughton_House_Northamptonshire_Duke_Ralph%27s_Little_Versailles_31295005735708_0214.jpg",
+    "https://commons.wikimedia.org/wiki/File:In_English_Homes_Vol_3_Boughton_House_Northamptonshire_west_facade_31295005735708_0213.jpg",
+    "https://commons.wikimedia.org/wiki/File:In_English_Homes_Vol_3_Boughton_House_Northamptonshire_the_bell_court_31295005735708_0212.jpg",
+    "https://commons.wikimedia.org/wiki/File:In_English_Homes_Vol_3_Boughton_House_Northamptonshire_the_fish_court_31295005735708_0211.jpg"
+  ],
+  "stories": [
+    {
+      "id": "boughton-house-wp",
+      "url": "https://qualla.com/boughton-house/"
+    }
+  ],
+  "referenceInputHash": "46022b882c4124d8dcdefecb651409181f8ecf4a49a21dc596297146f386a44d",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcr/boughton_house/models/boughton-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/boughton-house-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "boughtonHouseSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "boughtonHouseDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "boughtonHouseStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "boughtonHouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "brick",
+    "tile_flat",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.35,
+    "cameraYaw": 3.141592653589793,
+    "groundY": -1.046
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent field frozen before fixed original north-approach floor sample and all main heights/roof subranges. Native wall plan and photo/listing-derived original subrange/roof estimates remain distinct. Exact court/threshold/foundation contact unverified, preview/replacement false.",
+    "anchor": [
+      -0.67798545,
+      52.42433575
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.6812262777105038,
+        52.42235946541502
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest provider-field datum before floors/mainsections/model geometry; exact courtyard/entry/foundation contact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/98493797",
+      "way/98493800"
+    ],
+    "source": "https://www.openstreetmap.org/relation/1412406",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f2ed439f1da4f783fcd6cd55bf1cbe040c548e6e14f04573704420ae97363608",
+    "notes": "Whole Boughton House physical stately-home relation1412406/Q4949432,23-control outer wall ring98493797 and8-control intrinsic courtyard98493800. Include north half-H French range with mansard-roofed pavilions/central arcaded loggia, long west balustraded range, eastern range and lower earlier courtyard ranges/gabled hall/stone stacks. Keep native courtyard open, distinguish derived roof/subrange layout and intrinsic entrances/steps from measured native wall controls. Exclude BoughtonPark/estate/parking, detached stable/service blocks, gates, gardens, furnishings and interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual whole BoughtonHouse stately-home multipolygon relation1412406,23-control outer wall ring98493797 and8-control native courtyard98493800. No estate parcel/building substitution. Roof subparts and other court subdivisions explicit photographic/listing-derived estimates.",
+    "Whole Boughton House physical stately-home relation1412406/Q4949432,23-control outer wall ring98493797 and8-control intrinsic courtyard98493800. Include north half-H French range with mansard-roofed pavilions/central arcaded loggia, long west balustraded range, eastern range and lower earlier courtyard ranges/gabled hall/stone stacks. Keep native courtyard open, distinguish derived roof/subrange layout and intrinsic entrances/steps from measured native wall controls. Exclude BoughtonPark/estate/parking, detached stable/service blocks, gates, gardens, furnishings and interiors.",
+    "Original independent field frozen before fixed original north-approach floor sample and all main heights/roof subranges. Native wall plan and photo/listing-derived original subrange/roof estimates remain distinct. Exact court/threshold/foundation contact unverified, preview/replacement false.",
+    "All23nativeouter and8nativecourt controls retained; court stays open. Native wall polygons do not measure roof subdivisions/hidden courtyards or heights. Mansard/range/hip joins/oculus approximations/window census/stone colors/current repairs are bounded original photographic/listing-text estimates; no survey, exact current fitout or interior reconstruction.",
+    "Only four exact1909CharlesLatham public-domain original book photographs adopted after publishedQualla31families first. Exact named creator1847-1912, dated library book/photographic attribution and explicit nativePD-old-70-1923 retained. No source photograph pixels/ivy/gardens/trees/detachedstables/gates/estateparcel or protected listing imagery embedded.",
+    "Original512m129field/fourrawtiles/frame frozen before fixed floor/mainsections/geometry. No field/floor fitting, flattening, replacement, reframing, reacquisition or raising. Exact threshold/courtyard/foundation contact unverified; preview/replacement false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-north-half-h-mansards-and-open-loggia",
+      "position": [
+        44.21955982620455,
+        37.454,
+        -117.23749625771065
+      ],
+      "lookAt": [
+        -8.292194800979937,
+        7.454,
+        -16.00748279345011
+      ]
+    },
+    {
+      "name": "west-balustraded-and-earlier-ranges",
+      "position": [
+        -100.53655119854415,
+        44.454,
+        39.273424514581244
+      ],
+      "lookAt": [
+        -20.38375586959165,
+        6.454,
+        5.873882587257594
+      ]
+    },
+    {
+      "name": "native-open-eight-control-courtyard",
+      "position": [
+        -8.245337798996355,
+        64.454,
+        13.26704204336603
+      ],
+      "lookAt": [
+        -8.245337798996355,
+        2.4539999999999997,
+        13.26704204336603
+      ]
+    },
+    {
+      "name": "north-nine-bay-open-arcade",
+      "position": [
+        -11.747765174515187,
+        7.454,
+        -40.7675117391833
+      ],
+      "lookAt": [
+        -8.706863245804167,
+        2.4539999999999997,
+        -18.97868626693809
+      ]
+    },
+    {
+      "name": "whole-eastern-and-south-ranges",
+      "position": [
+        117.81440306622041,
+        54.454,
+        84.5267202140847
+      ],
+      "lookAt": [
+        9.328278865288178,
+        6.454,
+        1.7271981390152922
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 30239,
+    "vertices": 90717,
+    "materials": 5,
+    "bytes": 3816072,
+    "sha256": "sha256:a35897d09a856c75abe693e19068528b9a82f62a510701eca26a399cc1c3cf92"
+  }
+}

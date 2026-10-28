@@ -1,0 +1,405 @@
+{
+  "planId": "tomb_of_tutankhamun",
+  "id": "tomb_of_tutankhamun",
+  "assetId": "molen.worldgen.structure.tomb_of_tutankhamun",
+  "title": "Tomb of Tutankhamun (KV62), Egypt (1922)",
+  "wikidataId": "Q835309",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 32.6014331,
+    "latitude": 25.7403131
+  },
+  "size": [
+    21.899999618530273,
+    6.915629208087921,
+    14.550000190734863
+  ],
+  "actualBounds": {
+    "min": [
+      -17.399999618530273,
+      -6.427999973297119,
+      -9.600000381469727
+    ],
+    "max": [
+      4.5,
+      0.487629234790802,
+      4.949999809265137
+    ]
+  },
+  "visualBrief": "Complete intrinsic KV62tomb architecture in its24November1922discovery phase, beforefirstdooropening: sixteenroughrockcutentrancesteps/openstairwell/firstsealedmasonrydoor; descending7.6mpassage andsecondsealeddoor; whole8mantechamber/annexe/sepulchralhall/treasurystorechamber withclosedcarvedrockwalls/roofs andintrinsicconnectingdoorways/partition/thirdandfourthsealeddoors. Undergroundchambersremainbelowgrade. Original1923Carterplan suppliesmetres/topology; surroundingrockshellthickness/ceilingheightswherenotgiven/doorsections/gradeandexactregistrationareboundedestimates. Excludemoderncanopy/signs/glasswalkways/replica, adjacentRamsesVI/workmenshuts/naturalvalleymountains, excavationrail/crates/people andmovableburialobjects/shrines/coffins/furniture. Not anabovegroundextrusionoftheundergroundway or a door-only substitute.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1922-11-24",
+    "validFrom": "1922-11-24",
+    "validUntil": "1922-11-25",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Burton_Tutankhamun_tomb_photographs_1_016.jpg",
+    "https://archive.org/details/tomboftutankhame00cart_1"
+  ],
+  "stories": [
+    {
+      "id": "tomb-of-tutankhamun-wp",
+      "url": "https://qualla.com/tomb-of-tutankhamun/"
+    }
+  ],
+  "referenceInputHash": "4c7d3777dbc660019f1c84e574aa7a21b103d85dc7282b0f953efc89ad375718",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ss/ssx/tomb_of_tutankhamun/models/tomb-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ss/ssx/tomb_of_tutankhamun/models/tomb-model.mjs",
+    "level": "skyline",
+    "export": "tombSkyline",
+    "errorMeters": 0.4,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tombDistrict",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "tombStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "tombCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "plaster_lime"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.4,
+    "groundY": -14,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent256m129x129originalfield/16641heights/two rawTerrariumzoom15tiles anddatum182.6405m fixedbeforeallfloors/mainsections. Localupperstairpoint[4,0]isoriginaldatum;upperstairfloor+.15m,16estimated.2mrisers and2.128mestimatedpassagedescent fixtombfloorlevelsonce. Source2mgrid/4.303moutputpixelsare notarchaeologicalaccuracy or1922grade. Nativelevel−3notusedasmetres; chambersremainbelowgrade. Neverreacquire/flatten/reframe/movefloors/mainsectionstomakerenderspass.",
+    "anchor": [
+      32.6014331,
+      25.7403131
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        32.601472990738024,
+        25.7403131
+      ],
+      "modelHeight": 0,
+      "basis": "Upperstairsite point chosenbeforeindependentfield/floors/sections; datumfromoriginalpublicfield, not modernmappedlevel−3 treatedasmetres."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "minHeight": -14,
+      "outline": [
+        [
+          -0.95,
+          -1.55
+        ],
+        [
+          4.5,
+          -1.55
+        ],
+        [
+          4.5,
+          1.55
+        ],
+        [
+          -0.95,
+          1.55
+        ]
+      ],
+      "basis": "Only the actualcarvedentrancestairwell/portalvoid; no cutout aboveundergroundroomroofs or broadsitepad. Originalheightfield/datumretained. Historicgrade/registrationapproximate."
+    },
+    "featureIds": [
+      "way/813832374",
+      "way/1238953535"
+    ],
+    "source": "https://www.openstreetmap.org/way/1238953535",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4fa332c80cb78d0d940d22f96cedf2d6ee74bb955c84e8814737e1cdba7f50fd",
+    "notes": "Complete intrinsic KV62tomb architecture in its24November1922discovery phase, beforefirstdooropening: sixteenroughrockcutentrancesteps/openstairwell/firstsealedmasonrydoor; descending7.6mpassage andsecondsealeddoor; whole8mantechamber/annexe/sepulchralhall/treasurystorechamber withclosedcarvedrockwalls/roofs andintrinsicconnectingdoorways/partition/thirdandfourthsealeddoors. Undergroundchambersremainbelowgrade. Original1923Carterplan suppliesmetres/topology; surroundingrockshellthickness/ceilingheightswherenotgiven/doorsections/gradeandexactregistrationareboundedestimates. Excludemoderncanopy/signs/glasswalkways/replica, adjacentRamsesVI/workmenshuts/naturalvalleymountains, excavationrail/crates/people andmovableburialobjects/shrines/coffins/furniture. Not anabovegroundextrusionoftheundergroundway or a door-only substitute. Nativeundergroundouteroutline is not precisely scaledlikeprimarymetreplan; retain onlysite/bearingidentity andpreserveoriginalfield. No archaeologicalsurvey/historicgrade/contactcertificate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete intrinsic KV62tomb architecture in its24November1922discovery phase, beforefirstdooropening: sixteenroughrockcutentrancesteps/openstairwell/firstsealedmasonrydoor; descending7.6mpassage andsecondsealeddoor; whole8mantechamber/annexe/sepulchralhall/treasurystorechamber withclosedcarvedrockwalls/roofs andintrinsicconnectingdoorways/partition/thirdandfourthsealeddoors. Undergroundchambersremainbelowgrade. Original1923Carterplan suppliesmetres/topology; surroundingrockshellthickness/ceilingheightswherenotgiven/doorsections/gradeandexactregistrationareboundedestimates. Excludemoderncanopy/signs/glasswalkways/replica, adjacentRamsesVI/workmenshuts/naturalvalleymountains, excavationrail/crates/people andmovableburialobjects/shrines/coffins/furniture. Not anabovegroundextrusionoftheundergroundway or a door-only substitute.",
+    "Independent256m129x129originalfield/16641heights/two rawTerrariumzoom15tiles anddatum182.6405m fixedbeforeallfloors/mainsections. Localupperstairpoint[4,0]isoriginaldatum;upperstairfloor+.15m,16estimated.2mrisers and2.128mestimatedpassagedescent fixtombfloorlevelsonce. Source2mgrid/4.303moutputpixelsare notarchaeologicalaccuracy or1922grade. Nativelevel−3notusedasmetres; chambersremainbelowgrade. Neverreacquire/flatten/reframe/movefloors/mainsectionstomakerenderspass.",
+    "Firstdoorconnection toactualnativeeastcorridorpoint±4m/bearing±8degrees. Primarybookmetreplan governsroomarchitecture; currentnativeoutlineonlysiteidentity. Hiddenverticalsections/flooroffsets explicitlyestimatedbeforegeometry, not surveycertified.",
+    "OriginalplanlabelH2.73isgildedshrinecornice, not roomheight. Room3.62mheightlabelretainedforburialhall; otherverticalsectionswillbeestimatedafteroriginalfield.",
+    "Nativecurrentoutline/level−3areidentitycontext, not aabovegroundbuildingfootprintorabsoluteelevation.",
+    "No modernentrancecanopy/steelgrillesinstalledlater/reconstructedpaintings/archaeologicalcontents.",
+    "Originalindependentcompositeterrainwillbefrozenbeforefloors/mainsectionsandretainedunchanged; onlyrealentrancevoidgetsphysicalgroundopening, undergroundroomroofsremainburied.",
+    "Sixteen.2mriserheight/2.128mpassagedescent/1mburialfloordrop/roomrockshellthickness are explicit architectural estimates; source thirteen-foot textualoffset refers to neighboringRamsesVIentrance, not stairdrop, and was not used as such.",
+    "Primaryroominteriordimensionsretained; antechamberE-W3.65mis26x12fttext-supportedapproximation, originalmeterplan8mN-S. Otherstatedplanmetresgovernroomlayout.",
+    "Allfoursealeddoorwallsclosedon24November1922; no laterwood/steelgrilles or openedfirstdoor. Wholehiddenroomarchitecturederivedfromoriginal1923plan, withmovablecontentsomittedfromarchitecturalscope.",
+    "Onlyactualentrancevoidreceivesgroundopening. Closedroofs/undergroundchambersmustnotbeuncoveredbyabroadpadcutout or raisedabovegradeforreview. Useexplicitinside/diagnosticreviewcameras."
+  ],
+  "sourceLicense": "Original authored architecture under repositorylicense. Already-clearedpublishedQuallaBurton1922contextfirst; exactMITlibrary1923NewYorkCarter/Macevolume/nativeNoCopyright-US/printedtitlecopyrightplanentrancestairsbound. Primaryfactualdimensions andOSMODbLactualKV62site/undergroundidentity. No modernprotectedplan/photo/canopy/replica, burialobjects/letteredsealsor copiedpaintedfigures/bakedphotography. Closedundergroundroomsremainbelowgrade; isolatedflatstageisdiagnostic.",
+  "qaLodCameras": [
+    {
+      "name": "entrance-skyline",
+      "position": [
+        5.8,
+        2.7,
+        3.5
+      ],
+      "lookAt": [
+        0.5,
+        -1.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "entrance-district",
+      "position": [
+        5.8,
+        2.7,
+        3.5
+      ],
+      "lookAt": [
+        0.5,
+        -1.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "entrance-street",
+      "position": [
+        5.8,
+        2.7,
+        3.5
+      ],
+      "lookAt": [
+        0.5,
+        -1.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "entrance-closeup",
+      "position": [
+        5.8,
+        2.7,
+        3.5
+      ],
+      "lookAt": [
+        0.5,
+        -1.5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-intrinsic-underground-architecture-diagnostic",
+      "position": [
+        -24,
+        12,
+        20
+      ],
+      "lookAt": [
+        -6,
+        -3,
+        -2
+      ]
+    },
+    {
+      "name": "sixteen-steps-and-first-sealed-door",
+      "position": [
+        5.8,
+        2.7,
+        3.5
+      ],
+      "lookAt": [
+        0.5,
+        -1.5,
+        0
+      ]
+    },
+    {
+      "name": "first-sealed-door-under-original-rock-lip",
+      "position": [
+        1.3,
+        -1.6,
+        0.55
+      ],
+      "lookAt": [
+        0,
+        -2,
+        0
+      ]
+    },
+    {
+      "name": "antechamber-and-sealed-northern-partition",
+      "position": [
+        -11.4,
+        -3.878000000000001,
+        2.3
+      ],
+      "lookAt": [
+        -11.35,
+        -3.9780000000000006,
+        -3.65
+      ]
+    },
+    {
+      "name": "sepulchral-hall-and-open-treasury-connection",
+      "position": [
+        -14.5,
+        -4.7780000000000005,
+        -5.1
+      ],
+      "lookAt": [
+        -9.6,
+        -5.078000000000001,
+        -7.1
+      ]
+    },
+    {
+      "name": "annexe-and-fourth-sealed-door",
+      "position": [
+        -15.6,
+        -3.9780000000000006,
+        1.2
+      ],
+      "lookAt": [
+        -13.9,
+        -4.428000000000001,
+        3.05
+      ]
+    },
+    {
+      "name": "treasury-and-connecting-doorway",
+      "position": [
+        -6.5,
+        -4.878000000000001,
+        -8
+      ],
+      "lookAt": [
+        -9.6,
+        -5.178000000000001,
+        -7.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1108,
+    "vertices": 3324,
+    "materials": 2,
+    "bytes": 247608,
+    "sha256": "sha256:20da6f721ea315c5ac8529202a8d1aa1876ea294b93699f3c4398e92269ae40c"
+  }
+}

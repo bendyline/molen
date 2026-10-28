@@ -1,5 +1,6 @@
 export {
   markTerrainGroundSurface,
+  markTerrainPavementSurface,
   markTerrainWaterSurface,
   setTerrainGroundCutout,
   setTerrainGroundCutouts,
@@ -21,6 +22,11 @@ export {
   type TerrainArchiveSetArchive,
   type TerrainArchiveSetArchiveOptions,
 } from './archive-set-client';
+export {
+  sampleTerrainBuildingCoverage,
+  type TerrainBuildingCoverage,
+  terrainBuildingCoverage,
+} from './building-coverage';
 export {
   createTerrainGroundMaterial,
   createTerrainGroundMaterialAsync,
@@ -126,6 +132,7 @@ export {
   type TerrainPyramidHeightSource,
   type TerrainPyramidSelection,
   type TerrainPyramidSelectionOptions,
+  type TerrainPyramidStatsOptions,
   type TerrainPyramidStream,
   type TerrainPyramidStreamErrorContext,
   type TerrainPyramidStreamOptions,
@@ -140,6 +147,7 @@ export {
 export {
   createDefaultTerrainSemanticRenderer,
   createTerrainSemanticObject,
+  createTerrainSemanticObjectSliced,
   createTerrainSemanticPyramidLayer,
   createTerrainWaterMaterial,
   createTerrainWaterMaterialAsync,
@@ -151,6 +159,7 @@ export {
   type TerrainSemanticPyramidLayerOptions,
   type TerrainSemanticTileRenderer,
   type TerrainSemanticTileSource,
+  type TerrainUrbanGround,
   type TerrainWaterMaterial,
   type TerrainWaterMaterialOptions,
   terrainWaterSurfaceHeight,
@@ -169,6 +178,7 @@ export {
   type TerrainStructureIdentity,
   type TerrainTransportationFeature,
   type TerrainWaterFeature,
+  terrainSemanticTileContentHash,
 } from './semantic-types';
 export { splatColor } from './splat';
 export {
@@ -213,6 +223,7 @@ export {
 } from './surface-styles';
 export {
   createTerrainSurfaceWorkerBridge,
+  createTerrainSurfaceWorkerPool,
   installTerrainSurfaceWorker,
   type TerrainSurfaceWorker,
 } from './surface-worker';
@@ -315,4 +326,26 @@ export {
   type TerrainRouteShieldLibrary,
   terrainRouteShieldLibrarySchema,
 } from './route-shields';
+export {
+  createTerrainSemanticDecoderWorker,
+  installTerrainSemanticDecoderWorker,
+  type TerrainSemanticDecoderWorker,
+} from './semantic-decoder-worker';
+export {
+  deriveOverzoomTerrainSemanticTilePacket,
+  deriveTerrainSemanticTilePacket,
+  keepTerrainSemanticTile,
+  packTerrainSemanticTile,
+  type TerrainSemanticTileEdit,
+  type TerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+  terrainSemanticTilePacket,
+  unpackTerrainSemanticTile,
+} from './semantic-packet';
+export {
+  appendTerrainStreetLights,
+  type TerrainStreetLight,
+  updateTerrainStreetLights,
+} from './surface-lights';
 export type { SurfaceSign } from './surface-sign-mesh';
+export { taggedTerrainObjects, tagTerrainObject } from './tagged-objects';

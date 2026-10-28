@@ -1,0 +1,481 @@
+{
+  "planId": "yellow_house_venezuela",
+  "id": "yellow_house_venezuela",
+  "assetId": "molen.worldgen.structure.yellow_house_venezuela",
+  "title": "Casa Amarilla, Caracas (1870)",
+  "wikidataId": "Q12981819",
+  "category": "palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -66.9153973,
+    "latitude": 10.50636625
+  },
+  "size": [
+    84.00844192504883,
+    17.540000438690186,
+    55.652360916137695
+  ],
+  "actualBounds": {
+    "min": [
+      -42.143550872802734,
+      -3.9000000953674316,
+      -27.977140426635742
+    ],
+    "max": [
+      41.864891052246094,
+      13.640000343322754,
+      27.675220489501953
+    ]
+  },
+  "visualBrief": "Complete Casa deGobierno/CasaAmarilla in the coherent1870phase depicted by RamónBoletPeraza: entire two-storey palace envelope withlong creamplaster front, whitewindowcasings/cornerquoins/cornice, ironbalconies, centralentry and complete hippedredtile mainroof, plus intrinsic rear/courtyard wings and original lowreturns where supported. Currentnativewholeway is boundedsite/envelope context, not a surveyed1870plan; hiddenrear/courtyard/roofjunctions and heights willbe explicitarchitecturalestimates. Exclude adjacentrightmunicipalpalace/plazapaving/people/trees/flag/naturalhills and later1874memorialpavilion/decorative alterations not depicted. Not a current1874-remodel or2026survival certification, and not a facade-only model.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1870-07-01",
+    "validFrom": "1870-01-01",
+    "validUntil": "1871-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ramon_Bolet_Peraza_0000.jpg"
+  ],
+  "stories": [
+    {
+      "id": "yellow-house-venezuela-wp",
+      "url": "https://qualla.com/yellow-house-venezuela/"
+    }
+  ],
+  "referenceInputHash": "2206393057917befb6253db34a9ed1bfda942e17e01cffdbd5ecb5e69e74a23f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d9/d9b/yellow_house_venezuela/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d9/d9b/yellow_house_venezuela/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "clay_fired",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.3
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "clay_fired",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "clay_fired",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -4.1,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent256m129x129originalfield/16641heights/one rawzoom15tile/datum931.0137m andwholemapframe frozenbeforeallfloors/mainsections. Originalfieldatnativefrontcorners+.0226/+.0706m, rear−2.2to−3.18m relativefixedapproachdatum. Threeestimated.18mentrancesteps choosemainfloor+.54m once, twophoto-estimated5.2mstoreys/eave10.94m/hipridge13.54m. Verticalprofile is a bounded1870image estimate, notmeasuredsurvey. CurrentDEM/outputpixelsapprox4.696m not1870ground; preserve originalfield/frame/floors/mainparameters withoutfitting.",
+    "anchor": [
+      -66.9153973,
+      10.50636625
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -66.91499782917424,
+        10.50636625
+      ],
+      "modelHeight": 0,
+      "basis": "Eastplaza-facingapproachpoint2moutsidewholecurrenthousecontext fixedbeforeoriginalfield/floor/mainsections."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/207411419"
+    ],
+    "source": "https://www.openstreetmap.org/way/207411419",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fd8c8c88cfa97dbb4c9b9be4cebcd86c86893478326dce57b6ee28a984311484",
+    "notes": "Complete Casa deGobierno/CasaAmarilla in the coherent1870phase depicted by RamónBoletPeraza: entire two-storey palace envelope withlong creamplaster front, whitewindowcasings/cornerquoins/cornice, ironbalconies, centralentry and complete hippedredtile mainroof, plus intrinsic rear/courtyard wings and original lowreturns where supported. Currentnativewholeway is boundedsite/envelope context, not a surveyed1870plan; hiddenrear/courtyard/roofjunctions and heights willbe explicitarchitecturalestimates. Exclude adjacentrightmunicipalpalace/plazapaving/people/trees/flag/naturalhills and later1874memorialpavilion/decorative alterations not depicted. Not a current1874-remodel or2026survival certification, and not a facade-only model. Exact1870day/monthunknown; representative1870-07-01is midyearconvention, not acapturedate. Original256mfield willbefrozenonce beforefloor/mainsection/geometry, retainedwithoutflatteningorreframing. Hiddenplan and grade do not require exactsurvey to author an honestwholemodel."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.clay_fired",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole1870physicalpalace, notlater1874neoClassicalremodelor2026currentstate. Originalcreamplaster/redtile/ironbalconies preserved; no anachronisticyellowpaintor1874memorialpavilion.",
+    "Currentnativewholeoutline suppliesbounds/siteidentity only. Exact1870rear/courtyard/winggeometryandverticalsections requireboundedestimates; nothistoricmeasuredsurvey.",
+    "Neverreacquire/flatten/reframe/movefloors/mainsections tofitrenders. Freeze independentoriginalfieldbeforeallmainparameters/geometry.",
+    "The original1870frontshowsroughlyeightbays, rectangularcentralentry, smallironupperbalconies, palecreamwalls/whitecasings/cornerquoins/cornice andredhiptiles. Side/rearwindowcensus andentirecourt/roofjunctions are boundedestimates insidewholeactualsite, not silently copiedfrom1874remodel.",
+    "No original1870rear measuredplan survivesinourinputs. Onefullcourtyard/twostoreywings/plaincoveredgalleries are explicitperiod-compatible architecturalestimates; no assertedpost1874Ioniccapitals or memorialpavilion.",
+    "Nativewholecurrenthouse sixcontrols anchorfullhorizontalextent andpotentialrearwings. Oldversuscurrentenvelope differences andregistration±8m/bearing±8degrees remainapproximate.",
+    "Mainfloor+.54/upper5.74/eave10.94/hipridge13.54m androofpitch/doorprofiles/windowbays selectedonce aftersourcefield,beforegeometry. Never movefloor/mainparameters or editreacquirefieldforrenderviews.",
+    "Onlyintrinsicpalace/courtyardfloors/foundations constructed, notplaza/naturalhills/neighbormunicipalbuilding or broadterrainpad/cutout. Currentfieldcannotcertify1870contact.",
+    "Rooffluting is a simplified groupedbarreltile relief, not exactindividualtilephotogrammetry. Dormer/flag/coats of arms/plaza/figures/trees/neighbormunicipalpalace not copied from painting.",
+    "Fullcurrentnativeouterenvelope supplies a bounded1870extent, whilehistoricalrear/courtyardtypology is explicitestimate. No currentstate or exactarchaeologicalhistoricalplanclaim.",
+    "Isolatedportableground liesbelowintrinsicfoundations; it is diagnostic, not1870gradecertification."
+  ],
+  "sourceLicense": "Originalauthoredgeometry/repositorylicense. Exactalready-clearedpublishedQuallaRamónBoletPeraza1870watercolor, artist1836–1876, nativePD-Art-VenezuelaandPD-US-expired/localandnativebytesbound. Existingunchangedpublishedinventorypassed. Owningforeignministryprimarytextbindssame1870subject/1874remodel. OSMODbL actualwholehousecontext andWikidataCC0Q12981819. No questionable/supplementalprotectedimagery, copiedphotographtextures/generatedbitmaps orsourcepolicy/metadatarepair.",
+  "qaLodCameras": [
+    {
+      "name": "whole-palace-skyline",
+      "position": [
+        105,
+        42,
+        -80
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-palace-district",
+      "position": [
+        105,
+        42,
+        -80
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-palace-street",
+      "position": [
+        105,
+        42,
+        -80
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-palace-closeup",
+      "position": [
+        105,
+        42,
+        -80
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole1870-cream-east-front-and-hipped-roofs",
+      "position": [
+        105,
+        42,
+        -80
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "whole-rear-wings-and-courtyard-roofs",
+      "position": [
+        -115,
+        55,
+        85
+      ],
+      "lookAt": [
+        -5,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "eight-bays-iron-balconies-and-original-entry",
+      "position": [
+        57.12970099480875,
+        7,
+        11.14558669222459
+      ],
+      "lookAt": [
+        37.53696838764596,
+        5,
+        7.130013385183599
+      ]
+    },
+    {
+      "name": "whole-estimated-two-level-courtyard",
+      "position": [
+        -9.657901260649835,
+        7,
+        4.043330782667368
+      ],
+      "lookAt": [
+        12.342098739350165,
+        7,
+        -8.956669217332632
+      ]
+    },
+    {
+      "name": "clay-hip-tiles-and-white-cornice",
+      "position": [
+        49.13483157218581,
+        20,
+        -4.632648774744106
+      ],
+      "lookAt": [
+        30.06029140874358,
+        11,
+        4.5766225651082095
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 33636,
+    "vertices": 100908,
+    "materials": 6,
+    "bytes": 4261904,
+    "sha256": "sha256:2c6c7dce67b4bdf7037bc551969d17debd6cf9c8d518e0bd13a870e34dd5f748"
+  }
+}

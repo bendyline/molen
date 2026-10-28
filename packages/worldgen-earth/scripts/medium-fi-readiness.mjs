@@ -1,5 +1,6 @@
 /** A new-style review must cover the shipped LODs and every required lighting/mode view. */
 import { createHash } from 'node:crypto';
+import { EARTH_EXPOSURE, EARTH_TONE_MAPPING } from '../../earth/src/client/look.ts';
 import { matchesEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
@@ -11,6 +12,11 @@ export async function reviewedMediumFi({ qa, reportBytes, sidecar, readImage }) 
   )
     return false;
   const report = JSON.parse(reportBytes);
+  // New captures use the shipped rig. Existing inspected neutral-rig evidence retains
+  // its recorded scope; accepting it does not relabel its images as current lighting.
+  const rigMatches =
+    (report.rig?.toneMapping === EARTH_TONE_MAPPING && report.rig?.exposure === EARTH_EXPOSURE) ||
+    (report.rig?.toneMapping === 'neutral' && report.rig?.exposure === 1);
   if (report.captureVersion !== undefined) {
     if (
       report.captureVersion !== 2 ||
@@ -36,8 +42,7 @@ export async function reviewedMediumFi({ qa, reportBytes, sidecar, readImage }) 
     report.runtimeHash !== sidecar.hash ||
     report.assetId !== sidecar.id ||
     report.errors?.length ||
-    report.rig?.toneMapping !== 'neutral' ||
-    report.rig?.exposure !== 1
+    !rigMatches
   )
     return false;
   const budgets = { skyline: 1000, district: 4000, street: 16000, closeup: 64000 };

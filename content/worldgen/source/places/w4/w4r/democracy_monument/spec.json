@@ -1,0 +1,342 @@
+{
+  "planId": "democracy_monument",
+  "id": "democracy_monument",
+  "assetId": "molen.worldgen.structure.democracy_monument",
+  "title": "Democracy Monument",
+  "wikidataId": "Q1186076",
+  "category": "monument",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 100.5018398,
+    "latitude": 13.75668645
+  },
+  "size": [
+    48.22607231140137,
+    24.350000381469727,
+    48.24295425415039
+  ],
+  "actualBounds": {
+    "min": [
+      -24.096073150634766,
+      0,
+      -24.121477127075195
+    ],
+    "max": [
+      24.1299991607666,
+      24.350000381469727,
+      24.121477127075195
+    ]
+  },
+  "visualBrief": "Whole mapped Democracy Monument: four24m swept ochre wings/diagonal feather seams/pale edge trim, gray relief pedestals, Naga fountain spouts/basins, six-face central shrine with physical recessed red doors and round upper apertures, lobed roof/twin golden offering bowls/constitution book, native architectural platforms/steps and75 cannon posts/chains. Original bounded medium-fi sculpture; traffic island roads/gardens/temporary flags/people/interiors excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Democracy_Monument,_Bangkok,_Thailand_2006-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Democracy_Monument,_Bangkok,_Thailand_2006-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Democracy_Monument,_Bangkok,_Thailand_2006-5.jpg",
+    "https://commons.wikimedia.org/wiki/File:Democracy_Monument,_Bangkok,_Thailand_2006-6.jpg"
+  ],
+  "stories": [
+    {
+      "id": "democracy-monument-wp",
+      "url": "https://qualla.com/democracy-monument/"
+    }
+  ],
+  "referenceInputHash": "7200fa8c579edaf90a9f35b0fe8a9c1256ac219a564f8a9cc010372e1646ee3c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w4/w4r/democracy_monument/models/democracy-monument-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/democracy-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "democracySkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.25
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "democracyDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "democracyStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "democracyCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1",
+    "groundY": -0.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floor/section choices made only after immutable400m/129x129 independent field freeze. Floor0 at fixed8.0674m provider-relative SW datum; no terrain fit/flatten/reacquire. Native component outlines/bearings untouched. Four wings reach24m above lowerplatform. Native central7m part is approximate body metadata, not surveyed gold-book total; bounded six-face pavilion body/curved roof/twinbowls produce11.35m overall top, golden assembly3m. Door .34m and roundaperture .45m physical recesses. Pedestalheight/taper/thickness/roofstations/sculpture/hiddenfaces/cannon ring24m radius are original bounded estimates informed by exact PD photographs and official textual dimensions. Cannon75 count factual; precise azimuth/ground-contact/grade unresolved. No trafficisland fill.",
+    "anchor": [
+      100.5018398,
+      13.75668645
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        100.50152485918615,
+        13.756379485639936
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW5m beyond native whole monument envelope before floor/sections/geometry; provider-relative unsurveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/178329973",
+      "way/217306130",
+      "way/217306131",
+      "way/217306132",
+      "way/217306133",
+      "way/217306134",
+      "way/867021614",
+      "way/867021615"
+    ],
+    "source": "https://www.openstreetmap.org/way/178329973",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:308a767904d6b5281830863817fdc08fd485cc76d71e51e3125f467c9b010b66",
+    "notes": "Whole Democracy Monument: four swept ochre wings and gray relief pedestals, central six-faced shrine with recessed closed red doors, round upper openings, lobed roof and golden twin offering bowls/constitution book, native lower/upper architectural platforms and intrinsic steps, Naga fountain basins/spouts and cannon/chain fence. Traffic island garden/roads/landscaping, temporary flags/flowers, people and interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact native identity Q1186076/way178329973 and all four wing rectangles, central shrine outline, lower and upper plinth outlines preserved separately. Whole site boundary is identity context only, never an extruded building. Fixed native site bbox midpoint, +Xeast/+Zsouth, heading0; component bearings remain in original mapped frame.",
+    "All floor/section choices made only after immutable400m/129x129 independent field freeze. Floor0 at fixed8.0674m provider-relative SW datum; no terrain fit/flatten/reacquire. Native component outlines/bearings untouched. Four wings reach24m above lowerplatform. Native central7m part is approximate body metadata, not surveyed gold-book total; bounded six-face pavilion body/curved roof/twinbowls produce11.35m overall top, golden assembly3m. Door .34m and roundaperture .45m physical recesses. Pedestalheight/taper/thickness/roofstations/sculpture/hiddenfaces/cannon ring24m radius are original bounded estimates informed by exact PD photographs and official textual dimensions. Cannon75 count factual; precise azimuth/ground-contact/grade unresolved. No trafficisland fill.",
+    "Four exact July2006 creator-public-domain originals already published on Qualla only. No supplemental imagery/copied pixels/bitmaps/metadata repairs. Sculptural relief figures and Naga forms are original medium-fi approximations, no exact portraits/calligraphy or current finish survey. Native site boundary is context only and not filled; lower/upper plinth/component controls retained. Skyline omits small fence/fountains/relief figures; district restores75 posts/chains/round openings/physical doors; nearlevels restore original sculptural interpretations.",
+    "Independent400m129x129 sourcefield/two raw tiles frozen before all floors/sections. Fixed8.0674m provider datum unmodified. Urban DEM artifacts/source grade unsurveyed; exact footing and fountain basin contacts unresolved. Geographic preview/replaceFootprint=false; no fit/flatten/reacquire."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-four-wings-and-central-shrine",
+      "position": [
+        52,
+        32,
+        58
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "opposite-pedestal-relief-and-swept-wings",
+      "position": [
+        -53,
+        28,
+        -57
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "central-six-face-shrine-round-openings-red-doors-twin-bowls",
+      "position": [
+        12,
+        9,
+        14
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "southwest-relief-pedestal-and-naga-basin",
+      "position": [
+        -25,
+        7,
+        28
+      ],
+      "lookAt": [
+        -10,
+        3,
+        12
+      ]
+    },
+    {
+      "name": "native-component-plan-and-cannon-fence",
+      "position": [
+        25,
+        75,
+        20
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26112,
+    "vertices": 78336,
+    "materials": 4,
+    "bytes": 3136240,
+    "sha256": "sha256:fe36cc731aa8ffefbd2ff76db27a4676e8d985c299a64fdf26e1f518901d8c48"
+  }
+}

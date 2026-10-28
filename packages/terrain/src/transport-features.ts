@@ -15,6 +15,15 @@ export const PATH_SURFACE_LIFT = 0.43;
 /** Extra height the painter adds to a bridge road's nominal elevation, in metres. */
 export const BRIDGE_SURFACE_LIFT = 4;
 
+/** Airside pavement has its own markings and must never enter the street/parking network. */
+export function isAeroway(feature: TerrainTransportationFeature): boolean {
+  return (
+    /^(aeroway|runway|taxiway|taxilane|parking_position)$/.test(feature.class) ||
+    /^(runway|taxiway|taxilane|parking_position)$/.test(feature.subclass ?? '') ||
+    feature.tags?.aeroway !== undefined
+  );
+}
+
 /** Classify a feature from its class, subclass and service tags. */
 export function transportKind(feature: TerrainTransportationFeature): TransportKind {
   const tag = `${feature.class} ${feature.subclass ?? ''} ${feature.service ?? ''}`.toLowerCase();
@@ -91,7 +100,10 @@ export function isPaintedTransport(
   options: { sidewalks: boolean },
 ): boolean {
   return !(
+    isAeroway(feature) ||
     feature.tunnel ||
+    feature.class === 'ferry' ||
+    feature.subclass === 'ferry' ||
     (feature.subclass === 'sidewalk' && !options.sidewalks) ||
     feature.subclass === 'crossing'
   );

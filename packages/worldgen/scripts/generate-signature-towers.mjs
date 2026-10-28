@@ -588,6 +588,17 @@ for (let study of signatureTowers.filter(
           sha256: hash(glb),
         },
       ],
+      ...(study.sourceScripts?.length
+        ? {
+            generators: study.sourceScripts.map((path) => ({
+              id: path
+                .split('/')
+                .at(-1)
+                .replace(/\.mjs$/, ''),
+              path,
+            })),
+          }
+        : {}),
       scripts: [],
       textures: [],
       sounds: [],

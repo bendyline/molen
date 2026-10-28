@@ -20,4 +20,4 @@ Estimated interiorgalleryplateau3.8m/upper7.6m,roofeave11.4m/hiprises13.2m and l
 
 Independent180mcurrentTerrariumfield frozenbeforegeometry, not flattened/fitted. Nativeanchor is actualpalaceenvelopecentre; originalstorypoint lies on the externalapproach. Fixedsouthwestentrancedatum remainsapproximate; flatstageY-.58showsstructure ratherthan certifying hillsidefit. Arches/columns/balustrades/roofdetail simplifywithdistance while allthreecourtvoids persist.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ahmed_bey_palace`. Add `--check` to verify exact regeneration. 62591 triangles; 6 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ahmed_bey_palace`. Add `--check` to verify exact regeneration. 62543 triangles; 6 materials; no embedded photographs.

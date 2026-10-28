@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { InputMap, resolveAction } from '../src/input';
+import { describe, expect, it, vi } from 'vitest';
+import { type InputGamepad, InputMap, resolveAction } from '../src/input';
 
 const bindings = {
   KeyW: 'move.up',
@@ -17,6 +17,74 @@ describe('resolveAction', () => {
 });
 
 describe('InputMap', () => {
+  it('detects an already-connected browser controller on the first update without an event', () => {
+    const pad: InputGamepad = {
+      id: 'Already connected',
+      index: 0,
+      connected: true,
+      mapping: '',
+      axes: [-1],
+      buttons: [],
+    };
+    const getGamepads = vi.fn(() => [pad]);
+    vi.stubGlobal('navigator', { getGamepads });
+    const im = new InputMap({
+      bindings,
+      axes: [{ axis: 0, action: 'move.x' }],
+      target: { addEventListener() {}, removeEventListener() {} },
+    });
+    try {
+      im.update();
+      expect(im.devices()).toEqual([pad]);
+      expect(im.value('move.x')).toBe(-1);
+      pad.axes = [1];
+      im.update();
+      expect(im.value('move.x')).toBe(1);
+      pad.connected = false;
+      im.update();
+      expect(im.devices()).toEqual([]);
+      expect(im.value('move.x')).toBe(0);
+      expect(getGamepads).toHaveBeenCalledTimes(3);
+    } finally {
+      im.dispose();
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('probes at startup, throttles idle polling, and resumes immediately on connection', () => {
+    let polls = 0;
+    vi.stubGlobal('navigator', {
+      getGamepads: () => {
+        polls++;
+        return [];
+      },
+    });
+    try {
+      const handlers = new Map<string, (ev: unknown) => void>();
+      const target = {
+        addEventListener: (type: string, fn: (ev: unknown) => void) => handlers.set(type, fn),
+        removeEventListener: (type: string) => handlers.delete(type),
+      };
+      const im = new InputMap({ bindings, target });
+      im.update();
+      expect(polls).toBe(1);
+      for (let i = 0; i < 119; i++) im.update();
+      expect(polls).toBe(1);
+      im.update();
+      expect(polls).toBe(2);
+      handlers.get('gamepadconnected')?.({});
+      im.update();
+      im.update();
+      expect(polls).toBe(4);
+      handlers.get('gamepaddisconnected')?.({});
+      im.update();
+      expect(polls).toBe(4);
+      im.dispose();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it('reserves bound gameplay keys without consuming browser shortcuts or control input', () => {
     const handlers = new Map<string, (ev: unknown) => void>();
     const target = {

@@ -1,0 +1,402 @@
+{
+  "planId": "dublin_port_tunnel",
+  "id": "dublin_port_tunnel",
+  "assetId": "molen.worldgen.structure.dublin_port_tunnel",
+  "title": "Dublin Tunnel",
+  "wikidataId": "Q924978",
+  "category": "transport-tunnel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -6.2381176499999995,
+    "latitude": 53.3772433
+  },
+  "size": [
+    868.4158020019531,
+    70.60451316833496,
+    4262.067626953125
+  ],
+  "actualBounds": {
+    "min": [
+      -432.67462158203125,
+      -18.83851432800293,
+      -2143.18212890625
+    ],
+    "max": [
+      435.7411804199219,
+      51.76599884033203,
+      2118.885498046875
+    ]
+  },
+  "visualBrief": "Whole native twin Dublin Tunnel:69/73-control complete physical tube axes, circular bored and rectangular cut-cover shell sections, all four true open portal mouths with curved silver canopies/liner reveals/intrinsic approach decks and native19-control northern retaining wall. Native road axes are location controls only; physical walls/grade/transition boundaries/other-end canopy detail are explicit estimates. Exact published Sarah7772006PD portal/2008PD liner photos and primary technical dimensions; no roadway/property extrusion or single-mouth truncation.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:PortTunnelM50.JPG",
+    "https://commons.wikimedia.org/wiki/File:IMGPortTuNorthEnt_4572w.jpg"
+  ],
+  "stories": [
+    {
+      "id": "dublin-port-tunnel-wp",
+      "url": "https://qualla.com/dublin-port-tunnel/"
+    }
+  ],
+  "referenceInputHash": "d64ad935c452c4f60d570f9c2eeb7b574ea967d3af8af787755e8035b7a79c46",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gc7/dublin_port_tunnel/models/dublin-tunnel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/dublin-tunnel-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "dublinTunnelSkyline",
+    "errorMeters": 7,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.54,
+        "metallic": 0.65
+      },
+      "tile": {
+        "slot": "wall",
+        "graph": "tile_ceramic",
+        "roughness": 0.72,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.95,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "dublinTunnelDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.54,
+            "metallic": 0.65
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "dublinTunnelStreet",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.54,
+            "metallic": 0.65
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "dublinTunnelCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.54,
+            "metallic": 0.65
+          },
+          "tile": {
+            "slot": "wall",
+            "graph": "tile_ceramic",
+            "roughness": 0.72,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_standing_seam",
+    "tile_ceramic"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "cameraYaw": -1,
+    "scale": 18,
+    "far": 14000,
+    "groundY": -19.138514114113395
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original field frozen before once-only four mouth surface samples and fixed32m interior sag/normalized section profile. These samples do not establish actual road invert or surveyed cover; section/crown/threshold contact unverified. Floor/grade/mainsections/nativeframe/sourcefield fixed thereafter, preview/replacementfalse.",
+    "anchor": [
+      -6.2381176499999995,
+      53.3772433
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -6.292328603560664,
+        53.34490409770033
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest provider-field datum across original8192m field before floor/grade/cross-section/physical geometry. Actual mouth thresholds/crown cover/street contact are unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/23007012",
+      "way/129662536"
+    ],
+    "source": "https://www.openstreetmap.org/way/23007012",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ec94984b593e623f20c707668ff92157ffd3ec4253d80637b72bc528457818d4",
+    "notes": "Whole physical twin Dublin Tunnel on native142 total route controls, including both north/south portal ends and intrinsic canopies/retaining-wall structures. Bored and cut-cover sections from primary technical dimensions, explicit bounded grade and unseen end details. Native road axes are location controls, not building/wall measurements. No wider motorway/property pad/detached service/control building/road-sign/car/street object or navigable interior."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Both complete native underground M50 road alignments provide exact tube-location axes only: southbound way23007012/69 controls, northbound129662536/73 controls. Cross-sections/wall thickness/grade/portal canopy surfaces are explicit reconstructed physical architecture, never claimed native wall polygons or an extruded surface building.",
+    "Whole physical twin Dublin Tunnel on native142 total route controls, including both north/south portal ends and intrinsic canopies/retaining-wall structures. Bored and cut-cover sections from primary technical dimensions, explicit bounded grade and unseen end details. Native road axes are location controls, not building/wall measurements. No wider motorway/property pad/detached service/control building/road-sign/car/street object or navigable interior.",
+    "Original field frozen before once-only four mouth surface samples and fixed32m interior sag/normalized section profile. These samples do not establish actual road invert or surveyed cover; section/crown/threshold contact unverified. Floor/grade/mainsections/nativeframe/sourcefield fixed thereafter, preview/replacementfalse.",
+    "Both complete native routes and all four portal ends retained. Primary technical dimensions define original tube/cut-cover sections; native road centrelines are not measured tube/canopy wall polygons. Grade, cut-cover boundaries, lining thickness and unseen three portal canopies/current equipment are bounded original estimates; no surveyed invert/crown cover or exact current upgrades claimed.",
+    "Only exact published Sarah7772006portal/2008liner own public-domain originals supply imagery. Technical operator/TII text used for facts only; no protected diagram/image pixels, wider motorway/toll plaza/neighborhood/vehicles/signage/detached control building or detailed navigable interior. Skyline uses angular closed triangular subsurface tube mass and simplified open canopies; district has coarse sections and local mouth lining, detailed levels have complete inner shell and asphalt deck.",
+    "Original8192m129field/64mgrid/zoom12raw tiles/frame/floor/fixed grade and main cross-sections immutable before geometry. Whole buried tubes are exposed in isolated model fixtures; original source field is preserved and ordinarily conceals them. No field fitting/flattening/reframe/reacquisition/replacement/raising. Threshold/crown/foundation contact unverified; geographic preview/replacement false."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaLodCameras": [
+    {
+      "name": "north-open-portal-skyline",
+      "position": [
+        -103.80666775874366,
+        54.216,
+        -2084.3883565405813
+      ],
+      "lookAt": [
+        -108.85757615960323,
+        46.716,
+        -2045.8852615438655
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "north-open-portal-district",
+      "position": [
+        -103.80666775874366,
+        54.216,
+        -2084.3883565405813
+      ],
+      "lookAt": [
+        -108.85757615960323,
+        46.716,
+        -2045.8852615438655
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "north-open-portal-street",
+      "position": [
+        -103.80666775874366,
+        54.216,
+        -2084.3883565405813
+      ],
+      "lookAt": [
+        -108.85757615960323,
+        46.716,
+        -2045.8852615438655
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "north-open-portal-closeup",
+      "position": [
+        -103.80666775874366,
+        54.216,
+        -2084.3883565405813
+      ],
+      "lookAt": [
+        -108.85757615960323,
+        46.716,
+        -2045.8852615438655
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-twin-route-and-all-four-portal-ends",
+      "position": [
+        5800,
+        4200,
+        1300
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "north-southbound-open-silver-canopy",
+      "position": [
+        -103.80666775874366,
+        54.216,
+        -2084.3883565405813
+      ],
+      "lookAt": [
+        -108.85757615960323,
+        46.716,
+        -2045.8852615438655
+      ]
+    },
+    {
+      "name": "north-northbound-open-silver-canopy",
+      "position": [
+        -74.43867596826911,
+        53.335,
+        -2138.7693360382277
+      ],
+      "lookAt": [
+        -101.75203359497883,
+        45.835,
+        -2108.869829434348
+      ]
+    },
+    {
+      "name": "south-southbound-whole-open-portal",
+      "position": [
+        439.80361253113534,
+        8.607,
+        2148.5638458463736
+      ],
+      "lookAt": [
+        426.82728557992664,
+        1.1070000000000002,
+        2108.869829435139
+      ]
+    },
+    {
+      "name": "south-northbound-whole-open-portal",
+      "position": [
+        439.5451511946235,
+        8.529,
+        2126.4740661917576
+      ],
+      "lookAt": [
+        406.8188746011772,
+        1.029,
+        2100.5319995753666
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19058,
+    "vertices": 57174,
+    "materials": 4,
+    "bytes": 2347828,
+    "sha256": "sha256:21aa297583ed8c8d004dfaf2f32c3635aa68843aaba8325855cb4b8470825d62"
+  }
+}

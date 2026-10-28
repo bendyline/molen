@@ -1,0 +1,385 @@
+{
+  "planId": "jimbour_homestead",
+  "id": "jimbour_homestead",
+  "assetId": "molen.worldgen.structure.jimbour_homestead",
+  "title": "Jimbour Homestead",
+  "wikidataId": "Q14935453",
+  "category": "historic-house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 151.23525489999997,
+    "latitude": -26.961255
+  },
+  "size": [
+    50.855587005615234,
+    16.206000328063965,
+    24.431620597839355
+  ],
+  "actualBounds": {
+    "min": [
+      -27.826810836791992,
+      9.904999732971191,
+      -11.621042251586914
+    ],
+    "max": [
+      23.028776168823242,
+      26.111000061035156,
+      12.810578346252441
+    ]
+  },
+  "visualBrief": "Whole principalJimbourHouse: actual12controlstonebody/projectingendwings/twostoreys, threehippedslateroofparts/roundedcentraldormer/fourchimneys, longopenpairedDoriccolumnveranda/balcony/centralstairs and actualthreeopenarchesofintrinsicsideportico. Two exactpublished1925front/1928sideSLQPDoriginals, nativewholewallplan. Derivedveranda/porch explicitlyextendbeyondnativewalloutline; estate/detachedbuildings/gardens/interiors excluded. Hiddenroof/rear/census/colors/repairs bounded estimates.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_14346_Front_view_of_Jimbour_House,_ca._1925.jpg",
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_209203_Side_entrance_of_Jimbour_House,_ca._1928.jpg"
+  ],
+  "stories": [
+    {
+      "id": "jimbour-homestead-wp",
+      "url": "https://qualla.com/jimbour-homestead/"
+    }
+  ],
+  "referenceInputHash": "d8eae3ff9c8ea04748b95295fbf98d5f2d0cf1cc1463b1de88bccc7a80c1a560",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r75/jimbour_homestead/models/jimbour-homestead-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/jimbour-homestead-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "jimbourHomesteadSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.35
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "jimbourHomesteadDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "jimbourHomesteadStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "jimbourHomesteadCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_sandstone",
+    "slate",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "cameraYaw": -0.7,
+    "groundY": 9.905
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Originalindependent256m129field/16641samples/two raw tiles/nativebboxanchor/heading0/SWdatum369.7805m frozen before once-onlyfloor10.205m and mainsections. Two archived PDfront/side photos bound estimatedplatform.6m/upperfloor4.9/wall9.7/centralhipridge13.2/endwinghipridge13.8/fourchimneys15.9/longopenveranda12columns/balcony and threeopenarchedsideportico. Native12wallcontrols fixed; veranda/sideporch derivedintrinsicarchitecture explicitly beyond walloutline, not estatepad. Windowcensus/hiddenrear/roofjoins/colors/repairs estimates. No later floor/mainsection/originalfield tuning.",
+    "anchor": [
+      151.23525489999997,
+      -26.961255
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        151.23414626371158,
+        -26.96224314229249
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest providerfield datum before floors/sections/geometry. Exact veranda/portico/stair/foundation contact unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/284368616"
+    ],
+    "source": "https://www.openstreetmap.org/way/284368616",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:34266c66d2b9478454dac8e64c7ddda497c9b44e10e9211e91d7498085347a4d",
+    "notes": "Whole surviving principal JimbourHouse homestead: two-storey sandstone mainbody, longcolumnedfrontveranda/projectingendbays, centralhippedslateroof/dormer/chimneys, intrinsic sidewings and archedsideportico/entry. Resolve wholecurrent physical plan before geometry; exclude entireestate, gardens, fences, separateoutbuildings/chapel/woolshed and interiors. Frontcolonnade/verandafloor and sidearchedporch are intrinsic photo-derived architecture, not a flat sitepad; nativeoutline remains unchanged."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Current closed native12-control principal JimbourHouse buildingway284368616. Paired projecting front/rear endwings and notched central body retained at actualmetricXZ. Publishedfront/side1925/1928photos establish intrinsicfrontveranda and openarchedsideportico, which are explicit derivedphysicalparts beyond the mapped wall outline. Not the entireestate/siteparcel/detachedhangar or otherbuildings.",
+    "Whole surviving principal JimbourHouse homestead: two-storey sandstone mainbody, longcolumnedfrontveranda/projectingendbays, centralhippedslateroof/dormer/chimneys, intrinsic sidewings and archedsideportico/entry. Resolve wholecurrent physical plan before geometry; exclude entireestate, gardens, fences, separateoutbuildings/chapel/woolshed and interiors.",
+    "Originalindependent256m129field/16641samples/two raw tiles/nativebboxanchor/heading0/SWdatum369.7805m frozen before once-onlyfloor10.205m and mainsections. Two archived PDfront/side photos bound estimatedplatform.6m/upperfloor4.9/wall9.7/centralhipridge13.2/endwinghipridge13.8/fourchimneys15.9/longopenveranda12columns/balcony and threeopenarchedsideportico. Native12wallcontrols fixed; veranda/sideporch derivedintrinsicarchitecture explicitly beyond walloutline, not estatepad. Windowcensus/hiddenrear/roofjoins/colors/repairs estimates. No later floor/mainsection/originalfield tuning.",
+    "Two exact1925front/1928side1000px SLQpublic-domainoriginals supply exteriorarchitecture; unrecordedarchivephotographer explicitlybound by existingprimarygrantverifier. No circa1890alteredroofstate/protectedmodernphotos/gardenpixels/inscriptions used. Currentcolors/roofdivisions/hiddenrear/windowcensus/details/repairs are originalboundedestimates, not currentsurvey/photogrammetry.",
+    "All12nativewallcontrols preserved; attachedverandafloor/colonnade/balcony/sideportico/stairs are explicitlyphoto-derivedintrinsicarchitecture, not native-taggedmeasurements or a sitepad. Threeopenarchesretain genuinevoids at everyLOD. Separatehangar/chapel/outbuildings/estate/fences/gardens/interiors excluded.",
+    "Original256m129field/nativeframe/floor/mainsectionsfixed beforegeometry, no laterfit/flatten/reframe/reacquire/replacement/raising. Contactunverified/geographicpreview/replacementfalse. Reviewground and syntheticneighborbuildings are fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-front-veranda-projecting-wings-and-hipped-roofs",
+      "position": [
+        -59.27968550936293,
+        42.205,
+        63.07074508764763
+      ],
+      "lookAt": [
+        0,
+        16.205,
+        0
+      ]
+    },
+    {
+      "name": "whole-native-house-and-derived-intrinsic-portico-plan",
+      "position": [
+        -0.0050787175481805434,
+        88.205,
+        0.0998709498706496
+      ],
+      "lookAt": [
+        -0.998709498706496,
+        15.205,
+        -0.05078717548180543
+      ]
+    },
+    {
+      "name": "paired-doric-columns-open-veranda-balcony-and-recessed-doors",
+      "position": [
+        -1.4728280889723575,
+        17.205,
+        28.96257546248838
+      ],
+      "lookAt": [
+        -0.3961399687580824,
+        13.405000000000001,
+        7.789934089910668
+      ]
+    },
+    {
+      "name": "three-open-arches-and-recessed-west-side-entrance",
+      "position": [
+        -38.50961988114671,
+        15.705,
+        9.055891817462848
+      ],
+      "lookAt": [
+        -23.918240793474098,
+        12.805,
+        -2.217601710269826
+      ]
+    },
+    {
+      "name": "whole-rear-wings-slate-roof-dormer-and-four-chimneys",
+      "position": [
+        50.57898906296569,
+        40.205,
+        -49.49510950961113
+      ],
+      "lookAt": [
+        0,
+        17.205,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16947,
+    "vertices": 50841,
+    "materials": 5,
+    "bytes": 2201300,
+    "sha256": "sha256:63e70cc93733c9bf64516e7a2ae8ba1b85fccb61cf10cfcfc53eac0bbbfa415b"
+  }
+}

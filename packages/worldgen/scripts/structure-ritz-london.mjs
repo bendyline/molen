@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { B, cleanRing, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
@@ -472,7 +472,7 @@ function mansard(o, x, z, w, depth, d, { tall = true } = {}) {
     );
   if (d > 1) {
     for (let i = 0; i < 4; i++) beam(o, 'copper', low[i], hi[i], 0.3, 0.3, copper);
-    for (let i = 0; i < 4; i++) beam(o, 'copper', hi[i], hi[(i + 1) % 4], 0.14, 0.18, copper);
+    beamPath(o, 'copper', hi.slice(0, 4), 0.14, 0.18, copper, true);
   }
 }
 function dormer(o, x, y, z, w, d, { ped = false } = {}) {

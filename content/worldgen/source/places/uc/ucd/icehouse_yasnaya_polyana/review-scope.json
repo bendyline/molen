@@ -1,0 +1,338 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "wood_log",
+      "slot": "wall",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "gable": {
+      "graph": "wood_plain",
+      "slot": "wall",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "wood_vertical",
+      "slot": "roof",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "base": {
+      "graph": "stone_limestone",
+      "slot": "foundation",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.96,
+      "metallic": 0.05
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -23.280315169052322,
+      10,
+      -1.7398062046079978
+    ],
+    "lookAt": [
+      0,
+      1.9,
+      0
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-low-log-icehouse-and-steep-board-roof",
+      "position": [
+        -18.57986342514821,
+        6,
+        0.8880738160985793
+      ],
+      "lookAt": [
+        0,
+        1.9,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "low-braced-door-triangular-vent-and-threshold",
+      "position": [
+        -9.36396283176779,
+        4.2,
+        1.1472576368328848
+      ],
+      "lookAt": [
+        -2.953557022313663,
+        2.1,
+        2.3909205164416596
+      ],
+      "fov": 56
+    },
+    {
+      "name": "weathered-board-roof-gable-and-corners",
+      "position": [
+        -14.693604185261812,
+        8,
+        -2.2578742318509724
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rear-gable-roof-closure-and-native-bank",
+      "position": [
+        17.9506738155583,
+        7,
+        -1.6653256640758585
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/icehouse_yasnaya_polyana/models/icehouse-yasnaya-polyana-model.mjs",
+    "export": "buildIcehouseSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIcehouseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "gable": {
+            "graph": "wood_plain",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.96,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "buildIcehouseStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "gable": {
+            "graph": "wood_plain",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.96,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildIcehouseCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "gable": {
+            "graph": "wood_plain",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "wood_vertical",
+            "slot": "roof",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.96,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.526115,
+      54.076448
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside southwest gable control[6,0] gives224.4860703641976m datum. No mapped building ownership. Preserve all243resident/295wider original buildings, courtyard paths, every DEM sample and pond geometry. Cut only the occupied reconstructed footprint; one small supported threshold meets unchanged soil. Coarse side-bank burial is approximate, with no custom terrain or broad yard cut. Inspected the actual paired native fit, low supported threshold, both gables, recessed vent and closed roof. Reframed the front detail camera outside the independent kitchen and trimmed the upper corner-log ends below the sloping roof underside. Original passage, roads, DEM samples, ponds and all native buildings remain. Icehouse function, facade assignment and photo/aerial placement stay explicit approximations.",
+    "terrainReference": {
+      "anchor": [
+        37.52604359839343,
+        54.07641408736143
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside southwest gable control[6,0] gives224.4860703641976m datum. No mapped building ownership. Preserve all243resident/295wider original buildings, courtyard paths, every DEM sample and pond geometry. Cut only the occupied reconstructed footprint; one small supported threshold meets unchanged soil. Coarse side-bank burial is approximate, with no custom terrain or broad yard cut."
+    },
+    "groundModelY": 0,
+    "elevationMode": "terrain-contact",
+    "mapIdentity": {
+      "maxDistance": 3.5
+    },
+    "maxDistance": 3.5,
+    "groundCutout": {
+      "outline": [
+        [
+          1.4583081831366151,
+          -4.39696909734385
+        ],
+        [
+          -4.604256231086167,
+          0.5107098574574511
+        ],
+        [
+          -1.4583081831366151,
+          4.39696909734385
+        ],
+        [
+          4.604256231086167,
+          -0.5107098574574511
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            1.4583081831366151,
+            -4.39696909734385
+          ],
+          [
+            -4.604256231086167,
+            0.5107098574574511
+          ],
+          [
+            -1.4583081831366151,
+            4.39696909734385
+          ],
+          [
+            4.604256231086167,
+            -0.5107098574574511
+          ]
+        ]
+      ],
+      "basis": "Only the reconstructed gabled outbuilding footprint; no native building ownership or broad yard cut."
+    },
+    "notes": "Two ordinary courtyard photos show the same independent low log outbuilding with steep weathered board gable roof, horizontal timber gable, small triangular vent and braced low door immediately beside the kitchen. The aerial roof northeast of the kitchen supplies approximate center[37.526115,54.076448] and southwest-facing gable axis. Assignment as the icehouse rather than woodshed remains an explicit estate-context inference: the photographs are grouped under kitchen and do not label this outbuilding individually. This is an original specific exterior interpretation, not a generic icehouse preset. Standard PMTiles/current OSM omit its footprint; own or replace no native building. Position about5m/facing20degrees are author estimates, not measured bounds. Photo-led7.8x5m plan,1.75m low log walls and4.1m steep ridge above a level entry floor. Door.95x1.55m and small triangular vent. Ground contact follows the outside front entry sample plus.08m, allowing native soil around the low sides rather than raising a large plinth. Exact dimensions, roof material/date, hidden rear and historic cold-chamber depth remain reconstructed; no underground room is authored. Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside southwest gable control[6,0] gives224.4860703641976m datum. No mapped building ownership. Preserve all243resident/295wider original buildings, courtyard paths, every DEM sample and pond geometry. Cut only the occupied reconstructed footprint; one small supported threshold meets unchanged soil. Coarse side-bank burial is approximate, with no custom terrain or broad yard cut.",
+    "bounds": [
+      37.5260245056266,
+      54.07638850135456,
+      37.52620549437339,
+      54.07650749864544
+    ]
+  }
+}

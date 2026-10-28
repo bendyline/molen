@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.frere_hall",
+  "kind": "static-structure",
+  "title": "Frere Hall (2009)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.frere_hall",
+        "output": "assets/places/tk/tkr/frere_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d4eff4a93240336870f505428a2c26db4faeeb6bbb80d3f21903066549b24381"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-building-history.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/kamranyosuf-original.jpg",
+      "reference-rights/author-original-native.json",
+      "native-map/whole-hall-six-components.json",
+      "native-map/wikidata-binding.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-22485-14047.png",
+      "terrain-sources/terrarium-15-22485-14048.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

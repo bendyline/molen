@@ -1,0 +1,285 @@
+{
+  "id": "rach_mieu_bridge",
+  "title": "Rạch Miễu Bridge",
+  "wikidataId": "Q2684873",
+  "referenceCoordinate": {
+    "longitude": 106.344,
+    "latitude": 10.337
+  },
+  "module": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/models/rach-mieu-model.mjs",
+  "generator": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/models/generate-rach-mieu.mjs",
+  "builder": "buildRachLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.77,
+      "metallic": 0.35
+    }
+  },
+  "sourceDefinitions": [
+    "models/rach-mieu-controls.json"
+  ],
+  "exportLabel": "Molen original Rạch Miễu Bridge",
+  "expectedDraftMasterHash": "sha256:fda7afa5fb9aad7693ccabdb20742e9a03bfe2f934b541655354b4ee544122fd",
+  "visualBrief": "Original narrow Mekong crossing: twin A-pylons with open portals and lower crossbeams, two stay planes, two-way road and raised edges/open rails, curved single-arm lamps, long concrete approach/southern box viaduct and supported curved island access ramp.",
+  "nativeAxes": "+X north-northwest toward Mỹ Tho; -X south-southeast toward Bến Tre; +Z east-northeast/downstream; -Z west-southwest/upstream. The curved island access ramp is on +Z.",
+  "sourceFacts": {
+    "identity": "Original Q2684873 reference, named Cầu Rạch Miễu / Rach Mieu Bridge QL60 PMTiles road records35184417572199,35184417572190 and35184937370694. Named Rach Mieu2/35185543080600 is a separate crossing about4km west and is excluded. No exact-QID map polygon claimed. Tile fragments retain approximately3.056km centerline including both bridge sections/approaches; this differs from the older combined2.868km fact.",
+    "widthMeters": 15,
+    "historicalCombinedLengthMeters": 2868,
+    "mappedRouteLengthMeters": 3056.3521913855907,
+    "orientation": "+X north-northwest toward Mỹ Tho; -X south-southeast toward Bến Tre; +Z east-northeast/downstream; -Z west-southwest/upstream. The curved island access ramp is on +Z."
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Rach_Mieu_Bridge_pylon.jpg",
+      "author": "Chris Yasick",
+      "observedDate": "2009-12-27",
+      "license": "CC-BY-2.0",
+      "use": "Inspected full original pylon: A-shaped legs meet beneath a small cap, large open portal, lower crossbeam below the deck, two cable planes, transverse underside beams and broad water-level footing. View-only; no pixels imported."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cầu_Rạch_Miễu_1.jpg",
+      "author": "Bùi Thụy Đào Nguyên",
+      "observedDate": "2013-01-20",
+      "license": "CC-BY-SA-3.0",
+      "use": "Inspected original Bến Tre/island approach: narrow two-way deck, raised motorcycle/walk edges, open horizontal rails, repeated supports and single curved-arm lamps on both sides. View-only; no pixels imported."
+    }
+  ],
+  "limitations": [
+    "Complete original main route across both channels and the intervening island, plus its curved island access-ramp mesh. The newer Rạch Miễu2 crossing is independent; no duplicate landmark is placed there. PMTiles endpoints retain3.056km of bridge/approach plan, rather than rescaling it to the older2.868km combined-length fact. Nominal bridge width15m comes from the existing source facts.",
+    "Main river section near local+625m, approximately504m cable-stayed extent,270m pylon spacing and106m tower tops are visual reconstruction controls, not mapped/surveyed tower points. Tower sections, two cable planes, cable counts, pier rhythm, southern box-girder haunches, underside beams, railings, lamps and footing outlines are simplified from ordinary photos.",
+    "Sea-level source origin0m. The deck rises to roughly41m in the northern main span, with separate lower southern box spans and island approach grade. Landings clear the highest sampled standard Mapzen ground across the road. Water remains the standard viewer result; no surveyed or legal clearance is claimed.",
+    "Island ramp follows the named mapped loop and includes its own supported deck and rails. Its approximate vertical profile connects island ground to the main deck. The underlying map road remains available as transport data; exact driving/navigation grades on this side ramp are not claimed. Independent island roads and buildings must remain.",
+    "Two existing shared256px graphs concrete_plain and metal_painted, three merged semantic groups near, metric UVs and linear vertex tints; no embedded/private images or copied photographs. Far LOD reduces piers/stays/rails, district simplifies southern haunches, near levels retain the ramp, A-portals, full support rhythm and distinctive lamp shapes. Physical phone/laptop timings remain unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-original-two-channel-crossing",
+      "position": [
+        0,
+        550,
+        2100
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 69
+    },
+    {
+      "name": "northern-a-pylon-river-span",
+      "position": [
+        1000,
+        165,
+        320
+      ],
+      "lookAt": [
+        625,
+        65,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "two-way-driver-through-a-portals",
+      "position": [
+        910,
+        42.5,
+        -3
+      ],
+      "lookAt": [
+        490,
+        80,
+        0
+      ],
+      "fov": 65
+    },
+    {
+      "name": "a-pylon-cap-stays-and-lower-crossbeam",
+      "position": [
+        800,
+        90,
+        80
+      ],
+      "lookAt": [
+        760,
+        77,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "curved-island-access-ramp",
+      "position": [
+        -150,
+        90,
+        300
+      ],
+      "lookAt": [
+        -260,
+        18,
+        50
+      ],
+      "fov": 65
+    },
+    {
+      "name": "southern-box-haunches-and-piers",
+      "position": [
+        -910,
+        16,
+        42
+      ],
+      "lookAt": [
+        -830,
+        20,
+        0
+      ],
+      "fov": 65
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/models/rach-mieu-model.mjs",
+    "export": "buildRachSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.35
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRachDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.35
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildRachStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.35
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "closeup": {
+        "export": "buildRachCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.35
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  }
+}

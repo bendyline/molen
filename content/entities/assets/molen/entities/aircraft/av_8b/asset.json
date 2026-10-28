@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:d301f5fce57e957bbf62def06d55b5a6a35e1f1cee971bfa040cb35cc01946b5",
-  "sourceHash": "sha256:d5d919b54db64d7ad1627211131661d67b87c9361a62086ac14f0f80134cbe93",
+  "hash": "sha256:6949e88eb5a17ed1769456510366926936a352e955247588c5bdc4e6d8d3854d",
+  "sourceHash": "sha256:218ee14c5048a59b0654831e04560a558d560e3081c22fe831cc1f04c14d799f",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 78508,
-    "vertices": 160929,
-    "meshes": 110,
-    "primitives": 110,
-    "materials": 22,
-    "textures": 0,
+    "triangles": 30231,
+    "vertices": 35567,
+    "meshes": 131,
+    "primitives": 131,
+    "materials": 34,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 3094976
+    "sizeBytes": 1333052
   },
   "nodes": [
     {
       "name": "AV8-airframe-AV8-gray",
-      "triangles": 3812
+      "triangles": 3080
     },
     {
       "name": "AV8-airframe-AV8-radome",
@@ -51,7 +51,7 @@
     },
     {
       "name": "AV8-airframe-AV8-seals",
-      "triangles": 5952
+      "triangles": 4800
     },
     {
       "name": "AV8-airframe-AV8-glass",
@@ -67,7 +67,7 @@
     },
     {
       "name": "AV8-airframe-AV8-tires",
-      "triangles": 35
+      "triangles": 34
     },
     {
       "name": "AV8-airframe-AV8-heat-shield",
@@ -347,15 +347,7 @@
     },
     {
       "name": "AV8-cabin-AV8-instrument-black",
-      "triangles": 1738
-    },
-    {
-      "name": "AV8-cabin-AV8-display",
-      "triangles": 2712
-    },
-    {
-      "name": "AV8-cabin-AV8-instrument-ink",
-      "triangles": 25416
+      "triangles": 1272
     },
     {
       "name": "AV8-cabin-detail-alloy",
@@ -370,16 +362,32 @@
       "triangles": 60
     },
     {
-      "name": "AV8-cabin-AV8-instrument-amber",
-      "triangles": 468
-    },
-    {
       "name": "AV8-cabin-AV8-alloy",
       "triangles": 276
     },
     {
       "name": "AV8-cabin-AV8-glass",
       "triangles": 4
+    },
+    {
+      "name": "AV8-cabin-AV8-display-display-print",
+      "triangles": 72
+    },
+    {
+      "name": "AV8-cabin-AV8-instrument-ink",
+      "triangles": 168
+    },
+    {
+      "name": "AV8-cabin-AV8-instrument-ink-panel-print",
+      "triangles": 442
+    },
+    {
+      "name": "AV8-cabin-AV8-instrument-ink-display-print",
+      "triangles": 96
+    },
+    {
+      "name": "AV8-cabin-AV8-instrument-amber-display-print",
+      "triangles": 26
     },
     {
       "name": "AV8-MPCD-attitude-fixed-AV8-instrument-black",
@@ -399,7 +407,11 @@
     },
     {
       "name": "AV8-MPCD-attitude-card-AV8-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "AV8-MPCD-attitude-card-AV8-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "AV8-MPCD-speed-0-0-AV8-display",
@@ -540,18 +552,6 @@
     {
       "name": "AV8-MPCD-altitude-1-6-AV8-display",
       "triangles": 12
-    },
-    {
-      "name": "AV8-MPCD-altitude-2-0-AV8-display",
-      "triangles": 12
-    },
-    {
-      "name": "AV8-MPCD-altitude-2-1-AV8-display",
-      "triangles": 12
-    },
-    {
-      "name": "AV8-MPCD-altitude-2-2-AV8-display",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -638,9 +638,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "AV8-panel",
+      "name": "AV8-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -654,25 +657,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "AV8-display",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "AV8-instrument-ink",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "detail-alloy",
-      "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -692,6 +682,61 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AV8-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AV8-display-display-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "AV8-instrument-ink",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AV8-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "AV8-instrument-ink-display-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "AV8-instrument-amber-display-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     },
     {
       "name": "AV8-instrument-amber",
@@ -718,6 +763,23 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "AV8-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AV8-display-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "AV8-upholstery",
       "slots": [
         "baseColor"
@@ -732,6 +794,64 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -740,28 +860,28 @@
         "node": "AV8-airframe-AV8-gray",
         "points": [
           -2.7212,
-          0.5383,
+          0.5399,
           -7.2771,
           -2.7212,
-          0.5383,
+          0.5399,
           7.2771,
           -2.7212,
-          3.5497,
+          3.5496,
           -7.2771,
           -2.7212,
-          3.5497,
+          3.5496,
           7.2771,
           2.7212,
-          0.5383,
+          0.5399,
           -7.2771,
           2.7212,
-          0.5383,
+          0.5399,
           7.2771,
           2.7212,
-          3.5497,
+          3.5496,
           -7.2771,
           2.7212,
-          3.5497,
+          3.5496,
           7.2771
         ]
       },
@@ -798,28 +918,28 @@
         "node": "AV8-airframe-AV8-seals",
         "points": [
           -4.6216,
-          0.6887,
+          0.6886,
           -5.7399,
           -4.6216,
-          0.6887,
+          0.6886,
           6.36,
           -4.6216,
-          2.8157,
+          2.8156,
           -5.7399,
           -4.6216,
-          2.8157,
+          2.8156,
           6.36,
           4.6216,
-          0.6887,
+          0.6886,
           -5.7399,
           4.6216,
-          0.6887,
+          0.6886,
           6.36,
           4.6216,
-          2.8157,
+          2.8156,
           -5.7399,
           4.6216,
-          2.8157,
+          2.8156,
           6.36
         ]
       },
@@ -2943,88 +3063,30 @@
       {
         "node": "AV8-cabin-AV8-instrument-black",
         "points": [
-          -0.5244,
+          -0.5243,
           1.9042,
           2.55,
-          -0.5244,
-          1.9042,
-          4.98,
-          -0.5244,
-          2.9232,
-          2.55,
-          -0.5244,
-          2.9232,
-          4.98,
-          0.4632,
-          1.9042,
-          2.55,
-          0.4632,
+          -0.5243,
           1.9042,
           4.98,
-          0.4632,
+          -0.5243,
           2.9232,
           2.55,
-          0.4632,
+          -0.5243,
+          2.9232,
+          4.98,
+          0.4636,
+          1.9042,
+          2.55,
+          0.4636,
+          1.9042,
+          4.98,
+          0.4636,
+          2.9232,
+          2.55,
+          0.4636,
           2.9232,
           4.98
-        ]
-      },
-      {
-        "node": "AV8-cabin-AV8-display",
-        "points": [
-          -0.2569,
-          2.4535,
-          4.7165,
-          -0.2569,
-          2.4535,
-          4.7175,
-          -0.2569,
-          2.7383,
-          4.7165,
-          -0.2569,
-          2.7383,
-          4.7175,
-          0.2795,
-          2.4535,
-          4.7165,
-          0.2795,
-          2.4535,
-          4.7175,
-          0.2795,
-          2.7383,
-          4.7165,
-          0.2795,
-          2.7383,
-          4.7175
-        ]
-      },
-      {
-        "node": "AV8-cabin-AV8-instrument-ink",
-        "points": [
-          -0.4558,
-          1.9413,
-          4.709,
-          -0.4558,
-          1.9413,
-          4.72,
-          -0.4558,
-          2.749,
-          4.709,
-          -0.4558,
-          2.749,
-          4.72,
-          0.4154,
-          1.9413,
-          4.709,
-          0.4154,
-          1.9413,
-          4.72,
-          0.4154,
-          2.749,
-          4.709,
-          0.4154,
-          2.749,
-          4.72
         ]
       },
       {
@@ -3115,35 +3177,6 @@
         ]
       },
       {
-        "node": "AV8-cabin-AV8-instrument-amber",
-        "points": [
-          -0.4552,
-          2.0664,
-          4.7165,
-          -0.4552,
-          2.0664,
-          4.7175,
-          -0.4552,
-          2.4655,
-          4.7165,
-          -0.4552,
-          2.4655,
-          4.7175,
-          0.0659,
-          2.0664,
-          4.7165,
-          0.0659,
-          2.0664,
-          4.7175,
-          0.0659,
-          2.4655,
-          4.7165,
-          0.0659,
-          2.4655,
-          4.7175
-        ]
-      },
-      {
         "node": "AV8-cabin-AV8-alloy",
         "points": [
           -0.1066,
@@ -3199,6 +3232,151 @@
           0.0987,
           2.9198,
           4.66
+        ]
+      },
+      {
+        "node": "AV8-cabin-AV8-display-display-print",
+        "points": [
+          -0.2573,
+          2.4513,
+          4.717,
+          -0.2573,
+          2.4513,
+          4.717,
+          -0.2573,
+          2.737,
+          4.717,
+          -0.2573,
+          2.737,
+          4.717,
+          0.2789,
+          2.4513,
+          4.717,
+          0.2789,
+          2.4513,
+          4.717,
+          0.2789,
+          2.737,
+          4.717,
+          0.2789,
+          2.737,
+          4.717
+        ]
+      },
+      {
+        "node": "AV8-cabin-AV8-instrument-ink",
+        "points": [
+          -0.2424,
+          1.9413,
+          4.709,
+          -0.2424,
+          1.9413,
+          4.72,
+          -0.2424,
+          2.6115,
+          4.709,
+          -0.2424,
+          2.6115,
+          4.72,
+          0.3947,
+          1.9413,
+          4.709,
+          0.3947,
+          1.9413,
+          4.72,
+          0.3947,
+          2.6115,
+          4.709,
+          0.3947,
+          2.6115,
+          4.72
+        ]
+      },
+      {
+        "node": "AV8-cabin-AV8-instrument-ink-panel-print",
+        "points": [
+          -0.4564,
+          1.9931,
+          4.717,
+          -0.4564,
+          1.9931,
+          4.717,
+          -0.4564,
+          2.7484,
+          4.717,
+          -0.4564,
+          2.7484,
+          4.717,
+          0.4149,
+          1.9931,
+          4.717,
+          0.4149,
+          1.9931,
+          4.717,
+          0.4149,
+          2.7484,
+          4.717,
+          0.4149,
+          2.7484,
+          4.717
+        ]
+      },
+      {
+        "node": "AV8-cabin-AV8-instrument-ink-display-print",
+        "points": [
+          -0.3663,
+          2.0657,
+          4.717,
+          -0.3663,
+          2.0657,
+          4.717,
+          -0.3663,
+          2.2422,
+          4.717,
+          -0.3663,
+          2.2422,
+          4.717,
+          -0.3133,
+          2.0657,
+          4.717,
+          -0.3133,
+          2.0657,
+          4.717,
+          -0.3133,
+          2.2422,
+          4.717,
+          -0.3133,
+          2.2422,
+          4.717
+        ]
+      },
+      {
+        "node": "AV8-cabin-AV8-instrument-amber-display-print",
+        "points": [
+          -0.456,
+          2.0649,
+          4.717,
+          -0.456,
+          2.0649,
+          4.717,
+          -0.456,
+          2.4643,
+          4.717,
+          -0.456,
+          2.4643,
+          4.717,
+          0.065,
+          2.0649,
+          4.717,
+          0.065,
+          2.0649,
+          4.717,
+          0.065,
+          2.4643,
+          4.717,
+          0.065,
+          2.4643,
+          4.717
         ]
       },
       {
@@ -3321,29 +3499,58 @@
         "node": "AV8-MPCD-attitude-card-AV8-instrument-ink",
         "points": [
           0.0954,
-          2.4941,
+          2.4963,
           4.7603,
           0.0954,
-          2.4941,
+          2.4963,
           4.7617,
           0.0954,
-          2.5779,
+          2.5745,
           4.7603,
           0.0954,
-          2.5779,
+          2.5745,
           4.7617,
           0.3746,
-          2.4941,
+          2.4963,
           4.7603,
           0.3746,
-          2.4941,
+          2.4963,
           4.7617,
           0.3746,
-          2.5779,
+          2.5745,
           4.7603,
           0.3746,
-          2.5779,
+          2.5745,
           4.7617
+        ]
+      },
+      {
+        "node": "AV8-MPCD-attitude-card-AV8-instrument-ink-dial-print",
+        "points": [
+          0.2582,
+          2.4937,
+          4.761,
+          0.2582,
+          2.4937,
+          4.761,
+          0.2582,
+          2.577,
+          4.761,
+          0.2582,
+          2.577,
+          4.761,
+          0.2678,
+          2.4937,
+          4.761,
+          0.2678,
+          2.4937,
+          4.761,
+          0.2678,
+          2.577,
+          4.761,
+          0.2678,
+          2.577,
+          4.761
         ]
       },
       {
@@ -4358,93 +4565,6 @@
           4.7156,
           0.2003,
           2.4652,
-          4.7164
-        ]
-      },
-      {
-        "node": "AV8-MPCD-altitude-2-0-AV8-display",
-        "points": [
-          0.191,
-          2.469,
-          4.7156,
-          0.191,
-          2.469,
-          4.7164,
-          0.191,
-          2.4697,
-          4.7156,
-          0.191,
-          2.4697,
-          4.7164,
-          0.1944,
-          2.469,
-          4.7156,
-          0.1944,
-          2.469,
-          4.7164,
-          0.1944,
-          2.4697,
-          4.7156,
-          0.1944,
-          2.4697,
-          4.7164
-        ]
-      },
-      {
-        "node": "AV8-MPCD-altitude-2-1-AV8-display",
-        "points": [
-          0.1903,
-          2.4654,
-          4.7156,
-          0.1903,
-          2.4654,
-          4.7164,
-          0.1903,
-          2.4688,
-          4.7156,
-          0.1903,
-          2.4688,
-          4.7164,
-          0.191,
-          2.4654,
-          4.7156,
-          0.191,
-          2.4654,
-          4.7164,
-          0.191,
-          2.4688,
-          4.7156,
-          0.191,
-          2.4688,
-          4.7164
-        ]
-      },
-      {
-        "node": "AV8-MPCD-altitude-2-2-AV8-display",
-        "points": [
-          0.1903,
-          2.4609,
-          4.7156,
-          0.1903,
-          2.4609,
-          4.7164,
-          0.1903,
-          2.4643,
-          4.7156,
-          0.1903,
-          2.4643,
-          4.7164,
-          0.191,
-          2.4609,
-          4.7156,
-          0.191,
-          2.4609,
-          4.7164,
-          0.191,
-          2.4643,
-          4.7156,
-          0.191,
-          2.4643,
           4.7164
         ]
       }

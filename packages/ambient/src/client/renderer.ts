@@ -5,6 +5,7 @@
  * are models or proxies. Everything lives under one group in absolute world coordinates.
  */
 
+import type { SceneAdmission } from '@bendyline/molen-client';
 import type { FigureData } from '@bendyline/molen-figures/client';
 import { componentHandle, Transform, type World } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
@@ -40,6 +41,8 @@ export interface AmbientRendererOptions {
   parent: THREE.Object3D;
   /** Shader warm-up for new objects (e.g. `renderer.prepareObject`). */
   prepare?: (object: THREE.Object3D) => Promise<void> | void;
+  /** Main-thread admission (e.g. `renderer.admission`) for building aircraft models. */
+  admission?: SceneAdmission;
   /** Full vehicle models for nearby cars (absent: proxies only). */
   vehicles?: AmbientVehicleModels;
   /** Aircraft models (absent: proxies only). */
@@ -88,10 +91,7 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
   const object = new THREE.Group();
   object.name = 'ambient';
   options.parent.add(object);
-  const prepareSync = (target: THREE.Object3D): void => {
-    void options.prepare?.(target);
-  };
-  const batches = new ProxyBatches(prepareSync);
+  const batches = new ProxyBatches(options.prepare);
   object.add(batches.group);
   const detail =
     options.vehicles !== undefined
@@ -111,11 +111,11 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
           ...(options.prepare !== undefined ? { prepare: options.prepare } : {}),
         })
       : undefined;
-  const figures = new AmbientFigures(prepareSync);
+  const figures = new AmbientFigures(options.prepare);
   object.add(figures.group);
   const aircraft =
     options.aircraft !== undefined
-      ? new AmbientAircraft(options.aircraft, object, options.prepare)
+      ? new AmbientAircraft(options.aircraft, object, options.prepare, options.admission)
       : undefined;
   let budget: AmbientRenderBudget = { ...DEFAULT_BUDGET, ...options.budget };
   const applyBudget = (): void => {

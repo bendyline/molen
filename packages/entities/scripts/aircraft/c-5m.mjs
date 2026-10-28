@@ -552,7 +552,7 @@ export function buildC5M(s) {
       seam,
       false,
     );
-    d.text('C-5M', [side * 3.56, 6.3, 18], 0.44, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
   }
   for (const index of [6, 8, 10, 12]) {
     const r = rings[index];
@@ -728,11 +728,11 @@ function cockpit(root, m) {
       ii.horizon('horizon', [0, 0.065, 0], 0.18, 0.18, { blankBackdrop: true });
       sheet(dd, rect(0, 0, w, h, -0.012), black, [0, 0, -1], [rect(0, 0.065, 0.18, 0.18, -0.012)]);
       ii.readout('speed', [0.115, 0.065, -0.02], 'knots', 3, 0.01, ink, false, true);
-      dd.text('TAS', [0.115, 0.119, -0.022], 0.006, Math.PI, ink);
+      dd.text('TAS', [0.115, 0.119, -0.022], 0.006, Math.PI, ink, 'display');
       ii.readout('altitude', [-0.115, 0.065, -0.02], 'feet', 5, 0.008, ink, true, true);
-      dd.text('GEO FT', [-0.115, 0.119, -0.022], 0.006, Math.PI, ink);
+      dd.text('GEO FT', [-0.115, 0.119, -0.022], 0.006, Math.PI, ink, 'display');
       rose(g, a.kind, 0, -0.09, 0.058, dd);
-      dd.text('TRUE', [0, -0.016, -0.022], 0.006, Math.PI, ink);
+      dd.text('TRUE', [0, -0.016, -0.022], 0.006, Math.PI, ink, 'display');
       ii.readout('vertical', [-0.1, -0.1, -0.02], 'verticalFpm', 4, 0.008, ink, true, true);
       dd.text('FPM', [-0.1, -0.15, -0.022], 0.006, Math.PI, ink);
       dd.finish();
@@ -743,8 +743,8 @@ function cockpit(root, m) {
         dd = detailKit(g, g.name);
       dd.box([w, h, 0.005], [0, 0, 0.012], black);
       rose(g, a.kind, 0, -0.015, 0.11, dd);
-      dd.text('TRUE HEADING', [0, 0.16, 0], 0.01, Math.PI, green);
-      dd.text('NAV --', [0, -0.17, 0], 0.012, Math.PI, green);
+      dd.text('TRUE HEADING', [0, 0.16, 0], 0.01, Math.PI, green, 'display');
+      dd.text('NAV --', [0, -0.17, 0], 0.012, Math.PI, green, 'display');
       dd.finish();
     } else {
       sheet(d, rect(x, y, w, h, z + 0.009), black, [0, 0, -1]);
@@ -878,7 +878,7 @@ function cockpit(root, m) {
   for (const side of [-1, 1]) {
     d.box([0.46, 0.19, 0.025], [side * 0.84, 8.58, 31.75], face);
     d.box([0.4, 0.055, 0.006], [side * 0.84, 8.62, 31.731], black);
-    d.text('COM --', [side * 0.84, 8.62, 31.725], 0.014, Math.PI, green);
+    d.text('COM --', [side * 0.84, 8.62, 31.725], 0.014, Math.PI, green, 'display');
     for (let j = 0; j < 4; j++) pt.knob(side * 0.84 - 0.15 + j * 0.1, 8.53, 31.72, 0.017);
   }
   for (let i = 0; i < 4; i++) {

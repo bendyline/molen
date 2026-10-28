@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import earcut from 'earcut';
 import { ShapeGeometry } from 'three';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
@@ -880,8 +880,7 @@ function plaques(out) {
         y + 0.437 + Math.sin(t * Math.PI * 2) * 0.052,
         z + 0.004,
       ]);
-      for (let j = 1; j < ring.length; j++)
-        beam(out, 'bronze', ring[j - 1], ring[j], 0.003, 0.003, [0.65, 0.54, 0.27]);
+      beamPath(out, 'bronze', ring, 0.003, 0.003, [0.65, 0.54, 0.27]);
       poly(
         out,
         'bronze',
@@ -920,8 +919,7 @@ function plaques(out) {
         z,
       ]),
     );
-    for (let i = 0; i < ring.length; i++)
-      beam(out, 'rawlimestone', ring[i], ring[(i + 1) % ring.length], 0.022, 0.015, trim);
+    beamPath(out, 'rawlimestone', ring.slice(0, ring.length), 0.022, 0.015, trim, true);
   }
 }
 export function buildTolbiac(out) {

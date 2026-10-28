@@ -1,0 +1,375 @@
+{
+  "planId": "sardar_sarovar_dam",
+  "id": "sardar_sarovar_dam",
+  "assetId": "molen.worldgen.structure.sardar_sarovar_dam",
+  "title": "Sardar Sarovar Dam",
+  "wikidataId": "Q2120392",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 73.7483105,
+    "latitude": 21.829816
+  },
+  "size": [
+    521.6453857421875,
+    82.97450256347656,
+    1156.3646240234375
+  ],
+  "actualBounds": {
+    "min": [
+      -260.82269287109375,
+      -80.82430267333984,
+      -578.1823120117188
+    ],
+    "max": [
+      260.82269287109375,
+      2.1501998901367188,
+      578.1823120117188
+    ]
+  },
+  "visualBrief": "Whole main Sardar Sarovar concrete gravity dam: actual34-control native physical perimeter and curved upstreamedge,23service plus7auxiliary radialgates, real openings between tallpiers, continuous9.14m nominalcrestbridge, slopingogee/chutes and intrinsicapron/dividers/abutments. Currentprimary121.92spillway/146.50top elevations; exactpublished2006ownPD concreteprofile photo first, currentinstalledgate/bridge profiles and bankchainages are bounded originalengineering estimates. Separateproject/powerhouses/reservoir/dykes/tempworks excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sardar_Sarovar_Dam_2006,_India.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sardar-sarovar-dam-wp",
+      "url": "https://qualla.com/sardar-sarovar-dam/"
+    }
+  ],
+  "referenceInputHash": "7b1469e038278e8a2eb7b214fcdd6803829a32c23580bc94b294d30a0194a11a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/te/teu/sardar_sarovar_dam/models/sardar-sarovar-dam-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/sardar-sarovar-dam-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "sardarSarovarDamSkyline",
+    "errorMeters": 4,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "gate": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.4
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.5,
+        "metallic": 0.8
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "sardarSarovarDamDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.4
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.5,
+            "metallic": 0.8
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "sardarSarovarDamStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.4
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.5,
+            "metallic": 0.8
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "sardarSarovarDamCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.4
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.5,
+            "metallic": 0.8
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_boardformed",
+    "metal_painted",
+    "metal_stainless"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "cameraYaw": -1.2,
+    "groundY": -81.0243,
+    "scale": 12
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent2048m129field16641samples/9rawTerrariumtiles/nativefixedanchor/heading0 frozen before once-only downstream floor-80.2243m (provider absolute65.28549039110847m). Primary structural elevations RL146.50top/121.92spillwaycrest/138.68servicegate/140.22auxgate are converted directly to modelY by subtracting original145.5098m datum; never added above floor. 163m is deepestfoundation height, buried foundation not invented. Gate/piers/bridge/ogee/rail profiles, bankchainages, finish and exact provider-to-IndianRL vertical tie are bounded original estimates. Coarse source field contains deep negative reservoir artifacts; retain them unchanged and contact unverified. No later field/floor/section tuning.",
+    "anchor": [
+      73.7483105,
+      21.829816
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        73.73960117503522,
+        21.82173119942508
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest originalproviderfield datum before floor/sections/geometry; no surveyed IndianRL-to-providervertical tie or foundation/streetcontact claim."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/116794508"
+    ],
+    "source": "https://www.openstreetmap.org/way/116794508",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:00606ac7398ecf8b4cff7afdbd301c5884625cec90c1a3f7c145a0e812dacad8",
+    "notes": "Whole main Sardar Sarovar concrete gravity dam/Q2120392/nativeway116794508 actual34-control physical envelope: curved main dam/abutment wings, all23service and7auxiliary radialgate bays/piers, intrinsic crest/hoist bridge/rails, ogee downstreamfaces/chutes/stillingbasin and divider/apron surfaces within whole native dam footprint. Excludes entire1450MWproject/river/reservoir, separate powerhouses/substations/canals/dykes, StatueofUnity/roads beyond dam, temporary2006works/cranes/cables/interiors. All native34XZ controls retained physically; not an extruded site/property or entire industrialproject relation6278573."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual current closed34-control named main-dam waterway envelope, fixednativebboxanchor/heading0 before independentfield/floor/sections/geometry. Upstreamboundary controls4through17 retained as structural plan; nativecartographic edge length1230.2938m differs from operator nominal1210m, not rescaled. Nativeheight138.68 is preserved unchanged; owner engineering elevations distinguish waterlevel from structuralheight.",
+    "All34 actual physical main-dam perimeter controls retained in intrinsic lowapron/foundation. Actualcurvedupstreamedge4..17 supplies mainbody/crestplan without rescaling1230.2938m to operatornominal1210m. Crosssection downstreamextent ray-intersects same physicalpolygon. Original bounded bankchainages310..471(aux7) and520..1044.3(service23) use primary nominal161m/524.3m banklengths, not surveyed baychainages. No extrusion of entireproject/reservoir or tall extrusion of whole irregular apron.",
+    "Original independent2048m129field16641samples/9rawTerrariumtiles/nativefixedanchor/heading0 frozen before once-only downstream floor-80.2243m (provider absolute65.28549039110847m). Primary structural elevations RL146.50top/121.92spillwaycrest/138.68servicegate/140.22auxgate are converted directly to modelY by subtracting original145.5098m datum; never added above floor. 163m is deepestfoundation height, buried foundation not invented. Gate/piers/bridge/ogee/rail profiles, bankchainages, finish and exact provider-to-IndianRL vertical tie are bounded original estimates. Coarse source field contains deep negative reservoir artifacts; retain them unchanged and contact unverified. No later field/floor/section tuning.",
+    "Only exact published AceFighter19 PD-self2006original used: concreteprofile evidence predates completed2017gates/bridge; no temporarycranes/cables/rebar or protectedmodernphoto pixels copied. Currentgateprofile/finish, bankchainages and finehidden details are original bounded engineering estimates, not survey or photogrammetry. All30closedgates retained at allfourLODs; fine ribs/rails simplified withdistance.",
+    "163m is greatestheight above deepestfoundation, not exposedheight aboveground. No fictitious underground chambers/powerplant or water surface. Intrinsic footprint is physicalmain dam, not entireprojectrelation.",
+    "Original independentfield contains severe negative reservoir artifacts, retainedunchanged; source has no surveyedprovider-to-localRL tie. Contactunverified/previewonly/replacementfalse. Flatground and syntheticneighbors in captures are reviewfixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-curved-dam-thirty-gates-and-intrinsic-stilling-apron",
+      "position": [
+        -1715.2330564330705,
+        619.7757,
+        427.7564284955476
+      ],
+      "lookAt": [
+        29.013160336247758,
+        -35.2243,
+        7.631286084480106
+      ]
+    },
+    {
+      "name": "whole-native-thirty-four-control-plan",
+      "position": [
+        0.0967105344541592,
+        2119.7757,
+        0.025437620281600355
+      ],
+      "lookAt": [
+        0,
+        -60.2243,
+        0
+      ]
+    },
+    {
+      "name": "service-radial-gates-piers-crestbridge-and-ogee",
+      "position": [
+        -39.25922603160777,
+        181.2145,
+        -139.66265490514547
+      ],
+      "lookAt": [
+        212.82013231009378,
+        64.71449999999999,
+        -108.48578690920911
+      ]
+    },
+    {
+      "name": "auxiliary-seven-bay-spillway-and-stilling-basin",
+      "position": [
+        -369.01312548015125,
+        241.2145,
+        65.34966687551167
+      ],
+      "lookAt": [
+        107.92447384876817,
+        49.71449999999999,
+        245.80296323861177
+      ]
+    },
+    {
+      "name": "upstream-gate-plates-and-complete-crest",
+      "position": [
+        1725.4318932377496,
+        569.7757,
+        -269.97181667350867
+      ],
+      "lookAt": [
+        82.45595161964744,
+        -25.2243,
+        1.0079893344484425
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 40678,
+    "vertices": 122034,
+    "materials": 5,
+    "bytes": 4993836,
+    "sha256": "sha256:4493f2c3a7277b3ddc0eec077fbd3149db48369782b68425d94f258f3a3b1117"
+  }
+}

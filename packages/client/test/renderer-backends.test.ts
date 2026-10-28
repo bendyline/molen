@@ -37,6 +37,9 @@ function fakeDriver() {
     getClearColor: vi.fn((color: THREE.Color) => color.set('#98bed5')),
     initTexture: vi.fn(),
     compileAsync: vi.fn(async (_object: THREE.Object3D) => {}),
+    // WebGL warm-ups compile synchronously, then poll the programs that compile built.
+    compile: vi.fn((_object: THREE.Object3D) => new Set<THREE.Material>()),
+    properties: { get: vi.fn((_material: THREE.Material) => ({})) },
     render: vi.fn(),
     info: { reset: vi.fn(), autoReset: true, render: { calls: 0, triangles: 0 } },
     autoClear: true,
@@ -235,6 +238,78 @@ describe('renderer backend selection', () => {
     texture.dispose();
   });
 
+  it('gathers warmup lights once per frame while retaining the real scene cache identity', async () => {
+    const renderer = await Renderer.create({ backend: 'webgpu', optimizeWebGpu: false });
+    const clutter = new THREE.Group();
+    renderer.scene.add(clutter);
+    const scan = vi.spyOn(clutter, 'traverseVisible');
+    const light = new THREE.PointLight();
+    renderer.scene.add(light);
+    const seen: THREE.Object3D[][] = [];
+    webgpu.compileAsync.mockImplementation(async (...args: unknown[]) => {
+      const scene = args[2] as THREE.Scene;
+      expect(scene).toBe(renderer.scene);
+      const objects: THREE.Object3D[] = [];
+      scene.traverseVisible((object) => objects.push(object));
+      seen.push(objects);
+    });
+    const root = new THREE.Group();
+    for (let i = 0; i < 4; i++)
+      root.add(new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()));
+    const ready = renderer.prepareObject(root);
+    while (renderer.admission.pending) renderer.admission.flush();
+    await ready;
+    expect(scan).toHaveBeenCalledOnce();
+    expect(seen).toHaveLength(4);
+    for (const lights of seen) {
+      expect(lights).toContain(light);
+      expect(lights).not.toContain(clutter);
+    }
+    expect(Object.hasOwn(renderer.scene, 'traverseVisible')).toBe(false);
+    light.visible = false;
+    renderer.render();
+    const next = renderer.prepareObject(
+      new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+    );
+    while (renderer.admission.pending) renderer.admission.flush();
+    await next;
+    expect(seen.at(-1)).not.toContain(light);
+    renderer.dispose();
+  });
+
+  it('waits for the programs a WebGL warm-up built, not the shared material current one', async () => {
+    const renderer = await Renderer.create({ backend: 'webgl', admission: { schedule: () => {} } });
+    const material = new THREE.MeshStandardMaterial();
+    const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(), material, 4);
+    mesh.setColorAt(0, new THREE.Color('red'));
+    let linked = false;
+    const instanced = { program: {}, isReady: () => linked };
+    const drawn = { program: {}, isReady: () => true };
+    const state: { currentProgram?: typeof drawn } = {};
+    webgl.properties.get.mockImplementation(() => state);
+    webgl.compile.mockImplementation(() => {
+      state.currentProgram = instanced;
+      // The next frame draws the material's other meshes with their ready program.
+      queueMicrotask(() => {
+        state.currentProgram = drawn;
+      });
+      return new Set<THREE.Material>([material]);
+    });
+    let done = false;
+    const ready = renderer.prepareObject(mesh).then(() => {
+      done = true;
+    });
+    while (renderer.admission.pending) renderer.admission.flush();
+    await new Promise((resolve) => setTimeout(resolve, 40));
+    expect(webgl.compile).toHaveBeenCalledOnce();
+    expect(done).toBe(false);
+    linked = true;
+    await ready;
+    mesh.geometry.dispose();
+    material.dispose();
+    renderer.dispose();
+  });
+
   it('batches buffer initialization and restores shared geometry ranges and the render target', async () => {
     const renderer = await Renderer.create({ backend: 'webgl', admission: { schedule: () => {} } });
     const root = new THREE.Group(),
@@ -373,6 +448,60 @@ describe('renderer backend selection', () => {
     for (const mesh of [near, far, nextFar]) mesh.dispose();
     geometry.dispose();
     material.dispose();
+  });
+
+  it('prepares a root marked background only in budget that normal work leaves', async () => {
+    const renderer = await Renderer.create({ admission: { schedule: () => {}, maxJobs: 1 } });
+    const parked = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
+    const tile = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial());
+    parked.userData.admissionPriority = 'background';
+    const compiled = (): THREE.Object3D[] => webgpu.compileAsync.mock.calls.map((args) => args[0]);
+    // Queued first, the parked model still waits for the work a view needs.
+    const parkedReady = renderer.prepareObject(parked);
+    const tileReady = renderer.prepareObject(tile);
+    renderer.admission.flush();
+    await tileReady;
+    expect(compiled()).toEqual([tile]);
+    renderer.admission.flush();
+    await parkedReady;
+    expect(compiled()).toEqual([tile, parked]);
+    renderer.dispose();
+    for (const mesh of [parked, tile]) {
+      mesh.geometry.dispose();
+      (mesh.material as THREE.Material).dispose();
+    }
+  });
+
+  it('publishes before hidden geometry-switch LODs compile and guards their later reveal', async () => {
+    const renderer = await Renderer.create({ admission: { schedule: () => {}, maxJobs: 1 } });
+    const mesh = new THREE.InstancedMesh(
+      new THREE.BoxGeometry(),
+      new THREE.MeshStandardMaterial(),
+      2,
+    );
+    const lod = new THREE.LOD().add(mesh);
+    lod.update = (camera) => {
+      mesh.visible = camera.position.z < -500;
+    };
+    const tile = new THREE.Group();
+    tile.position.z = -1000;
+    renderer.worldRoot.add(tile);
+    await renderer.prepareObject(lod, new AbortController().signal, tile);
+    expect(webgpu.compileAsync).not.toHaveBeenCalled();
+    expect(mesh.visible).toBe(false);
+    tile.add(lod);
+    renderer.camera.position.z = -1000;
+    lod.update(renderer.camera);
+    expect(mesh.visible).toBe(false);
+    renderer.admission.flush();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    lod.update(renderer.camera);
+    expect(mesh.visible).toBe(true);
+    expect(webgpu.compileAsync).toHaveBeenCalledOnce();
+    mesh.dispose();
+    mesh.geometry.dispose();
+    (mesh.material as THREE.Material).dispose();
+    renderer.dispose();
   });
 
   it('drops queued preparation once every caller waiting for it has aborted', async () => {
@@ -637,6 +766,9 @@ describe('renderer backend selection', () => {
         (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
       ) as THREE.DirectionalLight;
     expect(light.castShadow).toBe(false);
+    // Never on yet: 'off' leaves the renderer's shadow map off.
+    renderer.setShadowQuality('off');
+    expect(renderer.three.shadowMap.enabled).toBe(false);
     renderer.setShadowQuality('medium');
     expect(light.castShadow).toBe(true);
     expect(light.shadow.mapSize.x).toBe(2048);
@@ -648,9 +780,44 @@ describe('renderer backend selection', () => {
     expect(light.target.position.x).toBeCloseTo(100, 0);
     expect(light.shadow.camera.right).toBe(300);
     expect(() => renderer.setShadowFocus({ center: [0, 0, 0], radius: 0 })).toThrow(RangeError);
+    // Off again parks the map instead: every lit program keeps the shadow inputs it was built
+    // with, so a quality tier change does not rebuild them all in the next frame.
     renderer.setShadowQuality('off');
-    expect(light.castShadow).toBe(false);
-    expect(renderer.three.shadowMap.enabled).toBe(false);
+    expect(light.castShadow).toBe(true);
+    expect(light.shadow.autoUpdate).toBe(false);
+    expect(light.shadow.intensity).toBe(0);
+    expect(renderer.three.shadowMap.enabled).toBe(true);
+    renderer.setShadowQuality('high');
+    expect(light.shadow.autoUpdate).toBe(true);
+    expect(light.shadow.intensity).toBe(1);
+    expect(light.shadow.mapSize.x).toBe(4096);
+    renderer.dispose();
+  });
+
+  it('asks a parked shadow map to draw once for each kind of caster it has not drawn', () => {
+    const renderer = new Renderer();
+    applyEnvironment(renderer, { sun: { direction: [0, 1, 1] } });
+    const light = renderer.scene
+      .getObjectByName('$environment')
+      ?.children.find(
+        (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
+      ) as THREE.DirectionalLight;
+    renderer.setShadowQuality('medium');
+    renderer.setShadowQuality('off');
+    light.shadow.needsUpdate = false;
+    const material = new THREE.MeshStandardMaterial();
+    const caster = (mesh: THREE.Mesh): void => {
+      mesh.castShadow = true;
+      void renderer.prepareObject(mesh).catch(() => {});
+    };
+    caster(new THREE.Mesh(new THREE.BoxGeometry(), material));
+    // Its depth program is built by that one parked render.
+    expect(light.shadow.needsUpdate).toBe(true);
+    light.shadow.needsUpdate = false;
+    caster(new THREE.Mesh(new THREE.BoxGeometry(), material));
+    expect(light.shadow.needsUpdate).toBe(false);
+    caster(new THREE.InstancedMesh(new THREE.BoxGeometry(), material, 2));
+    expect(light.shadow.needsUpdate).toBe(true);
     renderer.dispose();
   });
 

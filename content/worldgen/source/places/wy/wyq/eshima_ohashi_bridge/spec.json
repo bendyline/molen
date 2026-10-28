@@ -84,7 +84,8 @@
     "publishedMaximumHeightMeters": 44.7,
     "shimaneGrade": 0.061,
     "tottoriGrade": 0.051,
-    "evidence": "SMC PC Design News66 measured elevation/plan/sections and MLIT main bridge diagram; 2025 port-authority inspection general elevation supplies all approach spans. Official tourism photographs establish the finished road exterior."
+    "evidence": "SMC PC Design News66 measured elevation/plan/sections and MLIT main bridge diagram; 2025 port-authority inspection general elevation supplies all approach spans. Official tourism photographs establish the finished road exterior.",
+    "originalMasterHash": "sha256:156cac9257f96ab37ea7fcf7e731b0e886f04604bcde80dd814f869a6c24dffa"
   },
   "reconstruction": {
     "mappedCenterlineLengthMeters": 1444.934,
@@ -235,7 +236,117 @@
     "heading": 0.360355642256,
     "elevationMode": "sea-level",
     "elevationMeters": 0,
-    "notes": "Exact bridge way1081414506/Q11550847 and road86979974 fix the full curved centerline. Native +X goes from Shimane6.1% grade to Tottori5.1% grade. Y0 is provisional local Nakaumi water surface at0m; road crest44.7m. Actual tide, precise datum and adjacent embankment heights remain host/site dependent."
+    "notes": "Exact bridge way1081414506/Q11550847 and road86979974 fix the full curved centerline. Native +X goes from Shimane6.1% grade to Tottori5.1% grade. Y0 is provisional local Nakaumi water surface at0m; road crest44.7m. Actual tide, precise datum and adjacent embankment heights remain host/site dependent.",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected ordinary tourism photographs and standard PMTiles/Mapzen; provisional sea-plane zero and source road grades remain visualization approximations.",
+    "replaceRoads": {
+      "length": 1446.2,
+      "width": 11.3,
+      "outline": [
+        [
+          -716.0850213161052,
+          41.655353222938054
+        ],
+        [
+          -519.6570213161052,
+          23.358353222938057
+        ],
+        [
+          -366.75442521280286,
+          10.828873401086616
+        ],
+        [
+          257.67949710648605,
+          -50.4160191675332
+        ],
+        [
+          294.3977323593559,
+          -52.19443603949386
+        ],
+        [
+          320.3742266675246,
+          -51.1845489017075
+        ],
+        [
+          342.18444078635923,
+          -48.00875560607578
+        ],
+        [
+          375.49344078635903,
+          -41.02475560607583
+        ],
+        [
+          410.16186135388875,
+          -32.54509833951907
+        ],
+        [
+          715.6850933865577,
+          40.517942350492994
+        ],
+        [
+          713.0569066134423,
+          51.50805764950699
+        ],
+        [
+          407.4761386461108,
+          -21.56890166048103
+        ],
+        [
+          373.174559213641,
+          -29.965244393924166
+        ],
+        [
+          339.8655592136412,
+          -36.94924439392412
+        ],
+        [
+          319.92577333247533,
+          -39.8934510982925
+        ],
+        [
+          294.9422676406441,
+          -40.907563960506145
+        ],
+        [
+          258.78250289351394,
+          -39.1699808324668
+        ],
+        [
+          -365.83157478719716,
+          22.091126598913384
+        ],
+        [
+          -518.6089786838949,
+          34.60964677706195
+        ],
+        [
+          -715.0369786838949,
+          52.906646777061944
+        ]
+      ],
+      "deckHeights": [
+        5.2,
+        7.7
+      ],
+      "deckEndpoints": [
+        [
+          -715.561,
+          47.281
+        ],
+        [
+          714.371,
+          46.01299999999999
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "bounds": [
+      133.1920865,
+      35.5154468,
+      133.2092897,
+      35.5220703
+    ]
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -261,13 +372,231 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Steep unequal grades, curved Tottori approach, thin deck over deep tapered rigid-frame box girders and full-height oval main piers.",
+    "exclusions": "Interiors, underwater foundations, traffic, temporary equipment, certified tidal/survey data and roads beyond the crossing."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.japan.house"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/models/eshima-runtime.mjs",
+    "export": "buildEshimaSkyline",
+    "errorMeters": 10,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEshimaDistrict",
+        "errorMeters": 10,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "screen": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "name": "blue-wind-screen",
+            "roughness": 0.17,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.32
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildEshimaStreet",
+        "errorMeters": 2,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "screen": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "name": "blue-wind-screen",
+            "roughness": 0.17,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.32
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEshimaCloseup",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "screen": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "name": "blue-wind-screen",
+            "roughness": 0.17,
+            "metallic": 0,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.32
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-eshima-skyline",
+      "position": [
+        950,
+        330,
+        1100
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-eshima-district",
+      "position": [
+        950,
+        330,
+        1100
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-eshima-street",
+      "position": [
+        950,
+        330,
+        1100
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-eshima-closeup",
+      "position": [
+        950,
+        330,
+        1100
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
     "Original detailed exterior reconstruction, not fabrication geometry. Measured span and section dimensions constrain the structural silhouette; crest transition and small fittings are reconstructed.",
     "The bridge is modeled in its operating form. Temporary work platforms, construction machinery, buried foundation caissons, underwater piers and adjoining roads beyond the1446.2m bridge are omitted.",
     "Nakaumi water elevation is provisionally0m in the viewer; source tourist height is treated as road crest and is not a surveyed absolute vertical datum.",
-    "Maintenance bay side/length, lamps, drain hardware, rail infill spacing, asphalt color and minor weathering follow available photographs rather than a current inspection inventory."
+    "Maintenance bay side/length, lamps, drain hardware, rail infill spacing, asphalt color and minor weathering follow available photographs rather than a current inspection inventory.",
+    "Detailed source master is retained byte-exact; all four runtime representations are authored independently on the source alignment and height profile.",
+    "Skyline retains every approach pier with coarse cross-sections. District uses representative lamps and a continuous open top rail. Near levels retain both footways, source lamp rhythm, transparent bay screens and supporting ribs.",
+    "Street posts are spaced 12m; closeup 2m. Fine 0.2m infill, form ties, drain gratings, navigation lettering and comb teeth stay in the detailed master.",
+    "Standard PMTiles/Mapzen and ordinary photos guide placement; end grades and lake water zero remain approximate. Physical device timings remain pending."
   ],
   "qaCameras": [
     {

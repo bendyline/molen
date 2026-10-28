@@ -1,13 +1,29 @@
+import { idleNavigationInput, NavigationInputSource } from '@bendyline/molen-client/navigation';
 import { EarthVehicles } from '@bendyline/molen-earth/client';
-import { AircraftState } from '@bendyline/molen-kernel/aircraft';
+import { AircraftInput, AircraftState } from '@bendyline/molen-kernel/aircraft';
 import { Transform } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { ENTITY_TYPES } from './test-content';
 import { aircraftBlocks, WorldAircraft } from './world-aircraft';
 
+function controls(keys: string[] = []) {
+  const input = idleNavigationInput();
+  input.move.forward = Number(keys.includes('KeyW')) - Number(keys.includes('KeyS'));
+  input.pilot = {
+    throttle: Number(keys.includes('ShiftLeft')),
+    yaw: 0,
+    engine: 0,
+    gear: 0,
+    flaps: 0,
+    recover: 0,
+  };
+  return input;
+}
+
 async function setup(
   loadModel: (id: string) => Promise<THREE.Object3D> = async () => new THREE.Group(),
+  terrainHeight: () => number = () => 0,
 ) {
   const root = new THREE.Group();
   let flight: WorldAircraft;
@@ -21,7 +37,7 @@ async function setup(
   flight = new WorldAircraft(
     vehicles.world,
     root,
-    () => 0,
+    terrainHeight,
     [10000, 50, 20000],
     loadModel,
     ENTITY_TYPES,
@@ -31,6 +47,192 @@ async function setup(
   return { root, vehicles, flight };
 }
 describe('world aircraft', () => {
+  it('settles apron aircraft onto refined ground and hides other cockpits until approached', async () => {
+    let height = 12;
+    const type = 'molen.entities.aircraft.cessna_172s';
+    const data = ENTITY_TYPES.component<import('@bendyline/molen-schema').AircraftData>(
+      type,
+      'aircraft',
+    );
+    const cabinName = data.spec.visual.interior?.nodes?.[0];
+    if (!cabinName) throw new Error('Missing cockpit');
+    const cabin = new THREE.Group();
+    cabin.name = cabinName;
+    const { flight, vehicles } = await setup(
+      async (id) => {
+        const model = new THREE.Group();
+        if (id === type) model.add(cabin);
+        return model;
+      },
+      () => height,
+    );
+    await flight.spawnApron('apron:a', type, 0, 0, 0);
+    height = 18;
+    flight.render([100, 20, 0]);
+    expect(flight.apronPose('apron:a')?.position[1]).toBe(18);
+    expect(cabin.visible).toBe(false);
+    flight.render([0, 20, 0]);
+    expect(cabin.visible).toBe(true);
+    vehicles.world.patch('aircraft-apron:a', AircraftState, { grounded: false });
+    height = 30;
+    flight.render([0, 20, 0]);
+    expect(flight.apronPose('apron:a')?.position[1]).toBe(18);
+    flight.dispose();
+    vehicles.dispose();
+  });
+  it('boards and flies one of two apron aircraft of the same type without moving the other', async () => {
+    const { flight, vehicles, root } = await setup();
+    const type = 'molen.entities.aircraft.cessna_172s';
+    await flight.spawnApron('apron:a', type, 0, 0, Math.PI);
+    await flight.spawnApron('apron:b', type, 100, 0, Math.PI);
+    const mountable = ENTITY_TYPES.components(type).mountable as {
+      entries: [number, number, number][];
+    };
+    const entry = mountable.entries[0] as [number, number, number];
+    const pavement = new THREE.Mesh(
+      new THREE.BoxGeometry(80, 0.12, 80),
+      new THREE.MeshBasicMaterial(),
+    );
+    pavement.position.y = 0.06;
+    root.add(pavement);
+    expect(flight.enter([entry[0], 1.7, entry[2]])).toBe(true);
+    expect(flight.mountedKind).toBe('apron:a');
+    expect(flight.label('apron:a')).toContain('172');
+    flight.key('KeyI');
+    for (let n = 0; n < 3600 && (flight.state?.grounded ?? true); n++) {
+      const input = controls([
+        'ShiftLeft',
+        ...((flight.state?.airspeed ?? 0) > 32 ? ['KeyS'] : []),
+      ]);
+      flight.input(1 / 60, input);
+      vehicles.world.step();
+    }
+    expect(flight.apronPose('apron:a')?.position[2]).toBeGreaterThan(100);
+    expect(flight.state?.grounded, JSON.stringify(flight.state)).toBe(false);
+    expect(flight.apronPose('apron:b')?.position).toEqual([100, 0, 0]);
+    flight.removeApron('apron:a');
+    expect(flight.apronPose('apron:a')).toBeDefined();
+    flight.dispose();
+    vehicles.dispose();
+    pavement.geometry.dispose();
+    (pavement.material as THREE.Material).dispose();
+  });
+  it('uses contact normals at the practice runway instead of freezing on a wing strike', async () => {
+    const { root, vehicles, flight } = await setup();
+    flight.enter(flight.visitPosition('p51d'));
+    vehicles.world.patch('aircraft-p51d', Transform, { pos: [0, 30, 0], rot: [0, 0, 0, 1] });
+    vehicles.world.patch('aircraft-p51d', AircraftState, {
+      grounded: false,
+      velocity: [0, 0, 70],
+      gearPosition: 1,
+    });
+    const wall = new THREE.Mesh(new THREE.BoxGeometry(3, 8, 0.05), new THREE.MeshBasicMaterial());
+    wall.position.set(4, 32, 5);
+    root.add(wall);
+    root.updateMatrixWorld(true);
+    for (let i = 0; i < 12; i++) {
+      flight.input(1 / 60, controls());
+      vehicles.world.step();
+    }
+    expect(flight.state?.damage?.['left-wing']?.detached).toBe(true);
+    expect(flight.state?.velocity[2]).toBeGreaterThan(30);
+    expect(flight.status()).toContain('left wing');
+    flight.dispose();
+    vehicles.dispose();
+    wall.geometry.dispose();
+    (wall.material as THREE.Material).dispose();
+  });
+  it('preserves cockpit controls while keyboard or joystick axes override their movement', async () => {
+    const { vehicles, flight } = await setup();
+    flight.enter(flight.visitPosition('p51d'));
+    const session = flight.cockpitSession();
+    expect(session).toBeDefined();
+    session?.change({
+      control: { id: 'stick', label: 'Stick', action: 'stick', nodes: [] },
+      value: 0.4,
+      pitch: 0.3,
+    });
+    session?.change({
+      control: { id: 'brake', label: 'Brake', action: 'brake', nodes: [] },
+      value: 1,
+    });
+    flight.input(1 / 60, controls());
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      pitch: 0.3,
+      roll: 0.4,
+      brake: true,
+    });
+    const axes = controls();
+    axes.move = { forward: -0.7, right: -0.2, up: 0 };
+    flight.input(1 / 60, axes);
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      pitch: 0.7,
+      roll: -0.2,
+      brake: true,
+    });
+    session?.release();
+    session?.change({
+      control: { id: 'brake', label: 'Brake', action: 'brake', nodes: [] },
+      value: 0,
+    });
+    flight.input(1 / 60, controls());
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      pitch: 0,
+      roll: 0,
+      brake: false,
+    });
+    flight.dispose();
+    vehicles.dispose();
+  });
+  it('uses raw joystick axes for proportional flight and an absolute throttle lever', async () => {
+    const { vehicles, flight } = await setup();
+    flight.enter(flight.visitPosition('p51d'));
+    const pad = {
+      id: 'Flight stick',
+      index: 0,
+      connected: true,
+      mapping: '',
+      axes: [0.44, 0.66, -0.44, -1],
+      buttons: [],
+    };
+    const source = new NavigationInputSource({
+      element: { addEventListener() {}, removeEventListener() {} },
+      profile: 'pilot',
+      getGamepads: () => (pad.connected ? [pad] : []),
+    });
+    const profile = source.map.getProfile();
+    profile.axes = [
+      { axis: 0, action: 'nav-right' },
+      { axis: 1, action: 'nav-back' },
+      { axis: 2, action: 'nav-yaw-right' },
+      { axis: 3, action: 'nav-power', mode: 'unit', invert: true },
+    ];
+    source.map.defineProfile('pilot', profile);
+    flight.input(1 / 60, source.read(1 / 60));
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      roll: (0.44 - 0.12) / 0.88,
+      pitch: (0.66 - 0.12) / 0.88,
+      yaw: -(0.44 - 0.12) / 0.88,
+      power: 1,
+    });
+    pad.axes[3] = 1;
+    flight.input(1 / 60, source.read(1 / 60));
+    expect(flight.power).toBe(0);
+    pad.axes[3] = 0;
+    flight.input(1 / 60, source.read(1 / 60));
+    expect(flight.power).toBe(0.5);
+    pad.connected = false;
+    flight.input(1 / 60, source.read(1 / 60));
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)).toMatchObject({
+      roll: 0,
+      pitch: 0,
+      yaw: 0,
+      power: 0.5,
+    });
+    source.dispose();
+    flight.dispose();
+    vehicles.dispose();
+  });
   it('loads the selected catalog aircraft only, evicts the previous addition and boards it', async () => {
     const loads: string[] = [];
     const { vehicles, flight } = await setup(async (id) => {
@@ -50,7 +252,7 @@ describe('world aircraft', () => {
     expect(flight.enter(flight.visitPosition('av_8b'))).toBe(true);
     expect(flight.mountedKind).toBe('av_8b');
     flight.key('KeyJ');
-    flight.input(1 / 60, new Set());
+    flight.input(1 / 60, controls());
     vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
     expect(flight.state?.thrustVectorPosition).toBeGreaterThan(0);
     flight.dispose();
@@ -96,7 +298,7 @@ describe('world aircraft', () => {
     for (let i = 0; i < 3600 && (flight.state?.grounded ?? true); i++) {
       const keys = new Set(['ShiftLeft']);
       if ((flight.state?.airspeed ?? 0) >= 65) keys.add('KeyS');
-      flight.input(1 / 60, keys);
+      flight.input(1 / 60, controls([...keys]));
       vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
     }
     expect(flight.state?.crashed).toBe(false);
@@ -117,7 +319,7 @@ describe('world aircraft', () => {
     flight.key('KeyI');
     const run = (keys: string[], count: number): void => {
       for (let i = 0; i < count; i++) {
-        flight.input(1 / 60, new Set(keys));
+        flight.input(1 / 60, controls(keys));
         vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
         flight.render();
       }

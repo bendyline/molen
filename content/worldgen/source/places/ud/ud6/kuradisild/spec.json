@@ -1,0 +1,352 @@
+{
+  "planId": "kuradisild",
+  "id": "kuradisild",
+  "assetId": "molen.worldgen.structure.kuradisild",
+  "title": "Kuradisild / Devil’s Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q12367783",
+  "referenceCoordinate": {
+    "longitude": 26.71588056,
+    "latitude": 58.37894444
+  },
+  "visualBrief": "Tartu Kuradisild: one open road span beneath paired concrete arch ribs and slender open-spandrel posts; solid repeated rectangular parapet panels, oval Alexander portrait with raised concrete halo, opposite 1613/1913 wreath, Latin arch caption, shallow deck and under-deck utility lamps.",
+  "size": [
+    26.363465309143066,
+    7.410000145435333,
+    4.699999809265137
+  ],
+  "actualBounds": {
+    "min": [
+      -13.587462425231934,
+      -0.30000001192092896,
+      -2.3499999046325684
+    ],
+    "max": [
+      12.776002883911133,
+      7.110000133514404,
+      2.3499999046325684
+    ]
+  },
+  "nativeAxes": "+X east-southeast along the bridge; -X west-northwest along the bridge; +Z south-southwest/uphill on Lossi toward Toome Hill; -Z north-northeast/downhill on Lossi toward central Tartu.",
+  "sourceFacts": {
+    "identity": "Named Kuradisild bridge footway35184425968185 and Devil’s Bridge POI17592516087228 in standard PMTiles; original Q12367783 reference. Anchor is refined to the independent Lossi road crossing; mapped footway endpoints retain unequal bank approaches. No exact-QID footprint claimed.",
+    "mappedPlan": {
+      "length": 24.163465027475112,
+      "width": 4
+    },
+    "orientation": "+X east-southeast along the bridge; -X west-northwest along the bridge; +Z south-southwest/uphill on Lossi toward Toome Hill; -Z north-northeast/downhill on Lossi toward central Tartu.",
+    "heightBasis": "Standard PMTiles/Mapzen only; approximate visualization grade and photo-led sections.",
+    "underpass": {
+      "name": "Lossi",
+      "roadId": 35185117302570,
+      "independent": true
+    }
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Tartu_asv2022-04_img55_Kuradisild.jpg",
+    "https://commons.wikimedia.org/wiki/File:Old_bridge_in_Tartu.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      26.715899572445203,
+      58.37894049389129
+    ],
+    "heading": -0.4926250291239677,
+    "elevationMode": "sea-level",
+    "elevationMeters": 71.1,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 24.163465027475112,
+      "width": 4.7,
+      "outline": [
+        [
+          -12.487462442700435,
+          -2.35
+        ],
+        [
+          11.676002584774675,
+          -2.35
+        ],
+        [
+          11.676002584774675,
+          2.35
+        ],
+        [
+          -12.487462442700435,
+          2.35
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -12.487462442700435,
+          0
+        ],
+        [
+          11.676002584774675,
+          0
+        ]
+      ],
+      "deckHeights": [
+        5.768,
+        5.768
+      ],
+      "includeConnectedApproaches": true
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5828e3ec1fd66c0cd622749d85bdc85e5bd681abf88c7961e29c5473d28ac9c6",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "source": "https://commons.wikimedia.org/wiki/File:Tartu_asv2022-04_img55_Kuradisild.jpg",
+    "wikidataId": "Q12367783"
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Source-generation baseline. Current visual and geographic decisions are recorded in qa.json when present.",
+  "geometrySource": "Original deterministic exterior recipe; no downloaded meshes or photograph pixels.",
+  "materialMethod": "Existing shared material graphs, metric UV repeats and linear vertex tints. No private or embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/ud6/kuradisild/models/kuradisild-model.mjs",
+    "export": "buildKuradisildSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "plain": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.75,
+        "metallic": 0.75
+      }
+    },
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKuradisildDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plain": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.75
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildKuradisildStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plain": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.75
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "closeup": {
+        "export": "buildKuradisildCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plain": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.75
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  },
+  "limitations": [
+    "Scoped bridge exterior: one clear road opening, paired visible outer arch ribs and open spandrels. Named bridge footway retains 24.163465m transport extent and unequal banks; 4.0m width, rib/column sections and height are photo/standard-terrain visual approximations. No exact-QID footprint or surveyed section claimed.",
+    "Source datum 71.1m and floor 76.85m fit the coarse native Lossi road approximately. Mapzen smooths the road cut and hill; upper footpaths are deliberately graded with bounded supports. Exact slopes, historic stairs, retaining walls and park trees remain outside the asset.",
+    "The Alexander portrait is an original shallow geometric abstraction, not a precise likeness. The opposite dated wreath, rectangular panel frames and Latin arch caption retain distinctive shapes; exact leaf carving, casting and inscriptions are simplified.",
+    "Existing shared 256px concrete_plain and metal_bronze_cast graphs provide metric repeated surfaces and linear tints. No embedded/private textures or copied photo pixels. Distant levels simplify curves, posts, panel frames, portrait and date lettering. Physical-device timings remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-portrait-side",
+      "position": [
+        -11,
+        10,
+        28
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-date-side",
+      "position": [
+        11,
+        10,
+        -27
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "walk-and-paneled-parapets",
+      "position": [
+        -11,
+        8,
+        1
+      ],
+      "lookAt": [
+        7,
+        6.1,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "open-arch-and-spandrels",
+      "position": [
+        0,
+        1.9,
+        17
+      ],
+      "lookAt": [
+        0,
+        3.6,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "portrait-and-arch-caption",
+      "position": [
+        -2,
+        7.3,
+        10
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        1.8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "date-wreath-and-panels",
+      "position": [
+        2,
+        7.3,
+        -10
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        -1.8
+      ],
+      "fov": 50
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7784,
+    "vertices": 23352,
+    "materials": 3,
+    "bytes": 936560,
+    "sha256": "sha256:7e00a554fb21dcfbcc66a906177a4799e7282dc4dbfd39901304774d4fc86d43"
+  }
+}

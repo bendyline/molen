@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.larnach_castle",
+  "kind": "static-structure",
+  "title": "Larnach Castle",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.larnach_castle",
+        "output": "assets/places/pz/pzc/larnach_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c1ec03f02ce85171d350023366a4b53636ce0744b57f56f3f91da5e5bd88052b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-larnach-castle",
+        "path": "models/generate-larnach-castle.mjs"
+      },
+      {
+        "id": "larnach-castle-model",
+        "path": "models/larnach-castle-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/whole-castle-ballroom-and-connected-extension.json",
+      "dimension-evidence.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-31914-21092.png",
+      "terrain-sources/terrarium-15-31915-21092.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -3,7 +3,7 @@ import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { capePlan } from './cape-town-plan.mjs';
 import { transformed } from './lighthouse-models.mjs';
 import { chair, face } from './stadium-models.mjs';
-import { box, tube } from './structure-mesh.mjs';
+import { box, tube, tubePath } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2,
   white = [0.88, 0.91, 0.9],
@@ -54,7 +54,7 @@ const outer = (a) => ray(capePlan.outer, a),
   inner = (a) => ray(capePlan.inner, a),
   crown = (a) => 44 - 6 * Math.cos(2 * a);
 function path(out, ps, r = 0.025, col = white, slot = 'metal', sides = 8) {
-  for (let i = 1; i < ps.length; i++) tube(out, slot, ps[i - 1], ps[i], r, col, sides);
+  tubePath(out, slot, ps, r, col, sides);
 }
 function rail(out, ps) {
   for (const y of [0.52, 1.06])

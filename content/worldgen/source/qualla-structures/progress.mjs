@@ -9,7 +9,10 @@ import { modelInputHash } from '../../../../packages/worldgen/scripts/structure-
 import { hasUsableStructurePlacement } from '../../../../packages/worldgen-earth/scripts/historical-placement.mjs';
 import { reviewedMediumFi } from '../../../../packages/worldgen-earth/scripts/medium-fi-readiness.mjs';
 import { readPlacementSources } from '../../../../packages/worldgen-earth/scripts/placement-sources.mjs';
-import { reviewedSourceMapFrame } from '../../../../packages/worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import {
+  nativePointSourcePath,
+  reviewedSourceMapFrame,
+} from '../../../../packages/worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 import { inspectImageryInventory } from './imagery-inventory.mjs';
 import {
   inspectImageryPolicy,
@@ -203,8 +206,11 @@ export async function inspectLocalModel(
     sharedDoc?.placementHash === placementHash &&
     sharedPass &&
     qa.sharedSurfaceReview.inspectedFrames.includes('shots/shared/placement.png');
+  const frameBytes = bytes(path.join(dir, 'map-frame.json')),
+    nativePointFile = nativePointSourcePath(frameBytes);
   const frame = reviewedSourceMapFrame({
-    frameBytes: bytes(path.join(dir, 'map-frame.json')),
+    frameBytes,
+    nativeNodeBytes: nativePointFile ? bytes(path.join(dir, nativePointFile)) : undefined,
     sourceManifest: manifest,
     spec,
     placement,

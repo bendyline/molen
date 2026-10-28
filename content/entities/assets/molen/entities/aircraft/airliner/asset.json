@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:fa8cac60076dfccfbc29bc6ada713dc7f0709fed55df8d68b8ed05ae709e51f4",
-  "sourceHash": "sha256:a9305236c07a08a776f3fbe81874e376f2dc1855e8ffb4ad70af923f4fcb5562",
+  "hash": "sha256:706085985184e5feeaf71f74606f36246d47ece918a650cec1889ec9cd57e31f",
+  "sourceHash": "sha256:ca8fb51a545bed873c181ee667071d95081a867a905c45a3f8b305626cdbfd28",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 33490,
-    "vertices": 42394,
-    "meshes": 30,
-    "primitives": 30,
-    "materials": 14,
-    "textures": 0,
+    "triangles": 32432,
+    "vertices": 39761,
+    "meshes": 57,
+    "primitives": 57,
+    "materials": 24,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 914168
+    "sizeBytes": 1356840
   },
   "nodes": [
     {
@@ -451,31 +451,71 @@
     },
     {
       "name": "close-detail-detail-lettering",
-      "triangles": 5124
+      "triangles": 1200
     },
     {
       "name": "close-detail-detail-trim",
-      "triangles": 9324
+      "triangles": 7488
     },
     {
       "name": "close-detail-detail-alloy",
-      "triangles": 1968
+      "triangles": 528
     },
     {
       "name": "close-detail-detail-green",
-      "triangles": 36
+      "triangles": 12
     },
     {
       "name": "close-detail-detail-red",
-      "triangles": 48
+      "triangles": 12
     },
     {
-      "name": "close-detail-instrument-display",
+      "name": "airliner-cabin-detail-detail-trim",
+      "triangles": 1836
+    },
+    {
+      "name": "airliner-cabin-detail-instrument-display",
       "triangles": 156
     },
     {
-      "name": "close-detail-detail-amber",
+      "name": "airliner-cabin-detail-detail-green",
       "triangles": 24
+    },
+    {
+      "name": "airliner-cabin-detail-detail-amber",
+      "triangles": 24
+    },
+    {
+      "name": "airliner-cabin-detail-detail-alloy",
+      "triangles": 1392
+    },
+    {
+      "name": "airliner-cabin-detail-detail-red",
+      "triangles": 36
+    },
+    {
+      "name": "airliner-cabin-detail-detail-lettering",
+      "triangles": 1884
+    },
+    {
+      "name": "airliner-cabin-detail-detail-lettering-display-print",
+      "triangles": 38
+    },
+    {
+      "name": "airliner-throttle--1-detail-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "airliner-throttle--1-detail-lettering",
+      "triangles": 12
+    },
+    {
+      "name": "airliner-throttle-1-detail-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "airliner-throttle-1-detail-lettering",
+      "triangles": 12
     },
     {
       "name": "yoke-trim-detail-trim",
@@ -484,9 +524,37 @@
     {
       "name": "airframe-fasteners-detail-alloy",
       "triangles": 16002
+    },
+    {
+      "name": "flight-control-mounts-flight-control-panel",
+      "triangles": 60
+    },
+    {
+      "name": "flight-control-mounts-flight-control-alloy",
+      "triangles": 176
+    },
+    {
+      "name": "flight-control-mounts-flight-control-grip",
+      "triangles": 84
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend-panel-print",
+      "triangles": 68
+    },
+    {
+      "name": "flight-power-common-moving-flight-control-alloy",
+      "triangles": 24
+    },
+    {
+      "name": "flight-power-common-moving-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-power-common-moving-flight-control-legend",
+      "triangles": 12
     }
   ],
-  "nodesTruncated": false,
+  "nodesTruncated": true,
   "animations": [],
   "materials": [
     {
@@ -586,6 +654,17 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "detail-trim-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "instrument-display",
       "slots": [
         "baseColor"
@@ -595,6 +674,95 @@
     },
     {
       "name": "detail-amber",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -3565,150 +3733,179 @@
       {
         "node": "close-detail-detail-lettering",
         "points": [
-          -1.9552,
-          3.7652,
+          -1.9555,
+          3.7675,
           6.5075,
-          -1.9552,
-          3.7652,
-          16.0235,
-          -1.9552,
-          4.5842,
+          -1.9555,
+          3.7675,
+          8.4925,
+          -1.9555,
+          4.2525,
           6.5075,
-          -1.9552,
-          4.5842,
-          16.0235,
-          1.9552,
-          3.7652,
+          -1.9555,
+          4.2525,
+          8.4925,
+          1.9555,
+          3.7675,
           6.5075,
-          1.9552,
-          3.7652,
-          16.0235,
-          1.9552,
-          4.5842,
+          1.9555,
+          3.7675,
+          8.4925,
+          1.9555,
+          4.2525,
           6.5075,
-          1.9552,
-          4.5842,
-          16.0235
+          1.9555,
+          4.2525,
+          8.4925
         ]
       },
       {
         "node": "close-detail-detail-trim",
         "points": [
-          -1.9965,
-          2.8926,
+          -1.9967,
+          2.8924,
           -11.458,
-          -1.9965,
-          2.8926,
-          16.38,
-          -1.9965,
-          5.1219,
+          -1.9967,
+          2.8924,
+          11.958,
+          -1.9967,
+          4.8076,
           -11.458,
-          -1.9965,
-          5.1219,
-          16.38,
-          1.9965,
-          2.8926,
+          -1.9967,
+          4.8076,
+          11.958,
+          1.9967,
+          2.8924,
           -11.458,
-          1.9965,
-          2.8926,
-          16.38,
-          1.9965,
-          5.1219,
+          1.9967,
+          2.8924,
+          11.958,
+          1.9967,
+          4.8076,
           -11.458,
-          1.9965,
-          5.1219,
-          16.38
+          1.9967,
+          4.8076,
+          11.958
         ]
       },
       {
         "node": "close-detail-detail-alloy",
         "points": [
-          -6.8857,
-          1.1655,
+          -6.8852,
+          1.1652,
           -11.095,
-          -6.8857,
-          1.1655,
-          16.0265,
-          -6.8857,
-          5.0755,
+          -6.8852,
+          1.1652,
+          11.595,
+          -6.8852,
+          3.8298,
           -11.095,
-          -6.8857,
-          5.0755,
-          16.0265,
-          6.8857,
-          1.1655,
+          -6.8852,
+          3.8298,
+          11.595,
+          6.8852,
+          1.1652,
           -11.095,
-          6.8857,
-          1.1655,
-          16.0265,
-          6.8857,
-          5.0755,
+          6.8852,
+          1.1652,
+          11.595,
+          6.8852,
+          3.8298,
           -11.095,
-          6.8857,
-          5.0755,
-          16.0265
+          6.8852,
+          3.8298,
+          11.595
         ]
       },
       {
         "node": "close-detail-detail-green",
         "points": [
-          -17.4398,
-          2.8805,
+          -17.44,
+          2.88,
           -4.4,
-          -17.4398,
-          2.8805,
-          15.9685,
-          -17.4398,
-          4.36,
+          -17.44,
+          2.88,
+          -4.2,
+          -17.44,
+          2.96,
           -4.4,
-          -17.4398,
-          4.36,
-          15.9685,
-          0.9296,
-          2.8805,
+          -17.44,
+          2.96,
+          -4.2,
+          -17.36,
+          2.88,
           -4.4,
-          0.9296,
-          2.8805,
-          15.9685,
-          0.9296,
-          4.36,
+          -17.36,
+          2.88,
+          -4.2,
+          -17.36,
+          2.96,
           -4.4,
-          0.9296,
-          4.36,
-          15.9685
+          -17.36,
+          2.96,
+          -4.2
         ]
       },
       {
         "node": "close-detail-detail-red",
         "points": [
-          -0.225,
+          17.36,
           2.88,
           -4.4,
-          -0.225,
+          17.36,
           2.88,
-          15.5575,
-          -0.225,
-          5.08,
+          -4.2,
+          17.36,
+          2.96,
           -4.4,
-          -0.225,
-          5.08,
-          15.5575,
+          17.36,
+          2.96,
+          -4.2,
           17.44,
           2.88,
           -4.4,
           17.44,
           2.88,
-          15.5575,
+          -4.2,
           17.44,
-          5.08,
+          2.96,
           -4.4,
           17.44,
-          5.08,
-          15.5575
+          2.96,
+          -4.2
         ]
       },
       {
-        "node": "close-detail-instrument-display",
+        "node": "airliner-cabin-detail-detail-trim",
+        "points": [
+          -1.05,
+          3.575,
+          14.84,
+          -1.05,
+          3.575,
+          16.38,
+          -1.05,
+          5.1225,
+          14.84,
+          -1.05,
+          5.1225,
+          16.38,
+          1.05,
+          3.575,
+          14.84,
+          1.05,
+          3.575,
+          16.38,
+          1.05,
+          5.1225,
+          14.84,
+          1.05,
+          5.1225,
+          16.38
+        ]
+      },
+      {
+        "node": "airliner-cabin-detail-instrument-display",
         "points": [
           -0.9725,
           4.0099,
@@ -3737,7 +3934,36 @@
         ]
       },
       {
-        "node": "close-detail-detail-amber",
+        "node": "airliner-cabin-detail-detail-green",
+        "points": [
+          -0.9298,
+          4.29,
+          15.9675,
+          -0.9298,
+          4.29,
+          15.9685,
+          -0.9298,
+          4.3605,
+          15.9675,
+          -0.9298,
+          4.3605,
+          15.9685,
+          0.9298,
+          4.29,
+          15.9675,
+          0.9298,
+          4.29,
+          15.9685,
+          0.9298,
+          4.3605,
+          15.9675,
+          0.9298,
+          4.3605,
+          15.9685
+        ]
+      },
+      {
+        "node": "airliner-cabin-detail-detail-amber",
         "points": [
           -0.9298,
           4.2195,
@@ -3763,6 +3989,238 @@
           0.9298,
           4.29,
           15.9685
+        ]
+      },
+      {
+        "node": "airliner-cabin-detail-detail-alloy",
+        "points": [
+          -0.712,
+          3.9674,
+          15.045,
+          -0.712,
+          3.9674,
+          16.0265,
+          -0.712,
+          5.076,
+          15.045,
+          -0.712,
+          5.076,
+          16.0265,
+          0.972,
+          3.9674,
+          15.045,
+          0.972,
+          3.9674,
+          16.0265,
+          0.972,
+          5.076,
+          15.045,
+          0.972,
+          5.076,
+          16.0265
+        ]
+      },
+      {
+        "node": "airliner-cabin-detail-detail-red",
+        "points": [
+          -0.225,
+          5.05,
+          15.4825,
+          -0.225,
+          5.05,
+          15.5575,
+          -0.225,
+          5.08,
+          15.4825,
+          -0.225,
+          5.08,
+          15.5575,
+          0.225,
+          5.05,
+          15.4825,
+          0.225,
+          5.05,
+          15.5575,
+          0.225,
+          5.08,
+          15.4825,
+          0.225,
+          5.08,
+          15.5575
+        ]
+      },
+      {
+        "node": "airliner-cabin-detail-detail-lettering",
+        "points": [
+          -0.9155,
+          3.765,
+          14.9955,
+          -0.9155,
+          3.765,
+          16.0235,
+          -0.9155,
+          4.537,
+          14.9955,
+          -0.9155,
+          4.537,
+          16.0235,
+          0.9613,
+          3.765,
+          14.9955,
+          0.9613,
+          3.765,
+          16.0235,
+          0.9613,
+          4.537,
+          14.9955,
+          0.9613,
+          4.537,
+          16.0235
+        ]
+      },
+      {
+        "node": "airliner-cabin-detail-detail-lettering-display-print",
+        "points": [
+          -0.7163,
+          4.567,
+          16.015,
+          -0.7163,
+          4.567,
+          16.015,
+          -0.7163,
+          4.583,
+          16.015,
+          -0.7163,
+          4.583,
+          16.015,
+          0.6912,
+          4.567,
+          16.015,
+          0.6912,
+          4.567,
+          16.015,
+          0.6912,
+          4.583,
+          16.015,
+          0.6912,
+          4.583,
+          16.015
+        ]
+      },
+      {
+        "node": "airliner-throttle--1-detail-alloy",
+        "points": [
+          -0.0754,
+          3.9773,
+          15.2283,
+          -0.0754,
+          3.9773,
+          15.3017,
+          -0.0754,
+          4.2027,
+          15.2283,
+          -0.0754,
+          4.2027,
+          15.3017,
+          -0.0546,
+          3.9773,
+          15.2283,
+          -0.0546,
+          3.9773,
+          15.3017,
+          -0.0546,
+          4.2027,
+          15.2283,
+          -0.0546,
+          4.2027,
+          15.3017
+        ]
+      },
+      {
+        "node": "airliner-throttle--1-detail-lettering",
+        "points": [
+          -0.0975,
+          4.1875,
+          15.2665,
+          -0.0975,
+          4.1875,
+          15.3135,
+          -0.0975,
+          4.2225,
+          15.2665,
+          -0.0975,
+          4.2225,
+          15.3135,
+          -0.0325,
+          4.1875,
+          15.2665,
+          -0.0325,
+          4.1875,
+          15.3135,
+          -0.0325,
+          4.2225,
+          15.2665,
+          -0.0325,
+          4.2225,
+          15.3135
+        ]
+      },
+      {
+        "node": "airliner-throttle-1-detail-alloy",
+        "points": [
+          0.0546,
+          3.9773,
+          15.2283,
+          0.0546,
+          3.9773,
+          15.3017,
+          0.0546,
+          4.2027,
+          15.2283,
+          0.0546,
+          4.2027,
+          15.3017,
+          0.0754,
+          3.9773,
+          15.2283,
+          0.0754,
+          3.9773,
+          15.3017,
+          0.0754,
+          4.2027,
+          15.2283,
+          0.0754,
+          4.2027,
+          15.3017
+        ]
+      },
+      {
+        "node": "airliner-throttle-1-detail-lettering",
+        "points": [
+          0.0325,
+          4.1875,
+          15.2665,
+          0.0325,
+          4.1875,
+          15.3135,
+          0.0325,
+          4.2225,
+          15.2665,
+          0.0325,
+          4.2225,
+          15.3135,
+          0.0975,
+          4.1875,
+          15.2665,
+          0.0975,
+          4.1875,
+          15.3135,
+          0.0975,
+          4.2225,
+          15.2665,
+          0.0975,
+          4.2225,
+          15.3135
         ]
       },
       {
@@ -3821,6 +4279,209 @@
           1.9507,
           5.7508,
           13.5035
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-panel",
+        "points": [
+          -0.331,
+          3.93,
+          15.9025,
+          -0.331,
+          3.93,
+          16.009,
+          -0.331,
+          4.21,
+          15.9025,
+          -0.331,
+          4.21,
+          16.009,
+          0.331,
+          3.93,
+          15.9025,
+          0.331,
+          3.93,
+          16.009,
+          0.331,
+          4.21,
+          15.9025,
+          0.331,
+          4.21,
+          16.009
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-alloy",
+        "points": [
+          -0.3225,
+          3.5953,
+          15.8773,
+          -0.3225,
+          3.5953,
+          15.9727,
+          -0.3225,
+          4.0395,
+          15.8773,
+          -0.3225,
+          4.0395,
+          15.9727,
+          0.6578,
+          3.5953,
+          15.8773,
+          0.6578,
+          3.5953,
+          15.9727,
+          0.6578,
+          4.0395,
+          15.8773,
+          0.6578,
+          4.0395,
+          15.9727
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-grip",
+        "points": [
+          -0.2805,
+          3.9565,
+          15.9,
+          -0.2805,
+          3.9565,
+          15.902,
+          -0.2805,
+          4.0055,
+          15.9,
+          -0.2805,
+          4.0055,
+          15.902,
+          0.2805,
+          3.9565,
+          15.9,
+          0.2805,
+          3.9565,
+          15.902,
+          0.2805,
+          4.0055,
+          15.9,
+          0.2805,
+          4.0055,
+          15.902
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend-panel-print",
+        "points": [
+          -0.2912,
+          4.0174,
+          15.9,
+          -0.2912,
+          4.0174,
+          15.9,
+          -0.2912,
+          4.0267,
+          15.9,
+          -0.2912,
+          4.0267,
+          15.9,
+          0.2972,
+          4.0174,
+          15.9,
+          0.2972,
+          4.0174,
+          15.9,
+          0.2972,
+          4.0267,
+          15.9,
+          0.2972,
+          4.0267,
+          15.9
+        ]
+      },
+      {
+        "node": "flight-power-common-moving-flight-control-alloy",
+        "points": [
+          0.2717,
+          3.977,
+          15.869,
+          0.2717,
+          3.977,
+          15.897,
+          0.2717,
+          3.987,
+          15.869,
+          0.2717,
+          3.987,
+          15.897,
+          0.2803,
+          3.977,
+          15.869,
+          0.2803,
+          3.977,
+          15.897,
+          0.2803,
+          3.987,
+          15.869,
+          0.2803,
+          3.987,
+          15.897
+        ]
+      },
+      {
+        "node": "flight-power-common-moving-flight-control-grip",
+        "points": [
+          0.2585,
+          3.973,
+          15.8525,
+          0.2585,
+          3.973,
+          15.8795,
+          0.2585,
+          3.991,
+          15.8525,
+          0.2585,
+          3.991,
+          15.8795,
+          0.2935,
+          3.973,
+          15.8525,
+          0.2935,
+          3.973,
+          15.8795,
+          0.2935,
+          3.991,
+          15.8525,
+          0.2935,
+          3.991,
+          15.8795
+        ]
+      },
+      {
+        "node": "flight-power-common-moving-flight-control-legend",
+        "points": [
+          0.267,
+          3.981,
+          15.8515,
+          0.267,
+          3.981,
+          15.8525,
+          0.267,
+          3.983,
+          15.8515,
+          0.267,
+          3.983,
+          15.8525,
+          0.285,
+          3.981,
+          15.8515,
+          0.285,
+          3.981,
+          15.8525,
+          0.285,
+          3.983,
+          15.8515,
+          0.285,
+          3.983,
+          15.8525
         ]
       }
     ]

@@ -1,0 +1,346 @@
+{
+  "planId": "cairn_gorm_weather_station",
+  "id": "cairn_gorm_weather_station",
+  "assetId": "molen.worldgen.structure.cairn_gorm_weather_station",
+  "title": "Cairn Gorm summit weather station",
+  "category": "infrastructure",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -3.6439614,
+    "latitude": 57.1163542
+  },
+  "size": [
+    4.939048409461975,
+    7.279999829828739,
+    6.160313278436661
+  ],
+  "actualBounds": {
+    "min": [
+      -1.5729261636734009,
+      -0.10000000149011612,
+      -0.3440000116825104
+    ],
+    "max": [
+      3.366122245788574,
+      7.179999828338623,
+      5.81631326675415
+    ]
+  },
+  "visualBrief": "Whole summit weather-station structure: low battered granite radio hut/revetment with flat ribbed roof and actual recessed closed access door; rooftop heated AWS cylinder/open gantry and adjoining open triangular weather/radio mast, ladder, crossbracing, sensor booms, antenna loops and cable runs. Native named mast point anchors an explicitly estimated hut plan and bearing. Natural mountain/rockfield, separate summit cairn, distant funicular/ski buildings, signs/QR/plaque copies and interiors excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cairn_Gorm_weather_station_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cairn_Gorm_weather_station_1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cairn-gorm-wp",
+      "url": "https://qualla.com/cairn-gorm/"
+    }
+  ],
+  "referenceInputHash": "82feea7357d4febe78ecc031d14183c4bf4bf25e78aba03e095c53cc4ed76c76",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gf/gfj/cairn_gorm_weather_station/models/cairn-gorm-weather-station-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/cairn-gorm-weather-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "cairnGormSkyline",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.87,
+        "metallic": 0.12
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.35
+      },
+      "cable": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cairnGormDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.35
+          },
+          "cable": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cairnGormStreet",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.35
+          },
+          "cable": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cairnGormCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.35
+          },
+          "cable": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "0.4",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floor/section/geometry choices follow immutable independent400m129x12916641sample original source field/one rawtile freeze. Floor0 uses the fixed SW local[-8,8] provider-relative datum, not a surveyed threshold. Native mast point remains[0,0]; hut center estimated[.9,2.8]m, north access/longside orientation inferred from the two cleared camera directions. No surveyed footprint/dimensions/bearing exist. Original approx4.6x5.7m stone revetment,1.86m flat roof,7.18m complete mast/sensor and heated cylinder/gantry sections are original photo-based estimates. Closed recessed door sits behind sloping stone wall; exact depth varies with wall batter. Stone census/profile/hidden rear wall/booms/sensors/currentfinish are bounded estimates. Both adjoining station systems/shared hut retained; no natural mountain/rockfield/distant ski-railway model. No fitting/flattening/reacquisition or subsequent model raising; geographic contact remains preview/unresolved.",
+    "anchor": [
+      -3.6439614,
+      57.1163542
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -3.6440937637714996,
+        57.11628233510601
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW local[-8,8] before any floors/sections/geometry; provider-relative unsurveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/35925144"
+    ],
+    "source": "https://www.openstreetmap.org/node/35925144",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fffc4e7598533d69a7e73ff83ced842522db02f4229078dd8f8b1dcd6c606cad",
+    "notes": "Whole Cairn Gorm summit weather-station structure shown in the story hero: stone-clad mountain-rescue radio hut/revetment with flat ribbed roof and actual recessed closed access door, rooftop Heriot-Watt heated instrument cylinder on gantry, adjacent open Met Office lattice mast/ladder/weather sensors/radio aerials/cables. Native named tower point35925144 anchors the mast; no surveyed hut footprint exists. Natural mountain, separate summit cairn, distant funicular railway/restaurants/other ski buildings, paths, arbitrary ground rocks, plaques/QR text and interiors excluded. Both adjoining weather-station systems and their shared host hut are retained."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native named tower node35925144 at-3.6439614,57.1163542 anchors the weather-station mast, separately from naturalpeak35925143/Q1025927 and distant funicular. No native building outline, height, surveyed hut plan or facade azimuth. Native +Xeast/+Zsouth/heading0 preserved; point marker never presented as a measured footprint. Relative hut/mast orientation interpreted from the two cleared camera directions, proportions/hidden elevations estimated only after independent field freeze.",
+    "All floor/section/geometry choices follow immutable independent400m129x12916641sample original source field/one rawtile freeze. Floor0 uses the fixed SW local[-8,8] provider-relative datum, not a surveyed threshold. Native mast point remains[0,0]; hut center estimated[.9,2.8]m, north access/longside orientation inferred from the two cleared camera directions. No surveyed footprint/dimensions/bearing exist. Original approx4.6x5.7m stone revetment,1.86m flat roof,7.18m complete mast/sensor and heated cylinder/gantry sections are original photo-based estimates. Closed recessed door sits behind sloping stone wall; exact depth varies with wall batter. Stone census/profile/hidden rear wall/booms/sensors/currentfinish are bounded estimates. Both adjoining station systems/shared hut retained; no natural mountain/rockfield/distant ski-railway model. No fitting/flattening/reacquisition or subsequent model raising; geographic contact remains preview/unresolved.",
+    "One exact published2021 Mx.GrangerCC0/own hero and one independently verified same-creator/same-day CC0/own second exterior establish both adjoining weather systems and shared host hut. No protected Geograph/operator/research photographs or drawings adopted; primary text used only for station/host identity. No copied pixels/generated photographic textures, plaque/sign/QR copies, questionable sources or article/media/rightsmetadata repairs. Stone census and hidden walls/precise plans/member proportions/sensors/currentfinish are bounded original estimates.",
+    "Independent400m129x12916641sample original field/one rawtile frozen before floors/sections/geometry. Fixed1234.7204m SW provider-relative datum is distinct from published summit altitude; neither certifies this unsurveyed doorway/foundation. Source ground never fit/flattened/reacquired and model never raised to hide defects. All placement stays preview/replaceFootprint=false; exact grade/contact unresolved. Flat stage and neighborhood are synthetic review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-stone-hut-both-weather-systems-and-mast",
+      "position": [
+        -10,
+        6.5,
+        13
+      ],
+      "lookAt": [
+        0.6,
+        3,
+        1.9
+      ]
+    },
+    {
+      "name": "north-access-real-closed-door-recess",
+      "position": [
+        2.4,
+        1.8,
+        -4.2
+      ],
+      "lookAt": [
+        0.9,
+        0.82,
+        0.35
+      ]
+    },
+    {
+      "name": "roof-gantry-and-heated-instrument-cylinder",
+      "position": [
+        4.8,
+        4.4,
+        7
+      ],
+      "lookAt": [
+        0.9,
+        2.5,
+        2.8
+      ]
+    },
+    {
+      "name": "open-lattice-ladder-and-radio-booms",
+      "position": [
+        3.2,
+        3.8,
+        -4
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "upper-wind-sensors-and-antenna-loops",
+      "position": [
+        3.2,
+        6.25,
+        -4
+      ],
+      "lookAt": [
+        0,
+        5.6,
+        0
+      ]
+    },
+    {
+      "name": "native-point-and-estimated-whole-structure-plan",
+      "position": [
+        7,
+        15,
+        9
+      ],
+      "lookAt": [
+        0.7,
+        1.7,
+        1.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15248,
+    "vertices": 45744,
+    "materials": 4,
+    "bytes": 1832580,
+    "sha256": "sha256:425f15937b6d00d31bad8e47eaf600de1ee2409acc4b161fc42fcba9d1a02600"
+  }
+}

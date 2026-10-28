@@ -208,6 +208,10 @@ export class Renderer {
   private warmupMaterial: THREE.MeshBasicMaterial | undefined;
   private readonly warmedPrograms = new WeakMap<THREE.Material, Map<string, Promise<unknown>>>();
   private readonly warmedMeshes = new WeakMap<THREE.Mesh, Promise<unknown>>();
+  /** Per material, one prepared mesh of each kind it draws; see `prepareMaterialChange`. */
+  private readonly materialMeshes = new WeakMap<THREE.Material, Map<string, WeakRef<THREE.Mesh>>>();
+  /** The scene's visible lights for warm-up builds, gathered once between rendered frames. */
+  private preparationLights: THREE.Object3D[] | undefined;
   /**
    * Per mesh, builds of the materials it swaps to itself (`null`: prepared with the mesh); see
    * `prepareVariants`.
@@ -257,8 +261,12 @@ export class Renderer {
   private occlusion: { camera: THREE.Camera; pass: WebGpuAmbientOcclusion } | undefined;
   private occlusionLoad: Promise<void> | undefined;
   private occlusionSuspended = false;
-  /** Sun lights whose WebGPU shadow map exists and must not be torn down; see setShadowQuality. */
-  private readonly webgpuShadowLights = new WeakSet<THREE.DirectionalLight>();
+  /** Sun lights that have cast shadows: 'off' parks their maps; see setShadowQuality. */
+  private readonly shadowLights = new WeakSet<THREE.DirectionalLight>();
+  /** Kinds of shadow caster prepared so far (WebGL); see noteShadowCaster. */
+  private readonly casterVariants = new Set<string>();
+  /** Whether the shadow pass has drawn shadowCasterWarmup's casters (WebGL). */
+  private shadowCastersWarmed = false;
   // WebGPU's getClearColor expects an alpha field; both backends accept this RGB scratch color.
   private readonly reflectionClearColor = Object.assign(new THREE.Color(), { a: 1 });
   private starCatalog: readonly SkyStar[] | undefined;
@@ -291,11 +299,17 @@ export class Renderer {
       focus === undefined ? undefined : { center: [...focus.center], radius: focus.radius };
   }
 
-  /** Turn sun shadows on at a map resolution, or off, without rebuilding the environment. */
+  /**
+   * Turn sun shadows on at a map resolution, or off, without rebuilding the environment. Once a
+   * light has cast shadows, 'off' stops redrawing its map and fades it out, so every lit shader
+   * keeps the shadow inputs it was built with: a host that turns shadows on once before its first
+   * frame can then switch them freely (adaptive quality tiers do) without rebuilding a shader.
+   */
   setShadowQuality(quality: ShadowQuality): void {
     const enabled = quality !== 'off';
+    let parked = false;
     for (const light of this.sunLights()) {
-      if (this.backend === 'webgpu' && this.webgpuShadowLights.has(light)) {
+      if (this.backend === 'webgpu' && this.shadowLights.has(light)) {
         // three r184's WebGPU shadow node does not survive being switched off and on, resized or
         // retyped: render objects cached for the earlier state keep sampling its disposed depth
         // texture, every submit fails and the frame stops updating. Once a map exists it keeps
@@ -304,8 +318,22 @@ export class Renderer {
         light.shadow.intensity = enabled ? 1 : 0;
         continue;
       }
-      light.castShadow = enabled;
-      if (!enabled) continue;
+      if (!enabled) {
+        if (this.shadowLights.has(light)) {
+          // WebGL builds each lit program for the shadows it receives. Clearing castShadow or the
+          // renderer's shadow map rebuilt every program in view at once, synchronously, in the
+          // next frame: seconds of frozen flight when adaptive quality crossed the shadowless
+          // tiers. The parked map keeps the programs; its lookups cost little next to drawing it.
+          light.shadow.autoUpdate = false;
+          light.shadow.intensity = 0;
+          parked = true;
+        } else light.castShadow = false;
+        continue;
+      }
+      if (!light.castShadow) this.shadowCastersWarmed = false;
+      light.castShadow = true;
+      light.shadow.autoUpdate = true;
+      light.shadow.intensity = 1;
       const size = SHADOW_MAP_SIZE[quality];
       if (light.shadow.mapSize.x !== size) {
         light.shadow.mapSize.set(size, size);
@@ -316,9 +344,10 @@ export class Renderer {
           light.shadow.map = null;
         }
       }
-      if (this.backend === 'webgpu') this.webgpuShadowLights.add(light);
+      this.shadowLights.add(light);
     }
     if (this.backend === 'webgpu' && this.three.shadowMap.enabled) return;
+    if (parked && this.three.shadowMap.enabled) return;
     this.three.shadowMap.enabled = enabled;
     this.three.shadowMap.type = quality === 'low' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
   }
@@ -729,6 +758,9 @@ export class Renderer {
    * other levels afterwards in the background, so publication waits only for what can be seen.
    * Queued work is cancelled once every caller waiting for it has aborted, and background work
    * once its mesh or geometry is disposed.
+   *
+   * `root.userData.admissionPriority` admits the root's own work as `'urgent'` (ahead of normal
+   * work) or `'background'` (only in budget normal work leaves: content nobody waits on yet).
    */
   async prepareObject(
     root: THREE.Object3D,
@@ -739,8 +771,11 @@ export class Renderer {
     updateDetachedWorldMatrix(root, parent);
     const lods = parent === undefined ? undefined : unselectedLodLevels(root, this.camera);
     const deferredLevels = lods === undefined ? undefined : new Set([...lods.values()].flat());
-    const foreground = createLane(false);
+    // The terrain stream marks its ground this way: see AdmissionOptions.priority.
+    const priority = root.userData.admissionPriority;
+    const foreground = createLane(priority === 'background', priority === 'urgent');
     const background = createLane(true);
+    const state = this.programState();
     const interest: WarmupInterest | 'pinned' =
       signal === undefined ? 'pinned' : new WarmupInterest(this.cancel);
     const deferred: THREE.Mesh[] = [];
@@ -748,16 +783,17 @@ export class Renderer {
     root.traverse((object) => {
       const mesh = object as THREE.Mesh;
       if (!mesh.isMesh) return;
+      this.noteShadowCaster(mesh);
       if (mesh.userData.materialVariants !== undefined) switching.push(mesh);
       if (deferredLevels !== undefined && withinAny(mesh, root, deferredLevels))
         deferred.push(mesh);
-      else this.prepareMesh(mesh, foreground, interest);
+      else this.prepareMesh(mesh, foreground, interest, state);
     });
     this.flushWebGlBatches(foreground);
     // After the foreground, so buffers shared with a visible level upload with it.
     const deferredInterests = deferred.map((mesh) => {
       const meshInterest = new WarmupInterest(this.cancel);
-      this.prepareMesh(mesh, background, meshInterest);
+      this.prepareMesh(mesh, background, meshInterest, state);
       return meshInterest;
     });
     this.flushWebGlBatches(background);
@@ -788,10 +824,35 @@ export class Renderer {
     if (failure?.status === 'rejected') throw failure.reason;
   }
 
+  /**
+   * Build `next`'s shaders for every kind of prepared mesh that draws `current`, before the caller
+   * copies `next` into `current`: a progressive material upgrading its placeholder in place once a
+   * texture bake lands. Three shares a program between materials built alike, so the upgraded
+   * placeholder draws with it at once. Otherwise every mesh showing the placeholder built its new
+   * shaders in the next frame, together: seconds of frozen flight shortly after loading. The work
+   * runs in the background lane. Keep `next` alive while `current` uses the shared program.
+   */
+  async prepareMaterialChange(current: THREE.Material, next: THREE.Material): Promise<void> {
+    if (this.disposed) return;
+    const builds: Promise<unknown>[] = [];
+    for (const ref of this.materialMeshes.get(current)?.values() ?? []) {
+      const mesh = ref.deref();
+      if (mesh === undefined) continue;
+      const warmup = this.warmup(() => this.compileMesh(mesh, next), createLane(true), {
+        label: 'shader-upgrade',
+        bytes: 0,
+      });
+      warmup.pinned = true;
+      builds.push(warmup.promise);
+    }
+    await Promise.allSettled(builds);
+  }
+
   private prepareMesh(
     mesh: THREE.Mesh,
     lane: PreparationLane,
     interest: WarmupInterest | 'pinned',
+    state: string,
   ): void {
     const need = (promise: Promise<unknown>): void => {
       lane.jobs.add(promise);
@@ -802,7 +863,9 @@ export class Renderer {
       if (!lane.background) this.admission.promote(promise);
     };
     const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
-    const key = `${Boolean((mesh as THREE.InstancedMesh).isInstancedMesh)}/${Boolean((mesh as THREE.SkinnedMesh).isSkinnedMesh)}/${Object.keys(mesh.geometry.attributes).sort().join(',')}`;
+    // Everything of the mesh's own a program is built for: instancing and its colors, skinning,
+    // attributes and morph targets.
+    const key = `${Boolean((mesh as THREE.InstancedMesh).isInstancedMesh)}/${Boolean((mesh as THREE.InstancedMesh).instanceColor)}/${Boolean((mesh as THREE.SkinnedMesh).isSkinnedMesh)}/${Object.keys(mesh.geometry.attributes).sort().join(',')}/${Object.keys(mesh.geometry.morphAttributes).sort().join(',')}`;
     const variants: Array<{ map: Map<string, Promise<unknown>>; key: string }> = [];
     for (const material of materials) {
       for (const value of Object.values(material)) {
@@ -819,12 +882,18 @@ export class Renderer {
         this.rememberPreparation([value], upload);
         need(upload.promise);
       }
+      let meshes = this.materialMeshes.get(material);
+      if (!meshes) {
+        meshes = new Map();
+        this.materialMeshes.set(material, meshes);
+      }
+      if (meshes.get(key)?.deref() === undefined) meshes.set(key, new WeakRef(mesh));
       let map = this.warmedPrograms.get(material);
       if (!map) {
         map = new Map();
         this.warmedPrograms.set(material, map);
       }
-      const variantKey = `${material.version}/${key}`;
+      const variantKey = `${material.version}/${key}/${state}`;
       const existing = map.get(variantKey);
       if (existing) need(existing);
       else variants.push({ map, key: variantKey });
@@ -985,7 +1054,7 @@ export class Renderer {
     const promise = this.admission.run(task, {
       ...options,
       signal: controller.signal,
-      priority: lane.background ? 'background' : 'normal',
+      priority: lane.background ? 'background' : lane.urgent ? 'urgent' : 'normal',
     });
     const warmup: Warmup = {
       promise,
@@ -1027,6 +1096,18 @@ export class Renderer {
 
   /** Returns whether any level is still being prepared. */
   private holdUnpreparedLevel(lod: THREE.LOD, shown: number): boolean {
+    // Geometry-switch LODs have no `levels`: their update hides a mesh altogether beyond its
+    // useful range (ground cover under an aircraft, for example). Publish the tile without
+    // waiting for those invisible meshes, and prepare them before a later approach reveals them.
+    if (lod.levels.length === 0) {
+      let pending = false;
+      for (const child of lod.children) {
+        if (!this.pendingWithin(child, child.visible)) continue;
+        pending = true;
+        child.visible = false;
+      }
+      return pending;
+    }
     const ready = lod.levels.map((level) => !this.pendingWithin(level.object, false));
     if (ready.every(Boolean)) return false;
     const wanted = lod.getCurrentLevel();
@@ -1076,6 +1157,41 @@ export class Renderer {
     void promise.catch(forget);
   }
 
+  /**
+   * While WebGL shadows are parked the shadow pass never runs, so no depth program is built for
+   * the casters arriving meanwhile, and the first frame with shadows back built every one of them
+   * at once (an adaptive tier change, mid-flight). A caster of a kind the map has not drawn yet
+   * asks the parked map for one render, which builds its depth program as it streams in. The
+   * kinds follow three's shadow pass: one depth material, cloned for alpha-tested maps,
+   * displacement or clipping, built per mesh kind and side.
+   */
+  private noteShadowCaster(mesh: THREE.Mesh): void {
+    if (this.backend !== 'webgl' || !mesh.castShadow) return;
+    const instanced = mesh as THREE.InstancedMesh;
+    const kind = `${Boolean(instanced.isInstancedMesh)}/${Boolean((mesh as THREE.SkinnedMesh).isSkinnedMesh)}/${Object.keys(mesh.geometry.morphAttributes).sort().join(',')}`;
+    let fresh = false;
+    for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+      const textured = material as THREE.MeshStandardMaterial;
+      const variant =
+        mesh.customDepthMaterial !== undefined
+          ? `custom:${mesh.customDepthMaterial.uuid}`
+          : [
+              kind,
+              material.alphaTest > 0 && (textured.map != null || textured.alphaMap != null),
+              textured.displacementMap != null && textured.displacementScale !== 0,
+              material.alphaToCoverage,
+              material.clipShadows && (material.clippingPlanes?.length ?? 0) > 0,
+              material.shadowSide ?? material.side,
+            ].join('/');
+      if (this.casterVariants.has(variant)) continue;
+      this.casterVariants.add(variant);
+      fresh = true;
+    }
+    if (!fresh) return;
+    for (const light of this.sunLights())
+      if (this.shadowLights.has(light) && !light.shadow.autoUpdate) light.shadow.needsUpdate = true;
+  }
+
   /** Build `mesh` for the frame's draw target, drawn with `material` when given. */
   private compileMesh(mesh: THREE.Mesh, material?: THREE.Material): Promise<unknown> {
     // With ambient occlusion every frame draws the world into its target, which writes normals
@@ -1097,15 +1213,98 @@ export class Renderer {
     mesh.frustumCulled = false;
     // The compile reads the material before its first await, so it is restored while it runs.
     if (material !== undefined) mesh.material = material;
+    const traverse = this.scene.traverseVisible;
+    const ownTraverse = Object.hasOwn(this.scene, 'traverseVisible');
     try {
-      return occlusion !== undefined
-        ? occlusion.compile(mesh)
-        : this.three.compileAsync(mesh, this.camera, this.scene);
+      if (this.scene.onBeforeRender === THREE.Object3D.prototype.onBeforeRender) {
+        // compileAsync traverses the target scene only to gather lights, once for EVERY mesh, on
+        // both backends. Keep the real scene identity (node/render-object cache keys depend on
+        // it), but gather its lights once between rendered frames instead of rescanning thousands
+        // of tile meshes.
+        const lights = this.sceneLights();
+        this.scene.traverseVisible = (visit) => {
+          for (const light of lights) visit(light);
+        };
+      }
+      if (occlusion !== undefined) return occlusion.compile(mesh);
+      if (this.backend === 'webgl') return this.compileWebGl(mesh);
+      return this.three.compileAsync(mesh, this.camera, this.scene);
     } finally {
+      if (ownTraverse) this.scene.traverseVisible = traverse;
+      else delete (this.scene as Partial<THREE.Scene>).traverseVisible;
       mesh.visible = visible;
       mesh.frustumCulled = culled;
       mesh.material = shown;
     }
+  }
+
+  /**
+   * Three's compileAsync, but waiting for the programs built for this mesh. Three polls each
+   * material's current program, which the next frame resets for whatever it drew last: a
+   * material shared with drawn meshes (every building's wall) reported its ready program while
+   * the instanced variant was still linking, and that variant's first draw waited for the link
+   * mid-frame (130 ms in flight).
+   */
+  private compileWebGl(mesh: THREE.Mesh): Promise<unknown> {
+    type Program = { program?: unknown; isReady(): boolean };
+    const renderer = this.three as THREE.WebGLRenderer;
+    const all = (): Program[] => (renderer.info.programs ?? []) as unknown as Program[];
+    const known = new Set(all());
+    const programs = new Set<Program>();
+    for (const material of renderer.compile(mesh, this.camera, this.scene)) {
+      const program = (renderer.properties.get(material) as { currentProgram?: Program })
+        .currentProgram;
+      if (program !== undefined) programs.add(program);
+    }
+    // A double-sided transparent material builds a back- and a front-face program.
+    for (const program of all()) if (!known.has(program)) programs.add(program);
+    return new Promise<void>((resolve) => {
+      const check = (): void => {
+        // A disposed program (its material released meanwhile) counts as done.
+        for (const program of programs)
+          if (program.program === undefined || program.isReady()) programs.delete(program);
+        if (programs.size === 0) resolve();
+        else setTimeout(check, 10);
+      };
+      check();
+    });
+  }
+
+  /** The scene's visible lights, gathered once between rendered frames for warm-up builds. */
+  private sceneLights(): THREE.Object3D[] {
+    this.preparationLights ??= (() => {
+      const lights: THREE.Object3D[] = [];
+      // The prototype's walk: a compile in progress replaces the scene's own with this list.
+      THREE.Object3D.prototype.traverseVisible.call(this.scene, (object) => {
+        if ((object as THREE.Light).isLight) lights.push(object);
+      });
+      return lights;
+    })();
+    return this.preparationLights;
+  }
+
+  /**
+   * What a lit program is built for besides its material and mesh: the scene's lights and which
+   * cast shadows, the shadow map, fog, environment and output. Warm-ups are remembered under it.
+   * Without it a material built before the sky's sun, its shadows or its reflections existed
+   * counted as prepared, and the next tile drawing it built the real program mid-frame.
+   */
+  private programState(): string {
+    let lights = '';
+    for (const light of this.sceneLights())
+      lights += `${light.type}${light.castShadow ? '*' : ''},`;
+    const fog = this.scene.fog;
+    const environment = this.scene.environment;
+    const image = environment?.image as { height?: number } | undefined;
+    return [
+      lights,
+      this.three.shadowMap.enabled,
+      this.three.shadowMap.type,
+      fog === null ? '' : (fog as THREE.FogExp2).isFogExp2 ? 'exp2' : 'linear',
+      environment === null ? '' : `${environment.mapping}:${image?.height ?? ''}`,
+      this.three.toneMapping,
+      this.three.outputColorSpace,
+    ].join('/');
   }
 
   private prepareWebGlGeometries(meshes: readonly THREE.Mesh[]): void {
@@ -1142,6 +1341,7 @@ export class Renderer {
   }
 
   render(): void {
+    this.preparationLights = undefined;
     if (this.disposed) throw new Error('Renderer has been disposed');
     if (this.deviceLossReason !== undefined) {
       throw new Error(
@@ -1262,16 +1462,73 @@ export class Renderer {
   private hideReflectedAmbient(light: THREE.HemisphereLight | undefined): void {
     const hidden = this.hiddenAmbient;
     if (hidden !== undefined && hidden.light !== light) {
+      if (hidden.light.visible !== hidden.visible) this.shadowCastersWarmed = false;
       hidden.light.visible = hidden.visible;
       this.hiddenAmbient = undefined;
     }
     if (light === undefined) return;
     this.hiddenAmbient ??= { light, visible: light.visible };
+    if (light.visible) this.shadowCastersWarmed = false;
     light.visible = false;
   }
 
   private renderScene(): void {
-    this.optimized(() => this.three.render(this.scene, this.camera));
+    const warmup = this.shadowCasterWarmup();
+    if (warmup !== undefined) this.scene.add(warmup);
+    try {
+      this.optimized(() => this.three.render(this.scene, this.camera));
+    } finally {
+      if (warmup !== undefined) {
+        warmup.removeFromParent();
+        for (const child of warmup.children) {
+          const mesh = child as THREE.Mesh;
+          mesh.geometry.dispose();
+          (mesh.material as THREE.Material).dispose();
+        }
+      }
+    }
+  }
+
+  /**
+   * Once WebGL sun shadows draw, a frame of degenerate casters (one plain and one instanced mesh
+   * per side): the shadow pass builds a depth program for each kind of caster the first time it
+   * draws one, and the first double-sided caster in view held a mid-flight frame 10 ms. The
+   * shadow pass keeps its depth materials, so the programs stay built; three keys them by the
+   * scene's light counts too, so a light the renderer shows or hides warms them again.
+   */
+  private shadowCasterWarmup(): THREE.Group | undefined {
+    if (this.shadowCastersWarmed || this.backend !== 'webgl' || !this.three.shadowMap.enabled)
+      return undefined;
+    if (!this.sunLights().some((light) => light.castShadow && light.shadow.intensity > 0))
+      return undefined;
+    this.shadowCastersWarmed = true;
+    const group = new THREE.Group();
+    group.name = 'molen:shadow-caster-warmup';
+    for (const side of [THREE.FrontSide, THREE.BackSide, THREE.DoubleSide])
+      for (const instanced of [false, true]) {
+        // One triangle with no area: nothing to draw, in either pass.
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute(
+          'position',
+          new THREE.Float32BufferAttribute(new Array(9).fill(0), 3),
+        );
+        geometry.setAttribute(
+          'normal',
+          new THREE.Float32BufferAttribute([0, 1, 0, 0, 1, 0, 0, 1, 0], 3),
+        );
+        const material = new THREE.MeshBasicMaterial({
+          side,
+          colorWrite: false,
+          depthWrite: false,
+        });
+        const mesh = instanced
+          ? new THREE.InstancedMesh(geometry, material, 1)
+          : new THREE.Mesh(geometry, material);
+        mesh.castShadow = true;
+        mesh.frustumCulled = false;
+        group.add(mesh);
+      }
+    return group;
   }
 
   private optimized(draw: () => void): void {
@@ -1453,8 +1710,10 @@ class WarmupInterest {
 }
 
 interface PreparationLane {
-  /** Background work runs after normal admission work, and nobody awaits it. */
+  /** Background work runs after normal admission work; only a root marked background awaits it. */
   readonly background: boolean;
+  /** Admitted ahead of normal work (AdmissionOptions.priority 'urgent'). */
+  readonly urgent: boolean;
   readonly jobs: Set<Promise<unknown>>;
   readonly glAttributes: Set<Attribute>;
   readonly glBatches: Array<{
@@ -1465,8 +1724,8 @@ interface PreparationLane {
   }>;
 }
 
-function createLane(background: boolean): PreparationLane {
-  return { background, jobs: new Set(), glAttributes: new Set(), glBatches: [] };
+function createLane(background: boolean, urgent = false): PreparationLane {
+  return { background, urgent, jobs: new Set(), glAttributes: new Set(), glBatches: [] };
 }
 
 /** World matrices as if `root` were already a child of `parent`, without attaching it. */
@@ -1496,6 +1755,11 @@ function unselectedLodLevels(
     // A LOD without levels may switch its own mesh's geometry and material (an instanced detail
     // switch): choosing now prepares the material it will first draw.
     lod.update(camera);
+    if (lod.levels.length === 0) {
+      const hidden = lod.children.filter((child) => !child.visible);
+      if (hidden.length > 0) unselected.set(lod, hidden);
+      return;
+    }
     if (lod.levels.length < 2) return;
     const selected = lod.getCurrentLevel();
     unselected.set(

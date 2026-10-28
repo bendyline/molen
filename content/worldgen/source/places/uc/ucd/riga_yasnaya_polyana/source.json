@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.riga_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Riga Threshing Barn — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.riga_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/riga_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1a1651446b625efd21f383984bf344470b6a84efcb43ca3f07c6dc706c003188"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-riga-yasnaya-polyana",
+        "path": "models/generate-riga-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "riga-yasnaya-polyana-model",
+        "path": "models/riga-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "riga-yasnaya-polyana-geometry",
+        "path": "models/riga-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

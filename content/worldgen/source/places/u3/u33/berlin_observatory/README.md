@@ -20,4 +20,4 @@ Central7.5mdiameter is storydocumented; section heights/storey levels, rooflead/
 
 Benchmark/closedtransit shutters/windows are modeled exterior surfaces, not accessible interiors; slat/relief/rib detail retireswithdistance. Current120mraw independent providerterrain was frozenbeforegeometry and is not flattened/fitted or an1880grade survey. Foundationextends.35mbelow approximate approachdatum; flatstageY-.53showsarchitecture, not certified historical ground contact.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=berlin_observatory`. Add `--check` to verify exact regeneration. 21920 triangles; 5 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=berlin_observatory`. Add `--check` to verify exact regeneration. 19992 triangles; 5 materials; no embedded photographs.

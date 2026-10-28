@@ -100,6 +100,10 @@ describe('ordinary regional architecture', () => {
       const houseStyle = pack.archstyles[homes[0]?.style ?? ''];
       expect(houseStyle?.materials.wall.choices[0]?.ref).toContain(wall);
       expect(houseStyle?.materials.roof.choices[0]?.ref).toContain(roof);
+      const fenceKind = regionId === 'us.pnw' ? 'timber' : 'masonry';
+      expect(houseStyle?.lotFences?.find((f) => f.kind === fenceKind)?.weight).toBeGreaterThan(0);
+      expect(homes.some((h) => h.yard?.fence?.kind === fenceKind)).toBe(true);
+      expect(homes.some((h) => !h.yard?.fence)).toBe(true);
       expect(new Set(homes.map((b) => b.outline.length)).size).toBeGreaterThan(1);
       const garages = batch.buildings.filter((b) => b.access?.garage);
       if (regionId === 'jp') expect(garages).toHaveLength(0);
@@ -137,10 +141,10 @@ describe('ordinary regional architecture', () => {
           ),
         );
       }
-      expect(seen.size).toBe(7);
+      expect(seen.size).toBe(8);
     }
   });
-  it('keeps at least a third of every ordinary wall palette visibly colored, as required by medium-fi', () => {
+  it('keeps homes colored and commercial/apartment/tower palettes mostly neutral', () => {
     for (const style of Object.values(pack.archstyles)) {
       if (!style.id.startsWith('molen.worldgen.regional.')) continue;
       const entries = style.palettes.regional_wall?.entries ?? [];
@@ -153,12 +157,16 @@ describe('ordinary regional architecture', () => {
           colored += weight;
       }
       expect(total, style.id).toBeGreaterThan(0);
-      expect(colored / total, style.id).toBeGreaterThanOrEqual(1 / 3);
+      if (/\.(commercial|apartments|civic|industrial|tower)(\.|$)/.test(style.id))
+        expect(colored / total, style.id).toBeLessThanOrEqual(0.25);
+      else if (!style.id.includes('.neutral.'))
+        expect(colored / total, style.id).toBeGreaterThanOrEqual(1 / 3);
     }
   });
 
   it('covers every architectural atlas region, with a conservative worldwide fallback', () => {
-    expect(gzipSync(bytes).length).toBeLessThan(20_000);
+    // Fourteen additional tower profiles/variants; still a bounded shared metadata payload.
+    expect(gzipSync(bytes).length).toBeLessThan(32_000);
     for (const region of atlas.regions) {
       const profile = library.select({ regionId: region.id }).architectureProfile;
       expect(profile, region.id).toBeDefined();
@@ -190,6 +198,8 @@ describe('ordinary regional architecture', () => {
         );
       expect(selected(region, ['house'], { levels: 5 })).toMatch(/\.apartments$/);
       expect(selected(region, ['house'], { height: 18 })).toMatch(/\.apartments$/);
+      expect(selected(region, ['office'], { height: 90 })).toMatch(/\.tower$/);
+      expect(selected(region, ['apartments'], { levels: 15 })).toMatch(/\.tower$/);
       expect(selected(region, ['yes'], { context: 'industrial' })).toMatch(/\.industrial$/);
       expect(selected(region, ['yes'], { context: 'farmyard' })).toMatch(/\.farm$/);
       expect(selected(region, ['cowshed'])).toMatch(/\.farm$/);
@@ -200,11 +210,58 @@ describe('ordinary regional architecture', () => {
     }
   });
 
+  it('keeps tower facades and Yuma/Kyoto roofs within aerial palette ranges across five seeds', () => {
+    const warm = ([r, g, b]: readonly number[]) =>
+      (r ?? 0) > (g ?? 0) * 1.2 && (r ?? 0) > (b ?? 0) * 1.2;
+    for (const seed of [0, 17, 81, 719, 2026]) {
+      for (const [id, part, maximum] of [
+        ['north_american.tower', 'wall', 0.08],
+        ['southwestern.detached', 'roof', 0.2],
+        ['east_asian.detached', 'roof', 0.05],
+      ] as const) {
+        const style = pack.archstyles[`molen.worldgen.regional.${id}`];
+        if (!style) throw new Error(id);
+        let total = 0,
+          warmArea = 0;
+        for (let i = 0; i < 300; i++) {
+          const width = 10 + (i % 17),
+            depth = 9 + (i % 13),
+            height = part === 'wall' ? 40 + (i % 100) : 8;
+          const { recipe } = generateBuilding(
+            {
+              request: {
+                identity: `${seed}:${i}`,
+                labels: ['building'],
+                height,
+                outline: [
+                  [0, 0],
+                  [width, 0],
+                  [width, depth],
+                  [0, depth],
+                ],
+              },
+              style,
+              pack: { name: pack.id, version: pack.version },
+              ground: FLAT_GROUND,
+              tier: 3,
+            },
+            new MeshBufferBuilder(),
+          );
+          if (!recipe) throw new Error('Missing recipe');
+          const area = part === 'wall' ? 2 * (width + depth) * height : width * depth;
+          total += area;
+          if (warm(recipe.parts[part].color)) warmArea += area;
+        }
+        expect(warmArea / total, `${seed}:${id}`).toBeLessThanOrEqual(maximum);
+      }
+    }
+  }, 30_000);
+
   it('generates every recipe deterministically, with source dimensions and bounded geometry', () => {
     const styles = Object.values(pack.archstyles).filter((style) =>
       style.id.startsWith('molen.worldgen.regional.'),
     );
-    expect(styles).toHaveLength(294);
+    expect(styles).toHaveLength(336);
     for (const style of styles) {
       const build = () => {
         const builder = new MeshBufferBuilder();

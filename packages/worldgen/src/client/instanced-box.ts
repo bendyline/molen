@@ -104,6 +104,18 @@ export function createInstancedPlacements(
   const scale = new THREE.Vector3();
   const color = new THREE.Color();
   const up = new THREE.Vector3(0, 1, 0);
+  // The batch's bounds, from each placement's turn about the vertical, scale and position as it
+  // is written: three's own passes transform eight corners of every instance, and a prop set's
+  // batches walked their instances four times, most of assembling them on the main thread.
+  if (geometry.boundingBox === null) geometry.computeBoundingBox();
+  const model = geometry.boundingBox as THREE.Box3;
+  const midX = (model.min.x + model.max.x) / 2,
+    midY = (model.min.y + model.max.y) / 2,
+    midZ = (model.min.z + model.max.z) / 2,
+    halfX = (model.max.x - model.min.x) / 2,
+    halfY = (model.max.y - model.min.y) / 2,
+    halfZ = (model.max.z - model.min.z) / 2;
+  const bounds = new THREE.Box3();
   for (let index = 0; index < set.count; index++) {
     const offset = index * PLACEMENT_STRIDE;
     position.set(
@@ -119,6 +131,28 @@ export function createInstancedPlacements(
     );
     matrix.compose(position, quaternion, scale);
     mesh.setMatrixAt(index, matrix);
+    if (!model.isEmpty()) {
+      const yaw = set.data[offset + 3] as number;
+      const cos = Math.cos(yaw),
+        sin = Math.sin(yaw);
+      const cx = scale.x * midX,
+        cy = scale.y * midY,
+        cz = scale.z * midZ;
+      const hx = Math.abs(scale.x) * halfX,
+        hy = Math.abs(scale.y) * halfY,
+        hz = Math.abs(scale.z) * halfZ;
+      const x = position.x + cos * cx + sin * cz,
+        y = position.y + cy,
+        z = position.z - sin * cx + cos * cz;
+      const ex = Math.abs(cos) * hx + Math.abs(sin) * hz,
+        ez = Math.abs(sin) * hx + Math.abs(cos) * hz;
+      if (x - ex < bounds.min.x) bounds.min.x = x - ex;
+      if (x + ex > bounds.max.x) bounds.max.x = x + ex;
+      if (y - hy < bounds.min.y) bounds.min.y = y - hy;
+      if (y + hy > bounds.max.y) bounds.max.y = y + hy;
+      if (z - ez < bounds.min.z) bounds.min.z = z - ez;
+      if (z + ez > bounds.max.z) bounds.max.z = z + ez;
+    }
     // Placement colors are sRGB-encoded like every procedural color (see SRGB_TO_LINEAR_BYTE).
     color.setRGB(
       set.data[offset + 7] as number,
@@ -133,6 +167,7 @@ export function createInstancedPlacements(
   mesh.name = name;
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  mesh.computeBoundingSphere();
+  mesh.boundingBox = bounds;
+  mesh.boundingSphere = bounds.getBoundingSphere(new THREE.Sphere());
   return mesh;
 }

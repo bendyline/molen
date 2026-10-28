@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { B, rgb } from './landmark-model-helpers.mjs';
 
 const root = new URL(
@@ -973,7 +973,7 @@ function pairedWindow(o, d, x, y, w = 2.6, h = 3.2, z = 0, ornate = false) {
           y + 0.1 + (i * (h - 0.2)) / 17,
           z + 0.15 + 0.045 * Math.cos(i * Math.PI * 0.8),
         ]);
-        for (let i = 1; i < pts.length; i++) beam(o, 'trim', pts[i - 1], pts[i], 0.1, 0.1, trim);
+        beamPath(o, 'trim', pts, 0.1, 0.1, trim);
       } else
         beam(
           o,

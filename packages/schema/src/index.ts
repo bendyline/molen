@@ -60,6 +60,7 @@ export type {
   WaterWave,
 } from './boats';
 export { waterSettingsSchema } from './boats';
+export { BOOST_SPEED_MULTIPLIER, boostSpeedMultiplier } from './boost';
 export type { PayloadCheck } from './commands';
 export { commandPayloadValidator, compileCommandPayload } from './commands';
 export type {
@@ -97,6 +98,7 @@ export type {
 } from './issues';
 export { blockingIssues, formatIssues, noticeIssues } from './issues';
 export type { JsonObject, JsonPrimitive, JsonValue } from './json';
+export * from './livery';
 export { deepMergeJson } from './merge';
 export type {
   ModelSignalExpression,

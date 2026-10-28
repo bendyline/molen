@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
-  "inputHash": "sha256:ecda524d11f279e11a63cb1e14c04d45114f490e707dbcc65d9f2493f67c9200",
-  "placementHash": "sha256:f71409518f2c0fa1ec0dbe57ee5f362eb02da0a1db39a7d6270ba2b75c666efc",
+  "inputHash": "sha256:66544be3f36e04bbd29e4ab8f974c67e999b099ad34622add7238aa0b45d7753",
+  "placementHash": "sha256:275c319826d14539787562e13540b42d7816c4cc27deb41911bc88b85d7dc6d4",
   "entry": {
     "id": "sanjo.ohashi.bridge",
     "title": "Sanjō Ōhashi Bridge",
@@ -12,21 +12,94 @@
       35.009046048
     ],
     "heading": 0.123568417936,
-    "datum": "terrain",
-    "elevation": 0,
+    "datum": "sea-level",
+    "elevation": 41.7,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q3087620",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
-    "terrainReference": {
-      "anchor": [
-        135.77128497337176,
-        35.00900175953759
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -38.5,
+          -8.65
+        ],
+        [
+          38.5,
+          -8.65
+        ],
+        [
+          38.5,
+          8.65
+        ],
+        [
+          -38.5,
+          8.65
+        ]
       ],
-      "modelHeight": 4.55,
-      "basis": "West road plateau at native X=-40 m, 3.35 m beyond the 73.3 m bridge endpoint. Align the authored endpoint road height of 4.55 m to valid ground here. Current GSI DEM1A gives 41.714 m, producing an approximately 37.164 m model origin. Use a host terrain sampler that preserves river no-data and resolves this bank reference; coarse river-center terrain must not replace it."
+      "additionalOutlines": [
+        [
+          [
+            -57,
+            -8.65
+          ],
+          [
+            -38.5,
+            -8.65
+          ],
+          [
+            -38.5,
+            8.65
+          ],
+          [
+            -57,
+            8.65
+          ]
+        ],
+        [
+          [
+            38.5,
+            -8.65
+          ],
+          [
+            52,
+            -8.65
+          ],
+          [
+            52,
+            8.65
+          ],
+          [
+            38.5,
+            8.65
+          ]
+        ]
+      ],
+      "preservePaving": true,
+      "basis": "Only the bridge and immediate straight approach ribbons reconstruct a bounded rendered bank. Terrain above sourceY0.45m is capped there; lower terrain, original DEM samples, native water, paving and buildings remain unchanged. This prevents coarse high banks from covering the bridge or leaving sky holes underneath. The rendered cap is approximate, not surveyed riverbed. The inset bridge interior also caps intersecting native river-walk paving at the same bank level, preserving its original route; approach joins outsideX±36.6m retain their authored deck elevations.",
+      "minHeight": 0.45,
+      "pavingOutlines": [
+        [
+          [
+            -36.6,
+            -8.35
+          ],
+          [
+            36.6,
+            -8.35
+          ],
+          [
+            36.6,
+            8.35
+          ],
+          [
+            -36.6,
+            8.35
+          ]
+        ]
+      ]
     },
     "bounds": [
       135.7700818795466,
@@ -37,12 +110,123 @@
     "replaceRoads": {
       "length": 73.3,
       "width": 16.7,
-      "deckHeight": 4.58
+      "deckHeights": [
+        4.55,
+        4.55
+      ],
+      "deckEndpoints": [
+        [
+          -36.65,
+          0
+        ],
+        [
+          36.65,
+          0
+        ]
+      ],
+      "deckProfile": [
+        [
+          -36.65,
+          4.55,
+          0
+        ],
+        [
+          -32.577777777777776,
+          4.640297052386804,
+          0
+        ],
+        [
+          -28.505555555555553,
+          4.7278504745293475,
+          0
+        ],
+        [
+          -24.433333333333334,
+          4.81,
+          0
+        ],
+        [
+          -20.36111111111111,
+          4.884249557037,
+          0
+        ],
+        [
+          -16.288888888888888,
+          4.9483431104218685,
+          0
+        ],
+        [
+          -12.216666666666669,
+          5.000333209967908,
+          0
+        ],
+        [
+          -8.144444444444442,
+          5.038640162808672,
+          0
+        ],
+        [
+          -4.072222222222223,
+          5.062100031566348,
+          0
+        ],
+        [
+          0,
+          5.07,
+          0
+        ],
+        [
+          4.072222222222223,
+          5.062100031566348,
+          0
+        ],
+        [
+          8.144444444444446,
+          5.038640162808672,
+          0
+        ],
+        [
+          12.216666666666661,
+          5.000333209967908,
+          0
+        ],
+        [
+          16.28888888888889,
+          4.9483431104218685,
+          0
+        ],
+        [
+          20.361111111111114,
+          4.884249557037,
+          0
+        ],
+        [
+          24.433333333333337,
+          4.81,
+          0
+        ],
+        [
+          28.505555555555553,
+          4.7278504745293475,
+          0
+        ],
+        [
+          32.577777777777776,
+          4.640297052386804,
+          0
+        ],
+        [
+          36.65,
+          4.55,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true
     },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/571549175",
-    "note": "Exact mapped bridge polygon identifies the east-northeast axis. Official width 16.7 m and length 73.3 m supersede coarse mapped dimensions 15.94×74.429 m. Ground contact uses the independently measured west road bank; GSI DEM1A upper banks are approximately 41.6–41.8 m. Its water cells are explicitly unknown, not a surveyed riverbed. Fine-terrain approach review is recorded separately. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "Exact retained bridge anchor and signed axis; authored73.3x16.7m dimensions. Shared-material browser levels retain source proportions with corrected30cm curbs and green post clamps. Standard PMTiles/Mapzen supplies native water/terrain/approach geometry; bounded bridge/approach ground openings avoid coarse bank burial. Original detailed source master is byte-preserved. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.eshima_ohashi_bridge",
-  "inputHash": "sha256:68b78d30c4078d585591e31e0e969d0f781b22360105b843081bcbb7b54a9de4",
-  "captureReportHash": "sha256:2f332e5c45a7d170c6fcc264872370c2e51c18589a1a5a9d53706d40f24cb955",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:9ebd0f3f32ed184c453d34354a6b48a09168b30b3cfd6c359db7b9bffe8d72b6",
+  "sourceHash": "sha256:156cac9257f96ab37ea7fcf7e731b0e886f04604bcde80dd814f869a6c24dffa",
+  "runtimeHash": "sha256:1cf77cf55724afd8c0862e3ff33bacec193556b20bdbb4dfdc752970c6bfa030",
+  "captureReportHash": "sha256:ac37f76e5ab4eee54f66b81d1e36a2c6cc30347cca6f64fbc185b61df6a017c1",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -21,12 +24,11 @@
       "shots/curved-tottori-approach.png",
       "shots/whole-elevation.png"
     ],
-    "scope": "Detailed operating exterior of Eshima Ohashi, including the complete crossing and curved Tottori approach.",
-    "notes": "Inspected all14 current portable frames. Published span structure, steep road profile, full-height oval main piers, open pedestrian rails, bay support ribs, wind screens, navigation markers and central comb joint are present. Bay drains now follow the widened curb. Turntable views establish the full1.446km silhouette; named close views resolve the small fittings."
+    "captureReportHash": "sha256:ac37f76e5ab4eee54f66b81d1e36a2c6cc30347cca6f64fbc185b61df6a017c1",
+    "notes": "Inspected 74 current frames in one author/inspect/fix pass: 14 portable, 14 shared, 30 medium-fi and 16 native. Full curved Tottori approach, unequal road grades and crest, five-span rigid-frame silhouette, deep tapered girders, full-height oval main piers, every approach pier, opposite maintenance bays, footways and open rails remain. The previous automatic skyline had 348.35m reported error; all four current browser models are authored from the original alignment/profile. Added skyline stations where actual mesh rays caught excessive central intrados interpolation. Detailed source (814362 triangles, 60454680 bytes) and canonical runtime remain byte-exact."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9d8eca3ce45da95d4a9629f17c2c7df3b1af36ff32ed7c72f04d98b557b3f8b8",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -43,16 +45,1356 @@
       "shots/shared/whole-elevation.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all14 current shared-material/sky-PMREM frames. Shared fine-grain concrete and painted metal retain construction seams, casting ties and handrail sections. Transparent bay wind screens remain visible. Asphalt and markings retain local rough PBR response without per-model bitmaps. Geographic fixture model load/unload checks pass."
+    "captureReportHash": "sha256:d3114d1e666544b9622cc746d09d3822adfdb25d94dbfdeac41ddb1bb0379b53",
+    "notes": "Two existing 256px shared graphs, concrete_plain and metal_painted, supply reusable concrete grain and painted fittings with metric UVs. Runtime roadway and markings also bind these graphs using restrained component tints. Near transparent blue bay screens use a small local PBR glazing material with no texture image; source master preserves its existing palette roadway/marking materials. No private texture atlas, embedded images or copied photographic pixels. Textured LODs use two/three draws and read each shared graph once; skyline bakes shared means into one vertex-color draw. Separate GPU streams and full geometry disposal pass."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/main-rigid-frame.png",
+      "medium-fi/shimane-road-grade.png",
+      "medium-fi/main-pier-box-web.png",
+      "medium-fi/pedestrian-rail.png",
+      "medium-fi/maintenance-bay.png",
+      "medium-fi/bay-supports.png",
+      "medium-fi/center-expansion-joint.png",
+      "medium-fi/curved-tottori-approach.png",
+      "medium-fi/whole-elevation.png",
+      "medium-fi/whole-eshima-skyline.png",
+      "medium-fi/whole-eshima-district.png",
+      "medium-fi/whole-eshima-street.png",
+      "medium-fi/whole-eshima-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:dee5f2664b6df43c50f212d97f0f55b23ed2e54547736ad7184f21e5389b7fdb",
+    "notes": "Four authored LODs: 980/3470/15764/58116 triangles. Initial skyline + district 441352 bytes; closeup 5717412 bytes. Skyline omits narrow lamps and uses coarse pier sections; district uses representative lamps. Street/closeup retain source lamp rhythm, raised footways and transparent supported bay screens; posts use12m/2m spacing. Fine infill, form ties, grate bars, comb teeth and navigation lettering remain in the master. Japanese procedural neighbors, economy/high, noon/late, silhouette and all four transitions were inspected. Physical laptop/phone timings remain pending."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:566196fbb6784ec59ccab23a5ae0da890f80d4543178478ba9f6344dbc2afd16",
-    "notes": "Exact-QID bridge way1081414506 and road86979974 establish anchor[133.200518112,35.519148008], heading0.360355642256, SW-to-NE native+X and southeast+Z. The mapped1444.934m centerline is fitted uniformly to the published1446.2m engineered length; the Tottori approach bend follows the road nodes. Published span stations, grades6.1/5.1%, endpoint deck elevations5.2/7.7m and44.7m crest constrain a tangent parabolic transition. Current vertical placement uses provisional Nakaumi water level0m, not a geodetic datum conversion; seasonal water level and shore-road terrain are host data."
+    "placementHash": "sha256:1ee163b2cc9c34b91e4d2ebd0b56114ad866b2c4d266ecdade9ca3f22244fb14",
+    "mapFrameHash": "sha256:f3595d2db86216f81ee927003d4bc90986d2f11340064b784eebf0e19de0db13",
+    "notes": "Approximate native fit at [133.200518112,35.519148008], heading0.360355642256; +X from Shimane toward Tottori. Exact-QID source map alignment retains the curved eastern approach. Native lake-plane zero,5.2/7.7m end levels and44.7m crest remain provisional source reconstructions, not a tidal/geodetic conversion. Explicit local deckEndpoints place connections at the real curved ends instead of intersections withZ0. Native road heights0.25m outside the two ends are5.173/7.649m, within0.052m of the deck. Coarse shore terrain is0/about1.93m; the20m supported approach blend is inferred and noticeably steeper than a surveyed road. Native approach widths/footways are generic map rendering, not an exact continuation of the authored bridge section."
   },
   "fidelityReview": {
-    "target": "maximum",
+    "target": "medium-fi",
     "status": "passed",
-    "notes": "814,362-triangle original exterior with measured55+150+250+150+55m main spans, repeated approach spans, tapered box sections, oval rigid-frame piers, casting seams and form ties, widened maintenance bays and ribs, transparent wind screens, individually modeled rail posts/infill, roadway curbs/markings, lamps, grated drains/downpipes, navigation signs and comb/sliding expansion details. Primary contractor plans, the port inspection plan, JSCE construction paper, JST2018 elevation diagram and contractor operating photographs were reviewed. Fine member sections, lamp spacing, bay lengths, foundation exposure and weathering are photographic reconstruction. Buried/underwater foundations, interiors, temporary construction equipment and roads beyond the crossing are outside this exterior asset."
-  }
+    "notes": "Complete scoped operating bridge exterior; detailed source retained separately. Four authored LODs: 980/3470/15764/58116 triangles. Initial skyline + district 441352 bytes; closeup 5717412 bytes. Skyline omits narrow lamps and uses coarse pier sections; district uses representative lamps. Street/closeup retain source lamp rhythm, raised footways and transparent supported bay screens; posts use12m/2m spacing. Fine infill, form ties, grate bars, comb teeth and navigation lettering remain in the master. Japanese procedural neighbors, economy/high, noon/late, silhouette and all four transitions were inspected. Physical laptop/phone timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/models/source.glb\",\"hash\":\"sha256:156cac9257f96ab37ea7fcf7e731b0e886f04604bcde80dd814f869a6c24dffa\",\"bytes\":60454680,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.glb\",\"hash\":\"sha256:1cf77cf55724afd8c0862e3ff33bacec193556b20bdbb4dfdc752970c6bfa030\",\"bytes\":60454240,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.skyline.glb\",\"hash\":\"sha256:41f8705135b153558a5e08fff50b3d1b257e6d3b1b1106f853f66a63bd9783fa\",\"bytes\":103924,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.district.glb\",\"hash\":\"sha256:441b0b4b47ee7049564751d8b0622ec6f87e3d001feda4fec2627356ce6fcb58\",\"bytes\":337428,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.street.glb\",\"hash\":\"sha256:fbb5cd20402117f9269af02c7cf99f53cc90dfdd0d182576112553145dcb0b3e\",\"bytes\":1525236,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.closeup.glb\",\"hash\":\"sha256:3967e2d5c1bf03447bd05287df0e63a80999406cb07abc8328193b0b617e3c54\",\"bytes\":5717412,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-curved-deck-tapered-girders-piers-bays-and-rails",
+        "passed": true,
+        "notes": "786 actual mesh probes across source/runtime and all four LODs: full roadway and footways on both grades/curve, tapered intrados, open shipping spans, all27 main/approach piers, complete opposite bay platforms and continuous near rails. Exact pins, finite attributes, shared surfaces, budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native fit at [133.200518112,35.519148008], heading0.360355642256; +X from Shimane toward Tottori. Exact-QID source map alignment retains the curved eastern approach. Native lake-plane zero,5.2/7.7m end levels and44.7m crest remain provisional source reconstructions, not a tidal/geodetic conversion. Explicit local deckEndpoints place connections at the real curved ends instead of intersections withZ0. Native road heights0.25m outside the two ends are5.173/7.649m, within0.052m of the deck. Coarse shore terrain is0/about1.93m; the20m supported approach blend is inferred and noticeably steeper than a surveyed road. Native approach widths/footways are generic map rendering, not an exact continuation of the authored bridge section."
+    },
+    "inputHash": "sha256:9ebd0f3f32ed184c453d34354a6b48a09168b30b3cfd6c359db7b9bffe8d72b6",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:9ebd0f3f32ed184c453d34354a6b48a09168b30b3cfd6c359db7b9bffe8d72b6",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 74 current frames in one author/inspect/fix pass: 14 portable, 14 shared, 30 medium-fi and 16 native. Full curved Tottori approach, unequal road grades and crest, five-span rigid-frame silhouette, deep tapered girders, full-height oval main piers, every approach pier, opposite maintenance bays, footways and open rails remain. The previous automatic skyline had 348.35m reported error; all four current browser models are authored from the original alignment/profile. Added skyline stations where actual mesh rays caught excessive central intrados interpolation. Detailed source (814362 triangles, 60454680 bytes) and canonical runtime remain byte-exact.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/preview.png",
+          "hash": "sha256:872eeb9cb2853c2e1e0ccb6e31263a4c2c65c3c6e17741f75a5b0a0c7550855f"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:a13d659bb64a6148e0dc4c5e9ab1ac04d6370f038b4010d92d1eba3e339279cb"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:906a4d5776a76d30738051c4f73eaab506e61dfdb98ddde9fa2a77435d0d224e"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:77177283158941d52dbfe42cd6be9843e6aba6b5526cfb7c9311ec55e934ffa8"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:f2a17b8eb91c43ad33cd9ea4bbd06642d5d4d9f580504af2ac8f1ef001053ca4"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/main-rigid-frame.png",
+          "hash": "sha256:2b099a1ceaae53f9a9ba959d9e820d8b78c14d27c2b629ab1656e37e8fd64313"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shimane-road-grade.png",
+          "hash": "sha256:3b325f275cbd060c00d4dac8bfe29b479c951d464e3b44d73622ce5de015e179"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/main-pier-box-web.png",
+          "hash": "sha256:5d285af0dd78c8aba14e9a554e474ab96027b2d058db6cd7d3f3d84123fa2801"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/pedestrian-rail.png",
+          "hash": "sha256:a2598441537ab84a3520c64967e76bb57eea5e678e1f52f73c0bb69cfea0d9df"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/maintenance-bay.png",
+          "hash": "sha256:ad6910deed8329cf4d3047cea07b0a6fa038abd08b707f14e14b90dc82dc8045"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/bay-supports.png",
+          "hash": "sha256:3b8fef7bc3ec019851b5d1b4eddcd7ff502e8affc8120f563984855dbd20928a"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/center-expansion-joint.png",
+          "hash": "sha256:9d7eaadf0b347e0b701b789bd7707d27302ff808a630cf5324ceb46fb4ab5122"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/curved-tottori-approach.png",
+          "hash": "sha256:652757e592bfffa80ff4368c6d6e884b60408fd3b03063cee8c5407f64f85786"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/whole-elevation.png",
+          "hash": "sha256:a3c521637f9a1c38e9d6b8c1074496a4071427bac19ff51b1adceed740a7fe97"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:71427f47ac94eeefb3f000d86b2bb7ba117b5964bdae41b9d79bbcafc1f73932"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:5189b8717cffd9341f722cfb7c869ccdcc5a4cc5fe89728b9aec03e4b2f0d8b3"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:c873dee85f6c461e4752e03cd07088b688093bbc87090f98ca573e4438e3f322"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:41a6bc210234913f9eb1c9742628717cbb2f0c6535b2824f19338e7e3df9b21c"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/main-rigid-frame.png",
+          "hash": "sha256:4cce0c725da6eb330fa9ba5b4e4ce519af4716ecaa5ed69c4cf3c5b8ce5d1501"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/shimane-road-grade.png",
+          "hash": "sha256:24ca2bba28fda02f0eab348f24899d5bcac2a08967fe41798157acde852ff840"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/main-pier-box-web.png",
+          "hash": "sha256:e4a082824489fe2c14800a5bcb1a9fdc15da9674d0008b83ffdb8432cbe46b65"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/pedestrian-rail.png",
+          "hash": "sha256:f7a141142c89b759e47b85d741b1a64cce87ec321331cfd86d915c54969b64b6"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/maintenance-bay.png",
+          "hash": "sha256:d21289daeaaad421506cda406a423d0f046b1f2a5b32bf4b7e4249fb9d25b0d9"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/bay-supports.png",
+          "hash": "sha256:71242d97cac900adf180245eaecfeb9a94d830b64c31e8b66a0ca11d907f3887"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/center-expansion-joint.png",
+          "hash": "sha256:2233e3906970d016f0f5ee58bd66f64c0646d9d694997f783c2b517ac4ad8fc2"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/curved-tottori-approach.png",
+          "hash": "sha256:5b56b1842566197685b4124e9bba781b3db30db5ad34e4a30a1c500e3cb85eaa"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/whole-elevation.png",
+          "hash": "sha256:70f283809306fb7a065385b56f5d3573b5d01d49dcae9c7330b73da25b655875"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/shots/shared/placement.png",
+          "hash": "sha256:fef9ef8248b6a25706a59c4dd3cb65d67b648498086fb3f54a0de5f643eba45a"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:49d14b1ad3a0243d7b4536811de1ae8dc52b9fddcc1b04957204f140ce1304ec"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:cfc8f74f638c66979027b1cbc3985fc49ca26afc518cbee9045c769c127aed17"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:667674f7cd3aa9c353e20e5213020edb79a3b237025f543c246c4f9eeff09425"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:e3e3e6e2453a49302b4cf155a990e0c4d1c1636c8067072256e9abb248b07501"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:8315ffc753d26da3517ddd0381a99f64659fde243273e3fa46f9ce28465f5d64"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:ef7f47b714982d7758d1acf4cf655273627b80e01cf7833f5ed2f7034285ec43"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:709fe7aaa11b4a82edd90c40caa614e23fb134e9c69b4e365cedaa58e8441a7e"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:829e2077dd5dff48cd70d57fb0e0f34cada12913892a9ff8e07f4798d41ffbba"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:92cd975fa2f510d10588ad51d9e0eea9765c704eaa2df14e90de2c93b60a4cd2"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:aa797faed8a343f76bd9285ca1c3c58cf8f0a92df3199ee0c2a4f8cdbdaa58bf"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:468abf7ff9eb6b2da7b7c30da24fc7a0003c5dbaf8caca6c5e7b81d280e25bb8"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:b792212d54db3b9a40d33d62bd4e05c65afc7ff4b1f702bf25466de428fa231d"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:9dd77b58054b9b5369ed4b3f714c84909d574592851a830e679d27b76adb6a38"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/main-rigid-frame.png",
+          "hash": "sha256:33dbefaf344e55ee64108a6e578283274f294db8722456025487ae01c5d994a9"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/shimane-road-grade.png",
+          "hash": "sha256:bd51dae9d66c00b973b4edc980228d50de6893a4a756dbac52982d8b68d54b12"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/main-pier-box-web.png",
+          "hash": "sha256:93039870a6fc0658a19bf884518e33d579ccf3eccddc084c4fa6edbe0ef8e8a9"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/pedestrian-rail.png",
+          "hash": "sha256:2811e58f0d39ed57a3403220f7fd1dc69f2b9d8d31e1b054e954e803cfa819fe"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/maintenance-bay.png",
+          "hash": "sha256:8942ea025887af6fefcde112c461641b388baad48f6b95dc03896b56229213bf"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/bay-supports.png",
+          "hash": "sha256:184c150f3abc90caafee7d385f01774ea65dc9c601da7414fcd382e9b2432960"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/center-expansion-joint.png",
+          "hash": "sha256:2862227a81ace04f9977bf46a214bcfac588a4bad211ab1edbaff991112275b2"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/curved-tottori-approach.png",
+          "hash": "sha256:7faa3edeb4c403435b161d44ce2657647815e163faec1e5259f490e75a2a71d0"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/whole-elevation.png",
+          "hash": "sha256:67b2d783b31064a5ca4f949350601b8e632b6a91381bf876efaf89a3ac962153"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/whole-eshima-skyline.png",
+          "hash": "sha256:e4797c0d5c9a435e25dc4ee7206b80c9eb0bd98a52070b267f727b4e4b1b7a18"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/whole-eshima-district.png",
+          "hash": "sha256:9eb7fef2b9377bd01c8db70b5e91565c5fe1c3ef0d37e5e8a982dc1fef483143"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/whole-eshima-street.png",
+          "hash": "sha256:d8baa27b7891b843c4b0b911ed0f63159d7fc79a8d76842318c7565eafda2e6d"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/whole-eshima-closeup.png",
+          "hash": "sha256:014ccb7f1e5e0fbbae065f867666dff4a899bc002e90552fcee55ff4434ddd66"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:12c225d1dadb0b668a9d2c096722b59399a08f12869d3d5217c87fc61649fcd4"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:ef7f47b714982d7758d1acf4cf655273627b80e01cf7833f5ed2f7034285ec43"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:f4f9b62df69732115a5531e159e9f454cda3ad584939a05a157a8ad9f1f61906"
+        },
+        {
+          "path": "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:9fde883f9df46cd90bf575e752b147e15355b556ee546c61f1515e9a435efb60"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-skyline-nakaumi-crossing.png",
+          "hash": "sha256:15596d69c16e08034816a15addfd4cc0745232f9dc19d4cb0c4fa984d4d98c22"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-district-nakaumi-crossing.png",
+          "hash": "sha256:29340c55136fd680f9e440949c92de88c2c2efada0b7722945fc3bf2caded5df"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-street-nakaumi-crossing.png",
+          "hash": "sha256:79df83a3c362c42c1ccb27e3b5631344885c7f59969f4b323d6adb64c85ddef6"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-nakaumi-crossing.png",
+          "hash": "sha256:818198ba3d39d3a1d8be121a5daf5cd6311776fc99ac267f5aa93bb04401909f"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-main-rigid-frame.png",
+          "hash": "sha256:5685168201107a6e9d9815c8eaa4de806acdeef511266d94710a205a26b085ba"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-shimane-road-grade.png",
+          "hash": "sha256:5147694aca55d19ba0b26a0cf8b12904d9e7ec04f1f01dd9c395def5bc47a2af"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-main-pier-box-web.png",
+          "hash": "sha256:7c96e732ef10b46a41480c17541fb7d69a1686a3393ab64ecf61816487a06149"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-pedestrian-rail.png",
+          "hash": "sha256:c36378a3635e2d572a9e71c43b6b5530d3ee6068183ab865fc039c8681056f82"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-maintenance-bay.png",
+          "hash": "sha256:16480e957c5dcbb4ee36b938105076945503a5831e700ecd4b2e8d21ddeff54a"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-bay-supports.png",
+          "hash": "sha256:b63cf8f9f0c4d7e9ff34f33aa5978e7807e3e98f1174fa6e078332397e0ba4d4"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-center-expansion-joint.png",
+          "hash": "sha256:964328049451e96ee37dc4a109ed538ed61894fd9012277b446f618d01b11f4c"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-curved-tottori-approach.png",
+          "hash": "sha256:48aa8b6b555a14b67762d2d4fe3d4c034aea1c487d4d4a9207668ac5601cb691"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-whole-elevation.png",
+          "hash": "sha256:773ecbd7a2ac6906a1fa3b7d0abcec8d7c94771201f07bdca15edd8d7c1b0e30"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-shimane-shore-join.png",
+          "hash": "sha256:b1b10e81281bbecb23b4b2dc261cbb97772b40c84abfe9163b5af74aea340520"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-closeup-tottori-shore-join.png",
+          "hash": "sha256:7bcb0f8d20af3dcb45cebc75ed2629edd004c922a2bc5203afbfa9814407f54b"
+        },
+        {
+          "path": ".artifacts/eshima-integration/shots/final-failure-nakaumi-crossing.png",
+          "hash": "sha256:32026df933c3cd703910e7559a8e927287cccacde3f5d3aca54bebee5bfff57f"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 644 resident / 786 wider mapped buildings, 450 independent transportation records, every original DEM sample and native water/shoreline behavior remain. Only the mapped crossing and its two directly shared outward road approaches receive clipping/height hints. Unrelated fragments sharing the same tile feature IDs remain exact. Failed load retains the original procedural crossing without supports; unload releases all model/support geometry and restores native content. Fixture/engine hashes are pinned. Curved endpoint support also passes41 targeted Earth tests (rotation, nonuniform scale, malformed endpoints and existing bridge behavior); affected package typecheck and seven-file formatter check pass. Full engine CI was not rerun; previously recorded livery-schema failures remain outside this model pass."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:9ebd0f3f32ed184c453d34354a6b48a09168b30b3cfd6c359db7b9bffe8d72b6",
+      "sourceHash": "sha256:156cac9257f96ab37ea7fcf7e731b0e886f04604bcde80dd814f869a6c24dffa",
+      "runtimeHash": "sha256:1cf77cf55724afd8c0862e3ff33bacec193556b20bdbb4dfdc752970c6bfa030",
+      "files": {
+        "content/worldgen/source/places/wy/wyq/eshima_ohashi_bridge/models/source.glb": "sha256:156cac9257f96ab37ea7fcf7e731b0e886f04604bcde80dd814f869a6c24dffa",
+        "content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.glb": "sha256:1cf77cf55724afd8c0862e3ff33bacec193556b20bdbb4dfdc752970c6bfa030",
+        ".artifacts/eshima-integration/data.json": "sha256:89bc23ab519b0b4ed9564ca83f4cf1774d0deb20025c193b09cef5e702e4ff5d",
+        ".artifacts/eshima-integration/site.ts": "sha256:653f23cb1f880e0a58764161e2db72b673e5488076fc8077504d0c85adfd6db4",
+        ".artifacts/eshima-integration/site.mjs": "sha256:f47de004ea14f1a0b354e8342b89bff54a398209fef99e4d17ab98e633902c5c",
+        "content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.skyline.glb": "sha256:41f8705135b153558a5e08fff50b3d1b257e6d3b1b1106f853f66a63bd9783fa",
+        "content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.district.glb": "sha256:441b0b4b47ee7049564751d8b0622ec6f87e3d001feda4fec2627356ce6fcb58",
+        "content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.street.glb": "sha256:fbb5cd20402117f9269af02c7cf99f53cc90dfdd0d182576112553145dcb0b3e",
+        "content/worldgen/assets/places/wy/wyq/eshima_ohashi_bridge/model.closeup.glb": "sha256:3967e2d5c1bf03447bd05287df0e63a80999406cb07abc8328193b0b617e3c54"
+      },
+      "engine": {
+        "packages/worldgen-earth/src/client/structure-geometry.ts": "sha256:8d87974c44acaba3bc21b8fa3cee5388758a108432524c15adc09ae172878fd6",
+        "packages/terrain/src/surface-bridges.ts": "sha256:a921e62846e7342809bad97b17470531e38ede838c1b2ca1123e038a35cbe811",
+        "packages/terrain/src/surface-client.ts": "sha256:2309d499139b4292ae6097937346395be5cfa0659ba8dd5ba74ca22012c123db",
+        "packages/client/src/three/shadow-focus.ts": "sha256:ff1b6d0dc914faf5ca592d9c7fa2e74132ad7cae65cc63c0c03e325545a49d09"
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184399222580,
+              "lines": [
+                [
+                  [
+                    -1108.6005098176242,
+                    95.94079124528974
+                  ],
+                  [
+                    -956.2522018146651,
+                    76.21145049641859
+                  ],
+                  [
+                    -715.4860195071927,
+                    47.20662422751633
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "lines": [
+                [
+                  [
+                    714.3508040160142,
+                    46.05731812773598
+                  ],
+                  [
+                    745.5129932704747,
+                    53.644364008249056
+                  ],
+                  [
+                    790.4122253664116,
+                    61.99281401784384
+                  ],
+                  [
+                    835.0048989416811,
+                    66.33031748483509
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "shimane-join",
+              "station": -0.25,
+              "point": [
+                -715.8099224237639,
+                47.30418678389846
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 5.173209755477501,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-join",
+              "station": 1446.45,
+              "point": [
+                714.6141441437835,
+                46.07114572506892
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 7.648590950894118,
+              "rawGround": 1.9328974321635835
+            },
+            {
+              "name": "shimane-approach",
+              "station": -10,
+              "point": [
+                -725.5178969505522,
+                48.208471355938315
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 2.779898770361342,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-approach",
+              "station": 1456.2,
+              "point": [
+                724.0967657513398,
+                48.33882900275697
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 5.289315759687952,
+              "rawGround": 2.536312330606
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184399222580,
+              "connections": [
+                {
+                  "point": [
+                    0.22794584897967676,
+                    0.6235650285795176
+                  ],
+                  "elevation": 5.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7852968820906244,
+                    0.4129855826429169
+                  ],
+                  "elevation": 7.7,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "connections": [
+                {
+                  "point": [
+                    0.22794584897967676,
+                    0.6235650285795176
+                  ],
+                  "elevation": 5.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7852968820906244,
+                    0.4129855826429169
+                  ],
+                  "elevation": 7.7,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "skyline",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -655.4039916992188,
+              0,
+              -214.4400634765625
+            ],
+            "max": [
+              685.42041015625,
+              44.724998474121094,
+              301.6356201171875
+            ]
+          },
+          "sourceBuildings": 644,
+          "remainingBuildings": 644,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 450,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184459068806
+          ],
+          "retainedBridgePieces": [],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.eshima_ohashi_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184399222580,
+              "lines": [
+                [
+                  [
+                    -1108.6005098176242,
+                    95.94079124528974
+                  ],
+                  [
+                    -956.2522018146651,
+                    76.21145049641859
+                  ],
+                  [
+                    -715.4860195071927,
+                    47.20662422751633
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "lines": [
+                [
+                  [
+                    714.3508040160142,
+                    46.05731812773598
+                  ],
+                  [
+                    745.5129932704747,
+                    53.644364008249056
+                  ],
+                  [
+                    790.4122253664116,
+                    61.99281401784384
+                  ],
+                  [
+                    835.0048989416811,
+                    66.33031748483509
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "shimane-join",
+              "station": -0.25,
+              "point": [
+                -715.8099224237639,
+                47.30418678389846
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 5.173209755477501,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-join",
+              "station": 1446.45,
+              "point": [
+                714.6141441437835,
+                46.07114572506892
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 7.648590950894118,
+              "rawGround": 1.9328974321635835
+            },
+            {
+              "name": "shimane-approach",
+              "station": -10,
+              "point": [
+                -725.5178969505522,
+                48.208471355938315
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 2.779898770361342,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-approach",
+              "station": 1456.2,
+              "point": [
+                724.0967657513398,
+                48.33882900275697
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 5.289315759687952,
+              "rawGround": 2.536312330606
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184399222580,
+              "connections": [
+                {
+                  "point": [
+                    0.22794584897967676,
+                    0.6235650285795176
+                  ],
+                  "elevation": 5.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7852968820906244,
+                    0.4129855826429169
+                  ],
+                  "elevation": 7.7,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "connections": [
+                {
+                  "point": [
+                    0.22794584897967676,
+                    0.6235650285795176
+                  ],
+                  "elevation": 5.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7852968820906244,
+                    0.4129855826429169
+                  ],
+                  "elevation": 7.7,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "district",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -655.4039916992188,
+              0,
+              -214.4400634765625
+            ],
+            "max": [
+              685.42041015625,
+              53.65559768676758,
+              301.6356201171875
+            ]
+          },
+          "sourceBuildings": 644,
+          "remainingBuildings": 644,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 450,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184459068806
+          ],
+          "retainedBridgePieces": [],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.eshima_ohashi_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184399222580,
+              "lines": [
+                [
+                  [
+                    -1108.6005098176242,
+                    95.94079124528974
+                  ],
+                  [
+                    -956.2522018146651,
+                    76.21145049641859
+                  ],
+                  [
+                    -715.4860195071927,
+                    47.20662422751633
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "lines": [
+                [
+                  [
+                    714.3508040160142,
+                    46.05731812773598
+                  ],
+                  [
+                    745.5129932704747,
+                    53.644364008249056
+                  ],
+                  [
+                    790.4122253664116,
+                    61.99281401784384
+                  ],
+                  [
+                    835.0048989416811,
+                    66.33031748483509
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "shimane-join",
+              "station": -0.25,
+              "point": [
+                -715.8099224237639,
+                47.30418678389846
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 5.173209755477501,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-join",
+              "station": 1446.45,
+              "point": [
+                714.6141441437835,
+                46.07114572506892
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 7.648590950894118,
+              "rawGround": 1.9328974321635835
+            },
+            {
+              "name": "shimane-approach",
+              "station": -10,
+              "point": [
+                -725.5178969505522,
+                48.208471355938315
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 2.779898770361342,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-approach",
+              "station": 1456.2,
+              "point": [
+                724.0967657513398,
+                48.33882900275697
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 5.289315759687952,
+              "rawGround": 2.536312330606
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184399222580,
+              "connections": [
+                {
+                  "point": [
+                    0.22794584897967676,
+                    0.6235650285795176
+                  ],
+                  "elevation": 5.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7852968820906244,
+                    0.4129855826429169
+                  ],
+                  "elevation": 7.7,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "connections": [
+                {
+                  "point": [
+                    0.22794584897967676,
+                    0.6235650285795176
+                  ],
+                  "elevation": 5.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7852968820906244,
+                    0.4129855826429169
+                  ],
+                  "elevation": 7.7,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "street",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -655.4039916992188,
+              0,
+              -214.4400634765625
+            ],
+            "max": [
+              685.42041015625,
+              53.65559768676758,
+              301.6356201171875
+            ]
+          },
+          "sourceBuildings": 644,
+          "remainingBuildings": 644,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 450,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184459068806
+          ],
+          "retainedBridgePieces": [],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.eshima_ohashi_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184399222580,
+              "lines": [
+                [
+                  [
+                    -1108.6005098176242,
+                    95.94079124528974
+                  ],
+                  [
+                    -956.2522018146651,
+                    76.21145049641859
+                  ],
+                  [
+                    -715.4860195071927,
+                    47.20662422751633
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "lines": [
+                [
+                  [
+                    714.3508040160142,
+                    46.05731812773598
+                  ],
+                  [
+                    745.5129932704747,
+                    53.644364008249056
+                  ],
+                  [
+                    790.4122253664116,
+                    61.99281401784384
+                  ],
+                  [
+                    835.0048989416811,
+                    66.33031748483509
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "shimane-join",
+              "station": -0.25,
+              "point": [
+                -715.8099224237639,
+                47.30418678389846
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 5.173209755477501,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-join",
+              "station": 1446.45,
+              "point": [
+                714.6141441437835,
+                46.07114572506892
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 7.648590950894118,
+              "rawGround": 1.9328974321635835
+            },
+            {
+              "name": "shimane-approach",
+              "station": -10,
+              "point": [
+                -725.5178969505522,
+                48.208471355938315
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 2.779898770361342,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-approach",
+              "station": 1456.2,
+              "point": [
+                724.0967657513398,
+                48.33882900275697
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 5.289315759687952,
+              "rawGround": 2.536312330606
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184399222580,
+              "connections": [
+                {
+                  "point": [
+                    0.22794584897967676,
+                    0.6235650285795176
+                  ],
+                  "elevation": 5.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7852968820906244,
+                    0.4129855826429169
+                  ],
+                  "elevation": 7.7,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "connections": [
+                {
+                  "point": [
+                    0.22794584897967676,
+                    0.6235650285795176
+                  ],
+                  "elevation": 5.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7852968820906244,
+                    0.4129855826429169
+                  ],
+                  "elevation": 7.7,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "closeup",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -655.4039916992188,
+              0,
+              -214.4400634765625
+            ],
+            "max": [
+              685.42041015625,
+              53.80014419555664,
+              301.6356201171875
+            ]
+          },
+          "sourceBuildings": 644,
+          "remainingBuildings": 644,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 450,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184459068806
+          ],
+          "retainedBridgePieces": [],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.eshima_ohashi_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184399222580,
+              "lines": [
+                [
+                  [
+                    -1108.6005098176242,
+                    95.94079124528974
+                  ],
+                  [
+                    -956.2522018146651,
+                    76.21145049641859
+                  ],
+                  [
+                    -715.4860195071927,
+                    47.20662422751633
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184500337670,
+              "lines": [
+                [
+                  [
+                    714.3508040160142,
+                    46.05731812773598
+                  ],
+                  [
+                    745.5129932704747,
+                    53.644364008249056
+                  ],
+                  [
+                    790.4122253664116,
+                    61.99281401784384
+                  ],
+                  [
+                    835.0048989416811,
+                    66.33031748483509
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "shimane-join",
+              "station": -0.25,
+              "point": [
+                -715.8099224237639,
+                47.30418678389846
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 0.31999999284732894,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-join",
+              "station": 1446.45,
+              "point": [
+                714.6141441437835,
+                46.07114572506892
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 2.2587088253992533,
+              "rawGround": 1.9328974321635835
+            },
+            {
+              "name": "shimane-approach",
+              "station": -10,
+              "point": [
+                -725.5178969505522,
+                48.208471355938315
+              ],
+              "expectedDeck": 5.2,
+              "roadHeight": 0.3199999928474426,
+              "rawGround": 0
+            },
+            {
+              "name": "tottori-approach",
+              "station": 1456.2,
+              "point": [
+                724.0967657513398,
+                48.33882900275697
+              ],
+              "expectedDeck": 7.7,
+              "roadHeight": 2.8561729803230946,
+              "rawGround": 2.536312330606
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "failure",
+          "modelLoaded": false,
+          "modelWorldY": null,
+          "modelBounds": null,
+          "sourceBuildings": 644,
+          "remainingBuildings": 644,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 450,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184459068806
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184459068806,
+              "lines": [
+                [
+                  [
+                    -715.4860195071927,
+                    47.20662422751633
+                  ],
+                  [
+                    -519.0529039314737,
+                    29.02729917156222
+                  ],
+                  [
+                    -366.29010986448844,
+                    16.468559457878655
+                  ],
+                  [
+                    -203.93656831169338,
+                    0.5121812581620588
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184459068806,
+              "lines": [
+                [
+                  [
+                    -238.4440943183045,
+                    3.8708548595128462
+                  ],
+                  [
+                    258.2590437437611,
+                    -44.77643429055395
+                  ],
+                  [
+                    294.783500728461,
+                    -46.59561097689773
+                  ],
+                  [
+                    320.1251986700282,
+                    -45.61667705623374
+                  ],
+                  [
+                    340.9977581842389,
+                    -42.42627650375752
+                  ],
+                  [
+                    374.2659879262226,
+                    -35.6038660693784
+                  ],
+                  [
+                    714.3508040160142,
+                    46.05731812773598
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.eshima_ohashi_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Original detailed exterior reconstruction, not fabrication geometry. Measured span and section dimensions constrain the structural silhouette; crest transition and small fittings are reconstructed.",
+    "The bridge is modeled in its operating form. Temporary work platforms, construction machinery, buried foundation caissons, underwater piers and adjoining roads beyond the1446.2m bridge are omitted.",
+    "Nakaumi water elevation is provisionally0m in the viewer; source tourist height is treated as road crest and is not a surveyed absolute vertical datum.",
+    "Maintenance bay side/length, lamps, drain hardware, rail infill spacing, asphalt color and minor weathering follow available photographs rather than a current inspection inventory.",
+    "Detailed source master is retained byte-exact; all four runtime representations are authored independently on the source alignment and height profile.",
+    "Skyline retains every approach pier with coarse cross-sections. District uses representative lamps and a continuous open top rail. Near levels retain both footways, source lamp rhythm, transparent bay screens and supporting ribs.",
+    "Street posts are spaced 12m; closeup 2m. Fine 0.2m infill, form ties, drain gratings, navigation lettering and comb teeth stay in the detailed master.",
+    "Standard PMTiles/Mapzen and ordinary photos guide placement; end grades and lake water zero remain approximate. Physical device timings remain pending.",
+    "Approximate native fit at [133.200518112,35.519148008], heading0.360355642256; +X from Shimane toward Tottori. Exact-QID source map alignment retains the curved eastern approach. Native lake-plane zero,5.2/7.7m end levels and44.7m crest remain provisional source reconstructions, not a tidal/geodetic conversion. Explicit local deckEndpoints place connections at the real curved ends instead of intersections withZ0. Native road heights0.25m outside the two ends are5.173/7.649m, within0.052m of the deck. Coarse shore terrain is0/about1.93m; the20m supported approach blend is inferred and noticeably steeper than a surveyed road. Native approach widths/footways are generic map rendering, not an exact continuation of the authored bridge section."
+  ]
 }

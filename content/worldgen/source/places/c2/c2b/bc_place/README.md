@@ -22,7 +22,7 @@ Primary architect/engineer photographs and technical descriptions consulted; non
 
 ## Authored geometry and materials
 
-1,736,182 triangles, 3,156,284 vertices, 8 surface groups; 134,464,800 source bytes. SHA-256: `sha256:ed0d861be162a4f35e357a5bd75b6ac56dde2cb0a81c60d00daa0980e0b9b054`. Actual bounds: -113.392, -0.102, -133.392 to 113.392, 82.091, 133.392 m.
+1,417,374 triangles, 3,298,676 vertices, 8 surface groups; 135,765,216 source bytes. SHA-256: `sha256:8cd9211257055ee89ae69f3a51eb8c62e6ad8bb14b3c73e568576db6efe8e576`. Actual bounds: -113.392, -0.102, -133.392 to 113.392, 82.091, 133.392 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.etfe_film` (2 × 2 m), `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped field centre at event slab Y0. +Z points toward the northeast goal and +X toward the northwest sideline."}.
 

@@ -103,7 +103,7 @@ function lower(x) {
   }
   return 0;
 }
-function pier(out, plan, height, cap = 'flat') {
+function pier(out, plan, height, cap = 'flat', { masonry = true } = {}) {
   const area = plan.reduce((sum, p, i) => {
     const q = plan[(i + 1) % plan.length];
     return sum + p[0] * q[1] - q[0] * p[1];
@@ -116,7 +116,7 @@ function pier(out, plan, height, cap = 'flat') {
   // Foundation steps and low-walled restored tops follow each individual asymmetric footprint.
   loft(out, 'roughstone', [ring(0, 1.1), ring(0.85, 1.1), ring(1.12, 1.025)], mortar);
   loft(out, 'stone', [ring(1.12), ring(height)], stone);
-  for (let y = 1.12; y < height - 0.1; y += 0.43)
+  for (let y = 1.12; masonry && y < height - 0.1; y += 0.43)
     for (let i = 0; i < plan.length; i++) {
       const a = plan[i],
         b = plan[(i + 1) % plan.length],
@@ -161,12 +161,12 @@ function pier(out, plan, height, cap = 'flat') {
     }
   }
 }
-function niche(out) {
+function niche(out, { masonry = true } = {}) {
   const x = 8.2,
     y = deck(x),
     z0 = 3.13;
   box(out, 'stone', [4.98, 0.8, z0], [11.42, y + 0.06, 4.99], stone);
-  for (let yy = 1.2; yy < y; yy += 0.43)
+  for (let yy = 1.2; masonry && yy < y; yy += 0.43)
     for (let xx = 4.99; xx < 11.41; xx += 0.82)
       box(
         out,
@@ -274,15 +274,23 @@ function niche(out) {
   ])
     box(out, 'stone', [a, y, c], [b, y + 0.91, d], pale);
 }
-export function buildSkopjeBridge(out) {
+export function buildSkopjeBridge(out, { runtimeLevel } = {}) {
+  const runtime = runtimeLevel === 'street' || runtimeLevel === 'closeup',
+    close = runtimeLevel === 'closeup',
+    subdivisions = runtime ? 1 : 3,
+    lanes = runtime ? (close ? 2 : 1) : 8;
   for (const a of arches) {
-    const courses = a.brick ? 136 : Math.ceil(a.span * 5.3),
+    const courses = runtime
+        ? Math.ceil(a.span * (close ? 1.5 : 0.8))
+        : a.brick
+          ? 136
+          : Math.ceil(a.span * 5.3),
       tint = a.brick ? [0.66, 0.4, 0.27] : stone;
     // Separate radial blocks and continuous recessed core keep the vault watertight.
     for (let i = 0; i < courses; i++)
-      for (let k = 0; k < 3; k++) {
-        const t0 = (i + k / 3) / courses,
-          t1 = (i + (k + 1) / 3) / courses;
+      for (let k = 0; k < subdivisions; k++) {
+        const t0 = (i + k / subdivisions) / courses,
+          t1 = (i + (k + 1) / subdivisions) / courses;
         solid(
           out,
           [
@@ -296,14 +304,14 @@ export function buildSkopjeBridge(out) {
           mortar,
           a.brick ? 'brick' : 'stone',
         );
-        for (let lane = 0; lane < 8; lane++) {
-          const s0 = (i + 0.015 + (k * 0.97) / 3) / courses,
-            s1 = (i + 0.015 + ((k + 1) * 0.97) / 3) / courses;
+        for (let lane = 0; lane < lanes; lane++) {
+          const s0 = (i + 0.015 + (k * 0.97) / subdivisions) / courses,
+            s1 = (i + 0.015 + ((k + 1) * 0.97) / subdivisions) / courses;
           solid(
             out,
             [archPoint(a, s0), archPoint(a, s1), archPoint(a, s1, 0.62), archPoint(a, s0, 0.62)],
-            -3.2 + lane * 0.8 + 0.006,
-            -3.2 + (lane + 1) * 0.8 - 0.006,
+            -3.2 + lane * (6.4 / lanes) + 0.006,
+            -3.2 + (lane + 1) * (6.4 / lanes) - 0.006,
             tint.map((v) => v + (((i * 7 + lane * 3) % 11) - 5) * 0.006),
             a.brick ? 'brick' : 'stone',
           );
@@ -325,7 +333,10 @@ export function buildSkopjeBridge(out) {
       -half,
       half,
       ...arches.flatMap((a) => [a.x - a.span / 2 - 0.62, a.x + a.span / 2 + 0.62]),
-      ...Array.from({ length: Math.ceil((half * 2) / 0.25) }, (_, i) => -half + i * 0.25),
+      ...Array.from(
+        { length: Math.ceil((half * 2) / (runtime ? (close ? 0.75 : 1.5) : 0.25)) },
+        (_, i) => -half + i * (runtime ? (close ? 0.75 : 1.5) : 0.25),
+      ),
     ]),
   ]
     .filter((x) => x >= -half && x <= half)
@@ -341,10 +352,21 @@ export function buildSkopjeBridge(out) {
           (active.rise + 0.62) *
             Math.sqrt(Math.max(0, 1 - ((x - active.x) / (active.span / 2 + 0.62)) ** 2))
         : 0;
-    wedge(out, a, b, lo(a), lo(b), deck(a) - 0.11, deck(b) - 0.11, -3.09, 3.09, mortar);
+    wedge(
+      out,
+      a,
+      b,
+      lo(a),
+      lo(b),
+      deck(a) - 0.11,
+      deck(b) - 0.11,
+      -3.09,
+      3.09,
+      runtime ? stone : mortar,
+    );
   }
   for (const side of [-1, 1])
-    for (let row = 0; row < 27; row++)
+    for (let row = 0; !runtime && row < 27; row++)
       for (let x = -half - 0.9 + (row % 2) * 0.4; x < half; x += 0.81) {
         const a = Math.max(-half, x + 0.006),
           b = Math.min(half, x + 0.801);
@@ -365,7 +387,7 @@ export function buildSkopjeBridge(out) {
         );
       }
   // Continuous cornices, two-course dressed parapets, individual coping slabs and paving.
-  for (let x = -half; x < half; x += 0.8) {
+  for (let x = -half; !runtime && x < half; x += 0.8) {
     const end = Math.min(half, x + 0.8);
     for (const side of [-1, 1]) {
       wedge(
@@ -446,7 +468,7 @@ export function buildSkopjeBridge(out) {
       [-4.43, -3.07],
     ],
   ])
-    pier(out, p, 4.8, 'pyramid');
+    pier(out, p, 4.8, 'pyramid', { masonry: !runtime });
   pier(
     out,
     [
@@ -458,6 +480,7 @@ export function buildSkopjeBridge(out) {
     ],
     2.55,
     'well',
+    { masonry: !runtime },
   );
   pier(
     out,
@@ -469,6 +492,7 @@ export function buildSkopjeBridge(out) {
     ],
     2.6,
     'flat',
+    { masonry: !runtime },
   );
   pier(
     out,
@@ -481,6 +505,7 @@ export function buildSkopjeBridge(out) {
     ],
     2.55,
     'well',
+    { masonry: !runtime },
   );
   pier(
     out,
@@ -492,6 +517,7 @@ export function buildSkopjeBridge(out) {
     ],
     6.3,
     'pyramid',
+    { masonry: !runtime },
   );
   pier(
     out,
@@ -503,14 +529,15 @@ export function buildSkopjeBridge(out) {
     ],
     6.1,
     'flat',
+    { masonry: !runtime },
   );
-  niche(out);
+  niche(out, { masonry: !runtime });
   for (const x of [-51.65, -35.4, -17.35, 1.34])
     for (const side of [-1, 1]) {
       const y = 10.62,
         z = side * 3.22;
       tube(out, 'stone', [x, y, z], [x, y, z + side * 0.065], 0.18, pale, 24);
-      for (let k = 0; k < 8; k++) {
+      for (let k = 0; (!runtime || close) && k < 8; k++) {
         const a = (k * Math.PI) / 4;
         tube(
           out,
@@ -587,3 +614,10 @@ export const skopjeStudy = {
     { name: 'walkway', position: [-23, 13.1, 0.1], lookAt: [12, 12.6, 0], fov: 58 },
   ],
 };
+
+// Distance representations share the actual profile and complete niche shell, while the
+// detailed master keeps its original individual masonry by default.
+export { archPoint as skopjeArchPoint, deck as skopjeDeck, solid as skopjeSolid };
+export function buildSkopjeNicheMedium(out) {
+  niche(out, { masonry: false });
+}

@@ -1,5 +1,5 @@
 /**
- * Deterministic P-51D Mustang master. No network, bitmap textures or private dependencies.
+ * Deterministic P-51D Mustang master with original procedural cockpit finishes.
  *
  * Frame: the nose faces +Z, +X is the pilot's left, Y is up and the origin is on the ground under
  * the wing. The airframe rests level on its wheels, as the airplane solver holds it on the ground,
@@ -23,6 +23,7 @@
  * `rudder` (local Y) follow the controls; the cockpit nodes come from interior.mjs. Generators must
  * stay byte-deterministic: use Math.pow for every exponent other than 2 or 0.5.
  */
+
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
@@ -30,6 +31,12 @@ import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { completeCockpitControls } from '../../../../../../packages/entities/scripts/aircraft/cockpit-controls.mjs';
+import {
+  embedCockpitTextures,
+  finishAircraftCockpit,
+  writeCockpitTextures,
+} from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
 import { addRivetRows } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
 import { addInterior } from './interior.mjs';
 
@@ -544,7 +551,9 @@ function buildFuselage(g) {
   mesh(
     g,
     'fuselage-interior',
-    orient(liningGeo, (m) => fuselageAxis(m).multiplyScalar(2).sub(m)),
+    // orient() points away from its reference. Reflect the axis beyond the skin so the
+    // winding, like the supplied normals, faces into the cockpit instead of being culled.
+    orient(liningGeo, (m) => m.clone().multiplyScalar(2).sub(fuselageAxis(m))),
     green,
   );
   for (const side of [-1, 1]) {
@@ -1729,6 +1738,8 @@ function mustang() {
   }
   addRivetRows(g, [g.getObjectByName('fuselage')], rows);
   addInterior(g, interiorLayout, {
+    // Sidewall fittings follow the inner skin, including the narrowing below the canopy rail.
+    cabinWidth: (y, z) => halfWidth(station(z), y, -0.018),
     group,
     box,
     rod,
@@ -1758,8 +1769,18 @@ const pinned = JSON.parse(sourceText).files.models.find(
   (model) => model.path === 'models/source.glb',
 )?.sha256;
 if (!pinned) throw new Error(`${sourcePath}: models/source.glb has no sha256 pin`);
-const bytes = Buffer.from(
-  await new GLTFExporter().parseAsync(mustang(), { binary: true, onlyVisible: false }),
+const controlSpec = Object.values(
+  JSON.parse(await readFile(resolve(root, '../entity.types.json'), 'utf8')).types,
+)[0].components.aircraft.spec;
+const controlledModel = completeCockpitControls(mustang(), controlSpec, {
+  panelZ: interiorLayout.panelZ,
+  letteringFont: 'period',
+});
+finishAircraftCockpit(controlledModel, controlSpec, 'p-51');
+const bytes = embedCockpitTextures(
+  Buffer.from(
+    await new GLTFExporter().parseAsync(controlledModel, { binary: true, onlyVisible: false }),
+  ),
 );
 const path = resolve(root, 'source.glb');
 const current = await readFile(path).catch(() => undefined);
@@ -1784,6 +1805,8 @@ if (current && hash(current) !== pinned && !current.equals(bytes)) {
 }
 await mkdir(root, { recursive: true });
 if (!current?.equals(bytes)) await writeFile(path, bytes);
-if (pinned !== generatedHash)
-  await writeFile(sourcePath, sourceText.replace(pinned, generatedHash));
+const source = JSON.parse(sourceText);
+source.files.models.find((model) => model.path === 'models/source.glb').sha256 = generatedHash;
+source.files.textures = await writeCockpitTextures(resolve(root, '..'), bytes);
+await writeFile(sourcePath, `${JSON.stringify(source, null, 2)}\n`);
 console.log(`p51d: ${bytes.length} bytes, ${generatedHash}`);

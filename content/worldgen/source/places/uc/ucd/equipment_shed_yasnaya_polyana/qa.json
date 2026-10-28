@@ -1,0 +1,771 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.equipment_shed_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:479d0151383c8f0a759402ecf6a280313f3ed522c7c0fbb75b86903ce678819f",
+  "sourceHash": "sha256:464e7458d7210376629cd663fce8b424445de66b8352612f22536f7992653be9",
+  "runtimeHash": "sha256:47cdd0d16eebe852f191fbe545ec8d5b869d04ea25071f8c23e8cf23651bb07f",
+  "captureReportHash": "sha256:d7bae064cabf7e0f7c459c17d793fcc9af6b9bdc337d8e93de51ffba23f94f89",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-weathered-shed-three-doors-and-red-hip.png",
+      "shots/three-recessed-door-bays-and-thresholds.png",
+      "shots/hip-end-log-corners-and-native-plinth.png",
+      "shots/rear-log-wall-red-roof-and-grade.png"
+    ],
+    "captureReportHash": "sha256:d7bae064cabf7e0f7c459c17d793fcc9af6b9bdc337d8e93de51ffba23f94f89",
+    "notes": "Inspected 48 current portable/shared/medium-fi/native frames during the continuous author/inspect/fix pass. The paired whole-site view shows two independent buildings. The equipment shed has a complete low log shell, red hipped metal roof, three genuinely recessed wooden doors, small unlettered end plaques, restrained corner logs and seven supported apron treads. Native close views cover the door recesses, hip/eaves, blank rear and grade/plinth contact."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-weathered-shed-three-doors-and-red-hip.png",
+      "shots/shared/three-recessed-door-bays-and-thresholds.png",
+      "shots/shared/hip-end-log-corners-and-native-plinth.png",
+      "shots/shared/rear-log-wall-red-roof-and-grade.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:0fb82bebad4032c9fd294c65450fb22339c2b3d8d0bc3593413a81c9acda1d7f",
+    "notes": "Six existing 256px graphs serve the shed: wood_log, wood_vertical, wood_plain, metal_standing_seam, plaster_lime and metal_painted. Metric UVs and restrained linear tints keep it coherent with procedural neighbors. No embedded images, private atlas or new material graph. The paired native scene loads eight distinct graphs for both structures, with each read once; shared wood and plaster are reused. Separate vertex streams prevent duplicate GPU attribute uploads; near levels use six draws."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-weathered-shed-three-doors-and-red-hip.png",
+      "medium-fi/three-recessed-door-bays-and-thresholds.png",
+      "medium-fi/hip-end-log-corners-and-native-plinth.png",
+      "medium-fi/rear-log-wall-red-roof-and-grade.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:ed31646fb8171fb85fcd5e4eb1a2504a31d8cc73521bac0c35b0ff814719891d",
+    "notes": "Four authored LODs use 186/228/712/1016 triangles; initial skyline+district 43652 bytes. Skyline retains the complete low hip, three door recesses and supported thresholds. District adds metal/wood bindings; near levels add coarse log relief and restrained corner ends. Synthetic distance/lighting comparisons pass; physical laptop/phone timings remain pending."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:96d20458d16e1d200550270ec4b3a289033fc33ce7b52a4566010f9ad3ef1f26",
+    "mapFrameHash": "sha256:1f6541387b5893ef327c6d4adc877bd58942422c6e0cb8a3d6d24cb65b867bd2",
+    "notes": "Two adjacent retained one-story shed footprints are candidates for the small gray-gabled poultry house and longer red-hipped equipment shed shown together in the ordinary museum photograph. Sizes and separation support this assignment. The retained long axes are nearly parallel; the photograph may show different faces through perspective/parallax, and no camera position is known. Specific poultry/equipment function and absolute front assignment remain explicit photo/relative-context inferences; the public map names both only as sheds. Use the photographed gray roof on the small building despite the generic map red-roof tag. The larger12.72x6.10m footprint is kept separate from the small gabled poultry house. LocalX southeast is its mapped long axis, with the three-door face inferred at local+Z southwest. Native axes are baked east/up/south, heading0. Retained Protomaps20261020 and standard Mapzen201x201/6m. Outside garden control[0,5.5774795481570365] gives215.1551128071785m datum. Floor intercept0.3556289698292119m and foundation intercept-0.8778526227228269m, with explicit long-axis grade-.06. Replace only building35184539471090; preserve the independent poultry hut, native courtyard/roads, DEM samples and all ponds. Only the occupied footprint cuts ground; supported aprons seat into original soil. No custom terrain or broad yard flattening. Inspected the actual paired native view, all three recessed door bays, red hip/eaves, log corners, pale plinth and supported aprons. Both independent models load together, the garden passage and original ground/roads/water remain, and shared graph reads are reused. The bounded long-axis visualization grade and exposed plinth remain explicit coarse-DEM approximations, not surveyed historical levels. The shed owns native building35184539471090. The paired test separately loads the poultry hut at35184539471089, preserving all241resident/293wider independent buildings and the garden passage, original roads, DEM samples and40070.675m²native water. Both render at their own terrain attachment datums; their root-height difference is0.555912m. Disjoint 8m/6m matching ranges avoid cross-matching. Failed loading retains all243original buildings and ground; unload releases both models and restores ground after water unload."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete independent equipment-shed interpretation: mapped log walls, low red metal hipped roof, three recessed weathered timber door bays, log corner ends, pale grounded plinth and supported threshold aprons. Plain small plaques retain the placement of the photo panels without copied lettering. Reuse wood_log, wood_vertical, wood_plain, metal_standing_seam, plaster_lime and metal_painted graphs. The neighboring poultry house remains a separate model; no trees, people, copied signs or photo pixels are baked in. Photo-led low log shed: wall2.25m, red hip ridge3.6m above local floor, three genuinely recessed timber door bays, restrained eaves, small plain end plaques and supported threshold aprons. Native ground changes about1.6m across this footprint. The source applies a bounded -.06m/m long-axis visualization grade; this reduces the exposed plinth while retaining one-story proportions, and is not a surveyed historic floor/roof. Exact pitch, door census, panel details and thresholds remain reconstructed. Equipment-shed identity and the southwest three-door face are inferred from the paired museum photograph, relative estate context and larger mapped shed footprint. Both public map names are only sheds. Hidden rear details, door proportions, blank plaques and historic levels remain reconstructed. The retained coarse DEM changes about1.6m across this footprint; a bounded-.06m/m long-axis visualization grade reduces exposed plinth without changing the original terrain. The sloping floor/roof and thresholds are not surveyed historical geometry. The estate service inventory remains unfinished."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:464e7458d7210376629cd663fce8b424445de66b8352612f22536f7992653be9\",\"bytes\":97208,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.glb\",\"hash\":\"sha256:47cdd0d16eebe852f191fbe545ec8d5b869d04ea25071f8c23e8cf23651bb07f\",\"bytes\":96632,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:09612c02c5e7513bcb2c4cd879093bac46c1002cf0478a6551465b8ace6b9b36\",\"bytes\":17876,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:679b6b76f2015c3926fccf05901b76ec9b94b93c0fd9973b8e35e3690aeeff80\",\"bytes\":25776,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:926d8db2072625b1d20df053ca2e2edcf92890d33acd73f662896f44ee177891\",\"bytes\":67672,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:f17ce5aa63050a1c6e243112922c748ad494e409324ab9a6a0509aff4d82faba\",\"bytes\":93688,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "three-recessed-door-bays-complete-hip-log-shell-and-supported-aprons",
+        "passed": true,
+        "notes": "112 actual mesh probes over6GLBs; finite attributes, exact source/runtime/four-LOD hashes, shared materials, budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Two adjacent retained one-story shed footprints are candidates for the small gray-gabled poultry house and longer red-hipped equipment shed shown together in the ordinary museum photograph. Sizes and separation support this assignment. The retained long axes are nearly parallel; the photograph may show different faces through perspective/parallax, and no camera position is known. Specific poultry/equipment function and absolute front assignment remain explicit photo/relative-context inferences; the public map names both only as sheds. Use the photographed gray roof on the small building despite the generic map red-roof tag. The larger12.72x6.10m footprint is kept separate from the small gabled poultry house. LocalX southeast is its mapped long axis, with the three-door face inferred at local+Z southwest. Native axes are baked east/up/south, heading0. Retained Protomaps20261020 and standard Mapzen201x201/6m. Outside garden control[0,5.5774795481570365] gives215.1551128071785m datum. Floor intercept0.3556289698292119m and foundation intercept-0.8778526227228269m, with explicit long-axis grade-.06. Replace only building35184539471090; preserve the independent poultry hut, native courtyard/roads, DEM samples and all ponds. Only the occupied footprint cuts ground; supported aprons seat into original soil. No custom terrain or broad yard flattening. Inspected the actual paired native view, all three recessed door bays, red hip/eaves, log corners, pale plinth and supported aprons. Both independent models load together, the garden passage and original ground/roads/water remain, and shared graph reads are reused. The bounded long-axis visualization grade and exposed plinth remain explicit coarse-DEM approximations, not surveyed historical levels. The shed owns native building35184539471090. The paired test separately loads the poultry hut at35184539471089, preserving all241resident/293wider independent buildings and the garden passage, original roads, DEM samples and40070.675m²native water. Both render at their own terrain attachment datums; their root-height difference is0.555912m. Disjoint 8m/6m matching ranges avoid cross-matching. Failed loading retains all243original buildings and ground; unload releases both models and restores ground after water unload."
+    },
+    "inputHash": "sha256:479d0151383c8f0a759402ecf6a280313f3ed522c7c0fbb75b86903ce678819f",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:479d0151383c8f0a759402ecf6a280313f3ed522c7c0fbb75b86903ce678819f",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 48 current portable/shared/medium-fi/native frames during the continuous author/inspect/fix pass. The paired whole-site view shows two independent buildings. The equipment shed has a complete low log shell, red hipped metal roof, three genuinely recessed wooden doors, small unlettered end plaques, restrained corner logs and seven supported apron treads. Native close views cover the door recesses, hip/eaves, blank rear and grade/plinth contact.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/preview.png",
+          "hash": "sha256:d7365670c3d1fef02fe0dbc10d388707355167f85223f92679765777bf7eb07a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:008a57b85070e735ab30ec353a54d74fc0b03993d5f7ece39026085e658e4da3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:653cc6594e1b230770df2136d1c7fc2667f0b88f23b010eb2f80a675bfa0cb99"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:b587df72e9dd46e13301be83c72c42e2a69d83c20c15803aab9fc77b06a16413"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:7be5e0e612171171947d3cc8f0992d85038e0e102a5bc2b8169ec3bc58842270"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/whole-weathered-shed-three-doors-and-red-hip.png",
+          "hash": "sha256:13ba3c262360aaf841fbff43179d0a90f8a02b032f08b9b2139aa7574d2aa5e6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/three-recessed-door-bays-and-thresholds.png",
+          "hash": "sha256:f40c202e5ff81b4b4021912491460e730f2ad48df0605e11b9371b4068ca9df6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/hip-end-log-corners-and-native-plinth.png",
+          "hash": "sha256:388ef2b09e6cd7175a31007877f37b31e1ea1dbe3a29aff4f62c8dc26d9a91c5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/rear-log-wall-red-roof-and-grade.png",
+          "hash": "sha256:e1ba1ec1e27471062177501e30837cfc439942550275d4f02bdccb332d60814e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:578bed7ba0475063547d996ab51aebbd7c3384670e5afb2d8f5ac8e476be90e7"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:c4b36f2d45a1d852c25d81f730c862b27b3f62c78120dfcfabfa6c963df0c23b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:2b098b7968746d81055872c341e374c748e11028b5029bab804bb4fd50ead9cf"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:df0b45a5e002bdf429bf7e2124bbad1d8607ea8608fac5bd25611741d7967e0b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/whole-weathered-shed-three-doors-and-red-hip.png",
+          "hash": "sha256:7cd028e3586c7b4f736510de2aafe417f6af5ce97ec3034ee8892a11cb8fe319"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/three-recessed-door-bays-and-thresholds.png",
+          "hash": "sha256:1ce9f7b3cfb032ebd0abb0c1bf912424132cbb62be094f0396481d2fc9b96e4c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/hip-end-log-corners-and-native-plinth.png",
+          "hash": "sha256:b9d843da0c2f0a2e184ba0c7477672e5c0d9ba15dd51111cfe476344c8dad4de"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/rear-log-wall-red-roof-and-grade.png",
+          "hash": "sha256:b5a8fca2c911b19ab77f00cd34dbb902e730c9ce2c919bc59d43f88bab232780"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:4c6e3f76367d1fdce63d2fd44bae8472ae76f052bdcdc310b8c1ec654bb647b1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:e98c2e522dbb979cf73a736447689f0fd0673608049b84a2158c7ef64793c8eb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:57dc35d32fcc51f34890255b3eb1bf12cee06957f0ad64d913d9e6cdbd6d9b97"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:e1cb459d4fa3cc64faa100b689d0a4806091af52deef75e7ab7460231472790f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:157d215f2a0ad9bd6599b368e6da013867450c0368668c29424d756187104ed6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:ee1e6ead25e3bb893ffb1a835ec62033bd1927a7e848aa87bbcf75012ca8a5c3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:b79938d803028fa69ede9d1efe71f44a5b91a5a4f01e67d8009c2cc9d060b363"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:abe7b824c3b0c13859d6120b5ee375071d3fb64b6522fdbb8a027eeba8220607"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:e87a2d2d3e0ba741572a782136553ab463d2d08bc8b613cf3195ed90040b5f5d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:11cd5758ea9e12277b59d6920d430b51373be5b7a812ca3ca352fb2e61e4d959"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:d2539f01b5ca77a7b7077c77c866c3b11dccc1d4f264bb295718ba196f13db1d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:b456af512f0f7172cbd80d1979dc7e3eeace166cfa554cf609c7668540375ba2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:351bf5991ccc8a0e2642b4bbf9eb2582bc0ce79a61100c83cc23a10fc068bc17"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:b4d703ce83af700f1c9496c6b3be0598a08c9f1b6b029d4137bd3fbce68d1f7e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/whole-weathered-shed-three-doors-and-red-hip.png",
+          "hash": "sha256:eba3a77110b052a65aad55a2a6ab2f334d67264ba858621d99167eab93a07039"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/three-recessed-door-bays-and-thresholds.png",
+          "hash": "sha256:6bd386b360613e8e585ae25820c2f37b1a06254faffe5a8f98f37f56f48df1f4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/hip-end-log-corners-and-native-plinth.png",
+          "hash": "sha256:4708bb4999640a8e3d13699bfff4ea874dc10c538f9f4381e0e25accfc70387d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/rear-log-wall-red-roof-and-grade.png",
+          "hash": "sha256:084e47a27d5163c61c5622c7e663a4476d92d473dd4feaf79008bd9d0d44259b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:bc8335067488cda65d195a89cbb76d8bbd0686bdeafad80f780bd5f49f5feec6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:b79938d803028fa69ede9d1efe71f44a5b91a5a4f01e67d8009c2cc9d060b363"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:9ae406a3f37adf5d1ef7ffff98be4db1732126469cdf8df81342280859597f14"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:6992797947e73bb7e2eafb82ea6c538354603c847af8797520db05b19183dc1f"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-skyline-paired-poultry-house-and-equipment-shed.png",
+          "hash": "sha256:4fe3137ad3f9aeff327d7ed7eeddede8619c494aa661e8936b36f26da541f789"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-district-paired-poultry-house-and-equipment-shed.png",
+          "hash": "sha256:1b7a3f16fd459df1ef57163864c54213171685ad63ad22b521d2bcc7422131b6"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-street-paired-poultry-house-and-equipment-shed.png",
+          "hash": "sha256:554172193439013d69d50327b8177d97d38fba89676a3f41d88834db5e281572"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-closeup-paired-poultry-house-and-equipment-shed.png",
+          "hash": "sha256:1dc9b00859f3d08bd33874c568ae31a1d3162273c026103fdf04e185b8452a42"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-closeup-whole-weathered-shed-three-doors-and-red-hip.png",
+          "hash": "sha256:ec357fdfdabd47bea4096a43d77d55328c64615b2c210f364c01dd036985599f"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-closeup-three-recessed-door-bays-and-thresholds.png",
+          "hash": "sha256:4a4257c8fd356dcdf5b0536347f0d9316cf92976585013f04b52b26f5c37ad15"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-closeup-hip-end-log-corners-and-native-plinth.png",
+          "hash": "sha256:5210370b07ca467190d6f80764e8e906e34102a610d6d29bbedec52707d6328e"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-closeup-rear-log-wall-red-roof-and-grade.png",
+          "hash": "sha256:e9bc2873e531b9384a8ed6340a22f52427de6a2a7ff0594f185053732fe6ea15"
+        },
+        {
+          "path": ".artifacts/equipment-integration/shots/final-failure-paired-poultry-house-and-equipment-shed.png",
+          "hash": "sha256:3dbd5a4e46cd0df3acc19213531e8470b4819dea4e68f911ded42f259933fc1f"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:479d0151383c8f0a759402ecf6a280313f3ed522c7c0fbb75b86903ce678819f",
+      "sourceHash": "sha256:464e7458d7210376629cd663fce8b424445de66b8352612f22536f7992653be9",
+      "runtimeHash": "sha256:47cdd0d16eebe852f191fbe545ec8d5b869d04ea25071f8c23e8cf23651bb07f",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/equipment_shed_yasnaya_polyana/models/source.glb": "sha256:464e7458d7210376629cd663fce8b424445de66b8352612f22536f7992653be9",
+        "content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.glb": "sha256:47cdd0d16eebe852f191fbe545ec8d5b869d04ea25071f8c23e8cf23651bb07f",
+        "content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.skyline.glb": "sha256:09612c02c5e7513bcb2c4cd879093bac46c1002cf0478a6551465b8ace6b9b36",
+        "content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.district.glb": "sha256:679b6b76f2015c3926fccf05901b76ec9b94b93c0fd9973b8e35e3690aeeff80",
+        "content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.street.glb": "sha256:926d8db2072625b1d20df053ca2e2edcf92890d33acd73f662896f44ee177891",
+        "content/worldgen/assets/places/uc/ucd/equipment_shed_yasnaya_polyana/model.closeup.glb": "sha256:f17ce5aa63050a1c6e243112922c748ad494e409324ab9a6a0509aff4d82faba",
+        "content/worldgen/source/places/uc/ucd/poultry_house_yasnaya_polyana/models/source.glb": "sha256:5b7f94a50aa1bf7a1aa28d06ce21cd4980c7ee8c3c8c72a081821066039467bc",
+        "content/worldgen/assets/places/uc/ucd/poultry_house_yasnaya_polyana/model.glb": "sha256:4c9640b29c7d311799fba9c7435c814331524047eb3e2bc31774ee06a55b8ff6",
+        "content/worldgen/assets/places/uc/ucd/poultry_house_yasnaya_polyana/model.skyline.glb": "sha256:ad9b33bf625c90f154b4234f439f27ae243065690a5707be9350d5de025ac02a",
+        "content/worldgen/assets/places/uc/ucd/poultry_house_yasnaya_polyana/model.district.glb": "sha256:739852116898e1ede3ceaa5fd9cce9fb903bdd6c574090d751ad005ca96ca160",
+        "content/worldgen/assets/places/uc/ucd/poultry_house_yasnaya_polyana/model.street.glb": "sha256:1f6ac27a610be1d5f2b8328ea014ee6c25c5e01cac58849e4f7305b91fef53af",
+        "content/worldgen/assets/places/uc/ucd/poultry_house_yasnaya_polyana/model.closeup.glb": "sha256:166a990aec2c79d951838ac064c2a0102a09e911a38a012a2c1d7831705a3154"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184539471090
+      ],
+      "companionNativeIds": [
+        35184539471089
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184539471090,
+          "owned": true,
+          "covered": 0.9999852961876556,
+          "area": 76.51206145794627,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 241,
+      "widerIndependent": 293,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "pairedModelLoaded": true,
+          "companionWorldY": 0.5559170032341392,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000004758149028560865,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 241,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.equipment_shed_yasnaya_polyana",
+            "molen.worldgen.structure.poultry_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.404412807178517,
+            "max": 28.579687192821496
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "pairedModelLoaded": true,
+          "companionWorldY": 0.5559170032341392,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000004758149028560865,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 241,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.equipment_shed_yasnaya_polyana",
+            "molen.worldgen.structure.poultry_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.404412807178517,
+            "max": 28.579687192821496
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "pairedModelLoaded": true,
+          "companionWorldY": 0.5559170032341392,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000004758149028560865,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 241,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.equipment_shed_yasnaya_polyana",
+            "molen.worldgen.structure.poultry_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.404412807178517,
+            "max": 28.579687192821496
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "pairedModelLoaded": true,
+          "companionWorldY": 0.5559170032341392,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": false,
+          "terrainAtUnderCanopyCenter": false,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000004758149028560865,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 241,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.equipment_shed_yasnaya_polyana",
+            "molen.worldgen.structure.poultry_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.404412807178517,
+            "max": 28.579687192821496
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "pairedModelLoaded": false,
+          "companionWorldY": null,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            true,
+            true,
+            true
+          ],
+          "bankGround": true,
+          "gangwayGround": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184539471089,
+              "area": 47.50850200385237
+            },
+            {
+              "id": 35184539471090,
+              "area": 76.51097496467862
+            }
+          ],
+          "groundCutoutActive": true,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.equipment_shed_yasnaya_polyana",
+            "molen.worldgen.structure.poultry_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -28.404412807178517,
+            "max": 28.579687192821496
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete independent equipment-shed interpretation: mapped log walls, low red metal hipped roof, three recessed weathered timber door bays, log corner ends, pale grounded plinth and supported threshold aprons. Plain small plaques retain the placement of the photo panels without copied lettering. Reuse wood_log, wood_vertical, wood_plain, metal_standing_seam, plaster_lime and metal_painted graphs. The neighboring poultry house remains a separate model; no trees, people, copied signs or photo pixels are baked in. Photo-led low log shed: wall2.25m, red hip ridge3.6m above local floor, three genuinely recessed timber door bays, restrained eaves, small plain end plaques and supported threshold aprons. Native ground changes about1.6m across this footprint. The source applies a bounded -.06m/m long-axis visualization grade; this reduces the exposed plinth while retaining one-story proportions, and is not a surveyed historic floor/roof. Exact pitch, door census, panel details and thresholds remain reconstructed. Equipment-shed identity and the southwest three-door face are inferred from the paired museum photograph, relative estate context and larger mapped shed footprint. Both public map names are only sheds. Hidden rear details, door proportions, blank plaques and historic levels remain reconstructed. The retained coarse DEM changes about1.6m across this footprint; a bounded-.06m/m long-axis visualization grade reduces exposed plinth without changing the original terrain. The sloping floor/roof and thresholds are not surveyed historical geometry. The estate service inventory remains unfinished."
+  ]
+}

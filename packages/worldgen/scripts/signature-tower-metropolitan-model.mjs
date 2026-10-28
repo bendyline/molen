@@ -9,7 +9,7 @@ import {
   sphere,
 } from './authored-structure-mesh.mjs';
 import { face, grid, mappedCap, mappedSolid, tri } from './signature-tower-expansion-models.mjs';
-import { box, tube } from './structure-mesh.mjs';
+import { box, tube, tubePath } from './structure-mesh.mjs';
 
 const stone = [0.77, 0.745, 0.68],
   white = [0.85, 0.85, 0.78],
@@ -591,8 +591,7 @@ function cupola(out) {
   }
   for (let j = 3; j < rings.length - 2; j += 3) {
     const row = rings[j].map(([x, y, z]) => [x * 1.003, y, z * 1.003]);
-    for (let i = 0; i < 8; i++)
-      tube(out, 'stainless', row[i], row[(i + 1) % 8], 0.023, [0.5, 0.33, 0.07], 4);
+    tubePath(out, 'stainless', row.slice(0, 8), 0.023, [0.5, 0.33, 0.07], 4, true);
   }
   for (let i = 0; i < 8; i++) {
     const a = (i / 8) * 2 * pi,

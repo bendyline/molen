@@ -16,4 +16,4 @@ Principal26m structure only. Separate15m/XDM/C-BASS dishes, HIRAX array, laser-r
 
 Footings extend0.35m below a fixed dry-pad datum. Source terrain, local foundation/pad attachment and ground slope remain approximate; no whole-site platform, blanket ground opening or source-height fitting is introduced.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=hartrao_26m_antenna`. Add `--check` to verify exact regeneration. 15184 triangles; 3 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=hartrao_26m_antenna`. Add `--check` to verify exact regeneration. 14928 triangles; 3 materials; no embedded photographs.

@@ -19,6 +19,12 @@ export interface InstancedPlacementLodOptions {
   distances?: [number, number];
   /** Projected-detail policy; when supplied it replaces fixed distance thresholds. */
   screenSpace?: ScreenSpaceLodPolicy;
+  /**
+   * With `screenSpace`: hide a batch once its largest instance spans fewer pixels than this from
+   * the batch's nearest point (default: drawn at every distance). For small props (signs, benches,
+   * hydrants): from a few kilometers they are a pixel or less, yet each batch was still a draw.
+   */
+  vanishPixels?: number;
 }
 
 const cardFree = new WeakMap<THREE.BufferGeometry, boolean>();
@@ -131,6 +137,8 @@ function unshadowedMaterial(
  */
 class InstancedDetailSwitch extends THREE.LOD {
   private selected = 0;
+  /** Too small to see from the view camera; see `InstancedPlacementLodOptions.vanishPixels`. */
+  private vanished = false;
   /** The level last applied to the mesh. */
   private shown = 0;
   private perspectiveAt = Number.NEGATIVE_INFINITY;
@@ -148,6 +156,9 @@ class InstancedDetailSwitch extends THREE.LOD {
     private readonly materials: readonly THREE.Material[] = [],
     /** The distant level's material skips shadow lookups itself; see `unshadowedMaterial`. */
     private readonly shadowFreeDistant = false,
+    /** Largest instance's diameter (local meters) and the pixels below which it hides; 0: never. */
+    private readonly vanishSize = 0,
+    private readonly vanishPixels = 0,
   ) {
     super();
     this.add(mesh);
@@ -182,7 +193,11 @@ class InstancedDetailSwitch extends THREE.LOD {
     } else if (this.moved(perspective, height, error)) {
       const scale = this.matrixWorld.getMaxScaleOnAxis();
       const focal = height / (2 * Math.tan((perspective.fov * Math.PI) / 360));
-      const local = this.worldToLocal(cameraPosition.setFromMatrixPosition(camera.matrixWorld));
+      // The world matrix is current here, as for THREE.LOD; worldToLocal would first recompose
+      // every ancestor's, for each of a view's hundreds of batches every moving frame.
+      const local = cameraPosition
+        .setFromMatrixPosition(camera.matrixWorld)
+        .applyMatrix4(inverseWorld.copy(this.matrixWorld).invert());
       const distance = (this.bounds.distanceToPoint(local) * scale) / perspective.zoom;
       let level = 0;
       for (let i = 1; i < this.geometries.length; i++) {
@@ -192,6 +207,10 @@ class InstancedDetailSwitch extends THREE.LOD {
         else break;
       }
       this.selected = level;
+      if (this.vanishPixels > 0) {
+        const vanishAt = (scale * this.vanishSize * focal) / this.vanishPixels;
+        this.vanished = distance >= (this.vanished ? vanishAt * 0.85 : vanishAt);
+      }
     }
     // Keep the level shown while the material the chosen one draws with is still being prepared,
     // as `userData.materialReady` (a preparing renderer sets it) reports: drawing it now would build
@@ -217,7 +236,7 @@ class InstancedDetailSwitch extends THREE.LOD {
     // this switch did not set is the host's decision.
     if (this.mesh.castShadow !== this.appliedShadow) this.castsShadow = this.mesh.castShadow;
     const geometry = this.geometries[level];
-    this.mesh.visible = geometry !== undefined;
+    this.mesh.visible = geometry !== undefined && !this.vanished;
     if (geometry !== undefined && this.mesh.geometry !== geometry) this.mesh.geometry = geometry;
     const material = this.materials[level];
     if (material !== undefined && this.mesh.material !== material) this.mesh.material = material;
@@ -263,6 +282,7 @@ class InstancedDetailSwitch extends THREE.LOD {
   }
 }
 const cameraPosition = new THREE.Vector3();
+const inverseWorld = new THREE.Matrix4();
 
 /** No per-frame instance uploads: LOD switches shared models, with 15% transition hysteresis. */
 export function createInstancedPlacementLod(
@@ -323,7 +343,6 @@ export function createInstancedPlacementLod(
       models[0].material,
       `${name}:${key}:near`,
     );
-    first.computeBoundingBox();
     const center = (first.boundingBox as THREE.Box3).getCenter(new THREE.Vector3());
     // Localize the instances around the LOD origin so floating-origin rebasing is automatic.
     for (let i = 0; i < indices.length; i++) {
@@ -335,8 +354,9 @@ export function createInstancedPlacementLod(
       first.instanceMatrix.array[offset + 14] =
         (first.instanceMatrix.array[offset + 14] as number) - center.z;
     }
-    first.computeBoundingBox();
-    first.computeBoundingSphere();
+    // The shift moves the bounds with the instances: no need to walk them all again.
+    (first.boundingBox as THREE.Box3).translate(center.clone().negate());
+    first.boundingSphere = (first.boundingBox as THREE.Box3).getBoundingSphere(new THREE.Sphere());
     // Ground cover (a near-detail-only model) is walked through and flown over, not collided
     // with: over a forest floor its ferns and shrubs were most of the 170k triangles an aircraft's
     // collision neighborhood rebuilt every 24 m of a takeoff roll.
@@ -376,6 +396,8 @@ export function createInstancedPlacementLod(
       const variants = [...new Set(materials.filter((_, level) => geometries[level]))];
       if (variants.length > 1) first.userData.materialVariants = variants;
       const bounds = (first.boundingBox as THREE.Box3).clone();
+      const model = models[0].geometry;
+      if (model.boundingSphere === null) model.computeBoundingSphere();
       const lod = new InstancedDetailSwitch(
         options.screenSpace,
         bounds,
@@ -384,6 +406,8 @@ export function createInstancedPlacementLod(
         errors,
         materials,
         shadowFree !== undefined,
+        2 * (model.boundingSphere?.radius ?? 0) * largestScale,
+        options.vanishPixels ?? 0,
       );
       lod.name = `${name}:${key}`;
       lod.position.copy(center);

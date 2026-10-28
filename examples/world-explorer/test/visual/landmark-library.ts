@@ -389,7 +389,9 @@ async function mount(input: ReviewInput) {
     scene.add(object);
   }
   scene.updateMatrixWorld(true);
-  bounds.setFromObject(object);
+  // Ground-opening models retain their native rotation rather than baking it into vertices.
+  // Measure actual vertices so their bounds agree with the independently transformed source.
+  bounds.setFromObject(object, true);
   caption('#title', input.title);
   return telemetry();
 }
@@ -461,7 +463,27 @@ function verifyGroundLifecycle() {
   groundCutouts.update(scene);
   const visibleOpen =
     probes.every((probe) => !groundAt(probe)) && ground.geometry !== uncutGroundGeometry;
-  return { applicable: true, hiddenRestored, visibleOpen };
+  const floor = active?.placement?.groundCutout?.minHeight;
+  const worldFloor =
+    floor === undefined
+      ? undefined
+      : (active?.placement?.elevation ?? 0) + floor * (active?.placement?.scale?.[1] ?? 1);
+  const visibleCapped =
+    worldFloor !== undefined &&
+    probes.every((probe) => {
+      const hit = new THREE.Raycaster(
+        new THREE.Vector3(probe.x, 20000, probe.z),
+        new THREE.Vector3(0, -1, 0),
+      ).intersectObject(ground)[0];
+      return hit !== undefined && hit.point.y <= worldFloor + 0.001;
+    });
+  return {
+    applicable: true,
+    hiddenRestored,
+    visibleOpen,
+    visibleCapped,
+    unchanged: ground.geometry === uncutGroundGeometry,
+  };
 }
 
 function telemetry() {

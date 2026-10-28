@@ -1,0 +1,375 @@
+{
+  "planId": "larnach_castle",
+  "id": "larnach_castle",
+  "assetId": "molen.worldgen.structure.larnach_castle",
+  "title": "Larnach Castle",
+  "wikidataId": "Q1759455",
+  "category": "scottish-baronial-castle",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 170.6273214,
+    "latitude": -45.8618232
+  },
+  "size": [
+    46.26131629943848,
+    26.000000953674316,
+    89.55976867675781
+  ],
+  "actualBounds": {
+    "min": [
+      -25.376270294189453,
+      11.305800437927246,
+      -44.779884338378906
+    ],
+    "max": [
+      20.885046005249023,
+      37.30580139160156,
+      44.779884338378906
+    ]
+  },
+  "visualBrief": "Whole current Larnach Castle: native46-control mainhouse/attached long ballroom/connector/rearwings plus shared-node six-control north extension. Warm rubble masonry/lighttrim, projecting crenellated Gothic tower/stairturret/arched entrance/steps/triplewindows, enclosed two-storey white-ironwork verandas on three sides, chimney groups/slate roofs. Exact published creator-own PD-self Qualla original first/only. Full native scope retained; uppersections/profiles/fineornament/window-chimneycensus/hiddenjoins/north-extensionuse/currentfinish/groundcontact original bounded estimates. Geographic preview/replacementfalse; no copied sourcepixels, garden/fountain/lodge/stables.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Larnach_Castle_and_fountain.jpg"
+  ],
+  "stories": [
+    {
+      "id": "larnach-castle-wp",
+      "url": "https://qualla.com/larnach-castle/"
+    }
+  ],
+  "referenceInputHash": "3d8cefdbf7a710e513aa6718814638a65b9062cb21021bdd9d0ffa02cf8ab8a7",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/pz/pzc/larnach_castle/models/larnach-castle-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/larnach-castle-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "larnachCastleSkyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "larnachCastleDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "larnachCastleStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "larnachCastleCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_limestone_raw",
+    "metal_painted",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": 11.7058,
+    "cameraYaw": 3.141592653589793
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent256m129x12916641-sample/two raw tiles/native union-bbox anchor/heading0/SW288.0381m provider-relative datum frozen before all floor/sections/geometry. Once-only original field at western tower exterior fixes floor11.8058m. Original photo-bounded sections: veranda3.9/8.8m, corecornice13.6/parapet14.8, tower19.5/20.8/stairturret21.4/flagpole25.5, ballroom6.4/9.1, connector3.5/4.2, rearwings4/5.5, northsharednodeextension3.8/4.4. Heights/profile/fineornament/chimney-windowcensus/hiddenjoins/currentfinish/extensionuse/exactgroundcontact unsurveyed original estimates. Whole46+6 nativeXZ controls retained. Primaryheritage text supports tower/three-sided two-storey verandas/attached ballroom/materials; 1966interiorballroom90x30ft only approximate factualcontext, not an exterior roof survey. No later sourcefield/floor/anchor changes/fitting/flattening/reacquisition/reframing/raising.",
+    "anchor": [
+      170.6273214,
+      -45.8618232
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        170.62616044315544,
+        -45.8626316800575
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest reference before original field/floor/sections/geometry. Provider relative, not a surveyed entry or basement threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/288613442",
+      "way/1297514177"
+    ],
+    "source": "https://www.openstreetmap.org/way/288613442",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:419c15378fc5e089b0ccc328572f4fe53c7888787f9c188ed12990590077f41c",
+    "notes": "Whole current Larnach Castle/Q1759455/nativeway288613442: all46 native perimeter controls including long attached ballroom/cafe/low connector, main castellated stone house/central Gothic tower/stair turret, glazed colonial verandas round three sides and rear service projections. Also actual connected six-control north layer1 extension1297514177 sharing two native junction nodes, modeled as bounded low attached canopy/enclosure; exact historic use/height unverified. Preserve all whole footprint and connected extension, not a facade-only model. Exclude separate stables288613439/Q79312238/lodge288613441/Q112010299/detached990591535/605125135/storage tanks/greenhouse/gardens/fountain/sculpture/interior/vegetation/source pixels."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole46-control castle/ballroom perimeter plus connected six-control north layer1 extension, fixed union-native-bbox anchor/heading0 before independent field, floor, sections or geometry. Native twolevels is unverified, not a surveyed height.",
+    "Whole native46-control castle including long ballroom/connector/rear projections, plus actual shared-node six-control north layer1 extension. Internal axes derived only from actual front edge0-to1, no geographic reframe. Front facade faces negative internalU. Main masonry core/tower/veranda subdivisions are original photo/native-outline inferences, not native separate part polygons. Ballroom Cafe point lies in long southern wing, not separate neighboring detached small building990591535. Connected north layer1 extension is retained as low enclosure/canopy with unverified exact use/height. Stables/lodge/storage/greenhouses/detachedbuildings/gardens/fountain excluded.",
+    "Original independent256m129x12916641-sample/two raw tiles/native union-bbox anchor/heading0/SW288.0381m provider-relative datum frozen before all floor/sections/geometry. Once-only original field at western tower exterior fixes floor11.8058m. Original photo-bounded sections: veranda3.9/8.8m, corecornice13.6/parapet14.8, tower19.5/20.8/stairturret21.4/flagpole25.5, ballroom6.4/9.1, connector3.5/4.2, rearwings4/5.5, northsharednodeextension3.8/4.4. Heights/profile/fineornament/chimney-windowcensus/hiddenjoins/currentfinish/extensionuse/exactgroundcontact unsurveyed original estimates. Whole46+6 nativeXZ controls retained. Primaryheritage text supports tower/three-sided two-storey verandas/attached ballroom/materials; 1966interiorballroom90x30ft only approximate factualcontext, not an exterior roof survey. No later sourcefield/floor/anchor changes/fitting/flattening/reacquisition/reframing/raising.",
+    "One exact published2013 Pseudopanax own/PD-self original, individually viewed/nativeSHA1matched and unchanged published guard passed. Other entrance/unrelated Dunedin sources unselected; no supplemental or rights repair/reclassification/bypass. Primary heritage/government architectural facts only; no protected additional imagery/plans or source pixels. Fine sculpture/lion artwork deliberately simplified/omitted, no interiors.",
+    "Original independent256m129x12916641sample/two raw tile field/fixed union-bbox anchor/heading0/SW288.0381m providerdatum frozen before floor11.8058m/sections/geometry. No fitting/flattening/reacquisition/reframing/late floor or modelraise. Precise hillside threshold/foundation/basement contact unverified; preview/replacementfalse. Portableflatground/contexthouses are fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-main-house-ballroom-and-rear-wing",
+      "position": [
+        116.81954469674346,
+        73.8058,
+        52.47088694548202
+      ],
+      "lookAt": [
+        0,
+        19.805799999999998,
+        0
+      ]
+    },
+    {
+      "name": "front-tower-arched-entrance-steps-and-glazed-verandas",
+      "position": [
+        -68.28104787258557,
+        31.805799999999998,
+        -8.461065364499278
+      ],
+      "lookAt": [
+        -14.057936664200035,
+        21.805799999999998,
+        -22.45585764173778
+      ]
+    },
+    {
+      "name": "whole-native-footprint-ballroom-and-connected-north-extension-plan",
+      "position": [
+        0.1,
+        191.8058,
+        0.15
+      ],
+      "lookAt": [
+        0,
+        15.8058,
+        0
+      ]
+    },
+    {
+      "name": "white-veranda-ironwork-masonry-and-tower-windows",
+      "position": [
+        -36.92107318423112,
+        23.805799999999998,
+        1.002125827998511
+      ],
+      "lookAt": [
+        -13.526764477502795,
+        18.805799999999998,
+        -16.396331578745784
+      ]
+    },
+    {
+      "name": "whole-attached-ballroom-and-connector",
+      "position": [
+        -39.60307221406221,
+        39.8058,
+        86.64638867955071
+      ],
+      "lookAt": [
+        -1.5611999738796207,
+        15.8058,
+        17.960029360821164
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 40743,
+    "vertices": 122229,
+    "materials": 5,
+    "bytes": 5072636,
+    "sha256": "sha256:c1ec03f02ce85171d350023366a4b53636ce0744b57f56f3f91da5e5bd88052b"
+  }
+}

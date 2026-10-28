@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, normalFor } from './authored-structure-mesh.mjs';
+import { beam, beamPath, normalFor } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 import { box } from './structure-mesh.mjs';
 
@@ -242,9 +242,7 @@ function wingRoof(o, module, centers, d) {
     [v[7], v[0], r0, r1],
   ];
   roofFaces(o, e, faces, y, d);
-  if (d > 0)
-    for (let j = 1; j < ridges.length; j++)
-      beam(o, 'roof', ridges[j - 1], ridges[j], 0.12, 0.14, C.roof);
+  if (d > 0) beamPath(o, 'roof', ridges, 0.12, 0.14, C.roof);
 }
 function hipRect(o, ring, y, rise, d, overhang = 0.55) {
   const e = offsetRing(ring, overhang),

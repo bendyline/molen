@@ -214,6 +214,26 @@ async function mount() {
 }
 
 describe('mountEarthView', () => {
+  it('exposes a persistent boost mode and applies it to the walker through the T action', async () => {
+    const { view } = await mount();
+    const changes: boolean[] = [];
+    view.on('boostchange', ({ enabled }) => changes.push(enabled));
+    await pump(10);
+    expect(view.boostMode).toBe(false);
+    view.setBoostMode(true);
+    view.setBoostMode(true);
+    expect(view.setMode('walk')).toBe(true);
+    await pump(30);
+    view.input.map.setVirtual('test', 'nav-forward', 1);
+    await pump(10);
+    expect(view.walker.pose()?.speed).toBeCloseTo(6, 3);
+    view.input.map.setVirtual('test', 'nav-boost', 1);
+    await pump(2);
+    expect(view.boostMode).toBe(false);
+    expect(view.walker.pose()?.speed).toBeCloseTo(1.5, 3);
+    expect(changes).toEqual([true, false]);
+    view.dispose();
+  });
   it('streams terrain around the requested place and reports it in geographic terms', async () => {
     const { view, canvas, errors } = await mount();
     await pump(20);

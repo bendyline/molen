@@ -16,6 +16,7 @@ export {
   audioEnvironmentOf,
   audioScriptApi,
 } from './audio';
+export { BoostMode, type BoostModeData, isBoostMode, setBoostMode } from './boost';
 export { cloneJson, deepFreeze, patchJson } from './clone';
 export type {
   CommandHandler,

@@ -225,19 +225,53 @@ describe('earth ambient life', () => {
       position: [ORIGIN[0] + SIZE / 2, 0, ORIGIN[1] + SIZE / 2] as [number, number, number],
       direction: [0, 0, 1] as [number, number, number],
     };
+    // A tile wider than 500 m registers in parts, `<key>:<i>,<j>`, one a tick.
+    const tiles = () => [...new Set(ambient.handle.network.tileKeys().map((k) => k.split(':')[0]))];
     ambient.sync(1000, at);
     ambient.sync(2000, at);
     ambient.update(0.1);
-    expect(ambient.handle.network.tileKeys()).toHaveLength(1);
+    expect(tiles()).toHaveLength(1);
     // The registered one hides (an LOD swap): the other registers on a later sync.
-    const first = ambient.handle.network.tileKeys()[0];
+    const first = tiles()[0];
     (first === '15/1/2' ? fine : coarse).visible = false;
     ambient.sync(3000, at);
     ambient.update(0.1);
-    expect(ambient.handle.network.tileKeys()).toHaveLength(1);
-    expect(ambient.handle.network.tileKeys()[0]).not.toBe(first);
+    expect(tiles()).toHaveLength(1);
+    expect(tiles()[0]).not.toBe(first);
     ambient.setEnabled(false);
     expect(ambient.isEnabled).toBe(false);
+    ambient.dispose();
+  });
+
+  it('registers a large tile in parts, nearest first, one a frame', () => {
+    const parent = new THREE.Group();
+    const ambient = new EarthAmbient({ parent, settings: {} });
+    const coarse = new THREE.Group();
+    parent.add(coarse);
+    ambient.added(coarse, tile(), { ...context(14), tileSize: SIZE * 2 });
+    // In the south-east quarter of the 800 m tile.
+    const frame = (ticks = 1) => {
+      ambient.sync(1000, {
+        position: [ORIGIN[0] + SIZE * 1.5, 0, ORIGIN[1] + SIZE * 1.5],
+        direction: [0, 0, 1],
+      });
+      ambient.update(ticks / 60);
+    };
+    // A late frame's three catch-up ticks still register one part.
+    frame(3);
+    // 6 x 6 parts of about 133 m; the observer stands in the fifth row and column.
+    expect(ambient.handle.network.tileKeys()).toEqual(['14/1/2:4,4']);
+    for (let tick = 1; tick < 36; tick++) frame();
+    const parts = [0, 1, 2, 3, 4, 5].flatMap((i) =>
+      [0, 1, 2, 3, 4, 5].map((j) => `14/1/2:${i},${j}`),
+    );
+    expect([...ambient.handle.network.tileKeys()].sort()).toEqual(parts.sort());
+    ambient.removed(coarse);
+    // The parts leave a few a tick.
+    ambient.update(1 / 60);
+    expect(ambient.handle.network.tileKeys()).toHaveLength(32);
+    for (let tick = 1; tick < 9; tick++) ambient.update(1 / 60);
+    expect(ambient.handle.network.tileKeys()).toHaveLength(0);
     ambient.dispose();
   });
 

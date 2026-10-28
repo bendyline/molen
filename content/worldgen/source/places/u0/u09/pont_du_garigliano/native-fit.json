@@ -1,0 +1,151 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "originMeters": 29.031806945800895,
+  "waterMeters": 29.031806945800895,
+  "groundSamples": [
+    {
+      "x": -112.97372057086685,
+      "values": [
+        31.881557113676728,
+        32.10092217841458,
+        32.21829776215327
+      ]
+    },
+    {
+      "x": -102.97372057086685,
+      "values": [
+        30.715176513900417,
+        31.242851061776918,
+        31.46814852721724
+      ]
+    },
+    {
+      "x": -75,
+      "values": [
+        29.747689632673087,
+        29.77664088932937,
+        29.988312664108022
+      ]
+    },
+    {
+      "x": -54,
+      "values": [
+        30.10297818355356,
+        30.073802825315397,
+        30.007091584388245
+      ]
+    },
+    {
+      "x": 0,
+      "values": [
+        28.539827194321205,
+        28.518709498185757,
+        28.53761520726858
+      ]
+    },
+    {
+      "x": 54,
+      "values": [
+        27.32604325399315,
+        27.810951100996796,
+        27.753151544252727
+      ]
+    },
+    {
+      "x": 75,
+      "values": [
+        33.67508178543693,
+        33.54953579732481,
+        34.36923779766336
+      ]
+    },
+    {
+      "x": 102.97372057086685,
+      "values": [
+        40.814357486441786,
+        40.825030060677555,
+        40.98753653219945
+      ]
+    },
+    {
+      "x": 112.97372057086685,
+      "values": [
+        41.15391789225892,
+        41.31007843527798,
+        41.299100369385556
+      ]
+    }
+  ],
+  "basis": "Original photo-led full static exterior. Exact-QID footprint and named PMTiles traffic line establish the geographic frame; mapped road extent205.947441m is retained separately from catalog length209m. Approximate span arrangement58/93/58m, sections and heights are reconstruction controls, not surveyed engineering dimensions.",
+  "limitation": "Native placement must be inspected against the standard PMTiles/Mapzen fixture before activation. No arbitrary neighboring terrain alteration or distorted bridge is approved by source generation.",
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-27 daily archive",
+      "url": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:2454875a164814fced7bd9a4e3685d397e6e3e86440d19e8026a14691e3545a3"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        24.19921875,
+        122.51953125
+      ],
+      "flattenedSubseaSamples": 0,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:504e33b9f229846ec815d31fd2dc81d3e74734bfddbad0ab9e155fcaf76dbabf"
+    }
+  }
+}

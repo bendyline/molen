@@ -1,0 +1,141 @@
+{
+  "status": "authored-approximation",
+  "anchor": [
+    20.24908069,
+    63.824875538
+  ],
+  "heading": 1.266401710014,
+  "datum": "terrain-reference",
+  "standardCenterTerrainMeters": 11.461163925947663,
+  "controls": [
+    {
+      "modelLocal": [
+        -154.5,
+        0
+      ],
+      "terrainMeters": 19.586179186953412,
+      "deckMeters": 19.589045674270306
+    },
+    {
+      "modelLocal": [
+        -150.5,
+        0
+      ],
+      "terrainMeters": 18.847723140163247,
+      "deckMeters": 19.589045674270306
+    },
+    {
+      "modelLocal": [
+        0,
+        0
+      ],
+      "terrainMeters": 11.4612,
+      "deckMeters": 19.589045674270306
+    },
+    {
+      "modelLocal": [
+        150.5,
+        0
+      ],
+      "terrainMeters": 17.365157327050643,
+      "deckMeters": 19.589045674270306
+    },
+    {
+      "modelLocal": [
+        154.5,
+        0
+      ],
+      "terrainMeters": 18.123831004240152,
+      "deckMeters": 19.589045674270306
+    }
+  ],
+  "preserved": [
+    "Original DEM samples",
+    "Native river and shoreline geometry",
+    "All independent buildings and road plans"
+  ],
+  "provenance": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-20 daily archive",
+      "url": "https://build.protomaps.com/20261020.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:874cf808b61fa610cb79827f15c214ada57c48c87836d46238e5939f63f64489"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        0,
+        52.2109375
+      ],
+      "flattenedSubseaSamples": 10,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:4a284633ce35f1e27e68f1a2033bf4006ba8cea9f6a0e78af1e1e21e10159db0"
+    }
+  },
+  "limitations": [
+    "Coarse host terrain and water are not a surveyed river or approach datum.",
+    "Photo-proportioned pier heights and end abutments are retained; final native fit requires current render inspection."
+  ],
+  "terrainReference": {
+    "anchor": [
+      20.24813801050186,
+      63.82355124656934
+    ],
+    "modelHeight": 5.8,
+    "basis": "South mapped cycleway landing terrain attaches to the authored deck at Y=5.8. The higher bank establishes a stable host-relative bridge level; not surveyed river stage."
+  },
+  "modelWorldYMeters": 13.789045674270305,
+  "finding": "The previous sea-level-zero and center-terrain placements were too low at the bank. South mapped deck landing terrain now attaches to model deck Y=5.8. Both corrected bank views show continuous supported joins. River/piers, bank grades and the surrounding generic map context remain approximate; no source DEM or native water geometry is changed."
+}

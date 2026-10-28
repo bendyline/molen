@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.7_world_trade_center",
   "reviewedOn": "2026-10-09",
-  "inputHash": "sha256:fd7a649e10df2d0dcd3e4474c8a52e8c6c2ba7141e3271f049b7da63ec677338",
+  "inputHash": "sha256:44e14774bedb65692ef8362aaa424f1b3bcf24b5d4eae30d72d9e93a0681d833",
   "sourceHash": "sha256:5c0b77ec0b6773166e023dfdfce7d1e141097c51b27588dea8792468c0ca867e",
   "runtimeHash": "sha256:f3d705b331b4082633c37ddacd056f9db9bec16180b369662e123c0ae93b82e6",
-  "captureReportHash": "sha256:e9f5f0a24261b21ba6254bf686c1344bde8021848d6bae1ea00d7f2c7620c321",
+  "captureReportHash": "sha256:9292343f73fef118d324d89d81c2c4248bae03946df7a874753f950c67ee6148",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -20,11 +20,12 @@
       "shots/ground-lobby.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "Ten current portable views inspected against owner tower photograph and material consultant scrim/spandrel references. Oblique glass body, horizontal concave spandrels, vertical mullions, lower scrim and glazed lobby are present. Offset roof plant rests continuously on the new223-to223.85m curb. Original4832-triangle emitted geometry remains exact; current4852-triangle master adds only that curb. Fine scrim moire occurs at some camera distances."
+    "notes": "Ten current portable views inspected against owner tower photograph and material consultant scrim/spandrel references. Oblique glass body, horizontal concave spandrels, vertical mullions, lower scrim and glazed lobby are present. Offset roof plant rests continuously on the new223-to223.85m curb. Original4832-triangle emitted geometry remains exact; current4852-triangle master adds only that curb. Fine scrim moire occurs at some camera distances.",
+    "captureReportHash": "sha256:9292343f73fef118d324d89d81c2c4248bae03946df7a874753f950c67ee6148"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:b4232e6cff133d2fca3734a5eb32565ba9be41620e31454819198cee88be529a",
+    "captureReportHash": "sha256:575d9913efb681f00a46d200aca09440d9695f9cfd5e278d9cbd29dfdfa2b17d",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -284,5 +285,16 @@
   "limitations": [
     "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
     "Static daylight facade. The scrim uses continuous modeled triangular strips with panel seams; the individual micro-prism orientation field and nighttime LED art are not reconstructed. Roof services are simplified within mapped extents."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:fd7a649e10df2d0dcd3e4474c8a52e8c6c2ba7141e3271f049b7da63ec677338",
+    "inputHash": "sha256:44e14774bedb65692ef8362aaa424f1b3bcf24b5d4eae30d72d9e93a0681d833",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 44,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

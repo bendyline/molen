@@ -9,6 +9,12 @@ export interface HeightfieldOptions {
   worldSize: [number, number];
   /** Height value range the normalized grid maps onto. */
   height: { min: number; max: number };
+  /**
+   * The samples came from another field (`copySamples`, a worker's reply), so they are known to
+   * be finite: skip checking each one. A full-resolution tile is a quarter of a million samples,
+   * checked on the main thread as each tile arrived.
+   */
+  validated?: boolean;
 }
 
 /** What a physics engine needs to build a heightfield collider from this field. */
@@ -65,9 +71,9 @@ export class Heightfield {
     ) {
       throw new Error('heightfield height.min must be finite and less than height.max');
     }
-    for (const value of grid) {
-      if (!Number.isFinite(value)) throw new Error('heightfield grid values must be finite');
-    }
+    if (opts.validated !== true)
+      for (let i = 0; i < grid.length; i++)
+        if (!Number.isFinite(grid[i])) throw new Error('heightfield grid values must be finite');
     this.cols = cols;
     this.rows = rows;
     this.origin = [opts.origin[0], opts.origin[1]];

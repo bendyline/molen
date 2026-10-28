@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.pupin_bridge",
+  "kind": "static-structure",
+  "title": "Pupin Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.pupin_bridge",
+        "output": "assets/places/sr/sry/pupin_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:0bd3807ebabefca98a70dd857cf1d708534d9a1506cda965cbb418451467e8a3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-pupin.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/pupin-model.mjs"
+      },
+      {
+        "id": "mapped-support-plan",
+        "path": "models/pupin-plan.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "site-preview.png",
+      "placement-report.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

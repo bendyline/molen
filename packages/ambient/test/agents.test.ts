@@ -1,4 +1,4 @@
-import { Transform, World } from '@bendyline/molen-kernel/world';
+import { setBoostMode, Transform, World } from '@bendyline/molen-kernel/world';
 import { describe, expect, it } from 'vitest';
 import { AmbientAgent, installAmbient } from '../src/kernel';
 import { gridDocument, loopDocument } from './helpers';
@@ -8,8 +8,12 @@ function agents(world: World) {
 }
 
 describe('cars', () => {
-  it('follow each other around a loop without overlapping or reversing', () => {
+  it.each([
+    false,
+    true,
+  ])('follows a loop without overlapping or reversing (boost=%s)', (boosted) => {
     const world = new World({ tickRate: 60, seed: 'loop' });
+    setBoostMode(world, boosted);
     const ambient = installAmbient(world, {
       policy: {
         spawnBudget: 20,
@@ -47,8 +51,9 @@ describe('cars', () => {
     expect(moving).toBeGreaterThan(0);
   });
 
-  it('never let two cars occupy the same spot on a street grid', () => {
+  it.each([false, true])('keeps cars apart on a street grid (boost=%s)', (boosted) => {
     const world = new World({ tickRate: 30, seed: 'grid' });
+    setBoostMode(world, boosted);
     const ambient = installAmbient(world, {
       policy: { spawnBudget: 8, car: { near: 0, far: 400, keep: 800, perLaneKm: 30, max: 60 } },
     });
@@ -179,5 +184,115 @@ describe('spawning around the observer', () => {
     ambient.unregisterTile('T');
     world.stepN(2);
     expect(agents(world)).toHaveLength(0);
+  });
+
+  it('applies queued tile registrations at the paced rate, removals first', () => {
+    const world = new World({ tickRate: 30, seed: 'paced' });
+    const ambient = installAmbient(world, { registrationsPerTick: 1 });
+    const tile = (key: string, x: number) => ({
+      key,
+      origin: [x, 0] as [number, number],
+      tileSize: 100,
+      features: [
+        {
+          class: 'minor_road',
+          subclass: 'residential',
+          lines: [
+            [
+              [0, 0.5],
+              [1, 0.5],
+            ],
+          ],
+        },
+      ],
+    });
+    ambient.registerTile(tile('A', 0));
+    ambient.registerTile(tile('B', 100));
+    ambient.registerTile(tile('C', 200));
+    world.step();
+    expect(ambient.network.tileKeys()).toEqual(['A']);
+    expect(ambient.stats().pendingTiles).toBe(2);
+    // A leaves at once; C, still queued, never registers.
+    ambient.unregisterTile('A');
+    ambient.unregisterTile('C');
+    world.step();
+    expect(ambient.network.tileKeys()).toEqual(['B']);
+    expect(ambient.stats().pendingTiles).toBe(0);
+  });
+
+  it('paces removals, and a returning tile waits behind its own removal', () => {
+    const world = new World({ tickRate: 30, seed: 'paced-removals' });
+    const ambient = installAmbient(world, { registrationsPerTick: 1, removalsPerTick: 1 });
+    const tile = (key: string, x: number, y = 0.5) => ({
+      key,
+      origin: [x, 0] as [number, number],
+      tileSize: 100,
+      features: [
+        {
+          class: 'minor_road',
+          subclass: 'residential',
+          lines: [
+            [
+              [0, y],
+              [1, y],
+            ],
+          ],
+        },
+      ],
+    });
+    ambient.registerTile(tile('A', 0));
+    ambient.registerTile(tile('B', 100));
+    ambient.flush();
+    expect(ambient.network.tileKeys().sort()).toEqual(['A', 'B']);
+    ambient.unregisterTile('A');
+    ambient.unregisterTile('B');
+    // A returns, with another road, before either removal has been applied.
+    ambient.registerTile(tile('A', 0, 0.25));
+    world.step();
+    // One removal (A's), then A's registration after it; B's removal waits for the next tick.
+    expect(ambient.network.tileKeys().sort()).toEqual(['A', 'B']);
+    expect(ambient.stats().pendingTiles).toBe(1);
+    world.step();
+    expect(ambient.network.tileKeys()).toEqual(['A']);
+    expect(ambient.stats().pendingTiles).toBe(0);
+  });
+
+  it('holds a registration behind its own removal left for a later tick', () => {
+    const world = new World({ tickRate: 30, seed: 'held' });
+    const ambient = installAmbient(world, { registrationsPerTick: 4, removalsPerTick: 1 });
+    const tile = (key: string, x: number) => ({
+      key,
+      origin: [x, 0] as [number, number],
+      tileSize: 100,
+      features: [
+        {
+          class: 'minor_road',
+          subclass: 'residential',
+          lines: [
+            [
+              [0, 0.5],
+              [1, 0.5],
+            ],
+          ],
+        },
+      ],
+    });
+    ambient.registerTile(tile('A', 0));
+    ambient.registerTile(tile('B', 100));
+    ambient.flush();
+    const removedVersion = (): number => ambient.network.version;
+    ambient.unregisterTile('A');
+    ambient.unregisterTile('B');
+    ambient.registerTile(tile('B', 100));
+    const before = removedVersion();
+    world.step();
+    // A's removal spent the tick's one; B's removal and its registration both wait.
+    expect(ambient.network.tileKeys()).toEqual(['B']);
+    expect(ambient.stats().pendingTiles).toBe(2);
+    expect(removedVersion()).toBeGreaterThan(before);
+    world.step();
+    // B's removal, then its registration: B stands again, rebuilt.
+    expect(ambient.network.tileKeys()).toEqual(['B']);
+    expect(ambient.stats().pendingTiles).toBe(0);
   });
 });

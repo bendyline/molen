@@ -1,0 +1,917 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.smithy_carpentry_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:59688146c0d20f66bf37594ab1f55c78ca606641e48f413ad24a32526127f863",
+  "sourceHash": "sha256:e2d3472a3ef46760ec01c70c8f15267b07e28bc90804eef479b1853eb5537d73",
+  "runtimeHash": "sha256:a9e5b538074c278377fd1c671a099fdd3320bd90ed9761a453c884acb22413f0",
+  "captureReportHash": "sha256:76844255f87d5fa4adcd4dc1c96dea84925b0d0b4bfc37a463d1447195985131",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-smithy-log-room-board-hip-and-open-side-canopy.png",
+      "shots/recessed-double-door-supported-hood-and-brick-chimney.png",
+      "shots/open-lean-to-posts-beams-and-original-ground.png",
+      "shots/map-derived-rear-roof-and-downhill-plinth.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames in labeled sheets, plus full-resolution native front/hood, open-canopy and rear views. The complete log workshop, weathered-board hip roof, single brick chimney, warm recessed double door, supported shallow hood and adjacent open sheet-roof canopy read coherently. The continuous pass seated pitched canopy crossbeams below the roof and darkened the main roof to fit the reference boards. All11 supports remain in every LOD. Hidden rear extent and coarse downhill plinth exposure remain approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-smithy-log-room-board-hip-and-open-side-canopy.png",
+      "shots/shared/recessed-double-door-supported-hood-and-brick-chimney.png",
+      "shots/shared/open-lean-to-posts-beams-and-original-ground.png",
+      "shots/shared/map-derived-rear-roof-and-downhill-plinth.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six roles reuse five existing256px graphs: wood_log, wood_vertical, metal_corrugated, wood_plain and brick. Timber frame and darker door share wood_plain; plinth and chimney share brick. Metric UVs, linear tints, separate POSITION/NORMAL streams, equal CPU/GPU geometry accounting and at most5 nearby draws/one skyline. No embedded image, private atlas or new graph. Every used graph reads once; unload releases all model geometry.",
+    "captureReportHash": "sha256:dba6ee65b12760541335b9a73584aa058ae4c9d4caaca04b99c788a1b9dcf923"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-smithy-log-room-board-hip-and-open-side-canopy.png",
+      "medium-fi/recessed-double-door-supported-hood-and-brick-chimney.png",
+      "medium-fi/open-lean-to-posts-beams-and-original-ground.png",
+      "medium-fi/map-derived-rear-roof-and-downhill-plinth.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 252/320/996/1096 triangles. Initial skyline+district 56588bytes; closeup 96356bytes. Skyline retains the full map-led room/roof envelope, brick chimney, physically recessed double door, supported hood, open lean-to and all11 support posts. District adds trim and roof beams; street/closeup add coarse log courses/ends and simple door bands. The multi-part canopy/hood/support silhouette stays below the1k authored-structure ceiling. Synthetic scenes check style/LOD/mode coherence; native views establish approximate geographic fit.",
+    "captureReportHash": "sha256:b06cd1681a370d9256e00ff855f46aacb449b9537c5366c0f4cbd42dc5f5ac11"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:fc346171a65463a49ac24eecd87dad2929d34bb2521caedb60f6500bc08abe28",
+    "mapFrameHash": "sha256:a19da289bb31ee34c377b61a5dc850568d0e4a64343e2f8e6c9a0261a0908e0b",
+    "notes": "Named Кузня и плотницкая POI and way617403594 identify this range independently from the other estate buildings. The mapped10.7m frontage and14.3m depth describe the whole room/canopy envelope. The photo-visible log room occupies the right frontage and the open lean-to the left; hidden depth is reconstructed along the map outline. X northwest across the northeast approach; Z northeast toward the front door, native east/up/south axes baked with heading0 at the unchanged assigned member anchor. This is an explicit photo/map interpretation of the complete mapped exterior, not a survey or claim that every hidden bay has been photographed. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[2.3,10] supplies205.2228043360681m datum. Whole boundary grades-1.487..0.038m, floor+0.2m and closed room foundation/support bottoms-1.7m. Original ground remains under the open side canopy; occupied room,11 post feet and two entry aprons alone cut it. Coarse downhill plinth/support exposure can reach about1.7m, higher than the visible front-photo plinth; hidden levels remain approximate. No flattening or bespoke terrain. Independent neighbors, approach, roads and ponds remain. Inspected native whole/front-door/open-canopy/rear views. The road wraps around the northwest and southwest sides; the northeast door approach and valley-facing view remain a photo/map interpretation, rather than being rotated solely toward the nearest road segment. The room/roof, hood, brick chimney and open lean-to read coherently; original ground remains beneath the canopy. One owned record is replaced while242 resident independent buildings, roads and40070.675m² pond water remain. Hidden rear extent and downhill plinth exposure remain approximate. One owned map record is replaced while242 resident/294 wider independent buildings, original approach, roads and40070.675m² pond water remain. Ground stays beneath the open side canopy; only the occupied room,11 timber post feet and two entrance aprons are cut. Failure retains all243 originals; every LOD/failure/unload restores ground/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete exterior interpretation of the mapped smithy/carpentry range at Yasnaya Polyana: gray log workshop on a low red-brick plinth, broad weathered-board hip roof, single red-brick chimney, recessed warm wooden double door beneath a shallow supported hood, and a genuinely open timber-post lean-to alongside the room. Original map outline anchors the complete envelope; the long rear extent is map-led and hidden in the front photographs. All canopy and hood supports remain present in every LOD. No invented forge interior, machinery, merchandise, copied signs, inscriptions, artwork, people or photograph pixels. Hidden rear doors/windows and exact historical roof/support inventory remain approximate. Approximate photo-led scale: log eaves2.55m, board hip rise2.2m and one capped brick chimney to5.38m above floor. Double doorway2.12m; shallow hood at2.25..2.45m and adjacent lean-to2.2..2.45m. Hidden rear range, canopy depth, post inventory, roof condition, thresholds and accessibility approximate; no exact mapped height is supplied. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[2.3,10] supplies205.2228043360681m datum. Whole boundary grades-1.487..0.038m, floor+0.2m and closed room foundation/support bottoms-1.7m. Original ground remains under the open side canopy; occupied room,11 post feet and two entry aprons alone cut it. Coarse downhill plinth/support exposure can reach about1.7m, higher than the visible front-photo plinth; hidden levels remain approximate. No flattening or bespoke terrain. Independent neighbors, approach, roads and ponds remain. Front pictures establish the log room, hip/chimney, double door/hood and left open canopy; trees/fence and perspective conceal rear depth. The mapped14.3m extent is therefore an explicit reconstruction of hidden room/canopy depth, not an exact inventory from a rear photo. Absolute front assignment follows the photographed approach/valley and the retained road wrapping northwest/southwest, not merely the closest road. Hidden doors/windows, roof/post inventory, thresholds and accessibility remain approximate. Fixed synthetic planes partly bury grade-specific plinth/aprons; whole/native views cover the envelope. Other estate structures remain procedural context in this isolated fixture. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:e2d3472a3ef46760ec01c70c8f15267b07e28bc90804eef479b1853eb5537d73\",\"bytes\":104732,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.glb\",\"hash\":\"sha256:a9e5b538074c278377fd1c671a099fdd3320bd90ed9761a453c884acb22413f0\",\"bytes\":104220,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:382ced451377df0ecc20667d1b0cb1aa6e4e882eed875970de7ed1a4f5441186\",\"bytes\":24248,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:7135091ff1f0c78f3527f52bd8f4eaa241d1bce0110137dd2db3cb6e4a07baaa\",\"bytes\":32340,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:0f967bfc18726b7229c8468f13af11fafac3e5d8e317a8b9b26df41d03a3361d\",\"bytes\":88556,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:bc6b22e556525ec026d0919b0e6c82a740636e6cff988ca09b10f1f545a559e8\",\"bytes\":96356,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-log-room-roofs-open-side-canopy-eleven-supports-door-and-hood",
+        "passed": true,
+        "notes": "174 actual mesh/contact probes; all six GLB pins, finite attributes, shared bindings, LOD caps, separate vertex streams and initial download budget pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Кузня и плотницкая POI and way617403594 identify this range independently from the other estate buildings. The mapped10.7m frontage and14.3m depth describe the whole room/canopy envelope. The photo-visible log room occupies the right frontage and the open lean-to the left; hidden depth is reconstructed along the map outline. X northwest across the northeast approach; Z northeast toward the front door, native east/up/south axes baked with heading0 at the unchanged assigned member anchor. This is an explicit photo/map interpretation of the complete mapped exterior, not a survey or claim that every hidden bay has been photographed. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[2.3,10] supplies205.2228043360681m datum. Whole boundary grades-1.487..0.038m, floor+0.2m and closed room foundation/support bottoms-1.7m. Original ground remains under the open side canopy; occupied room,11 post feet and two entry aprons alone cut it. Coarse downhill plinth/support exposure can reach about1.7m, higher than the visible front-photo plinth; hidden levels remain approximate. No flattening or bespoke terrain. Independent neighbors, approach, roads and ponds remain. Inspected native whole/front-door/open-canopy/rear views. The road wraps around the northwest and southwest sides; the northeast door approach and valley-facing view remain a photo/map interpretation, rather than being rotated solely toward the nearest road segment. The room/roof, hood, brick chimney and open lean-to read coherently; original ground remains beneath the canopy. One owned record is replaced while242 resident independent buildings, roads and40070.675m² pond water remain. Hidden rear extent and downhill plinth exposure remain approximate. One owned map record is replaced while242 resident/294 wider independent buildings, original approach, roads and40070.675m² pond water remain. Ground stays beneath the open side canopy; only the occupied room,11 timber post feet and two entrance aprons are cut. Failure retains all243 originals; every LOD/failure/unload restores ground/water and releases geometry."
+    },
+    "inputHash": "sha256:59688146c0d20f66bf37594ab1f55c78ca606641e48f413ad24a32526127f863",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:59688146c0d20f66bf37594ab1f55c78ca606641e48f413ad24a32526127f863",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames in labeled sheets, plus full-resolution native front/hood, open-canopy and rear views. The complete log workshop, weathered-board hip roof, single brick chimney, warm recessed double door, supported shallow hood and adjacent open sheet-roof canopy read coherently. The continuous pass seated pitched canopy crossbeams below the roof and darkened the main roof to fit the reference boards. All11 supports remain in every LOD. Hidden rear extent and coarse downhill plinth exposure remain approximate.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/preview.png",
+          "hash": "sha256:7e906d59978cace23686233d80b95d379aa96c0d4d2e91965b5a4b62e0fcda04"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:5aa64d6494b9bbdd044cf73c986d0fdb211ad234d965451273a6a488a834172c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:3b16085942c975bea3ea740258680ecab33a7ddf67b6c987b43f9d1fca5364dc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:01b46df35fdd65e3c1b4fba429d9b960d37a595cd5b69c19255acf05dc9d2ee1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:b2e596ebadd26469ce745f75f4eac5b2b4b164b4e2b0ca6f8ffbba6eea423422"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/whole-smithy-log-room-board-hip-and-open-side-canopy.png",
+          "hash": "sha256:9add1c57813b1509407fc5704e9905670faea2134da0b8b61045c7ee40d0e820"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/recessed-double-door-supported-hood-and-brick-chimney.png",
+          "hash": "sha256:6b508312dc56f04c0425f6a0e5d90a5afb92b6ae991bfa401394513552de5a39"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/open-lean-to-posts-beams-and-original-ground.png",
+          "hash": "sha256:52a329dacfb9c526c876c7a0dc1311bbb4507a2cff417cd69ad97fac9c973ba9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/map-derived-rear-roof-and-downhill-plinth.png",
+          "hash": "sha256:69a67305f1d436d2891c21abf6a220e7a16ca5b9aa4a35b4cd0547126ec0a879"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:6fa825942de136afe5a9d8c2ccd55ab3ac660ee430bf07c869a0d8280843c0e4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:cc96a70225032ed29114e0c1763546fc2ef19c6b676dee32499252cfb9347812"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:6bb8bc31b5e50b147fd305b9d97223df482c516dddabd6c6c84a7d3ef506ece1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:b1fb2da00ee6766ef60655cc5f780b4f6b835d83afcca6507d0214a56e87b0de"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/whole-smithy-log-room-board-hip-and-open-side-canopy.png",
+          "hash": "sha256:3ca329f16832c7ec3ff49c8384e3d2192a034fe94a9ad92fe7976b9a782521a0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/recessed-double-door-supported-hood-and-brick-chimney.png",
+          "hash": "sha256:5e3729eb68cb2e1641c1bf17d124ee9a4f669d2a65df6fc7408eb98b9aa925ef"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/open-lean-to-posts-beams-and-original-ground.png",
+          "hash": "sha256:1b500e161c9fbed7be5e6f9ecfd6e633463260b089ef2bef25f283261a3e75b5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/map-derived-rear-roof-and-downhill-plinth.png",
+          "hash": "sha256:e95ece38c35ae06f7bee7ca96113fa31d780da8f16e1039bcb018ef15f559a68"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:295182985ad9e272a24aefd931b5610086d03d52e7def3d0a920c85229b37ffc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:dbd72bfddb275663e3743c082369277483a1d6df89fc938fd5fbc3e1c5b3d3e8"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:dacfec515f055fdc21d3da327c5e6abdd339a2e92325e209274f660504a64af5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:77d4b65cfa2d559b8a139ee9728f7a4bfc05541ae5003f7be9d99f1f5eb82d7a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:31a62297ba5438d52c969bf67d48db23fbef896fb9df4fe64a906522836d7eb5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:f8120bcf888f34e4b41b8adf727e421d72ab65dee2890ab47711c692d8afbf65"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:d13492b8fb8ed130026788f80faf944c0cba11317d4195fb3a97800e1ba2c9a7"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:25d6e625e24235e5032ab8c8f9142591ecbb9f60cca512eb9a1c3eb207a8b841"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:86edcd9324fabc3fd851e37e8fd61abddf162cf1d5af0ba40a9c19bf69f05967"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:1bd69b240cafd2b7f83c134e8b9bd55f129bc26f536cb3dbbb3edbe43e7942a6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:7f55e2064afb247a8594424e264764937938c013f11fa23f4002f35e7974460c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:f4f15d061d7c4f1d747da7f681966f283797ea2529f9434c00be0b99f2c3cbef"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:35e2c6502fa3968f330c03ca97a29063ebcf1db066aa780bc02408d53ed0ae67"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:e9ce656f8e025bb569ee3adb91991a663c09f2d1f6b11732fcc84cfc00b866b0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/whole-smithy-log-room-board-hip-and-open-side-canopy.png",
+          "hash": "sha256:7f1257c1f1f6343d7b68b7bd110243b968d13f8349e1b627e448599171e22dd2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/recessed-double-door-supported-hood-and-brick-chimney.png",
+          "hash": "sha256:4953a5f409db72821df00209ae83ab42c42454dc99be90005126bcf3f2d99975"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/open-lean-to-posts-beams-and-original-ground.png",
+          "hash": "sha256:23e98c878ce36b1179c169ad42e77c244e78e59172e7ac03f1f71249e2d5b1e8"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/map-derived-rear-roof-and-downhill-plinth.png",
+          "hash": "sha256:432bcb10e0f2e8b82d13529b076adb5a1df8a7deefd4e18cb1eceae5d2da1345"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:14ce92de81f219c62e92e91708842700e5ac9eca31e4a087bc4f1e5eebf63427"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:d13492b8fb8ed130026788f80faf944c0cba11317d4195fb3a97800e1ba2c9a7"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:dbf9197d7f1bae416a15ac70ea914aeb312467b5b07a3415f9686c46d9b0cbe6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:9cf732a505fc7a3f5c73831924e0abd953a0a64122fc8bc6812857d20d87b7b6"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:f46268ab52e34a15eba28516291cb9b85d734487390e6afebd995b8e93e4c320"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:14e78d97dd0aa5edcba885c0157fd2008a2e12dece0e5f01aab44cf6b79de642"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:1afd922319629dd89813702ef8f59b3e8c908a215b009e080659fdab76445f2a"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:bd272208d3dfc149f5069a30101a9fcb05e3cfebd1627b28059229d9463e3ebd"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-closeup-whole-smithy-log-room-board-hip-and-open-side-canopy.png",
+          "hash": "sha256:6f3b21fb04791a437f497243729cb3bd3fb23bf041a7955efffccf7d3a1a1bbd"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-closeup-recessed-double-door-supported-hood-and-brick-chimney.png",
+          "hash": "sha256:f90bff952f0b292029a06c28be64cdddc0ef82b3295d91271852de25d9939b63"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-closeup-open-lean-to-posts-beams-and-original-ground.png",
+          "hash": "sha256:2129f721abcc484ccf6169dc8f99f6b86b2d43f048a6310dd3ab422876978980"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-closeup-map-derived-rear-roof-and-downhill-plinth.png",
+          "hash": "sha256:08c83a8511221c79dbd9dc60dc6063b2cfc6bbca7441cb3c9f216c4763a7ebc4"
+        },
+        {
+          "path": ".artifacts/smithy-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:9de7feeb06fda8e8f4aee1b1b49c87ae3c6fb2ca28ee18d51c4306fca8e269d5"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:59688146c0d20f66bf37594ab1f55c78ca606641e48f413ad24a32526127f863",
+      "sourceHash": "sha256:e2d3472a3ef46760ec01c70c8f15267b07e28bc90804eef479b1853eb5537d73",
+      "runtimeHash": "sha256:a9e5b538074c278377fd1c671a099fdd3320bd90ed9761a453c884acb22413f0",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/smithy_carpentry_yasnaya_polyana/models/source.glb": "sha256:e2d3472a3ef46760ec01c70c8f15267b07e28bc90804eef479b1853eb5537d73",
+        "content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.glb": "sha256:a9e5b538074c278377fd1c671a099fdd3320bd90ed9761a453c884acb22413f0",
+        "content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.skyline.glb": "sha256:382ced451377df0ecc20667d1b0cb1aa6e4e882eed875970de7ed1a4f5441186",
+        "content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.district.glb": "sha256:7135091ff1f0c78f3527f52bd8f4eaa241d1bce0110137dd2db3cb6e4a07baaa",
+        "content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.street.glb": "sha256:0f967bfc18726b7229c8468f13af11fafac3e5d8e317a8b9b26df41d03a3361d",
+        "content/worldgen/assets/places/uc/ucd/smithy_carpentry_yasnaya_polyana/model.closeup.glb": "sha256:bc6b22e556525ec026d0919b0e6c82a740636e6cff988ca09b10f1f545a559e8"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184989492426
+      ],
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            9899,
+            5254
+          ],
+          "id": 35184733592650,
+          "owned": false,
+          "covered": 0.1769692947694767,
+          "area": 854.862934615608,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184989492426,
+          "owned": true,
+          "covered": 0.9999576085586762,
+          "area": 152.49533761831225,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true,
+      "groundUnderOpenSideCanopyRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000011451617396573965,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.smithy_carpentry_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.4721043360681,
+            "max": 38.51199566393191
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:f46268ab52e34a15eba28516291cb9b85d734487390e6afebd995b8e93e4c320",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 271687
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                36.34706681404528,
+                14,
+                -1.9724943638267085
+              ],
+              "lookAt": [
+                0,
+                2.2,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000011451617396573965,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_corrugated": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.smithy_carpentry_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.4721043360681,
+            "max": 38.51199566393191
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:14e78d97dd0aa5edcba885c0157fd2008a2e12dece0e5f01aab44cf6b79de642",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 271755
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                36.34706681404528,
+                14,
+                -1.9724943638267085
+              ],
+              "lookAt": [
+                0,
+                2.2,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000011451617396573965,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_corrugated": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.smithy_carpentry_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.4721043360681,
+            "max": 38.51199566393191
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:1afd922319629dd89813702ef8f59b3e8c908a215b009e080659fdab76445f2a",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272431
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                36.34706681404528,
+                14,
+                -1.9724943638267085
+              ],
+              "lookAt": [
+                0,
+                2.2,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.0000011451617396573965,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.brick": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_corrugated": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.smithy_carpentry_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.4721043360681,
+            "max": 38.51199566393191
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:bd272208d3dfc149f5069a30101a9fcb05e3cfebd1627b28059229d9463e3ebd",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272531
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                36.34706681404528,
+                14,
+                -1.9724943638267085
+              ],
+              "lookAt": [
+                0,
+                2.2,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-smithy-log-room-board-hip-and-open-side-canopy.png",
+            "hash": "sha256:6f3b21fb04791a437f497243729cb3bd3fb23bf041a7955efffccf7d3a1a1bbd",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272531
+            },
+            "camera": {
+              "name": "whole-smithy-log-room-board-hip-and-open-side-canopy",
+              "position": [
+                30.593207397142987,
+                9,
+                -1.027453724211254
+              ],
+              "lookAt": [
+                0.7627698578136797,
+                2.2,
+                -0.6466700426112987
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-recessed-double-door-supported-hood-and-brick-chimney.png",
+            "hash": "sha256:f90bff952f0b292029a06c28be64cdddc0ef82b3295d91271852de25d9939b63",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272531
+            },
+            "camera": {
+              "name": "recessed-double-door-supported-hood-and-brick-chimney",
+              "position": [
+                7.49535664493801,
+                5,
+                -22.08663914599013
+              ],
+              "lookAt": [
+                3.2832790616594805,
+                2,
+                -5.405559971295151
+              ],
+              "fov": 56
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-lean-to-posts-beams-and-original-ground.png",
+            "hash": "sha256:2129f721abcc484ccf6169dc8f99f6b86b2d43f048a6310dd3ab422876978980",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272531
+            },
+            "camera": {
+              "name": "open-lean-to-posts-beams-and-original-ground",
+              "position": [
+                12.402830624817057,
+                6,
+                13.083187398034937
+              ],
+              "lookAt": [
+                1.810676119311636,
+                1.7,
+                2.135755601878303
+              ],
+              "fov": 56
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-map-derived-rear-roof-and-downhill-plinth.png",
+            "hash": "sha256:08c83a8511221c79dbd9dc60dc6063b2cfc6bbca7441cb3c9f216c4763a7ebc4",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272531
+            },
+            "camera": {
+              "name": "map-derived-rear-roof-and-downhill-plinth",
+              "position": [
+                -29.94653735453169,
+                12,
+                1.7902235820249324
+              ],
+              "lookAt": [
+                -0.7627698578136797,
+                2.2,
+                0.6466700426112987
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184989492426,
+              "area": 152.48902294541455
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.smithy_carpentry_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.4721043360681,
+            "max": 38.51199566393191
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:9de7feeb06fda8e8f4aee1b1b49c87ae3c6fb2ca28ee18d51c4306fca8e269d5",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 271989
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                36.34706681404528,
+                14,
+                -1.9724943638267085
+              ],
+              "lookAt": [
+                0,
+                2.2,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete exterior interpretation of the mapped smithy/carpentry range at Yasnaya Polyana: gray log workshop on a low red-brick plinth, broad weathered-board hip roof, single red-brick chimney, recessed warm wooden double door beneath a shallow supported hood, and a genuinely open timber-post lean-to alongside the room. Original map outline anchors the complete envelope; the long rear extent is map-led and hidden in the front photographs. All canopy and hood supports remain present in every LOD. No invented forge interior, machinery, merchandise, copied signs, inscriptions, artwork, people or photograph pixels. Hidden rear doors/windows and exact historical roof/support inventory remain approximate. Approximate photo-led scale: log eaves2.55m, board hip rise2.2m and one capped brick chimney to5.38m above floor. Double doorway2.12m; shallow hood at2.25..2.45m and adjacent lean-to2.2..2.45m. Hidden rear range, canopy depth, post inventory, roof condition, thresholds and accessibility approximate; no exact mapped height is supplied. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[2.3,10] supplies205.2228043360681m datum. Whole boundary grades-1.487..0.038m, floor+0.2m and closed room foundation/support bottoms-1.7m. Original ground remains under the open side canopy; occupied room,11 post feet and two entry aprons alone cut it. Coarse downhill plinth/support exposure can reach about1.7m, higher than the visible front-photo plinth; hidden levels remain approximate. No flattening or bespoke terrain. Independent neighbors, approach, roads and ponds remain. Front pictures establish the log room, hip/chimney, double door/hood and left open canopy; trees/fence and perspective conceal rear depth. The mapped14.3m extent is therefore an explicit reconstruction of hidden room/canopy depth, not an exact inventory from a rear photo. Absolute front assignment follows the photographed approach/valley and the retained road wrapping northwest/southwest, not merely the closest road. Hidden doors/windows, roof/post inventory, thresholds and accessibility remain approximate. Fixed synthetic planes partly bury grade-specific plinth/aprons; whole/native views cover the envelope. Other estate structures remain procedural context in this isolated fixture. Physical phone/laptop and dense-city timings remain pending."
+  ]
+}

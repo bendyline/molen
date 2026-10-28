@@ -15,6 +15,38 @@ const twin = {
 const valid = (spec: unknown) => component.zod.safeParse({ kind: 'test.twin', spec }).success;
 
 describe('aircraft engine authoring', () => {
+  it('validates mixture, governor limits and independent pilot values', () => {
+    expect(
+      valid({
+        ...sample.spec,
+        engine: { ...engine, mixtureControl: true, propellerControl: { minRpm: 0.6 } },
+      }),
+    ).toBe(true);
+    expect(
+      valid({ ...sample.spec, engine: { ...engine, propellerControl: { minRpm: 1.1 } } }),
+    ).toBe(false);
+    const input = getComponent('aircraftInput');
+    if (!input) throw new Error('Missing aircraft input schema');
+    for (const key of ['mixture', 'propeller']) {
+      for (const value of [0, 0.5, 1])
+        expect(
+          input.zod.safeParse({
+            ...input.meta.examples[0],
+            [key]: value,
+            engines: { left: { [key]: value } },
+          }).success,
+        ).toBe(true);
+      for (const value of [-0.1, 1.1, NaN]) {
+        expect(input.zod.safeParse({ ...input.meta.examples[0], [key]: value }).success).toBe(
+          false,
+        );
+        expect(
+          input.zod.safeParse({ ...input.meta.examples[0], engines: { left: { [key]: value } } })
+            .success,
+        ).toBe(false);
+      }
+    }
+  });
   it('validates jet ratings, reheat detents, departure angles and fractional flap input', () => {
     const jet = {
       ...sample.spec,

@@ -35,7 +35,7 @@ import {
   EARTH_SKY_PALETTE,
   EARTH_TONE_MAPPING,
 } from '../../../../packages/earth/src/client/look';
-import { mediumFiAsset } from './medium-fi-asset.mjs';
+import { mediumFiAsset, mediumFiLodFile } from './medium-fi-asset.mjs';
 
 declare const __REVIEW_ROOT__: string;
 const base = `/@fs/${__REVIEW_ROOT__}/`;
@@ -279,7 +279,7 @@ buildings.traverse((o) => {
 });
 const models: Record<string, THREE.Object3D> = {};
 for (const level of ['skyline', 'district', 'street', 'closeup']) {
-  const model = await library.acquire(sidecar.files.variants[level]);
+  const model = await library.acquire(mediumFiLodFile(sidecar, level));
   const object = library.instantiate(model);
   if (groundOpening) setTerrainGroundCutouts(object, groundOutlines);
   object.visible = false;
@@ -297,9 +297,10 @@ for (const level of ['skyline', 'district', 'street', 'closeup']) {
 // the underside of the finite tile when viewed from a distant camera.
 if (
   groundOpening &&
-  Object.values(models).some(
-    (object) => new THREE.Box3().setFromObject(object).min.y < ground.position.y,
-  )
+  (!terrainDescriptor ||
+    Object.values(models).some(
+      (object) => new THREE.Box3().setFromObject(object).min.y < ground.position.y,
+    ))
 ) {
   markTerrainGroundSurface(ground);
   openingSurfaces.push({

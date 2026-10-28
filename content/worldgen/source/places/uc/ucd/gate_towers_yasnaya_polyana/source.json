@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gate_towers_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Entrance Gate Towers — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gate_towers_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/gate_towers_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:129dcbb87f6c9312ca8dc94bdf099c72d70bb05ca4be2940abaef71fb2fdbedd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gate-towers-yasnaya-polyana",
+        "path": "models/generate-gate-towers-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "gate-towers-yasnaya-polyana-model",
+        "path": "models/gate-towers-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "gate-towers-yasnaya-polyana-geometry",
+        "path": "models/gate-towers-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

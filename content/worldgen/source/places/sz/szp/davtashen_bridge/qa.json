@@ -1,0 +1,2770 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.davtashen_bridge",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:a9f7a26d0e433950e876766e2d7e7a10e12cccbc0e165c7d0d5fde67668c0c1c",
+  "sourceHash": "sha256:66154292b876a71051465d0037104e8378da8d500a6e5a2140390a4ca744478a",
+  "runtimeHash": "sha256:0d0a6f8329714f686db9fd48935670f5699aaa93a80f889eab1128ca962383e9",
+  "captureReportHash": "sha256:9046e9a6d9fec0d67c5e2cd804e8b63d8c5c0934f5e894af78af07ddeb9aca03",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/gorge-paired-piers.png",
+      "shots/steel-girders-and-bearing.png",
+      "shots/six-lanes-and-lamps.png",
+      "shots/paired-column-opening.png"
+    ],
+    "captureReportHash": "sha256:9046e9a6d9fec0d67c5e2cd804e8b63d8c5c0934f5e894af78af07ddeb9aca03",
+    "notes": "Inspected 54 current frames: 9 portable, 9 shared, 25 medium-fi and 11 native. Complete497.033m bridge with four paired tall concrete pier stations, shallow yellow steel girders, concrete approaches, six-lane deck, two walks, open pale rails, inward lamps and close trolley contacts. Source-local original analytic geometry, not downloaded meshes. Corrected coplanar slab/girder flange flickering during the same authoring pass. Native approach retaining walls are explicitly approximate visualization support outside the mapped crossing."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/gorge-paired-piers.png",
+      "shots/shared/steel-girders-and-bearing.png",
+      "shots/shared/six-lanes-and-lamps.png",
+      "shots/shared/paired-column-opening.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:dd1fdb511333a33511c23caa78333cfb5dd6bbec56e1b8b83b68665d356c892e",
+    "notes": "Two existing256px shared graphs, concrete_plain and metal_painted. All browser concrete, asphalt, painted steel, rails and markings share those graphs with metric UVs and linear component tints. No embedded/private images or copied photographs. Each graph is read once per resident fixture; skyline uses one mean-color draw and the other levels two draws. Separate position/normal GPU streams and complete disposal pass."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/gorge-paired-piers.png",
+      "medium-fi/steel-girders-and-bearing.png",
+      "medium-fi/six-lanes-and-lamps.png",
+      "medium-fi/paired-column-opening.png",
+      "medium-fi/complete-davtashen-skyline.png",
+      "medium-fi/complete-davtashen-district.png",
+      "medium-fi/complete-davtashen-street.png",
+      "medium-fi/complete-davtashen-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:c03f9d42b302c31dc215a86c05bb63e3a3f81b29df930a0d5fb33d30f23c6dcf",
+    "notes": "Detailed source40444triangles/4855960bytes and canonical import4855532bytes remain separate from browser levels. Skyline/district/street/closeup: 892/3808/13120/26440 triangles, 83524/346128/1185516/2383312 bytes. Initial skyline+district 429652bytes. Levels retain the full bridge and paired pier rhythm, reducing girder stiffeners, posts, lamps and contact wires by distance. Physical ordinary-laptop and phone/tablet timings remain pending."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:bb9e0cf276d2bb61f6df13482e86d8c8aaf3dcf916edb4f29fcbdeac33bf6f77",
+    "mapFrameHash": "sha256:c730e9f661f061ff43cbdb368a498c71b1f6f57399db1093ebabe600ccff0454",
+    "notes": "Exact-QID bridge anchor[44.493313519,40.209637037], heading-0.977148492357rad: +X southeast to Arabkir, -X northwest to Davtashen, +Z southwest. Source road centerY92m, native origin1014.15m and inferred4.37% longitudinal visualization grade give endpoint decks1095.30/1117.00m. Eight native road/footway joins are within0.007m. A bounded48x34.8m Arabkir approach ground cap at sourceY100.3m and three terrain-fit retaining support walls keep the connected lanes visible without sky holes in the inspected bank view. This is an approximate fit to standard PMTiles/Mapzen, not a surveyed profile: the coarse gorge is shallower than ordinary photographs and occludes lower foundations. Published92m height datum, structural sections and precise span allocation remain unresolved."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped bridge exterior and approximate native placement complete. Detailed source40444triangles/4855960bytes and canonical import4855532bytes remain separate from browser levels. Skyline/district/street/closeup: 892/3808/13120/26440 triangles, 83524/346128/1185516/2383312 bytes. Initial skyline+district 429652bytes. Levels retain the full bridge and paired pier rhythm, reducing girder stiffeners, posts, lamps and contact wires by distance. Physical ordinary-laptop and phone/tablet timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sz/szp/davtashen_bridge/models/source.glb\",\"hash\":\"sha256:66154292b876a71051465d0037104e8378da8d500a6e5a2140390a4ca744478a\",\"bytes\":4855960,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sz/szp/davtashen_bridge/model.glb\",\"hash\":\"sha256:0d0a6f8329714f686db9fd48935670f5699aaa93a80f889eab1128ca962383e9\",\"bytes\":4855532,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sz/szp/davtashen_bridge/model.skyline.glb\",\"hash\":\"sha256:34310c58da03eabb350fde575b2ee455c2fb997ab9ec29d60e7d809912aeece7\",\"bytes\":83524,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sz/szp/davtashen_bridge/model.district.glb\",\"hash\":\"sha256:f067bb62093eef651812317ffccc7345a00d8239e1cb60b50a4072d562334e5d\",\"bytes\":346128,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sz/szp/davtashen_bridge/model.street.glb\",\"hash\":\"sha256:6818894d6e8e2732630d4771992a80a8d0e0e93a922cb68421d28b422339dba2\",\"bytes\":1185516,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sz/szp/davtashen_bridge/model.closeup.glb\",\"hash\":\"sha256:20236c4c4b708ea6a6da98cc262ab6edc2f2572774cfe76f086aa8cf76f8051e\",\"bytes\":2383312,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "continuous-graded-road-paired-piers-and-steel-girders",
+        "passed": true,
+        "notes": "180 actual mesh probes across six GLBs:14 deck-height checks, eight solid pier legs/four open spaces and four continuous girders per file. Finite attributes, no embedded images, exact pins, central graph references, level ceilings and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Exact-QID bridge anchor[44.493313519,40.209637037], heading-0.977148492357rad: +X southeast to Arabkir, -X northwest to Davtashen, +Z southwest. Source road centerY92m, native origin1014.15m and inferred4.37% longitudinal visualization grade give endpoint decks1095.30/1117.00m. Eight native road/footway joins are within0.007m. A bounded48x34.8m Arabkir approach ground cap at sourceY100.3m and three terrain-fit retaining support walls keep the connected lanes visible without sky holes in the inspected bank view. This is an approximate fit to standard PMTiles/Mapzen, not a surveyed profile: the coarse gorge is shallower than ordinary photographs and occludes lower foundations. Published92m height datum, structural sections and precise span allocation remain unresolved."
+    },
+    "inputHash": "sha256:a9f7a26d0e433950e876766e2d7e7a10e12cccbc0e165c7d0d5fde67668c0c1c",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:a9f7a26d0e433950e876766e2d7e7a10e12cccbc0e165c7d0d5fde67668c0c1c",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 54 current frames: 9 portable, 9 shared, 25 medium-fi and 11 native. Complete497.033m bridge with four paired tall concrete pier stations, shallow yellow steel girders, concrete approaches, six-lane deck, two walks, open pale rails, inward lamps and close trolley contacts. Source-local original analytic geometry, not downloaded meshes. Corrected coplanar slab/girder flange flickering during the same authoring pass. Native approach retaining walls are explicitly approximate visualization support outside the mapped crossing.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/preview.png",
+          "hash": "sha256:6fe3a015a97be0180c08f68618131b8772d410876cabde1858563472dcac8eaf"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:47a726aacda0a9b1f29da0ee229f7987e9935f479dc5124d754295c2a10a0f42"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:c6b37470805ea7dd1b23cb27667f240e4a67dbb3818b6ec312f9b5a51669dab9"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:bcf971edcddfceb5dac17dd782dc280518aad1932f85a3a4ee04bd98ef8357b9"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:7d993ec99e25722220c2fc0d295dc9c9375f76ace14b4c3d2d59d96b765d6ff0"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/gorge-paired-piers.png",
+          "hash": "sha256:7ec23cf913de07f15adb6f5e66824f041e4aec9ff507ad0e4671722ad506de05"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/steel-girders-and-bearing.png",
+          "hash": "sha256:4c78e392ad2c94231b60d09c8feb3fd9f16f5b99c6f0541d178dd085359113df"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/six-lanes-and-lamps.png",
+          "hash": "sha256:4fb3e1d1353868f7e385d0de606571e082e6233528f583f2ee05c1e3b19cd4ea"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/paired-column-opening.png",
+          "hash": "sha256:4c87fe6e20b5bb0d0af894edf961dd498fd2771bc070ed19fd2a742b450df2e0"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:992c47e58861705101b58aebe2055512b528994e1dbfaa983af254601f59a607"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:992873440b28120ddb8bb90fbccb9b32e2c1006d73cb67f5ea93640ef232ba5d"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:297cf42c273df715639e8dd468b62e9163b8d9b70ed178b0a8644ea0eb18b665"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:3cf5330b04d117312592e25055365dec21c63dedbdee8d6bb92df280a83eb2e3"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/gorge-paired-piers.png",
+          "hash": "sha256:add6a7b5569cf955443a6661a8a9593f8c3ea913ceb1df4a6ae8d474187abbca"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/steel-girders-and-bearing.png",
+          "hash": "sha256:ccb2c3c9d617b53ecf3be0c9684cd75df5525323c79702b8a9b874f1ffaffec8"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/six-lanes-and-lamps.png",
+          "hash": "sha256:c59a16f08d3e545dfc7da3a0a40b26a3bd9ef088c8b79c18da28d026ba51a47c"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/paired-column-opening.png",
+          "hash": "sha256:d3025a2b2905f03bd4e3f35568b9dd0cb74fcc7437af709955ce414e211467b3"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/shots/shared/placement.png",
+          "hash": "sha256:64170b87156d15205b369a8f39c269e3cb6b58a135fb339df7f332c97bd7debf"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:e9cd1be2dbe7aaf85e8672af85d7f3af395edddedc72af3006a6f0045651097b"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:29c7e6811c542281658228672210efce608a9f7398df2a71089f9c3b08ad34d3"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:ba9ba66fcbb12046d14f86b7cadd720dbe1d132757850f367e58a6548249b66e"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:0c95184d904c7533b1527b184d9a200ce17d15c465d84c90d5651880fddb00b0"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:e30ef67d90758d462f62de57754e524cf4399fdc806f5c08196098561f3537a9"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:440eb87b0c91561c43bb0b250271821acfed733d0d41e0c3269420b0c2225e95"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:c82751a013fca983e218f5df9d08f549d8f34d33df676ab9a304734d86a6b234"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:7de8aa694b551979b48366069f3a495635d9da020c6f47696a1c23b4b252f02f"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:1964ab425a150cabba2ce6110916b7fe75c1e5d4229de570e9bacae5d236197e"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:fe099452111bbb1a4f551cea8365323155a468424c23c7ee3ee11496f5e228c1"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:2e3e946a2e3a9ef74ebbb20f9f1d2d1033880f5c3d8147dacd10950dedb7a77a"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:b72794f66b328a85b73688159c1e7ffc8f82f515358f56265f9122276ebbe432"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:92037d6a24f9e0152da6a31780dec4c16b3d916605f0aaac1c0b42aa7336b60c"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/gorge-paired-piers.png",
+          "hash": "sha256:2a07ec42facc40f82b7c6a595e0e6530e70ef14153629ffde9c24061e0683f88"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/steel-girders-and-bearing.png",
+          "hash": "sha256:c1049e3b8727d85e00cfd97adf0421f860078f3650336698967c1c7e83807324"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/six-lanes-and-lamps.png",
+          "hash": "sha256:c583d9bc7d1217edd3b9fe65936c5f4ade2bb9baa44e90dba7d5e1e1be8be89f"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/paired-column-opening.png",
+          "hash": "sha256:f519fffc91f56570ec425d9682f9f6c3ea000fb1c0e76a0e0852c2f98d37eb6c"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/complete-davtashen-skyline.png",
+          "hash": "sha256:7c85d1c9b1e7def5a2001198357f28dc801b5ab1ce5e4cdf841104a09de0181a"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/complete-davtashen-district.png",
+          "hash": "sha256:cafae810962bce015cc9a9d45837ad539d3b946f2067410d62f6c74984d01737"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/complete-davtashen-street.png",
+          "hash": "sha256:b1cf4e94d4e8a8e4caeff07ef9228d752e8c4d5fdb5cb67e17c77fc839ec1cf0"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/complete-davtashen-closeup.png",
+          "hash": "sha256:601f0af061c52512fa5156bd6097e7dd036aed7a58ddc4749f5adc375db646ac"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:f62ac6df9e7f4706ff3a0b1c99cb147cc7145ec12a28ca9ac65f30965d8373fd"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:440eb87b0c91561c43bb0b250271821acfed733d0d41e0c3269420b0c2225e95"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:25ae5e1e3b011f96127c2b2ccc568318246c538f7b14d9c116d835373aa5a6f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sz/szp/davtashen_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:8298151cd2620bcaa946345d3ea20699ad1e8b1677d3d816981288f376f29b94"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-skyline-hrazdan-gorge.png",
+          "hash": "sha256:6b6114a8fe2aae74d72390c483ed8ea00e19ca2b7025afec32d48d347b838889"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-district-hrazdan-gorge.png",
+          "hash": "sha256:32681f6c0e37c204f8fb0f67896e8203ebffcf47987c7f8ae1a3ba570efb4fb6"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-street-hrazdan-gorge.png",
+          "hash": "sha256:c0d2007ce04c3a24a78a33191e8f8d234ce61fa21fb30dabb53682cb0ca67f8f"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-closeup-hrazdan-gorge.png",
+          "hash": "sha256:a1f69537a117f74ce774d3bb1e7a3ed2d9cca122dbe8bf0d93fa77770e0c461b"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-closeup-gorge-paired-piers.png",
+          "hash": "sha256:96e785de884c498898989cc23d5b0683a4edf008cacc2a3ac08ca8abe3b8bc6c"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-closeup-steel-girders-and-bearing.png",
+          "hash": "sha256:92400d91e764d285c446225822d3f197e6381ea2886377b82fd4767b4a9da2ab"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-closeup-six-lanes-and-lamps.png",
+          "hash": "sha256:2dfeb8bf0430e7ca05947f51196ef261b04049e428eab1b45150a2dba4e11e4e"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-closeup-paired-column-opening.png",
+          "hash": "sha256:1490427029e90ccbb2bf87438e76138b37dabd3d06db4d68a28fe7989999cffc"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-closeup-davtashen-bank-join.png",
+          "hash": "sha256:5d36fe5c812defcc114cad080d1f1ca8186c78a9f7d7d433ae7d3d19102ca792"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-closeup-arabkir-bank-join.png",
+          "hash": "sha256:21c54dc800c5ec5ffea35b434f7ee4232fd9ef09bd725ca5ba7730ff5b75bd63"
+        },
+        {
+          "path": ".artifacts/davtashen-integration/shots/final-failure-hrazdan-gorge.png",
+          "hash": "sha256:c3d3b519da90ed3c67fe11edce0cd7d2697fcde5503436b36c07dca64585bfad"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 1512 resident/2290 wider native buildings and 1856 independent road records remain. Eight selected connected approaches retain their routes and exact per-lane joins; original road inputs, raw heightfield and native water remain unchanged. Two outside-ground probes remain within0.014m of raw sampled heights; only the declared approach cap changes rendered ground. Failure keeps original map content and no support/cap. Unload restores native ground bytes and releases every model/support geometry. No new engine or dependency changes were needed for this model."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:a9f7a26d0e433950e876766e2d7e7a10e12cccbc0e165c7d0d5fde67668c0c1c",
+      "sourceHash": "sha256:66154292b876a71051465d0037104e8378da8d500a6e5a2140390a4ca744478a",
+      "runtimeHash": "sha256:0d0a6f8329714f686db9fd48935670f5699aaa93a80f889eab1128ca962383e9",
+      "files": {
+        "content/worldgen/source/places/sz/szp/davtashen_bridge/models/source.glb": "sha256:66154292b876a71051465d0037104e8378da8d500a6e5a2140390a4ca744478a",
+        "content/worldgen/assets/places/sz/szp/davtashen_bridge/model.glb": "sha256:0d0a6f8329714f686db9fd48935670f5699aaa93a80f889eab1128ca962383e9",
+        ".artifacts/davtashen-integration/data.json": "sha256:53169fed23997eeec60089a5f54a3c0d98824548d2c190e80135dfb82a758b37",
+        ".artifacts/davtashen-integration/site.ts": "sha256:64b88145715a5e8dce9f9a4a7ae2aa222ac5c79de86b16010ecdb15f85dd7b15",
+        ".artifacts/davtashen-integration/site.mjs": "sha256:642c89ace500c9edab1d3888db011fdae2ea16b4412e10e88415fe3dba87d3f0",
+        "content/worldgen/assets/places/sz/szp/davtashen_bridge/model.skyline.glb": "sha256:34310c58da03eabb350fde575b2ee455c2fb997ab9ec29d60e7d809912aeece7",
+        "content/worldgen/assets/places/sz/szp/davtashen_bridge/model.district.glb": "sha256:f067bb62093eef651812317ffccc7345a00d8239e1cb60b50a4072d562334e5d",
+        "content/worldgen/assets/places/sz/szp/davtashen_bridge/model.street.glb": "sha256:6818894d6e8e2732630d4771992a80a8d0e0e93a922cb68421d28b422339dba2",
+        "content/worldgen/assets/places/sz/szp/davtashen_bridge/model.closeup.glb": "sha256:20236c4c4b708ea6a6da98cc262ab6edc2f2572774cfe76f086aa8cf76f8051e"
+      },
+      "engine": {
+        "packages/worldgen-earth/src/client/structure-geometry.ts": "sha256:11eb4a587a11451ae64022398ef419b9fbca76aae9de11b00fd3b5ca617de4ca",
+        "packages/terrain/src/surface-bridges.ts": "sha256:a921e62846e7342809bad97b17470531e38ede838c1b2ca1123e038a35cbe811",
+        "packages/terrain/src/surface-client.ts": "sha256:2309d499139b4292ae6097937346395be5cfa0659ba8dd5ba74ca22012c123db",
+        "packages/terrain/src/semantic-client.ts": "sha256:59820f7d9e636fd144b9ead9e84dabe114b240d24c96a39f9b0a79be0048643d",
+        "packages/terrain/src/ground-cutout.ts": "sha256:9be809d4b57e834d2c868d735ef1947dbe2906a216ad62578652064ae475eed0",
+        "packages/terrain/src/linear-features.ts": "sha256:a7f5e41e4b2985a6063b3a7f2d647a190e3cc71dbdd1f12b7c2f0fb5b33bd9f0",
+        "packages/worldgen-earth/src/client/renderers.ts": "sha256:8ca95744b54be329919312e0452e1e85f39a67dd365f89e5e317912bb8c63306",
+        "packages/client/src/three/shadow-focus.ts": "sha256:ff1b6d0dc914faf5ca592d9c7fa2e74132ad7cae65cc63c0c03e325545a49d09"
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "groundProbes": [
+            {
+              "x": 220,
+              "z": 0,
+              "rendered": 1107.5517809069202,
+              "raw": 1107.5379940491878
+            },
+            {
+              "x": 260,
+              "z": 30,
+              "rendered": 1120.1002013720213,
+              "raw": 1120.0969956105284
+            },
+            {
+              "x": 260,
+              "z": 0,
+              "rendered": 1114.449951171875,
+              "raw": 1118.3480241989048
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -389.3726740485114,
+                    3.9548901893872426
+                  ],
+                  [
+                    -260.8105145560789,
+                    5.437473867895108
+                  ],
+                  [
+                    -248.35579042049653,
+                    6.140053982400616
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -248.47037062469738,
+                    -7.141578063770268
+                  ],
+                  [
+                    -387.2051632587065,
+                    -10.262476322284584
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "lines": [
+                [
+                  [
+                    -277.40742321577216,
+                    21.470904502216754
+                  ],
+                  [
+                    -264.6696874444793,
+                    16.86268077619239
+                  ],
+                  [
+                    -248.27009792563445,
+                    13.350216885945102
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "lines": [
+                [
+                  [
+                    -335.928585608479,
+                    -86.24446099712205
+                  ],
+                  [
+                    -326.2075924904157,
+                    -60.7030396073136
+                  ],
+                  [
+                    -318.24528947818413,
+                    -48.45242180856951
+                  ],
+                  [
+                    -305.6053755907775,
+                    -35.79600735551659
+                  ],
+                  [
+                    -289.913447608018,
+                    -26.03155102724665
+                  ],
+                  [
+                    -275.79031098433495,
+                    -18.42615529071665
+                  ],
+                  [
+                    -263.5478843354175,
+                    -13.740498453410453
+                  ],
+                  [
+                    -248.5039107826878,
+                    -12.390917708501718
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "lines": [
+                [
+                  [
+                    438.637313598642,
+                    -45.759594267283546
+                  ],
+                  [
+                    425.5963996898636,
+                    -43.556688746014345
+                  ],
+                  [
+                    414.8052108721872,
+                    -36.534475393210386
+                  ],
+                  [
+                    401.5045794985988,
+                    -33.13139197895396
+                  ],
+                  [
+                    338.709871845757,
+                    -23.241462158156708
+                  ],
+                  [
+                    248.39706506181375,
+                    -12.115709447009081
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    248.1722606604901,
+                    5.338324091497455
+                  ],
+                  [
+                    366.13254545699357,
+                    3.7925598136044982
+                  ],
+                  [
+                    472.43748476358917,
+                    5.659844109003501
+                  ],
+                  [
+                    552.854812001146,
+                    11.238737078932587
+                  ],
+                  [
+                    626.6906431046216,
+                    17.60280067268957
+                  ],
+                  [
+                    746.7828151466598,
+                    31.250231165211062
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    751.884962176576,
+                    23.689834680089234
+                  ],
+                  [
+                    612.4570678076941,
+                    6.896888090323159
+                  ],
+                  [
+                    543.9324305644344,
+                    0.8160162821901338
+                  ],
+                  [
+                    369.54741269491706,
+                    -7.382308079191176
+                  ],
+                  [
+                    248.36464703363566,
+                    -6.360702327369324
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "lines": [
+                [
+                  [
+                    248.1305848662189,
+                    12.737622015193494
+                  ],
+                  [
+                    355.8469577809653,
+                    10.880889259690719
+                  ],
+                  [
+                    383.80041771293253,
+                    11.039229330140103
+                  ],
+                  [
+                    444.91085658320696,
+                    19.544039072317844
+                  ],
+                  [
+                    452.4716381227312,
+                    24.646445956883042
+                  ],
+                  [
+                    460.6193646527429,
+                    37.847466358476794
+                  ],
+                  [
+                    461.7072764907112,
+                    46.83433771939207
+                  ],
+                  [
+                    460.1456893365922,
+                    65.86204867262063
+                  ],
+                  [
+                    456.7077656160999,
+                    81.1477029173528
+                  ],
+                  [
+                    454.2842457770655,
+                    84.73889124752515
+                  ],
+                  [
+                    443.42229717316286,
+                    93.08880091916387
+                  ],
+                  [
+                    425.32535808173054,
+                    94.63053621636129
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "davtashen-join--7.14",
+              "point": [
+                -248.5465,
+                -7.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.3000616186573,
+              "rawGround": 1094.8005163407024
+            },
+            {
+              "name": "davtashen-join-6.14",
+              "point": [
+                -248.5465,
+                6.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.2959974850596,
+              "rawGround": 1094.810440879756
+            },
+            {
+              "name": "davtashen-join-13.35",
+              "point": [
+                -248.5465,
+                13.35
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.3000251038868,
+              "rawGround": 1094.7011411818821
+            },
+            {
+              "name": "davtashen-join--12.39",
+              "point": [
+                -248.5465,
+                -12.39
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.299721867536,
+              "rawGround": 1094.6757742305408
+            },
+            {
+              "name": "arabkir-join--12.12",
+              "point": [
+                248.5465,
+                -12.12
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.993618851573,
+              "rawGround": 1115.445434491273
+            },
+            {
+              "name": "arabkir-join-5.34",
+              "point": [
+                248.5465,
+                5.34
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9987198728613,
+              "rawGround": 1116.134925030252
+            },
+            {
+              "name": "arabkir-join--6.36",
+              "point": [
+                248.5465,
+                -6.36
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9957693170425,
+              "rawGround": 1115.6263461969254
+            },
+            {
+              "name": "arabkir-join-12.74",
+              "point": [
+                248.5465,
+                12.74
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1117.0009647440957,
+              "rawGround": 1116.5205290418714
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184545364110,
+              "connections": [
+                {
+                  "point": [
+                    0.40993795617650153,
+                    0.3733955468599496
+                  ],
+                  "elevation": 1095.3000000000025,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "connections": [
+                {
+                  "point": [
+                    0.41681455945685075,
+                    0.3687548588919136
+                  ],
+                  "elevation": 1095.3000000000025,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "connections": [
+                {
+                  "point": [
+                    0.4061705784570244,
+                    0.37593796842219773
+                  ],
+                  "elevation": 1095.3000000000034,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "connections": [
+                {
+                  "point": [
+                    0.4195341114769973,
+                    0.3669195643684648
+                  ],
+                  "elevation": 1095.3,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "connections": [
+                {
+                  "point": [
+                    0.5931701470441857,
+                    0.6245069441473943
+                  ],
+                  "elevation": 1116.9999999999957,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "connections": [
+                {
+                  "point": [
+                    0.5841225197299661,
+                    0.6306127515504779
+                  ],
+                  "elevation": 1117,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "connections": [
+                {
+                  "point": [
+                    0.5901817140989043,
+                    0.6265236934415428
+                  ],
+                  "elevation": 1116.9999999999868,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "connections": [
+                {
+                  "point": [
+                    0.5802903041198465,
+                    0.6331989290786634
+                  ],
+                  "elevation": 1117,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "waterAtOrigin": null,
+          "level": "skyline",
+          "modelLoaded": true,
+          "modelWorldY": 1014.15,
+          "modelBounds": {
+            "min": [
+              -152.27353017470844,
+              1014.15,
+              -214.9427446057602
+            ],
+            "max": [
+              171.18434822952267,
+              1121.5949996948243,
+              241.95956653751125
+            ]
+          },
+          "explicitPylonPartIds": [],
+          "replacedPylonPartIds": [],
+          "sourceBuildings": 1512,
+          "remainingBuildings": 1512,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "changedIndependentRoadDetails": [],
+          "independentRoads": 1856,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184413349850,
+            35185447251730,
+            35185749110198
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": false,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.davtashen_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "groundProbes": [
+            {
+              "x": 220,
+              "z": 0,
+              "rendered": 1107.5517809069202,
+              "raw": 1107.5379940491878
+            },
+            {
+              "x": 260,
+              "z": 30,
+              "rendered": 1120.1002013720213,
+              "raw": 1120.0969956105284
+            },
+            {
+              "x": 260,
+              "z": 0,
+              "rendered": 1114.449951171875,
+              "raw": 1118.3480241989048
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -389.3726740485114,
+                    3.9548901893872426
+                  ],
+                  [
+                    -260.8105145560789,
+                    5.437473867895108
+                  ],
+                  [
+                    -248.35579042049653,
+                    6.140053982400616
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -248.47037062469738,
+                    -7.141578063770268
+                  ],
+                  [
+                    -387.2051632587065,
+                    -10.262476322284584
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "lines": [
+                [
+                  [
+                    -277.40742321577216,
+                    21.470904502216754
+                  ],
+                  [
+                    -264.6696874444793,
+                    16.86268077619239
+                  ],
+                  [
+                    -248.27009792563445,
+                    13.350216885945102
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "lines": [
+                [
+                  [
+                    -335.928585608479,
+                    -86.24446099712205
+                  ],
+                  [
+                    -326.2075924904157,
+                    -60.7030396073136
+                  ],
+                  [
+                    -318.24528947818413,
+                    -48.45242180856951
+                  ],
+                  [
+                    -305.6053755907775,
+                    -35.79600735551659
+                  ],
+                  [
+                    -289.913447608018,
+                    -26.03155102724665
+                  ],
+                  [
+                    -275.79031098433495,
+                    -18.42615529071665
+                  ],
+                  [
+                    -263.5478843354175,
+                    -13.740498453410453
+                  ],
+                  [
+                    -248.5039107826878,
+                    -12.390917708501718
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "lines": [
+                [
+                  [
+                    438.637313598642,
+                    -45.759594267283546
+                  ],
+                  [
+                    425.5963996898636,
+                    -43.556688746014345
+                  ],
+                  [
+                    414.8052108721872,
+                    -36.534475393210386
+                  ],
+                  [
+                    401.5045794985988,
+                    -33.13139197895396
+                  ],
+                  [
+                    338.709871845757,
+                    -23.241462158156708
+                  ],
+                  [
+                    248.39706506181375,
+                    -12.115709447009081
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    248.1722606604901,
+                    5.338324091497455
+                  ],
+                  [
+                    366.13254545699357,
+                    3.7925598136044982
+                  ],
+                  [
+                    472.43748476358917,
+                    5.659844109003501
+                  ],
+                  [
+                    552.854812001146,
+                    11.238737078932587
+                  ],
+                  [
+                    626.6906431046216,
+                    17.60280067268957
+                  ],
+                  [
+                    746.7828151466598,
+                    31.250231165211062
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    751.884962176576,
+                    23.689834680089234
+                  ],
+                  [
+                    612.4570678076941,
+                    6.896888090323159
+                  ],
+                  [
+                    543.9324305644344,
+                    0.8160162821901338
+                  ],
+                  [
+                    369.54741269491706,
+                    -7.382308079191176
+                  ],
+                  [
+                    248.36464703363566,
+                    -6.360702327369324
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "lines": [
+                [
+                  [
+                    248.1305848662189,
+                    12.737622015193494
+                  ],
+                  [
+                    355.8469577809653,
+                    10.880889259690719
+                  ],
+                  [
+                    383.80041771293253,
+                    11.039229330140103
+                  ],
+                  [
+                    444.91085658320696,
+                    19.544039072317844
+                  ],
+                  [
+                    452.4716381227312,
+                    24.646445956883042
+                  ],
+                  [
+                    460.6193646527429,
+                    37.847466358476794
+                  ],
+                  [
+                    461.7072764907112,
+                    46.83433771939207
+                  ],
+                  [
+                    460.1456893365922,
+                    65.86204867262063
+                  ],
+                  [
+                    456.7077656160999,
+                    81.1477029173528
+                  ],
+                  [
+                    454.2842457770655,
+                    84.73889124752515
+                  ],
+                  [
+                    443.42229717316286,
+                    93.08880091916387
+                  ],
+                  [
+                    425.32535808173054,
+                    94.63053621636129
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "davtashen-join--7.14",
+              "point": [
+                -248.5465,
+                -7.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.3000616186573,
+              "rawGround": 1094.8005163407024
+            },
+            {
+              "name": "davtashen-join-6.14",
+              "point": [
+                -248.5465,
+                6.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.2959974850596,
+              "rawGround": 1094.810440879756
+            },
+            {
+              "name": "davtashen-join-13.35",
+              "point": [
+                -248.5465,
+                13.35
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.3000251038868,
+              "rawGround": 1094.7011411818821
+            },
+            {
+              "name": "davtashen-join--12.39",
+              "point": [
+                -248.5465,
+                -12.39
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.299721867536,
+              "rawGround": 1094.6757742305408
+            },
+            {
+              "name": "arabkir-join--12.12",
+              "point": [
+                248.5465,
+                -12.12
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.993618851573,
+              "rawGround": 1115.445434491273
+            },
+            {
+              "name": "arabkir-join-5.34",
+              "point": [
+                248.5465,
+                5.34
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9987198728613,
+              "rawGround": 1116.134925030252
+            },
+            {
+              "name": "arabkir-join--6.36",
+              "point": [
+                248.5465,
+                -6.36
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9957693170425,
+              "rawGround": 1115.6263461969254
+            },
+            {
+              "name": "arabkir-join-12.74",
+              "point": [
+                248.5465,
+                12.74
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1117.0009647440957,
+              "rawGround": 1116.5205290418714
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184545364110,
+              "connections": [
+                {
+                  "point": [
+                    0.40993795617650153,
+                    0.3733955468599496
+                  ],
+                  "elevation": 1095.3000000000025,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "connections": [
+                {
+                  "point": [
+                    0.41681455945685075,
+                    0.3687548588919136
+                  ],
+                  "elevation": 1095.3000000000025,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "connections": [
+                {
+                  "point": [
+                    0.4061705784570244,
+                    0.37593796842219773
+                  ],
+                  "elevation": 1095.3000000000034,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "connections": [
+                {
+                  "point": [
+                    0.4195341114769973,
+                    0.3669195643684648
+                  ],
+                  "elevation": 1095.3,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "connections": [
+                {
+                  "point": [
+                    0.5931701470441857,
+                    0.6245069441473943
+                  ],
+                  "elevation": 1116.9999999999957,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "connections": [
+                {
+                  "point": [
+                    0.5841225197299661,
+                    0.6306127515504779
+                  ],
+                  "elevation": 1117,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "connections": [
+                {
+                  "point": [
+                    0.5901817140989043,
+                    0.6265236934415428
+                  ],
+                  "elevation": 1116.9999999999868,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "connections": [
+                {
+                  "point": [
+                    0.5802903041198465,
+                    0.6331989290786634
+                  ],
+                  "elevation": 1117,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "waterAtOrigin": null,
+          "level": "district",
+          "modelLoaded": true,
+          "modelWorldY": 1014.15,
+          "modelBounds": {
+            "min": [
+              -152.27353017470844,
+              1014.15,
+              -214.9427446057602
+            ],
+            "max": [
+              171.18434822952267,
+              1123.594793701172,
+              241.95956653751125
+            ]
+          },
+          "explicitPylonPartIds": [],
+          "replacedPylonPartIds": [],
+          "sourceBuildings": 1512,
+          "remainingBuildings": 1512,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "changedIndependentRoadDetails": [],
+          "independentRoads": 1856,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184413349850,
+            35185447251730,
+            35185749110198
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": false,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.davtashen_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "groundProbes": [
+            {
+              "x": 220,
+              "z": 0,
+              "rendered": 1107.5517809069202,
+              "raw": 1107.5379940491878
+            },
+            {
+              "x": 260,
+              "z": 30,
+              "rendered": 1120.1002013720213,
+              "raw": 1120.0969956105284
+            },
+            {
+              "x": 260,
+              "z": 0,
+              "rendered": 1114.449951171875,
+              "raw": 1118.3480241989048
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -389.3726740485114,
+                    3.9548901893872426
+                  ],
+                  [
+                    -260.8105145560789,
+                    5.437473867895108
+                  ],
+                  [
+                    -248.35579042049653,
+                    6.140053982400616
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -248.47037062469738,
+                    -7.141578063770268
+                  ],
+                  [
+                    -387.2051632587065,
+                    -10.262476322284584
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "lines": [
+                [
+                  [
+                    -277.40742321577216,
+                    21.470904502216754
+                  ],
+                  [
+                    -264.6696874444793,
+                    16.86268077619239
+                  ],
+                  [
+                    -248.27009792563445,
+                    13.350216885945102
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "lines": [
+                [
+                  [
+                    -335.928585608479,
+                    -86.24446099712205
+                  ],
+                  [
+                    -326.2075924904157,
+                    -60.7030396073136
+                  ],
+                  [
+                    -318.24528947818413,
+                    -48.45242180856951
+                  ],
+                  [
+                    -305.6053755907775,
+                    -35.79600735551659
+                  ],
+                  [
+                    -289.913447608018,
+                    -26.03155102724665
+                  ],
+                  [
+                    -275.79031098433495,
+                    -18.42615529071665
+                  ],
+                  [
+                    -263.5478843354175,
+                    -13.740498453410453
+                  ],
+                  [
+                    -248.5039107826878,
+                    -12.390917708501718
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "lines": [
+                [
+                  [
+                    438.637313598642,
+                    -45.759594267283546
+                  ],
+                  [
+                    425.5963996898636,
+                    -43.556688746014345
+                  ],
+                  [
+                    414.8052108721872,
+                    -36.534475393210386
+                  ],
+                  [
+                    401.5045794985988,
+                    -33.13139197895396
+                  ],
+                  [
+                    338.709871845757,
+                    -23.241462158156708
+                  ],
+                  [
+                    248.39706506181375,
+                    -12.115709447009081
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    248.1722606604901,
+                    5.338324091497455
+                  ],
+                  [
+                    366.13254545699357,
+                    3.7925598136044982
+                  ],
+                  [
+                    472.43748476358917,
+                    5.659844109003501
+                  ],
+                  [
+                    552.854812001146,
+                    11.238737078932587
+                  ],
+                  [
+                    626.6906431046216,
+                    17.60280067268957
+                  ],
+                  [
+                    746.7828151466598,
+                    31.250231165211062
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    751.884962176576,
+                    23.689834680089234
+                  ],
+                  [
+                    612.4570678076941,
+                    6.896888090323159
+                  ],
+                  [
+                    543.9324305644344,
+                    0.8160162821901338
+                  ],
+                  [
+                    369.54741269491706,
+                    -7.382308079191176
+                  ],
+                  [
+                    248.36464703363566,
+                    -6.360702327369324
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "lines": [
+                [
+                  [
+                    248.1305848662189,
+                    12.737622015193494
+                  ],
+                  [
+                    355.8469577809653,
+                    10.880889259690719
+                  ],
+                  [
+                    383.80041771293253,
+                    11.039229330140103
+                  ],
+                  [
+                    444.91085658320696,
+                    19.544039072317844
+                  ],
+                  [
+                    452.4716381227312,
+                    24.646445956883042
+                  ],
+                  [
+                    460.6193646527429,
+                    37.847466358476794
+                  ],
+                  [
+                    461.7072764907112,
+                    46.83433771939207
+                  ],
+                  [
+                    460.1456893365922,
+                    65.86204867262063
+                  ],
+                  [
+                    456.7077656160999,
+                    81.1477029173528
+                  ],
+                  [
+                    454.2842457770655,
+                    84.73889124752515
+                  ],
+                  [
+                    443.42229717316286,
+                    93.08880091916387
+                  ],
+                  [
+                    425.32535808173054,
+                    94.63053621636129
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "davtashen-join--7.14",
+              "point": [
+                -248.5465,
+                -7.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.3000616186573,
+              "rawGround": 1094.8005163407024
+            },
+            {
+              "name": "davtashen-join-6.14",
+              "point": [
+                -248.5465,
+                6.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.2959974850596,
+              "rawGround": 1094.810440879756
+            },
+            {
+              "name": "davtashen-join-13.35",
+              "point": [
+                -248.5465,
+                13.35
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.3000251038868,
+              "rawGround": 1094.7011411818821
+            },
+            {
+              "name": "davtashen-join--12.39",
+              "point": [
+                -248.5465,
+                -12.39
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.299721867536,
+              "rawGround": 1094.6757742305408
+            },
+            {
+              "name": "arabkir-join--12.12",
+              "point": [
+                248.5465,
+                -12.12
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.993618851573,
+              "rawGround": 1115.445434491273
+            },
+            {
+              "name": "arabkir-join-5.34",
+              "point": [
+                248.5465,
+                5.34
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9987198728613,
+              "rawGround": 1116.134925030252
+            },
+            {
+              "name": "arabkir-join--6.36",
+              "point": [
+                248.5465,
+                -6.36
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9957693170425,
+              "rawGround": 1115.6263461969254
+            },
+            {
+              "name": "arabkir-join-12.74",
+              "point": [
+                248.5465,
+                12.74
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1117.0009647440957,
+              "rawGround": 1116.5205290418714
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184545364110,
+              "connections": [
+                {
+                  "point": [
+                    0.40993795617650153,
+                    0.3733955468599496
+                  ],
+                  "elevation": 1095.3000000000025,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "connections": [
+                {
+                  "point": [
+                    0.41681455945685075,
+                    0.3687548588919136
+                  ],
+                  "elevation": 1095.3000000000025,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "connections": [
+                {
+                  "point": [
+                    0.4061705784570244,
+                    0.37593796842219773
+                  ],
+                  "elevation": 1095.3000000000034,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "connections": [
+                {
+                  "point": [
+                    0.4195341114769973,
+                    0.3669195643684648
+                  ],
+                  "elevation": 1095.3,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "connections": [
+                {
+                  "point": [
+                    0.5931701470441857,
+                    0.6245069441473943
+                  ],
+                  "elevation": 1116.9999999999957,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "connections": [
+                {
+                  "point": [
+                    0.5841225197299661,
+                    0.6306127515504779
+                  ],
+                  "elevation": 1117,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "connections": [
+                {
+                  "point": [
+                    0.5901817140989043,
+                    0.6265236934415428
+                  ],
+                  "elevation": 1116.9999999999868,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "connections": [
+                {
+                  "point": [
+                    0.5802903041198465,
+                    0.6331989290786634
+                  ],
+                  "elevation": 1117,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "waterAtOrigin": null,
+          "level": "street",
+          "modelLoaded": true,
+          "modelWorldY": 1014.15,
+          "modelBounds": {
+            "min": [
+              -152.27353017470844,
+              1014.15,
+              -214.9427446057602
+            ],
+            "max": [
+              171.18434822952267,
+              1125.341162109375,
+              241.95956653751125
+            ]
+          },
+          "explicitPylonPartIds": [],
+          "replacedPylonPartIds": [],
+          "sourceBuildings": 1512,
+          "remainingBuildings": 1512,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "changedIndependentRoadDetails": [],
+          "independentRoads": 1856,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184413349850,
+            35185447251730,
+            35185749110198
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": false,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.davtashen_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "groundProbes": [
+            {
+              "x": 220,
+              "z": 0,
+              "rendered": 1107.5517809069202,
+              "raw": 1107.5379940491878
+            },
+            {
+              "x": 260,
+              "z": 30,
+              "rendered": 1120.1002013720213,
+              "raw": 1120.0969956105284
+            },
+            {
+              "x": 260,
+              "z": 0,
+              "rendered": 1114.449951171875,
+              "raw": 1118.3480241989048
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -389.3726740485114,
+                    3.9548901893872426
+                  ],
+                  [
+                    -260.8105145560789,
+                    5.437473867895108
+                  ],
+                  [
+                    -248.35579042049653,
+                    6.140053982400616
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -248.47037062469738,
+                    -7.141578063770268
+                  ],
+                  [
+                    -387.2051632587065,
+                    -10.262476322284584
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "lines": [
+                [
+                  [
+                    -277.40742321577216,
+                    21.470904502216754
+                  ],
+                  [
+                    -264.6696874444793,
+                    16.86268077619239
+                  ],
+                  [
+                    -248.27009792563445,
+                    13.350216885945102
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "lines": [
+                [
+                  [
+                    -335.928585608479,
+                    -86.24446099712205
+                  ],
+                  [
+                    -326.2075924904157,
+                    -60.7030396073136
+                  ],
+                  [
+                    -318.24528947818413,
+                    -48.45242180856951
+                  ],
+                  [
+                    -305.6053755907775,
+                    -35.79600735551659
+                  ],
+                  [
+                    -289.913447608018,
+                    -26.03155102724665
+                  ],
+                  [
+                    -275.79031098433495,
+                    -18.42615529071665
+                  ],
+                  [
+                    -263.5478843354175,
+                    -13.740498453410453
+                  ],
+                  [
+                    -248.5039107826878,
+                    -12.390917708501718
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "lines": [
+                [
+                  [
+                    438.637313598642,
+                    -45.759594267283546
+                  ],
+                  [
+                    425.5963996898636,
+                    -43.556688746014345
+                  ],
+                  [
+                    414.8052108721872,
+                    -36.534475393210386
+                  ],
+                  [
+                    401.5045794985988,
+                    -33.13139197895396
+                  ],
+                  [
+                    338.709871845757,
+                    -23.241462158156708
+                  ],
+                  [
+                    248.39706506181375,
+                    -12.115709447009081
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    248.1722606604901,
+                    5.338324091497455
+                  ],
+                  [
+                    366.13254545699357,
+                    3.7925598136044982
+                  ],
+                  [
+                    472.43748476358917,
+                    5.659844109003501
+                  ],
+                  [
+                    552.854812001146,
+                    11.238737078932587
+                  ],
+                  [
+                    626.6906431046216,
+                    17.60280067268957
+                  ],
+                  [
+                    746.7828151466598,
+                    31.250231165211062
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    751.884962176576,
+                    23.689834680089234
+                  ],
+                  [
+                    612.4570678076941,
+                    6.896888090323159
+                  ],
+                  [
+                    543.9324305644344,
+                    0.8160162821901338
+                  ],
+                  [
+                    369.54741269491706,
+                    -7.382308079191176
+                  ],
+                  [
+                    248.36464703363566,
+                    -6.360702327369324
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "lines": [
+                [
+                  [
+                    248.1305848662189,
+                    12.737622015193494
+                  ],
+                  [
+                    355.8469577809653,
+                    10.880889259690719
+                  ],
+                  [
+                    383.80041771293253,
+                    11.039229330140103
+                  ],
+                  [
+                    444.91085658320696,
+                    19.544039072317844
+                  ],
+                  [
+                    452.4716381227312,
+                    24.646445956883042
+                  ],
+                  [
+                    460.6193646527429,
+                    37.847466358476794
+                  ],
+                  [
+                    461.7072764907112,
+                    46.83433771939207
+                  ],
+                  [
+                    460.1456893365922,
+                    65.86204867262063
+                  ],
+                  [
+                    456.7077656160999,
+                    81.1477029173528
+                  ],
+                  [
+                    454.2842457770655,
+                    84.73889124752515
+                  ],
+                  [
+                    443.42229717316286,
+                    93.08880091916387
+                  ],
+                  [
+                    425.32535808173054,
+                    94.63053621636129
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "davtashen-join--7.14",
+              "point": [
+                -248.5465,
+                -7.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.3000616186573,
+              "rawGround": 1094.8005163407024
+            },
+            {
+              "name": "davtashen-join-6.14",
+              "point": [
+                -248.5465,
+                6.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.2959974850596,
+              "rawGround": 1094.810440879756
+            },
+            {
+              "name": "davtashen-join-13.35",
+              "point": [
+                -248.5465,
+                13.35
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.3000251038868,
+              "rawGround": 1094.7011411818821
+            },
+            {
+              "name": "davtashen-join--12.39",
+              "point": [
+                -248.5465,
+                -12.39
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.299721867536,
+              "rawGround": 1094.6757742305408
+            },
+            {
+              "name": "arabkir-join--12.12",
+              "point": [
+                248.5465,
+                -12.12
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.993618851573,
+              "rawGround": 1115.445434491273
+            },
+            {
+              "name": "arabkir-join-5.34",
+              "point": [
+                248.5465,
+                5.34
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9987198728613,
+              "rawGround": 1116.134925030252
+            },
+            {
+              "name": "arabkir-join--6.36",
+              "point": [
+                248.5465,
+                -6.36
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9957693170425,
+              "rawGround": 1115.6263461969254
+            },
+            {
+              "name": "arabkir-join-12.74",
+              "point": [
+                248.5465,
+                12.74
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1117.0009647440957,
+              "rawGround": 1116.5205290418714
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184545364110,
+              "connections": [
+                {
+                  "point": [
+                    0.40993795617650153,
+                    0.3733955468599496
+                  ],
+                  "elevation": 1095.3000000000025,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "connections": [
+                {
+                  "point": [
+                    0.41681455945685075,
+                    0.3687548588919136
+                  ],
+                  "elevation": 1095.3000000000025,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "connections": [
+                {
+                  "point": [
+                    0.4061705784570244,
+                    0.37593796842219773
+                  ],
+                  "elevation": 1095.3000000000034,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "connections": [
+                {
+                  "point": [
+                    0.4195341114769973,
+                    0.3669195643684648
+                  ],
+                  "elevation": 1095.3,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "connections": [
+                {
+                  "point": [
+                    0.5931701470441857,
+                    0.6245069441473943
+                  ],
+                  "elevation": 1116.9999999999957,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "connections": [
+                {
+                  "point": [
+                    0.5841225197299661,
+                    0.6306127515504779
+                  ],
+                  "elevation": 1117,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "connections": [
+                {
+                  "point": [
+                    0.5901817140989043,
+                    0.6265236934415428
+                  ],
+                  "elevation": 1116.9999999999868,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "connections": [
+                {
+                  "point": [
+                    0.5802903041198465,
+                    0.6331989290786634
+                  ],
+                  "elevation": 1117,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "waterAtOrigin": null,
+          "level": "closeup",
+          "modelLoaded": true,
+          "modelWorldY": 1014.15,
+          "modelBounds": {
+            "min": [
+              -152.27353017470844,
+              1014.15,
+              -214.9427446057602
+            ],
+            "max": [
+              171.18434822952267,
+              1125.6904281616212,
+              241.95956653751125
+            ]
+          },
+          "explicitPylonPartIds": [],
+          "replacedPylonPartIds": [],
+          "sourceBuildings": 1512,
+          "remainingBuildings": 1512,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "changedIndependentRoadDetails": [],
+          "independentRoads": 1856,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184413349850,
+            35185447251730,
+            35185749110198
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": false,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.davtashen_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "groundProbes": [
+            {
+              "x": 220,
+              "z": 0,
+              "rendered": 1107.5517809069202,
+              "raw": 1107.5379940491878
+            },
+            {
+              "x": 260,
+              "z": 30,
+              "rendered": 1120.1002013720213,
+              "raw": 1120.0969956105284
+            },
+            {
+              "x": 260,
+              "z": 0,
+              "rendered": 1118.404354159005,
+              "raw": 1118.3480241989048
+            }
+          ],
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -389.3726740485114,
+                    3.9548901893872426
+                  ],
+                  [
+                    -260.8105145560789,
+                    5.437473867895108
+                  ],
+                  [
+                    -248.35579042049653,
+                    6.140053982400616
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184545364110,
+              "lines": [
+                [
+                  [
+                    -248.47037062469738,
+                    -7.141578063770268
+                  ],
+                  [
+                    -387.2051632587065,
+                    -10.262476322284584
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185426280750,
+              "lines": [
+                [
+                  [
+                    -277.40742321577216,
+                    21.470904502216754
+                  ],
+                  [
+                    -264.6696874444793,
+                    16.86268077619239
+                  ],
+                  [
+                    -248.27009792563445,
+                    13.350216885945102
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185574106770,
+              "lines": [
+                [
+                  [
+                    -335.928585608479,
+                    -86.24446099712205
+                  ],
+                  [
+                    -326.2075924904157,
+                    -60.7030396073136
+                  ],
+                  [
+                    -318.24528947818413,
+                    -48.45242180856951
+                  ],
+                  [
+                    -305.6053755907775,
+                    -35.79600735551659
+                  ],
+                  [
+                    -289.913447608018,
+                    -26.03155102724665
+                  ],
+                  [
+                    -275.79031098433495,
+                    -18.42615529071665
+                  ],
+                  [
+                    -263.5478843354175,
+                    -13.740498453410453
+                  ],
+                  [
+                    -248.5039107826878,
+                    -12.390917708501718
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184420290100,
+              "lines": [
+                [
+                  [
+                    438.637313598642,
+                    -45.759594267283546
+                  ],
+                  [
+                    425.5963996898636,
+                    -43.556688746014345
+                  ],
+                  [
+                    414.8052108721872,
+                    -36.534475393210386
+                  ],
+                  [
+                    401.5045794985988,
+                    -33.13139197895396
+                  ],
+                  [
+                    338.709871845757,
+                    -23.241462158156708
+                  ],
+                  [
+                    248.39706506181375,
+                    -12.115709447009081
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    248.1722606604901,
+                    5.338324091497455
+                  ],
+                  [
+                    366.13254545699357,
+                    3.7925598136044982
+                  ],
+                  [
+                    472.43748476358917,
+                    5.659844109003501
+                  ],
+                  [
+                    552.854812001146,
+                    11.238737078932587
+                  ],
+                  [
+                    626.6906431046216,
+                    17.60280067268957
+                  ],
+                  [
+                    746.7828151466598,
+                    31.250231165211062
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184561234130,
+              "lines": [
+                [
+                  [
+                    751.884962176576,
+                    23.689834680089234
+                  ],
+                  [
+                    612.4570678076941,
+                    6.896888090323159
+                  ],
+                  [
+                    543.9324305644344,
+                    0.8160162821901338
+                  ],
+                  [
+                    369.54741269491706,
+                    -7.382308079191176
+                  ],
+                  [
+                    248.36464703363566,
+                    -6.360702327369324
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184858170070,
+              "lines": [
+                [
+                  [
+                    248.1305848662189,
+                    12.737622015193494
+                  ],
+                  [
+                    355.8469577809653,
+                    10.880889259690719
+                  ],
+                  [
+                    383.80041771293253,
+                    11.039229330140103
+                  ],
+                  [
+                    444.91085658320696,
+                    19.544039072317844
+                  ],
+                  [
+                    452.4716381227312,
+                    24.646445956883042
+                  ],
+                  [
+                    460.6193646527429,
+                    37.847466358476794
+                  ],
+                  [
+                    461.7072764907112,
+                    46.83433771939207
+                  ],
+                  [
+                    460.1456893365922,
+                    65.86204867262063
+                  ],
+                  [
+                    456.7077656160999,
+                    81.1477029173528
+                  ],
+                  [
+                    454.2842457770655,
+                    84.73889124752515
+                  ],
+                  [
+                    443.42229717316286,
+                    93.08880091916387
+                  ],
+                  [
+                    425.32535808173054,
+                    94.63053621636129
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "davtashen-join--7.14",
+              "point": [
+                -248.5465,
+                -7.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.1204911383347,
+              "rawGround": 1094.8005163407024
+            },
+            {
+              "name": "davtashen-join-6.14",
+              "point": [
+                -248.5465,
+                6.14
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.1183867793477,
+              "rawGround": 1094.810440879756
+            },
+            {
+              "name": "davtashen-join-13.35",
+              "point": [
+                -248.5465,
+                13.35
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.1301584807525,
+              "rawGround": 1094.7011411818821
+            },
+            {
+              "name": "davtashen-join--12.39",
+              "point": [
+                -248.5465,
+                -12.39
+              ],
+              "expectedDeck": 1095.3,
+              "roadHeight": 1095.1074544995463,
+              "rawGround": 1094.6757742305408
+            },
+            {
+              "name": "arabkir-join--12.12",
+              "point": [
+                248.5465,
+                -12.12
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1115.761151660572,
+              "rawGround": 1115.445434491273
+            },
+            {
+              "name": "arabkir-join-5.34",
+              "point": [
+                248.5465,
+                5.34
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.4685972338125,
+              "rawGround": 1116.134925030252
+            },
+            {
+              "name": "arabkir-join--6.36",
+              "point": [
+                248.5465,
+                -6.36
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1115.9715085972543,
+              "rawGround": 1115.6263461969254
+            },
+            {
+              "name": "arabkir-join-12.74",
+              "point": [
+                248.5465,
+                12.74
+              ],
+              "expectedDeck": 1117,
+              "roadHeight": 1116.9757530425468,
+              "rawGround": 1116.5205290418714
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "waterAtOrigin": null,
+          "level": "failure",
+          "modelLoaded": false,
+          "modelWorldY": null,
+          "modelBounds": null,
+          "explicitPylonPartIds": [],
+          "replacedPylonPartIds": [],
+          "sourceBuildings": 1512,
+          "remainingBuildings": 1512,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "changedIndependentRoadDetails": [],
+          "independentRoads": 1856,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184413349850,
+            35185447251730,
+            35185749110198
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.davtashen_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Foundation elevations, structural sections and precise span/end allocation are approximate photo interpretations. A 4.37% longitudinal visualization grade follows the standard native bank endpoints; it is not an as-built surveyed road profile.",
+    "Nominal 92 m height has an unresolved datum; native terrain is coarse in the gorge. Native placement is not approved until current viewer renders are inspected.",
+    "Hidden structure, temporary signs/banners, vehicles, exact present traffic and trolley operation, adjoining retaining walls and utility lines crossing the gorge are excluded.",
+    "Physical laptop and phone/tablet timing measurements remain pending.",
+    "Bounded48×34.8m Arabkir approach retaining cut at sourceY100.3m; three original modeled support walls meet the sampled native ground at its exposed perimeter. Bridge and road centerlines remain exact; these walls are visualization support inferred from the standard terrain, not surveyed bridge members. Original DEM, water, paving and outside ground remain; unload restores native ground.",
+    "Exact-QID bridge anchor[44.493313519,40.209637037], heading-0.977148492357rad: +X southeast to Arabkir, -X northwest to Davtashen, +Z southwest. Source road centerY92m, native origin1014.15m and inferred4.37% longitudinal visualization grade give endpoint decks1095.30/1117.00m. Eight native road/footway joins are within0.007m. A bounded48x34.8m Arabkir approach ground cap at sourceY100.3m and three terrain-fit retaining support walls keep the connected lanes visible without sky holes in the inspected bank view. This is an approximate fit to standard PMTiles/Mapzen, not a surveyed profile: the coarse gorge is shallower than ordinary photographs and occludes lower foundations. Published92m height datum, structural sections and precise span allocation remain unresolved."
+  ]
+}

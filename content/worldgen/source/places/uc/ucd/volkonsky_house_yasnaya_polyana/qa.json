@@ -1,0 +1,1320 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.volkonsky_house_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:6180c8d2cc7df539b08a1cf7f5771e0c9171e0811b8e3e74e0d24dc6d0125379",
+  "sourceHash": "sha256:d9af3b261b2ea2d0a30e634691fa1c5c4964752426cc04377b788d05df28c91c",
+  "runtimeHash": "sha256:29551848fcfb0be9c2a05d268b823165b585423e8f63fbb623e8621a3c73206f",
+  "captureReportHash": "sha256:0679c07a283d41ebfe7cbeca159f238f8b1912f2df9433b87d1cf8737cb77c7d",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-connected-house-pediment-wings-and-dormers.png",
+      "shots/central-pediment-arched-attic-and-recessed-entry.png",
+      "shots/southwest-cellar-door-dormer-and-lower-wing.png",
+      "shots/northeast-end-and-rear-roof-connections.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames in nine labeled contact sheets, plus full-resolution native whole connected house, central pediment/entrance, end cellar door and rear roof views. The raised gabled center, low links, wider end pavilions, four arched dormers, green roofs, two pale chimneys, repeated window bands, cellar pediment hoods and supported entrances read coherently. The continuous author/inspect/fix pass closed dormer backs and roof joints, seated the center chimney in its roof and added doorway aprons; the hidden foundation extends to the placement datum."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-connected-house-pediment-wings-and-dormers.png",
+      "shots/shared/central-pediment-arched-attic-and-recessed-entry.png",
+      "shots/shared/southwest-cellar-door-dormer-and-lower-wing.png",
+      "shots/shared/northeast-end-and-rear-roof-connections.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six roles reuse five existing256px graphs: stucco, wood_plain, stone_limestone, metal_standing_seam and storefront. Metric UVs, linear tints, five nearby draws/one skyline, separate POSITION/NORMAL streams and matching CPU/GPU geometry accounting. No embedded image, private atlas or new graph. Each used graph reads once; unload releases every model geometry.",
+    "captureReportHash": "sha256:94324b1155177c047a1a25d1cb03abfb0a558f55344d583593a93b591a13699e"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-connected-house-pediment-wings-and-dormers.png",
+      "medium-fi/central-pediment-arched-attic-and-recessed-entry.png",
+      "medium-fi/southwest-cellar-door-dormer-and-lower-wing.png",
+      "medium-fi/northeast-end-and-rear-roof-connections.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs773/1967/3187/3355 triangles. Initial skyline+district234176bytes; closeup276136bytes. Skyline keeps all five connected roof masses, center pediment, four closed dormer housings, two stacks, physical recessed entrances and supported aprons/treads; it omits window/glazed fan modules and close quoin/pipe/medallion proxies. District adds the arched attic/dormer glazing and complete window rhythm; street/closeup add small bands, pipes and original plain medallion proxies. Synthetic contexts check style/LOD/tier coherence; native views establish approximate geographic fit.",
+    "captureReportHash": "sha256:0abc59f90e4ea2a98e723c16261cad538e6b300c6f23de7e6749e800dfd26a54"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c2131f8863a90991cf5d4783dd1fcad44c1aba46630cec826725873b3bf05352",
+    "mapFrameHash": "sha256:9a55a86e841a6650f05912a9076e67330a0be58258b6db45e26bfe517d28a059",
+    "notes": "Named Дом Волконского POI locates central way220075409; touching wing ways220075411 and220075412 form the connected house. All three exact map outlines are retained. X southwest along the long southeast front; Z southeast toward the open lawn. Native east/up/south axes are baked, heading0. The assigned central member reference coordinate is the model origin; no aggregate estate placement or duplicate house identity. Tolstoy/Kuzminsky houses, service buildings, garden structures, roads and ponds remain independent. Retained standard Protomaps20261020 and Mapzen terrain; outside front lawn provider[0,13] supplies214.14446963646515m datum. Full boundary grades0.378..4.195m. Central floor+1.3m and part floors1.7/1.4/2.3/2.9m follow front controls; closed foundation0m. Coarse uphill ground can bury lower rear walls while front basement bands remain exposed; original lawn, paths, neighbors and ponds remain. No bespoke terrain, flattening or copied vegetation; historical levels and accessibility approximate. Inspected native complete/front/cellar/rear views: all three mapped parts align, five roof masses remain connected, central and end entrances have supported aprons/treads, and original lawn/paths remain. Three owned records are replaced while240 resident independent buildings and40070.675m² pond water remain unchanged. Coarse uphill grade partly buries lower rear walls/windows; historic levels and accessibility remain approximate. All three owned mapped records are replaced while240 resident/292 wider independent buildings, original lawn/approaches, roads and40070.675m² pond water remain. Failure retains all243 originals; every LOD/failure/unload case restores ground/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Recognizable medium-fi connected exterior on all three exact mapped outlines. Heights, rear bay/door inventory, dormer/chimney details, ornament, basement levels, thresholds and accessibility are approximate. Original boundary grades+.378..+4.195m relative to214.14446963646515m front-lawn datum; central floor+1.3m, link/end floors1.7/1.4/2.3/2.9m and foundation0m follow photo-led front controls. The unchanged coarse uphill ground partly buries lower rear walls/windows (up to roughly3m relative to the lowest local floors); front basement bands remain exposed. Roof joints step with these approximate levels. Hedges obscure the reference center entrance; rear faces are reconstructed, not surveyed. Some fixed shared/style details crop the opposite end and flat synthetic ground buries bases/treads; whole/turntable/native views cover the envelope. Other estate houses stay independent procedural context in this isolated fixture. No copied artworks, inscriptions, plaques, furnishings, plantings or pixels. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:d9af3b261b2ea2d0a30e634691fa1c5c4964752426cc04377b788d05df28c91c\",\"bytes\":322980,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.glb\",\"hash\":\"sha256:29551848fcfb0be9c2a05d268b823165b585423e8f63fbb623e8621a3c73206f\",\"bytes\":322460,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:8a845c6f6ec1a17ab962f9a5aa9d287596964dd8516b2ab5dcd6de154a65fdde\",\"bytes\":69744,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:5e531d68453cc2e0dad1dd6b32d18bfbb07063b280a9b702b0abe6c2a8f5542e\",\"bytes\":164432,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:8763c197c0c820a882604cb7489a75f75d6e24afce002d292582fc9c8140be7d\",\"bytes\":260656,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:7044b07468b17d488c46e623bb6d27845383cf5620dd7daa8bcb52e53ede4c21\",\"bytes\":276136,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "mapped-connected-roofs-foundations-recessed-entries-closed-dormers-chimneys-aprons-treads-arches-and-budgets",
+        "passed": true,
+        "notes": "271 actual mesh/contact probes and all six GLB pins pass. Finite attributes, shared bindings, strict LOD caps, separate vertex streams and initial download budget checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Дом Волконского POI locates central way220075409; touching wing ways220075411 and220075412 form the connected house. All three exact map outlines are retained. X southwest along the long southeast front; Z southeast toward the open lawn. Native east/up/south axes are baked, heading0. The assigned central member reference coordinate is the model origin; no aggregate estate placement or duplicate house identity. Tolstoy/Kuzminsky houses, service buildings, garden structures, roads and ponds remain independent. Retained standard Protomaps20261020 and Mapzen terrain; outside front lawn provider[0,13] supplies214.14446963646515m datum. Full boundary grades0.378..4.195m. Central floor+1.3m and part floors1.7/1.4/2.3/2.9m follow front controls; closed foundation0m. Coarse uphill ground can bury lower rear walls while front basement bands remain exposed; original lawn, paths, neighbors and ponds remain. No bespoke terrain, flattening or copied vegetation; historical levels and accessibility approximate. Inspected native complete/front/cellar/rear views: all three mapped parts align, five roof masses remain connected, central and end entrances have supported aprons/treads, and original lawn/paths remain. Three owned records are replaced while240 resident independent buildings and40070.675m² pond water remain unchanged. Coarse uphill grade partly buries lower rear walls/windows; historic levels and accessibility remain approximate. All three owned mapped records are replaced while240 resident/292 wider independent buildings, original lawn/approaches, roads and40070.675m² pond water remain. Failure retains all243 originals; every LOD/failure/unload case restores ground/water and releases geometry."
+    },
+    "inputHash": "sha256:6180c8d2cc7df539b08a1cf7f5771e0c9171e0811b8e3e74e0d24dc6d0125379",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:6180c8d2cc7df539b08a1cf7f5771e0c9171e0811b8e3e74e0d24dc6d0125379",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames in nine labeled contact sheets, plus full-resolution native whole connected house, central pediment/entrance, end cellar door and rear roof views. The raised gabled center, low links, wider end pavilions, four arched dormers, green roofs, two pale chimneys, repeated window bands, cellar pediment hoods and supported entrances read coherently. The continuous author/inspect/fix pass closed dormer backs and roof joints, seated the center chimney in its roof and added doorway aprons; the hidden foundation extends to the placement datum.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/preview.png",
+          "hash": "sha256:71da84e5ac3f6f2cee508c53cf9e8f9144de778283b777c82a81a8c912725907"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:00934fbe1d090946cef8993941a682994b1473f618edbf2b73f075105bdeb189"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:8bd40c2b0261d546b3fee7f15b0dc155998cffdf9059e8a7af054d6bce9d0e62"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:9a0c8a0998cb1fd3fb292aa640e9d201477a1f596684cfa9f5420587998379f4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:3cbba4788f6a4d691bbd46d9797d0a2e10694e08d45bde4ee76d9f4b3fa5f9e7"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/whole-connected-house-pediment-wings-and-dormers.png",
+          "hash": "sha256:1bcff7993006c30ea41a13ad4bc934acd65431e440a5c4e9edc51b01d1f209ea"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/central-pediment-arched-attic-and-recessed-entry.png",
+          "hash": "sha256:9cef0651bc6c1a1c3b0cbddd19b856fffd2eb032c2edc5320051428e20ed4413"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/southwest-cellar-door-dormer-and-lower-wing.png",
+          "hash": "sha256:aac2158bf6ddc1981728d4953207293bfcedc7b24c68d185567d4f11449cb963"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/northeast-end-and-rear-roof-connections.png",
+          "hash": "sha256:703e843d4fe783662ff42bd3d375b90b61e35a1c8b8fce875ee3835c1e218cfc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:7da173392a9764383426abdf85088ddbd80344969fc792590ee9abe9339b28c6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:c4870a27bae6158ee3f14717e69de2dbe88fcad25c7516024e10ce06f01f50fa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:6b46aa2f8c6afcb6446142c2993bcb703ffaa67d00def9a6931216c46f91a4a3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:89ab18cbf322139d5d0a97ae3e55a68b486b3fb12475343f4cf1452345e64745"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/whole-connected-house-pediment-wings-and-dormers.png",
+          "hash": "sha256:a45dbeca479662407d98c2d933630cf758410c0ee750e53de3b794c842dc7b02"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/central-pediment-arched-attic-and-recessed-entry.png",
+          "hash": "sha256:3d1ad67b2015e8ad21e2be50824d14d094145276ff5ae675fba966c904f31dc0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/southwest-cellar-door-dormer-and-lower-wing.png",
+          "hash": "sha256:6766ca7c8f8f2ec1f08c27d5dcc8bbe6795125c33246a6315779482b396584a4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/northeast-end-and-rear-roof-connections.png",
+          "hash": "sha256:897d9aab1a5ed66ef11df4f08f0c521c561c3372c1048d2443f7ab444b0e3e88"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:32294c1563029ad4ee2d949d68ee3c9a504b0696885b84d48256fb8fe7ef4ecb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:8bfd9dcebfddb8a9cf3bc4e4fb5018103a012d90c69c1d3591d36e076ae1ee1d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:12e1ed16c78ed81d7f940b49da6cc11499d463d043540002f06cc6aa19060906"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:2ac00a1c1c483dd865de5a15d76420a8bfb988dc19acb09abc515d18a47973e0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:e52b7551cae974a293dda7c033d0e1219a0c970448c752940f05224b82cb27e8"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:c736d597973f118be19cb2dde72788f3c8d3dbda17056ef3cbbe07cb5e420239"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:9ce462d18667cbc0f0140ac846dfead774c044f036728811bf3ea2a0c99b9712"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:7f467102e127c6e8e3e81e1dbaf4895092e51ea8363682326021c56344c3d6ed"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:020eb094ac69756157df1a8375ddad25674780ffda34fef5985e1ff0ff4ca798"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:9870c1edb5672676a7982c985d71d3e07d49b1ed8051c4e9947d7ce0803a1b6d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:d1a3c4c24020ff52ffb6b58c6ec7d85436b7ccc458bda074e09f50c1ea7bb997"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:ba4930918a4c69b0796630bc98a34d2266705d5af77d8bc82b705d4a07f51d4c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:733ae7ed9672cb737490bec228123743c624176e8d673aba9681c315a8cd0a84"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:01da6efae55658610c78af36a2326e5e25f7c522c0f8860f2b7ae409c58c914e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/whole-connected-house-pediment-wings-and-dormers.png",
+          "hash": "sha256:819b34aef3c82cf312e0b8f923c4b812aa169d360b0b48cce35ef1d933735090"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/central-pediment-arched-attic-and-recessed-entry.png",
+          "hash": "sha256:ad0dd5f38a2120e43fcf9ff3d18027efeeeb1b27c84ddf2ac4c4387f8198ac1b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/southwest-cellar-door-dormer-and-lower-wing.png",
+          "hash": "sha256:c8762c424096076a882b0043f41a11dd93cba005f4e0e63d68d2c78b3d8e8517"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/northeast-end-and-rear-roof-connections.png",
+          "hash": "sha256:5d0c3f09290dad8864d5e506c6c76594e29a438d10f0ac7564af7526a351c95e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:758ae45d19e261d3c7df986573a7ea727e0016514552e95a57a3f3616312a084"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:9ce462d18667cbc0f0140ac846dfead774c044f036728811bf3ea2a0c99b9712"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:33fd1e6c64495ac86836da788ef1e974e4c84886c3a7f6d8a1d1ba0649f9aea3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:17f98fbc878fa95cf939c8bf3c081470331413d85f7ea66e9c1bc6a22721852a"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:f979af924e1d849cd78d688d31f1b58464672ff1a764e4e0f4413485639784f1"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:51e1ec9f1271f50ccbe22a4c7d00d3ca271c100835e7f2c4f0563011fe59cd82"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:e8c375f690ef6a79da8f5cc7341ca1e5220ee58d8adf30b9ff73ff30e62f3b26"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:04af1b2e55098db5c220e0e27da5dfb86efbe2acb63ee5b82d7b0ccfcf1136ff"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-closeup-whole-connected-house-pediment-wings-and-dormers.png",
+          "hash": "sha256:83dd797d82387fedca921a42f082ce6246b6d41dfaf5685fa1280fa50655dd8c"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-closeup-central-pediment-arched-attic-and-recessed-entry.png",
+          "hash": "sha256:8cf752d841fd600e63a8282d0207b798f637cfd2b3deaaa3bf6c5cd2dbff71f8"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-closeup-southwest-cellar-door-dormer-and-lower-wing.png",
+          "hash": "sha256:a6b86ed66c9288b6a6c48cf27b92a3a115c1fcd6106260b3c5318c50d28b3d38"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-closeup-northeast-end-and-rear-roof-connections.png",
+          "hash": "sha256:a43788776f66b50517d53c4afb050e472a5384bb8954788a9549ebb6d43116ab"
+        },
+        {
+          "path": ".artifacts/volkonsky-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:6bb67000262e0939dd13c7a8443ef290e309450cfd92ef708f418acba3876858"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:6180c8d2cc7df539b08a1cf7f5771e0c9171e0811b8e3e74e0d24dc6d0125379",
+      "sourceHash": "sha256:d9af3b261b2ea2d0a30e634691fa1c5c4964752426cc04377b788d05df28c91c",
+      "runtimeHash": "sha256:29551848fcfb0be9c2a05d268b823165b585423e8f63fbb623e8621a3c73206f",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/models/source.glb": "sha256:d9af3b261b2ea2d0a30e634691fa1c5c4964752426cc04377b788d05df28c91c",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.glb": "sha256:29551848fcfb0be9c2a05d268b823165b585423e8f63fbb623e8621a3c73206f",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.skyline.glb": "sha256:8a845c6f6ec1a17ab962f9a5aa9d287596964dd8516b2ab5dcd6de154a65fdde",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.district.glb": "sha256:5e531d68453cc2e0dad1dd6b32d18bfbb07063b280a9b702b0abe6c2a8f5542e",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.street.glb": "sha256:8763c197c0c820a882604cb7489a75f75d6e24afce002d292582fc9c8140be7d",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.closeup.glb": "sha256:7044b07468b17d488c46e623bb6d27845383cf5620dd7daa8bcb52e53ede4c21"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184592164241,
+        35184592164243,
+        35184592164244
+      ],
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            9899,
+            5254
+          ],
+          "id": 35184471786280,
+          "owned": false,
+          "covered": 0.15423197527502489,
+          "area": 724.1017604341723,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "tile": [
+            9899,
+            5254
+          ],
+          "id": 35184539471070,
+          "owned": false,
+          "covered": 0.2653901383597752,
+          "area": 2303.1606499965983,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184592164241,
+          "owned": true,
+          "covered": 0.9999918990087338,
+          "area": 112.78945029804134,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184592164243,
+          "owned": true,
+          "covered": 0.9999640514874403,
+          "area": 308.70641794296876,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184592164244,
+          "owned": true,
+          "covered": 0.99996499190634,
+          "area": 307.0472572640289,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 240,
+      "widerIndependent": 292,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 2.0489853369554112e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 240,
+          "remainingBuildings": 240,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.volkonsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -27.39376963646515,
+            "max": 29.59033036353486
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:f979af924e1d849cd78d688d31f1b58464672ff1a764e4e0f4413485639784f1",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 270063
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.7677378872898615,
+                38,
+                110.73786661644624
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 2.0489853369554112e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 240,
+          "remainingBuildings": 240,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.volkonsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -27.39376963646515,
+            "max": 29.59033036353486
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:51e1ec9f1271f50ccbe22a4c7d00d3ca271c100835e7f2c4f0563011fe59cd82",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 271257
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.7677378872898615,
+                38,
+                110.73786661644624
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 2.0489853369554112e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 240,
+          "remainingBuildings": 240,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.volkonsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -27.39376963646515,
+            "max": 29.59033036353486
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:e8c375f690ef6a79da8f5cc7341ca1e5220ee58d8adf30b9ff73ff30e62f3b26",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272477
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.7677378872898615,
+                38,
+                110.73786661644624
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 2.0489853369554112e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 240,
+          "remainingBuildings": 240,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.volkonsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -27.39376963646515,
+            "max": 29.59033036353486
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:04af1b2e55098db5c220e0e27da5dfb86efbe2acb63ee5b82d7b0ccfcf1136ff",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272645
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.7677378872898615,
+                38,
+                110.73786661644624
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-connected-house-pediment-wings-and-dormers.png",
+            "hash": "sha256:83dd797d82387fedca921a42f082ce6246b6d41dfaf5685fa1280fa50655dd8c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272645
+            },
+            "camera": {
+              "name": "whole-connected-house-pediment-wings-and-dormers",
+              "position": [
+                35.09693784302938,
+                12,
+                52.926410742109944
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 60
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-central-pediment-arched-attic-and-recessed-entry.png",
+            "hash": "sha256:8cf752d841fd600e63a8282d0207b798f637cfd2b3deaaa3bf6c5cd2dbff71f8",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272645
+            },
+            "camera": {
+              "name": "central-pediment-arched-attic-and-recessed-entry",
+              "position": [
+                9.858163214301984,
+                8,
+                29.79625174481151
+              ],
+              "lookAt": [
+                2.6129614381827233,
+                4,
+                3.028602404174254
+              ],
+              "fov": 57
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-southwest-cellar-door-dormer-and-lower-wing.png",
+            "hash": "sha256:a6b86ed66c9288b6a6c48cf27b92a3a115c1fcd6106260b3c5318c50d28b3d38",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272645
+            },
+            "camera": {
+              "name": "southwest-cellar-door-dormer-and-lower-wing",
+              "position": [
+                -14.504345171148318,
+                5,
+                42.89083784628351
+              ],
+              "lookAt": [
+                -15.113233110312885,
+                2,
+                22.28430355549265
+              ],
+              "fov": 57
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-northeast-end-and-rear-roof-connections.png",
+            "hash": "sha256:a43788776f66b50517d53c4afb050e472a5384bb8954788a9549ebb6d43116ab",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 272645
+            },
+            "camera": {
+              "name": "northeast-end-and-rear-roof-connections",
+              "position": [
+                16.404508428668592,
+                25,
+                -59.058378772310874
+              ],
+              "lookAt": [
+                9.085807212522761,
+                3,
+                -7.83888431454817
+              ],
+              "fov": 55
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 240,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184592164241,
+              "area": 112.78738796736133
+            },
+            {
+              "id": 35184592164243,
+              "area": 308.7007733128977
+            },
+            {
+              "id": 35184592164244,
+              "area": 307.04164297134406
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.volkonsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -27.39376963646515,
+            "max": 29.59033036353486
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:6bb67000262e0939dd13c7a8443ef290e309450cfd92ef708f418acba3876858",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 271989
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.7677378872898615,
+                38,
+                110.73786661644624
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ],
+    "collectionReview": {
+      "status": "passed",
+      "inputHash": "sha256:6180c8d2cc7df539b08a1cf7f5771e0c9171e0811b8e3e74e0d24dc6d0125379",
+      "models": [
+        {
+          "key": "leo_tolstoy_house_yasnaya_polyana",
+          "assetId": "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana",
+          "inputHash": "sha256:88142e81153ec9b9e523d0d616538e9bb7d1103b20dd11229c96c18160bf3c46",
+          "sourceHash": "sha256:fd97e715b480c159b41576c4d2c49a9733bc66be8552d28b08bb64a46dcfe676",
+          "runtimeHash": "sha256:00aee7aa1053480aea30d476404e4f8e88a196da52ff962d4e23325a35f6f151"
+        },
+        {
+          "key": "kuzminsky_house_yasnaya_polyana",
+          "assetId": "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana",
+          "inputHash": "sha256:89c05af9058923ded91acd1dbc11ca3a37e8fd2a16f33458ca00252e1c029202",
+          "sourceHash": "sha256:1bf69b38caaaf4bcafd33ce3c13cfa2aa6c8ab6bbd5bff699b6b8ef493005a06",
+          "runtimeHash": "sha256:4c11c029790f53013ae874148c621f855c52e747d24ae3be8138a9ca64d09e79"
+        },
+        {
+          "key": "volkonsky_house_yasnaya_polyana",
+          "assetId": "molen.worldgen.structure.volkonsky_house_yasnaya_polyana",
+          "inputHash": "sha256:6180c8d2cc7df539b08a1cf7f5771e0c9171e0811b8e3e74e0d24dc6d0125379",
+          "sourceHash": "sha256:d9af3b261b2ea2d0a30e634691fa1c5c4964752426cc04377b788d05df28c91c",
+          "runtimeHash": "sha256:29551848fcfb0be9c2a05d268b823165b585423e8f63fbb623e8621a3c73206f"
+        }
+      ],
+      "files": {
+        "content/worldgen/source/places/uc/ucd/volkonsky_house_yasnaya_polyana/models/source.glb": "sha256:d9af3b261b2ea2d0a30e634691fa1c5c4964752426cc04377b788d05df28c91c",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.glb": "sha256:29551848fcfb0be9c2a05d268b823165b585423e8f63fbb623e8621a3c73206f",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.skyline.glb": "sha256:8a845c6f6ec1a17ab962f9a5aa9d287596964dd8516b2ab5dcd6de154a65fdde",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.district.glb": "sha256:5e531d68453cc2e0dad1dd6b32d18bfbb07063b280a9b702b0abe6c2a8f5542e",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.street.glb": "sha256:8763c197c0c820a882604cb7489a75f75d6e24afce002d292582fc9c8140be7d",
+        "content/worldgen/assets/places/uc/ucd/volkonsky_house_yasnaya_polyana/model.closeup.glb": "sha256:7044b07468b17d488c46e623bb6d27845383cf5620dd7daa8bcb52e53ede4c21",
+        "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/source.glb": "sha256:fd97e715b480c159b41576c4d2c49a9733bc66be8552d28b08bb64a46dcfe676",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.glb": "sha256:00aee7aa1053480aea30d476404e4f8e88a196da52ff962d4e23325a35f6f151",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.skyline.glb": "sha256:7d1fbccb43f78df8758748588cccc49371ac09b90aeab612ca31dfe14610c1bb",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.district.glb": "sha256:acf64a87db09df7782a8bef1f6ba889afc3c47e59e27c362a3c24ed5c5ded5cd",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.street.glb": "sha256:6b53fe4d716c738911c1492bb5c46a5bfffef879764ec6ad7b15ec00803ed8e4",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.closeup.glb": "sha256:dbdf95b91e77235bccea57703821977ec788e7adf092c9e96d3df04ed5d24299",
+        "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/models/source.glb": "sha256:1bf69b38caaaf4bcafd33ce3c13cfa2aa6c8ab6bbd5bff699b6b8ef493005a06",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.glb": "sha256:4c11c029790f53013ae874148c621f855c52e747d24ae3be8138a9ca64d09e79",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.skyline.glb": "sha256:6241c720ab54dcc824020c123c97f6f7933cf468154d9105ba3711c2e6aff0b1",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.district.glb": "sha256:7aac69cff644eea8fb7f5c42aad2851f066a3722e3a00ffbc1a2a68cac478b2a",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.street.glb": "sha256:575d82653e59ef19220b1f937268a9dfc1405a13b389449479e7057de5d8b567",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.closeup.glb": "sha256:ddaa4a5623f986b05a6d18d1d8a4da9c94a5f4e6f7ee0c5a24f545a4bc53fdfc"
+      },
+      "reports": [
+        {
+          "level": "district",
+          "state": {
+            "ensemble": true,
+            "collectionPlacements": [
+              {
+                "id": "volkonsky.house.yasnaya.polyana",
+                "loaded": true
+              },
+              {
+                "id": "leo.tolstoy.house.yasnaya.polyana",
+                "loaded": true
+              },
+              {
+                "id": "kuzminsky.house.yasnaya.polyana",
+                "loaded": true
+              }
+            ],
+            "terrainAtAllPassages": true,
+            "terrainAtAllCourtyards": true,
+            "terrainAtForecourtApproaches": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "terrainAtUnderCanopy": true,
+            "terrainAtCourtyard": true,
+            "terrainAtPortico": true,
+            "terrainAtNorthApproach": true,
+            "terrainAtCoreFloor": false,
+            "terrainAtCoreCenter": false,
+            "modelWorldY": 2.0489853369554112e-7,
+            "terrainAtAttachment": true,
+            "nativeRoadInputsUnchanged": true,
+            "level": "district",
+            "partial": false,
+            "groundOutsideResidentTile": true,
+            "terrainAtMapAnchor": false,
+            "failedLoad": false,
+            "sourceBuildings": 243,
+            "independentBuildings": 238,
+            "remainingBuildings": 238,
+            "changedIndependent": [],
+            "remainingAuthored": [],
+            "groundCutoutActive": true,
+            "modelLoaded": true,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.stucco": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.fabric_canvas": 1
+            },
+            "loads": [
+              "molen.worldgen.structure.volkonsky_house_yasnaya_polyana",
+              "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana",
+              "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana"
+            ],
+            "rawTerrainRange": {
+              "min": -27.39376963646515,
+              "max": 29.59033036353486
+            },
+            "sourceGridModified": false,
+            "waterCutoutActive": false,
+            "sourceWaterArea": 40070.6754971639,
+            "remainingWaterArea": 40070.6754971639,
+            "nativeWaterUnchanged": true
+          },
+          "frames": [
+            {
+              "path": ".artifacts/yasnaya-main-houses/shots/final-district-three-main-houses-in-estate.png",
+              "hash": "sha256:ba8e46fbfe6f3abea8996d0cf79ee43f3668bbaad95911594de4432e7dbcea76",
+              "state": {
+                "level": "district",
+                "mode": "high",
+                "groundCutoutActive": true,
+                "draws": 29,
+                "triangles": 271058
+              },
+              "camera": {
+                "name": "three-main-houses-in-estate",
+                "position": [
+                  210,
+                  180,
+                  120
+                ],
+                "lookAt": [
+                  25,
+                  6,
+                  -90
+                ],
+                "fov": 56
+              }
+            }
+          ],
+          "unloaded": {
+            "groundRestored": true,
+            "waterRestored": true,
+            "liveGeometries": 0
+          },
+          "errors": []
+        },
+        {
+          "level": "closeup",
+          "state": {
+            "ensemble": true,
+            "collectionPlacements": [
+              {
+                "id": "volkonsky.house.yasnaya.polyana",
+                "loaded": true
+              },
+              {
+                "id": "leo.tolstoy.house.yasnaya.polyana",
+                "loaded": true
+              },
+              {
+                "id": "kuzminsky.house.yasnaya.polyana",
+                "loaded": true
+              }
+            ],
+            "terrainAtAllPassages": true,
+            "terrainAtAllCourtyards": true,
+            "terrainAtForecourtApproaches": [
+              true,
+              true,
+              true,
+              true
+            ],
+            "terrainAtUnderCanopy": true,
+            "terrainAtCourtyard": true,
+            "terrainAtPortico": true,
+            "terrainAtNorthApproach": true,
+            "terrainAtCoreFloor": false,
+            "terrainAtCoreCenter": false,
+            "modelWorldY": 2.0489853369554112e-7,
+            "terrainAtAttachment": true,
+            "nativeRoadInputsUnchanged": true,
+            "level": "closeup",
+            "partial": false,
+            "groundOutsideResidentTile": true,
+            "terrainAtMapAnchor": false,
+            "failedLoad": false,
+            "sourceBuildings": 243,
+            "independentBuildings": 238,
+            "remainingBuildings": 238,
+            "changedIndependent": [],
+            "remainingAuthored": [],
+            "groundCutoutActive": true,
+            "modelLoaded": true,
+            "surfaceReads": {
+              "molen.worldgen.material.stone_limestone": 1,
+              "molen.worldgen.material.stucco": 1,
+              "molen.worldgen.material.metal_standing_seam": 1,
+              "molen.worldgen.material.wood_plain": 1,
+              "molen.worldgen.material.storefront": 1,
+              "molen.worldgen.material.fabric_canvas": 1
+            },
+            "loads": [
+              "molen.worldgen.structure.volkonsky_house_yasnaya_polyana",
+              "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana",
+              "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana"
+            ],
+            "rawTerrainRange": {
+              "min": -27.39376963646515,
+              "max": 29.59033036353486
+            },
+            "sourceGridModified": false,
+            "waterCutoutActive": false,
+            "sourceWaterArea": 40070.6754971639,
+            "remainingWaterArea": 40070.6754971639,
+            "nativeWaterUnchanged": true
+          },
+          "frames": [
+            {
+              "path": ".artifacts/yasnaya-main-houses/shots/final-closeup-three-main-houses-in-estate.png",
+              "hash": "sha256:414efb34f5870a67415880d39962b86602122c6f9db1c5681a5874738be97e7f",
+              "state": {
+                "level": "closeup",
+                "mode": "high",
+                "groundCutoutActive": true,
+                "draws": 29,
+                "triangles": 278044
+              },
+              "camera": {
+                "name": "three-main-houses-in-estate",
+                "position": [
+                  210,
+                  180,
+                  120
+                ],
+                "lookAt": [
+                  25,
+                  6,
+                  -90
+                ],
+                "fov": 56
+              }
+            },
+            {
+              "path": ".artifacts/yasnaya-main-houses/shots/final-closeup-leo_tolstoy_house_yasnaya_polyana.png",
+              "hash": "sha256:d9735d5df2aaf9f1778ae7cf7f2a38cb0592e38f0e6fa6feefe7343a98f0fb97",
+              "state": {
+                "level": "closeup",
+                "mode": "high",
+                "groundCutoutActive": true,
+                "draws": 19,
+                "triangles": 270881
+              },
+              "camera": {
+                "name": "leo_tolstoy_house_yasnaya_polyana",
+                "position": [
+                  86.0950399512123,
+                  28,
+                  -126.66316780748056
+                ],
+                "lookAt": [
+                  82.43162310447104,
+                  4,
+                  -193.17316237226015
+                ],
+                "fov": 48
+              }
+            },
+            {
+              "path": ".artifacts/yasnaya-main-houses/shots/final-closeup-kuzminsky_house_yasnaya_polyana.png",
+              "hash": "sha256:2b6d424d7a86efa56a6e666ee9f0c3c4abc5f344a2967b200831f592c60403d5",
+              "state": {
+                "level": "closeup",
+                "mode": "high",
+                "groundCutoutActive": true,
+                "draws": 20,
+                "triangles": 274166
+              },
+              "camera": {
+                "name": "kuzminsky_house_yasnaya_polyana",
+                "position": [
+                  -18.021547912052014,
+                  22,
+                  -60.65493851632038
+                ],
+                "lookAt": [
+                  -22.394293606380486,
+                  4,
+                  -110.94290024766053
+                ],
+                "fov": 48
+              }
+            },
+            {
+              "path": ".artifacts/yasnaya-main-houses/shots/final-closeup-volkonsky_house_yasnaya_polyana.png",
+              "hash": "sha256:1847d9b8df92d948b63e10b9887aae3c6a96bca5209c647c1dd570f5606b4ba1",
+              "state": {
+                "level": "closeup",
+                "mode": "high",
+                "groundCutoutActive": true,
+                "draws": 29,
+                "triangles": 278044
+              },
+              "camera": {
+                "name": "volkonsky_house_yasnaya_polyana",
+                "position": [
+                  1.7677378872898544,
+                  38,
+                  110.73786661644624
+                ],
+                "lookAt": [
+                  0,
+                  3,
+                  0
+                ],
+                "fov": 48
+              }
+            }
+          ],
+          "unloaded": {
+            "groundRestored": true,
+            "waterRestored": true,
+            "liveGeometries": 0
+          },
+          "errors": []
+        }
+      ],
+      "frameReview": {
+        "status": "inspected",
+        "reviewedOn": "2026-10-25",
+        "frames": [
+          {
+            "path": ".artifacts/yasnaya-main-houses/shots/final-district-three-main-houses-in-estate.png",
+            "hash": "sha256:ba8e46fbfe6f3abea8996d0cf79ee43f3668bbaad95911594de4432e7dbcea76"
+          },
+          {
+            "path": ".artifacts/yasnaya-main-houses/shots/final-closeup-three-main-houses-in-estate.png",
+            "hash": "sha256:414efb34f5870a67415880d39962b86602122c6f9db1c5681a5874738be97e7f"
+          },
+          {
+            "path": ".artifacts/yasnaya-main-houses/shots/final-closeup-leo_tolstoy_house_yasnaya_polyana.png",
+            "hash": "sha256:d9735d5df2aaf9f1778ae7cf7f2a38cb0592e38f0e6fa6feefe7343a98f0fb97"
+          },
+          {
+            "path": ".artifacts/yasnaya-main-houses/shots/final-closeup-kuzminsky_house_yasnaya_polyana.png",
+            "hash": "sha256:2b6d424d7a86efa56a6e666ee9f0c3c4abc5f344a2967b200831f592c60403d5"
+          },
+          {
+            "path": ".artifacts/yasnaya-main-houses/shots/final-closeup-volkonsky_house_yasnaya_polyana.png",
+            "hash": "sha256:1847d9b8df92d948b63e10b9887aae3c6a96bca5209c647c1dd570f5606b4ba1"
+          }
+        ],
+        "method": "Inspected five current combined viewer frames: district and closeup estate views plus a closer native view of each house. Tolstoy House, Kuzminsky House and all five connected roof masses of Volkonsky House render independently at their map locations; five owned building records are replaced, with all238 resident independent buildings, original terrain, paths/roads and40070.675m² pond water retained. The same six existing shared graphs read once across all three models. Combined skyline+district geometry615064bytes; combined closeup953636bytes. Unload restores ground/water and releases all model geometry. The three houses read coherently together; remaining estate buildings stay procedural context. Historic levels, hidden detail and uphill rear burial retain the individual approximate-fit limitations. Physical laptop/phone and dense-city measurements remain pending."
+      },
+      "notes": "Inspected five current combined viewer frames: district and closeup estate views plus a closer native view of each house. Tolstoy House, Kuzminsky House and all five connected roof masses of Volkonsky House render independently at their map locations; five owned building records are replaced, with all238 resident independent buildings, original terrain, paths/roads and40070.675m² pond water retained. The same six existing shared graphs read once across all three models. Combined skyline+district geometry615064bytes; combined closeup953636bytes. Unload restores ground/water and releases all model geometry. The three houses read coherently together; remaining estate buildings stay procedural context. Historic levels, hidden detail and uphill rear burial retain the individual approximate-fit limitations. Physical laptop/phone and dense-city measurements remain pending."
+    }
+  },
+  "limitations": [
+    "Recognizable medium-fi connected exterior on all three exact mapped outlines. Heights, rear bay/door inventory, dormer/chimney details, ornament, basement levels, thresholds and accessibility are approximate. Original boundary grades+.378..+4.195m relative to214.14446963646515m front-lawn datum; central floor+1.3m, link/end floors1.7/1.4/2.3/2.9m and foundation0m follow photo-led front controls. The unchanged coarse uphill ground partly buries lower rear walls/windows (up to roughly3m relative to the lowest local floors); front basement bands remain exposed. Roof joints step with these approximate levels. Hedges obscure the reference center entrance; rear faces are reconstructed, not surveyed. Some fixed shared/style details crop the opposite end and flat synthetic ground buries bases/treads; whole/turntable/native views cover the envelope. Other estate houses stay independent procedural context in this isolated fixture. No copied artworks, inscriptions, plaques, furnishings, plantings or pixels. Physical phone/laptop and dense-city timings remain pending."
+  ]
+}

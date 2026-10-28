@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.aon_center_chicago",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:d3fd812ad9d42642e51ea606bf8c5f0ecf4bc123d5cac2030c01404bc2f67e92",
+  "inputHash": "sha256:7a1d969c1ba398209149f9b96b943949d4c47775ed0bc50a3f29ec09a7ebca53",
   "sourceHash": "sha256:ce857e47a6f0ec1b42809a9b55abc8246ab3ef925f4164956192f1c195dde5d9",
   "runtimeHash": "sha256:5d53055a21c4065aaeb3267d1bf8c6778cead3cfd8caf1bbac5edb27d1884320",
-  "captureReportHash": "sha256:dd2d3e71fdc9c37cb39591f3a6c1c5bec627d169ef92ab45ead836cb622ce3e8",
+  "captureReportHash": "sha256:836619840f466d438230bdad2d1ef2c130f4f6761bad33b9c6fb227d46b7047c",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -23,11 +23,12 @@
       "shots/eastern-roof-antenna.png",
       "shots/south-tall-lobby.png"
     ],
-    "notes": "Actually inspected all 59 final frames: 13 portable, 13 shared and 33 medium-fi. Whole-tower cameras and turntables show the complete white pinstriped tube, solid granite corner returns, continuous V-faced piers and separate roof plant with an eastern mast. Close views show the tall lower glass shell, mezzanine rail, recessed office bands, rooftop louvres and support legs. Portable reflection highlights differ from shared/world lighting; no missing primary wall or inverted main roof was observed. A synthetic cottage initially occluded the low south-lobby camera; that camera was raised and all final captures refreshed. The north-up overlay fits the signed notched footprint. Exact doors, the two-level plaza and terrain grade remain unverified in this flat fixture."
+    "notes": "Actually inspected all 59 final frames: 13 portable, 13 shared and 33 medium-fi. Whole-tower cameras and turntables show the complete white pinstriped tube, solid granite corner returns, continuous V-faced piers and separate roof plant with an eastern mast. Close views show the tall lower glass shell, mezzanine rail, recessed office bands, rooftop louvres and support legs. Portable reflection highlights differ from shared/world lighting; no missing primary wall or inverted main roof was observed. A synthetic cottage initially occluded the low south-lobby camera; that camera was raised and all final captures refreshed. The north-up overlay fits the signed notched footprint. Exact doors, the two-level plaza and terrain grade remain unverified in this flat fixture.",
+    "captureReportHash": "sha256:836619840f466d438230bdad2d1ef2c130f4f6761bad33b9c6fb227d46b7047c"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4bd006d89eae794ffd58760ac3b1dd03100489e379e876f44a72b67603c655e3",
+    "captureReportHash": "sha256:b4d2c4856eb4efcc6c47b00423d915fd60422c7434abb690c5f0aa6a7d3a5bfb",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -297,5 +298,16 @@
   },
   "limitations": [
     "Original 168138-triangle/17479792-byte master remains exactly reproducible from the unchanged global recipe. Reviewed source keeps the signed notched tower and separate roof plant, corrects the corner returns to broad solid granite surfaces, retains full-height V-faced granite piers down through the tall lobby and adds the photo-supported eastern roof antenna to published362.5 m tip. Published architectural346.3 m/occupied328 m/83floors/1973/recladding1992 from CVU. Main roof340 m, lobby10.4 m,15bays per long face, pier half-width.69 m/depth.58 m, glazing/floor pitch,8 m south/12 m east antenna offset, antenna diameter/supports and service forms are reconstructed, not measured construction dimensions. Full vertical glass planes and long frame/spandrel strips replace per-window frame geometry; distant levels aggregate horizontal coverage. Stone grain uses canonical shared granite; no tiny joint geometry or copied facade photo. Three shared256px concrete/granite/painted-metal graphs and opaque palette glass, zero embedded images. Two-level landscaped sunken plaza, fountains/sculptures, subterranean garage/pedways, lobby interiors, detailed doors, flags/lettering, minor rooftop aerials and proposed observation-deck/elevator alterations excluded. Ground-contact shell has no terrain-grade proof. Physical phones/laptops and dense-city timing remain unmeasured. Cached Los Angeles Aon photos/brochure explicitly rejected; they do not inform this model."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:d3fd812ad9d42642e51ea606bf8c5f0ecf4bc123d5cac2030c01404bc2f67e92",
+    "inputHash": "sha256:7a1d969c1ba398209149f9b96b943949d4c47775ed0bc50a3f29ec09a7ebca53",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 59,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

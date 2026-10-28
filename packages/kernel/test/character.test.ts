@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { isBoostMode, setBoostMode } from '../src/boost';
 import { Character, installCharacterController, MoveIntent } from '../src/character';
 import { Transform } from '../src/component';
-import { stateHash } from '../src/snapshot';
+import { applyKeyframeTo, stateHash, takeKeyframe } from '../src/snapshot';
 import { World } from '../src/world';
 
 function charWorld(opts?: Parameters<typeof installCharacterController>[1]): World {
@@ -21,6 +22,32 @@ function spawnChar(w: World, y: number): void {
 }
 
 describe('character controller', () => {
+  it('boosts horizontal travel, preserves jumping, and restores boost through checkpoints', () => {
+    const normal = charWorld();
+    const boosted = charWorld();
+    for (const w of [normal, boosted]) {
+      spawnChar(w, 0);
+      w.step();
+      w.set('p', MoveIntent, { dir: [1, 1], jump: true });
+    }
+    setBoostMode(boosted, true);
+    normal.stepN(10);
+    boosted.stepN(10);
+    const p = normal.get('p', Transform)?.pos;
+    const b = boosted.get('p', Transform)?.pos;
+    expect(b?.[0]).toBeCloseTo((p?.[0] ?? 0) * 4, 8);
+    expect(b?.[1]).toBe(p?.[1]);
+    const restored = charWorld();
+    applyKeyframeTo(restored, takeKeyframe(boosted));
+    expect(isBoostMode(restored)).toBe(true);
+    boosted.stepN(20);
+    restored.stepN(20);
+    expect(stateHash(restored)).toBe(stateHash(boosted));
+    setBoostMode(restored, false);
+    const before = restored.get('p', Transform)?.pos[0] ?? 0;
+    restored.stepN(60);
+    expect((restored.get('p', Transform)?.pos[0] ?? 0) - before).toBeCloseTo(6 / Math.sqrt(2), 6);
+  });
   it('falls under gravity and lands on the ground', () => {
     const w = charWorld();
     spawnChar(w, 5);

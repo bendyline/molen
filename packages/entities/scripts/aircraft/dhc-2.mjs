@@ -640,7 +640,7 @@ function beaverCockpit(root, m) {
     'TURN DEG S',
     { responseSeconds: 0.2 },
   );
-  d.text('SIM DATUM', at(350, 602, -0.02), 0.006, Math.PI, ink);
+  d.text('SIM DATUM', at(350, 602, -0.02), 0.006, Math.PI, ink, 'display');
   // Late installation engine instrument positions, as the manual explicitly permits.
   const panel = rect(x(542), y(670), 0.255, 0.34, z - 0.012);
   sheet(d, panel, face, [0, 0, -1]);

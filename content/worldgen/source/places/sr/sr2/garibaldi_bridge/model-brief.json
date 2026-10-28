@@ -1,0 +1,315 @@
+{
+  "id": "garibaldi_bridge",
+  "title": "Ponte Garibaldi / Garibaldi Bridge",
+  "wikidataId": "Q2100416",
+  "referenceCoordinate": {
+    "longitude": 12.474444,
+    "latitude": 41.891111
+  },
+  "module": "content/worldgen/source/places/sr/sr2/garibaldi_bridge/models/garibaldi-model.mjs",
+  "generator": "content/worldgen/source/places/sr/sr2/garibaldi_bridge/models/generate-garibaldi.mjs",
+  "builder": "buildGaribaldiLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.74,
+      "metallic": 0.3
+    }
+  },
+  "exportLabel": "Molen original Ponte Garibaldi, Rome",
+  "expectedDraftMasterHash": "sha256:413edc495192934686ee322fab21ae6fdafae1037589aaa5fe95f09e59857d15",
+  "visualBrief": "Rome Ponte Garibaldi: two broad shallow concrete vaults, pale projecting fascia/cornice, rounded rusticated stone pier and abutment heads with stepped plinths, open metal rails, raised outside walks, two mapped carriageways, central tram tracks and six tall paired curved lamps.",
+  "nativeAxes": "+X north-northeast toward Lungotevere dei Vallati / De’ Cenci and Regola; -X south-southwest toward Trastevere / Piazza Belli; +Z east-southeast/downstream toward Tiber Island; -Z west-northwest/upstream toward Ponte Sisto.",
+  "sourceFacts": {
+    "identity": "Named standard PMTiles Ponte Garibaldi paired bridge carriageways 35184397841630, sidewalks 35184396656430 and tram tracks 35185557817320 coincide with original Q2100416 and ordinary photographs. No exact-QID footprint claimed.",
+    "mappedPlan": {
+      "length": 123.916693374842,
+      "width": 21
+    },
+    "orientation": "+X north-northeast toward Lungotevere dei Vallati / De’ Cenci and Regola; -X south-southwest toward Trastevere / Piazza Belli; +Z east-southeast/downstream toward Tiber Island; -Z west-northwest/upstream toward Ponte Sisto.",
+    "heightBasis": "Standard viewer PMTiles/Mapzen plus ordinary photographs; visual approximations declared."
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ponte_Garibaldi_in_Rome.jpg",
+      "author": "Krzysztof Golik / Tournasol7",
+      "observedDate": "2018-11-14",
+      "license": "CC-BY-SA-4.0",
+      "use": "Two shallow concrete vaults, full-width soffits, pale smooth fascia, rusticated rounded central/abutment heads, stepped courses, open railings and tall paired lamps; visibly distinct Ponte Cestio behind it is not part of this asset.",
+      "policy": "Viewed for shape only. No photograph pixels or downloaded meshes are imported. Rights remain on the linked page."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Roma_-_Ponte_Garibaldi_-_2024-09-26_18-33-39_001.JPG",
+      "observedDate": "2024-09-26",
+      "license": "CC-BY-SA-4.0",
+      "use": "Upstream riverbank view: shallow arch geometry, stepped rounded masonry abutment and separate lower bank path beneath the crossing.",
+      "policy": "Viewed for shape only. No photograph pixels or downloaded meshes are imported. Rights remain on the linked page."
+    }
+  ],
+  "limitations": [
+    "Scoped present-day bridge exterior: two shallow concrete vaults, three rounded masonry pier/abutment stations, raised walks, open metal rails, six paired lamps and central tram tracks. The older iron bridge and separate Ponte Cestio / Tiber Island structures are not duplicated.",
+    "Mapped carriageway extent 123.916693m and signed axis are retained. Width 23.5m follows the two mapped sidewalk lines and inferred outer paving edges. Opening widths 50.7/50.6m, arch rise, sections, rustication, lamp schedule and exact railing pattern are photo-led visual approximations, not surveyed engineering dimensions.",
+    "Source datum 7m and deck 21.6–21.95m use approximate standard PMTiles/Mapzen visualization grades. The DEM smooths the riverbanks and road cuts; exact quay walls, stairs, abutment footings and river stage remain outside the asset. Raw native ground/water are retained unless a bounded documented cut proves necessary.",
+    "Tram rails and two near-only contact wires retain the mapped central transit identity; exact track curvature, gauge, overhead fittings, operating status and signaling are not reconstructed. Fine lettering, plaques and graffiti are omitted. Distant LODs simplify rails, rustication and lamps.",
+    "Existing shared 256px concrete_plain, stone_limestone and metal_painted graphs provide metric surfaces, with separate paving/concrete semantic groups and linear vertex tints. No private or embedded textures. Physical laptop and phone measurements remain pending."
+  ],
+  "cameras": [
+    {
+      "name": "whole-downstream",
+      "position": [
+        12,
+        30,
+        119
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "whole-upstream",
+      "position": [
+        -65,
+        30,
+        -114
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "road-walks-and-tram-tracks",
+      "position": [
+        -51,
+        18,
+        5
+      ],
+      "lookAt": [
+        33,
+        14.9,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "rounded-central-pier",
+      "position": [
+        18,
+        14,
+        38
+      ],
+      "lookAt": [
+        0,
+        8.5,
+        11
+      ],
+      "fov": 53
+    },
+    {
+      "name": "open-vault-and-soffit",
+      "position": [
+        -29,
+        4,
+        32
+      ],
+      "lookAt": [
+        -29,
+        10,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "open-rails-and-paired-lamp",
+      "position": [
+        -8,
+        19,
+        19
+      ],
+      "lookAt": [
+        0,
+        18,
+        10.4
+      ],
+      "fov": 55
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/sr2/garibaldi_bridge/models/garibaldi-model.mjs",
+    "export": "buildGaribaldiSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.74,
+        "metallic": 0.3
+      }
+    },
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGaribaldiDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.45
+      },
+      "street": {
+        "export": "buildGaribaldiStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.14
+      },
+      "closeup": {
+        "export": "buildGaribaldiCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.05
+      }
+    }
+  }
+}

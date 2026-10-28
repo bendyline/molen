@@ -1,0 +1,384 @@
+{
+  "planId": "black_eagle_dam",
+  "id": "black_eagle_dam",
+  "assetId": "molen.worldgen.structure.black_eagle_dam",
+  "title": "Black Eagle Dam",
+  "wikidataId": "Q4920713",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -111.26223300000001,
+    "latitude": 47.5201165
+  },
+  "size": [
+    154.60594940185547,
+    18.799999713897705,
+    313.3585205078125
+  ],
+  "actualBounds": {
+    "min": [
+      -77.2298812866211,
+      -5.467299938201904,
+      -156.75425720214844
+    ],
+    "max": [
+      77.37606811523438,
+      13.3326997756958,
+      156.60426330566406
+    ]
+  },
+  "visualBrief": "Whole native32-control1927BlackEagleDam: lowcurvedconcretegravityspillway/ogee,25removableflashboardbays and uprightsteelposts,8wastegates, continuousnarrowmaintenancewalkway, intrinsicforebaywall and northintake/powerhouse. ExactpublishedTim1965PD1988image first; nativewholeplan/generator and primaryFERCdimensions. Hiddenpowerhouse roof/openings and currentupgrades bounded engineeringestimates. Naturalwaterfalls/river/water/siteground/old1891dam/RyanDam excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Great_falls_of_missouri_river.jpg"
+  ],
+  "stories": [
+    {
+      "id": "black-eagle-dam-wp",
+      "url": "https://qualla.com/black-eagle-dam/"
+    }
+  ],
+  "referenceInputHash": "0ae5ffdc5cb06d6ad8643f04e8c95856e320dbe5835bfd01cabcacf4e687a8c2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/c8/c82/black_eagle_dam/models/black-eagle-dam-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/black-eagle-dam-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "blackEagleDamSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "gate": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.35
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.6,
+        "metallic": 0.7
+      },
+      "board": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "blackEagleDamDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.6,
+            "metallic": 0.7
+          },
+          "board": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "blackEagleDamStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.6,
+            "metallic": 0.7
+          },
+          "board": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "blackEagleDamCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.6,
+            "metallic": 0.7
+          },
+          "board": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_boardformed",
+    "metal_painted",
+    "metal_stainless",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "cameraYaw": 1.1,
+    "groundY": -5.4673,
+    "scale": 2.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original512m129field/16641samples/one raw tile/nativefixedanchor/heading0 frozen before once-onlyfloor-5.1673m. PrimaryFERC1996damheight34.5ft=10.5168m above streambed; flashboardheight11ft=3.3528m and25bays fromFERC1993reportedfacility. Wastegate8bay census/photoestimated;32.004m run fromFERC105ft. Nativepath/footprint controls retained without scaling entireforebay/powerhouseextent to782ftdamlength. Intrinsicnorthhallwidth15.24m fromFERC50ft; nativeblock includes widerintake. Roof18.2/intakeroof13m/openingcensus/deck/rail dimensions hiddenengineeringestimates, not survey. Exact2025-26upgrade machinery unrepresented. No later floor/mainsection/originalfield tuning.",
+    "anchor": [
+      -111.26223300000001,
+      47.5201165
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -111.26515939266095,
+        47.51814021541502
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest providerfield datum before floors/sections/geometry; no survey-level dam foundation/riverbed/waterline or exact bank contact verified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/405794349"
+    ],
+    "source": "https://www.openstreetmap.org/way/405794349",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:364f03be1df01638fcb431d0af1c2518193dc137d87dd524e604511932f86dc4",
+    "notes": "Whole surviving1927BlackEagleDam/Q4920713/nativeway405794349: curved concrete spillway, removable flashboards and maintenance walkway, wastegate/abutment, narrow intrinsic forebay wall and attached north intake/powerhouse within native32-control polygon. Native generator501827237 binds the northeast mapped block to the powerhouse, not a generic abutment. Separate naturalfalls/river/water/rocks/old1891dam/otherdam/sites/substation/roads/ruins/longdownstreamtailrace excluded. Keep whole native footprint; hidden building/roof/opening details bounded estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named closed32-control BlackEagleDam/forebaywall/intrinsicnorthpowerhouse envelope, fixednativebboxanchor/heading0 before independentfield/floor/sections/geometry. Wholephysical outline, not entire reservoir/falls/projectland.",
+    "Whole surviving1927BlackEagleDam/Q4920713/nativeway405794349: curved concrete spillway, removable flashboards and maintenance walkway, wastegate/abutment, narrow intrinsic forebay wall and attached north intake/powerhouse within native32-control polygon. Native generator501827237 binds the northeast mapped block to the powerhouse, not a generic abutment. Separate naturalfalls/river/water/rocks/old1891dam/otherdam/sites/substation/roads/ruins/longdownstreamtailrace excluded. Keep whole native footprint; hidden building/roof/opening details bounded estimates.",
+    "Original512m129field/16641samples/one raw tile/nativefixedanchor/heading0 frozen before once-onlyfloor-5.1673m. PrimaryFERC1996damheight34.5ft=10.5168m above streambed; flashboardheight11ft=3.3528m and25bays fromFERC1993reportedfacility. Wastegate8bay census/photoestimated;32.004m run fromFERC105ft. Nativepath/footprint controls retained without scaling entireforebay/powerhouseextent to782ftdamlength. Intrinsicnorthhallwidth15.24m fromFERC50ft; nativeblock includes widerintake. Roof18.2/intakeroof13m/openingcensus/deck/rail dimensions hiddenengineeringestimates, not survey. Exact2025-26upgrade machinery unrepresented. No later floor/mainsection/originalfield tuning.",
+    "Exactpublished1988PDphoto predates2025-2026spillwayupgrades; clearphoto croppedleftend and mainlyhidpowerhouse. Native32controlwholeenvelope/generator and primaryFERCtext bound fullphysicalscope. Powerhousehall partition/roof/openingcensus and currentmachinery/finishes are originalestimates, not survey/currentphotogrammetry. Do notclaim exact2026operationaldevice reconstruction.",
+    "No naturalrockfalls/river/water/entirereservoir or downstreamtailrace/sitepad/otherfacilities. Olddam and RyanDam not substitutes. Original512m129field/nativeframe/floor/mainsectionsfixed beforegeometry, no fitting or lateradjustment. Contactunverified/preview/replacementfalse; reviewground/syntheticneighbors are fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-curved-dam-forebaywall-and-north-powerhouse",
+      "position": [
+        330,
+        204.8327,
+        360
+      ],
+      "lookAt": [
+        0,
+        1.8327,
+        -10
+      ]
+    },
+    {
+      "name": "whole-native-thirty-two-control-plan",
+      "position": [
+        0,
+        534.8327,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        1.8327,
+        0
+      ]
+    },
+    {
+      "name": "flashboards-posts-maintenancebridge-and-ogee",
+      "position": [
+        15,
+        34.8327,
+        55
+      ],
+      "lookAt": [
+        -68.3344085039226,
+        11,
+        65.90079616991754
+      ]
+    },
+    {
+      "name": "wastegates-north-junction-and-forebaywall",
+      "position": [
+        10,
+        39.8327,
+        -25
+      ],
+      "lookAt": [
+        -68.15763836932808,
+        8,
+        -46.780920480705554
+      ]
+    },
+    {
+      "name": "intrinsic-north-intake-and-powerhouse",
+      "position": [
+        130,
+        64.8327,
+        -200
+      ],
+      "lookAt": [
+        55,
+        6.8327,
+        -130
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12601,
+    "vertices": 37803,
+    "materials": 5,
+    "bytes": 1644756,
+    "sha256": "sha256:d2d7a7b275f706ec2889e2c948b3522eba48017de5fef96dbdaaee3535329c9a"
+  }
+}

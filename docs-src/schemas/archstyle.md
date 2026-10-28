@@ -373,6 +373,35 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "lotFences": {
+      "description": "Weighted fence types for invented residential lots. none leaves the yard open.",
+      "minItems": 1,
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "none",
+              "timber",
+              "masonry",
+              "rail"
+            ]
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "required": [
+          "kind",
+          "weight"
+        ],
+        "additionalProperties": false
+      }
+    },
     "lotPlans": {
       "minItems": 1,
       "maxItems": 32,

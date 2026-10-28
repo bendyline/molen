@@ -1,0 +1,591 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stucco",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "trim": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "base": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof",
+      "roughness": 0.6,
+      "metallic": 0.25
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.33,
+      "metallic": 0.1
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "canvas": {
+      "graph": "fabric_canvas",
+      "slot": "trim",
+      "roughness": 0.92,
+      "metallic": 0
+    }
+  },
+  "previewGround": true,
+  "camera": {
+    "position": [
+      0.5174687987917004,
+      28,
+      62.62373532489321
+    ],
+    "lookAt": [
+      -3.145948047949552,
+      4,
+      -3.8862592398863987
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "white-front-balcony-green-roof-and-chimneys",
+      "position": [
+        15.951683790215998,
+        12,
+        30.830890098356882
+      ],
+      "lookAt": [
+        -1.8875688287697314,
+        4,
+        -2.3317555439318394
+      ],
+      "fov": 58
+    },
+    {
+      "name": "supported-balcony-and-front-recessed-door",
+      "position": [
+        6.958026361529448,
+        5,
+        14.952788005996117
+      ],
+      "lookAt": [
+        2.3317555439318394,
+        4,
+        -1.8875688287697314
+      ],
+      "fov": 64
+    },
+    {
+      "name": "rear-arched-window-low-bay-and-open-porch",
+      "position": [
+        -44.11775321182587,
+        14,
+        -13.17664037379896
+      ],
+      "lookAt": [
+        -8.475589401443575,
+        4,
+        -7.291391108570256
+      ],
+      "fov": 55
+    },
+    {
+      "name": "recessed-rear-entry-open-porch-and-treads",
+      "position": [
+        -25.352886892249856,
+        3.5,
+        -9.06813796921869
+      ],
+      "lookAt": [
+        -15.322793794851723,
+        2,
+        -3.0351260798282533
+      ],
+      "fov": 60
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0.8,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/leo-tolstoy-house-yasnaya-polyana-model.mjs",
+    "export": "buildTolstoySkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTolstoyDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.6,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildTolstoyStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.6,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTolstoyCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.6,
+            "metallic": 0.25
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.33,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.52632096409798,
+      54.076068316766595
+    ],
+    "heading": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained standard Protomaps20261020 PMTiles and Mapzen ground, no bespoke terrain or flattening. Outside garden provider[0,6] supplies225.42026112723954m datum. Mapped boundary grades-.358..+.640m; floor+.8m, closed foundation-.55m. Original garden/approach ground, independent estate buildings, roads and ponds remain. Coarse plinth exposure, thresholds and accessibility approximate. Inspected current native front/rear views: mapped house aligns with the garden paths; supported base, both tread sets, low rear bay and open porch read coherently. All242 resident independent buildings and40070.675m² pond water remain unchanged; original garden ground and roads retained. Historic heights, hidden bays and thresholds remain approximate.",
+    "bounds": [
+      37.52594648496428,
+      54.07595671646566,
+      37.52654872785515,
+      54.07626489554088
+    ],
+    "terrainReference": {
+      "anchor": [
+        37.52637876408787,
+        54.076026423733715
+      ],
+      "modelHeight": 0,
+      "basis": "Retained standard Protomaps20261020 PMTiles and Mapzen ground, no bespoke terrain or flattening. Outside garden provider[0,6] supplies225.42026112723954m datum. Mapped boundary grades-.358..+.640m; floor+.8m, closed foundation-.55m. Original garden/approach ground, independent estate buildings, roads and ponds remain. Coarse plinth exposure, thresholds and accessibility approximate."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -20.409086819273547,
+          0.7883042600216896
+        ],
+        [
+          -12.876119152073873,
+          10.423288672017865
+        ],
+        [
+          12.876119152073871,
+          -10.423288672017849
+        ],
+        [
+          5.167966190288153,
+          -19.883049054062973
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -20.409086819273547,
+            0.7883042600216896
+          ],
+          [
+            -12.876119152073873,
+            10.423288672017865
+          ],
+          [
+            12.876119152073871,
+            -10.423288672017849
+          ],
+          [
+            5.167966190288153,
+            -19.883049054062973
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Named Дом Толстого museum POI and building way99697450 identify this house separately from Kuzminsky and Volkonsky houses, service/garden buildings and gate towers. X southwest along the southeast front; Z southeast toward the garden. Native east/up/south axes baked into geometry, heading0. Map outline33.13m long by12.22m deep; photo-visible rear bay, porch and balcony are picture-led additions outside the simple map rectangle."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -20.409086819273547,
+          0.7883042600216896
+        ],
+        [
+          -12.876119152073873,
+          10.423288672017865
+        ],
+        [
+          12.876119152073871,
+          -10.423288672017849
+        ],
+        [
+          5.167966190288153,
+          -19.883049054062973
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -20.409086819273547,
+            0.7883042600216896
+          ],
+          [
+            -12.876119152073873,
+            10.423288672017865
+          ],
+          [
+            12.876119152073871,
+            -10.423288672017849
+          ],
+          [
+            5.167966190288153,
+            -19.883049054062973
+          ]
+        ],
+        [
+          [
+            -3.0251859413250273,
+            -13.273155239821822
+          ],
+          [
+            -4.333900329272041,
+            -14.889839083614564
+          ],
+          [
+            -5.614503864921249,
+            -14.882450952406476
+          ],
+          [
+            -8.723511256830369,
+            -12.365692514046835
+          ],
+          [
+            -8.99741141713572,
+            -11.1147014260751
+          ],
+          [
+            -7.688697029188706,
+            -9.498017582282358
+          ]
+        ],
+        [
+          [
+            -13.325950416537077,
+            -8.832980555621946
+          ],
+          [
+            -22.458659630270112,
+            -1.440002642940497
+          ],
+          [
+            -20.476712360061896,
+            1.0083406781879347
+          ],
+          [
+            -11.344003146328859,
+            -6.384637234493514
+          ]
+        ],
+        [
+          [
+            -7.333557387016965,
+            6.039481438942332
+          ],
+          [
+            -9.276687006960165,
+            7.612455462917108
+          ],
+          [
+            -9.062762539699595,
+            7.876721091229383
+          ],
+          [
+            -7.119632919756396,
+            6.303747067254607
+          ]
+        ],
+        [
+          [
+            -7.119632919756396,
+            6.303747067254607
+          ],
+          [
+            -9.062762539699595,
+            7.876721091229383
+          ],
+          [
+            -8.848838072439026,
+            8.140986719541658
+          ],
+          [
+            -6.905708452495825,
+            6.568012695566882
+          ]
+        ],
+        [
+          [
+            -6.905708452495825,
+            6.568012695566882
+          ],
+          [
+            -8.848838072439026,
+            8.140986719541658
+          ],
+          [
+            -8.634913605178456,
+            8.405252347853933
+          ],
+          [
+            -6.691783985235256,
+            6.832278323879157
+          ]
+        ],
+        [
+          [
+            -6.691783985235256,
+            6.832278323879157
+          ],
+          [
+            -8.634913605178456,
+            8.405252347853933
+          ],
+          [
+            -8.420989137917886,
+            8.669517976166208
+          ],
+          [
+            -6.477859517974687,
+            7.096543952191432
+          ]
+        ],
+        [
+          [
+            -16.027080797324942,
+            -7.083839433246507
+          ],
+          [
+            -17.97021041726814,
+            -5.510865409271731
+          ],
+          [
+            -17.756285950007573,
+            -5.246599780959456
+          ],
+          [
+            -15.813156330064373,
+            -6.819573804934232
+          ]
+        ],
+        [
+          [
+            -16.24100526458551,
+            -7.348105061558782
+          ],
+          [
+            -18.18413488452871,
+            -5.775131037584006
+          ],
+          [
+            -17.97021041726814,
+            -5.510865409271731
+          ],
+          [
+            -16.027080797324942,
+            -7.083839433246507
+          ]
+        ],
+        [
+          [
+            -16.454929731846082,
+            -7.6123706898710575
+          ],
+          [
+            -18.39805935178928,
+            -6.039396665896281
+          ],
+          [
+            -18.18413488452871,
+            -5.775131037584006
+          ],
+          [
+            -16.24100526458551,
+            -7.348105061558782
+          ]
+        ],
+        [
+          [
+            -16.66885419910665,
+            -7.8766363181833325
+          ],
+          [
+            -18.611983819049847,
+            -6.303662294208556
+          ],
+          [
+            -18.39805935178928,
+            -6.039396665896281
+          ],
+          [
+            -16.454929731846082,
+            -7.6123706898710575
+          ]
+        ]
+      ],
+      "basis": "Occupied mapped house, low rear bay, supported porch deck and treads only; original garden and approaches remain."
+    },
+    "notes": "Named Дом Толстого museum POI and building way99697450 identify this house separately from Kuzminsky and Volkonsky houses, service/garden buildings and gate towers. X southwest along the southeast front; Z southeast toward the garden. Native east/up/south axes baked into geometry, heading0. Map outline33.13m long by12.22m deep; photo-visible rear bay, porch and balcony are picture-led additions outside the simple map rectangle. Retained standard Protomaps20261020 PMTiles and Mapzen ground, no bespoke terrain or flattening. Outside garden provider[0,6] supplies225.42026112723954m datum. Mapped boundary grades-.358..+.640m; floor+.8m, closed foundation-.55m. Original garden/approach ground, independent estate buildings, roads and ponds remain. Coarse plinth exposure, thresholds and accessibility approximate.",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 16
+    }
+  }
+}

@@ -505,9 +505,10 @@ describe('seeded building infill', () => {
       flat,
     );
     expect(scatterOnly.buildings).toEqual([]);
-    expect(scatterOnly.scatter?.exclusions.filter((e) => e.kind === 'buildings').length).toBe(
-      batch.buildings.length,
-    );
+    expect(
+      scatterOnly.scatter?.exclusions.filter((e) => e.kind === 'buildings' && e.ring !== undefined)
+        .length,
+    ).toBe(batch.buildings.length);
     expect(
       semanticTileToBatch(tile, geom, { pack, buildingInfill: false }, flat).buildings,
     ).toHaveLength(1);

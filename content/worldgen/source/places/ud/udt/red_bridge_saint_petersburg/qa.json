@@ -1,0 +1,519 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.red_bridge_saint_petersburg",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:8957d1a0462619c687d227d05be83b0814e470f60b391133cde7028312888086",
+  "sourceHash": "sha256:cf5934fc88a74ff3a7f56333b022a1fa4ea9a43622ca78f4736fb2082dc38469",
+  "runtimeHash": "sha256:c6d82057ba2bb66eab11448829e0865e6dc7e4149d45d4bce62a69672b603792",
+  "captureReportHash": "sha256:f7b6c4035c8d7aef340c7946d365bfc7a0ea3759a3a39da6aa36d9bd5f5ef1e3",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-southwest.png",
+      "shots/whole-northeast.png",
+      "shots/under-arch.png",
+      "shots/road-and-walks.png",
+      "shots/floral-rail.png",
+      "shots/granite-lantern.png"
+    ],
+    "captureReportHash": "sha256:f7b6c4035c8d7aef340c7946d365bfc7a0ea3759a3a39da6aa36d9bd5f5ef1e3",
+    "notes": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. The complete shallow red iron arch, plate spandrels, underside ribs, open circular/floral railings, four tapered granite obelisks, gold finials and paired hanging black lanterns are present. Corrected inward-facing longitudinal surfaces and disconnected ornament during the same build pass. Distance levels remove fittings while preserving the red arch and four corner markers."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-southwest.png",
+      "shots/shared/whole-northeast.png",
+      "shots/shared/under-arch.png",
+      "shots/shared/road-and-walks.png",
+      "shots/shared/floral-rail.png",
+      "shots/shared/granite-lantern.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:2c396b8139185b6b0f2678f2cfe654e41c154f469b6f04163045cfc20ff726bc",
+    "notes": "Three existing shared 256px material graphs: metal_painted, stone_granite and concrete_plain, with metric UVs and linear vertex tints. Lantern glass is a local physical translucent material. No embedded/private images, copied photograph pixels or downloaded meshes. Each shared graph is read once per native view; all four runtime GLBs use separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-southwest.png",
+      "medium-fi/whole-northeast.png",
+      "medium-fi/under-arch.png",
+      "medium-fi/road-and-walks.png",
+      "medium-fi/floral-rail.png",
+      "medium-fi/granite-lantern.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:8cb41ba87bf51b07f39bc61447b8df6f92848298f4e0afc4c67d0e3d0c2581c1",
+    "notes": "Detailed source master: 36032 triangles / 4326680 bytes. Runtime levels: 960 / 3256 / 14912 / 24016 triangles, 76036 / 246404 / 1141988 / 1756924 bytes and 1 / 3 / 4 / 4 draws. Initial skyline plus district is 322440 bytes. All strict medium-fi budgets pass; physical laptop/phone timing remains unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:03286267d632d19fad7fb489813601f3ac65487d34ecf32ccdc445a919fa098e",
+    "mapFrameHash": "sha256:837d64b36891512065e163ab503a92d89a1cd28bf8620c2723ff9696cf196bf6",
+    "notes": "Exact-QID OSM relation 5552481 / Q2994703 supplies the retained skewed 25.999m by 16.915m central footprint; standard PMTiles supplies the two named road directions and sidewalks. Anchor [30.3153079,59.9329842], heading -0.936225120965: +X southeast along Gorokhovaya Street, -X northwest, +Z southwest along the Moika. A 0.147 plan shear follows the mapped edges. The nominal 33.6m longitudinal extent includes approximate abutments; small supported bank aprons extend beyond it. A 17.030528m source datum fits the complete native fixture's 17.555132m water surface. All 27 actual mapped road/footway width probes have both road and model support, within 0.047155m at all four levels. These are renderer-to-model join differences, not surveyed geographic accuracy."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped exterior and approximate standard-terrain placement complete. Detailed source master: 36032 triangles / 4326680 bytes. Runtime levels: 960 / 3256 / 14912 / 24016 triangles, 76036 / 246404 / 1141988 / 1756924 bytes and 1 / 3 / 4 / 4 draws. Initial skyline plus district is 322440 bytes. All strict medium-fi budgets pass; physical laptop/phone timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/models/source.glb\",\"hash\":\"sha256:cf5934fc88a74ff3a7f56333b022a1fa4ea9a43622ca78f4736fb2082dc38469\",\"bytes\":4326680,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/ud/udt/red_bridge_saint_petersburg/model.glb\",\"hash\":\"sha256:c6d82057ba2bb66eab11448829e0865e6dc7e4149d45d4bce62a69672b603792\",\"bytes\":4326288,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/ud/udt/red_bridge_saint_petersburg/model.skyline.glb\",\"hash\":\"sha256:cbfc5233102877017dddbccea4089004ba63284c59eac3d04b360e030ff146d1\",\"bytes\":76036,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/ud/udt/red_bridge_saint_petersburg/model.district.glb\",\"hash\":\"sha256:b240c7d590114194640e4c4efe1ce9b4a0d354d5089b467db28895b761795fef\",\"bytes\":246404,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/ud/udt/red_bridge_saint_petersburg/model.street.glb\",\"hash\":\"sha256:b77573fc2b214af59484d7cc454a32dc76d2a3561316ce147589482abaab6fda\",\"bytes\":1141988,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/ud/udt/red_bridge_saint_petersburg/model.closeup.glb\",\"hash\":\"sha256:ea5acc68fca59f2c21ddb651121ccfa4981de20b0e241f4a0c146435097de1ed\",\"bytes\":1756924,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "front-faces-arch-passage-deck-walks-bank-overlaps-obelisk-finials",
+        "passed": true,
+        "notes": "312 front-face and clearance probes across the source, imported master and four levels: top winding, road/walk heights, supported bank overlaps, exterior iron webs, open water passage and all four obelisks."
+      },
+      {
+        "check": "headless-scene",
+        "passed": true,
+        "notes": "CLI scene validation and 30 ticks passed; state hash sha256:fb51813413eec0c2d0eae98c56b8b24a30fc9db3eb4800c07c66883e3258cf85."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Exact-QID OSM relation 5552481 / Q2994703 supplies the retained skewed 25.999m by 16.915m central footprint; standard PMTiles supplies the two named road directions and sidewalks. Anchor [30.3153079,59.9329842], heading -0.936225120965: +X southeast along Gorokhovaya Street, -X northwest, +Z southwest along the Moika. A 0.147 plan shear follows the mapped edges. The nominal 33.6m longitudinal extent includes approximate abutments; small supported bank aprons extend beyond it. A 17.030528m source datum fits the complete native fixture's 17.555132m water surface. All 27 actual mapped road/footway width probes have both road and model support, within 0.047155m at all four levels. These are renderer-to-model join differences, not surveyed geographic accuracy."
+    },
+    "inputHash": "sha256:8957d1a0462619c687d227d05be83b0814e470f60b391133cde7028312888086",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:8957d1a0462619c687d227d05be83b0814e470f60b391133cde7028312888086",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 62 current frames: 11 portable, 11 shared-material/geographic, 23 medium-fi and 17 native. The complete shallow red iron arch, plate spandrels, underside ribs, open circular/floral railings, four tapered granite obelisks, gold finials and paired hanging black lanterns are present. Corrected inward-facing longitudinal surfaces and disconnected ornament during the same build pass. Distance levels remove fittings while preserving the red arch and four corner markers.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/scene-preview.png",
+          "hash": "sha256:e245f12b1d2fd15f23bba9b0f91ad3e80c2a35b6fada709d539c45594aeb7901"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/turntable/angle_0.png",
+          "hash": "sha256:e75a0d7b88bf4c617ec3d684bea773ba559d607987ebcd34da05395e4fe8f77e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/turntable/angle_1.png",
+          "hash": "sha256:cbbd1875e52042302e750eec35ea095be279f19124557db24209ffc3848da47d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/turntable/angle_2.png",
+          "hash": "sha256:d167ab8d777adfa618f1821bc175685db4d20450249b42d8ad0312ecfcdbe71d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/turntable/angle_3.png",
+          "hash": "sha256:fb15a88c2d2ec1f8f1cc481eb3e9d9b4949535941f0215401fca3ddf9dd23102"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/whole-southwest.png",
+          "hash": "sha256:e245f12b1d2fd15f23bba9b0f91ad3e80c2a35b6fada709d539c45594aeb7901"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/whole-northeast.png",
+          "hash": "sha256:b764bacbd268fec25b39a19c41b3fb4cbe11d0deab67ef8d2c806285b587e72f"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/under-arch.png",
+          "hash": "sha256:fd9a44472ff37c3f852dd13869aefe4444888d3015db0873d5b0589b06c36f0c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/road-and-walks.png",
+          "hash": "sha256:3e8c9bf2db7c3528c2bb3b0fdd9c4d304e31f350372857a70d367a02af7a27cd"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/floral-rail.png",
+          "hash": "sha256:4917c7069d599de3759f7cd444d4d7c16face0ab9ae3aea10d7550f8a9929651"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/granite-lantern.png",
+          "hash": "sha256:688dcc4e515c48501391ffd79a8ac4789475e1c4a62818d5cf3979d0861424de"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/angle-0.png",
+          "hash": "sha256:9d25bfbc49e2b6526f233fd9c4c96d1c8cd936161ae4d09d99316ce7491d69b5"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/angle-1.png",
+          "hash": "sha256:1c148bdada7df1ae48e5b45a3b8afa756170097d4703e660135e5a302f80be5c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/angle-2.png",
+          "hash": "sha256:de2c4c8efe66c037b1945ca193f39a3c553ec5e38a96d9027d987c026a7bfaa0"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/angle-3.png",
+          "hash": "sha256:16f8b48591a0857fc9eb3f6396391e2370b2423088c684285cc5dabc39515fb3"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/whole-southwest.png",
+          "hash": "sha256:8549d1b8759fab5d6e87432620707b086eb7295a17b39d33ede6301f2c39327e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/whole-northeast.png",
+          "hash": "sha256:be0a344d4e01857b0583a389db4b765a5f5e259ea0b2925630b6599a29a5b4e5"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/under-arch.png",
+          "hash": "sha256:3758aa2ff5ef8707ba2c81377a8921558fd47650bef71b3ec3b77ccbbb14f117"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/road-and-walks.png",
+          "hash": "sha256:807f2691f01413aee109fd3093ffbecdf822a88c78400185f095b11186dfe32e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/floral-rail.png",
+          "hash": "sha256:aed63517013a5c3561421680a093bbe3edd42e4c4b4385b32e6890047a443f37"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/granite-lantern.png",
+          "hash": "sha256:f2df960124bd2d9bfc742804ee8f351019fd4e2b9310dfc31aeafc7b21cf4d3b"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/shots/shared/placement.png",
+          "hash": "sha256:c6168d359e34dc9f875573d3a98d625066f3a8df1bba4d3b8219d528625fdb77"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/street-noon-economy.png",
+          "hash": "sha256:3ce084e4b793075bdaa37380415d2a29f43924a68e0edff132f9a52f9825b052"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/street-noon-high.png",
+          "hash": "sha256:850a7bd2ad5f17347597756a3fcc6f6bd5b28f5db1bc3cd85c8e3f3c41bc8b19"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/street-late-economy.png",
+          "hash": "sha256:6613725944be78b7de1bd7adc8e534ab1cbf6004ade5838938ecdfe581466b16"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/street-late-high.png",
+          "hash": "sha256:daf830f72a5c82032c5331796cc323ba8a8f5602a54173c7ab63279a2cd4db06"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/block-noon-economy.png",
+          "hash": "sha256:1acc23efd0d8e20a1f301ddcfd7f92fc555f5ff5d4b388715f6de830fbda088b"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/block-noon-high.png",
+          "hash": "sha256:6a21a9d9737db9fcf73d41e3201bddc668e3cdd360c69765278727209c52ed6c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/block-late-economy.png",
+          "hash": "sha256:f742e43d39b10661e16148a92275582e31dd373c1c1673f28475b70002fbb76e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/block-late-high.png",
+          "hash": "sha256:df27810c6c46ce601d1424674150f7cec48a8d693af901d8aa46f1f068cf2310"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:8f3149c71137253f47ae50050e909f764a61220b20da6937582e5d68392c24d1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:64aaa56a4c054a39c727f3f33f1585bf76839977b50b56b0868cbe4802615e7a"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:2520dc17f21a63290b2c18b231e3768dd05a9bfab1678aa69479e2c4a6ad58ff"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/skyline-late-high.png",
+          "hash": "sha256:55396cc8f38bf4bd18c2998ab2bbfbb843df4bb9bb114805a7004d5d5430970d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/silhouette.png",
+          "hash": "sha256:cb765356ef1d654fe079dbf6734eaef9172bb144b5943bf468a34da5f3ee325a"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/whole-southwest.png",
+          "hash": "sha256:798526662904b5294f11eb5e77d21defc60f9c39c5a9c95e10340449b3ed748d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/whole-northeast.png",
+          "hash": "sha256:f4c422bf5d65f695146b6ab95d48c790efe5d518a546a8224c3c56d2f8f073c7"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/under-arch.png",
+          "hash": "sha256:bd3b83d04b64dca2dec95d8bb0607686498c73f0699800a434f4878b264e8fc4"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/road-and-walks.png",
+          "hash": "sha256:0b2d0e0b74e0475046403415ed2a4cdd7196d1520c0d3f5aed02cc8c08c8aa45"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/floral-rail.png",
+          "hash": "sha256:4646521158104a106baca268ae014a75a2a54500dce3750a66b1e7f04eeb1d1f"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/granite-lantern.png",
+          "hash": "sha256:267ec3840ca3cfba43ca3d1dc5c1e96f3c9190765ae3d7c09be63e69bb8406fd"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/transition-skyline.png",
+          "hash": "sha256:47a2aa5dba0f16d0c00750f98d61b6d595a46216fe426e3dfc6be7b40fab1512"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/transition-district.png",
+          "hash": "sha256:6a21a9d9737db9fcf73d41e3201bddc668e3cdd360c69765278727209c52ed6c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/transition-street.png",
+          "hash": "sha256:09e4ef04f39b2ba65acfed2e6f52d44944829c0f7c51acf9f02c0b881ebd0695"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/udt/red_bridge_saint_petersburg/medium-fi/transition-closeup.png",
+          "hash": "sha256:f661661e007f7bf56d616a83fd9d36ae7c70f5f89b3245b475740589bf260a17"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:2fc2f8d23af8169ead54358e0ea9eb15cae2b7e25494fa9ab40bf26e390fb268"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:d1471a2aff4504f6e236f7e8271fec614f39877595652ed90381ad999fba86ff"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-street-whole-southwest.png",
+          "hash": "sha256:c95b7f7eb0ea697740d2a79b645cd858341b283819e7e0fc9f3943514ca617e7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-street-whole-northeast.png",
+          "hash": "sha256:6a1080dc6a95a17593c3a8eb8a06cf69d020e44f75c73a1111ec7180c9e14b01"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-street-under-arch.png",
+          "hash": "sha256:ba1ee4af0125091800c676ff87daa34ca8506d17ae2c38298a9362775280e728"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-street-road-and-walks.png",
+          "hash": "sha256:ebe896af8a88c6a24da3a928c4e479155d894b6bc1ff5f5cf3252322145cba23"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-whole-southwest.png",
+          "hash": "sha256:6b98970ff91f5af1eb338d94cbbbbd823241255b45dc982a7e899865e493bc28"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-whole-northeast.png",
+          "hash": "sha256:896a91fd442f62a0a437282091560345ae40254a69e7ad02b380986ac57a5b10"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-under-arch.png",
+          "hash": "sha256:e2336260a8d4200724734a92d7b54dc0560ab1a677037868456079688f4f8f8f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-road-and-walks.png",
+          "hash": "sha256:f3e86463af8d3eeaa0b0660cc4f46cd6345d83902c192d93e8e0156acfa000ff"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-floral-rail.png",
+          "hash": "sha256:28189533cd10ee19937771818fc764a5e30b7c4f4776b6a8a74cc947eb025b18"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-granite-lantern.png",
+          "hash": "sha256:f8dee40a0968d7f28c4195b4cb7225c1d4c9520c092fa956fd17250ec75f58c3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-west-bank-join.png",
+          "hash": "sha256:7466325fe3a428992cc9706acd85d3465c82317bae77f71bcad328c6a6fe209a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-east-bank-join.png",
+          "hash": "sha256:63ca87720f5dd0a1e9f3a2dcad11e9a593a13f0457523d55207e60140f4c9a9a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:d1471a2aff4504f6e236f7e8271fec614f39877595652ed90381ad999fba86ff"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:c57e480a510918e602fcc7ece074b0cd194b565b2a2317b2e9b1bc202f148ab7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\red-bridge-review/native/shots/final-failure-whole-southwest.png",
+          "hash": "sha256:2e2c1f6321994be230256711bd9e34baa6354167576ecf82c0c97cd11a5303d5"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 465 resident buildings and 1,290 independent input road records remain. Raw map roads, DEM samples and water geometry stay unchanged. A declared 34.9m by 19.5m cut removes obstructing displayed ground/shore faces inside the support footprint while the model is resident; eight outside-ground probes stay exact. Connected paving is deliberately graded. Failed loading retains the original map crossing; unloading restores the exact native ground geometry and releases all model/support geometry."
+    },
+    "nativeReport": {
+      "path": ".artifacts/red-bridge-review/native/final-report.json",
+      "hash": "sha256:1b0510676c4bf0820972a52d63b5dd5784f3b783efedd9ca3c1e49823d5f0720",
+      "frozenViewerInputsHash": "sha256:494f011364e03b8b880246713434d0480478fc5fc184f01beac06d83aaf5360a"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 27,
+        "maximumJoinErrorMeters": 0.04715427353503543,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": true,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 27,
+        "maximumJoinErrorMeters": 0.04715427353503543,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": true,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 27,
+        "maximumJoinErrorMeters": 0.04715427353503543,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": true,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 27,
+        "maximumJoinErrorMeters": 0.04715427353503543,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": true,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "buildings": 465,
+        "independentRoadRecords": 1290,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundCutoutActive": false,
+        "eightOutsideGroundProbesRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Photo-based iron sections, arch rise, granite blocks and lamp heights are approximate; no as-built survey is claimed.",
+    "The retained 25.999m by16.915m map polygon describes the central crossing. The nominal33.6m reference length is interpreted along the sheared longitudinal coordinate including abutments; it is not substituted for the mapped clear deck.",
+    "Floral ironwork is a regularized open circle-and-rosette pattern. Rivet counts, internal ribs and lamp fittings are representative rather than surveyed.",
+    "The17.030528m source datum follows the17.555132m water surface in the complete retained native fixture. Water/ground levels depend on semantic tile context; this is a visualization datum rather than a survey. Coarse quays and neighboring architecture are outside this asset.",
+    "Skyline merges subpixel rail ornament into mean-color bands; district simplifies the pattern and hanging lanterns.",
+    "Thin bank paving and rectangular support wings overlap the generalized map lane/footway widths. A bounded34.9m by19.5m terrain cut follows those supports; native ground restores on unload. Surrounding quays retain the coarse standard terrain.",
+    "The surrounding procedural buildings, coarse quays, automatic retaining faces, power lines and approach terrain are context, not a reconstruction of historic Saint Petersburg. Some road-facing native cameras are obstructed by those coarse faces; whole-crossing and canal views show the bridge fit.",
+    "The final 4.8cm maximum paving join difference includes generalized skewed footway edges. The whole fixture is a standard-terrain approximation; no exact curb, foundation or river-stage claim."
+  ],
+  "metadataReconciliation": {
+    "previousInputHash": "sha256:bea79a2e613d41de6944823fe12509a2d98cf8cd0aaecfed4adfe4b70cc5777c",
+    "inputHash": "sha256:8957d1a0462619c687d227d05be83b0814e470f60b391133cde7028312888086",
+    "method": "Removed unreachable branches for three unrelated model IDs from the Red Bridge-only generator. The generator --check passed after cleanup. Source/master/four LODs, spec and scene bytes, shared material graphs, all cameras and all 62 inspected frame bytes remain unchanged. Existing images keep their provenance; no new rendering is claimed.",
+    "renderedInputsAndFramesHash": "sha256:8e73308c2d7c3f20c7467bd8105aca0cf7f6bf16180584e21feab12993ed58d5",
+    "framesUnchanged": 62
+  }
+}

@@ -233,7 +233,7 @@ export function dc3Cockpit(root, m) {
   // Central magnetic-compass housing; engine supplies no magnetic variation, so label true.
   beveledBox(d, [0.21, 0.26, 0.16], [0, 4.45, 8.17], m.dark, 0.025);
   ins.headingDrum('compass', [0, 4.46, 8.078], 0.068, 'trueHeading');
-  d.text('TRUE', [0, 4.35, 8.07], 0.016, Math.PI, ink);
+  d.text('TRUE', [0, 4.35, 8.07], 0.016, Math.PI, ink, 'display');
   const q = group(cabin, 'DC3-quadrant', [0, 2.91, 7.65]),
     qd = detailKit(q, q.name);
   beveledBox(qd, [0.43, 0.48, 0.66], [0, 0, 0], m.dark, 0.025);

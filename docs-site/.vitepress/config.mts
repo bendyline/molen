@@ -1,4 +1,7 @@
 import { defineConfig, type HeadConfig } from 'vitepress';
+import liveryPreviews from '../../content/entities/livery-previews/manifest.json' with {
+  type: 'json',
+};
 import { molenDark, molenLight } from './code-theme.mts';
 import generated from './generated-nav.json' with { type: 'json' };
 
@@ -8,6 +11,12 @@ const { sidebar, counts } = generated;
 
 /** Static directories staged beside the site by scripts/stage-hosted.mjs; see `markdown.config`. */
 const HOSTED_PATH = /^\/(?:play|packs)(?:[/?#]|$)/;
+const liveryImages = new Map(
+  liveryPreviews.examples.map((entry) => [
+    `/guide-media/liveries/${entry.image}`,
+    entry.variants.length * 500,
+  ]),
+);
 
 export default defineConfig({
   title: 'Molen',
@@ -94,6 +103,15 @@ export default defineConfig({
       md.core.ruler.push('molen-hosted-links', (state) => {
         for (const block of state.tokens) {
           for (const token of block.children ?? []) {
+            // Reserve each comparison's space while loading only nearby gallery images.
+            if (token.type === 'image') {
+              const width = liveryImages.get(token.attrGet('src') ?? '');
+              if (width !== undefined) {
+                token.attrSet('loading', 'lazy');
+                token.attrSet('width', String(width));
+                token.attrSet('height', '365');
+              }
+            }
             const href = token.type === 'link_open' ? token.attrGet('href') : null;
             if (href !== null && HOSTED_PATH.test(href) && token.attrGet('target') === null) {
               token.attrSet('target', '_self');

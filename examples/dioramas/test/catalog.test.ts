@@ -11,6 +11,8 @@ import { describe, expect, it } from 'vitest';
 import { loadDiorama } from '../src/load-diorama';
 
 const cases = [
+  ['flight-school', 'service-cart', 'crew-0'],
+  ['airport-cargo', 'service-cart', 'crew-0'],
   ['airport', 'tug', 'cart-0'],
   ['little-league', 'runner', 'fielder-0'],
   ['fireworks', 'rocket-0', 'spark-0-0'],

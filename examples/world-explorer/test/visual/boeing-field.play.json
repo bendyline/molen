@@ -1,0 +1,21 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "boeing-field-airport",
+  "path": "/?region=seattle-bellevue-sammamish&lat=47.514&lon=-122.287&alt=350&yaw=-2.05&pitch=-0.5&mode=human&quality=balanced&backend=webgl&hud=0&weather=sunny&sky=daylight",
+  "viewport": [1600, 1000],
+  "probes": [
+    { "name": "status", "selector": "#status" },
+    { "name": "source", "selector": "#source" }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain",
+      "stableMs": 500,
+      "timeoutMs": 240000
+    },
+    { "type": "wait", "durationMs": 180000 },
+    { "type": "screenshot", "name": "boeing-field-overview" }
+  ]
+}

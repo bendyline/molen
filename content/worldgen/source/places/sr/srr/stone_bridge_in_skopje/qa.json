@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.stone_bridge_in_skopje",
-  "inputHash": "sha256:fa0841be3a8216f92b7fdb8044cb68ab490c859b28b237ab13cf1cf42d6eb2b7",
-  "captureReportHash": "sha256:173c0e7bdfb685e0740d0f95f14d81902043a6d47f3eab3b0fcd056bc8b36aa1",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:63b52ecf8c00c0de7e149eb657fcde6136308ebb3356ed66d9a07779a5b305c0",
+  "sourceHash": "sha256:97b89aa20fe8483a18f2df8bb276ac65a904fcc9c5c11bf9333c712d99b8f27a",
+  "runtimeHash": "sha256:6b0fb2a62a6d2264a901c6ddd37066de31e3beec9986621800d105c7652e008a",
+  "captureReportHash": "sha256:d2612ffb5371b89c7c42f109c0456ec7ca2dd4f7613511d014643b836d9fe7d8",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -18,12 +21,11 @@
       "shots/river-vault.png",
       "shots/walkway.png"
     ],
-    "scope": "Detailed exterior reconstruction of the present Stone Bridge in Skopje.",
-    "notes": "Inspected all 11 current portable frames. Unequal river arches, sloping approaches, masonry joints, cutwaters, parapet courses, prayer niche and opposite projecting balcony are visible. Corrected cutwater normals now light consistently; the niche has a continuous backing, carved transition and attached header plaque."
+    "captureReportHash": "sha256:d2612ffb5371b89c7c42f109c0456ec7ca2dd4f7613511d014643b836d9fe7d8",
+    "notes": "Inspected 55 current frames in one author/inspect/fix pass: 11 portable, 11 shared, 23 medium-fi and 10 native. The 11 unequal exposed/reconstructed vaults, sloped deck, complete parapets, different mapped pier projections, recessed prayer niche and supported opposite balcony remain complete. Replaced the old 64.52 m-error skyline and authored a closed district shell. Actual mesh rays caught the shallow automatic street niche; near levels now come from the original structural recipe and retain the full recess and carving. Removed collapsed paving side faces from runtime levels. Canonical viewer shadow-focus logic removed capture self-shadow striping. The 466,084-triangle source and canonical runtime masters remain byte-exact."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:bffb5c4bd5e556bef0978dfb634540994c1bb3cbabd933a0ecaf07c237e030ba",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -37,16 +39,1228 @@
       "shots/shared/walkway.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 11 current shared-material frames. Canonical travertine and fired-clay surfaces give the stone and approach brick a consistent fine grain without painting a second grid over modeled masonry joints. Close views resolve the arch blocks, course joints, rosettes and cornices. Model and shared material loading/unloading checks pass."
+    "captureReportHash": "sha256:90b4462f7428cf7421a80cf3bcfcf11b44bd2ab935ffc7ad58c7f2b3d2b81960",
+    "notes": "Three existing 256px shared graphs: stone_travertine, clay_fired and metal_painted. Each textured LOD uses three draws; skyline uses baked vertex colors and one draw. Metric UVs, original restrained stone/brick tints, no embedded images/private atlas/copied photo pixels. Dense wall and paving face relief is reserved for the master; runtime stone stays clean and low frequency. Material graphs read once each, separate GPU attribute streams and complete model/support disposal pass."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/downstream.png",
+      "medium-fi/upstream.png",
+      "medium-fi/mihrab.png",
+      "medium-fi/brick-approach.png",
+      "medium-fi/river-vault.png",
+      "medium-fi/walkway.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:c6a9f1670a05f27f34b68d78b118fd7721c6348e06d094fa2f7242bd1aecfad3",
+    "notes": "Four complete authored LODs: 910/3584/6904/14528 triangles; initial skyline + district 305224 bytes. Closeup is 996692 bytes. Economy/high, noon/late, near/far, silhouette and transitions inspected under the shared Earth rig. Near structural surfaces replace noisy automatic decimation while keeping radial arch blocks, complete piers, carved niche and balcony corbels. Geometry budgets pass; physical laptop/phone timings remain pending."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:d9581416c28a26bfea7f02f95dfe739dbeb9f80ccb0c1295dfae6dce3228a8a6",
-    "notes": "Exact bridge footprint way 734159692/Q1780883 sets anchor [21.433244271,41.9971125], heading 0.7410149177885357 and 218.918m mapped length. Native +X points northeast and +Z southeast/downstream. Five mapped river-pier projections establish four unequal central bays; cutwater and niche placement agree with the captured map outline. Native Y=0 is channel-bottom elevation 241.5m from JICA 2009 Table2.1, survey section N5, not water level. The deck profile and exposed approach arches are reconstructed from published photographs; the source is not a current vertical survey or river-stage measurement."
+    "placementHash": "sha256:7cebce9e674379c5bba2bc35447a22354331a718ebfd5340edd5742a7c646fdd",
+    "mapFrameHash": "sha256:95cd1f1c58cc485607947313e59607de14667b670e0423054c9c3647d330a655",
+    "notes": "Approximate native fit approved at [21.433244271,41.9971125], heading 0.7410149177885357: +X northeast and +Z southeast/downstream. The exact-identity outline retains the asymmetric projections. Native Y=0 uses the retained 241.5 m historical channel-bottom reference, not current water stage; source deck endpoints are 249.2 m ASL. Both immediate mapped road joins meet deck within 0.1 m. At 1.54 m beyond either end, the supported native grade has begun its terrain blend. Standard DEM is about 2.6–5.1 m below the end deck at those samples. This inferred approach grading and seasonal river exposure are visualization, not surveyed historic banks or a current engineering datum."
   },
   "fidelityReview": {
-    "target": "maximum",
+    "target": "medium-fi",
     "status": "passed",
-    "notes": "466,084-triangle exterior: individually jointed ashlar faces, radial voussoirs and brick approach vaults, unequal river bays, pyramidal and open cutwaters, sloped stone paving, two-course parapets, cornices, carved prayer niche and corbelled viewing balcony. Tourism and historical sources disagree on 13 versus 14–15 total openings; this reconstruction has 11 exposed/reconstructed bays and does not claim a surveyed inventory of buried arches. Ornament, exact arch profiles and shore-end closures are photographic reconstructions. Nearby statues, urban landscaping, buried masonry, inscriptions and interiors are outside this asset."
-  }
+    "notes": "Complete scoped bridge exterior; detailed master retained separately. Original source dimensions and evidence remain explicit approximations. Four complete authored LODs: 910/3584/6904/14528 triangles; initial skyline + district 305224 bytes. Closeup is 996692 bytes. Economy/high, noon/late, near/far, silhouette and transitions inspected under the shared Earth rig. Near structural surfaces replace noisy automatic decimation while keeping radial arch blocks, complete piers, carved niche and balcony corbels. Geometry budgets pass; physical laptop/phone timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/models/source.glb\",\"hash\":\"sha256:97b89aa20fe8483a18f2df8bb276ac65a904fcc9c5c11bf9333c712d99b8f27a\",\"bytes\":39115588,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.glb\",\"hash\":\"sha256:6b0fb2a62a6d2264a901c6ddd37066de31e3beec9986621800d105c7652e008a\",\"bytes\":39115216,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.skyline.glb\",\"hash\":\"sha256:89f4b5f4fea323264907d3cb0caae9b8257145685c4b9b351ead605e6f495288\",\"bytes\":66568,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.district.glb\",\"hash\":\"sha256:f9bbabc70efea5667d88f0f64a299ef174a4ae4717e366bfad5f75bb6dbb72d0\",\"bytes\":238656,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.street.glb\",\"hash\":\"sha256:e5473e04100a22a1dc2ee43c469f2c6ee1717fc5ceb64ed072ef7f42fb54295a\",\"bytes\":467896,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.closeup.glb\",\"hash\":\"sha256:e34b5d8cfd4cea17ed099acbb2abfc77b2660b093f61f78b77cf3fae60887ca9\",\"bytes\":996692,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-vaults-deck-piers-niche-and-balcony",
+        "passed": true,
+        "notes": "540 actual mesh probes across source/runtime and all four LODs: 11 open center and quarter vaults, closed deck/intrados, mapped asymmetric piers, sloping ends, high niche roof, deep walk-facing recess and opposite balcony. Exact pins, finite attributes, shared surfaces, budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native fit approved at [21.433244271,41.9971125], heading 0.7410149177885357: +X northeast and +Z southeast/downstream. The exact-identity outline retains the asymmetric projections. Native Y=0 uses the retained 241.5 m historical channel-bottom reference, not current water stage; source deck endpoints are 249.2 m ASL. Both immediate mapped road joins meet deck within 0.1 m. At 1.54 m beyond either end, the supported native grade has begun its terrain blend. Standard DEM is about 2.6–5.1 m below the end deck at those samples. This inferred approach grading and seasonal river exposure are visualization, not surveyed historic banks or a current engineering datum."
+    },
+    "inputHash": "sha256:63b52ecf8c00c0de7e149eb657fcde6136308ebb3356ed66d9a07779a5b305c0",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:63b52ecf8c00c0de7e149eb657fcde6136308ebb3356ed66d9a07779a5b305c0",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 55 current frames in one author/inspect/fix pass: 11 portable, 11 shared, 23 medium-fi and 10 native. The 11 unequal exposed/reconstructed vaults, sloped deck, complete parapets, different mapped pier projections, recessed prayer niche and supported opposite balcony remain complete. Replaced the old 64.52 m-error skyline and authored a closed district shell. Actual mesh rays caught the shallow automatic street niche; near levels now come from the original structural recipe and retain the full recess and carving. Removed collapsed paving side faces from runtime levels. Canonical viewer shadow-focus logic removed capture self-shadow striping. The 466,084-triangle source and canonical runtime masters remain byte-exact.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/preview.png",
+          "hash": "sha256:41ff3435a1dfb64009dbbea5bca5749da9fe807bfe1d69debfab5983e84a9bde"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/turntable/angle_0.png",
+          "hash": "sha256:51b52dcbf14af4a595f62d0c056071bfa3b27a084ffa7fa87239c46214575f91"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/turntable/angle_1.png",
+          "hash": "sha256:5f791ae9c672967e9d2d21f93349d24b64cd3de5b547d8a8b22e9a51a34ab4e8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/turntable/angle_2.png",
+          "hash": "sha256:34626f63df3b4638816f40eaaa6bc8190de40b964c95c44397a4e7152a6d45dc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/turntable/angle_3.png",
+          "hash": "sha256:1ed21196a2560d3bd641eb3a36631acc488b9505599f27fe24a17c6f62c9eee4"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/downstream.png",
+          "hash": "sha256:72c5c2053541c0ed82f9591118ea7be278a04e4fdb1233dc46df547fa72337a1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/upstream.png",
+          "hash": "sha256:8a46496c5b2acfcd75ae99586df2a20035624682bf014c426cbff573259d470e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/mihrab.png",
+          "hash": "sha256:afae79c38f331e05a502510ff111a4af96644a6eb2f89d46bd92d7f6ed0555da"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/brick-approach.png",
+          "hash": "sha256:caa464f82f0f56216fefbdf2b8fc700a97f291ae17a7d9ce6bb44983c2423c48"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/river-vault.png",
+          "hash": "sha256:73d1b2e6d0c36516ae964a58b280fb372bf572ac3f95541d4b3c4b48e8d900eb"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/walkway.png",
+          "hash": "sha256:b30028e106d85eda2575efb15f71de814a80dde19c32cb6ddadbd40ad4a40a3d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/angle-0.png",
+          "hash": "sha256:1ffa4c1e4f98c9e869f2f0cad40b890445d4f5a85799a6f4d391dc5092997f17"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/angle-1.png",
+          "hash": "sha256:0b604618ba887f989c5bffa9321e23ac4c6eddc4bbf4cfdd50670dea0db9149d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/angle-2.png",
+          "hash": "sha256:dff0e68fb36458efdc34f039a8e8459d8f388ada1932d10b0dd1c2b228220e88"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/angle-3.png",
+          "hash": "sha256:2719480a136695a98fa3d08fdea782e719bb28ecc9904cb9315d8ffe6d4f8b69"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/downstream.png",
+          "hash": "sha256:b0f0ae502a47ff3b571941be9a047d1084f3c6f9f876051e3182ee8a469f9ed5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/upstream.png",
+          "hash": "sha256:695a238762e2e78cf0bf7bda370144a4bed8f2db1c3e50d1ca07b840d30a637c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/mihrab.png",
+          "hash": "sha256:3619edb07d1b27bcc095adcc01ca285b2056bae64cc9d43d4fe3fb310d05e1fc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/brick-approach.png",
+          "hash": "sha256:c9ba4a82c96fac6829b89830ff5ec586e810f2d42cc1ca8175d009117d03cccc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/river-vault.png",
+          "hash": "sha256:64cd27b5af534df79b3f7dfc42c7d175bdba201a72cad94383b284c6d4b371dd"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/walkway.png",
+          "hash": "sha256:ea783923e148b8dccae0186cf0a354877ddac65da91913ad596b7b700a4ecd50"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/shots/shared/placement.png",
+          "hash": "sha256:f175523be5d3eaa30dfef5045082a49d145f44e71cd2f02cec9857ca35fdf16c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/street-noon-economy.png",
+          "hash": "sha256:08897ef3721049a2766c4c5657384ccf1d5d63513cf8eba9a96001d0351b2235"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/street-noon-high.png",
+          "hash": "sha256:b542cce479cf6da9ee2a6c24a39f7bcc6f574c38264c94a3a03d0920dd023cd9"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/street-late-economy.png",
+          "hash": "sha256:43a59f9cfc09803ccb8de0bb2147e5dc00c0016e3a6aec84a5a19a25de05ed45"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/street-late-high.png",
+          "hash": "sha256:dab580daa7a3fc0d296aad3d07e43fc53637312f45ccc8fa9b1b00e242833e56"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/block-noon-economy.png",
+          "hash": "sha256:b18bbf17f3f920ecb3854efe3d9263775cc889bdfb4fee783a74372ead1af804"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/block-noon-high.png",
+          "hash": "sha256:f825ba9f50bb0e7fc1e0d1042d58fe205db4796f80693c66041d3f87e96f2fb5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/block-late-economy.png",
+          "hash": "sha256:8ae42b77c919fd050af932ad35a621063041541ed78adf3c3890d609f8dd2045"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/block-late-high.png",
+          "hash": "sha256:9dd9373667dee2d320a30612893068d0ac070d6fd379d633e24f11b5761b9c53"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:49531fb076193c96c0c6ec62d95e404e8f26b8939a4d0412f14cfd164da9bde5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:645cfc9c7d7d27cf532845552e6c441d8f15f0f1940ef96febd41fbd90929d06"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:edf33db3b009c3bf72c5e63f9f310604fc9f22af779083896f4ac460a8b69659"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/skyline-late-high.png",
+          "hash": "sha256:f828b551684ff1457b5a7342a3b876b726dad06fed071b182c5779218fbc44da"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/silhouette.png",
+          "hash": "sha256:8dd37d19f7a4d295adc140daad137a14c8e4c221dd904095fc77bc037cc2b994"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/downstream.png",
+          "hash": "sha256:9086854d4411d450180b036e38b64dd16763a3481c90a3777573068285ad34e5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/upstream.png",
+          "hash": "sha256:4b4dfc9e24154629eb3b1845bf75b95a24e154693d0a67b6d8f50744d653f423"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/mihrab.png",
+          "hash": "sha256:9839c5481cc66fcfcce2820f7d5050f9edc719fcadbad8ed988cf34164be44f1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/brick-approach.png",
+          "hash": "sha256:689ce596bf914d7f00cc380618285fa8ad9fe33c9ebde9a57329c07ad5d1e5fe"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/river-vault.png",
+          "hash": "sha256:122786bcf466112ad7ca8d152890efe83d214ab4fdd22d32b36440366e63f383"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/walkway.png",
+          "hash": "sha256:7b37019f05d067d4b8a513726d74db219d6dd56dfd2407b5509ecd82c95144f5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/transition-skyline.png",
+          "hash": "sha256:2eb412e16d04c27368f71bf060b63de7f09c181928ff6338c228098158109353"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/transition-district.png",
+          "hash": "sha256:f825ba9f50bb0e7fc1e0d1042d58fe205db4796f80693c66041d3f87e96f2fb5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/transition-street.png",
+          "hash": "sha256:3371486633bb7b9fea40d176ccbf7903e9a4461ef47072c948ab2bf115465529"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/medium-fi/transition-closeup.png",
+          "hash": "sha256:640ffd7aa8216ab9c385d685e1d33312b028f16242607f667bb6d1b5bf89c3b8"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-skyline-city-crossing.png",
+          "hash": "sha256:335983f140952240bd8e71b2f5c041c353e055c2f0d69d6f8a071d966cfc5764"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-district-city-crossing.png",
+          "hash": "sha256:cbd7bb3960f4df337a0b05d0dac09a1840a41719633b4ea1fdb6803b34858b55"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-street-city-crossing.png",
+          "hash": "sha256:dea943c4d6b56f0d7a2bb3f59a4a897675f468ad22e1ba81eb707464c3845e31"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-closeup-city-crossing.png",
+          "hash": "sha256:a4dfecab8354b9941f2cb21b2403e0d8279beedc7456bc738e8e79a60ba4e694"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-closeup-southwest-bank.png",
+          "hash": "sha256:11e5510967269480d5bf3107b6635e1137193dbc75a5fd3f55dcc7f77d3db2ce"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-closeup-northeast-bank.png",
+          "hash": "sha256:3b46a2863eae09c78196317d9d02671aeb817031b608740523c5f7258a209762"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-closeup-river-vaults.png",
+          "hash": "sha256:f77b79b9c132ad6aec7203e52fb35d7daba12227b2dfa7a38cedbb4f9ef45235"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-closeup-niche-and-balcony.png",
+          "hash": "sha256:be8653ff7b7a300c9e19abdafaa4f9927f15a83f79ece403becd87765ddf063d"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-closeup-walkway.png",
+          "hash": "sha256:5dca2d02ea44183bf52bd8fbb6aed5a58e41c7cc0e828742eb21ff5febc7e977"
+        },
+        {
+          "path": ".artifacts/skopje-integration/shots/final-failure-city-crossing.png",
+          "hash": "sha256:e78c8c14dff6f80f75a3bdcd709949b9096d6c26d4f7066f4b96adc2639d1f88"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 54 resident / 208 wider original mapped buildings remain; no building footprint is replaced. Only the overlapping longitudinal bridge path and its directly connected end fragment are clipped. Nearby transverse riverbank paths, other bridges and unrelated road plans stay independent. Original source roads, every DEM sample, native water/shoreline behavior remain. Two connected path records receive deck/approach hints and supported ground faces. Failed load retains the original full crossing without inferred supports. Unload restores native content and releases all model/support geometry. Native captures use the actual client shadow-focus helper; fixture and engine hashes are pinned."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:63b52ecf8c00c0de7e149eb657fcde6136308ebb3356ed66d9a07779a5b305c0",
+      "sourceHash": "sha256:97b89aa20fe8483a18f2df8bb276ac65a904fcc9c5c11bf9333c712d99b8f27a",
+      "runtimeHash": "sha256:6b0fb2a62a6d2264a901c6ddd37066de31e3beec9986621800d105c7652e008a",
+      "files": {
+        "content/worldgen/source/places/sr/srr/stone_bridge_in_skopje/models/source.glb": "sha256:97b89aa20fe8483a18f2df8bb276ac65a904fcc9c5c11bf9333c712d99b8f27a",
+        "content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.glb": "sha256:6b0fb2a62a6d2264a901c6ddd37066de31e3beec9986621800d105c7652e008a",
+        ".artifacts/skopje-integration/data.json": "sha256:9b10ba16d85a977f5cfac42f997f09530ede0ca45f50cc65981f60cb246ea9a2",
+        ".artifacts/skopje-integration/site.ts": "sha256:9bbc54eb0cd860a00b78498a2d13274f1e64cca30bb4cc74af146045184b6fa6",
+        ".artifacts/skopje-integration/site.mjs": "sha256:5f68dc9776251f18bc7f6ad6eae23eefb41b408bdc9ccaa25754e855ea82495e",
+        "content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.skyline.glb": "sha256:89f4b5f4fea323264907d3cb0caae9b8257145685c4b9b351ead605e6f495288",
+        "content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.district.glb": "sha256:f9bbabc70efea5667d88f0f64a299ef174a4ae4717e366bfad5f75bb6dbb72d0",
+        "content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.street.glb": "sha256:e5473e04100a22a1dc2ee43c469f2c6ee1717fc5ceb64ed072ef7f42fb54295a",
+        "content/worldgen/assets/places/sr/srr/stone_bridge_in_skopje/model.closeup.glb": "sha256:e34b5d8cfd4cea17ed099acbb2abfc77b2660b093f61f78b77cf3fae60887ca9"
+      },
+      "engine": {
+        "packages/worldgen-earth/src/client/structure-geometry.ts": "sha256:9679860d40f1a9d25d6a4ae04d880ac3f118aa15123d80142376ef3e7c5d1ab4",
+        "packages/terrain/src/surface-bridges.ts": "sha256:a921e62846e7342809bad97b17470531e38ede838c1b2ca1123e038a35cbe811",
+        "packages/terrain/src/surface-client.ts": "sha256:2309d499139b4292ae6097937346395be5cfa0659ba8dd5ba74ca22012c123db",
+        "packages/client/src/three/shadow-focus.ts": "sha256:ff1b6d0dc914faf5ca592d9c7fa2e74132ad7cae65cc63c0c03e325545a49d09"
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "southwest-deck-join",
+              "point": [
+                -109.65,
+                0
+              ],
+              "roadHeight": 249.15382531416856,
+              "rawGround": 244.05765054712035
+            },
+            {
+              "name": "northeast-deck-join",
+              "point": [
+                109.65,
+                0
+              ],
+              "roadHeight": 249.17702155295478,
+              "rawGround": 246.61851404991563
+            },
+            {
+              "name": "southwest-approach",
+              "point": [
+                -111,
+                0
+              ],
+              "roadHeight": 248.9400683844035,
+              "rawGround": 244.10635565221128
+            },
+            {
+              "name": "northeast-approach",
+              "point": [
+                111,
+                0
+              ],
+              "roadHeight": 248.95010625715327,
+              "rawGround": 246.6466062751843
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184404943740,
+              "connections": [
+                {
+                  "point": [
+                    0.7015748603133278,
+                    0.3148724577922687
+                  ],
+                  "elevation": 249.2,
+                  "radius": 8.25509268155395
+                }
+              ]
+            },
+            {
+              "id": 35185736013280,
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "skyline",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -82.93065643310547,
+              241.5,
+              -76.26451110839844
+            ],
+            "max": [
+              82.9306640625,
+              258.04998779296875,
+              76.26449584960938
+            ]
+          },
+          "sourceBuildings": 54,
+          "remainingBuildings": 54,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 884,
+          "changedIndependentRoads": [
+            35185736013280
+          ],
+          "coveredBridgeIds": [
+            35184783167947
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    109.45894699994977,
+                    -0.20547867588126678
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    109.4589469998486,
+                    -0.20542886654424564
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.stone_bridge_in_skopje"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "southwest-deck-join",
+              "point": [
+                -109.65,
+                0
+              ],
+              "roadHeight": 249.15382531416856,
+              "rawGround": 244.05765054712035
+            },
+            {
+              "name": "northeast-deck-join",
+              "point": [
+                109.65,
+                0
+              ],
+              "roadHeight": 249.17702155295478,
+              "rawGround": 246.61851404991563
+            },
+            {
+              "name": "southwest-approach",
+              "point": [
+                -111,
+                0
+              ],
+              "roadHeight": 248.9400683844035,
+              "rawGround": 244.10635565221128
+            },
+            {
+              "name": "northeast-approach",
+              "point": [
+                111,
+                0
+              ],
+              "roadHeight": 248.95010625715327,
+              "rawGround": 246.6466062751843
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184404943740,
+              "connections": [
+                {
+                  "point": [
+                    0.7015748603133278,
+                    0.3148724577922687
+                  ],
+                  "elevation": 249.2,
+                  "radius": 8.25509268155395
+                }
+              ]
+            },
+            {
+              "id": 35185736013280,
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "district",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -83.04541778564453,
+              241.5,
+              -76.38993072509766
+            ],
+            "max": [
+              83.04541015625,
+              258.04998779296875,
+              76.38992309570312
+            ]
+          },
+          "sourceBuildings": 54,
+          "remainingBuildings": 54,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 884,
+          "changedIndependentRoads": [
+            35185736013280
+          ],
+          "coveredBridgeIds": [
+            35184783167947
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    109.45894699994977,
+                    -0.20547867588126678
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    109.4589469998486,
+                    -0.20542886654424564
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.clay_fired": 1,
+            "molen.worldgen.material.stone_travertine": 1,
+            "molen.worldgen.material.metal_painted": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.stone_bridge_in_skopje"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "southwest-deck-join",
+              "point": [
+                -109.65,
+                0
+              ],
+              "roadHeight": 249.15382531416856,
+              "rawGround": 244.05765054712035
+            },
+            {
+              "name": "northeast-deck-join",
+              "point": [
+                109.65,
+                0
+              ],
+              "roadHeight": 249.17702155295478,
+              "rawGround": 246.61851404991563
+            },
+            {
+              "name": "southwest-approach",
+              "point": [
+                -111,
+                0
+              ],
+              "roadHeight": 248.9400683844035,
+              "rawGround": 244.10635565221128
+            },
+            {
+              "name": "northeast-approach",
+              "point": [
+                111,
+                0
+              ],
+              "roadHeight": 248.95010625715327,
+              "rawGround": 246.6466062751843
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184404943740,
+              "connections": [
+                {
+                  "point": [
+                    0.7015748603133278,
+                    0.3148724577922687
+                  ],
+                  "elevation": 249.2,
+                  "radius": 8.25509268155395
+                }
+              ]
+            },
+            {
+              "id": 35185736013280,
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "street",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -83.04541778564453,
+              241.5,
+              -76.38993072509766
+            ],
+            "max": [
+              83.04541015625,
+              258.04998779296875,
+              76.38992309570312
+            ]
+          },
+          "sourceBuildings": 54,
+          "remainingBuildings": 54,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 884,
+          "changedIndependentRoads": [
+            35185736013280
+          ],
+          "coveredBridgeIds": [
+            35184783167947
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    109.45894699994977,
+                    -0.20547867588126678
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    109.4589469998486,
+                    -0.20542886654424564
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.clay_fired": 1,
+            "molen.worldgen.material.stone_travertine": 1,
+            "molen.worldgen.material.metal_painted": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.stone_bridge_in_skopje"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "southwest-deck-join",
+              "point": [
+                -109.65,
+                0
+              ],
+              "roadHeight": 249.15382531416856,
+              "rawGround": 244.05765054712035
+            },
+            {
+              "name": "northeast-deck-join",
+              "point": [
+                109.65,
+                0
+              ],
+              "roadHeight": 249.17702155295478,
+              "rawGround": 246.61851404991563
+            },
+            {
+              "name": "southwest-approach",
+              "point": [
+                -111,
+                0
+              ],
+              "roadHeight": 248.9400683844035,
+              "rawGround": 244.10635565221128
+            },
+            {
+              "name": "northeast-approach",
+              "point": [
+                111,
+                0
+              ],
+              "roadHeight": 248.95010625715327,
+              "rawGround": 246.6466062751843
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184404943740,
+              "connections": [
+                {
+                  "point": [
+                    0.7015748603133278,
+                    0.3148724577922687
+                  ],
+                  "elevation": 249.2,
+                  "radius": 8.25509268155395
+                }
+              ]
+            },
+            {
+              "id": 35185736013280,
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "closeup",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -83.04541778564453,
+              241.5,
+              -76.38993072509766
+            ],
+            "max": [
+              83.04541015625,
+              258.04998779296875,
+              76.38992309570312
+            ]
+          },
+          "sourceBuildings": 54,
+          "remainingBuildings": 54,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 884,
+          "changedIndependentRoads": [
+            35185736013280
+          ],
+          "coveredBridgeIds": [
+            35184783167947
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    109.45894699994977,
+                    -0.20547867588126678
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                }
+              ]
+            },
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    109.4589469998486,
+                    -0.20542886654424564
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.2981073966663098,
+                    0.684722111450974
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.7018926033336902,
+                    0.3152778885490261
+                  ],
+                  "elevation": 249.2,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.clay_fired": 1,
+            "molen.worldgen.material.stone_travertine": 1,
+            "molen.worldgen.material.metal_painted": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.stone_bridge_in_skopje"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "southwest-deck-join",
+              "point": [
+                -109.65,
+                0
+              ],
+              "roadHeight": 244.48766899484724,
+              "rawGround": 244.05765054712035
+            },
+            {
+              "name": "northeast-deck-join",
+              "point": [
+                109.65,
+                0
+              ],
+              "roadHeight": 247.04851999100242,
+              "rawGround": 246.61851404991563
+            },
+            {
+              "name": "southwest-approach",
+              "point": [
+                -111,
+                0
+              ],
+              "roadHeight": 244.53636104874806,
+              "rawGround": 244.10635565221128
+            },
+            {
+              "name": "northeast-approach",
+              "point": [
+                111,
+                0
+              ],
+              "roadHeight": 247.07660200622024,
+              "rawGround": 246.6466062751843
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "failure",
+          "modelLoaded": false,
+          "modelWorldY": null,
+          "modelBounds": null,
+          "sourceBuildings": 54,
+          "remainingBuildings": 54,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 884,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184783167947
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    -109.33390404443051,
+                    -0.6966344510424634
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184783167947,
+              "lines": [
+                [
+                  [
+                    109.47464904749614,
+                    -0.2054434271906942
+                  ],
+                  [
+                    102.25015006297909,
+                    -0.19874404099000742
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.stone_bridge_in_skopje"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "The 466,084-triangle detailed source master remains exact. Four separate runtime representations prioritize the full vaults, complete deck/parapets, mapped asymmetric cutwaters, recessed prayer niche and supported opposite balcony.",
+    "Runtime surfaces use shared low-frequency graphs. Dense individual wall/paving side faces are omitted to avoid automatic-decimation noise; closeup retains radial masonry, carved niche and rosette detail.",
+    "Eleven exposed/reconstructed openings are represented; historical total counts, buried ends, precise vault dimensions, channel-bottom datum and seasonal river stage are not a current engineering survey.",
+    "Native nearby statues, town buildings, shore landscaping and interiors remain outside the bridge asset. Physical device timings remain pending.",
+    "Approximate native fit approved at [21.433244271,41.9971125], heading 0.7410149177885357: +X northeast and +Z southeast/downstream. The exact-identity outline retains the asymmetric projections. Native Y=0 uses the retained 241.5 m historical channel-bottom reference, not current water stage; source deck endpoints are 249.2 m ASL. Both immediate mapped road joins meet deck within 0.1 m. At 1.54 m beyond either end, the supported native grade has begun its terrain blend. Standard DEM is about 2.6–5.1 m below the end deck at those samples. This inferred approach grading and seasonal river exposure are visualization, not surveyed historic banks or a current engineering datum."
+  ]
 }

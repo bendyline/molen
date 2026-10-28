@@ -131,3 +131,95 @@ export function clampBounds(bounds: TerrainSemanticBounds, lo = 0, hi = 1): Terr
     Math.min(hi, bounds[3]),
   ];
 }
+
+/**
+ * A triangulation's triangles merged into convex pieces (Hertel-Mehlhorn: each shared edge goes
+ * when the piece it leaves is still convex at both its ends), as cycles of point indices wound
+ * like the triangles. The pieces cover exactly the triangles' area, in at most four times the
+ * fewest convex pieces. Zero-area triangles are left out.
+ */
+export function convexTrianglePieces(
+  points: readonly (readonly [number, number])[],
+  triangles: readonly (readonly [number, number, number])[],
+): number[][] {
+  const turn = (a: number, b: number, c: number): number => {
+    const p = points[a] as readonly [number, number],
+      q = points[b] as readonly [number, number],
+      r = points[c] as readonly [number, number];
+    return (q[0] - p[0]) * (r[1] - q[1]) - (q[1] - p[1]) * (r[0] - q[0]);
+  };
+  const pieces: (number[] | undefined)[] = [];
+  let winding = 0;
+  for (const [a, b, c] of triangles) {
+    const area = turn(a, b, c);
+    if (area === 0) continue;
+    winding ||= Math.sign(area);
+    pieces.push([a, b, c]);
+  }
+  // Which piece each triangle now belongs to (union-find over merges).
+  const parent = pieces.map((_, i) => i);
+  const root = (i: number): number => {
+    let r = i;
+    while (parent[r] !== r) r = parent[r] as number;
+    while (parent[i] !== r) {
+      const next = parent[i] as number;
+      parent[i] = r;
+      i = next;
+    }
+    return r;
+  };
+  // Edges two triangles share, each once, in triangle order, as (a, b, first owner, second
+  // owner) runs in one flat list. String keys, and a new array for every merge tried, made a large
+  // river's merge twice as slow.
+  const count = points.length;
+  const owners = new Map<number, number>();
+  const shared: number[] = [];
+  for (const [t, piece] of pieces.entries())
+    for (let k = 0; k < 3; k++) {
+      const a = (piece as number[])[k] as number,
+        b = (piece as number[])[(k + 1) % 3] as number;
+      const key = a < b ? a * count + b : b * count + a;
+      const other = owners.get(key);
+      if (other === undefined) owners.set(key, t);
+      else shared.push(a, b, other, t);
+    }
+  const convexAt = (prev: number, at: number, next: number): boolean =>
+    turn(prev, at, next) * winding >= 0;
+  for (let s = 0; s < shared.length; s += 4) {
+    const a = shared[s] as number,
+      b = shared[s + 1] as number;
+    const i = root(shared[s + 2] as number),
+      j = root(shared[s + 3] as number);
+    if (i === j) continue;
+    const p = pieces[i] as number[],
+      q = pieces[j] as number[];
+    const m = p.length,
+      n = q.length;
+    // p runs u -> v along the edge, q runs v -> u (the same winding on both sides).
+    let at = -1;
+    for (let k = 0; k < m && at < 0; k++) {
+      const v = p[k],
+        w = p[(k + 1) % m];
+      if ((v === a && w === b) || (v === b && w === a)) at = k;
+    }
+    if (at < 0) continue;
+    const u = p[at] as number,
+      v = p[(at + 1) % m] as number;
+    let back = -1;
+    for (let k = 0; k < n && back < 0; k++) if (q[k] === v && q[(k + 1) % n] === u) back = k;
+    if (back < 0) continue;
+    // Checked before merging: in the merged piece, u goes on to q's corner after the edge and v
+    // comes from q's corner before it. q's other corners then go between u and v, in place.
+    if (
+      !convexAt(p[(at + m - 1) % m] as number, u, q[(back + 2) % n] as number) ||
+      !convexAt(q[(back + n - 1) % n] as number, v, p[(at + 2) % m] as number)
+    )
+      continue;
+    const between: number[] = [];
+    for (let k = 2; k < n; k++) between.push(q[(back + k) % n] as number);
+    p.splice(at + 1, 0, ...between);
+    pieces[j] = undefined;
+    parent[j] = i;
+  }
+  return pieces.filter((piece): piece is number[] => piece !== undefined);
+}

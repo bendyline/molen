@@ -1,0 +1,380 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "stucco",
+      "slot": "wall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "base": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof",
+      "roughness": 0.8,
+      "metallic": 0.1
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.25,
+      "metallic": 0.05
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      6.25140214036265,
+      32,
+      -101.0441486246456
+    ],
+    "lookAt": [
+      0,
+      3,
+      0
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-stable-carriage-courtyard",
+      "position": [
+        6.530498841525585,
+        16,
+        -67.80378001911717
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "carriage-door-stall-windows-hip-end",
+      "position": [
+        16.799323204572094,
+        8,
+        -41.506418056347925
+      ],
+      "lookAt": [
+        16.52616270252408,
+        3,
+        -20.294973425203146
+      ],
+      "fov": 48
+    },
+    {
+      "name": "stable-doors-plaster-and-thresholds",
+      "position": [
+        -28.281926174859713,
+        6,
+        -0.3642140027306855
+      ],
+      "lookAt": [
+        -15.68253429712858,
+        2,
+        9.698356459699022
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rear-plinth-roof-and-vents",
+      "position": [
+        -17.10890510689318,
+        18,
+        65.54605530497868
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/stable_carriage_shed_yasnaya_polyana/models/stable-carriage-shed-yasnaya-polyana-model.mjs",
+    "export": "buildStableSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStableDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "buildStableStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildStableCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "graph": "stucco",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.525639683008194,
+      54.074046087511164
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside courtyard control[0,-7] gives datum210.59747242081775m. Preserve every DEM sample, independent building, road and pond. The building occupies only its own footprint; thresholds use small supported aprons. No whole-yard ground cut, custom terrain or historic level claim. Inspected native carriage/stall thresholds, rear plinth, whole courtyard-facing building and roof vents. The approximate long-axis grade avoids an invented multi-storey foundation. Original ground remains throughout the courtyard; only this building footprint is cut. The source explicitly records the terrain adaptation and photo-led facade assignment.",
+    "terrainReference": {
+      "anchor": [
+        37.52556488107118,
+        54.07409112072588
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside courtyard control[0,-7] gives datum210.59747242081775m. Preserve every DEM sample, independent building, road and pond. The building occupies only its own footprint; thresholds use small supported aprons. No whole-yard ground cut, custom terrain or historic level claim."
+    },
+    "groundModelY": 0,
+    "elevationMode": "terrain-contact",
+    "mapIdentity": {
+      "maxDistance": 20
+    },
+    "maxDistance": 20,
+    "buildingCutout": {
+      "outline": [
+        [
+          -27.24131330812906,
+          20.234411905364194
+        ],
+        [
+          -20.934642703031667,
+          26.71646950408751
+        ],
+        [
+          27.241313308129058,
+          -20.234444831969736
+        ],
+        [
+          20.93464270303165,
+          -26.716436577481982
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -27.24131330812906,
+            20.234411905364194
+          ],
+          [
+            -20.934642703031667,
+            26.71646950408751
+          ],
+          [
+            27.241313308129058,
+            -20.234444831969736
+          ],
+          [
+            20.93464270303165,
+            -26.716436577481982
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.995,
+      "basis": "Inferred from two ordinary museum stable/courtyard photos, the museum visitor-map stable marker, and the separate long rectangular footprint southeast of the three already owned Volkonsky footprints. Retained PMTiles does not label this building by name; keep this inference explicit. Exact retained way167382250 supplies the67.28x9.04m footprint and native axes; local negativeZ faces the inferred Volkonsky courtyard. No other Volkonsky building is owned. Front/rear assignment, opening census, roof vents and heights are photo-led approximations."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -27.24131330812906,
+          20.234411905364194
+        ],
+        [
+          -20.934642703031667,
+          26.71646950408751
+        ],
+        [
+          27.241313308129058,
+          -20.234444831969736
+        ],
+        [
+          20.93464270303165,
+          -26.716436577481982
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -27.24131330812906,
+            20.234411905364194
+          ],
+          [
+            -20.934642703031667,
+            26.71646950408751
+          ],
+          [
+            27.241313308129058,
+            -20.234444831969736
+          ],
+          [
+            20.93464270303165,
+            -26.716436577481982
+          ]
+        ]
+      ],
+      "basis": "Only occupied stable footprint; original courtyard remains."
+    },
+    "notes": "Inferred from two ordinary museum stable/courtyard photos, the museum visitor-map stable marker, and the separate long rectangular footprint southeast of the three already owned Volkonsky footprints. Retained PMTiles does not label this building by name; keep this inference explicit. Exact retained way167382250 supplies the67.28x9.04m footprint and native axes; local negativeZ faces the inferred Volkonsky courtyard. No other Volkonsky building is owned. Front/rear assignment, opening census, roof vents and heights are photo-led approximations. One-story photo-led white plaster stable and carriage shed: wall3.05m above local floor, hipped green metal roof2.2m above eave, three ridge vents, four stable doors, wider3.7m carriage opening and high stall windows. Coarse native front-corner levels differ 3.296m over67.28m. This draft applies a 0.04899 long-axis grade to the floor/roof to fit retained terrain; this is an explicit terrain adaptation, not surveyed historical building geometry. Inspected native front/rear/threshold views retain the one-story silhouette and seat the plinth/thresholds. The mild long-axis floor/roof grade remains an approximation from coarse terrain, not surveyed historical construction. Retained Protomaps20261020 and standard Mapzen201x201/6m grid. Outside courtyard control[0,-7] gives datum210.59747242081775m. Preserve every DEM sample, independent building, road and pond. The building occupies only its own footprint; thresholds use small supported aprons. No whole-yard ground cut, custom terrain or historic level claim. Inspected native carriage/stall thresholds, rear plinth, whole courtyard-facing building and roof vents. The approximate long-axis grade avoids an invented multi-storey foundation. Original ground remains throughout the courtyard; only this building footprint is cut. The source explicitly records the terrain adaptation and photo-led facade assignment.",
+    "bounds": [
+      37.52520259950638,
+      54.07378608938223,
+      37.52607676651001,
+      54.07430608534431
+    ]
+  }
+}

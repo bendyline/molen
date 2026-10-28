@@ -1,5 +1,6 @@
 import type { VehicleSpec } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
+import { setBoostMode } from '../src/boost';
 import { installCharacterController } from '../src/character';
 import { Transform, type TransformData } from '../src/component';
 import { installKinematics } from '../src/kinematics';
@@ -74,6 +75,72 @@ function setup() {
   return w;
 }
 describe('mountable vehicle foundation', () => {
+  it('boosts forward and reverse travel fourfold at the same throttle, with ordinary steering and brakes', () => {
+    for (const throttle of [1, -1]) {
+      let normal = {
+        transform: { pos: [0, 0, 0], rot: [0, 0, 0, 1] } as TransformData,
+        state: initialVehicleState(),
+        impact: 0,
+      };
+      let boosted = structuredClone(normal);
+      for (let tick = 0; tick < 1800; tick++) {
+        const input = { throttle, steering: 0, brake: false };
+        normal = stepVehicle(normal.transform, normal.state, input, SEDAN, 1 / 60, flat);
+        boosted = stepVehicle(boosted.transform, boosted.state, input, SEDAN, 1 / 60, {
+          ...flat,
+          boostMode: true,
+        });
+      }
+      expect(boosted.state.speed / normal.state.speed).toBeCloseTo(4, 2);
+      expect(boosted.transform.pos[2] / normal.transform.pos[2]).toBeCloseTo(4, 2);
+      const steer = { throttle: 0, steering: 0.4, brake: false };
+      const turn = stepVehicle(boosted.transform, boosted.state, steer, SEDAN, 0.2, {
+        ...flat,
+        boostMode: true,
+      });
+      expect(Math.abs(turn.state.yaw)).toBeGreaterThan(0);
+      const off = stepVehicle(
+        boosted.transform,
+        boosted.state,
+        { ...steer, steering: 0 },
+        SEDAN,
+        1 / 60,
+        flat,
+      );
+      expect(off.state.boosted).toBeUndefined();
+      expect(off.state.speed).toBeCloseTo(normal.state.speed, 0);
+      for (let tick = 0; tick < 600; tick++)
+        boosted = stepVehicle(
+          boosted.transform,
+          boosted.state,
+          { throttle: 0, steering: 0, brake: true },
+          SEDAN,
+          1 / 60,
+          { ...flat, boostMode: true },
+        );
+      expect(boosted.state.speed).toBe(0);
+    }
+  });
+
+  it('keeps boosted collision and terrain checks less than half a meter apart', () => {
+    const t: TransformData = { pos: [0, 0, 0], rot: [0, 0, 0, 1] };
+    const state = { ...initialVehicleState(), speed: 40 };
+    const input = { throttle: 1, steering: 0, brake: false };
+    let last = 0;
+    const result = stepVehicle(t, state, input, SEDAN, 0.1, {
+      ...flat,
+      boostMode: true,
+      canOccupy: (p) => {
+        expect(Math.abs(p[2] - last)).toBeLessThan(0.51);
+        last = p[2];
+        return true;
+      },
+      groundHeight: (_x, z) => (z > 8 ? undefined : 0),
+    });
+    expect(result.state.waitingForTerrain).toBe(true);
+    expect(result.transform.pos[2]).toBeLessThan(8);
+    expect(result.state.speed).toBe(0);
+  });
   it('enforces reach, exclusive seats, and driver authority', () => {
     const w = setup();
     expect(driveVehicle(w, 'player', { throttle: 1, steering: 0, brake: false })).toBe(false);
@@ -219,11 +286,13 @@ describe('mountable vehicle foundation', () => {
     expect(unmountEntity(w, 'player', flat)).toBe(true);
     expect(w.get('car', VehicleInput)?.steering).toBe(0);
   });
-  it('replays and restores all durable driving and mount state', () => {
+  it.each([false, true])('restores driving, mounts and boost state (boost=%s)', (boosted) => {
     const a = setup();
+    setBoostMode(a, boosted);
     mountEntity(a, 'player', 'car');
     driveVehicle(a, 'player', { throttle: 1, steering: 0.35, brake: false });
     a.stepN(80);
+    expect(a.get('car', VehicleState)?.boosted ?? false).toBe(boosted);
     const checkpoint = takeKeyframe(a);
     const b = setup();
     applyKeyframeTo(b, checkpoint);

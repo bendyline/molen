@@ -1,4 +1,5 @@
-import type { JsonObject } from '@bendyline/molen-schema';
+import { boostSpeedMultiplier, type JsonObject } from '@bendyline/molen-schema';
+import { isBoostMode } from './boost';
 import { type ComponentType, defineComponent, Transform } from './component';
 import { dmath } from './dmath';
 import { KinematicBody } from './kinematics';
@@ -31,6 +32,8 @@ export const MoveIntent: ComponentType<MoveIntentData> =
   defineComponent<MoveIntentData>('moveIntent');
 
 export interface CharacterOptions {
+  /** Override the world's boost mode. Horizontal movement only; jumping keeps its normal height. */
+  boostMode?: boolean;
   /**
    * Terrain/ground height at a world XZ. Default: the world's registered ground field
    * (`installTerrain`, resolved lazily each tick so install order does not matter), else a
@@ -45,13 +48,14 @@ export function installCharacterController(world: World, opts: CharacterOptions 
     opts.groundHeight ?? ((x: number, z: number) => groundFieldOf(world)?.sampleHeight(x, z) ?? 0);
   world.addSystem(
     (w, ctx) => {
+      const travel = boostSpeedMultiplier(opts.boostMode ?? isBoostMode(w));
       for (const [id, t, ch] of w.query(Transform, Character).without(Mounted)) {
         const intent = w.get(id, MoveIntent);
         const dir = intent?.dir ?? [0, 0];
         // Planar movement (normalize so diagonal isn't faster).
         const len = dmath.hypot(dir[0], dir[1]) || 1;
-        const nx = (dir[0] / (len < 1 ? 1 : len)) * ch.speed * ctx.dt;
-        const nz = (dir[1] / (len < 1 ? 1 : len)) * ch.speed * ctx.dt;
+        const nx = (dir[0] / (len < 1 ? 1 : len)) * ch.speed * ctx.dt * travel;
+        const nz = (dir[1] / (len < 1 ? 1 : len)) * ch.speed * ctx.dt * travel;
         const x = t.pos[0] + nx;
         const z = t.pos[2] + nz;
 

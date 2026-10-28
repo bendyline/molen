@@ -22,7 +22,7 @@ Original authored geometry; public photographs and project dimensions are archit
 
 ## Authored geometry and materials
 
-865,090 triangles, 1,667,820 vertices, 7 surface groups; 70,426,616 source bytes. SHA-256: `sha256:69acad6855a376d2bd3bfc80f10191a7845484994e097ac04d5cc09587d00ea7`. Actual bounds: -108.000, -11.700, -120.400 to 101.400, 43.170, 232.000 m.
+850,986 triangles, 1,673,700 vertices, 7 surface groups; 70,469,048 source bytes. SHA-256: `sha256:f5f43c2e44279e562fe4c731476192c37ba628b82bd66cd5ad1cb0daf79efd89`. Actual bounds: -108.000, -11.700, -120.400 to 101.400, 43.170, 232.000 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_standing_seam` (2.5 × 3 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Center of the published roof envelope; +Z points southwest along the mapped pitch rollout route. Native Y0 is the public concourse; field Y−10.7 is a photo-reconstructed level below it."}.
 

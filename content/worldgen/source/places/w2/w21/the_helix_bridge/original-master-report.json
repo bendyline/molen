@@ -1,0 +1,22 @@
+{
+  "originalSourceHash": "sha256:f9d5a96f56863ea4a79e5309e7ccd8557b2c59b61f82f8fe7447c367fe31fedf",
+  "originalRuntimeHash": "sha256:764c3fa486dbbf97919d20b4fa05fc123dbe2741a1f3d5a7e9c1498e81038895",
+  "originalRecipe": "packages/worldgen/scripts/helix-bridge-model.mjs#buildHelix(default pod stations)",
+  "preservationCheck": {
+    "command": "node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=the_helix_bridge --check",
+    "exitCode": 0,
+    "triangles": 505124,
+    "bytes": 40086960
+  },
+  "correctedRecipe": {
+    "module": "packages/worldgen/scripts/helix-current-model.mjs",
+    "export": "buildHelixCurrent"
+  },
+  "newPodStations": [
+    -98.39139210410313,
+    -35.307010576147256,
+    29.844700818161044,
+    95.49431788170855
+  ],
+  "reason": "Projected original viewpoint coordinates onto the circular deck. Original detailed recipe remains byte-reproducible; current detailed/runtime recipes correct pod/pier stations and associated railing openings."
+}

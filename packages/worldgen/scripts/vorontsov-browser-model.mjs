@@ -4,7 +4,7 @@ import { beam, loft, normalFor, sphere as originalSphere } from './authored-stru
 import { buildVorontsov as master } from './lighthouse-blacksea-models.mjs';
 import { ring as originalRing, shell as originalShell } from './lighthouse-expansion-models.mjs';
 import { lathe as originalLathe, panel, piercedFacade, transformed } from './lighthouse-models.mjs';
-import { box, tube as originalTube, quad } from './structure-mesh.mjs';
+import { box, tube as originalTube, quad, tubePath } from './structure-mesh.mjs';
 
 function detail(out, mode) {
   const cap = mode === 'street' ? 24 : 8,
@@ -94,8 +94,7 @@ function detail(out, mode) {
       [x, 1.88, z],
       [x, 5.02, z],
     ];
-    for (let i = 1; i < points.length; i++)
-      tube(out, 'metal', points[i - 1], points[i], 0.24, blue, 24);
+    tubePath(out, 'metal', points, 0.24, blue, mode === 'street' ? 6 : 4);
     for (let i = 0; i < bendSegments; i++) {
       const a = (i * Math.PI) / (2 * bendSegments),
         b = ((i + 1) * Math.PI) / (2 * bendSegments);

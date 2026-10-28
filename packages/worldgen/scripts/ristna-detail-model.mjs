@@ -3,7 +3,7 @@ import earcut from 'earcut';
 import { normalFor, sphere } from './authored-structure-mesh.mjs';
 import { ring, shell } from './lighthouse-expansion-models.mjs';
 import { lathe, railRing, transformed } from './lighthouse-models.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2,
   red = [0.43, 0.075, 0.049],
@@ -88,7 +88,7 @@ export function buildRistnaDetail(out, resolution = 1) {
     sphere(out, 'metal', p, [r, r, r], color, 6, 3);
   }
   function line(out, ps, color = red, r = 0.012) {
-    for (let j = 1; j < ps.length; j++) tube(out, 'metal', ps[j - 1], ps[j], r, color, 6);
+    tubePath(out, 'metal', ps, r, color, Math.max(3, Math.round(6 * resolution)));
   }
   function seam(out, r, y0, y1, angle, color = red, width = 0.075) {
     const o = transformed(out, angle);

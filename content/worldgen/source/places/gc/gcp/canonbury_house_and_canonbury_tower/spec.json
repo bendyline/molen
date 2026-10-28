@@ -1,0 +1,409 @@
+{
+  "planId": "canonbury_house_and_canonbury_tower",
+  "id": "canonbury_house_and_canonbury_tower",
+  "assetId": "molen.worldgen.structure.canonbury_house_and_canonbury_tower",
+  "title": "Canonbury House and Canonbury Tower",
+  "wikidataId": "Q17552171",
+  "category": "historic-house-tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.09866605,
+    "latitude": 51.54423735
+  },
+  "size": [
+    18.310214519500732,
+    24.099999725818634,
+    17.659260749816895
+  ],
+  "actualBounds": {
+    "min": [
+      -7.691648960113525,
+      0.6470000147819519,
+      -9.069369316101074
+    ],
+    "max": [
+      10.618565559387207,
+      24.746999740600586,
+      8.58989143371582
+    ]
+  },
+  "visualBrief": "Whole native eight-control Canonbury Tower/attached lower house ranges: tall brick stair tower/stepped casements/offset north buttresses/four string-course stages/flat parapet/open roof rail/weather vane; plastered gabled west and cross-gabled south ranges, canted wooden window bay/intrinsic low porch/entry steps/two chimneys/short low hall-link. Published Cooke1827CC0 engraving and Dixon1880PD photograph plus primary listing text. Native whole plan retained; tower subdivision/heights/hidden details/current repairs bounded. Separate named house/school/gardens/pond excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:George_Cooke_-_Canonbury_House,_Islington_-_B1998.14.1195_-_Yale_Center_for_British_Art.jpg",
+    "https://commons.wikimedia.org/wiki/File:Canonbury_Tower_25_by_Henry_Dixon_1880.jpg"
+  ],
+  "stories": [
+    {
+      "id": "canonbury-house-and-canonbury-tower-wp",
+      "url": "https://qualla.com/canonbury-house-and-canonbury-tower/"
+    }
+  ],
+  "referenceInputHash": "e368d23db5694923f03f7655a365454f43091c6b28ccc5c87338519afa0eb36d",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcp/canonbury_house_and_canonbury_tower/models/canonbury-house-and-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/canonbury-house-and-tower-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "canonburyHouseAndTowerSkyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.37,
+        "metallic": 0.1
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.3
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "canonburyHouseAndTowerDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.1
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          }
+        }
+      },
+      "street": {
+        "export": "canonburyHouseAndTowerStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.1
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          }
+        }
+      },
+      "closeup": {
+        "export": "canonburyHouseAndTowerCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.1
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "plaster_lime",
+    "tile_flat",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "cameraYaw": -2.45,
+    "groundY": 0.647
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original field frozen before once-only street-side floor sample and all main heights/parts. Provider heights do not establish exact thresholds or foundation contact. Preserve this floor/mainsections/worldframe/originalfield thereafter; preview/replacement false.",
+    "anchor": [
+      -0.09866605,
+      51.54423735
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.10025493257146852,
+        51.54324920770751
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest provider-field datum before floors/mainsections/model geometry. Actual entry threshold and foundation contact remain unverified."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/230254103"
+    ],
+    "source": "https://www.openstreetmap.org/way/230254103",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:32f8de1e1841682092f0ec8bd481bd1e48825d5c549ae4d8a062ac0b3160ece2",
+    "notes": "Whole surviving tower with physically attached lower house/west/east/south ranges and intrinsic bays/porch/short low hall-link connector. Use actual eight native outer controls. Tall tower position/roof parts within envelope are explicit photographic/listing-text estimates. Separate modern named CanonburyHouse, school/KingEdwardHall, terraces, detached garden houses, vanished pond/gardens, site pad/fences and interiors excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Native whole eight-control physical tower/attached-ranges building way230254103. Tower subdivision, projecting bays/entrance steps and short intrinsic hall connector will be explicit photo/text-derived parts; no property rectangle or invented native tower subpolygon.",
+    "Whole surviving tower with physically attached lower house/west/east/south ranges and intrinsic bays/porch/short low hall-link connector. Use actual eight native outer controls. Tall tower position/roof parts within envelope are explicit photographic/listing-text estimates. Separate modern named CanonburyHouse, school/KingEdwardHall, terraces, detached garden houses, vanished pond/gardens, site pad/fences and interiors excluded.",
+    "Original field frozen before once-only street-side floor sample and all main heights/parts. Provider heights do not establish exact thresholds or foundation contact. Preserve this floor/mainsections/worldframe/originalfield thereafter; preview/replacement false.",
+    "Only exact published Cooke1827YaleCC0 engraving and Dixon1880public-domain photograph supply imagery. Primary HistoricEngland1280424 is used as technical text only. Current plaster/brick colors/roof partitions/hidden facades/window census/bay detail/alterations are original bounded estimates; no surveyed current fitout or exact restored ornament is claimed. Historical ivy/pond/fences/gardens/interiors and image pixels excluded.",
+    "All eight native exterior controls retained in physical foundation/house ranges at all levels. Tower subpart uses explicitly reconstructed northeast subdivision within native outline near independent mapped tower point. Canted bay, porch/stairs and short hall-link are intrinsic derived architecture; separate named modern house/school/former hall and detached garden houses are excluded.",
+    "Original native frame/256m129field/floor/mainsections fixed before geometry; no source-field replacement/fitting/flattening/reframe/reacquisition/raising. Exact threshold/foundation contact unverified, geographic preview/replacement false. Flat review ground and synthetic neighbors are fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-north-tower-and-attached-gabled-house",
+      "position": [
+        -37.85229692231328,
+        20.947,
+        -23.752970713260957
+      ],
+      "lookAt": [
+        0,
+        9.947,
+        0
+      ]
+    },
+    {
+      "name": "whole-native-assembly-roof-plan-and-short-intrinsic-link",
+      "position": [
+        0.0299520252716116,
+        55.947,
+        0.09540899424125977
+      ],
+      "lookAt": [
+        0,
+        4.947,
+        0
+      ]
+    },
+    {
+      "name": "stepped-tower-casements-offset-buttresses-roof-rail-and-vane",
+      "position": [
+        -0.9204350895432158,
+        15.947,
+        -19.625310169419937
+      ],
+      "lookAt": [
+        3.572368701198524,
+        13.947,
+        -5.313961033230971
+      ]
+    },
+    {
+      "name": "canted-window-bay-and-west-house-gable",
+      "position": [
+        -17.49501354753774,
+        8.947,
+        -12.325765735704653
+      ],
+      "lookAt": [
+        -2.4516912059931775,
+        5.947,
+        -4.4709294593468725
+      ]
+    },
+    {
+      "name": "whole-south-cross-gabled-range-low-porch-and-chimneys",
+      "position": [
+        -14.811111794567214,
+        16.947,
+        32.94891451032692
+      ],
+      "lookAt": [
+        -1.6086596321090794,
+        6.947,
+        1.5531304478448296
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8354,
+    "vertices": 25062,
+    "materials": 6,
+    "bytes": 1194400,
+    "sha256": "sha256:55081c49bd43d675a3f00c6e1bee89045bab732fe3e5c2e7fc189f9c4e74174e"
+  }
+}

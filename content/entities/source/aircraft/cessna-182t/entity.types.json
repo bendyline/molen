@@ -130,7 +130,21 @@
                     "axis": "y",
                     "scale": 0.35
                   }
-                ]
+                ],
+                "sources": {
+                  "elevator": {
+                    "component": "aircraftState",
+                    "path": [
+                      "elevator"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -6133,7 +6147,7 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.020159080682255782,
+              "profileDrag": 0.018588959617914645,
               "inducedDrag": 0.05222955944566145,
               "gearDrag": 0.004,
               "flapDrag": 0.075,
@@ -6147,13 +6161,13 @@
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
               "groundTrackRate": 12,
-              "fixedGear": true,
               "groundEffect": true,
               "criticalMach": 0.62,
               "waveDrag": 0.22,
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 89.51333333333334,
-              "flapLimitSpeed": 45
+              "flapLimitSpeed": 45,
+              "fixedGear": true
             },
             "engines": [
               {
@@ -6175,6 +6189,10 @@
                 "maxThrust": 4750,
                 "minPropellerSpeed": 25,
                 "propellerEfficiency": 0.85,
+                "mixtureControl": true,
+                "propellerControl": {
+                  "minRpm": 0.6
+                },
                 "propulsion": "propeller",
                 "densityExponent": 1,
                 "ratedDensityRatio": 1
@@ -6212,7 +6230,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

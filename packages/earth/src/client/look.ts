@@ -18,7 +18,7 @@ export const EARTH_SKY_PALETTE: Required<SkyPalette> = {
   nightZenith: '#020510',
   nightHorizon: '#121c32',
   ground: '#9a8f70',
-  sun: '#fff1d8',
+  sun: '#fff8f0',
   moon: '#dae5f5',
 };
 
@@ -35,16 +35,31 @@ export const EARTH_SKY_DOME: { brightness: number } = { brightness: 0.52 };
  * swallowing the shaded side of a street seen against the sun. The fill is cool but far less saturated than the zenith
  * it comes from, as real skylight is: lit by the dome colors themselves, a roof turned from the
  * sun rendered navy whatever its palette.
+ *
+ * The balance is authored at the default 26° sun (EARTH_SUN_ELEVATION). A higher sun puts up to
+ * 1.6 times the light on level ground, so above it the rig adapts as a camera's exposure would:
+ * aerial comparisons with midday orthophotos found flat ground rendering half again too bright.
  */
 export const EARTH_LIGHTING: {
   sunIntensity: number;
   dayAmbient: number;
   nightAmbient: number;
   skyLightSaturation: number;
-} = { sunIntensity: 4.4, dayAmbient: 2, nightAmbient: 0.05, skyLightSaturation: 0.18 };
+  referenceElevation: number;
+} = {
+  sunIntensity: 6.1,
+  dayAmbient: 1.25,
+  nightAmbient: 0.05,
+  skyLightSaturation: 0.3,
+  referenceElevation: 26,
+};
 
-/** Open water: a clear teal-blue that stays blue under the sky's reflection. */
-export const EARTH_WATER_COLOR = '#286d83';
+/**
+ * Open water: a deep teal-blue that stays blue under the sky's reflection. Water absorbs most of
+ * the light entering it, so seen from above it is far darker than land; the earlier, lighter teal
+ * read as a bright painted sheet beside matched orthophotos.
+ */
+export const EARTH_WATER_COLOR = '#1b4450';
 
 /**
  * ACES filmic. Khronos PBR Neutral keeps base colors and saturation below the highlights, but its
@@ -54,6 +69,13 @@ export const EARTH_WATER_COLOR = '#286d83';
  */
 export const EARTH_TONE_MAPPING: 'aces' = 'aces';
 export const EARTH_EXPOSURE = 1.05;
+
+/** Artificial lights fade in through civil dusk: off at +2°, fully on at -6°. */
+export function earthNightFactor(sunAltitudeDeg: number): number {
+  if (!Number.isFinite(sunAltitudeDeg)) throw new Error('Sun altitude must be finite');
+  const t = Math.max(0, Math.min(1, (2 - sunAltitudeDeg) / 8));
+  return t * t * (3 - 2 * t);
+}
 
 /**
  * Layer meshes taller than this many meters cast sun shadows: buildings, trees and landmarks.
@@ -114,13 +136,16 @@ export function earthShadowFocus(
   const [x, y, z] = position;
   const height = Math.max(0, y - ground);
   // A low flying camera sees mostly what is near it, so it gets a tighter, sharper square (about
-  // 5 cm texels at eye level on a 4096 map), widening to 300 m by 25 m up.
+  // 5 cm texels at eye level on a 4096 map), widening to 300 m by 25 m up. Above
+  // rooftop height cover four times the altitude: the previous 2x footprint ended in the
+  // middle of an aircraft's view, leaving a conspicuous boundary across sunlit neighborhoods.
+  // Keep the same map resolution; the broader aerial coverage trades texel detail for range.
   const radius =
     mode === 'walk'
       ? 160
       : mode === 'drive'
         ? 280
-        : Math.min(2_500, Math.max(height * 2, Math.min(300, 100 + height * 8)));
+        : Math.min(5_000, Math.max(height * 4, Math.min(300, 100 + height * 8)));
   const forward = Math.hypot(direction[0], direction[2]) || 1;
   const reach = radius * 0.5;
   return {

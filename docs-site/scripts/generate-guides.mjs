@@ -9,6 +9,7 @@
 // Output: docs-site/guide/*.md, docs-site/schemas/*.md, docs-site/public/llms.txt.
 import { copyFile, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
+import { generateLiveryGallery, stageLiveryPreviews } from './generate-livery-gallery.mjs';
 import { escapeProse, repoRoot, siteDir, yamlString } from './packages.mjs';
 
 const docsSrc = join(repoRoot, 'docs-src');
@@ -29,6 +30,8 @@ function titleOf(markdown, fallback) {
 function rewriteLinks(markdown) {
   return (
     markdown
+      // Public documentation media stays outside npm; use the staged copy in the site.
+      .replaceAll('https://molen.dev/guide-media/', '/guide-media/')
       // Bundle-internal, from either directory.
       .replace(
         /\]\((?:\.\.\/)?guide\/([\w.-]+)\.md(#[\w-]*)?\)/g,
@@ -59,9 +62,10 @@ async function mirror(fromDir, toDir, { indexFrom } = {}) {
     const slug = file === indexFrom ? 'index' : basename(file, '.md');
     const title = titleOf(raw, slug);
     const body = escapeProse(rewriteLinks(raw));
+    const outline = ['livery-catalog', 'livery-gallery'].includes(slug) ? 'outline: 2\n' : '';
     await writeFile(
       join(toDir, `${slug}.md`),
-      `---\ntitle: ${yamlString(title)}\n---\n\n${body.trimStart()}`,
+      `---\ntitle: ${yamlString(title)}\n${outline}---\n\n${body.trimStart()}`,
     );
     pages.push({ slug, title, file });
   }
@@ -93,9 +97,15 @@ const GUIDE_ORDER = [
   'building-interiors',
   'figures',
   'vehicles',
+  'boost-mode',
+  'boats',
   'aircraft',
   'vehicle-interiors',
+  'liveries',
+  'livery-gallery',
+  'livery-catalog',
   'ambient-life',
+  'regional-fleets',
   'dioramas',
   'materials',
   'typography',
@@ -105,6 +115,7 @@ const GUIDE_ORDER = [
   'medium-fi',
   'rendering-backends',
   'sky',
+  'night-lighting',
   'weather',
   'audio',
   'graphics-performance',
@@ -114,6 +125,8 @@ const GUIDE_ORDER = [
 ];
 
 export async function generateGuides() {
+  await generateLiveryGallery({ check: true });
+  await stageLiveryPreviews();
   const guides = await mirror(join(docsSrc, 'guide'), join(siteDir, 'guide'));
   const schemas = await mirror(join(docsSrc, 'schemas'), join(siteDir, 'schemas'), {
     indexFrom: 'README.md',

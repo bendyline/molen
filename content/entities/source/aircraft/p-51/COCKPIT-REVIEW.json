@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-27",
+  "assetId": "molen.entities.aircraft.p51d",
+  "request": "Close both lower cockpit sides, then reflect the reference photograph with a more A-shaped dashboard/support, before-takeoff/before-landing card and warning tag.",
+  "reference": {
+    "file": "codex-clipboard-abcd3b2b-8dc1-4431-ac28-450161305d4f.png",
+    "provenance": "User-supplied photograph; author and airframe not provided. Inspected for green sheet-metal walls, rails, black footboards, trim wheels and right-side equipment, plus the tapered dashboard, silver support and two placards. Checklist and warning wording transcribed visually. No photograph pixels embedded.",
+    "calibration": "Qualitative comparison; no surveyed dimensions or matched-camera overlay. Existing airframe dimensions, pilot eye and gauge positions retained. Card spacing fits below the forward eye ray; sight housing lowered behind the card."
+  },
+  "diagnosis": "The existing fuselage-interior mesh supplied inward normals but outward triangle winding. Backface culling hid it from the pilot. The wing crown also intersected the lower cockpit floor.",
+  "changes": [
+    "Reverse lining winding to match the inward normals.",
+    "Fit green side panels, ribs, canopy channels and fasteners inside the fuselage.",
+    "Add a forward footwell bulkhead, left trim wheels and right electrical/oxygen fittings.",
+    "Raise and fit the floor and dark footboards above the wing crown; raise the fuel-selector plate clear of them.",
+    "Batch the new static sidewall fittings by material while retaining existing animated and interactive controls.",
+    "Narrow the instrument-panel crown and replace the shallow black hoop with a silver support with long sloping legs.",
+    "Add a mounted two-column BEFORE TAKE OFF / BEFORE LANDING checklist and cream WARNING placard above the instruments."
+  ],
+  "sourceHash": "sha256:32c47fe50aa36a82c0b3ccc73c04b25e38dfd3d54c2e5518b57429787d65a202",
+  "runtimeHash": "sha256:d8fa8cd92b6ea9dc3a1c46be1dd1c181f80b369ddf71a681954298eb9784a5b3",
+  "stats": {
+    "triangles": 56978,
+    "vertices": 52419,
+    "meshes": 368,
+    "primitives": 368,
+    "materials": 43,
+    "textures": 22,
+    "animations": 0,
+    "sizeBytes": 2286972
+  },
+  "method": "Deterministic three.js geometry; reuse the existing procedural cockpit finishes and period font atlas. No image-generation prompt and no new texture library.",
+  "validation": {
+    "checks": [
+      "16 aircraft-shell checks pass for source/imported enclosure, inward normals, floor clearance, exterior skin and forward glazing.",
+      "24 vehicle-interiors checks pass.",
+      "55 cockpit-surfaces checks pass.",
+      "2 aircraft-interactions checks pass across source/runtime aircraft, including physical-control reachability.",
+      "Asset inspect --verify passes; review scene validates and simulates for 30 ticks.",
+      "A second deterministic generator run matches the source SHA-256 byte-for-byte.",
+      "Biome and git diff --check pass on the changed source and tests."
+    ],
+    "commands": [
+      "node --import=./packages/worldgen/scripts/install-deterministic-math.mjs content/entities/source/aircraft/p-51/models/generate.mjs",
+      "node packages/tooling/dist/cli.mjs asset import content/entities/source/aircraft/p-51/models/source.glb --id molen.entities.aircraft.p51d --project content/entities/project.json --force",
+      "node packages/tooling/dist/cli.mjs asset inspect molen.entities.aircraft.p51d --project content/entities/project.json --verify",
+      "node node_modules/vitest/vitest.mjs run test/aircraft-shell.test.mjs test/vehicle-interiors.test.mjs test/cockpit-surfaces.test.mjs test/aircraft-interactions.test.mjs --no-file-parallelism (from packages/entities)",
+      "node .artifacts/p51-cockpit/capture.mjs panel pilot,cabin",
+      "node packages/tooling/dist/cli.mjs validate .artifacts/p51-cockpit/panel/scene.json --project content/entities/project.json",
+      "node packages/tooling/dist/cli.mjs sim run .artifacts/p51-cockpit/panel/scene.json --project content/entities/project.json --ticks 30 --hash"
+    ],
+    "environment": "Node 24.21.0, existing package builds. Direct Vitest entry point used because Corepack pnpm download was unavailable; Chromium captures used PLAYWRIGHT_BROWSERS_PATH and local loopback access."
+  },
+  "visualReview": {
+    "decision": "Accepted: the dashboard/support now has a narrow crown and sloping legs; both checklist columns and the warning are visible above the gauges. The lower cockpit remains enclosed, controls remain visible and the forward visibility check passes.",
+    "views": [
+      {
+        "view": "pilot",
+        "camera": {
+          "position": [
+            0,
+            2.28,
+            0.05
+          ],
+          "lookAt": [
+            0,
+            2.1,
+            1.05
+          ],
+          "fov": 70
+        },
+        "path": ".artifacts/p51-cockpit/panel/pilot.png",
+        "sha256": "sha256:fd367649f3fac9df02efc63aaf542fddb92bcabb93b30426c628871c6f0798fc",
+        "renderStats": {
+          "entitiesRendered": 4,
+          "drawCalls": 266,
+          "triangles": 58184
+        }
+      },
+      {
+        "view": "cabin",
+        "camera": {
+          "position": [
+            0,
+            2.52,
+            -0.3
+          ],
+          "lookAt": [
+            0,
+            1.55,
+            0.5
+          ],
+          "fov": 80
+        },
+        "path": ".artifacts/p51-cockpit/panel/cabin.png",
+        "sha256": "sha256:dced7675ef808a944ff29f4586fb9afbc60140bcdfb5dd3b2c6a2e85229372e2",
+        "renderStats": {
+          "entitiesRendered": 4,
+          "drawCalls": 342,
+          "triangles": 64396
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Reference-informed medium-fi approximation, not a serial-specific restoration or exact cockpit replica.",
+    "The new trim wheels, oxygen hose and electrical fittings are visual details; existing flight-control bindings remain functional.",
+    "Targeted model review only; full engine CI and aggregate asset rebuild deferred to the batch milestone."
+  ]
+}

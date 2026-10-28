@@ -163,8 +163,8 @@ export function buildATR72Cockpit(root, m) {
         true,
         true,
       );
-      d.text('TAS', [x + 0.09, yy + 0.128, z - 0.013], 0.0045, Math.PI, ink);
-      d.text('GEO FT', [x - 0.086, yy + 0.128, z - 0.013], 0.0045, Math.PI, ink);
+      d.text('TAS', [x + 0.09, yy + 0.128, z - 0.013], 0.0045, Math.PI, ink, 'display');
+      d.text('GEO FT', [x - 0.086, yy + 0.128, z - 0.013], 0.0045, Math.PI, ink, 'display');
       // Fixed tape ticks bracket live digits; no fabricated IAS, target bugs or flight director.
       for (const side of [-1, 1])
         for (let j = -3; j <= 3; j++)
@@ -193,7 +193,7 @@ export function buildATR72Cockpit(root, m) {
         responseSeconds: 0.15,
       });
       ins.available(`PFD-${i}-heading`, 'trueHeading', rose.name);
-      d.text('TRUE', [x, yy - 0.131, z - 0.015], 0.0045, Math.PI, ink);
+      d.text('TRUE', [x, yy - 0.131, z - 0.015], 0.0045, Math.PI, ink, 'display');
       ins.dial(
         `PFD-${i}-VSI`,
         [x - 0.09, yy - 0.058, z - 0.012],
@@ -223,9 +223,9 @@ export function buildATR72Cockpit(root, m) {
             [0, 50, 100],
             'RPM %',
           );
-        d.text('TQ --  ITT --', [x, yy + 0.115, z - 0.013], 0.008, Math.PI, ink);
-        d.text('NH --  FUEL --', [x, yy - 0.024, z - 0.013], 0.008, Math.PI, ink);
-        d.text('OIL --', [x, yy - 0.046, z - 0.013], 0.008, Math.PI, ink);
+        d.text('TQ --  ITT --', [x, yy + 0.115, z - 0.013], 0.008, Math.PI, ink, 'display');
+        d.text('NH --  FUEL --', [x, yy - 0.024, z - 0.013], 0.008, Math.PI, ink, 'display');
+        d.text('OIL --', [x, yy - 0.046, z - 0.013], 0.008, Math.PI, ink, 'display');
         ins.dial(
           'flap-indicator',
           [x, yy - 0.095, z - 0.014],
@@ -242,8 +242,8 @@ export function buildATR72Cockpit(root, m) {
         );
       } else {
         d.text(i === 1 ? 'NAV --' : 'SYS --', [x, yy + 0.07, z - 0.013], 0.014, Math.PI, ink);
-        d.text('NO DATA', [x, yy + 0.025, z - 0.013], 0.008, Math.PI, ink);
-        d.text('COM --  NAV --', [x, yy - 0.09, z - 0.013], 0.007, Math.PI, ink);
+        d.text('NO DATA', [x, yy + 0.025, z - 0.013], 0.008, Math.PI, ink, 'display');
+        d.text('COM --  NAV --', [x, yy - 0.09, z - 0.013], 0.007, Math.PI, ink, 'display');
       }
     }
   }
@@ -412,7 +412,7 @@ export function buildATR72Cockpit(root, m) {
   beveledBox(fd, [0.66, 0.35, 0.1], [0, 0, 0], face);
   for (const side of [-1, 1]) {
     fd.box([0.22, 0.13, 0.012], [side * 0.215, 0.07, -0.056], black);
-    fd.text('FMS DATA --', [side * 0.215, 0.08, -0.064], 0.01, Math.PI, ink);
+    fd.text('FMS DATA --', [side * 0.215, 0.08, -0.064], 0.01, Math.PI, ink, 'display');
     for (let r = 0; r < 5; r++)
       for (let c = 0; c < 7; c++)
         fd.box(
@@ -428,7 +428,7 @@ export function buildATR72Cockpit(root, m) {
       );
   }
   fd.box([0.17, 0.08, 0.012], [0, 0.08, -0.057], black);
-  fd.text('RADAR --', [0, 0.08, -0.064], 0.01, Math.PI, ink);
+  fd.text('RADAR --', [0, 0.08, -0.064], 0.01, Math.PI, ink, 'display');
   fd.finish();
   const ped = group(cabin, 'ATR72-pedestal', [0, 1.99, 10.55]);
   ped.rotation.x = Math.PI / 2;

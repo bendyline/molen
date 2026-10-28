@@ -1,26 +1,35 @@
-# Pivnichnyi Bridge — unfinished authoring draft
+# Pivnichnyi Bridge
 
-Work was stopped at the user's request to close the current creation round.
+![Molen preview](preview.png)
 
-**No source GLB, runtime asset, placement approval or visual approval exists for this draft. It does not count as an authored or completed candidate.**
+Kyiv’s asymmetric Dnipro crossing with an open A pylon, three tiers of individual stay ropes in two planes, eight spans, six circularly pierced wall piers, twin steel box girders, eight road lanes, narrow sidewalks, crescent lamps, trolley wires and current Ukrainian bridge-name plates.
 
-Preserved work:
+## Evidence
 
-- `map-frame.json` and `mapped-features.json`: current OpenStreetMap road extent, directed axis and tower-leg location.
-- `packages/worldgen/scripts/pivnichnyi-bridge-model.mjs`: draft original mesh authoring code, excluded from the production bridge generator until validation and review are complete.
-- Research artifacts in `.artifacts/pivnichnyi-research`: primary2018/2020 engineering publications, public photograph review screenshots and map request. These are working evidence, not an asset dependency.
+- [Primary reference](https://urdisc.com.ua/media/21-22%272018.pdf)
+- [Primary reference](https://urdisc.com.ua/media/Shymanovsky_Narisi_pozaklasnih_mostiv_2020.pdf)
+- [Primary reference](https://guide.kyivcity.gov.ua/places/pivnichnyy-mist)
+- [Primary reference](https://desn.kyivcity.gov.ua/news/pivnichniy-mist-otrimav-imennu-tablichku)
+- [Primary reference](https://commons.wikimedia.org/wiki/Category:Pivnichnyi_Bridge)
+- [Primary reference](https://www.openstreetmap.org/way/227851465)
 
-## Findings to carry forward
+Published dimensions and reconstruction assumptions are separated in spec.json. Source photos were consulted; no photos or third-party geometry are embedded. Map plan attribution: © OpenStreetMap contributors, ODbL-1.0.
 
-The [Ukrainian steel-construction institute's2018 paper](https://urdisc.com.ua/media/21-22%272018.pdf), pages20–22/figure18, specifies eight structural spans, west to east:42+63+63+63+63.65+63.65+300+84.51=742.81m. The mapped deck includes additional approaches, totaling789.95m; the816m nominal total is a separate extent. The [2020 monograph](https://urdisc.com.ua/media/Shymanovsky_Narisi_pozaklasnih_mostiv_2020.pdf), section1.9, repeats the structural account.
+## Source
 
-Distinctive geometry includes six9m circularly pierced wall piers, two steel box girders, one open A pylon, three cable tiers in two planes, individual rope bundles, eight lanes, crescent light arms, trolley wires and narrow sidewalks. The paper places the A opening's crown53m above the road. The city's119m pylon height and the institute's125m height conflict and require datum/scope reconciliation. Provisional native heights are not geographic evidence.
+1775760 triangles; 151461856 bytes; 5 material groups. SHA256: sha256:e670b15e93b5622fff5731103321d8648a98781350c964aacbec27028b347355.
 
-Direct2019 photographs show the stripped summit shield rim and exposed mounting frame. The complete historical copper emblem is unsuitable for the current model. The district's [2020 notice](https://desn.kyivcity.gov.ua/news/pivnichniy-mist-otrimav-imennu-tablichku) documents replacement bridge-name plates. A photograph uploaded under a2025 filename was actually taken in2021; retain EXIF/description dates when choosing references. The separate Desenka bridge appears in some category photographs and must not be confused with this crossing.
+Shared surfaces (concrete_plain, metal_painted, metal_copper) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
-## Before promotion
+Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=pivnichnyi_bridge; append --check to verify. Import and capture through the standard structure-catalog scripts. Geometry validation does not substitute for current-frame visual review.
 
-1. Validate the draft mesh, including winding, concave extrusion caps, cable galleries and thin members after Float32 conversion.
-2. Reconcile pylon elevations and both road approaches with independent terrain data.
-3. Generate and import through the standard pipeline, then inspect every portable and shared-material capture.
-4. Add reviewed metadata and current-hash QA; only then add the study to the production bridge generator.
+## Reconstruction limits
+
+- Provisional vertical datum and convex road profile require independent terrain and approach review.
+- Published816m nominal extent and119/125m pylon heights have unresolved scope/datum differences, preserved in spec.json.
+- Pylon cross sections, visible connection details, individual rope diameters and superficial wear are original photographic reconstructions, not fabrication geometry.
+- The separate Desenka bridge and western overpass are outside this asset.
+- Ordinary photographs guide the current exterior. Historical engineering notes remain retained inputs without new bespoke research. No newly surveyed or contemporaneous2026 damage/traffic state is claimed.
+- Browser models aggregate the detailed individual ropes and omit subpixel bolts, tiny cast joints and lettering at lower levels. Physical ordinary-laptop and phone/tablet measurements remain pending.
+- Native water is sourceY6.72m rather than the initial6m drafting reference. The source119m concrete/126m mast values and historical119/125m published heights retain their original datum/scope uncertainty. Native approach widths, steep coarse grades and surrounding buildings remain procedural approximations.
+- The map encodes the pylon as two90m building parts. Their exact footprints are explicitly replaced by the authored concrete pylon; nearby independent buildings are retained. Coarse shore elevations can obscure buried lower foundations.

@@ -2,7 +2,15 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, loft, normalFor, radialRing, sphere, torus } from './authored-structure-mesh.mjs';
+import {
+  beam,
+  beamPath,
+  loft,
+  normalFor,
+  radialRing,
+  sphere,
+  torus,
+} from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 
 const plan = JSON.parse(
@@ -437,8 +445,7 @@ function dome(o, d) {
   ];
   for (const xx of [-0.28, 0.28]) {
     const pts = Array.from({ length: m + 1 }, (_, j) => P((j * Math.PI * 0.5) / m, xx, 0.035));
-    for (let j = 1; j < pts.length; j++)
-      beam(o, 'metal', pts[j - 1], pts[j], d === 1 ? 0.055 : 0.04, 0.045, C.metal);
+    beamPath(o, 'metal', pts, d === 1 ? 0.055 : 0.04, 0.045, C.metal);
   }
   if (d >= 2) {
     for (let j = 0; j < m; j++)
@@ -463,8 +470,7 @@ function dome(o, d) {
             (r + 0.018) * Math.cos(t) * Math.cos(a),
           ];
         });
-      for (let j = 1; j < pts.length; j++)
-        beam(o, 'metal', pts[j - 1], pts[j], 0.014, 0.017, C.metal);
+      beamPath(o, 'metal', pts, 0.014, 0.017, C.metal);
     }
     torus(o, 'metal', [0, 13.96, -0.08], 0.15, 0.018, C.metal, d === 3 ? 20 : 12, 4);
     beam(o, 'metal', [-0.36, 13.91, 0], [0.45, 13.91, 0], 0.025, 0.025, C.metal);
@@ -495,7 +501,7 @@ function benchmark(o, d) {
         0.12,
       ),
     );
-    for (let j = 1; j < pts.length; j++) beam(o, 'trim', pts[j - 1], pts[j], 0.07, 0.1, C.trim);
+    beamPath(o, 'trim', pts, 0.07, 0.1, C.trim);
     sphere(o, 'trim', f.P(u, 1.38, 0.12), [0.22, 0.22, 0.06], C.trim, d === 3 ? 16 : 10, 6);
     for (let i = 0; i < 10; i++) {
       const a = (i * tau) / 10;

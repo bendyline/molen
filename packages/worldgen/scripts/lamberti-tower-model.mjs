@@ -2,7 +2,7 @@
 
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { column, facade, face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
@@ -146,8 +146,7 @@ function shield(out, x, y, z, scale = 1) {
     [-0.36, -0.03],
   ].map(([a, b]) => [x + a * scale, y + b * scale, z]);
   for (let i = 1; i < p.length - 1; i++) triangle(out, 'marble', [p[0], p[i], p[i + 1]], white);
-  for (let i = 0; i < p.length; i++)
-    beam(out, 'marble', p[i], p[(i + 1) % p.length], 0.045, 0.045, tuff);
+  beamPath(out, 'marble', p.slice(0, p.length), 0.045, 0.045, tuff, true);
 }
 function clock(out) {
   const cy = 47.7,

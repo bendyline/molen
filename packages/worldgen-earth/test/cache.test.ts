@@ -2,7 +2,7 @@ import { emptyWorldgenStats } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
 import { createWorldgenTileCache, worldgenTileCacheKey } from '../src/client/cache';
 import { withWorldgenTileCache } from '../src/client/generators';
-import type { WorldgenGenerator } from '../src/client/worker-bridge';
+import { tileHeightGrid, type WorldgenGenerator } from '../src/client/worker-bridge';
 import type { WorldgenTileOutput } from '../src/kernel/tile-generate';
 
 function output(bytes: number): WorldgenTileOutput {
@@ -249,5 +249,75 @@ describe('worldgen tile cache', () => {
     expect(calls).toBe(1);
     expect(second).toBe(first);
     expect(cache.hits).toBe(1);
+  });
+
+  it('prepares only what the cache cannot serve', async () => {
+    const prepared: number[] = [];
+    const inner: WorldgenGenerator = {
+      prepare: (request) => {
+        prepared.push(request.geom.x);
+      },
+      generate: async () => output(10),
+      dispose: () => {},
+    };
+    const generator = withWorldgenTileCache(
+      inner,
+      createWorldgenTileCache(),
+      (request) => `${request.geom.x}`,
+    );
+    const request = (x: number) => ({
+      tile: { landcover: [], buildings: [], transportation: [], water: [] },
+      geom: {
+        level: 1,
+        x,
+        z: 1,
+        originX: 0,
+        originZ: 0,
+        size: 1,
+        metersPerUnit: 1,
+        levelBelowMax: 0,
+      },
+      ground: {
+        sampleHeight: () => 0,
+        slopeAt: () => 0,
+        normalAt: () => [0, 1, 0] as [number, number, number],
+      },
+      resolution: 2,
+    });
+    generator.prepare?.(request(1));
+    await generator.generate(request(1), new AbortController().signal);
+    generator.prepare?.(request(1));
+    generator.prepare?.(request(2));
+    expect(prepared).toEqual([1, 2]);
+  });
+
+  it('samples a recent tile ground once and hands each caller its own heights', () => {
+    let samples = 0;
+    const ground = {
+      sampleHeight: (x: number, z: number) => {
+        samples++;
+        return x + 10 * z;
+      },
+      slopeAt: () => 0,
+      normalAt: () => [0, 1, 0] as [number, number, number],
+    };
+    const geom = {
+      level: 1,
+      x: 1,
+      z: 1,
+      originX: 0,
+      originZ: 0,
+      size: 4,
+      metersPerUnit: 1,
+      levelBelowMax: 0,
+    };
+    const first = tileHeightGrid(ground, geom, 5);
+    const second = tileHeightGrid(ground, geom, 5);
+    expect(samples).toBe(25);
+    expect(Array.from(second.heights)).toEqual(Array.from(first.heights));
+    expect(second.heights).not.toBe(first.heights);
+    // Another tile's ground is sampled anew.
+    tileHeightGrid(ground, { ...geom, originX: 4 }, 5);
+    expect(samples).toBe(50);
   });
 });

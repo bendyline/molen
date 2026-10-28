@@ -68,7 +68,11 @@
               "densityExponent": 1,
               "ratedDensityRatio": 0.55,
               "propellerEfficiency": 0.83,
-              "maxThrust": 26860
+              "maxThrust": 26860,
+              "mixtureControl": true,
+              "propellerControl": {
+                "minRpm": 0.6
+              }
             },
             "airplane": {
               "wingPosition": [
@@ -109,7 +113,7 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.016498632274193088,
+              "profileDrag": 0.015748215603670374,
               "inducedDrag": 0.06659962922100053,
               "gearDrag": 0.018,
               "flapDrag": 0.035,
@@ -513,7 +517,309 @@
                   }
                 ]
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.05,
+                  -0.2
+                ],
+                "massFraction": 0.745,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.35,
+                    0
+                  ],
+                  [
+                    0,
+                    1.5,
+                    2.7
+                  ],
+                  [
+                    0,
+                    1.5,
+                    -2.7
+                  ],
+                  [
+                    0,
+                    2.35,
+                    -0.6
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "left-wing",
+                "role": "leftWing",
+                "center": [
+                  2.8,
+                  1.35,
+                  0.3
+                ],
+                "massFraction": 0.1,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wing-1",
+                  "wing-1-band",
+                  "flap-1-hinge",
+                  "aileron-1-hinge",
+                  "gear-1-hinge",
+                  "wheel-door-1-hinge"
+                ],
+                "probes": [
+                  [
+                    0.95,
+                    1.16265,
+                    -0.55
+                  ],
+                  [
+                    0.95,
+                    1.16265,
+                    0.65
+                  ],
+                  [
+                    2,
+                    1.254,
+                    -0.55
+                  ],
+                  [
+                    2,
+                    1.254,
+                    0.65
+                  ],
+                  [
+                    3.5,
+                    1.3845,
+                    -0.55
+                  ],
+                  [
+                    3.5,
+                    1.3845,
+                    0.65
+                  ],
+                  [
+                    4.8,
+                    1.4976,
+                    -0.55
+                  ],
+                  [
+                    4.8,
+                    1.4976,
+                    0.65
+                  ],
+                  [
+                    5.4,
+                    1.5498,
+                    -0.55
+                  ],
+                  [
+                    5.4,
+                    1.5498,
+                    0.65
+                  ]
+                ],
+                "radius": 0.3,
+                "fragments": {
+                  "nodes": [
+                    "national-insignia",
+                    "wing-fuel-cap",
+                    "gun-muzzles",
+                    "nav-light",
+                    "pitot",
+                    "airframe-fasteners-detail-alloy"
+                  ],
+                  "min": [
+                    0.7,
+                    0.3,
+                    -1.3
+                  ],
+                  "max": [
+                    6,
+                    2.2,
+                    2.1
+                  ]
+                }
+              },
+              {
+                "id": "right-wing",
+                "role": "rightWing",
+                "center": [
+                  -2.8,
+                  1.35,
+                  0.3
+                ],
+                "massFraction": 0.1,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wing--1",
+                  "wing--1-band",
+                  "flap--1-hinge",
+                  "aileron--1-hinge",
+                  "gear--1-hinge",
+                  "wheel-door--1-hinge"
+                ],
+                "probes": [
+                  [
+                    -0.95,
+                    1.16265,
+                    -0.55
+                  ],
+                  [
+                    -0.95,
+                    1.16265,
+                    0.65
+                  ],
+                  [
+                    -2,
+                    1.254,
+                    -0.55
+                  ],
+                  [
+                    -2,
+                    1.254,
+                    0.65
+                  ],
+                  [
+                    -3.5,
+                    1.3845,
+                    -0.55
+                  ],
+                  [
+                    -3.5,
+                    1.3845,
+                    0.65
+                  ],
+                  [
+                    -4.8,
+                    1.4976,
+                    -0.55
+                  ],
+                  [
+                    -4.8,
+                    1.4976,
+                    0.65
+                  ],
+                  [
+                    -5.4,
+                    1.5498,
+                    -0.55
+                  ],
+                  [
+                    -5.4,
+                    1.5498,
+                    0.65
+                  ]
+                ],
+                "radius": 0.3,
+                "fragments": {
+                  "nodes": [
+                    "national-insignia",
+                    "wing-fuel-cap",
+                    "gun-muzzles",
+                    "nav-light",
+                    "pitot",
+                    "airframe-fasteners-detail-alloy"
+                  ],
+                  "min": [
+                    -6,
+                    0.3,
+                    -1.3
+                  ],
+                  "max": [
+                    -0.7,
+                    2.2,
+                    2.1
+                  ]
+                }
+              },
+              {
+                "id": "tail",
+                "role": "tail",
+                "center": [
+                  0,
+                  1.8,
+                  -4.4
+                ],
+                "massFraction": 0.04,
+                "breakSpeed": 10,
+                "nodes": [
+                  "vertical-fin",
+                  "rudder",
+                  "tailplane--1",
+                  "tailplane-1",
+                  "elevator--1",
+                  "elevator-1"
+                ],
+                "probes": [
+                  [
+                    0,
+                    2.9,
+                    -4.5
+                  ],
+                  [
+                    -1.8,
+                    1.65,
+                    -4.1
+                  ],
+                  [
+                    1.8,
+                    1.65,
+                    -4.1
+                  ],
+                  [
+                    0,
+                    1.6,
+                    -4.9
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "propeller",
+                "role": "engine",
+                "center": [
+                  0,
+                  1.58,
+                  4.15
+                ],
+                "massFraction": 0.015,
+                "breakSpeed": 8,
+                "nodes": [
+                  "propeller"
+                ],
+                "probes": [
+                  [
+                    -1.4,
+                    1.58,
+                    4.15
+                  ],
+                  [
+                    1.4,
+                    1.58,
+                    4.15
+                  ],
+                  [
+                    0,
+                    2.98,
+                    4.15
+                  ],
+                  [
+                    0,
+                    0.35,
+                    4.15
+                  ]
+                ],
+                "radius": 0.25,
+                "engines": [
+                  "main"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

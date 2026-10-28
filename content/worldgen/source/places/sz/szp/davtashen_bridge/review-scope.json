@@ -1,0 +1,278 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "The complete mapped Yerevan gorge crossing: yellow steel box girders, four paired tall concrete pier stations, shallow approach viaducts, a broad six-lane road, two sidewalks, open white rails and inward-reaching lamps.",
+    "sourceMaster": "Detailed source with dense stiffeners and rail posts is separate from all four complete browser levels.",
+    "exclusions": "Hidden structure, temporary signs/banners, vehicles, exact present traffic and trolley operation, adjoining retaining walls and utility lines crossing the gorge are excluded."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sz/szp/davtashen_bridge/models/davtashen-model.mjs",
+    "export": "buildDavtashenSkyline",
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDavtashenDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildDavtashenStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDavtashenCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.3
+          },
+          "marking": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "anchor": [
+      44.493313519,
+      40.209637037
+    ],
+    "heading": -0.977148492357,
+    "elevationMode": "sea-level",
+    "elevationMeters": 1014.15,
+    "replaceFootprint": false,
+    "bounds": [
+      44.49080324885537,
+      40.207126802221424,
+      44.49582378914462,
+      40.212147271778576
+    ],
+    "replaceRoads": {
+      "length": 497.033,
+      "width": 31.985,
+      "outline": [
+        [
+          -248.5165,
+          -16
+        ],
+        [
+          -248.5165,
+          16
+        ],
+        [
+          248.5165,
+          16
+        ],
+        [
+          248.5165,
+          -16
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -248.5165,
+          0
+        ],
+        [
+          248.5165,
+          0
+        ]
+      ],
+      "deckHeights": [
+        81.15,
+        102.85
+      ],
+      "deckProfile": [
+        [
+          -248.5165,
+          81.15,
+          0
+        ],
+        [
+          248.5165,
+          102.85,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "groundContactBasis": "Native-bank visualization: source grade4.37%, origin1014.15m, endpoint deck heights1095.30/1117.00m. Small clearance above the standard Mapzen banks keeps all native joins visible. The coarse gorge hides portions of lower piers/foundations; it is not reshaped to resemble the photo. Absolute height and grade are approximate. Eight mapped road/footway joins are within0.007m. All independent buildings and roads remain; bounded ground support is restored on unload. Current supported Arabkir approach image inspected; no sky holes or buried connecting lanes remain in that view.",
+    "groundCutout": {
+      "outline": [
+        [
+          232,
+          -17.4
+        ],
+        [
+          280,
+          -17.4
+        ],
+        [
+          280,
+          17.4
+        ],
+        [
+          232,
+          17.4
+        ]
+      ],
+      "minHeight": 100.3,
+      "preservePaving": true,
+      "basis": "Bounded48×34.8m Arabkir approach retaining cut at sourceY100.3m; three original modeled support walls meet the sampled native ground at its exposed perimeter. Bridge and road centerlines remain exact; these walls are visualization support inferred from the standard terrain, not surveyed bridge members. Original DEM, water, paving and outside ground remain; unload restores native ground."
+    },
+    "groundContactReviewed": true
+  },
+  "sourceDocuments": [
+    "models/davtashen-model.mjs",
+    "map-frame.json",
+    "mapped-features.json",
+    "reference-metadata.json",
+    "approach-terrain.json",
+    "native-fit.json"
+  ],
+  "qaLodCameras": [
+    {
+      "name": "complete-davtashen-skyline",
+      "position": [
+        0,
+        145,
+        610
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "complete-davtashen-district",
+      "position": [
+        0,
+        145,
+        610
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "district"
+    },
+    {
+      "name": "complete-davtashen-street",
+      "position": [
+        0,
+        145,
+        610
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "street"
+    },
+    {
+      "name": "complete-davtashen-closeup",
+      "position": [
+        0,
+        145,
+        610
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Foundation elevations, structural sections and precise span/end allocation are approximate photo interpretations. A 4.37% longitudinal visualization grade follows the standard native bank endpoints; it is not an as-built surveyed road profile.",
+    "Nominal 92 m height has an unresolved datum; native terrain is coarse in the gorge. Native placement is not approved until current viewer renders are inspected.",
+    "Hidden structure, temporary signs/banners, vehicles, exact present traffic and trolley operation, adjoining retaining walls and utility lines crossing the gorge are excluded.",
+    "Physical laptop and phone/tablet timing measurements remain pending.",
+    "Bounded48×34.8m Arabkir approach retaining cut at sourceY100.3m; three original modeled support walls meet the sampled native ground at its exposed perimeter. Bridge and road centerlines remain exact; these walls are visualization support inferred from the standard terrain, not surveyed bridge members. Original DEM, water, paving and outside ground remain; unload restores native ground."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.basilica_of_st_peter_columbia_south_carolina",
+  "kind": "static-structure",
+  "title": "Basilica of Saint Peter, Columbia",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.basilica_of_st_peter_columbia_south_carolina",
+        "output": "assets/places/dn/dnn/basilica_of_st_peter_columbia_south_carolina/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:45d69ae15e5bd2dc8738fe0adf511b30d9c87e6ffc11dadd13f828eee4dff349"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-st-peters-basilica-columbia",
+        "path": "models/generate-st-peters-basilica-columbia.mjs"
+      },
+      {
+        "id": "st-peters-basilica-columbia-model",
+        "path": "models/st-peters-basilica-columbia-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/whole-church-and-connected-wing.json",
+      "dimension-evidence.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9007-13089.png",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

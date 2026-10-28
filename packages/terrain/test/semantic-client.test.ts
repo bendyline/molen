@@ -1,10 +1,13 @@
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
+import { setTerrainGroundCutout, TerrainGroundCutoutController } from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
+import { renderedGroundSampler } from '../src/rendered-ground';
 import {
   createDefaultTerrainSemanticRenderer,
   createTerrainSemanticObject,
+  createTerrainSemanticObjectSliced,
   createTerrainSemanticPyramidLayer,
   createTerrainWaterMaterial,
   disposeTerrainSemanticObject,
@@ -142,15 +145,25 @@ describe('normalized semantic mesh adapter', () => {
         instances.push(child as THREE.InstancedMesh);
       }
     });
-    // Trees, plus the utility poles strung along the primary road's sidewalk.
+    // Trees, plus the utility poles strung along the primary road's sidewalk and their lamp heads.
     const fixtures = instances.filter((instance) => instance.name === 'surface:street-fixtures');
     expect(fixtures).toHaveLength(1);
-    const trees = instances.filter((instance) => !fixtures.includes(instance));
+    const lamps = instances.filter((instance) => instance.name === 'surface:night-lamps');
+    expect(lamps).toHaveLength(1);
+    const trees = instances.filter((instance) => !instance.name.startsWith('surface:'));
     expect(trees).toHaveLength(2);
     expect(trees.map((instance) => instance.count)).toEqual([8, 8]);
     expect(object.getObjectByName('semantic:landcover')).toBeInstanceOf(THREE.Mesh);
     expect(object.getObjectByName('semantic:water')).toBeInstanceOf(THREE.Mesh);
     expect(object.getObjectByName('semantic:waterways')).toBeInstanceOf(THREE.Mesh);
+    // Ribbon normals come from the ribbon's frame: unit length, facing up.
+    const ribbon = (object.getObjectByName('semantic:waterways') as THREE.Mesh).geometry;
+    const normal = ribbon.getAttribute('normal');
+    expect(normal.count).toBe(ribbon.getAttribute('position').count);
+    for (let i = 0; i < normal.count; i++) {
+      expect(Math.hypot(normal.getX(i), normal.getY(i), normal.getZ(i))).toBeCloseTo(1, 5);
+      expect(normal.getY(i)).toBeGreaterThan(0.5);
+    }
     expect(object.getObjectByName('semantic:transportation')).toBeInstanceOf(THREE.Mesh);
     const roads = object.getObjectByName('semantic:transportation') as THREE.Mesh;
     expect(roads.geometry.getAttribute('position').count).toBeGreaterThan(6);
@@ -159,6 +172,149 @@ describe('normalized semantic mesh adapter', () => {
     buildings.geometry.computeBoundingBox();
     expect(buildings.geometry.boundingBox?.min.y).toBeCloseTo(10);
     expect(buildings.geometry.boundingBox?.max.y).toBeCloseTo(22);
+  });
+
+  it('builds buildings as prisms: up-facing roofs, outward walls, a floor only when raised', () => {
+    const ring = (x: number, z: number, w: number): [number, number][] => [
+      [x, z],
+      [x + w, z],
+      [x + w, z + w],
+      [x, z + w],
+    ];
+    const tile = semanticTile();
+    tile.buildings = [
+      // A courtyard block (hole wound like the outer ring) and a raised part.
+      { height: 12, polygons: [{ outer: ring(0.2, 0.2, 0.2), holes: [ring(0.25, 0.25, 0.1)] }] },
+      { height: 4, minHeight: 6, polygons: [{ outer: ring(0.6, 0.6, 0.1).reverse() }] },
+    ];
+    const ctx = context();
+    const object = createTerrainSemanticObject(tile, ctx, { buildingColors: undefined });
+    const geometry = (object.getObjectByName('semantic:buildings') as THREE.Mesh).geometry;
+    const position = geometry.getAttribute('position');
+    const normal = geometry.getAttribute('normal');
+    const size = ctx.tileSize;
+    let roof = 0,
+      floor = 0;
+    const a = new THREE.Vector3(),
+      b = new THREE.Vector3(),
+      c = new THREE.Vector3(),
+      n = new THREE.Vector3();
+    for (let i = 0; i < position.count; i += 3) {
+      a.fromBufferAttribute(position, i);
+      b.fromBufferAttribute(position, i + 1);
+      c.fromBufferAttribute(position, i + 2);
+      const face = b.clone().sub(a).cross(c.clone().sub(a));
+      n.fromBufferAttribute(normal, i);
+      // Each triangle faces the way its normal says.
+      expect(face.dot(n)).toBeGreaterThan(0);
+      if (n.y > 0.5) roof += face.length() / 2;
+      if (n.y < -0.5) floor += face.length() / 2;
+      if (Math.abs(n.y) < 0.5) {
+        // Walls point away from the solid: from the block's centre, or into its courtyard.
+        const mid = a.clone().add(b).add(c).divideScalar(3);
+        const centre = new THREE.Vector3(mid.x < size / 2 ? 0.3 * size : 0.65 * size, 0, 0);
+        centre.z = centre.x;
+        const away = new THREE.Vector3(mid.x - centre.x, 0, mid.z - centre.z);
+        // Courtyard walls stand on its edge, 0.25 to 0.35 of the tile on both axes.
+        const within = (v: number) => v > 0.25 * size - 1e-3 && v < 0.35 * size + 1e-3;
+        const inner = within(mid.x) && within(mid.z);
+        expect(Math.sign(away.dot(n))).toBe(inner ? -1 : 1);
+      }
+    }
+    const tileArea = size * size;
+    expect(roof).toBeCloseTo((0.04 - 0.01 + 0.01) * tileArea, 3);
+    // Only the raised part shows its underside.
+    expect(floor).toBeCloseTo(0.01 * tileArea, 3);
+  });
+
+  it('builds the same buildings a slice at a time, and stops once cancelled', async () => {
+    const tile = semanticTile();
+    tile.buildings = Array.from({ length: 40 }, (_, i) => {
+      const x = 0.05 + (i % 8) * 0.11,
+        z = 0.05 + Math.floor(i / 8) * 0.18;
+      return {
+        id: i,
+        height: 5 + i,
+        polygons: [
+          {
+            outer: [
+              [x, z],
+              [x + 0.05, z],
+              [x + 0.05, z + 0.05],
+              [x, z + 0.05],
+            ] as [number, number][],
+          },
+        ],
+      };
+    });
+    tile.water.push({
+      class: 'lake',
+      polygons: [
+        {
+          outer: [
+            [0.6, 0.85],
+            [0.95, 0.85],
+            [0.95, 0.98],
+            [0.6, 0.98],
+          ],
+        },
+      ],
+    });
+    const options = {
+      renderLandcover: false,
+      renderTransportation: false,
+      buildingColors: {
+        roofs: [['#884422', 1]] as [string, number][],
+        walls: [['#ccbbaa', 1]] as [string, number][],
+      },
+    };
+    const whole = createTerrainSemanticObject(tile, context(), options);
+    let slices = 0;
+    // A zero-length slice yields after every footprint.
+    const sliced = await createTerrainSemanticObjectSliced(
+      tile,
+      context(),
+      options,
+      async (slice) => {
+        slices++;
+        return slice();
+      },
+      0,
+    );
+    expect(slices).toBeGreaterThan(10);
+    expect(sliced?.name).toBe(whole.name);
+    const meshes = (group: THREE.Object3D | undefined) => {
+      const found: THREE.Mesh[] = [];
+      group?.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) found.push(child as THREE.Mesh);
+      });
+      return found;
+    };
+    expect(meshes(sliced).map((mesh) => mesh.name)).toEqual(
+      expect.arrayContaining(['semantic:water', 'semantic:buildings']),
+    );
+    expect(meshes(sliced).map((mesh) => mesh.name)).toEqual(meshes(whole).map((mesh) => mesh.name));
+    for (const [i, mesh] of meshes(whole).entries()) {
+      const twin = meshes(sliced)[i] as THREE.Mesh;
+      for (const name of Object.keys(mesh.geometry.attributes))
+        expect(twin.geometry.getAttribute(name).array).toEqual(
+          mesh.geometry.getAttribute(name).array,
+        );
+      expect(twin.material).toBe(mesh.material);
+    }
+
+    const controller = new AbortController();
+    const cancelled = await createTerrainSemanticObjectSliced(
+      tile,
+      { ...context(), signal: controller.signal },
+      options,
+      async (slice) => {
+        controller.abort();
+        return slice();
+      },
+      0,
+    );
+    expect(cancelled).toBeUndefined();
   });
 
   it('keeps polygonal water flat to avoid visible triangulation and overlap shading', () => {
@@ -188,8 +344,85 @@ describe('normalized semantic mesh adapter', () => {
     expect(material.transparent).toBe(false);
     expect(material.depthWrite).toBe(true);
     expect(material.userData.terrainWaterMaterial).toBe(true);
-    expect(material.customProgramCacheKey()).toBe('terrain-water@2:[]');
+    expect(material.customProgramCacheKey()).toBe('terrain-water@3:[]');
     expect(() => setTerrainWaterTime(material, 2.5, [100, 200])).not.toThrow();
+  });
+  it('closes banks against a separate raised landcover layer when this tile renders only water', () => {
+    const ctx = context();
+    ctx.heightfield = new Heightfield(new Float32Array([0.1, 0.8, 0.35, 0.95]), 2, 2, {
+      origin: ctx.origin,
+      worldSize: [ctx.tileSize, ctx.tileSize],
+      height: { min: 0, max: 20 },
+    });
+    const object = createTerrainSemanticObject(semanticTile(), ctx, {
+      renderLandcover: false,
+      renderBuildings: false,
+      renderTransportation: false,
+    });
+    const water = object.getObjectByName('semantic:water') as THREE.Mesh;
+    const bank = object.getObjectByName('semantic:water-banks') as THREE.Mesh;
+    expect(bank).toBeInstanceOf(THREE.Mesh);
+    const waterY = water.geometry.getAttribute('position').getY(0);
+    const points = bank.geometry.getAttribute('position');
+    const sample = renderedGroundSampler(ctx.heightfield, ctx.origin, ctx.tileSize);
+    for (let i = 0; i < points.count; i++) {
+      const y = points.getY(i);
+      if (y > waterY + 1e-5)
+        expect(y).toBeCloseTo(
+          sample(ctx.origin[0] + points.getX(i), ctx.origin[1] + points.getZ(i)) + 0.18,
+          4,
+        );
+    }
+    disposeTerrainSemanticObject(object);
+  });
+
+  it('opens shoreline walls for a resident landing without changing water or source heights', () => {
+    const ctx = context();
+    ctx.heightfield = new Heightfield(new Float32Array([0.1, 0.8, 0.35, 0.95]), 2, 2, {
+      origin: ctx.origin,
+      worldSize: [ctx.tileSize, ctx.tileSize],
+      height: { min: 0, max: 20 },
+    });
+    const samples = ctx.heightfield.copySamples();
+    const object = createTerrainSemanticObject(semanticTile(), ctx, {
+      renderLandcover: false,
+      renderBuildings: false,
+      renderTransportation: false,
+    });
+    const water = object.getObjectByName('semantic:water') as THREE.Mesh;
+    const bank = object.getObjectByName('semantic:water-banks') as THREE.Mesh;
+    const sourceBank = bank.geometry,
+      sourceWater = water.geometry;
+    sourceBank.computeBoundingBox();
+    const bounds = sourceBank.boundingBox as THREE.Box3;
+    const middle = (bounds.min.x + bounds.max.x) / 2;
+    const landing = new THREE.Object3D();
+    setTerrainGroundCutout(landing, [
+      [bounds.min.x - 1, bounds.min.z - 1],
+      [middle, bounds.min.z - 1],
+      [middle, bounds.max.z + 1],
+      [bounds.min.x - 1, bounds.max.z + 1],
+    ]);
+    object.add(landing);
+    object.updateMatrixWorld(true);
+    const cuts = new TerrainGroundCutoutController();
+    expect(cuts.update(object)).toBe(true);
+    expect(bank.geometry).not.toBe(sourceBank);
+    expect(water.geometry).toBe(sourceWater);
+    const positions = bank.geometry.getAttribute('position');
+    const indices = bank.geometry.index as THREE.BufferAttribute;
+    expect(indices.count).toBeGreaterThan(0);
+    for (let i = 0; i < indices.count; i++)
+      expect(positions.getX(indices.getX(i))).toBeGreaterThanOrEqual(middle - 1e-5);
+    expect(ctx.heightfield.copySamples()).toEqual(samples);
+    const disposed = vi.spyOn(bank.geometry, 'dispose');
+    landing.visible = false;
+    expect(cuts.update(object)).toBe(true);
+    expect(bank.geometry).toBe(sourceBank);
+    expect(water.geometry).toBe(sourceWater);
+    expect(disposed).toHaveBeenCalledOnce();
+    cuts.dispose();
+    disposeTerrainSemanticObject(object);
   });
 
   it('disposes generated tile geometry but preserves shared instanced assets', () => {

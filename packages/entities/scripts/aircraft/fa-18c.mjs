@@ -389,7 +389,7 @@ export function buildFA18C(s) {
         0.035,
         paint,
       );
-    fd.text('NAVY', [side * 0.042, 0.63, -1.75], 0.17, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
     fd.finish();
     // Retractable main gear: wide trailing arm and one wheel per side.
     const gg = group(root, `FA18-gear-${side}`, [side * 0.66, 1.35, 0.22]),
@@ -615,8 +615,8 @@ function fa18Cockpit(root, m) {
       );
   const box = (u, v, w, h, material = black, depth = 0.012) =>
       d.box([w * k, h * k, depth], at(u, v, -0.02 + depth / 2), material),
-    text = (t, u, v, h = 7, material = ink) =>
-      d.text(t, at(u, v, -0.027), h * k, Math.PI, material);
+    text = (t, u, v, h = 7, material = ink, role = 'panel') =>
+      d.text(t, at(u, v, -0.027), h * k, Math.PI, material, role);
   const edge = [
     [345, 620],
     [345, 448],
@@ -688,11 +688,11 @@ function fa18Cockpit(root, m) {
   display(499, 456, 192, 188, 'ATT / SIM', true);
   ins.horizon('DDI-attitude', at(499, 451, 0.012), 0.085, 0.06, { blankBackdrop: true });
   ins.readout('DDI-speed', at(458, 510, -0.028), 'knots', 3, 0.01, green);
-  text('TAS', 458, 497, 5, green);
+  text('TAS', 458, 497, 5, green, 'display');
   ins.readout('DDI-altitude', at(535, 510, -0.028), 'feet', 5, 0.008, green, true, true);
-  text('GEO FT', 535, 497, 5, green);
+  text('GEO FT', 535, 497, 5, green, 'display');
   display(920, 456, 192, 188, 'DDI');
-  text('INOP', 920, 456, 13, amber);
+  text('INOP', 920, 456, 13, amber, 'display');
   display(710, 722, 181, 175, 'MPCD');
   // Simplified true-heading presentation, no invented map or navigation solution.
   const hg = group(cabin, 'FA18-heading', at(710, 714, -0.029)),
@@ -713,7 +713,7 @@ function fa18Cockpit(root, m) {
     period: Math.PI * 2,
   });
   ins.available('heading', 'trueHeading', hg.name);
-  text('TRUE', 710, 782, 6, green);
+  text('TRUE', 710, 782, 6, green, 'display');
   d.rod(at(710, 653, -0.03), at(710, 665, -0.03), 0.001, ink);
   ins.horizon('standby', at(887, 652, 0.01), 0.068, 0.068, { round: true, blankBackdrop: true });
   ins.dial(
@@ -751,11 +751,11 @@ function fa18Cockpit(root, m) {
   );
   pt.gauge(...at(997, 652).slice(0, 2), z - 0.008, 43 * k, black, false);
   text('RWR', 997, 640, 7);
-  text('INOP', 997, 660, 8, amber);
+  text('INOP', 997, 660, 8, amber, 'display');
   // UFC keypad, five option fields, scratchpad and physical radio controls.
   box(710, 394, 190, 124);
   box(674, 351, 64, 18, panel);
-  text('----', 674, 351, 8, green);
+  text('----', 674, 351, 8, green, 'display');
   for (let row = 0; row < 4; row++)
     for (let col = 0; col < 3; col++) {
       const u = 653 + col * 21,
@@ -775,7 +775,7 @@ function fa18Cockpit(root, m) {
     }
   for (let j = 0; j < 5; j++) {
     box(750, 352 + j * 21, 45, 15, panel);
-    text('--', 750, 352 + j * 21, 6, green);
+    text('--', 750, 352 + j * 21, 6, green, 'display');
     d.add(
       new T.CylinderGeometry(0.005, 0.006, 0.012, 10).rotateX(Math.PI / 2),
       panel,
@@ -816,10 +816,10 @@ function fa18Cockpit(root, m) {
     [701, 'NOZ'],
   ]) {
     text(label, 455, v, 6);
-    text('--', 425, v, 7, amber);
-    text('--', 482, v, 7, amber);
+    text('--', 425, v, 7, amber, 'display');
+    text('--', 482, v, 7, amber, 'display');
   }
-  text('-----', 555, 648, 10, amber);
+  text('-----', 555, 648, 10, amber, 'display');
   text('TIME --', 553, 706, 7, amber);
   for (const [u, v, w, h, label] of [
     [378, 481, 35, 126, 'ARM'],
@@ -830,7 +830,7 @@ function fa18Cockpit(root, m) {
   ]) {
     box(u, v, w, h);
     text(label, u, v - h * 0.36, 5);
-    text('--', u, v, 8, amber);
+    text('--', u, v, 8, amber, 'display');
   }
   for (let j = 0; j < 3; j++) {
     const g = group(cabin, `FA18-gear-lamp-${j}`, at(365 + j * 9, 746, -0.029)),
@@ -857,7 +857,7 @@ function fa18Cockpit(root, m) {
   for (const u of [567, 845])
     for (let row = 0; row < 5; row++) {
       box(u, 313 + row * 9, 33, 7);
-      text('--', u, 313 + row * 9, 4);
+      text('--', u, 313 + row * 9, 4, ink, 'display');
     }
   // HUD glass is a physical combiner. Symbology needs a separate collimated implementation.
   const hud = [
@@ -879,7 +879,7 @@ function fa18Cockpit(root, m) {
   ]) {
     pt.gauge(...at(u, v).slice(0, 2), z - 0.009, r * k, black, false);
     text(label, u, v - 6, 5);
-    text('--', u, v + 8, 7, amber);
+    text('--', u, v + 8, 7, amber, 'display');
   }
   // Distinct console layout from FO-5 sheet2: throttle and communication left; power/ECS/lights right.
   d.box([0.82, 0.03, 2.45], [0, 1.66, 5.5], black);

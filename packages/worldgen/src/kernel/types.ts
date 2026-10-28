@@ -97,9 +97,25 @@ export interface ModelPlacementRequest {
   yaw?: number;
   scale?: Vec3;
 }
+export type YardFenceKind = 'timber' | 'masonry' | 'rail';
+export interface BuildingApproach {
+  from: Vec2;
+  to: Vec2;
+  width: number;
+  /** Paving lift above sampled terrain, in meters (default 0.045); clears ground overlays. */
+  lift?: number;
+}
+export interface BuildingYard {
+  /** Separate parking approach for a home without an attached garage. */
+  driveway?: BuildingApproach;
+  /** Open segments: the caller reserves gaps at paths, driveways and public corridors. */
+  fence?: { kind: YardFenceKind; height: number; segments: Array<[Vec2, Vec2]> };
+}
 export interface BuildingRequest {
+  /** Optional lot decoration, owned once by the main house rather than by each building part. */
+  yard?: BuildingYard;
   /** Reserved approach from a public boundary to an entrance, in local meters. */
-  access?: { from: Vec2; to: Vec2; width: number; garage?: boolean };
+  access?: BuildingApproach & { garage?: boolean };
   /** Admission/detail priority before footprint area (default 0); inferred scenery can use -1. */
   priority?: number;
   /** Caller-owned stable identity, e.g. `f:123456` or `room:hall-1`; seeds every look choice. */

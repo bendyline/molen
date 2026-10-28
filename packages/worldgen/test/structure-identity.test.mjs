@@ -11,11 +11,11 @@ import { validateStructureIdentities } from '../scripts/validate-structure-ident
 
 describe('stable named structure identities', () => {
   it('checks the complete catalog, collection and placement graph without model binaries', async () => {
-    expect(await validateStructureIdentities()).toEqual({
-      candidates: 1000,
-      sources: 1065,
-      placements: 975,
-    });
+    const result = await validateStructureIdentities();
+    expect(result.candidates).toBe(1000);
+    // Guard the audited corpus against losses while allowing new models and placements.
+    expect(result.sources).toBeGreaterThanOrEqual(1136);
+    expect(result.placements).toBeGreaterThanOrEqual(1047);
   }, 30_000); // Reads over 1,000 source specs; filesystem contention can exceed 5 s.
   it('uses readable names while preserving numeric building names and diacritics in display titles', () => {
     expect(structureKeyFromTitle('Edifício Altino Arantes')).toBe('edificio_altino_arantes');

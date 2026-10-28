@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canonbury_house_and_canonbury_tower",
+  "kind": "static-structure",
+  "title": "Canonbury House and Canonbury Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canonbury_house_and_canonbury_tower",
+        "output": "assets/places/gc/gcp/canonbury_house_and_canonbury_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:55081c49bd43d675a3f00c6e1bee89045bab732fe3e5c2e7fc189f9c4e74174e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-canonbury-house-and-tower",
+        "path": "models/generate-canonbury-house-and-tower.mjs"
+      },
+      {
+        "id": "canonbury-house-and-tower-model",
+        "path": "models/canonbury-house-and-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "technical-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/published-cooke-dixon-native.json",
+      "native-map/tower-assembly-and-distinct-neighbors.json",
+      "native-map/story-identity.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16374-10890.png",
+      "terrain-sources/terrarium-15-16375-10890.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

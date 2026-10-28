@@ -59,6 +59,16 @@ export function validateSourceKey(key) {
   return key;
 }
 
+/** A place recipe belongs to its bundle; shared legacy recipes remain supported. */
+export function isStructureRecipePath(module, sourcePath) {
+  if (typeof module !== 'string') return false;
+  if (/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(module)) return true;
+  if (typeof sourcePath !== 'string' || !sourcePath.startsWith('content/worldgen/source/'))
+    return false;
+  const prefix = `${sourcePath}/models/`;
+  return module.startsWith(prefix) && /^[a-z0-9-]+\.mjs$/.test(module.slice(prefix.length));
+}
+
 export function sourcePathWithin(directory, ...segments) {
   if (
     segments.some(

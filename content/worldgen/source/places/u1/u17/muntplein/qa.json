@@ -1,0 +1,350 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.muntplein",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:0133ac1e65fb515be8dcc9e1eb203cf3b79c6b44967a09ee1542306880e87e9b",
+  "sourceHash": "sha256:744c9997b238f44ca28bad01904bb18b01a22b44bb916758ba6aeb1b9f1a5068",
+  "runtimeHash": "sha256:c986f8ffa7b8b187e4c6eb4fbd5c3acdf5c7c1ce5582203d48755dd3f073f3a9",
+  "captureReportHash": "sha256:82ec87381c5dca7a832691c4c4c41132e9bbb0fd27f82088eb33f78ac1e8e8b8",
+  "visualReview": {
+    "status": "pending",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/western-singel-mouth.png",
+      "shots/eastern-amstel-mouth.png",
+      "shots/plaza-tram-and-paving.png",
+      "shots/western-open-canal.png",
+      "shots/eastern-stone-panel-and-rail.png",
+      "shots/brick-abutment-and-girder.png"
+    ],
+    "captureReportHash": "sha256:82ec87381c5dca7a832691c4c4c41132e9bbb0fd27f82088eb33f78ac1e8e8b8",
+    "notes": "Inspected 51 current frames: 11 portable, 23 medium-fi and 17 native. Irregular plaza deck, brick abutments/round feet, open canal geometry, green flange/rivet girders, three-bar open rails, pale caps, branching stone-panel relief and generalized embedded tram tracks are present. Native west portal is largely hidden by the coarse water surface; some context cameras are obstructed by retained buildings or lie below the cut. Placement and final fidelity approval remain pending. No new ready candidate is claimed."
+  },
+  "sharedSurfaceReview": {
+    "status": "pending",
+    "notes": "Four existing shared 256px graphs: brick_flemish, stone_granite, concrete_plain and metal_painted. Metric UVs and linear tints; no private or embedded images. Native graph reads are verified once each, including reuse with Munttoren. Geographic approval remains pending; no shared library capture approval is fabricated."
+  },
+  "mediumFiReview": {
+    "status": "pending",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/western-singel-mouth.png",
+      "medium-fi/eastern-amstel-mouth.png",
+      "medium-fi/plaza-tram-and-paving.png",
+      "medium-fi/western-open-canal.png",
+      "medium-fi/eastern-stone-panel-and-rail.png",
+      "medium-fi/brick-abutment-and-girder.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:b0891f4b966df7883f1edb278f29e36383b36f57158ea140b7b1b36c6aaaf63a",
+    "notes": "Strict runtime budgets pass. Initial skyline plus district 132636 bytes; native placement/final fidelity pending."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:a3dec214a529e1cbc62394e48a1d9c965bb81c1b8c30e959f7745c52cc8194f4",
+    "notes": "Draft excluded from default query; native canal-water and junction fit unresolved."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "pending",
+    "notes": "Editable geometry and four shared-material runtime levels exist; not counted ready until native fit is resolved."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u1/u17/muntplein/models/source.glb\",\"hash\":\"sha256:744c9997b238f44ca28bad01904bb18b01a22b44bb916758ba6aeb1b9f1a5068\",\"bytes\":1059884,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/u1/u17/muntplein/model.glb\",\"hash\":\"sha256:c986f8ffa7b8b187e4c6eb4fbd5c3acdf5c7c1ce5582203d48755dd3f073f3a9\",\"bytes\":1059444,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u1/u17/muntplein/model.skyline.glb\",\"hash\":\"sha256:9c58007fe1fcf7d448fa2ee3d0b0fd344d991da2ceb68f14b5aba7909858b9a2\",\"bytes\":40756,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u1/u17/muntplein/model.district.glb\",\"hash\":\"sha256:b11138e42b8c310a7b7f023ee965e346b729c2c9350d180e856aabd2872bf0f2\",\"bytes\":91880,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u1/u17/muntplein/model.street.glb\",\"hash\":\"sha256:9f678698f01f2736e7dcb0c615a9b8479a271ef8fbd1a7496c7376281d983245\",\"bytes\":131204,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u1/u17/muntplein/model.closeup.glb\",\"hash\":\"sha256:fd3b04882d2329bd5a712cec0a10828d072abcca6af0ae377f0e66e93e8327e7\",\"bytes\":495256,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "concave-plaza-floor-open-canal-soffit-rails-and-caps",
+        "passed": true,
+        "notes": "166 recorded front-face and clearance checks across six GLBs. Continuous diagonal canal passage and outward soffit pass. Geometry checks do not approve native water/bank fit."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks passed; hash sha256:8316000378c19746eb52b9f801ab79f18f25c00b2afeb4c86dba20ea95881cd2."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "pending",
+    "inputHash": "sha256:0133ac1e65fb515be8dcc9e1eb203cf3b79c6b44967a09ee1542306880e87e9b",
+    "visualFit": {
+      "status": "pending",
+      "basis": "Standard PMTiles/Mapzen only. Coarse water/bank and junction fit remain unresolved."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:0133ac1e65fb515be8dcc9e1eb203cf3b79c6b44967a09ee1542306880e87e9b",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 51 current frames: 11 portable, 23 medium-fi and 17 native. Irregular plaza deck, brick abutments/round feet, open canal geometry, green flange/rivet girders, three-bar open rails, pale caps, branching stone-panel relief and generalized embedded tram tracks are present. Native west portal is largely hidden by the coarse water surface; some context cameras are obstructed by retained buildings or lie below the cut. Placement and final fidelity approval remain pending. No new ready candidate is claimed.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/scene-preview.png",
+          "hash": "sha256:454a699aac3034e85d7436e85cff5c7cec92aca510faba038fe0b5ab80451bf9"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/turntable/angle_0.png",
+          "hash": "sha256:bbd818b36eb8046086d599c7862f47126e1a8dda0da39b358ddbc86b6c7e5980"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/turntable/angle_1.png",
+          "hash": "sha256:81e815e0f581055b5f1c7d75ff296096817ff7386956678927da2dab9b150142"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/turntable/angle_2.png",
+          "hash": "sha256:736a66a1070959edff002461068de330241df8dfb3d475d335e20a81fb96bb33"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/turntable/angle_3.png",
+          "hash": "sha256:4de1aa572d7eec689b5a2997c21365217102d4bdb7cb550da2fcbbae767efe81"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/western-singel-mouth.png",
+          "hash": "sha256:454a699aac3034e85d7436e85cff5c7cec92aca510faba038fe0b5ab80451bf9"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/eastern-amstel-mouth.png",
+          "hash": "sha256:c6d5c8713e4e8797da5ac80160e78bd5c0b772067a5b18bba2f316b5b9453ab5"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/plaza-tram-and-paving.png",
+          "hash": "sha256:b4ed015644fd7982ce097808b63a75913dc60d0838b1cb813ba13c006f1455b1"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/western-open-canal.png",
+          "hash": "sha256:c5ae965757647c9934db904dbc8f8559677930422a7b9da814a2ed77c0274994"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/eastern-stone-panel-and-rail.png",
+          "hash": "sha256:31dc351903239ffb8d1b66dc8d6a99fc1da49eba5a88d28671b8c718fcf23e94"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/shots/brick-abutment-and-girder.png",
+          "hash": "sha256:f8c1982e5aedfa8e32286da720413e8afe779650e483e466b056fabec4670825"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/street-noon-economy.png",
+          "hash": "sha256:e3ab1746bfd8cc11b27cb5d18499d95b8efaee827851e1af95da3281c81695e1"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/street-noon-high.png",
+          "hash": "sha256:8f0734b42031167e76a4770521036cf36d790b36c4c93fb2867e37dbd12181c7"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/street-late-economy.png",
+          "hash": "sha256:99087041e30ada84e198e0848e5fc4c7d5a9d6df6c13411afbe1b900bd28c612"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/street-late-high.png",
+          "hash": "sha256:53b73186a8b30ece3d9dd81dbc3802cc3009a198d3f46df01ccb9918d95d760b"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/block-noon-economy.png",
+          "hash": "sha256:63a15b1cf0e0c731a3ad9cc765aae38f71f47302f05e5df2d597dc3b6b4e25cb"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/block-noon-high.png",
+          "hash": "sha256:9f55e622289b8ee5c9e6978b21d1e85b9b747c52969c8c24cf568aca2de4e601"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/block-late-economy.png",
+          "hash": "sha256:d6af93b08535f817d65cac4297be6f57d2c9c688c4f9748473fa31573b574c94"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/block-late-high.png",
+          "hash": "sha256:5b0dbd380ad99d26dde5304ce3b983f3c1b6a4e5d6627912bbcb2d1b595a8c5f"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:5e73c2259173a7778bd6f4ec9df801fdcd4cf1b1b644cf1c2104392988e880bf"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:c33d322c91243733ebd6f9fbd959e63ff3ebc796b75a3e35b706a536777cf771"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:e891563953d0731552f8bcdbefb547910d76a9b7b6d1caf131851691a3f9f7ce"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/skyline-late-high.png",
+          "hash": "sha256:825788c8106cefb6c8d963626b267547cb7690521fcb82be0d40d5a5cc9e0b6c"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/silhouette.png",
+          "hash": "sha256:459d689f75c672122b99492ed95810a4a70a8f778f2d6b7af668406d7c421bf0"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/western-singel-mouth.png",
+          "hash": "sha256:d66783e1db5cf7009a0edb63cc4636f1e0f66d890b2ca9da53d15f360b986e9e"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/eastern-amstel-mouth.png",
+          "hash": "sha256:aed4f2aa80854d06875378fe06f49eb71c9abd65ffd5f489e5bc714b642b89a9"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/plaza-tram-and-paving.png",
+          "hash": "sha256:8c00eec4589035742f3b3a1ed7c420910aaa7b2df607254d74fdd46038f69e6c"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/western-open-canal.png",
+          "hash": "sha256:933a2960e88745d8248a58bcb775831d1b3e0e9d307baabbcd7a5b526c36bcdf"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/eastern-stone-panel-and-rail.png",
+          "hash": "sha256:0b42f738e8749ce9f6b99bd881539e69376b700e093e8230823ae0befd1b415e"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/brick-abutment-and-girder.png",
+          "hash": "sha256:f4a50d1248236f1ea6be745170ccaf8e5e8b0001a656b72be78ba959941f01b3"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/transition-skyline.png",
+          "hash": "sha256:6f2b4baa23b41be34ec45252403967bc0ff02740e5bbf0eeefb9a0bc79e8f1e5"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/transition-district.png",
+          "hash": "sha256:9f55e622289b8ee5c9e6978b21d1e85b9b747c52969c8c24cf568aca2de4e601"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/transition-street.png",
+          "hash": "sha256:a426fcc63387313a9d325818e19d0f29c49af6dcfc49846d84b60aaf80d7bfac"
+        },
+        {
+          "path": "content/worldgen/source/places/u1/u17/muntplein/medium-fi/transition-closeup.png",
+          "hash": "sha256:fd7ff1a9dc1db24c116bb95166af88a606d8344e9347cc5cdc997e1877382df6"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:a24c407fd1b6aad32c336674572e76c9895196f6168a92b5689b9d0cd1ad1231"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:31ce3c5b1ca7ca355f758ac9593fcfee4bab8f3f9ed541ae4f164abdcb2dfe74"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-street-western-singel-mouth.png",
+          "hash": "sha256:2b3a84a7155e9f907aa8c41e7e46b72fb35d3f3cd3219d383fb8f2d0d8c1f8f5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-street-eastern-amstel-mouth.png",
+          "hash": "sha256:27ef7db62c226f2660117e8b8c0fd46774098f66f9ddfea23d8abb0a38786037"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-street-plaza-tram-and-paving.png",
+          "hash": "sha256:6f3be6ec73f03d074bdbcceecd5d18d6004f60e6134f683817a6530bb4ab40d2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-street-western-open-canal.png",
+          "hash": "sha256:e62128b46fd51c791ea52186baed6b19e36237949b7313fe163c618d0d8b3e5d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-western-singel-mouth.png",
+          "hash": "sha256:ae8d1e88d62631f7030fcf6db426945628424570f052e2c35da80a6cbd9e0570"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-eastern-amstel-mouth.png",
+          "hash": "sha256:725ef2c7a4e57d3a5a8c65261b8f5b45df00dcfd4b0781cfce18011796b5ad22"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-plaza-tram-and-paving.png",
+          "hash": "sha256:b4032b507ca550875a721daa7a0631738cc9c49fb2b363423435cb7bcacd9a1b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-western-open-canal.png",
+          "hash": "sha256:84e085d9240b70896ae0bcee7a36491f47279ee9130de0f1d53f191d71585ab3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-eastern-stone-panel-and-rail.png",
+          "hash": "sha256:34997ec8e32e4a9c0033e6566a1e048be765f7fe51b91dab7c213d0d0ff88386"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-brick-abutment-and-girder.png",
+          "hash": "sha256:24f00f4a86ae839d9d969b3cbaf12fe26b29cb828c69a867a0c2a9d29cba4525"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-munttoren-and-plaza.png",
+          "hash": "sha256:c6cb8616a2c75d466a876a3f9b2a7428c63885e2bbcbdf38ddf02a810cd90580"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-north-map-joins.png",
+          "hash": "sha256:05f4b13b3b171804bca333effba6809cf2e6b9d1f3f685eb3656abebd86e661a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:31ce3c5b1ca7ca355f758ac9593fcfee4bab8f3f9ed541ae4f164abdcb2dfe74"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:1acfbb8e2cf77247057ac787913c25a12b5771dbee0291b7dc16c48b9520b7ab"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\muntplein-review/native/shots/final-failure-western-singel-mouth.png",
+          "hash": "sha256:abea50290ebc2048e933fdcc52ebd41b18c8027ba5888b22291efa58092ae0ba"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "Existing Munttoren and its seven mapped parts are preserved as a single independently loaded asset. All 440 independent road records and the separate Doelensluis crossing remain. Muntplein failure leaves the map crossing, tower and original ground intact; unload releases all model/support geometry and restores ground. Fit is separately pending."
+    }
+  },
+  "limitations": [
+    "Scope is the mapped Muntplein bridge/plaza exterior, including Muntsluis. The existing Munttoren is separate and is neither duplicated nor counted again. Former guardhouse, flower-market greenhouses, street furniture and the separate Doelensluis bridge remain context.",
+    "Map outline is pedestrian polygon 35185536723013, associated with named Muntplein roads/cycleways and tram bridge fragments. This is not an exact-QID footprint. Paving routes are generalized map controls; precise rail turnouts, road paint and present-day traffic details are not reconstructed.",
+    "Source datum 6.7m and flat paving at 9.9m absolute fit the standard native PMTiles/Mapzen renderer approximately. Urban DEM is coarse and water polygons have local height steps. No surveyed Amsterdam datum, canal clearance or bank accuracy is claimed.",
+    "Brick abutments, shallow steel girder, three-bar rail, rounded granite caps and incised stone-panel branches follow ordinary pictures. Exact structural internals, castings, inscriptions, brick courses and foundations are not engineering reconstructions.",
+    "A bounded ground cut under the mapped plaza removes coarse ground intersecting the canal opening; raw DEM and water remain intact. Connected native roads are deliberately graded. Distant levels simplify rails, caps, rivets and tram geometry. Physical laptop/phone timing remains unmeasured.",
+    "The pedestrian polygon covers only part of the transported plaza. Its northwest bank edge is expanded 5.6m to include mapped road/tram widths; this inferred composite boundary is not an exact surveyed bridge perimeter.",
+    "Native placement is pending: standard canal polygons differ by about 2.36m in water height at the two portals and hide much of the modeled clear passage. Do not approve the geographic fit or enable this draft by raising the whole plaza and burying the existing Munttoren base."
+  ]
+}

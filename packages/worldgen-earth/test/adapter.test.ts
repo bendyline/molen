@@ -440,7 +440,7 @@ describe('semantic adapter', () => {
     });
     expect(tokyo.regionId).toBe('jp');
     expect(tokyo.records.find((record) => record.identity === 'f:5')?.styleId).toBe(
-      'molen.worldgen.catalog.kyoto_machiya',
+      'molen.worldgen.japan.house',
     );
     const paris = generateWorldgenTile({
       tile: tileFixture(),
@@ -458,13 +458,8 @@ describe('semantic adapter', () => {
   });
 
   it.each([
-    [
-      -122.03,
-      47.61,
-      'us.pnw',
-      ['pnw.house', 'catalog.craftsman', 'catalog.prairie', 'catalog.ranch'],
-    ],
-    [139.7, 35.7, 'jp', ['japan.house', 'catalog.kyoto_machiya', 'catalog.gassho_farmhouse']],
+    [-122.03, 47.61, 'us.pnw', ['pnw.house', 'catalog.craftsman', 'catalog.ranch']],
+    [139.7, 35.7, 'jp', ['japan.house', 'catalog.kyoto_machiya']],
     [2.35, 48.85, 'library.france', ['catalog.normandy_farmhouse', 'catalog.provencal_mas']],
   ] as const)('varies stable house identities within %s,%s regional styles only', (lon, lat, regionId, styleNames) => {
     const tile = createEmptyTerrainSemanticTile();

@@ -564,7 +564,7 @@ export function addRoadDashboard(root, s, frame, makeKit) {
       pts.push([Math.cos(angle) * radius, Math.sin(angle) * radius, 0]);
     }
     pts.push(pts[0]);
-    for (let i = 1; i < pts.length; i++) wheel.rod(pts[i - 1], pts[i], 0.013, dark);
+    wheel.path(pts, 0.013, dark);
   } else wheel.ring(radius, 0.013, [0, 0, 0], dark);
   const twoSpoke = inSet(layout, 'i3 ioniq skoda smart genesis');
   wheel.box([twoSpoke ? 0.13 : 0.095, 0.066, 0.05], [0, 0, 0], dark);

@@ -1,0 +1,92 @@
+{
+  "inspectedOn": "2026-10-25",
+  "method": "Ordinary 2013 photograph and standard viewer PMTiles/Mapzen. Existing documented nominal dimensions and historical datum retained without bespoke re-research.",
+  "pictures": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Skopje_-_Kamen_Most_(9454032526).jpg",
+      "author": "Andrzej Wójtowicz",
+      "date": "2013-08-02",
+      "license": "CC BY-SA 2.0",
+      "usage": "Viewed in browser only; no copied pixels or image textures."
+    }
+  ],
+  "observations": [
+    "Unequal stone river arches and brick approach arches",
+    "Different low and pyramidal pier projections on opposite sides",
+    "Pale stone parapets, raised prayer niche and opposite balcony"
+  ],
+  "nativeMap": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-20 daily archive",
+      "url": "https://build.protomaps.com/20261020.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:c2111618672c47aab845bbd07f449f6fbff741e676d1a3d2c7e3a3802778f42e"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        238.78125,
+        937.671875
+      ],
+      "flattenedSubseaSamples": 0,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:50cb60bc359ccd5a2751c99be020957a80d9dd764d2f9c3e8ab3b97eb7cf7837"
+    }
+  },
+  "limitations": [
+    "The observed photo epoch does not establish current river stage or urban construction.",
+    "Existing historical dimensions, reconstructed vault profiles and 241.5 m bottom reference are not a current engineering survey."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.house_of_wonders",
+  "kind": "static-structure",
+  "title": "House of Wonders, Zanzibar (2010)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.house_of_wonders",
+        "output": "assets/places/ky/kyg/house_of_wonders/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9312d8e045d9f96f5896c92bd9ff96ad54a2650c200a5502c4bd8f12630081d8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-palace",
+        "path": "models/generate-palace.mjs"
+      },
+      {
+        "id": "palace-model",
+        "path": "models/palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "native-map/whole-building-and-parts.json",
+      "reference-rights/house-wonders-2004-native.json",
+      "reference-rights/house-wonders-details-native.json",
+      "references/2004-seaward-front.jpg",
+      "references/2010-intrinsic-atrium.jpg",
+      "references/2008-original-entry.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19950-16945.png",
+      "terrain-sources/terrarium-15-19950-16946.png",
+      "terrain-sources/terrarium-15-19951-16945.png",
+      "terrain-sources/terrarium-15-19951-16946.png",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

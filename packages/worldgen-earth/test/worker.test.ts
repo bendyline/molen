@@ -2,7 +2,11 @@ import {
   createEmptyTerrainSemanticTile,
   type TerrainSemanticTile,
 } from '@bendyline/molen-terrain/kernel';
-import type { HeightSampler, Vec3 } from '@bendyline/molen-worldgen/kernel';
+import {
+  type HeightSampler,
+  hashWorldgenOutput,
+  type Vec3,
+} from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
 import { createInThreadWorldgenGenerator } from '../src/client/generators';
 import {
@@ -155,7 +159,10 @@ describe('worldgen worker protocol', () => {
         { ...request, tile: structuredClone(source) },
         new AbortController().signal,
       );
-      expect(replay?.hash).toBe(direct?.hash);
+      // Streaming leaves the output hash empty; compare the bytes themselves.
+      expect(replay && hashWorldgenOutput(replay.buildings, replay.placements)).toBe(
+        direct && hashWorldgenOutput(direct.buildings, direct.placements),
+      );
       expect(replay?.records).toEqual(direct?.records);
     }
     bridge.dispose();

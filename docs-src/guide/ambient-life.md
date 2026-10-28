@@ -279,7 +279,21 @@ function frame(dt: number) {
 
 `installAmbient` takes `traffic`, `classes`, `policy`, `types`, `templates`, `ground` and `seed`.
 For streamed maps, `registerTile` and `unregisterTile` add and drop one tile's transportation
-features. Changes queue until the next tick, so a tile never changes the network mid-step.
+features. Changes queue until a tick applies them, so a tile never changes the network mid-step;
+unregistering a key drops its registration if that is still queued. With `registrationsPerTick`
+a tick applies at most that many registrations, and with `removalsPerTick` at most that many
+removals, in queue order (the defaults apply all); a key's registration waits behind its own
+removal when that is left for a later tick.
+A registration's `bounds` (`[minX, minZ, maxX, maxZ]`, world metres) builds only that part of the
+tile, so a large tile can join in parts, each under its own key; part edges stitch like tile edges.
+`EarthAmbient` registers displayed tiles up to 3 km across, one per sync, and none while the
+observer moves faster than 80 m/s or did in the last 3 seconds: a coarse tile beneath a climbing
+aircraft carried a whole town's roads, and a jet passes a tile's traffic too quickly to see it, for
+a dropped frame per tile. One speed sample between syncs is noisy; a dip let tiles through at 300 m/s.
+It registers tiles of 500 m and more in parts at least 125 m wide, nearest first, handing the
+kernel one part per sync (a frame) to apply at its next tick: a dense Kyoto tile of 1-2 km built
+its network in 20-95 ms at once, and a part a tick let a late frame's catch-up ticks build several.
+A departing tile's parts leave four a tick.
 `blocks(box)` answers whether an ambient car overlaps a box, for a vehicle solver's obstacle test.
 
 `createAmbientRenderer` draws pedestrians with `AmbientFigures`, which a host can also use for its

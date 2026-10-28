@@ -374,7 +374,7 @@ export function buildF15C(s) {
       axis: 'y',
       scale: 0.4,
     });
-    fd.text('F-15C', [side * 0.061, 1.28, -1.35], 0.16, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
     fd.rod([0, 2.86, -1.68], [0, 2.86, -2.78], side === 1 ? 0.08 : 0.045, dark);
     fd.finish();
     // Lateral skin access lines follow the local fuselage section, not a floating cage.
@@ -545,8 +545,8 @@ function f15Cockpit(root, m) {
       );
   const box = (u, v, w, h, material = black, depth = 0.012) =>
       d.box([w * k, h * k, depth], at(u, v, -0.025 + depth / 2), material),
-    text = (t, u, v, h = 6, material = ink) =>
-      d.text(t, at(u, v, -0.031), h * k, Math.PI, material);
+    text = (t, u, v, h = 6, material = ink, role = 'panel') =>
+      d.text(t, at(u, v, -0.031), h * k, Math.PI, material, role);
   const edge = [
     [888, 327],
     [889, 290],
@@ -679,7 +679,7 @@ function f15Cockpit(root, m) {
   });
   ins.available('heading', 'trueHeading', hd.name);
   d.rod(at(1071, 387, -0.028), at(1071, 397, -0.028), 0.0015, ink);
-  text('TRUE', 1071, 436, 4);
+  text('TRUE', 1071, 436, 4, ink, 'display');
   const display = (u, v, w, h, label) => {
     box(u, v, w, h, black, 0.06);
     for (const side of [-1, 1])
@@ -689,7 +689,7 @@ function f15Cockpit(root, m) {
       }
     box(u, v, w * 0.72, h * 0.65, ins.black);
     text(label, u, v - h * 0.22, 5);
-    text('INOP', u, v, 8, amber);
+    text('INOP', u, v, 8, amber, 'display');
   };
   display(983, 280, 76, 91, 'VSD');
   display(934, 372, 86, 100, 'MPCD');
@@ -717,13 +717,13 @@ function f15Cockpit(root, m) {
     [1110, 398],
   ]) {
     box(u, v, 9, 11);
-    text('--', u, v, 3, amber);
+    text('--', u, v, 3, amber, 'display');
   }
   d.box([35 * k, 43 * k, 0.015], at(1236, 405, 0.005), panel);
   d.box([36 * k, 43 * k, 0.015], at(1248, 459, 0.005), panel);
   pt.gauge(...at(1171, 289).slice(0, 2), z - 0.01, 35 * k, black, false);
   text('TEWS', 1171, 281, 7);
-  text('INOP', 1171, 298, 7, amber);
+  text('INOP', 1171, 298, 7, amber, 'display');
   // The centrally stacked analog engine indicators stay blank until those quantities exist.
   for (const [v, label] of [
     [341, 'RPM'],
@@ -734,7 +734,7 @@ function f15Cockpit(root, m) {
     for (const u of [1181, 1208]) {
       pt.gauge(...at(u, v).slice(0, 2), z - 0.012, 11 * k, black, false);
       text(label, u, v - 3, 3);
-      text('--', u, v + 5, 4, amber);
+      text('--', u, v + 5, 4, amber, 'display');
     }
   for (const [u, v, r, label] of [
     [1140, 421, 15, 'CLOCK'],
@@ -747,7 +747,7 @@ function f15Cockpit(root, m) {
   ]) {
     pt.gauge(...at(u, v).slice(0, 2), z - 0.012, r * k, black, false);
     text(label, u, v - 3, 3);
-    text('--', u, v + 5, 4, amber);
+    text('--', u, v + 5, 4, amber, 'display');
   }
   ins.dial(
     'standby-speed',
@@ -803,7 +803,7 @@ function f15Cockpit(root, m) {
     box(u, v, 8, 7);
     d.rod(at(u, v, -0.032), at(u, v - 2, -0.046), 0.002, m.metal);
   }
-  text('--', 1082, 280, 5, amber);
+  text('--', 1082, 280, 5, amber, 'display');
   const hud = [
     [1030, 205],
     [1034, 134],

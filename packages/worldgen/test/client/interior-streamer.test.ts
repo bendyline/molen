@@ -28,6 +28,52 @@ function settle(stream: InteriorStreamer, at: [number, number, number], count = 
   for (let i = 0; i < count; i++) stream.update(at);
 }
 describe('lazy interior lifecycle', () => {
+  it('shows a prepared interior only once its preparation settles, keeping the covers until then', async () => {
+    const region = new THREE.Group();
+    new THREE.Group().add(region);
+    const site = fixture('prepared');
+    const pending: Array<{ object: THREE.Object3D; signal: AbortSignal; resolve: () => void }> = [];
+    const stream = new InteriorStreamer({
+      catalog: INTERIORS,
+      frameBudgetMs: 50,
+      prepare: (object, signal, parent) => {
+        expect(parent).toBe(region);
+        return new Promise<void>((resolve) => pending.push({ object, signal, resolve }));
+      },
+    });
+    stream.register(region, [site]);
+    const covers = (region.getObjectByName('worldgen:interior-portals') as THREE.Mesh).geometry;
+    // Indices of the covers drawn (the range starts unbounded: every cover).
+    const drawn = (): number => Math.min(covers.drawRange.count, covers.index?.count ?? 0);
+    const covered = drawn();
+    try {
+      settle(stream, [10, 1.7, 10]);
+      expect(pending).toHaveLength(1);
+      expect(stream.stats().resident).toBe(1);
+      expect(pending[0]?.object.parent).toBeNull();
+      expect(drawn()).toBe(covered);
+      pending[0]?.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+      expect(pending[0]?.object.parent).toBe(region);
+      expect(drawn()).toBeLessThan(covered);
+      // Evicted while preparing: cancelled, and never shown.
+      settle(stream, [10, 1000, 10]);
+      settle(stream, [10, 1.7, 10]);
+      expect(pending).toHaveLength(2);
+      settle(stream, [10, 1000, 10]);
+      expect(pending[1]?.signal.aborted).toBe(true);
+      pending[1]?.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+      await Promise.resolve();
+      expect(pending[1]?.object.parent).toBeNull();
+      expect(drawn()).toBe(covered);
+    } finally {
+      stream.dispose();
+    }
+  });
   it('skips footprint queries above a region and restores interiors after descending', () => {
     const scene = new THREE.Group();
     const region = new THREE.Group();

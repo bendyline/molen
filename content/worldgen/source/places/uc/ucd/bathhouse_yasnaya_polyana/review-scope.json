@@ -1,0 +1,285 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "identity-review.json"
+  ],
+  "surfaceOverrides": {
+    "wattle": {
+      "graph": "thatch",
+      "slot": "wall",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "frame": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "deck": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.93,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      5.849115804470316,
+      9,
+      20.586108041732793
+    ],
+    "lookAt": [
+      2.153124874464708,
+      0.25,
+      -2.885143544949079
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-wattle-piles-bank-steps",
+      "position": [
+        3.6362427207616292,
+        4,
+        15.191370539740912
+      ],
+      "lookAt": [
+        2.392360971627453,
+        0.2,
+        -3.205715049943421
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-pool-perimeter-walk",
+      "position": [
+        5.9928277448987455,
+        14,
+        -3.0143018461945417
+      ],
+      "lookAt": [
+        3.4091143845691207,
+        -1.4285852032043636,
+        -4.568143946169375
+      ],
+      "fov": 50
+    },
+    {
+      "name": "bank-landing-seven-steps-door",
+      "position": [
+        -1.3816310316475495,
+        3.4,
+        7.703317187575008
+      ],
+      "lookAt": [
+        0.5980902429068633,
+        0.2,
+        -0.8014287624858553
+      ],
+      "fov": 52
+    },
+    {
+      "name": "woven-screen-braces-water",
+      "position": [
+        10.801400319813878,
+        2.4,
+        0.5742396112466386
+      ],
+      "lookAt": [
+        5.351684734910061,
+        0.3,
+        -3.492774040520032
+      ],
+      "fov": 52
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.4285852032043636,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/bathhouse_yasnaya_polyana/models/bathhouse-yasnaya-polyana-model.mjs",
+    "export": "buildBathhouseSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBathhouseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wattle": {
+            "graph": "thatch",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "frame": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "deck": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBathhouseStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wattle": {
+            "graph": "thatch",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "frame": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "deck": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBathhouseCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wattle": {
+            "graph": "thatch",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "frame": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "deck": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.52922177314758,
+      54.07446706598759
+    ],
+    "heading": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps 20261020 / standard Mapzen 201x201 grid at 6m; outside-bank provider [-3,0] supplies 209.66014442236218m datum. Native pond 208.23155921915782m; model water -1.4285852032043636m and deck -1.0285852032043636m. Preserve the original DEM samples and native water/road geometry. Native hydrology clears coarse ground that obscures the mapped pond; model cuts cover only its flooded body and stair, not the dry bank landing or unrelated buildings. The seven steps reconcile the coarse bank height with the photo-led .4m water clearance. The nearby native path stops about 2m from the landing; no invented final path is supplied. Inspected the corrected native pool, wattle screens, open leaf, seven descending treads and bank landing. Model is seated on its outside-bank attachment; no ground covers the central pool. The original mapped water, DEM samples and all243 resident buildings remain. Coarse native shoreline banks are visibly steep; bathymetry, approach reconstruction, dimensions and facing remain approximate.",
+    "bounds": [
+      37.52917632583003,
+      54.07443197563795,
+      37.52934729966663,
+      54.07455763451056
+    ],
+    "terrainReference": {
+      "anchor": [
+        37.529194301611604,
+        54.0744454679164
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps 20261020 / standard Mapzen 201x201 grid at 6m; outside-bank provider [-3,0] supplies 209.66014442236218m datum. Native pond 208.23155921915782m; model water -1.4285852032043636m and deck -1.0285852032043636m. Preserve the original DEM samples and native water/road geometry. Native hydrology clears coarse ground that obscures the mapped pond; model cuts cover only its flooded body and stair, not the dry bank landing or unrelated buildings. The seven steps reconcile the coarse bank height with the photo-led .4m water clearance. The nearby native path stops about 2m from the landing; no invented final path is supplied."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -0.727248544152326,
+          -3.0382741079481823
+        ],
+        [
+          3.1196095157797794,
+          -0.16744094199523873
+        ],
+        [
+          7.545477313290568,
+          -6.098013784390568
+        ],
+        [
+          3.698619253358463,
+          -8.968846950343512
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -0.727248544152326,
+            -3.0382741079481823
+          ],
+          [
+            3.1196095157797794,
+            -0.16744094199523873
+          ],
+          [
+            7.545477313290568,
+            -6.098013784390568
+          ],
+          [
+            3.698619253358463,
+            -8.968846950343512
+          ]
+        ],
+        [
+          [
+            -0.730260280633208,
+            -0.10825859101941188
+          ],
+          [
+            0.3115971105984038,
+            0.6692587247595105
+          ],
+          [
+            1.7171091814295325,
+            -1.2140988670822495
+          ],
+          [
+            0.6752517901979207,
+            -1.9916161828611716
+          ]
+        ]
+      ],
+      "basis": "Flooded enclosure and approach stair only; dry bank landing and attachment ground stay intact."
+    },
+    "notes": "Named bathing point node/302670091 (Заброшенная купальня), anchor [37.52922177314758,54.07446706598759]. A.Savin’s viewed pond photograph has public camera coordinates 10.67m from this point and 171.32m from the rejected bank-side way/676929139. Camera position establishes vicinity only. No building footprint supplies scale or heading here. The 7.4x4.8m enclosure and northeast long axis are photo-led approximations, oriented with a bank-facing southwest short-end entrance. Keep the unrelated bank-side building and all other native buildings. Retained Protomaps 20261020 / standard Mapzen 201x201 grid at 6m; outside-bank provider [-3,0] supplies 209.66014442236218m datum. Native pond 208.23155921915782m; model water -1.4285852032043636m and deck -1.0285852032043636m. Preserve the original DEM samples and native water/road geometry. Native hydrology clears coarse ground that obscures the mapped pond; model cuts cover only its flooded body and stair, not the dry bank landing or unrelated buildings. The seven steps reconcile the coarse bank height with the photo-led .4m water clearance. The nearby native path stops about 2m from the landing; no invented final path is supplied.",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "mapIdentity": {
+      "maxDistance": 16
+    },
+    "maxDistance": 16
+  }
+}

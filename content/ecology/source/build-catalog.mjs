@@ -95,10 +95,22 @@ const plants = [
     'round',
     16,
     11,
-    '#507b53',
+    '#466b4a',
     { crownBase: 0.36 },
   ),
-  plant('alder', 'Pacific coastal alder form', 'broadleaf', 'round', 15, 9, '#7f995d'),
+  // Neem, jamun and arjun along Delhi's avenues and in its compounds: dense, dark crowns that a
+  // Sentinel-2 frame of the Central Vista reads as near-black canopy.
+  plant(
+    'avenue_evergreen',
+    'South Asian avenue evergreen broadleaf',
+    'broadleaf',
+    'round',
+    15,
+    13,
+    '#2c4630',
+    { crownBase: 0.34 },
+  ),
+  plant('alder', 'Pacific coastal alder form', 'broadleaf', 'round', 15, 9, '#5f7f5a'),
   plant(
     'podocarp',
     'Southern evergreen conifer canopy form',
@@ -152,7 +164,7 @@ const plants = [
     'umbrella',
     12,
     11,
-    '#809451',
+    '#435230',
     { crownBase: 0.56 },
   ),
   plant(
@@ -174,7 +186,9 @@ const plants = [
     11,
     '#88915e',
   ),
-  plant('mesquite', 'American desert low woodland form', 'broadleaf', 'umbrella', 6, 9, '#859269', {
+  // Desert crowns read dark olive in half-meter NAIP of Yuma's yards and the Colorado's banks
+  // (about #5f6444 lit); the earlier sage tones rendered as pale lawn green from the air.
+  plant('mesquite', 'American desert low woodland form', 'broadleaf', 'umbrella', 6, 9, '#5f6644', {
     crownBase: 0.42,
   }),
   plant(
@@ -184,7 +198,7 @@ const plants = [
     'umbrella',
     22,
     14,
-    '#899e85',
+    '#6d8564',
     { bark: '#b9b4a1', crownBase: 0.65 },
   ),
   plant('mallee', 'Australian mallee form', 'broadleaf', 'round', 5, 6, '#91a08b', {
@@ -219,9 +233,9 @@ const plants = [
     crownBase: 0.3,
   }),
   plant('spruce', 'Boreal spruce form', 'conifer', 'columnar', 17, 5, '#426b56'),
-  plant('fir', 'Mountain fir form', 'conifer', 'columnar', 20, 6, '#4c7457'),
+  plant('fir', 'Mountain fir form', 'conifer', 'columnar', 20, 6, '#1f393a'),
   plant('pine', 'Temperate pine form', 'conifer', 'round', 18, 7, '#69844e', { crownBase: 0.32 }),
-  plant('cedar', 'Pacific coastal conifer form', 'conifer', 'columnar', 29, 9, '#3e7055', {
+  plant('cedar', 'Pacific coastal conifer form', 'conifer', 'columnar', 29, 9, '#1a3436', {
     crownBase: 0.12,
   }),
   plant('larch', 'Boreal larch form', 'conifer', 'columnar', 16, 5, '#8b9b60'),
@@ -243,11 +257,11 @@ const plants = [
     lean: 0.16,
     bark: '#a58e70',
   }),
-  plant('date_palm', 'Cultivated date palm form', 'palm', 'feather', 13, 9, '#94a276', {
+  plant('date_palm', 'Cultivated date palm form', 'palm', 'feather', 13, 9, '#6b7652', {
     stemRadius: 0.42,
     lean: 0.015,
   }),
-  plant('fan_palm', 'Warm climate fan palm form', 'palm', 'fan', 14, 7, '#83965b', {
+  plant('fan_palm', 'Warm climate fan palm form', 'palm', 'fan', 14, 7, '#5f6e44', {
     stemRadius: 0.28,
     lean: 0.01,
   }),
@@ -375,7 +389,7 @@ const population = (name, weight = 1) => {
     align: 'up',
     // Enough per-plant drift that a stand is not one swatch: autumn crowns range yellow to
     // russet, conifers yellow- to blue-green, and some trees stand in deeper shade.
-    tint: { hue: 0.05, saturation: 0.12, lightness: 0.16 },
+    tint: { hue: 0.025, saturation: 0.07, lightness: 0.08 },
   };
 };
 const populations = (names) =>
@@ -392,6 +406,21 @@ const colors = (ground, forest, grass) => ({
     meadow: grass,
     park: grass,
     garden: grass,
+    cemetery: grass,
+    recreation_ground: grass,
+    village_green: grass,
+    golf_course: grass,
+    pitch: grass,
+    gravel: '#b6b0a2',
+    bare_rock: '#aaa395',
+    pedestrian: '#aaa79e',
+    pavement: '#aaa79e',
+    // Unmapped ground between a dense block's buildings: lanes, alleys, forecourts and parking,
+    // a step darker than a mapped concrete plaza (matched Kyoto and Seattle frames).
+    urban_ground: '#96948d',
+    parking: '#747575',
+    retail: '#aaa59a',
+    civic: '#aaa59a',
     residential: grass,
     wetland: '#7f9272',
     farmland: '#b0a475',
@@ -431,10 +460,20 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     scrubDensity = 55,
     openDensity = 1.4,
     surface = colors('#929f73', '#53734f', '#97a46a'),
+    // A regional color refinement must not change the habitat's brush/density selection.
+    surfacePalette = surface,
     parkTrees = trees,
+    homeTrees = parkTrees,
+    parkDensity = 19,
+    crownScale = 1,
     orchard = ['fruit_tree'],
     wetland = ['reeds'],
     grasslandTrees = 0,
+    // Street, common-area and greenbelt canopy inside mapped residential land, beyond the
+    // yard patches inferred around each home. Zero (the default) leaves it to the yards.
+    residentialTrees = 0,
+    // Clearance of open and residential canopy from road edges; avenue trees overhang them.
+    treeRoadClearance = 5,
     openTrees = surface === desert || surface === dry || surface === cold ? 0 : 14,
     groundDensity = surface === desert ? 110 : surface === dry ? 2200 : 4200,
   } = settings;
@@ -451,7 +490,14 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
       densityPerHectare: density,
       minSpacing: layer === 'groundcover' ? 0.35 : 1.8,
       slopeMax: layer === 'groundcover' ? 0.7 : 0.85,
-      populations: populations(names),
+      populations: populations(names).map((p) =>
+        layer === 'canopy'
+          ? {
+              ...p,
+              widthScale: { min: 0.85 * crownScale, max: 1.15 * crownScale },
+            }
+          : p,
+      ),
       layer,
       clustering: {
         scale: layer === 'groundcover' ? 35 : 135,
@@ -472,12 +518,18 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     notClasses: wildExclusions,
     ...(mangrove ? { nearWater: { maxDistance: 250 } } : {}),
   });
-  add('park', ['park', 'garden', 'cemetery'], parkTrees, 19, 'canopy', { notClasses: knownCrops });
+  add('park', ['park', 'garden', 'cemetery'], parkTrees, parkDensity, 'canopy', {
+    notClasses: knownCrops,
+  });
   // Yards are planted lot by lot, not in forest-scale stands: denser than a park, with clustering
   // fine enough to vary between neighbours instead of blanking whole blocks. Only regions whose
   // atlas sets a tree fill factor infer yards at all.
-  add('home_canopy', ['home_canopy'], parkTrees, 140, 'canopy', {
+  add('home_canopy', ['home_canopy'], homeTrees, 120, 'canopy', {
     clustering: { scale: 55, threshold: 0.12, contrast: 2.2, seedOffset: 11 },
+  });
+  add('residential_trees', ['residential'], homeTrees, residentialTrees, 'canopy', {
+    clustering: { scale: 70, threshold: 0.2, contrast: 2.4, seedOffset: 17 },
+    avoid: { buildings: 6, roads: treeRoadClearance },
   });
   add('open', ['open_ground'], shrubs, openDensity);
   // In temperate and wet habitats, unmapped ground (verges, institutional lawns, rough lots) keeps
@@ -485,7 +537,7 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
   add('open_trees', ['open_ground'], parkTrees, openTrees, 'canopy', {
     clustering: { scale: 70, threshold: 0.22, contrast: 2.4, seedOffset: 13 },
     // A grown park tree's crown reaches 5–6 m; keep it clear of walls and roofs.
-    avoid: { buildings: 7 },
+    avoid: { buildings: 7, roads: treeRoadClearance },
   });
   add('orchard', ['orchard'], orchard, 156.25, 'canopy', {
     rows: { spacing: 8, interval: 8, angle: 0, jitter: 0.04 },
@@ -615,11 +667,12 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     version: 1,
     title,
     doc: 'Representative habitat forms. Actual mapped land cover controls placement; this is not a species occurrence map.',
-    surface,
+    surface: surfacePalette,
     defaults: {
       avoid: { roads: 5, buildings: 3, water: 1.5 },
       slopeMax: 0.8,
-      lod: { keepByTier: [1, 0.5, 0.2, 0.065], maxInstancesPerBatch: 9000 },
+      // Thinned distant crowns widen so canopy still covers the ground seen from the air.
+      lod: { keepByTier: [1, 0.5, 0.2, 0.065], maxInstancesPerBatch: 9000, coverGrowth: 2.2 },
     },
     rules,
   });
@@ -633,9 +686,108 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
   });
 }
 
-const wet = colors('#6e8863', '#406647', '#829660');
-const dry = colors('#b6a780', '#87936c', '#b6ad7c');
-const desert = colors('#c3ae85', '#98a07b', '#b9ac7d');
+const wet = colors('#6e8065', '#406047', '#7b8b63');
+// Aerial review of Bellevue's open lawn: the shared wet grass was pale yellow-green
+// under the Earth sun. Cooler, deeper turf belongs to this coastal region; rough ground
+// stays lighter and woodland keeps its own dark green without adding trees to open lawns.
+// Matched NAIP frames of Bellevue and Sammamish: lawns, verges and woodland floor all read
+// darker and bluer than the earlier palette, under near-continuous conifer canopy.
+const pacificCoastal = colors('#344947', '#1a3132', '#2f5440');
+Object.assign(pacificCoastal.colors, {
+  scrub: '#354a40',
+  grassland: '#3f5448',
+  meadow: '#3f5448',
+  garden: '#30523e',
+  residential: '#4a6150',
+  wetland: '#38524a',
+});
+// Matched orthophotos (Yuma NAIP, Delhi Sentinel-2): dry soil, gravel yards and scrub read a
+// warm mid brown, not pale sand; daylight-balanced, the earlier palette rendered grey-cream.
+const dry = colors('#8e836a', '#56664a', '#968f6b');
+const desert = colors('#887b63', '#4f5a3c', '#8c8562');
+// Managed planting is not the potential dry biome. Keep verges dry and parks irrigated.
+for (const surface of [dry, desert]) {
+  Object.assign(surface.colors, {
+    park: '#6d784e',
+    garden: '#6a7650',
+    cemetery: '#757d58',
+    grass: '#7c8059',
+    residential: '#867b64',
+    sand: '#ad9f84',
+    barren: '#958a74',
+    // Dry-country wetland is riparian thicket (tamarisk, mesquite, willow): the Colorado's
+    // banks at Yuma read dark olive canopy in NAIP, not the shared pale marsh green.
+    wetland: '#4f5a3c',
+  });
+}
+// Irrigated city lawns and paler concrete in dry coastal cities (matched Sydney frames).
+Object.assign(dry.colors, {
+  park: '#6f8256',
+  garden: '#6c7f55',
+  grass: '#7a875f',
+  urban_ground: '#a5a5a0',
+});
+// Matched Yuma frames: desert parks and grass read olive-tan, mostly unwatered scrub.
+Object.assign(desert.colors, {
+  park: '#77724f',
+  garden: '#6d7350',
+  cemetery: '#7a7a58',
+  grass: '#7f7a57',
+});
+// Ground detail, [brush, bare]: the shrub speckle and worn bare patches orthophotos show where
+// placing every creosote or saltbush is impossible, plus vacant and dirt lots between yards.
+desert.detail = {
+  open_ground: [0.6, 0.45],
+  scrub: [0.85, 0.2],
+  heath: [0.7, 0.2],
+  grassland: [0.45, 0.3],
+  meadow: [0.3, 0.2],
+  barren: [0.25, 0.35],
+  sand: [0.12, 0.25],
+  park: [0.35, 0.15],
+  residential: [0.12, 0.55],
+  industrial: [0.05, 0.45],
+  commercial: [0.02, 0.3],
+};
+dry.detail = {
+  open_ground: [0.4, 0.35],
+  scrub: [0.75, 0.15],
+  heath: [0.6, 0.15],
+  grassland: [0.25, 0.25],
+  barren: [0.2, 0.3],
+  residential: [0.1, 0.35],
+  industrial: [0.04, 0.4],
+};
+// Delhi under Sentinel-2: dusty dark-brown ground and olive lawns between dense canopy.
+// Surface reflectance there is low (about 0.08 across the Central Vista frame): dust, smog-dulled
+// paving and dark canopy, so the palette sits a step darker than other dry cities.
+const aravalli = colors('#625741', '#45523a', '#716a4e');
+Object.assign(aravalli.colors, {
+  park: '#525935',
+  garden: '#525935',
+  cemetery: '#595b39',
+  grass: '#5b5a38',
+  residential: '#5f5543',
+  // Buff sandstone, red gravel and dust: Central Vista's paving reads warm, not grey.
+  pedestrian: '#8a765a',
+  pavement: '#8a765a',
+  urban_ground: '#6b5c46',
+  civic: '#86735d',
+  commercial: '#837562',
+  retail: '#837562',
+  industrial: '#787061',
+  urban_area: '#797061',
+  parking: '#69635a',
+  sand: '#8f8268',
+  barren: '#736a57',
+});
+aravalli.detail = {
+  open_ground: [0.3, 0.35],
+  scrub: [0.7, 0.15],
+  grassland: [0.25, 0.25],
+  barren: [0.15, 0.3],
+  residential: [0.08, 0.35],
+};
 const cold = colors('#929b81', '#57745d', '#9eaa85');
 habitat('ice', 'Bare rock and ice', { biomes: [0] }, [], [], [], {
   forestDensity: 0,
@@ -660,7 +812,7 @@ habitat(
   ['dry_tropical'],
   ['scrub'],
   ['dry_grass'],
-  { surface: dry },
+  { surface: dry, crownScale: 1.25 },
 );
 habitat(
   'tropical_conifers',
@@ -811,7 +963,14 @@ habitat(
   [['eucalyptus', 4], 'mallee'],
   ['mallee'],
   ['dry_grass'],
-  { priority: 40, surface: dry, forestDensity: 100, grasslandTrees: 4 },
+  {
+    priority: 40,
+    surface: dry,
+    forestDensity: 100,
+    grasslandTrees: 4,
+    parkTrees: [['eucalyptus', 4], 'warm_evergreen'],
+    crownScale: 1.25,
+  },
 );
 habitat(
   'southern_beech_forest',
@@ -847,7 +1006,18 @@ habitat(
   [['cedar', 5], ['fir', 2], 'alder'],
   ['scrub'],
   ['fern'],
-  { priority: 40, surface: wet, forestDensity: 195, parkTrees: ['alder', 'cedar'] },
+  {
+    priority: 40,
+    surface: wet,
+    surfacePalette: pacificCoastal,
+    forestDensity: 175,
+    // Eastside yards and greenbelts are mostly Douglas-fir and cedar under a few maples.
+    parkTrees: [['cedar', 3], ['fir', 2], ['alder', 2], 'maple'],
+    homeTrees: [['cedar', 5], ['fir', 4], 'alder', 'maple'],
+    residentialTrees: 80,
+    openTrees: 90,
+    crownScale: 1.4,
+  },
 );
 habitat(
   'atacama',
@@ -929,6 +1099,37 @@ habitat(
     scrubDensity: 38,
     openDensity: 1.2,
     parkTrees: ['mesquite'],
+    // Irrigated yards: mesquite and palo verde-like crowns, fan and date palms, citrus, pine.
+    homeTrees: [['mesquite', 3], ['fan_palm', 2], 'date_palm', ['fruit_tree', 2], 'pine'],
+    riparian: [
+      ['willow', 3],
+      ['mesquite', 2],
+    ],
+    crownScale: 1.2,
+    orchard: [],
+  },
+);
+habitat(
+  'aravalli_thorn',
+  'Aravalli thorn woodland and managed broadleaf parks',
+  { ecoregions: [314] },
+  ['dry_tropical'],
+  ['dry_scrub'],
+  ['dry_grass'],
+  {
+    priority: 40,
+    surface: dry,
+    surfacePalette: aravalli,
+    forestDensity: 65,
+    scrubDensity: 32,
+    openDensity: 0.8,
+    // Delhi's compounds, verges and avenues sit under neem, jamun and arjun canopy.
+    openTrees: 130,
+    residentialTrees: 100,
+    treeRoadClearance: 1.5,
+    parkTrees: [['avenue_evergreen', 4], 'dry_tropical'],
+    parkDensity: 70,
+    crownScale: 1.5,
     orchard: [],
   },
 );
@@ -999,7 +1200,16 @@ habitat(
   [['warm_evergreen', 5], 'maple'],
   ['scrub', 'bamboo'],
   ['fern'],
-  { priority: 40, surface: wet, forestDensity: 170, parkTrees: ['maple', 'warm_evergreen'] },
+  {
+    priority: 40,
+    surface: { ...wet, colors: { ...wet.colors, residential: '#999b91', garden: '#6f8059' } },
+    forestDensity: 155,
+    parkTrees: [
+      ['warm_evergreen', 3],
+      ['maple', 2],
+    ],
+    crownScale: 1.2,
+  },
 );
 habitat(
   'east_asian_deciduous',
@@ -1026,7 +1236,8 @@ const doc = {
   plants,
   crops: agricultureCrops(),
 };
-const bytes = `${JSON.stringify(doc, null, 2)}\n`;
+// This generated download is read through its authoring source; keep the existing data budget.
+const bytes = `${JSON.stringify(doc)}\n`;
 const destination = new URL('regional.catalog.json', root);
 if (process.argv.includes('--check')) {
   if ((await readFile(destination, 'utf8')) !== bytes)

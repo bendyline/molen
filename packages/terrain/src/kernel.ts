@@ -19,6 +19,11 @@ export {
   terrainArchiveSetTierCells,
 } from './archive-set';
 export { type BridgeDeckOptions, bridgeDeckHeightFn } from './bridge-profile';
+export {
+  sampleTerrainBuildingCoverage,
+  type TerrainBuildingCoverage,
+  terrainBuildingCoverage,
+} from './building-coverage';
 export type {
   TerrainDescriptor,
   TerrainLayer,
@@ -168,6 +173,7 @@ export {
   BRIDGE_SURFACE_LIFT,
   groupTransportationFeatures,
   inferLaneCount,
+  isAeroway,
   isArterialRoad,
   isPaintedTransport,
   isTransportLink,
@@ -213,3 +219,14 @@ export {
   type TerrainRouteShieldLibrary,
   terrainRouteShieldLibrarySchema,
 } from './route-shields';
+export {
+  deriveOverzoomTerrainSemanticTilePacket,
+  deriveTerrainSemanticTilePacket,
+  keepTerrainSemanticTile,
+  packTerrainSemanticTile,
+  type TerrainSemanticTileEdit,
+  type TerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+  terrainSemanticTilePacket,
+  unpackTerrainSemanticTile,
+} from './semantic-packet';

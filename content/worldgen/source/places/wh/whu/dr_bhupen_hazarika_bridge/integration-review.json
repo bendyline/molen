@@ -1,0 +1,145 @@
+{
+  "status": "canonical integration and scoped readiness verified",
+  "catalogReady": true,
+  "sourceHash": "sha256:65b24612280d253de238f2097300f2b23fea37670f349fd46685840955dd74e5",
+  "priorStatus": "isolated model and native review complete; canonical integration pending",
+  "savedReview": {
+    "report": ".artifacts/bhupen-review/completion-draft.json",
+    "hash": "sha256:8a6a8f21cdd94db554485533deeda5c0ad1c60f0602ab292fd5f63ba5537b936",
+    "sourceFrames": [
+      {
+        "camera": {
+          "name": "full-curved-crossing",
+          "position": [
+            0,
+            4800,
+            6700
+          ],
+          "lookAt": [
+            0,
+            8,
+            0
+          ],
+          "fov": 60
+        },
+        "path": "D:\\gh\\molen\\.artifacts\\bhupen-review/full-curved-crossing.png",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "south-viaduct-and-rail",
+          "position": [
+            -3332.2765907429443,
+            21.89,
+            -383.34935006835696
+          ],
+          "lookAt": [
+            -3228.0169373860563,
+            12.182500000000001,
+            -301.19956837741915
+          ],
+          "fov": 55
+        },
+        "path": "D:\\gh\\molen\\.artifacts\\bhupen-review/south-viaduct-and-rail.png",
+        "inspected": true
+      },
+      {
+        "camera": {
+          "name": "main-pier-and-girder",
+          "position": [
+            -478.56980041268275,
+            12,
+            302.33384924575023
+          ],
+          "lookAt": [
+            -466.2788972772802,
+            12,
+            242.57262291641175
+          ],
+          "fov": 55
+        },
+        "path": "D:\\gh\\molen\\.artifacts\\bhupen-review/main-pier-and-girder.png",
+        "inspected": true
+      }
+    ]
+  },
+  "nativeFit": {
+    "acceptedInSavedFixture": true,
+    "canonicalHostVerified": true,
+    "registeredPreview": true,
+    "currentReview": "qa.json#siteIntegrationReview"
+  },
+  "pending": [],
+  "limitations": [
+    "Original picture-based exterior proportions; no bespoke surveys or engineering sources used.",
+    "The 183-span approximately 50 m rhythm is a regularized reconstruction assumption, not a confirmed as-built span schedule.",
+    "Exact girder sections, bearings, individual rail/post spacing, foundations, river stage and terrain contact are provisional.",
+    "Ordinary pictures show different construction/opening states; temporary gantries, crowds, vehicles, signs and neighboring infrastructure are excluded.",
+    "Physical ordinary-laptop and phone/tablet measurements remain pending.",
+    "The basic semantic-road fixture draws an unrelated mapped ferry as a stripe over the water; that independent feature is retained. It is outside the authored bridge and is not a road-mode fidelity approval."
+  ],
+  "canonical": {
+    "sourceHash": "sha256:65b24612280d253de238f2097300f2b23fea37670f349fd46685840955dd74e5",
+    "runtimeHash": "sha256:f27953a06e1ce586f6420ccd1256e5c362de1c0f1ddf60f9d80155b1b154a5ba",
+    "assetInspectVerified": true,
+    "headlessScene": {
+      "validated": true,
+      "ticks": 1
+    },
+    "sharedMaterialBindingsVerified": true,
+    "embeddedImages": 0,
+    "runtimeLevels": [
+      {
+        "level": "skyline",
+        "bytes": 68796,
+        "hash": "sha256:66a5bf8ab35d9e660c9a877536d24e09a00503d7b9f56d283b8f81da27cc1559",
+        "triangles": 700,
+        "draws": 1
+      },
+      {
+        "level": "district",
+        "bytes": 336840,
+        "hash": "sha256:62f51c958d0a470ebe573999e8570d58d63d260f71365d54406e227b010b9158",
+        "triangles": 3682,
+        "draws": 1
+      },
+      {
+        "level": "street",
+        "bytes": 1542196,
+        "hash": "sha256:714bf688effcd738b581ea9ba710055ca2554eaa423d4df8f58e816f0c1e90b1",
+        "triangles": 15898,
+        "draws": 2
+      },
+      {
+        "level": "closeup",
+        "bytes": 6065172,
+        "hash": "sha256:08da9ec0e7ae6acc1be0196e09e5ade2317efd0a79eaa4680b5955d3b6b279c7",
+        "triangles": 61574,
+        "draws": 2
+      }
+    ],
+    "initialGeometryBytes": 405636,
+    "budgets": "All four levels meet 1000/4000/16000/64000 triangles and 12 draws; skyline plus district below 3MB.",
+    "commands": [
+      "node packages/worldgen/scripts/generate-authored-bridge-models.mjs --ids=dr_bhupen_hazarika_bridge --check",
+      "node packages/worldgen/scripts/import-structure-models.mjs --ids=dr_bhupen_hazarika_bridge --check",
+      "node packages/tooling/scripts/check-medium-fi.mjs --ids=dr_bhupen_hazarika_bridge --strict"
+    ],
+    "previewBasis": "Current canonical source/runtime and the completed, hash-bound Molen render reviews in qa.json.",
+    "registrationIsReadinessApproval": false,
+    "sourceReproduced": true,
+    "runtimeImportVerified": true,
+    "reviewedOn": "2026-10-26",
+    "currentReview": "qa.json",
+    "inspectedFrames": 53,
+    "readinessBasis": "Completed canonical visual, shared-surface, medium-fi, geographic, fidelity and native-site reviews; not registration alone."
+  },
+  "packaging": "The merged branch uses input-addressed asset bundles; no asset-lock.json exists. The registered generator participates in Assets CI. No release was built or published in this integration pass.",
+  "supersededIntegration": {
+    "reportHash": "sha256:0f8f293648f37cb24af5e9d40ee4d9d3e0c33bc917645935571cdfc4b3eed8be",
+    "status": "canonical source and runtime integration verified; final readiness review pending",
+    "sourceHash": "sha256:65b24612280d253de238f2097300f2b23fea37670f349fd46685840955dd74e5",
+    "runtimeHash": "sha256:f27953a06e1ce586f6420ccd1256e5c362de1c0f1ddf60f9d80155b1b154a5ba",
+    "note": "This earlier handoff snapshot preceded the completed canonical reviews and approach corrections. Current scope and limits are recorded in qa.json and QA-REVIEW.md."
+  }
+}

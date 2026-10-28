@@ -1,6 +1,6 @@
 /** Original Palacio Barolo exterior. Documentary dimensions are separate from reconstruction. */
 import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 
 const stone = [0.8, 0.76, 0.66],
   trim = [0.88, 0.84, 0.74];
@@ -52,8 +52,7 @@ function path(o, slot, points, radius, color = trim, sides = 8) {
     points = points.filter((_, i) => i % step === 0 || i === points.length - 1);
     sides = Math.min(sides, o.detail === 'district' || radius < 0.15 ? 3 : 4);
   }
-  for (let i = 1; i < points.length; i++)
-    tube(o, slot, points[i - 1], points[i], radius, color, sides);
+  tubePath(o, slot, points, radius, color, sides);
 }
 function archPoints(x, y, z, radius, rise = radius, pointed = false, count = 32) {
   return Array.from({ length: count + 1 }, (_, i) => {

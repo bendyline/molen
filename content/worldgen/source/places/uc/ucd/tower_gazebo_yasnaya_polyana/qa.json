@@ -1,0 +1,895 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.tower_gazebo_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:bf356c9f033b81e39c250ab29fb221576d57281f5a0418270e730e4edba6b361",
+  "sourceHash": "sha256:cf7afdf192de9f4eddc65509b89aba4eff8555d77b59e86c32fa962f88a1938d",
+  "runtimeHash": "sha256:3641d0edbec9355efc928518355a47fa29f19527f73b771c6b178353b8425672",
+  "captureReportHash": "sha256:9cdbbb481bf2b1359497ec0b58b0b8e53622791c3f02c8b62b3a3c8f0c96346a",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-timber-tower-stair-platform-and-green-roof.png",
+      "shots/open-undercroft-four-grounded-posts-and-stair.png",
+      "shots/platform-entry-balusters-and-rafter-supports.png",
+      "shots/rear-railing-green-pyramid-and-open-frame.png"
+    ],
+    "captureReportHash": "sha256:9cdbbb481bf2b1359497ec0b58b0b8e53622791c3f02c8b62b3a3c8f0c96346a",
+    "notes": "Inspected48 current portable/shared/medium-fi/native frames and full-resolution native stair, undercroft, platform entry and roof-bearing views during one author/inspect/fix pass. Four exposed timber posts support the open square platform, steep nine-tread stair, two stringers/handrails, vertical balusters and shallow green pyramidal roof. The underside stays open; there is a real gap in the front rail for the stair. An inner bearing ring seats the roof on the posts and near-level hip rafters follow its pitch. No unrelated tree/canopy is baked into the structure."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-timber-tower-stair-platform-and-green-roof.png",
+      "shots/shared/open-undercroft-four-grounded-posts-and-stair.png",
+      "shots/shared/platform-entry-balusters-and-rafter-supports.png",
+      "shots/shared/rear-railing-green-pyramid-and-open-frame.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:5aa1b0a904e210d1453fca1c6c96183538faab44c9028eee6bf650da3f6c6fd5",
+    "notes": "Three roles use two existing256px graphs: wood_plain for timber and restrained bark accents, metal_standing_seam for the green roof. Linear tints, metric UVs, separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. At most2nearby draws/one skyline draw. No embedded bitmap, private atlas or new graph. Each graph reads once; unload releases all model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-timber-tower-stair-platform-and-green-roof.png",
+      "medium-fi/open-undercroft-four-grounded-posts-and-stair.png",
+      "medium-fi/platform-entry-balusters-and-rafter-supports.png",
+      "medium-fi/rear-railing-green-pyramid-and-open-frame.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:42a0c1f2633fe23643919d96990283265de1d4e3add3ba31a927b3563c80decc",
+    "notes": "Four authored LODs 552/848/1160/1260triangles; initial skyline+district125944bytes; closeup105612bytes. Skyline retains the full four-post/open-platform/green-roof/stair silhouette within the1k structure ceiling; district adds vertical balusters and stair midrails; street/closeup add restrained bark, plank seams and hip rafters. Synthetic scenes compare style/LOD/modes. Physical laptop/phone measurements remain pending."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:48fe036b4eed6c4381c0af2778bae3fb8349bcdceed50b916580ac50d02a0ea0",
+    "mapFrameHash": "sha256:5aed1c37434831a762b1941b52ce626453aaea4a5b6a87c7213e3346bd9c175a",
+    "notes": "Named Беседка-вышка node6338741862 at unchanged assigned anchor[37.53197110790589,54.07432543327198]. No retained building footprint within40m. Map evidence is the named point only: the2.15m platform/2.6m roof and5.4m approximate height are photo-led, not mapped or surveyed dimensions. LocalX southeast, localZ southwest toward the nearest retained path point6.897m away; native axes baked with heading0. Stair faces the inferred approach, with30-degree orientation uncertainty. The small unrepresented foot trail between stair and mapped path is not invented as source map geometry. The gazebo is independent from the pavilion and entrance towers. Retained Protomaps20261020/Mapzen201x201/6m standard extract. Outside control[-2.5,0] sets datum198.23757107381198m. Four post ground offsets[-0.07934965518876425,-0.106392250622946,0.018416897355848505,0.04679499927158304]m; whole platform sits about2.4m above the highest sampled post foot. Original ground remains beneath platform, stair, supports and approaches; solid posts/stringer ends seat into soil without cutouts. No flattening, new water or bespoke terrain. The map lacks this small footprint and final trail connection; exact orientation, scale and soil/footing details remain approximate. Inspected native whole tower, platform entry, roof-bearing frame and grounded posts/open stair. Original terrain stays beneath every open area; all independent buildings, paths and water remain. Approximate stair direction follows the nearest retained path; map point alone does not certify compass facing or dimensions. The30-degree uncertainty is an authoring estimate, not a surveyed angular bound. No missing-map trail was added. The named map point—not an invented building outline—anchors this reconstruction. All243 resident/295 wider independent buildings, original path inputs and40070.675m² pond water remain unchanged. Ground stays beneath the raised platform, stair, solid supports and outside approaches. Failure retains all original map objects; unload releases geometry without changing ground/water. Legacy fixture groundOutsideResidentTile samples an arbitrary point outside this shifted grid; it is not used as geographic proof."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete small timber tower gazebo: four tall exposed posts, open raised square platform, steep stair with separate treads/stringers/handrails, vertical platform balusters with a real stair entry, bracing and green pyramidal sheet-metal roof with underside rafters. Shared wood_plain and metal_standing_seam graphs, four authored LODs and no private texture atlas, copied photograph pixels or attached tree geometry. Hidden joinery and exact scale remain original photo-led approximations. Photo-led platform2.15m square, upper floor modelY2.45m, eave4.65m and roof peak5.4m. Four main posts follow individually sampled ground and extend.18m into it. Stair run2.6m, width.95m, 9open treads from original soil modelY0.25112494991566336m to platform. Handrails/platform rail1.0m above walking surfaces. Exact post diameters, tread/log/baluster census, roof pitch and historical levels/accessibility are approximate. The inner roof-bearing ring is seated on post tops at modelY4.773076923076924m, above the lower overhanging eave, and hip rafters follow the actual roof pitch. Retained Protomaps20261020/Mapzen201x201/6m standard extract. Outside control[-2.5,0] sets datum198.23757107381198m. Four post ground offsets[-0.07934965518876425,-0.106392250622946,0.018416897355848505,0.04679499927158304]m; whole platform sits about2.4m above the highest sampled post foot. Original ground remains beneath platform, stair, supports and approaches; solid posts/stringer ends seat into soil without cutouts. No flattening, new water or bespoke terrain. The map lacks this small footprint and final trail connection; exact orientation, scale and soil/footing details remain approximate. Museum and Commons photos establish the exterior silhouette. The map provides only a named point and a path about6.9m away; it does not establish footprint, dimensions or compass facing. Front assignment and scale are deliberately approximate;30degrees is an authoring uncertainty estimate, not a measured angular bound. The small final foot trail is not represented in retained data and is not fabricated. Tree-obscured rear details, exact baluster/tread census, joinery, roof section and historical levels/accessibility remain reconstructed. Other estate buildings/trees remain independent context."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:cf7afdf192de9f4eddc65509b89aba4eff8555d77b59e86c32fa962f88a1938d\",\"bytes\":116924,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.glb\",\"hash\":\"sha256:3641d0edbec9355efc928518355a47fa29f19527f73b771c6b178353b8425672\",\"bytes\":116628,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:166f3cd9290667dec8d494e3ac50130384f89ec956aaf99498a7401787a595bf\",\"bytes\":52912,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:e893da105ff6b337bb4baf083b5d28b55708666c5265285e589a924556199316\",\"bytes\":73032,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:afca8c65c031dfdecd670ce3d3003e6cec1efed78bab60e04274e30ad27bafef\",\"bytes\":98532,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:dec96bf3ac5301fd3669c532b51ae15b0bfeda039d421d5b0a3aa0b2537eeec5\",\"bytes\":105612,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "open-tower-platform-stair-rails-grounded-posts-and-supported-roof",
+        "passed": true,
+        "notes": "186 actual mesh/contact probes across six GLBs; finite attributes, all byte pins, shared-material bindings, LOD limits, separate streams and initial download budget pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Беседка-вышка node6338741862 at unchanged assigned anchor[37.53197110790589,54.07432543327198]. No retained building footprint within40m. Map evidence is the named point only: the2.15m platform/2.6m roof and5.4m approximate height are photo-led, not mapped or surveyed dimensions. LocalX southeast, localZ southwest toward the nearest retained path point6.897m away; native axes baked with heading0. Stair faces the inferred approach, with30-degree orientation uncertainty. The small unrepresented foot trail between stair and mapped path is not invented as source map geometry. The gazebo is independent from the pavilion and entrance towers. Retained Protomaps20261020/Mapzen201x201/6m standard extract. Outside control[-2.5,0] sets datum198.23757107381198m. Four post ground offsets[-0.07934965518876425,-0.106392250622946,0.018416897355848505,0.04679499927158304]m; whole platform sits about2.4m above the highest sampled post foot. Original ground remains beneath platform, stair, supports and approaches; solid posts/stringer ends seat into soil without cutouts. No flattening, new water or bespoke terrain. The map lacks this small footprint and final trail connection; exact orientation, scale and soil/footing details remain approximate. Inspected native whole tower, platform entry, roof-bearing frame and grounded posts/open stair. Original terrain stays beneath every open area; all independent buildings, paths and water remain. Approximate stair direction follows the nearest retained path; map point alone does not certify compass facing or dimensions. The30-degree uncertainty is an authoring estimate, not a surveyed angular bound. No missing-map trail was added. The named map point—not an invented building outline—anchors this reconstruction. All243 resident/295 wider independent buildings, original path inputs and40070.675m² pond water remain unchanged. Ground stays beneath the raised platform, stair, solid supports and outside approaches. Failure retains all original map objects; unload releases geometry without changing ground/water. Legacy fixture groundOutsideResidentTile samples an arbitrary point outside this shifted grid; it is not used as geographic proof."
+    },
+    "inputHash": "sha256:bf356c9f033b81e39c250ab29fb221576d57281f5a0418270e730e4edba6b361",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:bf356c9f033b81e39c250ab29fb221576d57281f5a0418270e730e4edba6b361",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected48 current portable/shared/medium-fi/native frames and full-resolution native stair, undercroft, platform entry and roof-bearing views during one author/inspect/fix pass. Four exposed timber posts support the open square platform, steep nine-tread stair, two stringers/handrails, vertical balusters and shallow green pyramidal roof. The underside stays open; there is a real gap in the front rail for the stair. An inner bearing ring seats the roof on the posts and near-level hip rafters follow its pitch. No unrelated tree/canopy is baked into the structure.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/preview.png",
+          "hash": "sha256:7c2f795fde8afaad213129272329e97738d679de6e5dab6715ac8d3d3c42460b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:214d6dceacd6d57a7d97ab150d4fe3cf4174e39cf529d3bf61f869bb788d30bd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:1cb4ed7ef06135877c6c9106a84f27528201b6be52f7a34faeced54f515564f1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:ba7269d3db1d8c36bacf2c3bdfff65b15ba13a466ab8b74346e0ee180082c368"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:ab6bf08264ff01322cf9b7028fbd12345444933f232da823c80554c354f4c79c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/whole-timber-tower-stair-platform-and-green-roof.png",
+          "hash": "sha256:6970ada2aadb8c59e641109868cf1128fa3c889e521875ecd43bdada78d75e93"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/open-undercroft-four-grounded-posts-and-stair.png",
+          "hash": "sha256:63c4069deffb1e0cb16162798c8d083a1594d8f9ef2ca5e213f7165be68d1ae2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/platform-entry-balusters-and-rafter-supports.png",
+          "hash": "sha256:1a08d08c12095534e9a5ae6ef8261575c13105d8a34147bc8a8fa1402cf51cfc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/rear-railing-green-pyramid-and-open-frame.png",
+          "hash": "sha256:eb75abfec45ae2f4ed0613af5207ca602396d48e57a7889a1c84d246d778e527"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:bcf743311dc89529e9eecdae040477ea0e1ffbd342565bc8cbef1fe27011eaaa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:b7f756c1f5991e56a6ff1dd9f36b4d6f3f1b15e55b44baa1c934725e0607ea65"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:0e82afe438fbf69aca3dd1a5bbca6fc0375088061a7fca366e437de0f529ec1b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:b866385a36b08fed89d94ff6a9c1a97cc6f143982b359c4e6112f48c395e6ddd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/whole-timber-tower-stair-platform-and-green-roof.png",
+          "hash": "sha256:5214f470a5e2d5ea8b958ea1b92dc6348fce38fa93acc28b955f2c9ab7848d4b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/open-undercroft-four-grounded-posts-and-stair.png",
+          "hash": "sha256:c1a2d5837229cf178bc91de510284b6917b13013fca0759cb8755e738ec3ae2c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/platform-entry-balusters-and-rafter-supports.png",
+          "hash": "sha256:7bb1f5ae0df314e37620a0100c0c32ddf8c6c30fc842f70d3c6c2fceb7074c11"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/rear-railing-green-pyramid-and-open-frame.png",
+          "hash": "sha256:a5a670d1472f19a2b539f6e89c1c7ab33c4ec112aa3d33bbbbb51e25e09ba356"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:aa51b384e4511feb280bad91a985d1b29f25e6afd355e1f354e1ba0244dd703a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:0dc5e003ff2166e52fb32a6477d3a7a304eb9b70e5c150932f08f6fb6eeba8f2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:782239304c2d9c3d03ed337910d7095ab9555953bdd3f77f1436e0daef7c4640"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:ef59b9a868d9d338e57e031e634a50d7da7179c6b54f0a288eaa0caf567d8bbd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:acef8dc36693a0add396aaffce7e916e0f34eaa260bf2123c0bc63039dcdf08c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:59285b0071c5aa6dde007dd6dc3f947e8d1597d7e165ef97eee8d8c1e1ee58a3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:6d5e065389d5d691921dab05f71f6c2bf6951be897f84642d01bf633299a442f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:cfffe3414d7d0de52811982db48c71b7606480ae8a2685f35fd879c753c3328d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:46313c422f5de8e885782a01d0cd92a68c91211eadb0c1e9c07d8a67b6acdafc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:76a08a7c54c614f85572bfb3ae1fb2bc177997d30fabc388e4bffa48ef991862"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:9d20b595ae5744f46abbca2e5768cb46d03c6697553399eed34f3329a275031a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:12375743f54690eb2ad75b293e12ece5ef794b31940d3593648ac9ea00dd175a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:b7136cc1d39dd7e893273b0775dd34aa6c18bd81fb50d1f6a37893d14cc64b8d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:55190131dfcfe736ca618abde6758c9844001b70d5a70ab0eec9ae3b9dbe5884"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/whole-timber-tower-stair-platform-and-green-roof.png",
+          "hash": "sha256:a1073ddfb007dbf6de3ee8848b5a2941666a6a58d3e4ce461ab4e38902b3bcb1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/open-undercroft-four-grounded-posts-and-stair.png",
+          "hash": "sha256:d2feb22d796984d5e337f0795114cce079df2ad03adbb10884274a5e3f9b8d15"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/platform-entry-balusters-and-rafter-supports.png",
+          "hash": "sha256:b83153f632b34b6d6e03a796fd7e96e15bb25d81ef5190217877d770576a78f2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/rear-railing-green-pyramid-and-open-frame.png",
+          "hash": "sha256:d55eb1c051c70d4b58e7d1bf6844f78f2da752d1c492b97810812c23519c50d8"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:689d09fa954d304e5a128ce6b929483ea0cc6bc7122e6539874633a7ec3ddd3b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:6d5e065389d5d691921dab05f71f6c2bf6951be897f84642d01bf633299a442f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:0e45a4ce7f30a748e529d9288858f59100772f320ebfb3dae49e5ef72d0cbc40"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:4131f414bbde49bb88aa9e28b54250c8bac40393b33c85e1c5143fbc490ff3a1"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:7fbbefdb73190cc63f692e0edbccf92ef3bdf34b34642e9cbe346c0b22ca19a1"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:08d35e15f7ab78b766ae4cfb4993e6efe5b2074393f973e07b81ccfda998835b"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:963bb11719cd7e46e568b2ab8d230082d57ebe43d2aac72a7a3cc0826a9ef652"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:59571237aa03499c887bc807c2245b619bee72864f827e34f14ad5f1a5db98ae"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-whole-timber-tower-stair-platform-and-green-roof.png",
+          "hash": "sha256:2f8baf457789d2409ef0a3469efb399d22c2090a32b0acd54e0d353db4d3974b"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-open-undercroft-four-grounded-posts-and-stair.png",
+          "hash": "sha256:8973677599685179e93d34b3a17528cd5dea478c926810d373a463b32e9ebe63"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-platform-entry-balusters-and-rafter-supports.png",
+          "hash": "sha256:127c30a0e396eae78d2f926470e666dbec0feba012bc13b46c5d39c8858626cf"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-rear-railing-green-pyramid-and-open-frame.png",
+          "hash": "sha256:c9d7e7fb4e93bea96aa5d502aa80897e370180d3a922ac5dfd6a2e313a2da3a6"
+        },
+        {
+          "path": ".artifacts/tower-gazebo-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:3724bb2f83887016309a60f42eda19877680067b50e795b35a91941fb174a430"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:bf356c9f033b81e39c250ab29fb221576d57281f5a0418270e730e4edba6b361",
+      "sourceHash": "sha256:cf7afdf192de9f4eddc65509b89aba4eff8555d77b59e86c32fa962f88a1938d",
+      "runtimeHash": "sha256:3641d0edbec9355efc928518355a47fa29f19527f73b771c6b178353b8425672",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/tower_gazebo_yasnaya_polyana/models/source.glb": "sha256:cf7afdf192de9f4eddc65509b89aba4eff8555d77b59e86c32fa962f88a1938d",
+        "content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.glb": "sha256:3641d0edbec9355efc928518355a47fa29f19527f73b771c6b178353b8425672",
+        "content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.skyline.glb": "sha256:166f3cd9290667dec8d494e3ac50130384f89ec956aaf99498a7401787a595bf",
+        "content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.district.glb": "sha256:e893da105ff6b337bb4baf083b5d28b55708666c5265285e589a924556199316",
+        "content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.street.glb": "sha256:afca8c65c031dfdecd670ce3d3003e6cec1efed78bab60e04274e30ad27bafef",
+        "content/worldgen/assets/places/uc/ucd/tower_gazebo_yasnaya_polyana/model.closeup.glb": "sha256:dec96bf3ac5301fd3669c532b51ae15b0bfeda039d421d5b0a3aa0b2537eeec5"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [],
+      "mapLevels": [
+        {
+          "source": "retained named detailed POI; no building footprint within40m",
+          "id": 17598524786278,
+          "featureId": "node/6338741862",
+          "owned": false,
+          "level": 15,
+          "runtimePassed": true,
+          "orientation": "photo/path-led approximation;30 degrees uncertainty",
+          "scale": "photo-led approximation"
+        }
+      ],
+      "residentIndependent": 243,
+      "widerIndependent": 295,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "terrainUnderPlatform": true,
+          "terrainUnderStair": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.tower_gazebo_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -11.486871073811983,
+            "max": 45.49722892618803
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-skyline-whole-site.png",
+            "hash": "sha256:7fbbefdb73190cc63f692e0edbccf92ef3bdf34b34642e9cbe346c0b22ca19a1",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 272426
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                2.9384087511575148,
+                7,
+                16.135853061153007
+              ],
+              "lookAt": [
+                -0.4578409548196371,
+                2.4,
+                0.8890341163812797
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "terrainUnderPlatform": true,
+          "terrainUnderStair": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.tower_gazebo_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -11.486871073811983,
+            "max": 45.49722892618803
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-district-whole-site.png",
+            "hash": "sha256:08d35e15f7ab78b766ae4cfb4993e6efe5b2074393f973e07b81ccfda998835b",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 272722
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                2.9384087511575148,
+                7,
+                16.135853061153007
+              ],
+              "lookAt": [
+                -0.4578409548196371,
+                2.4,
+                0.8890341163812797
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "terrainUnderPlatform": true,
+          "terrainUnderStair": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.tower_gazebo_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -11.486871073811983,
+            "max": 45.49722892618803
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-street-whole-site.png",
+            "hash": "sha256:963bb11719cd7e46e568b2ab8d230082d57ebe43d2aac72a7a3cc0826a9ef652",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 273034
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                2.9384087511575148,
+                7,
+                16.135853061153007
+              ],
+              "lookAt": [
+                -0.4578409548196371,
+                2.4,
+                0.8890341163812797
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "terrainUnderPlatform": true,
+          "terrainUnderStair": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.tower_gazebo_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -11.486871073811983,
+            "max": 45.49722892618803
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-whole-site.png",
+            "hash": "sha256:59571237aa03499c887bc807c2245b619bee72864f827e34f14ad5f1a5db98ae",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 273134
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                2.9384087511575148,
+                7,
+                16.135853061153007
+              ],
+              "lookAt": [
+                -0.4578409548196371,
+                2.4,
+                0.8890341163812797
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-whole-timber-tower-stair-platform-and-green-roof.png",
+            "hash": "sha256:2f8baf457789d2409ef0a3469efb399d22c2090a32b0acd54e0d353db4d3974b",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 273134
+            },
+            "camera": {
+              "name": "whole-timber-tower-stair-platform-and-green-roof",
+              "position": [
+                1.6448292664725876,
+                4,
+                12.095227847550257
+              ],
+              "lookAt": [
+                -0.32048866837374596,
+                2.5,
+                0.6223238814668958
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-open-undercroft-four-grounded-posts-and-stair.png",
+            "hash": "sha256:8973677599685179e93d34b3a17528cd5dea478c926810d373a463b32e9ebe63",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 273241
+            },
+            "camera": {
+              "name": "open-undercroft-four-grounded-posts-and-stair",
+              "position": [
+                -7.192216310824222,
+                2,
+                3.0449999241894927
+              ],
+              "lookAt": [
+                -0.32048866837374596,
+                1.5,
+                0.6223238814668958
+              ],
+              "fov": 50
+            }
+          },
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-platform-entry-balusters-and-rafter-supports.png",
+            "hash": "sha256:127c30a0e396eae78d2f926470e666dbec0feba012bc13b46c5d39c8858626cf",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 273134
+            },
+            "camera": {
+              "name": "platform-entry-balusters-and-rafter-supports",
+              "position": [
+                0.3778975750456537,
+                5,
+                5.81869344636531
+              ],
+              "lookAt": [
+                -0.18313638192785486,
+                3.2,
+                0.35561364655251193
+              ],
+              "fov": 50
+            }
+          },
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-closeup-rear-railing-green-pyramid-and-open-frame.png",
+            "hash": "sha256:c9d7e7fb4e93bea96aa5d502aa80897e370180d3a922ac5dfd6a2e313a2da3a6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 15,
+              "triangles": 273241
+            },
+            "camera": {
+              "name": "rear-railing-green-pyramid-and-open-frame",
+              "position": [
+                -2.1293180145502184,
+                5,
+                -8.97028454358678
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "terrainUnderPlatform": true,
+          "terrainUnderStair": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": false,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.tower_gazebo_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -11.486871073811983,
+            "max": 45.49722892618803
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/tower-gazebo-integration/shots/final-failure-whole-site.png",
+            "hash": "sha256:3724bb2f83887016309a60f42eda19877680067b50e795b35a91941fb174a430",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 271874
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                2.9384087511575148,
+                7,
+                16.135853061153007
+              ],
+              "lookAt": [
+                -0.4578409548196371,
+                2.4,
+                0.8890341163812797
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete small timber tower gazebo: four tall exposed posts, open raised square platform, steep stair with separate treads/stringers/handrails, vertical platform balusters with a real stair entry, bracing and green pyramidal sheet-metal roof with underside rafters. Shared wood_plain and metal_standing_seam graphs, four authored LODs and no private texture atlas, copied photograph pixels or attached tree geometry. Hidden joinery and exact scale remain original photo-led approximations. Photo-led platform2.15m square, upper floor modelY2.45m, eave4.65m and roof peak5.4m. Four main posts follow individually sampled ground and extend.18m into it. Stair run2.6m, width.95m, 9open treads from original soil modelY0.25112494991566336m to platform. Handrails/platform rail1.0m above walking surfaces. Exact post diameters, tread/log/baluster census, roof pitch and historical levels/accessibility are approximate. The inner roof-bearing ring is seated on post tops at modelY4.773076923076924m, above the lower overhanging eave, and hip rafters follow the actual roof pitch. Retained Protomaps20261020/Mapzen201x201/6m standard extract. Outside control[-2.5,0] sets datum198.23757107381198m. Four post ground offsets[-0.07934965518876425,-0.106392250622946,0.018416897355848505,0.04679499927158304]m; whole platform sits about2.4m above the highest sampled post foot. Original ground remains beneath platform, stair, supports and approaches; solid posts/stringer ends seat into soil without cutouts. No flattening, new water or bespoke terrain. The map lacks this small footprint and final trail connection; exact orientation, scale and soil/footing details remain approximate. Museum and Commons photos establish the exterior silhouette. The map provides only a named point and a path about6.9m away; it does not establish footprint, dimensions or compass facing. Front assignment and scale are deliberately approximate;30degrees is an authoring uncertainty estimate, not a measured angular bound. The small final foot trail is not represented in retained data and is not fabricated. Tree-obscured rear details, exact baluster/tread census, joinery, roof section and historical levels/accessibility remain reconstructed. Other estate buildings/trees remain independent context."
+  ]
+}

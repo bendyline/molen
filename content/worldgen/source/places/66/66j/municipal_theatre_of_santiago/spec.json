@@ -1,0 +1,479 @@
+{
+  "planId": "municipal_theatre_of_santiago",
+  "id": "municipal_theatre_of_santiago",
+  "assetId": "molen.worldgen.structure.municipal_theatre_of_santiago",
+  "title": "Municipal Theatre, Santiago (original1857–1870)",
+  "wikidataId": "Q6936293",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -70.64755455,
+    "latitude": -33.44109465
+  },
+  "size": [
+    62.66335487365723,
+    19.604759216308594,
+    69.01387405395508
+  ],
+  "actualBounds": {
+    "min": [
+      -32.14411163330078,
+      -1.5,
+      -52.07136535644531
+    ],
+    "max": [
+      30.519243240356445,
+      18.104759216308594,
+      16.942508697509766
+    ]
+  },
+  "visualBrief": "Complete original1857–1870MunicipalTheatre on its Santiago site: whole central auditorium/proscenium-stage volume and closed roofs/rear/side service wings, two-storey classical streetfront, open arched portico/12columns/16pilasters, upper arched windows/central pediment/parapet and full intrinsic vestibule envelope. Original1872publication clearly depicts/describes the destroyed pre1870theatre, not surviving1873rebuild or its proposed newplan. Old occupiedplot56mfront×63mdepth/portico30m/vestibule23×10m are primary old-phase facts; exact old body/courts/heights/roof/rear are bounded estimates. Exclude adjacentstreet houses, people/flags/trees/art/sculpture/signs, proposednew19m/17mheights or24×6mcourts as measuredoldcontrols and later1906/1924alterations. Retain whole original physical theatre, not facade-only.",
+  "nativeAxes": {
+    "x": "east along Agustinas front",
+    "y": "up",
+    "z": "south behind old streetfront"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1864-01-01",
+    "validFrom": "1858-01-01",
+    "validUntil": "1870-12-08",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chile_Ilustrado_(1872).pdf"
+  ],
+  "stories": [
+    {
+      "id": "municipal-theatre-of-santiago-wp",
+      "url": "https://qualla.com/municipal-theatre-of-santiago/"
+    }
+  ],
+  "referenceInputHash": "f634a958a1da46ab556a69229e7432f4784a58c8b380c9411ad29e80977c9fa6",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/66/66j/municipal_theatre_of_santiago/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/66/66j/municipal_theatre_of_santiago/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.84,
+        "metallic": 0.45
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.45
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.45
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.45
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "metal_standing_seam",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -1.7,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent256m129²field/16641heights/two rawtiles/datum577.9872m and full sourceframe frozen before all these main parameters. Primary old occupiedlot56×63m/portico30m/12columns/16pilasters/vestibule23×10m preserved. Floor+.6/upper7.3/front eave14.7/parapet15.6/pediment18.0/main eave12.9/ridge17.8/wing eave11.7/ridge14.1 are bounded original engraving-led estimates, NOT proposednew19mfront/17mroof measurements. Original full rear/wings/two5×29m courtyards are original topology estimates inside old plot, not the proposednew24×6m courts. Current urban DEM cannot certify1864grade; preserve field/frame/floors/main sections without fitting.",
+    "anchor": [
+      -70.64755455,
+      -33.44109465
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -70.64755455,
+        -33.44057113608901
+      ],
+      "modelHeight": 0,
+      "basis": "NorthAgustinas approach2m outsidewholecurrent context selected before independentfield/floors/mainsections/geometry; no historicground/thresholdsurveyclaim."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/112317702"
+    ],
+    "source": "https://www.openstreetmap.org/way/112317702",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e9b7e8627e85d506d3cb8ec3b743053e65490555acd661938bdd7fcb71e71f3a",
+    "notes": "Actual current theatreway112317702/Q6936293/32controls supplies same historicalsite context only, not surveyed1857walls. Old theatre burned1870andrebuilt1873; full original56×63moccupiedlot and30mportico belongpasttenseprimarytext, not current native14.5mheight. Historical body/roof/rear layout and registration±10m/bearing±10degrees will be explicit estimates. Complete original1857–1870MunicipalTheatre on its Santiago site: whole central auditorium/proscenium-stage volume and closed roofs/rear/side service wings, two-storey classical streetfront, open arched portico/12columns/16pilasters, upper arched windows/central pediment/parapet and full intrinsic vestibule envelope. Original1872publication clearly depicts/describes the destroyed pre1870theatre, not surviving1873rebuild or its proposed newplan. Old occupiedplot56mfront×63mdepth/portico30m/vestibule23×10m are primary old-phase facts; exact old body/courts/heights/roof/rear are bounded estimates. Exclude adjacentstreet houses, people/flags/trees/art/sculpture/signs, proposednew19m/17mheights or24×6mcourts as measuredoldcontrols and later1906/1924alterations. Retain whole original physical theatre, not facade-only."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual current theatreway112317702/Q6936293/32controls supplies same historicalsite context only, not surveyed1857walls. Old theatre burned1870andrebuilt1873; full original56×63moccupiedlot and30mportico belongpasttenseprimarytext, not current native14.5mheight. Historical body/roof/rear layout and registration±10m/bearing±10degrees will be explicit estimates.",
+    "Book engraving is explicit pre1870original, not a current1873or proposednewplanimage. Do not claim19mfront/17mroof/24×6mcourts from nextparagraph as measuredoriginaltheatre geometry.",
+    "Whole occupiedplot56×63does not measure every oldwing wall; hidden plan/body/courts/roof/sections are bounded estimates, not exacthistoric survey. Preserve entire old physicaltheatre scope.",
+    "Book authorTornero1842–1902is not assumed to be uncredited woodengraver. Exact1872publication/nativePD-old100andbytes establishclear expiredsource, not a guessed photographcreator.",
+    "Original independentfield/frame before all main parameters/geometry; never flatten/reacquire/reframe or fitfloors/mainsections to renders.",
+    "Original old occupiedplot56×63m is primary, while complete building disposition/side wings/two5×29m courts/roof back sections are architectural estimates. Do not claim current32nativecontrols or proposednew24×6m courts as old measuredwalls.",
+    "Twelve paired ground columns and sixteen facadepilasters preserve primary census; precise capitals/profiles/column placement per level are simplified engraving-led estimates. Seven open groundarches and seven upperarched bays follow original plate; upper room over23×10mvestibule retained in complete front envelope.",
+    "Full physical old theatre exterior retained: central front/auditorium/stage/side and rear service wings/closed roofs/open intrinsic courts. Adjacent depicted houses, flags/sculpture/signs/figures are excluded, not modeled as theatre wings.",
+    "Main heights/roof material and fine ornament are bounded estimates from uncolored original engraving. No proposednewplanheight transfer, current1873state claim, source terrain cutout or artificial broad sitepad."
+  ],
+  "sourceLicense": "Original authored geometry/repository license. Qualla-first45families/zero conflicts precedes exact original1872ChileIlustrado public-domainbook/nativePD-old100/SHA1/SHA256/revision, actual title/oldtheatreplate/pasttensetext/newplan distinction personally inspected. Book authorTornero1842–1902not assumed uncredited woodengraver. OSM ODbL actual current theatre site context/Q6936293. No attribution-only/current images, questionable sources, source/media/rights repairs, proposednew measurements as oldsurvey, copied photographic textures or generated bitmaps.",
+  "qaLodCameras": [
+    {
+      "name": "whole-original-theatre-skyline",
+      "position": [
+        73.41047937300374,
+        55,
+        -149.2586491256278
+      ],
+      "lookAt": [
+        -1.7227745371063894,
+        6,
+        -22.199630725205267
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-original-theatre-district",
+      "position": [
+        73.41047937300374,
+        55,
+        -149.2586491256278
+      ],
+      "lookAt": [
+        -1.7227745371063894,
+        6,
+        -22.199630725205267
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-original-theatre-street",
+      "position": [
+        73.41047937300374,
+        55,
+        -149.2586491256278
+      ],
+      "lookAt": [
+        -1.7227745371063894,
+        6,
+        -22.199630725205267
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-original-theatre-closeup",
+      "position": [
+        73.41047937300374,
+        55,
+        -149.2586491256278
+      ],
+      "lookAt": [
+        -1.7227745371063894,
+        6,
+        -22.199630725205267
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-theatre-classical-portico-and-all-wings",
+      "position": [
+        73.41047937300374,
+        55,
+        -149.2586491256278
+      ],
+      "lookAt": [
+        -1.7227745371063894,
+        6,
+        -22.199630725205267
+      ]
+    },
+    {
+      "name": "whole-estimated-rear-stage-and-open-courts",
+      "position": [
+        -84.73214909475061,
+        60,
+        81.64373081297263
+      ],
+      "lookAt": [
+        -1.6013958162584778,
+        6,
+        -21.207024455768426
+      ]
+    },
+    {
+      "name": "seven-open-arches-twelve-columns-and-sixteen-pilasters",
+      "position": [
+        15.90946116613433,
+        9,
+        -75.73563976683408
+      ],
+      "lookAt": [
+        -5,
+        7,
+        -49
+      ]
+    },
+    {
+      "name": "inside-original-open-portico-and-vestibule-doors",
+      "position": [
+        3.220021213444932,
+        2.3,
+        -47.688035347078554
+      ],
+      "lookAt": [
+        -12.819471434646825,
+        3.8,
+        -47.03636396377987
+      ]
+    },
+    {
+      "name": "upper-arched-bays-and-classical-pediment",
+      "position": [
+        6.204579410808185,
+        17,
+        -64.47441114313864
+      ],
+      "lookAt": [
+        -5,
+        13.5,
+        -49
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29932,
+    "vertices": 89796,
+    "materials": 6,
+    "bytes": 3783108,
+    "sha256": "sha256:5cd049e40f9008ee2a37e7e50588e03190ec6fa669fe27ed894b008dda79aa12"
+  }
+}

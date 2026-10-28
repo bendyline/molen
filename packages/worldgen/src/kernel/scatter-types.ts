@@ -12,6 +12,12 @@ export interface ScatterLod {
   /** Keep fraction per detail tier (index 0 = full detail); non-increasing. */
   keepByTier: number[];
   maxInstancesPerBatch: number;
+  /**
+   * Largest crown widening (at least 1) that holds canopy and understory cover while a coarser
+   * tier or an instance budget thins the instances: kept ones widen by 1/sqrt(the kept share) up to
+   * this factor, and grow by its square root in height. Omitted means 1, no growth.
+   */
+  coverGrowth?: number;
 }
 
 export interface ScatterTint {
@@ -83,7 +89,12 @@ export interface ScatterDoc {
   doc?: string;
   /** Bump to re-roll every placement of this rule set. */
   version: number;
-  surface: { default: string; colors: Record<string, string> };
+  surface: {
+    default: string;
+    colors: Record<string, string>;
+    /** Exact label to [brush speckle, bare patches] ground detail, each 0..1. */
+    detail?: Record<string, [number, number]>;
+  };
   defaults: { avoid: ScatterAvoid; slopeMax: number; lod: ScatterLod };
   rules: ScatterRule[];
 }

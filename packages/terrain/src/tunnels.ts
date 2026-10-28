@@ -1,6 +1,6 @@
 /** Mapped underground corridors, portal cuts and height-aware navigation queries. */
 import * as THREE from 'three';
-import { setTerrainGroundCutout } from './ground-cutout';
+import { setTerrainGroundCutouts } from './ground-cutout';
 import type { Heightfield } from './heightfield';
 import { joinTerrainLines, sampleTerrainLine, terrainLinePath } from './line-path';
 import { TerrainSurfaceMeshBuilder } from './linear-features';
@@ -37,6 +37,40 @@ const material = new THREE.MeshStandardMaterial({
   side: THREE.DoubleSide,
 });
 
+const offsets = new WeakMap<
+  THREE.Object3D,
+  { root: THREE.Object3D; offset: THREE.Vector3 | null }
+>();
+const scratchLocal = new THREE.Vector3();
+const scratchMatrix = new THREE.Matrix4();
+const IDENTITY_LINEAR = [0, 1, 2, 4, 5, 6, 8, 9, 10] as const;
+
+/**
+ * `object`'s origin in `root`'s frame when only translations lie between them (tile layers under a
+ * terrain stream), or null. Their local transforms do not change once placed, so it is kept.
+ */
+function rootOffset(object: THREE.Object3D, root: THREE.Object3D): THREE.Vector3 | null {
+  const known = offsets.get(object);
+  if (known !== undefined && known.root === root) return known.offset;
+  let offset: THREE.Vector3 | null = new THREE.Vector3();
+  for (let cursor: THREE.Object3D | null = object; cursor !== root; cursor = cursor.parent) {
+    if (cursor === null) return null;
+    if (cursor.matrixAutoUpdate) cursor.updateMatrix();
+    const e = scratchMatrix.copy(cursor.matrix).elements;
+    if (
+      IDENTITY_LINEAR.some((i, k) => Math.abs((e[i] as number) - (k % 4 === 0 ? 1 : 0)) > 1e-12)
+    ) {
+      offset = null;
+      break;
+    }
+    offset.x += e[12] as number;
+    offset.y += e[13] as number;
+    offset.z += e[14] as number;
+  }
+  offsets.set(object, { root, offset });
+  return offset;
+}
+
 /** Query a visible bore in `root`'s coordinate frame. Above-ground observers retain DEM support. */
 export function sampleTerrainTunnel(
   root: THREE.Object3D,
@@ -62,8 +96,16 @@ export function sampleTerrainTunnel(
       }
     }
     if (!visible) continue;
-    object.updateWorldMatrix(true, false);
-    const local = object.worldToLocal(worldPoint.clone());
+    // Tile layers sit at a fixed translation in the root's frame: subtracting it replaces
+    // refreshing the object's matrix chain and inverting it, for every bore in view on each of
+    // an aircraft's ground probes, several times a frame.
+    const offset = rootOffset(object, root);
+    let local: THREE.Vector3;
+    if (offset !== null) local = scratchLocal.set(x - offset.x, y - offset.y, z - offset.z);
+    else {
+      object.updateWorldMatrix(true, false);
+      local = object.worldToLocal(worldPoint.clone());
+    }
     const tileSize = tileSizes.get(object) ?? Infinity;
     if (
       local.x < -1e-8 ||
@@ -81,13 +123,19 @@ export function sampleTerrainTunnel(
       const floor = s.floor + (s.endFloor - s.floor) * t;
       const ceiling = floor + s.ceiling - s.floor;
       if (distance > s.width / 2 || local.y < floor - 1 || local.y > ceiling) continue;
-      // Tile objects only translate; report heights in the root frame, including rebasing.
-      const toRoot = new THREE.Matrix4()
-        .copy(root.matrixWorld)
-        .invert()
-        .multiply(object.matrixWorld);
-      const floorY = new THREE.Vector3(local.x, floor, local.z).applyMatrix4(toRoot).y;
-      const ceilingY = new THREE.Vector3(local.x, ceiling, local.z).applyMatrix4(toRoot).y;
+      let floorY: number, ceilingY: number;
+      if (offset !== null) {
+        floorY = floor + offset.y;
+        ceilingY = ceiling + offset.y;
+      } else {
+        // Report heights in the root frame, including rebasing.
+        const toRoot = new THREE.Matrix4()
+          .copy(root.matrixWorld)
+          .invert()
+          .multiply(object.matrixWorld);
+        floorY = new THREE.Vector3(local.x, floor, local.z).applyMatrix4(toRoot).y;
+        ceilingY = new THREE.Vector3(local.x, ceiling, local.z).applyMatrix4(toRoot).y;
+      }
       if (!result || floorY < result.floor) result = { floor: floorY, ceiling: ceilingY };
     }
   }
@@ -107,6 +155,8 @@ export function createTerrainTunnelObject(
   group.name = 'terrain:tunnels';
   const builder = new TerrainSurfaceMeshBuilder(context);
   const records: TunnelSegment[] = [];
+  const openings: [number, number][][] = [];
+  const ceilings: number[] = [];
   const concrete = new THREE.Color('#8b8e88'),
     asphalt = new THREE.Color('#3d4448');
   for (const feature of tile.transportation) {
@@ -164,7 +214,6 @@ export function createTerrainTunnelObject(
           builder.face([r0, top(r0), top(r1), r1], concrete);
           builder.face([top(l0), top(l1), top(r1), top(r0)], concrete);
           // The roof retains ground above it. Only portal/cut-and-cover terrain below it opens.
-          const cutter = new THREE.Object3D();
           const outline = clipTerrainSurfacePolygon(
             [
               [l0[0], l0[2]],
@@ -175,8 +224,8 @@ export function createTerrainTunnelObject(
             context.tileSize,
           );
           if (outline.length >= 3) {
-            setTerrainGroundCutout(cutter, outline, Math.min(y0, y1) + height);
-            group.add(cutter);
+            openings.push(outline);
+            ceilings.push(Math.min(y0, y1) + height);
           }
           const p0 = sampleTerrainLine(path, d),
             p1 = sampleTerrainLine(path, next);
@@ -191,6 +240,18 @@ export function createTerrainTunnelObject(
         }
       }
     }
+  }
+  // Bore openings go in owners of up to 64 (the cutout limit), each with its own ceilings, and
+  // clipped to this tile they open only its ground (withinScope). An owner per 6 m segment made
+  // a city's tunnels thousands of owners for every cutout pass to walk.
+  for (let start = 0; start < openings.length; start += 64) {
+    const cutter = new THREE.Object3D();
+    cutter.matrixAutoUpdate = false;
+    setTerrainGroundCutouts(cutter, openings.slice(start, start + 64), undefined, {
+      withinScope: true,
+      ceilings: ceilings.slice(start, start + 64),
+    });
+    group.add(cutter);
   }
   const mesh = builder.mesh('semantic:tunnels', material, false);
   if (mesh) {
@@ -214,6 +275,7 @@ export function withTerrainTunnels(
 ): TerrainSemanticTileRenderer {
   const owned = new WeakMap<THREE.Object3D, THREE.Object3D>();
   return {
+    createEmptyTile: (context) => renderer.createEmptyTile?.(context),
     async createTile(tile, context) {
       if (context.address.level < minLevel || !tile.transportation.some((f) => f.tunnel))
         return renderer.createTile(tile, context);
@@ -282,6 +344,42 @@ export function withTerrainTunnels(
   };
 }
 
+/** Main-thread time (ms) route completion runs before letting a frame through. */
+const ROUTE_SLICE_MS = 4;
+
+/** Numeric key of an integer pixel cell; cells stay well within +-2^20 of the tile. */
+function pixelKey(i: number, j: number): number {
+  return (i + 2 ** 20) * 2 ** 21 + (j + 2 ** 20);
+}
+
+/** Points by pixel cell, answering the earliest added point within `tolerance` of a query. */
+class PixelIndex {
+  private readonly cells = new Map<number, { point: TerrainSemanticPoint; order: number }[]>();
+  private count = 0;
+  constructor(private readonly tolerance: number) {}
+  add(point: TerrainSemanticPoint): void {
+    const key = pixelKey(Math.floor(point[0] * 4096), Math.floor(point[1] * 4096));
+    const cell = this.cells.get(key);
+    const entry = { point, order: this.count++ };
+    if (cell) cell.push(entry);
+    else this.cells.set(key, [entry]);
+  }
+  first(p: TerrainSemanticPoint): TerrainSemanticPoint | undefined {
+    const i = Math.floor(p[0] * 4096),
+      j = Math.floor(p[1] * 4096);
+    let best: { point: TerrainSemanticPoint; order: number } | undefined;
+    for (let di = -1; di <= 1; di++)
+      for (let dj = -1; dj <= 1; dj++)
+        for (const entry of this.cells.get(pixelKey(i + di, j + dj)) ?? [])
+          if (
+            (best === undefined || entry.order < best.order) &&
+            Math.hypot(p[0] - entry.point[0], p[1] - entry.point[1]) < this.tolerance
+          )
+            best = entry;
+    return best?.point;
+  }
+}
+
 async function completeRoutes(
   tile: TerrainSemanticTile,
   context: TerrainPyramidTileLayerContext,
@@ -348,18 +446,25 @@ async function completeRoutes(
   // grid. A tunnel end with no such continuation is a gap between fragments of a longer buried
   // line (a city's subway splits into thousands), not a portal: grading the bore to the ground
   // there would lay it at street level and open the ground along its whole length.
-  const surfaced = new Set<string>();
-  const pixel = (p: TerrainSemanticPoint): [number, number] => [
-    Math.round(p[0] * 4096),
-    Math.round(p[1] * 4096),
-  ];
+  // Numeric pixel keys: a string per road end, across sixteen tiles, was most of this pass.
+  const surfaced = new Set<number>();
+  // Sixteen tiles of a city's roads and subway fragments are 10-20 ms of work: frames go
+  // through between its parts.
+  let slice = performance.now();
+  const breathe = async (): Promise<void> => {
+    if (performance.now() - slice < ROUTE_SLICE_MS) return;
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    slice = performance.now();
+  };
   const surfaces = (p: TerrainSemanticPoint): boolean => {
-    const [i, j] = pixel(p);
+    const i = Math.round(p[0] * 4096),
+      j = Math.round(p[1] * 4096);
     for (let di = -1; di <= 1; di++)
-      for (let dj = -1; dj <= 1; dj++) if (surfaced.has(`${i + di},${j + dj}`)) return true;
+      for (let dj = -1; dj <= 1; dj++) if (surfaced.has(pixelKey(i + di, j + dj))) return true;
     return false;
   };
-  for (const { address, tile: part } of loaded.values())
+  for (const { address, tile: part } of loaded.values()) {
+    await breathe();
     for (const f of part.transportation) {
       const map = (p: TerrainSemanticPoint): TerrainSemanticPoint => [
         p[0] + address.x - context.address.x,
@@ -367,8 +472,10 @@ async function completeRoutes(
       ];
       if (!f.tunnel) {
         for (const line of f.lines)
-          for (const p of [line[0], line.at(-1)] as TerrainSemanticPoint[])
-            surfaced.add(pixel(map(p)).join(','));
+          for (const p of [line[0], line.at(-1)] as TerrainSemanticPoint[]) {
+            const q = map(p);
+            surfaced.add(pixelKey(Math.round(q[0] * 4096), Math.round(q[1] * 4096)));
+          }
         continue;
       }
       const key = JSON.stringify([
@@ -388,24 +495,33 @@ async function completeRoutes(
         group.lines.push(...clipTerrainSemanticLine(line, [0, 0, 1, 1]).map((l) => l.map(map)));
       }
     }
+  }
   const result = createEmptyTerrainSemanticTile();
   for (const { feature, lines, endpoints } of groups.values()) {
+    await breathe();
     // Adjacent MVT tiles independently quantize their buffered geometry. Snap seam endpoints
     // within one source pixel, preserving distinct parallel bores and the authored interior bends.
-    const ends: TerrainSemanticPoint[] = [];
     const tolerance = 1 / 4096;
+    // Ends and endpoints by pixel cell, checked in the 3 x 3 cells around a point: scanning every
+    // earlier end for each end of a city's thousands of subway fragments was quadratic.
+    const ends = new PixelIndex(tolerance);
     for (const line of lines)
       for (const index of [0, line.length - 1]) {
         const p = line[index] as TerrainSemanticPoint;
-        const match = ends.find((q) => Math.hypot(p[0] - q[0], p[1] - q[1]) < tolerance);
+        const match = ends.first(p);
         if (match) line[index] = match;
-        else ends.push(p);
+        else ends.add(p);
       }
+    const known = new PixelIndex(tolerance);
+    for (const q of endpoints) known.add(q);
+    // How many line ends each (snapped) point is, as the reduce over every line counted them.
+    const endCounts = new Map<TerrainSemanticPoint, number>();
+    for (const l of lines)
+      for (const p of [l[0], l.at(-1)] as TerrainSemanticPoint[])
+        endCounts.set(p, (endCounts.get(p) ?? 0) + 1);
     const complete = joinTerrainLines(lines).filter((line) => {
       const realEnd = (p: TerrainSemanticPoint) =>
-        endpoints.some((q) => Math.hypot(p[0] - q[0], p[1] - q[1]) < tolerance) &&
-        lines.reduce((n, l) => n + Number(l[0] === p) + Number(l.at(-1) === p), 0) === 1 &&
-        surfaces(p);
+        known.first(p) !== undefined && endCounts.get(p) === 1 && surfaces(p);
       const intersects = clipTerrainSemanticLine(line, [0, 0, 1, 1]).length > 0;
       return (
         intersects &&

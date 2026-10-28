@@ -1,0 +1,481 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.les_ferreres_aqueduct",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:85aa623b24bda99ae40bd14a1bbf79d2a1134deb226e394099135a574b8b7a36",
+  "sourceHash": "sha256:d6d81ae687e33c6fba0575dabf621eb325ed5b8869f5860fe2d223dae71c22ce",
+  "runtimeHash": "sha256:e1186d40ab6c8aab9de695af024c39fa7f35f3e9ed0d1961f051388941f11716",
+  "captureReportHash": "sha256:b468435e4abdbb26e1e9b4bfa75facac9666eb42bed5de62a53d78e2af70d73c",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-east-arcades.png",
+      "shots/complete-west-elevation.png",
+      "shots/lower-and-upper-openings.png",
+      "shots/upper-arch-and-impost.png",
+      "shots/rusticated-pier-and-lower-vault.png",
+      "shots/open-channel-walk.png"
+    ],
+    "captureReportHash": "sha256:b468435e4abdbb26e1e9b4bfa75facac9666eb42bed5de62a53d78e2af70d73c",
+    "notes": "Inspected59 current frames:11 portable,10 shared-material asset views,23 medium-fi and15 native diagnostic views. Complete25 upper/11 lower true arch holes, tapered/rusticated piers, projecting imposts, radial ring stones, cornices, end walls and a continuous open dry channel are present. Fixed missing inter-arch spandrels in the same pass and added76 corresponding face probes per GLB. Whole-model turntables are thin; dedicated two-tier, arch, pier and channel views provide useful detail. Outer support bases float in flat authoring context because they require hills; this is not native-fit approval."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-east-arcades.png",
+      "shots/shared/complete-west-elevation.png",
+      "shots/shared/lower-and-upper-openings.png",
+      "shots/shared/upper-arch-and-impost.png",
+      "shots/shared/rusticated-pier-and-lower-vault.png",
+      "shots/shared/open-channel-walk.png"
+    ],
+    "captureReportHash": "sha256:4b6da30085d862fe5e47d6bbea4841917647169c891212a6cd3935e22579ae86",
+    "notes": "Three existing shared256px sandstone/raw sandstone/raw limestone graphs, metric UVs and linear vertex tints. No embedded/private images, downloaded mesh or copied photograph pixels. District uses two graphs; street/closeup use three; graphs are read once and model resources dispose. Shared captures are asset-review mode, not geographic placement evidence."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-east-arcades.png",
+      "medium-fi/complete-west-elevation.png",
+      "medium-fi/lower-and-upper-openings.png",
+      "medium-fi/upper-arch-and-impost.png",
+      "medium-fi/rusticated-pier-and-lower-vault.png",
+      "medium-fi/open-channel-walk.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:bb7a7426661c62abfc7f42337e40162e11bd950d363907de8deac2a383dbca6b",
+    "notes": "Source master 27280 triangles / 2294000 bytes. Runtime triangles 942 / 3744 / 6768 / 19552, bytes 61136 / 247208 / 453156 / 1381492, draws 1 / 2 / 3 / 3. Initial skyline plus district 308344 bytes. Actual triangle budgets pass; physical-device timings are unmeasured."
+  },
+  "geographicReview": {
+    "status": "pending",
+    "placementHash": "sha256:05d2cc39f0e4114d99cadd12e7d9e811b412cc1cdb6730a6984e74e938fd44bd",
+    "mapFrameHash": "sha256:58f1b32c217263639f0449f6df3bd7bdd04af190df14a3d525a3b3e4c81edd4e",
+    "notes": "Named standard PMTiles channel35184459381762 and monument POI17594328805153 establish the approximate signed plan. Anchor[1.2438972294330597,41.14592823887574], heading1.9642307890327135: +X north-northwest, +Z east-northeast. The mapped242.225m channel includes end walls and remains separate from older217m/249m extent figures. Both standard z14 and z15 terrain smooth the valley to roughly45–56m; fitting the upper channel to its ends buries the lower arcade. Below-ground diagnostic cameras expose it but cannot establish an acceptable exterior placement. The canonical geographic entry stays draft/disabled, with no ground modification, road replacement or readiness claim."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "pending",
+    "notes": "Source exterior and runtime levels reviewed. Native hillside/valley placement is unresolved; do not count this candidate complete."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/models/source.glb\",\"hash\":\"sha256:d6d81ae687e33c6fba0575dabf621eb325ed5b8869f5860fe2d223dae71c22ce\",\"bytes\":2294000,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/sp/sp2/les_ferreres_aqueduct/model.glb\",\"hash\":\"sha256:e1186d40ab6c8aab9de695af024c39fa7f35f3e9ed0d1961f051388941f11716\",\"bytes\":2293576,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sp/sp2/les_ferreres_aqueduct/model.skyline.glb\",\"hash\":\"sha256:adcebdc94311de452021c8aa6c452697d548b34d50e36115a5a540b16764cb9c\",\"bytes\":61136,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sp/sp2/les_ferreres_aqueduct/model.district.glb\",\"hash\":\"sha256:be2e7be5712d4c1ea69e0f23610d3d287395619edebbea5dc328f01ad7040001\",\"bytes\":247208,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sp/sp2/les_ferreres_aqueduct/model.street.glb\",\"hash\":\"sha256:a0a2accccb583d7053962632d99fc2bffdde0a5dea18f318d272f73d70ffc78a\",\"bytes\":453156,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sp/sp2/les_ferreres_aqueduct/model.closeup.glb\",\"hash\":\"sha256:0229ac20cea9e33291c3a3bc6167a5251c3580daadc3d55a6298f85b8a70a187\",\"bytes\":1381492,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "two-complete-arcades-spandrels-and-channel",
+        "passed": true,
+        "notes": "2616 actual front-face probes across six GLBs verify36 true arch holes, vault soffits, all76 inter-arch spandrel faces per model and continuous channel floor/walls."
+      },
+      {
+        "check": "source-scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks pass; sha256:55875135180eb3fdac96779ce7253f5158e2969774106af7ecfc52540d0bcd19."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "pending",
+    "inputHash": "sha256:85aa623b24bda99ae40bd14a1bbf79d2a1134deb226e394099135a574b8b7a36",
+    "visualFit": {
+      "status": "failed",
+      "basis": "Named standard PMTiles channel35184459381762 and monument POI17594328805153 establish the approximate signed plan. Anchor[1.2438972294330597,41.14592823887574], heading1.9642307890327135: +X north-northwest, +Z east-northeast. The mapped242.225m channel includes end walls and remains separate from older217m/249m extent figures. Both standard z14 and z15 terrain smooth the valley to roughly45–56m; fitting the upper channel to its ends buries the lower arcade. Below-ground diagnostic cameras expose it but cannot establish an acceptable exterior placement. The canonical geographic entry stays draft/disabled, with no ground modification, road replacement or readiness claim."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:85aa623b24bda99ae40bd14a1bbf79d2a1134deb226e394099135a574b8b7a36",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected59 current frames:11 portable,10 shared-material asset views,23 medium-fi and15 native diagnostic views. Complete25 upper/11 lower true arch holes, tapered/rusticated piers, projecting imposts, radial ring stones, cornices, end walls and a continuous open dry channel are present. Fixed missing inter-arch spandrels in the same pass and added76 corresponding face probes per GLB. Whole-model turntables are thin; dedicated two-tier, arch, pier and channel views provide useful detail. Outer support bases float in flat authoring context because they require hills; this is not native-fit approval.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/scene-preview.png",
+          "hash": "sha256:f58e4f788cf1165b35ee3c7f1c5ae65dcb3da020cb28146d07a710b9e255e8bf"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/turntable/angle_0.png",
+          "hash": "sha256:c4f5a526d51ae17a29107ab3b2ed8ab441056616ea861ab8504f901ef98a614c"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/turntable/angle_1.png",
+          "hash": "sha256:36f0865e85e5cb6191073cf28882bf6fc8de69787eb4f78299ace732a1338b05"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/turntable/angle_2.png",
+          "hash": "sha256:3d1fa019b97e83b8d7dfece328b0a03b935f15003d4565bf2e682d2382868984"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/turntable/angle_3.png",
+          "hash": "sha256:bfb7a61d4ae50e51e2a67288966ec985ebffd369773f187e8c828ea841439df0"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/whole-east-arcades.png",
+          "hash": "sha256:f58e4f788cf1165b35ee3c7f1c5ae65dcb3da020cb28146d07a710b9e255e8bf"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/complete-west-elevation.png",
+          "hash": "sha256:a7245c5071c564030b5c6a2e659e11094d87d2cab6f37f7dfd901fc9ec314fb5"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/lower-and-upper-openings.png",
+          "hash": "sha256:822a382e5f155fc0f876e4c19ca24daaa3cf889a92bfb0f0f53eecfa863295d7"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/upper-arch-and-impost.png",
+          "hash": "sha256:c612b1cfd9ea1129b7c91c9af0ebe897a39a4e78ace3c243abcaffa7f1021693"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/rusticated-pier-and-lower-vault.png",
+          "hash": "sha256:d3ca377cd3e4c0b185bb8695d4f12329b70bf4b0c630cb7387c215e90bb59a3f"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/open-channel-walk.png",
+          "hash": "sha256:c91e17b93de56c7ec1bd4cc111121dbe5915a844b8651fa56c593d1f8ee8eacb"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/angle-0.png",
+          "hash": "sha256:ab8d21e7584881ddf09d36dd62fe15176153528355562287fff4d746206eb74c"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/angle-1.png",
+          "hash": "sha256:c53ab0766eaaccd8d5fda129259ad85f2fd6466f5d67b8f43372420fc300feb7"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/angle-2.png",
+          "hash": "sha256:d9ae4e624c6993b424d7acf21ac576b0ed8bb3bd5aa2ff8978ec55969447398a"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/angle-3.png",
+          "hash": "sha256:25ddcdf7829baf5f26f71d3f46d5adcb54f3bd1e796ff8e3b31cb54148962c3e"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/whole-east-arcades.png",
+          "hash": "sha256:b7a29d76e4504c518de2a1f7cd657d17361e0a71f19e5fd00f34f250de909edc"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/complete-west-elevation.png",
+          "hash": "sha256:cdd9350d07bb84a4c870695052c1bdc687f1afac16686563aee2d87c855d1b1b"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/lower-and-upper-openings.png",
+          "hash": "sha256:cb81d7d6485dd9e2d2e779c6b3a2c88da39ecc0bfcf39f96e9c2bc8ffa88f1c5"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/upper-arch-and-impost.png",
+          "hash": "sha256:13f7d39e18b9fe7e46cbe84799b361a51a6a8035b118de0aff0c8a31c6ed5047"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/rusticated-pier-and-lower-vault.png",
+          "hash": "sha256:60d1b911dc7f367bc00e8ecdf0fbfc270a474167b9d71a1047a1c9372454c90c"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/shots/shared/open-channel-walk.png",
+          "hash": "sha256:1a43dcbaf801e80a6f523bf20f45a17550abef12de5177267ee6207f80530cad"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/street-noon-economy.png",
+          "hash": "sha256:d7fc846fb50ccd82cefec63f6c9f0127a9d7449736ac1bd06b9f54df8ef5de7f"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/street-noon-high.png",
+          "hash": "sha256:b5044d3df573604082c0b2be2e613babd331a3ef312eaa7f425d6a8ceac3591f"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/street-late-economy.png",
+          "hash": "sha256:9bd278cf2297452b348f8f8db212a2cc1b6ea9ea58bda376a30dc7b0cc7ca270"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/street-late-high.png",
+          "hash": "sha256:b99f5fc1158d2bedd63e16a901fa661ce889847feef7267703e7b34b8c1f1241"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/block-noon-economy.png",
+          "hash": "sha256:8c8f30927391e5642ce277718eb560c8925fc23295fd7c70524c1e40077a02a8"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/block-noon-high.png",
+          "hash": "sha256:4eeaa56e3a8cb530073c06aa0a40863db6ccaa4d7dfbbda6775aa27f7ad9b46b"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/block-late-economy.png",
+          "hash": "sha256:102a03473c52bae187ad6f9069d684431925b8c80625cbbde34762fcf9984502"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/block-late-high.png",
+          "hash": "sha256:1ac09bba6e1f857226097302e9ccee8fb3c6f36e4b3620081a158867a5b756a0"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:00e5c152b5160d75eb2e6dffd093df375fc9b6b7c6c043b463f5ce9adadeb0d5"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:82ea0d71e44a8060e274f09b0af8275c13a2e041a48c279fcb1505e8810eeea9"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:de33d92514a875e0c50170853d30c453c107b46f5b6fba2bd75c19875229dc44"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/skyline-late-high.png",
+          "hash": "sha256:ef74d4ea3a3dd247051e0a4002ed6efc7d2c386acae7bf7dfa5fed8210932270"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/silhouette.png",
+          "hash": "sha256:8f8e2e1cefa9323d39c7d0285420e111d93a61b2a081c19ec2195dfd7c8482b1"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/whole-east-arcades.png",
+          "hash": "sha256:81b65e6e224fb9e803da97d4777abd30c3a6b7b1023cefb27701a1ca20e8a41b"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/complete-west-elevation.png",
+          "hash": "sha256:d406782448ce5efde5c3b26b6a9597d190032a8a9d18dd26d0c7a5bbd06bd7d9"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/lower-and-upper-openings.png",
+          "hash": "sha256:7bb2f45161c1ec4a804d091b493338e41480959ca4ef2fa7cf6ecff36a25cde1"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/upper-arch-and-impost.png",
+          "hash": "sha256:d803d3e6588cd6e5d81cb8f6511870a58e0b6e5d66826fe7c85b2e4489c0a016"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/rusticated-pier-and-lower-vault.png",
+          "hash": "sha256:f61c0f0c1bbb8ecc38032914d12cdd626e4f69a3847f4474cef134038ae898d2"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/open-channel-walk.png",
+          "hash": "sha256:09eb67fe49bf7995b3f07ef8553f626e4ffa1e2055194582400669a221d5a9dd"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/transition-skyline.png",
+          "hash": "sha256:30e552aea717f5ba227286dfac9ca368cc95b528206b63f823456ccbe4cae282"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/transition-district.png",
+          "hash": "sha256:4eeaa56e3a8cb530073c06aa0a40863db6ccaa4d7dfbbda6775aa27f7ad9b46b"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/transition-street.png",
+          "hash": "sha256:8af82ba25ad26d2daa649faea88f6710719113df893fbf69ad21f85fe782ec09"
+        },
+        {
+          "path": "content/worldgen/source/places/sp/sp2/les_ferreres_aqueduct/medium-fi/transition-closeup.png",
+          "hash": "sha256:386ca5f165508896eed8c023f058c0ccf48ec7486d7238ceb55c148467aec8d8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-skyline-skyline-context.png",
+          "hash": "sha256:701ac0379122bce4588e4c4da6e2543efc47ee71a4c0b991bbaf1360b4eb1ad9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-district-district-context.png",
+          "hash": "sha256:9555fe7cf0a0e121369ce0b0578b53cfd84d86eb50d90a3f6d642fe062349aba"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-street-whole-east-arcades.png",
+          "hash": "sha256:63ca73150b80ed820426ca5d98c427cfef7e52ffc3a074f0360cab684641a69d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-street-complete-west-elevation.png",
+          "hash": "sha256:953d8de629e041776b0d94dfb6d02bf649fd2fba6bde2328a815d9bf92fb3cbd"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-street-lower-and-upper-openings.png",
+          "hash": "sha256:91e0cfcc33499173fcd066f0c1370374c12fd604df81331269c2eb8e1288ee2b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-street-upper-arch-and-impost.png",
+          "hash": "sha256:9b069565f3cf62b2458fb5544a3f6c41bbd76d3e434d0e13f3eadbb327f7ac1f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-closeup-whole-east-arcades.png",
+          "hash": "sha256:6e9482d5069aa143fc0c6537e91af0d26892d962e7c521f97e5d80063d0c4eaa"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-closeup-complete-west-elevation.png",
+          "hash": "sha256:ebc1543bcbd59136dc53c33810b354c67076670aff93c62c3daac27db119551f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-closeup-lower-and-upper-openings.png",
+          "hash": "sha256:203b7b1487a51198b351fa7284501a81eb107ac58959ff3263ce23ce7b7420f9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-closeup-upper-arch-and-impost.png",
+          "hash": "sha256:0486b503d4e3db88f7c0f7a46cebf71ee49bbff44176e6936b884d53149a0552"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-closeup-rusticated-pier-and-lower-vault.png",
+          "hash": "sha256:df64b51e3213fde15b8e017739966131263b297f648b62df76d03b88886ca7e3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-closeup-open-channel-walk.png",
+          "hash": "sha256:54cb1cc296caba0300bf2a8d9dcf85cdaa729d402e2a1667fbca7fb541f31e7c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-closeup-district-context.png",
+          "hash": "sha256:6e9482d5069aa143fc0c6537e91af0d26892d962e7c521f97e5d80063d0c4eaa"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-closeup-economy-context.png",
+          "hash": "sha256:6e9482d5069aa143fc0c6537e91af0d26892d962e7c521f97e5d80063d0c4eaa"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ferreres-review/native/shots/corrected-failure-whole-east-arcades.png",
+          "hash": "sha256:f56b97f8548d291229fc65907ee5c15d8703c858fc8ccce61e8784fb7e1c6626"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All67 roads, one building, raw DEM, displayed terrain and water retained in each loaded/failure scenario; no authored approach resources, private images or leftover geometry on unload."
+    },
+    "nativeReport": {
+      "path": ".artifacts/ferreres-review/native/corrected-report.json",
+      "hash": "sha256:629c308b50540c38a5851afef7cb5b3f8227fb2de90e414919a15be946e8110e"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "25 upper and11 lower real arches,5.9m nominal openings/7.95m pitch,27m maximum height. Photo-led tapered piers, impost bands, ring stones, rusticated faces and open channel. Hill/support profiles and exact masonry dimensions remain approximate. Named242.225m mapped channel includes end walls; retained separately from older217m catalog and249m photo-caption figures.",
+    "Standard Mapzen z14 and z15 ground smooths the valley: roughly45–56m along the channel. Fitting upper end walls to those banks buries much of the lower arcade. Geographic entry must remain a disabled draft until a faithful generic terrain-fit method is available. No fabricated staircase, stretched piers or changed surrounding ground.",
+    "Full two-tier medium-fi exterior and open dry channel; exact stone damage, original waterproof lining, inscriptions, vegetation and hillside reconstruction are not claimed. Geometry is original and analytic, with no downloaded mesh or photograph texture.",
+    "Existing shared256px stone_sandstone_raw, stone_sandstone and stone_limestone_raw graphs, metric UVs and linear tints. No private or embedded images. Four runtime levels retain all36 open arch holes; distant arches are deliberately polygonal.",
+    "Source support bases/hill profile and tier dimensions are photo-led approximations. The27m height is the source maximum above its lowest reconstructed foot, not a claimed27m exposed height in coarse native terrain. Geographic readiness is withheld; physical laptop/phone timing is unmeasured."
+  ]
+}

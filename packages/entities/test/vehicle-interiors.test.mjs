@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { expect, it } from 'vitest';
+import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
 const models = [
   ['aircraft', 'p-51', 'aircraft', 'p51d'],

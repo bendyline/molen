@@ -54,6 +54,7 @@ export class StaticMeshBatches {
       const mesh = child as THREE.Mesh;
       if (
         !mesh.isMesh ||
+        mesh.children.some((child) => child.userData.liveryMarking === true) ||
         (mesh as THREE.SkinnedMesh).isSkinnedMesh ||
         (mesh as THREE.InstancedMesh).isInstancedMesh ||
         mesh.morphTargetInfluences ||

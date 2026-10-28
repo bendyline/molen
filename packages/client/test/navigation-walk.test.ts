@@ -47,6 +47,55 @@ function advance(
 }
 
 describe('walk physics', () => {
+  it.each([
+    false,
+    true,
+  ])('boosts walking/running fourfold (sprint=%s) and switches back', (sprint) => {
+    const { walker, collision } = scene();
+    walker.boostMode = true;
+    advance(walker, collision, 1, { forward: 1, sprint });
+    const boostedDistance = walker.feet.x;
+    expect(boostedDistance).toBeCloseTo((sprint ? RUN_SPEED : WALK_SPEED) * 4, 4);
+    walker.boostMode = false;
+    advance(walker, collision, 1, { forward: 1, sprint });
+    expect(walker.feet.x - boostedDistance).toBeCloseTo(boostedDistance / 4, 4);
+  });
+
+  it('keeps a boosted runner outside a thin wall and stops at missing terrain', () => {
+    const { walker, collision, root } = scene();
+    root.add(box(0.05, 5, 20, 3, 2.5, 0));
+    collision.invalidate();
+    collision.update(root, 0, 0);
+    walker.boostMode = true;
+    advance(walker, collision, 1, { forward: 1, sprint: true });
+    expect(walker.feet.x).toBeLessThan(3);
+    walker.reset(0, 0);
+    expect(walker.place(collision, flat)).toBe(true);
+    for (let i = 0; i < 60; i++)
+      walker.update(1 / 60, { ...STILL, right: 1, sprint: true }, collision, (_x, z) =>
+        z < 2 ? 0 : undefined,
+      );
+    expect(walker.feet.z).toBeLessThan(2);
+    expect(walker.waitingForTerrain).toBe(true);
+  });
+  it.each([
+    true,
+    false,
+  ])('stands on visible land cover with bare terrain visible=%s', (bareVisible) => {
+    const { root, collision, walker } = scene();
+    (root.children[0] as THREE.Object3D).visible = bareVisible;
+    const cover = new THREE.Mesh(new THREE.PlaneGeometry(200, 200).rotateX(-Math.PI / 2));
+    cover.name = 'semantic:landcover';
+    cover.position.y = 0.18;
+    root.add(cover);
+    collision.update(root, 0, 0);
+    walker.reset(0, 0);
+    expect(walker.place(collision, flat)).toBe(true);
+    advance(walker, collision, 2, { forward: 1 });
+    expect(walker.feet.y).toBeCloseTo(0.18, 3);
+    expect(walker.grounded).toBe(true);
+  });
+
   it('walks at human speed with equal cardinal and diagonal distance', () => {
     const a = scene();
     const b = scene();
@@ -122,6 +171,21 @@ describe('walk physics', () => {
     expect(walker.place(collision, flat)).toBe(true);
     expect(Math.max(Math.abs(walker.feet.x), Math.abs(walker.feet.z))).toBeGreaterThan(3.29);
     expect(walker.feet.y).toBeLessThan(0.1);
+  });
+
+  it('places beside vehicle roofs while allowing raised road surfaces', () => {
+    const { root, walker, collision } = scene();
+    root.children[0]!.position.y += 2;
+    const car = box(2, 1.5, 4, 0, 2.75, 0);
+    car.userData.vehicleGeometry = true;
+    root.add(car);
+    collision.update(root, 0, 0);
+    const groundCollision = new WalkCollision({ ignoreVehicles: true });
+    groundCollision.update(root, 0, 0);
+    walker.reset(0, 0);
+    expect(walker.place(collision, flat, groundCollision)).toBe(true);
+    expect(Math.abs(walker.feet.x)).toBeGreaterThan(1.3);
+    expect(walker.feet.y).toBeCloseTo(2.02, 3);
   });
 
   it('recovers when refined terrain arrives above the old surface', () => {
@@ -310,6 +374,26 @@ describe('collision neighborhood options', () => {
     column.update(root, 0, 0);
     const far = column.octree.rayIntersect(new THREE.Ray(new THREE.Vector3(0, 10_000, 0), down));
     expect(far ? far.distance : undefined).toBe(10_000);
+  });
+
+  it('rejects meshes by their rendered bounding sphere before computing a box', () => {
+    const root = new THREE.Group();
+    const near = box(4, 4, 4, 0, 2, 0);
+    const far = box(4, 4, 4, 500, 2, 0);
+    // As after a rendered frame: three's frustum culling computed the spheres, no boxes.
+    for (const mesh of [near, far]) {
+      mesh.geometry.computeBoundingSphere();
+      root.add(mesh);
+    }
+    new WalkCollision().update(root, 0, 0);
+    expect(near.geometry.boundingBox).toEqual(
+      new THREE.Box3(new THREE.Vector3(-2, -2, -2), new THREE.Vector3(2, 2, 2)),
+    );
+    expect(far.geometry.boundingBox).toBeNull();
+    // Far below an airborne subject's band, too.
+    near.geometry.boundingBox = null;
+    new WalkCollision({ verticalRadius: 20 }).update(root, 0, 0, 200);
+    expect(near.geometry.boundingBox).toBeNull();
   });
 
   it('honors a wider radius and rebuild distance', () => {

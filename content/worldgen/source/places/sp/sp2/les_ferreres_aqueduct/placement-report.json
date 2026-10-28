@@ -1,0 +1,133 @@
+{
+  "format": "molen/structure-placement-report@1",
+  "assetId": "molen.worldgen.structure.les_ferreres_aqueduct",
+  "inputHash": "sha256:85aa623b24bda99ae40bd14a1bbf79d2a1134deb226e394099135a574b8b7a36",
+  "placementHash": "sha256:05d2cc39f0e4114d99cadd12e7d9e811b412cc1cdb6730a6984e74e938fd44bd",
+  "entry": {
+    "id": "les.ferreres.aqueduct",
+    "title": "Les Ferreres Aqueduct",
+    "asset": "molen.worldgen.structure.les_ferreres_aqueduct",
+    "anchor": [
+      1.2438972294330597,
+      41.14592823887574
+    ],
+    "heading": 1.9642307890327135,
+    "datum": "sea-level",
+    "elevation": 31.6,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q623448",
+      "maxDistance": 100
+    },
+    "replaceFootprint": false,
+    "minLevel": 13,
+    "status": "draft",
+    "source": "https://commons.wikimedia.org/wiki/File:Aqueducte_de_les_Ferreres.jpg",
+    "note": "Standard Mapzen z14 and z15 ground smooths the valley: roughly45–56m along the channel. Fitting upper end walls to those banks buries much of the lower arcade. Geographic entry must remain a disabled draft until a faithful generic terrain-fit method is available. No fabricated staircase, stretched piers or changed surrounding ground.",
+    "bounds": [
+      1.2432498069573987,
+      41.144852944375636,
+      1.2445446519087207,
+      41.147003533375845
+    ]
+  },
+  "status": "pending",
+  "reviewedOn": "2026-10-27",
+  "basis": "Named standard PMTiles channel35184459381762 and monument POI17594328805153 establish the approximate signed plan. Anchor[1.2438972294330597,41.14592823887574], heading1.9642307890327135: +X north-northwest, +Z east-northeast. The mapped242.225m channel includes end walls and remains separate from older217m/249m extent figures. Both standard z14 and z15 terrain smooth the valley to roughly45–56m; fitting the upper channel to its ends buries the lower arcade. Below-ground diagnostic cameras expose it but cannot establish an acceptable exterior placement. The canonical geographic entry stays draft/disabled, with no ground modification, road replacement or readiness claim.",
+  "nativeVerification": {
+    "report": ".artifacts/ferreres-review/native/corrected-report.json",
+    "hash": "sha256:629c308b50540c38a5851afef7cb5b3f8227fb2de90e414919a15be946e8110e",
+    "status": "fit-rejected",
+    "runtimePreservation": "passed",
+    "scenarios": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "buildings": 1,
+        "roads": 67,
+        "terrainAndMapRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "25 upper and11 lower real arches,5.9m nominal openings/7.95m pitch,27m maximum height. Photo-led tapered piers, impost bands, ring stones, rusticated faces and open channel. Hill/support profiles and exact masonry dimensions remain approximate. Named242.225m mapped channel includes end walls; retained separately from older217m catalog and249m photo-caption figures.",
+    "Standard Mapzen z14 and z15 ground smooths the valley: roughly45–56m along the channel. Fitting upper end walls to those banks buries much of the lower arcade. Geographic entry must remain a disabled draft until a faithful generic terrain-fit method is available. No fabricated staircase, stretched piers or changed surrounding ground.",
+    "Full two-tier medium-fi exterior and open dry channel; exact stone damage, original waterproof lining, inscriptions, vegetation and hillside reconstruction are not claimed. Geometry is original and analytic, with no downloaded mesh or photograph texture.",
+    "Existing shared256px stone_sandstone_raw, stone_sandstone and stone_limestone_raw graphs, metric UVs and linear tints. No private or embedded images. Four runtime levels retain all36 open arch holes; distant arches are deliberately polygonal.",
+    "Source support bases/hill profile and tier dimensions are photo-led approximations. The27m height is the source maximum above its lowest reconstructed foot, not a claimed27m exposed height in coarse native terrain. Geographic readiness is withheld; physical laptop/phone timing is unmeasured."
+  ]
+}

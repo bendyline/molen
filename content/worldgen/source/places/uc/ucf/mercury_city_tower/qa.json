@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.mercury_city_tower",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:c7d1dd9f123a0f9c651640335c2f0289c87a2a19bb6f7291b7579267bd79090a",
+  "inputHash": "sha256:5c54efa9027d6043053df20f046b87b78cf808ff914a7ee39ca0b46fc8461cd8",
   "sourceHash": "sha256:176eade9ffaa175109c569101acbdcd7b4434a8fc7849f9d1172cd8acc028c9a",
   "runtimeHash": "sha256:883de420f09dc271cff7b5a05946ffb2fbff0f3eb64d069e572812fcf22a8385",
-  "captureReportHash": "sha256:3d149273854c8434d3b0c73be8991ba2125b20b788ba77f103e19c5c57200a16",
+  "captureReportHash": "sha256:36ad73a1648d25f99907e8b2e63aa75232902477de919ef6488561c898b4516a",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -23,11 +23,12 @@
       "shots/rear-tall-crown.png",
       "shots/southeast-pointed-nose.png"
     ],
-    "notes": "Actually inspected all59 current frames:13 portable,13 shared,33 medium-fi. Turntables and explicit whole-complex LOD cameras retain all seven copper stepped volumes, opposing sloped roofs, white folded setback bands, dark upper media faces and low pointed nose. Feature cameras intentionally crop the shaft or crown; one shared whole camera also crops the top, while portable whole and all four explicit LOD whole cameras show the complete building. North-up overlay matches the complete irregular outline and southeast pointed end. Close roof views show outward/upward closed surfaces. No missing structural volume observed. Original fine glazing has some tiny seams in portable rendering, while shared fixture and cleaner derivatives have coherent continuous facets."
+    "notes": "Actually inspected all59 current frames:13 portable,13 shared,33 medium-fi. Turntables and explicit whole-complex LOD cameras retain all seven copper stepped volumes, opposing sloped roofs, white folded setback bands, dark upper media faces and low pointed nose. Feature cameras intentionally crop the shaft or crown; one shared whole camera also crops the top, while portable whole and all four explicit LOD whole cameras show the complete building. North-up overlay matches the complete irregular outline and southeast pointed end. Close roof views show outward/upward closed surfaces. No missing structural volume observed. Original fine glazing has some tiny seams in portable rendering, while shared fixture and cleaner derivatives have coherent continuous facets.",
+    "captureReportHash": "sha256:36ad73a1648d25f99907e8b2e63aa75232902477de919ef6488561c898b4516a"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:c5b18e19d38f7d36d28ee43a9f2ac2ccd3387f6eb196d863cb5d29164be8ded0",
+    "captureReportHash": "sha256:767ea8e90eab1545bf33d07cf29607f5cf22f20ec71ececc8ec4f4dc94194a92",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -297,5 +298,16 @@
   },
   "limitations": [
     "Original16573-triangle/1989968byte detailed master remains reproducible from unchanged global recipe. Seven independently mapped volumes, opposing sloped roofs, copper glazing, white folded aluminum bands, dark media faces and pointed low entrance retained.338.824m fabricator/338.8m CVU,75floors/2013; tiny raised frame reaches338.885m. Facade75000m2 contractor refers to curtain wall, owner180000m2 refers to building area. Glass pitch1.42m/4.05m, white band width1.2m, corner stripe2.5percent of edge and media datum294–304.5m are photo reconstructions, not surveyed dimensions. Owner media1350m2/floors67–68/four faces informs neutral dark bands; advertisements excluded. Exact roof mechanical equipment, doors, interiors and temporary decorations excluded. Two canonical256px concrete/paintedmetal graphs shared; opaque copper glass palette; zero embedded images and no photographic facade texture. Terrain slope and physical device/dense-city performance unmeasured."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:c7d1dd9f123a0f9c651640335c2f0289c87a2a19bb6f7291b7579267bd79090a",
+    "inputHash": "sha256:5c54efa9027d6043053df20f046b87b78cf808ff914a7ee39ca0b46fc8461cd8",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 59,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

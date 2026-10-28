@@ -625,8 +625,8 @@ function gripenCockpit(root, m) {
         [0.5, 0.5],
         [-0.5, 0.5],
       ].map(([u, v]) => [x + u * w, y + v * h, z + dz]),
-    txt = (t, x, y, h = 0.008, color = ink, dz = -0.026) =>
-      d.text(t, [x, y, z + dz], h, Math.PI, color);
+    txt = (t, x, y, h = 0.008, color = ink, dz = -0.026, role = 'panel') =>
+      d.text(t, [x, y, z + dz], h, Math.PI, color, role);
   const edge = [
     [-0.38, 1.98],
     [-0.4, 2.3],
@@ -703,12 +703,12 @@ function gripenCockpit(root, m) {
       ]);
   }
   ins.horizon('attitude', [0.207, 2.228, z + 0.01], 0.123, 0.083, { blankBackdrop: true });
-  txt('FLIGHT / SIM', 0.207, 2.318, 0.007, green);
-  txt('TAS', 0.244, 2.285, 0.005, green);
+  txt('FLIGHT / SIM', 0.207, 2.318, 0.007, green, undefined, 'display');
+  txt('TAS', 0.244, 2.285, 0.005, green, undefined, 'display');
   ins.readout('speed', [0.244, 2.271, z - 0.025], 'knots', 3, 0.009, green);
-  txt('GEO FT', 0.161, 2.285, 0.005, green);
+  txt('GEO FT', 0.161, 2.285, 0.005, green, undefined, 'display');
   ins.readout('altitude', [0.161, 2.271, z - 0.025], 'feet', 5, 0.007, green, true, true);
-  txt('FPM', 0.207, 2.17, 0.006, green);
+  txt('FPM', 0.207, 2.17, 0.006, green, undefined, 'display');
   ins.readout(
     'vertical-speed',
     [0.207, 2.146, z - 0.025],
@@ -744,8 +744,8 @@ function gripenCockpit(root, m) {
   d.rod([0, 2.192, z + 0.016], [0, 2.18, z + 0.016], 0.0013, ink);
   txt('SYSTEMS', -0.207, 2.307, 0.008, green);
   txt('ENG --', -0.207, 2.27, 0.01, amber);
-  txt('FUEL --', -0.207, 2.242, 0.009, amber);
-  txt('SENSORS INOP', -0.207, 2.2, 0.006, amber);
+  txt('FUEL --', -0.207, 2.242, 0.009, amber, undefined, 'display');
+  txt('SENSORS INOP', -0.207, 2.2, 0.006, amber, undefined, 'display');
   txt('SIM', -0.207, 2.156, 0.007, green);
   // Raised central input panel occupies the gap above the lower middle display.
   sheet(d, rect(0, 2.365, 0.234, 0.166, -0.025), button, [0, 0, -1]);

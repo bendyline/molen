@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.chatham_manor",
+  "kind": "static-structure",
+  "title": "Chatham Manor",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.chatham_manor",
+        "output": "assets/places/dq/dqb/chatham_manor/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6032ca111477f1c28170f677524dafc414321714d3e02bc8f77e41b4012fc3ae"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-chatham-manor",
+        "path": "models/generate-chatham-manor.mjs"
+      },
+      {
+        "id": "chatham-manor-model",
+        "path": "models/chatham-manor-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-rutke-native.json",
+      "reference-rights/highsmith-dedication.html",
+      "reference-rights/highsmith-2011630784.json",
+      "reference-images/highsmith-12590.jp2",
+      "native-map/whole-manor.json",
+      "dimension-evidence.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9333-12603.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

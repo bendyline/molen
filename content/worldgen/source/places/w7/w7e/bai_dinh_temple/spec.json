@@ -1,0 +1,460 @@
+{
+  "planId": "bai_dinh_temple",
+  "id": "bai_dinh_temple",
+  "assetId": "molen.worldgen.structure.bai_dinh_temple",
+  "title": "Bái Đính Temple",
+  "wikidataId": "Q3360468",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 105.8664783,
+    "latitude": 20.2761074
+  },
+  "size": [
+    578.3484497070312,
+    159.80000495910645,
+    1346.1333618164062
+  ],
+  "actualBounds": {
+    "min": [
+      -289.1742248535156,
+      -20.90410041809082,
+      -670.7356567382812
+    ],
+    "max": [
+      289.1742248535156,
+      138.89590454101562,
+      675.397705078125
+    ]
+  },
+  "visualBrief": "Whole temple architectural ensemble: three large tiered-roof worship halls with recessed timber entrances/round windows/verandas/stone terraces, separate wooden inner and pale stone northern gateways with actual open passages, octagonal three-roof Bell Tower,13-storey100m Bao Thien stupa, small Tu An tower and complete native long stepped galleries/crossgable pavilions. Original small ancient mountain shrine exterior/portal estimates at separately identified native points retain the old part of the site without pretending surveyed plans. Natural mountain/caves, courts/ponds/gardens/roads/parking/convention center/restaurants/neighbors/sculpture/interiors excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X3.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X4.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X5.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X8.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X10.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X11.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X12.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X13.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X15.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X16.JPG",
+    "https://commons.wikimedia.org/wiki/File:Chua_Bai_Dinh_X17.JPG"
+  ],
+  "stories": [
+    {
+      "id": "bai-inh-temple-wp",
+      "url": "https://qualla.com/bai-inh-temple/"
+    }
+  ],
+  "referenceInputHash": "c5a40453dfc06637149bde785ffbbbbc9cf92980ef15bdba67fd36c1694e66f3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w7/w7e/bai_dinh_temple/models/bai-dinh-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/bai-dinh-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "baiDinhSkyline",
+    "errorMeters": 4,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.76,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "baiDinhDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "baiDinhStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "baiDinhCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1",
+    "groundY": -25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All floor/architectural section choices follow original1600m513x513 independent field freeze. Fixed23.1041m provider-relative SW datum unchanged. Three main halls, wooden innerGate plus separate northern outer stone gateway, octagonal Bell Tower,13storey100m stupa, small Tu An tower, all native galleries and bounded original ancient shrine exteriors retained. Native148XZcontrols unchanged; property not extruded. Wooden innerGate identity reconciled to namedpoint5354281321/nativegallerycentralpavilion, despite outerway449263545 alt-name. Tam The official76m altitude/34m height and Bell18.25m/innerGate16.5m/stupa100m are textual controls; other elevations/hidden sections/ancient unmapped plans/ornament/opening census are original estimates. Ancient components have lower confidence, not photogrammetry. Geographic grade/footings/current finish unresolved, preview/replacementfalse; no fit/flatten/reacquire.",
+    "anchor": [
+      105.8664783,
+      20.2761074
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        105.86216885884255,
+        20.269819221775062
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed SW independent-envelope point selected before floors/sections/geometry; provider-relative unsurveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/449263543",
+      "way/449263544",
+      "way/449263545",
+      "way/449263547",
+      "way/449266754",
+      "way/474584441",
+      "way/449266735",
+      "way/449266738",
+      "way/449266739",
+      "way/449266747",
+      "way/1158511977",
+      "way/1158512209"
+    ],
+    "source": "https://www.openstreetmap.org/way/449263549",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f2766459b10e2c8bc716cf4a28815ec818f8e43b03aa99f1e3aca5ebac29d0f4",
+    "notes": "Whole named temple architectural ensemble: three principal worship halls, inner Three Gates, octagonal Bell Tower, Bao Thien stupa, intrinsic mapped long stepped galleries and side pavilions; ancient mountain shrine exterior/portals retained as separately identified bounded components. Exact native building plans remain distinct from119control whole-property context. No single hall counted as whole complex. Caves/natural mountain, courtyards/lakes/roads/parking/gardens/trees, detached modern convention center/restaurants/hotels/toilets, sculpture/interiors and temporary construction/events excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Q3360468/vi:Chùa Bái Đính identity matches native named119control compound way449263549 and five individually named main structures. Preserve all native building and gallery envelope controls independently; never extrude property boundary. Older mountain shrines have identified native points but no surveyed individual footprints; their original bounded exterior reconstruction/locations must be distinguished from exact mapped new halls.",
+    "All floor/architectural section choices follow original1600m513x513 independent field freeze. Fixed23.1041m provider-relative SW datum unchanged. Three main halls, wooden innerGate plus separate northern outer stone gateway, octagonal Bell Tower,13storey100m stupa, small Tu An tower, all native galleries and bounded original ancient shrine exteriors retained. Native148XZcontrols unchanged; property not extruded. Wooden innerGate identity reconciled to namedpoint5354281321/nativegallerycentralpavilion, despite outerway449263545 alt-name. Tam The official76m altitude/34m height and Bell18.25m/innerGate16.5m/stupa100m are textual controls; other elevations/hidden sections/ancient unmapped plans/ornament/opening census are original estimates. Ancient components have lower confidence, not photogrammetry. Geographic grade/footings/current finish unresolved, preview/replacementfalse; no fit/flatten/reacquire.",
+    "Thirteen independent2017 creatorPD-self/own exact exterior originals accepted after Qualla-first search. Published Qualla PD-labelled originals lack bound local basis and remain unselected; native original X21/X23 show interiors and are unselected. No source rightsmetadata repairs, copied pixels, generated bitmap, sculpture/statue/carved inscription copies or interiors. Ancient mountain shrine plans/roof and door forms are original lower-confidence textual/typological estimates at named native points; accepted exteriors do not certify those hidden components.",
+    "Original1600m513x513263169sample field/six raw tiles frozen before floors/sections/geometry. Fixed23.1041m provider-relative datum unchanged; primary official Tam The76m altitude is not a surveyed tie to Terrarium. Other floor/section/hidden elevation/currentfinish/census/crest/ridge estimates are not surveys. Field never fitted/flattened/reacquired; no whole-property slab. All geographic placement stays preview/replacementfalse pending foundations/grade. Review flat ground and procedural context are synthetic fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-complex-both-gates-halls-towers-and-galleries",
+      "position": [
+        1503.7224006249385,
+        650,
+        -404.7455272869263
+      ],
+      "lookAt": [
+        1.9470184213862893,
+        45,
+        -145.3313769262054
+      ]
+    },
+    {
+      "name": "whole-ancient-shrines-and-uphill-halls",
+      "position": [
+        -1505.220107102928,
+        700,
+        516.5388941532382
+      ],
+      "lookAt": [
+        -16.56895699797918,
+        55,
+        -98.61779587883274
+      ]
+    },
+    {
+      "name": "tam-the-three-roofs-porch-and-entry-recesses",
+      "position": [
+        -62.32570430696982,
+        82,
+        212.05779066716735
+      ],
+      "lookAt": [
+        -182.16434123767573,
+        69,
+        243.5490767411029
+      ]
+    },
+    {
+      "name": "phap-chu-hall-and-stepped-gallery",
+      "position": [
+        67.84455971056649,
+        48,
+        10.301248355387784
+      ],
+      "lookAt": [
+        -69.52156636403187,
+        39,
+        14.722493344930196
+      ]
+    },
+    {
+      "name": "inner-gates-and-open-octagonal-bell-tower",
+      "position": [
+        269.1042726070188,
+        42,
+        -389.97806408136256
+      ],
+      "lookAt": [
+        144.13533475322788,
+        7,
+        -409.5424340353207
+      ]
+    },
+    {
+      "name": "bao-thien-thirteen-storey-stupa-and-small-tu-an-tower",
+      "position": [
+        -86.83937660100577,
+        97,
+        -27.998619100746613
+      ],
+      "lookAt": [
+        -262.08558771601867,
+        87,
+        -0.38040971215053787
+      ]
+    },
+    {
+      "name": "whole-native-temple-layout-and-old-shrines",
+      "position": [
+        -21.460049486468694,
+        2000,
+        -67.375561415385
+      ],
+      "lookAt": [
+        -26.051600679360323,
+        20,
+        -58.492000325199626
+      ]
+    },
+    {
+      "name": "ancient-shrine-point-based-original-exterior-estimates",
+      "position": [
+        141.685542490155,
+        145,
+        607.9269750959161
+      ],
+      "lookAt": [
+        59.058156573655964,
+        123,
+        632.7607242411002
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 58466,
+    "vertices": 175398,
+    "materials": 6,
+    "bytes": 7019640,
+    "sha256": "sha256:549cccaef0bec159c3f5e6a71b7cb6f46fcff18b1fad602413a55ed01676a2df"
+  }
+}

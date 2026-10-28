@@ -1,0 +1,290 @@
+{
+  "id": "kuradisild",
+  "title": "Kuradisild / Devil’s Bridge",
+  "wikidataId": "Q12367783",
+  "referenceCoordinate": {
+    "longitude": 26.71588056,
+    "latitude": 58.37894444
+  },
+  "module": "content/worldgen/source/places/ud/ud6/kuradisild/models/kuradisild-model.mjs",
+  "generator": "content/worldgen/source/places/ud/ud6/kuradisild/models/generate-kuradisild.mjs",
+  "builder": "buildKuradisildLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "plain": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.75,
+      "metallic": 0.75
+    }
+  },
+  "exportLabel": "Molen original Kuradisild, Tartu",
+  "expectedDraftMasterHash": "sha256:7e00a554fb21dcfbcc66a906177a4799e7282dc4dbfd39901304774d4fc86d43",
+  "visualBrief": "Tartu Kuradisild: one open road span beneath paired concrete arch ribs and slender open-spandrel posts; solid repeated rectangular parapet panels, oval Alexander portrait with raised concrete halo, opposite 1613/1913 wreath, Latin arch caption, shallow deck and under-deck utility lamps.",
+  "nativeAxes": "+X east-southeast along the bridge; -X west-northwest along the bridge; +Z south-southwest/uphill on Lossi toward Toome Hill; -Z north-northeast/downhill on Lossi toward central Tartu.",
+  "sourceFacts": {
+    "identity": "Named Kuradisild bridge footway35184425968185 and Devil’s Bridge POI17592516087228 in standard PMTiles; original Q12367783 reference. Anchor is refined to the independent Lossi road crossing; mapped footway endpoints retain unequal bank approaches. No exact-QID footprint claimed.",
+    "mappedPlan": {
+      "length": 24.163465027475112,
+      "width": 4
+    },
+    "orientation": "+X east-southeast along the bridge; -X west-northwest along the bridge; +Z south-southwest/uphill on Lossi toward Toome Hill; -Z north-northeast/downhill on Lossi toward central Tartu.",
+    "heightBasis": "Standard PMTiles/Mapzen only; approximate visualization grade and photo-led sections.",
+    "underpass": {
+      "name": "Lossi",
+      "roadId": 35185117302570,
+      "independent": true
+    }
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Tartu_asv2022-04_img55_Kuradisild.jpg",
+      "author": "A.Savin",
+      "observedDate": "2022-04-18",
+      "license": "Free Art License",
+      "use": "Paired exposed concrete arch ribs, open spandrel posts, solid paneled parapets, central oval portrait/halo, arch caption and under-deck lamps.",
+      "policy": "View-only ordinary photographs. No image pixels, downloaded meshes or private textures are imported; rights remain on the linked page."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Old_bridge_in_Tartu.jpg",
+      "author": "Visem",
+      "observedDate": "2015-09-10",
+      "license": "CC-BY-SA-4.0",
+      "use": "Opposite face: stacked1613/1913 date plaque and wreath; open arch/spandrels, repeated panel borders and bank abutments.",
+      "policy": "View-only ordinary photographs. No image pixels, downloaded meshes or private textures are imported; rights remain on the linked page."
+    }
+  ],
+  "limitations": [
+    "Scoped bridge exterior: one clear road opening, paired visible outer arch ribs and open spandrels. Named bridge footway retains 24.163465m transport extent and unequal banks; 4.0m width, rib/column sections and height are photo/standard-terrain visual approximations. No exact-QID footprint or surveyed section claimed.",
+    "Source datum 71.1m and floor 76.85m fit the coarse native Lossi road approximately. Mapzen smooths the road cut and hill; upper footpaths are deliberately graded with bounded supports. Exact slopes, historic stairs, retaining walls and park trees remain outside the asset.",
+    "The Alexander portrait is an original shallow geometric abstraction, not a precise likeness. The opposite dated wreath, rectangular panel frames and Latin arch caption retain distinctive shapes; exact leaf carving, casting and inscriptions are simplified.",
+    "Existing shared 256px concrete_plain and metal_bronze_cast graphs provide metric repeated surfaces and linear tints. No embedded/private textures or copied photo pixels. Distant levels simplify curves, posts, panel frames, portrait and date lettering. Physical-device timings remain unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-portrait-side",
+      "position": [
+        -11,
+        10,
+        28
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-date-side",
+      "position": [
+        11,
+        10,
+        -27
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "walk-and-paneled-parapets",
+      "position": [
+        -11,
+        8,
+        1
+      ],
+      "lookAt": [
+        7,
+        6.1,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "open-arch-and-spandrels",
+      "position": [
+        0,
+        1.9,
+        17
+      ],
+      "lookAt": [
+        0,
+        3.6,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "portrait-and-arch-caption",
+      "position": [
+        -2,
+        7.3,
+        10
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        1.8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "date-wreath-and-panels",
+      "position": [
+        2,
+        7.3,
+        -10
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        -1.8
+      ],
+      "fov": 50
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/ud6/kuradisild/models/kuradisild-model.mjs",
+    "export": "buildKuradisildSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "plain": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.75,
+        "metallic": 0.75
+      }
+    },
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKuradisildDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plain": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.75
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildKuradisildStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plain": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.75
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "closeup": {
+        "export": "buildKuradisildCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "plain": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.75
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  }
+}

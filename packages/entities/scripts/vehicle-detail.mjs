@@ -2,6 +2,8 @@
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { joinedPath } from '../../worldgen/scripts/joined-path.mjs';
+import { prepareSurface } from './surface-normals.mjs';
 import {
   addMarineDashboard,
   addRoadDashboard,
@@ -9,7 +11,28 @@ import {
   panelTools,
 } from './vehicle-interiors.mjs';
 
+// Authoring-only recipes survive batching, without changing legacy vehicle/exterior GLBs.
+// Aircraft can replace the selected cabin's text before export; no bitmap recognition is needed.
+const batchedText = new WeakMap();
+export function replaceDetailText(cabin, render) {
+  const meshes = [];
+  cabin.traverse((mesh) => {
+    if (batchedText.has(mesh)) meshes.push(mesh);
+  });
+  for (const mesh of meshes) {
+    const { solid, runs } = batchedText.get(mesh);
+    batchedText.delete(mesh);
+    const holder = new T.Group().copy(mesh, false);
+    mesh.parent.add(holder);
+    mesh.removeFromParent();
+    if (solid) holder.add(new T.Mesh(solid, mesh.material));
+    render(holder, runs, mesh.material);
+    mesh.geometry.dispose();
+  }
+}
+
 export function detailKit(parent, name = 'close-detail') {
+  const textGroups = new WeakMap();
   const root = new T.Group();
   root.name = name;
   parent.add(root);
@@ -22,6 +45,7 @@ export function detailKit(parent, name = 'close-detail') {
   const red = mat('detail-red', '#ad3934', 0.05, 0.4);
   const green = mat('detail-green', '#397552', 0.05, 0.4);
   const add = (geometry, material = metal, at = [0, 0, 0], group = root) => {
+    ({ geometry, material } = prepareSurface(geometry, material));
     const mesh = new T.Mesh(geometry, material);
     mesh.position.fromArray(at);
     group.add(mesh);
@@ -40,6 +64,14 @@ export function detailKit(parent, name = 'close-detail') {
     );
     mesh.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), delta.normalize());
     return mesh;
+  };
+  const path = (points, radius = 0.01, material = metal, closed = false) => {
+    const { positions, indices } = joinedPath(points, radius, 6, closed);
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+    geometry.setIndex(indices);
+    geometry.computeVertexNormals();
+    return add(geometry, material);
   };
   const ring = (radius, tube, at, material = metal, axis = 'z', group) => {
     const mesh = add(new T.TorusGeometry(radius, tube, 5, 24), material, at, group);
@@ -88,11 +120,12 @@ export function detailKit(parent, name = 'close-detail') {
     '-': '000000111000000',
     '.': '000000000000010',
   };
-  const text = (label, at, height = 0.05, yaw = 0, material = ivory) => {
+  const text = (label, at, height = 0.05, yaw = 0, material = ivory, role = 'panel') => {
     const g = new T.Group();
     g.position.fromArray(at);
     g.rotation.y = yaw;
     root.add(g);
+    textGroups.set(g, { label, height, role });
     const pixel = height / 5,
       width = (label.length * 4 - 1) * pixel;
     [...label.toUpperCase()].forEach((char, n) => {
@@ -118,21 +151,39 @@ export function detailKit(parent, name = 'close-detail') {
         mesh.geometry.index ? mesh.geometry.toNonIndexed() : mesh.geometry.clone()
       ).applyMatrix4(inverse.clone().multiply(mesh.matrixWorld));
       geometry.deleteAttribute('uv');
-      const batch = batches.get(mesh.material) ?? [];
-      batch.push(geometry);
+      const batch = batches.get(mesh.material) ?? { all: [], solid: [], runs: new Map() };
+      batch.all.push(geometry);
+      const inherited = batchedText.get(mesh),
+        text = textGroups.get(mesh.parent),
+        transform = inverse.clone().multiply(mesh.matrixWorld);
+      if (inherited) {
+        if (inherited.solid) batch.solid.push(inherited.solid.clone().applyMatrix4(transform));
+        for (const run of inherited.runs)
+          batch.runs.set(run, { ...run, matrix: transform.clone().multiply(run.matrix) });
+      } else if (text) {
+        batch.runs.set(mesh.parent, {
+          ...text,
+          matrix: inverse.clone().multiply(mesh.parent.matrixWorld),
+        });
+      } else batch.solid.push(geometry);
       batches.set(mesh.material, batch);
     });
     root.clear();
-    for (const [material, geometries] of batches) {
-      const merged = mergeGeometries(geometries);
+    for (const [material, batch] of batches) {
+      const merged = mergeGeometries(batch.all);
       if (!merged) throw new Error(`Cannot consolidate ${name}/${material.name}`);
       const mesh = add(merged, material);
       mesh.name = `${name}-${material.name}`;
-      for (const geometry of geometries) geometry.dispose();
+      if (batch.runs.size)
+        batchedText.set(mesh, {
+          solid: batch.solid.length ? mergeGeometries(batch.solid) : null,
+          runs: [...batch.runs.values()],
+        });
+      for (const geometry of new Set([...batch.all, ...batch.solid])) geometry.dispose();
     }
     return root;
   };
-  return { root, metal, dark, ivory, amber, red, green, add, box, rod, ring, text, finish };
+  return { root, metal, dark, ivory, amber, red, green, add, box, rod, path, ring, text, finish };
 }
 
 export function addWheelDetail(wheel, radius, width, bicycle = false) {
@@ -247,10 +298,17 @@ export function addCycleDetail(root, s) {
       bike ? 0.06 : name === 'wheel-front' ? 0.16 : 0.2,
       bike,
     );
-  d.rod([-0.11, r, -wb / 2], [-0.11, r * 0.85, -wb * 0.1], 0.012, d.dark);
-  d.rod([-0.11, r - 0.09, -wb / 2], [-0.11, r * 0.85 - 0.09, -wb * 0.1], 0.012, d.dark);
-  d.ring(bike ? 0.09 : 0.11, 0.018, [-0.12, r * 0.85, -wb * 0.1], d.metal, 'x');
-  if (!bike) {
+  // A scooter's belt drive, engine and fork are enclosed; chains, fins and tubes are not.
+  const scooter = s.shape === 'motor-scooter';
+  if (!scooter) {
+    d.rod([-0.11, r, -wb / 2], [-0.11, r * 0.85, -wb * 0.1], 0.012, d.dark);
+    d.rod([-0.11, r - 0.09, -wb / 2], [-0.11, r * 0.85 - 0.09, -wb * 0.1], 0.012, d.dark);
+    d.ring(bike ? 0.09 : 0.11, 0.018, [-0.12, r * 0.85, -wb * 0.1], d.metal, 'x');
+  }
+  if (scooter)
+    for (const side of [-1, 1])
+      d.text('BENDY', [side * 0.212, 0.62, -0.48], 0.05, (side * Math.PI) / 2);
+  else if (!bike) {
     for (let i = 0; i < 6; i++) d.box([0.35, 0.018, 0.32], [0, r * 1.15 + i * 0.04, -0.04], d.dark);
     for (const x of [-0.13, 0.13]) d.rod([x, r * 1.7, 0.14], [x, r * 0.75, 0.27], 0.027, d.metal);
     d.ring(0.037, 0.008, [0, H * 0.85 + 0.006, 0.15], d.metal, 'y');
@@ -327,10 +385,13 @@ export function addBoatDetail(root, s) {
   const d = detailKit(root);
   const { length: L, width: W, freeboard: y } = s;
   const size = Math.min(2, Math.max(0.65, W / 5));
-  // Fairleads, bollards and cleats follow the usable deck, clear of the narrow bow.
+  // Fairleads, bollards and cleats follow the usable deck, clear of the narrow bow; a lofted hull
+  // (fleet-geometry) reports its deck edge and topsides for them.
+  const hull = s.hull;
+  const edge = (z, inset) => Math.min(W * 0.39, hull ? hull.deckAt(z) - inset : W);
   for (const side of [-1, 1]) {
     for (const z of [-L * 0.35, L * 0.26]) {
-      const x = side * W * 0.39;
+      const x = side * edge(z, 0.16 * size);
       d.box([0.17 * size, 0.04, 0.28 * size], [x, y + 0.11, z], d.metal);
       d.rod([x, y + 0.1, z], [x, y + 0.24 * size, z], 0.035 * size);
       d.rod(
@@ -339,15 +400,23 @@ export function addBoatDetail(root, s) {
         0.025 * size,
       );
     }
-    d.text(
+    // Hull lettering lies on the topsides (tilted with their flare), not standing off them.
+    const topside = hull?.sideAt(0, y * 0.55) ?? { x: W / 2, tilt: 0 };
+    const name = d.text(
       'BENDY',
-      [side * (W / 2 + 0.008), y * 0.55, 0],
+      [side * (topside.x + 0.006), y * 0.55, 0],
       Math.min(0.42, y * 0.22),
       (side * Math.PI) / 2,
     );
+    name.rotation.order = 'YXZ';
+    name.rotation.x = topside.tilt;
     d.box(
       [0.09 * size, 0.08 * size, 0.12 * size],
-      [side * W * 0.4, y + 0.35, L * 0.25],
+      [
+        side * edge(L * 0.25, 0.08 * size),
+        hull ? hull.sheerAt(L * 0.25) + 0.08 * size : y + 0.35,
+        L * 0.25,
+      ],
       side > 0 ? d.red : d.green,
     );
   }
@@ -359,10 +428,11 @@ export function addBoatDetail(root, s) {
     for (let i = -3; i <= 3; i++)
       d.rod([i * W * 0.1, y + 0.086, -L * 0.34], [i * W * 0.1, y + 0.086, L * 0.25], 0.004, d.dark);
     for (const side of [-1, 1]) {
-      d.ring(0.19, 0.047, [side * W * 0.34, y + 0.42, -L * 0.28], d.ivory, 'x');
+      const ringY = hull ? Math.max(y + 0.42, hull.sheerAt(-L * 0.28) + 0.25) : y + 0.42;
+      d.ring(0.19, 0.047, [side * W * 0.34, ringY, -L * 0.28], d.ivory, 'x');
       d.rod(
-        [side * W * 0.34, y + 0.67, -L * 0.28],
-        [side * W * 0.34, y + 0.61, -L * 0.28],
+        [side * W * 0.34, ringY + 0.25, -L * 0.28],
+        [side * W * 0.34, ringY + 0.19, -L * 0.28],
         0.01,
         d.dark,
       );

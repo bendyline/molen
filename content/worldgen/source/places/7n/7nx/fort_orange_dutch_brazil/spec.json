@@ -1,0 +1,586 @@
+{
+  "planId": "fort_orange_dutch_brazil",
+  "id": "fort_orange_dutch_brazil",
+  "assetId": "molen.worldgen.structure.fort_orange_dutch_brazil",
+  "title": "Fort Orange — Forte de Santa Cruz de Itamaracá",
+  "wikidataId": "Q1438646",
+  "category": "fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -34.8390407,
+    "latitude": -7.8104072
+  },
+  "size": [
+    153.01190185546875,
+    6.100000202655792,
+    154.91220092773438
+  ],
+  "actualBounds": {
+    "min": [
+      -76.50595092773438,
+      -0.30000001192092896,
+      -77.45610046386719
+    ],
+    "max": [
+      76.50595092773438,
+      5.800000190734863,
+      77.45610046386719
+    ]
+  },
+  "visualBrief": "Whole surviving native four-bastion fortress:20outer/10courtyard controls, both8/4controlintrinsic one-storey ranges, battered masonry scarp/roundedcordon/plainparapet, open estimated northentry/barrelvault, courtyard/well/two accessflights and six actual survey-mapped cannon positions. Exact cleared published Qualla closewall original and preserved samephotographerPD-self release; no source pixels embedded. Whole native plan retained; unobserved roof/door/section/contact details are explicit original medium-fi estimates.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Forte_Orange,_Itamarac%C3%A1,_Brazil.JPG"
+  ],
+  "stories": [
+    {
+      "id": "fort-orange-dutch-brazil-wp",
+      "url": "https://qualla.com/fort-orange-dutch-brazil/"
+    }
+  ],
+  "referenceInputHash": "21da7d0519959756ff7ef779005e75b3fdc168e2f97fb397319161cb3990b7b1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/7n/7nx/fort_orange_dutch_brazil/models/fort-orange-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/fort-orange-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "fortOrangeSkyline",
+    "errorMeters": 0.9,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "cordon": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "lime": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "wall",
+        "graph": "earth_rammed",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.35
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "fortOrangeDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "cordon": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "fortOrangeStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "cordon": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "fortOrangeCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "cordon": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone_raw",
+    "plaster_lime",
+    "tile_flat",
+    "earth_rammed",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.65,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "far": 2500
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original field frozen first. Original photographic section estimate: courtyardfloor+0.35m over the fixed north approach sample, batteredscarp top4.35m/parapet5.45m/cordon3.65m, batter1m. Intrinsic mapped courtyard range rear5.15m/front3.65m flat-tile single-slope sections. Original northentry placement/curved passage2.6mwide2.8mhigh, well/roof/doors and two24tread rampartflights are bounded unseen estimates. Current DEM is coarse/unclassified and does not certify actual grade/threshold/contact; geographicpreview/replacementfalse. Floor/mainsections set once beforegeometry, never tuned to sourcefield/renders.",
+    "anchor": [
+      -34.8390407,
+      -7.8104072
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -34.839158599460696,
+        -7.81003580169888
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed original north-curtain midpoint at existing service-road approach before sourcefield/floor/mainsections/geometry; entrance threshold is not a surveyed native point."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -76.50595254196034,
+          -46.95456121658116
+        ],
+        [
+          -64.46263407955378,
+          -16.66452777181823
+        ],
+        [
+          -48.61442104730002,
+          -20.070904190054407
+        ],
+        [
+          -36.174070108162496,
+          39.91916939849114
+        ],
+        [
+          -49.41951468080175,
+          40.520294648680874
+        ],
+        [
+          -53.378810768855246,
+          77.45610169395009
+        ],
+        [
+          -22.09044586190212,
+          62.50589408040993
+        ],
+        [
+          -24.538812801743074,
+          47.74492960125467
+        ],
+        [
+          34.85062851827564,
+          34.70941722929028
+        ],
+        [
+          35.655722151777375,
+          48.94718010173301
+        ],
+        [
+          76.50595254196034,
+          49.83773602810481
+        ],
+        [
+          59.334297920603355,
+          18.456771573474626
+        ],
+        [
+          45.89033710881499,
+          21.06164765802562
+        ],
+        [
+          31.641282664308523,
+          -38.52767576352903
+        ],
+        [
+          43.88311736508056,
+          -42.546309381164356
+        ],
+        [
+          45.493304632084026,
+          -77.45610169395009
+        ],
+        [
+          13.17927249318409,
+          -61.60420620502646
+        ],
+        [
+          16.796679503921975,
+          -49.169819083449546
+        ],
+        [
+          -42.802306734502025,
+          -33.518298677922495
+        ],
+        [
+          -46.01165258846914,
+          -47.9564366337618
+        ],
+        [
+          -76.50595254196034,
+          -46.95456121658116
+        ]
+      ],
+      "basis": "Exact physical fort envelope including modeled intrinsic courtyardfloor and manmade rampartfill, never surrounding roads/beach/hotel/naturalterrain. Every original source elevation byte retained."
+    },
+    "featureIds": [
+      "relation/8300930",
+      "way/321886213",
+      "way/588417037",
+      "way/588417034",
+      "way/588417036"
+    ],
+    "source": "https://www.openstreetmap.org/relation/8300930",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d6ba35428a0d747fbbd9ac9fd11b60eeb20068a0ebea6210417125696bec2ff4",
+    "notes": "Whole surviving Portuguese-period Fort Orange / Forte de Santa Cruz de Itamaracá: all four pentagonal bastions and connecting battered masonry curtains, full open native courtyard, both intrinsic one-storey mapped courtyard ranges, continuous cordon/plain parapet, actual six survey-mapped cannon positions, original estimated north entrance passage, well and two rampart access flights. Exact20outer and10inner native perimeter controls plus8/4mapped range controls. Site roads/beach/river/hotel/trees/sign/fence remain context, not fort structure."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named historicfort multipolygon8300930/Q1438646;20-control four-bastion exterior321886213/10-control open courtyard588417037, distinct8-control and4-control one-storey intrinsic ranges588417034/588417036. No broad tourist/hotel/beach parcel extrusion.",
+    "Whole surviving Portuguese-period Fort Orange / Forte de Santa Cruz de Itamaracá: all four pentagonal bastions and connecting battered masonry curtains, full open native courtyard, both intrinsic one-storey mapped courtyard ranges, continuous cordon/plain parapet, actual six survey-mapped cannon positions, original estimated north entrance passage, well and two rampart access flights. Exact20outer and10inner native perimeter controls plus8/4mapped range controls. Site roads/beach/river/hotel/trees/sign/fence remain context, not fort structure.",
+    "Original field frozen first. Original photographic section estimate: courtyardfloor+0.35m over the fixed north approach sample, batteredscarp top4.35m/parapet5.45m/cordon3.65m, batter1m. Intrinsic mapped courtyard range rear5.15m/front3.65m flat-tile single-slope sections. Original northentry placement/curved passage2.6mwide2.8mhigh, well/roof/doors and two24tread rampartflights are bounded unseen estimates. Current DEM is coarse/unclassified and does not certify actual grade/threshold/contact; geographicpreview/replacementfalse. Floor/mainsections set once beforegeometry, never tuned to sourcefield/renders.",
+    "Whole native fort footprint and both ranges are retained, with true open courtyard/entry/well and six mapped cannons. Accepted photo is only a close exteriorwall view. Hidden roof form/material, inner doors, well/steps/entrance locations, repairedplaster pattern and cannon orientation are explicit original medium-fi estimates, not photogrammetry or a complete photographic survey. No invented inscriptions/sign art/heraldic relief or unobserved sentry towers. Inner partitions/dungeons/chapel fixtures and movable extra artillery not represented as exterior structures.",
+    "Original sourcefield/frame/floor/mainsections frozen before geometry. Source heights are unclassified and include possible fort/canopy signals; exact terrain/entry threshold/contact/current repairs remain unverified. Only physical fort envelope masked, geographicpreview/replacementfalse. Source imagery remains provenance only, no photographicpixels embedded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Photographer-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaLodCameras": [
+    {
+      "name": "whole-fort-skyline",
+      "position": [
+        -155,
+        130,
+        -165
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-fort-district",
+      "position": [
+        -155,
+        130,
+        -165
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-fort-street",
+      "position": [
+        -155,
+        130,
+        -165
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-fort-closeup",
+      "position": [
+        -155,
+        130,
+        -165
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-four-bastion-envelope-and-open-courtyard",
+      "position": [
+        -155,
+        130,
+        -165
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ]
+    },
+    {
+      "name": "exact-native-whole-plan-and-two-ranges",
+      "position": [
+        0,
+        245,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        0.35,
+        0
+      ]
+    },
+    {
+      "name": "north-open-entry-cordon-and-scarp",
+      "position": [
+        -20.002813615290023,
+        5.35,
+        -60.34405888068602
+      ],
+      "lookAt": [
+        -13.002813615290025,
+        2.15,
+        -41.34405888068602
+      ]
+    },
+    {
+      "name": "courtyard-well-and-intrinsic-ranges",
+      "position": [
+        -35.65199939036874,
+        13.35,
+        -29.495311457176957
+      ],
+      "lookAt": [
+        -0.6519993903687418,
+        1.85,
+        7.504688542823043
+      ]
+    },
+    {
+      "name": "six-survey-mapped-artillery-and-bastion",
+      "position": [
+        55.71288290912194,
+        8.5,
+        18.236128562813086
+      ],
+      "lookAt": [
+        60.71288290912194,
+        5.199999999999999,
+        25.236128562813086
+      ]
+    },
+    {
+      "name": "two-access-flights-treads-and-rampart-landings",
+      "position": [
+        -4,
+        20.35,
+        9
+      ],
+      "lookAt": [
+        -29,
+        2.35,
+        -13
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3052,
+    "vertices": 9156,
+    "materials": 6,
+    "bytes": 771704,
+    "sha256": "sha256:f63c837a4ea7e6561bcbf706e03ba21d58a172aef2d7c5efb52b59d1dd266dcb"
+  }
+}

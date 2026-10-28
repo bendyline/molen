@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.granary_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Granary — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.granary_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/granary_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f65e8f061f54f760687f7d8a758d43b7d22d0ed353ec44a752d002f2da6cc9f0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-granary-yasnaya-polyana",
+        "path": "models/generate-granary-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "granary-yasnaya-polyana-model",
+        "path": "models/granary-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "granary-yasnaya-polyana-geometry",
+        "path": "models/granary-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

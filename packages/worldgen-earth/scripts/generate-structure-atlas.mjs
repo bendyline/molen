@@ -132,9 +132,13 @@ const regions = [
 ];
 atlas.regions = atlas.regions.filter((region) => !region.id.startsWith('library.'));
 const supplements = {
-  'us.pnw': ['craftsman', 'prairie', 'ranch'],
+  // No prairie here: its clay flat tile reads tan, where Seattle's foursquares wear asphalt
+  // shingle (matched NAIP roofs in Wallingford and Sammamish are 5% tan, 80% grey).
+  'us.pnw': ['craftsman', 'ranch'],
   'us.southwest': ['ranch'],
-  jp: ['kyoto_machiya', 'gassho_farmhouse'],
+  // Thatched gassho farmhouses belong to mountain villages; in a city they read as tan roofs
+  // (matched GSI roofs in Kyoto are 0.5% tan).
+  jp: ['kyoto_machiya'],
 };
 // Mid- and high-rise housing is concrete and panel construction, not the region's wood-sided
 // house: four or more storeys, or a mapped height above a three-storey walk-up with its roof.
@@ -247,10 +251,19 @@ atlas.default.buildings = rulesFor(
 );
 atlas.version = 4;
 atlas.fallbackDistanceMeters = 2500;
-// Conservative climate priors: unclassified regions do not acquire inferred canopy.
+// Conservative residential priors: ordinary North American yards get modest canopy;
+// denser PNW overrides still win. Matched orthophotos show Southwest yards irrigated under
+// mesquite, palm and citrus, and Delhi's compounds under heavy canopy. Unconfigured regions
+// remain unplanted.
 atlas.default.treeFillFactor = 0;
 for (const region of atlas.regions) {
-  const fill = { 'us.pnw': 0.9, 'us.southwest': 0, jp: 0.3 }[region.id];
+  const fill = {
+    'library.north_america': 0.35,
+    'us.pnw': 0.9,
+    'us.southwest': 0.3,
+    'library.south_asia': 0.6,
+    jp: 0.3,
+  }[region.id];
   if (fill !== undefined) region.bindings.treeFillFactor = fill;
 }
 atlas.doc =

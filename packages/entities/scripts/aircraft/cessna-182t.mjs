@@ -534,17 +534,8 @@ function cockpit(root, m) {
     m.dark,
     [0, 0, 1],
   );
-  const brow = [
-    [181, 700],
-    [165, 552],
-    [185, 493],
-    [242, 443],
-    [607, 436],
-    [945, 440],
-    [1002, 498],
-    [1025, 552],
-    [1006, 692],
-  ].map((p) => at(...p, -0.012));
+  // Panel, coaming and padded rail use the same contour at every bend.
+  const brow = edge.map((p) => at(...p));
   outline(d, brow, 0.014, m.dark, false);
   const deckY = (x) =>
     1.573 - (Math.abs(x) < 0.44 ? Math.abs(x) * 0.057 : 0.025 + (Math.abs(x) - 0.44) * 0.92);
@@ -661,8 +652,8 @@ function cockpit(root, m) {
     true,
     true,
   );
-  d.text('TAS', [sx + 0.083, sy + 0.065, z + 0.001], 0.006, Math.PI, ink);
-  d.text('GEO FT', [sx - 0.081, sy + 0.047, z + 0.001], 0.005, Math.PI, ink);
+  d.text('TAS', [sx + 0.083, sy + 0.065, z + 0.001], 0.006, Math.PI, ink, 'display');
+  d.text('GEO FT', [sx - 0.081, sy + 0.047, z + 0.001], 0.005, Math.PI, ink, 'display');
   const vsi = group(cabin, 'Skylane-VSI', [sx - 0.101, sy + 0.025, z + 0.001]),
     vd = detailKit(vsi, 'VSI');
   vd.rod([-0.002, 0, 0], [0.002, 0.002, 0], 0.0008, ink);
@@ -712,9 +703,9 @@ function cockpit(root, m) {
     responseSeconds: 0.15,
   });
   instruments.available('heading', 'trueHeading', rose.name);
-  d.text('TRUE', [sx, sy - 0.013, z + 0.001], 0.004, Math.PI, ink);
+  d.text('TRUE', [sx, sy - 0.013, z + 0.001], 0.004, Math.PI, ink, 'display');
   d.rod([sx, sy - 0.024, z - 0.001], [sx, sy - 0.029, z - 0.001], 0.001, instruments.amber);
-  d.text('NAV --  COM --', [sx, sy + 0.071, z + 0.001], 0.005, Math.PI, ink);
+  d.text('NAV --  COM --', [sx, sy + 0.071, z + 0.001], 0.005, Math.PI, ink, 'display');
   // MFD engine sidebar. Oil, fuel, electrical and map data remain explicitly unavailable.
   const mx = px(681),
     my = py(550);
@@ -740,8 +731,8 @@ function cockpit(root, m) {
   ])
     d.text(label, [mx + 0.072, my + yy, z], 0.005, Math.PI, ink);
   d.rod([mx + 0.042, my - 0.074, z], [mx + 0.042, my + 0.074, z], 0.0006, ink);
-  d.text('MAP DATA', [mx - 0.025, my + 0.012, z], 0.009, Math.PI, ink);
-  d.text('UNAVAILABLE', [mx - 0.025, my - 0.003, z], 0.007, Math.PI, ink);
+  d.text('MAP DATA', [mx - 0.025, my + 0.012, z], 0.009, Math.PI, ink, 'display');
+  d.text('UNAVAILABLE', [mx - 0.025, my - 0.003, z], 0.007, Math.PI, ink, 'display');
 
   d.box([0.03302, 0.19558, 0.012], at(542, 550, -0.008), black);
   for (let i = 0; i < 11; i++)

@@ -6,14 +6,14 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:2e69dbaf3caa733b0b8217013c74453944b5898cd79417c2afe40fdb73da1a07",
-  "sourceHash": "sha256:e6b2ce9e53cb52b868c540655bf95a4886995eafc7eb1c84ab2552870a84a8b5",
+  "hash": "sha256:412bdcca282d0b05fcdbb5d2b27af2efe250beb2a2e6d15df18dc12b32facc11",
+  "sourceHash": "sha256:5ed38b65a5d7d72ae0760d84f29d32a8cd1d321bf033181678ac8530a835a20e",
   "bounds": {
     "aabb": {
       "min": [
         -7.315,
-        0.0052,
-        -9.0725
+        0.0134,
+        -9.075
       ],
       "max": [
         7.315,
@@ -24,26 +24,26 @@
     "sphere": {
       "center": [
         0,
-        2.2176,
-        -2.75
+        2.2217,
+        -2.7513
       ],
-      "radius": 8.0953
+      "radius": 8.0949
     }
   },
   "stats": {
-    "triangles": 57002,
-    "vertices": 121353,
-    "meshes": 54,
-    "primitives": 54,
-    "materials": 19,
-    "textures": 0,
+    "triangles": 34776,
+    "vertices": 36560,
+    "meshes": 64,
+    "primitives": 64,
+    "materials": 26,
+    "textures": 10,
     "animations": 0,
-    "sizeBytes": 2533828
+    "sizeBytes": 1475268
   },
   "nodes": [
     {
       "name": "huey-airframe-huey-olive-drab",
-      "triangles": 1872
+      "triangles": 1132
     },
     {
       "name": "huey-airframe-huey-glazing",
@@ -51,7 +51,7 @@
     },
     {
       "name": "huey-airframe-huey-joints",
-      "triangles": 1320
+      "triangles": 792
     },
     {
       "name": "huey-airframe-huey-machined-metal",
@@ -67,15 +67,15 @@
     },
     {
       "name": "huey-running-structure-huey-olive-drab",
-      "triangles": 362
+      "triangles": 242
     },
     {
       "name": "huey-running-structure-huey-joints",
-      "triangles": 672
+      "triangles": 384
     },
     {
       "name": "huey-running-structure-huey-machined-metal",
-      "triangles": 1336
+      "triangles": 1192
     },
     {
       "name": "huey-running-structure-detail-green",
@@ -127,7 +127,7 @@
     },
     {
       "name": "huey-cockpit-huey-coaming",
-      "triangles": 1059
+      "triangles": 903
     },
     {
       "name": "huey-cockpit-detail-trim",
@@ -136,10 +136,6 @@
     {
       "name": "huey-cockpit-huey-gauge-face",
       "triangles": 700
-    },
-    {
-      "name": "huey-cockpit-huey-gauge-ink",
-      "triangles": 34740
     },
     {
       "name": "huey-cockpit-huey-attitude-sky",
@@ -152,6 +148,14 @@
     {
       "name": "huey-cockpit-detail-amber",
       "triangles": 48
+    },
+    {
+      "name": "huey-cockpit-huey-gauge-ink",
+      "triangles": 14568
+    },
+    {
+      "name": "huey-cockpit-huey-gauge-ink-panel-print",
+      "triangles": 334
     },
     {
       "name": "huey-copilot-speed-needle-huey-gauge-ink",
@@ -278,16 +282,20 @@
       "triangles": 416
     },
     {
-      "name": "huey-pedestal-huey-gauge-ink",
-      "triangles": 864
-    },
-    {
       "name": "huey-pedestal-huey-gauge-face",
       "triangles": 40
     },
     {
+      "name": "huey-pedestal-huey-gauge-ink",
+      "triangles": 168
+    },
+    {
+      "name": "huey-pedestal-huey-gauge-ink-panel-print",
+      "triangles": 12
+    },
+    {
       "name": "cyclic-detail-trim",
-      "triangles": 72
+      "triangles": 48
     },
     {
       "name": "cyclic-huey-coaming",
@@ -327,7 +335,7 @@
     },
     {
       "name": "cyclic-detail-trim",
-      "triangles": 72
+      "triangles": 48
     },
     {
       "name": "cyclic-huey-coaming",
@@ -364,6 +372,30 @@
     {
       "name": "pedal-detail-alloy",
       "triangles": 48
+    },
+    {
+      "name": "flight-control-mounts-flight-control-panel",
+      "triangles": 60
+    },
+    {
+      "name": "flight-control-mounts-flight-control-alloy",
+      "triangles": 128
+    },
+    {
+      "name": "flight-control-mounts-flight-control-grip",
+      "triangles": 12
+    },
+    {
+      "name": "flight-control-mounts-flight-control-legend-panel-print",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-master",
+      "triangles": 12
+    },
+    {
+      "name": "flight-engine-common-moving-flight-control-legend",
+      "triangles": 12
     }
   ],
   "nodesTruncated": false,
@@ -458,25 +490,34 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "huey-panel",
+      "name": "huey-panel-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "huey-coaming",
+      "name": "huey-coaming-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -498,14 +539,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "huey-gauge-ink",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "huey-attitude-sky",
       "slots": [
         "baseColor"
@@ -520,6 +553,81 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "huey-gauge-ink",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "huey-gauge-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
@@ -527,28 +635,28 @@
       {
         "node": "huey-airframe-huey-olive-drab",
         "points": [
-          -1.0729,
+          -1.0721,
           0.3699,
           -2.7,
-          -1.0729,
-          0.3699,
-          3.5725,
-          -1.0729,
-          2.8701,
-          -2.7,
-          -1.0729,
-          2.8701,
-          3.5725,
-          1.0729,
-          0.3699,
-          -2.7,
-          1.0729,
+          -1.0721,
           0.3699,
           3.5725,
-          1.0729,
+          -1.0721,
           2.8701,
           -2.7,
-          1.0729,
+          -1.0721,
+          2.8701,
+          3.5725,
+          1.0721,
+          0.3699,
+          -2.7,
+          1.0721,
+          0.3699,
+          3.5725,
+          1.0721,
+          2.8701,
+          -2.7,
+          1.0721,
           2.8701,
           3.5725
         ]
@@ -585,30 +693,30 @@
       {
         "node": "huey-airframe-huey-joints",
         "points": [
-          -1.0648,
-          0.458,
-          -1.457,
-          -1.0648,
-          0.458,
-          2.532,
-          -1.0648,
+          -1.0669,
+          0.4592,
+          -1.4561,
+          -1.0669,
+          0.4592,
+          2.5308,
+          -1.0669,
           2.67,
-          -1.457,
-          -1.0648,
+          -1.4561,
+          -1.0669,
           2.67,
-          2.532,
-          1.0648,
-          0.458,
-          -1.457,
-          1.0648,
-          0.458,
-          2.532,
-          1.0648,
+          2.5308,
+          1.0669,
+          0.4592,
+          -1.4561,
+          1.0669,
+          0.4592,
+          2.5308,
+          1.0669,
           2.67,
-          -1.457,
-          1.0648,
+          -1.4561,
+          1.0669,
           2.67,
-          2.532
+          2.5308
         ]
       },
       {
@@ -701,29 +809,29 @@
       {
         "node": "huey-running-structure-huey-olive-drab",
         "points": [
-          -1.426,
-          0.9102,
-          -9.0725,
-          -1.426,
-          0.9102,
+          -1.4262,
+          0.91,
+          -9.075,
+          -1.4262,
+          0.91,
           -2.43,
-          -1.426,
-          3.2927,
-          -9.0725,
-          -1.426,
-          3.2927,
+          -1.4262,
+          3.2934,
+          -9.075,
+          -1.4262,
+          3.2934,
           -2.43,
-          1.426,
-          0.9102,
-          -9.0725,
-          1.426,
-          0.9102,
+          1.4262,
+          0.91,
+          -9.075,
+          1.4262,
+          0.91,
           -2.43,
-          1.426,
-          3.2927,
-          -9.0725,
-          1.426,
-          3.2927,
+          1.4262,
+          3.2934,
+          -9.075,
+          1.4262,
+          3.2934,
           -2.43
         ]
       },
@@ -759,30 +867,30 @@
       {
         "node": "huey-running-structure-huey-machined-metal",
         "points": [
-          -1.2944,
-          0.0052,
+          -1.3029,
+          0.0134,
           -8.945,
-          -1.2944,
-          0.0052,
-          2.6246,
-          -1.2944,
-          3.9898,
+          -1.3029,
+          0.0134,
+          2.6187,
+          -1.3029,
+          3.9903,
           -8.945,
-          -1.2944,
-          3.9898,
-          2.6246,
-          1.2944,
-          0.0052,
+          -1.3029,
+          3.9903,
+          2.6187,
+          1.3029,
+          0.0134,
           -8.945,
-          1.2944,
-          0.0052,
-          2.6246,
-          1.2944,
-          3.9898,
+          1.3029,
+          0.0134,
+          2.6187,
+          1.3029,
+          3.9903,
           -8.945,
-          1.2944,
-          3.9898,
-          2.6246
+          1.3029,
+          3.9903,
+          2.6187
         ]
       },
       {
@@ -1109,57 +1217,57 @@
         "points": [
           -0.88,
           0.93,
-          1.6399,
+          1.64,
           -0.88,
           0.93,
-          3.0081,
+          2.9586,
           -0.88,
           2.315,
-          1.6399,
+          1.64,
           -0.88,
           2.315,
-          3.0081,
+          2.9586,
           0.88,
           0.93,
-          1.6399,
+          1.64,
           0.88,
           0.93,
-          3.0081,
+          2.9586,
           0.88,
           2.315,
-          1.6399,
+          1.64,
           0.88,
           2.315,
-          3.0081
+          2.9586
         ]
       },
       {
         "node": "huey-cockpit-huey-coaming",
         "points": [
-          -1.0476,
+          -0.9361,
           0.8691,
           1.4569,
-          -1.0476,
+          -0.9361,
           0.8691,
-          3.008,
-          -1.0476,
+          2.9586,
+          -0.9361,
           2.263,
           1.4569,
-          -1.0476,
+          -0.9361,
           2.263,
-          3.008,
-          1.0264,
+          2.9586,
+          0.931,
           0.8691,
           1.4569,
-          1.0264,
+          0.931,
           0.8691,
-          3.008,
-          1.0264,
+          2.9586,
+          0.931,
           2.263,
           1.4569,
-          1.0264,
+          0.931,
           2.263,
-          3.008
+          2.9586
         ]
       },
       {
@@ -1218,35 +1326,6 @@
           0.8241,
           1.4744,
           2.6873
-        ]
-      },
-      {
-        "node": "huey-cockpit-huey-gauge-ink",
-        "points": [
-          -0.8295,
-          0.9749,
-          1.9075,
-          -0.8295,
-          0.9749,
-          2.6828,
-          -0.8295,
-          2.235,
-          1.9075,
-          -0.8295,
-          2.235,
-          2.6828,
-          0.8195,
-          0.9749,
-          1.9075,
-          0.8195,
-          0.9749,
-          2.6828,
-          0.8195,
-          2.235,
-          1.9075,
-          0.8195,
-          2.235,
-          2.6828
         ]
       },
       {
@@ -1334,6 +1413,64 @@
           0.6997,
           1.6821,
           2.5176
+        ]
+      },
+      {
+        "node": "huey-cockpit-huey-gauge-ink",
+        "points": [
+          -0.8295,
+          0.9749,
+          1.9075,
+          -0.8295,
+          0.9749,
+          2.6828,
+          -0.8295,
+          2.235,
+          1.9075,
+          -0.8295,
+          2.235,
+          2.6828,
+          0.8195,
+          0.9749,
+          1.9075,
+          0.8195,
+          0.9749,
+          2.6828,
+          0.8195,
+          2.235,
+          1.9075,
+          0.8195,
+          2.235,
+          2.6828
+        ]
+      },
+      {
+        "node": "huey-cockpit-huey-gauge-ink-panel-print",
+        "points": [
+          -0.8132,
+          0.9807,
+          2.6264,
+          -0.8132,
+          0.9807,
+          2.6792,
+          -0.8132,
+          1.4634,
+          2.6264,
+          -0.8132,
+          1.4634,
+          2.6792,
+          0.8032,
+          0.9807,
+          2.6264,
+          0.8032,
+          0.9807,
+          2.6792,
+          0.8032,
+          1.4634,
+          2.6264,
+          0.8032,
+          1.4634,
+          2.6792
         ]
       },
       {
@@ -2236,35 +2373,6 @@
         ]
       },
       {
-        "node": "huey-pedestal-huey-gauge-ink",
-        "points": [
-          -0.1515,
-          0.8532,
-          1.5042,
-          -0.1515,
-          0.8532,
-          2.5153,
-          -0.1515,
-          0.9884,
-          1.5042,
-          -0.1515,
-          0.9884,
-          2.5153,
-          0.1415,
-          0.8532,
-          1.5042,
-          0.1415,
-          0.8532,
-          2.5153,
-          0.1415,
-          0.9884,
-          1.5042,
-          0.1415,
-          0.9884,
-          2.5153
-        ]
-      },
-      {
         "node": "huey-pedestal-huey-gauge-face",
         "points": [
           -0.128,
@@ -2294,32 +2402,90 @@
         ]
       },
       {
+        "node": "huey-pedestal-huey-gauge-ink",
+        "points": [
+          -0.1515,
+          0.8532,
+          1.5042,
+          -0.1515,
+          0.8532,
+          2.5153,
+          -0.1515,
+          0.9884,
+          1.5042,
+          -0.1515,
+          0.9884,
+          2.5153,
+          0.1415,
+          0.8532,
+          1.5042,
+          0.1415,
+          0.8532,
+          2.5153,
+          0.1415,
+          0.9884,
+          1.5042,
+          0.1415,
+          0.9884,
+          2.5153
+        ]
+      },
+      {
+        "node": "huey-pedestal-huey-gauge-ink-panel-print",
+        "points": [
+          -0.0158,
+          0.9028,
+          2.034,
+          -0.0158,
+          0.9028,
+          2.2348,
+          -0.0158,
+          0.929,
+          2.034,
+          -0.0158,
+          0.929,
+          2.2348,
+          0.0154,
+          0.9028,
+          2.034,
+          0.0154,
+          0.9028,
+          2.2348,
+          0.0154,
+          0.929,
+          2.034,
+          0.0154,
+          0.929,
+          2.2348
+        ]
+      },
+      {
         "node": "cyclic-detail-trim",
         "points": [
-          -0.4899,
+          -0.493,
           0.51,
-          1.9481,
-          -0.4899,
+          1.951,
+          -0.493,
           0.51,
-          2.183,
-          -0.4899,
-          1.1569,
-          1.9481,
-          -0.4899,
-          1.1569,
-          2.183,
-          -0.4501,
+          2.1799,
+          -0.493,
+          1.1559,
+          1.951,
+          -0.493,
+          1.1559,
+          2.1799,
+          -0.447,
           0.51,
-          1.9481,
-          -0.4501,
+          1.951,
+          -0.447,
           0.51,
-          2.183,
-          -0.4501,
-          1.1569,
-          1.9481,
-          -0.4501,
-          1.1569,
-          2.183
+          2.1799,
+          -0.447,
+          1.1559,
+          1.951,
+          -0.447,
+          1.1559,
+          2.1799
         ]
       },
       {
@@ -2586,30 +2752,30 @@
       {
         "node": "cyclic-detail-trim",
         "points": [
-          0.4501,
+          0.447,
           0.51,
-          1.9481,
-          0.4501,
+          1.951,
+          0.447,
           0.51,
-          2.183,
-          0.4501,
-          1.1569,
-          1.9481,
-          0.4501,
-          1.1569,
-          2.183,
-          0.4899,
+          2.1799,
+          0.447,
+          1.1559,
+          1.951,
+          0.447,
+          1.1559,
+          2.1799,
+          0.493,
           0.51,
-          1.9481,
-          0.4899,
+          1.951,
+          0.493,
           0.51,
-          2.183,
-          0.4899,
-          1.1569,
-          1.9481,
-          0.4899,
-          1.1569,
-          2.183
+          2.1799,
+          0.493,
+          1.1559,
+          1.951,
+          0.493,
+          1.1559,
+          2.1799
         ]
       },
       {
@@ -2871,6 +3037,180 @@
           0.67,
           0.6535,
           2.5955
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-panel",
+        "points": [
+          -0.055,
+          1.14,
+          2.5875,
+          -0.055,
+          1.14,
+          2.694,
+          -0.055,
+          1.42,
+          2.5875,
+          -0.055,
+          1.42,
+          2.694,
+          0.055,
+          1.14,
+          2.5875,
+          0.055,
+          1.14,
+          2.694,
+          0.055,
+          1.42,
+          2.5875,
+          0.055,
+          1.42,
+          2.694
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-alloy",
+        "points": [
+          -0.0465,
+          1.1505,
+          2.5835,
+          -0.0465,
+          1.1505,
+          2.5865,
+          -0.0465,
+          1.2495,
+          2.5835,
+          -0.0465,
+          1.2495,
+          2.5865,
+          0.0465,
+          1.1505,
+          2.5835,
+          0.0465,
+          1.1505,
+          2.5865,
+          0.0465,
+          1.2495,
+          2.5835,
+          0.0465,
+          1.2495,
+          2.5865
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-grip",
+        "points": [
+          -0.0045,
+          1.1665,
+          2.585,
+          -0.0045,
+          1.1665,
+          2.587,
+          -0.0045,
+          1.2155,
+          2.585,
+          -0.0045,
+          1.2155,
+          2.587,
+          0.0045,
+          1.1665,
+          2.585,
+          0.0045,
+          1.1665,
+          2.587,
+          0.0045,
+          1.2155,
+          2.585,
+          0.0045,
+          1.2155,
+          2.587
+        ]
+      },
+      {
+        "node": "flight-control-mounts-flight-control-legend-panel-print",
+        "points": [
+          -0.0184,
+          1.2279,
+          2.585,
+          -0.0184,
+          1.2279,
+          2.585,
+          -0.0184,
+          1.2362,
+          2.585,
+          -0.0184,
+          1.2362,
+          2.585,
+          0.018,
+          1.2279,
+          2.585,
+          0.018,
+          1.2279,
+          2.585,
+          0.018,
+          1.2362,
+          2.585,
+          0.018,
+          1.2362,
+          2.585
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-master",
+        "points": [
+          -0.016,
+          1.1775,
+          2.5655,
+          -0.016,
+          1.1775,
+          2.5825,
+          -0.016,
+          1.2065,
+          2.5655,
+          -0.016,
+          1.2065,
+          2.5825,
+          0.016,
+          1.1775,
+          2.5655,
+          0.016,
+          1.1775,
+          2.5825,
+          0.016,
+          1.2065,
+          2.5655,
+          0.016,
+          1.2065,
+          2.5825
+        ]
+      },
+      {
+        "node": "flight-engine-common-moving-flight-control-legend",
+        "points": [
+          -0.007,
+          1.1977,
+          2.5645,
+          -0.007,
+          1.1977,
+          2.5655,
+          -0.007,
+          1.2003,
+          2.5645,
+          -0.007,
+          1.2003,
+          2.5655,
+          0.007,
+          1.1977,
+          2.5645,
+          0.007,
+          1.1977,
+          2.5655,
+          0.007,
+          1.2003,
+          2.5645,
+          0.007,
+          1.2003,
+          2.5655
         ]
       }
     ]

@@ -1,0 +1,163 @@
+{
+  "fidelityTarget": "medium-fi",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u7/u7q/gamla_bron/models/gamla-bron-runtime.mjs",
+    "export": "buildGamlaSkyline",
+    "errorMeters": 5.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGamlaDistrict",
+        "errorMeters": 5.3,
+        "surfaces": {
+          "steel": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pole": {
+            "graph": "wood_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildGamlaStreet",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "steel": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pole": {
+            "graph": "wood_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGamlaCloseup",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "steel": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pole": {
+            "graph": "wood_plain",
+            "slot": "roof",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X north-northeast toward the city bank",
+    "transverse": "+Z east-southeast downstream, carrying the large pipe and utility poles",
+    "origin": "Horizontal midpoint of the nominal 301 m span system; Y=0 is the reconstructed exposed pier foot. The host terrain at the mapped south landing attaches to model deck Y=5.8 through terrainReference, not a surveyed river stage."
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "anchor": [
+      20.24908069,
+      63.824875538
+    ],
+    "heading": 1.266401710014,
+    "wikidataId": "Q3603782",
+    "source": "https://www.openstreetmap.org/way/454463632",
+    "featureIds": [
+      "way/454463632",
+      "way/26151087"
+    ],
+    "groundContactReviewed": true,
+    "groundContactBasis": "The south mapped cycleway endpoint terrain attaches to the authored deck at Y=5.8. This clears the coarse high bank without altering native elevation. The north connection uses a short supported grade blend. Exposed masonry and seasonal river stage remain approximate.",
+    "notes": "Confirmed NNE crossing and ESE downstream pipe/pole side. Nominal 301 m superstructure and full 309 m extent remain separate. Replace the former buried sea-level-zero placement with host terrain referenced to the south mapped deck landing at model Y=5.8. Clip only the overlapping cycleway and its connected end fragments. Preserve all buildings, unrelated road geometry, native water and original DEM. Equal span stationing, pier heights, river stage and exact bank grading remain reconstructed.",
+    "replaceFootprint": false,
+    "bounds": [
+      20.24803249726583,
+      63.82352914311843,
+      20.25012888273417,
+      63.82622193288157
+    ],
+    "replaceRoads": {
+      "length": 309,
+      "width": 6.7,
+      "deckHeights": [
+        5.8,
+        5.8
+      ],
+      "includeConnectedApproaches": true
+    },
+    "terrainReference": {
+      "anchor": [
+        20.24813801050186,
+        63.82355124656934
+      ],
+      "modelHeight": 5.8,
+      "basis": "South mapped cycleway landing terrain attaches to the authored deck at Y=5.8. The higher bank establishes a stable host-relative bridge level; not surveyed river stage."
+    }
+  },
+  "limitations": [
+    "The nominal 301 m superstructure, 309 m mapped extent and ten equal reconstructed spans remain distinct; individual pier stationing, dimensions and fittings are photo-proportioned.",
+    "The source master represents the observed 2023 exterior. No surveyed river stage, submerged foundations, interior or current construction state is claimed.",
+    "The native south landing establishes the host-relative deck height; the north connection is an approximate supported grade blend. Original coarse terrain and water are retained.",
+    "Tiny fasteners, individual stone relief and pole wires are omitted from lower LODs; full details remain in the preserved master. Physical phone/laptop timings remain pending."
+  ]
+}

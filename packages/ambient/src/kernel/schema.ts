@@ -39,6 +39,7 @@ const ambientAgentSchema = z.strictObject({
   lane: z.string().describe('Lane id the agent is on ("" for aircraft).'),
   s: num.describe('Metres along the lane; negative while on the connector into it.'),
   speed: num.nonnegative().describe('Speed along the lane in m/s.'),
+  boosted: z.boolean().optional().describe('Lane speed includes the 4× travel boost.'),
   cruise: num.positive().describe('Vessel cruise limit in m/s.').optional(),
   prev: z.string().describe('Previous lane (its connector leads onto `lane`).').optional(),
   next: z.string().describe('Chosen next lane.').optional(),

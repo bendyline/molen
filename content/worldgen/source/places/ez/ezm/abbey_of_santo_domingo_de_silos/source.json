@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.abbey_of_santo_domingo_de_silos",
+  "kind": "static-structure",
+  "title": "Abbey of Santo Domingo de Silos (1892)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.abbey_of_santo_domingo_de_silos",
+        "output": "assets/places/ez/ezm/abbey_of_santo_domingo_de_silos/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b7f40f0c7dd685d1e0d5cf568ee78e0e499299a7715495860467f7a494af8027"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/pedrero-1892-original.jpg",
+      "references/rayet-cloister-original.jpg",
+      "reference-rights/pedrero-1892-native.json",
+      "reference-rights/rayet-native.json",
+      "native-map/whole-abbey-and-intrinsic-church.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16072-12168.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

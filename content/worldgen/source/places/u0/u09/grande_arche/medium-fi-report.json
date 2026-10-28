@@ -1,51 +1,58 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.grande_arche",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.grande_arche",
+    "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595"
+  },
   "sourceHash": "sha256:f658050a2adce167684b6623b9b4e9d9ccd3187728f727b44c7129369136ad9a",
   "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
-  "fixtureHash": "sha256:1ba4310b401880bcebc368fc2ba02cb9a4358a498f6e03d2057ad1ccc352069c",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 9188,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:27ec641d7ccd3700e3bbcee2f1315939be40d8f2902f4a2f01a7948da5c45308",
-      "bytes": 70456,
-      "gzipBytes": 11204,
-      "triangles": 838,
-      "cpuBytes": 69072,
-      "gpuBytes": 69072,
+      "hash": "sha256:5ac0d6d5886b7b42921cf1a300eb1740315d5b0c710ed12b486e6dd92f6e0b7f",
+      "bytes": 69820,
+      "gzipBytes": 11026,
+      "triangles": 822,
+      "cpuBytes": 68436,
+      "gpuBytes": 68436,
       "errorMeters": 3,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:f89da035879753950940be49bf88d0098a22b18d6afb560da7aa2f942cd52158",
-      "bytes": 247592,
-      "gzipBytes": 51155,
-      "triangles": 3080,
-      "cpuBytes": 242832,
-      "gpuBytes": 242832,
+      "hash": "sha256:fad1a1a897c0401e27f4a35040ee11cec0b8b7cb34e60ad210b4fbd89f04d5c7",
+      "bytes": 246344,
+      "gzipBytes": 50992,
+      "triangles": 3064,
+      "cpuBytes": 241584,
+      "gpuBytes": 241584,
       "errorMeters": 2.8,
       "drawCalls": 4
     },
@@ -75,13 +82,17 @@
     }
   ],
   "terrainFixture": {},
+  "fixtureEntities": [],
   "context": "Synthetic procedural neighbors at review Y=0; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:da47c467782994e391bd8bcfe9d525f93ded53bebff034a23d640b1567e09c05",
+      "hash": "sha256:38adcd857e5bff45a1d07ded1c0f528d08af114727ccf53a0f13704cd0f23a66",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -109,13 +120,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:9690aff35be5c2af9e51ba7a15b97b3fff3e6e2ee87b8c6b72855839a31aeff5",
+      "hash": "sha256:7c9ae646f5bb91ac484d0b509f6e4cdcefeb2513f3fcaf738efe6cdf5ac9a699",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -143,13 +159,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:11e9837880bdb5c72128cd1b4c9b62860eeb21b8f1d33e9cafd6ba7c38435fb7",
+      "hash": "sha256:bece14531c4a8490fc6dc22d697b28d60d367f42715eafa2768c70ae80bd5f15",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -177,13 +198,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:0a1da309c529c8ce433d6598ad9092a2a0edf5c3c76f44ecbf9a7a9e5957a02f",
+      "hash": "sha256:01a9d71051ca248d12a8b37f0a7aa838ca0a0dd33097b8c235b05e3f895138ec",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -211,19 +237,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:6629114bac34184113c8726aaadd6c8a316c4d2327b43c1fac2a148f54f61227",
+      "hash": "sha256:3f138f19070ca6a03d404ccf6823fc24116f380fa41d6decb8224abc9a4f20d6",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fad1a1a897c0401e27f4a35040ee11cec0b8b7cb34e60ad210b4fbd89f04d5c7",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 9,
-        "triangles": 12270,
+        "triangles": 12254,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -245,19 +276,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:5b84b6ecf6df7ca21d74f620d0dff43d8f5486a2bc749cfd6b311ce1b6f16f55",
+      "hash": "sha256:d8a311d3d646c20fc8224ebfca155972ac58d56c91d2ebdd1b836802f51d6d21",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fad1a1a897c0401e27f4a35040ee11cec0b8b7cb34e60ad210b4fbd89f04d5c7",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 12270,
+        "triangles": 12254,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -279,19 +315,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:759b4777b804b80827034372fec9c80e71ee7e04d74089475c50a7f001eb5197",
+      "hash": "sha256:f4ee9ed727d421abc93c8b56dc2f1f5f8cb11a70a01a55daa530d2cbafa46d7f",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fad1a1a897c0401e27f4a35040ee11cec0b8b7cb34e60ad210b4fbd89f04d5c7",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 9,
-        "triangles": 12270,
+        "triangles": 12254,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -313,19 +354,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:0898b0ee9b9bff83f2bd899a4880287db34e0905360491bfd0181cf8110db976",
+      "hash": "sha256:a50a212ad55a734f1b53bd1159a9e8777ca0719376e3d48e852e50589c7d4093",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fad1a1a897c0401e27f4a35040ee11cec0b8b7cb34e60ad210b4fbd89f04d5c7",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 12270,
+        "triangles": 12254,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -347,19 +393,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:eb0e4608366fbc26bdabbb31c18e1dc0279b9edb9f20821196cca865e9940f99",
+      "hash": "sha256:a44ccc870a6db3d89ab64f128f6a0db9751d0268897006f3c8a312ffd56fd0a1",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:5ac0d6d5886b7b42921cf1a300eb1740315d5b0c710ed12b486e6dd92f6e0b7f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 6,
-        "triangles": 10028,
+        "triangles": 10012,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -381,19 +432,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:122d6633c2a66dae6d2a4ee404d7ce862f44abf611e5ff5bc3f3deaf43cf3216",
+      "hash": "sha256:9f31d046c3e21d715c73200d895d3c752262c1e8227ebd629bc525ffaee0a2f5",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:5ac0d6d5886b7b42921cf1a300eb1740315d5b0c710ed12b486e6dd92f6e0b7f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 6,
-        "triangles": 10028,
+        "triangles": 10012,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -415,19 +471,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:c68518f5b2bbc23c9452872aa8b1a0668c1bf7cfe567b8da28a4a9857da8d68e",
+      "hash": "sha256:5b1be82393aa67ce26098007041ecf13e22aa557f4b40d95a1be4d486fee6229",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:5ac0d6d5886b7b42921cf1a300eb1740315d5b0c710ed12b486e6dd92f6e0b7f",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 6,
-        "triangles": 10028,
+        "triangles": 10012,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -449,19 +510,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:c09c1476b262242042b880b119f507a2cb40f5c72ca80418be80deb3a5d5c78e",
+      "hash": "sha256:962dc28a1336e5ff20d5461639a6bda511b97a1b4d5a9a090837f01cac30ed86",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:5ac0d6d5886b7b42921cf1a300eb1740315d5b0c710ed12b486e6dd92f6e0b7f",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 6,
-        "triangles": 10028,
+        "triangles": 10012,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -483,19 +549,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:6ee61b7f39e7943f24123eb77168600f00679ce454b7261a3a94adb908192498",
+      "hash": "sha256:e82ae4016d4c9ffc4219801e9396b9ec961b0f491c59733d64906588b0d7f09c",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:5ac0d6d5886b7b42921cf1a300eb1740315d5b0c710ed12b486e6dd92f6e0b7f",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 2,
-        "triangles": 840,
+        "triangles": 824,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -517,13 +588,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/open-cube.png",
-      "hash": "sha256:73e7f8bff83222e7a3c1b36dddb783be021a8ca4b9cf7cdfdb1dd26a5343557c",
+      "hash": "sha256:4d06edd58d6ffcf7fedbce83c08b685fcad56ca9ebda57be6863ff4013d5c051",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -551,13 +627,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/cloud-lifts.png",
-      "hash": "sha256:d6b8e9e43d7b52f90a926066fc1d87ee743c9054c90a1315f6b1264f504c1e09",
+      "hash": "sha256:b84f1a60516761ae629b397e978756109dd034b298ab38c1a6c0f7f70cc0ba6c",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -585,13 +666,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/office-facade.png",
-      "hash": "sha256:4e57f76cafccd890b0e80f586a191029d0a053350c00cd5186cfdafe4be949b1",
+      "hash": "sha256:644cd68903a669571d47125ff83ed36085efdd25df9c30af1d5fcac48eaf0bd0",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -619,13 +705,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/roof.png",
-      "hash": "sha256:03abf0dc3bd2df71f0ebf850d15d70c3df9a1781c0e7564044ac7732992ecdc5",
+      "hash": "sha256:6f8d0df7ef4b8ba1d5b622ae75b03becac84945cc1d8e6b46f249ac4d3b95a80",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -653,13 +744,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:13bd24ca612da274e0204789837249379b1ad43e154fee7060ad1916374358ef",
+      "hash": "sha256:a305a2c0dd3be0ca4d83c526fac4b627b576bd2e44e84198a372f330718d0b54",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -687,19 +783,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/open-cube-district.png",
-      "hash": "sha256:5a7a4b339c8ab752552bd4af05f0d5cf0ef6094288e07dd58a31630805f6574f",
+      "hash": "sha256:57d5ea004129c0de6cd0a16ad6558fffcddb91346baaa0b4822b122d25b2197a",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fad1a1a897c0401e27f4a35040ee11cec0b8b7cb34e60ad210b4fbd89f04d5c7",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 12270,
+        "triangles": 12254,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -721,13 +822,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/cloud-street.png",
-      "hash": "sha256:15e88d0bf11d7fde7e0c43171d807dbd2cc93cde7feb9bfc3605f1ba895432c2",
+      "hash": "sha256:4a097f5f0f7f2a4ffe6ebc93d1cca6921ff5c2c83b082a5f1c67e1fd72922471",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:7deb78432f6f13f5bc19c63862c9b3265f09c991730960dd8ba18a99779a3144",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -755,13 +861,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/soffit-street.png",
-      "hash": "sha256:62b9b4106d89ab2909505bdb7aa8cd5dda578b0183e4373f5598ac6b6c533b15",
+      "hash": "sha256:d8906ed70e30d5b211a39b78f2e65310f1972e5ecf8b8776dafc5b8ebb000f48",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:7deb78432f6f13f5bc19c63862c9b3265f09c991730960dd8ba18a99779a3144",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -789,19 +900,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:a30b999c21f8d3ebc04e08547a2b20936570954b4deb181e7b0282247612e42f",
+      "hash": "sha256:7c21cc766ac7e59b96ce692c20832127e56c562561829537ea88eed4a44721e7",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:5ac0d6d5886b7b42921cf1a300eb1740315d5b0c710ed12b486e6dd92f6e0b7f",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 6,
-        "triangles": 10028,
+        "triangles": 10012,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -823,19 +939,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:5b84b6ecf6df7ca21d74f620d0dff43d8f5486a2bc749cfd6b311ce1b6f16f55",
+      "hash": "sha256:d8a311d3d646c20fc8224ebfca155972ac58d56c91d2ebdd1b836802f51d6d21",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fad1a1a897c0401e27f4a35040ee11cec0b8b7cb34e60ad210b4fbd89f04d5c7",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 12270,
+        "triangles": 12254,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -857,13 +978,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:802df59c7d0f6991f223744cd47ff61fd0d6cd084a376fda2bbcd054b0c30833",
+      "hash": "sha256:2c419a5cd6817f1fbc9b79ebc984f5104daf7430ccda12dc82c0149c48dc566f",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:7deb78432f6f13f5bc19c63862c9b3265f09c991730960dd8ba18a99779a3144",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -891,13 +1017,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:db761e31b091fed7d6d7fde2d3d268a20ec3ae7af6563d48d5ba81865c6857fa",
+      "hash": "sha256:7c0a657fb53764f3761007a26b45fb13581587df5808e62dff0abcebe10b22d4",
       "state": {
+        "assetId": "molen.worldgen.structure.grande_arche",
+        "runtimeHash": "sha256:8542e82d0a9712f763a871f6535045618d2c4f1e46ff0bc87e897b7d126de595",
+        "lodHash": "sha256:fa8614643286da568d41d2aa90e36a8fc77f4c8192e31758df3af43864e88fc6",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -925,7 +1056,9 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.paris_mansard",
-        "contextScale": 2
+        "contextScale": 2,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     }
   ],

@@ -237,6 +237,8 @@ export function createTerrainElevationWorkerSource(
         origin: f.origin,
         worldSize: f.worldSize,
         height: f.height,
+        // The worker built and checked this field; only its samples crossed.
+        validated: true,
       }),
       geometry: reply.geometry,
     };

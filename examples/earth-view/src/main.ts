@@ -7,6 +7,7 @@
 // rides along in the passenger seat and steps out again.
 
 import { composeMarkerImage } from '@bendyline/molen-client/markers';
+import { createNavigationControls } from '@bendyline/molen-client/navigation';
 import {
   type EarthView,
   type EarthViewMode,
@@ -276,9 +277,15 @@ async function main(): Promise<void> {
   message.hidden = true;
   if (startMode === 'walk' || startMode === 'drive' || startMode === 'fly') enter(startMode);
   controls.disabled = false;
+  const controllerControls = createNavigationControls(view.input, {
+    container: controls,
+    focusTarget: canvas,
+    storageKey: 'molen:navigation-controls:v1',
+  });
   window.addEventListener('pagehide', (event) => {
     if (event.persisted) return;
     clearTimeout(hideTimer);
+    controllerControls.dispose();
     view.dispose();
   });
 }

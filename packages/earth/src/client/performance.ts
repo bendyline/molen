@@ -43,6 +43,87 @@ const AMBIENT = [
   [108, 13, 2, 4, 16, 64, 180, 1000, 48],
 ] as const;
 
+/**
+ * How long an adaptive level must hold before adaptation turns sticky, ms. The quick defaults
+ * calibrate a device within seconds; afterwards every change swaps resolution, shadows and
+ * building detail across the whole view (Low and Medium differ in worldgen quality, so a step
+ * regenerates every resident town tile), and the defaults flipped a jet between them every
+ * 10-15 s, a hitch and a rebuild each time.
+ */
+export const EARTH_QUALITY_CALIBRATION_MS = 12_000;
+/**
+ * Controller timing while calibrating: the controller's quick recovery and cooldown, but down
+ * only after 2.5 s of overload, as after calibration. Lifting off reveals a whole view at once,
+ * and the second of streaming that follows lowered every takeoff a level, then rose again in
+ * flight, a rebuild each way. Each step already waits out the cooldown, so a slow device settles
+ * as fast.
+ */
+export const EARTH_CALIBRATION_QUALITY = {
+  decreaseDelayMs: 2_500,
+} as const;
+/** Controller timing after calibration: down after sustained overload, up after long headroom. */
+export const EARTH_STICKY_QUALITY = {
+  decreaseDelayMs: 2_500,
+  increaseDelayMs: 20_000,
+  cooldownMs: 6_000,
+} as const;
+
+/**
+ * Main-thread admission budget for an Earth view (`createViewer`'s `admission`, later
+ * `renderer.admission.setLimits`). With frame time to spare, 8 MiB of uploads a frame and, on
+ * WebGL, 4 ms of work: each terrain tile and layer passes several admission jobs, and at the
+ * renderer's default of 2 MiB a building cell's upload filled a frame, everything behind it waited
+ * 30 ms a job on average, and the ground and buildings beneath a jet appeared a second late.
+ * Without spare time, the renderer's defaults (2 MiB, and 2 ms on WebGL): a render-bound frame
+ * (High detail over a town) lost a sixth of its rate to the larger budget.
+ * `createEarthAdmissionGovernor` chooses between them.
+ */
+export function earthAdmission(
+  backend: 'auto' | 'webgl' | 'webgpu' | undefined,
+  spare: boolean,
+): { maxBytes: number; maxMilliseconds?: number } {
+  return {
+    maxBytes: (spare ? 8 : 2) * MIB,
+    ...(backend === 'webgl' ? { maxMilliseconds: spare ? 4 : 2 } : {}),
+  };
+}
+
+/** Main-thread work per frame (ms, smoothed) below which a frame has time to spare, and above
+ * which it has none; between the two the choice stands. */
+const SPARE_WORK_MS = 10;
+const BUSY_WORK_MS = 13;
+
+/**
+ * Chooses `earthAdmission`'s budget from the main-thread work each frame measures (not the frame
+ * interval, which a 60 Hz display holds at 16.7 ms whatever the work). `sample` returns the new
+ * limits when the choice changes; pass them to `renderer.admission.setLimits`. Starts busy.
+ */
+export function createEarthAdmissionGovernor(backend: 'auto' | 'webgl' | 'webgpu' | undefined): {
+  sample(
+    workMs: number,
+    frameMs: number,
+  ): { maxBytes: number; maxMilliseconds?: number } | undefined;
+  readonly spare: boolean;
+} {
+  let smoothed: number | undefined;
+  let spare = false;
+  return {
+    sample(workMs, frameMs) {
+      if (!Number.isFinite(workMs) || workMs < 0 || !(frameMs > 0)) return undefined;
+      // About a second of frames, whatever the refresh rate.
+      const alpha = 1 - Math.exp(-Math.min(frameMs, 250) / 1000);
+      smoothed = smoothed === undefined ? workMs : smoothed + alpha * (workMs - smoothed);
+      const next = spare ? smoothed < BUSY_WORK_MS : smoothed < SPARE_WORK_MS;
+      if (next === spare) return undefined;
+      spare = next;
+      return earthAdmission(backend, spare);
+    },
+    get spare() {
+      return spare;
+    },
+  };
+}
+
 /** Explicit work/working-set budgets, driven by measurements instead of device names. */
 export function earthPerformanceTier(level: number): EarthPerformanceTier {
   if (!Number.isFinite(level)) throw new RangeError('Performance level must be finite');
@@ -62,8 +143,13 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       viewDistance: spec[8],
       maxSelectedTiles: spec[9],
       maxSurfaceTileResolution: spec[10],
-      maxConcurrentLoads: spec[11],
-      maxConcurrentLayerLoads: spec[12],
+      // Loading is asynchronous (archive reads, worker decoding and generation), and main-thread
+      // publication has its own budget (earthAdmission), so these bound requests in flight. At 4
+      // and 8 a jet's newly selected tiles waited in line rather than loading (ground a few
+      // hundred milliseconds, landcover, water and buildings most of a second) while the
+      // workers sat idle and the coarse parent stayed on screen.
+      maxConcurrentLoads: Math.max(12, spec[11]),
+      maxConcurrentLayerLoads: Math.max(24, spec[12]),
       maxResidentTiles: spec[13],
       maxResidentBytes: spec[14] * MIB,
     },
@@ -80,6 +166,23 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       posesPerFrame: ambient[8],
     },
     shadows: index >= 3 ? 'high' : index === 2 ? 'medium' : 'off',
+  };
+}
+
+/** Keep recently visible ground and the approaching route warm across render-quality changes. */
+export function earthTerrainCacheBudget(
+  budget: TerrainPyramidBudget,
+  memoryBytes: number,
+): TerrainPyramidBudget {
+  if (!(memoryBytes > 0) || !Number.isFinite(memoryBytes))
+    throw new RangeError('Terrain memory budget must be finite and positive');
+  return {
+    ...budget,
+    maxResidentBytes: Math.max(budget.maxResidentBytes ?? 0, memoryBytes),
+    maxResidentTiles: Math.max(
+      budget.maxResidentTiles,
+      Math.min(512, Math.round(memoryBytes / (2 * MIB))),
+    ),
   };
 }
 

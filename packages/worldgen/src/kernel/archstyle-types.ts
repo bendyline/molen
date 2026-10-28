@@ -189,6 +189,8 @@ export interface ArchLodTier {
 }
 
 export interface ArchStyleDoc {
+  /** Weighted boundary treatments for inferred residential lots; `none` leaves a yard open. */
+  lotFences?: Array<{ kind: 'none' | 'timber' | 'masonry' | 'rail'; weight: number }>;
   /** Weighted resizable plans for vacant lots; never alters a supplied mapped outline. */
   lotPlans?: LotPlanChoice[];
   format: 'molen/archstyle@1';

@@ -1,6 +1,6 @@
 /** Kyiv Metro Bridge: original permanent arch-cantilever exterior, with mapped rail approach. */
 import { loft, normalFor } from './authored-structure-mesh.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 
 const anchor = [30.56443405, 50.442658675];
 const heading = 0.411477488755;
@@ -79,8 +79,7 @@ function pier(out, x) {
   loft(out, 'concrete', [pierRing(x, 3.15, 7.8, 30.3), pierRing(x, 3.6, 7.8, 30.3)], pale);
   for (let y = 0.5; y < 3.1; y += 0.54) {
     const r = pierRing(x, y, 8 - (y / 3.15) * 0.6 + 0.014, 31 - y / 3.15 + 0.014);
-    for (let i = 0; i < r.length; i++)
-      tube(out, 'stone', r[i], r[(i + 1) % r.length], 0.018, [0.58, 0.57, 0.52], 4);
+    tubePath(out, 'stone', r.slice(0, r.length), 0.018, [0.58, 0.57, 0.52], 4, true);
   }
   for (const z of [-10.6, -3.5, 3.5, 10.6]) {
     box(out, 'concrete', [x - 1.05, 3.6, z - 1.05], [x + 1.05, deckY(x) - 0.9, z + 1.05], concrete);

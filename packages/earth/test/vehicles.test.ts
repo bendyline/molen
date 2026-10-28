@@ -2,6 +2,7 @@ import { createParkedVehicleBatch, isParkedVehicleHidden } from '@bendyline/mole
 import { VehicleState } from '@bendyline/molen-kernel/vehicles';
 import { Transform } from '@bendyline/molen-kernel/world';
 import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
+import { tagTerrainObject } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { EarthVehicles } from '../src/client/vehicles';
@@ -22,6 +23,7 @@ function setup() {
     },
   ];
   tile.userData.vehicles = placements;
+  tagTerrainObject('parked-vehicles', tile);
   tile.position.set(1000, 0, 2000);
   tile.add(createParkedVehicleBatch(placements, [1000, 2000]));
   root.add(tile);
@@ -35,6 +37,99 @@ function setup() {
   return { root, tile, placements, vehicles };
 }
 describe('earth vehicles', () => {
+  it('refreshes parked support after streaming changes and aligns both axles to the road', async () => {
+    vi.useFakeTimers({ toFake: ['performance'] });
+    const root = new THREE.Group();
+    const road = new THREE.Mesh(new THREE.PlaneGeometry(100, 100).rotateX(-Math.PI / 2));
+    road.position.y = 0.3;
+    root.add(road);
+    const vehicles = new EarthVehicles({
+      root,
+      sampleHeight: () => 0,
+      loadModel: async () => new THREE.Group(),
+      types: ENTITY_TYPES,
+    });
+    try {
+      const id = vehicles.spawn('molen.entities.vehicle.sedan', [0, 0.3, 0], 0);
+      expect(id).toBeDefined();
+      await Promise.resolve();
+      // Replace the old level road with a sloping one while nobody is driving.
+      road.rotation.x = 0.1;
+      road.position.y = 0.18;
+      vi.advanceTimersByTime(250);
+      vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: true });
+      const t = vehicles.world.get(id as string, Transform);
+      const state = vehicles.world.get(id as string, VehicleState);
+      expect(t?.pos[1]).toBeCloseTo(0.18, 5);
+      expect(state?.pitch).toBeCloseTo(0.1, 5);
+      expect(state?.roll).toBeCloseTo(0, 5);
+      expect(vehicles.object.children[0]?.position.y).toBeCloseTo(0.18, 5);
+    } finally {
+      vehicles.dispose();
+      vi.useRealTimers();
+    }
+  });
+
+  it('drives across source-height dips while staying on the displayed road', async () => {
+    const { createTerrainPyramidStream } = await import('@bendyline/molen-terrain/client');
+    const { Heightfield } = await import('@bendyline/molen-terrain/kernel');
+    const field = new Heightfield(
+      Float32Array.from({ length: 81 }, (_, i) => (Math.floor(i / 9) % 2 === 0 ? 1 : 0)),
+      9,
+      9,
+      { origin: [0, 0], worldSize: [256, 256], height: { min: 0, max: 10 } },
+    );
+    const stream = createTerrainPyramidStream(
+      {
+        name: 'driving-dips',
+        origin: [0, 0],
+        rootSize: 256,
+        minLevel: 0,
+        maxLevel: 0,
+        tileResolution: 9,
+        height: { min: 0, max: 10 },
+        layers: [],
+        skirts: false,
+      },
+      { load: async () => field },
+      {
+        initialView: { position: [96, 20, 64], verticalFov: Math.PI / 2, viewportHeight: 900 },
+        maxSurfaceTileResolution: 3,
+        maxScreenSpaceError: 10000,
+        maxSelectedTiles: 4,
+        maxResidentTiles: 8,
+        maxConcurrentLoads: 4,
+        viewDistance: 500,
+      },
+    );
+    await stream.whenIdle();
+    const root = stream.object;
+    const road = new THREE.Mesh(new THREE.PlaneGeometry(256, 256).rotateX(-Math.PI / 2));
+    road.position.set(128, 10.3, 128);
+    root.add(road);
+    const vehicles = new EarthVehicles({
+      root,
+      sampleHeight: (x, z) => stream.sampleSurfaceHeight(x, z),
+      loadModel: async () => new THREE.Group(),
+      types: ENTITY_TYPES,
+    });
+    try {
+      expect(stream.sampleHeight(96, 32)).toBe(0);
+      expect(stream.sampleSurfaceHeight(96, 32)).toBe(10);
+      const id = vehicles.spawn('molen.entities.vehicle.sedan', [96, 10.3, 8], 0);
+      expect(id).toBeDefined();
+      expect(vehicles.board(id as string)).toBe(true);
+      for (let i = 0; i < 480; i++) {
+        vehicles.update(1 / 60, { throttle: 1, steering: 0, brake: false });
+        expect(vehicles.world.get(id as string, Transform)?.pos[1]).toBeCloseTo(10.3, 4);
+      }
+      expect(vehicles.world.get(id as string, Transform)?.pos[2]).toBeGreaterThan(70);
+    } finally {
+      vehicles.dispose();
+      stream.dispose();
+    }
+  });
+
   it('unloads a borrowed car model after walking away while preserving its simulation state', async () => {
     const { tile, vehicles } = setup();
     vehicles.sync(300, [1000, 1.7, 2004]);
@@ -95,6 +190,17 @@ describe('earth vehicles', () => {
     expect(vehicles.object.children).toHaveLength(0);
     expect(root.children).toContain(tile);
   });
+  it('makes parked cars entities only near the observer, and reclaims them behind it', () => {
+    const { vehicles } = setup();
+    vehicles.world.destroy('car');
+    vehicles.sync(300, [5000, 150, 2000]);
+    expect(vehicles.world.exists('car')).toBe(false);
+    vehicles.sync(600, [1100, 150, 2000]);
+    expect(vehicles.world.exists('car')).toBe(true);
+    vehicles.sync(900, [1000 + 300 * 1.25, 150, 2000]);
+    expect(vehicles.world.exists('car')).toBe(false);
+    vehicles.dispose();
+  });
   it('promotes a real parked entity, drives, survives tile eviction/reload, and exits', () => {
     const { root, tile, placements, vehicles } = setup();
     expect(vehicles.world.exists('car')).toBe(true);
@@ -124,6 +230,7 @@ describe('earth vehicles', () => {
     const { root, tile, placements, vehicles } = setup();
     const copy = new THREE.Group();
     copy.userData.vehicles = placements;
+    tagTerrainObject('parked-vehicles', copy);
     copy.position.copy(tile.position);
     copy.add(createParkedVehicleBatch(placements, [1000, 2000]));
     root.add(copy);

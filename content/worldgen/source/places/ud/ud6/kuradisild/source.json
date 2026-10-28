@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kuradisild",
+  "kind": "static-structure",
+  "title": "Kuradisild / Devil’s Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kuradisild",
+        "output": "assets/places/ud/ud6/kuradisild/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7e00a554fb21dcfbcc66a906177a4799e7282dc4dbfd39901304774d4fc86d43"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-kuradisild.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/kuradisild-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

@@ -1,11 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.lakhta_centre",
-  "reviewedOn": "2026-10-09",
-  "inputHash": "sha256:dff2ad6061ef0f4d60b4bcd51d6b46f524215d6ad10e3774469a5c7655e42f4f",
-  "sourceHash": "sha256:cc5ea11c5d2a9f9636e305ae8bd60ed1022e913a7c7a52ee2668fe711b34ce32",
-  "runtimeHash": "sha256:031a71ba933ba75259a1688394b1a1734aa9d9fa8c1d3157294f451f0470f4ca",
-  "captureReportHash": "sha256:e26a1c9fba0c9d0f13a8b6f5f2f64c91916655e161b0a916438e27ed074ee6ba",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:dfe5a7c970015690b2ffd4ff0b263051a65cacbf505da77acf974c40233a374c",
+  "sourceHash": "sha256:e3c2bc5e8ab1608dc0abb1eb863d8ffbe9e2d37a3ff21984e9acf24fd69d4ee0",
+  "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+  "captureReportHash": "sha256:f710ba415bca87c6245464d14c7c49ad9ea4ab16cba88ce1368cc3c5e0e4ac8d",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -20,11 +20,12 @@
       "shots/ground-petals.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "Ten current portable frames inspected against designer aerial, completed facade, outline and twist diagrams. Five-petal lower bulge, helical arrises, continuous taper, upper crown and separate metal tip are intact. Original 15202-triangle master remains byte-identical. Source facade bands are reconstructed subdivisions, not exact occupied-floor or facade-module counts."
+    "notes": "Inspected all 10 current portable frames against the four retained designer pictures: aerial, completed facade, outline and twist. Five-petal lower bulge, helical arrises, continuous taper, crown and separate steel tip remain intact after the shared joined-path revision. Current detailed source is 14,962 triangles. Facade bands are reconstructed subdivisions, not exact occupied-floor or module counts. Adjacent wings and entrance arch remain outside the declared main-tower asset.",
+    "captureReportHash": "sha256:f710ba415bca87c6245464d14c7c49ad9ea4ab16cba88ce1368cc3c5e0e4ac8d"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:150763e5a4d636c0324570955ca70e8e603a171f01752c0e212f9f4a8efeea92",
+    "captureReportHash": "sha256:6d2b0c7c1b11df4396da699af9c51d87c5f5afcc13b132dd9e5adedc96bf1e02",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -37,11 +38,11 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Ten current shared-material/placement views inspected. Granite and painted-metal canonical graphs load once with metric bindings, local glazing remains, and unload disposes all model geometry. North-up ground-star overlay aligns; enlarged and twisted upper envelopes extend beyond its ground footprint intentionally. Lower body and tip show no missing sections."
+    "notes": "Inspected all 10 current shared-material and north-up flat-terrain views. The granite/painted-metal graphs are shared 256px materials with metric bindings; local glazing remains opaque PBR. Each graph loads once; unloading disposes all model geometries. The mapped ground-star overlay and signed helical envelope remain. Upper envelopes intentionally extend beyond the ground plan. Flat staging does not verify plaza elevations."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a7a26ebb54f7e627f6abeb1b087f63a05c83888fe84b2b00622c22bbcee0bc92",
+    "captureReportHash": "sha256:baf8567c5e7a256354ef83e771d331a472372e43cf92b8f26373def971714b9d",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -68,7 +69,7 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "All24 current browser views inspected, including complete skyline, economy/high noon/late, district crown/tip and four-level transitions. New904-triangle skyline resamples the retained source skin and preserves462m height, helical handedness and tip. District3999triangles retains its recognizable contour and upper tip at0.868m reported reduction error. Street/closeup15202triangles retain full original geometry. Synthetic neighbors are scale context, not the adjoining Lakhta complex."
+    "notes": "Inspected all 24 current ACES 1.05 browser images: noon/late economy/high, untextured silhouette, facade/ground/crown/tip, district crown/tip and four transitions. All levels preserve the recognizable helical outline and separate tip. Whole-building and far views supply complete height coverage; close street/detail cameras intentionally crop. Skyline is unchanged at 904 triangles; changed district is 3,996 triangles with 0.865953m reported reduction error; street and closeup retain 14,962-triangle current geometry. Synthetic neighbors are scale context, not the adjoining complex."
   },
   "geographicReview": {
     "status": "passed",
@@ -79,7 +80,7 @@
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Fresh medium-fi acceptance for completed main-tower exterior from designer project references and contractor tip record. Original master preserved, skyline143m automatic-error failure replaced by source-based904-triangle envelope. Adjacent long wings and entrance arch are excluded. Exact curved pane sag, occupied-floor/grid correspondence, hardware, interior and surveyed plaza are outside this declared tower asset."
+    "notes": "Fresh current medium-fi main-tower exterior review using retained pictures and geographic frame. Five-petal profile, taper, helical direction and separate tip remain recognizable. Current joined-path source/runtime differ from the historical 15,202-triangle approval; no old master-byte equivalence is claimed. Pane sag, exact floor/module counts, hardware/interiors, adjacent low wings/arch and surveyed plaza are excluded."
   },
   "legacyFidelityScope": {
     "target": "maximum",
@@ -94,13 +95,13 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/ud/udt/lakhta_centre/models/source.glb",
-        "hash": "sha256:cc5ea11c5d2a9f9636e305ae8bd60ed1022e913a7c7a52ee2668fe711b34ce32",
-        "bytes": 1443972,
-        "triangles": 15202,
+        "hash": "sha256:e3c2bc5e8ab1608dc0abb1eb863d8ffbe9e2d37a3ff21984e9acf24fd69d4ee0",
+        "bytes": 1441092,
+        "triangles": 14962,
         "materials": 3,
         "images": 0,
         "min": [
-          -38.709083557128906,
+          -38.717918395996094,
           0,
           -34.02507400512695
         ],
@@ -115,13 +116,13 @@
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/ud/udt/lakhta_centre/model.glb",
-        "hash": "sha256:031a71ba933ba75259a1688394b1a1734aa9d9fa8c1d3157294f451f0470f4ca",
-        "bytes": 1443620,
-        "triangles": 15202,
+        "hash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "bytes": 1440740,
+        "triangles": 14962,
         "materials": 3,
         "images": 0,
         "min": [
-          -38.709083557128906,
+          -38.717918395996094,
           0,
           -34.02507400512695
         ],
@@ -157,9 +158,9 @@
       {
         "name": "district",
         "path": "content/worldgen/assets/places/ud/udt/lakhta_centre/model.district.glb",
-        "hash": "sha256:974ef327b590fbeb0c5a8419d252e6d67214d9777c12d9164be8439d348c7522",
-        "bytes": 457052,
-        "triangles": 3999,
+        "hash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
+        "bytes": 455780,
+        "triangles": 3996,
         "materials": 3,
         "images": 0,
         "min": [
@@ -170,7 +171,7 @@
         "max": [
           34.371429443359375,
           462,
-          40.23674392700195
+          40.235435485839844
         ],
         "errors": 0,
         "warnings": 0
@@ -178,13 +179,13 @@
       {
         "name": "street",
         "path": "content/worldgen/assets/places/ud/udt/lakhta_centre/model.street.glb",
-        "hash": "sha256:ad06c5b653967e01a4d0dc43065b621052f325647e1194d835dcded9c540c198",
-        "bytes": 1443868,
-        "triangles": 15202,
+        "hash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
+        "bytes": 1440988,
+        "triangles": 14962,
         "materials": 3,
         "images": 0,
         "min": [
-          -38.709083557128906,
+          -38.717918395996094,
           0,
           -34.02507400512695
         ],
@@ -199,13 +200,13 @@
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/ud/udt/lakhta_centre/model.closeup.glb",
-        "hash": "sha256:ad06c5b653967e01a4d0dc43065b621052f325647e1194d835dcded9c540c198",
-        "bytes": 1443868,
-        "triangles": 15202,
+        "hash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
+        "bytes": 1440988,
+        "triangles": 14962,
         "materials": 3,
         "images": 0,
         "min": [
-          -38.709083557128906,
+          -38.717918395996094,
           0,
           -34.02507400512695
         ],
@@ -222,11 +223,12 @@
       "sampled skyline deviation and retained462mheight",
       "exact original source hash and forced four-level reproduction"
     ],
-    "notes": "Six GLBs have zero Khronos errors/warnings and no embedded images. Two focused checks pass: source skin vertices and cell centers within1m coarse-triangle reservation/full462m height; exact forced four-level regeneration with unchanged original source and runtime masters. Selected source reproduction, LOD and strict medium-fi checks pass. Convex exterior collision does not support interior walkthrough."
+    "notes": "Six current GLBs are Khronos-clean with no embedded images. Two focused skyline-sample/full-height and deterministic four-level reconstruction checks pass. The selected source was rebuilt from checked-in code; current source/runtime bytes remain unchanged during this review. Historical original-master claims are not promoted to a current result.",
+    "refreshedOn": "2026-10-27"
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:072713590773007904dc492e927dc87be98bc5d854ec390156fe3072ee8d390d",
+    "recipeHash": "sha256:97b595081acd9293c81ec44fde11cd7f5f5afa6ea2c412f63826e5f0f26cdac8",
     "levels": [
       {
         "name": "skyline",
@@ -243,48 +245,48 @@
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:974ef327b590fbeb0c5a8419d252e6d67214d9777c12d9164be8439d348c7522",
-        "bytes": 457052,
-        "gzipBytes": 152036,
-        "triangles": 3999,
-        "cpuBytes": 453296,
-        "gpuBytes": 453296,
-        "errorMeters": 0.8678938056297266,
+        "hash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
+        "bytes": 455780,
+        "gzipBytes": 149701,
+        "triangles": 3996,
+        "cpuBytes": 452020,
+        "gpuBytes": 452020,
+        "errorMeters": 0.8659530187911951,
         "drawCalls": 3
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:ad06c5b653967e01a4d0dc43065b621052f325647e1194d835dcded9c540c198",
-        "bytes": 1443868,
-        "gzipBytes": 526757,
-        "triangles": 15202,
-        "cpuBytes": 1441632,
-        "gpuBytes": 1441632,
+        "hash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
+        "bytes": 1440988,
+        "gzipBytes": 523378,
+        "triangles": 14962,
+        "cpuBytes": 1438752,
+        "gpuBytes": 1438752,
         "errorMeters": 0,
         "drawCalls": 3
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:ad06c5b653967e01a4d0dc43065b621052f325647e1194d835dcded9c540c198",
-        "bytes": 1443868,
-        "gzipBytes": 526757,
-        "triangles": 15202,
-        "cpuBytes": 1441632,
-        "gpuBytes": 1441632,
+        "hash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
+        "bytes": 1440988,
+        "gzipBytes": 523378,
+        "triangles": 14962,
+        "cpuBytes": 1438752,
+        "gpuBytes": 1438752,
         "errorMeters": 0,
         "drawCalls": 3
       }
     ],
-    "initialBytes": 557912,
-    "notes": "904/3999/15202/15202triangles;1/3/3/3draws. Initial557912bytes meets3MBphone/6MBlaptop targets. Near1443868bytes each. Skyline1m reservation and district0.8678938m reported error. Separate vertex streams and canonical256-square graphs pass; unload releases geometry. Actual phone/laptop timing, full-scene memory and first shared-graph bake remain unmeasured."
+    "initialBytes": 556640,
+    "notes": "904 / 3996 / 14962 / 14962 triangles;1 / 3 / 3 / 3 draws. Initial 556640 bytes; street/closeup 1440988 bytes each. Actual 1k/4k/16k/64k caps and separate GPU streams pass. Skyline retains its sampled 1m reservation; district reports 0.865953m error. Physical phone/laptop timing and whole-scene memory remain unmeasured."
   },
   "limitations": [
     "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
     "Individual glazing panels and helical arrises are explicit. Exact curved pane sag and floor-specific petal bulge are reconstructed. Only the main tower is included; adjacent long low complex and entrance arch are excluded."
   ],
-  "inputReconciliation": {
+  "historicalInputReconciliation": {
     "reconciledOn": "2026-10-13",
     "previousInputHash": "sha256:f52fb5f146b7de08159e4909588128090fb026b6ab25df21b42805fdc9ce51f0",
     "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
@@ -331,6 +333,20 @@
         "bytes": 1443868
       }
     ],
-    "retainedInspectedImageCount": 44
+    "retainedInspectedImageCount": 44,
+    "reviewBinding": "Historical prior-output reconciliation only; superseded by the fresh 2026-10-27 current-output review."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:dfe5a7c970015690b2ffd4ff0b263051a65cacbf505da77acf974c40233a374c",
+    "sourceHash": "sha256:e3c2bc5e8ab1608dc0abb1eb863d8ffbe9e2d37a3ff21984e9acf24fd69d4ee0",
+    "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+    "framesInspected": 44,
+    "sourceStats": {
+      "triangles": 14962,
+      "bytes": 1441092
+    },
+    "oldSourceHash": "sha256:cc5ea11c5d2a9f9636e305ae8bd60ed1022e913a7c7a52ee2668fe711b34ce32",
+    "note": "All 44 current images inspected. Existing source-local pictures and attributed geographic frame retained. Only stale source-count prose changed during this pass; source/runtime/four LOD bytes match the initial current-output snapshot. No prior master-byte preservation claim or new plaza survey."
   }
 }

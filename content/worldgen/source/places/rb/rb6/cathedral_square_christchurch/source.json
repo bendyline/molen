@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cathedral_square_christchurch",
+  "kind": "static-structure",
+  "title": "Cathedral Square, Christchurch — intact2008 architectural ensemble",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cathedral_square_christchurch",
+        "output": "assets/places/rb/rb6/cathedral_square_christchurch/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fd299a3bd607f6d2dc512ac35815de5f8a63bd358d606dcd6c4e905cd9d641bd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cathedral-square",
+        "path": "models/generate-cathedral-square.mjs"
+      },
+      {
+        "id": "cathedral-square-model",
+        "path": "models/cathedral-square-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "architectural-facts.json",
+      "terrain-acquisition-envelope.json",
+      "native-map/prequake-whole-ensemble.json",
+      "reference-rights/selected-native.json",
+      "reference-images/cathedral-front.jpg",
+      "reference-images/cathedral-side.jpg",
+      "reference-images/godley-front.jpg",
+      "reference-images/godley-back.jpg",
+      "reference-images/citizens-memorial.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-32097-20793.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

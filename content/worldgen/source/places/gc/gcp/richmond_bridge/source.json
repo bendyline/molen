@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.richmond_bridge",
+  "kind": "static-structure",
+  "title": "Richmond Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.richmond_bridge",
+        "output": "assets/places/gc/gcp/richmond_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:576891f3bc80b6ab56fc27fef4ac5884dadc98af7e64cd5cefe1e5b22547f5e4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-richmond.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/richmond-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

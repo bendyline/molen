@@ -1,0 +1,324 @@
+{
+  "id": "han_river_bridge",
+  "title": "Han River Bridge",
+  "wikidataId": "Q10752400",
+  "referenceCoordinate": {
+    "longitude": 108.22672222,
+    "latitude": 16.07227778
+  },
+  "module": "content/worldgen/source/places/w6/w6u/han_river_bridge/models/han-model.mjs",
+  "generator": "content/worldgen/source/places/w6/w6u/han_river_bridge/models/generate-han.mjs",
+  "builder": "buildHanLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.25
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "brick",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "sourceDefinitions": [
+    "models/han-controls.json"
+  ],
+  "exportLabel": "Molen original Han River Bridge",
+  "expectedDraftMasterHash": "sha256:30b5fa97e36cb423312d82051d190e96eef4df074c30549b85b65ba5147e634c",
+  "visualBrief": "Full closed Han River swing crossing: blue A-frame mast, four stay-fan quadrants and pale flower crown, blue central swing span, round perforated pivot drum, haunched concrete approaches with green underside girders/rounded piers, brick walks, pale/red open rails and slim crescent-arm lamps.",
+  "nativeAxes": "+X east-northeast toward Sơn Trà; -X west-southwest toward Hải Châu; +Z south-southeast; -Z north-northwest.",
+  "sourceFacts": {
+    "identity": "The catalog exact-QID way1164109461 records a219m eastern fragment only. Named current PMTiles road35185068437310 and adjacent northern sidewalk35185860725086 establish the full494.584m crossing. The nominal487.7m catalog length is retained separately. The Wikidata reference point locates the pivot only approximately; no surveyed pivot station is claimed.",
+    "mappedRouteExtentMeters": 494.58383924044836,
+    "catalogLengthMeters": 487.7,
+    "nominalWidthMeters": 12.9,
+    "pivotStation": -42.34582135781463,
+    "pivotOffsetDiscardedMeters": -15.267207317982852,
+    "orientation": "+X east-northeast toward Sơn Trà; -X west-southwest toward Hải Châu; +Z south-southeast; -Z north-northwest."
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Han_River_Bridge,_Da_Nang,_20241209,_Ansicht01.jpeg",
+      "author": "Author field missing on the current Commons page; not inferred from the uploader.",
+      "observedDate": "2024-12-09",
+      "license": "CC-BY-SA-4.0 as tagged on Commons",
+      "use": "Inspected ordinary riverbank photograph: white haunched approaches, single rounded piers, blue central A-mast and fans, round pivot pier, slim crescent lamps and pale/red railing. View only; no pixels imported."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Han_River_Bridge,_Da_Nang,_20241209,_Drehsegment.jpeg",
+      "author": "Author field missing on current Commons entry.",
+      "observedDate": "2024-12-09",
+      "license": "CC-BY-SA-4.0 as tagged on Commons",
+      "use": "Inspected road/walk photograph: blue A-frame over the road, short vertical crown, flower-like top, stay-anchor rows, brick walks and pale/red rails. View only."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Han_River_Bridge,_Da_Nang,_20241209,_Drehteller.jpeg",
+      "author": "Author field missing on current Commons entry.",
+      "observedDate": "2024-12-09",
+      "license": "CC-BY-SA-4.0 as tagged on Commons",
+      "use": "Inspected turntable photograph: circular metal bearing path and pale perforated outer skirt with real round openings. Exact machinery, rail tracks and corrosion are outside this exterior reconstruction."
+    }
+  ],
+  "limitations": [
+    "Complete494.584m named PMTiles route; reference487.7m extent kept separate. Nominal12.9m width, photo-led25m pylon rise above the deck and120m swing section. Pivot x projects the approximate catalog coordinate onto the named road, discarding its15m cross-road offset. Support stations, mast/turntable dimensions, holes, fixtures and grades are reconstruction controls, not surveyed facts.",
+    "Closed-road/static pose only. The swing span is identified by its blue A-frame, bilateral stay fans, blue edge girders, round white pivot drum with genuine porthole openings and a pale flower-like crown. No operating machinery or animated opening is claimed.",
+    "Standard Mapzen bank heights are roughly10m west/6m east; the proposed road profile clears them without altering surrounding terrain. Native joins still require inspection.",
+    "The source recreates the recognizable exterior rather than surveyed structural sections. Approach support count/stations, tapered pier sections, round pivot/porthole count, pylon height/station and span dimensions are photo-led approximations. The catalog25m height is not interpreted as a surveyed absolute elevation.",
+    "Existing shared256px concrete_plain, metal_painted and brick graphs, metric UVs and linear vertex tints. No embedded/private images, copied photo pixels or downloaded meshes. Far geometry omits lamps/portholes and uses fewer cables/rounded segments; street/closeup retain genuine drum holes. Physical-device timings remain unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-crossing-and-central-swing",
+      "position": [
+        170,
+        95,
+        390
+      ],
+      "lookAt": [
+        -20,
+        11,
+        0
+      ],
+      "fov": 66
+    },
+    {
+      "name": "blue-a-mast-and-pivot",
+      "position": [
+        22.65417864218537,
+        28,
+        110
+      ],
+      "lookAt": [
+        -42.34582135781463,
+        18,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "road-under-a-frame",
+      "position": [
+        -114.34582135781463,
+        14.016098326670317,
+        0
+      ],
+      "lookAt": [
+        -32.34582135781463,
+        16.45,
+        0
+      ],
+      "fov": 63
+    },
+    {
+      "name": "perforated-turntable-drum",
+      "position": [
+        -26.34582135781463,
+        6.7,
+        19
+      ],
+      "lookAt": [
+        -42.34582135781463,
+        7.6,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "haunched-approach-and-girders",
+      "position": [
+        115,
+        5.5,
+        32
+      ],
+      "lookAt": [
+        135,
+        8,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "brick-walk-rails-and-crescent-lamp",
+      "position": [
+        -177,
+        13,
+        9
+      ],
+      "lookAt": [
+        -160,
+        16,
+        5.8
+      ],
+      "fov": 61
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w6/w6u/han_river_bridge/models/han-model.mjs",
+    "export": "buildHanSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 1,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.25
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "brick",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHanDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.25
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      },
+      "street": {
+        "export": "buildHanStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.25
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      },
+      "closeup": {
+        "export": "buildHanCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.25
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  }
+}

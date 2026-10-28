@@ -1,4 +1,5 @@
 /** Deterministic OH-6A master. Four main blades, two tail blades and the original braced tail. */
+
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
@@ -6,6 +7,12 @@ import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { completeCockpitControls } from '../../../../../../packages/entities/scripts/aircraft/cockpit-controls.mjs';
+import {
+  embedCockpitTextures,
+  finishAircraftCockpit,
+  writeCockpitTextures,
+} from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
 import { addRivetRows } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
 import { instrumentParts } from './instruments.mjs';
 import { addInterior } from './interior.mjs';
@@ -564,7 +571,7 @@ function mergeStaticFrames(parent) {
     const geometries = objects.map((object) => {
       object.updateMatrix();
       const geometry = object.geometry.clone().applyMatrix4(object.matrix);
-      geometry.deleteAttribute('uv');
+      if (!object.material.userData.molenCockpitLettering) geometry.deleteAttribute('uv');
       return geometry;
     });
     mesh(parent, objects[0].name, mergeGeometries(geometries), objects[0].material);
@@ -633,11 +640,21 @@ const pinned = JSON.parse(sourceText).files.models.find(
   (model) => model.path === 'models/source.glb',
 )?.sha256;
 if (!pinned) throw new Error(`${sourcePath}: models/source.glb has no sha256 pin`);
-const bytes = Buffer.from(
-  await new GLTFExporter().parseAsync(settleZeros(helicopter()), {
-    binary: true,
-    onlyVisible: false,
-  }),
+const controlSpec = Object.values(
+  JSON.parse(await readFile(resolve(root, '../entity.types.json'), 'utf8')).types,
+)[0].components.aircraft.spec;
+const controlledModel = completeCockpitControls(helicopter(), controlSpec, {
+  panelZ: interiorLayout.panelZ,
+  letteringFont: 'technical',
+});
+finishAircraftCockpit(controlledModel, controlSpec, 'oh-6');
+const bytes = embedCockpitTextures(
+  Buffer.from(
+    await new GLTFExporter().parseAsync(settleZeros(controlledModel), {
+      binary: true,
+      onlyVisible: false,
+    }),
+  ),
 );
 const path = resolve(root, 'source.glb');
 const current = await readFile(path).catch(() => undefined);
@@ -662,6 +679,8 @@ if (current && hash(current) !== pinned && !current.equals(bytes)) {
 }
 await mkdir(root, { recursive: true });
 if (!current?.equals(bytes)) await writeFile(path, bytes);
-if (pinned !== generatedHash)
-  await writeFile(sourcePath, sourceText.replace(pinned, generatedHash));
+const source = JSON.parse(sourceText);
+source.files.models.find((model) => model.path === 'models/source.glb').sha256 = generatedHash;
+source.files.textures = await writeCockpitTextures(resolve(root, '..'), bytes);
+await writeFile(sourcePath, `${JSON.stringify(source, null, 2)}\n`);
 console.log(`oh6: ${bytes.length} bytes, ${generatedHash}`);

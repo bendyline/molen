@@ -1,6 +1,7 @@
 /** F-22A clean airframe. USAF three-view, Lockheed dimensions, NMUSAF EMD cockpit.
  * +Z forward, +X pilot left; ground datum. References and limits are in reference-review.json.
  */
+import { cockpitText } from './cockpit-lettering.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -26,9 +27,32 @@ export const f22Frame = () => ({
   cabinZ: 7.3,
   cabinWidth: 0.92,
   eye: [0, 3.04, 7.3],
-  panelZ: 8.12,
+  panelZ: 7.94,
   floor: 1.88,
 });
+
+// The glazing, painted shoulders and cabin lining share these actual section planes.
+const canopySections = [
+  [9.45, 0, 2.425, 2.425],
+  [9.05, 0.32, 2.52, 2.81],
+  [8.55, 0.47, 2.57, 3.09],
+  [7.9, 0.55, 2.63, 3.22],
+  [7.2, 0.56, 2.69, 3.24],
+  [6.55, 0.47, 2.74, 3.13],
+  [5.95, 0, 2.781, 2.781],
+];
+function sectionAt(sections, z) {
+  for (let i = 0; i < sections.length - 1; i++) {
+    const a = sections[i],
+      b = sections[i + 1];
+    if (z <= a[0] && z >= b[0]) {
+      const t = (z - a[0]) / (b[0] - a[0]);
+      return a.map((v, j) => v + (b[j] - v) * t);
+    }
+  }
+  throw Error(`F-22 section out of range: ${z}`);
+}
+
 export function buildF22A(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -74,31 +98,27 @@ export function buildF22A(s) {
     [6.0, 0.78, 1.08, 2.78, 1.84],
     [5.5, 0.85, 1.08, 2.79, 1.9],
   ];
-  const rings = fore.map(([z, w, b, t, c]) => ({
-    z,
-    points: [
-      [0, t],
-      [w * 0.7, t - 0.08],
-      [w * 0.96, c + 0.19],
-      [w, c],
-      [w * 0.7, b + 0.08],
-      [0, b],
-      [-w * 0.7, b + 0.08],
-      [-w, c],
-      [-w * 0.96, c + 0.19],
-      [-w * 0.7, t - 0.08],
-    ],
-  }));
-  loft(d, rings, paint, { skip: (i, j) => i >= 3 && i < 7 && (j === 0 || j === 9) });
-  const canopy = [
-    [9.45, 0.025, 2.44, 2.47],
-    [9.05, 0.32, 2.52, 2.81],
-    [8.55, 0.47, 2.57, 3.09],
-    [7.9, 0.55, 2.63, 3.22],
-    [7.2, 0.56, 2.69, 3.24],
-    [6.55, 0.47, 2.74, 3.13],
-    [5.95, 0.05, 2.78, 2.82],
-  ];
+  const stations = [...new Set([...fore, ...canopySections].map(([z]) => z))].sort((a, b) => b - a);
+  const rings = stations
+    .map((z) => sectionAt(fore, z))
+    .map(([z, w, b, t, c]) => ({
+      z,
+      points: [
+        [0, t],
+        [w * 0.7, t - 0.08],
+        [w * 0.96, c + 0.19],
+        [w, c],
+        [w * 0.7, b + 0.08],
+        [0, b],
+        [-w * 0.7, b + 0.08],
+        [-w, c],
+        [-w * 0.96, c + 0.19],
+        [-w * 0.7, t - 0.08],
+      ],
+    }));
+  const opening = (i) => rings[i].z <= 9.45 && rings[i + 1].z >= 5.95;
+  loft(d, rings, paint, { skip: (i, j) => opening(i) && (j === 0 || j === 9) });
+  const canopy = canopySections;
   const cr = canopy.map(([z, w, b, t]) => ({
     z,
     points: Array.from({ length: 21 }, (_, j) => [
@@ -115,33 +135,21 @@ export function buildF22A(s) {
       paint,
       false,
     );
-  for (const i of [0, 6])
-    outline(
-      d,
-      cr[i].points.map((p) => [...p, cr[i].z]),
-      0.02,
-      paint,
-      false,
-    );
   // No transverse windscreen bow: the F-22 has a continuous bubble canopy.
   for (const side of [-1, 1]) {
-    for (let i = 3; i < 7; i++) {
+    for (let i = 0; i < rings.length - 1; i++) {
+      if (!opening(i)) continue;
       const a = rings[i],
         b = rings[i + 1],
         q = side === 1 ? 1 : 9;
-      const rail = [
-        [0.025, 2.44],
-        [0.32, 2.52],
-        [0.54, 2.63],
-        [0.56, 2.69],
-        [0.05, 2.78],
-      ];
+      const start = sectionAt(canopy, a.z),
+        end = sectionAt(canopy, b.z);
       quad(
         d,
         [...a.points[q], a.z],
         [...b.points[q], b.z],
-        [side * rail[i - 2][0], rail[i - 2][1], b.z],
-        [side * rail[i - 3][0], rail[i - 3][1], a.z],
+        [side * end[1], end[2], b.z],
+        [side * start[1], start[2], a.z],
         paint,
         [side, 1, 0],
       );
@@ -207,15 +215,37 @@ export function buildF22A(s) {
       quad(d, mouth[j], rear[j], rear[(j + 1) % 4], mouth[(j + 1) % 4], lining, [0, 0, 1]);
     sheet(d, rear, lining, [0, 0, 1]);
     outline(d, mouth, 0.035, paint);
-    quad(
-      d,
-      [side * 0.65, 2.5, 9.0],
-      [side * 0.85, 2.48, 7.05],
+    // Join the inlet shoulder to both the forebody and the actual engine-hump
+    // contour. The old four-corner plate floated above both of those surfaces.
+    const shoulder = (z) => {
+      const [, w, , top] = sectionAt(fore, z);
+      return [side * w * 0.7, top - 0.08, z];
+    };
+    const back = [
+      shoulder(6.12),
+      [side * 0.7, 2.64, 6.12],
+      [side * 1.17, 2.65, 6.12],
+      [side * 1.58, 2.53, 6.12],
       [side * 1.92, 2.29, 6.12],
-      [side * 0.74, 2.69, 6.12],
-      paint,
-      [0, 1, 0],
-    );
+    ];
+    const front = shoulder(9),
+      middle = shoulder(7.05),
+      outer = [side * 0.85, 2.48, 7.05];
+    const row = back.map((point) => {
+      const t = (point[0] - back[0][0]) / (back.at(-1)[0] - back[0][0]);
+      return middle.map((v, j) => v + (outer[j] - v) * t);
+    });
+    for (let j = 0; j < back.length - 1; j++) {
+      sheet(d, [front, row[j], row[j + 1]], paint, [0, 1, 0]);
+      quad(d, row[j], back[j], back[j + 1], row[j + 1], paint, [0, 1, 0]);
+    }
+    const [, width, , , chine] = sectionAt(fore, 7.05);
+    sheet(d, [front, outer, mouth[1], mouth[0], [side * width * 0.96, chine + 0.19, 7.05]], paint, [
+      side,
+      0,
+      0,
+    ]);
+    sheet(d, [back[3], back[4], [side * 1.91, 2.11, 6.12]], paint, [0, 0, 1]);
     quad(
       d,
       [side * 1.92, 2.29, 6.12],
@@ -394,8 +424,8 @@ export function buildF22A(s) {
       axis: 'y',
       scale: 0.35,
     });
-    fd.text('FF', [side * 0.041, 0.7, -2.1], 0.24, (side * Math.PI) / 2, dark);
-    fd.text('F22', [side * 0.041, 0.4, -2.1], 0.12, (side * Math.PI) / 2, dark);
+    // Exterior operator identifiers are supplied by the selected livery.
+    // Exterior operator identifiers are supplied by the selected livery.
     fd.finish();
     // Rectangular, open exhausts with upper/lower 2D petals. Static neutral nozzle angle:
     // the kernel has no F119 pitch-vector control law, so do not invent pitch-input coupling.
@@ -591,12 +621,28 @@ export function buildF22A(s) {
       paint,
       false,
     );
-    d.text('RESCUE', [side * 0.68, 2.34, 8.74], 0.07, (side * Math.PI) / 2, dark);
+    const skinX = (y, z) => {
+      const [, width, , top, chine] = sectionAt(fore, z);
+      const t = (top - 0.08 - y) / (top - 0.08 - chine - 0.19);
+      return width * (0.7 + 0.26 * t);
+    };
+    const label = cockpitText(root, `F22-rescue-label-${side}`, 'RESCUE', [0, 0, 0], 0.055, dark);
+    const position = label.geometry.getAttribute('position');
+    for (let j = 0; j < position.count; j++) {
+      const y = 2.27 + position.getY(j),
+        z = 8.65 + side * position.getX(j);
+      position.setXYZ(j, side * (skinX(y, z) + 0.0015), y, z);
+    }
+    label.geometry.computeVertexNormals();
     for (let j = 0; j < 12; j++)
-      d.add(new T.SphereGeometry(0.003, 5, 3), dark, [side * 0.69, 2.36, 8.8 - j * 0.1]);
+      d.add(new T.SphereGeometry(0.0025, 5, 3), dark, [
+        side * (skinX(2.3, 8.8 - j * 0.1) + 0.001),
+        2.3,
+        8.8 - j * 0.1,
+      ]);
   }
   d.finish();
-  const interior = f22Cockpit(root, { paint, metal, glass });
+  const interior = f22Cockpit(root, { paint, metal, glass }, fore);
   Object.assign(interior.derived, {
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.32] },
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.13] },
@@ -627,11 +673,15 @@ export function buildF22A(s) {
   };
 }
 
-function f22Cockpit(root, m) {
+function f22Cockpit(root, m, fore) {
   const cabin = group(root, 'cockpit'),
-    d = detailKit(cabin, 'F22-cabin'),
-    ins = instrumentGeometry(cabin, 'F22'),
+    dashboard = group(cabin, 'F22-instrument-panel', [0, -0.11, -0.18]),
+    d = detailKit(dashboard, 'F22-panel-detail'),
+    ins = instrumentGeometry(dashboard, 'F22'),
     { bindings, derived, ink, black, amber } = ins;
+  // Keep the instruments square and their animated children together. The wider,
+  // nearer fascia fills the pilot's lower view while remaining inside the canopy.
+  dashboard.scale.set(1.1, 1.1, 1);
   const panel = mat('F22-panel', '#434c50', { side: T.DoubleSide }),
     button = mat('F22-key', '#788385'),
     green = mat('F22-display', '#79d792', { emissive: '#265b36', emissiveIntensity: 0.65 }),
@@ -677,8 +727,8 @@ function f22Cockpit(root, m) {
         [0.5, 0.5],
         [-0.5, 0.5],
       ].map(([u, v]) => [x + u * w, y + v * h, z + dz]);
-  const txt = (t, x, y, h = 0.009, color = ink, dz = -0.028) =>
-    d.text(t, [x, y, z + dz], h, Math.PI, color);
+  const txt = (t, x, y, h = 0.009, color = ink, dz = -0.028, role = 'panel') =>
+    d.text(t, [x, y, z + dz], h, Math.PI, color, role);
   const edge = [
     [-0.41, 2.2],
     [-0.41, 2.43],
@@ -749,16 +799,16 @@ function f22Cockpit(root, m) {
   };
   display('FLIGHT / SIM', 0.225, 2.47, 0.1524, 0.1524, true);
   ins.horizon('attitude', [0.225, 2.49, z + 0.01], 0.105, 0.075, { blankBackdrop: true });
-  txt('TAS', 0.265, 2.417, 0.006, green);
+  txt('TAS', 0.265, 2.417, 0.006, green, undefined, 'display');
   ins.readout('speed', [0.265, 2.405, z - 0.03], 'knots', 3, 0.009, green);
-  txt('GEO FT', 0.185, 2.417, 0.006, green);
+  txt('GEO FT', 0.185, 2.417, 0.006, green, undefined, 'display');
   ins.readout('altitude', [0.185, 2.405, z - 0.03], 'feet', 5, 0.008, green, true, true);
   display('PMFD', 0, 2.44, 0.2032, 0.2032);
-  txt('TACTICAL INOP', 0, 2.44, 0.012, amber);
+  txt('TACTICAL INOP', 0, 2.44, 0.012, amber, undefined, 'display');
   display('SMFD', -0.225, 2.47, 0.1524, 0.1524);
-  txt('SENSORS INOP', -0.225, 2.47, 0.009, amber);
+  txt('SENSORS INOP', -0.225, 2.47, 0.009, amber, undefined, 'display');
   display('NAV / SIM', 0, 2.165, 0.1524, 0.1524);
-  const hg = group(cabin, 'F22-heading', [0, 2.165, z - 0.03]),
+  const hg = group(dashboard, 'F22-heading', [0, 2.165, z - 0.03]),
     hd = detailKit(hg, hg.name);
   for (let j = 0; j < 72; j++) {
     const a = (j * Math.PI) / 36,
@@ -776,12 +826,12 @@ function f22Cockpit(root, m) {
     period: Math.PI * 2,
   });
   ins.available('heading', 'trueHeading', hg.name);
-  txt('TRUE', 0, 2.108, 0.006, green);
+  txt('TRUE', 0, 2.108, 0.006, green, undefined, 'display');
   d.rod([0, 2.223, z - 0.032], [0, 2.215, z - 0.032], 0.001, ink);
   for (const side of [-1, 1]) {
     display('AUX', side * 0.225, 2.674, 0.1016, 0.0762);
     if (side === 1) {
-      txt('FPM', side * 0.225, 2.686, 0.006, green);
+      txt('FPM', side * 0.225, 2.686, 0.006, green, undefined, 'display');
       ins.readout(
         'vertical-speed',
         [side * 0.225, 2.663, z - 0.03],
@@ -798,7 +848,7 @@ function f22Cockpit(root, m) {
     }
   }
   // Projecting integrated control panel: photograph places it over the upper center display.
-  const icp = group(cabin, 'F22-ICP', [0, 2.66, z - 0.07]),
+  const icp = group(dashboard, 'F22-ICP', [0, 2.66, z - 0.07]),
     cd = detailKit(icp, icp.name);
   beveledBox(cd, [0.235, 0.155, 0.055], [0, 0, 0], black, 0.008);
   for (let j = 0; j < 9; j++)
@@ -825,26 +875,149 @@ function f22Cockpit(root, m) {
     txt(side === 1 ? 'WARN' : 'CAUT', side * 0.18, 2.763, 0.007, amber, -0.072);
   }
   // HUD optical combiner: geometry only, no invented conformal targeting symbology.
-  const hud = group(cabin, 'F22-HUD', [0, 2.89, 8.4]);
-  beveledBox(d, [0.23, 0.09, 0.22], [0, 2.8, 8.36], black, 0.008);
+  const hud = group(dashboard, 'F22-HUD', [0, 2.827, 8.3]);
+  beveledBox(d, [0.23, 0.04, 0.22], [0, 2.81, 8.26], black, 0.008);
   hud.rotation.x = -0.12;
   const ud = detailKit(hud, hud.name);
   const hc = [
     [-0.1, 0, 0],
-    [-0.105, 0.15, 0],
-    [-0.08, 0.19, 0],
-    [0.08, 0.19, 0],
-    [0.105, 0.15, 0],
+    [-0.105, 0.12, 0],
+    [-0.08, 0.16, 0],
+    [0.08, 0.16, 0],
+    [0.105, 0.12, 0],
     [0.1, 0, 0],
   ];
   sheet(ud, hc, m.glass, [0, 0, -1]);
   outline(ud, hc, 0.005, black);
-  ud.box([0.23, 0.06, 0.18], [0, -0.04, 0.05], black);
+  ud.box([0.23, 0.03, 0.18], [0, -0.015, 0.05], black);
   ud.finish();
   // Floor, side ledges and ACES-II inspired seat preserve actual depth around the panel.
-  d.box([0.9, 0.05, 1.7], [0, 1.855, 7.34], panel);
+  const tub = detailKit(cabin, 'F22-cockpit-tub');
+  tub.box([1.04, 0.05, 2.15], [0, 1.855, 7.475], panel);
+  const wallSections = [6.4, 6.55, 7.2, 7.9, 8.55, 9.05].map((z) => sectionAt(canopySections, z));
   for (const side of [-1, 1]) {
-    d.box([0.17, 0.14, 1.2], [side * 0.4, 2.13, 7.18], panel);
+    const wall = wallSections.map(([z, width, base]) => {
+      const [, bodyWidth, , top] = sectionAt(fore, z);
+      return [
+        [side * (width - 0.025), base - 0.012, z],
+        [side * (bodyWidth * 0.7 - 0.025), top - 0.07, z],
+        [side * Math.min(0.52, width + 0.15), 2.37, z],
+        [side * 0.51, 1.88, z],
+      ];
+    });
+    for (let i = 0; i < wall.length - 1; i++) {
+      for (let j = 0; j < wall[i].length - 1; j++)
+        quad(tub, wall[i][j], wall[i + 1][j], wall[i + 1][j + 1], wall[i][j + 1], panel, [
+          -side,
+          0,
+          0,
+        ]);
+      const [za, wa, ya] = wallSections[i],
+        [zb, wb, yb] = wallSections[i + 1];
+      quad(
+        tub,
+        wall[i][0],
+        wall[i + 1][0],
+        [side * wb, yb + 0.006, zb],
+        [side * wa, ya + 0.006, za],
+        black,
+        [0, 1, 0],
+      );
+    }
+    outline(
+      tub,
+      wall.map((points) => points[0]),
+      0.025,
+      black,
+      false,
+    );
+    for (const row of wall.slice(1, -1)) {
+      outline(tub, row, 0.01, panel, false);
+      tub.add(new T.SphereGeometry(0.004, 8, 4), m.metal, [
+        row[0][0] - side * 0.008,
+        row[0][1] - 0.035,
+        row[0][2],
+      ]);
+    }
+  }
+  for (const [z, top, halfWidth, normal] of [
+    [6.4, 2.738, 0.3275, 1],
+    [8.55, 2.558, 0.445, -1],
+  ])
+    sheet(
+      tub,
+      [
+        [-0.51, 1.88, z],
+        [0.51, 1.88, z],
+        [0.52, 2.37, z],
+        [halfWidth, top, z],
+        [0, top, z],
+        [-halfWidth, top, z],
+        [-0.52, 2.37, z],
+      ],
+      panel,
+      [0, 0, normal],
+    );
+  // Wrapped glare shield reaches the forward canopy sill, covering the exterior
+  // forebody from the pilot's view. Its narrow nose stays below the sightline.
+  const cowl = [
+    {
+      z: 8.23,
+      points: [
+        [-0.295, 2.926],
+        [0, 2.926],
+        [0.295, 2.926],
+      ],
+    },
+    {
+      z: 8.55,
+      points: [
+        [-0.445, 2.56],
+        [0, 2.79],
+        [0.445, 2.56],
+      ],
+    },
+    {
+      z: 9.05,
+      points: [
+        [-0.295, 2.51],
+        [0, 2.57],
+        [0.295, 2.51],
+      ],
+    },
+    {
+      z: 9.45,
+      points: [
+        [0, 2.425],
+        [0, 2.425],
+        [0, 2.425],
+      ],
+    },
+  ];
+  for (let i = 0; i < cowl.length - 1; i++)
+    for (let j = 0; j < 2; j++)
+      quad(
+        tub,
+        [...cowl[i].points[j], cowl[i].z],
+        [...cowl[i + 1].points[j], cowl[i + 1].z],
+        [...cowl[i + 1].points[j + 1], cowl[i + 1].z],
+        [...cowl[i].points[j + 1], cowl[i].z],
+        black,
+        [0, 1, 0],
+      );
+  for (const side of [-1, 1]) {
+    const cheek = [
+      [side * 0.352, 2.959, 7.936],
+      [side * 0.451, 2.563, 7.936],
+      [side * 0.535, 2.618, 7.9],
+      [side * 0.445, 2.56, 8.55],
+      [side * 0.295, 2.926, 8.23],
+    ];
+    sheet(tub, cheek, black, [-side, 1, -1]);
+    outline(tub, cheek.slice(0, 3), 0.018, panel, false);
+  }
+  for (const side of [-1, 1]) {
+    tub.box([0.2, 0.14, 1.2], [side * 0.415, 2.13, 7.18], panel);
     const g = group(cabin, `F22-console-${side}`, [side * 0.4, 2.205, 7.18]);
     g.rotation.x = Math.PI / 2;
     const gd = detailKit(g, g.name);
@@ -933,7 +1106,7 @@ function f22Cockpit(root, m) {
       scale: -side * 0.06,
     });
   }
-  const lamp = group(cabin, 'F22-gear-lamp', [0.37, 2.3, z - 0.03]),
+  const lamp = group(dashboard, 'F22-gear-lamp', [0.37, 2.3, z - 0.03]),
     ld = detailKit(lamp, lamp.name);
   ld.box([0.012, 0.012, 0.004], [0, 0, 0], green);
   ld.finish();
@@ -946,5 +1119,6 @@ function f22Cockpit(root, m) {
   });
   txt('GEAR', 0.37, 2.28, 0.006);
   d.finish();
+  tub.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };
 }

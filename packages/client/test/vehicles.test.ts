@@ -204,6 +204,10 @@ describe('vehicle visuals', () => {
       return [c.x, c.z].map((value) => Math.round(value * 1000) / 1000);
     };
     expect(center(2)).toEqual([6, 0]);
+    // Bounds gathered while baking match three's own.
+    const exact = new THREE.Box3().setFromBufferAttribute(position as THREE.BufferAttribute);
+    expect(mesh.geometry.boundingBox?.equals(exact)).toBe(true);
+    expect(mesh.geometry.boundingSphere?.distanceToPoint(exact.max)).toBeLessThan(1e-5);
     const color = mesh.geometry.getAttribute('color');
     expect(new THREE.Color().fromBufferAttribute(color, ranges[2] as number).getHexString()).toBe(
       'aa2222',

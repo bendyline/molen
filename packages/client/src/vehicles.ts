@@ -1,6 +1,7 @@
-import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
+import type { LiveryData, VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { applyLivery } from './livery';
 import { createModelSignalVisual, type ModelSignalVisual } from './model-signals';
 import {
   createVehicleInteriorVisual,
@@ -14,6 +15,7 @@ export type { VehicleInteriorSignals, VehicleInteriorVisual } from './vehicle-in
 export { createVehicleInteriorVisual } from './vehicle-interior';
 
 export interface VehicleVisual {
+  setLivery(data: LiveryData | undefined): void;
   object: THREE.Object3D;
   interior?: VehicleInteriorVisual;
   /** The visual's exterior `animation` bindings, posed from the same signals as the interior. */
@@ -57,6 +59,7 @@ export function createVehicleVisual(
     color?: string;
     spec?: { length: number; cycle?: unknown };
   },
+  livery?: LiveryData,
 ): VehicleVisual {
   const interior =
     vehicle.visual.interior === undefined
@@ -71,7 +74,10 @@ export function createVehicleVisual(
   const wheels: Wheel[] = [];
   let steeringWheel: THREE.Object3D | undefined;
   // Types without a paint color keep the model's authored paint.
-  const color = vehicle.color !== undefined ? new THREE.Color(vehicle.color) : undefined;
+  const color =
+    livery === undefined && vehicle.color !== undefined
+      ? new THREE.Color(vehicle.color)
+      : undefined;
 
   model.traverse((object) => {
     object.userData.vehicleGeometry = true;
@@ -119,7 +125,12 @@ export function createVehicleVisual(
   if (vehicle.visual.steeringWheelNode !== undefined)
     steeringWheel = nodes.get(vehicle.visual.steeringWheelNode)?.[0];
 
+  let appearance = livery === undefined ? undefined : applyLivery(model, livery);
   return {
+    setLivery(data) {
+      appearance?.dispose();
+      appearance = data === undefined ? undefined : applyLivery(model, data);
+    },
     object: model,
     interior,
     animation,
@@ -149,6 +160,7 @@ export function createVehicleVisual(
       animation?.update(telemetry, timeSeconds);
     },
     dispose() {
+      appearance?.dispose();
       const geometries = new Set<THREE.BufferGeometry>();
       const materials = new Set<THREE.Material>();
       model.traverse((object) => {
@@ -173,6 +185,7 @@ const parkedMaterial = new THREE.MeshStandardMaterial({
   metalness: 0.12,
 });
 const parkedTemplates = new Map<string, THREE.BufferGeometry>();
+const paints = new Map<string, THREE.Color>();
 
 function coloredBox(
   x: number,
@@ -212,19 +225,33 @@ export interface VehicleProxyDimensions {
  * Cached by dimensions; never dispose the returned geometry.
  */
 export function vehicleProxyGeometry(dimensions: VehicleProxyDimensions): THREE.BufferGeometry {
-  return parkedTemplate(dimensions, '#ffffff');
+  return parkedTemplate(dimensions);
 }
 
 /** The shared vertex-coloured material of parked and proxy vehicles. */
 export const vehicleProxyMaterial: THREE.MeshStandardMaterial = parkedMaterial;
 
-/** Generic dimension-driven proxy used only for large dormant parking batches. */
-function parkedTemplate(spec: VehicleProxyDimensions, color: string): THREE.BufferGeometry {
-  const key = `${spec.width}:${spec.length}:${spec.height}:${spec.wheelbase}:${color}`;
+/**
+ * Generic dimension-driven proxy used only for large dormant parking batches, its body white:
+ * the body is its first `userData.bodyVertices` vertices, painted as a batch bakes it. A template
+ * per paint as well was dozens built for a tile's first cars, 7 ms of one frame.
+ */
+function parkedTemplate(spec: VehicleProxyDimensions): THREE.BufferGeometry {
+  const key = `${spec.width}:${spec.length}:${spec.height}:${spec.wheelbase}`;
   const cached = parkedTemplates.get(key);
   if (cached !== undefined) return cached;
+  const body = coloredBox(
+    0,
+    spec.height * 0.34,
+    0,
+    spec.width,
+    spec.height * 0.48,
+    spec.length,
+    '#ffffff',
+  );
+  const bodyVertices = body.getAttribute('position').count;
   const parts = [
-    coloredBox(0, spec.height * 0.34, 0, spec.width, spec.height * 0.48, spec.length, color),
+    body,
     coloredBox(
       0,
       spec.height * 0.72,
@@ -263,6 +290,7 @@ function parkedTemplate(spec: VehicleProxyDimensions, color: string): THREE.Buff
   for (const part of parts) part.dispose();
   geometry.computeBoundingBox();
   geometry.computeBoundingSphere();
+  geometry.userData.bodyVertices = bodyVertices;
   parkedTemplates.set(key, geometry);
   return geometry;
 }
@@ -280,7 +308,7 @@ export function createParkedVehicleBatch(
   const group = new THREE.Group();
   group.name = 'surface:parked-cars';
   if (placements.length === 0) return group;
-  const templates = placements.map((placement) => parkedTemplate(placement.spec, placement.color));
+  const templates = placements.map((placement) => parkedTemplate(placement.spec));
   const vertices = templates.reduce(
     (sum, template) => sum + template.getAttribute('position').count,
     0,
@@ -290,11 +318,13 @@ export function createParkedVehicleBatch(
   const colors = new Float32Array(vertices * 3);
   const ranges = new Uint32Array(placements.length * 2);
   const matrix = new THREE.Matrix4();
-  const normalMatrix = new THREE.Matrix3();
   const rotation = new THREE.Quaternion();
   const position = new THREE.Vector3();
   const scale = new THREE.Vector3(1, 1, 1);
-  const vertex = new THREE.Vector3();
+  // The batch's bounds, gathered while baking: three's own pass reads every vertex twice more
+  // through per-vertex accessors, most of assembling a town tile's surface on the main thread.
+  const min = new THREE.Vector3(Infinity, Infinity, Infinity);
+  const max = new THREE.Vector3(-Infinity, -Infinity, -Infinity);
   let offset = 0;
   placements.forEach((placement, index) => {
     const template = templates[index] as THREE.BufferGeometry;
@@ -307,22 +337,57 @@ export function createParkedVehicleBatch(
       new THREE.Euler(placement.pitch ?? 0, placement.yaw, placement.roll ?? 0, 'YXZ'),
     );
     matrix.compose(position, rotation, scale);
-    normalMatrix.getNormalMatrix(matrix);
-    const source = template.getAttribute('position');
-    const sourceNormals = template.getAttribute('normal');
-    const sourceColors = template.getAttribute('color');
-    for (let i = 0; i < source.count; i++) {
-      vertex
-        .fromBufferAttribute(source, i)
-        .applyMatrix4(matrix)
-        .toArray(positions, (offset + i) * 3);
-      vertex
-        .fromBufferAttribute(sourceNormals, i)
-        .applyMatrix3(normalMatrix)
-        .normalize()
-        .toArray(normals, (offset + i) * 3);
-      vertex.fromBufferAttribute(sourceColors, i).toArray(colors, (offset + i) * 3);
+    // Straight from the template's float arrays: a town tile's few hundred cars are tens of
+    // thousands of vertices, baked on the main thread as each surface tile arrives. The car is
+    // only turned and moved, so its normals turn with the same rotation and stay unit length.
+    const e = matrix.elements;
+    const points = template.getAttribute('position').array as Float32Array;
+    const sourceNormals = template.getAttribute('normal').array as Float32Array;
+    const base = offset * 3;
+    for (let i = 0; i < points.length; i += 3) {
+      const x = points[i] as number,
+        y = points[i + 1] as number,
+        z = points[i + 2] as number;
+      // Rounded as stored, so the bounds are exactly the geometry's.
+      const px = Math.fround(
+        (e[0] as number) * x + (e[4] as number) * y + (e[8] as number) * z + (e[12] as number),
+      );
+      const py = Math.fround(
+        (e[1] as number) * x + (e[5] as number) * y + (e[9] as number) * z + (e[13] as number),
+      );
+      const pz = Math.fround(
+        (e[2] as number) * x + (e[6] as number) * y + (e[10] as number) * z + (e[14] as number),
+      );
+      positions[base + i] = px;
+      positions[base + i + 1] = py;
+      positions[base + i + 2] = pz;
+      if (px < min.x) min.x = px;
+      if (px > max.x) max.x = px;
+      if (py < min.y) min.y = py;
+      if (py > max.y) max.y = py;
+      if (pz < min.z) min.z = pz;
+      if (pz > max.z) max.z = pz;
+      const nx = sourceNormals[i] as number,
+        ny = sourceNormals[i + 1] as number,
+        nz = sourceNormals[i + 2] as number;
+      normals[base + i] = (e[0] as number) * nx + (e[4] as number) * ny + (e[8] as number) * nz;
+      normals[base + i + 1] = (e[1] as number) * nx + (e[5] as number) * ny + (e[9] as number) * nz;
+      normals[base + i + 2] =
+        (e[2] as number) * nx + (e[6] as number) * ny + (e[10] as number) * nz;
     }
+    colors.set(template.getAttribute('color').array as Float32Array, base);
+    let paint = paints.get(placement.color);
+    if (paint === undefined) {
+      paint = new THREE.Color(placement.color);
+      paints.set(placement.color, paint);
+    }
+    const body = base + (template.userData.bodyVertices as number) * 3;
+    for (let i = base; i < body; i += 3) {
+      colors[i] = paint.r;
+      colors[i + 1] = paint.g;
+      colors[i + 2] = paint.b;
+    }
+    const source = template.getAttribute('position');
     ranges[index * 2] = offset;
     ranges[index * 2 + 1] = source.count;
     offset += source.count;
@@ -331,8 +396,8 @@ export function createParkedVehicleBatch(
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
   geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-  geometry.computeBoundingBox();
-  geometry.computeBoundingSphere();
+  geometry.boundingBox = new THREE.Box3(min, max);
+  geometry.boundingSphere = geometry.boundingBox.getBoundingSphere(new THREE.Sphere());
   const mesh = new THREE.Mesh(geometry, parkedMaterial);
   mesh.name = 'vehicle:parked';
   mesh.userData.vehicleIds = placements.map((placement) => placement.id);

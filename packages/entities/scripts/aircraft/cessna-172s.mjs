@@ -3,6 +3,7 @@
  * The published three-view is schematic: see reference-review.json for residuals.
  */
 import { panelTools } from '../vehicle-interiors.mjs';
+import { finishCockpit } from './cockpit-surfaces.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -470,6 +471,7 @@ function cockpit(root, m) {
   const { bindings, derived, ink, black, red } = instruments;
   const face = mat('Skyhawk-panel', '#666861'),
     seats = mat('Skyhawk-seats', '#b5afa0'),
+    piping = mat('Skyhawk-upholstery-piping', '#898579', { metalness: 0, roughness: 0.9 }),
     belt = mat('Skyhawk-belts', '#454b49', { side: T.DoubleSide });
   const k = 0.29972 / 334,
     px = (u) => (700 - u) * k,
@@ -522,18 +524,8 @@ function cockpit(root, m) {
     m.dark,
     [0, 0, 1],
   );
-  const brow = [
-    [133, 400],
-    [130, 230],
-    [137, 125],
-    [170, 67],
-    [300, 40],
-    [700, 27],
-    [1100, 42],
-    [1235, 74],
-    [1255, 165],
-    [1251, 360],
-  ].map(([u, v]) => at(u, v, -0.01));
+  // Panel, coaming and padded rail use the same contour at every bend.
+  const brow = edge.map(([u, v]) => at(u, v));
   outline(d, brow, 0.014, m.dark, false);
   const deckY = (x) =>
     1.554 - (Math.abs(x) < 0.4 ? Math.abs(x) * 0.0625 : 0.025 + (Math.abs(x) - 0.4) * 0.92);
@@ -618,7 +610,7 @@ function cockpit(root, m) {
   for (let value = 20; value <= 200; value += 10) {
     const row = group(tape, `Skyhawk-speed-tape-${value}`, [0, value * 0.001, 0]),
       dd = detailKit(row, row.name);
-    dd.text(String(value), [0.002, 0, 0], 0.0045, Math.PI, ink);
+    dd.text(String(value), [0.002, 0, 0], 0.0045, Math.PI, ink, 'display');
     dd.rod([-0.008, 0, 0], [-0.014, 0, 0], 0.0004, ink);
     dd.finish();
     const distance = `tape.${value}.distance`,
@@ -651,8 +643,8 @@ function cockpit(root, m) {
     true,
     true,
   );
-  d.text('TAS', [sx + 0.083, sy + 0.065, z + 0.001], 0.006, Math.PI, ink);
-  d.text('GEO FT', [sx - 0.081, sy + 0.047, z + 0.001], 0.005, Math.PI, ink);
+  d.text('TAS', [sx + 0.083, sy + 0.065, z + 0.001], 0.006, Math.PI, ink, 'display');
+  d.text('GEO FT', [sx - 0.081, sy + 0.047, z + 0.001], 0.005, Math.PI, ink, 'display');
   const vsi = group(cabin, 'Skyhawk-VSI', [sx - 0.101, sy + 0.025, z + 0.001]),
     vd = detailKit(vsi, 'VSI');
   vd.rod([-0.002, 0, 0], [0.002, 0.002, 0], 0.0008, ink);
@@ -689,6 +681,7 @@ function cockpit(root, m) {
         0.004,
         Math.PI,
         ink,
+        'display',
       );
   }
   hr.finish();
@@ -702,9 +695,9 @@ function cockpit(root, m) {
     responseSeconds: 0.15,
   });
   instruments.available('heading', 'trueHeading', rose.name);
-  d.text('TRUE', [sx, sy - 0.013, z + 0.001], 0.004, Math.PI, ink);
+  d.text('TRUE', [sx, sy - 0.013, z + 0.001], 0.004, Math.PI, ink, 'display');
   d.rod([sx, sy - 0.024, z - 0.001], [sx, sy - 0.029, z - 0.001], 0.001, instruments.amber);
-  d.text('NAV --  COM --', [sx, sy + 0.071, z + 0.001], 0.005, Math.PI, ink);
+  d.text('NAV --  COM --', [sx, sy + 0.071, z + 0.001], 0.005, Math.PI, ink, 'display');
   // MFD engine sidebar. Oil, fuel, electrical and map data remain explicitly unavailable.
   const mx = px(839),
     my = py(215);
@@ -728,10 +721,10 @@ function cockpit(root, m) {
     ['FUEL --', -0.031],
     ['VOLTS --', -0.046],
   ])
-    d.text(label, [mx + 0.072, my + yy, z], 0.005, Math.PI, ink);
+    d.text(label, [mx + 0.072, my + yy, z], 0.005, Math.PI, ink, 'display');
   d.rod([mx + 0.042, my - 0.074, z], [mx + 0.042, my + 0.074, z], 0.0006, ink);
-  d.text('MAP DATA', [mx - 0.025, my + 0.012, z], 0.009, Math.PI, ink);
-  d.text('UNAVAILABLE', [mx - 0.025, my - 0.003, z], 0.007, Math.PI, ink);
+  d.text('MAP DATA', [mx - 0.025, my + 0.012, z], 0.009, Math.PI, ink, 'display');
+  d.text('UNAVAILABLE', [mx - 0.025, my - 0.003, z], 0.007, Math.PI, ink, 'display');
   // Central GMA1347: 1.3 x 7.7 inches, double pushbutton rows and two concentric knobs.
   d.box([0.03302, 0.19558, 0.012], at(627, 215, -0.008), black);
   for (let i = 0; i < 11; i++)
@@ -789,8 +782,17 @@ function cockpit(root, m) {
       ink,
     );
   }
-  for (const u of [182, 211])
-    d.box([0.013, 0.026, 0.01], at(u, 310, -0.013), u === 182 ? red : ink);
+  for (const u of [182, 211]) {
+    const rocker = group(cabin, `Skyhawk-master-${u}`, at(u, 310, -0.013));
+    const rd = detailKit(rocker, rocker.name);
+    rd.box([0.013, 0.026, 0.01], [0, 0, 0], u === 182 ? red : ink);
+    if (u === 182)
+      rocker.userData.aircraftControl = {
+        action: 'engine',
+        motion: { property: 'rotation', axis: 'x', scale: -0.5 },
+      };
+    rd.finish();
+  }
   d.text('172S', at(1130, 190, -0.01), 0.012, Math.PI, ink);
   d.text('NAV III', at(1130, 215, -0.01), 0.008, Math.PI, ink);
   for (const u of [150, 1210]) pt.vent(px(u), py(360), z - 0.008, 'round', 0.045);
@@ -839,13 +841,19 @@ function cockpit(root, m) {
     axis: 'z',
     scale: 0.055,
   });
-  d.rod(at(741, 536, -0.01), at(741, 536, -0.084), 0.007, m.metal);
-  d.add(
-    new T.CylinderGeometry(0.018, 0.018, 0.025, 10).rotateX(Math.PI / 2),
-    red,
-    at(741, 536, -0.095),
-  );
-  d.box([0.02, 0.026, 0.025], at(870, 500, -0.035), ink);
+  const mixture = group(cabin, 'Skyhawk-mixture', at(741, 536, -0.01));
+  const md = detailKit(mixture, mixture.name);
+  md.rod([0, 0, 0], [0, 0, -0.074], 0.007, m.metal);
+  md.add(new T.CylinderGeometry(0.018, 0.018, 0.025, 10).rotateX(Math.PI / 2), red, [0, 0, -0.085]);
+  md.finish();
+  const flapSelector = group(cabin, 'Skyhawk-flap-selector', at(870, 500, -0.035));
+  const fd = detailKit(flapSelector, flapSelector.name);
+  fd.box([0.02, 0.026, 0.025], [0, 0, 0], ink);
+  flapSelector.userData.aircraftControl = {
+    action: 'flaps',
+    motion: { property: 'position', axis: 'y', scale: -0.028 },
+  };
+  fd.finish();
   d.text('FLAPS', at(870, 529, -0.025), 0.005, Math.PI, ink);
   d.box([0.16, 0.34, 0.23], [0, 0.78, 0.93], black);
   d.ring(0.065, 0.009, [0.06, 0.87, 0.83], black, 'x');
@@ -859,6 +867,13 @@ function cockpit(root, m) {
       beveledBox(d, [0.43, 0.105, 0.46], [x, 0.81, zz], seats);
       beveledBox(d, [0.43, 0.47, 0.105], [x, 1.06, zz - 0.2], seats);
       beveledBox(d, [0.22, 0.13, 0.09], [x, 1.36, zz - 0.22], seats, 0.014);
+      // Sewn cushion channels and perimeter welting; retain the measured seat envelope.
+      for (const sx of [-0.16, 0.16]) {
+        d.rod([x + sx, 0.865, zz - 0.16], [x + sx, 0.865, zz + 0.17], 0.002, piping);
+        d.rod([x + sx, 0.87, zz - 0.145], [x + sx, 1.25, zz - 0.145], 0.002, piping);
+      }
+      for (const yy of [0.94, 1.04, 1.14])
+        d.rod([x - 0.15, yy, zz - 0.146], [x + 0.15, yy, zz - 0.146], 0.0015, piping);
       for (const side of [-1, 1])
         d.rod(
           [x + side * 0.14, 0.64, zz - 0.15],
@@ -897,5 +912,11 @@ function cockpit(root, m) {
     }
   }
   d.finish();
+  finishCockpit(cabin, (mesh) => {
+    // Surface preparation may clone materials; names remain stable through batching.
+    if (mesh.material.name === face.name) return 'panel';
+    if ([seats.name, piping.name].includes(mesh.material.name)) return 'vinyl';
+    if (mesh.material.name === belt.name) return 'webbing';
+  });
   return { nodes: ['cockpit'], sources, derived, bindings };
 }

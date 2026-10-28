@@ -1,6 +1,6 @@
 /** Detailed individual exteriors for the next skyline candidates. Meter units. */
 import { ShapeUtils, Vector2 } from 'three';
-import { beam, loft, normalFor, radialRing, torus } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing, torus } from './authored-structure-mesh.mjs';
 import {
   axes,
   bandPlan,
@@ -723,8 +723,7 @@ function gothicWall(out, plan, y0, y1, dy = 3.8, color = [0.83, 0.8, 0.7]) {
             at(-w / 2, y + h * 0.64),
           ];
           for (let k = 1; k < 4; k++) tri(out, 'glass', [q[0], q[k], q[k + 1]], [0.19, 0.23, 0.22]);
-          for (let k = 0; k < q.length; k++)
-            beam(out, 'cladding', q[k], q[(k + 1) % q.length], 0.11, 0.15, [0.9, 0.86, 0.75]);
+          beamPath(out, 'cladding', q.slice(0, q.length), 0.11, 0.15, [0.9, 0.86, 0.75], true);
           beam(out, 'cladding', at(0, y), at(0, y + h * 0.75), 0.07, 0.1, [0.87, 0.83, 0.73]);
         } else
           panel(
@@ -1496,8 +1495,7 @@ function buildLakhta(out, m) {
     }
   for (const y of [78, 153, 228, 303, 357, 404]) {
     const p = plan.map((_, e) => point(e, 0, y));
-    for (let i = 0; i < p.length; i++)
-      beam(out, 'metal', p[i], p[(i + 1) % p.length], 0.15, 0.22, [0.62, 0.69, 0.72]);
+    beamPath(out, 'metal', p.slice(0, p.length), 0.15, 0.22, [0.62, 0.69, 0.72], true);
   }
   const roof = plan.map((_, e) => point(e, 0, 449));
   cap(out, 'metal', roof, [0.67, 0.72, 0.75]);

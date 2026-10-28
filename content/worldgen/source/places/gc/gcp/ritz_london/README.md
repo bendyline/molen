@@ -22,4 +22,4 @@ Original simplified ironwork, stone balustrades and roof ornament; no copied pho
 
 Independent terrain is unchanged. Deep foundation accommodates the rearward slope; exact contact can differ on another host DEM.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ritz_london`. Add `--check` to verify exact regeneration. 55849 triangles; 7 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ritz_london`. Add `--check` to verify exact regeneration. 55785 triangles; 7 materials; no embedded photographs.

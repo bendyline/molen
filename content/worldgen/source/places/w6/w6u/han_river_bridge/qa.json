@@ -1,0 +1,579 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.han_river_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:75e01d985e55d6073072db9459050a4fcb23854c09ebe7fe9031adaff226c9e7",
+  "sourceHash": "sha256:30b5fa97e36cb423312d82051d190e96eef4df074c30549b85b65ba5147e634c",
+  "runtimeHash": "sha256:8df00e1a1c7d505cd14b2616a6aa69d0bc9dac58920825a928536abe31d0c5ed",
+  "captureReportHash": "sha256:d795acda7e17a238f794f5c9cb1bf10ae2453f83af6d272cd5b7e7d6b4dcc25f",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-crossing-and-central-swing.png",
+      "shots/blue-a-mast-and-pivot.png",
+      "shots/road-under-a-frame.png",
+      "shots/perforated-turntable-drum.png",
+      "shots/haunched-approach-and-girders.png",
+      "shots/brick-walk-rails-and-crescent-lamp.png"
+    ],
+    "captureReportHash": "sha256:d795acda7e17a238f794f5c9cb1bf10ae2453f83af6d272cd5b7e7d6b4dcc25f",
+    "notes": "Inspected62 current frames:11 portable,11 shared-material/geographic,23 medium-fi and17 native. Complete closed-road crossing: blue A-frame and four stay-fan quadrants, pale flower crown, blue swing deck, round pivot drum with real portholes, haunched concrete approaches/green girders/rounded piers, brick walks, pale/red rails and crescent-arm lamps. Corrected short landing coverage/cross-slopes and missing skirt-panel corners during this same pass; all4062 geometry probes cover the final outputs. Full-scale turntables and the flat footprint-check image are thin; dedicated mast/driver/drum/approach/native cameras establish detail readability."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-crossing-and-central-swing.png",
+      "shots/shared/blue-a-mast-and-pivot.png",
+      "shots/shared/road-under-a-frame.png",
+      "shots/shared/perforated-turntable-drum.png",
+      "shots/shared/haunched-approach-and-girders.png",
+      "shots/shared/brick-walk-rails-and-crescent-lamp.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:68e649aebbd61057ed8c47f2ce3870d5020110e9563f0c07a6632beb94e66192",
+    "notes": "Three existing shared256px concrete_plain, metal_painted and brick graphs, metric UVs and linear vertex tints. Four semantic material groups share these three graphs; skyline is one untextured tinted group. No private/embedded images, downloaded meshes or copied photograph pixels. Each graph loads once per native scenario and all model/support geometry disposes."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-crossing-and-central-swing.png",
+      "medium-fi/blue-a-mast-and-pivot.png",
+      "medium-fi/road-under-a-frame.png",
+      "medium-fi/perforated-turntable-drum.png",
+      "medium-fi/haunched-approach-and-girders.png",
+      "medium-fi/brick-walk-rails-and-crescent-lamp.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:2c2f3a37a2644aace759119fb680de43a8a5449cb3726fc565d5a112bfc4bc0b",
+    "notes": "Master 58236 triangles / 6991248 bytes. Runtime triangles 652 / 3868 / 14240 / 44980, bytes 56380 / 291116 / 1040868 / 3682936, draws 1 / 4 / 4 / 4. Initial skyline plus district 347496 bytes. Actual1000/4000/16000/64000 triangle budgets pass; physical-device timings remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:20dacc158f9a7fdea4c0443e570b5399f0961e1f455f4faef16efb7d167e8e5f",
+    "mapFrameHash": "sha256:f64d553df2ba6e1a2023f5d0899bf005c5e9d4fb08aa3940c0e962dcad00a700",
+    "notes": "Full494.584m named current PMTiles crossing35185068437310 plus northern sidewalk35185860725086; the catalog exact-QID way1164109461 covers only219m of its east side. Anchor[108.22713375091553,16.072193307553448], heading0.13557996741569242: +X east-northeast/Sơn Trà, -X west-southwest/Hải Châu, +Z south-southeast. No exact-QID full-current-way claim. The approximate catalog pivot is projected onto the road, discarding its15.267m lateral offset. Nominal487.7m extent,12.9m width,25m pylon rise and120m swing section retain their approximate scope. The source adds3m flared bank aprons rather than rescaling the crossing. At every LOD all18 actual apron-boundary samples have model support;15 paved samples meet within 0.00880774524739536m and three outer samples join unpaved ground. Fifteen mapped road/path width samples covered inside these source ramps establish coverage, not additional seam measurements."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped complete closed-road/static swing-bridge exterior and approximate native placement. Master 58236 triangles / 6991248 bytes. Runtime triangles 652 / 3868 / 14240 / 44980, bytes 56380 / 291116 / 1040868 / 3682936, draws 1 / 4 / 4 / 4. Initial skyline plus district 347496 bytes. Actual1000/4000/16000/64000 triangle budgets pass; physical-device timings remain unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w6/w6u/han_river_bridge/models/source.glb\",\"hash\":\"sha256:30b5fa97e36cb423312d82051d190e96eef4df074c30549b85b65ba5147e634c\",\"bytes\":6991248,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/w6/w6u/han_river_bridge/model.glb\",\"hash\":\"sha256:8df00e1a1c7d505cd14b2616a6aa69d0bc9dac58920825a928536abe31d0c5ed\",\"bytes\":6990780,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w6/w6u/han_river_bridge/model.skyline.glb\",\"hash\":\"sha256:69a263375e0a4f1940612f014c86f47373e2ce1e8fa719825663eefd2eb009b3\",\"bytes\":56380,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w6/w6u/han_river_bridge/model.district.glb\",\"hash\":\"sha256:1a01993b672560ea2f0840b35f0d5b8cad03ee9ff8fe7021f6ad7793a7851400\",\"bytes\":291116,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w6/w6u/han_river_bridge/model.street.glb\",\"hash\":\"sha256:9b9f7d3de0e03d7833174c59ab2543cea6a5e7d774f0454a0d0a45e5d82ff8ad\",\"bytes\":1040868,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w6/w6u/han_river_bridge/model.closeup.glb\",\"hash\":\"sha256:c704bebc00b6fb403d9ef6ed80f489d3e448e96e40f61fc4aaf45811fc56d300\",\"bytes\":3682936,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "full-deck-a-portal-stays-open-portholes-closed-skirt-corners-and-native-aprons",
+        "passed": true,
+        "notes": "4062 actual front-face probes across six GLBs verify measured deck width, edge walks, A-leg/portal, four stay quadrants, genuine portholes/solid surrounding corners and fitted bank cross-slopes."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks pass; sha256:9f8426ec4364e7b5011c01dd8a11695b46ca378715e0745d7e99960ef47f2a7d."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:75e01d985e55d6073072db9459050a4fcb23854c09ebe7fe9031adaff226c9e7",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Full494.584m named current PMTiles crossing35185068437310 plus northern sidewalk35185860725086; the catalog exact-QID way1164109461 covers only219m of its east side. Anchor[108.22713375091553,16.072193307553448], heading0.13557996741569242: +X east-northeast/Sơn Trà, -X west-southwest/Hải Châu, +Z south-southeast. No exact-QID full-current-way claim. The approximate catalog pivot is projected onto the road, discarding its15.267m lateral offset. Nominal487.7m extent,12.9m width,25m pylon rise and120m swing section retain their approximate scope. The source adds3m flared bank aprons rather than rescaling the crossing. At every LOD all18 actual apron-boundary samples have model support;15 paved samples meet within 0.00880774524739536m and three outer samples join unpaved ground. Fifteen mapped road/path width samples covered inside these source ramps establish coverage, not additional seam measurements."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:75e01d985e55d6073072db9459050a4fcb23854c09ebe7fe9031adaff226c9e7",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected62 current frames:11 portable,11 shared-material/geographic,23 medium-fi and17 native. Complete closed-road crossing: blue A-frame and four stay-fan quadrants, pale flower crown, blue swing deck, round pivot drum with real portholes, haunched concrete approaches/green girders/rounded piers, brick walks, pale/red rails and crescent-arm lamps. Corrected short landing coverage/cross-slopes and missing skirt-panel corners during this same pass; all4062 geometry probes cover the final outputs. Full-scale turntables and the flat footprint-check image are thin; dedicated mast/driver/drum/approach/native cameras establish detail readability.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/scene-preview.png",
+          "hash": "sha256:67c2f9b9c64488f8863ae28a2f5a026e1bc96f18afe059fef875eebd18e2f53c"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:b7df39ddb490aa200af6189fb37c8b2684e376366607f0e409d590d61dcebaed"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:4afd745665899eba4663b37f68b75236ba608d49e077b6ca1c8186e2775ca49a"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:ea64e3c9c97712a33167a19ec868ec3287e56b7b4fcc9081977172d080477941"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:64d77ac23724ddf4379e804dae199c7c764cd813d151c83e347e74aaed57aadd"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/whole-crossing-and-central-swing.png",
+          "hash": "sha256:67c2f9b9c64488f8863ae28a2f5a026e1bc96f18afe059fef875eebd18e2f53c"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/blue-a-mast-and-pivot.png",
+          "hash": "sha256:7f76c85e4c56585cccc414ba44df06c28e999111fcf0d3ac77f4930a5eeefecc"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/road-under-a-frame.png",
+          "hash": "sha256:2af89f97df306620a3f8fb937395bd263dbbd8538100ffba9442f624539fb425"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/perforated-turntable-drum.png",
+          "hash": "sha256:fc59ca31340fe25b2c701ba4cc5967695ddc51df50262892658201670ed5079b"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/haunched-approach-and-girders.png",
+          "hash": "sha256:1113d6902fa9e8b9fa2b7ab71f9e1044950e99e14e3e855bc8c1c7623500e1f2"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/brick-walk-rails-and-crescent-lamp.png",
+          "hash": "sha256:45ddf8cec71fd175a57e776ab69c9371e8aac77aaecdefbcb7203e0be3cd5c8c"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:86853293eaf51921e52ee1c8df3078830d70c2b24738b500ded7a1047b702f71"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:6ed1a998edcdb11ee864e39d2055e0879f4e3841f825c3b013a189790ac50611"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:15bfb515c7714fc9ba8e45dae96ee4e554c4d1e244a079132af5b52912ff5363"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:fcc7e1d118b77e4aff585464636974d2e2c2f8ca1b7ce6aa596bb01b38ceadd4"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/whole-crossing-and-central-swing.png",
+          "hash": "sha256:e9b51527a204edfe6faf136f51f08f8b1aea36f6a50dabbab81c103e47238f8a"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/blue-a-mast-and-pivot.png",
+          "hash": "sha256:0857912eaae061b362f2c1c29a902bc24b04fc9f365d09748e41be10fb1e5790"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/road-under-a-frame.png",
+          "hash": "sha256:c5bd0c0ef356e63ac3160cd5305ed65f2a846e23080494196301b6252dadc853"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/perforated-turntable-drum.png",
+          "hash": "sha256:ebd04b56df87b32a7335eef42d28081e2fcbd97fbecb9e3fe1a1182fcee2322e"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/haunched-approach-and-girders.png",
+          "hash": "sha256:06de201e9e40a584c6271b0601581ee2c457016b18415e4be2f09de12d97f75d"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/brick-walk-rails-and-crescent-lamp.png",
+          "hash": "sha256:48b563657683a7f8d2e6cd340167e8f7a2aedf2c44940cd4c9a796de4ab77461"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/shots/shared/placement.png",
+          "hash": "sha256:817f78dcef62b03a832cf42a3b09dc9aafa873811a19bac40f3d535ff160ed6e"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:862aa3fd789fc0bbd190398f4fee56590d892ebe01b3b89a6e76fffe83735159"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:a7119fa0f8d77b2fa380a23acc60ea15d50c8d5bfbc333444c62fe8f87c68d2a"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:b4ab99f5dcc3d10223474236f6f541ee9241331f5e8d9d705978cb0719c371aa"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:8986a95f683fd372b39bc33dd27beedcfa6aea207be75303598eb888b2c9c169"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:c40f90575ecadb911b775f786314a492b5f9403347c178dedd799b639324053c"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:ed3378d4f0cd2b9b1fd031ca28e52d0dd7ba29ac1f2b77c0deea608af7a9ca97"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:712639ab634b469613c675fbbca126a7e6378b6cb2f788647e9448f22f027511"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:2540808fc09ecb7d8288def850cb233c6730594e28acdb7fb3888ab5868595cd"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:8d677e15bf26a63005e89e8baaece66812623071b3f084f5c78c8a63c3562d1f"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:0a97137b0889113ad9dd33b29f1100fec1f72984db67cc8c784a422a4dec5a9d"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:4410d0bbfc9963ddd2fd542cdcd4886b9566106b0a22bf6dd67428c8175a8342"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:c8e0b0a526267986b5a3af9fbcddd9b17680383a1bbdf4573d65ce039195a481"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:e1e82a2044daacd7281305b4c8dd36fd9c033dc42be732a5fd078004224725cc"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/whole-crossing-and-central-swing.png",
+          "hash": "sha256:1d84088a7556a4e12fdac6df428a26ef9b3e2af51fb00d5176d1caf5e6543ba8"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/blue-a-mast-and-pivot.png",
+          "hash": "sha256:b51ba393cddd97e60d086d6623312805e43432918a91171c5ae3ce0c9a9f8e59"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/road-under-a-frame.png",
+          "hash": "sha256:c974700bb597bd467cbcf674c759633f616c41794c4490d6981d6fb6e2a4477a"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/perforated-turntable-drum.png",
+          "hash": "sha256:c23ed45adc493ddb1b61354ac33bbdbacd19ac3325f525572b8c24ff5ae307a2"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/haunched-approach-and-girders.png",
+          "hash": "sha256:acb94dae1e9cad051017a888c0af4564c70b86bcaadad869685824716d13c476"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/brick-walk-rails-and-crescent-lamp.png",
+          "hash": "sha256:9a2816d810927052a79d09936428d1ca109f36cb1e5ce5eb92cfe800317ffd1f"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:a4066a3693a40c5b78527b7a6c895b66b4c900f6d96858ccf1b7e89b918124b7"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:ed3378d4f0cd2b9b1fd031ca28e52d0dd7ba29ac1f2b77c0deea608af7a9ca97"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:a37bf30cd449ac9b7e2b1079be7f10c668e042d32ae5223eee4d67c3a9ba1bca"
+        },
+        {
+          "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:cb768bc8e8aa9a46d8b835db0e69be30e565174650fe80915a79e8623f897859"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-skyline-skyline-context.png",
+          "hash": "sha256:948d0fab4a9f1a0fa022413bfdf8b874f4b24357f8125460cad381137b998a87"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-district-district-context.png",
+          "hash": "sha256:e188e1ae5975cba4be9cc4bf6b724a3e8c7d2ce0f47b5cb502e462a8e8791a30"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-street-whole-crossing-and-central-swing.png",
+          "hash": "sha256:641facc176fb6cf0e66c987935c8ce70f41ee104d11b0142f4915ad54982006c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-street-blue-a-mast-and-pivot.png",
+          "hash": "sha256:1d5668e40d5ed307a80508d3bbc5fc1155860d47dcb6d337bb6714727ba6c09d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-street-road-under-a-frame.png",
+          "hash": "sha256:91c47e38c08688852ec5461318a3aea36d591b5f70058e864a5dacf2abde6baf"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-street-perforated-turntable-drum.png",
+          "hash": "sha256:049b6e02cbaba90c5b47e9a6cdba17ab89eab0a98d42bf3e8bcb58ee1393597b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-whole-crossing-and-central-swing.png",
+          "hash": "sha256:97a2b8e6c7e1684b2b5c2bacf037c7164080c9ddebcf88624615cc0a36510f8b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-blue-a-mast-and-pivot.png",
+          "hash": "sha256:02c132fb58672af2d6e9437c40d1abb2872ecbcb7b684a3443b9d0470da14b19"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-road-under-a-frame.png",
+          "hash": "sha256:e996b58fd06cd866b2e74a548a0fe43f25ca7bedaf63d4e5666e84c26e4d7565"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-perforated-turntable-drum.png",
+          "hash": "sha256:890304902f7aef765f4ab1363442a48407c98d42663a92fe7d57e3dd914a2868"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-haunched-approach-and-girders.png",
+          "hash": "sha256:cf895c3f26cc14c499b31d0b32c49c37c1c3eccf2f90339caafa1fc77418e0a7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-brick-walk-rails-and-crescent-lamp.png",
+          "hash": "sha256:cfe462da09cd55e6f09ae69d6bbe53c6b60ce3fef6dbafa1f4f297bc9b82d714"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-hai-chau-west-landing.png",
+          "hash": "sha256:cf82994608edd45ba37979442d0166f81571de85d26843512c473857bb56a272"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-son-tra-east-landing.png",
+          "hash": "sha256:9382c56b475b8aab77a152928cf342a363b50b5873eb5b1f3cccba452640d911"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-district-context.png",
+          "hash": "sha256:97a2b8e6c7e1684b2b5c2bacf037c7164080c9ddebcf88624615cc0a36510f8b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-closeup-economy-context.png",
+          "hash": "sha256:ea49ae29a90468ee9b1ccb9770b2879f867caaf16575a9a710722a31b32ff2ef"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\han-review/native/shots/final-review-failure-whole-crossing-and-central-swing.png",
+          "hash": "sha256:6ade7db48edb8de805324e23a8279842da3c2b30348d9d330d1e2c29d8ebac80"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All225 fixture buildings and73 independent road records remain. Successful replacement removes two fully replaced fragments from128 road records, leaving126; failure retains all128. Raw road inputs, DEM, displayed ground and water remain exact. Connected paving is deliberately graded and source-local short apron meshes fit its actual cross-slopes; no ground or building cutout is used. Failure preserves the original map and unload releases model/support geometry."
+    },
+    "nativeReport": {
+      "path": ".artifacts/han-review/native/final-review-report.json",
+      "hash": "sha256:b558d42b03d47bfab50af88797a93faaaaa443fa0c19907cd2dcd5e0e55db4a3"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "coveredInteriorRoadWidthSamples": 15,
+        "actualApronBoundarySamples": 18,
+        "pavedBoundarySamples": 15,
+        "maximumBoundaryErrorMeters": 0.00880774524739536,
+        "unpavedBoundarySamples": 3,
+        "sourceBuildings": 225,
+        "remainingBuildings": 225,
+        "sourceRoads": 128,
+        "outputRoadRecords": 126,
+        "independentRoadRecords": 73,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "coveredInteriorRoadWidthSamples": 15,
+        "actualApronBoundarySamples": 18,
+        "pavedBoundarySamples": 15,
+        "maximumBoundaryErrorMeters": 0.00880774524739536,
+        "unpavedBoundarySamples": 3,
+        "sourceBuildings": 225,
+        "remainingBuildings": 225,
+        "sourceRoads": 128,
+        "outputRoadRecords": 126,
+        "independentRoadRecords": 73,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.brick": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "coveredInteriorRoadWidthSamples": 15,
+        "actualApronBoundarySamples": 18,
+        "pavedBoundarySamples": 15,
+        "maximumBoundaryErrorMeters": 0.00880774524739536,
+        "unpavedBoundarySamples": 3,
+        "sourceBuildings": 225,
+        "remainingBuildings": 225,
+        "sourceRoads": 128,
+        "outputRoadRecords": 126,
+        "independentRoadRecords": 73,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.brick": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "coveredInteriorRoadWidthSamples": 15,
+        "actualApronBoundarySamples": 18,
+        "pavedBoundarySamples": 15,
+        "maximumBoundaryErrorMeters": 0.00880774524739536,
+        "unpavedBoundarySamples": 3,
+        "sourceBuildings": 225,
+        "remainingBuildings": 225,
+        "sourceRoads": 128,
+        "outputRoadRecords": 126,
+        "independentRoadRecords": 73,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.brick": 1
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "coveredInteriorRoadWidthSamples": 0,
+        "actualApronBoundarySamples": 0,
+        "pavedBoundarySamples": 0,
+        "maximumBoundaryErrorMeters": null,
+        "unpavedBoundarySamples": 0,
+        "sourceBuildings": 225,
+        "remainingBuildings": 225,
+        "sourceRoads": 128,
+        "outputRoadRecords": 128,
+        "independentRoadRecords": 73,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "metadataReconciliation": {
+    "kind": "cardinal-axis-wording-only",
+    "oldInputHash": "sha256:7957cc89c49187aecf5cde7fd1ffe51c4404bff2faf8fc63f2c4586affbeef2c",
+    "inputHash": "sha256:75e01d985e55d6073072db9459050a4fcb23854c09ebe7fe9031adaff226c9e7",
+    "changedFiles": [
+      {
+        "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/model-brief.json",
+        "beforeHash": "sha256:11b8b284073e050146e700992d40f11cc65c5b5ed10f49aa155007a63b9f9898",
+        "afterHash": "sha256:21bc8f8ae548543015d80cd1963e153cdd3595c4338953854a6b6494912d712f"
+      },
+      {
+        "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/map-frame.json",
+        "beforeHash": "sha256:1791dbd4806665dd4b8762568d944c9124d9afe4cc5412a6567a7106b703cb34",
+        "afterHash": "sha256:f64d553df2ba6e1a2023f5d0899bf005c5e9d4fb08aa3940c0e962dcad00a700"
+      },
+      {
+        "path": "content/worldgen/source/places/w6/w6u/han_river_bridge/mapped-features.json",
+        "beforeHash": "sha256:5c95ed89907ab6fcc496fdf93d0df431e674e4990ad699ebf477e6c7fc052575",
+        "afterHash": "sha256:89fff5aef9f6a375a3a1bf5cbc3398304bec76d8bb1a33ae2e2388cef827bf69"
+      }
+    ],
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 62,
+    "sourceHash": "sha256:30b5fa97e36cb423312d82051d190e96eef4df074c30549b85b65ba5147e634c",
+    "runtimeHash": "sha256:8df00e1a1c7d505cd14b2616a6aa69d0bc9dac58920825a928536abe31d0c5ed",
+    "frameSetHash": "sha256:559fa51e89f8d4e84fa830287ce1d267a38bd2820c0da03a69cdc356d1359c84",
+    "method": "Removed unnecessary river-flow labels; signed cardinal axes, all coordinates/dimensions, recipe geometry, materials and cameras remain unchanged. Exact expected spec delta, six GLB bytes and all62 inspected image hashes were verified. No new visual review is claimed."
+  },
+  "limitations": [
+    "Complete494.584m named PMTiles route; reference487.7m extent kept separate. Nominal12.9m width, photo-led25m pylon rise above the deck and120m swing section. Pivot x projects the approximate catalog coordinate onto the named road, discarding its15m cross-road offset. Support stations, mast/turntable dimensions, holes, fixtures and grades are reconstruction controls, not surveyed facts.",
+    "Closed-road/static pose only. The swing span is identified by its blue A-frame, bilateral stay fans, blue edge girders, round white pivot drum with genuine porthole openings and a pale flower-like crown. No operating machinery or animated opening is claimed.",
+    "Standard Mapzen bank heights are roughly10m west/6m east; the proposed road profile clears them without altering surrounding terrain. Native joins still require inspection.",
+    "The source recreates the recognizable exterior rather than surveyed structural sections. Approach support count/stations, tapered pier sections, round pivot/porthole count, pylon height/station and span dimensions are photo-led approximations. The catalog25m height is not interpreted as a surveyed absolute elevation.",
+    "Existing shared256px concrete_plain, metal_painted and brick graphs, metric UVs and linear vertex tints. No embedded/private images, copied photo pixels or downloaded meshes. Far geometry omits lamps/portholes and uses fewer cables/rounded segments; street/closeup retain genuine drum holes. Physical-device timings remain unmeasured.",
+    "Main water is about0.65m in this native fixture; lower footings partly submerge and shore supports embed in coarse banks. Short apron grades, automatic retaining faces, native quays and neighboring procedural buildings remain visualization approximations. No surveyed bank, machinery, engineering clearance, legal traffic grade or animated swing operation is claimed."
+  ]
+}

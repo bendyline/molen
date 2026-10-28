@@ -1,0 +1,342 @@
+{
+  "planId": "caseros_prison",
+  "id": "caseros_prison",
+  "assetId": "molen.worldgen.structure.caseros_prison",
+  "title": "Caseros Prison (construction1969)",
+  "wikidataId": "Q5048422",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.3949,
+    "latitude": -34.6333
+  },
+  "size": [
+    100.80000305175781,
+    81.40999698638916,
+    80.80000305175781
+  ],
+  "actualBounds": {
+    "min": [
+      -50.400001525878906,
+      -5.669899940490723,
+      -40.400001525878906
+    ],
+    "max": [
+      50.400001525878906,
+      75.74009704589844,
+      40.400001525878906
+    ]
+  },
+  "visualBrief": "Whole Caseros Prison in the explicit1969 construction appearance: both tall concrete-framed towers with deep repetitive bay recesses/slabs/bands, entire connecting H-core, complete two-level podium/below-grade structural volume/recessed entry and rooftop crown/plant. Full hidden plan, horizontal sizes, sections, bay census and historic registration are bounded architectural estimates within unchanged original parameters. Separate old prison/neighbors, current replacement building and unbuilt judicial maquette excluded.",
+  "nativeAxes": {
+    "x": "block east, approximately east-northeast",
+    "y": "up",
+    "z": "block south, approximately south-southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1969-07-01",
+    "validFrom": "1969-01-01",
+    "validUntil": "1970-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:C%C3%A1rcel_de_Caseros_(1969).jpg"
+  ],
+  "stories": [
+    {
+      "id": "caseros-prison-wp",
+      "url": "https://qualla.com/caseros-prison/"
+    }
+  ],
+  "referenceInputHash": "f48d12b9029350ba0ab119ed5591bd7b350150251fd638687fc0a22662579c57",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/69/69y/caseros_prison/models/caseros-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/69/69y/caseros_prison/models/caseros-model.mjs",
+    "level": "skyline",
+    "export": "caserosSkyline",
+    "errorMeters": 5,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "recess": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "caserosDistrict",
+        "errorMeters": 2.5,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "caserosStreet",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "caserosCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -6.1699,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "far": 3000
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original256m129x129 field/16641heights/two raw Terrarium tiles frozen before this independent floor and draft sections. Floor follows one south approach sample; no field normalization or fitting. Main estimated dimensions stay fixed during draft geometry/render inspection. Original source may contain urban roof/canopy artifacts and is not a historic ground survey.",
+    "anchor": [
+      -58.3949,
+      -34.6333
+    ],
+    "heading": 0.2765827396204055,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.39475987975793,
+        -34.63370615996765
+      ],
+      "modelHeight": 0,
+      "basis": "Independent south-side approach reference for original field acquisition; chosen before geometry/floor/sections, no later fit."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "reconstruction/caseros-whole-podium",
+      "reconstruction/caseros-complete-H-towers"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:C%C3%A1rcel_de_Caseros_(1969).jpg",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:eb2f15846ac6d45d2742a94b86f82ef067eb49019204c41d6c7da32a431cd156",
+    "notes": "Construction-state draft of the full physical prison building, including both22storey towers, connecting core and whole podium. Overall dimensions, final cladding and exact historical registration require further evidence. Original1969 photo alone is not a precise final1979 survey. No completion or story-ready annotation until architectural uncertainties are resolved."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Personally inspected exact already-cleared published845x485original1969 construction photograph. Both raised structural wings/core/podium/open grid/crown are present; construction phase is the intended historical model. Final1979 facade cladding is outside represented phase and is not a completion requirement. Original P numerical sections, all floors, complete outlines, original source frame and original independent field preserved byte-for-byte. Supersedes initial draft-only approval notes for1969 phase only, no assertion that exact plan was measured.",
+    "Original256m129x129 field/16641heights/two raw Terrarium tiles frozen before this independent floor and draft sections. Floor follows one south approach sample; no field normalization or fitting. Main estimated dimensions stay fixed during draft geometry/render inspection. Original source may contain urban roof/canopy artifacts and is not a historic ground survey.",
+    "Whole construction-state1969appearance, not final1979 cladding or current demolished-site replacement.",
+    "Horizontal sizes/room-depth voids/column and slab census/podiumentry/roofplant/hiddenrear/registration and historical grade are bounded estimates; fixed main parameters retained.",
+    "Sitepoint Q5048422 and neighborhood bearing give approximate registration, no contemporary measured historic footprint. Currentway878927699 and olderprisonrelation19191978 excluded.",
+    "Original independent256m129²field/16641heights/two rawtiles/sourceframe/floor+.3301/storeyheight3.2/podium6/Hwings64x16/connector12x24 preserved. Modern surface heights cannot certify1969grade. No field flattening/refit/reacquisition; review unmasked field.",
+    "Unrecorded author in original archival construction photograph preserved. Exact nativePD-AR-Photo/revision872588548/nativeSHA19eca940c8d038c78f2ce4aab4088d55ccb72df4b/original845x485 bytes; no modern attribution sources or questionable imagery used."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; native Wikidata CC0 historic site reference. Exact already-cleared published1969 construction photograph/nativePD-AR-Photo/revision/SHA1 bound. Whole1969 concrete-framed construction appearance; hidden plan/sections/registration estimated within original frozen parameters. Later1979cladding outside phase; unbuiltmaquette/oldprison/currentreplacement/attributionsources excluded. No photographic textures.",
+  "qaLodCameras": [
+    {
+      "name": "whole-h-skyline",
+      "position": [
+        140,
+        110.3301,
+        150
+      ],
+      "lookAt": [
+        0,
+        31.3301,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-h-district",
+      "position": [
+        140,
+        110.3301,
+        150
+      ],
+      "lookAt": [
+        0,
+        31.3301,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-h-street",
+      "position": [
+        140,
+        110.3301,
+        150
+      ],
+      "lookAt": [
+        0,
+        31.3301,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-h-closeup",
+      "position": [
+        140,
+        110.3301,
+        150
+      ],
+      "lookAt": [
+        0,
+        31.3301,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-h-both-towers-podium",
+      "position": [
+        125,
+        85.3301,
+        130
+      ],
+      "lookAt": [
+        0,
+        31.3301,
+        0
+      ]
+    },
+    {
+      "name": "whole-rear-tower-and-connector",
+      "position": [
+        -120,
+        90.3301,
+        -130
+      ],
+      "lookAt": [
+        0,
+        31.3301,
+        0
+      ]
+    },
+    {
+      "name": "deep-concrete-framing-and-horizontal-bands",
+      "position": [
+        38,
+        40.3301,
+        68
+      ],
+      "lookAt": [
+        13,
+        38.3301,
+        27
+      ]
+    },
+    {
+      "name": "through-open-h-court",
+      "position": [
+        53,
+        40.3301,
+        0
+      ],
+      "lookAt": [
+        0,
+        35.3301,
+        0
+      ]
+    },
+    {
+      "name": "podium-recessed-entry",
+      "position": [
+        17,
+        7.3301,
+        63
+      ],
+      "lookAt": [
+        0,
+        3.3301,
+        38
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5052,
+    "vertices": 15156,
+    "materials": 1,
+    "bytes": 638308,
+    "sha256": "sha256:8de040ec8ebbf3cfd48da262e2e46125eac9709f38244e5e19a4056643aeb9da"
+  }
+}

@@ -1,0 +1,387 @@
+{
+  "planId": "national_congress_palace",
+  "id": "national_congress_palace",
+  "assetId": "molen.worldgen.structure.national_congress_palace",
+  "title": "National Congress Palace",
+  "wikidataId": "Q4155889",
+  "category": "parliament-palace",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -47.86398935,
+    "latitude": -15.7996923
+  },
+  "size": [
+    178.6656494140625,
+    92.99999690055847,
+    217.91903686523438
+  ],
+  "actualBounds": {
+    "min": [
+      -89.3275375366211,
+      2.594599962234497,
+      -108.95951843261719
+    ],
+    "max": [
+      89.3381118774414,
+      95.59459686279297,
+      108.95951843261719
+    ]
+  },
+  "visualBrief": "Whole National Congress Palace/Palácio Nereu Ramos: native principal podium/glazedbody/pilotis/roofplatform, both28-storey native slabtowers with recessed longfaces, midheight bridge/lowconnection/roofconnector, Senate convex dome and Chamber inverted-bowl shell retaining all mapped contours, intrinsic whitefrontentranceramp. Published Qualla references searchedfirst; three distinct photographer-ownPD/CC0 originals inspected. Whole physical palace, no separate annexes/plaza/pools/gardens/flags/statues.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Congresso%20Nacional%20Bras%C3%ADlia%202015.jpg",
+    "https://commons.wikimedia.org/wiki/File:Congresso-Brasil.JPG",
+    "https://commons.wikimedia.org/wiki/File:Congreso%20Nacional%2C%20Bras%C3%ADlia%20DF%2C%2005%202006.JPG"
+  ],
+  "stories": [
+    {
+      "id": "national-congress-palace-wp",
+      "url": "https://qualla.com/national-congress-palace/"
+    }
+  ],
+  "referenceInputHash": "9cecc63010b4c63e65f0c074d6ba94107bd62ceb3ff79525aa44c392fff8cd3d",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6v/6vj/national_congress_palace/models/national-congress-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/national-congress-palace-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "nationalCongressPalaceSkyline",
+    "errorMeters": 6,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.62,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.36,
+        "metallic": 0.65
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "nationalCongressPalaceDistrict",
+        "errorMeters": 2.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.36,
+            "metallic": 0.65
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "nationalCongressPalaceStreet",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.36,
+            "metallic": 0.65
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "nationalCongressPalaceCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.36,
+            "metallic": 0.65
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_marble",
+    "metal_stainless",
+    "stone_limestone_raw",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.3",
+    "groundY": 3.5446,
+    "cameraYaw": 0.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent512m129x12916641samples/one rawTerrariumtile/SW1062m datum/whole11componentunionbboxanchor/heading0 frozen before once-only exteriorfloor3.5946m and all verticalsections/geometry. Nativepodiumroof11m,Senatefoot11/top21,bowllower11/middle16/rim21,towers92m/28floors,bridge40–50(nativefixme acknowledged). Officialnewsrounded100m differs;92m nativephysicalroof retained, no extraheight invented. Original bounded glazedpodiumdeck2.2/glass2.4–10.5/roof11/pilotis0.15–10.55, smoothcupolaprofiles/bowlshallowinnerroof20.6,28towerfenestrationbands3.2–90.8m/close30bays,longfaceprofiles,slimroofconnector90.5–91.4m,intrinsic10mwidefrontwhiteentryramp0.15to11m fromV-97to-56.15. Hidden/currentroofdetails/support/windowcensus/fineprofiles/finish/contact are bounded estimates, not survey. No latefield/floor/sections/anchor fitting/flattening/reframe/reacquire/raising.",
+    "anchor": [
+      -47.86398935,
+      -15.7996923
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -47.86566979836892,
+        -15.801309260114984
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest originalproviderfield datum beforefloor/sections/geometry, notsurveyed street/entry/foundation contact."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/124198934",
+      "way/825499918",
+      "way/825499920",
+      "way/128360953",
+      "way/825499922",
+      "way/825499921",
+      "way/128360954",
+      "way/230844490",
+      "way/230844491",
+      "way/429913466",
+      "way/825499919"
+    ],
+    "source": "https://www.openstreetmap.org/way/124198934",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e034ba7e07b201d0ea19f254f7a709ee43202e7e95bfbe09acebc7c70eb759e5",
+    "notes": "Whole National Congress Palace/Palácio Nereu Ramos Q4155889: named native principal22-control podium/roof/continuous glazedbody/pilotis, Senate convex dome and Chamber inverted-bowl shell with all mapped contour rings, both28-storey office towers and intrinsic midheight connecting bridge/low connection, front entrance ramp. Actual11 native physical components, excluding separate AnnexII/III/IV buildings, entire Praça dosTrêsPoderes/Esplanade/reflectingpools/lawns/roads/flags/statues/signage/interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual11 native physical mainpalace components: principal podium/roof/glazedbody, dome/bowl contours, two towers/bridge/lowconnection. Fixedunionbboxanchor/heading0 before original independentfield/floor/sections/geometry. Separateannexes/pools/gardens excluded.",
+    "Whole11 nativephysical components/157 perimetercontrols: principalpodium124198934(22),roof825499918(16),glazedbody825499920(4),Senatefoot128360953(19),Chamberlower825499922(19)/middle825499921(32)/upperrim128360954(24),towers230844490(7)/230844491(6),bridge429913466(4),lowconnection825499919(4). All nativeXZcontrols retained physically everyLOD. NativeinstitutiontagQ949699 unchanged; actualbuildingQ4155889. Nativecupolafoot/rim controls usedfororiginal smoothboundedprofiles, not extrudedsolidcylinders. Ramps/pilotis/glazing/finecurrentroof profiles originalphoto-bounded; separateAnexoII/III/IV/pools/gardens/plaza/flags/statues/roads excluded.",
+    "Original independent512m129x12916641samples/one rawTerrariumtile/SW1062m datum/whole11componentunionbboxanchor/heading0 frozen before once-only exteriorfloor3.5946m and all verticalsections/geometry. Nativepodiumroof11m,Senatefoot11/top21,bowllower11/middle16/rim21,towers92m/28floors,bridge40–50(nativefixme acknowledged). Officialnewsrounded100m differs;92m nativephysicalroof retained, no extraheight invented. Original bounded glazedpodiumdeck2.2/glass2.4–10.5/roof11/pilotis0.15–10.55, smoothcupolaprofiles/bowlshallowinnerroof20.6,28towerfenestrationbands3.2–90.8m/close30bays,longfaceprofiles,slimroofconnector90.5–91.4m,intrinsic10mwidefrontwhiteentryramp0.15to11m fromV-97to-56.15. Hidden/currentroofdetails/support/windowcensus/fineprofiles/finish/contact are bounded estimates, not survey. No latefield/floor/sections/anchor fitting/flattening/reframe/reacquire/raising.",
+    "Qualla-first46families screened; localeligibleAnexoIV is a differentbuilding and archival mainpalace references unbound, unselected. Three distinct exact creator-ownPD/CC0 originals guide wholepalace and glazing:Alex982015CC0/AlexPereira2007PDself/MarioRobertoDuránOrtiz2006PDself. No source pixels embedded or protectedsigns/art copied.",
+    "All157 native XZ controls retained across11 physical components. Nativeendprojections interpreted as six sloped intrinsic sideaccess planes using already fixed0.15/11m ramp levels, rather than flying horizontalcanopies; centralroofplate bounded from their native inner edges. Original bounded smooth cupola profiles/closed shallow bowl innerroof/28-storey glazing groups/pilotis/windowframe census/topconnector/frontentryramp/hidden roof/currentfinish. Native92m towerroof retained; ownernews rounded100m differs. Bridge40–50/nativefixme originalbounded. No exact roof/interior/repair survey claim. SeparateAnexoII/III/IV/plaza/pools/lawns/flags/statues/roads excluded.",
+    "Original independent512mfield/floor/sections fixed beforegeometry, exactcontactunverified, preview/replacementfalse. Flatground/context neighbors are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-palace-two-cupolas-twin-towers-and-front-ramp",
+      "position": [
+        -296.5983443184744,
+        103.5946,
+        72.31474363876109
+      ],
+      "lookAt": [
+        7.61252605193177,
+        37.5946,
+        2.4595623815345937
+      ]
+    },
+    {
+      "name": "whole-eleven-native-component-palace-plan",
+      "position": [
+        0.2854697269474414,
+        393.5946,
+        0.09223358930754726
+      ],
+      "lookAt": [
+        7.61252605193177,
+        8.5946,
+        2.4595623815345937
+      ]
+    },
+    {
+      "name": "glazed-podium-round-pilotis-marble-ramp-and-two-roof-shells",
+      "position": [
+        -137.6121931303872,
+        28.5946,
+        29.101276636000435
+      ],
+      "lookAt": [
+        -20.568541618288545,
+        13.5946,
+        -1.3910771713791288
+      ]
+    },
+    {
+      "name": "whole-rear-twin-towers-midbridge-and-two-cupolas",
+      "position": [
+        280.6414821655632,
+        123.5946,
+        -87.97930715751231
+      ],
+      "lookAt": [
+        7.61252605193177,
+        39.5946,
+        2.4595623815345937
+      ]
+    },
+    {
+      "name": "actual-native-tower-gap-bridge-and-recessed-glazing",
+      "position": [
+        157.59507401670808,
+        69.5946,
+        -22.644925384472124
+      ],
+      "lookAt": [
+        61.70562485486564,
+        51.5946,
+        4.173231514137383
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26260,
+    "vertices": 78780,
+    "materials": 5,
+    "bytes": 3307392,
+    "sha256": "sha256:14c545070f2d3f893f3e46d17a550e6f6bb7f4e9dbff33ab9509a3d8409d61f0"
+  }
+}

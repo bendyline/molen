@@ -1,5 +1,61 @@
 import { matchesEvidenceText } from '../../worldgen/scripts/evidence-text-hash.mjs';
 
+/** Only registered, bundle-relative native JSON records can establish a named node. */
+export function nativePointSourcePath(frameBytes) {
+  try {
+    const value = JSON.parse(frameBytes).mappedIdentity?.nativeSource?.path;
+    return typeof value === 'string' &&
+      /^[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_.-]+)*\.json$/.test(value) &&
+      !value.split('/').includes('..')
+      ? value
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function reviewedNamedNativeNode(frame, spec, sourceManifest, nativeNodeBytes, frameBytes) {
+  const identity = frame.mappedIdentity,
+    source = identity?.nativeSource,
+    file = nativePointSourcePath(frameBytes),
+    review = identity?.primaryReview;
+  if (
+    spec.wikidataId !== undefined ||
+    identity?.wikidataId !== undefined ||
+    !file ||
+    !sourceManifest.files.documents.includes(file) ||
+    !nativeNodeBytes ||
+    !matchesEvidenceText(nativeNodeBytes, source?.hash) ||
+    review?.status !== 'reviewed-named-structure' ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(review.reviewedOn ?? '') ||
+    !review.basis?.trim() ||
+    !review.referencePages?.length ||
+    !review.referencePages.every((url) => typeof url === 'string' && /^https:\/\//.test(url))
+  )
+    return false;
+  try {
+    const document = JSON.parse(nativeNodeBytes),
+      id = /^https:\/\/(?:www\.)?openstreetmap\.org\/node\/(\d+)\/?$/.exec(frame.sourceUrl)?.[1],
+      node = document.elements?.find((node) => node.type === 'node' && String(node.id) === id);
+    return (
+      /^https:\/\/api\.openstreetmap\.org\/api\/0\.6\/(?:map(?:\.json)?(?:\?|$)|node\/\d+(?:\.json)?$)/.test(
+        document.sourceUrl ?? '',
+      ) &&
+      !!node &&
+      node.tags?.wikidata === undefined &&
+      ['tower', 'monitoring_station'].includes(node.tags?.man_made) &&
+      typeof node.tags.name === 'string' &&
+      node.tags.name.trim().length > 0 &&
+      node.tags.name === identity.name &&
+      Number.isFinite(node.lon) &&
+      Number.isFinite(node.lat) &&
+      frame.anchor?.every((value, index) => Math.abs(value - [node.lon, node.lat][index]) < 1e-9)
+    );
+  } catch {
+    return false;
+  }
+}
+
 /** Accept a source-local frame only after the current model's placement was reviewed.
  * The spec binds evidence text (allowing Git LF/CRLF conversion); the bundle preserves it.
  */
@@ -9,6 +65,7 @@ export function reviewedSourceMapFrame({
   spec,
   placement,
   geographicReviewed,
+  nativeNodeBytes,
 }) {
   const proposal = spec?.geographicProposal;
   if (
@@ -53,8 +110,9 @@ export function reviewedSourceMapFrame({
     point(frame.geometry?.point) &&
     frame.geometry.point.every((v) => v === 0) &&
     mappedNode &&
-    /^Q[1-9]\d*$/.test(spec?.wikidataId ?? '') &&
-    frame.mappedIdentity?.wikidataId === spec.wikidataId &&
+    ((/^Q[1-9]\d*$/.test(spec?.wikidataId ?? '') &&
+      frame.mappedIdentity?.wikidataId === spec.wikidataId) ||
+      reviewedNamedNativeNode(frame, spec, sourceManifest, nativeNodeBytes, frameBytes)) &&
     frame.mappedIdentity?.featureIds?.includes(`node/${mappedNode[1]}`) &&
     (orientation?.status === 'reviewed-reconstruction' || approximateFacing) &&
     /^\d{4}-\d{2}-\d{2}$/.test(orientation.reviewedOn ?? '') &&

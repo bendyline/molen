@@ -1,15 +1,23 @@
 /**
  * Deterministic Bendy Small Airliner, with an operator cabin and polygonal close-view fittings.
- * No network, textures or private tools. Nose +Z; origin at ground level with gear down.
+ * Local shared procedural finishes. Nose +Z; origin at ground level with gear down.
  * `node models/generate.mjs` rewrites models/source.glb (hand edits are preserved); `--out <path>`
  * writes a review candidate instead.
  */
+
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+import { completeCockpitControls } from '../../../../../../packages/entities/scripts/aircraft/cockpit-controls.mjs';
+import {
+  embedCockpitTextures,
+  finishAircraftCockpit,
+  writeCockpitTextures,
+} from '../../../../../../packages/entities/scripts/aircraft/cockpit-surfaces.mjs';
+import { smoothSurface } from '../../../../../../packages/entities/scripts/surface-normals.mjs';
 import {
   addRivetRows,
   detailKit,
@@ -170,8 +178,7 @@ function airliner() {
   ]) {
     const geometry = new T.BufferGeometry();
     geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
-    geometry.computeVertexNormals();
-    const mesh = new T.Mesh(geometry, material);
+    const mesh = new T.Mesh(smoothSurface(geometry), material);
     mesh.name = name;
     fuselage.add(mesh);
   }
@@ -262,7 +269,7 @@ function airliner() {
   glass.opacity = 0.18;
   glass.side = T.DoubleSide;
   glass.depthWrite = false;
-  const detail = detailKit(g);
+  let detail = detailKit(g);
   for (const side of [-1, 1]) {
     detail.text('BENDY', [side * 1.955, 0.16, 7.5], 0.5, (side * Math.PI) / 2);
     for (const z of [-11, 11.5]) {
@@ -305,6 +312,11 @@ function airliner() {
     }
     detail.ring(1.02, 0.065, [side * 5.8, -1.55, 5.2], detail.metal);
     detail.box([0.08, 0.08, 0.2], [side * 17.4, -0.88, -4.3], side > 0 ? detail.red : detail.green);
+  }
+  // Keep cabin finishes independent from the airframe fittings that use the same base palette.
+  detail.finish();
+  detail = detailKit(g, 'airliner-cabin-detail');
+  for (const side of [-1, 1]) {
     detail.box([0.5, 0.13, 0.6], [side * 0.55, -0.15, 15.2], detail.dark);
     detail.box([0.5, 0.75, 0.12], [side * 0.55, 0.15, 14.93], detail.dark);
   }
@@ -328,7 +340,7 @@ function airliner() {
     const x = -0.68 + i * 0.34;
     instruments.display(x, 0.73, 16.03, 0.12, 0.025, 'mode');
     instruments.knob(x, 0.68, 16.02, 0.016);
-    detail.text(label, [x, 0.775, 16.015], 0.016, Math.PI);
+    detail.text(label, [x, 0.775, 16.015], 0.016, Math.PI, detail.ivory, 'display');
   }
   detail.box([0.42, 0.25, 0.76], [0, 0.04, 15.22], detail.dark);
   for (const side of [-1, 1]) {
@@ -336,8 +348,19 @@ function airliner() {
     instruments.display(side * 0.17, 0.255, 15.57, 0.14, 0.09, 'route');
     for (let row = 0; row < 4; row++)
       instruments.buttons(side * 0.17, 0.19 - row * 0.025, 15.56, 4, 0.026);
-    detail.rod([side * 0.065, 0.18, 15.24], [side * 0.065, 0.4, 15.29], 0.012, detail.metal);
-    detail.box([0.065, 0.035, 0.047], [side * 0.065, 0.405, 15.29], detail.ivory);
+    const lever = new T.Group();
+    lever.name = `airliner-throttle-${side}`;
+    lever.position.set(side * 0.065, 0.18, 15.24);
+    lever.userData.aircraftControl = {
+      action: 'power',
+      engine: side > 0 ? 'left' : 'right',
+      motion: { property: 'rotation', axis: 'x', scale: 0.65 },
+    };
+    g.add(lever);
+    const ld = detailKit(lever, lever.name);
+    ld.rod([0, 0, 0], [0, 0.22, 0.05], 0.012, detail.metal);
+    ld.box([0.065, 0.035, 0.047], [0, 0.225, 0.05], detail.ivory);
+    ld.finish();
     detail.rod([side * 0.19, 0.17, 15.1], [side * 0.19, 0.3, 15.14], 0.009, detail.metal);
     detail.box(
       [0.04, 0.025, 0.055],
@@ -393,8 +416,24 @@ const sourceText = await readFile(sourcePath, 'utf8');
 const pinned = JSON.parse(sourceText).files.models.find(
   (m) => m.path === 'models/source.glb',
 )?.sha256;
-const bytes = Buffer.from(
-  await new GLTFExporter().parseAsync(airliner(), { binary: true, onlyVisible: false }),
+const definitionPath = resolve(root, '../entity.types.json');
+const definition = JSON.parse(await readFile(definitionPath, 'utf8'));
+const controlSpec = Object.values(definition.types)[0].components.aircraft.spec;
+controlSpec.visual.interior.nodes = [
+  'airliner-cabin-detail',
+  'control-yoke',
+  'airliner-throttle--1',
+  'airliner-throttle-1',
+];
+const controlledModel = completeCockpitControls(airliner(), controlSpec, {
+  panelZ: 15.975,
+  floor: 3.6,
+});
+finishAircraftCockpit(controlledModel, controlSpec, 'airliner');
+const bytes = embedCockpitTextures(
+  Buffer.from(
+    await new GLTFExporter().parseAsync(controlledModel, { binary: true, onlyVisible: false }),
+  ),
 );
 const path = resolve(root, 'source.glb');
 const current = await readFile(path).catch(() => undefined);
@@ -413,6 +452,9 @@ if (outIndex !== -1) {
 if (current && pinned && hash(current) !== pinned && !current.equals(bytes))
   throw new Error(`Preserving artist edits in ${path}; move the master before regenerating.`);
 if (!current?.equals(bytes)) await writeFile(path, bytes);
-if (pinned !== generatedHash)
-  await writeFile(sourcePath, sourceText.replace(pinned ?? 'sha256:pending', generatedHash));
+const source = JSON.parse(sourceText);
+source.files.models.find((model) => model.path === 'models/source.glb').sha256 = generatedHash;
+source.files.textures = await writeCockpitTextures(resolve(root, '..'), bytes);
+await writeFile(sourcePath, `${JSON.stringify(source, null, 2)}\n`);
+await writeFile(definitionPath, `${JSON.stringify(definition, null, 2)}\n`);
 console.log(`airliner: ${bytes.length} bytes, ${generatedHash}`);

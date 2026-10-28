@@ -18,4 +18,4 @@ Native round base/own porch positions and ESE entrance bearing retained. White p
 
 Independent64m129x129at0.5m terrain and original raw tile frozen before geometry. Fixed porch-side approach[0,6.5], provider21.9885m, full relative field[-14.763,14.8693] unchanged without clipping/fitting/flattening. Coarse composite data cannot establish building floor, threshold, steps, wall footing or precise host contact. Geographic preview; replaceFootprint=false.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=matiu_somes_island_lighthouse`. Add `--check` to verify exact regeneration. 5946 triangles; 5 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=matiu_somes_island_lighthouse`. Add `--check` to verify exact regeneration. 5850 triangles; 5 materials; no embedded photographs.

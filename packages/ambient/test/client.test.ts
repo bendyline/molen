@@ -68,6 +68,36 @@ describe('proxy batches', () => {
     batches.end();
     expect(mesh.visible).toBe(false);
   });
+  it('draws a new kind of proxy once its shaders are prepared, and a grown batch at once', async () => {
+    let finish = (): void => {};
+    const prepared = new Promise<void>((resolve) => {
+      finish = resolve;
+    });
+    const batches = new ProxyBatches(() => prepared, 1);
+    const add = (i: number): void =>
+      batches.add({
+        shape: 'car',
+        dims: { length: 4.6, width: 1.8, height: 1.45 },
+        pos: [i, 0, 0],
+        rot: [0, 0, 0, 1],
+        scale: 1,
+        color: new THREE.Color(1, 1, 1),
+      });
+    batches.begin([0, 0, 0]);
+    add(0);
+    batches.end();
+    const first = batches.group.children[0] as THREE.InstancedMesh;
+    expect(first.visible).toBe(false);
+    finish();
+    await prepared;
+    batches.begin([0, 0, 0]);
+    add(0);
+    add(1); // Outgrows the first batch: its successor shares its shaders.
+    batches.end();
+    const grown = batches.group.children[0] as THREE.InstancedMesh;
+    expect(grown).not.toBe(first);
+    expect(grown.visible).toBe(true);
+  });
 });
 
 describe('ambient renderer', () => {

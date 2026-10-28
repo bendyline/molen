@@ -45,12 +45,19 @@ import type {
   VehicleSpec,
   WaterSettings,
 } from '@bendyline/molen-schema';
+import { taggedTerrainObjects } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import { OBB } from 'three/addons/math/OBB.js';
-import { EARTH_WATER_CONDITIONS, EarthWater } from './water';
+import { Livery, selectLivery, tintLivery } from './liveries';
+import { EARTH_WATER_CONDITIONS, EarthWater, shownUnder } from './water';
 
 const PLAYER = 'world-player';
+/**
+ * Ground distance (m) from the observer within which a tile's parked cars are simulation
+ * entities, to approach, board and collide with; farther ones are only their tile's merged mesh.
+ */
+const PARKED_ENTITY_RADIUS = 300;
 /** Ambient NPCs share this world; they are never parked cars to cull. */
 const AmbientAgent = componentHandle('ambientAgent');
 
@@ -96,6 +103,7 @@ export interface EarthSpawnOptions {
   retain?: boolean;
   /** Paint for the type's `paintMaterial` (CSS color); without it the authored paint stays. */
   color?: string;
+  livery?: string;
 }
 
 export class EarthVehicles {
@@ -126,6 +134,7 @@ export class EarthVehicles {
     rescanIntervalMs: 200,
   });
   private lastSync = -Infinity;
+  private lastSettle = -Infinity;
   private sequence = 0;
   private readonly spawned = new Set<string>();
   /** Spawned cars a host owns: they survive `release` and forced exits until removed. */
@@ -212,17 +221,33 @@ export class EarthVehicles {
     this.water.sync();
     const resident = new Map<string, VehiclePlacement>();
     const batches: THREE.Mesh[] = [];
-    this.root.traverseVisible((object) => {
-      for (const p of (object.userData.vehicles ?? []) as VehiclePlacement[])
+    // The surface groups the terrain tagged as holding parked cars, shown under this root, and
+    // their visible batches: walking the whole visible scene for them, five times a second, was
+    // up to 28 ms of a frame over a town at High detail.
+    for (const group of taggedTerrainObjects('parked-vehicles')) {
+      if (!shownUnder(group, this.root)) continue;
+      for (const p of (group.userData.vehicles ?? []) as VehiclePlacement[])
         if (!resident.has(p.id)) resident.set(p.id, p);
-      if ((object as THREE.Mesh).isMesh && object.userData.vehicleIds)
-        batches.push(object as THREE.Mesh);
-    });
+      group.traverseVisible((object) => {
+        if ((object as THREE.Mesh).isMesh && object.userData.vehicleIds)
+          batches.push(object as THREE.Mesh);
+      });
+    }
+    // Only cars near the observer become entities: a town's parked cars were thousands of
+    // dormant vehicles, spawned as each tile streamed in under an aircraft and stepped every tick.
+    const near = (position: readonly number[], radius: number): boolean =>
+      observer === undefined ||
+      Math.hypot((position[0] ?? 0) - observer[0], (position[2] ?? 0) - observer[2]) <= radius;
     for (const [id, p] of resident)
-      if (!this.world.exists(id)) {
+      if (!this.world.exists(id) && near(p.position, PARKED_ENTITY_RADIUS)) {
         const components = this.types.components(p.kind);
         const vehicle = components.vehicle as unknown as VehicleData;
         vehicle.color = p.color;
+        if (components.livery)
+          components.livery = tintLivery(
+            components.livery as import('@bendyline/molen-schema').LiveryData,
+            p.color,
+          );
         vehicle.spec = p.spec;
         components.transform = {
           pos: [...p.position],
@@ -270,9 +295,15 @@ export class EarthVehicles {
         this.active.delete(id);
       }
     }
-    for (const [id] of this.world.query(Vehicle).without(AmbientAgent))
-      if (!resident.has(id) && !this.retained.has(id) && !this.loading.has(id))
-        this.world.destroy(id);
+    for (const [id] of this.world.query(Vehicle).without(AmbientAgent)) {
+      if (this.retained.has(id) || this.loading.has(id)) continue;
+      const far =
+        resident.has(id) &&
+        id !== this.mountedId &&
+        !this.owned.has(id) &&
+        !near(this.world.get(id, Transform)?.pos ?? [], PARKED_ENTITY_RADIUS * 1.2);
+      if (!resident.has(id) || far) this.world.destroy(id);
+    }
     // Parent/child LOD overlap and regenerated tiles must never resurrect the car at its bay.
     const visible = new Set<string>();
     for (const mesh of batches) {
@@ -444,6 +475,11 @@ export class EarthVehicles {
     options: EarthSpawnOptions = {},
   ): string | undefined {
     const components = this.types.components(kind);
+    if (options.livery !== undefined)
+      components.livery = selectLivery(
+        components.livery as import('@bendyline/molen-schema').LiveryData | undefined,
+        options.livery,
+      );
     const vehicle = (components.vehicle ?? components.boat) as unknown as
       | VehicleData
       | BoatData
@@ -477,6 +513,11 @@ export class EarthVehicles {
       return undefined;
     }
     if (options.color !== undefined) vehicle.color = options.color;
+    if (options.color !== undefined && components.livery)
+      components.livery = tintLivery(
+        components.livery as import('@bendyline/molen-schema').LiveryData,
+        options.color,
+      );
     components.transform = { pos: [...position], rot: vehicleRotation(yaw, 0, 0) };
     if (components.boat) components.boatState = initialBoatState(yaw);
     else components.vehicleState = initialVehicleState(yaw);
@@ -508,6 +549,7 @@ export class EarthVehicles {
       ...(options.id !== undefined ? { id: options.id } : {}),
       ...(options.retain !== undefined ? { retain: options.retain } : {}),
       ...(options.color !== undefined ? { color: options.color } : {}),
+      ...(options.livery !== undefined ? { livery: options.livery } : {}),
     };
     const components = this.types.components(kind);
     const vehicle = (components.vehicle ?? components.boat) as unknown as
@@ -768,6 +810,20 @@ export class EarthVehicles {
       occupied: this.mountedId === id,
     };
   }
+  /** Restore a named type recipe, clearing any custom instance color. */
+  setLivery(id: string, selected: string): void {
+    const vehicle = this.data(id);
+    const source = vehicle && this.types.components(vehicle.kind).livery;
+    // A named preset resets instance tinting, including when reselecting the same preset.
+    const data = selectLivery(
+      (source as import('@bendyline/molen-schema').LiveryData | undefined) ??
+        this.world.get(id, Livery),
+      selected,
+    );
+    this.world.set(id, Livery, data);
+    this.active.get(id)?.setLivery(data);
+  }
+
   /** Repaint a car's `paintMaterial` (its `vehicle.color`): the loaded model now, later loads too. */
   setColor(id: string, color: string): void {
     const v = this.data(id);
@@ -775,6 +831,13 @@ export class EarthVehicles {
     if (this.isBoat(id)) this.world.set(id, Boat, { ...v, color } as BoatData);
     else this.world.set(id, Vehicle, { ...v, color } as VehicleData);
     const visual = this.active.get(id);
+    const livery = this.world.get(id, Livery);
+    if (livery) {
+      const tinted = tintLivery(livery, color);
+      this.world.set(id, Livery, tinted);
+      visual?.setLivery(tinted);
+      return;
+    }
     if (visual === undefined) return;
     const tint = new THREE.Color(color);
     visual.object.traverse((object) => {
@@ -791,14 +854,45 @@ export class EarthVehicles {
    * vehicle step only follows the ground while moving.
    */
   private settleSpawned(): void {
+    const now = performance.now();
+    if (now - this.lastSettle < 200) return;
+    this.lastSettle = now;
     for (const id of this.spawned) {
       if (this.isBoat(id)) continue;
       const t = this.world.get(id, Transform);
-      const state = this.state(id);
-      if (!t || !state || Math.abs(state.speed) > 0.2) continue;
-      const support = this.support(t.pos[0], t.pos[2]);
-      if (support !== undefined && Math.abs(support - t.pos[1]) > 0.05)
-        this.world.patch(id, Transform, { pos: [t.pos[0], support, t.pos[2]] });
+      const state = this.world.get(id, VehicleState);
+      const spec = this.world.get(id, Vehicle)?.spec;
+      if (!t || !state || !spec || Math.abs(state.speed) > 0.2 || !state.grounded) continue;
+      // Walking around a parked car must refresh its collision neighborhood too. Otherwise a
+      // stale road mesh can keep it floating after terrain refinement until it is driven again.
+      this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
+      const sin = Math.sin(state.yaw);
+      const cos = Math.cos(state.yaw);
+      const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((z) =>
+        (spec.cycle ? [0, 0] : [-spec.wheelTrack / 2, spec.wheelTrack / 2]).map((x) =>
+          this.support(t.pos[0] + cos * x + sin * z, t.pos[2] - sin * x + cos * z),
+        ),
+      );
+      if (heights.some((height) => height === undefined)) continue;
+      const [fl, fr, rl, rr] = heights as [number, number, number, number];
+      const support = (fl + fr + rl + rr) / 4;
+      const pitch = Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase);
+      const roll = spec.cycle ? 0 : Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack);
+      if (
+        Math.abs(support - t.pos[1]) < 0.001 &&
+        Math.abs(pitch - state.pitch) < 0.001 &&
+        Math.abs(roll - state.roll) < 0.001
+      )
+        continue;
+      this.world.patch(id, Transform, {
+        pos: [t.pos[0], support, t.pos[2]],
+        rot: vehicleRotation(
+          state.yaw,
+          pitch + (state.bodyPitch ?? 0),
+          roll + (state.bodyRoll ?? 0),
+        ),
+      });
+      this.world.patch(id, VehicleState, { pitch, roll, vy: 0 });
     }
   }
   /** Move loaded models to their simulated poses and animate wheels and steering. */
@@ -875,7 +969,11 @@ export class EarthVehicles {
     this.loading.set(id, controller);
     try {
       const model = await this.loadModel(vehicle.kind, controller.signal);
-      const visual = createVehicleVisual(model, vehicle);
+      const visual = createVehicleVisual(
+        model,
+        this.data(id) ?? vehicle,
+        this.world.get(id, Livery),
+      );
       if (
         this.disposed ||
         controller.signal.aborted ||

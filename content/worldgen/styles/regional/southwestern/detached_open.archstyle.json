@@ -76,6 +76,17 @@
     "complexFootprint": "wings",
     "choices": [
       {
+        "type": "flat",
+        "weight": 8,
+        "parapet": {
+          "height": {
+            "min": 0.392,
+            "max": 0.616
+          },
+          "thickness": 0.25
+        }
+      },
+      {
         "type": "gable",
         "weight": 1,
         "pitchDeg": {
@@ -195,19 +206,15 @@
       "choices": [
         {
           "ref": "matgraph:molen.worldgen.material.membrane",
-          "weight": 2
-        },
-        {
-          "ref": "matgraph:molen.worldgen.material.gravel",
           "weight": 1
         }
       ],
-      "palette": "flatRoof",
+      "palette": "regional_roof",
       "tint": "multiply",
       "uv": "meters",
       "uvScale": [
-        4,
-        4
+        2,
+        2
       ],
       "uvOffset": "meters",
       "uvMirror": false
@@ -410,16 +417,24 @@
     "regional_roof": {
       "entries": [
         {
-          "color": "#856f5c",
-          "weight": 1
+          "color": "#b8a992",
+          "weight": 3
         },
         {
-          "color": "#a5674b",
-          "weight": 1
+          "color": "#d2cbbd",
+          "weight": 3
         },
         {
-          "color": "#b47c5e",
-          "weight": 1
+          "color": "#a57860",
+          "weight": 2
+        },
+        {
+          "color": "#c8c3b7",
+          "weight": 5
+        },
+        {
+          "color": "#b7b7b0",
+          "weight": 4
         }
       ],
       "jitter": {
@@ -534,6 +549,20 @@
     },
     {
       "shape": "cottage",
+      "weight": 1
+    }
+  ],
+  "lotFences": [
+    {
+      "kind": "none",
+      "weight": 4
+    },
+    {
+      "kind": "masonry",
+      "weight": 5
+    },
+    {
+      "kind": "rail",
       "weight": 1
     }
   ]

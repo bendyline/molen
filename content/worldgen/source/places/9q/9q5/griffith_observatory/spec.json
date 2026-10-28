@@ -1,0 +1,310 @@
+{
+  "planId": "griffith_observatory",
+  "id": "griffith_observatory",
+  "assetId": "molen.worldgen.structure.griffith_observatory",
+  "title": "Griffith Observatory",
+  "wikidataId": "Q575901",
+  "category": "observatory",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.30037225,
+    "latitude": 34.11821345
+  },
+  "size": [
+    71.6828384399414,
+    28.269601821899414,
+    57.67399978637695
+  ],
+  "actualBounds": {
+    "min": [
+      -35.85270690917969,
+      16.109899520874023,
+      -30.27400016784668
+    ],
+    "max": [
+      35.83013153076172,
+      44.37950134277344,
+      27.399999618530273
+    ]
+  },
+  "visualBrief": "Whole Griffith Observatory: actual native78control envelope/closed lower construction volume and partitioned long front wings/central rear/eastern low terrace, large rear planetarium drum/radial buttresses/dark paneled copper dome, two smaller telescope domes with closed raised curved slit housings, cream recessed sash/piers/architectural Greek-key cornice, closed central entrance/intrinsic stairs/raised green crown, genuine open upper side arches and pierced parapets. Official main23.4696m and telescope16.764m heights above fixed front-lawn reference; exterior main dome25.908m diameter from enclosure engineer. Three distinct accepted creatorCC0/explicitHighsmithPD inputs only; failed local candidates excluded without repair or same-image bypass. Hidden lower east wing/sections/window census/roof/slit facing/current finish/ground contact are original estimates. No sculpture, lettered art/window designs/interiors/instruments/lamps/grounds/sourcepixels.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Griffith_Observatory_in_July_2023.JPG",
+    "https://www.loc.gov/item/2013633236/",
+    "https://www.loc.gov/item/2013631400/"
+  ],
+  "stories": [
+    {
+      "id": "griffith-observatory-wp",
+      "url": "https://qualla.com/griffith-observatory/"
+    }
+  ],
+  "referenceInputHash": "81549e214a5450cd1cc5b5b00c6afeed598165683d059a93e16b4daa0cf4bb8a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q5/griffith_observatory/models/griffith-observatory-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/griffith-observatory-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "griffithObservatorySkyline",
+    "errorMeters": 5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.07,
+        "alphaMode": "OPAQUE"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "griffithObservatoryDistrict",
+        "errorMeters": 1.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.07,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "street": {
+        "export": "griffithObservatoryStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.07,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "closeup": {
+        "export": "griffithObservatoryCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.07,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": 20.8099
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent600m129x12916641sample/four rawtile/fixedSW325.7447m provider-relative field frozen before all floors/sections/geometry. Main-lawn reference 20.9099m relative to frozen datum fixed by original north-entry/lawn grid sample before geometry; not raised after rendering or fitted to grade. Original lower construction volume extends4.8m beneath lawn, with exact buried thresholds/contact unresolved. Official operator:236x176ft aboveground overall,77ft main dome/55ft telescope top above lawn; native whole71.56x53.73m footprint retained unscaled. Engineer85ft exterior copper dome distinguished from inner projection screen. Three separately cleared photographs support main circular planetarium/drum/dark panel dome/radial buttresses, long cream wings/two smaller closed-slit domes, recessed windows/piers/cornices/central entry-stairs/green roof crown and open upper side terrace arches/parapets. Native asymmetric eastern rear wing kept as original low terrace/service volume, not discarded or claimed surveyed; its exact height/hidden roof uncertain. Native lower footprint actually drives full lower walls, upper fronts/central rear/east wing partitioned from the same controls, no generic whole-property podium or facade-only scope. Hidden elevations/floors/roof/roomplan/window census/slit direction/cornice finish estimated. Sculpture/lettered bronze doors/ornate window artwork/inscriptions/interior exhibits/site instruments/lamps/lawn/trees/roads not copied. No terrainfit/flatten/reacquire/late modelraising; preview/replacementfalse/grade contact unresolved.",
+    "anchor": [
+      -118.30037225,
+      34.11821345
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.30086053213742,
+        34.117899041088755
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exterior southwest reference before all floors/sections/geometry. Provider-relative unsurveyed datum, not front threshold or model-derived grade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/422130705"
+    ],
+    "source": "https://www.openstreetmap.org/way/422130705",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3795eee66fb4dfe95423027655cb8a78cd51b513f39a6cf29858d1e93bb64ada",
+    "notes": "Whole named Griffith Observatory building and its intrinsic aboveground lower terraces/wings, actual seventy-eight-control native envelope, large rear circular planetarium drum/paneled dark dome/radial buttresses, long cream front wings/two smaller slit telescope domes, central entrance/stairs/raised copper-green rotunda crown, physical recessed opaque windows/pier/cornice and actual open side terrace arches/parapets. Retain whole physical building including bounded hidden elevations; no facade-only substitute. Separate lawn/grounds/roads/retaining landscapes/AstronomersMonument sculpture/tank/GreekTheatre/site lamps/instruments/interior exhibits/lettered or sculptural art/photo pixels excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual native way422130705/Q575901 named observatory closed79point ring/seventy-eight original controls. Fixed native bboxanchor/heading0/+Xeast/+Zsouth before field acquisition. Whole geometric envelope includes lower wings and rear circular projections; do not collapse to a generic podium or narrowly model the front. Native height35.9/ele371 tags are unverified map attributes, not surveyed architectural sections. Interpret aboveground floors/drum/dome/slit heights/terrace arches/window census/hidden roof originally from the three separately accepted photographs only after frozen original ground.",
+    "Original independent600m129x12916641sample/four rawtile/fixedSW325.7447m provider-relative field frozen before all floors/sections/geometry. Main-lawn reference 20.9099m relative to frozen datum fixed by original north-entry/lawn grid sample before geometry; not raised after rendering or fitted to grade. Original lower construction volume extends4.8m beneath lawn, with exact buried thresholds/contact unresolved. Official operator:236x176ft aboveground overall,77ft main dome/55ft telescope top above lawn; native whole71.56x53.73m footprint retained unscaled. Engineer85ft exterior copper dome distinguished from inner projection screen. Three separately cleared photographs support main circular planetarium/drum/dark panel dome/radial buttresses, long cream wings/two smaller closed-slit domes, recessed windows/piers/cornices/central entry-stairs/green roof crown and open upper side terrace arches/parapets. Native asymmetric eastern rear wing kept as original low terrace/service volume, not discarded or claimed surveyed; its exact height/hidden roof uncertain. Native lower footprint actually drives full lower walls, upper fronts/central rear/east wing partitioned from the same controls, no generic whole-property podium or facade-only scope. Hidden elevations/floors/roof/roomplan/window census/slit direction/cornice finish estimated. Sculpture/lettered bronze doors/ornate window artwork/inscriptions/interior exhibits/site instruments/lamps/lawn/trees/roads not copied. No terrainfit/flatten/reacquire/late modelraising; preview/replacementfalse/grade contact unresolved.",
+    "Three distinct individually inspected sources pass unchanged public-domain/CC0 inventory: native2023BenoitPrieur own/selfCC0 front, official Highsmith6144x4096native aerial and listed1228x1840side-arch detail, bound to exact catalog/files and explicit primary photographerPD dedication. Two published source candidates rejected unchanged guard, excluded; no source repair/reclassification or same-image bypass. Original architectural geometry/colors only, no copied bronze-door/window artwork/sculpture/name text/interiors/site instruments/lamps/grounds/photo pixels.",
+    "Whole native78control lower envelope/upper partitions retained. Eastern hidden low wing/service roof/sections/roomplan/window census/slit facing/fine finish and construction contact are original estimates. Published overall dimensions support native footprint; mapped35.9height/371ele not used as a survey. Original600m129x12916641samples/four rawtiles/SW325.7447m datum frozen before every floor/section/geometry choice. Main-lawn floor fixed20.9099m from untouched entry grid before geometry; no terrainfit/flatten/reacquire/late modelraising. Exact grade/threshold contact unresolved; preview/replaceFootprint=false. Flat ground and synthetic neighbors are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-rear-planetarium-and-native-east-lower-wing",
+      "position": [
+        80,
+        68.9099,
+        90
+      ],
+      "lookAt": [
+        0,
+        28.9099,
+        2
+      ]
+    },
+    {
+      "name": "entrance-recesses-stairs-and-green-crown",
+      "position": [
+        18,
+        36.9099,
+        -45
+      ],
+      "lookAt": [
+        0.38,
+        26.509900000000002,
+        -18
+      ]
+    },
+    {
+      "name": "closed-telescope-slit-and-paneled-copper",
+      "position": [
+        -46,
+        44.9099,
+        -36
+      ],
+      "lookAt": [
+        -29.35,
+        32.9099,
+        -17.5
+      ]
+    },
+    {
+      "name": "genuine-open-terrace-arches-and-parapet",
+      "position": [
+        -32,
+        32.9099,
+        -3
+      ],
+      "lookAt": [
+        -15.72,
+        30.2099,
+        -3.5
+      ]
+    },
+    {
+      "name": "whole-roof-plan-and-three-domes",
+      "position": [
+        0.1,
+        150.9099,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        27.9099,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 50807,
+    "vertices": 152421,
+    "materials": 3,
+    "bytes": 6164584,
+    "sha256": "sha256:d1219b47e75c71781bab5ce27f777a4fe7ec77b745416318eb10e7d594f63cf5"
+  }
+}

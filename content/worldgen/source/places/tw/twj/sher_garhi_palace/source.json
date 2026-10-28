@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sher_garhi_palace",
+  "kind": "static-structure",
+  "title": "Sher Garhi Palace — historic riverfront",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sher_garhi_palace",
+        "output": "assets/places/tw/twj/sher_garhi_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a67522974266e9219596533b0bbe95c905401fc870a3ed23e86cc976ebc4e9c3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sher-garhi",
+        "path": "models/generate-sher-garhi.mjs"
+      },
+      {
+        "id": "sher-garhi-model",
+        "path": "models/sher-garhi-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-images/burke-baker-getty-original.jpg",
+      "reference-rights/getty-object.html",
+      "reference-rights/getty-image-info.json",
+      "native-map/palace-site-and-current-building.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-23192-13081.png",
+      "terrain-sources/terrarium-15-23193-13081.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "map-frame.acquisition.json"
+    ]
+  }
+}

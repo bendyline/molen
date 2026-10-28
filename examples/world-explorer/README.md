@@ -13,6 +13,13 @@ PMTiles. Selecting a region reloads at its starting location while retaining ren
 Direct links use `?region=sydney`, `?region=kyoto`, `?region=yuma`, or `?region=new-delhi`.
 Explicit `?package=...` and `?synthetic=1` overrides remain available.
 
+**Controllers (N)** shows detected joysticks and gamepads. Open it to inspect raw axes/buttons,
+choose the walking, driving, free-flight or aircraft (`pilot`) profile, and assign controls.
+For a flight stick, assign pitch, roll, rudder and an absolute throttle lever as appropriate;
+axis numbering varies by device. Press a controller button with the page focused if it is not
+detected. **Save** keeps mappings in this browser and shares them with the Earth view sample on
+the same origin; **Done** resumes play. Keyboard controls continue to work alongside analog input.
+
 **Living places** plays six scripted dioramas at registered geographic sites. Choose a place
 and press **Visit**, or open `?diorama=football`, `airport`, `little-league`, `fireworks`, `fair`
 or `market`. Scenes load within 450 meters and unload beyond 550 meters. They run in separate
@@ -51,6 +58,11 @@ pedestrians on sidewalks and crossings, trains on rail lines and aircraft overhe
 view ahead and disappear behind you as you move. Press L to hide or show them; `?ambient=0` turns
 them off, and frozen captures (`?freeze=1`) leave them off unless `?ambient=1`. See
 [ambient life](https://molen.dev/guide/ambient-life).
+
+`?aerialOrtho=1600` draws a north-up orthographic frame 1,600 m tall centered under the camera,
+for side-by-side comparison with orthophotos; pair it with `?pitch=-1.5` and an altitude near the
+frame height. [scripts/aerial-color](scripts/aerial-color/README.md) uses it to compare each
+region's color proportions with open aerial imagery.
 
 The first camera frame does not wait for building textures. They bake in background workers;
 buildings appear in flat colours and gain their textures in place as each material finishes, and a

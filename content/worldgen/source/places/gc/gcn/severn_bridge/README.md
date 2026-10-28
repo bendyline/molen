@@ -14,9 +14,9 @@ Two inspected pictures confirm white portal towers, paired inclined hangers, con
 
 ## Accepted limits
 
-- Pictures and standard viewer PMTiles determine approximate fit; the working sea plane is not a certified vertical/tidal datum.
-- Original detailed geometry is preserved and byte-reproduced; shared graphs supply reusable painted steel and concrete grain. Road material uses a dark aggregate approximation.
-- Skyline uses representative suspension/hanger ribbons; district reconstructs broader cables. Street/closeup reductions simplify rails, fittings and narrow markings; source retains all authored geometry.
-- Separate approach bridges are excluded. Connected road fitting is requested, but exact host endpoint joins and tides are not surveyed. Mapped-water preview is not bathymetry. Footprint replacement off; physical-device timings remain pending.
+- The 308648-triangle shared-material detailed master remains exact. Browser models preserve paired portals, connected main cables, inclined hangers, complete aerofoil roadway and footways, piers and anchorages.
+- Source nominal dimensions, local sea-plane datum, sag/grade and fittings remain photo/map approximations; this is not a reconciled tidal or engineering survey.
+- Skyline/district use representative paired hangers. Near levels retain the 344-hanger schedule, continuous cables and rails; parapet pickets are spaced 16 m on street and 2 m on closeup, while the master retains the fine original 0.75 m rhythm.
+- Separate Aust/Beachley/Wye approach structures use the independent native procedural bridge renderer. Their detailed unique models, current traffic, interiors, exact endpoint grades and physical device timings are outside this asset.
 
 Regenerate with `node content/worldgen/source/places/gc/gcn/severn_bridge/models/generate-severn-bridge.mjs`; use `--check` for the selected source. QA reports bind the final inspected images and placement.

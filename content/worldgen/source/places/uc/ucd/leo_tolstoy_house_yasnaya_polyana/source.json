@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana",
+  "kind": "static-structure",
+  "title": "Leo Tolstoy House — Yasnaya Polyana",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana",
+        "output": "assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fd97e715b480c159b41576c4d2c49a9733bc66be8552d28b08bb64a46dcfe676"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-leo-tolstoy-house-yasnaya-polyana",
+        "path": "models/generate-leo-tolstoy-house-yasnaya-polyana.mjs"
+      },
+      {
+        "id": "leo-tolstoy-house-yasnaya-polyana-model",
+        "path": "models/leo-tolstoy-house-yasnaya-polyana-model.mjs"
+      },
+      {
+        "id": "leo-tolstoy-house-yasnaya-polyana-geometry",
+        "path": "models/leo-tolstoy-house-yasnaya-polyana-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

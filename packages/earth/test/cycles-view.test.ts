@@ -57,7 +57,23 @@ it('spawns, boards and switches all six cycle types through the public Earth vie
       );
       expect(view.getCamera().mode).toBe('drive');
       expect(view.interactable().id).toBeDefined();
+      view.input.map.setVirtual('test', 'nav-forward', 1);
+      await pump(30);
+      const normal = view.vehicleStatus();
+      const normalSpeed = normal && normal.kind !== 'aircraft' ? normal.speed : 0;
+      expect(normalSpeed).toBeGreaterThan(0);
+      view.setBoostMode(true);
+      await pump(2);
+      const boosted = view.vehicleStatus();
+      expect(boosted && boosted.kind !== 'aircraft' ? boosted.speed : 0).toBeGreaterThan(
+        normalSpeed * 3.8,
+      );
+      view.input.map.clearVirtual('test');
+      view.setBoostMode(false);
     }
+    view.input.map.setVirtual('test', 'nav-jump', 1);
+    await pump(180);
+    view.input.map.clearVirtual('test');
     expect(view.setMode('walk')).toBe(true);
     expect(view.vehicleStatus()).toBeUndefined();
   } finally {

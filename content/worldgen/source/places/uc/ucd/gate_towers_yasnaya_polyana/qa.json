@@ -1,0 +1,915 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.gate_towers_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:07148705b6e2c7435424d19d8e4281c745e1c1666259d6790a7d547f7ab8216f",
+  "sourceHash": "sha256:129dcbb87f6c9312ca8dc94bdf099c72d70bb05ca4be2940abaef71fb2fdbedd",
+  "runtimeHash": "sha256:228aeaa1a37233226e1ef414540d26cebece358b8ad1fe5425bc9e89fe2a41e6",
+  "captureReportHash": "sha256:bb9ccdacbf32b8bea17966a4a1274a48f52b3f4ad8017f53fc2996c038f6e27f",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/both-white-towers-green-bell-roofs-and-open-passage.png",
+      "shots/estate-side-arched-green-doors-and-wing-walls.png",
+      "shots/northeast-blind-arch-cornice-and-bell-roof.png",
+      "shots/southwest-recessed-door-plinth-and-original-ground.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames and full-resolution outside/inside arch/roof views. Both white round towers, curved green bell roofs, circular cornices, finial vanes, blind arched recesses, estate-side green arched doors and outward low wing walls form a complete exterior ensemble with an open central passage. The continuous pass replaced creased curved recess backs with planar arch panels, seated hardware on the recessed doors and embedded wing roots into the curved bodies. All LODs retain both bodies, roofs, doors, plinths and separate outward walls; district/street/closeup add blind recesses, shallow framing and roof seams."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/both-white-towers-green-bell-roofs-and-open-passage.png",
+      "shots/shared/estate-side-arched-green-doors-and-wing-walls.png",
+      "shots/shared/northeast-blind-arch-cornice-and-bell-roof.png",
+      "shots/shared/southwest-recessed-door-plinth-and-original-ground.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Five roles reuse three existing256px graphs: stucco, metal_standing_seam and wood_plain. Wall/cornice/plinth/wings share stucco; roof, seams and vane share painted metal; door uses wood_plain. Metric projection, linear tints, separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. Five nearby draws/one skyline. No embedded image, private atlas or new graph. Every shared graph reads once and unload releases all model geometry.",
+    "captureReportHash": "sha256:f04cf9fb7c6882bd0f506fd2d41ed01c6dd726f1cc579ccab80563b8365f3a0a"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/both-white-towers-green-bell-roofs-and-open-passage.png",
+      "medium-fi/estate-side-arched-green-doors-and-wing-walls.png",
+      "medium-fi/northeast-blind-arch-cornice-and-bell-roof.png",
+      "medium-fi/southwest-recessed-door-plinth-and-original-ground.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs retain the full paired silhouette and open passage. Skyline uses twelve-sided round bodies and five-point bell profiles, actual arched estate doors and outward walls below the1k structure ceiling. District adds three blind arched recesses and shallow framing per tower; street/closeup increase curve resolution and add restrained radial roof seams and door hardware. Initial skyline+district253748bytes; closeup424032bytes. Synthetic views compare style/LOD/modes; native views establish approximate geographic fit.",
+    "captureReportHash": "sha256:e1be2c6a6b385a5ced6c38ff1fc1f012458039e02ddab4f1b1c4522a0148f9b6"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:6491eb6431a756c525a0d946574ea074b00a6c1cb0b7ae7458826b020e3ee9af",
+    "mapFrameHash": "sha256:c398d82114cf23bca0874ea7c9736c07cb71f8d2b3044851e35cc53dbd81b73c",
+    "notes": "Paired independent ways361503808 and361503809 identify the entrance to Yasnaya Polyana. Retained mapped centers are5.229m apart along northeast/southwest; X northeast across the pair, Z southeast toward the outside approach, baked native axes with heading0 at the unchanged assigned collection anchor in the passage. Outside and inside photos establish green bell roofs, white cylinders and estate-facing northwest arched doors. PMTiles envelopes are broad relative to the photographed spacing: preserve both centers/ownership outlines while using photo-led slim bodies at60% of equivalent map radius, about1.8..1.92m diameter. This is an explicit map/photo reconciliation, not an exact surveyed footprint. Wing walls extend only outward, preserving the passage. Retained Protomaps20261020 and Mapzen201x201/6m ground; passage provider[0,0] supplies202.90528695999353m datum. Boundary grades-0.279..0.222m; northeast base+.05m/foundation-.5m and southwest base+.3m/foundation-.2m. Original ground remains between and around both towers. Only actual slim circular feet and two outward wing-wall feet cut it; never bridge their masks across the road. Coarse ground leaves some exposed plinth and unequal bases. No flattening or bespoke survey; independent neighbors, roads and ponds remain. Two owned map records replaced,241 resident/293 wider independent buildings retained. All original roads, passage ground and40070.675m² pond water remain. Actual model feet and outward walls alone cut the ground; the two circular masks remain separate. Failure retains all243 originals; every LOD/failure/unload restores ground/water with zero live model geometry. Three explicit passage probes and all outside approaches retain their original terrain. Mesh checks establish more than3m clear between the bodies."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Both entrance gate towers as one geographically anchored ensemble: slim white round masonry bodies, low plinths, projecting circular cornices, curved green bell roofs, small finial vanes, physically recessed blind arched panels and arched green wooden doors on the estate side. Two short attached low white wing walls complete the historic exterior interpretation. The central entrance and original road ground stay open. Temporary visitor barriers, signs, people and interiors are omitted; exact door/wing inventory, levels and roof seam details remain reconstructed. No photograph pixels or inscription artwork copied. Photo-led approximate dimensions: white body3.05m above individual base, stepped cornice to3.23m, bell roof to4.24m and finial/vane to4.76m. Door opening.7m wide with1.95m spring and2.3m arched top; blind niches use a similar arch. Individual model radii.895/.962m derive from60% of equivalent cartographic radii; hidden seams, door hardware, absolute vertical scale and historical levels remain approximate. Retained Protomaps20261020 and Mapzen201x201/6m ground; passage provider[0,0] supplies202.90528695999353m datum. Boundary grades-0.279..0.222m; northeast base+.05m/foundation-.5m and southwest base+.3m/foundation-.2m. Original ground remains between and around both towers. Only actual slim circular feet and two outward wing-wall feet cut it; never bridge their masks across the road. Coarse ground leaves some exposed plinth and unequal bases. No flattening or bespoke survey; independent neighbors, roads and ponds remain. Ordinary outside/inside photographs establish the architecture and estate-facing doors. Map centers/ownership stay fixed; slimmer photo-led bodies reconcile broad cartographic envelopes with photographed spacing. That width reconciliation and the unsurveyed vertical scale are explicit approximations. Low wing extents, historical levels, threshold accessibility, seam count and vane direction remain reconstructed. Modern visitor barriers/signs and interior use are omitted. Native roads approach slightly asymmetrically and coarse ground partly hides the threshold/plinth; their source geometry is preserved. Other estate buildings remain procedural context in the isolated fixture. Physical phone/laptop measurements remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:129dcbb87f6c9312ca8dc94bdf099c72d70bb05ca4be2940abaef71fb2fdbedd\",\"bytes\":509140,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.glb\",\"hash\":\"sha256:228aeaa1a37233226e1ef414540d26cebece358b8ad1fe5425bc9e89fe2a41e6\",\"bytes\":508624,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:c8c6e0159dbfe37701e50508518f5bc79ebc2036e55de8d4612548476177316b\",\"bytes\":66508,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:332ffe9f18e32215891e43c8d0250556dfe5fe3baf40e25db1ceb6a61d68e7c3\",\"bytes\":187240,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:d37573ce19a6e34d1498bfc06eaa02af799eed6dbc4f74c668719ee5c30efef5\",\"bytes\":292288,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:2f9539cc03bc0ce570b76ab93562966c4bfc499d97c9925351b452d114bcce83\",\"bytes\":424032,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "both-round-towers-bell-roofs-recessed-arches-doors-and-open-passage",
+        "passed": true,
+        "notes": "168 actual mesh/contact probes; all six GLB pins, finite attributes, shared bindings, LOD caps, separate vertex streams and initial download budget pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Paired independent ways361503808 and361503809 identify the entrance to Yasnaya Polyana. Retained mapped centers are5.229m apart along northeast/southwest; X northeast across the pair, Z southeast toward the outside approach, baked native axes with heading0 at the unchanged assigned collection anchor in the passage. Outside and inside photos establish green bell roofs, white cylinders and estate-facing northwest arched doors. PMTiles envelopes are broad relative to the photographed spacing: preserve both centers/ownership outlines while using photo-led slim bodies at60% of equivalent map radius, about1.8..1.92m diameter. This is an explicit map/photo reconciliation, not an exact surveyed footprint. Wing walls extend only outward, preserving the passage. Retained Protomaps20261020 and Mapzen201x201/6m ground; passage provider[0,0] supplies202.90528695999353m datum. Boundary grades-0.279..0.222m; northeast base+.05m/foundation-.5m and southwest base+.3m/foundation-.2m. Original ground remains between and around both towers. Only actual slim circular feet and two outward wing-wall feet cut it; never bridge their masks across the road. Coarse ground leaves some exposed plinth and unequal bases. No flattening or bespoke survey; independent neighbors, roads and ponds remain. Two owned map records replaced,241 resident/293 wider independent buildings retained. All original roads, passage ground and40070.675m² pond water remain. Actual model feet and outward walls alone cut the ground; the two circular masks remain separate. Failure retains all243 originals; every LOD/failure/unload restores ground/water with zero live model geometry. Three explicit passage probes and all outside approaches retain their original terrain. Mesh checks establish more than3m clear between the bodies."
+    },
+    "inputHash": "sha256:07148705b6e2c7435424d19d8e4281c745e1c1666259d6790a7d547f7ab8216f",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:07148705b6e2c7435424d19d8e4281c745e1c1666259d6790a7d547f7ab8216f",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames and full-resolution outside/inside arch/roof views. Both white round towers, curved green bell roofs, circular cornices, finial vanes, blind arched recesses, estate-side green arched doors and outward low wing walls form a complete exterior ensemble with an open central passage. The continuous pass replaced creased curved recess backs with planar arch panels, seated hardware on the recessed doors and embedded wing roots into the curved bodies. All LODs retain both bodies, roofs, doors, plinths and separate outward walls; district/street/closeup add blind recesses, shallow framing and roof seams.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/preview.png",
+          "hash": "sha256:a5716da2db2c231dffdacd03f78c8a2a5d42aeb4e807a2c929f83c94db06dee3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:edf1cc7ecd8e8d8d6e63f6f78b5e2706b7f07023f12dee028212359d5f515baa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:b03606ea3975ba46cc86f0db6b0dbbda426ecdb57df7e7c65709b03fb9f2e971"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:35187987b76521045b7f0ace7762add06c805b0d51adf6101f797d1b23a09589"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:0a2daa98731d62b951d6b212621452ee52cd835615def139e895bb100b0a7423"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/both-white-towers-green-bell-roofs-and-open-passage.png",
+          "hash": "sha256:da336b893eef6cca8be85737e78f0b6c23d10d3664a5bdb2fcfa8412dcc411c9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/estate-side-arched-green-doors-and-wing-walls.png",
+          "hash": "sha256:66de97b14d7185e42a77ff48ea81f6a7701899d4fcf86a9e2fcccf17806ad2b7"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/northeast-blind-arch-cornice-and-bell-roof.png",
+          "hash": "sha256:1f0f77243d9a1eb29f9f0b88e72c73798c4ff8a197a77bd70732e86e25d1feea"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/southwest-recessed-door-plinth-and-original-ground.png",
+          "hash": "sha256:fce63677cc73088b7a00c54c78faf5d968ce65828e291e80c433585c4423281a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:de795f26bac269bdf978480523bdec7c0c8e9ad9a5cbc64c399d46fc3c8547e6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:92e0df4f8645e68068ca15b809c3ac4eb5b760bca113f083ca7102ee01270a7b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:c7dbfa448279a37e8ae5f5aad0f0182c06af39a358034e68020eddc5affda589"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:8ec4faca74187e50753109f2fbff5d4611fff0cc35a2359a2671406e3ff7f5fd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/both-white-towers-green-bell-roofs-and-open-passage.png",
+          "hash": "sha256:7e298f2f24805c307628276f74700b7eaa9b7b27dc58c978423eb8f10c913568"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/estate-side-arched-green-doors-and-wing-walls.png",
+          "hash": "sha256:41617cfcb0348a836020ef08f15a7664c823e7a5dad0dc13904cd964c41b241c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/northeast-blind-arch-cornice-and-bell-roof.png",
+          "hash": "sha256:13b3cf4774f5d342d9630df6d0d993afa29ac4c337abee1d662eb57c23519de3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/southwest-recessed-door-plinth-and-original-ground.png",
+          "hash": "sha256:87dc6c303692448b43029f7be29c08886ef57b4e11308965b148e97613d34913"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:c4201a0ce19e3ca9c30cea5e2bfcec5a104207862a65160ec04f3b8330e92ba8"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:d2e511b5b2283c06fb975b62cdd832d11b0b0d7d9268b40a2dbd6db75cbd048d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:6f775ab013e161c45f8acec0ee9f3bfa340d402f93e30fa8b63356e466acf367"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:9b485d9a3db93b26afb28b7023de16f1bed843c1a003bdc2b5d4ba34dc2421e3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:352e9e833dfe0d6bbcddbda454ab63ac79aa7d53201ec9503e597bec99d9de1c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:e5bcb1ceb2e8eb392c6519088442ccb5d17054867039f38da3cc1fa356ca161d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:92586012de6b0eb870951baaca52c8897bf64290ec7e0ad1163f876766f2ca1b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:169d912a02cf43946408cfe5c6f73d53bc08d0b0b8e1a35d4b6b74609b2a5c82"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:526e8dfd42c5f3e43171305c668a00be3629531db86ef9787648952c5b0d4b96"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:60e33d2ef620594d0b37d4f306bf668b22592f1b34c12c3d7e7bf1aee6d5857b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:b0a6961cb86486fc9939c1661230c26470073e78ec82d097511dd3e8fb51a234"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:9550dea2a8d373fbda44c1b0b44e69586851f1138fd4fcd1dfb8ee87b34b1d06"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:be545df86fd544d8217a64a241388ed5d821a777a64a37f65693080fa65dc00e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:f079f7919dd55efb7850e7bb4075cc19e486d75e5a4c058dc50bccfacecd630f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/both-white-towers-green-bell-roofs-and-open-passage.png",
+          "hash": "sha256:6e3f4108c3835e3a00d03c8fbfbada51a6d1d22f47d68f9bbf568178aec890bf"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/estate-side-arched-green-doors-and-wing-walls.png",
+          "hash": "sha256:cb5dc99252661acf53ce3fe0cdbad8b29cd4bf8190399f61cb627556cb8066d1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/northeast-blind-arch-cornice-and-bell-roof.png",
+          "hash": "sha256:ac967ccb45319e218a9694a0a421af6430269b3c5e334b876bce802bdff76432"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/southwest-recessed-door-plinth-and-original-ground.png",
+          "hash": "sha256:a9b8d8d2ebb2d3200e5a382b97107d18c3bd43579c76ef8fa3a073cfdc42016d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:2af2d85477623fcd101a17f1f4d68e095f2e7ea348fcaa0bc6a27f8af5674501"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:92586012de6b0eb870951baaca52c8897bf64290ec7e0ad1163f876766f2ca1b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:e354259eaf4b8856e34b382970d3b09a2911b9f8162105dc4f70dd30e1397c35"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:ac154f7a90214307bea4576141d14103851184f97d14a7f1208b541d1f38bfdc"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:b8870881275f9a37936166408a45ff3ff3665b1f7302de1543fb208d02dc9983"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:3b00afca132334341bea7b0336fecfd20ddbba184d2610b28f2a48342c10b095"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:a7de2882bb9f63d5b13552e839a7012664fd459d9cfe85a6b9cfcade935b12e0"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:ff96c9bfaa542faebf1fb8f4d9bf662ef583e175273c9823be22be145854ad91"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-closeup-both-white-towers-green-bell-roofs-and-open-passage.png",
+          "hash": "sha256:9413f9ddc065fcbf70c36d34224a2a229e3b2e541b40a2f4ddcb06a783a58388"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-closeup-estate-side-arched-green-doors-and-wing-walls.png",
+          "hash": "sha256:f682bc69b9ce0c8e9f574204fdeef50bc9862b0a4601a7596be3b78ae622f2d9"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-closeup-northeast-blind-arch-cornice-and-bell-roof.png",
+          "hash": "sha256:dc1d97be22ddf6d3f54b5d2b279bed4a5f31267b78b64d7af79dc0dd73d273af"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-closeup-southwest-recessed-door-plinth-and-original-ground.png",
+          "hash": "sha256:070cfa06ec4b82d31e593bdb593ea88dfdfd9bb60a047f4a80d62cd11598bc77"
+        },
+        {
+          "path": ".artifacts/gate-towers-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:403c209c9590087d811e625582c2547e7ac98dc5fbf28a4d92f4df6e5eed0164"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:07148705b6e2c7435424d19d8e4281c745e1c1666259d6790a7d547f7ab8216f",
+      "sourceHash": "sha256:129dcbb87f6c9312ca8dc94bdf099c72d70bb05ca4be2940abaef71fb2fdbedd",
+      "runtimeHash": "sha256:228aeaa1a37233226e1ef414540d26cebece358b8ad1fe5425bc9e89fe2a41e6",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/gate_towers_yasnaya_polyana/models/source.glb": "sha256:129dcbb87f6c9312ca8dc94bdf099c72d70bb05ca4be2940abaef71fb2fdbedd",
+        "content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.glb": "sha256:228aeaa1a37233226e1ef414540d26cebece358b8ad1fe5425bc9e89fe2a41e6",
+        "content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.skyline.glb": "sha256:c8c6e0159dbfe37701e50508518f5bc79ebc2036e55de8d4612548476177316b",
+        "content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.district.glb": "sha256:332ffe9f18e32215891e43c8d0250556dfe5fe3baf40e25db1ceb6a61d68e7c3",
+        "content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.street.glb": "sha256:d37573ce19a6e34d1498bfc06eaa02af799eed6dbc4f74c668719ee5c30efef5",
+        "content/worldgen/assets/places/uc/ucd/gate_towers_yasnaya_polyana/model.closeup.glb": "sha256:2f9539cc03bc0ce570b76ab93562966c4bfc499d97c9925351b452d114bcce83"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184733592640,
+        35184733592641
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19800,
+            10509
+          ],
+          "id": 35184733592640,
+          "owned": true,
+          "covered": 0.9999367509399921,
+          "area": 8.07221277468031,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19800,
+            10509
+          ],
+          "id": 35184733592641,
+          "owned": true,
+          "covered": 0.9999346227197712,
+          "area": 6.997969010978985,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 241,
+      "widerIndependent": 293,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 3.0271220907707175e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 241,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.gate_towers_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -16.154586959993537,
+            "max": 40.829513040006475
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:b8870881275f9a37936166408a45ff3ff3665b1f7302de1543fb208d02dc9983",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 14,
+              "triangles": 272964
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                15.440506916821185,
+                7,
+                3.4045184904178614
+              ],
+              "lookAt": [
+                0,
+                2.1,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 3.0271220907707175e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 241,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gate_towers_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -16.154586959993537,
+            "max": 40.829513040006475
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:3b00afca132334341bea7b0336fecfd20ddbba184d2610b28f2a48342c10b095",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 274720
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                15.440506916821185,
+                7,
+                3.4045184904178614
+              ],
+              "lookAt": [
+                0,
+                2.1,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 3.0271220907707175e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 241,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gate_towers_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -16.154586959993537,
+            "max": 40.829513040006475
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:a7de2882bb9f63d5b13552e839a7012664fd459d9cfe85a6b9cfcade935b12e0",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 276000
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                15.440506916821185,
+                7,
+                3.4045184904178614
+              ],
+              "lookAt": [
+                0,
+                2.1,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 3.0271220907707175e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 241,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gate_towers_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -16.154586959993537,
+            "max": 40.829513040006475
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:ff96c9bfaa542faebf1fb8f4d9bf662ef583e175273c9823be22be145854ad91",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 277616
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                15.440506916821185,
+                7,
+                3.4045184904178614
+              ],
+              "lookAt": [
+                0,
+                2.1,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-both-white-towers-green-bell-roofs-and-open-passage.png",
+            "hash": "sha256:9413f9ddc065fcbf70c36d34224a2a229e3b2e541b40a2f4ddcb06a783a58388",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 277616
+            },
+            "camera": {
+              "name": "both-white-towers-green-bell-roofs-and-open-passage",
+              "position": [
+                13.294376801786944,
+                4.5,
+                4.0323126679498875
+              ],
+              "lookAt": [
+                0,
+                2.2,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-estate-side-arched-green-doors-and-wing-walls.png",
+            "hash": "sha256:f682bc69b9ce0c8e9f574204fdeef50bc9862b0a4601a7596be3b78ae622f2d9",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 277616
+            },
+            "camera": {
+              "name": "estate-side-arched-green-doors-and-wing-walls",
+              "position": [
+                -12.614033107767286,
+                4,
+                -3.2994194574425952
+              ],
+              "lookAt": [
+                0,
+                2,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-northeast-blind-arch-cornice-and-bell-roof.png",
+            "hash": "sha256:dc1d97be22ddf6d3f54b5d2b279bed4a5f31267b78b64d7af79dc0dd73d273af",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 277616
+            },
+            "camera": {
+              "name": "northeast-blind-arch-cornice-and-bell-roof",
+              "position": [
+                8.531970943649334,
+                3.8,
+                -1.0979398056011536
+              ],
+              "lookAt": [
+                1.9641538041595414,
+                2.7,
+                -1.8233210999726854
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-southwest-recessed-door-plinth-and-original-ground.png",
+            "hash": "sha256:070cfa06ec4b82d31e593bdb593ea88dfdfd9bb60a047f4a80d62cd11598bc77",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 277616
+            },
+            "camera": {
+              "name": "southwest-recessed-door-plinth-and-original-ground",
+              "position": [
+                -7.066184522634751,
+                2.3,
+                -0.262747582438164
+              ],
+              "lookAt": [
+                -2.004946425597525,
+                1.5,
+                1.588297777648671
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 241,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184733592640,
+              "area": 8.071824962869734
+            },
+            {
+              "id": 35184733592641,
+              "area": 6.997632808842802
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.gate_towers_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -16.154586959993537,
+            "max": 40.829513040006475
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:403c209c9590087d811e625582c2547e7ac98dc5fbf28a4d92f4df6e5eed0164",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 271977
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                15.440506916821185,
+                7,
+                3.4045184904178614
+              ],
+              "lookAt": [
+                0,
+                2.1,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Both entrance gate towers as one geographically anchored ensemble: slim white round masonry bodies, low plinths, projecting circular cornices, curved green bell roofs, small finial vanes, physically recessed blind arched panels and arched green wooden doors on the estate side. Two short attached low white wing walls complete the historic exterior interpretation. The central entrance and original road ground stay open. Temporary visitor barriers, signs, people and interiors are omitted; exact door/wing inventory, levels and roof seam details remain reconstructed. No photograph pixels or inscription artwork copied. Photo-led approximate dimensions: white body3.05m above individual base, stepped cornice to3.23m, bell roof to4.24m and finial/vane to4.76m. Door opening.7m wide with1.95m spring and2.3m arched top; blind niches use a similar arch. Individual model radii.895/.962m derive from60% of equivalent cartographic radii; hidden seams, door hardware, absolute vertical scale and historical levels remain approximate. Retained Protomaps20261020 and Mapzen201x201/6m ground; passage provider[0,0] supplies202.90528695999353m datum. Boundary grades-0.279..0.222m; northeast base+.05m/foundation-.5m and southwest base+.3m/foundation-.2m. Original ground remains between and around both towers. Only actual slim circular feet and two outward wing-wall feet cut it; never bridge their masks across the road. Coarse ground leaves some exposed plinth and unequal bases. No flattening or bespoke survey; independent neighbors, roads and ponds remain. Ordinary outside/inside photographs establish the architecture and estate-facing doors. Map centers/ownership stay fixed; slimmer photo-led bodies reconcile broad cartographic envelopes with photographed spacing. That width reconciliation and the unsurveyed vertical scale are explicit approximations. Low wing extents, historical levels, threshold accessibility, seam count and vane direction remain reconstructed. Modern visitor barriers/signs and interior use are omitted. Native roads approach slightly asymmetrically and coarse ground partly hides the threshold/plinth; their source geometry is preserved. Other estate buildings remain procedural context in the isolated fixture. Physical phone/laptop measurements remain pending."
+  ]
+}

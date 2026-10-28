@@ -1,6 +1,6 @@
 /** Independently researched exterior reconstructions citic_plaza–almas_tower, meters, +Y up. */
 import { ShapeUtils, Vector2 } from 'three';
-import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import {
   axes,
   bandPlan,
@@ -1239,7 +1239,7 @@ function buildAlmas(out, m) {
     let p = roof;
     if (normalFor(...p)[1] < 0) p = p.toReversed();
     tri(out, 'glass', p, [0.42, 0.54, 0.56]);
-    for (let i = 0; i < 3; i++) beam(out, 'metal', roof[i], roof[(i + 1) % 3], 0.5, 0.34, silver);
+    beamPath(out, 'metal', roof.slice(0, 3), 0.5, 0.34, silver, true);
     const tipIndex = plan.findIndex((p) => Math.hypot(p[0] - tip[0], p[1] - tip[1]) < 0.01);
     const a = roof[(tipIndex + 1) % 3],
       b = roof[(tipIndex + 2) % 3],
@@ -1721,8 +1721,7 @@ function buildGlories(out, m) {
     }
   for (let y = 115; y < 143.7; y += 1.88) {
     const ring = Array.from({ length: 44 }, (_, i) => at(i * 3, y, 0.36));
-    for (let i = 0; i < 44; i++)
-      beam(out, 'metal', ring[i], ring[(i + 1) % 44], 0.14, 0.18, [0.58, 0.64, 0.65]);
+    beamPath(out, 'metal', ring.slice(0, 44), 0.14, 0.18, [0.58, 0.64, 0.65], true);
   }
   // Small glazed oculus seals the crown instead of leaving a pinched open pole.
   const capPlan = Array.from({ length: 64 }, (_, i) => {

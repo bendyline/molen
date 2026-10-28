@@ -1,0 +1,245 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.airport.hangar",
+  "title": "Airport hangar",
+  "doc": "Mapped hangar footprints: broad shallow metal roofs and blank corrugated walls, without shop fronts. Heights are mapped when available, otherwise interpreted.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "hangar"
+    ]
+  },
+  "massing": {
+    "floorHeight": {
+      "min": 8,
+      "max": 10
+    },
+    "heightFallback": [
+      {
+        "levels": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ],
+    "groundFit": "platform-average",
+    "foundation": {
+      "height": {
+        "min": 0.2,
+        "max": 0.4
+      },
+      "exposeOnSlope": true
+    },
+    "wings": {
+      "split": "none",
+      "maxWingSpan": 60,
+      "minWingArea": 200,
+      "secondaryHeightScale": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": false,
+    "ridge": "long-axis",
+    "overhang": {
+      "min": 0.3,
+      "max": 0.3
+    },
+    "complexFootprint": "flat",
+    "choices": [
+      {
+        "type": "gable",
+        "weight": 1,
+        "pitchDeg": {
+          "min": 8,
+          "max": 10
+        }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": {
+      "width": {
+        "min": 6,
+        "max": 8
+      },
+      "cornerMargin": 1
+    },
+    "windows": {
+      "style": "none",
+      "width": {
+        "min": 2,
+        "max": 3
+      },
+      "height": {
+        "min": 3,
+        "max": 3.6
+      },
+      "sill": {
+        "min": 0.3,
+        "max": 0.5
+      },
+      "probabilityPerBay": 0,
+      "groundFloor": "same"
+    },
+    "bands": {
+      "base": {
+        "height": {
+          "min": 0.5,
+          "max": 0.8
+        }
+      },
+      "floorLines": false
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+          "weight": 1
+        }
+      ],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        4,
+        4
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+          "weight": 1
+        }
+      ],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        4,
+        4
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [
+        {
+          "ref": "palette:#ffffff",
+          "weight": 1
+        }
+      ],
+      "palette": "trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.concrete_plain",
+          "weight": 1
+        }
+      ],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        2,
+        2
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.storefront",
+          "weight": 1
+        }
+      ],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        {
+          "color": "#c8cfd1",
+          "weight": 3
+        },
+        {
+          "color": "#aab9c3",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.005,
+        "saturation": 0.03,
+        "lightness": 0.04
+      }
+    },
+    "roof": {
+      "entries": [
+        {
+          "color": "#acb4b6",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0.01,
+        "lightness": 0.03
+      }
+    },
+    "trim": {
+      "entries": [
+        {
+          "color": "#3b3e42",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0,
+        "lightness": 0.03
+      }
+    }
+  },
+  "props": [],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": [
+          "roof-shape",
+          "roof-features",
+          "facade-texture",
+          "facade-bands",
+          "props"
+        ]
+      },
+      {
+        "minTier": 1,
+        "keep": [
+          "roof-shape",
+          "facade-texture"
+        ]
+      }
+    ]
+  }
+}

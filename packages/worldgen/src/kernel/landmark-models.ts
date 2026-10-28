@@ -70,29 +70,15 @@ export function generateSignModel(
       letterSpacing: design.letterSpacing,
       maxCharacters: 80,
     });
-    const tint = parseColor(color);
-    for (let i = 0; i < mesh.indices.length; i += 3) {
-      const at = (j: number): [number, number, number] => {
-        const index = (mesh.indices[i + j] as number) * 3;
-        return [
-          x + (mesh.positions[index] as number),
-          y + (mesh.positions[index + 1] as number),
-          z,
-        ];
-      };
-      out.addTriangle(
-        'trim',
-        'palette:#ffffff',
-        [at(0), at(1), at(2)],
-        [0, 0, 1],
-        [
-          [0, 0],
-          [1, 0],
-          [0, 1],
-        ],
-        tint,
-      );
-    }
+    out.addFlatMesh(
+      'trim',
+      'palette:#ffffff',
+      mesh.positions,
+      mesh.indices,
+      [x, y, z],
+      [0, 0, 1],
+      parseColor(color),
+    );
   };
   const out = new MeshBufferBuilder();
   modelBox(out, [0, 0.675, 0], [4, 1.35, 0.18], design.background);

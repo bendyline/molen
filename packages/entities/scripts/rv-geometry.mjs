@@ -74,49 +74,8 @@ export function recreationalVehicleModel(s) {
       root.add(node);
   }
   if (B || C) {
-    // Trim the shared road body at the cab bulkhead before adding the coach. Clip crossing
-    // triangles rather than deleting entire faces, so the join has no holes or buried glazing.
-    for (const name of ['body-shell', 'glazing', 'exterior-fittings', 'rear-fascia']) {
-      const group = root.getObjectByName(name);
-      group?.traverse((mesh) => {
-        if (!mesh.isMesh) return;
-        const g = mesh.geometry.index ? mesh.geometry.toNonIndexed() : mesh.geometry;
-        const p = g.getAttribute('position'),
-          vertices = [];
-        for (let i = 0; i < p.count; i += 3) {
-          const triangle = Array.from({ length: 3 }, (_, j) => [
-              p.getX(i + j),
-              p.getY(i + j),
-              p.getZ(i + j),
-            ]),
-            clipped = [];
-          for (let j = 0; j < 3; j++) {
-            const a = triangle[j],
-              b = triangle[(j + 1) % 3],
-              inside = a[2] >= cabRear,
-              next = b[2] >= cabRear;
-            if (inside) clipped.push(a);
-            if (inside !== next) {
-              const t = (cabRear - a[2]) / (b[2] - a[2]);
-              clipped.push([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, cabRear]);
-            }
-          }
-          for (let j = 1; j < clipped.length - 1; j++) {
-            const a = new T.Vector3().fromArray(clipped[0]);
-            const ab = new T.Vector3().fromArray(clipped[j]).sub(a);
-            const ac = new T.Vector3().fromArray(clipped[j + 1]).sub(a);
-            if (ab.cross(ac).lengthSq() > 1e-14)
-              vertices.push(...clipped[0], ...clipped[j], ...clipped[j + 1]);
-          }
-        }
-        const clipped = new T.BufferGeometry();
-        clipped.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
-        clipped.computeVertexNormals();
-        mesh.geometry = clipped;
-      });
-      for (const mesh of [...(group?.children ?? [])])
-        if (mesh.geometry?.getAttribute('position').count === 0) group.remove(mesh);
-    }
+    // Trim the shared road body at the cab bulkhead before adding the coach.
+    clipBehind(root, cabRear, ['body-shell', 'glazing', 'exterior-fittings', 'rear-fascia']);
   }
   const material = (name, color, metalness = 0, roughness = 0.6) =>
     new T.MeshStandardMaterial({
@@ -182,7 +141,7 @@ export function recreationalVehicleModel(s) {
     return kit.add(g, mat);
   }
   function line(kit, points, r, mat) {
-    for (let i = 1; i < points.length; i++) kit.rod(points[i - 1], points[i], r, mat);
+    kit.path(points, r, mat);
   }
   function rect(z, y, w, h, r = 0.055) {
     return [
@@ -719,4 +678,52 @@ export function recreationalVehicleModel(s) {
       });
   }
   return root;
+}
+
+/**
+ * Trim named groups of a shared road body at a cab bulkhead (keep z >= z). Crossing triangles are
+ * clipped rather than deleted, so the join has no holes or buried glazing.
+ */
+export function clipBehind(root, z, names) {
+  for (const name of names) {
+    const group = root.getObjectByName(name);
+    group?.traverse((mesh) => {
+      if (!mesh.isMesh) return;
+      const g = mesh.geometry.index ? mesh.geometry.toNonIndexed() : mesh.geometry;
+      const p = g.getAttribute('position'),
+        vertices = [];
+      for (let i = 0; i < p.count; i += 3) {
+        const triangle = Array.from({ length: 3 }, (_, j) => [
+            p.getX(i + j),
+            p.getY(i + j),
+            p.getZ(i + j),
+          ]),
+          clipped = [];
+        for (let j = 0; j < 3; j++) {
+          const a = triangle[j],
+            b = triangle[(j + 1) % 3],
+            inside = a[2] >= z,
+            next = b[2] >= z;
+          if (inside) clipped.push(a);
+          if (inside !== next) {
+            const t = (z - a[2]) / (b[2] - a[2]);
+            clipped.push([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, z]);
+          }
+        }
+        for (let j = 1; j < clipped.length - 1; j++) {
+          const a = new T.Vector3().fromArray(clipped[0]);
+          const ab = new T.Vector3().fromArray(clipped[j]).sub(a);
+          const ac = new T.Vector3().fromArray(clipped[j + 1]).sub(a);
+          if (ab.cross(ac).lengthSq() > 1e-14)
+            vertices.push(...clipped[0], ...clipped[j], ...clipped[j + 1]);
+        }
+      }
+      const clipped = new T.BufferGeometry();
+      clipped.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
+      clipped.computeVertexNormals();
+      mesh.geometry = clipped;
+    });
+    for (const mesh of [...(group?.children ?? [])])
+      if (mesh.geometry?.getAttribute('position').count === 0) group.remove(mesh);
+  }
 }

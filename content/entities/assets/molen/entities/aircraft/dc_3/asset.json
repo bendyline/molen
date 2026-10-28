@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7c8c460e4bd087dd14672ff4b6d2bbaee4c9438cdf69fe1edf7df313e88c1981",
-  "sourceHash": "sha256:9294fe6dc118d589bfa5a95d96e81930bf20deaf4de58d15cc17697e4a0fa5ed",
+  "hash": "sha256:9af6637ea30854da1e88411ecbdcc08c6efdafbf91d89f4c492dbab0e56889e9",
+  "sourceHash": "sha256:b5b9fc18d7e395562a6763d955312fdf1c07f7296fc97e29fefa9aaf337d30ce",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 95971,
-    "vertices": 199088,
-    "meshes": 129,
-    "primitives": 129,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 51251,
+    "vertices": 55838,
+    "meshes": 162,
+    "primitives": 162,
+    "materials": 32,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 3788628
+    "sizeBytes": 1996384
   },
   "nodes": [
     {
       "name": "DC3-shell-DC3-aluminium",
-      "triangles": 6646
+      "triangles": 6578
     },
     {
       "name": "DC3-shell-DC3-glass",
@@ -51,7 +51,7 @@
     },
     {
       "name": "DC3-shell-DC3-blue",
-      "triangles": 1728
+      "triangles": 864
     },
     {
       "name": "DC3-shell-DC3-orange",
@@ -59,11 +59,11 @@
     },
     {
       "name": "DC3-shell-DC3-dark",
-      "triangles": 1304
+      "triangles": 1088
     },
     {
       "name": "DC3-shell-DC3-engine-case",
-      "triangles": 1488
+      "triangles": 1056
     },
     {
       "name": "DC3-label--1-DC3-blue",
@@ -163,7 +163,7 @@
     },
     {
       "name": "DC3-rudder-DC3-fabric-controls",
-      "triangles": 26
+      "triangles": 28
     },
     {
       "name": "DC3-rudder-DC3-engine-case",
@@ -187,7 +187,7 @@
     },
     {
       "name": "DC3-engine-1-DC3-dark",
-      "triangles": 2340
+      "triangles": 1252
     },
     {
       "name": "DC3-engine-1-DC3-engine-case",
@@ -319,7 +319,7 @@
     },
     {
       "name": "DC3-engine--1-DC3-dark",
-      "triangles": 2340
+      "triangles": 1252
     },
     {
       "name": "DC3-engine--1-DC3-engine-case",
@@ -451,15 +451,11 @@
     },
     {
       "name": "DC3-cockpit-DC3-dark",
-      "triangles": 1286
+      "triangles": 1166
     },
     {
       "name": "DC3-cockpit-DC3-aluminium",
       "triangles": 2064
-    },
-    {
-      "name": "DC3-cockpit-DC3-prop-controls",
-      "triangles": 120
     },
     {
       "name": "DC3-cockpit-detail-alloy",
@@ -478,10 +474,6 @@
       "triangles": 204
     },
     {
-      "name": "DC3-cockpit-DC3-instrument-ink",
-      "triangles": 12000
-    },
-    {
       "name": "DC3-cockpit-DC3-orange",
       "triangles": 1056
     },
@@ -494,6 +486,18 @@
       "triangles": 332
     },
     {
+      "name": "DC3-cockpit-DC3-prop-controls-panel-print",
+      "triangles": 2
+    },
+    {
+      "name": "DC3-cockpit-DC3-instrument-ink-panel-print",
+      "triangles": 278
+    },
+    {
+      "name": "DC3-cockpit-DC3-instrument-ink-display-print",
+      "triangles": 8
+    },
+    {
       "name": "DC3-speed-face-DC3-instrument-black",
       "triangles": 128
     },
@@ -503,7 +507,11 @@
     },
     {
       "name": "DC3-speed-face-DC3-instrument-ink",
-      "triangles": 3384
+      "triangles": 192
+    },
+    {
+      "name": "DC3-speed-face-DC3-instrument-ink-dial-print",
+      "triangles": 52
     },
     {
       "name": "DC3-speed-DC3-instrument-ink",
@@ -523,7 +531,11 @@
     },
     {
       "name": "DC3-speed-right-face-DC3-instrument-ink",
-      "triangles": 3384
+      "triangles": 192
+    },
+    {
+      "name": "DC3-speed-right-face-DC3-instrument-ink-dial-print",
+      "triangles": 52
     },
     {
       "name": "DC3-speed-right-DC3-instrument-ink",
@@ -540,18 +552,6 @@
     {
       "name": "DC3-altimeter-detail-alloy",
       "triangles": 240
-    },
-    {
-      "name": "DC3-altimeter-DC3-instrument-ink",
-      "triangles": 2844
-    },
-    {
-      "name": "DC3-altimeter-0-DC3-instrument-ink",
-      "triangles": 24
-    },
-    {
-      "name": "DC3-altimeter-1-DC3-instrument-ink",
-      "triangles": 24
     }
   ],
   "nodesTruncated": true,
@@ -622,9 +622,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "DC3-cockpit-green",
+      "name": "DC3-cockpit-green-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -638,17 +641,34 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "DC3-prop-controls",
+      "name": "DC3-dark-panel",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
-      "doubleSided": false,
+      "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "DC3-aluminium-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -678,14 +698,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "DC3-instrument-ink",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "DC3-seat-cloth",
       "slots": [
         "baseColor"
@@ -695,6 +707,41 @@
     },
     {
       "name": "DC3-cabin-liner",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "DC3-prop-controls-period-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "DC3-instrument-ink-period-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "DC3-instrument-ink-display-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "DC3-instrument-ink",
       "slots": [
         "baseColor"
       ],
@@ -719,6 +766,72 @@
     },
     {
       "name": "DC3-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "DC3-prop-controls",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-panel",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-period-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -789,30 +902,30 @@
       {
         "node": "DC3-shell-DC3-blue",
         "points": [
-          -1.2479,
-          1.9765,
-          -2.2723,
-          -1.2479,
-          1.9765,
-          7.3873,
-          -1.2479,
-          4.7678,
-          -2.2723,
-          -1.2479,
-          4.7678,
-          7.3873,
-          1.2479,
-          1.9765,
-          -2.2723,
-          1.2479,
-          1.9765,
-          7.3873,
-          1.2479,
-          4.7678,
-          -2.2723,
-          1.2479,
-          4.7678,
-          7.3873
+          -1.249,
+          1.976,
+          -2.2727,
+          -1.249,
+          1.976,
+          7.3889,
+          -1.249,
+          4.7706,
+          -2.2727,
+          -1.249,
+          4.7706,
+          7.3889,
+          1.249,
+          1.976,
+          -2.2727,
+          1.249,
+          1.976,
+          7.3889,
+          1.249,
+          4.7706,
+          -2.2727,
+          1.249,
+          4.7706,
+          7.3889
         ]
       },
       {
@@ -848,10 +961,10 @@
         "node": "DC3-shell-DC3-dark",
         "points": [
           -5.6199,
-          1.1334,
+          1.1328,
           -8.6061,
           -5.6199,
-          1.1334,
+          1.1328,
           7.5987,
           -5.6199,
           5.3942,
@@ -860,10 +973,10 @@
           5.3942,
           7.5987,
           5.6199,
-          1.1334,
+          1.1328,
           -8.6061,
           5.6199,
-          1.1334,
+          1.1328,
           7.5987,
           5.6199,
           5.3942,
@@ -1780,25 +1893,25 @@
           3.5848,
           2.0042,
           1.5555,
-          5.5507,
+          6.403,
           2.0042,
           3.4016,
           3.5848,
           2.0042,
           3.4016,
-          5.5507,
+          6.403,
           3.6346,
           1.5555,
           3.5848,
           3.6346,
           1.5555,
-          5.5507,
+          6.403,
           3.6346,
           3.4016,
           3.5848,
           3.6346,
           3.4016,
-          5.5507
+          6.403
         ]
       },
       {
@@ -2737,25 +2850,25 @@
           3.5848,
           -3.6346,
           1.5555,
-          5.5507,
+          6.403,
           -3.6346,
           3.4016,
           3.5848,
           -3.6346,
           3.4016,
-          5.5507,
+          6.403,
           -2.0042,
           1.5555,
           3.5848,
           -2.0042,
           1.5555,
-          5.5507,
+          6.403,
           -2.0042,
           3.4016,
           3.5848,
           -2.0042,
           3.4016,
-          5.5507
+          6.403
         ]
       },
       {
@@ -3745,35 +3858,6 @@
         ]
       },
       {
-        "node": "DC3-cockpit-DC3-prop-controls",
-        "points": [
-          0.138,
-          4.579,
-          6.9242,
-          0.138,
-          4.579,
-          6.9269,
-          0.138,
-          4.5877,
-          6.9242,
-          0.138,
-          4.5877,
-          6.9269,
-          0.1431,
-          4.579,
-          6.9242,
-          0.1431,
-          4.579,
-          6.9269,
-          0.1431,
-          4.5877,
-          6.9242,
-          0.1431,
-          4.5877,
-          6.9269
-        ]
-      },
-      {
         "node": "DC3-cockpit-detail-alloy",
         "points": [
           -0.9127,
@@ -3890,35 +3974,6 @@
         ]
       },
       {
-        "node": "DC3-cockpit-DC3-instrument-ink",
-        "points": [
-          -0.889,
-          4.3031,
-          6.7935,
-          -0.889,
-          4.3031,
-          6.9862,
-          -0.889,
-          5.0099,
-          6.7935,
-          -0.889,
-          5.0099,
-          6.9862,
-          0.831,
-          4.3031,
-          6.7935,
-          0.831,
-          4.3031,
-          6.9862,
-          0.831,
-          5.0099,
-          6.7935,
-          0.831,
-          5.0099,
-          6.9862
-        ]
-      },
-      {
         "node": "DC3-cockpit-DC3-orange",
         "points": [
           -0.2815,
@@ -4006,6 +4061,93 @@
         ]
       },
       {
+        "node": "DC3-cockpit-DC3-prop-controls-panel-print",
+        "points": [
+          0.1366,
+          4.579,
+          6.925,
+          0.1366,
+          4.579,
+          6.9265,
+          0.1366,
+          4.586,
+          6.925,
+          0.1366,
+          4.586,
+          6.9265,
+          0.142,
+          4.579,
+          6.925,
+          0.142,
+          4.579,
+          6.9265,
+          0.142,
+          4.586,
+          6.925,
+          0.142,
+          4.586,
+          6.9265
+        ]
+      },
+      {
+        "node": "DC3-cockpit-DC3-instrument-ink-panel-print",
+        "points": [
+          -0.8873,
+          4.3019,
+          6.9115,
+          -0.8873,
+          4.3019,
+          6.9859,
+          -0.8873,
+          4.6676,
+          6.9115,
+          -0.8873,
+          4.6676,
+          6.9859,
+          0.8275,
+          4.3019,
+          6.9115,
+          0.8275,
+          4.3019,
+          6.9859,
+          0.8275,
+          4.6676,
+          6.9115,
+          0.8275,
+          4.6676,
+          6.9859
+        ]
+      },
+      {
+        "node": "DC3-cockpit-DC3-instrument-ink-display-print",
+        "points": [
+          -0.0235,
+          4.993,
+          6.7942,
+          -0.0235,
+          4.993,
+          6.7973,
+          -0.0235,
+          5.0082,
+          6.7942,
+          -0.0235,
+          5.0082,
+          6.7973,
+          0.024,
+          4.993,
+          6.7942,
+          0.024,
+          4.993,
+          6.7973,
+          0.024,
+          5.0082,
+          6.7942,
+          0.024,
+          5.0082,
+          6.7973
+        ]
+      },
+      {
         "node": "DC3-speed-face-DC3-instrument-black",
         "points": [
           0.3033,
@@ -4090,6 +4232,35 @@
           0.408,
           4.5767,
           6.9607
+        ]
+      },
+      {
+        "node": "DC3-speed-face-DC3-instrument-ink-dial-print",
+        "points": [
+          0.3181,
+          4.4884,
+          6.9425,
+          0.3181,
+          4.4884,
+          6.9582,
+          0.3181,
+          4.5653,
+          6.9425,
+          0.3181,
+          4.5653,
+          6.9582,
+          0.4029,
+          4.4884,
+          6.9425,
+          0.4029,
+          4.4884,
+          6.9582,
+          0.4029,
+          4.5653,
+          6.9425,
+          0.4029,
+          4.5653,
+          6.9582
         ]
       },
       {
@@ -4238,6 +4409,35 @@
         ]
       },
       {
+        "node": "DC3-speed-right-face-DC3-instrument-ink-dial-print",
+        "points": [
+          -0.7475,
+          4.5289,
+          6.9351,
+          -0.7475,
+          4.5289,
+          6.9499,
+          -0.7475,
+          4.6016,
+          6.9351,
+          -0.7475,
+          4.6016,
+          6.9499,
+          -0.6673,
+          4.5289,
+          6.9351,
+          -0.6673,
+          4.5289,
+          6.9499,
+          -0.6673,
+          4.6016,
+          6.9351,
+          -0.6673,
+          4.6016,
+          6.9499
+        ]
+      },
+      {
         "node": "DC3-speed-right-DC3-instrument-ink",
         "points": [
           -0.7094,
@@ -4351,93 +4551,6 @@
           0.7272,
           4.5786,
           6.9637
-        ]
-      },
-      {
-        "node": "DC3-altimeter-DC3-instrument-ink",
-        "points": [
-          0.6272,
-          4.4802,
-          6.9404,
-          0.6272,
-          4.4802,
-          6.9603,
-          0.6272,
-          4.5731,
-          6.9404,
-          0.6272,
-          4.5731,
-          6.9603,
-          0.7217,
-          4.4802,
-          6.9404,
-          0.7217,
-          4.4802,
-          6.9603,
-          0.7217,
-          4.5731,
-          6.9404,
-          0.7217,
-          4.5731,
-          6.9603
-        ]
-      },
-      {
-        "node": "DC3-altimeter-0-DC3-instrument-ink",
-        "points": [
-          0.6735,
-          4.5215,
-          6.9363,
-          0.6735,
-          4.5215,
-          6.9473,
-          0.6735,
-          4.5661,
-          6.9363,
-          0.6735,
-          4.5661,
-          6.9473,
-          0.6753,
-          4.5215,
-          6.9363,
-          0.6753,
-          4.5215,
-          6.9473,
-          0.6753,
-          4.5661,
-          6.9363,
-          0.6753,
-          4.5661,
-          6.9473
-        ]
-      },
-      {
-        "node": "DC3-altimeter-1-DC3-instrument-ink",
-        "points": [
-          0.6728,
-          4.5212,
-          6.9372,
-          0.6728,
-          4.5212,
-          6.9471,
-          0.6728,
-          4.5528,
-          6.9372,
-          0.6728,
-          4.5528,
-          6.9471,
-          0.676,
-          4.5212,
-          6.9372,
-          0.676,
-          4.5212,
-          6.9471,
-          0.676,
-          4.5528,
-          6.9372,
-          0.676,
-          4.5528,
-          6.9471
         ]
       }
     ]

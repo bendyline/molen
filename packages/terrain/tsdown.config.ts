@@ -10,7 +10,10 @@ export default defineConfig({
   // renderer code; geographic catalogs and sign artwork remain in the content packs.
   outputOptions: {
     codeSplitting: {
-      groups: [{ name: 'ground-material', test: /[/\\]ground-material\.ts$/ }],
+      groups: [
+        { name: 'ground-material', test: /[/\\]ground-material\.ts$/ },
+        { name: 'surface-renderer', test: /[/\\]surface-client\.ts$/ },
+      ],
     },
   },
 });

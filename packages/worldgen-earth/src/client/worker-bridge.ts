@@ -5,13 +5,18 @@
  * and produce byte-identical tiles (both sample the ground through the same height grid).
  */
 
-import type { TerrainSemanticTile } from '@bendyline/molen-terrain/kernel';
 import {
+  type TerrainSemanticTile,
+  terrainSemanticTilePacket,
+} from '@bendyline/molen-terrain/kernel';
+import {
+  type HeightGrid,
   type HeightSampler,
   heightGridFromSampler,
   type ResolvedStylePack,
   type WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
+import { packPolygons } from '../kernel/packed-polygons';
 import type { PlacesContentDocs } from '../kernel/places';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
 import type { RegionalEnvironmentDocs } from '../kernel/regional-environment';
@@ -43,6 +48,11 @@ export interface WorldgenGenerateRequest {
 
 /** Produces tile output somewhere: in a worker, in-thread, or from a cache in front of either. */
 export interface WorldgenGenerator {
+  /**
+   * Main-thread work `generate` would otherwise do first (the tile's ground grid), for a host
+   * that meters main-thread work to run as its own step. Optional; `generate` works without it.
+   */
+  prepare?(request: WorldgenGenerateRequest): void;
   generate(
     request: WorldgenGenerateRequest,
     signal: AbortSignal,
@@ -71,22 +81,59 @@ export interface WorldgenWorkerBridgeOptions {
   ownsWorker?: boolean;
 }
 
-/** Sample a tile's ground into the grid both generation paths use. */
+/**
+ * Recently sampled grids. A tile's building and scatter passes sample the same ground, a few
+ * milliseconds of main thread each for a full-resolution tile.
+ */
+const recentGrids: Array<{ ground: HeightSampler; key: string; grid: HeightGrid }> = [];
+const RECENT_GRIDS = 8;
+
+/**
+ * Sample a tile's ground into the grid both generation paths use. Each call returns its own
+ * heights, which the worker bridge transfers away; a recent tile's samples are reused.
+ */
 export function tileHeightGrid(
   ground: HeightSampler,
   geom: TileGeometry,
   resolution: number,
-): ReturnType<typeof heightGridFromSampler> {
+): HeightGrid {
+  const grid = sampledTileGround(ground, geom, resolution);
+  return { ...grid, heights: grid.heights.slice() };
+}
+
+/** The shared grid behind `tileHeightGrid`: sampled once for a recent tile, never transferred. */
+function sampledTileGround(
+  ground: HeightSampler,
+  geom: TileGeometry,
+  resolution: number,
+): HeightGrid {
   const samples = Math.max(2, Math.min(1025, Math.floor(resolution)));
-  return heightGridFromSampler(
-    ground,
-    geom.originX,
-    geom.originZ,
-    geom.size,
-    geom.size,
-    samples,
-    samples,
-  );
+  const key = `${geom.originX},${geom.originZ},${geom.size},${samples}`;
+  let index = recentGrids.findIndex((entry) => entry.ground === ground && entry.key === key);
+  if (index < 0) {
+    const grid = heightGridFromSampler(
+      ground,
+      geom.originX,
+      geom.originZ,
+      geom.size,
+      geom.size,
+      samples,
+      samples,
+    );
+    recentGrids.unshift({ ground, key, grid });
+    if (recentGrids.length > RECENT_GRIDS) recentGrids.pop();
+    index = 0;
+  }
+  return (recentGrids[index] as { grid: HeightGrid }).grid;
+}
+
+/** Sample a tile's ground ahead of `tileHeightGrid`, which then finds it ready. */
+export function prepareTileHeightGrid(
+  ground: HeightSampler,
+  geom: TileGeometry,
+  resolution: number,
+): void {
+  sampledTileGround(ground, geom, resolution);
 }
 
 export function createWorldgenWorkerBridge(
@@ -120,19 +167,27 @@ export function createWorldgenWorkerBridge(
   worker.postMessage(configure);
 
   return {
+    prepare(request): void {
+      if (!disposed) prepareTileHeightGrid(request.ground, request.geom, request.resolution);
+    },
     generate(request, signal): Promise<WorldgenTileOutput | undefined> {
       if (disposed) return Promise.resolve(undefined);
       if (signal.aborted) return Promise.resolve(undefined);
       const id = nextId++;
       const ground = tileHeightGrid(request.ground, request.geom, request.resolution);
+      const exclusions =
+        request.buildingInfillExclusions !== undefined
+          ? packPolygons(request.buildingInfillExclusions)
+          : undefined;
       const message: WorldgenWorkerGenerate = {
         ...(request.buildingInfill !== undefined ? { buildingInfill: request.buildingInfill } : {}),
-        ...(request.buildingInfillExclusions !== undefined
-          ? { buildingInfillExclusions: request.buildingInfillExclusions }
-          : {}),
+        ...(exclusions !== undefined ? { packedInfillExclusions: exclusions } : {}),
         kind: 'generate',
         id,
-        tile: request.tile,
+        // A decoded tile goes as the packet it arrived in; one made here goes as itself.
+        ...((packet) => (packet ? { packet } : { tile: request.tile }))(
+          terrainSemanticTilePacket(request.tile),
+        ),
         geom: request.geom,
         ground,
         ...(request.renderCellsOnly ? { renderCellsOnly: true } : {}),
@@ -157,7 +212,12 @@ export function createWorldgenWorkerBridge(
             reject(error);
           },
         });
-        worker.postMessage(message, [ground.heights.buffer]);
+        worker.postMessage(message, [
+          ground.heights.buffer,
+          ...(exclusions !== undefined
+            ? [exclusions.points.buffer, exclusions.rings.buffer, exclusions.polygons.buffer]
+            : []),
+        ]);
       });
     },
     dispose(): void {
@@ -185,6 +245,9 @@ export function createWorldgenWorkerPool(
     busy: 0,
   }));
   return {
+    prepare(request): void {
+      (members[0] as (typeof members)[number]).bridge.prepare?.(request);
+    },
     generate(request, signal) {
       let target = members[0] as (typeof members)[number];
       for (const member of members) if (member.busy < target.busy) target = member;

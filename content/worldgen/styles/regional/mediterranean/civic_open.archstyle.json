@@ -377,20 +377,36 @@
     "regional_wall": {
       "entries": [
         {
-          "color": "#dfc2af",
+          "color": "#ddd6c6",
+          "weight": 3
+        },
+        {
+          "color": "#9eacb8",
+          "weight": 3
+        },
+        {
+          "color": "#e3e0d8",
+          "weight": 3
+        },
+        {
+          "color": "#8f9397",
+          "weight": 2
+        },
+        {
+          "color": "#a9b3a7",
           "weight": 1
         },
         {
-          "color": "#ece7d9",
+          "color": "#ae8b78",
           "weight": 1
         },
         {
-          "color": "#e4ddc8",
-          "weight": 1
+          "color": "#d2cec5",
+          "weight": 5
         },
         {
-          "color": "#d5be99",
-          "weight": 1
+          "color": "#b8bfc4",
+          "weight": 4
         }
       ],
       "jitter": {
@@ -402,12 +418,28 @@
     "regional_roof": {
       "entries": [
         {
-          "color": "#a9aaa0",
+          "color": "#c0c1bd",
+          "weight": 3
+        },
+        {
+          "color": "#9b9d9d",
+          "weight": 2
+        },
+        {
+          "color": "#74777b",
           "weight": 1
         },
         {
-          "color": "#bab8a9",
+          "color": "#b5ab98",
           "weight": 1
+        },
+        {
+          "color": "#ecece8",
+          "weight": 7
+        },
+        {
+          "color": "#dadbd7",
+          "weight": 4
         }
       ],
       "jitter": {
@@ -442,9 +474,9 @@
       "probability": 0.85,
       "count": {
         "min": 2,
-        "max": 14
+        "max": 6
       },
-      "perAreaM2": 150,
+      "perAreaM2": 250,
       "roof": [
         "flat"
       ],
@@ -455,7 +487,7 @@
         "max": 1.7
       },
       "yaw": "align-wall",
-      "lodTier": 0
+      "lodTier": 1
     }
   ],
   "lod": {
@@ -474,7 +506,8 @@
         "minTier": 1,
         "keep": [
           "roof-shape",
-          "facade-texture"
+          "facade-texture",
+          "props"
         ]
       },
       {

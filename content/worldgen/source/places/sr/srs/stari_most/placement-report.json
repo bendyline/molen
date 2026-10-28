@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.stari_most",
-  "inputHash": "sha256:075f72861cecb84d2c92e702f0073a3519cf582c064dce271cbbee4bcd2a7cb3",
-  "placementHash": "sha256:af75adbe8b4fac398be18676cd6b509aeedc337dc467c7b191f3f1d2c573c7c7",
+  "inputHash": "sha256:7ee89285f508c180e11dbef738c844eca2b3360380f044af34436ed91cecb01c",
+  "placementHash": "sha256:28030528bf2e22514162b793696e8d6b5641302af3757faa56f4b930cb8e6a72",
   "entry": {
     "id": "stari.most",
     "title": "Stari Most",
@@ -19,11 +19,26 @@
       "wikidata": "Q188528",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "bounds": [
+      17.814793206652645,
+      43.33723411631929,
+      17.815265393347353,
+      43.33730028368071
+    ],
+    "replaceRoads": {
+      "length": 32.4,
+      "width": 5.2,
+      "deckHeights": [
+        17.19,
+        17
+      ],
+      "includeConnectedApproaches": true
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/33924615",
-    "note": "Exact-QID pedestrian centerline fixes west→east main axis; bent approaches are excluded from axis fit. LocalY0 at historical low-water40.05m ASL gives crown60.39m. Host terrain and current river stage may differ. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
+    "note": "Confirmed mapped east-west crossing, fixed heading and historical low-water40.05m ASL datum retained. Only the modeled longitudinal bridge-road corridor is replaced. Its native bent tails retain the corresponding deck height and transfer it into the two connected streets. Automatic retaining supports seat raised approaches into the original terrain. Raw DEM bank levels remain coarse and differ from the bridge deck; preserve all mapped buildings and unrelated roads, native river and every DEM sample. Adjacent towers/town buildings remain independent native context. Geographic approval is recorded separately after inspection. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

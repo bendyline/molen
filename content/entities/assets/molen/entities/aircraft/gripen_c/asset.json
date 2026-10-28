@@ -6,14 +6,14 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7c6388cc759b2a15ba9ce542fb28a182da55865a7f300c53cad50c6ef418ea46",
-  "sourceHash": "sha256:625827a6d88d3449517bc62f558b62c1b896bc74f1092f8c43a5bf25c7bdca18",
+  "hash": "sha256:196fb0057a6dc3395d6e8e4547531db26da621ff4825a0b168a70b7b02ec1cbd",
+  "sourceHash": "sha256:1c2acd687b758a1db7ad4855fe64b697b3105791800e6838e8fa32ecf973c19d",
   "bounds": {
     "aabb": {
       "min": [
         -4.2001,
         0,
-        -7.0004
+        -7.0003
       ],
       "max": [
         4.2001,
@@ -27,18 +27,18 @@
         2.2502,
         0.45
       ],
-      "radius": 7.5098
+      "radius": 7.5097
     }
   },
   "stats": {
-    "triangles": 34969,
-    "vertices": 72848,
-    "meshes": 68,
-    "primitives": 68,
-    "materials": 19,
-    "textures": 0,
+    "triangles": 14243,
+    "vertices": 15446,
+    "meshes": 86,
+    "primitives": 86,
+    "materials": 31,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 1446892
+    "sizeBytes": 865944
   },
   "nodes": [
     {
@@ -47,11 +47,11 @@
     },
     {
       "name": "Gripen-airframe-Gripen-gray",
-      "triangles": 2642
+      "triangles": 1670
     },
     {
       "name": "Gripen-airframe-Gripen-seal",
-      "triangles": 2064
+      "triangles": 1320
     },
     {
       "name": "Gripen-airframe-Gripen-alloy",
@@ -175,23 +175,35 @@
     },
     {
       "name": "Gripen-cabin-Gripen-instrument-black",
-      "triangles": 302
+      "triangles": 158
     },
     {
       "name": "Gripen-cabin-Gripen-buttons",
       "triangles": 34
     },
     {
-      "name": "Gripen-cabin-Gripen-display",
-      "triangles": 5784
+      "name": "Gripen-cabin-Gripen-display-display-print",
+      "triangles": 42
     },
     {
-      "name": "Gripen-cabin-Gripen-instrument-amber",
-      "triangles": 3792
+      "name": "Gripen-cabin-Gripen-display-panel-print",
+      "triangles": 68
+    },
+    {
+      "name": "Gripen-cabin-Gripen-instrument-amber-panel-print",
+      "triangles": 38
+    },
+    {
+      "name": "Gripen-cabin-Gripen-instrument-amber-display-print",
+      "triangles": 34
     },
     {
       "name": "Gripen-cabin-Gripen-instrument-ink",
-      "triangles": 2928
+      "triangles": 24
+    },
+    {
+      "name": "Gripen-cabin-Gripen-instrument-ink-panel-print",
+      "triangles": 54
     },
     {
       "name": "Gripen-attitude-fixed-Gripen-instrument-black",
@@ -211,7 +223,11 @@
     },
     {
       "name": "Gripen-attitude-card-Gripen-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "Gripen-attitude-card-Gripen-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "Gripen-speed-0-0-Gripen-display",
@@ -536,22 +552,6 @@
     {
       "name": "Gripen-vertical-speed-3-2-Gripen-display",
       "triangles": 12
-    },
-    {
-      "name": "Gripen-vertical-speed-3-3-Gripen-display",
-      "triangles": 12
-    },
-    {
-      "name": "Gripen-vertical-speed-3-4-Gripen-display",
-      "triangles": 12
-    },
-    {
-      "name": "Gripen-vertical-speed-3-5-Gripen-display",
-      "triangles": 12
-    },
-    {
-      "name": "Gripen-vertical-speed-3-6-Gripen-display",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -630,9 +630,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Gripen-panel",
+      "name": "Gripen-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
@@ -654,23 +657,60 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "Gripen-display",
+      "name": "Gripen-display-display-font",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "emissive"
       ],
       "doubleSided": false,
-      "alphaMode": "OPAQUE"
+      "alphaMode": "BLEND"
     },
     {
-      "name": "Gripen-instrument-amber",
+      "name": "Gripen-display-technical-font",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "emissive"
       ],
       "doubleSided": false,
-      "alphaMode": "OPAQUE"
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Gripen-instrument-amber-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Gripen-instrument-amber-display-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     },
     {
       "name": "Gripen-instrument-ink",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Gripen-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "Gripen-instrument-amber",
       "slots": [
         "baseColor"
       ],
@@ -694,6 +734,25 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "Gripen-display",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "Gripen-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "Gripen-cushion",
       "slots": [
         "baseColor"
@@ -703,6 +762,64 @@
     },
     {
       "name": "Gripen-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
       "slots": [
         "baseColor"
       ],
@@ -774,28 +891,28 @@
         "node": "Gripen-airframe-Gripen-seal",
         "points": [
           -4.1821,
-          1.0766,
-          -7.0004,
+          1.0763,
+          -7.0003,
           -4.1821,
-          1.0766,
+          1.0763,
           5.364,
           -4.1821,
-          2.3339,
-          -7.0004,
+          2.3336,
+          -7.0003,
           -4.1821,
-          2.3339,
+          2.3336,
           5.364,
           4.1821,
-          1.0766,
-          -7.0004,
+          1.0763,
+          -7.0003,
           4.1821,
-          1.0766,
+          1.0763,
           5.364,
           4.1821,
-          2.3339,
-          -7.0004,
+          2.3336,
+          -7.0003,
           4.1821,
-          2.3339,
+          2.3336,
           5.364
         ]
       },
@@ -1672,28 +1789,28 @@
       {
         "node": "Gripen-cabin-Gripen-instrument-black",
         "points": [
-          -0.4069,
+          -0.4071,
           1.7731,
           3.818,
-          -0.4069,
-          1.7731,
-          3.875,
-          -0.4069,
-          2.2769,
-          3.818,
-          -0.4069,
-          2.2769,
-          3.875,
-          0.4069,
-          1.7731,
-          3.818,
-          0.4069,
+          -0.4071,
           1.7731,
           3.875,
-          0.4069,
+          -0.4071,
           2.2769,
           3.818,
-          0.4069,
+          -0.4071,
+          2.2769,
+          3.875,
+          0.4071,
+          1.7731,
+          3.818,
+          0.4071,
+          1.7731,
+          3.875,
+          0.4071,
+          2.2769,
+          3.818,
+          0.4071,
           2.2769,
           3.875
         ]
@@ -1728,90 +1845,177 @@
         ]
       },
       {
-        "node": "Gripen-cabin-Gripen-display",
+        "node": "Gripen-cabin-Gripen-display-display-print",
         "points": [
-          -0.2277,
-          1.9377,
-          3.8125,
-          -0.2277,
-          1.9377,
-          3.8665,
-          -0.2277,
-          2.2335,
-          3.8125,
-          -0.2277,
-          2.2335,
-          3.8665,
-          0.2499,
-          1.9377,
-          3.8125,
-          0.2499,
-          1.9377,
-          3.8665,
-          0.2499,
-          2.2335,
-          3.8125,
-          0.2499,
-          2.2335,
-          3.8665
+          0.1495,
+          1.9872,
+          3.824,
+          0.1495,
+          1.9872,
+          3.824,
+          0.1495,
+          2.1416,
+          3.824,
+          0.1495,
+          2.1416,
+          3.824,
+          0.2495,
+          1.9872,
+          3.824,
+          0.2495,
+          1.9872,
+          3.824,
+          0.2495,
+          2.1416,
+          3.824,
+          0.2495,
+          2.1416,
+          3.824
         ]
       },
       {
-        "node": "Gripen-cabin-Gripen-instrument-amber",
+        "node": "Gripen-cabin-Gripen-display-panel-print",
         "points": [
-          -0.2345,
-          1.8501,
-          3.8235,
-          -0.2345,
-          1.8501,
-          3.8665,
-          -0.2345,
-          2.0959,
-          3.8235,
-          -0.2345,
-          2.0959,
-          3.8665,
-          0.0299,
-          1.8501,
-          3.8235,
-          0.0299,
-          1.8501,
-          3.8665,
-          0.0299,
-          2.0959,
-          3.8235,
-          0.0299,
-          2.0959,
-          3.8665
+          -0.2284,
+          1.9372,
+          3.813,
+          -0.2284,
+          1.9372,
+          3.866,
+          -0.2284,
+          2.2325,
+          3.813,
+          -0.2284,
+          2.2325,
+          3.866,
+          0.0196,
+          1.9372,
+          3.813,
+          0.0196,
+          1.9372,
+          3.866,
+          0.0196,
+          2.2325,
+          3.813,
+          0.0196,
+          2.2325,
+          3.866
+        ]
+      },
+      {
+        "node": "Gripen-cabin-Gripen-instrument-amber-panel-print",
+        "points": [
+          -0.2284,
+          1.8494,
+          3.824,
+          -0.2284,
+          1.8494,
+          3.866,
+          -0.2284,
+          2.0958,
+          3.824,
+          -0.2284,
+          2.0958,
+          3.866,
+          0.0293,
+          1.8494,
+          3.824,
+          0.0293,
+          1.8494,
+          3.866,
+          0.0293,
+          2.0958,
+          3.824,
+          0.0293,
+          2.0958,
+          3.866
+        ]
+      },
+      {
+        "node": "Gripen-cabin-Gripen-instrument-amber-display-print",
+        "points": [
+          -0.235,
+          2.0169,
+          3.824,
+          -0.235,
+          2.0169,
+          3.824,
+          -0.235,
+          2.0664,
+          3.824,
+          -0.235,
+          2.0664,
+          3.824,
+          -0.1791,
+          2.0169,
+          3.824,
+          -0.1791,
+          2.0169,
+          3.824,
+          -0.1791,
+          2.0664,
+          3.824,
+          -0.1791,
+          2.0664,
+          3.824
         ]
       },
       {
         "node": "Gripen-cabin-Gripen-instrument-ink",
         "points": [
-          -0.0329,
-          1.8171,
-          3.8135,
-          -0.0329,
-          1.8171,
+          -0.0011,
+          2,
+          3.8647,
+          -0.0011,
+          2,
           3.8673,
-          -0.0329,
-          2.2429,
-          3.8135,
-          -0.0329,
-          2.2429,
+          -0.0011,
+          2.012,
+          3.8647,
+          -0.0011,
+          2.012,
           3.8673,
-          0.3479,
-          1.8171,
-          3.8135,
-          0.3479,
-          1.8171,
+          0.0011,
+          2,
+          3.8647,
+          0.0011,
+          2,
           3.8673,
-          0.3479,
-          2.2429,
-          3.8135,
-          0.3479,
-          2.2429,
+          0.0011,
+          2.012,
+          3.8647,
+          0.0011,
+          2.012,
           3.8673
+        ]
+      },
+      {
+        "node": "Gripen-cabin-Gripen-instrument-ink-panel-print",
+        "points": [
+          -0.0334,
+          1.8167,
+          3.814,
+          -0.0334,
+          1.8167,
+          3.824,
+          -0.0334,
+          2.2428,
+          3.814,
+          -0.0334,
+          2.2428,
+          3.824,
+          0.3474,
+          1.8167,
+          3.814,
+          0.3474,
+          1.8167,
+          3.824,
+          0.3474,
+          2.2428,
+          3.814,
+          0.3474,
+          2.2428,
+          3.824
         ]
       },
       {
@@ -1934,29 +2138,58 @@
         "node": "Gripen-attitude-card-Gripen-instrument-ink",
         "points": [
           0.0883,
-          2.0155,
+          2.0171,
           3.8583,
           0.0883,
-          2.0155,
+          2.0171,
           3.8597,
           0.0883,
-          2.0816,
+          2.0789,
           3.8583,
           0.0883,
-          2.0816,
+          2.0789,
           3.8597,
           0.3257,
-          2.0155,
+          2.0171,
           3.8583,
           0.3257,
-          2.0155,
+          2.0171,
           3.8597,
           0.3257,
-          2.0816,
+          2.0789,
           3.8583,
           0.3257,
-          2.0816,
+          2.0789,
           3.8597
+        ]
+      },
+      {
+        "node": "Gripen-attitude-card-Gripen-instrument-ink-dial-print",
+        "points": [
+          0.228,
+          2.0152,
+          3.859,
+          0.228,
+          2.0152,
+          3.859,
+          0.228,
+          2.0809,
+          3.859,
+          0.228,
+          2.0809,
+          3.859,
+          0.2355,
+          2.0152,
+          3.859,
+          0.2355,
+          2.0152,
+          3.859,
+          0.2355,
+          2.0809,
+          3.859,
+          0.2355,
+          2.0809,
+          3.859
         ]
       },
       {
@@ -4305,122 +4538,6 @@
           3.8246,
           0.1993,
           1.9654,
-          3.8254
-        ]
-      },
-      {
-        "node": "Gripen-vertical-speed-3-3-Gripen-display",
-        "points": [
-          0.1994,
-          1.9612,
-          3.8246,
-          0.1994,
-          1.9612,
-          3.8254,
-          0.1994,
-          1.9618,
-          3.8246,
-          0.1994,
-          1.9618,
-          3.8254,
-          0.2027,
-          1.9612,
-          3.8246,
-          0.2027,
-          1.9612,
-          3.8254,
-          0.2027,
-          1.9618,
-          3.8246,
-          0.2027,
-          1.9618,
-          3.8254
-        ]
-      },
-      {
-        "node": "Gripen-vertical-speed-3-4-Gripen-display",
-        "points": [
-          0.2028,
-          1.9621,
-          3.8246,
-          0.2028,
-          1.9621,
-          3.8254,
-          0.2028,
-          1.9654,
-          3.8246,
-          0.2028,
-          1.9654,
-          3.8254,
-          0.2035,
-          1.9621,
-          3.8246,
-          0.2035,
-          1.9621,
-          3.8254,
-          0.2035,
-          1.9654,
-          3.8246,
-          0.2035,
-          1.9654,
-          3.8254
-        ]
-      },
-      {
-        "node": "Gripen-vertical-speed-3-5-Gripen-display",
-        "points": [
-          0.2028,
-          1.9666,
-          3.8246,
-          0.2028,
-          1.9666,
-          3.8254,
-          0.2028,
-          1.9699,
-          3.8246,
-          0.2028,
-          1.9699,
-          3.8254,
-          0.2035,
-          1.9666,
-          3.8246,
-          0.2035,
-          1.9666,
-          3.8254,
-          0.2035,
-          1.9699,
-          3.8246,
-          0.2035,
-          1.9699,
-          3.8254
-        ]
-      },
-      {
-        "node": "Gripen-vertical-speed-3-6-Gripen-display",
-        "points": [
-          0.1994,
-          1.9657,
-          3.8246,
-          0.1994,
-          1.9657,
-          3.8254,
-          0.1994,
-          1.9663,
-          3.8246,
-          0.1994,
-          1.9663,
-          3.8254,
-          0.2027,
-          1.9657,
-          3.8246,
-          0.2027,
-          1.9657,
-          3.8254,
-          0.2027,
-          1.9663,
-          3.8246,
-          0.2027,
-          1.9663,
           3.8254
         ]
       }

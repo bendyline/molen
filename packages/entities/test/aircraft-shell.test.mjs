@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { Raycaster, Vector3 } from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { describe, expect, it } from 'vitest';
+import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
 async function load(kind, version) {
   const sourceDirectory = kind === 'p51d' ? 'p-51' : 'oh-6';
@@ -27,6 +27,38 @@ function hit(scene, origin, direction) {
 }
 
 describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version) => {
+  it('closes the Mustang lower sidewalls from the pilot eye with inward-facing opaque skin', async () => {
+    const scene = await load('p51d', version);
+    const lining = scene.getObjectByName('fuselage-interior');
+    const eye = new Vector3(0, 2.28, 0.05);
+    // Test the actual single-sided lining: exterior-only rays missed the reversed winding.
+    // Sample below the canopy rail, beside the panel and down toward both footwells.
+    for (const side of [-1, 1])
+      for (const y of [1.35, 1.6, 1.85, 2.04])
+        for (const z of [-0.6, -0.2, 0.3, 0.7, 0.9]) {
+          const direction = new Vector3(side * 0.39, y, z).sub(eye).normalize();
+          const surface = hit(lining, eye.toArray(), direction.toArray());
+          expect(surface.object.material.transparent).toBe(false);
+          expect(surface.distance).toBeLessThan(1.5);
+          const normal = surface.face.normal.clone().transformDirection(surface.object.matrixWorld);
+          expect(normal.dot(direction)).toBeLessThan(-0.05);
+          const shading = surface.object.geometry.getAttribute('normal');
+          const vertexNormal = new Vector3()
+            .fromBufferAttribute(shading, surface.face.a)
+            .transformDirection(surface.object.matrixWorld);
+          expect(vertexNormal.dot(normal)).toBeGreaterThan(0.8);
+        }
+  });
+  it('keeps the Mustang wing crown beneath the cockpit floor and footboards', async () => {
+    const scene = await load('p51d', version);
+    for (const x of [-0.3, -0.2, 0, 0.2, 0.3])
+      for (const z of [0.1, 0.4, 0.65, 0.9]) {
+        const surface = hit(scene, [x, 1.7, z], [0, -1, 0]);
+        expect(surface.object.name).not.toMatch(/^wing/);
+        expect(surface.point.y).toBeGreaterThan(1.38);
+        expect(surface.object.material.transparent).toBe(false);
+      }
+  });
   it('hides the Mustang seat sides behind opaque bodywork below the canopy sill', async () => {
     const scene = await load('p51d', version);
     for (const side of [-1, 1])
@@ -39,6 +71,16 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
           // The interior lining must not conceal inverted exterior winding.
           const normal = surface.face.normal.clone().transformDirection(surface.object.matrixWorld);
           expect(normal.x * side).toBeGreaterThan(0);
+        }
+    // Compare the floor with the shell directly; the wings cross these lower rays outside it.
+    for (const side of [-1, 1])
+      for (const y of [1.34, 1.38])
+        for (const z of [-0.7, -0.35, 0.3, 0.95]) {
+          const origin = [side, y, z],
+            direction = [-side, 0, 0];
+          const skin = hit(scene.getObjectByName('fuselage'), origin, direction);
+          const floor = hit(scene.getObjectByName('floor'), origin, direction);
+          expect(floor.distance - skin.distance).toBeGreaterThan(0.005);
         }
   });
   it('encloses both OH-6 door bottoms and the cabin roof with solid panels', async () => {

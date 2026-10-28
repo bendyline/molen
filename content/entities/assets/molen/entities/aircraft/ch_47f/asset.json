@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:aba3fb837d6d467fcbd106c081299da0b35ff378c9c69bb69c70429e78022c5e",
-  "sourceHash": "sha256:2a24de6b02dbc5abc44b39b4ea1f44e39ad0a659f20652ba45c5f4e2a03f1fe4",
+  "hash": "sha256:bb1ed7790d4e6230e3179184c22424c012fcd0880c0b55c3350d51e1c40f4800",
+  "sourceHash": "sha256:137c8601f080e23598346d31054c2e0c8ba8557409ad4fcb9c4bfce3b27dfe6d",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 78193,
-    "vertices": 167878,
-    "meshes": 82,
-    "primitives": 82,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 43423,
+    "vertices": 46999,
+    "meshes": 93,
+    "primitives": 93,
+    "materials": 32,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 3205072
+    "sizeBytes": 1573372
   },
   "nodes": [
     {
       "name": "CH47-shell-CH47-olive",
-      "triangles": 2392
+      "triangles": 2278
     },
     {
       "name": "CH47-shell-CH47-glass",
@@ -51,7 +51,7 @@
     },
     {
       "name": "CH47-shell-CH47-trim",
-      "triangles": 8136
+      "triangles": 4464
     },
     {
       "name": "CH47-shell-CH47-metal",
@@ -75,7 +75,7 @@
     },
     {
       "name": "sponson-CH47-trim",
-      "triangles": 4164
+      "triangles": 2964
     },
     {
       "name": "sponson-CH47-metal",
@@ -87,7 +87,7 @@
     },
     {
       "name": "sponson-CH47-trim",
-      "triangles": 4164
+      "triangles": 2964
     },
     {
       "name": "sponson-CH47-metal",
@@ -215,11 +215,11 @@
     },
     {
       "name": "CH47-cockpit-CH47-panel",
-      "triangles": 2768
+      "triangles": 2348
     },
     {
       "name": "CH47-cockpit-CH47-trim",
-      "triangles": 351
+      "triangles": 243
     },
     {
       "name": "CH47-cockpit-detail-trim",
@@ -236,10 +236,6 @@
     {
       "name": "CH47-cockpit-avionics-earth",
       "triangles": 12
-    },
-    {
-      "name": "CH47-cockpit-detail-lettering",
-      "triangles": 15936
     },
     {
       "name": "CH47-cockpit-avionics-route",
@@ -263,11 +259,11 @@
     },
     {
       "name": "CH47-cockpit-avionics-water",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "CH47-cockpit-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "CH47-cockpit-avionics-black",
@@ -279,11 +275,11 @@
     },
     {
       "name": "CH47-cockpit-avionics-water",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "CH47-cockpit-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "CH47-cockpit-avionics-black",
@@ -342,6 +338,18 @@
       "triangles": 72
     },
     {
+      "name": "CH47-cockpit-detail-lettering",
+      "triangles": 4008
+    },
+    {
+      "name": "CH47-cockpit-detail-lettering-display-print",
+      "triangles": 148
+    },
+    {
+      "name": "CH47-cockpit-detail-lettering-panel-print",
+      "triangles": 40
+    },
+    {
       "name": "horizon-detail-amber",
       "triangles": 12
     },
@@ -358,22 +366,26 @@
       "triangles": 168
     },
     {
-      "name": "pedestal-detail-green",
-      "triangles": 5760
-    },
-    {
       "name": "pedestal-CH47-panel",
       "triangles": 720
-    },
-    {
-      "name": "pedestal-detail-lettering",
-      "triangles": 11160
     },
     {
       "name": "pedestal-detail-alloy",
       "triangles": 576
     },
     {
+      "name": "pedestal-detail-green-panel-print",
+      "triangles": 104
+    },
+    {
+      "name": "pedestal-detail-lettering",
+      "triangles": 144
+    },
+    {
+      "name": "pedestal-detail-lettering-panel-print",
+      "triangles": 192
+    },
+    {
       "name": "CH47-seat-CH47-seat",
       "triangles": 84
     },
@@ -391,7 +403,7 @@
     },
     {
       "name": "cyclic-CH47-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -439,7 +451,7 @@
     },
     {
       "name": "cyclic-CH47-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -468,18 +480,6 @@
     {
       "name": "pedal-CH47-trim",
       "triangles": 24
-    },
-    {
-      "name": "CH47-seat-CH47-seat",
-      "triangles": 84
-    },
-    {
-      "name": "CH47-seat-CH47-metal",
-      "triangles": 60
-    },
-    {
-      "name": "CH47-seat-CH47-harness",
-      "triangles": 4
     },
     {
       "name": "CH47-seat-CH47-seat",
@@ -614,9 +614,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "CH47-panel",
+      "name": "CH47-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "CH47-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -654,14 +668,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-lettering",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "avionics-route",
       "slots": [
         "baseColor"
@@ -670,9 +676,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -710,6 +719,41 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "detail-lettering",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-lettering-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-green-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "CH47-seat",
       "slots": [
         "baseColor"
@@ -718,7 +762,76 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "CH47-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "CH47-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
       "slots": [
         "baseColor"
       ],
@@ -791,25 +904,25 @@
         "points": [
           -1.622,
           0.674,
-          -7.836,
+          -7.8358,
           -1.622,
           0.674,
           7.6593,
           -1.622,
           4.2775,
-          -7.836,
+          -7.8358,
           -1.622,
           4.2775,
           7.6593,
           1.622,
           0.674,
-          -7.836,
+          -7.8358,
           1.622,
           0.674,
           7.6593,
           1.622,
           4.2775,
-          -7.836,
+          -7.8358,
           1.622,
           4.2775,
           7.6593
@@ -1979,28 +2092,28 @@
         "node": "CH47-cockpit-CH47-panel",
         "points": [
           -1.1415,
-          1.2004,
+          1.1999,
           -4.725,
           -1.1415,
-          1.2004,
+          1.1999,
           6.72,
           -1.1415,
-          3.1411,
+          3.1419,
           -4.725,
           -1.1415,
-          3.1411,
+          3.1419,
           6.72,
           1.1415,
-          1.2004,
+          1.1999,
           -4.725,
           1.1415,
-          1.2004,
+          1.1999,
           6.72,
           1.1415,
-          3.1411,
+          3.1419,
           -4.725,
           1.1415,
-          3.1411,
+          3.1419,
           6.72
         ]
       },
@@ -2008,10 +2121,10 @@
         "node": "CH47-cockpit-CH47-trim",
         "points": [
           -1.1098,
-          1.1053,
+          1.1054,
           -4.8,
           -1.1098,
-          1.1053,
+          1.1054,
           7.1,
           -1.1098,
           2.1774,
@@ -2020,10 +2133,10 @@
           2.1774,
           7.1,
           1.1098,
-          1.1053,
+          1.1054,
           -4.8,
           1.1098,
-          1.1053,
+          1.1054,
           7.1,
           1.1098,
           2.1774,
@@ -2147,35 +2260,6 @@
           0.6102,
           1.9041,
           6.682
-        ]
-      },
-      {
-        "node": "CH47-cockpit-detail-lettering",
-        "points": [
-          -0.6302,
-          1.7533,
-          6.657,
-          -0.6302,
-          1.7533,
-          6.6928,
-          -0.6302,
-          2.0816,
-          6.657,
-          -0.6302,
-          2.0816,
-          6.6928,
-          0.6334,
-          1.7533,
-          6.657,
-          0.6334,
-          1.7533,
-          6.6928,
-          0.6334,
-          2.0816,
-          6.657,
-          0.6334,
-          2.0816,
-          6.6928
         ]
       },
       {
@@ -2904,6 +2988,93 @@
         ]
       },
       {
+        "node": "CH47-cockpit-detail-lettering",
+        "points": [
+          -0.6302,
+          1.7533,
+          6.657,
+          -0.6302,
+          1.7533,
+          6.6928,
+          -0.6302,
+          2.0816,
+          6.657,
+          -0.6302,
+          2.0816,
+          6.6928,
+          0.6217,
+          1.7533,
+          6.657,
+          0.6217,
+          1.7533,
+          6.6928,
+          0.6217,
+          2.0816,
+          6.657,
+          0.6217,
+          2.0816,
+          6.6928
+        ]
+      },
+      {
+        "node": "CH47-cockpit-detail-lettering-display-print",
+        "points": [
+          -0.614,
+          1.8132,
+          6.67,
+          -0.614,
+          1.8132,
+          6.673,
+          -0.614,
+          1.9998,
+          6.67,
+          -0.614,
+          1.9998,
+          6.673,
+          0.6324,
+          1.8132,
+          6.67,
+          0.6324,
+          1.8132,
+          6.673,
+          0.6324,
+          1.9998,
+          6.67,
+          0.6324,
+          1.9998,
+          6.673
+        ]
+      },
+      {
+        "node": "CH47-cockpit-detail-lettering-panel-print",
+        "points": [
+          -0.0395,
+          1.7711,
+          6.674,
+          -0.0395,
+          1.7711,
+          6.678,
+          -0.0395,
+          2.0719,
+          6.674,
+          -0.0395,
+          2.0719,
+          6.678,
+          0.0396,
+          1.7711,
+          6.674,
+          0.0396,
+          1.7711,
+          6.678,
+          0.0396,
+          2.0719,
+          6.674,
+          0.0396,
+          2.0719,
+          6.678
+        ]
+      },
+      {
         "node": "horizon-detail-amber",
         "points": [
           0.5304,
@@ -3020,35 +3191,6 @@
         ]
       },
       {
-        "node": "pedestal-detail-green",
-        "points": [
-          -0.1839,
-          1.4898,
-          6.6986,
-          -0.1839,
-          1.4898,
-          6.7518,
-          -0.1839,
-          1.5607,
-          6.6986,
-          -0.1839,
-          1.5607,
-          6.7518,
-          0.1855,
-          1.4898,
-          6.6986,
-          0.1855,
-          1.4898,
-          6.7518,
-          0.1855,
-          1.5607,
-          6.6986,
-          0.1855,
-          1.5607,
-          6.7518
-        ]
-      },
-      {
         "node": "pedestal-CH47-panel",
         "points": [
           -0.2245,
@@ -3075,35 +3217,6 @@
           0.2245,
           1.4508,
           6.8923
-        ]
-      },
-      {
-        "node": "pedestal-detail-lettering",
-        "points": [
-          -0.2153,
-          1.0446,
-          6.7862,
-          -0.2153,
-          1.0446,
-          7.081,
-          -0.2153,
-          1.4382,
-          6.7862,
-          -0.2153,
-          1.4382,
-          7.081,
-          0.2167,
-          1.0446,
-          6.7862,
-          0.2167,
-          1.0446,
-          7.081,
-          0.2167,
-          1.4382,
-          6.7862,
-          0.2167,
-          1.4382,
-          7.081
         ]
       },
       {
@@ -3136,6 +3249,93 @@
         ]
       },
       {
+        "node": "pedestal-detail-green-panel-print",
+        "points": [
+          -0.1844,
+          1.4895,
+          6.6997,
+          -0.1844,
+          1.4895,
+          6.7518,
+          -0.1844,
+          1.5596,
+          6.6997,
+          -0.1844,
+          1.5596,
+          6.7518,
+          0.1848,
+          1.4895,
+          6.6997,
+          0.1848,
+          1.4895,
+          6.7518,
+          0.1848,
+          1.5596,
+          6.6997,
+          0.1848,
+          1.5596,
+          6.7518
+        ]
+      },
+      {
+        "node": "pedestal-detail-lettering",
+        "points": [
+          -0.1912,
+          1.0446,
+          6.9689,
+          -0.1912,
+          1.0446,
+          7.081,
+          -0.1912,
+          1.1941,
+          6.9689,
+          -0.1912,
+          1.1941,
+          7.081,
+          0.1912,
+          1.0446,
+          6.9689,
+          0.1912,
+          1.0446,
+          7.081,
+          0.1912,
+          1.1941,
+          6.9689,
+          0.1912,
+          1.1941,
+          7.081
+        ]
+      },
+      {
+        "node": "pedestal-detail-lettering-panel-print",
+        "points": [
+          -0.216,
+          1.057,
+          6.7867,
+          -0.216,
+          1.057,
+          7.0739,
+          -0.216,
+          1.4377,
+          6.7867,
+          -0.216,
+          1.4377,
+          7.0739,
+          0.2162,
+          1.057,
+          6.7867,
+          0.2162,
+          1.057,
+          7.0739,
+          0.2162,
+          1.4377,
+          6.7867,
+          0.2162,
+          1.4377,
+          7.0739
+        ]
+      },
+      {
         "node": "CH47-seat-CH47-seat",
         "points": [
           -0.82,
@@ -3259,25 +3459,25 @@
           6.06,
           -0.61,
           1.16,
-          6.291,
+          6.2882,
           -0.61,
           1.885,
           6.06,
           -0.61,
           1.885,
-          6.291,
+          6.2882,
           -0.53,
           1.16,
           6.06,
           -0.53,
           1.16,
-          6.291,
+          6.2882,
           -0.53,
           1.885,
           6.06,
           -0.53,
           1.885,
-          6.291
+          6.2882
         ]
       },
       {
@@ -3607,25 +3807,25 @@
           6.06,
           0.53,
           1.16,
-          6.291,
+          6.2882,
           0.53,
           1.885,
           6.06,
           0.53,
           1.885,
-          6.291,
+          6.2882,
           0.61,
           1.16,
           6.06,
           0.61,
           1.16,
-          6.291,
+          6.2882,
           0.61,
           1.885,
           6.06,
           0.61,
           1.885,
-          6.291
+          6.2882
         ]
       },
       {
@@ -4351,93 +4551,6 @@
           1.13,
           2.12,
           1.48
-        ]
-      },
-      {
-        "node": "CH47-seat-CH47-seat",
-        "points": [
-          -1.2,
-          1.415,
-          -0.45,
-          -1.2,
-          1.415,
-          0.05,
-          -1.2,
-          2.335,
-          -0.45,
-          -1.2,
-          2.335,
-          0.05,
-          -0.645,
-          1.415,
-          -0.45,
-          -0.645,
-          1.415,
-          0.05,
-          -0.645,
-          2.335,
-          -0.45,
-          -0.645,
-          2.335,
-          0.05
-        ]
-      },
-      {
-        "node": "CH47-seat-CH47-metal",
-        "points": [
-          -1.16,
-          1.19,
-          -0.4073,
-          -1.16,
-          1.19,
-          0.0073,
-          -1.16,
-          1.5975,
-          -0.4073,
-          -1.16,
-          1.5975,
-          0.0073,
-          -0.78,
-          1.19,
-          -0.4073,
-          -0.78,
-          1.19,
-          0.0073,
-          -0.78,
-          1.5975,
-          -0.4073,
-          -0.78,
-          1.5975,
-          0.0073
-        ]
-      },
-      {
-        "node": "CH47-seat-CH47-harness",
-        "points": [
-          -1.13,
-          1.57,
-          -0.38,
-          -1.13,
-          1.57,
-          -0.02,
-          -1.13,
-          2.12,
-          -0.38,
-          -1.13,
-          2.12,
-          -0.02,
-          -0.81,
-          1.57,
-          -0.38,
-          -0.81,
-          1.57,
-          -0.02,
-          -0.81,
-          2.12,
-          -0.38,
-          -0.81,
-          2.12,
-          -0.02
         ]
       }
     ]

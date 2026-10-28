@@ -1,0 +1,415 @@
+{
+  "date": "2026-10-24",
+  "scope": "Physical cockpit controls for all 53 aircraft",
+  "authoring": "Deterministic procedural geometry in the existing generators, with retained cockpit materials and textures. No external model or newly generated bitmap inputs.",
+  "changes": [
+    "Reuse and animate existing authored throttle, flap, engine and pedal controls where present; supply missing supported controls in attached lower instrument-panel modules.",
+    "Add independent engine power and cutoff controls, shared power synchronization, gear, flaps, vector angle and airplane parking brake as supported by each aircraft specification.",
+    "Store interaction and rest-relative motion in glTF extras so bindings survive the normal optimized asset import.",
+    "Keep physical pointer interaction enabled by default and make the optional HTML companion panel opt-in."
+  ],
+  "validation": {
+    "client": "442 tests in 53 files passed with --maxWorkers=2 --testTimeout=15000; client TypeScript check passed.",
+    "fleet": "Source and runtime GLBs: all 53 aircraft have modeled, bound and ray-pickable controls for every supported action, including separate engine bindings. Both fleet tests passed.",
+    "integrity": "All 53 registered runtime assets passed inspectAsset verify; source and gallery hashes match the final imported files.",
+    "reproducibility": "Final Cessna 172S and P-51 source rebuilds were byte-identical.",
+    "catalog": "generate-models.mjs --check passed for 198 logical source bundles.",
+    "repositorySources": "source:check passed: 1487 logical source bundles and 1064 structure recipe indexes; no bulk review captures tracked.",
+    "localPack": "Refreshed only the entities pack and its directory assets for the local world explorer.",
+    "headless": "CLI scene validation and 30-tick simulation passed.",
+    "headlessHash": "sha256:2eb0b32777db40db7507505e29a838867abf0155321e7558315cd879c726c47f",
+    "formatting": "Biome checks passed for changed generator, client, test and review modules.",
+    "fullRepositoryGate": "Not claimed green: the earlier repository check was blocked by an unrelated missing asset bundle and Putra Mosque LODs."
+  },
+  "visual": {
+    "gallery": ".artifacts/cockpit-gallery/index.html",
+    "aircraft": 53,
+    "images": 65,
+    "review": "Reviewed all cockpit layouts and refined panel mounts around yokes, columns and instrument faces. Captured final Molen turntables/cabins for Cessna 172S, MiG-29A and P-51.",
+    "captureReport": ".artifacts/physical-controls-turntables.json",
+    "liveChecks": [
+      "Cessna 172S: native master switch, throttle drag, flap drag and modeled parking brake updated the running simulation.",
+      "Baron G58: one engine throttle moved independently and its cutoff reduced only that engine RPM.",
+      "MiG-29A imported runtime model: ground gear lock held, airborne gear retracted, and flap lever selected 50 percent."
+    ],
+    "screenshots": ".artifacts/physical-cockpits/"
+  },
+  "limitations": [
+    "Supplemental control placements are medium-fi approximations, not certified or exact reproductions of each real cockpit.",
+    "Fuel selectors, avionics and other systems outside the current flight simulation remain decorative. Mixture and propeller controls were subsequently enabled; see ENGINE-CONTROLS.json for current coverage and hashes.",
+    "Bulk render evidence remains local and ignored; no review archive was uploaded or published."
+  ],
+  "assets": [
+    {
+      "id": "molen.entities.aircraft.a220_300",
+      "sourceHash": "sha256:98bf909068fd8522f9f1605e9135daca9cece1de2361eb751e5fdd43e28df6aa",
+      "runtimeHash": "sha256:077d7069f3d6a1aee13056bfdc330a4ee349391c271d620ff948da85db92b58a",
+      "triangles": 47134,
+      "bytes": 2052268
+    },
+    {
+      "id": "molen.entities.aircraft.a400m",
+      "sourceHash": "sha256:0aa872f14668d058632fd4f6f0548551979a145b83b6c7f384c2a6c60ae03556",
+      "runtimeHash": "sha256:49d561be6c5a633051cbb981ddb799adca1ebd295e1cdaa2830feec4b7584049",
+      "triangles": 84321,
+      "bytes": 3391680
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_a320neo",
+      "sourceHash": "sha256:141d9b93a8d5f326d25014597d0e2864c06a70eea50460e1a042ac329495479b",
+      "runtimeHash": "sha256:49422a1eea9a800915a9cd79469cfc6e7f1713f536bc4c40594b66613ff339fe",
+      "triangles": 49570,
+      "bytes": 2144688
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_h125",
+      "sourceHash": "sha256:fc6f6b9d5c6ccfd9d4a5aa96a0fa1ec29047b8a7df7a7d7eb6c7b9de3ffe7663",
+      "runtimeHash": "sha256:36a737971b50ce94018c4109ca52dd7aa865b548467bb0979638827bb7064cea",
+      "triangles": 22618,
+      "bytes": 941664
+    },
+    {
+      "id": "molen.entities.aircraft.airbus_h145",
+      "sourceHash": "sha256:d0c181ee04a7c8b78be2c7b05a6306c09fcc6546b213d79be02474d389f0d887",
+      "runtimeHash": "sha256:4fa90e5164e56fa1ce60c6b25576b10f8ac8bfafd58de06a140202c262a13c5a",
+      "triangles": 32968,
+      "bytes": 1351208
+    },
+    {
+      "id": "molen.entities.aircraft.airliner",
+      "sourceHash": "sha256:0a965bdae2744e477103916ae945f294494234d67cb2315f44bc6c001103c4d7",
+      "runtimeHash": "sha256:04e3a33855bb87fb1a4c8fe77ca33cc966abdcf474f128e6c2495e0d01a788f9",
+      "triangles": 38182,
+      "bytes": 1096084
+    },
+    {
+      "id": "molen.entities.aircraft.an_124",
+      "sourceHash": "sha256:b595455f6fd6c4f63216208c1685d1e31c218f834282d49b773352bbf4850810",
+      "runtimeHash": "sha256:dd8acb6bb2f1b8bf9bba9c23e16eadccab713043164d826661e2fd26776eda12",
+      "triangles": 92607,
+      "bytes": 3873940
+    },
+    {
+      "id": "molen.entities.aircraft.atr_72_600",
+      "sourceHash": "sha256:1e14a96facbec48789c5fab97c470c25df9feeb19473b7f973446138b8fce912",
+      "runtimeHash": "sha256:10a2c7d9ac519a0bad830a19a9cdc7c794fec286d88d32cedf1861c729020262",
+      "triangles": 91266,
+      "bytes": 3719532
+    },
+    {
+      "id": "molen.entities.aircraft.av_8b",
+      "sourceHash": "sha256:e87d42a5588f462401d0449431b677a363dbe6f8b10d67c160acb4155f8e41fe",
+      "runtimeHash": "sha256:90ae66f75208d6d967afc278a39bbbe938a3b0b550c96e14cbf41716b05bbb8f",
+      "triangles": 78313,
+      "bytes": 3111572
+    },
+    {
+      "id": "molen.entities.aircraft.aw139",
+      "sourceHash": "sha256:e5b5f351f4a0299adf907184e339071853495f4b9fa1d8994bfb9749965c0248",
+      "runtimeHash": "sha256:40846f40c7b317e9517c7cd6aff4a9d779a18745f4d912b4206879efd7fe8d13",
+      "triangles": 48814,
+      "bytes": 1954756
+    },
+    {
+      "id": "molen.entities.aircraft.baron_g58",
+      "sourceHash": "sha256:c09e0477fb2b7bc67f006488cdbdca46406c751b76591e9958643e99a1918fbd",
+      "runtimeHash": "sha256:af8146e0ba82beefe7bc0f09d3017e81c092d995cc776b0c0873156da6adbaa4",
+      "triangles": 73212,
+      "bytes": 2930844
+    },
+    {
+      "id": "molen.entities.aircraft.beech_18",
+      "sourceHash": "sha256:0d6adeb006a826fc1734cf64823edd8acab8ca5bc14c0d5c6273784aa11888ea",
+      "runtimeHash": "sha256:d99f3eb327836fadff0ea28639744694882842fb45f98930c9a9060a91f6b039",
+      "triangles": 91238,
+      "bytes": 3517140
+    },
+    {
+      "id": "molen.entities.aircraft.bell_206b",
+      "sourceHash": "sha256:0abbb6c48b42754c908a4a3e8e7fa04e928e4ff44b39371b7322d393454439cc",
+      "runtimeHash": "sha256:5fc6f6691d024c9de6f79dd8ff4057bb3883810843e03f114a24e78b0c67599a",
+      "triangles": 43700,
+      "bytes": 1750720
+    },
+    {
+      "id": "molen.entities.aircraft.bell_407",
+      "sourceHash": "sha256:5c06e79ea94bd87f24d5309f50f930da9848f000729dd046634e2e80e4033275",
+      "runtimeHash": "sha256:85aab3823a20512dbfdaf5d536d9e848d0b5947d09e6409450328be881e77c2b",
+      "triangles": 14872,
+      "bytes": 647228
+    },
+    {
+      "id": "molen.entities.aircraft.bell_412ep",
+      "sourceHash": "sha256:b4847bfc4796eb07a506066e0f008feeed88764d4187307fdfe8f9be282c5a2a",
+      "runtimeHash": "sha256:a9185e31c0687b87cbbea1f871ce30eeb2f6fb9a14d5018f758af284300c16cb",
+      "triangles": 62684,
+      "bytes": 2499316
+    },
+    {
+      "id": "molen.entities.aircraft.boeing_737_800",
+      "sourceHash": "sha256:078de57b63ae182acc187f9300b8d15ec51fdfe1f8f7899bef832c54588f003e",
+      "runtimeHash": "sha256:0abab9c2f27d8e6ded2e6bce7dbc721b9d0f32e497533d25b8296a39cfa2dc22",
+      "triangles": 49438,
+      "bytes": 2140936
+    },
+    {
+      "id": "molen.entities.aircraft.bonanza_g36",
+      "sourceHash": "sha256:5b55bd449d0df61b9c2ac326d96967f4d0a8d6275a1eaf58fab1fe529c608a11",
+      "runtimeHash": "sha256:daa181fa1ba8e4d64a8d6951a090685a49ae71cc3ebbb46cd521eec105970ec9",
+      "triangles": 67720,
+      "bytes": 2666760
+    },
+    {
+      "id": "molen.entities.aircraft.c_130j",
+      "sourceHash": "sha256:7a81d34907fe8ef7793589173febf65bcbe052834c504dd660e653f1ba631bb6",
+      "runtimeHash": "sha256:dd4baa1ee37e4d581710068044a495927c7f221a5d09da4bc01c1165579728a0",
+      "triangles": 93641,
+      "bytes": 3913396
+    },
+    {
+      "id": "molen.entities.aircraft.c_17a",
+      "sourceHash": "sha256:94453654bac2ef3e8a5dc757aaafd9945c72aa049f52bd583592a64980ebcee5",
+      "runtimeHash": "sha256:152d5c9ed6e41eeffb6672356a286de2e619195c4d6c06fcf5e91749e263fe18",
+      "triangles": 86155,
+      "bytes": 3644080
+    },
+    {
+      "id": "molen.entities.aircraft.c_5m",
+      "sourceHash": "sha256:1fbbd6a1d772ced14cf4f4fdb2cf77f0ecc2ae24d692b5f85f88cb1d17983b0a",
+      "runtimeHash": "sha256:2069fa742ccbd04ae8e9a9eb25b40166da6dec86eb0d88612ed06e8b243eec58",
+      "triangles": 86953,
+      "bytes": 3640480
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_172s",
+      "sourceHash": "sha256:edfa74597d2b499d37b0eaa77440e3ee1d834441683aa61193b5cacfb16f31a8",
+      "runtimeHash": "sha256:6f36e5f80eb54df13a8b6d6670520bd63a8b5c34b74fccaef0ee16a2dc81c3a6",
+      "triangles": 58970,
+      "bytes": 2758200
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_182t",
+      "sourceHash": "sha256:bf1e145fd457973842c7933c10342cc1b21642398e79cc7d961a6de3149c8669",
+      "runtimeHash": "sha256:1205b9c48a974d544c72bfae9600de4af93ed2810b20405cc4310891e0b960b0",
+      "triangles": 59170,
+      "bytes": 2286820
+    },
+    {
+      "id": "molen.entities.aircraft.cessna_208b",
+      "sourceHash": "sha256:c39b5a6084199da41951b0451cbe86585d1d87b3c9847aea8846536379432f6f",
+      "runtimeHash": "sha256:6e58685d1cee96a24a8e01c177c08fdb6fa2a167d8af7531ee2820cbc1d97e49",
+      "triangles": 67740,
+      "bytes": 2627748
+    },
+    {
+      "id": "molen.entities.aircraft.ch_47f",
+      "sourceHash": "sha256:fe05a4ace194a0ce9aabebcb1e54272bd4881a32ce98b113703c31a97a0cb361",
+      "runtimeHash": "sha256:505a85dfb268652af6ebf693ee415b2176ec568f11b1a276f93c99d09d0c8f48",
+      "triangles": 72447,
+      "bytes": 2980032
+    },
+    {
+      "id": "molen.entities.aircraft.cirrus_sr22t",
+      "sourceHash": "sha256:8f214a5725fcb6166b67a3e7da1bd3585e6aa39253a6abdcfeedc6fd1bd5a4de",
+      "runtimeHash": "sha256:75e65853abb92cfbd13d2bbd0d5f98c57a2c6ae77ce75df97fe0ffc740cc9fa8",
+      "triangles": 50102,
+      "bytes": 1939664
+    },
+    {
+      "id": "molen.entities.aircraft.citation_cj4",
+      "sourceHash": "sha256:6da7cd9fb3afe0d81775755823178afaa75d4fd4a241e66bdca0f9fb6e30e2a9",
+      "runtimeHash": "sha256:c95a23292cc813445c12d837f37224f7d9b8fc98a5003f36f1d548af97f13bb5",
+      "triangles": 46234,
+      "bytes": 1989548
+    },
+    {
+      "id": "molen.entities.aircraft.dash_8_q400",
+      "sourceHash": "sha256:8abf574a0c3effee9d9f549fc5445108698d6c6df264bec9e9b04cb635014a45",
+      "runtimeHash": "sha256:88cf3f981de0f301810e1b9084c13b9b5704af85e3d1058cd37a2dd11b9ac2dd",
+      "triangles": 49926,
+      "bytes": 2182948
+    },
+    {
+      "id": "molen.entities.aircraft.dc_3",
+      "sourceHash": "sha256:4784b3f71ab4753bb6c6df377f7018d5f12c11d7aa8eb2f31691c0c90511698d",
+      "runtimeHash": "sha256:e31261da2af29758d7fc0667ddee82acc0031d8dec4d28770de19c4b9712ad65",
+      "triangles": 96613,
+      "bytes": 3844004
+    },
+    {
+      "id": "molen.entities.aircraft.dhc_2",
+      "sourceHash": "sha256:9290009a067d38c5d0c666be8a50b1ee44b57aca889aa7e0538a5d3c67a1c899",
+      "runtimeHash": "sha256:77ed898ac405d1781129addb706cb79065d95750f1ea75ffecfc59ebdc3ced6a",
+      "triangles": 59689,
+      "bytes": 2399232
+    },
+    {
+      "id": "molen.entities.aircraft.dhc_6",
+      "sourceHash": "sha256:a9e59283f33ff65fca4b4c2e1e82a63a11e095f3bfff9e6f022d4d4ab9d38703",
+      "runtimeHash": "sha256:619252478a7079b75d913d15ad855918df0ad65fa6597178cdb95318c25a6e39",
+      "triangles": 73142,
+      "bytes": 3106556
+    },
+    {
+      "id": "molen.entities.aircraft.diamond_da42",
+      "sourceHash": "sha256:104a67b569ce0365e2790fcd6d250e3f25b45162938c78caa7340df6da614f81",
+      "runtimeHash": "sha256:468d68c853dc75ffd64548ba15b06ad7c42eca32c5cc516d223e489bb4fc5636",
+      "triangles": 60348,
+      "bytes": 2374636
+    },
+    {
+      "id": "molen.entities.aircraft.embraer_e175",
+      "sourceHash": "sha256:db6cd2ed4b72d354b64e2a272dad3ff441474598ddf56fc474ed46a779da1ced",
+      "runtimeHash": "sha256:ac0a952fcfa22797a0c82741fc086bf2ef541c491790fd3bcfb23908598db61a",
+      "triangles": 48766,
+      "bytes": 2118412
+    },
+    {
+      "id": "molen.entities.aircraft.f_14d",
+      "sourceHash": "sha256:9baa23ea6513c68e1813a6eee3c5519068b73af03f7b5d69d7cbf8dd73563045",
+      "runtimeHash": "sha256:cc341fb5a9772d4c91176016809e774a281df07811c2c53c5564da05fc2776c3",
+      "triangles": 94011,
+      "bytes": 3656276
+    },
+    {
+      "id": "molen.entities.aircraft.f_15c",
+      "sourceHash": "sha256:513b4b19b5bbe5ffc3500a14f0218fcd10a33025a1e1fd6cb0038ba9764cd5b4",
+      "runtimeHash": "sha256:571cd58e04d1ca712734f26c8e2918491fa7c4dda6989fcbd55c7550205b7e2b",
+      "triangles": 71427,
+      "bytes": 2793868
+    },
+    {
+      "id": "molen.entities.aircraft.f_16b",
+      "sourceHash": "sha256:cff315dae25bc41dbf09340f39adfd90fab30947325d2371ce7975a4480f8a52",
+      "runtimeHash": "sha256:7cf49989b7ee8c5de26c59eba0a599cc10156efff315c1bce80e5e3ae41a7eef",
+      "triangles": 76712,
+      "bytes": 3033484
+    },
+    {
+      "id": "molen.entities.aircraft.f_22a",
+      "sourceHash": "sha256:639c0e167a0d29570af84c202c1a9b52a890c7a54f93b1491fdda7fc8de729e7",
+      "runtimeHash": "sha256:f78a44afab6b8ca33a1dd5643fa343bccd1c6ceef2efe7201cb5d2003b255541",
+      "triangles": 37917,
+      "bytes": 1574076
+    },
+    {
+      "id": "molen.entities.aircraft.f_35a",
+      "sourceHash": "sha256:2f69cd8d3f6520b5b10ef2da6541e616c966921bea8ffde531db02b176338521",
+      "runtimeHash": "sha256:df78334cc92a939949b9df11e5215b74b0d2ccb4830cc72aead60adf52171425",
+      "triangles": 32183,
+      "bytes": 1333876
+    },
+    {
+      "id": "molen.entities.aircraft.fa_18c",
+      "sourceHash": "sha256:66aa21bce1458e1899c4b4dca8b526466c075f16f981b0e95907cb9d6ffc8522",
+      "runtimeHash": "sha256:63033456b8e2703973e3cd5d16c4c50bbb10a29935dee22303698ecfe3f39dec",
+      "triangles": 67661,
+      "bytes": 2705336
+    },
+    {
+      "id": "molen.entities.aircraft.gripen_c",
+      "sourceHash": "sha256:231d284b8385260b7dab4381cdaa25af40f9755111fecc3d1afbd0d54457d111",
+      "runtimeHash": "sha256:738d31fb76c22c620200f33f8abd90abb6966832df5fc6bf95f87a3544bc9334",
+      "triangles": 35761,
+      "bytes": 1491496
+    },
+    {
+      "id": "molen.entities.aircraft.gulfstream_g650er",
+      "sourceHash": "sha256:cebc819b4101aa65618917b4916890ac839512e3f8257cbfa342bfc0ac67d16c",
+      "runtimeHash": "sha256:e3f81f2ca056f5c3623dffb9082c35c1528b17e89279575141df29534577a412",
+      "triangles": 49186,
+      "bytes": 2130604
+    },
+    {
+      "id": "molen.entities.aircraft.king_air_350i",
+      "sourceHash": "sha256:ad57472693b5a245f16b1f9b09ba8c1bb63e96a03b20c99c12132c8eae10645e",
+      "runtimeHash": "sha256:111bc3a5a7ae8a1024b15675dba41a580868d9f0514c209dbc133bbdcebfbaac",
+      "triangles": 91685,
+      "bytes": 3745768
+    },
+    {
+      "id": "molen.entities.aircraft.mig_29a",
+      "sourceHash": "sha256:b5ff37c6cd20591e42e7c90701b53fe0995136711ae6c9aa51d80ef5d2860f34",
+      "runtimeHash": "sha256:b1b2b1571e671413be931a8c7d9c0300873c07e8b0ea17123b55844a72456af2",
+      "triangles": 67874,
+      "bytes": 2782156
+    },
+    {
+      "id": "molen.entities.aircraft.mv_22b",
+      "sourceHash": "sha256:91cd5d01d4d5f490601a27bad1f2f0266f04a6e0a54dc0ac6e586e84a94969b7",
+      "runtimeHash": "sha256:b1424651edb1ddfad6802495df6ceabc68c1a821c48bf942f255b4fa8c99e2c6",
+      "triangles": 84638,
+      "bytes": 3325852
+    },
+    {
+      "id": "molen.entities.aircraft.oh6",
+      "sourceHash": "sha256:d9b102da002e551b0d1d3f4ed72f64e3a942fcbb1eb4c33c83602f55c9fd33e4",
+      "runtimeHash": "sha256:1d570aac048f1c4be5cdade22c313232b08f8b619a0d37d7f272187f29a72514",
+      "triangles": 41254,
+      "bytes": 1412284
+    },
+    {
+      "id": "molen.entities.aircraft.p51d",
+      "sourceHash": "sha256:0b4ec086a8fbc33c0eca884993f4844dab6f44c3e899455f6fcc4e0cccfc7e0c",
+      "runtimeHash": "sha256:cfd2c7826252e4f4d1e8db43cdad62c5c85fef3634a75c0c850642dbe876a72d",
+      "triangles": 55146,
+      "bytes": 1830404
+    },
+    {
+      "id": "molen.entities.aircraft.pa_28_180",
+      "sourceHash": "sha256:b093dbfa513ca66511b1453741137a0e823fc013b195015b657d92181d543dae",
+      "runtimeHash": "sha256:bbb2b1245208fd37476dc5c70569cb95654bf9310e9e1b427683a8272db21ae4",
+      "triangles": 71406,
+      "bytes": 2564608
+    },
+    {
+      "id": "molen.entities.aircraft.pc_6",
+      "sourceHash": "sha256:93cc047e9eb1c7bb0590391b35eb41f5e6aff1b446fae01f22f221df33adbb9d",
+      "runtimeHash": "sha256:f6474341c5968f1362666eb616ebbf2b9db1fd2f2f96c514223d2bd1b8e53b47",
+      "triangles": 76408,
+      "bytes": 2928312
+    },
+    {
+      "id": "molen.entities.aircraft.pilatus_pc12",
+      "sourceHash": "sha256:ddc5eff3c9fc0fa2aec04a41e4d07fd0e446357d07367af5fc4e03ab4872d2a5",
+      "runtimeHash": "sha256:abeec6e41794e6457201ddeb68fc7e74cbd5cfabdf48f275521d8d55287b1557",
+      "triangles": 65082,
+      "bytes": 2823900
+    },
+    {
+      "id": "molen.entities.aircraft.rafale_c",
+      "sourceHash": "sha256:0dbd6afcddcf8fc69fa7a082ac82c211485fe9ed5fbb0bb8b22650b36dacba1c",
+      "runtimeHash": "sha256:21bbe922a45d0d6552b7661f3a8ae30287e95fdb8301324633c9d63665e013dd",
+      "triangles": 38212,
+      "bytes": 1592440
+    },
+    {
+      "id": "molen.entities.aircraft.robinson_r44",
+      "sourceHash": "sha256:79dab2a0073906a8cec578aa16c8f2a8c5cf8565a019acb7ac0097071b1f9e21",
+      "runtimeHash": "sha256:ef7ec55f7443fad6892b27ed4153f448101b48060ac881e4a4ccfc270d5fb67b",
+      "triangles": 22762,
+      "bytes": 906764
+    },
+    {
+      "id": "molen.entities.aircraft.typhoon",
+      "sourceHash": "sha256:3059676db2c6a46a5f53c74e70ee0a492ccff706b55e79385fcb94d6536b9ae4",
+      "runtimeHash": "sha256:8cab6d2b80d0857fe262af6f6c5f3112c8ba792d0ae1d44b49f492b8f750d1ad",
+      "triangles": 48366,
+      "bytes": 1965316
+    },
+    {
+      "id": "molen.entities.aircraft.uh_1h",
+      "sourceHash": "sha256:abab0c152fbb3a150297b50f8da8f73977553d1c82301df6a974157f452f0b33",
+      "runtimeHash": "sha256:8eeaa3d366c267cee054dfda925a1fd1ab230c13e7d090f6f193244618695fb9",
+      "triangles": 56150,
+      "bytes": 2512284
+    },
+    {
+      "id": "molen.entities.aircraft.uh_60m",
+      "sourceHash": "sha256:fb236adcbcc3e71983d4e41c30487b8f3fb3d5cf2780d96cef15e3670beceb80",
+      "runtimeHash": "sha256:20415f517dc5c37c0c23609e35a53b09b589cc6bd761f371171dfe573ea93b2b",
+      "triangles": 54733,
+      "bytes": 2194336
+    }
+  ]
+}

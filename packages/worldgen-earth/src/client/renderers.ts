@@ -9,7 +9,10 @@ import { hashJson } from '@bendyline/molen-kernel/determinism';
 import type { JsonValue } from '@bendyline/molen-schema';
 import {
   createTerrainSemanticObject,
+  createTerrainSemanticObjectSliced,
+  deriveTerrainSemanticTilePacket,
   disposeTerrainSemanticObject,
+  keepTerrainSemanticTile,
   setTerrainGroundCutouts,
   setTerrainWaterCutout,
   TERRAIN_COVERS_GROUND,
@@ -19,8 +22,10 @@ import {
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
   type TerrainSemanticTileRenderer,
+  terrainSemanticTileContentHash,
 } from '@bendyline/molen-terrain/client';
 import {
+  isAeroway,
   pointInPolygon,
   polygonBounds,
   wgs84ToWorld,
@@ -52,6 +57,8 @@ import type {
 } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
 import { prepareAgricultureTile } from '../kernel/agriculture';
+import { coarseBuildingTile } from '../kernel/coarse-buildings';
+import { withDistrictLevels } from '../kernel/district-heights';
 import { isLandcoverDesignation } from '../kernel/labels';
 import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
@@ -61,7 +68,7 @@ import type { RegionalEnvironment } from '../kernel/regional-environment';
 import type { SemanticAdapterOptions, TileGeometry } from '../kernel/semantic-adapter';
 import { isStructureViewingDate } from '../kernel/structure-date';
 import type { StructureIndex, StructurePlacement } from '../kernel/structure-index';
-import { matchMapStructures, orientMappedStructure } from '../kernel/structure-matching';
+import { matchMapStructures, orientMappedStructures } from '../kernel/structure-matching';
 import {
   type WorldgenQualityPreset,
   worldgenBuildingCellSize,
@@ -81,7 +88,7 @@ import {
   structureFootprint,
   withoutStructureRoads,
 } from './structure-geometry';
-import type { WorldgenGenerator } from './worker-bridge';
+import type { WorldgenGenerateRequest, WorldgenGenerator } from './worker-bridge';
 
 /**
  * A generalized footprint under a landmark's anchor is the landmark's own when neither side
@@ -92,8 +99,37 @@ const FOOTPRINT_SIZE_RATIO = 1.6;
 /** Share of the plant scatter a compact scene keeps (see `compact`). */
 const COMPACT_SCATTER_KEEP = 0.5;
 const FOOTPRINT_SLACK = 12;
+/**
+ * Distant shells take a roof and a wall each, so a city seen from an airplane is not one beige
+ * block. Weights follow matched orthophoto reviews of Seattle, Bellevue, Sydney and Yuma: pale
+ * membranes and grey decks lead, with dark shingle, gravel and a little tile.
+ */
+const DISTANT_BUILDING_COLORS: {
+  roofs: ReadonlyArray<readonly [string, number]>;
+  walls: ReadonlyArray<readonly [string, number]>;
+} = {
+  roofs: [
+    ['#eaeae6', 7],
+    ['#d4d5d1', 4],
+    ['#b8b9b5', 3],
+    ['#929496', 2],
+    ['#6c6f73', 1.5],
+    ['#aca08c', 1],
+    ['#8b6c5b', 0.5],
+  ],
+  walls: [
+    ['#d2cec5', 5],
+    ['#b8bfc4', 4],
+    ['#ddd6c6', 3],
+    ['#9eacb8', 3],
+    ['#8f9397', 2],
+    ['#ae8b78', 1],
+  ],
+};
 
 export interface WorldgenRendererOptions {
+  /** Bounded coarse building silhouettes below the detailed generation range. Opt-in. */
+  distantBuildings?: boolean;
   /** Opt-in synthetic homes; seed/density are forwarded to either generation path and cache. */
   buildingInfill?: SemanticAdapterOptions['buildingInfill'];
   atlas?: RegionAtlasDoc;
@@ -194,6 +230,29 @@ function now(): number {
   return typeof performance !== 'undefined' ? performance.now() : Date.now();
 }
 
+/**
+ * A 64-bit content hash (two multiply-xor lanes over the JSON text, plus its length) for keys of
+ * the in-memory tile cache. That cache never leaves the session and the values come from one
+ * source, so it needs neither a canonical encoding nor SHA-256, which spent up to 20 ms of main
+ * thread on each dense town tile streamed in under a jet.
+ */
+function cacheHash(value: unknown): string {
+  const text = JSON.stringify(value) ?? '';
+  let a = 0xdeadbeef ^ text.length;
+  let b = 0x41c6ce57 ^ text.length;
+  for (let i = 0; i < text.length; i++) {
+    const code = text.charCodeAt(i);
+    a = Math.imul(a ^ code, 2654435761);
+    b = Math.imul(b ^ code, 1597334677);
+  }
+  a = Math.imul(a ^ (a >>> 16), 2246822507) ^ Math.imul(b ^ (b >>> 13), 3266489909);
+  b = Math.imul(b ^ (b >>> 16), 2246822507) ^ Math.imul(a ^ (a >>> 13), 3266489909);
+  return `${(b >>> 0).toString(16).padStart(8, '0')}${(a >>> 0).toString(16).padStart(8, '0')}:${text.length}`;
+}
+
+/** Pixels below which a tile's street props and signs stop drawing (`vanishPixels`). */
+const PROP_VANISH_PIXELS = 1.5;
+
 function geometryFor(context: TerrainPyramidTileLayerContext, metersPerUnit: number): TileGeometry {
   return {
     level: context.address.level,
@@ -233,11 +292,15 @@ export function createWorldgenSemanticRenderers(
       ? new InteriorStreamer({
           ...(typeof options.interiors === 'object' ? options.interiors : {}),
           catalog: pack.interiors,
+          ...(options.prepareObject !== undefined ? { prepare: options.prepareObject } : {}),
         })
       : undefined;
   let quality = options.quality ?? 'balanced';
   interface ResidentBuildings {
-    tile: TerrainSemanticTile;
+    /** The tile, for rebuilds (see keepTerrainSemanticTile). */
+    tile: () => TerrainSemanticTile;
+    /** Its buildings are generalized: no footprints for a neighbour's landmark to replace. */
+    generalized: boolean;
     context: TerrainPyramidTileLayerContext;
     architecture: THREE.Group;
     quality: WorldgenQualityPreset;
@@ -292,6 +355,20 @@ export function createWorldgenSemanticRenderers(
     options.environment !== undefined
       ? hashJson(options.environment.docs as unknown as JsonValue)
       : null;
+  // Hash a semantic tile's content once: its building and scatter passes and every quality or
+  // footprint replacement ask again for the same (immutable) tile.
+  const tileHashes = new WeakMap<TerrainSemanticTile, string>();
+  // Building infill exclusions' hashes, by the array infillExclusions made.
+  const exclusionHashes = new WeakMap<readonly TerrainSemanticPolygon[], string>();
+  const tileHash = (tile: TerrainSemanticTile): string => {
+    let hash = tileHashes.get(tile);
+    if (hash === undefined) {
+      // A tile from the decoder worker arrives hashed (8-20 ms here for a dense town's tile).
+      hash = terrainSemanticTileContentHash(tile) ?? cacheHash(tile);
+      tileHashes.set(tile, hash);
+    }
+    return hash;
+  };
   const generator =
     cache !== undefined
       ? withWorldgenTileCache(base, cache, (request) =>
@@ -299,20 +376,24 @@ export function createWorldgenSemanticRenderers(
             packHash: pack.hash,
             ...(atlasHash !== undefined ? { atlasHash } : {}),
             quality,
-            variant: hashJson({
+            variant: cacheHash({
               budgets: request.budgets ?? {},
               tierOffset: request.tierOffset ?? 0,
               keep: request.keep ?? 1,
               interiors: request.features?.interiors ?? false,
               buildingInfill: request.buildingInfill ?? false,
-              buildingInfillExclusions: request.buildingInfillExclusions ?? [],
+              buildingInfillExclusions:
+                request.buildingInfillExclusions === undefined
+                  ? []
+                  : (exclusionHashes.get(request.buildingInfillExclusions) ??
+                    request.buildingInfillExclusions),
               renderCellsOnly: request.renderCellsOnly ?? false,
               identities: places?.businesses.hash ?? null,
               models: places?.landmarks.hash ?? null,
               environment: environmentHash,
-              semantics: request.tile,
+              semantics: tileHash(request.tile),
               geometry: request.geom,
-            } as unknown as JsonValue),
+            }),
             level: request.geom.level,
             x: request.geom.x,
             z: request.geom.z,
@@ -333,27 +414,40 @@ export function createWorldgenSemanticRenderers(
   ): Promise<{ output: WorldgenTileOutput; generateMs: number } | undefined> {
     const geom = geometryFor(context, metersPerUnit);
     const started = now();
-    const output = await generator.generate(
-      {
-        tile,
-        geom,
-        ...(options.buildingInfill !== undefined ? { buildingInfill: options.buildingInfill } : {}),
-        ...(buildingInfillExclusions !== undefined ? { buildingInfillExclusions } : {}),
-        ground: context.heightfield,
-        resolution: context.pyramid.tileResolution,
-        renderCellsOnly: options.lodPolicy !== undefined,
-        budgets: {
-          ...worldgenTileBudgetForQuality(preset, geom.levelBelowMax, {
-            compactBuildings: options.compact === true,
-          }),
-          ...options.budgets,
-        },
-        features: { ...features, interiors: interiors !== undefined && features.buildings },
-        tierOffset: preset === 'economy' ? 1 : 0,
-        ...(options.compact === true ? { keep: COMPACT_SCATTER_KEEP } : {}),
+    const input: WorldgenGenerateRequest = {
+      tile,
+      geom,
+      ...(options.buildingInfill !== undefined ? { buildingInfill: options.buildingInfill } : {}),
+      ...(buildingInfillExclusions !== undefined ? { buildingInfillExclusions } : {}),
+      ground: context.heightfield,
+      resolution: context.pyramid.tileResolution,
+      renderCellsOnly: options.lodPolicy !== undefined,
+      budgets: {
+        ...worldgenTileBudgetForQuality(preset, geom.levelBelowMax, {
+          compactBuildings: options.compact === true,
+        }),
+        ...options.budgets,
       },
-      context.signal,
-    );
+      features: { ...features, interiors: interiors !== undefined && features.buildings },
+      tierOffset: preset === 'economy' ? 1 : 0,
+      ...(options.compact === true ? { keep: COMPACT_SCATTER_KEEP } : {}),
+    };
+    // The request's own main-thread work (its cache key, ground grid and the message to a worker)
+    // is admitted like the rest: run as tiles' sources resolved, several stacked into one frame.
+    // For a dense town tile it was 8-16 ms in one piece, past any frame's budget, so the tile's
+    // content hash and the generator's preparation (its ground grid) go first, each its own job.
+    const admitted = async <T>(label: string, work: () => T): Promise<T> =>
+      context.admission ? context.admission.run(work, { signal: context.signal, label }) : work();
+    let output: WorldgenTileOutput | undefined;
+    try {
+      if (cache !== undefined) await admitted('worldgen-key', () => tileHash(tile));
+      if (generator.prepare !== undefined)
+        await admitted('worldgen-prepare', () => generator.prepare?.(input));
+      output = await admitted('worldgen-request', () => generator.generate(input, context.signal));
+    } catch (error) {
+      if (context.signal.aborted) return undefined;
+      throw error;
+    }
     if (output === undefined || context.signal.aborted) return undefined;
     const generateMs = now() - started;
     totalMs += generateMs;
@@ -371,6 +465,7 @@ export function createWorldgenSemanticRenderers(
     sets: readonly PlacementSet[],
     context: TerrainPyramidTileLayerContext,
     name: string,
+    vanishPixels?: number,
   ): Promise<THREE.Object3D[]> {
     if (models === undefined) return [];
     const objects: THREE.Object3D[] = [];
@@ -385,7 +480,8 @@ export function createWorldgenSemanticRenderers(
         const distant =
           options.propLod !== false ? await models.prepare(set.modelRef, 'distant') : prepared;
         if (context.signal.aborted) return objects;
-        objects.push(
+        // Instance matrices for every placement: admitted, as a tile's sources resolve together.
+        const build = (): THREE.Object3D =>
           options.propLod !== false
             ? createInstancedPlacementLod(
                 set,
@@ -406,6 +502,7 @@ export function createWorldgenSemanticRenderers(
                         cellGrid: { cellsPerAxis: 2 },
                       }),
                   ...(options.lodPolicy ? { screenSpace: options.lodPolicy } : {}),
+                  ...(vanishPixels !== undefined ? { vanishPixels } : {}),
                 },
                 `${name}:${set.setId}`,
               )
@@ -414,11 +511,20 @@ export function createWorldgenSemanticRenderers(
                 prepared.geometry,
                 prepared.material,
                 `${name}:${set.setId}`,
-              ),
+              );
+        objects.push(
+          context.admission
+            ? await context.admission.run(build, {
+                signal: context.signal,
+                label: 'prop-assembly',
+                bytes: set.data.byteLength,
+              })
+            : build(),
         );
         stats.props += set.count;
         stats.geometryBytes += set.data.byteLength;
       } catch (error) {
+        if (context.signal.aborted) return objects;
         if (!warnedModels.has(set.modelRef)) {
           warnedModels.add(set.modelRef);
           console.warn(`[molen] worldgen model "${set.modelRef}": ${(error as Error).message}`);
@@ -498,16 +604,21 @@ export function createWorldgenSemanticRenderers(
     for (const set of output.placements) {
       const geometry = buildingBoxGeometry(set.modelRef);
       if (geometry === undefined) continue;
-      group.add(
-        createInstancedPlacements(
-          set,
-          geometry,
-          (flatMaterials ?? materials).materialFor('wall', 'palette:#ffffff'),
-          `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : 'gable-boxes'}`,
-        ),
+      const boxes = createInstancedPlacements(
+        set,
+        geometry,
+        (flatMaterials ?? materials).materialFor('wall', 'palette:#ffffff'),
+        `${name}:${set.modelRef === 'builtin:box' ? 'boxes' : 'gable-boxes'}`,
       );
+      // Stand-ins scale a one-meter box to each building, so a host judging casters by the
+      // shared shape's height (the terrain stream's shadowCasterHeight) dropped every one: an
+      // airplane view of a downtown standing in as boxes lost all its building shadows.
+      boxes.userData.shadowCaster = true;
+      group.add(boxes);
     }
-    for (const object of await instancedProps(output.placements, context, name)) group.add(object);
+    // Street props and signs vanish below 1.5 px; plants do not, as a distant forest is their sum.
+    for (const object of await instancedProps(output.placements, context, name, PROP_VANISH_PIXELS))
+      group.add(object);
     return group;
   }
 
@@ -533,22 +644,17 @@ export function createWorldgenSemanticRenderers(
       : options.structures.query(bounds, viewingDate === undefined ? false : { viewingDate });
     const rules = options.structures.rules;
     const select = (entries: StructurePlacement[]): StructurePlacement[] => {
-      const geographic = entries
-        .flatMap((entry) => {
-          const resolved = orientMappedStructure(entry, tile, geometry);
-          return resolved ? [resolved] : [];
-        })
-        .filter((entry) => {
-          if (context.address.level < (entry.minLevel ?? 11)) return false;
-          if (entry.bounds) return true;
-          const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
-          return (
-            x >= context.origin[0] &&
-            x < context.origin[0] + context.tileSize &&
-            z >= context.origin[1] &&
-            z < context.origin[1] + context.tileSize
-          );
-        });
+      const geographic = orientMappedStructures(entries, tile, geometry).filter((entry) => {
+        if (context.address.level < (entry.minLevel ?? 11)) return false;
+        if (entry.bounds) return true;
+        const [x, z] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
+        return (
+          x >= context.origin[0] &&
+          x < context.origin[0] + context.tileSize &&
+          z >= context.origin[1] &&
+          z < context.origin[1] + context.tileSize
+        );
+      });
       return [...geographic, ...matchMapStructures(tile, geometry, rules, geographic)];
     };
     return candidates instanceof Promise ? candidates.then(select) : select(candidates);
@@ -666,9 +772,31 @@ export function createWorldgenSemanticRenderers(
           (maxV - minV) * context.tileSize <= size[1] * FOOTPRINT_SIZE_RATIO + FOOTPRINT_SLACK
         );
       });
-    const buildings = tile.buildings.filter((feature) => !feature.polygons.some(replaces));
+    const removed: number[] = [];
+    const buildings = tile.buildings.filter((feature, i) => {
+      if (!feature.polygons.some(replaces)) return true;
+      removed.push(i);
+      return false;
+    });
     const filtered = buildings.length === tile.buildings.length ? tile : { ...tile, buildings };
-    return withoutBuildingCutouts(filtered, context, cutouts, wholeBuildings);
+    const mapped = withoutBuildingCutouts(filtered, context, cutouts, wholeBuildings);
+    // Kept footprints stay the tile's own: the worldgen worker gets its packet and this edit.
+    deriveTerrainSemanticTilePacket(tile, mapped);
+    // Hashed from what made it, for the tile cache's key: the derived tile's whole content took
+    // 10 ms of main thread each time a landmark replaced footprints in a dense town.
+    if (cache !== undefined && mapped !== tile && !tileHashes.has(mapped))
+      tileHashes.set(
+        mapped,
+        cacheHash({
+          from: tileHash(tile),
+          removed,
+          cutouts,
+          wholeBuildings,
+          origin: context.origin,
+          tileSize: context.tileSize,
+        }),
+      );
+    return mapped;
   }
 
   // Landmark replacement removes source polygons from the building batch, not from evidence
@@ -699,7 +827,7 @@ export function createWorldgenSemanticRenderers(
       const [x, z] = wgs84ToWorld(metersPerUnit, ...entry.anchor);
       rectangles.push([x - size[0] / 2, z - size[1] / 2, x + size[0] / 2, z + size[1] / 2]);
     }
-    return [
+    const exclusions = [
       ...tile.buildings.flatMap((f) => f.polygons),
       ...rectangles.map(
         ([x0, z0, x1, z1]): TerrainSemanticPolygon => ({
@@ -715,6 +843,19 @@ export function createWorldgenSemanticRenderers(
         }),
       ),
     ];
+    // Keyed by what they are made of: serialized whole, every footprint of a dense tile made its
+    // cache key 1 MB of JSON and 5-15 ms of main thread.
+    if (cache !== undefined)
+      exclusionHashes.set(
+        exclusions,
+        cacheHash({
+          from: tileHash(tile),
+          rectangles,
+          origin: context.origin,
+          tileSize: context.tileSize,
+        }),
+      );
+    return exclusions;
   }
 
   async function placeStructures(
@@ -756,7 +897,11 @@ export function createWorldgenSemanticRenderers(
             const outlines = clipToTile
               ? clipStructureGroundOutlines(nativeOutlines, mesh.matrix, context.tileSize)
               : nativeOutlines;
-            setTerrainGroundCutouts(placed, outlines);
+            setTerrainGroundCutouts(placed, outlines, undefined, {
+              preservePaving: entry.groundCutout.preservePaving,
+              minHeight: entry.groundCutout.minHeight,
+              pavingOutlines: entry.groundCutout.pavingOutlines,
+            });
           }
           if (entry.waterCutout) {
             mesh.updateMatrix();
@@ -877,7 +1022,7 @@ export function createWorldgenSemanticRenderers(
     if (disposed) return;
     let marked = false;
     for (const [root, resident] of residents) {
-      if (root === owner || resident.tile.buildingsGeneralized) continue;
+      if (root === owner || resident.generalized) continue;
       if (!footprints.some((footprint) => footprintOverlapsTile(footprint, resident.context)))
         continue;
       resident.stale = true;
@@ -963,14 +1108,15 @@ export function createWorldgenSemanticRenderers(
         const context = { ...resident.context, signal: controller.signal };
         let replacement: THREE.Group | undefined;
         try {
+          const tile = resident.tile();
           replacement = new THREE.Group();
           replacement.name = `${root.name}:architecture`;
-          const requested = structuresForTile(resident.tile, context);
+          const requested = structuresForTile(tile, context);
           const structures = requested instanceof Promise ? await requested : requested;
           if (structures.length) await placeStructures(replacement, context, structures);
           const placed = placedStructures(replacement, context, structures);
           const mappedTile = withoutReplacedFootprints(
-            resident.tile,
+            tile,
             context,
             placed,
             nearbyFootprints(root, context),
@@ -980,7 +1126,7 @@ export function createWorldgenSemanticRenderers(
             context,
             { buildings: true, scatter: false },
             preset,
-            infillExclusions(resident.tile, context, placed, nearbyFootprints(root, context)),
+            infillExclusions(tile, context, placed, nearbyFootprints(root, context)),
           );
           if (!generated) {
             if (!controller.signal.aborted) resident.quality = preset;
@@ -1045,6 +1191,72 @@ export function createWorldgenSemanticRenderers(
   const humanFeatures: TerrainSemanticTileRenderer = {
     async createTile(tile: TerrainSemanticTile, context): Promise<THREE.Object3D | undefined> {
       if (context.signal.aborted || disposed) return undefined;
+      if (options.distantBuildings && context.address.level < context.pyramid.maxLevel - 1) {
+        // Continuous airplane silhouettes at a fixed per-tile cost, without generating a
+        // street-level city for a tile kilometres across. Higher tiles replace these shells.
+        const group = new THREE.Group();
+        try {
+          // Landmarks keep their own screen-space LOD and replacement footprints here too.
+          // A fixed local cap prevents a continent-scale tile from requesting every asset.
+          const structures = (await structuresForTile(tile, context)).slice(0, 8);
+          await placeStructures(group, context, structures);
+          const placed = placedStructures(group, context, structures);
+          const mapped = withoutReplacedFootprints(
+            tile,
+            context,
+            placed,
+            nearbyFootprints(group, context),
+          );
+          // A slice of footprints per admitted job: a coarse tile's thousands, built in one go,
+          // held a frame 12-19 ms.
+          const shells = await createTerrainSemanticObjectSliced(
+            coarseBuildingTile(withDistrictLevels(mapped, context.origin, context.tileSize)),
+            context,
+            {
+              renderLandcover: false,
+              renderWater: false,
+              renderTransportation: false,
+              defaultBuildingHeight: 6.4,
+              defaultLevelHeight: 3.2,
+              buildingColors: DISTANT_BUILDING_COLORS,
+            },
+            <T>(slice: () => T): Promise<T> =>
+              context.admission
+                ? context.admission.run(slice, {
+                    signal: context.signal,
+                    label: 'distant-buildings',
+                  })
+                : Promise.resolve(slice()),
+          );
+          if (shells !== undefined) group.add(shells);
+          // Runways must remain readable from aircraft altitude, where ordinary roads are omitted.
+          if (options.roads?.surfaceRenderer && mapped.transportation.some(isAeroway)) {
+            const airport = await options.roads.surfaceRenderer.createTileAsync(
+              {
+                ...mapped,
+                buildings: [],
+                water: [],
+                pois: [],
+                transportation: mapped.transportation.filter(isAeroway),
+                landcover: mapped.landcover.filter((f) =>
+                  /^(apron|runway|taxiway)$/.test(f.subclass ?? f.class),
+                ),
+              },
+              context,
+            );
+            if (airport) group.add(airport);
+          }
+          if (context.signal.aborted) {
+            disposeHumanTile(group);
+            return undefined;
+          }
+          shareFootprints(group, placed);
+          return group;
+        } catch (error) {
+          disposeHumanTile(group);
+          throw error;
+        }
+      }
       const group = new THREE.Group();
       group.name = `worldgen:${context.address.level}/${context.address.x}/${context.address.z}`;
       try {
@@ -1128,7 +1340,14 @@ export function createWorldgenSemanticRenderers(
         const stale =
           current.length !== nearby.length ||
           current.some((footprint) => !nearby.includes(footprint));
-        residents.set(group, { tile, context, architecture, quality: preset, stale });
+        residents.set(group, {
+          tile: keepTerrainSemanticTile(tile),
+          generalized: tile.buildingsGeneralized === true,
+          context,
+          architecture,
+          quality: preset,
+          stale,
+        });
         shareFootprints(group, placed);
         void rebuildResidents();
         stats.boxes += output.stats.buildingsBoxed;
@@ -1185,6 +1404,7 @@ export function createWorldgenSemanticRenderers(
                   : {}),
                 ...hostColors,
               },
+              ...(surface?.detail !== undefined ? { detail: surface.detail } : {}),
             };
           });
       // The same inferred ground label used by scatter supplies a neutral background beneath
@@ -1212,6 +1432,8 @@ export function createWorldgenSemanticRenderers(
                 ...tile.landcover.filter((feature) => !isLandcoverDesignation(feature)),
               ],
             };
+      // The land cover worker gets the tile's packet and this edit, not the tile cloned whole.
+      deriveTerrainSemanticTilePacket(tile, surfaceTile);
       // Host colors refine the style pack's palette class by class rather than replacing it.
       const colors =
         packColors === undefined && hostColors === undefined
@@ -1219,8 +1441,13 @@ export function createWorldgenSemanticRenderers(
           : { ...packColors, ...hostColors };
       const meshOptions: TerrainSemanticMeshOptions = {
         ...(models !== undefined ? { maxTreesPerTile: 0 } : {}),
+        // Unmapped ground between a dense block's buildings is paving, not the habitat's lawn.
+        urbanGround: {},
         ...options.landcover,
         ...(colors !== undefined ? { landcoverColors: colors } : {}),
+        ...(regionalSurface?.detail !== undefined
+          ? { landcoverDetail: regionalSurface.detail }
+          : {}),
         ...(paletteAreas !== undefined ? { landcoverPaletteAreas: paletteAreas } : {}),
         renderWater: false,
         renderTransportation: false,
@@ -1258,7 +1485,10 @@ export function createWorldgenSemanticRenderers(
         surface.getObjectByName('semantic:landcover') !== undefined &&
         meshOptions.renderLandcover !== false;
       if (coversGround) surface.userData[TERRAIN_COVERS_GROUND] = true;
-      if (models === undefined) return surface;
+      // Coarse canopy and fields remain in the classification colors. Do not multiply
+      // plant batches when extending this layer to the full semantic coverage radius.
+      if (models === undefined || context.address.level < context.pyramid.maxLevel - 2)
+        return surface;
       const group = new THREE.Group();
       group.name = `worldgen-scatter:${context.address.level}/${context.address.x}/${context.address.z}`;
       if (coversGround) group.userData[TERRAIN_COVERS_GROUND] = true;

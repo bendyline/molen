@@ -42,6 +42,14 @@ const lod = z.strictObject({
     .max(8)
     .describe('Keep fraction per detail tier (index 0 = full detail); must be non-increasing.'),
   maxInstancesPerBatch: z.int().positive().describe('Hard cap per batch for this rule.'),
+  coverGrowth: z
+    .number()
+    .min(1)
+    .max(4)
+    .optional()
+    .describe(
+      'Largest crown widening that holds canopy and understory cover while a coarser tier or an instance budget thins them: kept instances widen by 1/sqrt(kept share) up to this factor and grow by its square root in height. Default 1 (none).',
+    ),
 });
 
 const population = z.strictObject({
@@ -186,6 +194,7 @@ const rule = z.strictObject({
     .strictObject({
       keepByTier: z.array(unit).min(1).max(8).optional(),
       maxInstancesPerBatch: z.int().positive().optional(),
+      coverGrowth: z.number().min(1).max(4).optional(),
     })
     .describe('Overrides of the default detail policy.')
     .optional(),
@@ -209,6 +218,12 @@ export const scatterSchema: z.ZodType<ScatterDoc> = z.strictObject({
       .record(z.string(), z.string().regex(COLOR_RE, "must be '#rrggbb'"))
       .describe("Label pattern to '#rrggbb' surface color (exact, then word match).")
       .default({}),
+    detail: z
+      .record(z.string(), z.tuple([unit, unit]))
+      .optional()
+      .describe(
+        'Exact label to [brush, bare] ground detail, each 0..1: the share of dark shrub speckle the ground shows where single shrubs are too small or too many to place (from the air, scrubland is its sum), and how often lighter bare-soil patches (vacant lots, worn ground) break it up.',
+      ),
   }),
   defaults: z.strictObject({
     avoid,

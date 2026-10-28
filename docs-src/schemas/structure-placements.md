@@ -218,6 +218,67 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
                 "minItems": 2,
                 "maxItems": 2
               },
+              "deckProfile": {
+                "minItems": 2,
+                "maxItems": 512,
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 3,
+                  "maxItems": 3
+                }
+              },
+              "includeTransverseBridges": {
+                "type": "boolean"
+              },
+              "deckEndpoints": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
+              },
               "includeConnectedApproaches": {
                 "type": "boolean"
               }
@@ -296,6 +357,36 @@ WGS84 anchors for authored models; draft entries are indexed but not rendered.
           "groundCutout": {
             "type": "object",
             "properties": {
+              "preservePaving": {
+                "type": "boolean"
+              },
+              "minHeight": {
+                "type": "number"
+              },
+              "pavingOutlines": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 512,
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                }
+              },
               "outline": {
                 "minItems": 3,
                 "maxItems": 512,

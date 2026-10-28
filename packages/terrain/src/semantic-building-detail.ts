@@ -24,12 +24,14 @@ import type { TerrainPyramidTileAddress } from './pyramid-types';
 import { overzoomTerrainSemanticTile, type TerrainSemanticTileLoader } from './semantic-overzoom';
 import {
   createEmptyTerrainSemanticTile,
+  setTerrainSemanticTileContentHash,
   type TerrainBuildingFeature,
   type TerrainPoiFeature,
   type TerrainSemanticPoint,
   type TerrainSemanticPolygon,
   type TerrainSemanticRing,
   type TerrainSemanticTile,
+  terrainSemanticTileContentHash,
 } from './semantic-types';
 
 export interface TerrainBuildingDetailOptions {
@@ -226,6 +228,31 @@ export function composeTerrainBuildingDetail(
   };
 }
 
+/**
+ * A detailed tile's content hash, from its base's and its detail tiles' (when each has one): the
+ * same parts at the same addresses make the same tile. Without one, the worldgen cache keyed
+ * each detailed tile by serializing it whole, 5-15 ms of main thread per dense tile.
+ */
+function hashDerived(
+  tile: TerrainSemanticTile,
+  base: TerrainSemanticTile | undefined,
+  parts: readonly (readonly [string, TerrainSemanticTile | undefined])[],
+  address: TerrainPyramidTileAddress,
+): void {
+  const baseHash = base === undefined ? 'none' : terrainSemanticTileContentHash(base);
+  if (baseHash === undefined) return;
+  const hashes: string[] = [];
+  for (const [at, part] of parts) {
+    const hash = part === undefined ? '-' : terrainSemanticTileContentHash(part);
+    if (hash === undefined) return;
+    hashes.push(`${at}=${hash}`);
+  }
+  setTerrainSemanticTileContentHash(
+    tile,
+    `${baseHash}|detail>${address.level}/${address.x}/${address.z}:${hashes.join(';')}`,
+  );
+}
+
 /** Replace a tile's buildings and places with those of a detail tile covering it (an ancestor or itself). */
 function withDetailFrom(
   base: TerrainSemanticTile | undefined,
@@ -293,7 +320,10 @@ export function createBuildingDetailTerrainSemanticSource(
           detailTile(from.x, from.z),
         ]);
         if (signal.aborted) return undefined;
-        return covering !== undefined ? withDetailFrom(tile, covering, from, address) : tile;
+        if (covering === undefined) return tile;
+        const detailed = withDetailFrom(tile, covering, from, address);
+        hashDerived(detailed, tile, [[`${from.level}/${from.x}/${from.z}`, covering]], address);
+        return detailed;
       }
       const scale = 2 ** depth;
       const requests: Array<Promise<TerrainBuildingDetailChild>> = [];
@@ -309,7 +339,15 @@ export function createBuildingDetailTerrainSemanticSource(
         Promise.all(requests),
       ]);
       if (signal.aborted) return undefined;
-      return composeTerrainBuildingDetail(tile, address, level, children);
+      const composed = composeTerrainBuildingDetail(tile, address, level, children);
+      if (composed !== undefined && composed !== tile)
+        hashDerived(
+          composed,
+          tile,
+          children.map((child) => [`${level}/${child.x}/${child.z}`, child.tile]),
+          address,
+        );
+      return composed;
     },
   };
 }

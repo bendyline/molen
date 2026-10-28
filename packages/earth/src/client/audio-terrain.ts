@@ -11,7 +11,11 @@ import type { SemanticTileObserver } from './ambient-tiles';
 type Point = [number, number];
 interface Tile {
   object: THREE.Object3D;
-  tile: TerrainSemanticTile;
+  /**
+   * What a sample reads: never a features tile's buildings, and of a tile too coarse to choose
+   * the surface underfoot (see sample) only its water.
+   */
+  tile: Pick<TerrainSemanticTile, 'water' | 'landcover' | 'transportation'>;
   context: TerrainPyramidTileLayerContext;
 }
 export interface EarthAudioTerrainSample {
@@ -51,10 +55,10 @@ function lineDistance(
     // seams are not beaches; real shoreline beyond this tile belongs to its neighbor.
     if (
       shore &&
-      ([0, 1] as const).some(
-        (axis) =>
-          (a[axis] <= 1e-5 && b[axis] <= 1e-5) || (a[axis] >= 1 - 1e-5 && b[axis] >= 1 - 1e-5),
-      )
+      ((a[0] <= 1e-5 && b[0] <= 1e-5) ||
+        (a[0] >= 1 - 1e-5 && b[0] >= 1 - 1e-5) ||
+        (a[1] <= 1e-5 && b[1] <= 1e-5) ||
+        (a[1] >= 1 - 1e-5 && b[1] >= 1 - 1e-5))
     )
       continue;
     const dx = b[0] - a[0],
@@ -67,6 +71,31 @@ function lineDistance(
   }
   return best;
 }
+/** Each line's or ring's tile-normalized bounds, computed once per (immutable) feature. */
+const featureBounds = new WeakMap<Point[], [number, number, number, number]>();
+/**
+ * Distance from (x, z) to the bounds of `points`, a lower bound on the distance to any of them.
+ * A sample skips every feature that cannot come nearer than the nearest found so far: measuring
+ * every road and shore of a dense town tile, a sample once took 20 ms of a frame.
+ */
+function boundsDistance(x: number, z: number, points: Point[]): number {
+  let box = featureBounds.get(points);
+  if (box === undefined) {
+    box = [Infinity, Infinity, -Infinity, -Infinity];
+    for (const [px, pz] of points) {
+      if (px < box[0]) box[0] = px;
+      if (pz < box[1]) box[1] = pz;
+      if (px > box[2]) box[2] = px;
+      if (pz > box[3]) box[3] = pz;
+    }
+    featureBounds.set(points, box);
+  }
+  return Math.hypot(Math.max(box[0] - x, 0, x - box[2]), Math.max(box[1] - z, 0, z - box[3]));
+}
+const OCEAN = new Set(['ocean', 'sea']);
+const RIVER_AREAS = new Set(['river', 'stream', 'canal']);
+const RIVER_LINES = new Set(['river', 'stream', 'canal', 'waterway', 'ditch']);
+const NOT_STREETS = new Set(['path', 'footway', 'cycleway', 'steps', 'track', 'rail', 'railway']);
 function surfaceOf(value: string): string | undefined {
   return (
     {
@@ -103,11 +132,23 @@ function surfaceOf(value: string): string | undefined {
   )[value];
 }
 
+/** The coarsest tile (m) whose land cover and roads choose the surface underfoot. */
+const FINE_TILE_SIZE = 2048;
+
 export class EarthAudioTerrain {
   private readonly tiles = new Map<THREE.Object3D, Tile>();
   readonly observer: SemanticTileObserver = {
     added: (object, tile, context) => {
-      this.tiles.set(object, { object, tile, context });
+      const coarse = context.tileSize > FINE_TILE_SIZE;
+      this.tiles.set(object, {
+        object,
+        tile: {
+          water: tile.water,
+          landcover: coarse ? [] : tile.landcover,
+          transportation: coarse ? [] : tile.transportation,
+        },
+        context,
+      });
     },
     removed: (object) => {
       this.tiles.delete(object);
@@ -141,28 +182,43 @@ export class EarthAudioTerrain {
       const u = (x - origin[0]) / tileSize,
         v = (z - origin[1]) / tileSize;
       for (const water of tile.water) {
-        const ocean = ['ocean', 'sea'].includes(water.class ?? '');
-        for (const p of water.polygons ?? []) {
-          const d =
-            Math.min(
-              lineDistance(u, v, p.outer, true, ocean),
-              ...(p.holes ?? []).map((h) => lineDistance(u, v, h, true, ocean)),
-            ) * tileSize;
-          if (ocean) result.coastDistance = Math.min(result.coastDistance, d);
-          // Lakes are quiet; flowing-water beds require a mapped river/stream.
-          else if (['river', 'stream', 'canal'].includes(water.class ?? ''))
-            result.riverDistance = Math.min(result.riverDistance, inside(u, v, p) ? 0 : d);
-        }
-        if (['river', 'stream', 'canal', 'waterway', 'ditch'].includes(water.class ?? ''))
-          for (const line of water.lines ?? [])
+        const ocean = OCEAN.has(water.class ?? '');
+        // Lakes are quiet; flowing-water beds require a mapped river/stream.
+        const river = !ocean && RIVER_AREAS.has(water.class ?? '');
+        if (ocean || river)
+          for (const p of water.polygons ?? []) {
+            let near = boundsDistance(u, v, p.outer);
+            for (const hole of p.holes ?? []) near = Math.min(near, boundsDistance(u, v, hole));
+            near *= tileSize;
+            if (near >= (ocean ? result.coastDistance : result.riverDistance)) continue;
+            if (river && inside(u, v, p)) {
+              result.riverDistance = 0;
+              continue;
+            }
+            let d = lineDistance(u, v, p.outer, true, ocean);
+            for (const hole of p.holes ?? [])
+              d = Math.min(d, lineDistance(u, v, hole, true, ocean));
+            if (ocean) result.coastDistance = Math.min(result.coastDistance, d * tileSize);
+            else result.riverDistance = Math.min(result.riverDistance, d * tileSize);
+          }
+        if (RIVER_LINES.has(water.class ?? '')) {
+          const half = (water.width ?? 3) / 2;
+          for (const line of water.lines ?? []) {
+            if (boundsDistance(u, v, line) * tileSize - half >= result.riverDistance) continue;
             result.riverDistance = Math.min(
               result.riverDistance,
-              Math.max(0, lineDistance(u, v, line) * tileSize - (water.width ?? 3) / 2),
+              Math.max(0, lineDistance(u, v, line) * tileSize - half),
             );
+          }
+        }
       }
-      if (tileSize > 2048) continue; // Fine geometry is needed to choose the surface under a foot.
+      // Fine geometry is needed to choose the surface under a foot.
+      if (tileSize > FINE_TILE_SIZE) continue;
       for (const land of tile.landcover)
-        if (tileSize <= surfaceLevel && land.polygons.some((p) => inside(u, v, p))) {
+        if (
+          tileSize <= surfaceLevel &&
+          land.polygons.some((p) => boundsDistance(u, v, p.outer) === 0 && inside(u, v, p))
+        ) {
           const kind = land.subclass ?? land.class;
           const surface = surfaceOf(kind) ?? surfaceOf(land.class);
           if (surface) {
@@ -173,14 +229,19 @@ export class EarthAudioTerrain {
         }
       for (const road of tile.transportation) {
         if (road.tunnel) continue;
-        const d =
-          Math.min(...road.lines.map((line) => lineDistance(u, v, line) * tileSize)) -
-          (road.width ?? roadWidth(road.class)) / 2;
-        if (
-          !['path', 'footway', 'cycleway', 'steps', 'track', 'rail', 'railway'].includes(road.class)
-        )
-          result.streetDistance = Math.min(result.streetDistance, Math.max(0, d));
-        if (d <= 0.6 && tileSize <= roadLevel) {
+        const half = (road.width ?? roadWidth(road.class)) / 2;
+        const street = !NOT_STREETS.has(road.class);
+        const underfoot = tileSize <= roadLevel;
+        let d = Infinity;
+        for (const line of road.lines) {
+          const near = boundsDistance(u, v, line) * tileSize - half;
+          // Measured only if it could be the nearest street or the road underfoot.
+          if (near >= d) continue;
+          if ((!street || near >= result.streetDistance) && (!underfoot || near > 0.6)) continue;
+          d = Math.min(d, lineDistance(u, v, line) * tileSize - half);
+        }
+        if (street) result.streetDistance = Math.min(result.streetDistance, Math.max(0, d));
+        if (d <= 0.6 && underfoot) {
           roadSurface =
             surfaceOf(road.surface ?? '') ??
             (['path', 'track'].includes(road.class) ? 'dirt' : 'concrete');

@@ -13,6 +13,7 @@
 
 import { polygonBounds } from './polygon';
 import type { TerrainPyramidTileAddress } from './pyramid-types';
+import { deriveOverzoomTerrainSemanticTilePacket } from './semantic-packet';
 import type {
   TerrainSemanticLine,
   TerrainSemanticPoint,
@@ -206,6 +207,14 @@ export function overzoomTerrainSemanticTile(
           {
             ...feature,
             lines: clipped,
+            ...(feature.bridgeApproachProfile
+              ? {
+                  bridgeApproachProfile: feature.bridgeApproachProfile.map((sample) => ({
+                    ...sample,
+                    point: transformPoint(sample.point, scale, ox, oy),
+                  })),
+                }
+              : {}),
             ...(feature.bridgeConnections
               ? {
                   bridgeConnections: feature.bridgeConnections.map((connection) => ({
@@ -293,7 +302,10 @@ export function createOverzoomTerrainSemanticSource(
       };
       const tile = await ancestorTile(ancestor);
       if (tile === undefined || signal.aborted) return undefined;
-      return overzoomTerrainSemanticTile(tile, ancestor, address, options);
+      const overzoomed = overzoomTerrainSemanticTile(tile, ancestor, address, options);
+      // Workers rebuild it from the ancestor's packet; caches key it by the ancestor's hash.
+      deriveOverzoomTerrainSemanticTilePacket(tile, overzoomed, ancestor, address, options.buffer);
+      return overzoomed;
     },
   };
 }

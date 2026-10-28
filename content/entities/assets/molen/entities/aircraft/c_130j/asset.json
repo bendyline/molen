@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7f5fe609326ac9f0e9d0493a44324b69d6ba5195cdab3f5fa2dcb015804c4c09",
-  "sourceHash": "sha256:7e91cd81ce77025945616f69e29847bc50bdc53afdb14cc0a46bddf4944d4118",
+  "hash": "sha256:e49a7f203fdd909d88cd76ef576a8a53687f029fc59797260b9df6bf7aa2553f",
+  "sourceHash": "sha256:25c4e18ae32250bacb9212316b7191cfa61656972cc21a99ee16701572a7674a",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 94385,
-    "vertices": 197690,
-    "meshes": 116,
-    "primitives": 116,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 59943,
+    "vertices": 61208,
+    "meshes": 144,
+    "primitives": 144,
+    "materials": 33,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 3874456
+    "sizeBytes": 2080748
   },
   "nodes": [
     {
@@ -51,11 +51,11 @@
     },
     {
       "name": "C130J-exterior-C130J-trim",
-      "triangles": 1787
+      "triangles": 1211
     },
     {
       "name": "C130J-exterior-C130J-seam",
-      "triangles": 10800
+      "triangles": 5688
     },
     {
       "name": "C130J-exterior-C130J-alloy",
@@ -295,7 +295,7 @@
     },
     {
       "name": "C130J-cabin-C130J-trim",
-      "triangles": 1138
+      "triangles": 1042
     },
     {
       "name": "C130J-cabin-detail-alloy",
@@ -314,16 +314,8 @@
       "triangles": 472
     },
     {
-      "name": "C130J-cabin-C130J-display-green",
-      "triangles": 8184
-    },
-    {
       "name": "C130J-cabin-C130J-instrument-amber",
       "triangles": 24
-    },
-    {
-      "name": "C130J-cabin-C130J-instrument-ink",
-      "triangles": 1656
     },
     {
       "name": "C130J-cabin-C130J-alloy",
@@ -346,20 +338,40 @@
       "triangles": 20
     },
     {
-      "name": "C130J-pilot-display-C130J-instrument-black",
-      "triangles": 8
+      "name": "C130J-cabin-C130J-display-green",
+      "triangles": 480
     },
     {
-      "name": "C130J-pilot-display-C130J-instrument-ink",
-      "triangles": 1584
+      "name": "C130J-cabin-C130J-display-green-panel-print",
+      "triangles": 96
+    },
+    {
+      "name": "C130J-cabin-C130J-display-green-display-print",
+      "triangles": 88
+    },
+    {
+      "name": "C130J-cabin-C130J-instrument-ink-panel-print",
+      "triangles": 32
+    },
+    {
+      "name": "C130J-pilot-display-C130J-instrument-black",
+      "triangles": 8
     },
     {
       "name": "C130J-pilot-display-C130J-instrument-amber",
       "triangles": 24
     },
     {
-      "name": "C130J-pilot-display-C130J-display-green",
-      "triangles": 1404
+      "name": "C130J-pilot-display-C130J-instrument-ink-display-print",
+      "triangles": 24
+    },
+    {
+      "name": "C130J-pilot-display-C130J-instrument-ink-panel-print",
+      "triangles": 6
+    },
+    {
+      "name": "C130J-pilot-display-C130J-display-green-display-print",
+      "triangles": 28
     },
     {
       "name": "C130J-pilot-horizon-fixed-C130J-pilot-instrument-black",
@@ -379,7 +391,11 @@
     },
     {
       "name": "C130J-pilot-horizon-card-C130J-pilot-instrument-ink",
-      "triangles": 1128
+      "triangles": 168
+    },
+    {
+      "name": "C130J-pilot-horizon-card-C130J-pilot-instrument-ink-dial-print",
+      "triangles": 16
     },
     {
       "name": "C130J-pilot-speed-0-0-C130J-instrument-ink",
@@ -536,22 +552,6 @@
     {
       "name": "C130J-pilot-altitude-2-3-C130J-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "C130J-pilot-altitude-2-4-C130J-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "C130J-pilot-altitude-2-5-C130J-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "C130J-pilot-altitude-2-6-C130J-instrument-ink",
-      "triangles": 12
-    },
-    {
-      "name": "C130J-pilot-altitude-3-0-C130J-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -622,17 +622,34 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "C130J-panel",
+      "name": "C130J-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": true,
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "C130J-trim-rubber",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -662,14 +679,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "C130J-display-green",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "C130J-instrument-amber",
       "slots": [
         "baseColor"
@@ -678,9 +687,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "C130J-instrument-ink",
+      "name": "C130J-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -710,6 +722,50 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "C130J-display-green",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "C130J-display-green-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "C130J-display-green-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "C130J-instrument-ink-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "C130J-instrument-ink-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "C130J-pilot-instrument-sky",
       "slots": [
         "baseColor"
@@ -719,6 +775,72 @@
     },
     {
       "name": "C130J-pilot-instrument-earth",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "C130J-pilot-instrument-ink",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-legend",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-master",
       "slots": [
         "baseColor"
       ],
@@ -791,56 +913,56 @@
         "points": [
           -20.205,
           1.5291,
-          -6.5,
+          -6.5001,
           -20.205,
           1.5291,
-          12.375,
+          12.3749,
           -20.205,
           5.4409,
-          -6.5,
+          -6.5001,
           -20.205,
           5.4409,
-          12.375,
+          12.3749,
           20.205,
           1.5291,
-          -6.5,
+          -6.5001,
           20.205,
           1.5291,
-          12.375,
+          12.3749,
           20.205,
           5.4409,
-          -6.5,
+          -6.5001,
           20.205,
           5.4409,
-          12.375
+          12.3749
         ]
       },
       {
         "node": "C130J-exterior-C130J-seam",
         "points": [
           -20.0006,
-          0.7169,
+          0.717,
           -12.3057,
           -20.0006,
-          0.7169,
+          0.717,
           14.0557,
           -20.0006,
-          5.1703,
+          5.1704,
           -12.3057,
           -20.0006,
-          5.1703,
+          5.1704,
           14.0557,
           20.0006,
-          0.7169,
+          0.717,
           -12.3057,
           20.0006,
-          0.7169,
+          0.717,
           14.0557,
           20.0006,
-          5.1703,
+          5.1704,
           -12.3057,
           20.0006,
-          5.1703,
+          5.1704,
           14.0557
         ]
       },
@@ -2701,35 +2823,6 @@
         ]
       },
       {
-        "node": "C130J-cabin-C130J-display-green",
-        "points": [
-          -0.493,
-          3.4864,
-          11.3895,
-          -0.493,
-          3.4864,
-          11.4205,
-          -0.493,
-          3.9556,
-          11.3895,
-          -0.493,
-          3.9556,
-          11.4205,
-          0.4855,
-          3.4864,
-          11.3895,
-          0.4855,
-          3.4864,
-          11.4205,
-          0.4855,
-          3.9556,
-          11.3895,
-          0.4855,
-          3.9556,
-          11.4205
-        ]
-      },
-      {
         "node": "C130J-cabin-C130J-instrument-amber",
         "points": [
           -0.1568,
@@ -2756,35 +2849,6 @@
           -0.1542,
           3.7471,
           11.4115
-        ]
-      },
-      {
-        "node": "C130J-cabin-C130J-instrument-ink",
-        "points": [
-          -0.479,
-          3.2594,
-          11.3925,
-          -0.479,
-          3.2594,
-          11.3955,
-          -0.479,
-          3.3891,
-          11.3925,
-          -0.479,
-          3.3891,
-          11.3955,
-          0.4617,
-          3.2594,
-          11.3925,
-          0.4617,
-          3.2594,
-          11.3955,
-          0.4617,
-          3.3891,
-          11.3925,
-          0.4617,
-          3.3891,
-          11.3955
         ]
       },
       {
@@ -2933,6 +2997,122 @@
         ]
       },
       {
+        "node": "C130J-cabin-C130J-display-green",
+        "points": [
+          0.0495,
+          3.5051,
+          11.42,
+          0.0495,
+          3.5051,
+          11.42,
+          0.0495,
+          3.6151,
+          11.42,
+          0.0495,
+          3.6151,
+          11.42,
+          0.2615,
+          3.5051,
+          11.42,
+          0.2615,
+          3.5051,
+          11.42,
+          0.2615,
+          3.6151,
+          11.42,
+          0.2615,
+          3.6151,
+          11.42
+        ]
+      },
+      {
+        "node": "C130J-cabin-C130J-display-green-panel-print",
+        "points": [
+          -0.2058,
+          3.508,
+          11.41,
+          -0.2058,
+          3.508,
+          11.42,
+          -0.2058,
+          3.7849,
+          11.41,
+          -0.2058,
+          3.7849,
+          11.42,
+          0.2492,
+          3.508,
+          11.41,
+          0.2492,
+          3.508,
+          11.42,
+          0.2492,
+          3.7849,
+          11.41,
+          0.2492,
+          3.7849,
+          11.42
+        ]
+      },
+      {
+        "node": "C130J-cabin-C130J-display-green-display-print",
+        "points": [
+          -0.4897,
+          3.4845,
+          11.39,
+          -0.4897,
+          3.4845,
+          11.42,
+          -0.4897,
+          3.9556,
+          11.39,
+          -0.4897,
+          3.9556,
+          11.42,
+          0.4804,
+          3.4845,
+          11.39,
+          0.4804,
+          3.4845,
+          11.42,
+          0.4804,
+          3.9556,
+          11.39,
+          0.4804,
+          3.9556,
+          11.42
+        ]
+      },
+      {
+        "node": "C130J-cabin-C130J-instrument-ink-panel-print",
+        "points": [
+          -0.4798,
+          3.2556,
+          11.393,
+          -0.4798,
+          3.2556,
+          11.395,
+          -0.4798,
+          3.3881,
+          11.393,
+          -0.4798,
+          3.3881,
+          11.395,
+          0.4607,
+          3.2556,
+          11.393,
+          0.4607,
+          3.2556,
+          11.395,
+          0.4607,
+          3.3881,
+          11.393,
+          0.4607,
+          3.3881,
+          11.395
+        ]
+      },
+      {
         "node": "C130J-pilot-display-C130J-instrument-black",
         "points": [
           0.6419,
@@ -2959,35 +3139,6 @@
           0.8939,
           3.7946,
           11.426
-        ]
-      },
-      {
-        "node": "C130J-pilot-display-C130J-instrument-ink",
-        "points": [
-          0.6588,
-          3.5218,
-          11.4175,
-          0.6588,
-          3.5218,
-          11.4195,
-          0.6588,
-          3.7426,
-          11.4175,
-          0.6588,
-          3.7426,
-          11.4195,
-          0.871,
-          3.5218,
-          11.4175,
-          0.871,
-          3.5218,
-          11.4195,
-          0.871,
-          3.7426,
-          11.4175,
-          0.871,
-          3.7426,
-          11.4195
         ]
       },
       {
@@ -3020,32 +3171,90 @@
         ]
       },
       {
-        "node": "C130J-pilot-display-C130J-display-green",
+        "node": "C130J-pilot-display-C130J-instrument-ink-display-print",
         "points": [
-          0.7452,
-          3.5368,
-          11.4175,
-          0.7452,
-          3.5368,
-          11.4195,
-          0.7452,
+          0.6582,
+          3.6272,
+          11.418,
+          0.6582,
+          3.6272,
+          11.419,
+          0.6582,
+          3.7425,
+          11.418,
+          0.6582,
+          3.7425,
+          11.419,
+          0.8705,
+          3.6272,
+          11.418,
+          0.8705,
+          3.6272,
+          11.419,
+          0.8705,
+          3.7425,
+          11.418,
+          0.8705,
+          3.7425,
+          11.419
+        ]
+      },
+      {
+        "node": "C130J-pilot-display-C130J-instrument-ink-panel-print",
+        "points": [
+          0.6706,
+          3.5215,
+          11.418,
+          0.6706,
+          3.5215,
+          11.418,
+          0.6706,
+          3.5267,
+          11.418,
+          0.6706,
+          3.5267,
+          11.418,
+          0.6833,
+          3.5215,
+          11.418,
+          0.6833,
+          3.5215,
+          11.418,
+          0.6833,
+          3.5267,
+          11.418,
+          0.6833,
+          3.5267,
+          11.418
+        ]
+      },
+      {
+        "node": "C130J-pilot-display-C130J-display-green-display-print",
+        "points": [
+          0.7453,
+          3.5358,
+          11.418,
+          0.7453,
+          3.5358,
+          11.419,
+          0.7453,
           3.7856,
-          11.4175,
-          0.7452,
+          11.418,
+          0.7453,
           3.7856,
-          11.4195,
-          0.8722,
-          3.5368,
-          11.4175,
-          0.8722,
-          3.5368,
-          11.4195,
-          0.8722,
+          11.419,
+          0.87,
+          3.5358,
+          11.418,
+          0.87,
+          3.5358,
+          11.419,
+          0.87,
           3.7856,
-          11.4175,
-          0.8722,
+          11.418,
+          0.87,
           3.7856,
-          11.4195
+          11.419
         ]
       },
       {
@@ -3168,29 +3377,58 @@
         "node": "C130J-pilot-horizon-card-C130J-pilot-instrument-ink",
         "points": [
           0.6065,
-          3.6393,
+          3.6421,
           11.4363,
           0.6065,
-          3.6393,
+          3.6421,
           11.4377,
           0.6065,
-          3.7467,
+          3.7421,
           11.4363,
           0.6065,
-          3.7467,
+          3.7421,
           11.4377,
           0.9294,
-          3.6393,
+          3.6421,
           11.4363,
           0.9294,
-          3.6393,
+          3.6421,
           11.4377,
           0.9294,
-          3.7467,
+          3.7421,
           11.4363,
           0.9294,
-          3.7467,
+          3.7421,
           11.4377
+        ]
+      },
+      {
+        "node": "C130J-pilot-horizon-card-C130J-pilot-instrument-ink-dial-print",
+        "points": [
+          0.792,
+          3.6387,
+          11.437,
+          0.792,
+          3.6387,
+          11.437,
+          0.792,
+          3.7456,
+          11.437,
+          0.792,
+          3.7456,
+          11.437,
+          0.8043,
+          3.6387,
+          11.437,
+          0.8043,
+          3.6387,
+          11.437,
+          0.8043,
+          3.7456,
+          11.437,
+          0.8043,
+          3.7456,
+          11.437
         ]
       },
       {
@@ -4321,122 +4559,6 @@
           11.4196,
           0.6732,
           3.6909,
-          11.4204
-        ]
-      },
-      {
-        "node": "C130J-pilot-altitude-2-4-C130J-instrument-ink",
-        "points": [
-          0.6733,
-          3.6911,
-          11.4196,
-          0.6733,
-          3.6911,
-          11.4204,
-          0.6733,
-          3.6937,
-          11.4196,
-          0.6733,
-          3.6937,
-          11.4204,
-          0.6738,
-          3.6911,
-          11.4196,
-          0.6738,
-          3.6911,
-          11.4204,
-          0.6738,
-          3.6937,
-          11.4196,
-          0.6738,
-          3.6937,
-          11.4204
-        ]
-      },
-      {
-        "node": "C130J-pilot-altitude-2-5-C130J-instrument-ink",
-        "points": [
-          0.6733,
-          3.6946,
-          11.4196,
-          0.6733,
-          3.6946,
-          11.4204,
-          0.6733,
-          3.6972,
-          11.4196,
-          0.6733,
-          3.6972,
-          11.4204,
-          0.6738,
-          3.6946,
-          11.4196,
-          0.6738,
-          3.6946,
-          11.4204,
-          0.6738,
-          3.6972,
-          11.4196,
-          0.6738,
-          3.6972,
-          11.4204
-        ]
-      },
-      {
-        "node": "C130J-pilot-altitude-2-6-C130J-instrument-ink",
-        "points": [
-          0.6706,
-          3.6939,
-          11.4196,
-          0.6706,
-          3.6939,
-          11.4204,
-          0.6706,
-          3.6944,
-          11.4196,
-          0.6706,
-          3.6944,
-          11.4204,
-          0.6732,
-          3.6939,
-          11.4196,
-          0.6732,
-          3.6939,
-          11.4204,
-          0.6732,
-          3.6944,
-          11.4196,
-          0.6732,
-          3.6944,
-          11.4204
-        ]
-      },
-      {
-        "node": "C130J-pilot-altitude-3-0-C130J-instrument-ink",
-        "points": [
-          0.666,
-          3.6974,
-          11.4196,
-          0.666,
-          3.6974,
-          11.4204,
-          0.666,
-          3.6979,
-          11.4196,
-          0.666,
-          3.6979,
-          11.4204,
-          0.6686,
-          3.6974,
-          11.4196,
-          0.6686,
-          3.6974,
-          11.4204,
-          0.6686,
-          3.6979,
-          11.4196,
-          0.6686,
-          3.6979,
           11.4204
         ]
       }

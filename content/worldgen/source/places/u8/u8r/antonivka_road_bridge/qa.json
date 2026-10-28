@@ -1,0 +1,2010 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.antonivka_road_bridge",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:10a4daf0f49d68590c34491691e6dc71ec37a309dda0c80dacf071a1f3a456ae",
+  "sourceHash": "sha256:191a2d7fda73fa3a4ed1eb37aaf04fc4da7728430d8be12a2aedd57282f30c63",
+  "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+  "captureReportHash": "sha256:b3a3b582390989ecb0979d4dcf508110a1ac37df56d579e2590772c8b38ec78c",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/major-breach.png",
+      "shots/minor-breach.png",
+      "shots/portal-piers.png",
+      "shots/road-and-lamps.png",
+      "shots/fracture-end.png",
+      "shots/girders-and-footways.png",
+      "shots/surviving-deck-plan.png"
+    ],
+    "captureReportHash": "sha256:b3a3b582390989ecb0979d4dcf508110a1ac37df56d579e2590772c8b38ec78c",
+    "notes": "Inspected 66 current frames: 12 portable, 12 shared, 28 medium-fi and 14 native. The dated damaged-state model retains three mapped surviving deck runs, both open breaches, all 26 reconstructed paired portal-pier groups, twin haunched girders, footways, blue/yellow rails and lamp standards, fracture lips and slumped remains. Fixed one large collapsed slab that disappeared in the first skyline; all three large fragments now survive every level. The 100,580-triangle source master and canonical runtime stay separate from browser models. This is an original picture/map reconstruction with explicit approximations, not fabrication geometry or an intact operating crossing."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/major-breach.png",
+      "shots/shared/minor-breach.png",
+      "shots/shared/portal-piers.png",
+      "shots/shared/road-and-lamps.png",
+      "shots/shared/fracture-end.png",
+      "shots/shared/girders-and-footways.png",
+      "shots/shared/surviving-deck-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:48d8dd244feb9456fdb78433bbdba8513964019f3650c712db88ee6e6e6b66b9",
+    "notes": "Two existing 256px shared graphs, concrete_plain and metal_painted, provide metric-repeat concrete/paving grain and painted fittings with restrained component tints. Asphalt uses the shared concrete grain, not a private atlas. No embedded bitmap, photographic pixel or new private texture. Skyline uses one vertex-color draw with shared mean approximation; textured levels use two draws and read each graph once. Separate vertex streams and full model/support disposal pass."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/major-breach.png",
+      "medium-fi/minor-breach.png",
+      "medium-fi/portal-piers.png",
+      "medium-fi/road-and-lamps.png",
+      "medium-fi/fracture-end.png",
+      "medium-fi/girders-and-footways.png",
+      "medium-fi/surviving-deck-plan.png",
+      "medium-fi/whole-antonivka-skyline.png",
+      "medium-fi/whole-antonivka-district.png",
+      "medium-fi/whole-antonivka-street.png",
+      "medium-fi/whole-antonivka-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:de6fe2ed03831c0e1e456b50852d8ba1f85b18653bac0dec20604324ae95a246",
+    "notes": "Authored skyline/district/street/closeup levels use 968 / 3964 / 14428 / 32428 triangles. Initial skyline plus district is 423672 bytes; closeup is 2792844 bytes. Lower levels retain the full remnant/gap/pier arrangement while reducing small rail posts, lamps, fracture teeth and bars. Noon/late, Economy/High, silhouette and transitions fit the same palette beside procedural neighbors. Physical laptop/phone measurements remain pending."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:658d7c8d16c648a065e11bf87fc5ca23324357e34b603e649f2b87ba1569e903",
+    "mapFrameHash": "sha256:6b80a4935f2978f17a06f9e2575cf5f087b1e6a45da286f13ceb67223f32e4fa",
+    "notes": "Approximate native fit at [32.720187802,46.67020641], heading -1.517726713957: +X south toward the left bank, -X north to Kherson and the main breaches. The retained exact-QID multipart map plan fixes the three slab extents at scale (1361.549m versus the nominal 1366m length, width25m). Standard 2026-10-20 PMTiles/Mapzen guides fit. River zero, 15.2m bank deck and 24.8m center, pier schedule and debris profiles remain reconstructed. The road mask is inset0.175m per end to retain tiny lane tails and their individual height hints. Four actual native lane joins are within0.082m of the authored deck; no procedural road fills either breach. Coarse approach grades/supports and width transitions remain inferred visualization rather than surveyed road geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete scoped dated damaged exterior. Hidden damage, source span schedule and surveyed heights remain unverified. Authored skyline/district/street/closeup levels use 968 / 3964 / 14428 / 32428 triangles. Initial skyline plus district is 423672 bytes; closeup is 2792844 bytes. Lower levels retain the full remnant/gap/pier arrangement while reducing small rail posts, lamps, fracture teeth and bars. Noon/late, Economy/High, silhouette and transitions fit the same palette beside procedural neighbors. Physical laptop/phone measurements remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u8/u8r/antonivka_road_bridge/models/source.glb\",\"hash\":\"sha256:191a2d7fda73fa3a4ed1eb37aaf04fc4da7728430d8be12a2aedd57282f30c63\",\"bytes\":12071604,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.glb\",\"hash\":\"sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea\",\"bytes\":12071304,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.skyline.glb\",\"hash\":\"sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee\",\"bytes\":79720,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.district.glb\",\"hash\":\"sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34\",\"bytes\":343952,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.street.glb\",\"hash\":\"sha256:09a0da2a131dcadfe5bb9ce17798e8664ee1785f5f3fa78d66d3f0039451175e\",\"bytes\":1266004,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.closeup.glb\",\"hash\":\"sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3\",\"bytes\":2792844,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-surviving-decks-open-breaches-paired-piers-and-slumped-fragments",
+        "passed": true,
+        "notes": "608 actual mesh checks across six GLBs: surviving carriageways/footways, open breaches, all26 paired-pier shafts, unobstructed undamaged portals, continuous near rails and retained large slumped fragments. Zero Khronos errors/warnings, finite attributes, exact hashes, shared graphs, LOD budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native fit at [32.720187802,46.67020641], heading -1.517726713957: +X south toward the left bank, -X north to Kherson and the main breaches. The retained exact-QID multipart map plan fixes the three slab extents at scale (1361.549m versus the nominal 1366m length, width25m). Standard 2026-10-20 PMTiles/Mapzen guides fit. River zero, 15.2m bank deck and 24.8m center, pier schedule and debris profiles remain reconstructed. The road mask is inset0.175m per end to retain tiny lane tails and their individual height hints. Four actual native lane joins are within0.082m of the authored deck; no procedural road fills either breach. Coarse approach grades/supports and width transitions remain inferred visualization rather than surveyed road geometry."
+    },
+    "inputHash": "sha256:10a4daf0f49d68590c34491691e6dc71ec37a309dda0c80dacf071a1f3a456ae",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:10a4daf0f49d68590c34491691e6dc71ec37a309dda0c80dacf071a1f3a456ae",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 66 current frames: 12 portable, 12 shared, 28 medium-fi and 14 native. The dated damaged-state model retains three mapped surviving deck runs, both open breaches, all 26 reconstructed paired portal-pier groups, twin haunched girders, footways, blue/yellow rails and lamp standards, fracture lips and slumped remains. Fixed one large collapsed slab that disappeared in the first skyline; all three large fragments now survive every level. The 100,580-triangle source master and canonical runtime stay separate from browser models. This is an original picture/map reconstruction with explicit approximations, not fabrication geometry or an intact operating crossing.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/preview.png",
+          "hash": "sha256:7beaada59870ed7bfe355395d69c5b6384f751b776a8134147a29d11b4edb758"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:5112ffb36879134f0c091e2f70f257f2491f7d12686eaf28054630c24e230d85"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:0b77c1318d090f1f6b72a073d45772aa34d3ff3eab0c2ddb4f590af750afb356"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:3b28370b3394c695d816a29977b3108f2bad232f01099d22bc2c154a517ad44c"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:f8c028a203515797a6c181d16f8eec5bc97c44ce77017e82f83a76dcfebfa494"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/major-breach.png",
+          "hash": "sha256:99485a35fd5e6b42a4578feb742c2f3fe068806c9be23d2454ae841b4bc8fd93"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/minor-breach.png",
+          "hash": "sha256:9a05d35d76aee042b4191733c304d06fc69885f8773db8d16ebdbe5c3242f159"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/portal-piers.png",
+          "hash": "sha256:1ce1c65d9ced334c99934d4b9d972ecdad0e6aa3860a7332dc6c0149bc967b2e"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/road-and-lamps.png",
+          "hash": "sha256:d3dbc9acf38f49852f88034d98bc20349f2d537b41eb47a8375ddd36cb4da1f2"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/fracture-end.png",
+          "hash": "sha256:1a603334bcd68a18cc7703c6cd522c7265aff775105b98ee5c8732790f3f8cbb"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/girders-and-footways.png",
+          "hash": "sha256:b65b26041729fc7701e9193a8991bcd5fe81b661afb5d16c8f6db42ec13b992b"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/surviving-deck-plan.png",
+          "hash": "sha256:b18a38828594094297d4998925fbb61aa187748420d5cc54dd86fab63de9de3b"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:081b218b5532dde40aa8b5b266e8997e44be082a0f14748552697d41ce0fb85d"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:148be5d2267511e9a0cc65c5818ac8d23bad5c8ff475dc0a2717c14946975936"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:cd48af522ae4d426fc577b513750de4bdadf53bbdb6c3e735455b84455fb3f16"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:53f90594a716343cf49c968e606774fb192bc1c10b29aa3fa7db428a09d3a8ff"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/major-breach.png",
+          "hash": "sha256:0ef361c85674d2c01eb1178a3211cbdae967826295a1be8cf6c47f6eedd1f3cf"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/minor-breach.png",
+          "hash": "sha256:1ccccb9ee89c88b1f3023b855c9ee3bf15e237d091696e2f7462fc54df9c083f"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/portal-piers.png",
+          "hash": "sha256:f69149cb356437ead644ba7ac4837c04cf018591c3ee1dfff3e50e702c773393"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/road-and-lamps.png",
+          "hash": "sha256:f39a12e9ab902c052a8198ce6c9bd07ca28a557c1e1519da692096cc16d145cd"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/fracture-end.png",
+          "hash": "sha256:97bbbf8f4efb6aeb1f2fa16fb2fa50278726d30487fc884b2299d4626d6cf624"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/girders-and-footways.png",
+          "hash": "sha256:43cf176bd8a202a54525a8d4e7db735d1c9c0a83eece0387b5fde01b963183ef"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/surviving-deck-plan.png",
+          "hash": "sha256:77f4ee19ed72dda0814c240fe1c575ae6c2629beb2d14262dc94fee52b55454e"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/shots/shared/placement.png",
+          "hash": "sha256:991f38cbd2d761895af493e10c744f7facaa94e037ac034e70476fb06c74acd5"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:a00c42f9371846ac2a7a8a5df6a9cf5faf158c7bdf3ad96e0b3719f2e2e6f9a9"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:c951de4d7ac6ba68afe9f943e1c1c78ed42686fa663f1d2490fef627f36c37d4"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:217fbc3c6eb1c6a420f09231533d08c68f36a92fa72c1a3c2d56b95ad47b8bbd"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:cd79574af41ac5ed905360b3ca02710bac37ec34b762bb7a38199cef92269dba"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:8f2a59dc7a926d8c4f8a0ebe41fd509c7438378af7b960b4492ddc574c26b65b"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:417eaeb82dbc201ce64273c623dfdfd6f3410416b30bdc326c8507a1e13012af"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:741d04f0e05a6697bb60fb712e3cf0e838aef9b29ff0a67c8306a7271b0a1340"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:b0a46ce77ebe1da884cfa34f3b58137a0f08a414d9691f89e5ebac8d20b70d29"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:199a6d1f69ea27bb155e9f86b1e2a6e5e5834215f4f7c1778ceff068d608df3c"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:fee711b349bb3af6e44df6e7726daedc9a8f9aa4f5ede2e3d2cb6dcd62c3a2d1"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:4ede6c02a6c78775b2bb9485dbc97f46a5b2e125d00ad2db124fb0dc4e080a51"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:f747872b73e2bbdd172494164d5d901bcae5c479e872e384226574fd932798f1"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:a9b8166676fd52d7d8ec9ab9cfb504b35c479eb81417ac2925428580179a0f29"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/major-breach.png",
+          "hash": "sha256:818c6625e7bb493083694b8207fd6d3196f34ea976a827d83c52611d23a76e79"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/minor-breach.png",
+          "hash": "sha256:44fa0df1eaaa2c5f83934ca8eb39c08d03a793797af23b6425720c0d7e0ddf52"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/portal-piers.png",
+          "hash": "sha256:fabf60265f8d40b6ed3ddb6299f1208b7098d48458d358bb3566fff0dc37a96d"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/road-and-lamps.png",
+          "hash": "sha256:35dd2b17f92558a677e628c7c5ca5778e58e83579bd2c2876276c9a379bd1dfd"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/fracture-end.png",
+          "hash": "sha256:f38eabaefa72e00961bf9a3e838799ec766abac9b1f796e5d5f6c6315e1022d4"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/girders-and-footways.png",
+          "hash": "sha256:cad69f1b9a62c84c164efaf444c3e98d28526bbba7263787bd817b6c67e7ebaf"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/surviving-deck-plan.png",
+          "hash": "sha256:5c7d9ec688aba0dd364c9db73205d8252e56a86c769bf5d4091561e97f418a41"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/whole-antonivka-skyline.png",
+          "hash": "sha256:b1f022bb47db7e4b104ca50859e7f6504873af8279ccf62898ee2faf4fe5f184"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/whole-antonivka-district.png",
+          "hash": "sha256:ded0289b59c18cc34399b48dbe98c6ac921660e45c83dd67428bbc567d1ae04f"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/whole-antonivka-street.png",
+          "hash": "sha256:94c1f24f30c818f54803c733a314be20cd4e27bfd6dfb6964b6c61db33a0c78e"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/whole-antonivka-closeup.png",
+          "hash": "sha256:9838078580a49c0e93a1c3cf2f3625d4585ce6b5d68bc8683197599fdaade049"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:4632087e4a77dcd6ef8c6bf7a1c9dbd7f48afa811a7ee9aa7b95b0df3c2a2952"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:417eaeb82dbc201ce64273c623dfdfd6f3410416b30bdc326c8507a1e13012af"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:38e1b00a06725e67a910dcff2398244602c61bbaed7671fa21a0cae3e7f41f03"
+        },
+        {
+          "path": "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:52cdef8a5e551a08d7a77945cca6e3cee5787f03edc68a7280ccd4579ef2f0ae"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-skyline-dnipro-damaged-crossing.png",
+          "hash": "sha256:f41dfdbd29dfb5a15b361bbd73dca7a10a45dc6cfa0e03f87e4eb9b882b6cfac"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-district-dnipro-damaged-crossing.png",
+          "hash": "sha256:f6136ee749fad91d2fb1aceb144691525842afbe5602aaf9c229f4a0b7b42480"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-street-dnipro-damaged-crossing.png",
+          "hash": "sha256:b58f326b0b9a69f8fdaed84bb89f68d89ecbdfc17ebd2f219b9b5a28f9e0d43a"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-dnipro-damaged-crossing.png",
+          "hash": "sha256:3a5a65bfde8a3dd15fcea7d2f3012d614b7cd134afae9e1127ca0f96c7f5b0c5"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-major-breach.png",
+          "hash": "sha256:518f5a2369df888fec6a52f02ce2586fc2cbc7b22e9e3e1e0c746ddf246028b3"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-minor-breach.png",
+          "hash": "sha256:ebd7b3ff83a7c15d440f9eaaa0bf093b0af2c1c0ca4635479c0969789014ecb2"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-portal-piers.png",
+          "hash": "sha256:ce1586f7604dbde4ec5cae0429efbc82a95b5a9e71cbb99492fa15ed47619fc1"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-road-and-lamps.png",
+          "hash": "sha256:8cf501ce663933f922ce247f801e2eae1e70b1a5b595ef0d5ff4034663f8f738"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-fracture-end.png",
+          "hash": "sha256:50f24055d21796cab7235e70dba3da92f911da1724748c8bfda2860ed0cca592"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-girders-and-footways.png",
+          "hash": "sha256:de288adbaa95652f0735e84ca2535170ee5c56e19d6d5ad5271f7608050668aa"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-surviving-deck-plan.png",
+          "hash": "sha256:4bc41949c654da4a99b420e578cc578b8ec88ce24ef991a2d3e4a1c7f8a61024"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-kherson-shore-join.png",
+          "hash": "sha256:30ceea78028f13b793a81a2f9ab86b3231cd7f70a97edaee0ed7891ea5dc3ccc"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-closeup-left-bank-shore-join.png",
+          "hash": "sha256:749928b17ad1b9ac506561f479c85cfe4c7ff37e5c4cee77f15950b2060f70e6"
+        },
+        {
+          "path": ".artifacts/antonivka-integration/shots/final-failure-dnipro-damaged-crossing.png",
+          "hash": "sha256:90ef5a11b12cbc13dbcdf15cfa065c837d64b4556311475be857b35b805cd43d"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "Retained all 295 resident / 372 wider native buildings, 289 independent road records, original DEM samples and water/shoreline behavior. Only the original bridge strip and directly connected shore lanes receive replacement/height handling. Unrelated fragments are compared record-wise, including shared feature IDs. Failure retains original native content without new supports; unload releases all model/support geometry and restores ground. Current fixture and engine hashes are pinned. No runtime engine change or repository-wide audit/build was needed for this model."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:10a4daf0f49d68590c34491691e6dc71ec37a309dda0c80dacf071a1f3a456ae",
+      "sourceHash": "sha256:191a2d7fda73fa3a4ed1eb37aaf04fc4da7728430d8be12a2aedd57282f30c63",
+      "runtimeHash": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+      "files": {
+        "content/worldgen/source/places/u8/u8r/antonivka_road_bridge/models/source.glb": "sha256:191a2d7fda73fa3a4ed1eb37aaf04fc4da7728430d8be12a2aedd57282f30c63",
+        "content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.glb": "sha256:45d558820ea2e24e6e5d65810746e3d4495c5fa592c14bb72de67fd45136f3ea",
+        ".artifacts/antonivka-integration/data.json": "sha256:15af47035796863b8a6d8a8ec3ee2f5acda3420a7e780bab45b3e6d1c11f8bd7",
+        ".artifacts/antonivka-integration/site.ts": "sha256:327c065a796823e809f3f4b81311b6ecf3d3c938699de07b0651e5dcb2b75bba",
+        ".artifacts/antonivka-integration/site.mjs": "sha256:3082afb3513dfebd5963e46f45e9681ad851d034b883634c06f796e379498426",
+        "content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.skyline.glb": "sha256:58fca07d285afa0f41b393f331819b0bb85bb8e760d8de247ce8f4a33d7d48ee",
+        "content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.district.glb": "sha256:92e73c1977bbee47207b25d8e6a5226d108a2fdfb4a212c353a97c69f2534d34",
+        "content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.street.glb": "sha256:09a0da2a131dcadfe5bb9ce17798e8664ee1785f5f3fa78d66d3f0039451175e",
+        "content/worldgen/assets/places/u8/u8r/antonivka_road_bridge/model.closeup.glb": "sha256:f521438ba54711caf1602136273683b1aa3a29f2b02ab2079c7c235b46bc1cb3"
+      },
+      "engine": {
+        "packages/worldgen-earth/src/client/structure-geometry.ts": "sha256:d1f2bf1f44f1f00353cacaa692ac3ea0bcf2c75f36ca068fea32090ff6e12402",
+        "packages/terrain/src/surface-bridges.ts": "sha256:a921e62846e7342809bad97b17470531e38ede838c1b2ca1123e038a35cbe811",
+        "packages/terrain/src/surface-client.ts": "sha256:2309d499139b4292ae6097937346395be5cfa0659ba8dd5ba74ca22012c123db",
+        "packages/client/src/three/shadow-focus.ts": "sha256:ff1b6d0dc914faf5ca592d9c7fa2e74132ad7cae65cc63c0c03e325545a49d09"
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184490270381,
+              "lines": [
+                [
+                  [
+                    -680.7155134462906,
+                    -4.934760179625535
+                  ],
+                  [
+                    -741.9264511406836,
+                    -7.36555425065707
+                  ],
+                  [
+                    -1009.4239275291659,
+                    -3.724664298402679
+                  ],
+                  [
+                    -1059.4567250823281,
+                    -4.125456694123088
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "lines": [
+                [
+                  [
+                    -1060.0544717815562,
+                    7.1274128959793615
+                  ],
+                  [
+                    -792.8635178368708,
+                    9.21513889208066
+                  ],
+                  [
+                    -724.921997067206,
+                    8.515484160262261
+                  ],
+                  [
+                    -680.8280342708384,
+                    4.907659795849057
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    680.7074475161851,
+                    5.010152699358571
+                  ],
+                  [
+                    1076.4880477655786,
+                    6.1318475454405785
+                  ],
+                  [
+                    1288.733760571779,
+                    8.99405921088512
+                  ],
+                  [
+                    1487.3950447750951,
+                    8.87774863242899
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    1488.1558133014237,
+                    -5.444085392056408
+                  ],
+                  [
+                    1288.6868316668285,
+                    -5.575854227271336
+                  ],
+                  [
+                    1076.6457818703807,
+                    -8.427194297914738
+                  ],
+                  [
+                    997.213780964443,
+                    -8.132733078825467
+                  ],
+                  [
+                    838.1898877555193,
+                    -4.474679920347235
+                  ],
+                  [
+                    680.8307439956942,
+                    -5.036869816928764
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "kherson-lane--5",
+              "point": [
+                -681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.118479502478635,
+              "rawGround": 7.3962203669121065
+            },
+            {
+              "name": "kherson-lane-5",
+              "point": [
+                -681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.178916320618896,
+              "rawGround": 7.75592173339855
+            },
+            {
+              "name": "left-bank-lane--5",
+              "point": [
+                681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.191024114457036,
+              "rawGround": 10.33695672052676
+            },
+            {
+              "name": "left-bank-lane-5",
+              "point": [
+                681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.138348392056287,
+              "rawGround": 9.671621505691435
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184490270381,
+              "connections": [
+                {
+                  "point": [
+                    0.4844097293522991,
+                    0.15999053838580535
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.4844097293522991,
+                    0.15999053838580535
+                  ],
+                  "elevation": 15.2,
+                  "radius": 97.76795884708119
+                }
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "connections": [
+                {
+                  "point": [
+                    0.47949246342925067,
+                    0.16019540131538781
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.47949246342925067,
+                    0.16019540131538781
+                  ],
+                  "elevation": 15.2,
+                  "radius": 93.23391776266374
+                }
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "connections": [
+                {
+                  "point": [
+                    0.5155524135316059,
+                    0.8400074339141277
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.5155524135316059,
+                    0.8400074339141277
+                  ],
+                  "elevation": 15.2,
+                  "radius": 68.8425796110492
+                }
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "connections": [
+                {
+                  "point": [
+                    0.5205721224947178,
+                    0.8398025246857576
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.5205721224947178,
+                    0.8398025246857576
+                  ],
+                  "elevation": 15.2,
+                  "radius": 60.676295638007204
+                }
+              ]
+            }
+          ],
+          "breachRoadSamples": [
+            {
+              "point": [
+                -232,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -232,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            }
+          ],
+          "level": "skyline",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -48.59393310546875,
+              -0.10000000149011612,
+              -680.4796447753906
+            ],
+            "max": [
+              48.5938720703125,
+              24.762718200683594,
+              680.4796142578125
+            ]
+          },
+          "sourceBuildings": 295,
+          "remainingBuildings": 295,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 289,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184376513433,
+            35184490270291,
+            35185485380763,
+            35185485380770,
+            35185485380765,
+            35185485380768
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.antonivka_road_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184490270381,
+              "lines": [
+                [
+                  [
+                    -680.7155134462906,
+                    -4.934760179625535
+                  ],
+                  [
+                    -741.9264511406836,
+                    -7.36555425065707
+                  ],
+                  [
+                    -1009.4239275291659,
+                    -3.724664298402679
+                  ],
+                  [
+                    -1059.4567250823281,
+                    -4.125456694123088
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "lines": [
+                [
+                  [
+                    -1060.0544717815562,
+                    7.1274128959793615
+                  ],
+                  [
+                    -792.8635178368708,
+                    9.21513889208066
+                  ],
+                  [
+                    -724.921997067206,
+                    8.515484160262261
+                  ],
+                  [
+                    -680.8280342708384,
+                    4.907659795849057
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    680.7074475161851,
+                    5.010152699358571
+                  ],
+                  [
+                    1076.4880477655786,
+                    6.1318475454405785
+                  ],
+                  [
+                    1288.733760571779,
+                    8.99405921088512
+                  ],
+                  [
+                    1487.3950447750951,
+                    8.87774863242899
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    1488.1558133014237,
+                    -5.444085392056408
+                  ],
+                  [
+                    1288.6868316668285,
+                    -5.575854227271336
+                  ],
+                  [
+                    1076.6457818703807,
+                    -8.427194297914738
+                  ],
+                  [
+                    997.213780964443,
+                    -8.132733078825467
+                  ],
+                  [
+                    838.1898877555193,
+                    -4.474679920347235
+                  ],
+                  [
+                    680.8307439956942,
+                    -5.036869816928764
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "kherson-lane--5",
+              "point": [
+                -681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.118479502478635,
+              "rawGround": 7.3962203669121065
+            },
+            {
+              "name": "kherson-lane-5",
+              "point": [
+                -681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.178916320618896,
+              "rawGround": 7.75592173339855
+            },
+            {
+              "name": "left-bank-lane--5",
+              "point": [
+                681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.191024114457036,
+              "rawGround": 10.33695672052676
+            },
+            {
+              "name": "left-bank-lane-5",
+              "point": [
+                681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.138348392056287,
+              "rawGround": 9.671621505691435
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184490270381,
+              "connections": [
+                {
+                  "point": [
+                    0.4844097293522991,
+                    0.15999053838580535
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.4844097293522991,
+                    0.15999053838580535
+                  ],
+                  "elevation": 15.2,
+                  "radius": 97.76795884708119
+                }
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "connections": [
+                {
+                  "point": [
+                    0.47949246342925067,
+                    0.16019540131538781
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.47949246342925067,
+                    0.16019540131538781
+                  ],
+                  "elevation": 15.2,
+                  "radius": 93.23391776266374
+                }
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "connections": [
+                {
+                  "point": [
+                    0.5155524135316059,
+                    0.8400074339141277
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.5155524135316059,
+                    0.8400074339141277
+                  ],
+                  "elevation": 15.2,
+                  "radius": 68.8425796110492
+                }
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "connections": [
+                {
+                  "point": [
+                    0.5205721224947178,
+                    0.8398025246857576
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.5205721224947178,
+                    0.8398025246857576
+                  ],
+                  "elevation": 15.2,
+                  "radius": 60.676295638007204
+                }
+              ]
+            }
+          ],
+          "breachRoadSamples": [
+            {
+              "point": [
+                -232,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -232,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            }
+          ],
+          "level": "district",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -48.59393310546875,
+              -1.399999976158142,
+              -680.4796447753906
+            ],
+            "max": [
+              48.5938720703125,
+              34.17462921142578,
+              680.4796142578125
+            ]
+          },
+          "sourceBuildings": 295,
+          "remainingBuildings": 295,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 289,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184376513433,
+            35184490270291,
+            35185485380763,
+            35185485380770,
+            35185485380765,
+            35185485380768
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.antonivka_road_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184490270381,
+              "lines": [
+                [
+                  [
+                    -680.7155134462906,
+                    -4.934760179625535
+                  ],
+                  [
+                    -741.9264511406836,
+                    -7.36555425065707
+                  ],
+                  [
+                    -1009.4239275291659,
+                    -3.724664298402679
+                  ],
+                  [
+                    -1059.4567250823281,
+                    -4.125456694123088
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "lines": [
+                [
+                  [
+                    -1060.0544717815562,
+                    7.1274128959793615
+                  ],
+                  [
+                    -792.8635178368708,
+                    9.21513889208066
+                  ],
+                  [
+                    -724.921997067206,
+                    8.515484160262261
+                  ],
+                  [
+                    -680.8280342708384,
+                    4.907659795849057
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    680.7074475161851,
+                    5.010152699358571
+                  ],
+                  [
+                    1076.4880477655786,
+                    6.1318475454405785
+                  ],
+                  [
+                    1288.733760571779,
+                    8.99405921088512
+                  ],
+                  [
+                    1487.3950447750951,
+                    8.87774863242899
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    1488.1558133014237,
+                    -5.444085392056408
+                  ],
+                  [
+                    1288.6868316668285,
+                    -5.575854227271336
+                  ],
+                  [
+                    1076.6457818703807,
+                    -8.427194297914738
+                  ],
+                  [
+                    997.213780964443,
+                    -8.132733078825467
+                  ],
+                  [
+                    838.1898877555193,
+                    -4.474679920347235
+                  ],
+                  [
+                    680.8307439956942,
+                    -5.036869816928764
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "kherson-lane--5",
+              "point": [
+                -681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.118479502478635,
+              "rawGround": 7.3962203669121065
+            },
+            {
+              "name": "kherson-lane-5",
+              "point": [
+                -681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.178916320618896,
+              "rawGround": 7.75592173339855
+            },
+            {
+              "name": "left-bank-lane--5",
+              "point": [
+                681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.191024114457036,
+              "rawGround": 10.33695672052676
+            },
+            {
+              "name": "left-bank-lane-5",
+              "point": [
+                681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.138348392056287,
+              "rawGround": 9.671621505691435
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184490270381,
+              "connections": [
+                {
+                  "point": [
+                    0.4844097293522991,
+                    0.15999053838580535
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.4844097293522991,
+                    0.15999053838580535
+                  ],
+                  "elevation": 15.2,
+                  "radius": 97.76795884708119
+                }
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "connections": [
+                {
+                  "point": [
+                    0.47949246342925067,
+                    0.16019540131538781
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.47949246342925067,
+                    0.16019540131538781
+                  ],
+                  "elevation": 15.2,
+                  "radius": 93.23391776266374
+                }
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "connections": [
+                {
+                  "point": [
+                    0.5155524135316059,
+                    0.8400074339141277
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.5155524135316059,
+                    0.8400074339141277
+                  ],
+                  "elevation": 15.2,
+                  "radius": 68.8425796110492
+                }
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "connections": [
+                {
+                  "point": [
+                    0.5205721224947178,
+                    0.8398025246857576
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.5205721224947178,
+                    0.8398025246857576
+                  ],
+                  "elevation": 15.2,
+                  "radius": 60.676295638007204
+                }
+              ]
+            }
+          ],
+          "breachRoadSamples": [
+            {
+              "point": [
+                -232,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -232,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            }
+          ],
+          "level": "street",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -48.59393310546875,
+              -1.399999976158142,
+              -680.4796447753906
+            ],
+            "max": [
+              48.5938720703125,
+              34.17462921142578,
+              680.4796142578125
+            ]
+          },
+          "sourceBuildings": 295,
+          "remainingBuildings": 295,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 289,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184376513433,
+            35184490270291,
+            35185485380763,
+            35185485380770,
+            35185485380765,
+            35185485380768
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.antonivka_road_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184490270381,
+              "lines": [
+                [
+                  [
+                    -680.7155134462906,
+                    -4.934760179625535
+                  ],
+                  [
+                    -741.9264511406836,
+                    -7.36555425065707
+                  ],
+                  [
+                    -1009.4239275291659,
+                    -3.724664298402679
+                  ],
+                  [
+                    -1059.4567250823281,
+                    -4.125456694123088
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "lines": [
+                [
+                  [
+                    -1060.0544717815562,
+                    7.1274128959793615
+                  ],
+                  [
+                    -792.8635178368708,
+                    9.21513889208066
+                  ],
+                  [
+                    -724.921997067206,
+                    8.515484160262261
+                  ],
+                  [
+                    -680.8280342708384,
+                    4.907659795849057
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    680.7074475161851,
+                    5.010152699358571
+                  ],
+                  [
+                    1076.4880477655786,
+                    6.1318475454405785
+                  ],
+                  [
+                    1288.733760571779,
+                    8.99405921088512
+                  ],
+                  [
+                    1487.3950447750951,
+                    8.87774863242899
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    1488.1558133014237,
+                    -5.444085392056408
+                  ],
+                  [
+                    1288.6868316668285,
+                    -5.575854227271336
+                  ],
+                  [
+                    1076.6457818703807,
+                    -8.427194297914738
+                  ],
+                  [
+                    997.213780964443,
+                    -8.132733078825467
+                  ],
+                  [
+                    838.1898877555193,
+                    -4.474679920347235
+                  ],
+                  [
+                    680.8307439956942,
+                    -5.036869816928764
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "kherson-lane--5",
+              "point": [
+                -681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.118479502478635,
+              "rawGround": 7.3962203669121065
+            },
+            {
+              "name": "kherson-lane-5",
+              "point": [
+                -681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.178916320618896,
+              "rawGround": 7.75592173339855
+            },
+            {
+              "name": "left-bank-lane--5",
+              "point": [
+                681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.191024114457036,
+              "rawGround": 10.33695672052676
+            },
+            {
+              "name": "left-bank-lane-5",
+              "point": [
+                681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 15.138348392056287,
+              "rawGround": 9.671621505691435
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184490270381,
+              "connections": [
+                {
+                  "point": [
+                    0.4844097293522991,
+                    0.15999053838580535
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.4844097293522991,
+                    0.15999053838580535
+                  ],
+                  "elevation": 15.2,
+                  "radius": 97.76795884708119
+                }
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "connections": [
+                {
+                  "point": [
+                    0.47949246342925067,
+                    0.16019540131538781
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.47949246342925067,
+                    0.16019540131538781
+                  ],
+                  "elevation": 15.2,
+                  "radius": 93.23391776266374
+                }
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "connections": [
+                {
+                  "point": [
+                    0.5155524135316059,
+                    0.8400074339141277
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.5155524135316059,
+                    0.8400074339141277
+                  ],
+                  "elevation": 15.2,
+                  "radius": 68.8425796110492
+                }
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "connections": [
+                {
+                  "point": [
+                    0.5205721224947178,
+                    0.8398025246857576
+                  ],
+                  "elevation": 15.2,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.5205721224947178,
+                    0.8398025246857576
+                  ],
+                  "elevation": 15.2,
+                  "radius": 60.676295638007204
+                }
+              ]
+            }
+          ],
+          "breachRoadSamples": [
+            {
+              "point": [
+                -232,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -232,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            }
+          ],
+          "level": "closeup",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -48.59393310546875,
+              -1.399999976158142,
+              -680.4796447753906
+            ],
+            "max": [
+              48.5938720703125,
+              34.17462921142578,
+              680.4796142578125
+            ]
+          },
+          "sourceBuildings": 295,
+          "remainingBuildings": 295,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 289,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184376513433,
+            35184490270291,
+            35185485380763,
+            35185485380770,
+            35185485380765,
+            35185485380768
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.antonivka_road_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "connectedApproachSourceRecords": [
+            {
+              "id": 35184490270381,
+              "lines": [
+                [
+                  [
+                    -680.7155134462906,
+                    -4.934760179625535
+                  ],
+                  [
+                    -741.9264511406836,
+                    -7.36555425065707
+                  ],
+                  [
+                    -1009.4239275291659,
+                    -3.724664298402679
+                  ],
+                  [
+                    -1059.4567250823281,
+                    -4.125456694123088
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35185635957594,
+              "lines": [
+                [
+                  [
+                    -1060.0544717815562,
+                    7.1274128959793615
+                  ],
+                  [
+                    -792.8635178368708,
+                    9.21513889208066
+                  ],
+                  [
+                    -724.921997067206,
+                    8.515484160262261
+                  ],
+                  [
+                    -680.8280342708384,
+                    4.907659795849057
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    680.7074475161851,
+                    5.010152699358571
+                  ],
+                  [
+                    1076.4880477655786,
+                    6.1318475454405785
+                  ],
+                  [
+                    1288.733760571779,
+                    8.99405921088512
+                  ],
+                  [
+                    1487.3950447750951,
+                    8.87774863242899
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184408444380,
+              "lines": [
+                [
+                  [
+                    1488.1558133014237,
+                    -5.444085392056408
+                  ],
+                  [
+                    1288.6868316668285,
+                    -5.575854227271336
+                  ],
+                  [
+                    1076.6457818703807,
+                    -8.427194297914738
+                  ],
+                  [
+                    997.213780964443,
+                    -8.132733078825467
+                  ],
+                  [
+                    838.1898877555193,
+                    -4.474679920347235
+                  ],
+                  [
+                    680.8307439956942,
+                    -5.036869816928764
+                  ]
+                ]
+              ]
+            }
+          ],
+          "approachSamples": [
+            {
+              "name": "kherson-lane--5",
+              "point": [
+                -681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 7.716360938617754,
+              "rawGround": 7.3962203669121065
+            },
+            {
+              "name": "kherson-lane-5",
+              "point": [
+                -681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 8.075367255856804,
+              "rawGround": 7.75592173339855
+            },
+            {
+              "name": "left-bank-lane--5",
+              "point": [
+                681.0245,
+                -5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 10.658905016211179,
+              "rawGround": 10.33695672052676
+            },
+            {
+              "name": "left-bank-lane-5",
+              "point": [
+                681.0245,
+                5
+              ],
+              "expectedDeck": 15.2,
+              "roadHeight": 9.991714897654447,
+              "rawGround": 9.671621505691435
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "breachRoadSamples": [
+            {
+              "point": [
+                -232,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -232,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                -82,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                -5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            },
+            {
+              "point": [
+                54,
+                5
+              ],
+              "roadHeight": null,
+              "rawGround": 0
+            }
+          ],
+          "level": "failure",
+          "modelLoaded": false,
+          "modelWorldY": null,
+          "modelBounds": null,
+          "sourceBuildings": 295,
+          "remainingBuildings": 295,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 289,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184376513433,
+            35184490270291,
+            35185485380763,
+            35185485380770,
+            35185485380765,
+            35185485380768
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.antonivka_road_bridge"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Dated post-November2022 damaged-state reconstruction, not a current engineering inspection or drivable historical bridge.",
+    "Mapped multipart deck footprints control major gap placement. Individual fracture profiles, hanging bars, underwater debris and damage to hidden pier faces are not surveyed.",
+    "26 paired-pier groups and their stationing are inferred visual structure, not a verified original span schedule.",
+    "River zero,15.2m bank deck and24.8m central deck are provisional viewer elevations; neighboring approach grades require standard PMTiles/Mapzen review.",
+    "Ships, temporary barge crossings, military activity, vehicles, signs, buried foundations and adjacent bank architecture are outside this asset.",
+    "Shared concrete grain supplies paving/asphalt microvariation with component tints; no bespoke texture, embedded photo or directional lighting is baked into surfaces.",
+    "Physical laptop/phone measurements remain pending. Runtime levels deliberately reduce lamps, rail posts, fracture teeth and exposed bars.",
+    "Approximate native fit at [32.720187802,46.67020641], heading -1.517726713957: +X south toward the left bank, -X north to Kherson and the main breaches. The retained exact-QID multipart map plan fixes the three slab extents at scale (1361.549m versus the nominal 1366m length, width25m). Standard 2026-10-20 PMTiles/Mapzen guides fit. River zero, 15.2m bank deck and 24.8m center, pier schedule and debris profiles remain reconstructed. The road mask is inset0.175m per end to retain tiny lane tails and their individual height hints. Four actual native lane joins are within0.082m of the authored deck; no procedural road fills either breach. Coarse approach grades/supports and width transitions remain inferred visualization rather than surveyed road geometry."
+  ]
+}

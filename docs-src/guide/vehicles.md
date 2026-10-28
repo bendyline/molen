@@ -8,6 +8,9 @@ straight practice track. Player controls do not yet follow curved rail-network r
 See the [close-view vehicle standard](medium-fi.md#controllable-vehicles-close-view-fidelity)
 for the extra model detail expected around the operator.
 
+Compare car colors and RV graphics in the [livery gallery](livery-gallery.md). The
+[complete livery catalog](livery-catalog.md) lists selection ids and reference evidence.
+
 World Explorer's parking cars are external entity types with stable IDs and metric dimensions.
 The entity pack includes eleven Bendy road models and eighty U.S. market reference vehicles:
 forty recent models plus forty varied models from 2005–2024. These range from the F-150,
@@ -148,6 +151,12 @@ ground (under open sky, never a roof or deck), `board(id)` without walking to th
 in. The entity's `vehicle.color`, when set, paints the model's `paintMaterial`; without one the
 authored paint stays.
 
+Parked cars become simulation entities only within 300 m of the observer passed to `sync`, to
+approach, board and collide with; farther ones that nobody moved are reclaimed and stay part of
+their tile's merged mesh. Under an aircraft a town's parked cars were otherwise thousands of
+dormant entities, spawned as each tile streamed in and visited every tick. The `vehicles` system
+also passes over a dormant car after one lookup until a write replaces its state.
+
 Passengers use the same mount contract. A `mountable` lists seats with a role: `driver` seats
 drive, `passenger` seats ride. `mountEntity(world, actor, vehicle, 'passenger')` seats someone
 beside the driver (stopped vehicle, within `reach` of the seat), the `mounted-seats` system carries
@@ -226,7 +235,10 @@ Surface objects expose `userData.vehicles: VehiclePlacement[]`; each record has 
 type `kind`, `color`, resolved `spec`, absolute metric `position`, and `yaw`, with optional
 terrain-alignment `pitch` and `roll`. IDs derive from world-space bay positions rather
 than tile IDs. Instance meshes retain `userData.vehicleIds` for promotion and duplicate suppression.
-The worker transports the same placement records as synchronous generation.
+The worker transports the same placement records as synchronous generation. Surface objects with
+parked cars are tagged `'parked-vehicles'` and water surfaces `'water'` (`tagTerrainObject`), and
+Earth view's vehicles visit `taggedTerrainObjects(tag)` shown under their root instead of walking
+the whole scene five times a second; a host building its own such objects tags them the same way.
 
 For repeatable visual review open
 [World Explorer with `?synthetic=1&parking=1`](https://molen.dev/play/world-explorer/?synthetic=1&parking=1).

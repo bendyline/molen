@@ -687,7 +687,7 @@ function cockpit(root, m) {
         [0, 45, 90],
         'NAC',
       );
-      d.text('SIM RPM %', [x, y - 0.095, z - 0.013], 0.014, Math.PI, ink);
+      d.text('SIM RPM %', [x, y - 0.095, z - 0.013], 0.014, Math.PI, ink, 'display');
       d.text('TEMP / FUEL --', [x, y - 0.112, z - 0.013], 0.012, Math.PI, ink);
     }
   }
@@ -710,7 +710,7 @@ function cockpit(root, m) {
   ins.altimeter('standby-altitude', at(853, 645, -0.006), 0.041, 'feet');
   d.add(new T.CircleGeometry(0.056, 28).rotateY(Math.PI), black, at(851, 725, -0.006));
   d.ring(0.057, 0.005, at(851, 725, -0.01), m.metal);
-  d.text('NAV --', at(851, 725, -0.012), 0.011, Math.PI, ink);
+  d.text('NAV --', at(851, 725, -0.012), 0.011, Math.PI, ink, 'display');
   beveledBox(d, [0.27, 0.145, 0.05], at(650, 610, 0.025), m.dark, 0.012);
   d.text('SYSTEM --', at(650, 610, -0.003), 0.018, Math.PI, ink);
   // Upper autoflight controller, fire handle and side radio windows. No invented modes or values.

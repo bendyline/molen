@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.palazzo_nuovo_capitoline",
+  "kind": "static-structure",
+  "title": "Palazzo Nuovo — Capitoline Museums",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.palazzo_nuovo_capitoline",
+        "output": "assets/places/sr/sr2/palazzo_nuovo_capitoline/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:10bef5b7d590a136df839799bbb50d824ec0bee59a560bdcce3f0e4b2b14eecf"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-palazzo-nuovo-capitoline",
+        "path": "models/generate-palazzo-nuovo-capitoline.mjs"
+      },
+      {
+        "id": "palazzo-nuovo-capitoline-model",
+        "path": "models/palazzo-nuovo-capitoline-model.mjs"
+      },
+      {
+        "id": "palazzo-nuovo-capitoline-geometry",
+        "path": "models/palazzo-nuovo-capitoline-geometry.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "review-scope.json",
+      "reference-metadata.json",
+      "site-components.json",
+      "pmtiles-fit.json",
+      "surface-means.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

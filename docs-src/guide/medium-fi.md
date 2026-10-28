@@ -53,13 +53,13 @@ exported from `@bendyline/molen-earth/client` as `EARTH_SKY_PALETTE`, `EARTH_LIG
 
 | Element | Value | What it means for an asset |
 | --- | --- | --- |
-| Sun | Warm white `#fff1d8`, intensity 4.4 | Sunlit horizontal faces render near their authored color |
-| Sky fill | `dayAmbient` 2 from the sky dome at `skyLightSaturation` 0.18, warm ground bounce `#9a8f70` | Faces in shade sit well under half of lit faces, gently cool rather than blue, so slopes and darks read with photographic contrast |
+| Sun | Near-neutral white `#fff8f0`, intensity 6.1, `referenceElevation` 26° | Sunlit horizontal faces render near their authored color at any time of day: above 26° the rig adapts as a camera's exposure would, so midday is not brighter than the palette |
+| Sky fill | `dayAmbient` 1.25 from the sky dome at `skyLightSaturation` 0.3, warm ground bounce `#9a8f70` | Faces in shade sit at roughly a third of lit faces, gently cool rather than blue, so slopes, streets and darks read with photographic contrast |
 | Tone mapping | ACES filmic, exposure 1.05 | Authored colors keep their hue with a little mid-tone contrast; shade reads cool grey, not navy |
 | Cast shadows | On from the Medium tier up, in a shadow map that follows the camera | Do not bake shadows or ambient occlusion into colors or textures |
 | Sky | Saturated zenith `#2a6cc4` over a pale horizon `#b2cde4`, both lifted by ACES on screen | Large pure-white surfaces outshine it; prefer off-whites and creams |
 | Haze | The sky's own horizon color, from about 2 km | Distant ground dissolves into the horizon; do not add a fog color of your own |
-| Water | `#286d83` with a soft sky reflection | Lakes and bays read clearly blue, never grey |
+| Water | Deep teal `#1b4450` with a soft sky reflection; hosts may tint it per region (Puget Sound near-black navy, Sydney Harbour green-teal) | Water absorbs most light: from above it is far darker than land. Keep ripples legible nearby; fade small wave detail at airplane distance |
 
 Two consequences matter for authoring:
 
@@ -100,14 +100,19 @@ where real buildings have it. Avoid both grey-on-grey and candy color.
 | Urban wall: concrete, panel, limestone | 55–90% | 0–25% | light concrete `#d2cec5`, limestone `#ddd6c6`, cool grey `#b8bfc4`, graphite `#8f9397` |
 | Masonry, brick, timber walls | 45–65% | 25–45% | brick `#a8634b`, sandstone `#c9ab84`, cedar `#a77a54` |
 | Pitched roof (shingle, tile, slate) | 35–50% | 6–40% | charcoal `#575c62`, brown `#725c49`, moss `#5a6d55`, terracotta `#a5644b` |
-| Flat roof (membrane, gravel) | 62–80% | 0–12% | gravel `#a9a59c`, membrane `#c4c0b6` |
+| Flat roof (membrane, gravel) | 45–90% | 0–12% | white membrane `#e6e6e2`, pale grey `#d3d4d0`, gravel `#b0a693`, dark membrane `#74777b`; mostly pale, a few dark |
 | Trim and frames | 85–95% or 22–30% | 0–30% | white `#f4f1ea`, dark frame `#3b3e42` |
 | Untextured window glass | 35–45% | 20–30% | blue-grey pane `#4d6178` |
 | Lawn and residential ground | 45–55% | 25–35% | lawn `#8aa065`, grass `#7fa258`, park `#6c9a55` |
 | Paved and commercial ground | 60–70% | 5–12% | paving `#aaa59a` |
 | Forest floor and conifers | 30–40% | 25–35% | forest `#3c6a3f`, fir `#3e7052` |
-| Asphalt | 25–36% | 0–10% | road `#56595b` (near neutral and not too dark: a bluer gray turns navy in shade, a darker one crushes to black), with markings `#eee9d4` and `#e8bd57` |
+| Asphalt | 35–42% | 0–10% | road `#646766` (near neutral and weathered: from the air streets read mid grey; a bluer gray turns navy in shade, a darker one crushes to black), with markings `#eee9d4` and `#e8bd57` |
 | Identity and wayfinding accents | 35–60% | 55–90% | signal red `#b81d18`, chrome yellow `#e7b52a` |
+
+Regional ground palettes in the `molen.ecology` pack depart from the generic bands on purpose:
+they are calibrated against matched orthophotos of real cities. Desert and dry soil sits near
+45–50% lightness as a warm mid brown, not pale sand; Pacific Northwest lawns and woodland floor
+read darker and bluer under their conifer canopy; dense blocks pave over their unmapped ground.
 
 Palette rules:
 
@@ -561,6 +566,9 @@ record the completed result once. Revisit it when a defect or relevant change wa
 5. **Modes.** Check the Economy mode (no shadows) as well as High.
 6. **Distance behavior.** Watch the switches between levels for popping, shimmer on thin parts,
    and floating or sinking at the base.
+7. **Family.** Models made by one builder or template fail together. Render the family's side
+   views at one scale on one sheet: an SUV with a sedan's rear, every pickup at a car's ride
+   height or two types with the same silhouette show there, not in one model's preview.
 
 Useful captures from a project:
 

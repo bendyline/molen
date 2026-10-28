@@ -190,11 +190,12 @@ describe('independent aircraft engines', () => {
   it('spools, throttles and switches engines independently, with a master cutoff', () => {
     const start = airborne();
     start.state.rpm = 0;
-    const controls = { ...power, engines: { left: { power: 0.25 }, right: { enabled: false } } };
+    const controls = {
+      ...power,
+      engines: { left: { power: 0.25, propeller: 0 }, right: { enabled: false } },
+    };
     const result = fly(2, controls, twin, start);
-    expect(result.state.engines?.left?.rpm).toBeCloseTo(
-      engine.idleRpm + 0.25 * (1 - engine.idleRpm),
-    );
+    expect(result.state.engines?.left?.rpm).toBeCloseTo(engine.propellerControl?.minRpm ?? 0.6);
     expect(result.state.engines?.left?.thrust).toBeGreaterThan(0);
     expect(result.state.engines?.right?.rpm).toBe(0);
     expect(result.state.engines?.right?.rotorAngle).toBe(0);
@@ -233,6 +234,34 @@ describe('independent aircraft engines', () => {
     expect(w.get('craft', AircraftState)?.engines?.left?.rpm).toBeGreaterThan(0.8);
     expect(saved?.engines?.left?.failed).toBe(true);
     expect(saved?.engines?.right?.rpm).toBe(0);
+  });
+
+  it('clamps finite fuel/governor controls, rejects nonfinite input and retains them in replay', () => {
+    const w = world();
+    expect(
+      flyAircraft(w, 'pilot', {
+        ...power,
+        mixture: 2,
+        propeller: -1,
+        engines: { left: { mixture: -2, propeller: 3 } },
+      }),
+    ).toBe(true);
+    expect(w.get('craft', AircraftInput)).toMatchObject({
+      mixture: 1,
+      propeller: 0,
+      engines: { left: { mixture: 0, propeller: 1 } },
+    });
+    for (const key of ['mixture', 'propeller']) {
+      expect(flyAircraft(w, 'pilot', { ...power, [key]: NaN })).toBe(false);
+      expect(flyAircraft(w, 'pilot', { ...power, engines: { left: { [key]: Infinity } } })).toBe(
+        false,
+      );
+    }
+    const restored = world();
+    applyKeyframeTo(restored, takeKeyframe(w));
+    w.stepN(60);
+    restored.stepN(60);
+    expect(stateHash(restored)).toBe(stateHash(w));
   });
 
   it('rolls back every engine and yaw rate when crossing into unknown terrain, without mutating input', () => {

@@ -1,0 +1,375 @@
+{
+  "planId": "bethlehem_steel_administration_building",
+  "id": "bethlehem_steel_administration_building",
+  "assetId": "molen.worldgen.structure.bethlehem_steel_administration_building",
+  "title": "Bethlehem Steel Administration Building",
+  "wikidataId": "Q4986442",
+  "category": "historic-office",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.38718875,
+    "latitude": 37.760905699999995
+  },
+  "size": [
+    50.20096969604492,
+    23.152702808380127,
+    49.148353576660156
+  ],
+  "actualBounds": {
+    "min": [
+      -25.100427627563477,
+      -4.639500141143799,
+      -24.574148178100586
+    ],
+    "max": [
+      25.100542068481445,
+      18.513202667236328,
+      24.57420539855957
+    ]
+  },
+  "visualBrief": "Whole Building101/Pier70 Bethlehem Steel Administration Building: native20-control enduring1917ClassicalRevival Lshell and attached centralatrium, beveledarchedentry/granitesteps/raisedrusticatedbase, pairedlower and tripleuppersashtransoms/realrecesses/two-storyflutedpilasters/spandrels/stringcourse/balustradedsills/entablature/cornice/parapet/partialpenthouse/steelglassatrium and text-supportedrooftopconservatory. Exact cleared published creator-ownPDself exterior first/only, original bounded current hidden/newroofsections/census/finish, not wholeindustrialdistrict or copiedimage.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:OldBethelemSteelHeadquartersInSanFranciscoAt20thAndIllinois.jpg"
+  ],
+  "stories": [
+    {
+      "id": "pier-70-san-francisco-wp",
+      "url": "https://qualla.com/pier-70-san-francisco/"
+    }
+  ],
+  "referenceInputHash": "4afae0b94c991145746a78ab028e27dbbc92a314b83ccac7e6a4e330bbde3cf9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q8/bethlehem_steel_administration_building/models/bethlehem-steel-administration-building-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/bethlehem-steel-administration-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "bethlehemSteelAdministrationBuildingSkyline",
+    "errorMeters": 5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.15
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bethlehemSteelAdministrationBuildingDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "bethlehemSteelAdministrationBuildingStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "bethlehemSteelAdministrationBuildingCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "stone_limestone_raw",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.3",
+    "groundY": -4.1395,
+    "cameraYaw": 0.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent256m129x12916641samples/fourrawtiles/SW13.1868m providerrelative datum/native20controlbboxanchor/heading0 frozen before once-only beveledentryexteriorfloor-4.0395m/allverticalsections/geometry. Nativeheight19m usedforparapet; Port72ft=21.9456m supports partialhistoricalroofpenthouse. Originalphoto/text-bounded plinth1.1/string6.05–6.5/twoupperwindowbands7.1–10.85and12–15.75/pilasters6.5–16.8/entablature17.65/cornice18.1/roof17.7/parapet19m; currentnativeatrium8.2eave10.2ridge and text-supportedrooftopconservatory20.5eave22.5ridge originalestimates. Sourcecounts/corniceprofile/flutes/hiddenjoins/modernroofsections/currentfinish and exactcontactunverified, notsurvey. No later floor/field/sections/anchorretune/fitting/flattening/reacquire/reframe/raising.",
+    "anchor": [
+      -122.38718875,
+      37.760905699999995
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.38821140069395,
+        37.7600972199425
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest source datum before original independent field/floor/sections/geometry; not surveyed entry/basement/foundation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/257338315"
+    ],
+    "source": "https://www.openstreetmap.org/way/257338315",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8d89bc7f45c667f9f9b8e4027ba3b0b947af01477239d663aff4b94088d7ac46",
+    "notes": "Pier70 story resolved to explicitly pictured/named Bethlehem Steel Administration Building/Building101/Q4986442 at20thandIllinois. Whole surviving1917 ClassicalRevival L-shaped mainbuilding with beveledstreetcorner/attachedroofpenthouse and intrinsic modern centralglassatrium/rooftopconservatory, current whole20nativeperimetercontrols/way257338315. Three main street-facing floors over raisedbasement, rusticatedgroundbase, pairedlower/tripleupper sash-transomwindows with physical recesses, two-story flutedpilasters, stringcourse/spandrels/balustradedsills/entablature/heavycornice/solidparapet, recessedarchedcornerentry/granitesteps. Not entirePier70, MachineShop113/114, UnionIronWorksOffice104, Powerhouse102, shoreline/fences/landscape/street/urbanproperty. Current hidden/newatrium/roofprofile/finish/census and hostcontact original bounded estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual whole current20-control native Building101/attachedintrinsicatrium envelope, nativebboxanchor/heading0 fixed before original independent field/floor/sections/geometry. Distinct adjacent industrial buildings and historic property excluded.",
+    "Whole current20-control Building101 outline retained in physical foundation. Current internal centralglassatrium projection nodes10901205601/604/605/603/602 decomposed from enduring1917 Lshell along original internaldiagonal0-to6; everywhole20XZ vertex remains native, no sitepropertybox. Original bounded roof/conservatory/penthouse subdivisions and glazing profiles from exactpublished2007shell pluscurrentoperator/architect text, not surveyed roofpartpolygons. Beveledentry two nearlycollinear nativeedge segments combined for doorway surface, all exactvertices retained in foundation. Streetwindowbay7+7andcornertriple, rearwindow and flutedpilastercensus originalphoto-boundedestimates. Basementsubbasement/innerdecor/brandfurniture excluded; no entirePier70oradjacentindustrialbuildings.",
+    "Original independent256m129x12916641samples/fourrawtiles/SW13.1868m providerrelative datum/native20controlbboxanchor/heading0 frozen before once-only beveledentryexteriorfloor-4.0395m/allverticalsections/geometry. Nativeheight19m usedforparapet; Port72ft=21.9456m supports partialhistoricalroofpenthouse. Originalphoto/text-bounded plinth1.1/string6.05–6.5/twoupperwindowbands7.1–10.85and12–15.75/pilasters6.5–16.8/entablature17.65/cornice18.1/roof17.7/parapet19m; currentnativeatrium8.2eave10.2ridge and text-supportedrooftopconservatory20.5eave22.5ridge originalestimates. Sourcecounts/corniceprofile/flutes/hiddenjoins/modernroofsections/currentfinish and exactcontactunverified, notsurvey. No later floor/field/sections/anchorretune/fitting/flattening/reacquire/reframe/raising.",
+    "One exact cleared published2007creator-ownPDself nativeoriginal first/only. Primaryowner/operator/architect text supplies dimensions/restoration/newglassatrium/conservatoryfacts; protectedmodernimages/plans not adopted. No sourcepixels embedded, oldboards/graffiti/furniture/brands/people/vehicles/wires/fences/landscape excluded.",
+    "Currentwhole20nativefootprint and enduring1917shell. New/hiddenatrium/conservatory/penthouseroofprofiles/supportcensus/cornice/flutes/rearwindows/fineornament/currentfinish are originalboundedestimates, not measuredsections or precise currentconditions. Actual7+7baystreetfacades photo-bounded, not nativewindowplan. Opaque representative glazing intentionallysimplifiestransmission/interiors.",
+    "Originalindependent256m129field/fourrawtiles/floor/sections fixed beforegeometry, nofitting/flattening/reacquire/reframe/lateraise. Exactentry/basement/foundation/streetcontact unverified, preview/replacementfalse. Flatgroundandcontextneighborhouses are fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-street-facades-beveled-corner-and-rooftops",
+      "position": [
+        -60.84336458293918,
+        29.9605,
+        65.14664217154667
+      ],
+      "lookAt": [
+        -1.9956616839555483,
+        4.9605,
+        0.1316603326431521
+      ]
+    },
+    {
+      "name": "whole-native-building101-and-intrinsic-atrium-plan",
+      "position": [
+        0.013166033264315211,
+        115.9605,
+        0.19956616839555485
+      ],
+      "lookAt": [
+        0,
+        -4.0395,
+        0
+      ]
+    },
+    {
+      "name": "physical-paired-triple-windows-fluted-pilasters-and-arched-entry",
+      "position": [
+        -37.3458571925695,
+        9.9605,
+        41.54860948999624
+      ],
+      "lookAt": [
+        -15.712351153512214,
+        4.9605,
+        20.077898825044503
+      ]
+    },
+    {
+      "name": "whole-rear-court-central-atrium-conservatory-and-penthouse",
+      "position": [
+        59.24268389691309,
+        37.960499999999996,
+        -59.02799678703687
+      ],
+      "lookAt": [
+        -1.1953213409425023,
+        4.9605,
+        -2.9276623596117464
+      ]
+    },
+    {
+      "name": "original-bounded-glass-roof-sections-and-historic-parapet",
+      "position": [
+        37.24889198478553,
+        38.960499999999996,
+        2.553438055990557
+      ],
+      "lookAt": [
+        -8.443457900073225,
+        10.9605,
+        -6.458174563271811
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28284,
+    "vertices": 84852,
+    "materials": 5,
+    "bytes": 3612892,
+    "sha256": "sha256:c771c12807d274bbbe30c2143f06d7fe45a06df31c94965eee54cb0c197fe014"
+  }
+}

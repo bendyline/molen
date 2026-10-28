@@ -1,5 +1,6 @@
 /** Original, meter-scale polygonal airframes. +Y up, +Z forward, +X pilot's left.
- * No image textures. Each airframe has a hollow shell, authored planform and cockpit aperture.
+ * Each airframe has a hollow shell, authored planform and cockpit aperture.
+ * Selected cabins use original procedural finishes embedded by the aircraft exporter.
  */
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
@@ -47,6 +48,7 @@ import { buildR44, r44Frame } from './aircraft/robinson-r44.mjs';
 import { buildTyphoon, typhoonFrame } from './aircraft/typhoon.mjs';
 import { buildUH60, uh60Frame } from './aircraft/uh-60.mjs';
 import { addAircraftCockpit } from './aircraft-interiors.mjs';
+import { smoothSurface } from './surface-normals.mjs';
 import { detailKit } from './vehicle-detail.mjs';
 
 const pi = Math.PI;
@@ -478,8 +480,7 @@ export function buildAircraft(s) {
   ]) {
     const g = new T.BufferGeometry();
     g.setAttribute('position', new T.Float32BufferAttribute(verts, 3));
-    g.computeVertexNormals();
-    const m = d.add(g, mat);
+    const m = d.add(smoothSurface(g), mat);
     m.name = name;
   }
   // Structural circumferential seams; rivets are placed on these skin joints, not a blanket grid.
@@ -559,8 +560,7 @@ export function buildAircraft(s) {
       }
     const geom = new T.BufferGeometry();
     geom.setAttribute('position', new T.Float32BufferAttribute(verts, 3));
-    geom.computeVertexNormals();
-    d.add(geom, glass);
+    d.add(smoothSurface(geom), glass);
     for (const u of [0.22, 0.77])
       for (let i = -12; i < 12; i++)
         d.rod(p(u, (i * pi) / 24), p(u, ((i + 1) * pi) / 24), 0.022, accent);
@@ -885,6 +885,14 @@ export function buildAircraft(s) {
         k.add(nacelle, paint);
         k.ring(er, 0.045, [0, 0, el / 2], metallic);
         k.ring(er * 0.86, 0.035, [0, 0, -el / 2], metallic);
+        // Match the nacelle's front ring and recessed fan exactly. A torus lip
+        // alone leaves an annular hole, especially on the larger jet engines.
+        const duct = new T.CylinderGeometry(er, er * 0.94, 0.07, 24, 1, true).rotateX(pi / 2);
+        const indices = duct.index.array;
+        for (let j = 0; j < indices.length; j += 3)
+          [indices[j + 1], indices[j + 2]] = [indices[j + 2], indices[j + 1]];
+        duct.computeVertexNormals();
+        k.add(duct, metallic, [0, 0, el / 2 - 0.035]);
         k.add(new T.CircleGeometry(er * 0.94, 24), black, [0, 0, el / 2 - 0.07]);
       }
       if (props) {
@@ -916,12 +924,16 @@ export function buildAircraft(s) {
             metallic,
           );
         }
-        k.add(new T.CircleGeometry(er * 0.79, 24).rotateY(pi), black, [0, 0, -el / 2 - 0.01]);
+        const exhaust = new T.CylinderGeometry(er * 0.86, er * 0.79, 0.15, 24, 1, true).rotateX(
+          pi / 2,
+        );
+        k.add(exhaust, metallic, [0, 0, -el / 2 - 0.075]);
+        k.add(new T.CircleGeometry(er * 0.79, 24).rotateY(pi), black, [0, 0, -el / 2 - 0.15]);
         for (let b = 0; b < 16; b++) {
           const a = (b * pi) / 8;
           k.rod(
-            [Math.cos(a) * er * 0.82, Math.sin(a) * er * 0.82, -el / 2],
-            [Math.cos(a) * er * 0.7, Math.sin(a) * er * 0.7, -el / 2 - 0.15],
+            [Math.cos(a) * er * 0.86, Math.sin(a) * er * 0.86, -el / 2],
+            [Math.cos(a) * er * 0.79, Math.sin(a) * er * 0.79, -el / 2 - 0.15],
             0.025,
             metallic,
           );
@@ -1099,7 +1111,7 @@ export function buildAircraft(s) {
       if (b.sub(a).cross(c.sub(a)).lengthSq() > 1e-18) kept.push(ia, ib, ic);
     }
     geometry.setIndex(kept);
-    geometry.computeVertexNormals();
+    if (!geometry.getAttribute('normal')) geometry.computeVertexNormals();
     const normals = geometry.getAttribute('normal');
     for (let i = 0; i < normals.count; i++) {
       a.fromBufferAttribute(normals, i);

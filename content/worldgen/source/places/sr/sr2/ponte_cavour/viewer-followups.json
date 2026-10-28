@@ -1,0 +1,27 @@
+{
+  "status": "Source body retained; actual lane and sidewalk join defects corrected; canonical review in progress",
+  "previousDraftEvidence": ".artifacts/cavour-review/native/site-report.json",
+  "currentEvidence": ".artifacts/cavour-canonical-review/native/interior-junctions-report.json",
+  "resolution": [
+    "Original irregular masonry body and all grouped vertex attributes retained. Thin upper-bank paving follows its physical end contours.",
+    "Split bank ways at existing interior bridge junction vertices, preserving the original input polylines and other layers. Actual map footway widths now join the upper landings.",
+    "All18 actual mapped lane/footway width samples have model and road support, with maximum0.011003m offset in the current closeup view.",
+    "Independent lower cycleway, other map features and raw terrain/water remain separate. Thin slabs leave clearance below instead of filling down to the DEM.",
+    "Ferry route data remains in the source and is excluded from road painting."
+  ],
+  "limitations": [
+    "Photo-based arch rises, pier profiles, height datum and lamp placement are approximate.",
+    "Baluster spacing and lamp intervals are regularized; no exact element count or as-built claim.",
+    "A<=7.5cm mapped facade sliver is snapped to the20.5m body plane to preserve the west arch opening.",
+    "Landmark LODs intentionally remove turned profiles and small fittings; skyline uses an opaque mean-color parapet band.",
+    "Surrounding quays, nearby architecture, boats, traffic and graffiti are outside this model.",
+    "Upper-bank paving around the irregular wings is approximate visualization support, not surveyed quay geometry. Thin slabs sit 1cm below map paving and leave lower riverside routes below; all surrounding coarse terrain remains approximate."
+  ],
+  "inputs": {
+    "sourceBuildings": 455,
+    "independentRoads": 510,
+    "rawGridRetained": true,
+    "waterRetained": true
+  },
+  "next": "Finish current canonical geometry/shared-material/style/native-level review and record the scoped decision. This progress note grants no readiness by itself."
+}

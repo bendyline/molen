@@ -107,7 +107,12 @@ try {
         terrainFixture[key] = { path: file, hash: hash(await readFile(local)) };
       }
     }
-    const groundOpening = spec.geographicProposal?.groundCutout?.outline;
+    const floor = spec.geographicProposal?.groundCutout?.minHeight;
+    // The isolated flat stage lies below a bridge's bank cap; native fitting exercises it.
+    const groundOpening =
+      floor === undefined || reviewTerrain || (spec.mediumFiContext?.groundY ?? 0) > floor
+        ? spec.geographicProposal?.groundCutout?.outline
+        : undefined;
     if (groundOpening) {
       context.set('groundOpening', JSON.stringify(groundOpening));
       context.set(

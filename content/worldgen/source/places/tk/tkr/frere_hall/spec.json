@@ -1,0 +1,482 @@
+{
+  "planId": "frere_hall",
+  "id": "frere_hall",
+  "assetId": "molen.worldgen.structure.frere_hall",
+  "title": "Frere Hall (2009)",
+  "wikidataId": "Q3924620",
+  "category": "civic-institutional",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 67.03284915,
+    "latitude": 24.8474649
+  },
+  "size": [
+    49.50739860534668,
+    46.62786865234375,
+    44.891645431518555
+  ],
+  "actualBounds": {
+    "min": [
+      -20.280929565429688,
+      -2.5,
+      -22.703271865844727
+    ],
+    "max": [
+      29.226469039916992,
+      44.12786865234375,
+      22.188373565673828
+    ]
+  },
+  "visualBrief": "Whole Frere Hall as the unmodified author photograph published by2009: complete two-storey VenetianGothic hall, long pointed-arch verandas, full interior hall envelope and hidden rear, red gabled main roof with geometric clerestory, two hipped endpavilions, whole octagonal belfry with tall lancets/hipped spire/open iron crown, thin open roofstage and spire, east porch and intrinsic double-flight stairs. Six native building components/Q3924620 bound. Hidden plan/sections/registration/metric heights and historic grade are bounded estimates, not survey. Exclude garden/park/trees/roads/people/nearby structures/interior murals/copied figurative art/lettering; do not substitute frontage for wholehall.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-11-13",
+    "validFrom": "2009-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Frere_hall_Karachi.jpg"
+  ],
+  "stories": [
+    {
+      "id": "frere-hall-wp",
+      "url": "https://qualla.com/frere-hall/"
+    }
+  ],
+  "referenceInputHash": "f2ceb04525fbc7ebf0ba6f33280dca4c0068ce983e13372388580988a861a71e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tk/tkr/frere_hall/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tk/tkr/frere_hall/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.74,
+        "metallic": 0.3
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.3
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_marble",
+    "metal_standing_seam",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": -3,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independentoriginal256m129²field16641heights/2rawtiles/datum6.4286m andnorth-upframe frozen beforeallfloors/mainsections/geometry. Groundfloor1.2/upper7.5/foundation−2.5/mainwall17.55/mainridge23.2/belfryshaft32.2/spire41.6/opencrown44.1/thinspire39.2 fixed before geometry. OriginalurbanDEM atcenter+.449m, SWapproach0, nativehallcanopy/roofartifacts roughly−.2..+2m. Notasurveyofhistoricgrade. Wholehall/census/hiddenrear/sections/roofandverticalheights estimatedfromexactunmodifiedphotograph+nativefootprints+primarytext, no metricsurveygate. Neverflatten/reacquire/reframe/refitfloors/mainsectionsafterrender.",
+    "anchor": [
+      67.03284915,
+      24.8474649
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        67.03261156169367,
+        24.8473032039885
+      ],
+      "modelHeight": 0,
+      "basis": "Publicsouthwestapproach outsidehall fixed beforeindependentoriginalfield/allfloors/mainsections; approximategrade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/479793154",
+      "way/484206534",
+      "way/484206538",
+      "way/484206540",
+      "way/484206542",
+      "way/484206546"
+    ],
+    "source": "https://www.openstreetmap.org/way/479793154",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:430121ca6103eb559d93a4cb54e7f038edfc34adc1334681db61747b4b876b96",
+    "notes": "ActualQ3924620/wholeFrereHall six native componentways66controls. Smallroundcomponent484206542 isthin roofspire; largeoctagonal484206546 tallbelfry. Namednode3735483787 isleisurepark, not buildinganchor. Mainhalltwo floors fromoriginalphoto/primarytext, not mapped4/5/6/8pseudo-levels. Wholehiddenrear/sections/heights/registration±3m/bearing±3degrees are estimates. All1077reservationsclear. Whole Frere Hall as the unmodified author photograph published by2009: complete two-storey VenetianGothic hall, long pointed-arch verandas, full interior hall envelope and hidden rear, red gabled main roof with geometric clerestory, two hipped endpavilions, whole octagonal belfry with tall lancets/hipped spire/open iron crown, thin open roofstage and spire, east porch and intrinsic double-flight stairs. Six native building components/Q3924620 bound. Hidden plan/sections/registration/metric heights and historic grade are bounded estimates, not survey. Exclude garden/park/trees/roads/people/nearby structures/interior murals/copied figurative art/lettering; do not substitute frontage for wholehall."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "ActualQ3924620/wholeFrereHall six native componentways66controls. Smallroundcomponent484206542 isthin roofspire; largeoctagonal484206546 tallbelfry. Namednode3735483787 isleisurepark, not buildinganchor. Mainhalltwo floors fromoriginalphoto/primarytext, not mapped4/5/6/8pseudo-levels. Wholehiddenrear/sections/heights/registration±3m/bearing±3degrees are estimates. All1077reservationsclear.",
+    "Whole Frere Hall as the unmodified author photograph published by2009: complete two-storey VenetianGothic hall, long pointed-arch verandas, full interior hall envelope and hidden rear, red gabled main roof with geometric clerestory, two hipped endpavilions, whole octagonal belfry with tall lancets/hipped spire/open iron crown, thin open roofstage and spire, east porch and intrinsic double-flight stairs. Six native building components/Q3924620 bound. Hidden plan/sections/registration/metric heights and historic grade are bounded estimates, not survey. Exclude garden/park/trees/roads/people/nearby structures/interior murals/copied figurative art/lettering; do not substitute frontage for wholehall.",
+    "Immutableindependentoriginalfield/frame beforeallfloors/mainsections/geometry. Neverflatten/reacquire/reframe/refitfloorsafterrender.",
+    "Wholehiddenrear/roofplan/verandacensus/geometricinlay/sections/heights/metricregistration are boundedphotographicestimates; no exactsurveygate. No copiedinteriormurals/artwork/signage/trees/garden.",
+    "Two-storeyhallwithupperarcade/clerestory/fullenclosedmainhall/wholehiddenrear, distincthippedendpavilions, octagonalbelfry/realopenlancets/redsteepspire/opencrown, thinopenroofspire andeastdoubleflightstairs. Lowerarcadepartlytreeoccluded/hiddenrearandstairdetails estimated. Geometricdiamondinlayrepresentedwithauthoredsimplegeometry; no copiedmurals/figurativeart.",
+    "Archivephotoauthorupload2009-11-13 is latestpublicationbound, capturedaynotproved; dated2009appearance only. Contemporary4/5/6/8mappedlevelsnotused asfloors. Currentparkpointnotbuilding. Registration±3m/bearing±3degrees/height±20% estimated.",
+    "IndependenturbanDEMmayconceal lowerfoundations or slightlyintersectstairs. Originalfield/mainsections retained; exactmetric/gradefit notrequired."
+  ],
+  "sourceLicense": "Original authored geometry/repository license. Qualla-first41families checked; native unmodified Kamranyosuf archived original369820bytes/SHA1/explicit PD-user-en namedgrant/originalauthor2009upload/nativeOgreBotoldversionbinding. Laterrecoloredversion neverused. OSMODbLsixintrinsicbuildingparts66controls/Q3924620, primarySindhgovernmenttextonly. Fullhiddenrear/sections/heights/registration/grade estimated; no photographictexture orcopiedinteriorart/lettering/garden. No rightsrepair.",
+  "qaLodCameras": [
+    {
+      "name": "whole-frere-hall-skyline",
+      "position": [
+        -49.33274634225693,
+        41,
+        100.11133871011084
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-frere-hall-district",
+      "position": [
+        -49.33274634225693,
+        41,
+        100.11133871011084
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-frere-hall-street",
+      "position": [
+        -49.33274634225693,
+        41,
+        100.11133871011084
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-frere-hall-closeup",
+      "position": [
+        -49.33274634225693,
+        41,
+        100.11133871011084
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-hall-arcades-roofs-and-both-towers",
+      "position": [
+        -49.33274634225693,
+        41,
+        100.11133871011084
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "complete-rear-and-east-double-flight-stair",
+      "position": [
+        42.38548618606899,
+        37,
+        -87.47268465509995
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "pointed-two-level-verandas-and-geometric-clerestory",
+      "position": [
+        -23.059544289292823,
+        9,
+        12.010720926328393
+      ],
+      "lookAt": [
+        -6.171342786987916,
+        11,
+        5.469417538046646
+      ]
+    },
+    {
+      "name": "octagonal-open-belfry-spire-and-iron-crown",
+      "position": [
+        -12.637654161493888,
+        32,
+        47.17297634551456
+      ],
+      "lookAt": [
+        1.8933483691349595,
+        29,
+        18.46348374367887
+      ]
+    },
+    {
+      "name": "whole-east-porch-and-stair",
+      "position": [
+        50.794590664126076,
+        15,
+        15.261374750129061
+      ],
+      "lookAt": [
+        21.156746926422116,
+        7,
+        8.148132270117388
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 42993,
+    "vertices": 128979,
+    "materials": 6,
+    "bytes": 5342328,
+    "sha256": "sha256:d4eff4a93240336870f505428a2c26db4faeeb6bbb80d3f21903066549b24381"
+  }
+}

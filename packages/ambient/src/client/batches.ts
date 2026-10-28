@@ -12,6 +12,8 @@ import { type ProxyDimensions, type ProxyShape, proxyGeometry, proxyKey } from '
 interface Batch {
   mesh: THREE.InstancedMesh;
   count: number;
+  /** Shaders built (or no preparation hook): drawn only then. */
+  ready: boolean;
 }
 
 const ANCHOR_STEP = 250;
@@ -35,7 +37,7 @@ export class ProxyBatches {
   private readonly scale = new THREE.Vector3();
 
   constructor(
-    private readonly prepare?: (object: THREE.Object3D) => void,
+    private readonly prepare?: (object: THREE.Object3D) => Promise<void> | void,
     private readonly initialCapacity = 64,
   ) {
     this.group.name = 'ambient:proxies';
@@ -83,7 +85,7 @@ export class ProxyBatches {
     for (const batch of this.batches.values()) {
       const mesh = batch.mesh;
       mesh.count = batch.count;
-      mesh.visible = batch.count > 0;
+      mesh.visible = batch.ready && batch.count > 0;
       total += batch.count;
       if (batch.count === 0) continue;
       mesh.instanceMatrix.clearUpdateRanges();
@@ -112,7 +114,7 @@ export class ProxyBatches {
     mesh.receiveShadow = true;
     mesh.userData.walkIgnore = true;
     mesh.count = 0;
-    const batch: Batch = { mesh, count: previous?.count ?? 0 };
+    const batch: Batch = { mesh, count: previous?.count ?? 0, ready: true };
     if (previous !== undefined) {
       for (let i = 0; i < previous.count; i++) {
         previous.mesh.getMatrixAt(i, this.matrix);
@@ -126,7 +128,16 @@ export class ProxyBatches {
     }
     this.group.add(mesh);
     this.batches.set(key, batch);
-    this.prepare?.(mesh);
+    const prepared = this.prepare?.(mesh);
+    // A new kind of proxy waits for its shaders, as figures do: drawn at once, the first aircraft
+    // proxy built them mid-frame (90 ms). A grown batch shares its predecessor's.
+    if (prepared !== undefined && previous?.ready !== true) {
+      batch.ready = false;
+      const show = (): void => {
+        batch.ready = true;
+      };
+      void prepared.then(show, show);
+    }
     return batch;
   }
 

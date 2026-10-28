@@ -170,7 +170,27 @@
                     "offset": -1.5707963267948966,
                     "scale": 1.5707963267948966
                   }
-                ]
+                ],
+                "sources": {
+                  "elevator": {
+                    "component": "aircraftState",
+                    "path": [
+                      "elevator"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -13068,6 +13088,9 @@
                 "maxThrust": 16638.75,
                 "minPropellerSpeed": 25,
                 "propellerEfficiency": 0.85,
+                "propellerControl": {
+                  "minRpm": 0.6
+                },
                 "propulsion": "propeller",
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.5
@@ -13091,6 +13114,9 @@
                 "maxThrust": 16638.75,
                 "minPropellerSpeed": 25,
                 "propellerEfficiency": 0.85,
+                "propellerControl": {
+                  "minRpm": 0.6
+                },
                 "propulsion": "propeller",
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.5
@@ -13128,7 +13154,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

@@ -5,6 +5,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { boxTruckModel } from './box-truck-geometry.mjs';
 import { fleetModel } from './fleet-geometry.mjs';
 import { roadVehicleModel } from './road-vehicle-geometry.mjs';
 import { recreationalVehicleModel } from './rv-geometry.mjs';
@@ -64,7 +65,9 @@ for (const category of ['vehicles', 'cycles', 'watercraft']) {
           ? recreationalVehicleModel
           : recipe.family === 'road-vehicle'
             ? roadVehicleModel
-            : fleetModel;
+            : recipe.family === 'box-truck'
+              ? boxTruckModel
+              : fleetModel;
       model = generate({
         ...recipe,
         driverEye,

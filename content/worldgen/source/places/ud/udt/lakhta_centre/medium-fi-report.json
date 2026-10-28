@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.lakhta_centre",
-  "sourceHash": "sha256:cc5ea11c5d2a9f9636e305ae8bd60ed1022e913a7c7a52ee2668fe711b34ce32",
-  "runtimeHash": "sha256:031a71ba933ba75259a1688394b1a1734aa9d9fa8c1d3157294f451f0470f4ca",
-  "fixtureHash": "sha256:1ba4310b401880bcebc368fc2ba02cb9a4358a498f6e03d2057ad1ccc352069c",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.lakhta_centre",
+    "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85"
+  },
+  "sourceHash": "sha256:e3c2bc5e8ab1608dc0abb1eb863d8ffbe9e2d37a3ff21984e9acf24fd69d4ee0",
+  "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -40,54 +47,58 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:974ef327b590fbeb0c5a8419d252e6d67214d9777c12d9164be8439d348c7522",
-      "bytes": 457052,
-      "gzipBytes": 152036,
-      "triangles": 3999,
-      "cpuBytes": 453296,
-      "gpuBytes": 453296,
-      "errorMeters": 0.8678938056297266,
+      "hash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
+      "bytes": 455780,
+      "gzipBytes": 149701,
+      "triangles": 3996,
+      "cpuBytes": 452020,
+      "gpuBytes": 452020,
+      "errorMeters": 0.8659530187911951,
       "drawCalls": 3
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:ad06c5b653967e01a4d0dc43065b621052f325647e1194d835dcded9c540c198",
-      "bytes": 1443868,
-      "gzipBytes": 526757,
-      "triangles": 15202,
-      "cpuBytes": 1441632,
-      "gpuBytes": 1441632,
+      "hash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
+      "bytes": 1440988,
+      "gzipBytes": 523378,
+      "triangles": 14962,
+      "cpuBytes": 1438752,
+      "gpuBytes": 1438752,
       "errorMeters": 0,
       "drawCalls": 3
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:ad06c5b653967e01a4d0dc43065b621052f325647e1194d835dcded9c540c198",
-      "bytes": 1443868,
-      "gzipBytes": 526757,
-      "triangles": 15202,
-      "cpuBytes": 1441632,
-      "gpuBytes": 1441632,
+      "hash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
+      "bytes": 1440988,
+      "gzipBytes": 523378,
+      "triangles": 14962,
+      "cpuBytes": 1438752,
+      "gpuBytes": 1438752,
       "errorMeters": 0,
       "drawCalls": 3
     }
   ],
   "terrainFixture": {},
+  "fixtureEntities": [],
   "context": "Synthetic procedural neighbors at review Y=0; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:fdd0f0a91c9feb0cc8de16ae699e37730e622ca60f6e1967cab869b17e840232",
+      "hash": "sha256:97b4a5f63201cda6dd94dff3d4e576c1aeddba722effc10bb7502c9b4ce17452",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -108,19 +119,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:a4c3d5e96978ce27759bf815591293e4abd0c5992cd88f62ca5aea2b5a70f28c",
+      "hash": "sha256:b590542c956b96036b54b917ec32121ca23b3f4c6bd84226a8edbe1f65d151a1",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -141,19 +157,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:d1b5d574ffc22123e8c591dc8e97449d750b011ef506228252c3030aa3fb6127",
+      "hash": "sha256:3943cc5f73f9713f2a00406d54515f29d35b9898f4e357fdc8c8f76d3b0ea253",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -174,19 +195,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:2a697f731c1ba810a022c64bbcc93b1fa3a32f00b8132f47a5ced54d96c2b257",
+      "hash": "sha256:239ee42ce9383ccb881fcae7bb72a2b9f6a27d6eae4a0decbef32cb1c8f801d3",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -207,19 +233,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:80fb98c4ffe571609802880d17c333b697c6e38d4e57590868f6e56ca0d7f4ac",
+      "hash": "sha256:4a57480245b11efd0cb327240b78e83c241cac8c94db4ae4f55e5d2f9567bcb2",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 9697,
+        "triangles": 9694,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -240,19 +271,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:6e43f8a43377ec97018401d80a4f98c945ce535c84eb763fa68c78d71a1732e9",
+      "hash": "sha256:ffbd92a7540a18ec221fc51b2d2c0a43c7a199439476b2265f205eb7765bb616",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 9697,
+        "triangles": 9694,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -273,19 +309,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:018240c0db9c28dcf650546c1f451b1c041bbebfdc6c8fe51144d77c62bc9def",
+      "hash": "sha256:0b038b0593ceaa9dd7d8cac9fc2f0390af95db00b76080dac74e7c5bb4cf086a",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 9697,
+        "triangles": 9694,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -306,19 +347,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:330e13523b095df704de8f5516745f723f8650a4ba8cdef045097e2bba1825a3",
+      "hash": "sha256:825751f1c97244d50b243e9837655a503d1564f6309d9de92b718f5dca3427cc",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 9697,
+        "triangles": 9694,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -339,13 +385,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:d8e21931f5fb36b3d1fa68b1d15b0eb35a8bc999344bde5f1baed36f5745feec",
+      "hash": "sha256:bd6730c25c0510643ffd4c54a8a4004c23c5dce48550c846bd0d9d9e4d7190c1",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:bad9673c0769cb0fe7ef0b1b1292f665c3dd6e7faf8f6e725792a90eb1d31988",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -372,13 +423,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:2828a261f3a267631c567032099179d93c2dfbdbd06f2f146e4c332c7763e01a",
+      "hash": "sha256:4b038195b0976cbc2d8f8993c9ce9af650bc3d6e5b743ab2e8fb8b231380c2aa",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:bad9673c0769cb0fe7ef0b1b1292f665c3dd6e7faf8f6e725792a90eb1d31988",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -405,13 +461,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:99543a8b3ac8062111b81a388f7c2cc4fa3ccc2308013fe3b915da503b474adb",
+      "hash": "sha256:7aba47e98fba764318c436a4a176f4ec6ee52f4f70a1be24182b0e960fd47098",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:bad9673c0769cb0fe7ef0b1b1292f665c3dd6e7faf8f6e725792a90eb1d31988",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -438,13 +499,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:becb04fba1fa51abea7bd2ffdecc53864ae72f67aefe50be7f1abed54a9f2208",
+      "hash": "sha256:7f9326b8ef94e85dcde9999c8d19fec159f910c3b773f67f3447c0bdd81cb7d9",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:bad9673c0769cb0fe7ef0b1b1292f665c3dd6e7faf8f6e725792a90eb1d31988",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -471,13 +537,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:4408d14ce96da734395aabe9437d8835f93adec0104184465e387cf029d1f983",
+      "hash": "sha256:f6e7d6fc2aa99e1cbc5447b65e27530c1dd2f26cf04432fdf81c16f2f5b24cca",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:bad9673c0769cb0fe7ef0b1b1292f665c3dd6e7faf8f6e725792a90eb1d31988",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -504,19 +575,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/helical-facade.png",
-      "hash": "sha256:ff0248d5002b8f05a90fd905db7f59215f034746027cc63b656ba02c8f695fde",
+      "hash": "sha256:58cdb48ce7948f9400efd7ae0eab94d1e98e9acba8cc6bed65189c20b0d610ce",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -537,19 +613,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/five-petal-crown.png",
-      "hash": "sha256:ac8f1bd65b69fbc4a31e970c1217dda7a1f30f0b1fb06de3ffd6d7ffb7546623",
+      "hash": "sha256:98a86c2064e3c903421a6a6457df265374b88b345636a6003439d06b04ce4360",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -570,19 +651,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/spire.png",
-      "hash": "sha256:b45c38dda810dda511c047007dd1ae040991c8b04ca02a28b047268ac407b587",
+      "hash": "sha256:7b3a4e8fb661fe72bf63ee49cc59ac7c682d255e90bdd63a370d30f5723d24f7",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -603,19 +689,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/ground-petals.png",
-      "hash": "sha256:26492101ea1a52a91eed30d6a28f52e46097e36fe01269918b976f4ff8e29631",
+      "hash": "sha256:cc4fa5c9364cec81b7fe6e3f9874c188cc6bb370f275efee633c857a436e986f",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -636,19 +727,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:bd23c19ca5161dd717d6ba4b66379d0ce28ae4cb27aab6e8ec1d0ea572ef8db8",
+      "hash": "sha256:ffcfcdb6cdc3c1adde302b91d79e4feb040b0f56a3c0fdce05091790d9f79faa",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -669,19 +765,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/five-petal-crown-district.png",
-      "hash": "sha256:8a935eecb6ec91c7051ae30cd6201de356b30b08efcfcaa1d83ed37547be89ee",
+      "hash": "sha256:fa4e336fb6d0d25e35439124cb9272e689f4f2b2095134b944c685220eeb788c",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 9681,
+        "triangles": 9678,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -702,19 +803,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/spire-district.png",
-      "hash": "sha256:9a10e6d49e00f692670acd11c3f44a6e7afab3040fadd80837aa7b79c41f763b",
+      "hash": "sha256:b5542e36c496cf7b9a7d33805d6aa4b26632b352d9d821f0f8d727cf62a611fa",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 9681,
+        "triangles": 9678,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -735,13 +841,18 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:191a1e8dc0b6ee1e01b491669c06f254ac2789e79e3a809a0c55f0d49473fdaf",
+      "hash": "sha256:029cbddbbf846b13119e39deecc52ca7203b35541250df15ded420345d7a0285",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:bad9673c0769cb0fe7ef0b1b1292f665c3dd6e7faf8f6e725792a90eb1d31988",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -768,19 +879,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:6e43f8a43377ec97018401d80a4f98c945ce535c84eb763fa68c78d71a1732e9",
+      "hash": "sha256:ffbd92a7540a18ec221fc51b2d2c0a43c7a199439476b2265f205eb7765bb616",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:5ad7444d984f33d4d2df6bb86e01c5c57b78f26d358f00650535f29e95cad8e3",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 9697,
+        "triangles": 9694,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -801,19 +917,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:f64eb0b96a18802ef89c2ca30bbc21d160db51bf3ad105926fd66f7bee6f3eb6",
+      "hash": "sha256:445e236e3c8730f283a8129a040c434fbb0792f62a085069e0419cf10e80064f",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -834,19 +955,24 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:d60bc122c4a0ddfa208f357fe7829727f0eae58c83ba1c34b68dc4b2168ede6d",
+      "hash": "sha256:dab8c00ca1d5f4ef88c88e301515d2e3a140f451cdc7c73da1b98198908c336a",
       "state": {
+        "assetId": "molen.worldgen.structure.lakhta_centre",
+        "runtimeHash": "sha256:ac7ffeebc5b56a29aed91ac7fbef1f399d415976c8eb4eec5299595085d85b85",
+        "lodHash": "sha256:c0b7a0ae528615fef9129ffaad52d573d7d45090effc32b80294816ae5252285",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 20900,
+        "triangles": 20660,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -867,7 +993,9 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 6
+        "contextScale": 6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     }
   ],

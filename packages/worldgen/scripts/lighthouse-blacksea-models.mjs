@@ -3,7 +3,7 @@ import earcut from 'earcut';
 import { beam, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { lighthouseStudy, ring, shell } from './lighthouse-expansion-models.mjs';
 import { lathe, panel, piercedFacade, transformed } from './lighthouse-models.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 
 const white = [0.88, 0.9, 0.87],
   red = [0.66, 0.035, 0.026],
@@ -74,8 +74,7 @@ function bendPipe(out, x, z) {
     [x, 1.88, z],
     [x, 5.02, z],
   ];
-  for (let i = 1; i < points.length; i++)
-    tube(out, 'metal', points[i - 1], points[i], 0.24, blue, 24);
+  tubePath(out, 'metal', points, 0.24, blue, 24);
   for (let i = 0; i < 10; i++) {
     const a = (i * Math.PI) / 20,
       b = ((i + 1) * Math.PI) / 20;

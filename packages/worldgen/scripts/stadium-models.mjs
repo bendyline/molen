@@ -1,7 +1,7 @@
 /** Individually researched stadium exteriors and open bowls. No stock arena substitutions. */
 import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { transformed } from './lighthouse-models.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2,
   concrete = [0.59, 0.61, 0.58],
@@ -20,8 +20,7 @@ export function face(out, slot, points, color, expected) {
   quad(out, slot, ps, n, color);
 }
 export function curve(out, points, r = 0.06, color = steel, slot = 'metal', sides = 8) {
-  for (let i = 1; i < points.length; i++)
-    tube(out, slot, points[i - 1], points[i], r, color, sides);
+  tubePath(out, slot, points, r, color, sides);
 }
 function ellipseCurve(out, rx, rz, y, r, color = steel, n = 240, slot = 'metal') {
   curve(

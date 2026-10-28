@@ -1,0 +1,906 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.granary_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:f5013820d00004e595bd224c9ce7efc6763d5d750ec64d3ab3e8b91ebe4d6081",
+  "sourceHash": "sha256:f65e8f061f54f760687f7d8a758d43b7d22d0ed353ec44a752d002f2da6cc9f0",
+  "runtimeHash": "sha256:d4b4e86bc4e33db204a15a1c68f16679f559ff50f03495c2de54adb25c4ac52e",
+  "captureReportHash": "sha256:a8177290a443a8f99ffdd4522c2028335884f539fae2c03ace0d22d9101e7916",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-granary-log-base-upper-room-gallery-and-stair.png",
+      "shots/open-gallery-rails-recessed-doors-and-stair.png",
+      "shots/short-side-vent-and-weathered-upper-boards.png",
+      "shots/rear-room-roof-and-open-raised-floor.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames in labeled contact sheets, plus full-resolution native whole-front, gallery/stair and rear/raised-floor views. The complete log lower room, vertical-board upper room, low hip, open timber gallery, recessed lower gate and upper doorway, short-side vent and supported external stair read coherently. Gallery fronts and the space beneath the stair remain genuinely open. Seven piers remain present in every LOD so their ground masks never leave an empty hole. The coarse downhill support exposure and hidden rear inventory remain approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-granary-log-base-upper-room-gallery-and-stair.png",
+      "shots/shared/open-gallery-rails-recessed-doors-and-stair.png",
+      "shots/shared/short-side-vent-and-weathered-upper-boards.png",
+      "shots/shared/rear-room-roof-and-open-raised-floor.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six roles reuse four existing256px graphs: wood_log, wood_vertical, shingle_cedar and wood_plain. Frame, supports and darker doors share the same wood_plain graph. Metric UVs, linear tints, separate POSITION/NORMAL streams, matching CPU/GPU geometry accounting and at most4 nearby draws/one skyline. No embedded image, private atlas or new graph. Each used graph reads once; unload releases every model geometry.",
+    "captureReportHash": "sha256:8cac3696dca7222fde7675b1c6a708fc7b7449e26ac357182dbfb946ab086ac0"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-granary-log-base-upper-room-gallery-and-stair.png",
+      "medium-fi/open-gallery-rails-recessed-doors-and-stair.png",
+      "medium-fi/short-side-vent-and-weathered-upper-boards.png",
+      "medium-fi/rear-room-roof-and-open-raised-floor.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs 278/636/1028/1128 triangles. Initial skyline+district 83596bytes; closeup 97088bytes. Skyline retains the full raised room/roof envelope, all seven timber supports, genuinely open gallery, two recessed doors, rails and a thin inclined stair proxy with open space beneath. Nearby levels add12 separate treads, stringers, handrails/posts, short-side vent, door boards, coarse log courses and gallery balusters. The skyline remains below the1k authored-structure ceiling; its gallery/stair/support silhouette is more involved than a plain small-building box. Synthetic contexts check style/LOD/mode coherence; native views establish approximate fit.",
+    "captureReportHash": "sha256:b6f44e7d7f34179605da0bf1cc85511189af9b1dd4efc9cedfc94f6153154838"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:799344aca969e6ccbb88e52ec345a471442e34dc5e6cc7d96b0d034624fa70c6",
+    "mapFrameHash": "sha256:ab009a643d83ce3f1df6f192307f03519aaed9b6d2a11c31c1619f435613f094",
+    "notes": "Museum granary/Житня corresponds to way220075392, independent of the other estate houses and the separate riga. Exact13m by6.9m map outline anchors the envelope; the enclosed front wall is set back1.1m to leave the photo-visible gallery inside that outline. X northwest along the long front, Z northeast toward the approach; native east/up/south axes baked with heading0 at the unchanged assigned member anchor. Autumn end/front and winter front museum photos guide the open gallery, external stair and timber wall hierarchy; hidden faces and absolute front assignment remain an approximate map/photo interpretation. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[0,7] supplies224.57842704651677m datum. Boundary grades-0.993..0.254m, floor+0.5m and timber pier bottoms-1.2m. The coarse slope leaves up to about1.5m below the downhill floor; the original ground remains beneath the raised rooms, gallery and stair. Only occupied pier feet and the two supported aprons cut the ground. Historic support exposure/levels and accessibility approximate; no flattening or bespoke terrain. Independent neighbors, approaches, roads and ponds remain. Inspected current native front/gallery/stair and rear views: the complete mapped envelope, low hip roof, open timber gallery, recessed doors and external stair read coherently. Ground remains beneath both rooms, gallery and stair; only pier feet and two aprons are cut. One owned record is replaced while242 resident independent buildings, roads and40070.675m² pond water remain. Coarse downhill pier exposure and inferred roof material remain explicit approximations. One owned map record is replaced while242 resident/294 wider independent buildings, original approaches, roads and40070.675m² pond water remain. Ground remains beneath the raised rooms, gallery and external stair; only seven pier feet and two occupied aprons are cut. Failure retains all243 originals; every LOD/failure/unload restores ground/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete mapped granary/Житня exterior at Yasnaya Polyana: timber-supported two-storey storehouse with log lower walls, weathered vertical-board upper room, broad low hip roof over an open front gallery and an external stair descending along the front. Lower double wooden gate and upper doorway are physically recessed; short-side vent, timber posts, open rails, stringers and supported entrance/foot aprons remain simple original proxies. All four mapped outer edges anchor the house/gallery envelope. Hidden rear inventory, roof material and historic levels remain approximate. No copied signs, merchandise, inscriptions, artworks, furnishings, people, snow or photograph pixels. Photo-led approximate medium-fi scale: lower room2.25m, upper room2.05m, low hip roof1.5m rise. Gallery at2.25m has simple.92m open rails;12 treads descend along the front. Map nominal5m is a scale cue. Rear bays, historical cladding/roof state, timber frame sections, doors, treads, thresholds and accessibility are not surveyed. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[0,7] supplies224.57842704651677m datum. Boundary grades-0.993..0.254m, floor+0.5m and timber pier bottoms-1.2m. The coarse slope leaves up to about1.5m below the downhill floor; the original ground remains beneath the raised rooms, gallery and stair. Only occupied pier feet and the two supported aprons cut the ground. Historic support exposure/levels and accessibility approximate; no flattening or bespoke terrain. Independent neighbors, approaches, roads and ponds remain. The photographs partly obscure the roof and footings with trees/snow. A shared weathered cedar-shingle graph approximates the unresolved roof finish; no snow or photograph pixels are copied. Hidden rear inventory and absolute front assignment remain a photo/map interpretation. Fixed synthetic planes partly bury the grade-specific supports/aprons; whole native/turntable views cover the envelope. Other estate structures remain procedural context in this isolated fixture. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:f65e8f061f54f760687f7d8a758d43b7d22d0ed353ec44a752d002f2da6cc9f0\",\"bytes\":106516,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.glb\",\"hash\":\"sha256:d4b4e86bc4e33db204a15a1c68f16679f559ff50f03495c2de54adb25c4ac52e\",\"bytes\":106084,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:39e268532284ed30a9446232dd9455caa76a0a85a8988ad31356c9e144bb39d4\",\"bytes\":26564,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:e4246ff875598eb5cc3dba7211cef191c8f696028b5c718d232960c3de3aa90a\",\"bytes\":57032,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:ff43707657faed7617cab10d9a378a984d3aff2ff8f3b877cb977116fc439c11\",\"bytes\":89280,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:1bfed8e69fc20a2f24e649161691af5527ca3d7ab059466416b0f798ae2194d7\",\"bytes\":97088,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "complete-timber-envelope-raised-floor-seven-piers-open-gallery-stair-recesses-and-budgets",
+        "passed": true,
+        "notes": "198 actual mesh/contact probes; all six GLB pins, finite attributes, shared bindings, LOD caps, separate vertex streams and initial download budget pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Museum granary/Житня corresponds to way220075392, independent of the other estate houses and the separate riga. Exact13m by6.9m map outline anchors the envelope; the enclosed front wall is set back1.1m to leave the photo-visible gallery inside that outline. X northwest along the long front, Z northeast toward the approach; native east/up/south axes baked with heading0 at the unchanged assigned member anchor. Autumn end/front and winter front museum photos guide the open gallery, external stair and timber wall hierarchy; hidden faces and absolute front assignment remain an approximate map/photo interpretation. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[0,7] supplies224.57842704651677m datum. Boundary grades-0.993..0.254m, floor+0.5m and timber pier bottoms-1.2m. The coarse slope leaves up to about1.5m below the downhill floor; the original ground remains beneath the raised rooms, gallery and stair. Only occupied pier feet and the two supported aprons cut the ground. Historic support exposure/levels and accessibility approximate; no flattening or bespoke terrain. Independent neighbors, approaches, roads and ponds remain. Inspected current native front/gallery/stair and rear views: the complete mapped envelope, low hip roof, open timber gallery, recessed doors and external stair read coherently. Ground remains beneath both rooms, gallery and stair; only pier feet and two aprons are cut. One owned record is replaced while242 resident independent buildings, roads and40070.675m² pond water remain. Coarse downhill pier exposure and inferred roof material remain explicit approximations. One owned map record is replaced while242 resident/294 wider independent buildings, original approaches, roads and40070.675m² pond water remain. Ground remains beneath the raised rooms, gallery and external stair; only seven pier feet and two occupied aprons are cut. Failure retains all243 originals; every LOD/failure/unload restores ground/water and releases geometry."
+    },
+    "inputHash": "sha256:f5013820d00004e595bd224c9ce7efc6763d5d750ec64d3ab3e8b91ebe4d6081",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:f5013820d00004e595bd224c9ce7efc6763d5d750ec64d3ab3e8b91ebe4d6081",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames in labeled contact sheets, plus full-resolution native whole-front, gallery/stair and rear/raised-floor views. The complete log lower room, vertical-board upper room, low hip, open timber gallery, recessed lower gate and upper doorway, short-side vent and supported external stair read coherently. Gallery fronts and the space beneath the stair remain genuinely open. Seven piers remain present in every LOD so their ground masks never leave an empty hole. The coarse downhill support exposure and hidden rear inventory remain approximate.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/preview.png",
+          "hash": "sha256:f345ed90948db52521dd69e4dda17e221be2fc2f158dbe6585331d0cc0a50c4f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:9f806fdc7c8d3e35f9f57d7d43535128bc65dcfc315597cbceeee80b2e3c4732"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:3773afa8e276f0f14c9bf4af1f1ab531b4528478af5a2cd6a7a4c695b7dbb6e2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:4b23fee6013b31a02eacb6bb6d550d1e4c5083cb028d0b7707f20cda523e89ec"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:86d3267e6f23fc65851ebe1514e68db969f1e0618b9be2561a551324aa61657a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/whole-granary-log-base-upper-room-gallery-and-stair.png",
+          "hash": "sha256:d7c13d956b97a70a61ae20931fc0eb4a2aaea32773ecb3f4b946a3c3add6faf6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/open-gallery-rails-recessed-doors-and-stair.png",
+          "hash": "sha256:6de18a12505a62ae63f75501c5172c8e7ed164c3fcbe4d308129acaa604f19e6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/short-side-vent-and-weathered-upper-boards.png",
+          "hash": "sha256:f291e2d91a06bb51cd572f6d7aebbb5cef8cd006cae5f46a75c46595990fa718"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/rear-room-roof-and-open-raised-floor.png",
+          "hash": "sha256:92c54b85f766c3fccd5c63c64cfd6be15b46dec11ffbdf90c37f2a30dbebaa16"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:dbf0aafec368a0d0f415c6e593d50064debfd2f7298bf57239bb59c557b016b4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:40eb5a4933308252d109082c30f3508d44fe37c76cf7a638a5bbc537d01d1c56"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:2be89436c7523b8e3d691d67b76bbba90c6ff6f442c4fb60c77076f1b3a46f39"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:ebbd358cfaaebe93ac2e5cc28b85cf9e861a3973d65fd5c8b9c1ab38eb4152a0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/whole-granary-log-base-upper-room-gallery-and-stair.png",
+          "hash": "sha256:8ff06a2c3c1ff71bb4b8c00e5e72edb937698f9a554c9133556d4ffba268f0dd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/open-gallery-rails-recessed-doors-and-stair.png",
+          "hash": "sha256:0953f557d23c82aae76cf854ab97aa1ab79ae7dfff9266acd5887d64c6cc9da2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/short-side-vent-and-weathered-upper-boards.png",
+          "hash": "sha256:bd79fce934aab53480391840968f4169043921b039a0b1d5e2d0e47134f9f068"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/rear-room-roof-and-open-raised-floor.png",
+          "hash": "sha256:7a96b491ca4920b3e58bb3ebe017e41c81569ac0a77f7900d2f223107cc6d879"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:3e176818607c37a92e56357ecc75f9c8702ecaf21d6b28b4a9a44760729e92d3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:180f954299862fd78f45bdd61bf2fbfab743dae458f20675f62fa1d6ef28c287"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:7302a2093fa1c334883a4d5a8ec05ce38b40c8e0ade47c8cf1a3c4cf36f5f95b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:4f1f7166718fe649a7dfd7324adddfb6973970fec27cf6a308b1a0873262d8fb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:379f518ba5cbc8e900e903458ae1f5581be942d8fd1ac16ca172d2011d1b8efb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:0f01b01aab574f5d1ceb9038028945b5d5f02897ea60244e3006034d70dc6a4e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:8d26df5b5b2272f4ff49183aa1da92a5b078b93635cc25d3d5ba889e521cdce1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:96969ac3d592d2129049be14f53e949f75f9d69a532ee79e389e569904882235"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:9bb8e27701bb4df4c98ce1f0c702294d591bc582e70d980501449afce69694bf"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:339b9ce54b06baaf102c4070e12f1202d99eff0f9cf91055ae795d2475f02492"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:aa53c2b4a5d33985e415313913e5f2874ca85c063b4a2fefc9dfddab23a6a0df"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:7d23b97ab4533afbf263c4fc5528c8719a301e1e26d3a45b73b81451d49db3da"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:b44c31a45a4257a0b6a7f3cdb6a3f01beb5ee015867e7f74ea6e4d3e670d70b7"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:d0b7235f5f5cc830a1090127cf303d80399992a394dff9743478a8281ee10c00"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/whole-granary-log-base-upper-room-gallery-and-stair.png",
+          "hash": "sha256:b82c3215f5c13a2f2cbc138e2acbdef159522e21db06bbb0f3fc8361ce9580dc"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/open-gallery-rails-recessed-doors-and-stair.png",
+          "hash": "sha256:d03c375361ade2caa4d1bf29d9625f89cab663628e37f95079ec7fea05aa2158"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/short-side-vent-and-weathered-upper-boards.png",
+          "hash": "sha256:bd44903e2bc8f33ac551aac50f31ed40afa5865f98745af4c09ef543c2c99b9f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/rear-room-roof-and-open-raised-floor.png",
+          "hash": "sha256:e8885cb2c4d8c17491b754abf7d026f364fba5d2200fac420b03fbd7e0ac8a6d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:8e2693b1a4e5353f1f86160a5e0fe1c80703bac09e9ca7cb6b91afa6742c4d5e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:8d26df5b5b2272f4ff49183aa1da92a5b078b93635cc25d3d5ba889e521cdce1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:3c4bf8b820dcd37aa8eb9e95a52b611f3413da9756c668d343a5d7821128318e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:9b9041031136f571ab44f9b31eddbf2fe13f87ff67972693c39c2c113ad2d257"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:a464ece674593f95e7e48a1244aaf76b687b3307481c1a05d046036501533e07"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:b8d62cb799afa04e683df0e137048e365ffc35af532452597c6ecfd2e5edf2ae"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:3d87ea2600c899c64c84514284880611d9bf1b73ab2bf311f07f10fdd5203d99"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:3d54ad2ea48c287f9593f178b4f9ee5c09d14b910b2ac6501626dbffe0175831"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-closeup-whole-granary-log-base-upper-room-gallery-and-stair.png",
+          "hash": "sha256:962be77e1efa7208202134c4852b0858ed5e251c039ae292f9fae861eabd1b28"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-closeup-open-gallery-rails-recessed-doors-and-stair.png",
+          "hash": "sha256:2c540148122be60c31f1bf95014eaff5a42bbc6a55164015914d8a20b6065114"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-closeup-short-side-vent-and-weathered-upper-boards.png",
+          "hash": "sha256:705a6693158bd5625fa7d7001518bbb2bbee0b6bc9354fd67b148eca5879ad4c"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-closeup-rear-room-roof-and-open-raised-floor.png",
+          "hash": "sha256:2cd3bcf9d07f8a104d150853bebaf96f6f23160689ffd2f6e2843873956bd176"
+        },
+        {
+          "path": ".artifacts/granary-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:5200b98df98631ce0ebd40faa5450d62a789b90e73e007513ee5f2fb2ecbf629"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:f5013820d00004e595bd224c9ce7efc6763d5d750ec64d3ab3e8b91ebe4d6081",
+      "sourceHash": "sha256:f65e8f061f54f760687f7d8a758d43b7d22d0ed353ec44a752d002f2da6cc9f0",
+      "runtimeHash": "sha256:d4b4e86bc4e33db204a15a1c68f16679f559ff50f03495c2de54adb25c4ac52e",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/granary_yasnaya_polyana/models/source.glb": "sha256:f65e8f061f54f760687f7d8a758d43b7d22d0ed353ec44a752d002f2da6cc9f0",
+        "content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.glb": "sha256:d4b4e86bc4e33db204a15a1c68f16679f559ff50f03495c2de54adb25c4ac52e",
+        "content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.skyline.glb": "sha256:39e268532284ed30a9446232dd9455caa76a0a85a8988ad31356c9e144bb39d4",
+        "content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.district.glb": "sha256:e4246ff875598eb5cc3dba7211cef191c8f696028b5c718d232960c3de3aa90a",
+        "content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.street.glb": "sha256:ff43707657faed7617cab10d9a378a984d3aff2ff8f3b877cb977116fc439c11",
+        "content/worldgen/assets/places/uc/ucd/granary_yasnaya_polyana/model.closeup.glb": "sha256:1bfed8e69fc20a2f24e649161691af5527ca3d7ab059466416b0f798ae2194d7"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184592164224
+      ],
+      "mapLevels": [
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184592164224,
+          "owned": true,
+          "covered": 0.9999871117352007,
+          "area": 88.68070627787492,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true,
+      "groundUnderRoomsGalleryAndStairRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 9.674453451680165e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.granary_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.82772704651677,
+            "max": 19.156372953483242
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:a464ece674593f95e7e48a1244aaf76b687b3307481c1a05d046036501533e07",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 271755
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.467512258879957,
+                13,
+                2.9547752461058057
+              ],
+              "lookAt": [
+                0,
+                3.1,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 9.674453451680165e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.granary_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.82772704651677,
+            "max": 19.156372953483242
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:b8d62cb799afa04e683df0e137048e365ffc35af532452597c6ecfd2e5edf2ae",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272113
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.467512258879957,
+                13,
+                2.9547752461058057
+              ],
+              "lookAt": [
+                0,
+                3.1,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 9.674453451680165e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.granary_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.82772704651677,
+            "max": 19.156372953483242
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:3d87ea2600c899c64c84514284880611d9bf1b73ab2bf311f07f10fdd5203d99",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272505
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.467512258879957,
+                13,
+                2.9547752461058057
+              ],
+              "lookAt": [
+                0,
+                3.1,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 9.674453451680165e-7,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.wood_vertical": 1,
+            "molen.worldgen.material.shingle_cedar": 1,
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.granary_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.82772704651677,
+            "max": 19.156372953483242
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:3d54ad2ea48c287f9593f178b4f9ee5c09d14b910b2ac6501626dbffe0175831",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272605
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.467512258879957,
+                13,
+                2.9547752461058057
+              ],
+              "lookAt": [
+                0,
+                3.1,
+                0
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-whole-granary-log-base-upper-room-gallery-and-stair.png",
+            "hash": "sha256:962be77e1efa7208202134c4852b0858ed5e251c039ae292f9fae861eabd1b28",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272605
+            },
+            "camera": {
+              "name": "whole-granary-log-base-upper-room-gallery-and-stair",
+              "position": [
+                27.702668820456672,
+                9,
+                2.358419009442093
+              ],
+              "lookAt": [
+                0,
+                3.1,
+                0
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-open-gallery-rails-recessed-doors-and-stair.png",
+            "hash": "sha256:2c540148122be60c31f1bf95014eaff5a42bbc6a55164015914d8a20b6065114",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 272885
+            },
+            "camera": {
+              "name": "open-gallery-rails-recessed-doors-and-stair",
+              "position": [
+                4.174493656645989,
+                5,
+                -19.353904068962997
+              ],
+              "lookAt": [
+                1.0165061960495874,
+                2.5,
+                -3.0359043386432316
+              ],
+              "fov": 56
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-short-side-vent-and-weathered-upper-boards.png",
+            "hash": "sha256:705a6693158bd5625fa7d7001518bbb2bbee0b6bc9354fd67b148eca5879ad4c",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 16,
+              "triangles": 272605
+            },
+            "camera": {
+              "name": "short-side-vent-and-weathered-upper-boards",
+              "position": [
+                9.216070607478184,
+                7,
+                14.285098619119742
+              ],
+              "lookAt": [
+                2.1684872017595724,
+                3,
+                3.361199675086998
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rear-room-roof-and-open-raised-floor.png",
+            "hash": "sha256:2cd3bcf9d07f8a104d150853bebaf96f6f23160689ffd2f6e2843873956bd176",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 272885
+            },
+            "camera": {
+              "name": "rear-room-roof-and-open-raised-floor",
+              "position": [
+                -24.63964726370153,
+                10,
+                -3.1444844919900223
+              ],
+              "lookAt": [
+                0,
+                2.5,
+                0
+              ],
+              "fov": 52
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderGallery": true,
+          "terrainAtUnderStair": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184592164224,
+              "area": 88.6795689120401
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.granary_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.82772704651677,
+            "max": 19.156372953483242
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:5200b98df98631ce0ebd40faa5450d62a789b90e73e007513ee5f2fb2ecbf629",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 271705
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                30.467512258879957,
+                13,
+                2.9547752461058057
+              ],
+              "lookAt": [
+                0,
+                3.1,
+                0
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete mapped granary/Житня exterior at Yasnaya Polyana: timber-supported two-storey storehouse with log lower walls, weathered vertical-board upper room, broad low hip roof over an open front gallery and an external stair descending along the front. Lower double wooden gate and upper doorway are physically recessed; short-side vent, timber posts, open rails, stringers and supported entrance/foot aprons remain simple original proxies. All four mapped outer edges anchor the house/gallery envelope. Hidden rear inventory, roof material and historic levels remain approximate. No copied signs, merchandise, inscriptions, artworks, furnishings, people, snow or photograph pixels. Photo-led approximate medium-fi scale: lower room2.25m, upper room2.05m, low hip roof1.5m rise. Gallery at2.25m has simple.92m open rails;12 treads descend along the front. Map nominal5m is a scale cue. Rear bays, historical cladding/roof state, timber frame sections, doors, treads, thresholds and accessibility are not surveyed. Retained Protomaps20261020 and Mapzen201x201/6m ground; outside northeast approach provider[0,7] supplies224.57842704651677m datum. Boundary grades-0.993..0.254m, floor+0.5m and timber pier bottoms-1.2m. The coarse slope leaves up to about1.5m below the downhill floor; the original ground remains beneath the raised rooms, gallery and stair. Only occupied pier feet and the two supported aprons cut the ground. Historic support exposure/levels and accessibility approximate; no flattening or bespoke terrain. Independent neighbors, approaches, roads and ponds remain. The photographs partly obscure the roof and footings with trees/snow. A shared weathered cedar-shingle graph approximates the unresolved roof finish; no snow or photograph pixels are copied. Hidden rear inventory and absolute front assignment remain a photo/map interpretation. Fixed synthetic planes partly bury the grade-specific supports/aprons; whole native/turntable views cover the envelope. Other estate structures remain procedural context in this isolated fixture. Physical phone/laptop and dense-city timings remain pending."
+  ]
+}

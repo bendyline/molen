@@ -1,5 +1,7 @@
 import type { BoatEnvironment } from '@bendyline/molen-kernel/boats';
-import type { WaterSettings } from '@bendyline/molen-schema';
+import type { LiveryData, LiveryVariant, WaterSettings } from '@bendyline/molen-schema';
+import { selectLivery } from './liveries';
+import { EarthNightLighting } from './night-lighting';
 import { EARTH_WATER_CONDITIONS } from './water';
 // mountEarthView: one call that turns a canvas into an explorable real-world 3D view. It composes
 // the viewer, the streamed terrain pyramid (in a metric frame at the viewed latitude), semantic
@@ -16,6 +18,7 @@ import {
   type MolenClient,
   type RendererBackendPreference,
 } from '@bendyline/molen-client';
+import { bindAircraftCockpitPointer } from '@bendyline/molen-client/aircraft';
 import type { AudioLayer } from '@bendyline/molen-client/audio';
 import {
   createMarkerLayer,
@@ -42,7 +45,7 @@ import {
 } from '@bendyline/molen-client/navigation';
 import type { FigureData } from '@bendyline/molen-figures/client';
 import { Mountable, Mounted, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
-import { Transform, World } from '@bendyline/molen-kernel/world';
+import { setBoostMode as setWorldBoostMode, Transform, World } from '@bendyline/molen-kernel/world';
 import type { BakedMaterialStore } from '@bendyline/molen-materials';
 import {
   type BlockCache,
@@ -57,7 +60,7 @@ import {
   createTerrainPackagePyramidStream,
   createTerrainPavementMaterialAsync,
   createTerrainSurfaceRenderer,
-  createTerrainSurfaceWorkerBridge,
+  createTerrainSurfaceWorkerPool,
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
   setTerrainGroundOrigin,
@@ -66,6 +69,7 @@ import {
   type TerrainPyramidHeightSource,
   type TerrainPyramidStream,
   type TerrainPyramidTileLayer,
+  type TerrainPyramidView,
   type TerrainQualityPreset,
   type TerrainSurfaceRenderer,
   type TerrainTileArchive,
@@ -99,6 +103,8 @@ import {
 } from './actors';
 import { EarthAircraft, type EarthFlightStatus } from './aircraft';
 import { EarthAirfields, type EarthPlace } from './airfields';
+import { EarthAirportPopulation } from './airport-population';
+import { withEarthAirports } from './airports';
 import {
   ambientContentFromTypes,
   EarthAmbient,
@@ -128,14 +134,21 @@ import {
   EARTH_SKY_PALETTE,
   EARTH_TONE_MAPPING,
   EARTH_WATER_COLOR,
+  earthNightFactor,
   earthShadowFocus,
 } from './look';
 import {
+  createEarthAdmissionGovernor,
+  EARTH_CALIBRATION_QUALITY,
+  EARTH_QUALITY_CALIBRATION_MS,
+  EARTH_STICKY_QUALITY,
+  earthAdmission,
   earthInitialQualityLevel,
   earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainCacheBudget,
 } from './performance';
 import {
   createEarthPrefetcher,
@@ -146,6 +159,7 @@ import {
   type EarthPrefetchResult,
   type EarthPrefetchStats,
 } from './prefetch';
+import { createEarthTilePreloader } from './preload';
 import { createRegionalGroundColor } from './regional-ground';
 import { createEarthRoadSigns } from './road-signs';
 import { EarthVehicles } from './vehicles';
@@ -155,6 +169,7 @@ import {
   createEarthWorldgen,
   type EarthViewWorkers,
   type EarthWorldgen,
+  surfaceWorkers,
 } from './worldgen';
 
 export type EarthViewMode = 'orbit' | 'walk' | 'drive' | 'fly';
@@ -286,6 +301,8 @@ export interface EarthInteractionSettings {
 }
 
 export interface EarthViewOptions {
+  /** Start with 4× travel speed for people and vehicles (default false). T toggles it. */
+  boostMode?: boolean;
   /** Explicit archival landmark date (YYYY-MM-DD), independent of sky time. Remount to change it. */
   viewingDate?: string;
   /** Explicit month (1..12) for regional foliage; remount to change. Omitted means leaf-on. */
@@ -338,6 +355,8 @@ export interface EarthViewOptions {
   actors?: EarthActorSettings;
   /** Bounded scripted set pieces. Content loads only while nearby and scheduled active. */
   dioramas?: EarthDioramaOptions;
+  /** Boardable parked aircraft on mapped airport aprons (default true when airport data exists). */
+  airportTraffic?: boolean;
   /** What the interact key (E) reaches on foot; change it later with {@link EarthView.setInteraction}. */
   interaction?: EarthInteractionSettings;
   /** The first view. */
@@ -462,6 +481,8 @@ export interface EarthVehicleSpec {
   heading: number;
   /** Paint for a car's `paintMaterial` (CSS color). */
   color?: string;
+  /** A variant from the type's livery component. */
+  livery?: string;
   /** Aircraft: start flying at `altitude` meters above the ground (default 300) and `speed` m/s. */
   airborne?: boolean | { altitude?: number; speed?: number };
 }
@@ -498,7 +519,11 @@ export interface EarthOwnedVehicles {
   /** Step out of whatever the viewer is in, at once; owned vehicles stay where they are. */
   release(): void;
   remove(id: string): void;
-  /** Repaint a car (`vehicle.color`); aircraft keep their authored paint. */
+  /** Available livery recipes for this owned vehicle. */
+  liveries(id: string): readonly LiveryVariant[];
+  /** Select a livery for a car, boat or aircraft; retained across terrain re-anchors. */
+  setLivery(id: string, selected: string): void;
+  /** Repaint a car's base paint. */
   setColor(id: string, color: string): void;
   /** Resolves once the vehicle's entity is placed; rejects on abort, removal or when it cannot be placed. */
   whenPlaced(id: string, options?: { signal?: AbortSignal }): Promise<void>;
@@ -540,6 +565,7 @@ export interface EarthViewEvents {
   terrainchange: { key?: string; credits: EarthCredit[] };
   markerclick: { id: string };
   modechange: { mode: EarthViewMode };
+  boostchange: { enabled: boolean };
   /** A short explanation for the user, e.g. why a vehicle could not be entered. */
   message: { text: string };
   /** Sound loaded: `view.audio` is now set (volume, mute, bus gains). */
@@ -557,6 +583,9 @@ export interface EarthViewStats {
   memoryPressure: number;
   displayedTiles: number;
   loadingTiles: number;
+  /** Future-view tiles selected for preparation, and those ready for arrival. */
+  preloadingTiles: number;
+  preloadedTiles: number;
   failedTiles: number;
   maxDisplayedLevel: number | undefined;
   markers: number;
@@ -590,6 +619,9 @@ export interface EarthView {
   /** Required data credits; keep them visible whenever the view is. */
   readonly credits: EarthCredit[];
   readonly mode: EarthViewMode;
+  readonly boostMode: boolean;
+  /** 4× travel speed; steering, flight controls and the world clock keep normal timing. */
+  setBoostMode(enabled: boolean): void;
   /**
    * Switch navigation. Drive takes a parked car within reach, or adds one on the nearest road
    * with `{ vehicle: true }`; fly adds an aircraft (airborne by default) over the view. Returns
@@ -687,10 +719,6 @@ function withGroundColors(
   };
 }
 
-/** How long a level must hold before adaptive quality turns sticky, ms. */
-const QUALITY_CALIBRATION_MS = 12_000;
-/** After calibration: down after sustained overload, up after long headroom, changes far apart. */
-const STICKY_QUALITY = { decreaseDelayMs: 2_500, increaseDelayMs: 20_000, cooldownMs: 6_000 };
 /** A quality level change waits until the camera has been still this long, ms... */
 const QUALITY_SETTLE_MS = 600;
 /** ...or has waited this long, ms. */
@@ -751,6 +779,7 @@ export function earthEnvironment(style: EarthViewStyle | undefined): Environment
 }
 
 interface EarthStack {
+  nightLighting: EarthNightLighting;
   frameLatitude: number;
   metersPerUnit: number;
   /** The ECS world vehicles, aircraft and ambient life share; stepped once per frame. */
@@ -782,6 +811,7 @@ function surfaceBudgets(quality: TerrainQualityPreset, scale: number) {
 
 /** Mount an Earth view into a canvas. Dispose it (or abort `signal`) to release everything. */
 export async function mountEarthView(options: EarthViewOptions): Promise<EarthView> {
+  let boostMode = options.boostMode ?? false;
   if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
     throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
   if (
@@ -848,14 +878,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   const terrainBudget = (): TerrainPyramidBudget => {
     const base = automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality());
     return {
-      ...base,
+      ...earthTerrainCacheBudget(base, memoryBudget),
       peripheralDegrees: PERIPHERAL_DEGREES,
       peripheralDetail: PERIPHERAL_DETAIL,
-      maxResidentBytes: Math.max(base.maxResidentBytes ?? 0, memoryBudget),
-      maxResidentTiles: Math.max(
-        base.maxResidentTiles,
-        Math.min(512, Math.round(memoryBudget / (2 * 1024 * 1024))),
-      ),
     };
   };
   // Sun shadows follow the performance tier (see EarthPerformanceTier.shadows).
@@ -878,6 +903,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     width,
     height,
     backend: options.backend ?? 'webgl',
+    admission: earthAdmission(options.backend ?? 'webgl', false),
     reflections: options.reflections ?? true,
     antialias: true,
     preserveDrawingBuffer: false,
@@ -910,7 +936,18 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
   };
 
   try {
-    applyEnvironment(renderer, earthEnvironment(options.style));
+    const lightingEnvironment = earthEnvironment(options.style);
+    applyEnvironment(renderer, lightingEnvironment);
+    const fixedSun = lightingEnvironment.sun?.direction ?? [0, 1, 0];
+    const fixedNight = earthNightFactor(
+      (Math.atan2(fixedSun[1], Math.hypot(fixedSun[0], fixedSun[2])) * 180) / Math.PI,
+    );
+    // Shadows on once before anything is built: lit shaders are then built for them, and a tier
+    // without shadows parks the map instead of rebuilding every shader in view mid-flight.
+    if (shadowsOn) {
+      renderer.setShadowQuality('medium');
+      renderer.setShadowQuality('off');
+    }
     const fog = createEarthFog(renderer.backend, options.style?.fog);
     renderer.scene.fog = fog;
     if (options.style?.sky !== false) {
@@ -989,8 +1026,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     };
 
     let stack: EarthStack | undefined;
+    const cockpitPointer = bindAircraftCockpitPointer({
+      element: canvas,
+      camera: renderer.camera,
+      session: () => (mode === 'fly' ? stack?.aircraft?.cockpitSession() : undefined),
+    });
+    disposers.push(() => cockpitPointer.dispose());
+    // One map-tile decoder for every stack the view anchors, started with the first.
+    let semanticWorker: Worker | undefined;
+    const semanticDecoderWorker = (): Worker | undefined =>
+      (semanticWorker ??= options.workers?.semantic?.());
+    disposers.push(() => semanticWorker?.terminate());
     const groundHeight = (x: number, z: number): number | undefined =>
-      stack?.stream.sampleHeight(x, z);
+      stack?.stream.sampleSurfaceHeight(x, z);
     const ambientSettings = options.ambient === false ? undefined : (options.ambient ?? {});
     let ambientOn = ambientSettings !== undefined;
     const ambientContent =
@@ -1041,7 +1089,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       try {
         const surfaceWorker =
           options.workers?.surface !== undefined
-            ? createTerrainSurfaceWorkerBridge(options.workers.surface())
+            ? createTerrainSurfaceWorkerPool(
+                Array.from({ length: surfaceWorkers() }, options.workers.surface),
+              )
             : undefined;
         const surface = createTerrainSurfaceRenderer(
           {
@@ -1097,6 +1147,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   : {}),
                 prepareObject: (object, prepareSignal, parent) =>
                   renderer.prepareObject(object, prepareSignal, parent),
+                prepareMaterialChange: (current, next) =>
+                  renderer.prepareMaterialChange(current, next),
                 onMaterialFailures: (failures) =>
                   report(new Error([...failures.keys()].join(', ')), 'worldgen materials'),
               })
@@ -1120,7 +1172,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const wildlifeFeatures = wildlifeWanted ? new SemanticTileBuffer() : undefined;
         if (pkg.landcover !== undefined || pkg.features !== undefined) {
           try {
+            const decoderWorker = semanticDecoderWorker();
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
+              admission: renderer.admission,
+              ...(decoderWorker !== undefined ? { decoderWorker } : {}),
               tunnels: {
                 heights: {
                   load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
@@ -1161,23 +1216,28 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 worldgen !== undefined
                   ? {
                       visible: true,
-                      renderer:
+                      renderer: withEarthAirports(
                         wildlifeCover !== undefined
                           ? observeSemanticTiles(
                               observeSemanticTiles(worldgen.classification, wildlifeCover),
                               audioTerrain.observer,
                             )
                           : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                        content?.airports,
+                      ),
                     }
                   : {
                       visible: true,
-                      renderer: observeSemanticTiles(
-                        createDefaultTerrainSemanticRenderer({
-                          renderWater: false,
-                          renderTransportation: false,
-                          renderBuildings: false,
-                        }),
-                        audioTerrain.observer,
+                      renderer: withEarthAirports(
+                        observeSemanticTiles(
+                          createDefaultTerrainSemanticRenderer({
+                            renderWater: false,
+                            renderTransportation: false,
+                            renderBuildings: false,
+                          }),
+                          audioTerrain.observer,
+                        ),
+                        content?.airports,
                       ),
                     },
               featuresLayer: (() => {
@@ -1195,9 +1255,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                     : observeSemanticTiles(sourceRenderer, wildlifeFeatures);
                 return {
                   visible: true,
-                  renderer: observeSemanticTiles(
-                    ambientTiles !== undefined ? observeSemanticTiles(inner, ambientTiles) : inner,
-                    audioTerrain.observer,
+                  renderer: withEarthAirports(
+                    observeSemanticTiles(
+                      ambientTiles !== undefined
+                        ? observeSemanticTiles(inner, ambientTiles)
+                        : inner,
+                      audioTerrain.observer,
+                    ),
+                    content?.airports,
                   ),
                 };
               })(),
@@ -1297,7 +1362,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 loading.layers >= limits.maxConcurrentLayerLoads
               );
             },
-            groundHeight: (x, z) => stream.sampleHeight(x, z),
+            groundHeight: (x, z) => stream.sampleSurfaceHeight(x, z),
             viewShape: () => {
               const [w, h] = viewport();
               return {
@@ -1314,6 +1379,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         // One world for everything that moves: cars, aircraft and ambient life. The frame loop
         // steps it once (stepWorld); each piece applies its inputs before and poses models after.
         const world = new World({ tickRate: 60, seed: 'earth', devFreeze: false });
+        setWorldBoostMode(world, boostMode);
         let accumulator = 0;
         const stepWorld = (dt: number): void => {
           accumulator = Math.min(accumulator + Math.min(0.1, Math.max(0, dt)), world.dt * 3);
@@ -1330,7 +1396,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ? new EarthVehicles({
                 world,
                 root: stream.object,
-                sampleHeight: (x, z) => stream.sampleHeight(x, z),
+                sampleHeight: (x, z) => stream.sampleSurfaceHeight(x, z),
                 loadModel,
                 types: content.types,
                 water: options.water ?? EARTH_WATER_CONDITIONS,
@@ -1341,17 +1407,27 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               })
             : undefined;
         if (vehicles !== undefined) parts.push(() => vehicles.dispose());
+        const nightLighting = new EarthNightLighting({
+          root: stream.object,
+          world,
+          surface,
+          ...(ambientContent ? { vehicleHeights: ambientContent.heights } : {}),
+          sampleHeight: (x, z) => stream.sampleHeight(x, z),
+        });
+        parts.push(() => nightLighting.dispose());
         if (vehicles !== undefined && content?.types !== undefined) {
           const flyable = new EarthAircraft({
             world,
             root: stream.object,
             sampleHeight: (x, z, y) =>
               y === undefined
-                ? stream.sampleHeight(x, z)
-                : (sampleTerrainTunnel(stream.object, x, y, z)?.floor ?? stream.sampleHeight(x, z)),
+                ? stream.sampleSurfaceHeight(x, z)
+                : (sampleTerrainTunnel(stream.object, x, y, z)?.floor ??
+                  stream.sampleSurfaceHeight(x, z)),
             loadModel,
             types: content.types,
             vehicleEnvironment: vehicles.environment,
+            prepare: (object) => renderer.prepareObject(object),
           });
           aircraft = flyable;
           parts.push(() => flyable.dispose());
@@ -1365,7 +1441,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ...(fleet ? { carsAt: fleet.carsAt } : {}),
             ...(ambientContent !== undefined ? { content: ambientContent } : {}),
             prepare: (object) => renderer.prepareObject(object),
-            ground: (x, z) => stream.sampleHeight(x, z),
+            admission: renderer.admission,
+            ground: (x, z) => stream.sampleSurfaceHeight(x, z),
           });
           ambient = created;
           created.setBudget(ambientBudget());
@@ -1405,6 +1482,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           metersPerUnit,
           world,
           stepWorld,
+          nightLighting,
           stream,
           prefetcher,
           surface,
@@ -1488,6 +1566,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       terrainchange: new Set(),
       markerclick: new Set(),
       modechange: new Set(),
+      boostchange: new Set(),
       message: new Set(),
       audioready: new Set(),
     };
@@ -1504,6 +1583,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     // Navigation state.
     let mode: EarthViewMode = 'orbit';
     const walker = new WalkController();
+    walker.boostMode = boostMode;
+    const setBoostMode = (enabled: boolean): void => {
+      if (boostMode === enabled) return;
+      boostMode = enabled;
+      walker.boostMode = enabled;
+      if (stack) setWorldBoostMode(stack.world, enabled);
+      emit('boostchange', { enabled });
+    };
     // Scanning every visible mesh each frame is the walk mode's largest fixed cost; 5 Hz rescans
     // still catch streamed changes, and placement below forces a scan.
     const collision = new WalkCollision({ rescanIntervalMs: 200 });
@@ -1559,6 +1646,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       kind: 'car' | 'boat' | 'aircraft';
       geo: { latitude: number; longitude: number; heading: number; altitude: number | undefined };
       color: string | undefined;
+      livery: string | undefined;
       airborne: EarthVehicleSpec['airborne'];
       placed: boolean;
       blocked: boolean;
@@ -1652,6 +1740,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             id: entry.id,
             retain: true,
             ...(entry.color !== undefined ? { color: entry.color } : {}),
+            ...(entry.livery !== undefined ? { livery: entry.livery } : {}),
           };
           const yaw = Math.PI - entry.geo.heading;
           const placed =
@@ -1683,7 +1772,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 ? { airborne: choice.speed !== undefined ? { speed: choice.speed } : {} }
                 : {}),
             },
-            { id: entry.id, retain: true },
+            {
+              id: entry.id,
+              retain: true,
+              ...(entry.livery !== undefined ? { livery: entry.livery } : {}),
+            },
           );
           // A flight placed once is parked after that: nobody flies it while the host is away.
           entry.airborne = undefined;
@@ -2221,6 +2314,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           return;
         }
         aircraft.view = 'cockpit';
+        if (aircraft.mountedId) airportPopulation?.claim(aircraft.mountedId);
         if (owned.has(found.id)) emit('vehiclechange', { id: found.id, change: 'boarded' });
         finishMode('fly');
         return;
@@ -2238,6 +2332,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     const actorStack = (current: EarthStack) => ({
       world: current.world,
       root: current.stream.object,
+      isAreaReady: (x: number, z: number, radius: number) =>
+        current.stream.isAreaReady(x, z, radius),
       ...(current.ambient !== undefined ? { ambient: current.ambient.handle } : {}),
       ...(current.vehicles !== undefined ? { vehicles: current.vehicles } : {}),
     });
@@ -2370,6 +2466,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           throw new Error(`${spec.type} is not a car, boat or aircraft type in the content packs`);
         const id = spec.id ?? `owned-${kind}-${++ownedSequence}`;
         if (owned.has(id)) throw new Error(`Owned vehicle ${id} already exists`);
+        if (spec.livery !== undefined)
+          selectLivery(
+            content?.types?.components(spec.type).livery as LiveryData | undefined,
+            spec.livery,
+          );
         owned.set(id, {
           id,
           type: spec.type,
@@ -2381,6 +2482,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             altitude: undefined,
           },
           color: spec.color,
+          livery: spec.livery,
           airborne: spec.airborne,
           placed: false,
           blocked: false,
@@ -2443,6 +2545,28 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         owned.delete(id);
         settleOwned(entry, new Error(`Vehicle ${id} was removed`));
         emit('vehiclechange', { id, change: 'removed' });
+      },
+      liveries(id) {
+        const entry = owned.get(id);
+        return entry === undefined
+          ? []
+          : ((content?.types?.components(entry.type).livery as LiveryData | undefined)?.variants ??
+              []);
+      },
+      setLivery(id, selected) {
+        const entry = owned.get(id);
+        if (entry === undefined) return;
+        selectLivery(
+          content?.types?.components(entry.type).livery as LiveryData | undefined,
+          selected,
+        );
+        entry.livery = selected;
+        entry.color = undefined;
+        if (entry.placed) {
+          if (entry.kind === 'aircraft') stack?.aircraft?.setLivery(id, selected);
+          else stack?.vehicles?.setLivery(id, selected);
+        }
+        emit('vehiclechange', { id, change: 'painted' });
       },
       setColor(id, color) {
         const entry = owned.get(id);
@@ -2510,10 +2634,34 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       toElevation: (x, z, y) => groundHeight(x, z) ?? y,
     });
     disposers.push(() => airfields.dispose());
+    const airportPopulation =
+      options.airportTraffic !== false && content?.airports && content.types
+        ? new EarthAirportPopulation(
+            content.airports,
+            content.types,
+            {
+              spawn: (stand) => {
+                if (!stack || stack.surface.stats().aprons === 0) return false;
+                ownedApi.spawn({
+                  id: stand.id,
+                  type: stand.type,
+                  latitude: stand.latitude,
+                  longitude: stand.longitude,
+                  heading: stand.heading,
+                });
+                return true;
+              },
+              remove: (id) => ownedApi.remove(id),
+              pose: (id) => ownedApi.pose(id),
+            },
+            (error) => emit('message', { text: `Airport aircraft: ${String(error)}` }),
+          )
+        : undefined;
+    disposers.push(() => airportPopulation?.dispose());
 
-    // Adaptive quality. The view first calibrates with the controller's quick defaults, so a slow
-    // device settles on a level it can hold within seconds. Once a level has held for
-    // QUALITY_CALIBRATION_MS it turns sticky: every change swaps resolution and detail across the
+    // Adaptive quality. The view first calibrates with the controller's quick recovery and cooldown
+    // (EARTH_CALIBRATION_QUALITY), so a slow device settles on a level it can hold within seconds. Once a level has held for
+    // EARTH_QUALITY_CALIBRATION_MS it turns sticky: every change swaps resolution and detail across the
     // whole view, so later ones need sustained overload (not one burst of streaming while the
     // camera turns) or a long spell of headroom.
     const maxQualityLevel = Math.max(0, Math.min(5, Math.floor(options.maxQualityLevel ?? 3)));
@@ -2521,39 +2669,71 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let controller = new AdaptiveQualityController({
       initialLevel: level,
       maxLevel: maxQualityLevel,
+      ...EARTH_CALIBRATION_QUALITY,
     });
     let calibrated = false;
     let levelSince = performance.now();
     let qualityReason: AdaptiveQualityReason | undefined;
-    const applyTier = (): void => {
+    // A level change swaps resolution, terrain detail, building quality, surfaces, ambient life
+    // and shadows. Applied together mid-flight, their one-off costs (a canvas reallocation, a
+    // terrain visibility pass, surface rebuilds, a shadow map) stacked into one long frame; the
+    // frame loop applies them a frame apart (`staged`). Surfaces rebuild only when their budgets
+    // change: every surface tile is regenerated.
+    const tierSteps: Array<() => void> = [];
+    const appliedSurface = new WeakMap<object, string>();
+    const applyTier = (staged = false): void => {
       tier = earthPerformanceTier(level);
-      lodPolicy.maxPixelError = automatic ? tier.objectPixelError : 2;
       const current = stack;
-      if (current !== undefined) {
-        const budget = terrainBudget();
-        current.stream.setBudget(budget);
-        current.viewDistance = budget.viewDistance;
-        renderer.setShadowQuality(shadowQuality());
-        orbit.setRangeLimits({ maxRange: earthOrbitMaxRange(budget.viewDistance) });
-        current.worldgen?.setQuality(quality());
-        current.ambient?.setBudget(ambientBudget());
-        current.wildlife?.setBudget(ambientBudget());
-        current.worldgen?.setCacheBudget(worldgenCacheBytes());
-        void current.surface
-          .setOptions({
-            style: 'modern',
-            ...(ambientSettings?.drivingSide ? { drivingSide: ambientSettings.drivingSide } : {}),
-            fonts: content?.fonts,
-            routeShields: content?.roadSigns?.shields,
-            details: {
-              preferMappedProps: current.worldgen !== undefined,
-              parkedVehicles: content?.parkedVehicles ?? [],
-              ...surfaceBudgets(quality(), automatic ? tier.surfaceScale : 1),
-            },
-          })
-          .catch((error: unknown) => report(error, 'surface detail'));
-      }
-      resize();
+      const live = (): boolean => current !== undefined && current === stack;
+      const steps: Array<() => void> = [
+        () => {
+          lodPolicy.maxPixelError = automatic ? tier.objectPixelError : 2;
+          resize();
+        },
+        () => {
+          if (!live() || current === undefined) return;
+          const budget = terrainBudget();
+          current.stream.setBudget(budget);
+          current.viewDistance = budget.viewDistance;
+          orbit.setRangeLimits({ maxRange: earthOrbitMaxRange(budget.viewDistance) });
+        },
+        () => {
+          if (!live()) return;
+          current?.worldgen?.setQuality(quality());
+          current?.worldgen?.setCacheBudget(worldgenCacheBytes());
+        },
+        () => {
+          if (!live() || current === undefined) return;
+          const budgets = surfaceBudgets(quality(), automatic ? tier.surfaceScale : 1);
+          const key = JSON.stringify(budgets);
+          if (appliedSurface.get(current.surface) === key) return;
+          appliedSurface.set(current.surface, key);
+          void current.surface
+            .setOptions({
+              style: 'modern',
+              ...(ambientSettings?.drivingSide ? { drivingSide: ambientSettings.drivingSide } : {}),
+              fonts: content?.fonts,
+              routeShields: content?.roadSigns?.shields,
+              details: {
+                preferMappedProps: current.worldgen !== undefined,
+                parkedVehicles: content?.parkedVehicles ?? [],
+                ...budgets,
+              },
+            })
+            .catch((error: unknown) => report(error, 'surface detail'));
+        },
+        () => {
+          if (!live()) return;
+          current?.ambient?.setBudget(ambientBudget());
+          current?.wildlife?.setBudget(ambientBudget());
+        },
+        () => {
+          if (live()) renderer.setShadowQuality(shadowQuality());
+        },
+      ];
+      tierSteps.length = 0;
+      if (staged) tierSteps.push(...steps);
+      else for (const step of steps) step();
     };
     const resize = (): void => {
       const [w, h] = viewport();
@@ -2621,6 +2801,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               ...(source.key !== undefined ? { key: source.key } : {}),
               credits: earthCredits([
                 ...pkg.attribution,
+                ...(content?.airports?.attribution ?? []),
                 ...regionalEarthAttribution(content?.worldgen?.environment),
               ]),
             });
@@ -2668,6 +2849,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     let frames = 0;
     let last = performance.now();
     let streamTime = -Infinity;
+    const tilePreloader = createEarthTilePreloader();
+    let preloadStack: EarthStack | undefined;
     let streamed = { position: pose.position, direction: pose.direction };
     let lastEmit = 0;
     let lastEmitted = '';
@@ -2681,6 +2864,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     const gpuTimer = automatic ? renderer.createGpuTimer?.() : undefined;
     disposers.push(() => gpuTimer?.dispose());
     let workMs = 0;
+    const admissionGovernor = createEarthAdmissionGovernor(renderer.backend);
     let heldLevel: number | undefined;
     let heldReason: AdaptiveQualityReason | undefined;
     let heldSince = 0;
@@ -2728,7 +2912,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       ) {
         collision.invalidate();
         collision.update(current.stream.object, walker.feet.x, walker.feet.z);
-        walker.place(collision, groundHeight);
+        const groundCollision = new WalkCollision({ ignoreVehicles: true });
+        groundCollision.update(current.stream.object, walker.feet.x, walker.feet.z);
+        walker.place(collision, groundHeight, groundCollision);
       }
       walker.update(
         dt,
@@ -2841,7 +3027,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       });
       current.stepWorld(dt);
       vehicles.render();
-      current.aircraft?.render();
+      current.aircraft?.render(pose.position);
       const view = vehicles.cameraPose();
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
@@ -2860,6 +3046,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     ): NavigationPose => {
       const aircraft = current.aircraft as EarthAircraft;
       const pilot = frameInput.pilot;
+      if (pilot?.power !== undefined) aircraft.setPower(pilot.power);
       if (frameInput.view > 0) aircraft.view = aircraft.view === 'cockpit' ? 'chase' : 'cockpit';
       const reach = aircraft.view === 'chase' ? Math.PI : 1.45;
       aircraft.lookYaw = Math.max(
@@ -2886,7 +3073,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
       current.stepWorld(dt);
       current.vehicles?.render();
-      aircraft.render();
+      aircraft.render(pose.position);
       const view = aircraft.cameraPose();
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
@@ -2970,20 +3157,22 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           qualityReason = heldReason;
           heldLevel = undefined;
           levelSince = now;
-          applyTier();
+          applyTier(true);
         } else if (
           !calibrated &&
           heldLevel === undefined &&
-          now - levelSince >= QUALITY_CALIBRATION_MS
+          now - levelSince >= EARTH_QUALITY_CALIBRATION_MS
         ) {
           controller = new AdaptiveQualityController({
             initialLevel: level,
             maxLevel: maxQualityLevel,
-            ...STICKY_QUALITY,
+            ...EARTH_STICKY_QUALITY,
           });
           calibrated = true;
         }
       }
+      // One step of a level change per frame (see applyTier).
+      tierSteps.shift()?.();
       if (deferredMode !== undefined && current !== undefined && anchoring === undefined) {
         const deferred = deferredMode;
         deferredMode = undefined;
@@ -2996,8 +3185,16 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         if (now - airfieldsTickAt >= 200) {
           airfieldsTickAt = now;
           airfields.tick();
+          airportPopulation?.update(now, toLatLon(pose.position[0], pose.position[2]));
         }
       }
+      if ((frameInput.boost ?? 0) % 2 === 1) {
+        setBoostMode(!boostMode);
+        emit('message', {
+          text: boostMode ? 'Boost on · 4× travel speed' : 'Boost off · normal speed',
+        });
+      }
+      if (current) setWorldBoostMode(current.world, boostMode);
       if (frameInput.interact > 0 && current !== undefined && pending === undefined)
         handleInteract(current);
       if (mode === 'orbit' || current === undefined || pending !== undefined)
@@ -3028,13 +3225,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         ) {
           streamTime = now;
           const [w, h] = viewport();
-          current.stream.update({
+          const streamView: TerrainPyramidView = {
             position: pose.position,
             verticalFov: VERTICAL_FOV,
             viewportHeight: canvas.height || h,
             direction: pose.direction,
             aspect: w / h,
-          });
+          };
+          if (preloadStack !== current) {
+            tilePreloader.reset();
+            preloadStack = current;
+          }
+          const steady =
+            anchoring === undefined && pending === undefined && !(mode === 'orbit' && orbit.flying);
+          current.stream.update(streamView, tilePreloader.views(now, streamView, steady));
           streamed = { position: pose.position, direction: pose.direction };
         }
         if (anchoring === undefined) {
@@ -3052,9 +3256,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
           current.stepWorld(dt);
           current.vehicles?.render();
-          current.aircraft?.render();
+          current.aircraft?.render(pose.position);
         }
         actorDirector.update(dt, now, pose.position, actorViewer(current), avatarFrame(current));
+        cockpitPointer.update();
         current.ambient?.update(dt);
         current.ambient?.render(pose.position, dt);
         current.wildlife?.update(dt, pose.position);
@@ -3074,6 +3279,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             : now / 1000,
           current.ambient?.surfaceSignalColor,
         );
+        current.surface.updateDetail(renderer.camera.position);
+        const sunY = renderer.sky?.frame.sunDirection[1];
+        const night =
+          sunY === undefined
+            ? fixedNight
+            : earthNightFactor((Math.asin(Math.max(-1, Math.min(1, sunY))) * 180) / Math.PI);
+        current.worldgen?.setNightFactor(night);
+        current.surface.setNightFactor(night);
+        current.nightLighting.update({
+          camera: pose.position,
+          direction: pose.direction,
+          factor: night,
+          drivenVehicleId: current.vehicles?.mountedId,
+        });
         updateEarthFog(fog, current.viewDistance, pose.position[1]);
       }
       for (const tap of frameInput.taps) {
@@ -3141,6 +3360,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       if (timing) gpuTimer?.end();
       frames++;
       workMs = performance.now() - workStart;
+      const admission = admissionGovernor.sample(workMs, frameMs);
+      if (admission !== undefined) renderer.admission.setLimits(admission);
       if (
         Math.hypot(
           pose.position[0] - lastPose.position[0],
@@ -3206,12 +3427,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       get credits() {
         return earthCredits([
           ...pkg.attribution,
+          ...(content?.airports?.attribution ?? []),
           ...regionalEarthAttribution(content?.worldgen?.environment),
         ]);
       },
       get mode() {
         return mode;
       },
+      get boostMode() {
+        return boostMode;
+      },
+      setBoostMode,
       get audio() {
         return audio?.layer;
       },
@@ -3322,6 +3548,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           memoryPressure: (stack?.stream.pressure().displayedBytes ?? 0) / memoryBudget,
           displayedTiles: streamStats?.displayed ?? 0,
           loadingTiles: (streamStats?.loading ?? 0) + (streamStats?.loadingLayers ?? 0),
+          preloadingTiles: streamStats?.preloading ?? 0,
+          preloadedTiles: streamStats?.preloaded ?? 0,
           failedTiles: (streamStats?.failed ?? 0) + (streamStats?.failedLayers ?? 0),
           maxDisplayedLevel: streamStats?.maxDisplayedLevel,
           markers: markers.ids().length,

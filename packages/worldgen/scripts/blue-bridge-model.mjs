@@ -1,6 +1,6 @@
 /** Saint Petersburg's Blue Bridge: distinct cast and concrete vaults under a broad square. */
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
-import { box, prism, tube } from './structure-mesh.mjs';
+import { box, prism, tube, tubePath } from './structure-mesh.mjs';
 
 const blue = [0.065, 0.31, 0.48],
   lightBlue = [0.085, 0.36, 0.54],
@@ -13,8 +13,7 @@ const a = 7.85,
 const road = (x) => 3.25 + 0.2 * (1 - (x / 14.7) ** 2);
 const intrados = (x) => 0.62 + 2.25 * (1 - (x / a) ** 2);
 function curve(out, slot, points, radius, color, sides = 10) {
-  for (let i = 1; i < points.length; i++)
-    tube(out, slot, points[i - 1], points[i], radius, color, sides);
+  tubePath(out, slot, points, radius, color, sides);
 }
 function sample(n, fn) {
   return Array.from({ length: n + 1 }, (_, i) => fn(i / n));

@@ -1,6 +1,6 @@
 /** 40 Wall Street: mapped asymmetric setbacks, continuous masonry and closed Gothic crown. */
 import { readFileSync } from 'node:fs';
-import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
   clockwise,
   face,
@@ -165,8 +165,7 @@ function lancet(out, at, x, y, w, h, stone) {
   ];
   for (let i = 1; i < p.length - 1; i++)
     tri(out, 'glass', [p[0], p[i], p[i + 1]], [0.1, 0.15, 0.145]);
-  for (let i = 0; i < p.length; i++)
-    beam(out, 'cladding', p[i], p[(i + 1) % p.length], 0.14, 0.21, stone);
+  beamPath(out, 'cladding', p.slice(0, p.length), 0.14, 0.21, stone, true);
 }
 
 function strip(out, at, x0, x1, y0, y1, color, slot = 'brick', depth = 0) {

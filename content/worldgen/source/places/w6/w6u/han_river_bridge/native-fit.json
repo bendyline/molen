@@ -1,0 +1,173 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "originMeters": 0,
+  "profile": [
+    [
+      -247.29191962022418,
+      10.45
+    ],
+    [
+      -232.29191962022418,
+      10.7
+    ],
+    [
+      -102.34582135781463,
+      12.15
+    ],
+    [
+      -42.34582135781463,
+      12.45
+    ],
+    [
+      17.65417864218537,
+      12.15
+    ],
+    [
+      222.29191962022418,
+      7.6
+    ],
+    [
+      247.29191962022418,
+      6.95
+    ]
+  ],
+  "groundSamples": [
+    {
+      "x": -247.29191962022418,
+      "values": [
+        9.756197226027101,
+        9.620153718783111,
+        9.488275292456567
+      ]
+    },
+    {
+      "x": -244.29191962022418,
+      "values": [
+        9.771117672799617,
+        9.662026213177576,
+        9.552449978768847
+      ]
+    },
+    {
+      "x": -237.29191962022418,
+      "values": [
+        9.8551679871331,
+        9.879370351580505,
+        9.920467664923931
+      ]
+    },
+    {
+      "x": -42.34582135781463,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "x": 237.29191962022418,
+      "values": [
+        6.305425753480033,
+        5.997538979684552,
+        5.674668235047532
+      ]
+    },
+    {
+      "x": 244.29191962022418,
+      "values": [
+        6.320774752083916,
+        6.0324000618523055,
+        5.74080403491818
+      ]
+    },
+    {
+      "x": 247.29191962022418,
+      "values": [
+        6.384888857140775,
+        6.09885537679167,
+        5.816216560386365
+      ]
+    }
+  ],
+  "basis": "Complete494.584m named PMTiles route; reference487.7m extent kept separate. Nominal12.9m width, photo-led25m pylon rise above the deck and120m swing section. Pivot x projects the approximate catalog coordinate onto the named road, discarding its15m cross-road offset. Support stations, mast/turntable dimensions, holes, fixtures and grades are reconstruction controls, not surveyed facts.",
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "url": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:11ef63f789d0b1f890bb7d98308d96504732ed5a374fc5cdeabc28bd68f66cd4"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        0,
+        21
+      ],
+      "flattenedSubseaSamples": 17076,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:4a50ace533de4fda0d4d3811956b8775c87c59d2b34705d5736a77cdf87de730"
+    }
+  },
+  "apronControls": "models/han-controls.json#aprons",
+  "apronMethod": "Source-local bank paving fitted to18 standard native edge samples; underlying DEM and independent roads are retained."
+}

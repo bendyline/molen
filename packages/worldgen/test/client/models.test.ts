@@ -189,6 +189,43 @@ describe('model library', () => {
   });
 });
 
+describe('instanced placement bounds', () => {
+  it('match three.js per-instance bounds for turned, scaled and mirrored placements', () => {
+    const geometry = new THREE.BoxGeometry(2, 3, 1).translate(0.5, 1.5, -0.25);
+    const count = 40;
+    const data = new Float32Array(count * PLACEMENT_STRIDE);
+    for (let i = 0; i < count; i++) {
+      const o = i * PLACEMENT_STRIDE;
+      data.set(
+        [
+          i * 7.3 - 100,
+          (i % 5) * 0.4,
+          -i * 3.1,
+          i * 0.37,
+          1 + (i % 3) * 0.5,
+          0.8 + (i % 4) * 0.2,
+          i % 6 === 0 ? -1.2 : 1.1,
+          0.5,
+          0.5,
+          0.5,
+        ],
+        o,
+      );
+    }
+    const set: PlacementSet = { setId: 'props', modelRef: 'builtin:box', count, data };
+    const mesh = createInstancedPlacements(set, geometry, new THREE.MeshBasicMaterial());
+    const gathered = (mesh.boundingBox as THREE.Box3).clone();
+    mesh.boundingBox = null;
+    mesh.computeBoundingBox();
+    const exact = mesh.boundingBox as unknown as THREE.Box3;
+    for (const axis of ['x', 'y', 'z'] as const) {
+      expect(gathered.min[axis]).toBeCloseTo(exact.min[axis], 4);
+      expect(gathered.max[axis]).toBeCloseTo(exact.max[axis], 4);
+    }
+    expect(mesh.boundingSphere?.containsPoint(exact.getCenter(new THREE.Vector3()))).toBe(true);
+  });
+});
+
 describe('procedural vegetation', () => {
   it('shares opaque geometry and material without loading model assets', async () => {
     const library = new ModelLibrary(() => {

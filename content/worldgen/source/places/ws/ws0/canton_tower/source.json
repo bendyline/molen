@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canton_tower",
+  "kind": "static-structure",
+  "title": "Canton Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canton_tower",
+        "output": "assets/places/ws/ws0/canton_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2c96aaf752fe2cb568579ce3776b3eccd912b5e1236d123bc58d3d08f741e5ed"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-canton-tower",
+        "path": "models/generate-canton-tower.mjs"
+      },
+      {
+        "id": "canton-tower-model",
+        "path": "models/canton-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/tower-base.json",
+      "terrain-acquisition-envelope.json",
+      "architectural-facts.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-26698-14220.png",
+      "terrain-sources/terrarium-15-26698-14221.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hotel_okura_tokyo",
+  "kind": "static-structure",
+  "title": "Hotel Okura Tokyo (Main and South Wings,2006)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hotel_okura_tokyo",
+        "output": "assets/places/xn/xn7/hotel_okura_tokyo/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bf94c83c6793cea19077c948efd7782466e6840a1d4e857b2736d450ed7becb7"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-building-facts.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/main-2006-original.jpg",
+      "references/south-2006-original.jpg",
+      "reference-rights/lombroso-native.json",
+      "native-map/old-main-and-south-wings-2014-context.json",
+      "native-map/current-replacement-context-excluded.json",
+      "native-map/hotel-wikidata-binding.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-29103-12904.png",
+      "terrain-sources/terrarium-15-29103-12905.png",
+      "terrain-sources/terrarium-15-29104-12904.png",
+      "terrain-sources/terrarium-15-29104-12905.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

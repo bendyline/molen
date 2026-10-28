@@ -1,0 +1,376 @@
+{
+  "planId": "birdsville_hotel",
+  "id": "birdsville_hotel",
+  "assetId": "molen.worldgen.structure.birdsville_hotel",
+  "title": "Birdsville Hotel",
+  "wikidataId": "Q28035358",
+  "category": "historic-hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.35159635,
+    "latitude": -25.8989009
+  },
+  "size": [
+    37.44206619262695,
+    6.523000001907349,
+    48.00691223144531
+  ],
+  "actualBounds": {
+    "min": [
+      -18.721033096313477,
+      -1.719599962234497,
+      -23.967086791992188
+    ],
+    "max": [
+      18.721033096313477,
+      4.803400039672852,
+      24.039825439453125
+    ]
+  },
+  "visualBrief": "Whole surviving BirdsvilleHotel in its actual14-control current mainbuilding envelope: single-storey pale renderedstone, darkgreen steppedquoins/recessed sash/doors, corrugated hippedmainroof and attachedrear roofs, truncated corner entrance/raisedarchedtablet/lowparapet, openwraparound canopy on white timberposts/scallopedvalance and lowconcretepad. Published1927PD original first plus distinct exact2007photographer-ownPD exterior fromlocalcorpus. Hiddenrear roofdivisions/currentfinish/census bounded; separate motel/yard/RoyalHotelruin excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_102544_Birdsville_Hotel,_Birdsville,_1927.jpg",
+    "https://commons.wikimedia.org/wiki/File:Birdsville_Hotel.jpg"
+  ],
+  "stories": [
+    {
+      "id": "birdsville-hotel-wp",
+      "url": "https://qualla.com/birdsville-hotel/"
+    }
+  ],
+  "referenceInputHash": "a4556f5cd5f5b54105fa87813d52beca90e4a7993cca625dbedb5eb90e681ffa",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r5/r57/birdsville_hotel/models/birdsville-hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/birdsville-hotel-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "birdsvilleHotelSkyline",
+    "errorMeters": 1.8,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.72,
+        "metallic": 0.42
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.55,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "birdsvilleHotelDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.42
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "birdsvilleHotelStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.42
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "birdsvilleHotelCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.42
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "wood_plain",
+    "concrete_plain",
+    "metal_corrugated"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.3",
+    "groundY": -1.7296,
+    "cameraYaw": 0.8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent original256m129x12916641samples/four rawTerrariumtiles/nativebboxanchor/heading0 frozen before once-only exterior floor-1.3696m/SW49.3593m providerdatum and all verticalsections. Originalphoto-bounded single-storey wall3.95m/parapet4.65/cornerbadge5.55/mainhipridge5.7/rearhipridge4.65/awning3.03–3.32/whiteposts/scallopedvalance/windows1.0–2.4/door2.68/depth.22. Current hiddenrear roofdivisions/census/finecondition/colors/contact are bounded estimates, not measured survey. No later floor/sections/field fitting/flattening/reframe/reacquire/raising.",
+    "anchor": [
+      139.35159635,
+      -25.8989009
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.35069760558818,
+        -25.899709380057494
+      ],
+      "modelHeight": 0,
+      "basis": "Fixedsouthwestoriginalproviderfielddatum beforefloor/sections/geometry, not surveyed street/verandah/entry contact."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/631682959"
+    ],
+    "source": "https://www.openstreetmap.org/way/631682959",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7b1487eb9431800a302fcb370003ec8540e6a9a095eecb59650404cb1ef0f9a2",
+    "notes": "Whole surviving Birdsville Hotel/Q28035358/nativeway631682959 fourteen-control mainhotel and intrinsic attached bar/roof volumes. Single-storey rendered sandstone walls, corrugated hipped mainroofs, low parapet/raised corner tablet, truncated corner entrance, wraparound corrugated canopy/white timber posts/scalloped valance, dark staggered quoins/recessed sash windows/doors and low concrete verandah pad. Hidden rear roof divisions/current repairs/window census are original bounded estimates. Excludes detached motel units, open beer garden/yard/landscape, independent tanks/sheds, street/airport/aircraft and separate RoyalHotel ruin868510476; no interiors."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Actual named current14-control surviving hotel building envelope; fixednativebboxanchor/heading0 before independentoriginalfield/floor/sections/geometry. Canopy inset/wall/roof subdivisions original photo-bounded, not native measured partpolygons.",
+    "Actual14-control hotel building envelope physically retained in full low verandah/foundation and continuous roof/eave plan. Street-side body set back2.6m behind intrinsic openverandah on native edges1/2/3; rear body retains actual native outline. Hipped mainroof and attachedrear roof subdivisions/windowcensus/sections are original photographic estimates, not separately surveyed native buildingparts. Adjacent RoyalHotel ruin, motel blocks/sheds/tanks/openyard excluded.",
+    "Independent original256m129x12916641samples/four rawTerrariumtiles/nativebboxanchor/heading0 frozen before once-only exterior floor-1.3696m/SW49.3593m providerdatum and all verticalsections. Originalphoto-bounded single-storey wall3.95m/parapet4.65/cornerbadge5.55/mainhipridge5.7/rearhipridge4.65/awning3.03–3.32/whiteposts/scallopedvalance/windows1.0–2.4/door2.68/depth.22. Current hiddenrear roofdivisions/census/finecondition/colors/contact are bounded estimates, not measured survey. No later floor/sections/field fitting/flattening/reframe/reacquire/raising.",
+    "Published CliffEveritt1927wholefrontPD original first; distinct StuartEdwards2007ownPD corner/longface original alreadycachedlocally and independentlyboundnative. No imagery pixels embedded, no excluded aerial/QHRCCpicture or source metadata repair.",
+    "Rear roof subdivisions/window/door census, current fine repairs/colors, exact parapet/valance profiles and hiddenfaces are bounded original estimates. Plain original lettering omits advertising/artwork. Detached motels/yard/beer garden/tanks/sheds/RoyalHotelruin/street/airport/aircraft/people excluded.",
+    "Original independent field/floor/sections fixed before geometry; contact unverified, preview only/replacementfalse. Flatground/synthetic neighborhouses are review fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-hotel-corner-street-verandah-and-hipped-roofs",
+      "position": [
+        -21.124406941192767,
+        22.6304,
+        71.92884978492904
+      ],
+      "lookAt": [
+        -0.4956741507907731,
+        0.6304000000000001,
+        -0.8685085700428327
+      ]
+    },
+    {
+      "name": "whole-fourteen-control-main-and-attached-rear-roof-plan",
+      "position": [
+        -1.1650500155901127,
+        83.6304,
+        -1.6378823099275106
+      ],
+      "lookAt": [
+        -0.9913483015815462,
+        -0.36959999999999993,
+        -1.7370171400856653
+      ]
+    },
+    {
+      "name": "open-verandah-scalloped-valance-recessed-sash-and-quoins",
+      "position": [
+        -14.768960915364074,
+        3.6304,
+        16.488717156906063
+      ],
+      "lookAt": [
+        -5.562770072910048,
+        0.7304000000000002,
+        11.234571158523869
+      ]
+    },
+    {
+      "name": "whole-rear-attached-bars-and-main-hipped-roof",
+      "position": [
+        17.650372661021436,
+        22.6304,
+        -69.94615318176595
+      ],
+      "lookAt": [
+        -0.9913483015815462,
+        0.6304000000000001,
+        -1.7370171400856653
+      ]
+    },
+    {
+      "name": "truncated-corner-door-and-raised-parapet-tablet",
+      "position": [
+        -4.732638168009897,
+        5.6304,
+        36.09157984863916
+      ],
+      "lookAt": [
+        -0.023503557207261494,
+        1.8304000000000002,
+        20.73859801391595
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20481,
+    "vertices": 61443,
+    "materials": 5,
+    "bytes": 2583088,
+    "sha256": "sha256:02144c6c894164b339168510b208efdf75a251d818d32acf26cb5e2227bbfb7f"
+  }
+}

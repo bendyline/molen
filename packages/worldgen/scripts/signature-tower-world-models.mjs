@@ -1,5 +1,13 @@
 /** Individual researched tower exteriors us_bank_tower onward. Meter units, +Y up. */
-import { beam, loft, normalFor, radialRing, sphere, torus } from './authored-structure-mesh.mjs';
+import {
+  beam,
+  beamPath,
+  loft,
+  normalFor,
+  radialRing,
+  sphere,
+  torus,
+} from './authored-structure-mesh.mjs';
 import { threeWtcStudy } from './signature-tower-3wtc-model.mjs';
 import { park432Study } from './signature-tower-432-park-model.mjs';
 import { atlantaStudy } from './signature-tower-atlanta-model.mjs';
@@ -513,8 +521,7 @@ function masonryBay(out, a, b, n, low, high, { upper = false } = {}) {
         at(len / 2, yc + w * 0.38, 0.1),
       ];
       face(out, 'recess', diamond, [0.44, 0.41, 0.33]);
-      for (let k = 0; k < 4; k++)
-        beam(out, 'cladding', diamond[k], diamond[(k + 1) % 4], 0.055, 0.08, stone);
+      beamPath(out, 'cladding', diamond.slice(0, 4), 0.055, 0.08, stone, true);
     }
     if (low >= 207)
       beam(out, 'cladding', at(0.12, low, 0.12), at(0.12, high, 0.12), 0.32, 0.26, stone);
@@ -530,8 +537,7 @@ function lancet(out, at, x, y, w, h, stone) {
   ];
   for (let i = 1; i < p.length - 1; i++)
     tri(out, 'glass', [p[0], p[i], p[i + 1]], [0.1, 0.15, 0.145]);
-  for (let i = 0; i < p.length; i++)
-    beam(out, 'cladding', p[i], p[(i + 1) % p.length], 0.14, 0.21, stone);
+  beamPath(out, 'cladding', p.slice(0, p.length), 0.14, 0.21, stone, true);
 }
 function build40Wall(out, m) {
   const key = '40_wall_street',

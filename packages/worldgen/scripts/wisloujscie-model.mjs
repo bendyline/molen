@@ -4,7 +4,7 @@ import earcut from 'earcut';
 import { beam, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { lighthouseStudy, ring, shell } from './lighthouse-expansion-models.mjs';
 import { lathe, panel, piercedFacade, railRing, transformed } from './lighthouse-models.mjs';
-import { box, quad, tube } from './structure-mesh.mjs';
+import { box, quad, tube, tubePath } from './structure-mesh.mjs';
 import plan from './wisloujscie-footprints.json' with { type: 'json' };
 
 const brick = [0.57, 0.3, 0.19],
@@ -953,8 +953,7 @@ function bastions(out) {
         const a = (j * Math.PI) / 4;
         points.push([x + Math.cos(a) * 0.035, y + Math.sin(a) * 0.06, L * 0.45]);
       }
-      for (let j = 0; j < 8; j++)
-        tube(bridge, 'metal', points[j], points[(j + 1) % 8], 0.009, iron, 6);
+      tubePath(bridge, 'metal', points.slice(0, 8), 0.009, iron, 6, true);
     }
   }
   beam(

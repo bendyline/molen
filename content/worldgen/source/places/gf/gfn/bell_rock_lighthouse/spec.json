@@ -107,6 +107,212 @@
   "assetId": "molen.worldgen.structure.bell_rock_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "appearance": {
+    "identity": "White curved lighthouse above the broad sea-stained base; cornice, bronze lantern, copper dome, open bird cage, SSE solar bay and attached access landing.",
+    "master": "Preserve the current detailed deterministic source master exactly; runtime derivatives are separate browser assets.",
+    "browser": "Explicit authored levels retain the curved shaft, pierced windows/door, cornice,12-facet lantern, open bird cage, SSE solar bay and complete attached access route. Curve/cage/railing/grid/course density increases toward the detailed master. Error reservations describe the authored visual simplification; they are not formal whole-mesh Hausdorff measurements.",
+    "scope": "Existing photo-proportioned exterior and approximate mapped-center/signed orientation. Host terrain supplies reef/water contact; no new water or terrain survey."
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gf/gfn/bell_rock_lighthouse/models/bell-rock-lods.mjs",
+    "export": "bellRockSkyline",
+    "level": "skyline",
+    "errorMeters": 0.65,
+    "authoredLevels": {
+      "district": {
+        "export": "bellRockDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "bellRockStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "bellRockCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "lantern-district",
+      "position": [
+        10,
+        35,
+        12
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lantern-street",
+      "position": [
+        10,
+        35,
+        12
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "landing-street",
+      "position": [
+        13,
+        13,
+        20
+      ],
+      "lookAt": [
+        0,
+        10,
+        2.5
+      ],
+      "reviewLod": "street"
+    }
+  ],
   "actualBounds": {
     "min": [
       -6.4008002281188965,
@@ -120,11 +326,11 @@
     ]
   },
   "mesh": {
-    "triangles": 69466,
-    "vertices": 136348,
+    "triangles": 69274,
+    "vertices": 136924,
     "materials": 7,
-    "bytes": 5746316,
-    "sha256": "sha256:da2d3054e54debcef23e831926a3bcf0bb1cc23e9ba2c4f76cf139a1b30f8a75"
+    "bytes": 5764748,
+    "sha256": "sha256:3e1b1a80e38729b081093e6ec442064546d7b152805ac31e6df4c30e7de2197d"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

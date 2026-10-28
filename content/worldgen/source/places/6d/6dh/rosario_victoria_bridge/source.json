@@ -1,0 +1,53 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.rosario_victoria_bridge",
+  "kind": "static-structure",
+  "title": "Rosario–Victoria Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json",
+      "models/rosario-controls.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.rosario_victoria_bridge",
+        "output": "assets/places/6d/6dh/rosario_victoria_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:79349b96c4b81a4ac77ef9b6c00ea3ee238d74fa0f4491b5495e7e823e8a8421"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-rosario.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/rosario-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

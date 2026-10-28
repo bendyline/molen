@@ -1,48 +1,11 @@
 /** Small, portable mechanical instrument parts; aircraft layout stays in interior.json. */
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-
-const GLYPHS = {
-  A: '010/101/111/101/101',
-  B: '110/101/110/101/110',
-  C: '011/100/100/100/011',
-  D: '110/101/101/101/110',
-  E: '111/100/110/100/111',
-  F: '111/100/110/100/100',
-  G: '011/100/101/101/011',
-  H: '101/101/111/101/101',
-  I: '111/010/010/010/111',
-  J: '001/001/001/101/010',
-  K: '101/101/110/101/101',
-  L: '100/100/100/100/111',
-  M: '101/111/111/101/101',
-  N: '101/111/111/111/101',
-  O: '010/101/101/101/010',
-  P: '110/101/110/100/100',
-  Q: '010/101/101/111/011',
-  R: '110/101/110/101/101',
-  S: '011/100/010/001/110',
-  T: '111/010/010/010/010',
-  U: '101/101/101/101/111',
-  V: '101/101/101/101/010',
-  W: '101/101/111/111/101',
-  X: '101/101/010/101/101',
-  Y: '101/101/010/010/010',
-  Z: '111/001/010/100/111',
-  0: '111/101/101/101/111',
-  1: '010/110/010/010/111',
-  2: '110/001/010/100/111',
-  3: '110/001/010/001/110',
-  4: '101/101/111/001/001',
-  5: '111/100/110/001/110',
-  6: '011/100/111/101/111',
-  7: '111/001/010/010/010',
-  8: '111/101/111/101/111',
-  9: '111/101/111/001/110',
-  '-': '000/000/111/000/000',
-  '.': '000/000/000/000/010',
-  '/': '001/001/010/100/100',
-};
+import { cockpitText } from '../../../../../../packages/entities/scripts/aircraft/cockpit-lettering.mjs';
+import {
+  domeDepth,
+  instrumentDome,
+} from '../../../../../../packages/entities/scripts/aircraft/rounded-instruments.mjs';
 
 export function instrumentParts(api) {
   const { group, box, rod, sphere, mesh, dark, silver, white, yellow, blue, brown, rubber } = api;
@@ -75,42 +38,16 @@ export function instrumentParts(api) {
   });
 
   function text(parent, name, value, x, y, z, pixel = 0.0015, material = paper) {
-    const vertices = [],
-      normals = [],
-      indices = [];
-    [...value.toUpperCase()].forEach((char, c) => {
-      (GLYPHS[char]?.split('/') ?? []).forEach((row, r) => {
-        [...row].forEach((bit, col) => {
-          if (bit !== '1') return;
-          // +X is left to a seated pilot looking +Z. Every glyph faces -Z.
-          const px = x + ((value.length * 4 - 1) / 2 - c * 4 - col) * pixel;
-          const py = y + (2.5 - r) * pixel;
-          const i = vertices.length / 3;
-          vertices.push(
-            px,
-            py,
-            z,
-            px - pixel * 0.82,
-            py,
-            z,
-            px - pixel * 0.82,
-            py - pixel * 0.82,
-            z,
-            px,
-            py - pixel * 0.82,
-            z,
-          );
-          normals.push(0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1);
-          indices.push(i, i + 2, i + 1, i, i + 3, i + 2);
-        });
-      });
-    });
-    if (!vertices.length) return;
-    const geometry = new T.BufferGeometry();
-    geometry.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
-    geometry.setAttribute('normal', new T.Float32BufferAttribute(normals, 3));
-    geometry.setIndex(indices);
-    return mesh(parent, name, geometry, material);
+    return cockpitText(
+      parent,
+      name,
+      value,
+      [x, y, z],
+      pixel * 5,
+      material,
+      'period',
+      Math.max(1, value.length * 4 - 1) * pixel,
+    );
   }
 
   function plate(parent, name, outline, z, material = dark, depth = 0.035) {
@@ -161,7 +98,12 @@ export function instrumentParts(api) {
         for (const sy of [-1, 1])
           screw(instrument, `${id}-screw-${sx}-${sy}`, sx * r, sy * r, -0.001, r * 0.055);
     }
-    mesh(instrument, `${id}-bezel`, new T.TorusGeometry(r, r * 0.065, 5, 24), bezel);
+    mesh(
+      instrument,
+      `${id}-bezel`,
+      new T.TorusGeometry(r, r * 0.065, type === 'horizon' ? 12 : 5, type === 'horizon' ? 64 : 24),
+      bezel,
+    );
     const face = mesh(
       instrument,
       `${id}-dial`,
@@ -193,29 +135,39 @@ export function instrumentParts(api) {
         r * 0.037,
       );
     });
-    text(instrument, `${id}-label`, label, 0, -r * 0.25, -0.008, r * 0.029);
-    text(instrument, `${id}-units`, units, 0, -r * 0.45, -0.008, r * 0.024);
+    // Keep captions above the bottom numerals on closed scales, and use the clear
+    // lower gap for units on open scales.
+    text(instrument, `${id}-label`, label, 0, -r * (sweep > 5 ? 0.15 : 0.25), -0.008, r * 0.029);
+    text(instrument, `${id}-units`, units, 0, -r * (sweep > 5 ? 0.35 : 0.62), -0.008, r * 0.024);
     if (type === 'horizon') {
       const ball = group(instrument, 'attitude-ball', [0, 0, -0.011]);
+      const radius = r * 0.72,
+        depth = r * 0.18;
+      const curvedLine = (name, y, width, thickness, material) => {
+        const points = Array.from({ length: 17 }, (_, i) => {
+          const x = (i / 16 - 0.5) * width;
+          return new T.Vector3(x, y, domeDepth(x, y, radius, depth) - thickness);
+        });
+        mesh(
+          ball,
+          name,
+          new T.TubeGeometry(new T.CatmullRomCurve3(points), 16, thickness, 6, false),
+          material,
+        );
+      };
       for (const [name, offset, material] of [
         ['sky', 0, blue],
         ['earth', Math.PI, brown],
       ]) {
-        const half = mesh(
-          ball,
-          `horizon-${name}`,
-          new T.CircleGeometry(r * 0.72, 36, offset, Math.PI),
-          material,
-        );
-        half.rotation.y = Math.PI;
+        mesh(ball, `horizon-${name}`, instrumentDome(radius, depth, offset, Math.PI), material);
       }
-      box(ball, 'horizon-line', [r * 1.4, r * 0.018, 0.001], [0, 0, -0.002], white);
+      curvedLine('horizon-line', 0, r * 1.4, r * 0.009, white);
       for (const pitch of [-2, -1, 1, 2]) {
-        box(
-          ball,
+        curvedLine(
           `pitch-mark-${pitch}`,
-          [r * (Math.abs(pitch) === 1 ? 0.55 : 0.38), r * 0.015, 0.001],
-          [0, pitch * r * 0.17, -0.004],
+          pitch * r * 0.17,
+          r * (Math.abs(pitch) === 1 ? 0.55 : 0.38),
+          r * 0.0075,
           paper,
         );
       }
@@ -224,14 +176,14 @@ export function instrumentParts(api) {
           instrument,
           `horizon-wing-${side}`,
           [r * 0.45, r * 0.035, 0.002],
-          [side * r * 0.29, 0, -0.018],
+          [side * r * 0.29, 0, -0.016 - depth],
           yellow,
         );
       box(
         instrument,
         'horizon-aircraft',
         [r * 0.06, r * 0.12, 0.002],
-        [0, -r * 0.04, -0.019],
+        [0, -r * 0.04, -0.017 - depth],
         yellow,
       );
     } else if (type === 'turn') {
@@ -283,11 +235,11 @@ export function instrumentParts(api) {
     const cover = mesh(
       instrument,
       `${id}-cover`,
-      new T.CircleGeometry(r * 0.94, 48),
+      type === 'horizon' ? instrumentDome(r * 0.94, r * 0.025) : new T.CircleGeometry(r * 0.94, 48),
       lens,
-      [0, 0, -0.023],
+      [0, 0, type === 'horizon' ? -0.022 - r * 0.18 : -0.023],
     );
-    cover.rotation.y = Math.PI;
+    if (type !== 'horizon') cover.rotation.y = Math.PI;
     return instrument;
   }
   function toggle(parent, name, position, label = '') {

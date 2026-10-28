@@ -16,7 +16,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-16,020 triangles; 39,788 vertices; 4 material groups; 1,627,408 bytes. Native bounds: -35.914, 0.000, -30.328 to 35.914, 282.550, 30.328. Source hash: `sha256:6b7cd97d005f7763a18bfdb9ff7371e591a827f41a491fa683147426cd24235e`.
+15,780 triangles; 39,788 vertices; 4 material groups; 1,624,528 bytes. Native bounds: -35.914, 0.000, -30.328 to 35.914, 282.550, 30.328. Source hash: `sha256:b0a2d2adfd5c440ce75290b51fa5a08aabd26b4b888da2d53f39f653c76f79ec`.
 
 {"up":"+Y","longitudinal":"+X southeast","front":"+Z southwest Wall Street","origin":"Ground-level mapped plot center at bank street datum"}
 

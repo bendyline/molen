@@ -1,5 +1,5 @@
 /** Rose Rayhaan's individually reconstructed exterior, meters, +Y up. */
-import { beam, loft, radialRing, sphere, torus } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing, sphere, torus } from './authored-structure-mesh.mjs';
 import { face, grid, localOutline, mappedSolid } from './signature-tower-expansion-models.mjs';
 import { box as boundsBox, tube } from './structure-mesh.mjs';
 
@@ -113,7 +113,7 @@ export function buildRose(out, m) {
   }
   for (const y of [240.6, 242.1, 243.6, 245.1]) {
     const edge = ring(y);
-    for (let i = 0; i < n; i++) beam(out, 'metal', edge[i], edge[(i + 1) % n], 0.16, 0.2, gold);
+    beamPath(out, 'metal', edge.slice(0, n), 0.16, 0.2, gold, true);
   }
   // Petals grow from a narrow bottom tip, expand across the taper, then meet
   // below the sculptural sphere. The silver leaf fields are distinct from the

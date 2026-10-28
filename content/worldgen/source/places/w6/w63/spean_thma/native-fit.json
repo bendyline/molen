@@ -1,0 +1,128 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "originMeters": 38.9785,
+  "ground": {
+    "xs": [
+      -19,
+      -10,
+      0,
+      10,
+      19
+    ],
+    "zs": [
+      -10,
+      -5,
+      0,
+      5,
+      10
+    ],
+    "heights": [
+      [
+        -0.8230828509113906,
+        -0.2996136616607856,
+        -0.16307872147207547,
+        -0.5487956897916604,
+        -1.2032981768944353
+      ],
+      [
+        -0.7999679146770404,
+        -0.26418965603185285,
+        -0.07810174001425452,
+        -0.40579313959119645,
+        -1.0553273306112487
+      ],
+      [
+        -0.8347916694032662,
+        -0.2464005810204668,
+        0,
+        -0.24232714718574755,
+        -0.8704592377781921
+      ],
+      [
+        -0.916983728558975,
+        -0.26995230143868554,
+        0.001294778955291065,
+        -0.14948107412158151,
+        -0.6860215096019857
+      ],
+      [
+        -1.0216206157538892,
+        -0.3020851267406428,
+        0.00810916145201901,
+        -0.08670199786925537,
+        -0.5049554142692187
+      ]
+    ]
+  },
+  "basis": "Named PMTiles Spean Thmor bridge POI17592756541329, about280m northeast of the older catalog coordinate, agrees with the21July2025 photo location. No exact-QID outline or dimensional survey is present. Heading follows the nearby older east-west road corridor and the inferred photo-facing south side; approximate rather than independently surveyed. The8-bay,16.8m visible-remnant interpretation and broken outer extent are provisional reconstruction controls; photographs establish stepped corbels, broken slabs and two root systems, not a measured complete bay schedule.",
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "url": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:1989e6aa97d987fca3d09b26e4bd004d78b67053bcf1ad0a9ff75b03c39efc77"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        13,
+        87
+      ],
+      "flattenedSubseaSamples": 0,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:825c2d2fee8a0651bac9c07fe3d949bb3f8ff01e18b866544dd3f6f021a4d4dd"
+    }
+  }
+}

@@ -2,9 +2,11 @@
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { prepareSurface } from './surface-normals.mjs';
 import { addBoatDetail, addCarDetail, addCycleDetail } from './vehicle-detail.mjs';
 
 export function fleetModel(s) {
+  let hull;
   const root = new T.Group();
   root.name = s.id;
   const body = new T.Group();
@@ -27,6 +29,7 @@ export function fleetModel(s) {
   const light = material('headlamps', '#f2d999');
   const red = material('tail-lamps', '#b83f38');
   function mesh(g, geometry, m, name = m.name) {
+    ({ geometry, material: m } = prepareSurface(geometry, m));
     const o = new T.Mesh(geometry, m);
     o.name = name;
     g.add(o);
@@ -252,26 +255,49 @@ export function fleetModel(s) {
         wheel(`wheel-${axle}-${side}`, x, z, r, W * 0.12);
   } else if (s.family === 'bicycle' || s.family === 'motorcycle') {
     const bike = s.family === 'bicycle';
+    const scooter = s.shape === 'motor-scooter';
     const r = s.wheelRadius;
     const wb = s.wheelbase;
     const back = [0, r, -wb / 2];
     const front = [0, r, wb / 2];
     const crank = [0, r * 0.85, -wb * 0.1];
     const saddle = [0, H * 0.78, -wb * 0.18];
-    const neck = [0, H * 0.78, wb * (s.shape === 'cargo-bicycle' ? 0.12 : 0.34)];
+    // A road frame's taller head tube keeps its drop bars on a short stem.
+    const neck = [
+      0,
+      H * (s.shape === 'road-bicycle' ? 0.88 : 0.78),
+      wb * (s.shape === 'cargo-bicycle' ? 0.12 : 0.34),
+    ];
     const radius = bike ? 0.028 : 0.055;
     wheel('wheel-front', 0, front[2], r, bike ? 0.06 : 0.16, bike);
     wheel('wheel-rear', 0, back[2], r, bike ? 0.06 : 0.2, bike);
-    for (const [a, b] of [
-      [back, saddle],
-      [back, crank],
-      [crank, saddle],
-      [crank, neck],
-      [saddle, neck],
-    ])
-      rod(body, a, b, radius, paint);
-    for (const x of [-0.1, 0.1])
-      rod(body, [x, r, front[2]], [x, neck[1], neck[2]], radius * 0.8, metal);
+    if (bike) {
+      // Diamond frame; the seat tube stops below the saddle and a seat post carries it.
+      const seatTop = crank.map((v, i) => v + (saddle[i] - v) * 0.78);
+      for (const [a, b] of [
+        [back, seatTop],
+        [back, crank],
+        [crank, seatTop],
+        [crank, neck],
+        [seatTop, neck],
+      ])
+        rod(body, a, b, radius, paint);
+      rod(body, seatTop, saddle, radius * 0.7, metal);
+    } else if (!scooter) {
+      // Motorcycle chassis under the tank: backbone and down tube from the steering head, a
+      // swingarm from behind the engine to the rear axle, twin shocks and a seat subframe.
+      const pivot = [0, r * 1.1, -wb * 0.14];
+      rod(body, neck, [0, H * 0.64, -wb * 0.14], radius * 0.8, dark);
+      rod(body, neck, [0, r * 0.95, wb * 0.12], radius * 0.8, dark);
+      for (const x of [-0.12, 0.12]) {
+        rod(body, [x, pivot[1], pivot[2]], [x, r, back[2]], 0.032, dark);
+        rod(body, [x, r * 1.3, back[2] + 0.1], [x, H * 0.67, -wb * 0.34], 0.03, metal);
+        rod(body, [x, H * 0.64, -wb * 0.14], [x, H * 0.69, -wb * 0.5], 0.02, dark);
+      }
+    }
+    if (!scooter)
+      for (const x of [-0.1, 0.1])
+        rod(body, [x, r, front[2]], [x, neck[1], neck[2]], radius * 0.8, metal);
     rod(body, neck, [0, H * 0.96, neck[2] - 0.04], radius, metal);
     const handlebar = new T.Group();
     handlebar.name = 'handlebar';
@@ -282,7 +308,31 @@ export function fleetModel(s) {
     rod(handlebar, [-W / 2, 0, -sweep], [W / 2, 0, -sweep], radius, metal);
     for (const x of [-W * 0.43, W * 0.43])
       box(handlebar, [W * 0.16, 0.055, 0.08], [x, 0, -sweep], dark);
-    box(body, [bike ? 0.2 : 0.35, 0.085, bike ? 0.28 : 0.62], saddle, dark, 'saddle');
+    // Saddles taper from a broad rear to a narrow nose instead of being a flat block.
+    const [, sy, sz] = saddle;
+    if (bike)
+      loft(
+        body,
+        [
+          [sz - 0.13, 0.085, sy - 0.025, sy + 0.03],
+          [sz - 0.03, 0.06, sy - 0.025, sy + 0.028],
+          [sz + 0.13, 0.022, sy - 0.02, sy + 0.018],
+        ],
+        dark,
+        'saddle',
+      );
+    else if (!scooter)
+      loft(
+        body,
+        [
+          [sz - 0.34, 0.13, sy - 0.04, sy + 0.03],
+          [sz - 0.12, 0.17, sy - 0.045, sy + 0.045],
+          [sz + 0.1, 0.16, sy - 0.045, sy + 0.04],
+          [sz + 0.27, 0.1, sy - 0.04, sy + 0.02],
+        ],
+        dark,
+        'saddle',
+      );
     if (bike) {
       const pedals = new T.Group();
       pedals.name = 'pedal-crank';
@@ -309,8 +359,77 @@ export function fleetModel(s) {
           box(body, [0.58, 0.38, 0.04], [0, r * 1.2 + 0.2, z + dz], deck);
       }
       if (s.shape === 'road-bicycle')
-        for (const x of [-W * 0.45, W * 0.45])
-          rod(handlebar, [x, 0, -sweep], [x, -H * 0.17, 0.1 - sweep], 0.024, dark);
+        // Drop bars: forward from the hoods, down through the hook and back to the drops.
+        for (const x of [-W * 0.45, W * 0.45]) {
+          const hook = [
+            [x, 0, -sweep],
+            [x, -0.015, 0.085 - sweep],
+            [x, -0.09, 0.105 - sweep],
+            [x, -0.15, 0.06 - sweep],
+            [x, -0.155, -0.04 - sweep],
+          ];
+          for (let i = 1; i < hook.length; i++) rod(handlebar, hook[i - 1], hook[i], 0.013, dark);
+        }
+    } else if (scooter) {
+      // Step-through scooter: floorboard between the wheels, a curved leg shield and apron in
+      // front, and a cowl over the engine and rear wheel carrying the seat.
+      const floorY = 0.3;
+      box(body, [0.42, 0.16, 0.62], [0, floorY - 0.08, 0.05], paint, 'floorboard');
+      for (let i = -2; i <= 2; i++)
+        box(body, [0.34, 0.008, 0.025], [0, floorY + 0.004, 0.05 + i * 0.11], dark);
+      const shield = loft(
+        body,
+        [
+          [floorY - 0.02, 0.21, -0.43, -0.35],
+          [0.62, 0.23, -0.46, -0.38],
+          [0.96, 0.19, -0.51, -0.43],
+          [1.09, 0.09, -0.54, -0.47],
+        ],
+        paint,
+        'leg-shield',
+      );
+      shield.rotation.x = -Math.PI / 2;
+      box(body, [0.07, 0.28, 0.04], [0, 0.82, 0.54], metal, 'horn-cover');
+      loft(
+        body,
+        [
+          [-0.08, 0.16, 0.3, 0.88],
+          [-0.3, 0.205, 0.34, 0.9],
+          [-0.55, 0.21, 0.4, 0.89],
+          [-0.78, 0.16, 0.5, 0.85],
+          [-0.93, 0.07, 0.62, 0.79],
+        ],
+        paint,
+        'engine-cowl',
+      );
+      loft(
+        body,
+        [
+          [-0.06, 0.14, 0.87, 0.95],
+          [-0.3, 0.175, 0.89, 0.985],
+          [-0.55, 0.17, 0.89, 0.98],
+          [-0.78, 0.13, 0.85, 0.94],
+        ],
+        dark,
+        'saddle',
+      );
+      // Single-sided front link, enclosed engine/swingarm unit, side exhaust and grab rail.
+      rod(body, [0.075, r, front[2]], [0.075, 0.68, 0.53], 0.03, metal);
+      rod(body, [0.075, 0.68, 0.53], neck, 0.035, metal);
+      const fender = mesh(body, new T.TorusGeometry(r * 1.15, 0.03, 4, 16, Math.PI * 0.8), paint);
+      fender.rotation.set(0, Math.PI / 2, Math.PI * 0.12);
+      fender.position.set(0, r, front[2]);
+      fender.scale.z = 3.4;
+      box(body, [0.1, 0.15, 0.48], [0.13, 0.27, -0.47], dark, 'engine-unit');
+      rod(body, [-0.16, 0.25, -0.24], [-0.17, 0.32, -0.84], 0.055, metal);
+      rod(body, [-0.17, 0.32, -0.84], [-0.17, 0.33, -0.9], 0.03, dark);
+      const rail = [
+        [0.17, 0.92, -0.62],
+        [0.15, 0.95, -0.86],
+        [-0.15, 0.95, -0.86],
+        [-0.17, 0.92, -0.62],
+      ];
+      for (let i = 1; i < rail.length; i++) rod(body, rail[i - 1], rail[i], 0.014, metal);
     } else {
       for (const side of [-1, 1])
         box(body, [0.17, 0.04, 0.14], [side * 0.26, r * 0.9, -wb * 0.08], dark, 'footrest');
@@ -335,86 +454,308 @@ export function fleetModel(s) {
       box(body, [0.25, 0.06, 0.38], [0, H * 0.7, -wb * 0.42], paint, 'rear-tail');
       rod(body, [0, H * 0.7, -wb * 0.5], [0, H * 0.68, -wb * 0.52], 0.03, dark);
       rod(body, [-0.23, r * 0.7, -wb * 0.46], [-0.23, r * 0.9, 0.25], 0.06, metal);
-      if (s.shape === 'motor-scooter') {
-        box(body, [0.38, 0.11, 0.63], [0, r * 0.9, 0.04], paint);
-        box(body, [0.48, H * 0.45, 0.12], [0, H * 0.5, neck[2]], paint);
-      }
       if (s.shape === 'cruiser-motorcycle')
         for (const x of [-0.25, 0.25])
           box(body, [0.2, 0.3, 0.42], [x, r * 1.65, -wb * 0.39], dark, 'pannier');
     }
-    box(
-      body,
-      [bike ? 0.055 : 0.18, bike ? 0.055 : 0.16, 0.07],
-      [0, H * 0.84, neck[2] + 0.08],
-      light,
+    // Round headlamp in a shell; a scooter carries it in the handlebar cowl, turning with it.
+    const lamp = bike ? 0.032 : 0.085;
+    const lampAt = scooter ? [0, 0.03, 0.06] : [0, H * 0.84, neck[2] + 0.08];
+    const lampGroup = scooter ? handlebar : body;
+    const shell = mesh(
+      lampGroup,
+      new T.CylinderGeometry(lamp, lamp * 0.78, lamp * 1.3, 16).rotateX(Math.PI / 2),
+      scooter ? paint : dark,
     );
-    box(body, [0.09, 0.055, 0.04], [0, H * 0.68, -wb * 0.52], red);
+    shell.position.set(...lampAt);
+    const lens = mesh(lampGroup, new T.CircleGeometry(lamp * 0.88, 16), light);
+    lens.position.set(lampAt[0], lampAt[1], lampAt[2] + lamp * 0.66);
+    box(body, [0.09, 0.055, 0.04], scooter ? [0, 0.76, -0.935] : [0, H * 0.68, -wb * 0.52], red);
   } else {
     const big = L > 50;
     const ferry = s.shape.includes('ferry');
     const deckY = s.freeboard;
     const draft = s.draft;
-    // Keel narrows below the waterline; bow tapers to a narrow stem, never a rectangular barge.
-    const outline = [
-      [-L / 2, W * 0.36],
-      [-L * 0.38, W / 2],
-      [L * 0.26, W / 2],
-      [L * 0.43, W * 0.3],
-      [L / 2, W * 0.025],
-    ];
-    const sheer = (z) => Math.max(0, (z / L - 0.26) / 0.24) * Math.min(0.35, deckY * 0.25);
-    // A chine and narrow keel create hull volume, rather than stacking rectangular slabs.
-    const sections = outline.map(([z, w]) => [
-      [-w, deckY + sheer(z), z],
-      [-w * 0.9, 0, z],
-      [-w * 0.22, -draft, z],
-      [w * 0.22, -draft, z],
-      [w * 0.9, 0, z],
-      [w, deckY + sheer(z), z],
-    ]);
-    for (const [name, material, edges] of [
-      ['hull', paint, [0, 4]],
-      ['underwater-hull', dark, [1, 2, 3]],
-    ]) {
+    // Hull form per type. transom: stern width / beam; entry: where the bow starts to narrow
+    // (fraction of length from the stern); fullness: plan exponent of the bow (higher is fuller);
+    // rake: how far the stem leans forward of the forefoot (fraction of length); flare: topside
+    // widening above the waterline at the bow; deadrise: bottom V angle (rad); bilge: depth of the
+    // bilge turn (fraction of draft); bowRise/sternRise: sheer above the bulwark (m); bulwark:
+    // solid rail above the deck (m); canoe: hull-body draft when a fin keel carries the rest
+    // (fraction of draft); deckColor: deck paint.
+    const HULLS = {
+      'bulk-carrier': {
+        transom: 0.86,
+        entry: 0.72,
+        fullness: 2.6,
+        rake: 0.05,
+        flare: 0.05,
+        deadrise: 0,
+        bilge: 0.86,
+        bowRise: 2.6,
+        sternRise: 1.2,
+        bulwark: 1.2,
+        deckColor: '#8a3f32',
+      },
+      'container-ship': {
+        transom: 0.88,
+        entry: 0.66,
+        fullness: 2.1,
+        rake: 0.06,
+        flare: 0.08,
+        deadrise: 0.02,
+        bilge: 0.8,
+        bowRise: 2.8,
+        sternRise: 1,
+        bulwark: 1.2,
+        deckColor: '#6f7d74',
+      },
+      'car-ferry': {
+        transom: 0.6,
+        entry: 0.82,
+        fullness: 2,
+        rake: 0.03,
+        flare: 0.05,
+        deadrise: 0.06,
+        bilge: 0.7,
+        bowRise: 0.5,
+        sternRise: 0,
+        bulwark: 0.9,
+        doubleEnded: true,
+        deckColor: '#7b8084',
+      },
+      'passenger-ferry': {
+        transom: 0.82,
+        entry: 0.7,
+        fullness: 1.9,
+        rake: 0.06,
+        flare: 0.06,
+        deadrise: 0.12,
+        bilge: 0.6,
+        bowRise: 0.45,
+        sternRise: 0,
+        bulwark: 0.25,
+        deckColor: '#8a8f90',
+      },
+      'fishing-boat': {
+        transom: 0.72,
+        entry: 0.58,
+        fullness: 1.7,
+        rake: 0.1,
+        flare: 0.16,
+        deadrise: 0.26,
+        bilge: 0.45,
+        bowRise: 0.75,
+        sternRise: 0.15,
+        bulwark: 0.5,
+        deckColor: '#8e9497',
+      },
+      tugboat: {
+        transom: 0.78,
+        entry: 0.62,
+        fullness: 1.9,
+        rake: 0.07,
+        flare: 0.14,
+        deadrise: 0.16,
+        bilge: 0.55,
+        bowRise: 1,
+        sternRise: 0,
+        bulwark: 0.6,
+        deckColor: '#81878a',
+      },
+      speedboat: {
+        transom: 0.84,
+        entry: 0.5,
+        fullness: 1.45,
+        rake: 0.2,
+        flare: 0.1,
+        deadrise: 0.38,
+        bilge: 0.12,
+        bowRise: 0.22,
+        sternRise: 0,
+        bulwark: 0.08,
+        deckColor: '#ae8963',
+      },
+      sailboat: {
+        transom: 0.62,
+        entry: 0.48,
+        fullness: 1.6,
+        rake: 0.1,
+        flare: 0.05,
+        deadrise: 0.3,
+        bilge: 0.5,
+        bowRise: 0.2,
+        sternRise: 0.05,
+        bulwark: 0.06,
+        canoe: 0.35,
+        deckColor: '#ae8963',
+      },
+    };
+    const P = HULLS[s.shape];
+    const hullDraft = draft * (P.canoe ?? 1);
+    const smooth = (t) => t * t * (3 - 2 * t);
+    // Plan view runs from the stern (0) to the stem (1); a double-ended ferry has two bows.
+    const bowness = (z) => {
+      const u = (z + L / 2) / L;
+      const v = Math.max(0, (u - P.entry) / (1 - P.entry));
+      const back = P.doubleEnded ? Math.max(0, (1 - u - P.entry) / (1 - P.entry)) : 0;
+      return Math.max(v, back);
+    };
+    const deckHalf = (z) => {
+      const u = (z + L / 2) / L;
+      const stern = P.doubleEnded ? 1 : P.transom + (1 - P.transom) * smooth(Math.min(1, u / 0.2));
+      return (W / 2) * stern * Math.max(0, 1 - Math.pow(bowness(z), P.fullness));
+    };
+    const flareAt = (z) => P.flare * (0.3 + 0.7 * bowness(z));
+    const sheerAt = (z) => {
+      const u = (z + L / 2) / L;
+      return (
+        deckY +
+        P.bulwark +
+        P.bowRise * Math.pow(bowness(z), 1.5) +
+        P.sternRise * Math.max(0, 1 - u / 0.15)
+      );
+    };
+    // The stem rakes forward: lower points of each bow station sit aft of its gunwale.
+    const rakeShift = (z, y) =>
+      -P.rake * L * smooth(bowness(z)) * Math.min(1, (sheerAt(z) - y) / (sheerAt(z) + hullDraft));
+    const stationCount = Math.max(16, Math.min(28, Math.round(L / 2)));
+    const zs = Array.from({ length: stationCount + 1 }, (_, i) => -L / 2 + (L * i) / stationCount);
+    // Half section from keel to gunwale: keel, bottom, bilge, waterline, boot-top, topside, gunwale.
+    const bootTop = Math.min(0.6, Math.max(0.06, deckY * 0.08));
+    const section = (z) => {
+      const g = deckHalf(z),
+        b = g / (1 + flareAt(z)),
+        d = hullDraft * (1 - 0.35 * smooth(bowness(z)));
+      const bottomY = Math.min(-d * P.bilge, -d + 0.5 * b * Math.tan(P.deadrise));
+      const topside = [(b + g) / 2 + (g - b) * 0.1, deckY * 0.55];
+      const points = [
+        [Math.min(0.03 * W, b * 0.1), -d],
+        [0.5 * b, bottomY],
+        [0.93 * b, -d * P.bilge],
+        [b, 0],
+        [b + ((topside[0] - b) * bootTop) / topside[1], bootTop],
+        topside,
+        [g, sheerAt(z)],
+      ];
+      return points.map(([x, y]) => [x, y, z + rakeShift(z, y)]);
+    };
+    const sections = zs.map(section);
+    const surface = (name, material, edges) => {
       const positions = [];
-      for (let j = 0; j < sections.length - 1; j++)
-        for (const k of edges) {
-          const a = sections[j][k],
-            b = sections[j][k + 1];
-          const c = sections[j + 1][k],
-            d = sections[j + 1][k + 1];
-          positions.push(...a, ...b, ...d, ...a, ...d, ...c);
-        }
+      for (const k of edges)
+        for (const m of [-1, 1])
+          for (let j = 0; j < sections.length - 1; j++) {
+            const [a, b, c, d] = [
+              sections[j][k],
+              sections[j][k + 1],
+              sections[j + 1][k],
+              sections[j + 1][k + 1],
+            ].map(([x, y, z]) => [x * m, y, z]);
+            if (m > 0) positions.push(...a, ...b, ...d, ...a, ...d, ...c);
+            else positions.push(...a, ...d, ...b, ...a, ...c, ...d);
+          }
       const geometry = new T.BufferGeometry();
       geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
       geometry.computeVertexNormals();
-      mesh(body, geometry, material, name);
+      return mesh(body, geometry, material, name);
+    };
+    const antifouling = material('antifouling', big ? '#7c3b31' : '#3a3f42', 0, 0.85);
+    surface('underwater-hull', antifouling, [0, 1, 2]);
+    // Boot-top: a dark band at the waterline, as painted on working hulls.
+    surface('boot-top', dark, [3]);
+    surface('hull', paint, [4, 5]);
+    if (!P.doubleEnded) {
+      const stern = sections[0];
+      const outline = [...stern.map(([x, y, z]) => [-x, y, z]).reverse(), ...stern];
+      const positions = [];
+      for (let k = 1; k < outline.length - 1; k++)
+        positions.push(...outline[0], ...outline[k + 1], ...outline[k]);
+      const geometry = new T.BufferGeometry();
+      geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+      geometry.computeVertexNormals();
+      mesh(body, geometry, paint, 'transom');
     }
-    // Transom and stem caps.
-    for (const [j, reverse] of [
-      [0, true],
-      [sections.length - 1, false],
-    ]) {
-      const positions = [],
-        points = sections[j];
-      for (let k = 1; k < points.length - 1; k++)
-        positions.push(
-          ...points[0],
-          ...points[reverse ? k + 1 : k],
-          ...points[reverse ? k : k + 1],
+    // Deck plating inside the bulwarks, the bulwarks' inner faces and a cap rail along the sheer.
+    const deckMaterial = material('deck', P.deckColor, 0, 0.8);
+    const inset = Math.min(0.25, W * 0.012 + 0.03);
+    const deckPositions = [],
+      bulwarkPositions = [];
+    for (let j = 0; j < zs.length - 1; j++) {
+      const [z0, z1] = [zs[j], zs[j + 1]];
+      const [w0, w1] = [Math.max(0, deckHalf(z0) - inset), Math.max(0, deckHalf(z1) - inset)];
+      const [s0, s1] = [sheerAt(z0), sheerAt(z1)];
+      deckPositions.push(-w0, deckY, z0, w1, deckY, z1, w0, deckY, z0);
+      deckPositions.push(-w0, deckY, z0, -w1, deckY, z1, w1, deckY, z1);
+      for (const m of [-1, 1]) {
+        const quad = [
+          [m * w0, deckY, z0],
+          [m * w0, s0, z0],
+          [m * w1, s1, z1],
+          [m * w1, deckY, z1],
+        ];
+        if (m > 0) quad.reverse();
+        bulwarkPositions.push(
+          ...quad[0],
+          ...quad[1],
+          ...quad[2],
+          ...quad[0],
+          ...quad[2],
+          ...quad[3],
         );
+      }
+    }
+    for (const [positions, mat, name] of [
+      [deckPositions, deckMaterial, 'deck'],
+      [bulwarkPositions, cream, 'bulwark-lining'],
+    ]) {
       const geometry = new T.BufferGeometry();
       geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
       geometry.computeVertexNormals();
-      mesh(body, geometry, paint, 'transom-and-stem');
+      mesh(body, geometry, mat, name);
     }
-    loft(
-      body,
-      outline.map(([z, w]) => [z, w, deckY + sheer(z), deckY + 0.08 + sheer(z)]),
-      deck,
-      'deck',
-    );
+    const capRadius = Math.min(0.18, Math.max(0.025, W * 0.008));
+    for (const m of [-1, 1]) {
+      const rail = zs
+        .filter((z) => deckHalf(z) > capRadius)
+        .map((z) => [m * (deckHalf(z) - capRadius * 0.6), sheerAt(z) + capRadius * 0.4, z]);
+      for (let j = 1; j < rail.length; j++) rod(body, rail[j - 1], rail[j], capRadius, cream, 6);
+    }
+    if (s.shape === 'sailboat') {
+      // Fin keel and spade rudder carry the declared draft below a shallow canoe body.
+      box(
+        body,
+        [0.16, draft - hullDraft + 0.15, L * 0.14],
+        [0, -(draft + hullDraft) / 2 + 0.05, -L * 0.02],
+        antifouling,
+        'fin-keel',
+      );
+      box(body, [0.32, 0.22, L * 0.18], [0, -draft + 0.11, -L * 0.03], dark, 'keel-bulb');
+      box(
+        body,
+        [0.08, hullDraft * 1.6, L * 0.06],
+        [0, -hullDraft * 0.75, -L * 0.42],
+        antifouling,
+        'rudder',
+      );
+    }
+    // Hull queries for the close-view fittings (cleats, lights, lettering).
+    hull = {
+      deckAt: (z) => deckHalf(z) - inset,
+      sheerAt,
+      sideAt(z, y) {
+        const points = section(z);
+        for (let k = 1; k < points.length; k++) {
+          const [x0, y0] = points[k - 1],
+            [x1, y1] = points[k];
+          if (y >= y0 && y <= y1) {
+            const t = y1 > y0 ? (y - y0) / (y1 - y0) : 0;
+            return { x: x0 + (x1 - x0) * t, tilt: Math.atan2(x1 - x0, y1 - y0) };
+          }
+        }
+        return { x: points.at(-1)[0], tilt: 0 };
+      },
+    };
     const cabin = (z, len, width, y, height) => {
       const windowHeight = Math.min(1.4, height * 0.65);
       const sill = height - windowHeight;
@@ -438,6 +779,33 @@ export function fleetModel(s) {
             ],
             cream,
           );
+      if (big && sill > 4) {
+        // Accommodation decks below the bridge: a row of cabin windows on every face per deck.
+        for (let level = y + 1.4; level < y + sill - 0.8; level += 2.8) {
+          for (let i = 0; i < Math.floor(width / 2.4); i++)
+            for (const face of [-1, 1])
+              box(
+                body,
+                [1.1, 0.75, 0.06],
+                [-width / 2 + 1.2 + i * 2.4, level, z + face * (len / 2 + 0.02)],
+                dark,
+              );
+          for (let i = 0; i < Math.floor(len / 2.4); i++)
+            for (const face of [-1, 1])
+              box(
+                body,
+                [0.06, 0.75, 1.1],
+                [face * (width / 2 + 0.02), level, z - len / 2 + 1.2 + i * 2.4],
+                dark,
+              );
+        }
+        // Bridge wings reach the ship's sides so the bridge can see down them.
+        box(body, [W * 0.96, 0.3, len * 0.28], [0, y + sill - 0.12, z + len * 0.32], cream);
+        // Funnel aft of the bridge, in hull color with a dark top.
+        const funnelZ = z - len * 0.28;
+        box(body, [W * 0.13, 6, W * 0.17], [0, y + height + 3, funnelZ], paint, 'funnel');
+        box(body, [W * 0.135, 1, W * 0.175], [0, y + height + 5.6, funnelZ], dark);
+      }
     };
     if (s.shape === 'container-ship') {
       cabin(-L * 0.35, L * 0.14, W * 0.79, deckY, H * 0.54);
@@ -461,10 +829,11 @@ export function fleetModel(s) {
             o.geometry.setAttribute('color', new T.Float32BufferAttribute(values, 3));
           }
     } else if (s.shape === 'bulk-carrier') {
+      const hatchCover = material('hatch-covers', '#5d6a63', 0.2, 0.6);
       cabin(-L * 0.36, L * 0.13, W * 0.72, deckY, H * 0.55);
       for (let j = 0; j < 4; j++) {
         const z = -L * 0.18 + j * L * 0.15;
-        box(body, [W * 0.76, 0.9, L * 0.12], [0, deckY + 0.45, z], dark, 'hatch');
+        box(body, [W * 0.76, 0.9, L * 0.12], [0, deckY + 0.45, z], hatchCover, 'hatch');
         rod(body, [-W * 0.33, deckY, z], [-W * 0.33, deckY + H * 0.5, z], 0.35, cream);
         rod(
           body,
@@ -519,28 +888,38 @@ export function fleetModel(s) {
           dark,
           'exhaust',
         );
-        for (const x of [-W * 0.5, W * 0.5])
-          for (const z of [-L * 0.25, 0, L * 0.25])
-            box(body, [W * 0.08, 0.7, 0.7], [x, deckY * 0.5, z], dark, 'fender');
+        // A tug works by pushing: a rubber fender belt runs along the sheer and round the bow,
+        // with tire fenders hung on the topsides below it.
+        for (const m of [-1, 1]) {
+          const belt = zs
+            .filter((z) => hull.deckAt(z) > 0.3)
+            .map((z) => [m * (hull.sideAt(z, deckY * 0.85).x + 0.12), deckY * 0.85, z]);
+          for (let j = 1; j < belt.length; j++) rod(body, belt[j - 1], belt[j], 0.2, dark, 6);
+          for (const z of [-L * 0.3, -L * 0.12, L * 0.18]) {
+            const tire = mesh(body, new T.TorusGeometry(0.42, 0.17, 6, 12), dark, 'fender');
+            tire.rotation.y = Math.PI / 2;
+            tire.position.set(m * (hull.sideAt(z, deckY * 0.4).x + 0.18), deckY * 0.4, z);
+          }
+        }
       } else {
         rod(body, [-W * 0.33, deckY, L * 0.18], [-W * 0.33, H * 0.7, L * 0.18], 0.055, metal);
         rod(body, [-W * 0.33, H * 0.7, L * 0.18], [W * 0.3, H * 0.7, L * 0.18], 0.055, metal);
       }
     }
     if (s.shape !== 'sailboat' && s.shape !== 'speedboat') {
+      // Guard rails stand on the bulwark cap and follow the deck edge into the bow.
+      const railH = big ? 1.1 : 0.55;
       for (const side of [-1, 1]) {
-        const x = side * W * 0.43;
-        const railY = deckY + (big ? 1.1 : 0.55);
-        rod(body, [x, railY, -L * 0.35], [x, railY, L * 0.28], big ? 0.065 : 0.025, cream);
-        for (let k = 0; k < 7; k++)
-          rod(
-            body,
-            [x, deckY, -L * 0.35 + k * L * 0.105],
-            [x, railY, -L * 0.35 + k * L * 0.105],
-            big ? 0.05 : 0.02,
-            cream,
-            4,
-          );
+        const stations = Array.from({ length: 8 }, (_, k) => -L * 0.4 + k * L * 0.105);
+        const top = stations.map((z) => [
+          side * (hull.deckAt(z) - 0.02),
+          hull.sheerAt(z) + railH,
+          z,
+        ]);
+        for (let k = 1; k < top.length; k++)
+          rod(body, top[k - 1], top[k], big ? 0.065 : 0.025, cream);
+        for (const [x, y, z] of top)
+          rod(body, [x, hull.sheerAt(z), z], [x, y, z], big ? 0.05 : 0.02, cream, 4);
       }
     }
   }
@@ -571,6 +950,6 @@ export function fleetModel(s) {
   consolidate(root);
   if (s.family === 'car') addCarDetail(root, s);
   else if (s.family === 'bicycle' || s.family === 'motorcycle') addCycleDetail(root, s);
-  else addBoatDetail(root, s);
+  else addBoatDetail(root, { ...s, hull });
   return root;
 }

@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.11_foot_8_bridge",
+  "kind": "static-structure",
+  "title": "11 foot 8 / Gregson Street Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.11_foot_8_bridge",
+        "output": "assets/places/dn/dnr/11_foot_8_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9afdbabd0323fd559a6f0097299080c4ebaba540dd322a0bbaab7499b86bb030"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-eleven-foot-eight.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/eleven-foot-eight-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

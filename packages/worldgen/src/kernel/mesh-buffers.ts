@@ -132,6 +132,46 @@ export class MeshBufferBuilder {
     else part.indices.push(a, c, b, a, d, c);
   }
 
+  /**
+   * A flat indexed mesh (glyph outlines: x, y, 0 triples) laid in the plane z = origin[2] at
+   * origin's x, y. Vertices are shared as the source shares them, so each is emitted once
+   * rather than once per triangle; each triangle is wound to face `n`.
+   */
+  addFlatMesh(
+    slot: MaterialSlot,
+    ref: string,
+    positions: ArrayLike<number>,
+    indices: ArrayLike<number>,
+    origin: Vec3,
+    n: Vec3,
+    color: RGB,
+  ): void {
+    const part = this.part(slot, ref);
+    const base = part.positions.length / 3;
+    const [ox, oy, oz] = origin;
+    const r = toByte(color[0]);
+    const g = toByte(color[1]);
+    const b = toByte(color[2]);
+    for (let i = 0; i + 2 < positions.length; i += 3) {
+      part.positions.push(ox + (positions[i] as number), oy + (positions[i + 1] as number), oz);
+      part.normals.push(n[0], n[1], n[2]);
+      part.uvs.push(0, 0);
+      part.colors.push(r, g, b);
+    }
+    for (let i = 0; i + 2 < indices.length; i += 3) {
+      const ia = indices[i] as number;
+      const ib = indices[i + 1] as number;
+      const ic = indices[i + 2] as number;
+      const ax = positions[ia * 3] as number;
+      const ay = positions[ia * 3 + 1] as number;
+      const cross =
+        ((positions[ib * 3] as number) - ax) * ((positions[ic * 3 + 1] as number) - ay) -
+        ((positions[ib * 3 + 1] as number) - ay) * ((positions[ic * 3] as number) - ax);
+      if (cross * n[2] >= 0) part.indices.push(base + ia, base + ib, base + ic);
+      else part.indices.push(base + ia, base + ic, base + ib);
+    }
+  }
+
   /** Fan-triangulate a convex polygon (used for gable pentagons). */
   addConvexPolygon(
     slot: MaterialSlot,

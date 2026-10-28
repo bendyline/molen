@@ -47,6 +47,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `boat` | kernel/boats | Waterline-aligned powered hull with data-driven handling and shared seats. |
 | `boatInput` | kernel/boats | Helm intent: signed thrust, steering and low-speed anchor. Only the driver controls it. |
 | `boatState` | kernel/boats | Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats. |
+| `boostMode` | kernel | World-wide 4× travel assist for people and vehicles. Control response times stay normal. |
 | `character` | kernel/character | Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). |
 | `collider` | kernel/kinematics | 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. |
 | `collider3d` | physics-rapier | 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. |
@@ -63,6 +64,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `kinematicBody` | kernel/kinematics | Velocity-driven body for the kinematic collision layer. |
 | `lifetime` | kernel | Auto-despawn countdown in ticks. |
 | `light` | client | A light source at the entity transform (directional/point/spot). |
+| `livery` | client | Reusable model paint slots, bound surface markings and selectable liveries. Visual only. |
 | `localTransform` | kernel/gameplay | Parent-relative transform for entities carrying `parent`. |
 | `model.signals` | client | Bind same-entity simulation fields and named numeric expressions to GLB transforms and visibility. Supports calibration, cyclic needles and timed response. Visual only; no physics writes. |
 | `mountable` | kernel/vehicles | Mount points in local meters, ordered safe exit candidates, and interaction reach. Seat position is the rider camera anchor. |
@@ -152,6 +154,10 @@ Required: `kind`, `type`, `lane`, `s`, `speed`, `seed`, `length`, `width`, `stat
       "type": "number",
       "minimum": 0,
       "description": "Speed along the lane in m/s."
+    },
+    "boosted": {
+      "description": "Lane speed includes the 4× travel boost.",
+      "type": "boolean"
     },
     "cruise": {
       "type": "number",
@@ -1838,6 +1844,12 @@ Required: none
                   "minimum": 0,
                   "maximum": 1
                 },
+                "referenceElevation": {
+                  "description": "Sun elevation in degrees whose sunlit-ground brightness is kept as the sun climbs higher: above it, sun and sky light scale down together so a level surface in sun receives the same light, as a camera adapts its exposure. Omit for constant light, which renders midday ground brighter than its authored color.",
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 90
+                },
                 "castShadow": {
                   "description": "Sun shadows; also requires environment.shadows. Default true.",
                   "type": "boolean"
@@ -2071,6 +2083,12 @@ Required: none
                   "type": "number",
                   "minimum": 0,
                   "maximum": 1
+                },
+                "referenceElevation": {
+                  "description": "Sun elevation in degrees whose sunlit-ground brightness is kept as the sun climbs higher: above it, sun and sky light scale down together so a level surface in sun receives the same light, as a camera adapts its exposure. Omit for constant light, which renders midday ground brighter than its authored color.",
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 90
                 },
                 "castShadow": {
                   "description": "Sun shadows; also requires environment.shadows. Default true.",
@@ -2412,6 +2430,418 @@ Required: `type`
   },
   "required": [
     "type"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `livery`
+
+Reusable model paint slots, bound surface markings and selectable liveries. Visual only.
+
+Required: `selected`, `slots`, `variants`
+
+```json
+{
+  "selected": "red",
+  "slots": {
+    "body": {
+      "materials": [
+        "body-paint"
+      ]
+    }
+  },
+  "variants": [
+    {
+      "id": "red",
+      "label": "Red",
+      "provenance": {
+        "kind": "original",
+        "note": "Original paint.",
+        "references": []
+      },
+      "paints": {
+        "body": {
+          "color": "#b8463d"
+        }
+      }
+    }
+  ]
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "selected": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Selected variant id; patch only this field to change the livery."
+    },
+    "slots": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "materials": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "description": "Exact glTF material names belonging to this paint region."
+          },
+          "node": {
+            "description": "Optional named glTF subtree restricting this region.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "materials"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Stable paint regions bound to named model materials."
+    },
+    "anchors": {
+      "description": "Reusable marking projectors attached to model paint regions.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "slot": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "description": "Paint region receiving the projected marking."
+          },
+          "position": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "Projector center as fractions of the region bounds, measured from their minimum corner."
+          },
+          "size": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 4
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 4
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 4
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "Projector width, height and depth as fractions of the longest region dimension."
+          },
+          "rotation": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "XYZ Euler rotation in radians; local positive Z points out of the surface."
+          }
+        },
+        "required": [
+          "slot",
+          "position",
+          "size",
+          "rotation"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "variants": {
+      "minItems": 1,
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "description": "Stable identifier used by selected."
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "description": "Display name for this livery."
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "photo",
+                  "inspired",
+                  "original"
+                ],
+                "description": "Whether the appearance is photograph verified, reference inspired or an original design."
+              },
+              "note": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Attribution, verification scope and any deliberate approximations."
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "Human-readable reference title."
+                    },
+                    "url": {
+                      "type": "string",
+                      "pattern": "^https?:\\/\\/[^\\s]+$",
+                      "description": "HTTP or HTTPS source URL."
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "url"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Public references supporting the appearance; required for photo and inspired designs."
+              }
+            },
+            "required": [
+              "kind",
+              "note",
+              "references"
+            ],
+            "additionalProperties": false,
+            "description": "Evidence and authorship for the appearance."
+          },
+          "paints": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$",
+                  "description": "Base paint color as an sRGB hex triplet."
+                },
+                "roughness": {
+                  "description": "Optional material roughness override.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "metalness": {
+                  "description": "Optional material metalness override.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "camouflage": {
+                  "description": "Optional camouflage projected in model space without changing authored UVs.",
+                  "type": "object",
+                  "properties": {
+                    "colors": {
+                      "minItems": 2,
+                      "maxItems": 4,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "description": "Two to four colors for deterministic camouflage patches."
+                    },
+                    "scale": {
+                      "type": "number",
+                      "exclusiveMinimum": 0,
+                      "maximum": 100,
+                      "description": "Pattern repetitions across the longest paint-region dimension."
+                    },
+                    "seed": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 4294967295,
+                      "description": "Unsigned deterministic pattern seed."
+                    }
+                  },
+                  "required": [
+                    "colors",
+                    "scale",
+                    "seed"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "color"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Paint overrides keyed by stable paint-region name; omitted regions retain their authored appearance."
+          },
+          "markings": {
+            "description": "Surface markings to project for this variant.",
+            "maxItems": 32,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "anchor": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "description": "Reusable model marking anchor."
+                },
+                "graphic": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "description": "Optional descriptive label; rendered lettering belongs in the polygon artwork.",
+                      "type": "string",
+                      "maxLength": 256
+                    },
+                    "shapes": {
+                      "minItems": 1,
+                      "maxItems": 4096,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$",
+                            "description": "Flat polygon color as an sRGB hex triplet."
+                          },
+                          "points": {
+                            "minItems": 3,
+                            "maxItems": 512,
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "prefixItems": [
+                                {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 1
+                                },
+                                {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 1
+                                }
+                              ],
+                              "items": false,
+                              "minItems": 2,
+                              "maxItems": 2
+                            },
+                            "description": "Polygon vertices in normalized 0–1 coordinates with positive Y upward."
+                          }
+                        },
+                        "required": [
+                          "color",
+                          "points"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "description": "Original flat artwork polygons, painted in order."
+                    }
+                  },
+                  "required": [
+                    "shapes"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Resolution-independent artwork rasterized for the surface projector."
+                }
+              },
+              "required": [
+                "anchor",
+                "graphic"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "provenance",
+          "paints"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Available livery recipes for this model."
+    }
+  },
+  "required": [
+    "selected",
+    "slots",
+    "variants"
   ],
   "additionalProperties": false
 }
@@ -3546,6 +3976,40 @@ Required: `mode`, `speed`, `strideRate`, `phaseAt`, `phaseAtTick`, `modeAtTick`
 
 ## Owner: kernel
 
+### `boostMode`
+
+World-wide 4× travel assist for people and vehicles. Control response times stay normal.
+
+Required: `enabled`
+
+```json
+{
+  "enabled": true
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Enable 4× travel speed for people and vehicles."
+    }
+  },
+  "required": [
+    "enabled"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
 ### `lifetime`
 
 Auto-despawn countdown in ticks.
@@ -4052,6 +4516,26 @@ Required: `kind`, `spec`
           "description": "Single engine, implicitly named main. Supply exactly one of engine or engines.",
           "type": "object",
           "properties": {
+            "mixtureControl": {
+              "description": "Manual piston mixture; omitted leaves fuel scheduling automatic.",
+              "type": "boolean"
+            },
+            "propellerControl": {
+              "description": "Constant-speed propeller; the lever selects RPM and the governor varies pitch.",
+              "type": "object",
+              "properties": {
+                "minRpm": {
+                  "type": "number",
+                  "minimum": 0.3,
+                  "maximum": 0.95,
+                  "description": "Minimum governed RPM as a fraction of rated propeller RPM."
+                }
+              },
+              "required": [
+                "minRpm"
+              ],
+              "additionalProperties": false
+            },
             "propulsion": {
               "description": "Installed propulsion type; omitted preserves the legacy constant-power model.",
               "type": "string",
@@ -4196,6 +4680,26 @@ Required: `kind`, `spec`
           "items": {
             "type": "object",
             "properties": {
+              "mixtureControl": {
+                "description": "Manual piston mixture; omitted leaves fuel scheduling automatic.",
+                "type": "boolean"
+              },
+              "propellerControl": {
+                "description": "Constant-speed propeller; the lever selects RPM and the governor varies pitch.",
+                "type": "object",
+                "properties": {
+                  "minRpm": {
+                    "type": "number",
+                    "minimum": 0.3,
+                    "maximum": 0.95,
+                    "description": "Minimum governed RPM as a fraction of rated propeller RPM."
+                  }
+                },
+                "required": [
+                  "minRpm"
+                ],
+                "additionalProperties": false
+              },
               "propulsion": {
                 "description": "Installed propulsion type; omitted preserves the legacy constant-power model.",
                 "type": "string",
@@ -4937,6 +5441,140 @@ Required: `kind`, `spec`
           },
           "description": "External collisionProbes setting."
         },
+        "collisionParts": {
+          "description": "Breakable airframe sections: local probe spheres, section center, mass fraction, normal break speed (m/s), GLB nodes and attached engines. Replaces collisionProbes.",
+          "minItems": 1,
+          "maxItems": 64,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                "description": "Unique section id used by damage and debris state."
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "body",
+                  "leftWing",
+                  "rightWing",
+                  "tail",
+                  "rotor",
+                  "gear",
+                  "engine"
+                ],
+                "description": "Flight role; +X is the left wing. Body sections cannot detach."
+              },
+              "probes": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "description": "Local collision sphere centers, meters."
+              },
+              "radius": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Probe and detached-piece collision radius, meters."
+              },
+              "center": {
+                "minItems": 3,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Section center in model coordinates, meters."
+              },
+              "massFraction": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1,
+                "description": "Share of the original mass removed on separation."
+              },
+              "breakSpeed": {
+                "description": "Joint failure speed in m/s for a normal impact. Loaded sliding also causes shear damage. Omit for an unbreakable section.",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "nodes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "GLB node names belonging to this section, including attached controls."
+              },
+              "fragments": {
+                "description": "Optional region for splitting shared markings and detail meshes.",
+                "type": "object",
+                "properties": {
+                  "nodes": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "Shared static meshes to partition by triangle centroid."
+                  },
+                  "min": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Minimum corner of the section region in model meters."
+                  },
+                  "max": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Maximum corner of the section region in model meters."
+                  }
+                },
+                "required": [
+                  "nodes",
+                  "min",
+                  "max"
+                ],
+                "additionalProperties": false
+              },
+              "engines": {
+                "description": "Engine ids that fail when this section detaches.",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+                  "description": "Stable engine id, such as left or right; single-engine form uses main."
+                }
+              }
+            },
+            "required": [
+              "id",
+              "role",
+              "probes",
+              "radius",
+              "center",
+              "massFraction",
+              "nodes"
+            ],
+            "additionalProperties": false
+          }
+        },
         "visual": {
           "type": "object",
           "properties": {
@@ -5638,6 +6276,18 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "mixture": {
+      "description": "Common mixture: 0 idle cutoff, 1 full rich (default).",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "propeller": {
+      "description": "Common propeller lever: 0 minimum governed RPM, 1 maximum (default).",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
     "power": {
       "type": "number",
       "minimum": 0,
@@ -5683,6 +6333,18 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
         "properties": {
           "power": {
             "description": "Absolute throttle override; omitted inherits common power.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "mixture": {
+            "description": "Individual mixture override; inherits common mixture.",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "propeller": {
+            "description": "Individual propeller RPM override; inherits common propeller.",
             "type": "number",
             "minimum": 0,
             "maximum": 1
@@ -5774,6 +6436,102 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "damage": {
+      "description": "Persistent section integrity and separation, keyed by collision part id.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "integrity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Remaining joint integrity, 0 broken to 1 intact."
+          },
+          "detached": {
+            "type": "boolean",
+            "description": "Section has separated and no longer supplies lift or collision probes."
+          }
+        },
+        "required": [
+          "integrity",
+          "detached"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "debris": {
+      "description": "Detached sections in world coordinates, simulated for 20 seconds. Their removal does not repair the aircraft.",
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "part": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Owning collision section id."
+          },
+          "pos": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Section center in world meters."
+          },
+          "rot": {
+            "minItems": 4,
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "World-space section orientation quaternion."
+          },
+          "velocity": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "World velocity in m/s, inherited at separation including travel boost."
+          },
+          "angularVelocity": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Local angular velocity about +X, +Y and +Z, rad/s."
+          },
+          "age": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Simulated seconds since separation; expires at 20 seconds."
+          }
+        },
+        "required": [
+          "part",
+          "pos",
+          "rot",
+          "velocity",
+          "angularVelocity",
+          "age"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "boosted": {
+      "description": "Speeds include the 4× travel boost; kernel-owned.",
+      "type": "boolean"
+    },
     "mach": {
       "description": "True airspeed divided by local speed of sound.",
       "type": "number",
@@ -5885,6 +6643,15 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
             "minimum": 0,
             "maximum": 1
           },
+          "shaftPower": {
+            "type": "number",
+            "minimum": 0
+          },
+          "combustion": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
           "rotorAngle": {
             "type": "number"
           },
@@ -5949,7 +6716,7 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
     },
     "crashed": {
       "type": "boolean",
-      "description": "Hard landing or obstruction impact; explicit recovery required."
+      "description": "Airframe damage requiring recovery. Motion continues under forces and collision impulses."
     },
     "waitingForTerrain": {
       "type": "boolean",
@@ -6725,6 +7492,10 @@ Required: `speed`, `lateralSpeed`, `velocity`, `yaw`, `yawRate`, `steer`, `pitch
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "boosted": {
+      "description": "Horizontal speeds include the 4× travel boost.",
+      "type": "boolean"
+    },
     "speed": {
       "type": "number",
       "description": "Forward speed through water in m/s."
@@ -8773,6 +9544,10 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "boosted": {
+      "description": "Speeds include the 4× travel boost; kernel-owned.",
+      "type": "boolean"
+    },
     "speed": {
       "type": "number",
       "description": "Signed forward speed in meters per second."

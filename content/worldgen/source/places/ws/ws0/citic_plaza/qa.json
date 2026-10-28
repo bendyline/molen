@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.citic_plaza",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:a4b430c817f4f8113f978cf9818a7b4b0210b9b8030fb345531429fb8cad9109",
+  "inputHash": "sha256:029cea0707d26fa6ee960f5dc938c3cbdbe50df2b4830710a8403d2909f62fe9",
   "sourceHash": "sha256:576e16aa72548ce42a228dfceb7285a89f2df876174b9b2835ecd2916f86bccd",
   "runtimeHash": "sha256:b5e24ee48df1babc98ab7b7453d2ab68060a4ade01d2a0b8ec3c821f0c34a025",
-  "captureReportHash": "sha256:ab2f9624df8a128a0f97d229ab9cc64ff3ad4f27f27b54a7bb8fe24c2b89b954",
+  "captureReportHash": "sha256:817e93a61ddee9bf22d109fd48c2831848e81ccc74a3945a2b2440ba89da53b7",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -22,11 +22,12 @@
       "shots/whole-reviewed-tower.png",
       "shots/recessed-round-lobby.png"
     ],
-    "notes": "Actually inspected all54 final images:12portable,12shared,30medium-fi. Whole turntables and four explicit browser-level whole views retain complete main shaft, pale side slab/teal center contrast, split crown, inner round crown, geometric 中信 sign and two thin white spires. Near base views show the reconstructed recessed cylindrical glazed lobby, four dark corner piers and closed overhead slab. Crown views preserve the gap above inner310.8m roof and321.9m side tips; no missing tower section observed. North-up overlay aligns office outline and east/west spire baseline. All whole views include390.2m tips; default street/block/transition framing crops tower top intentionally. Round surfaces visibly faceted, lower band intentionally dark from reference rather than baked shadow."
+    "notes": "Actually inspected all54 final images:12portable,12shared,30medium-fi. Whole turntables and four explicit browser-level whole views retain complete main shaft, pale side slab/teal center contrast, split crown, inner round crown, geometric 中信 sign and two thin white spires. Near base views show the reconstructed recessed cylindrical glazed lobby, four dark corner piers and closed overhead slab. Crown views preserve the gap above inner310.8m roof and321.9m side tips; no missing tower section observed. North-up overlay aligns office outline and east/west spire baseline. All whole views include390.2m tips; default street/block/transition framing crops tower top intentionally. Round surfaces visibly faceted, lower band intentionally dark from reference rather than baked shadow.",
+    "captureReportHash": "sha256:817e93a61ddee9bf22d109fd48c2831848e81ccc74a3945a2b2440ba89da53b7"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:3c8698e4a4345030eef3ec7ae5ba6171a30accc2f9acd37d09f583a45a380131",
+    "captureReportHash": "sha256:9832202e13174d59909670ab54d46980be4c874e663dfa39982e9e1d52f5ba19",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -292,5 +293,16 @@
   },
   "limitations": [
     "Main office tower only, preserving original74676-triangle detailed recipe. Reviewed exterior includes pale-glass split side slabs, teal central shaft and round inner crown, dark lower band, reconstructed round glazed lobby with four mapped dark corner piers, original geometric 中信 sign and paired390.2m white spires. One mapped mast says391.1m; CVU390.2m architectural/tip datum is used for both. CVU occupied296.9m is distinguished from approximate mapped297m office roof,310.8m crown,321.9m side tips and344m sign/support. Facade band spacing, lobby radius, trim widths and sign stroke/brace shapes are approximations from map and actual reference photos. Exact entrances/doors not surveyed. Generic previous4.3m entry canopies are replaced by photo-supported recessed cylindrical lobby. Two separate38-storey apartment towers, shopping arcade/retail podium, basement, plazas, landscaping and interiors remain outside main-tower asset. Quantity surveyor arcade3-storey,2010 developer mall5-storey and current mapretail4-storey descriptions differ and do not establish current arcade model heights. Shared256px concrete/granite/painted-metal surfaces plus component tint; opaque palette glass, zero embedded photographs. True grade, night/sign lighting and physical-device performance unmeasured."
-  ]
+  ],
+  "metadataReconciliation": {
+    "kind": "unchanged-model-after-shared-recipe-update",
+    "oldInputHash": "sha256:a4b430c817f4f8113f978cf9818a7b4b0210b9b8030fb345531429fb8cad9109",
+    "inputHash": "sha256:029cea0707d26fa6ee960f5dc938c3cbdbe50df2b4830710a8403d2909f62fe9",
+    "historicalRecipeRevision": "730813689^",
+    "allOtherAuthoredInputs": "Exact prior input hash reproduced using historical recipe bytes and every current local model input. Geographic facts, placement draft, scope and source definitions are unchanged.",
+    "outputs": "All six current source/runtime/LOD GLBs match their inspected hashes byte-for-byte; current medium-fi bindings, captured shared material graph hashes and every portable/shared/medium-fi image match.",
+    "glbsByteUnchanged": 6,
+    "inspectedImagesVerified": 54,
+    "note": "Existing scoped approvals retained; no new inspection or changed-geometry approval is claimed."
+  }
 }

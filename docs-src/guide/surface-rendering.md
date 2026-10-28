@@ -1,5 +1,8 @@
 # Surface styles and parameterized line features
 
+[Night lighting](night-lighting.md) adds dusk-driven lamp heads and pavement pools to modern
+street fixtures, with separate lamp budgets and matching direct/worker output.
+
 The terrain client renders roads, parking areas, pedestrian surfaces, and street fixtures from
 normalized semantic tiles. World explorer exposes **Surfaces → Modern traffic / Circa 1910 /
 Simple surfaces** in Human mode. Styles change in place, preserving the camera, streamed data,
@@ -30,6 +33,8 @@ const renderer = createDefaultTerrainSemanticRenderer({ surfaceRenderer: surface
 await surfaces.setOptions({ style: '1910' });
 // Call once per frame with absolute simulation time (seconds).
 surfaces.updateSignals(tick / tickRate);
+// And with the scene camera's world position: far tiles' small detail stops drawing.
+surfaces.updateDetail(camera.position);
 console.log(surfaces.stats());
 // Dispose the stream/layers, then the shared controller when the experience closes.
 surfaces.dispose();
@@ -260,6 +265,13 @@ call `surfaces.updateSignals(elapsedSeconds, resolver?)`; a resolver receives a 
 `'green'`, or `undefined` for the default cycle. Direct/static consumers can call
 `updateTerrainSurfaceSignals(object, elapsedSeconds, resolver?)` on the surface object instead.
 Here `object` is the group returned by `createTerrainSurfaceObject`.
+
+`surfaces.updateDetail(position)` hides each tile's small detail beyond its draw distance from the
+camera (the scene camera's world position), measured to the tile's footprint: road signs, street
+fixtures and signal lenses beyond 900 m, lane markings and parked cars beyond 1.5 km. There they
+span a pixel or less, yet from a jet a view held a few hundred such draws for tiles kilometers
+away. Each mesh carries its distance as `userData.detailDistance`; the call does nothing until the
+camera has moved 25 m or tiles have changed, and detail shows again as the camera nears.
 
 ## Signage data in PMTiles
 

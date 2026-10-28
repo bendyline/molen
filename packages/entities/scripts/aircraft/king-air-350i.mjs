@@ -736,8 +736,8 @@ function kingAirCockpit(root, m) {
       true,
       true,
     );
-    d.text('TAS', [hx + 0.082, hy + 0.05, z + 0.001], 0.005, Math.PI, ink);
-    d.text('GEO FT', [hx - 0.081, hy + 0.02, z + 0.001], 0.0045, Math.PI, ink);
+    d.text('TAS', [hx + 0.082, hy + 0.05, z + 0.001], 0.005, Math.PI, ink, 'display');
+    d.text('GEO FT', [hx - 0.081, hy + 0.02, z + 0.001], 0.0045, Math.PI, ink, 'display');
     // Half-screen navigation is left blank until route and sensor data exist.
     d.text('NAV INOP', [x + (i === 0 ? -0.08 : 0.08), y + 0.02, z + 0.001], 0.008, Math.PI, amber);
     const rose = group(cabin, `KingAir-${label}-rose`, [hx, y - 0.055, z + 0.002]),
@@ -767,7 +767,7 @@ function kingAirCockpit(root, m) {
     ins.available(`${label}-heading`, 'trueHeading', rose.name);
     d.rod([hx, y - 0.022, z + 0.001], [hx, y - 0.029, z + 0.001], 0.001, amber);
     ins.readout(`${label}-heading`, [hx, y - 0.056, z], 'degreesTrue', 3, 0.006, ink, false, true);
-    d.text('TRUE', [hx, y - 0.088, z], 0.004, Math.PI, ink);
+    d.text('TRUE', [hx, y - 0.088, z], 0.004, Math.PI, ink, 'display');
     const vsi = group(cabin, `KingAir-${label}-VSI`, [hx - 0.109, hy, z]),
       vd = detailKit(vsi, vsi.name);
     vd.rod([-0.003, 0, 0], [0.002, 0.002, 0], 0.001, ink);
@@ -965,7 +965,7 @@ function kingAirCockpit(root, m) {
     [2, -0.095, 'condition', red],
   ])
     for (let i = 0; i < 2; i++) {
-      const g = group(pedestal, `KingAir-${label}-${i + 1}`, [
+      const g = group(pedestal, `KingAir-${label === 'prop' ? 'prop-lever' : label}-${i + 1}`, [
           x + (i ? -0.019 : 0.019),
           0.16,
           0.3 - pair * 0.035,

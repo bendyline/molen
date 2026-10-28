@@ -1,5 +1,12 @@
-/** Convenience wiring from optional terrain-package sidecars to adaptive semantic layers. */
+/**
+ * Wires terrain-package sidecars into classification, hydrology, and human-feature layers.
+ * Classification and human features share the building-detail source so vegetation uses the
+ * same complete homes, mapped trees, and exclusions as building rendering. The detail source
+ * bounds descendant reads and retains coarse footprints where coverage is absent; hydrology
+ * stays independent of those reads. Related: package-client.ts and semantic-building-detail.ts.
+ */
 
+import type { SceneAdmission } from '@bendyline/molen-client';
 import { createAgricultureTileEnricher } from './agriculture-client';
 import { createProtomapsTerrainMvtDecoder } from './mvt-semantic-decoder';
 import {
@@ -19,7 +26,12 @@ import {
   type TerrainSemanticMeshOptions,
   type TerrainSemanticTileRenderer,
 } from './semantic-client';
+import {
+  createTerrainSemanticDecoderWorker,
+  type TerrainSemanticDecoderWorker,
+} from './semantic-decoder-worker';
 import { createOverzoomTerrainSemanticSource } from './semantic-overzoom';
+import { composeTerrainSemanticTile } from './semantic-packet';
 import { withTerrainTunnels } from './tunnels';
 
 export interface TerrainPackageSemanticLayerStyle {
@@ -33,6 +45,12 @@ export interface TerrainPackageSemanticLayerStyle {
 
 export interface CreateTerrainPackageSemanticLayersOptions
   extends OpenTerrainPackageSemanticsOptions {
+  /**
+   * Decode tiles as admission jobs (usually the renderer's queue, as the stream's `admission`).
+   * A tile's decode runs on the main thread as its bytes arrive, and several arriving together
+   * stacked into one late frame.
+   */
+  admission?: SceneAdmission;
   landcoverLayer?: TerrainPackageSemanticLayerStyle;
   waterLayer?: TerrainPackageSemanticLayerStyle;
   featuresLayer?: TerrainPackageSemanticLayerStyle;
@@ -45,12 +63,15 @@ export interface CreateTerrainPackageSemanticLayersOptions
    */
   overzoom?: boolean;
   /**
-   * Compose built-feature tiles' buildings and places from the package's `features.buildingDetail`
+   * Compose classification and built-feature tiles' buildings and places from `features.buildingDetail`
    * sidecar, when it declares one (default on). `maxDepth` bounds how many levels coarser than the
    * detail level a tile may be (default 2, i.e. 16 detail tiles per composed tile); `false` keeps
    * every tile's own, generalized footprints.
    */
   buildingDetail?: false | { maxDepth?: number };
+  /** Carry broad landcover and bounded building massing into distant terrain tiles.
+   * Custom renderers must bound their work at these coarser levels. Default false. */
+  distantCoverage?: boolean;
 }
 
 export interface TerrainPackageSemanticLayers {
@@ -62,7 +83,13 @@ export interface TerrainPackageSemanticLayers {
 export type CreateProfiledTerrainPackageSemanticLayersOptions = Omit<
   CreateTerrainPackageSemanticLayersOptions,
   'decoder'
->;
+> & {
+  /**
+   * A worker running `installTerrainSemanticDecoderWorker`: tiles decode there rather than on
+   * the main thread, where a town tile took 10-18 ms of a frame. The host owns and ends it.
+   */
+  decoderWorker?: TerrainSemanticDecoderWorker;
+};
 
 function defaultMinimumLevel(minLevel: number, maxLevel: number, detailLevels: number): number {
   return Math.max(minLevel, maxLevel - detailLevels + 1);
@@ -89,8 +116,23 @@ export async function createTerrainPackageSemanticLayers(
     tunnels,
     overzoom = true,
     buildingDetail,
-    ...openOptions
+    admission,
+    distantCoverage = false,
+    ...unadmitted
   } = options;
+  const openOptions: OpenTerrainPackageSemanticsOptions =
+    admission === undefined
+      ? unadmitted
+      : {
+          ...unadmitted,
+          decoder: {
+            decode: async (data, context) =>
+              admission.run(() => unadmitted.decoder.decode(data, context), {
+                label: 'semantic-decode',
+                bytes: data.byteLength,
+              }),
+          },
+        };
   const semantics = await openTerrainPackageSemantics(pkg, openOptions);
   const layers: TerrainPyramidTileLayer[] = [];
   let landcoverSource = semantics.landcover?.source;
@@ -138,6 +180,18 @@ export async function createTerrainPackageSemanticLayers(
       semantics.features.maxLevel,
     );
   }
+  // Share the detail reader across vegetation and buildings. Classification needs complete
+  // homes for yard canopy and footprint exclusions, even if its coarse tile already has POIs.
+  // Keep the unenhanced feature source for hydrology and tunnel topology.
+  const detailedFeatures =
+    featuresSource !== undefined &&
+    semantics.buildingDetail !== undefined &&
+    buildingDetail !== false
+      ? createBuildingDetailTerrainSemanticSource(featuresSource, semantics.buildingDetail.source, {
+          level: semantics.buildingDetail.level,
+          ...(buildingDetail?.maxDepth !== undefined ? { maxDepth: buildingDetail.maxDepth } : {}),
+        })
+      : featuresSource;
   // Enrich the completed joins, so retrieved cells cannot hide a separate mapped land-use
   // archive. Share the cache between visual layers and leave hydrology reads independent.
   const enrich =
@@ -147,22 +201,20 @@ export async function createTerrainPackageSemanticLayers(
   if (semantics.landcover !== undefined) {
     const style = landcoverLayer ?? {};
     const landSource = landcoverSource as TerrainPackageSemanticSource;
-    const pointsSource = featuresSource;
+    const featureSource = detailedFeatures;
     const classificationSource: TerrainPackageSemanticSource = {
       async load(address, signal) {
         const tile = await landSource.load(address, signal);
         if (
           !tile ||
-          tile.pois !== undefined ||
-          !pointsSource ||
+          !featureSource ||
           !semantics.features ||
-          !pkg.features?.layers.includes('poi') ||
           address.level < semantics.features.minLevel ||
           address.level > reach(semantics.features.maxLevel)
         )
           return tile;
-        const features = await pointsSource.load(address, signal);
-        return features?.pois ? { ...tile, pois: features.pois } : tile;
+        const features = await featureSource.load(address, signal);
+        return features ? composeTerrainSemanticTile(features, tile, { pois: true }) : tile;
       },
     };
     layers.push(
@@ -181,7 +233,13 @@ export async function createTerrainPackageSemanticLayers(
         visible: style.visible ?? false,
         minLevel:
           style.minLevel ??
-          defaultMinimumLevel(semantics.landcover.minLevel, reach(semantics.landcover.maxLevel), 3),
+          (distantCoverage
+            ? semantics.landcover.minLevel
+            : defaultMinimumLevel(
+                semantics.landcover.minLevel,
+                reach(semantics.landcover.maxLevel),
+                3,
+              )),
         maxLevel: style.maxLevel ?? reach(semantics.landcover.maxLevel),
       }),
     );
@@ -216,21 +274,7 @@ export async function createTerrainPackageSemanticLayers(
     ) === true
   ) {
     const style = featuresLayer ?? {};
-    // Buildings and places from the finer detail sidecar, where the package carries one; roads,
-    // water and land use keep the feature tiles' own.
-    const featureSource =
-      semantics.buildingDetail !== undefined && buildingDetail !== false
-        ? createBuildingDetailTerrainSemanticSource(
-            featuresSource as TerrainPackageSemanticSource,
-            semantics.buildingDetail.source,
-            {
-              level: semantics.buildingDetail.level,
-              ...(buildingDetail?.maxDepth !== undefined
-                ? { maxDepth: buildingDetail.maxDepth }
-                : {}),
-            },
-          )
-        : (featuresSource as TerrainPackageSemanticSource);
+    const featureSource = detailedFeatures as TerrainPackageSemanticSource;
     const landSource = landcoverSource;
     // Surface areas often live in a separate land-use sidecar. Join them for Human mode,
     // retaining already-combined source tiles and leaving hydrology reads independent.
@@ -247,7 +291,7 @@ export async function createTerrainPackageSemanticLayers(
         )
           return tile;
         const land = await landSource.load(address, signal);
-        return land ? { ...tile, landcover: land.landcover } : tile;
+        return land ? composeTerrainSemanticTile(tile, land) : tile;
       },
     };
     const inner =
@@ -273,7 +317,13 @@ export async function createTerrainPackageSemanticLayers(
         visible: style.visible ?? false,
         minLevel:
           style.minLevel ??
-          defaultMinimumLevel(semantics.features.minLevel, reach(semantics.features.maxLevel), 2),
+          (distantCoverage
+            ? semantics.features.minLevel
+            : defaultMinimumLevel(
+                semantics.features.minLevel,
+                reach(semantics.features.maxLevel),
+                2,
+              )),
         maxLevel: style.maxLevel ?? reach(semantics.features.maxLevel),
       }),
     );
@@ -296,8 +346,12 @@ export async function createProfiledTerrainPackageSemanticLayers(
       'terrain package semantic sidecars need a supported profile or an explicit decoder',
     );
   }
+  const { decoderWorker, ...rest } = options;
   return createTerrainPackageSemanticLayers(pkg, {
-    ...options,
-    decoder: createProtomapsTerrainMvtDecoder(),
+    ...rest,
+    decoder:
+      decoderWorker !== undefined
+        ? createTerrainSemanticDecoderWorker(decoderWorker)
+        : createProtomapsTerrainMvtDecoder(),
   });
 }

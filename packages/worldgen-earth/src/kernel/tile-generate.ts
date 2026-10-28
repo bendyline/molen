@@ -21,6 +21,8 @@ export interface WorldgenTileInput extends SemanticAdapterOptions {
   geom: TileGeometry;
   /** World-space ground (a terrain heightfield); wrapped into tile-local meters. */
   ground: Pick<Heightfield, 'sampleHeight' | 'slopeAt' | 'normalAt'>;
+  /** See WorldgenBatchInput.hashOutput. */
+  hashOutput?: boolean;
 }
 
 export interface WorldgenTileOutput extends WorldgenBatchOutput {
@@ -69,7 +71,11 @@ export function* generateWorldgenTileSteps(
     tileGroundSampler(input.ground, input.geom),
   );
   const output = yield* generateWorldgenBatchSteps(
-    { ...batch, ground: tileGroundSampler(input.ground, input.geom) },
+    {
+      ...batch,
+      ground: tileGroundSampler(input.ground, input.geom),
+      ...(input.hashOutput === false ? { hashOutput: false } : {}),
+    },
     step,
   );
   return finish(batch, output);

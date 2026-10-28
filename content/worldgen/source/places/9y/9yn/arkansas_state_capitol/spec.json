@@ -1,0 +1,339 @@
+{
+  "planId": "arkansas_state_capitol",
+  "id": "arkansas_state_capitol",
+  "assetId": "molen.worldgen.structure.arkansas_state_capitol",
+  "title": "Arkansas State Capitol",
+  "wikidataId": "Q673076",
+  "category": "state-capitol",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -92.28917200000001,
+    "latitude": 34.7466079
+  },
+  "size": [
+    79.09933853149414,
+    64.92240142822266,
+    148.3443603515625
+  ],
+  "actualBounds": {
+    "min": [
+      -34.639339447021484,
+      0,
+      -74.17218017578125
+    ],
+    "max": [
+      44.459999084472656,
+      64.92240142822266,
+      74.17218017578125
+    ]
+  },
+  "visualBrief": "Whole ArkansasStateCapitol with native30control lowpodium and official134.112x59.7408m mainbody/64.9224m cupola, both long limestonewings/physicalwindowrecesses/giantcolumns/entablature/roofbalustrades/endpavilions/roofskylights, sixIoniccolumn mainportico/three closedbronzedoors/upperoculi/pediment/flankingblocks/broadintrinsicstairs, circularperistyledrum/closedopaquewindows/ribbedpaleIndiana-limestone dome/openlantern/gildedcapandball. Two exactpublished2021DsduganCC0 front originals; officialdimensions factual only. Native envelope/podiuminterpretation/hiddenrear/roof/domecentre/census/sections currentfinefinish estimated. No copied glassart/crests/inscriptions/sculpture/flags/lamps/grounds/interior/photo pixels; mainstone dome stayspale.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:21-16-001-capitol.jpg",
+    "https://commons.wikimedia.org/wiki/File:21-16-009-capitol.jpg"
+  ],
+  "stories": [
+    {
+      "id": "arkansas-state-capitol-wp",
+      "url": "https://qualla.com/arkansas-state-capitol/"
+    }
+  ],
+  "referenceInputHash": "8f4841439e1f24db6822a988bdd217c4655bea63e73ef7465a9d0e28a139eb5c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9y/9yn/arkansas_state_capitol/models/arkansas-state-capitol-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/arkansas-state-capitol-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "arkansasCapitolSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.08
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.36,
+        "metallic": 0.015
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.5,
+        "metallic": 0.75
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "arkansasCapitolDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.015
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.75
+          }
+        }
+      },
+      "street": {
+        "export": "arkansasCapitolStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.015
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.75
+          }
+        }
+      },
+      "closeup": {
+        "export": "arkansasCapitolCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.015
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.5,
+            "metallic": 0.75
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "metal_painted",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": -0.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "native-map-frame",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "All sourcefloors/sections/geometry follow immutableoriginal600m129x12916641sample/one rawtile/fixedSW101.7668m providerrelative fieldfreeze. OfficialArkansasSecretaryofState2025tourbook:440ftN-S/196ftE-W/213ftground-to-cupola (134.112/59.7408/64.9224m), limestonewall/dome/gildedlanterncap-ball. Exactnative30control148.34x69.28m envelope exceeds officialbodydimensions; retain wholetrace as lowpodium and proportionallyinset mainbodytoofficialdimensions, explicitlyunsurveyed podium/mapping interpretation. Mainfrontfaces east/+X; original sections from two2021creatorCC0photos:lowpodium.55/basement6.6/landing6.3/lower6.6/tallwindowbands14.5-23.6/entablature25.5/parapet27, sixIoniccolumnportico/threebronzecloseddoors/centralpediment35.5; circularcolumneddrum30.6-46.5/ribbedlimestonedome48.2-58.5/openlantern/goldcap-finial64.9224. Hiddenrear/roof/pavilionlanterns/roomplan/windowcensus/domecentre/currentfinish/preciseprofiles/steps approximated. Sourceglasspatterns/crests/inscriptions/flags/lamps/sculpture/grounds/interiors notcopied. Do notmakewholemain domegold. No terrainfit/flatten/reacquire/modelraising; preview/replacementfalse/exactcontactunresolved.",
+    "anchor": [
+      -92.28917200000001,
+      34.7466079
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -92.28960536130134,
+        34.74589668748908
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSWreference5m beyond actual bbox before all floors/sections/geometry; provider-relative unsurveyed datum, not a surveyedfrontthreshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/97759549"
+    ],
+    "source": "https://www.openstreetmap.org/way/97759549",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:91c77bd46cdabe290fd1ca12538772176209e675d44443ee007fe3b02502db83",
+    "notes": "Whole named ArkansasStateCapitol actual thirty-control nativebuilding envelope with centralperistyled dome/lantern/goldenfinial, east central sixIoniccolumn entranceportico/three shutgolden doors/oculi/pediment/twoflankingblocks, both long limestone wings/tallrecessedwindows/columns/roofbalustrades/sidepavilionrooflanterns and intrinsic broadentrancestairs. Wholebuilding, including bounded hiddenrear/roof, retained; no facade-only substitute. Separate grounds/roads/parking/monuments/sculpture/inscriptions/stainedglassart/interiors/flags/streetlamps/landscaping/people/photo pixels excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole actual nativeArkansasStateCapitol building97759549/Q673076 closed31point ring/thirtyunique controls, exactbboxanchor/heading0/+Xeast/+Zsouth; roadsnamedStateCapitol/CapitolMall are distinct from building. Whole slightlyskewed long north-south wings/mainbody/projectingfront retained. Dome/drum/sections/portico depths/pavilionrooflanterns/stairprofile/windowcensus are original photographic estimates after independentfieldfreeze, not a survey. Official2025SecretaryofState dimensions134.112mN-S/59.7408mE-W/64.9224m cupola control mainbody/height. Larger native148.344x69.279m envelope retained as original lowpodium; mapping-versus-podiummargin interpretation unresolved, not asserted survey.",
+    "All sourcefloors/sections/geometry follow immutableoriginal600m129x12916641sample/one rawtile/fixedSW101.7668m providerrelative fieldfreeze. OfficialArkansasSecretaryofState2025tourbook:440ftN-S/196ftE-W/213ftground-to-cupola (134.112/59.7408/64.9224m), limestonewall/dome/gildedlanterncap-ball. Exactnative30control148.34x69.28m envelope exceeds officialbodydimensions; retain wholetrace as lowpodium and proportionallyinset mainbodytoofficialdimensions, explicitlyunsurveyed podium/mapping interpretation. Mainfrontfaces east/+X; original sections from two2021creatorCC0photos:lowpodium.55/basement6.6/landing6.3/lower6.6/tallwindowbands14.5-23.6/entablature25.5/parapet27, sixIoniccolumnportico/threebronzecloseddoors/centralpediment35.5; circularcolumneddrum30.6-46.5/ribbedlimestonedome48.2-58.5/openlantern/goldcap-finial64.9224. Hiddenrear/roof/pavilionlanterns/roomplan/windowcensus/domecentre/currentfinish/preciseprofiles/steps approximated. Sourceglasspatterns/crests/inscriptions/flags/lamps/sculpture/grounds/interiors notcopied. Do notmakewholemain domegold. No terrainfit/flatten/reacquire/modelraising; preview/replacementfalse/exactcontactunresolved.",
+    "Two exactpublished2021Dsduganown/selfCC0 front originals only. Conflictedhero/oldproposal/MontanaCapitol/assumedauthor/archivalunboundphotos excluded, no supplemental/source repair/reclassification/guardchange. OfficialSecretaryofState dimensions and limestone/goldcupolafinish used asfacts only, no officialbook imagery. Larger nativeenvelope retained as lowpodium around officialdimension mainbody; podiumextent and surveyed mapfit unresolved. Hiddenrear/roof/roomplan/windowcensus/domecentre/capitalprofiles/currentfinefinish are original estimates; no copied glassart/sculpture/crests/inscriptions/flags/lamps/grounds/interior/sourcepixels.",
+    "Original600m129x12916641sample field/one rawtile/fixedSW101.7668m providerrelative datum frozen before floors/sections/geometry. No terrainfit/flatten/reacquire/modelraising. Exactthreshold/footing/entrancestreet contact unresolved; geographicpreview/replaceFootprint=false. Flatground/syntheticneighbors are fixtures only."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-rear-wings-native-podium-and-roof-lanterns",
+      "position": [
+        -175,
+        112,
+        -160
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "six-ionic-columns-three-bronze-doors-oculi-and-stairs",
+      "position": [
+        95,
+        23,
+        10
+      ],
+      "lookAt": [
+        28,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "columned-drum-ribbed-stone-dome-open-lantern-and-gold-finial",
+      "position": [
+        78,
+        61,
+        60
+      ],
+      "lookAt": [
+        -1,
+        46,
+        0
+      ]
+    },
+    {
+      "name": "wing-window-reveals-ionic-capitals-and-roof-balustrade",
+      "position": [
+        78,
+        27,
+        -45
+      ],
+      "lookAt": [
+        25,
+        18,
+        -42
+      ]
+    },
+    {
+      "name": "whole-native-podium-dimensional-body-and-roof-plan",
+      "position": [
+        1,
+        250,
+        3
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63696,
+    "vertices": 191088,
+    "materials": 4,
+    "bytes": 7779324,
+    "sha256": "sha256:f1caf5684e4e6e26ea577a74355f22d4c9b1a9b938de8d14dbe16cba7331ecd8"
+  }
+}

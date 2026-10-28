@@ -18,4 +18,4 @@ Onlythree exact already-cleared publishedBedfordQualla1600x1200PDoriginals from2
 
 Cleanpalefinishesrepresentpermanentarchitectureafter2024restoration;2007peelingpaint/temporaryscaffold/currentcosmeticsunverified. No detachedlaterRomanesque/yellowpumphalls/chimneys, river/USGSgauge/pylons/othercampusbuildings/roads/plazas/lawns/landscape/people/signage. Original160mterrain/rawtiles/grid/PNG unchanged at fixedfrontapproach; no flattening/fitting or connectinggroundslab; exactfloor/threshold/host contactunverified; replaceFootprintfalse.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=louisville_water_tower`. Add `--check` to verify exact regeneration. 104477 triangles; 7 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=louisville_water_tower`. Add `--check` to verify exact regeneration. 103037 triangles; 7 materials; no embedded photographs.

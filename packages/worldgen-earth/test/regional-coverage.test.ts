@@ -23,6 +23,23 @@ const geography = createEcologyResolver(atlas);
 const library = createRegionalLibrary([catalog]);
 
 describe('shipped global ecological coverage', () => {
+  it('keeps Pacific evergreens green in autumn while deciduous trees change', () => {
+    const environment = createRegionalEnvironment(
+      { atlas, catalogs: [catalog], vegetationMonth: 10 },
+      1,
+    );
+    const [x, z] = projectWgs84(-122.33, 47.6);
+    expect(environment.modelAt('molen.ecology.plant.cedar', x, z)).toBe(
+      'molen.ecology.plant.cedar',
+    );
+    expect(environment.modelAt('molen.ecology.plant.fir', x, z)).toBe('molen.ecology.plant.fir');
+    expect(environment.modelAt('molen.ecology.plant.maple', x, z)).toContain('.autumn');
+    const scatter = environment.at(x, z).scatter;
+    const home = scatter?.rules.find((rule) => rule.id === 'home_canopy');
+    const park = scatter?.rules.find((rule) => rule.id === 'park');
+    expect(home?.populations.some((p) => p.model.includes('cedar'))).toBe(true);
+    expect(park?.populations.some((p) => p.model.includes('maple'))).toBe(true);
+  });
   it('changes deciduous appearance without moving or resizing the generated plants', () => {
     const [x, z] = projectWgs84(8.4, 48.9);
     const run = (month: number) => {
@@ -272,6 +289,9 @@ describe('shipped global ecological coverage', () => {
     const sites: Array<[string, number, number, string]> = [
       ['Tucson', -111.05, 32.25, 'sonoran'],
       ['Seattle', -122.33, 47.6, 'pacific_coastal'],
+      ['Delhi', 77.23, 28.61, 'aravalli_thorn'],
+      ['Kyoto', 135.75, 35.01, 'east_asian_evergreen'],
+      ['Sydney', 151.21, -33.86, 'australian_woodland'],
       ['Amazon', -60.1, -3.1, 'rainforest'],
       ['Borneo', 116, 0, 'asian_moist_forest'],
       ['Sahara', 12, 24, 'desert'],

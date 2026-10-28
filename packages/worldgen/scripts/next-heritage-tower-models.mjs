@@ -1,5 +1,5 @@
 /** Independently referenced landmark exteriors; never used as anonymous category buildings. */
-import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
   archBay,
   balcony,
@@ -451,8 +451,7 @@ function buildGiotto(out) {
       (p) => [p[0], p[1]],
       color,
     );
-    for (let i = 0; i < sides; i++)
-      beam(wall, 'limestone', points[i], points[(i + 1) % sides], 0.14, 0.1, marble);
+    beamPath(wall, 'limestone', points.slice(0, sides), 0.14, 0.1, marble, true);
     for (let i = 0; i < 8; i++) {
       const a = (i * tau) / 8;
       sphere(

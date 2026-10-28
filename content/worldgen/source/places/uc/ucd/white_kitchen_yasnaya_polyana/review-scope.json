@@ -1,0 +1,362 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "site-components.json",
+    "pmtiles-fit.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "wall": {
+      "graph": "wood_log",
+      "slot": "wall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "graph": "metal_standing_seam",
+      "slot": "roof",
+      "roughness": 0.62,
+      "metallic": 0.45
+    },
+    "base": {
+      "graph": "stone_limestone",
+      "slot": "foundation",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "glass": {
+      "graph": "storefront",
+      "slot": "window",
+      "roughness": 0.22,
+      "metallic": 0.05
+    },
+    "chimney": {
+      "graph": "plaster_lime",
+      "slot": "wall",
+      "roughness": 0.96,
+      "metallic": 0
+    }
+  },
+  "previewGround": false,
+  "camera": {
+    "position": [
+      -23.42837740743969,
+      10,
+      -0.3333647470408092
+    ],
+    "lookAt": [
+      0,
+      2.1,
+      0
+    ],
+    "fov": 48
+  },
+  "qaCameras": [
+    {
+      "name": "whole-log-kitchen-green-hip-and-chimney",
+      "position": [
+        -18.431801186760843,
+        6,
+        -0.5183676414686111
+      ],
+      "lookAt": [
+        0,
+        2.1,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "door-two-divided-windows-and-threshold",
+      "position": [
+        -8.401708089362709,
+        3,
+        5.514644247921824
+      ],
+      "lookAt": [
+        -3.034976272715434,
+        1.6,
+        1.8135377095760468
+      ],
+      "fov": 56
+    },
+    {
+      "name": "hip-chimney-seating-and-log-corners",
+      "position": [
+        -2.405936470238343,
+        8,
+        16.100045642829002
+      ],
+      "lookAt": [
+        0,
+        2.8,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rear-hip-closure-and-independent-house",
+      "position": [
+        0.6664298798559809,
+        9,
+        -19.838242644328034
+      ],
+      "lookAt": [
+        0,
+        2.2,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "qaLodCameras": [],
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/models/white-kitchen-yasnaya-polyana-model.mjs",
+    "export": "buildKitchenSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKitchenDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.62,
+            "metallic": 0.45
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.22,
+            "metallic": 0.05
+          },
+          "chimney": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildKitchenStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.62,
+            "metallic": 0.45
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.22,
+            "metallic": 0.05
+          },
+          "chimney": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKitchenCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "graph": "wood_log",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.62,
+            "metallic": 0.45
+          },
+          "base": {
+            "graph": "stone_limestone",
+            "slot": "foundation",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "graph": "storefront",
+            "slot": "window",
+            "roughness": 0.22,
+            "metallic": 0.05
+          },
+          "chimney": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      37.526028,
+      54.076367
+    ],
+    "heading": 0,
+    "orientationPolicy": "approximate-visualization",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retained Protomaps20261020 and Mapzen201x201/6m terrain. Outside southwest garden control[0,6] gives224.73946974947046m datum. There is no mapped kitchen footprint to own or replace. Preserve all243resident/295wider independent buildings, original roads, DEM samples and ponds. Cut only the reconstructed occupied kitchen footprint; low threshold treads seat into original soil, leaving the surrounding courtyard open. Actual native views inspect all entrances, closed hips, chimney seating, log corners and supported steps. The coarse ground exposes more plinth and five treads than the ordinary photograph establishes; those levels remain visualization approximations. No independent building is replaced. A paired final view includes the already reviewed Tolstoy House at its separate datum.",
+    "terrainReference": {
+      "anchor": [
+        37.52595659839343,
+        54.07633308736143
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Protomaps20261020 and Mapzen201x201/6m terrain. Outside southwest garden control[0,6] gives224.73946974947046m datum. There is no mapped kitchen footprint to own or replace. Preserve all243resident/295wider independent buildings, original roads, DEM samples and ponds. Cut only the reconstructed occupied kitchen footprint; low threshold treads seat into original soil, leaving the surrounding courtyard open."
+    },
+    "groundModelY": 0,
+    "elevationMode": "terrain-contact",
+    "mapIdentity": {
+      "maxDistance": 4
+    },
+    "maxDistance": 4,
+    "groundCutout": {
+      "outline": [
+        [
+          -0.29972865811109095,
+          -5.932972503855629
+        ],
+        [
+          -5.740491593952049,
+          -1.528645236726256
+        ],
+        [
+          0.29972865811109095,
+          5.932972503855629
+        ],
+        [
+          5.740491593952049,
+          1.528645236726256
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -0.29972865811109095,
+            -5.932972503855629
+          ],
+          [
+            -5.740491593952049,
+            -1.528645236726256
+          ],
+          [
+            0.29972865811109095,
+            5.932972503855629
+          ],
+          [
+            5.740491593952049,
+            1.528645236726256
+          ]
+        ]
+      ],
+      "basis": "Only the photo-reconstructed occupied kitchen footprint; no native building ownership or broad courtyard cut."
+    },
+    "notes": "The museum group photograph identifies the central low log White Kitchen, green hip, pale chimney, left wooden door and two divided white windows. Ordinary aerial imagery shows the matching separate green roof in the service courtyard behind Tolstoy House, with the southwest flower bed matching the ground photo. The retained PMTiles and current OSM neighborhood map omit this footprint; reject toilet way167382259 as unrelated. Photo-derived roof center[37.526028,54.076367] and9.6x7m plan are author estimates, about5m positional/15degree facing uncertainty, not an OSM or surveyed footprint. X southeast follows the visible roof; front+Z southwest faces the flower bed. Existing mapped buildings stay independent. Photo-led2.45m log walls, green hip ridge4.05m and pale chimney cap5.2m above one level floor. Door/window dimensions, hidden rear, roof pitch, chimney offset and course count are reconstructed. Standard native ground varies0.86m; floor0.4673049077492806m above the outside provider and supported low treads approximate contact. No sloped roof/floor or surveyed historical level claim. Retained Protomaps20261020 and Mapzen201x201/6m terrain. Outside southwest garden control[0,6] gives224.73946974947046m datum. There is no mapped kitchen footprint to own or replace. Preserve all243resident/295wider independent buildings, original roads, DEM samples and ponds. Cut only the reconstructed occupied kitchen footprint; low threshold treads seat into original soil, leaving the surrounding courtyard open.",
+    "bounds": [
+      37.525908862628434,
+      54.076293703201195,
+      37.52613589092908,
+      54.0764402967988
+    ]
+  }
+}

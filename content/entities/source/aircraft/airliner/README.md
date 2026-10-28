@@ -8,7 +8,7 @@ boarding point. The `aircraft` component supplies two engines, pitch/roll/yaw, t
 gear and flaps. The existing assisted airplane model approximates thrust; it is not a
 turbofan systems simulator. `ambientRole` retains its overhead and airport traffic roles.
 
-- Model generator: `models/generate.mjs` (deterministic, no textures; preserves hand edits of
+- Model generator: `models/generate.mjs` (deterministic, shared cockpit textures; preserves hand edits of
   `models/source.glb`; `--out <path>` writes a review candidate).
 - Editable model: `models/source.glb`
 - Entity definition: `entity.types.json`
@@ -27,8 +27,13 @@ turbofan systems simulator. `ambientRole` retains its overhead and airport traff
   intake lips and fan blades, navigation lamps, Bendy lettering and flush fuselage fasteners.
   The flight deck includes seats, yoke, throttle handles and diagrammatic instrument displays;
   live flight readings are in the HUD.
-- Budget: 30,814 rendered triangles, no textures. Generic fastener rows suggest structural
+- Budget: the imported sidecar records the current triangle count; nine cockpit finish maps
+  and shared font atlases cover the flight deck. Generic fastener rows suggest structural
   frame stations; they do not reproduce a particular manufacturer's engineering drawing.
+
+The cockpit uses the shared finish library and complete physical flight controls. Its
+diagrammatic displays retain authored geometry, with technical sans-serif panel labels and
+lighter sans-serif display lettering baked from licensed font outlines.
 
 ## Evidence
 

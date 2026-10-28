@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tomioka_silk_mill",
+  "kind": "static-structure",
+  "title": "Tomioka Silk Mill — Silk-reeling Plant",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tomioka_silk_mill",
+        "output": "assets/places/xn/xn6/tomioka_silk_mill/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e47443384eb054d1910ae43c24eeae9d451034113d3fc75b4bd40711bbfc96d1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-tomioka-silk-mill",
+        "path": "models/generate-tomioka-silk-mill.mjs"
+      },
+      {
+        "id": "tomioka-silk-mill-model",
+        "path": "models/tomioka-silk-mill-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "architectural-facts.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/whole-reeling-hall.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-29025-12838.png",
+      "terrain-sources/terrarium-15-29026-12838.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

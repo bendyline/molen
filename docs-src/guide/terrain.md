@@ -340,6 +340,21 @@ function frame(position: [number, number, number]) {
 }
 ```
 
+For movement and ground placement, use `earth.stream.sampleSurfaceHeight(x, z)`: it samples the
+displayed mesh's triangles at their current detail level, including refinement transitions.
+`sampleHeight(x, z)` retains the full-resolution source elevation, which can differ from the
+visible mesh between vertices. Both return `undefined` outside displayed terrain. Roads, land
+cover, bridges and model-owned openings still require collision against their visible geometry;
+the Earth view combines rendered terrain heights with those collision queries for walking and driving.
+
+For moving cameras, `stream.update(view, futureViews)` accepts optional predicted views, nearest
+in time first. It prepares a bounded set of future leaves, semantic layers and GPU resources in
+the hidden resident cache without changing the current selection. Omit the second argument to
+stop prediction. Both the Earth view and World Explorer use `createEarthTilePreloader` from
+`@bendyline/molen-earth/client` to predict 4, 8 and 12 seconds of fast travel, capped at 4 km.
+Its `views(nowMs, view, steady)` takes positions already in the Earth adapter's metric world frame;
+pass `steady: false` during scripted camera animations and call `reset()` when changing frames.
+
 The selector measures projected source-sample spacing, adapts its error/range to the selected-tile
 budget, requests ancestors before descendants, and retains a displayed parent until all selected
 descendant coverage is resident. A selected tile that is not resident yet shows through its
@@ -398,6 +413,29 @@ advance its highlights without discontinuities across floating-origin shifts. Op
 avoids dark overlap seams while adjacent or parent/child water tiles refine. Expensive semantics
 can be level-bounded, toggled without re-decoding resident objects, and disposed with the elevation
 tile. Applications may replace the decoder, renderer, materials, or model geometry independently.
+When the layer context carries an `admission` queue, the default renderer builds each tile with
+`createTerrainSemanticObjectSliced`: the same group as `createTerrainSemanticObject`, built a couple
+of milliseconds per admitted job (pausing between water polygons and building footprints), so a
+harbor's water or a coarse tile's thousands of footprints no longer hold one frame.
+
+Package semantic sources keep the last few decoded tiles, and older ones while a layer still holds
+them, so the layers that each load a tile (classification, surfaces, water, tunnels, building
+detail) share one decode. Tiles cross to workers as packets (`terrainSemanticTilePacket`); a tile
+derived by replacing its buildings or transportation can carry its base's packet and the edit
+(`deriveTerrainSemanticTilePacket`) instead of being cloned whole. A renderer that keeps tiles to
+rebuild them later keeps `keepTerrainSemanticTile(tile)` rather than the tile: calling it answers
+the tile while it lives, else decodes it again from its packet, so the decoded points need not
+stay on the heap meanwhile.
+
+Mapped lake polygons also clear coarse elevation and landcover beneath their water surface,
+preserving polygon holes as islands. Small bank faces close the difference between the rendered
+ground triangles and the water level; clipped tile edges do not become artificial banks. These
+openings follow hydrology tile residency, independently of landmark loading, and restore the
+original ground on hide/unload. Roads and bridge surfaces retain their geometry. Source height
+samples remain available for anchoring and physics. Ground clipping keeps shared grid vertices
+indexed instead of duplicating every triangle's attributes.
+`shorelineGroundOffset` defaults to the landcover lift of 0.18m, including when hydrology and
+classification render in separate layers; set it to `0` for a bare elevation surface.
 
 For the standard path, `createTerrainPackageSemanticLayers` opens every optional sidecar and returns
 classification, hydrology, and human-feature layers ready for

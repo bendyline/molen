@@ -1,0 +1,32 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "board-airport-cessna",
+  "path": "/?region=seattle-bellevue-sammamish&lat=47.52613901526&lon=-122.29657919069&alt=30&yaw=-1.2&pitch=0&navigation=walk&mode=human&quality=economy&backend=webgl&weather=sunny&sky=daylight",
+  "viewport": [1280, 800],
+  "probes": [{ "name": "navigation", "selector": "#navigation-status" }],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "Board Cessna 172",
+      "stableMs": 200,
+      "timeoutMs": 240000
+    },
+    { "type": "screenshot", "name": "airport-cessna-door", "timeoutMs": 120000 },
+    { "type": "keys", "keys": ["e"], "durationMs": 100 },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft^='apron:KBFI:']",
+      "timeoutMs": 30000
+    },
+    { "type": "keys", "keys": ["i"], "durationMs": 100 },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "Engine on",
+      "stableMs": 300,
+      "timeoutMs": 30000
+    },
+    { "type": "screenshot", "name": "airport-cessna-cockpit", "timeoutMs": 120000 }
+  ]
+}

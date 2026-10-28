@@ -2,7 +2,7 @@
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
-import { beam, normalFor } from './authored-structure-mesh.mjs';
+import { beam, beamPath, normalFor } from './authored-structure-mesh.mjs';
 import { rgb } from './landmark-model-helpers.mjs';
 
 const plan = JSON.parse(
@@ -267,8 +267,7 @@ function base(o, d) {
           const a = (i * Math.PI) / ((d > 2 ? 9 : 5) - 1);
           return f.P(side * (0.52 + 0.085 * Math.cos(a)), 3.34 + 0.085 * Math.sin(a), 0.695);
         });
-        for (let i = 1; i < pts.length; i++)
-          beam(o, 'white', pts[i - 1], pts[i], 0.065, 0.065, C.white);
+        beamPath(o, 'white', pts, 0.065, 0.065, C.white);
       }
   }
 }

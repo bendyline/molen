@@ -1,0 +1,810 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.ava_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:973c73bae515a415b47c73ef06cdb8af9cb688e1870404898d8c7da04e835d9f",
+  "sourceHash": "sha256:3c991b3ada432290d3ec2d11223c6400040296658ae5c0aad1ccb87b95dac322",
+  "runtimeHash": "sha256:daa85e262b173fd1a4676f215a88f3a015eadd3e0529d486a7a8fe79f239eadc",
+  "captureReportHash": "sha256:96df5946433d31baf275cd287de6b345a482b3697ce2d2a7aff4e0822aa1546b",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-southwest.png",
+      "shots/whole-northeast.png",
+      "shots/truss-bay.png",
+      "shots/rail-and-cantilever-roads.png",
+      "shots/pier-and-bearings.png",
+      "shots/open-channel-and-floorbeams.png",
+      "shots/sagaing-bank.png",
+      "shots/inwa-bank.png"
+    ],
+    "captureReportHash": "sha256:96df5946433d31baf275cd287de6b345a482b3697ce2d2a7aff4e0822aa1546b",
+    "notes": "Inspected 71 current frames: 13 portable, 13 dated shared-material/geographic, 25 medium-fi and 20 native. The intact Ava exterior retains nine principal pale polygonal truss bays with open vertical/diagonal webs, top crossframes, flanged members/gussets, central rails/sleepers, outside narrow road decks and walks, red masonry pier shafts, pale chamfered footings and short approach supports. Corrected inward deck winding and buried bank edges during this same authoring pass. Far levels retain the principal silhouette and simplify web/rail detail. Automatic end-on turntables are necessarily narrow for this 1.2 km asset; the explicit side, pier, deck and bank cameras provide the usable detail evidence."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-southwest.png",
+      "shots/shared/whole-northeast.png",
+      "shots/shared/truss-bay.png",
+      "shots/shared/rail-and-cantilever-roads.png",
+      "shots/shared/pier-and-bearings.png",
+      "shots/shared/open-channel-and-floorbeams.png",
+      "shots/shared/sagaing-bank.png",
+      "shots/shared/inwa-bank.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:d22664732f1b2ed258fd32cbe9d24cdd09f5b2adb125eb5c906e284bfdaa2ac8",
+    "notes": "Three existing shared 256px material graphs: metal_painted, brick and concrete_plain. Metric UVs, linear vertex tints, three merged material groups near and one mean-tinted group at skyline. No embedded/private images or copied photograph pixels. Each graph is read once per native view; all four runtime GLBs have separate position/normal/UV/color GPU streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-southwest.png",
+      "medium-fi/whole-northeast.png",
+      "medium-fi/truss-bay.png",
+      "medium-fi/rail-and-cantilever-roads.png",
+      "medium-fi/pier-and-bearings.png",
+      "medium-fi/open-channel-and-floorbeams.png",
+      "medium-fi/sagaing-bank.png",
+      "medium-fi/inwa-bank.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:ac3fdaf0572da730ddc5d3dfcd98949f24cb2d4126d8ee7342cfd266c0e69a91",
+    "notes": "Detailed source: 77468 triangles / 9298644 bytes. Runtime: 972 / 3756 / 15980 / 53684 triangles; 87244 / 323908 / 1326384 / 4880752 bytes; 1 / 3 / 3 / 3 draws. Initial skyline plus district is 411152 bytes. Strict medium-fi ceilings pass. Physical laptop/phone timing remains unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:bb732321054b141f158fffc690ed7361eac74c57b4eb2d2006a64b8e7263f210",
+    "mapFrameHash": "sha256:d712910900c48690dc4bd115c26fd45a63a5bc5a5db160aa4c8dd0f5c8fdd476",
+    "notes": "Named Ava Bridge POI 17598272665331 and destroyed rail record 35184412388137 establish the original crossing independently of the neighboring Yadanabon Bridge. No exact-QID map footprint is claimed. Anchor [95.99202543497086,21.871690856512807], heading -0.7194333043712112: +X southeast toward Inwa/Mandalay, -X northwest toward Sagaing, +Z southwest along the Ayeyawady. The nominal 1128 m structure reference, photo-led 966 m principal truss group and 1209.771 m mapped rail extent are recorded separately; extra apron overlap fits standard terrain. Ten bank width samples retain model support at every LOD. Five meet existing paving within 0.000508m at street/closeup; skyline/district simplify the cross-slope and differ by at most 0.136939m. Remaining samples lie above unpaved ground, with at least 0.075m clearance. These are renderer-fit results, not surveyed geographic or historical bank accuracy. Historical-only model, represented on 2010-02-08 with explicit validity [2010-02-08,2010-02-09). This conservative one-day window follows the inspected photograph date, not the physical lifetime of the bridge. Native current/before/after scenarios make zero model requests. The 2025 collapse photo and 2026 PMTiles destroyed tag preclude automatic intact present-day placement. Contemporary context is preserved; no repaired or ruined 2026 structure is claimed."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Dated scoped exterior and approximate native placement complete. Detailed source: 77468 triangles / 9298644 bytes. Runtime: 972 / 3756 / 15980 / 53684 triangles; 87244 / 323908 / 1326384 / 4880752 bytes; 1 / 3 / 3 / 3 draws. Initial skyline plus district is 411152 bytes. Strict medium-fi ceilings pass. Physical laptop/phone timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w5/w5u/ava_bridge/models/source.glb\",\"hash\":\"sha256:3c991b3ada432290d3ec2d11223c6400040296658ae5c0aad1ccb87b95dac322\",\"bytes\":9298644,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/w5/w5u/ava_bridge/model.glb\",\"hash\":\"sha256:daa85e262b173fd1a4676f215a88f3a015eadd3e0529d486a7a8fe79f239eadc\",\"bytes\":9298236,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w5/w5u/ava_bridge/model.skyline.glb\",\"hash\":\"sha256:03bb3f9691ef9e794e161ef307e7f8c694fd9a90ac11410412a7668409c679a3\",\"bytes\":87244,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w5/w5u/ava_bridge/model.district.glb\",\"hash\":\"sha256:d8f074875d7e5cd28b126b198b422c7c2a34ea3f081f51b3390dfef1fadcbede\",\"bytes\":323908,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w5/w5u/ava_bridge/model.street.glb\",\"hash\":\"sha256:87365cf190604e2c4c887bafe199607de6a79376879d42333a2a432f9a00dc72\",\"bytes\":1326384,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w5/w5u/ava_bridge/model.closeup.glb\",\"hash\":\"sha256:7936efeba0ba1b605852bf9f80f638e87256f196df67ae5859bb6af9cbfa3b10\",\"bytes\":4880752,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "outward-decks-open-trusses-piers-rails-channel-and-bank-aprons",
+        "passed": true,
+        "notes": "794 front-face/clearance probes across source, import and four LODs. Includes all deck strips, two banks, each principal top chord, every red pier, central rails and open water passages."
+      },
+      {
+        "check": "headless-scene",
+        "passed": true,
+        "notes": "Scene validation and30 ticks passed; state hash sha256:f277a355c3c2dc6d887806643a097af2fd1940d181cddd043572c65b0660e6ec."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Ava Bridge POI 17598272665331 and destroyed rail record 35184412388137 establish the original crossing independently of the neighboring Yadanabon Bridge. No exact-QID map footprint is claimed. Anchor [95.99202543497086,21.871690856512807], heading -0.7194333043712112: +X southeast toward Inwa/Mandalay, -X northwest toward Sagaing, +Z southwest along the Ayeyawady. The nominal 1128 m structure reference, photo-led 966 m principal truss group and 1209.771 m mapped rail extent are recorded separately; extra apron overlap fits standard terrain. Ten bank width samples retain model support at every LOD. Five meet existing paving within 0.000508m at street/closeup; skyline/district simplify the cross-slope and differ by at most 0.136939m. Remaining samples lie above unpaved ground, with at least 0.075m clearance. These are renderer-fit results, not surveyed geographic or historical bank accuracy."
+    },
+    "inputHash": "sha256:973c73bae515a415b47c73ef06cdb8af9cb688e1870404898d8c7da04e835d9f",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:973c73bae515a415b47c73ef06cdb8af9cb688e1870404898d8c7da04e835d9f",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 71 current frames: 13 portable, 13 dated shared-material/geographic, 25 medium-fi and 20 native. The intact Ava exterior retains nine principal pale polygonal truss bays with open vertical/diagonal webs, top crossframes, flanged members/gussets, central rails/sleepers, outside narrow road decks and walks, red masonry pier shafts, pale chamfered footings and short approach supports. Corrected inward deck winding and buried bank edges during this same authoring pass. Far levels retain the principal silhouette and simplify web/rail detail. Automatic end-on turntables are necessarily narrow for this 1.2 km asset; the explicit side, pier, deck and bank cameras provide the usable detail evidence.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/scene-preview.png",
+          "hash": "sha256:94c7e2c5b3f6f4824f4a60fe7a4ffca25ec9abfa69ad780eead899529bd36fa9"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:801fca5868b30b6dc2aa709becf8474d7c8f433ff2d5fc4b549280a423c4ead9"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:fbcc1ecea8b461610d3ffe31a3efb0ffa7327cf5e17b6872d529bfc74098f756"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:075cc394cfecdd836a49e5b42ada8d598bf534dbf4f02e3edf8a68720c1e0cf1"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:c639b5398be241df078ee76b789cb2998fa0202f13d5a0bcea8bd90bfada1a36"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/whole-southwest.png",
+          "hash": "sha256:94c7e2c5b3f6f4824f4a60fe7a4ffca25ec9abfa69ad780eead899529bd36fa9"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/whole-northeast.png",
+          "hash": "sha256:433235d87f430c80f2d7ccd7c85fabc1eecdc62623aa1e837f0d5a7ddf88b26c"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/truss-bay.png",
+          "hash": "sha256:39cb8b6b0f6e1b6b49f54a1f4633a75713e96091abfa4244a5819738c656b1ee"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/rail-and-cantilever-roads.png",
+          "hash": "sha256:62d5264ef8150d7e62909a28aeae115930d8043bf2bd22d34632406db781fe5a"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/pier-and-bearings.png",
+          "hash": "sha256:5b1da493a04efd3b12387c43d0aef82c0ad5f069ae421b037bb3204a7b40a957"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/open-channel-and-floorbeams.png",
+          "hash": "sha256:ccd4d27927a38514d1c536bae5e916434578036f510bc1c78e6f5aab986a017c"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/sagaing-bank.png",
+          "hash": "sha256:2e59b3b641b5df9218f6346b29ff851cc1cdc43855708e2e3620e7e25655e5d7"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/inwa-bank.png",
+          "hash": "sha256:c66dcdaf4d074ffdfe3527d7c52d563c12e1c74dc8120f0f2768ff5bb23cbc44"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:8aa4335f69e20870e2fa883913d00819fbfa8791b0908ffb1c729204f1792bf5"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:7fa5207b21e4887183187f31039d1cb479c4d91ee1eb89e738b65603fa59af71"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:a995b6776d3b718b58ef67be28732ed350b60655d5082e6048c520063b905a5b"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:35a774b2e0959f157c208a8afd0d12a0246ab1606a834fd332c77e78a7afe5f2"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/whole-southwest.png",
+          "hash": "sha256:373be168f9326e65e1621d447cd47eb4e7ae367d956c3833727857e0fe9270a1"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/whole-northeast.png",
+          "hash": "sha256:b4db5d5dfcb20bd22052c53b90f71439a204ef45af49a99ffca7f594e7c5418d"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/truss-bay.png",
+          "hash": "sha256:cdc160d8e66646e8205ff389f558bf325f6ae64b512d6e0662825679c19db3d6"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/rail-and-cantilever-roads.png",
+          "hash": "sha256:766075fe5259ec469291339862eda45128b43faad22d7fe57eb5b6b5f527a557"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/pier-and-bearings.png",
+          "hash": "sha256:460a744f4f2092ad92e1a4e3482815781afac730b572ca705c26f3a0329a1a5e"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/open-channel-and-floorbeams.png",
+          "hash": "sha256:bb0adecc0134238732bcabab4eafb3254aedf43569961f7339a34fc199b676b3"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/sagaing-bank.png",
+          "hash": "sha256:03d427c0638a2f79503feb3f92dd527a4e271612e42c1187567baa55acb5771d"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/inwa-bank.png",
+          "hash": "sha256:fe6115d557ce3eb5a1465c7908c2a9532538032fdb27be1e68ace34d4536f15b"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/shots/shared/placement.png",
+          "hash": "sha256:6728c522b3b334f19206a084dc712dc9da430136a592910a3e42d146c41963fb"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:e5ce7b0531c00f9fee3344b9e1bc4fd4b871805c7c2fa3bcebf74638dd11565a"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:b8a99b0c07de4420ae5602091034604acfbc7c83e57715ccd8588d1cbe66873f"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:582cad967f0c56ecff948feeb94dc6f4abb868c5625d9b361e37a9bd6dab6c01"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:03e32d12ce5c99cdafbdbf5284a19c6891873092847fbf7f96a781e3ee8cd7bd"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:7c8c1dd6bde93e88f97be13bfa28c1e33cc6a093987bec9ab7ebc62a9a36e2df"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:23d9d1def2e27495b4db726e305c084beda7b85f7d8d73cb989f85bcececc2d6"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:2a232f637c215b5828b045af2da8168dcf0177c74d0fd3dc0e3ecad6b35e11ab"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:6d6e865cd9946ba753124e0ddfab33baad28080b0b64cdd71a6b153cd27ac2e9"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:515e031bdf05e9fe890da4a9ad22ae951b722a910830201652187711ae047b87"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:6f379246901ca2cffd178a27cce68835c576d0db1acbfaa740badc3a03261ae5"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:efc814531077406220c8dc570706fada861dedec128ac3bedc1c3eab654abbc9"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:0bff50c4bbe1cb9d7da478df7c5b9bf94021c5b1e10490e9503b6d74d5000fa1"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:1b754935f7052e0ee592eb8ba40ebe1c9d1281df240f8c5be383ff47f94dd667"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/whole-southwest.png",
+          "hash": "sha256:54b9aabe6fea542d4415073982f6b2a9b8afd638e15284114c6049626e1f6f7f"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/whole-northeast.png",
+          "hash": "sha256:85313e3d87cfb6eb048cfab332e547f7eff01cd38acac0e2e16944e6da6c08ae"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/truss-bay.png",
+          "hash": "sha256:9116175af2dc43e34d1bd6b3c5819b7e65625a23986ebadcb55c46fa5d1c8096"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/rail-and-cantilever-roads.png",
+          "hash": "sha256:0f219d64cedc7b050167f5ce1ecd0e0cccb2e75d0d62e0a4855422ac4d02c6bc"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/pier-and-bearings.png",
+          "hash": "sha256:b7dc566a1a34583a0780522d4f046681823d0cfb47c5ad8197b04bc13c858491"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/open-channel-and-floorbeams.png",
+          "hash": "sha256:55a6c52cfb5a82f6a100614a7958abd7b8560c47b40c8261aac189b0140b5bcf"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/sagaing-bank.png",
+          "hash": "sha256:b0d0c81e281c0d30040cc040535fd0dcbdf306a14241925b6a6f7888820e478c"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/inwa-bank.png",
+          "hash": "sha256:c7db82bea74364083470cc3381f8b5560ca25c7bbb5cca6583a7c2a528fca66f"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:7b703e62d31627b1cbed9343a3d8e28156b53f36a124c16abf881b62aff7caad"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:23d9d1def2e27495b4db726e305c084beda7b85f7d8d73cb989f85bcececc2d6"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:90270706ee8267edc78c6fa8198764c25e4b851098ec52a8da930acf31786781"
+        },
+        {
+          "path": "content/worldgen/source/places/w5/w5u/ava_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:c77327abf2002215668ccd63243874bba3920a6c6263dfc97c52d51d5439c361"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-skyline-skyline-context.png",
+          "hash": "sha256:028a0eba4df852cc9127a824932c1664d78602c793b189e5b1a529aa91421d21"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-district-district-context.png",
+          "hash": "sha256:a2f082689c2862e90ee7b3c7df9c0a7618480c034fcb67793adf6182ad45f2f2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-street-whole-southwest.png",
+          "hash": "sha256:c97c5f1a8f7e961c5c66ad34ceb719dace0570d8dcd78b37dfcfa3716cf05aa3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-street-whole-northeast.png",
+          "hash": "sha256:664481370d4eb8a11c581b64891d906af0a3607f635dfa58b74fd19f6f06fd14"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-street-truss-bay.png",
+          "hash": "sha256:0df5a3e6147cd6d03175ac083874c93f48e8fac495d39e61db4b6f5f569ac41c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-street-rail-and-cantilever-roads.png",
+          "hash": "sha256:0854255556c5b1817b752061300e8f5bb6a2414115adaba95d8d7b125931c3e6"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-whole-southwest.png",
+          "hash": "sha256:bc871bc57f6cf3f0167b7bd97194eca1b799290e518acb210766bdbf395f9cd3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-whole-northeast.png",
+          "hash": "sha256:4caaaf68f49a57510b7e148e9f0ac0bf2f61038337267143c45895c5376dbe23"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-truss-bay.png",
+          "hash": "sha256:4f34a638fad07ac98f37d85a5f0360cd2a9af36fc6374fae46ee4ca85a201b63"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-rail-and-cantilever-roads.png",
+          "hash": "sha256:5cacbb360af85884c6603b3cc01d544522a49ea4a82eead56805d2b5a40ab5ed"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-pier-and-bearings.png",
+          "hash": "sha256:33e23908930eb85b7eff1872828b7356b109de5062011bc59197baef970da5d7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-open-channel-and-floorbeams.png",
+          "hash": "sha256:164347abdb805149e419f192b6d6d4401e6e56583862cb8f2f0e8337aa420dcd"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-sagaing-bank.png",
+          "hash": "sha256:f844215d669a5c48c3f9c9fbe6dec0694e37853277560c45a149eebd231b9107"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-inwa-bank.png",
+          "hash": "sha256:e40a1a97fa3ca55cf40a1ccb77495d508ddb25028f6ecc588499e09bcfe273f0"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-district-context.png",
+          "hash": "sha256:a5a8336194088219444f185252146a4b37b3909c00cd323cfd66be4126f8c35a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-closeup-economy-context.png",
+          "hash": "sha256:1bb19f18736659a39320b67b51991c8f5963690886aca9b342857ec4327959d4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-failure-whole-southwest.png",
+          "hash": "sha256:dd958c2d36a0efc4d6af128367d0c732057454e76855720a764737ceaa1882de"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-current-whole-southwest.png",
+          "hash": "sha256:dd958c2d36a0efc4d6af128367d0c732057454e76855720a764737ceaa1882de"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-before-whole-southwest.png",
+          "hash": "sha256:dd958c2d36a0efc4d6af128367d0c732057454e76855720a764737ceaa1882de"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\ava-review/native/shots/fitted-after-whole-southwest.png",
+          "hash": "sha256:dd958c2d36a0efc4d6af128367d0c732057454e76855720a764737ceaa1882de"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 4511 resident buildings and 387 independent road records remain exact inputs. Four records for the separate Yadanabon crossing remain and receive no authored connections. Raw roads, DEM samples, rendered ground and water are unchanged. No road replacement, terrain cutout, approach grading or support geometry is applied. Failed loading retains the map; date exclusion makes no model request; unload releases every model geometry while retaining ground/water. Historical-only model, represented on 2010-02-08 with explicit validity [2010-02-08,2010-02-09). This conservative one-day window follows the inspected photograph date, not the physical lifetime of the bridge. Native current/before/after scenarios make zero model requests. The 2025 collapse photo and 2026 PMTiles destroyed tag preclude automatic intact present-day placement. Contemporary context is preserved; no repaired or ruined 2026 structure is claimed."
+    },
+    "nativeReport": {
+      "path": ".artifacts/ava-review/native/fitted-report.json",
+      "hash": "sha256:ee663c313ffcf83c6c42ffa9d9a3d08671954a24fe7ab918d67d08ca66af46f4",
+      "frozenViewerInputsHash": "sha256:a10af68fe753887f3e1b209e90c3dd1e208707577baf3c40928e50d8ca925aca"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "viewingDate": "2010-02-08",
+        "modelLoaded": true,
+        "modelLoads": 1,
+        "landingWidthSamples": 10,
+        "pavedWidthSamples": 5,
+        "maximumPavedJoinErrorMeters": 0.13693810485710856,
+        "minimumGroundClearanceMeters": 0.07514618999269373,
+        "buildings": 4511,
+        "independentRoadRecords": 387,
+        "neighboringBridgeRecords": [
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "viewingDate": "2010-02-08",
+        "modelLoaded": true,
+        "modelLoads": 1,
+        "landingWidthSamples": 10,
+        "pavedWidthSamples": 5,
+        "maximumPavedJoinErrorMeters": 0.13693810485710856,
+        "minimumGroundClearanceMeters": 0.07514618999269373,
+        "buildings": 4511,
+        "independentRoadRecords": 387,
+        "neighboringBridgeRecords": [
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "viewingDate": "2010-02-08",
+        "modelLoaded": true,
+        "modelLoads": 1,
+        "landingWidthSamples": 10,
+        "pavedWidthSamples": 5,
+        "maximumPavedJoinErrorMeters": 0.0005071697780749673,
+        "minimumGroundClearanceMeters": 0.07999769066951501,
+        "buildings": 4511,
+        "independentRoadRecords": 387,
+        "neighboringBridgeRecords": [
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "viewingDate": "2010-02-08",
+        "modelLoaded": true,
+        "modelLoads": 1,
+        "landingWidthSamples": 10,
+        "pavedWidthSamples": 5,
+        "maximumPavedJoinErrorMeters": 0.0005071697780749673,
+        "minimumGroundClearanceMeters": 0.07999769066951501,
+        "buildings": 4511,
+        "independentRoadRecords": 387,
+        "neighboringBridgeRecords": [
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "viewingDate": "2010-02-08",
+        "modelLoaded": false,
+        "modelLoads": 1,
+        "landingWidthSamples": 0,
+        "pavedWidthSamples": 0,
+        "maximumPavedJoinErrorMeters": null,
+        "minimumGroundClearanceMeters": null,
+        "buildings": 4511,
+        "independentRoadRecords": 387,
+        "neighboringBridgeRecords": [
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "current",
+        "viewingDate": null,
+        "modelLoaded": false,
+        "modelLoads": 0,
+        "landingWidthSamples": 0,
+        "pavedWidthSamples": 0,
+        "maximumPavedJoinErrorMeters": null,
+        "minimumGroundClearanceMeters": null,
+        "buildings": 4511,
+        "independentRoadRecords": 387,
+        "neighboringBridgeRecords": [
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "before",
+        "viewingDate": "2010-02-07",
+        "modelLoaded": false,
+        "modelLoads": 0,
+        "landingWidthSamples": 0,
+        "pavedWidthSamples": 0,
+        "maximumPavedJoinErrorMeters": null,
+        "minimumGroundClearanceMeters": null,
+        "buildings": 4511,
+        "independentRoadRecords": 387,
+        "neighboringBridgeRecords": [
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "after",
+        "viewingDate": "2010-02-09",
+        "modelLoaded": false,
+        "modelLoads": 0,
+        "landingWidthSamples": 0,
+        "pavedWidthSamples": 0,
+        "maximumPavedJoinErrorMeters": null,
+        "minimumGroundClearanceMeters": null,
+        "buildings": 4511,
+        "independentRoadRecords": 387,
+        "neighboringBridgeRecords": [
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          },
+          {
+            "id": 35184519652290,
+            "inputRetained": true,
+            "authoredConnections": 0
+          }
+        ],
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Intact exterior reconstructed from ordinary photographs, represented only on 2010-02-08. The one-day historical window is conservative evidence scope, not a claim that the bridge existed for only one day. It never appears in the default current world.",
+    "The 2025-08-20 photograph shows collapsed spans; standard 2026-10-26 PMTiles marks the old rail route destroyed. No October 2026 repair status or current damaged-geometry reconstruction is claimed.",
+    "Nine principal polygonal truss bays, 966 m principal length and three short approach bays per bank are photo-led visualization controls. The nominal 1128 m reference includes approaches; map rail extent is 1209.771 m and includes extra bank alignment. No surveyed span schedule is claimed.",
+    "The 12.8 m overall deck, 4.8 m truss spacing, central metre-gauge rail, two outside narrow road strips and raised walks are inferred visual proportions. They are not a traffic-safety, route-capacity or engineering representation.",
+    "Deck grade, pier footing depth, member sections, gussets, joint spacing and bank caps are approximate. Final bank aprons use source-local native paving/ground heights and 1.5m overlap beyond the mapped rail ends; distant levels simplify their cross-slopes. Coarse standard Mapzen/PMTiles provide fit; present-day terrain and neighboring buildings are context, not a 2010 city reconstruction.",
+    "The Yadanabon Bridge is a separate map feature and is preserved. No downloaded meshes, photo pixels, private images, microtexture, trains, vehicles, signs or transient objects are included. Physical-device performance remains unmeasured.",
+    "Distant apron cross-slopes differ from existing paving by up to 13.7 cm; this is not described as a millimetre-level match at every LOD. Current procedural quays, roads, banks, generic neighboring bridge and buildings are context, not reconstructed historical geometry."
+  ]
+}

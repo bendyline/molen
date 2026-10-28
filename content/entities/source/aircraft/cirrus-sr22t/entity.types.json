@@ -130,7 +130,21 @@
                     "axis": "y",
                     "scale": 0.35
                   }
-                ]
+                ],
+                "sources": {
+                  "elevator": {
+                    "component": "aircraftState",
+                    "path": [
+                      "elevator"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -9387,13 +9401,13 @@
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
               "groundTrackRate": 12,
-              "fixedGear": true,
               "groundEffect": true,
               "criticalMach": 0.62,
               "waveDrag": 0.22,
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 131.492,
-              "flapLimitSpeed": 65.746
+              "flapLimitSpeed": 65.746,
+              "fixedGear": true
             },
             "engines": [
               {
@@ -9415,6 +9429,7 @@
                 "maxThrust": 5510,
                 "minPropellerSpeed": 25,
                 "propellerEfficiency": 0.85,
+                "mixtureControl": true,
                 "propulsion": "propeller",
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.44
@@ -9452,7 +9467,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

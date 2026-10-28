@@ -1,0 +1,713 @@
+{
+  "planId": "copeton_dam",
+  "id": "copeton_dam",
+  "assetId": "molen.worldgen.structure.copeton_dam",
+  "title": "Copeton Dam, New South Wales (2006)",
+  "wikidataId": "Q5168547",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 150.927,
+    "latitude": -29.9075
+  },
+  "size": [
+    1917.6605834960938,
+    124.55233383178711,
+    848.5757141113281
+  ],
+  "actualBounds": {
+    "min": [
+      -929.3822631835938,
+      -129.30091857910156,
+      -417.8828430175781
+    ],
+    "max": [
+      988.2783203125,
+      -4.748584747314453,
+      430.69287109375
+    ]
+  },
+  "visualBrief": "Complete main1484m embankment and western156m nine-gate spillway, represented in2006 before the separate2013auxiliary spillway. Original54-control main-dam perimeter,11-control spillway perimeter,3-control crossing,17-control crest and16-control connecting road preserved. Native crest1483.76m agrees with operator1484m without scaling. Historical horizontal continuity is approximate; this is not a surveyed2006ground/section reconstruction.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2006-10-11",
+    "validFrom": "1976-01-01",
+    "validUntil": "2012-12-31",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Copeton_Dam_Spillway.jpg"
+  ],
+  "stories": [
+    {
+      "id": "copeton-dam-wp",
+      "url": "https://qualla.com/copeton-dam/"
+    }
+  ],
+  "referenceInputHash": "55d83db6c7f313ea1326523881b3d44658096146fdf717517aa7aafc64114bfb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r6/r6e/copeton_dam/models/copeton-dam-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r6/r6e/copeton_dam/models/copeton-dam-model.mjs",
+    "level": "skyline",
+    "export": "copetonSkyline",
+    "errorMeters": 12,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "gate": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.16
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.72,
+        "metallic": 0.55
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "copetonDistrict",
+        "errorMeters": 7,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.72,
+            "metallic": 0.55
+          }
+        }
+      },
+      "street": {
+        "export": "copetonStreet",
+        "errorMeters": 2.5,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.72,
+            "metallic": 0.55
+          }
+        }
+      },
+      "closeup": {
+        "export": "copetonCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.72,
+            "metallic": 0.55
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "gravel",
+    "concrete_panel",
+    "concrete_boardformed",
+    "metal_painted",
+    "metal_stainless"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.12,
+    "groundY": -133.3021,
+    "far": 6500,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent2048m129x129 original field/16641heights/nine raw Terrarium tiles frozen before these floors and main sections. Main central crest-road control and separate bridge east endpoint supply independent original-field levels.113m maximum wall and427m base nominal primary dimensions; valley taper, submerged upstream section, exposed profiles, bridge clearance and gate mechanics are bounded estimates. Original water/void/canopy artifacts retained; source range includes implausible-8685.84m inland pits and is not bathymetry. Never reframe, flatten, reacquire, move floors or reshape main sections to make render contact pass.",
+    "anchor": [
+      150.927,
+      -29.9075
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        150.93719935334528,
+        -29.91132948248287
+      ],
+      "modelHeight": 0,
+      "basis": "Independent southeastern crest-road endpoint chosen before acquiring terrain or selecting model floors/sections."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "minHeight": -129.3021,
+      "outline": [
+        [
+          -262.08107191437034,
+          -330.31832503067125
+        ],
+        [
+          -271.85603973027224,
+          -294.76287967145134
+        ],
+        [
+          -264.0495748119981,
+          -281.87208263762744
+        ],
+        [
+          -237.30109427639925,
+          -272.49898151284856
+        ],
+        [
+          -224.29353591950488,
+          -263.0256928463713
+        ],
+        [
+          314.1885015321296,
+          47.55568646696864
+        ],
+        [
+          534.7090735656574,
+          174.5266976657076
+        ],
+        [
+          578.054735385247,
+          196.40097760672666
+        ],
+        [
+          620.6187857631345,
+          206.1636969490893
+        ],
+        [
+          677.7536173840632,
+          216.22697891694233
+        ],
+        [
+          705.8723303262408,
+          221.69276591509248
+        ],
+        [
+          734.3384261338349,
+          230.08625552091183
+        ],
+        [
+          775.8024307748935,
+          246.88436668136453
+        ],
+        [
+          817.4980239919822,
+          273.6678361663907
+        ],
+        [
+          903.5331799995331,
+          331.0307697721642
+        ],
+        [
+          931.9124300907731,
+          355.13143952896445
+        ],
+        [
+          959.2495315912486,
+          381.8815131663624
+        ],
+        [
+          987.5612350157367,
+          408.820829938343
+        ],
+        [
+          976.6958709891784,
+          419.3293898694314
+        ],
+        [
+          970.9737032551759,
+          424.86196856165157
+        ],
+        [
+          889.9948978238267,
+          375.66988558027754
+        ],
+        [
+          837.0093615245813,
+          343.8881709587553
+        ],
+        [
+          779.4885489445165,
+          311.3383518508796
+        ],
+        [
+          718.947435349887,
+          296.21003305206506
+        ],
+        [
+          648.5541577519165,
+          284.0984724538041
+        ],
+        [
+          591.0333451691091,
+          258.361406182203
+        ],
+        [
+          507.78690159735015,
+          222.03785633623403
+        ],
+        [
+          426.7984466425711,
+          187.2171196161349
+        ],
+        [
+          370.79260933150357,
+          176.63063604176713
+        ],
+        [
+          327.65923703834176,
+          201.59959782661923
+        ],
+        [
+          293.5964173095614,
+          185.70317454145118
+        ],
+        [
+          301.1616441283754,
+          151.6505423077056
+        ],
+        [
+          296.62636784481344,
+          125.91347603649994
+        ],
+        [
+          267.1084739202824,
+          119.11185514903926
+        ],
+        [
+          195.9625334481569,
+          117.59791007396002
+        ],
+        [
+          117.2513661572174,
+          125.91347603649994
+        ],
+        [
+          -1.5728724123192004,
+          133.48320141031417
+        ],
+        [
+          -40.17096842191902,
+          121.38277276126263
+        ],
+        [
+          -152.18264304679658,
+          54.780321419641304
+        ],
+        [
+          -147.64736676597713,
+          38.12692559693362
+        ],
+        [
+          -150.67731730122918,
+          -5.020509034519341
+        ],
+        [
+          -171.10535961726157,
+          -30.74644335691107
+        ],
+        [
+          -202.89089168220235,
+          -64.05323500232645
+        ],
+        [
+          -221.21533776161826,
+          -42.268010654191706
+        ],
+        [
+          -247.97346782338957,
+          -63.39645000648511
+        ],
+        [
+          -245.03036300174907,
+          -74.63971857669424
+        ],
+        [
+          -242.89781819758554,
+          -100.86659060757741
+        ],
+        [
+          -247.17255732934254,
+          -148.7673674960831
+        ],
+        [
+          -250.11566215098304,
+          -180.0704083071372
+        ],
+        [
+          -265.37155959868477,
+          -211.91891462312492
+        ],
+        [
+          -280.35727037663685,
+          -238.40182148266078
+        ],
+        [
+          -315.9447148978444,
+          -249.91225683073202
+        ],
+        [
+          -313.6095300879403,
+          -264.483978175799
+        ],
+        [
+          -297.21498880969,
+          -332.06604103637983
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            -780.6078937282052,
+            -286.83693192689066
+          ],
+          [
+            -774.0944650263282,
+            -308.15461441376675
+          ],
+          [
+            -764.0879086343961,
+            -348.6637771134359
+          ],
+          [
+            -759.9482628361427,
+            -373.0316136480983
+          ],
+          [
+            -829.6853728052273,
+            -393.5477958013881
+          ],
+          [
+            -904.3147914412353,
+            -415.511131334896
+          ],
+          [
+            -912.3335458886797,
+            -396.52002620549945
+          ],
+          [
+            -927.4350509532757,
+            -332.1105688324265
+          ],
+          [
+            -856.2698114315477,
+            -305.0710645187476
+          ],
+          [
+            -840.8402225511378,
+            -299.2045273541998
+          ],
+          [
+            -816.6199173050111,
+            -295.0411783985229
+          ]
+        ]
+      ],
+      "basis": "Only mapped physical main-dam and original spillway footprints; no broad site pad. Unmasked original source field retained. Submerged upstream estimates can overlap source reservoir relief; no historic bathymetry or exact host contact claim."
+    },
+    "featureIds": [
+      "way/207808677",
+      "way/207802245",
+      "way/377282652",
+      "way/207801176"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=150.912,-29.918,150.942,-29.893",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6126196a545793d1a9e5cb5ea221ec9e866e5bdc0937fd51aedf37dc6fd7f34f",
+    "notes": "Whole 1484m main dam and intrinsic western nine-gate spillway in a dated 2006 interpretation. Main mapped road length agrees with operator length within one metre without scaling. Modern map controls approximate the stable historical horizontal layout. Later 2013 Diamond Bay auxiliary spillway excluded by date; separate hydroelectric plant, lake and natural hills are not dam geometry. Hidden embankment sections and historical levels are bounded engineering estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete main1484m embankment and western156m nine-gate spillway, represented in2006 before the separate2013auxiliary spillway. Original54-control main-dam perimeter,11-control spillway perimeter,3-control crossing,17-control crest and16-control connecting road preserved. Native crest1483.76m agrees with operator1484m without scaling. Historical horizontal continuity is approximate; this is not a surveyed2006ground/section reconstruction.",
+    "Independent2048m129x129 original field/16641heights/nine raw Terrarium tiles frozen before these floors and main sections. Main central crest-road control and separate bridge east endpoint supply independent original-field levels.113m maximum wall and427m base nominal primary dimensions; valley taper, submerged upstream section, exposed profiles, bridge clearance and gate mechanics are bounded estimates. Original water/void/canopy artifacts retained; source range includes implausible-8685.84m inland pits and is not bathymetry. Never reframe, flatten, reacquire, move floors or reshape main sections to make render contact pass.",
+    "2006 dated historical representation; later2013DiamondBay auxiliary spillway absent by date. No current-world activation claim.",
+    "One clear creator-PD photo directly establishes spillway appearance. Entire main embankment uses operator dimensions and exact native geometry; no whole-dam photogrammetry claim.",
+    "Main mapped perimeter describes exposed body. Submerged upstream slope/foundation, valley taper, material distribution, deck/piers/hoist sizes and rear mechanisms are original engineering estimates.",
+    "Mapzen original field has inland no-data/water artifacts and source spacing4.14m is output spacing, not native accuracy.16m review samples are not a survey. No exact2006terrain or host contact certification.",
+    "Separate1996hydroelectric power station is an independently named plant, outside this dam asset. No natural hill, reservoir, water sheet, people or adjacent facilities baked into structure."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. One exact Qualla-published Userid42 creator-public-domain photograph for the 2006 main spillway, no baked photographs. OSM ODbL plan controls and primary engineering factual dimensions; hidden sections and terrain contact explicitly approximate.",
+  "qaLodCameras": [
+    {
+      "name": "whole-dam-skyline",
+      "position": [
+        -1000,
+        900,
+        1500
+      ],
+      "lookAt": [
+        25,
+        -51.302099999999996,
+        -40
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-dam-district",
+      "position": [
+        -1000,
+        900,
+        1500
+      ],
+      "lookAt": [
+        25,
+        -51.302099999999996,
+        -40
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-dam-street",
+      "position": [
+        -1000,
+        900,
+        1500
+      ],
+      "lookAt": [
+        25,
+        -51.302099999999996,
+        -40
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-dam-closeup",
+      "position": [
+        -1000,
+        900,
+        1500
+      ],
+      "lookAt": [
+        25,
+        -51.302099999999996,
+        -40
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-main-wall-and-western-gates",
+      "position": [
+        -850,
+        700,
+        1600
+      ],
+      "lookAt": [
+        25,
+        -51.302099999999996,
+        -40
+      ]
+    },
+    {
+      "name": "all-nine-recessed-radial-gates-and-crossing",
+      "position": [
+        -869.3268124912577,
+        25.1465,
+        -285.8427528063306
+      ],
+      "lookAt": [
+        -834.7947957644071,
+        -21.8535,
+        -390.3584923902637
+      ]
+    },
+    {
+      "name": "rounded-pier-toes-curved-leaves-and-fascia-openings",
+      "position": [
+        -881.8231144212832,
+        -13.8535,
+        -379.029889461953
+      ],
+      "lookAt": [
+        -863.6034605575899,
+        -23.8535,
+        -398.72872732328904
+      ]
+    },
+    {
+      "name": "whole-rockfill-face-and-original-crest",
+      "position": [
+        160,
+        110,
+        420
+      ],
+      "lookAt": [
+        130,
+        -67.3021,
+        30
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8632,
+    "vertices": 25896,
+    "materials": 5,
+    "bytes": 1230912,
+    "sha256": "sha256:1436308af9039d35b4e31f968ba616cd450636a8e4f2a00ffa63024b1f1df58b"
+  }
+}

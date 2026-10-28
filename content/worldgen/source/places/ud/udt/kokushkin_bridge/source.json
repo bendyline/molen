@@ -1,0 +1,53 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kokushkin_bridge",
+  "kind": "static-structure",
+  "title": "Kokushkin Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json",
+      "models/kokushkin-controls.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kokushkin_bridge",
+        "output": "assets/places/ud/udt/kokushkin_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:91145d2036b89d1c802e896dce92d9c96f94cc009ff1d5f1f534efbe674e36ae"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-kokushkin.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/kokushkin-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

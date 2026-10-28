@@ -22,7 +22,7 @@ Original geometry and shared procedural material graphs. Primary photographs are
 
 ## Authored geometry and materials
 
-1,283,272 triangles, 2,344,904 vertices, 8 surface groups; 99,820,192 source bytes. SHA-256: `sha256:3c316c50b517c9181ea576dd44c9fdff06edabb210ac2bb917c60468afa1e289`. Actual bounds: -112.746, -1.300, -146.560 to 112.460, 47.650, 144.654 m.
+1,005,216 triangles, 2,386,832 vertices, 8 surface groups; 97,992,928 source bytes. SHA-256: `sha256:715b5669f39da90cc7d0668905f4c2bb61cf023d6753c2baf218ead78b9c4ff4`. Actual bounds: -112.746, -1.300, -146.560 to 112.460, 47.650, 144.654 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m), `matgraph:molen.worldgen.material.gravel` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped pitch center,+Z northwest toward Cannstatter Kurve,+X southwest toward the main stand;Y0 surrounding ground, pitchY-1.3."}.
 

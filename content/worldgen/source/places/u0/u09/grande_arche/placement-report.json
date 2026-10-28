@@ -25,5 +25,19 @@
     "source": "https://www.openstreetmap.org/way/19441489",
     "note": "Native X is the 106.9 m frontage, Z the 112 m depth. Rotate the exact-QID rectangle by 90 degrees so +Z faces southeast along the historic axis. Ground stair and cloud are reconstruction within this frame. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval.",
+  "metadataReconciliation": {
+    "kind": "changed-far-lods-reviewed; unchanged-master-and-registration-retained",
+    "oldInputHash": "sha256:be2595d6279024a0f290f7769602d01c47672e72a98295dcc11d1a7205f69fd9",
+    "inputHash": "sha256:080873712f7590a37675ea62aa5ebf799d8a25acd215c2200e99aa709ef63ca4",
+    "historicalRecipeRevision": "730813689^",
+    "basis": "The exact prior input hash was reconstructed with historical recipe bytes and every unchanged current local model input. Current source/master/street/closeup GLB hashes match their prior inspected hashes. Only skyline and district differ. Current six GLBs validate with zero errors/warnings;25 fresh medium-fi views were actually inspected under ACES1.05, including all four transitions, open arch, canopy/lifts, glazing, roof and soffit. Twenty portable/shared/geographic images and their material graph hashes remain byte-identical.",
+    "unchangedGlbs": 4,
+    "changedLods": [
+      "skyline",
+      "district"
+    ],
+    "retainedInspectedFrames": 20,
+    "currentFramesInspected": 25
+  }
 }

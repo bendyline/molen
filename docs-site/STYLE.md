@@ -153,6 +153,12 @@ needs a paragraph belongs in prose. The first column does not wrap, so keep it t
 `/samples/<id>.png` by the generator and framed by the theme. Alt text says what is on screen.
 Diagrams are `text` code blocks, not images.
 
+Curated livery comparisons use one small summary sheet per vehicle model in
+`content/entities/livery-previews/`. The guide generator checks their model, recipe and image hashes and
+copies them to `/guide-media/liveries/`. Shipped Markdown uses absolute public image URLs;
+images stay outside npm packages. Captions link source photographs and explain the scope of
+each photo-based adaptation. Gallery images load lazily.
+
 **Raw HTML** carries no `class` or `style` (checked). If markdown cannot express something, add
 it to the theme once rather than to a page.
 

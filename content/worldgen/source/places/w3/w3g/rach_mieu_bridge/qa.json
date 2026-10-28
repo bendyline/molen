@@ -1,0 +1,561 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.rach_mieu_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:0f972ff0881db00e6064ff21b9af958a39de6dee6f2b82d18f297895ab374b6d",
+  "sourceHash": "sha256:fda7afa5fb9aad7693ccabdb20742e9a03bfe2f934b541655354b4ee544122fd",
+  "runtimeHash": "sha256:3332b370714b5eee810da7c32733d414cd80c2aca900a5662ede8126fc335d01",
+  "captureReportHash": "sha256:e464291dded6f09dfddc1e712ecc5bdfa5f4e0a69798a558eff5748b9f08f9ad",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-original-two-channel-crossing.png",
+      "shots/northern-a-pylon-river-span.png",
+      "shots/two-way-driver-through-a-portals.png",
+      "shots/a-pylon-cap-stays-and-lower-crossbeam.png",
+      "shots/curved-island-access-ramp.png",
+      "shots/southern-box-haunches-and-piers.png"
+    ],
+    "captureReportHash": "sha256:e464291dded6f09dfddc1e712ecc5bdfa5f4e0a69798a558eff5748b9f08f9ad",
+    "notes": "Inspected62 current frames:11 portable,11 shared-material/geographic,23 medium-fi and17 native. Both original channel crossings, long approach deck, A-shaped pylons/caps/open portals, lower crossbeams, two outside stay planes, broad footings, two-way road with raised edges/open rails, curved lamps, southern box haunches and supported island ramp are present. Opened the main curb/rail at the ramp entry, matched the merge grade and raised the ground landing by0.131m against actual procedural-road crown samples in this same pass. Default scale-based turntables and generic block views show only a thin whole bridge or small viaduct portion; dedicated main-span, driver, ramp and native views carry detail inspection."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-original-two-channel-crossing.png",
+      "shots/shared/northern-a-pylon-river-span.png",
+      "shots/shared/two-way-driver-through-a-portals.png",
+      "shots/shared/a-pylon-cap-stays-and-lower-crossbeam.png",
+      "shots/shared/curved-island-access-ramp.png",
+      "shots/shared/southern-box-haunches-and-piers.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:2bff4ccb2077a66457d021e6212714b5ece90b001dbac8d43c75e3a33c79d548",
+    "notes": "Two existing shared256px graphs concrete_plain and metal_painted; three merged semantic groups near and one mean-tinted skyline group. Metric UVs and linear tints; no private/embedded images or photograph pixels. Each graph is read once in native near views. Runtime models use four separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-original-two-channel-crossing.png",
+      "medium-fi/northern-a-pylon-river-span.png",
+      "medium-fi/two-way-driver-through-a-portals.png",
+      "medium-fi/a-pylon-cap-stays-and-lower-crossbeam.png",
+      "medium-fi/curved-island-access-ramp.png",
+      "medium-fi/southern-box-haunches-and-piers.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:a211e72d601ab1d4a4c0a425d105a1b9522121232b915b905df6111ee5a27494",
+    "notes": "Master 43912 triangles / 5271912 bytes. Runtime 904 / 3588 / 15636 / 38524 triangles; 77104 / 289804 / 1185816 / 3164492 bytes; 1 / 3 / 3 / 3 draws. Initial skyline plus district 366908 bytes. Strict medium-fi budgets pass; physical-device timings are unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:4034ca56d750626dca16623dc8b40c5f502db4229627609ca7d7eb15ffc1a808",
+    "mapFrameHash": "sha256:bb10538597b81697a3586b7126563bf017fd085a5c82db47437af11c141986c0",
+    "notes": "Original Q2684873 identity resolved with named QL60 Cầu Rạch Miễu / Rach Mieu Bridge PMTiles records35184417572199,35184417572190 and35184937370694. No exact-QID map polygon is claimed. Anchor [106.34334862232208,10.339095307049057], heading1.7706798206929286; +X north-northwest/Mỹ Tho, -X south-southeast/Bến Tre; +Z east-northeast/downstream and island ramp. Mapped route3056.352m includes both bridge/approach sections rather than being rescaled to the older2868m fact; nominal width15m. All9 actual mapped width samples retain paving and model support per LOD within 0.003999948501586914m. Three ramp ground-width samples meet within0.016026m; nine actual ramp-merge width samples follow the authored source surface within0.006535m. Tower stations/sections and vertical grades remain visual approximations, not survey/legal-clearance claims."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped original bridge route and island ramp with approximate native placement complete. Master 43912 triangles / 5271912 bytes. Runtime 904 / 3588 / 15636 / 38524 triangles; 77104 / 289804 / 1185816 / 3164492 bytes; 1 / 3 / 3 / 3 draws. Initial skyline plus district 366908 bytes. Strict medium-fi budgets pass; physical-device timings are unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/w3/w3g/rach_mieu_bridge/models/source.glb\",\"hash\":\"sha256:fda7afa5fb9aad7693ccabdb20742e9a03bfe2f934b541655354b4ee544122fd\",\"bytes\":5271912,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/w3/w3g/rach_mieu_bridge/model.glb\",\"hash\":\"sha256:3332b370714b5eee810da7c32733d414cd80c2aca900a5662ede8126fc335d01\",\"bytes\":5271528,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/w3/w3g/rach_mieu_bridge/model.skyline.glb\",\"hash\":\"sha256:401e2b69322222310ecb78755d6071ed7e6ce99fcae201354c06eee612ec61a3\",\"bytes\":77104,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/w3/w3g/rach_mieu_bridge/model.district.glb\",\"hash\":\"sha256:e30280c634a98a7ab4511411e22d9d1d0cc8e5d93f4715c866b638b3c6c06272\",\"bytes\":289804,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/w3/w3g/rach_mieu_bridge/model.street.glb\",\"hash\":\"sha256:f458bed06b54cac414a47c3898daa7358e7e4bfcf5cedf539c12c3532e1f15a4\",\"bytes\":1185816,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/w3/w3g/rach_mieu_bridge/model.closeup.glb\",\"hash\":\"sha256:bc5270cb2329798b6fdbe7305510f57470c83f5590079b67d560bf9b16ae474b\",\"bytes\":3164492,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "original-two-channel-deck-A-portals-piers-and-open-curved-ramp",
+        "passed": true,
+        "notes": "1721 actual front-face/contact probes across six GLBs: complete two-channel deck, flat landings, A-pylons/open portals/caps/lower braces, two outside stay planes, repeated wall piers, curved supported island ramp and its open merge."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks pass; sha256:f9f95153a10dafa98007f0aa0274546f020473e530ce08154d5107c4058718ff."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:0f972ff0881db00e6064ff21b9af958a39de6dee6f2b82d18f297895ab374b6d",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Original Q2684873 identity resolved with named QL60 Cầu Rạch Miễu / Rach Mieu Bridge PMTiles records35184417572199,35184417572190 and35184937370694. No exact-QID map polygon is claimed. Anchor [106.34334862232208,10.339095307049057], heading1.7706798206929286; +X north-northwest/Mỹ Tho, -X south-southeast/Bến Tre; +Z east-northeast/downstream and island ramp. Mapped route3056.352m includes both bridge/approach sections rather than being rescaled to the older2868m fact; nominal width15m. All9 actual mapped width samples retain paving and model support per LOD within 0.003999948501586914m. Three ramp ground-width samples meet within0.016026m; nine actual ramp-merge width samples follow the authored source surface within0.006535m. Tower stations/sections and vertical grades remain visual approximations, not survey/legal-clearance claims."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:0f972ff0881db00e6064ff21b9af958a39de6dee6f2b82d18f297895ab374b6d",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected62 current frames:11 portable,11 shared-material/geographic,23 medium-fi and17 native. Both original channel crossings, long approach deck, A-shaped pylons/caps/open portals, lower crossbeams, two outside stay planes, broad footings, two-way road with raised edges/open rails, curved lamps, southern box haunches and supported island ramp are present. Opened the main curb/rail at the ramp entry, matched the merge grade and raised the ground landing by0.131m against actual procedural-road crown samples in this same pass. Default scale-based turntables and generic block views show only a thin whole bridge or small viaduct portion; dedicated main-span, driver, ramp and native views carry detail inspection.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/scene-preview.png",
+          "hash": "sha256:a21d93975c06545e7b4f0d9a07f1c2fdcb506c9e3b6a95cc928cef6019a8b194"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:a8a41f6d8b270f78a49c99e3ae596ad64946ab8c8ce4780296559374c2e29ac5"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:f1cbef96bcb7cb2147a1308905b3a2e06ed4f78061d8848d90fa6742c8dcfd86"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:d8c57b9e717ecdc3e9766f817a5fe5b3660e98f610cc91bd9becff864ea5e968"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:165e1570292e2d511b8c52ca6ba65cc92110e38e64a8e5ce040cc5f1a7e0a06c"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/whole-original-two-channel-crossing.png",
+          "hash": "sha256:a21d93975c06545e7b4f0d9a07f1c2fdcb506c9e3b6a95cc928cef6019a8b194"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/northern-a-pylon-river-span.png",
+          "hash": "sha256:e6d3b698db102c34417ce1eef5d276ebb0e6ae63b21d311ed8dfda17ea6c20c6"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/two-way-driver-through-a-portals.png",
+          "hash": "sha256:822bf27cbde17975b993df1bd51260f38a737c2fb4f7fd1945718298ad731442"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/a-pylon-cap-stays-and-lower-crossbeam.png",
+          "hash": "sha256:7e7db3f387a77d38937e49dbeb4aa60cafc4ad570ba5bf0de2963c489a9856fa"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/curved-island-access-ramp.png",
+          "hash": "sha256:816d4098e7ad9ca3fd4e64ccbdcce785a63f3ba165ebeb6bc84dce1bd2fa4fc3"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/southern-box-haunches-and-piers.png",
+          "hash": "sha256:bf339768c65727520062d2467778064aa548a03f171228e3edea40782730a1d9"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:8e0a8b28d16168989e263e3b5f2ba2f01eb2e4705323470d9aee3b6b2c6849c8"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:42d8e830d974a3ab276095450c5d8df1f92ab2581732d650adc568116ec737a0"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:755464ffa78d78678a26f5c42af5e87c9a505a98ba71ff1b99c8ccf8a868e205"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:fd602128b5362894836094781ceec547f95a82c56ec95a202ae536bcaa845525"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/whole-original-two-channel-crossing.png",
+          "hash": "sha256:bc9d2e8a2f67d0e3034e765126a98b8db6be131dd3919cf5f51b6f34f73d671b"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/northern-a-pylon-river-span.png",
+          "hash": "sha256:675dcbee7bb34dfa7275991d3368c0bfdcc466cbe314607c073ef4bb554639f7"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/two-way-driver-through-a-portals.png",
+          "hash": "sha256:412f640136e585ec12f348ac6309d566e9ae165931532c815daf1a9941076b1d"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/a-pylon-cap-stays-and-lower-crossbeam.png",
+          "hash": "sha256:2726c6bf0b2f82bff55bccc207ae79e67ba90fa58638453fe29ff707f9821c90"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/curved-island-access-ramp.png",
+          "hash": "sha256:98e8eb8cf6be099691c7c6f1286f3f06539ec2f36193e48a7441c4b289a9f2ac"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/southern-box-haunches-and-piers.png",
+          "hash": "sha256:c22f418e6751b015716d8edb064213d83ed181cafa2cb7c2d3bd87524c7e91d2"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/shots/shared/placement.png",
+          "hash": "sha256:2985e13456c31efd43139bad5c64f6de67a25f005ad8632d4fd480c1843659ae"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:0cd45304e9376eca20a201762f610ba73682df9d52996895dded9f16b8c23ee0"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:3476711d2c2752c3df534c3367eac266bf474bf7a94da1dfd2b33680f8b578c4"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:a0c640adef90c4cad0fbbcc11ca9d5d27928726cda1b22fe4f5e46ebd5685306"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:5069d38075488414d04d45cd299561699ef4ab969edc10fc3e406e61e0cd9e08"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:628070bf7a12b141213874a40615657b67368a262b7c6e9b1384451b17268f87"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:e68631db61c6cb8f5464be9caa787984af180cc6ccd0f308c452770e13c88476"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:2de2c5d8c181fc68542c951617e287a91bb66136941bcbf53b9f5ba05dbf351b"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:069f856421ee7a5aff6241df2b764450bca8140355edd7f9927685a1104c2e80"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:ffabf302e9b68091e24c06aa5303470c51ea704b680271b0863c832434913433"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:c41902fcec64496a9f06331ed00c644403523fa9c8f91aa0beba0f276854db9c"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:337a11ef5ed9357e817b2a1d74a1220aef29eee28072f421b2f85456044940b5"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:1d0b6166959a6aeea60c3a8c3494484ed48e9f4da5d2468e6eedadf46b8af4b7"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:6c468b0cda786ad22120cc6f253d736250b35b32a378c51c0fae19b2df233d6f"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/whole-original-two-channel-crossing.png",
+          "hash": "sha256:1328aac603dbc6d9ed3c5f19ad623651bffb0644a49d573ef2d15e405395e7fb"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/northern-a-pylon-river-span.png",
+          "hash": "sha256:744127c5a2e670b86fbac4013f8a0ea09f975cc68c82f3931f7edc74a06f2da1"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/two-way-driver-through-a-portals.png",
+          "hash": "sha256:738a8670667c65c199eda68d87d25cabe579e1bab27ba8f1cbcbbc05b8b868ef"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/a-pylon-cap-stays-and-lower-crossbeam.png",
+          "hash": "sha256:1ef78db67ba52c84a44ee5a067d448e3ec1be872d3cba32b84a4c8a4cd888e38"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/curved-island-access-ramp.png",
+          "hash": "sha256:ef7e60bbe0ae5e7ba2ca658ad644a5dd78757800b0259dc036368fabb51ee8f6"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/southern-box-haunches-and-piers.png",
+          "hash": "sha256:62eb6023b93d25c4bad9f8116f22f0509dd6a4450b9c7004ff75f46b4c63abec"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:abe49ce395faad4fb66f8f984debd9baf9d718f1b1e0126a3e439445e52648b9"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:e68631db61c6cb8f5464be9caa787984af180cc6ccd0f308c452770e13c88476"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:9d2779b10df219b2a2501ade1712611d8b7f28f7649f3cf1894dc4a65592d2f7"
+        },
+        {
+          "path": "content/worldgen/source/places/w3/w3g/rach_mieu_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:49f1a545133108390b5fde6942b728febc0021ddd69fe5140c40a774c414f433"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-skyline-skyline-context.png",
+          "hash": "sha256:6aa4af129a0e31942ff2bd7d7ef13180a42b01bdef26c8ddd88345c66e2a88db"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-district-district-context.png",
+          "hash": "sha256:5c181e8d49504b1cbcdceefd6bf0647a6ba8c850800f1e8d4f548a4132ac16fb"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-street-whole-original-two-channel-crossing.png",
+          "hash": "sha256:d81da25608e5a09bc7b7e669c3ce7f73fd1b939c3cd1cac8ef26e159a7c8ea45"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-street-northern-a-pylon-river-span.png",
+          "hash": "sha256:d4ffab693d530d952eb48bdd5b67daef9d4b4cf38214401a11d15fd80f3bd0d3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-street-two-way-driver-through-a-portals.png",
+          "hash": "sha256:3934015d750e02eee1f023ed5dfb8200c47d71b93fc23e84222829385c632a49"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-street-a-pylon-cap-stays-and-lower-crossbeam.png",
+          "hash": "sha256:38e518afa38c46e7f305ec2f09ef1e0e9c60afa90df119b6c9eb58f0a6b2ceda"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-whole-original-two-channel-crossing.png",
+          "hash": "sha256:3bf7be560284e9077332ca4aa942c8afea2d3fa995ae84292dc0bef777c2b9b6"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-northern-a-pylon-river-span.png",
+          "hash": "sha256:0219ff099b255a978e5214cc0d98f80c9bdbade892ab5cd3b7a22221d47f93ac"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-two-way-driver-through-a-portals.png",
+          "hash": "sha256:fca77e907d0f33bd640601033d3ba3bf478a36be609137d524c76fda8ac4c3d4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-a-pylon-cap-stays-and-lower-crossbeam.png",
+          "hash": "sha256:39fa4a1170f225045ddbe49ff97dd869f647164783a1440415d5ca0811c2dcd4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-curved-island-access-ramp.png",
+          "hash": "sha256:88031d030728d16127f36635253cfaeaa231473b56dce11f0fe19d06afa5ab6e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-southern-box-haunches-and-piers.png",
+          "hash": "sha256:3dc84d6335adbe5be8f3baff3589b1141f7bfe29f5a307029d1cec7998ec2432"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-ben-tre-south-landing.png",
+          "hash": "sha256:f88bcce76cd4e7e0212d302b2a984bfc665f53730047b03b948c18a6503940b1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-my-tho-north-landing.png",
+          "hash": "sha256:6d108380bdef2f5b4999f385dd3b8ed4e3eb2cbc748e1fce2fc9651eb632c9c2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-district-context.png",
+          "hash": "sha256:a30ad87fe5d331e89d57bccf7d5a572ea06cada78683dc87e9203489a6b606e4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-closeup-economy-context.png",
+          "hash": "sha256:79b5525cd3edf8825bf838b0043f7126986d06a84c49f4b6ab581ebbd787247a"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\rach-mieu-review/native/shots/accepted-failure-whole-original-two-channel-crossing.png",
+          "hash": "sha256:6a31e10edac800976a39069f47c4e59ac112d96a91d7f88ce8886f7ee11d5c83"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All28 fixture buildings and441 independent road records remain. Successful replacement removes6 fully replaced bridge fragments from470 input records, leaving464; failure retains all470. Raw roads, DEM, displayed ground and water remain unchanged. Connected main landing paving is deliberately graded. The curved ramp is fully modeled, but its underlying map transport profile remains near ground; continuous vehicle navigation over the ramp is not claimed. Failed loading keeps original map features; unload releases every model/support geometry. No ground/building cutout is used."
+    },
+    "nativeReport": {
+      "path": ".artifacts/rach-mieu-review/native/accepted-report.json",
+      "hash": "sha256:95b13b413ebb87a579a7a3136edb47a9c5a7183d84c365c11e61e08cddec24c5",
+      "frozenViewerInputsHash": "sha256:cd3b63c8cb2fff1d6881d5cab7f107b359013606181b641191141f856e1e084d"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 9,
+        "pavedJoinSamples": 9,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": 0.003999948501586914,
+        "rampGroundJoinMaximumErrorMeters": 0.016025731810259458,
+        "rampMergeMaximumSurfaceErrorMeters": 0.006534860636037365,
+        "sourceBuildings": 28,
+        "remainingBuildings": 28,
+        "sourceRoads": 470,
+        "outputRoadRecords": 464,
+        "independentRoadRecords": 441,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 9,
+        "pavedJoinSamples": 9,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": 0.003999948501586914,
+        "rampGroundJoinMaximumErrorMeters": 0.016025731810259458,
+        "rampMergeMaximumSurfaceErrorMeters": 0.0065347993579223385,
+        "sourceBuildings": 28,
+        "remainingBuildings": 28,
+        "sourceRoads": 470,
+        "outputRoadRecords": 464,
+        "independentRoadRecords": 441,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 9,
+        "pavedJoinSamples": 9,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": 0.003999948501586914,
+        "rampGroundJoinMaximumErrorMeters": 0.016025731810259458,
+        "rampMergeMaximumSurfaceErrorMeters": 0.006533904305314309,
+        "sourceBuildings": 28,
+        "remainingBuildings": 28,
+        "sourceRoads": 470,
+        "outputRoadRecords": 464,
+        "independentRoadRecords": 441,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 9,
+        "pavedJoinSamples": 9,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": 0.003999948501586914,
+        "rampGroundJoinMaximumErrorMeters": 0.016025731810259458,
+        "rampMergeMaximumSurfaceErrorMeters": 0.006533904305314309,
+        "sourceBuildings": 28,
+        "remainingBuildings": 28,
+        "sourceRoads": 470,
+        "outputRoadRecords": 464,
+        "independentRoadRecords": 441,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "approachSupports": 1,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "pavedJoinSamples": 0,
+        "interiorReplacementSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "rampGroundJoinMaximumErrorMeters": null,
+        "rampMergeMaximumSurfaceErrorMeters": null,
+        "sourceBuildings": 28,
+        "remainingBuildings": 28,
+        "sourceRoads": 470,
+        "outputRoadRecords": 470,
+        "independentRoadRecords": 441,
+        "rawRoadInputsRetained": true,
+        "sourceGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "sharedGraphReads": {},
+        "approachSupports": 0,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Complete original main route across both channels and the intervening island, plus its curved island access-ramp mesh. The newer Rạch Miễu2 crossing is independent; no duplicate landmark is placed there. PMTiles endpoints retain3.056km of bridge/approach plan, rather than rescaling it to the older2.868km combined-length fact. Nominal bridge width15m comes from the existing source facts.",
+    "Main river section near local+625m, approximately504m cable-stayed extent,270m pylon spacing and106m tower tops are visual reconstruction controls, not mapped/surveyed tower points. Tower sections, two cable planes, cable counts, pier rhythm, southern box-girder haunches, underside beams, railings, lamps and footing outlines are simplified from ordinary photos.",
+    "Sea-level source origin0m. The deck rises to roughly41m in the northern main span, with separate lower southern box spans and island approach grade. Landings clear the highest sampled standard Mapzen ground across the road. Water remains the standard viewer result; no surveyed or legal clearance is claimed.",
+    "Island ramp follows the named mapped loop and includes its own supported deck and rails. Its approximate vertical profile connects island ground to the main deck. The underlying map road remains available as transport data; exact driving/navigation grades on this side ramp are not claimed. Independent island roads and buildings must remain.",
+    "Two existing shared256px graphs concrete_plain and metal_painted, three merged semantic groups near, metric UVs and linear vertex tints; no embedded/private images or copied photographs. Far LOD reduces piers/stays/rails, district simplifies southern haunches, near levels retain the ramp, A-portals, full support rhythm and distinctive lamp shapes. Physical phone/laptop timings remain unmeasured.",
+    "The modeled ramp provides a continuous visual surface and open entry; its underlying semantic transport remains at the native ground profile, about26m below the elevated end. No ramp vehicle-navigation grade or traffic simulation is certified.",
+    "The newer named Rach Mieu2 PMTiles crossing lies entirely west of this placement bounds. It is not rendered in this narrow native fixture; the independent geographic-bounds proof prevents this model from replacing it.",
+    "Standard native river stage is about0.65m in the main channel. Coarse banks, pier/footing embedding near shore, approximate southern box sections, incomplete local vegetation/retaining detail and default distant-camera readability remain explicit limitations."
+  ]
+}

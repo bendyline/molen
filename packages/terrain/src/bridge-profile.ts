@@ -15,6 +15,8 @@ export interface BridgeDeckOptions {
   groundApproach?: boolean;
   /** Authored deck endpoints in the path's frame, blended in over `radius`. */
   connections?: readonly { point: TerrainSemanticPoint; elevation: number; radius: number }[];
+  /** Absolute along-path grading samples, shared by painted surfaces and traffic graphs. */
+  approachProfile?: readonly { point: TerrainSemanticPoint; elevation: number; flatness: number }[];
 }
 
 /**
@@ -64,7 +66,66 @@ export function bridgeDeckHeightFn(
     const t = Math.max(0, Math.min(1, v));
     return t * t * (3 - 2 * t);
   };
+  // Keep the whole profile when a tile/traffic edge clips its rendered path. Otherwise
+  // dropping the nearest sample outside the clip would change the boundary elevation.
+  const samples = options.groundApproach ? (options.approachProfile ?? []) : [];
+  const distances = [0];
+  for (let i = 1; i < samples.length; i++) {
+    const a = samples[i - 1] as (typeof samples)[number],
+      b = samples[i] as (typeof samples)[number];
+    distances.push(
+      (distances[i - 1] ?? 0) + Math.hypot(b.point[0] - a.point[0], b.point[1] - a.point[1]),
+    );
+  }
+  // A bent path's cross-sections must use its local segment, not its endpoint chord.
+  const project = (x: number, z: number) => {
+    let best = Infinity,
+      station = 0,
+      px = x,
+      pz = z;
+    for (let i = 1; i < samples.length; i++) {
+      const p = (samples[i - 1] as (typeof samples)[number]).point;
+      const q = (samples[i] as (typeof samples)[number]).point;
+      const vx = q[0] - p[0],
+        vz = q[1] - p[1],
+        length2 = vx * vx + vz * vz;
+      const t = length2
+        ? Math.max(0, Math.min(1, ((x - p[0]) * vx + (z - p[1]) * vz) / length2))
+        : 0;
+      const cx = p[0] + vx * t,
+        cz = p[1] + vz * t;
+      const distance2 = (x - cx) ** 2 + (z - cz) ** 2;
+      if (distance2 < best) {
+        best = distance2;
+        station = (distances[i - 1] ?? 0) + Math.sqrt(length2) * t;
+        px = cx;
+        pz = cz;
+      }
+    }
+    return { station, distance: Math.sqrt(best), point: [px, pz] as TerrainSemanticPoint };
+  };
+  const profile = samples.map((sample, i) => ({ ...sample, station: distances[i] ?? 0 }));
   return (x, z) => {
+    if (profile.length) {
+      const p = project(x, z);
+      let low = 0,
+        high = profile.length - 1;
+      while (low + 1 < high) {
+        const mid = (low + high) >>> 1;
+        if ((profile[mid]?.station ?? 0) <= p.station) low = mid;
+        else high = mid;
+      }
+      const a = profile[low] as (typeof profile)[number],
+        b = profile[high] as (typeof profile)[number];
+      if (a.flatness === 0 && b.flatness === 0) return groundAt(x, z) + options.approachLift;
+      const t = Math.max(0, Math.min(1, (p.station - a.station) / (b.station - a.station || 1)));
+      const flatness = a.flatness + (b.flatness - a.flatness) * t;
+      return (
+        a.elevation +
+        (b.elevation - a.elevation) * t +
+        (groundAt(x, z) - groundAt(...p.point)) * (1 - flatness)
+      );
+    }
     const t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length2));
     // Keeps the slab above terrain at crests without sagging into the river/valley.
     const lift = Math.min(
@@ -98,7 +159,24 @@ export function bridgeDeckHeightFn(
             : !atStart && options.connects[0]
               ? smooth(t)
               : 1);
-      height += (connection.elevation - height) * weight;
+      if (options.groundApproach) {
+        // Keep the bank's shape and fade only the height difference at the join.
+        // Blending toward a constant deck height buries an uphill approach.
+        const end = atStart ? a : b;
+        const neighbor = (atStart ? path.points[1] : path.points.at(-2)) ?? end;
+        const ex = neighbor[0] - end[0],
+          ez = neighbor[1] - end[1],
+          length = Math.hypot(ex, ez) || 1;
+        const nx = -ez / length,
+          nz = ex / length;
+        const offset = (x - connection.point[0]) * nx + (z - connection.point[1]) * nz;
+        const joinGround =
+          groundAt(connection.point[0] + nx * offset, connection.point[1] + nz * offset) +
+          options.approachLift;
+        // Two distinct hints can overlap on a short approach. Retain each exact end.
+        const endWeight = connections.length > 1 ? (atStart ? 1 - smooth(t) : smooth(t)) : 1;
+        height += (connection.elevation - joinGround) * weight * endWeight;
+      } else height += (connection.elevation - height) * weight;
     }
     return height;
   };

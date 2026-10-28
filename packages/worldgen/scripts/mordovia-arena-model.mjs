@@ -3,7 +3,7 @@ import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { transformed } from './lighthouse-models.mjs';
 import { mordoviaPlan } from './mordovia-plan.mjs';
 import { chair, face, soccerPitch } from './stadium-models.mjs';
-import { box, tube } from './structure-mesh.mjs';
+import { box, tube, tubePath } from './structure-mesh.mjs';
 
 const TAU = Math.PI * 2,
   white = [0.93, 0.935, 0.92],
@@ -51,9 +51,7 @@ function rounded(a, hx, hz, r, y = 0) {
   return radial(a, t, y);
 }
 function curve(out, ps, r = 0.035, col = steel, slot = 'metal', sides = 8) {
-  for (let i = 1; i < ps.length; i++)
-    if (Math.hypot(...ps[i].map((v, k) => v - ps[i - 1][k])) > 0.0001)
-      tube(out, slot, ps[i - 1], ps[i], r, col, sides);
+  tubePath(out, slot, ps, r, col, sides);
 }
 function rail(out, ps) {
   for (const y of [0.55, 1.1])

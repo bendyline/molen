@@ -1,27 +1,33 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+    "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3"
+  },
   "sourceHash": "sha256:b55904e710bd425358986f38bd7768c97a1e090de42b83f03fe266cb97154f25",
   "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
-  "fixtureHash": "sha256:1ba4310b401880bcebc368fc2ba02cb9a4358a498f6e03d2057ad1ccc352069c",
+  "fixtureHash": "sha256:7f6f28b6ee9789493aba2adb8000cb511b3e6e56fece1ff5db9e9b81ac411093",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
+      "ground": "#9a8f70",
       "sun": "#fff1d8",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
+      "sunIntensity": 4.4,
       "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.18
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 12032,
   "runtimeLods": [
@@ -40,9 +46,9 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:e97917ecdb348e68445ff79a2dd10ac4be85f90b88478eee521939048e06b0c0",
+      "hash": "sha256:e4e8104926efc1075013940dc9eaa75e7a0638b3154eb077d5f5e36270ff48e1",
       "bytes": 314696,
-      "gzipBytes": 41340,
+      "gzipBytes": 41343,
       "triangles": 3996,
       "cpuBytes": 304920,
       "gpuBytes": 304920,
@@ -52,9 +58,9 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:9db70c056b0e9f5e96a7502e9d68eee09c22aeb1a6b70e331af03c73375d3412",
-      "bytes": 1170352,
-      "gzipBytes": 185686,
+      "hash": "sha256:06e8a6e4313a0cb8b830e21d75d3d034c709bac865ec15ad778d9c6ed0b6e06d",
+      "bytes": 1170348,
+      "gzipBytes": 173177,
       "triangles": 15704,
       "cpuBytes": 1160544,
       "gpuBytes": 1160544,
@@ -64,9 +70,9 @@
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:447a4910934d917daba04e1d040bfd0501f721841520c153ad9207263af7b7a9",
-      "bytes": 2108492,
-      "gzipBytes": 387337,
+      "hash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
+      "bytes": 2108496,
+      "gzipBytes": 417778,
       "triangles": 28920,
       "cpuBytes": 2098656,
       "gpuBytes": 2098656,
@@ -75,13 +81,17 @@
     }
   ],
   "terrainFixture": {},
+  "fixtureEntities": [],
   "context": "Synthetic procedural neighbors at review Y=0; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:b0aa27ea56e137082c743346b1aaaec8fe1201cc5af3b05e61c9a617b1c2baae",
+      "hash": "sha256:cef0521912b2b9e8699067adb73be5be554415d0e49352075c457e897fe8f136",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -113,13 +123,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:e290481ea088e38f4bab55f3ddbcaa2f12c196101c6e2218aeb1b6806c32790e",
+      "hash": "sha256:3de941a3aa5cff202cf491a4f3f3c15e0a349a71cfb622204a701eea16f65202",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -151,13 +166,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:2deaa8ac887ac710286857eeec354c5b2fc5bffd53d2db78bf61710010ff729e",
+      "hash": "sha256:86c5fa0763fbe2cd802317c8f081bc62eff3b9662a44fe2073ba998bfa4c8a52",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -189,13 +209,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:d228cf9f5ae7f3805db0852636df74fc9020e7467576b4e2ef0ab90ecc870655",
+      "hash": "sha256:53f04875015205dba6bc9b7d5fb125912b03b8ba25d566d7d744914c0248b508",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "late",
@@ -227,13 +252,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:5ef322c40ce964725e1b6c0abd2b10a294eb606482d42ea6a424ac3e5ae3e847",
+      "hash": "sha256:d3fc310dacc6fcc490377f5fb14b7d286261678b86946c4a41f53a4421584052",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:e4e8104926efc1075013940dc9eaa75e7a0638b3154eb077d5f5e36270ff48e1",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -265,13 +295,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:32531fbbe4c38ce55fb9956fe981d69482da14b5250196dbf33b1212a820def2",
+      "hash": "sha256:42f73eb5bba4b9d181f4a6d0a53a72f85608dd93e20d92638f1276bd29b32994",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:e4e8104926efc1075013940dc9eaa75e7a0638b3154eb077d5f5e36270ff48e1",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -303,13 +338,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:83e660f477f36dca02dfec7b7c22b2554b3fb61d87a87151bb029ffe6e0b0620",
+      "hash": "sha256:90f72d0f207fae0c7803e823ad82a9e1c66bab473caf3da8d54a81ea7bef1790",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:e4e8104926efc1075013940dc9eaa75e7a0638b3154eb077d5f5e36270ff48e1",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -341,13 +381,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:0764ee74c54339d878961cdfd33da08b4ecda40c57c754016da5640c781f138a",
+      "hash": "sha256:ffc7e3203bbbd5295ca456c2fe96a069ffc807903b245f3b3c755949ae444093",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:e4e8104926efc1075013940dc9eaa75e7a0638b3154eb077d5f5e36270ff48e1",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -379,13 +424,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:985461422144f33aed853d9b3a66726350f4c933fd2313f55aeaa7ef6ae6b8c2",
+      "hash": "sha256:e1814b2250b3cb69cc0557080413495077719db94891b2248e3421f973526431",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f667f46e21c582bf1fcdacbf71094e07d9da57516d65511a2ea185f4060954b7",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -417,13 +467,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:27d72987188cd9c3140a9d8afff6c0ad7f795b061bc80dbbae93d2496224af46",
+      "hash": "sha256:b05cf197ece48f244580ae957e72e93c0dc48fc411d24498dd3a80329ab50182",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f667f46e21c582bf1fcdacbf71094e07d9da57516d65511a2ea185f4060954b7",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -455,13 +510,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:538deb6110513e4be9babe9583831ad264fca0f9ce8d3da3b6a8812262379c63",
+      "hash": "sha256:1c63245922eb92f91d5989f23e4f737af5450b183a1c97e2139cec6a780db336",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f667f46e21c582bf1fcdacbf71094e07d9da57516d65511a2ea185f4060954b7",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -493,13 +553,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:a9c087d10ffb3b4ef9a44499fa89de51e3fd6d0817f6aef81aeeca94787a68a2",
+      "hash": "sha256:1f93a5a1f8024399890f37d64bdb1e5f3d8ca9027a73dcdce40aad70cd8925e6",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f667f46e21c582bf1fcdacbf71094e07d9da57516d65511a2ea185f4060954b7",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -531,13 +596,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:17e05fff1ca4dfc74f6a475db71b38287b78d0ecd6077507a451aa9be76e192d",
+      "hash": "sha256:b4d78bd3b5299e0440715217026e68f4cb194ab87cb8ed070c56ba937af5ce9a",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f667f46e21c582bf1fcdacbf71094e07d9da57516d65511a2ea185f4060954b7",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -569,13 +639,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/south-elevation.png",
-      "hash": "sha256:edf4c35be663f2a89909bcb8fcd9251257f98f6501c572c136a79dc983bd5a74",
+      "hash": "sha256:81ac292fa2037319ad0f21c77c7c5b2c629ca080e8f9576334d837daea2f6290",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -607,13 +682,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/north-elevation.png",
-      "hash": "sha256:9a843affd89530bcf963870e5c0cd6281335212e4b760017f94ae2baf10423dd",
+      "hash": "sha256:79172e41c59e9ad497cda6ce9dcb1bce77ef3857e4814083e6d089f68c3c3ab9",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -645,13 +725,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/timber-joinery.png",
-      "hash": "sha256:db975b6d458462362c6f47ba1a98559b224641fc395c197946491324e816cc5c",
+      "hash": "sha256:5ba9c2cf229bf666acc19a638af9935da47280c5d889fbb6547c5c7312297bb2",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -683,13 +768,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/bronze-giboshi.png",
-      "hash": "sha256:757ad84e631657ab65a595d60e21cce8834ba0be66d45b7cde401518f0919179",
+      "hash": "sha256:357ade592dd2c2be9a2c6ec413f921a0e6f96933df48974fc3e0cc2eba375f0f",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -721,13 +811,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/asanoha-barrier.png",
-      "hash": "sha256:1016ff79706756f7625146621d273f8411257d39836de495d856ba7b7aad9a0d",
+      "hash": "sha256:6c8aad0404fe3be21e337c06a8639f2ee85f8e17737a546e963fa5d435c85823",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -759,13 +854,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/checker-paving.png",
-      "hash": "sha256:21f258a423bf8b2351d42601a3744dd1b02badf236a86fc27a8775addd0ecec4",
+      "hash": "sha256:fa0f7bb2fedc89e22ba9223a935b9c705556f6df74240517f5fcecce96e797f4",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -797,13 +897,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/pier-frame.png",
-      "hash": "sha256:59c3a64b4f1d93c6de8778919d8d94ca43591ad1a3084ffc41dadcc4d7de20bd",
+      "hash": "sha256:3dccefdab9da523ba9d84c189d812e79fbb18543ce764758a252d197e698b3e4",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -835,13 +940,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/steel-soffit.png",
-      "hash": "sha256:388068fc141fec151187281ad1bce4e6be3467649b9157b937a982f7fc15ba5e",
+      "hash": "sha256:1f388119037e914a681be4ac8e9848fea52ec8d77727ad1f6a2ed4e4cfd974d8",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -873,13 +983,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/east-bank.png",
-      "hash": "sha256:d68e5d8374ef127aa93efb9da5f03492c59bd139abdb226fa568fc24954e7d55",
+      "hash": "sha256:0980648ae9a783f52612f981699a46c687f829aa9f2b59cb85fc3ed2c21626b8",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -911,13 +1026,190 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sanjo-skyline.png",
+      "hash": "sha256:ebfec5c90995becf0613757cc231019e917e62357e2c38223ed20c2081893b42",
+      "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f667f46e21c582bf1fcdacbf71094e07d9da57516d65511a2ea185f4060954b7",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 6,
+        "triangles": 13028,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          64,
+          33,
+          64
+        ],
+        "lookAt": [
+          0,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_checker_fine": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_asanoha": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sanjo-district.png",
+      "hash": "sha256:bfe2ae159ef57b069eaad94b49fcddb773d575c4e49e396957428634142872e7",
+      "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:e4e8104926efc1075013940dc9eaa75e7a0638b3154eb077d5f5e36270ff48e1",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 16030,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          64,
+          33,
+          64
+        ],
+        "lookAt": [
+          0,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_checker_fine": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_asanoha": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sanjo-street.png",
+      "hash": "sha256:2ce61c861580a1f8f9b87444dca157f46853e3dd8dd1aa3ac77f80c5d4742ba8",
+      "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:06e8a6e4313a0cb8b830e21d75d3d034c709bac865ec15ad778d9c6ed0b6e06d",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 27738,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          64,
+          33,
+          64
+        ],
+        "lookAt": [
+          0,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_checker_fine": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_asanoha": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-sanjo-closeup.png",
+      "hash": "sha256:d1776a92bbffdc4d6e973fd1ab519947286e21b8a86a2d121fdd984349b6e10b",
+      "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 40954,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          64,
+          33,
+          64
+        ],
+        "lookAt": [
+          0,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_checker_fine": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_asanoha": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:1a1e992122609980e9edf5616e90a1f7c0b337ef253003736a8da77614def884",
+      "hash": "sha256:c25f9ae75b55c9018b55e693872b150d124b35df53257f29123952dcddbb956c",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f667f46e21c582bf1fcdacbf71094e07d9da57516d65511a2ea185f4060954b7",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -949,13 +1241,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:32531fbbe4c38ce55fb9956fe981d69482da14b5250196dbf33b1212a820def2",
+      "hash": "sha256:42f73eb5bba4b9d181f4a6d0a53a72f85608dd93e20d92638f1276bd29b32994",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:e4e8104926efc1075013940dc9eaa75e7a0638b3154eb077d5f5e36270ff48e1",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -987,13 +1284,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:4143452c5f20cfbe726865e04a973c51aa3a36404d772b557c534afa8d2f69d7",
+      "hash": "sha256:2de8cd7424a627b7c4d7e8ff98e429f3ca8d24d6538124b2983500c9415796c5",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:06e8a6e4313a0cb8b830e21d75d3d034c709bac865ec15ad778d9c6ed0b6e06d",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -1025,13 +1327,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:0f459db3d1622a911b19628cd8c024351fd4797a7d7df7daf428177023348065",
+      "hash": "sha256:bd2411e27cf45faedfb48a3921ad49ce0a8cc9667eba750de90f25ac907d24a0",
       "state": {
+        "assetId": "molen.worldgen.structure.sanjo_ohashi_bridge",
+        "runtimeHash": "sha256:cf4a018cc39180184f2e22488675e21671614664dae15f5bdb795c9276828ec3",
+        "lodHash": "sha256:f4e4307a09625b0c9b99a5153affed7df8fd156c75b76b25299a3b94021db65f",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -1063,7 +1370,9 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.kyoto_machiya",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     }
   ],

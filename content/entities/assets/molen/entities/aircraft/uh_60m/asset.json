@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:7d907fed64fccd685bc342afeef3b7bc39446b1c25535512ccf6818b70d25824",
-  "sourceHash": "sha256:10b3b5d21cb3ec6db149c213d976eaef0393b9f7848e58d3428945cccd1fb54e",
+  "hash": "sha256:2840ac99d12aced3890c4492a2be4f847cab047958539ac847f20b5fa2f0ae0c",
+  "sourceHash": "sha256:070b1cac81ac1eab685240812e60cc59e5f2876ec7e1b9af81b492a6bef987b6",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 56137,
-    "vertices": 113241,
-    "meshes": 108,
-    "primitives": 108,
-    "materials": 21,
-    "textures": 0,
+    "triangles": 29831,
+    "vertices": 35556,
+    "meshes": 119,
+    "primitives": 119,
+    "materials": 32,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 2211720
+    "sizeBytes": 1331412
   },
   "nodes": [
     {
       "name": "UH60-airframe-UH60-olive",
-      "triangles": 1792
+      "triangles": 1676
     },
     {
       "name": "UH60-airframe-UH60-glass",
@@ -51,7 +51,7 @@
     },
     {
       "name": "UH60-airframe-UH60-trim",
-      "triangles": 8208
+      "triangles": 6048
     },
     {
       "name": "UH60-airframe-UH60-metal",
@@ -227,7 +227,7 @@
     },
     {
       "name": "UH60-cockpit-UH60-trim",
-      "triangles": 472
+      "triangles": 376
     },
     {
       "name": "UH60-cockpit-detail-trim",
@@ -244,10 +244,6 @@
     {
       "name": "UH60-cockpit-avionics-earth",
       "triangles": 12
-    },
-    {
-      "name": "UH60-cockpit-detail-lettering",
-      "triangles": 14544
     },
     {
       "name": "UH60-cockpit-avionics-route",
@@ -271,11 +267,11 @@
     },
     {
       "name": "UH60-cockpit-avionics-water",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "UH60-cockpit-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "UH60-cockpit-avionics-black",
@@ -287,11 +283,11 @@
     },
     {
       "name": "UH60-cockpit-avionics-water",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "UH60-cockpit-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "UH60-cockpit-avionics-black",
@@ -334,6 +330,18 @@
       "triangles": 48
     },
     {
+      "name": "UH60-cockpit-detail-lettering",
+      "triangles": 3240
+    },
+    {
+      "name": "UH60-cockpit-detail-lettering-display-print",
+      "triangles": 122
+    },
+    {
+      "name": "UH60-cockpit-detail-lettering-panel-print",
+      "triangles": 64
+    },
+    {
       "name": "horizon-detail-amber",
       "triangles": 12
     },
@@ -354,14 +362,6 @@
       "triangles": 120
     },
     {
-      "name": "console-detail-green",
-      "triangles": 648
-    },
-    {
-      "name": "console-detail-lettering",
-      "triangles": 12672
-    },
-    {
       "name": "console-UH60-metal",
       "triangles": 312
     },
@@ -374,6 +374,18 @@
       "triangles": 384
     },
     {
+      "name": "console-detail-green-panel-print",
+      "triangles": 12
+    },
+    {
+      "name": "console-detail-lettering",
+      "triangles": 96
+    },
+    {
+      "name": "console-detail-lettering-panel-print",
+      "triangles": 232
+    },
+    {
       "name": "UH60-seat-UH60-upholstery",
       "triangles": 84
     },
@@ -391,7 +403,7 @@
     },
     {
       "name": "cyclic-UH60-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -439,7 +451,7 @@
     },
     {
       "name": "cyclic-UH60-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -468,18 +480,6 @@
     {
       "name": "pedal-UH60-trim",
       "triangles": 24
-    },
-    {
-      "name": "UH60-seat-UH60-upholstery",
-      "triangles": 84
-    },
-    {
-      "name": "UH60-seat-UH60-metal",
-      "triangles": 60
-    },
-    {
-      "name": "UH60-seat-UH60-harness",
-      "triangles": 4
     },
     {
       "name": "UH60-seat-UH60-upholstery",
@@ -614,9 +614,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "UH60-instrument-face",
+      "name": "UH60-instrument-face-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "UH60-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -654,14 +668,6 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-lettering",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
       "name": "avionics-route",
       "slots": [
         "baseColor"
@@ -670,9 +676,12 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -702,12 +711,58 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "UH60-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-lettering-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
       "name": "detail-amber",
       "slots": [
         "baseColor"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-green-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
     },
     {
       "name": "UH60-upholstery",
@@ -719,6 +774,64 @@
     },
     {
       "name": "UH60-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
       "slots": [
         "baseColor"
       ],
@@ -794,25 +907,25 @@
           -10.28,
           -1.454,
           0.1725,
-          3.594,
+          3.5938,
           -1.454,
           2.1964,
           -10.28,
           -1.454,
           2.1964,
-          3.594,
+          3.5938,
           1.454,
           0.1725,
           -10.28,
           1.454,
           0.1725,
-          3.594,
+          3.5938,
           1.454,
           2.1964,
           -10.28,
           1.454,
           2.1964,
-          3.594
+          3.5938
         ]
       },
       {
@@ -2208,35 +2321,6 @@
         ]
       },
       {
-        "node": "UH60-cockpit-detail-lettering",
-        "points": [
-          -0.779,
-          1.2892,
-          3.123,
-          -0.779,
-          1.2892,
-          3.1675,
-          -0.779,
-          1.6078,
-          3.123,
-          -0.779,
-          1.6078,
-          3.1675,
-          0.7764,
-          1.2892,
-          3.123,
-          0.7764,
-          1.2892,
-          3.1675,
-          0.7764,
-          1.6078,
-          3.123,
-          0.7764,
-          1.6078,
-          3.1675
-        ]
-      },
-      {
         "node": "UH60-cockpit-avionics-route",
         "points": [
           0.6592,
@@ -2846,6 +2930,93 @@
         ]
       },
       {
+        "node": "UH60-cockpit-detail-lettering",
+        "points": [
+          -0.779,
+          1.2893,
+          3.123,
+          -0.779,
+          1.2893,
+          3.1577,
+          -0.779,
+          1.5791,
+          3.123,
+          -0.779,
+          1.5791,
+          3.1577,
+          0.7659,
+          1.2893,
+          3.123,
+          0.7659,
+          1.2893,
+          3.1577,
+          0.7659,
+          1.5791,
+          3.123,
+          0.7659,
+          1.5791,
+          3.1577
+        ]
+      },
+      {
+        "node": "UH60-cockpit-detail-lettering-display-print",
+        "points": [
+          -0.7583,
+          1.3859,
+          3.131,
+          -0.7583,
+          1.3859,
+          3.133,
+          -0.7583,
+          1.5845,
+          3.131,
+          -0.7583,
+          1.5845,
+          3.133,
+          0.7754,
+          1.3859,
+          3.131,
+          0.7754,
+          1.3859,
+          3.133,
+          0.7754,
+          1.5845,
+          3.131,
+          0.7754,
+          1.5845,
+          3.133
+        ]
+      },
+      {
+        "node": "UH60-cockpit-detail-lettering-panel-print",
+        "points": [
+          -0.4047,
+          1.3031,
+          3.145,
+          -0.4047,
+          1.3031,
+          3.167,
+          -0.4047,
+          1.6068,
+          3.145,
+          -0.4047,
+          1.6068,
+          3.167,
+          0.3775,
+          1.3031,
+          3.145,
+          0.3775,
+          1.3031,
+          3.167,
+          0.3775,
+          1.6068,
+          3.145,
+          0.3775,
+          1.6068,
+          3.167
+        ]
+      },
+      {
         "node": "horizon-detail-amber",
         "points": [
           0.6175,
@@ -2991,64 +3162,6 @@
         ]
       },
       {
-        "node": "console-detail-green",
-        "points": [
-          -0.2748,
-          1.0983,
-          2.8224,
-          -0.2748,
-          1.0983,
-          2.8358,
-          -0.2748,
-          1.1058,
-          2.8224,
-          -0.2748,
-          1.1058,
-          2.8358,
-          0.2778,
-          1.0983,
-          2.8224,
-          0.2778,
-          1.0983,
-          2.8358,
-          0.2778,
-          1.1058,
-          2.8224,
-          0.2778,
-          1.1058,
-          2.8358
-        ]
-      },
-      {
-        "node": "console-detail-lettering",
-        "points": [
-          -0.3386,
-          0.8575,
-          2.1725,
-          -0.3386,
-          0.8575,
-          2.9255,
-          -0.3386,
-          1.1604,
-          2.1725,
-          -0.3386,
-          1.1604,
-          2.9255,
-          0.3398,
-          0.8575,
-          2.1725,
-          0.3398,
-          0.8575,
-          2.9255,
-          0.3398,
-          1.1604,
-          2.1725,
-          0.3398,
-          1.1604,
-          2.9255
-        ]
-      },
-      {
         "node": "console-UH60-metal",
         "points": [
           -0.0735,
@@ -3136,6 +3249,93 @@
         ]
       },
       {
+        "node": "console-detail-green-panel-print",
+        "points": [
+          -0.2762,
+          1.0983,
+          2.8218,
+          -0.2762,
+          1.0983,
+          2.8339,
+          -0.2762,
+          1.1045,
+          2.8218,
+          -0.2762,
+          1.1045,
+          2.8339,
+          0.2759,
+          1.0983,
+          2.8218,
+          0.2759,
+          1.0983,
+          2.8339,
+          0.2759,
+          1.1045,
+          2.8218,
+          0.2759,
+          1.1045,
+          2.8339
+        ]
+      },
+      {
+        "node": "console-detail-lettering",
+        "points": [
+          -0.3363,
+          0.8626,
+          2.3467,
+          -0.3363,
+          0.8626,
+          2.4411,
+          -0.3363,
+          0.912,
+          2.3467,
+          -0.3363,
+          0.912,
+          2.4411,
+          0.3363,
+          0.8626,
+          2.3467,
+          0.3363,
+          0.8626,
+          2.4411,
+          0.3363,
+          0.912,
+          2.3467,
+          0.3363,
+          0.912,
+          2.4411
+        ]
+      },
+      {
+        "node": "console-detail-lettering-panel-print",
+        "points": [
+          -0.3393,
+          0.8577,
+          2.1723,
+          -0.3393,
+          0.8577,
+          2.9246,
+          -0.3393,
+          1.1596,
+          2.1723,
+          -0.3393,
+          1.1596,
+          2.9246,
+          0.3395,
+          0.8577,
+          2.1723,
+          0.3395,
+          0.8577,
+          2.9246,
+          0.3395,
+          1.1596,
+          2.1723,
+          0.3395,
+          1.1596,
+          2.9246
+        ]
+      },
+      {
         "node": "UH60-seat-UH60-upholstery",
         "points": [
           -0.8,
@@ -3259,25 +3459,25 @@
           2.7225,
           -0.5975,
           0.58,
-          2.98,
+          2.9773,
           -0.5975,
           1.26,
           2.7225,
           -0.5975,
           1.26,
-          2.98,
+          2.9773,
           -0.5225,
           0.58,
           2.7225,
           -0.5225,
           0.58,
-          2.98,
+          2.9773,
           -0.5225,
           1.26,
           2.7225,
           -0.5225,
           1.26,
-          2.98
+          2.9773
         ]
       },
       {
@@ -3607,25 +3807,25 @@
           2.7225,
           0.5225,
           0.58,
-          2.98,
+          2.9773,
           0.5225,
           1.26,
           2.7225,
           0.5225,
           1.26,
-          2.98,
+          2.9773,
           0.5975,
           0.58,
           2.7225,
           0.5975,
           0.58,
-          2.98,
+          2.9773,
           0.5975,
           1.26,
           2.7225,
           0.5975,
           1.26,
-          2.98
+          2.9773
         ]
       },
       {
@@ -4349,93 +4549,6 @@
           1.45,
           -0.9,
           -0.53,
-          1.45,
-          -0.57
-        ]
-      },
-      {
-        "node": "UH60-seat-UH60-upholstery",
-        "points": [
-          -0.24,
-          0.8,
-          -1.06,
-          -0.24,
-          0.8,
-          -0.505,
-          -0.24,
-          1.67,
-          -1.06,
-          -0.24,
-          1.67,
-          -0.505,
-          0.24,
-          0.8,
-          -1.06,
-          0.24,
-          0.8,
-          -0.505,
-          0.24,
-          1.67,
-          -1.06,
-          0.24,
-          1.67,
-          -0.505
-        ]
-      },
-      {
-        "node": "UH60-seat-UH60-metal",
-        "points": [
-          -0.2065,
-          0.6,
-          -0.899,
-          -0.2065,
-          0.6,
-          -0.55,
-          -0.2065,
-          0.9675,
-          -0.899,
-          -0.2065,
-          0.9675,
-          -0.55,
-          0.2065,
-          0.6,
-          -0.899,
-          0.2065,
-          0.6,
-          -0.55,
-          0.2065,
-          0.9675,
-          -0.899,
-          0.2065,
-          0.9675,
-          -0.55
-        ]
-      },
-      {
-        "node": "UH60-seat-UH60-harness",
-        "points": [
-          -0.17,
-          0.94,
-          -0.9,
-          -0.17,
-          0.94,
-          -0.57,
-          -0.17,
-          1.45,
-          -0.9,
-          -0.17,
-          1.45,
-          -0.57,
-          0.17,
-          0.94,
-          -0.9,
-          0.17,
-          0.94,
-          -0.57,
-          0.17,
-          1.45,
-          -0.9,
-          0.17,
           1.45,
           -0.57
         ]

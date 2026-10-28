@@ -75,6 +75,30 @@ function run(input = full, env = flat, seconds = 5) {
 }
 
 describe('boats', () => {
+  it('boosts top speed and distance fourfold without changing buoyancy or helm timing', () => {
+    let normal = { transform, state: initialBoatState() };
+    let boosted = structuredClone(normal);
+    for (let tick = 0; tick < 1800; tick++) {
+      normal = stepBoat(normal.transform, normal.state, full, spec, 1 / 60, flat);
+      boosted = stepBoat(boosted.transform, boosted.state, full, spec, 1 / 60, {
+        ...flat,
+        boostMode: true,
+      });
+    }
+    expect(boosted.state.speed).toBeCloseTo(spec.maxSpeed * 4, 2);
+    expect(boosted.transform.pos[2]).toBeCloseTo(normal.transform.pos[2] * 4, 6);
+    expect(boosted.transform.pos[1]).toBe(normal.transform.pos[1]);
+    const input = { ...full, steering: 0.5 };
+    normal = stepBoat(normal.transform, normal.state, input, spec, 0.2, flat);
+    boosted = stepBoat(boosted.transform, boosted.state, input, spec, 0.2, {
+      ...flat,
+      boostMode: true,
+    });
+    expect(boosted.state.yawRate).toBeCloseTo(normal.state.yawRate, 6);
+    const off = stepBoat(boosted.transform, boosted.state, full, spec, 1 / 60, flat);
+    expect(off.state.speed).toBeCloseTo(spec.maxSpeed, 0);
+    expect(off.state.boosted).toBeUndefined();
+  });
   it('accelerates forward, reverses and turns with momentum', () => {
     const w = run();
     const speed = w.get('boat', BoatState)?.speed ?? 0;

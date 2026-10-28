@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.gamla_bron",
-  "inputHash": "sha256:768298b6405426121be8faa4c19761743c2731a24c947b58e9c70bc52731981b",
-  "captureReportHash": "sha256:75cd256ef26d67428266eac15d692fa1e15a744d66e8c06ec65599f5babb4eea",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:c5c89d53a80529d23447a3819fa115f26e7b72f04f28d5b6cf9cd3be11c11c23",
+  "sourceHash": "sha256:5eed00e4226f063f6e80b67517271c8874a8ddd3be04c9c87fc366b80742dd55",
+  "runtimeHash": "sha256:a430026bc0d3b6820b60994825e4d27420049de0e43c83fee37015f8ee0891bc",
+  "captureReportHash": "sha256:98889972ad899d5438f536e335ccb328eebc18f30a9ea0df5ed8d72d22ce41bf",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -16,11 +19,11 @@
       "shots/near-deck.png",
       "shots/far-crossing.png"
     ],
-    "notes": "Inspected all9 current portable frames, including four turntable views and named close/far views. Ten bowstring spans, deck boards, gussets/bolts, open trestles, rounded coursed piers, downstream pipe and pole line are coherent. Poles now contact the rounded pier cap, and obsolete raised vertical mortar strips that floated beyond the rounded ends have been removed."
+    "captureReportHash": "sha256:98889972ad899d5438f536e335ccb328eebc18f30a9ea0df5ed8d72d22ce41bf",
+    "notes": "Inspected 48 current frames in one author/inspect/fix pass: 9 portable, 9 shared, 21 medium-fi and 9 native. Ten paired shallow bowstrings, clear river openings, continuous deck, open steel trestles, rounded masonry piers, three-bar rails, downstream utility main and pole line match the observed 2023 exterior. The skyline end pavement cap, rear near-LOD trestle bracing and small return pipe were corrected during this pass. Source and canonical runtime masters retain their exact original bytes."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:71e3f4bdf896390d0605a38aebec630027d0b8862cb66b4f9717a65a4d7dff97",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -32,16 +35,1067 @@
       "shots/shared/far-crossing.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all9 current shared-material/sky-PMREM views and the full-resolution trestle/pipe detail. Canonical granite, plain timber and painted metal retain modeled detail. Timber grain follows the transverse planks and vertical poles; individually varied granite faces sit on continuous backing. Geographic load/unload check passes."
+    "captureReportHash": "sha256:ea197196a55e56b9a5a991da0d905e0cf8505c990bf29ae2605b01d5dd3b665e",
+    "notes": "Three existing 256px shared material graphs: metal_painted, stone_granite and wood_plain. District/street/closeup use three draws; skyline uses baked vertex colors and one draw. Wood grain follows the transverse boards and vertical poles. No private atlas, embedded images, copied photo pixels or new texture library entries. Model graphs are read once each, position/normal streams are separate and model/support geometry releases on unload."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-bowstring.png",
+      "medium-fi/near-trestle-and-pipe.png",
+      "medium-fi/near-deck.png",
+      "medium-fi/far-crossing.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:51e45daa344ad6884b07133ddce700faf7e1e0456755712c6ea57d9d2c16f773",
+    "notes": "Four authored LODs: 944/3168/15640/43512 triangles; initial skyline + district 303764 bytes. Lower levels deliberately drop sub-pixel wires, fasteners and stone relief; the ten-span crossing, deck, piers and open supports remain. Skyline/district declare 5.3 m error to account for omitted tall narrow pole lines. Source master remains 156,768 triangles. Current economy/high, noon/late, near/far and transitions inspected. Physical phone/laptop measurements remain pending."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:7c6c5665e6c91763060c13e1d2e47bbeefd1a13faac4b0817c009d80045fd246",
-    "notes": "Exact-QID way454463632 and parallel timber cycleway26151087 establish anchor[20.24908069,63.824875538] and signed heading1.266401710014: native+X toward the NNE city bank and+Z toward the ESE downstream utility line seen in the original2023 and municipal2022 photographs. The301m nominal span system is centered in a309.007m mapped envelope. Y0 is a provisional river-surface rendering datum, not a surveyed water-stage conversion; seasonal water and exact bank grading remain host-dependent. Plan fit was inspected in the current north-up placement frame."
+    "placementHash": "sha256:d2ab32adc05e5a7276e2ff790a84700d58ef80dcc1307fa9eaa3677de0151962",
+    "mapFrameHash": "sha256:1f050e4cd34ec2fcf92fc63e13809214c0ff907a0a57d8936a5cd0e7fd5211ea",
+    "notes": "Approximate native fit approved at [20.24908069,63.824875538], signed heading 1.266401710014: +X NNE to the city, +Z ESE on the pipe/pole side. The 301 m nominal superstructure and 309 m full envelope remain distinct. The prior sea-level-zero placement was buried in standard terrain. The south mapped cycleway landing now supplies the host terrain reference at model deck Y=5.8, placing this fixture foot at 13.7890 m and deck at 19.5890 m. Both current native bank views are continuous; sampled road joins remain within 0.12 m of deck. Coarse terrain, river stage, equal pier stationing and exact bank grading are reconstructed visualization, not surveyed engineering levels."
   },
   "fidelityReview": {
-    "target": "maximum",
+    "target": "medium-fi",
     "status": "passed",
-    "notes": "156,768-triangle original detailed exterior: ten polygonal bowstring trusses, I-section flanges/webs, gussets and bolt heads, individual timber planks/joists, three-bar parapets, low lamps, open braced trestles with bearing plates, rounded granite piers with individual coursed face relief, utility main/collars/hangers, supported timber poles and sagged wire. Municipal identity/history, heritage length/span count, lighting contractor and original contemporary photographs support the reconstruction. Individual dimensions, pier stationing, fittings and material colors are photographic estimates. No buried/submerged foundations, interiors, temporary lighting or proposed2026 UnderBron installation is claimed."
+    "notes": "Complete scoped bridge exterior of the observed 2023 form, with separately preserved detailed source master. Four authored LODs: 944/3168/15640/43512 triangles; initial skyline + district 303764 bytes. Lower levels deliberately drop sub-pixel wires, fasteners and stone relief; the ten-span crossing, deck, piers and open supports remain. Skyline/district declare 5.3 m error to account for omitted tall narrow pole lines. Source master remains 156,768 triangles. Current economy/high, noon/late, near/far and transitions inspected. Physical phone/laptop measurements remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u7/u7q/gamla_bron/models/source.glb\",\"hash\":\"sha256:5eed00e4226f063f6e80b67517271c8874a8ddd3be04c9c87fc366b80742dd55\",\"bytes\":12402144,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/u7/u7q/gamla_bron/model.glb\",\"hash\":\"sha256:a430026bc0d3b6820b60994825e4d27420049de0e43c83fee37015f8ee0891bc\",\"bytes\":12401576,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u7/u7q/gamla_bron/model.skyline.glb\",\"hash\":\"sha256:e8e3721589e917e68b7c47b3c5804161306861e77edcce0bda7348b43f36102e\",\"bytes\":75020,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u7/u7q/gamla_bron/model.district.glb\",\"hash\":\"sha256:26d6aeff43f93286f8e918c094a4090712a895f48dee28bb07b18e5b15b40c9f\",\"bytes\":228744,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u7/u7q/gamla_bron/model.street.glb\",\"hash\":\"sha256:78619cd973878963571d71d571927d4a4aa1f8a624fe5dff1de103b3c6f0f791\",\"bytes\":1162436,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u7/u7q/gamla_bron/model.closeup.glb\",\"hash\":\"sha256:f85aa374570546792fa4ab1a360c1c859045b886835d05327f71e27731a387eb\",\"bytes\":3333324,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "ten-spans-deck-bearings-open-supports-and-utilities",
+        "passed": true,
+        "notes": "436 actual mesh probes over all six GLBs. Decks/crowns, river openings, piers, open trestles, rear bracing, return utility pipe, complete end caps, finite attributes, shared materials, budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate native fit approved at [20.24908069,63.824875538], signed heading 1.266401710014: +X NNE to the city, +Z ESE on the pipe/pole side. The 301 m nominal superstructure and 309 m full envelope remain distinct. The prior sea-level-zero placement was buried in standard terrain. The south mapped cycleway landing now supplies the host terrain reference at model deck Y=5.8, placing this fixture foot at 13.7890 m and deck at 19.5890 m. Both current native bank views are continuous; sampled road joins remain within 0.12 m of deck. Coarse terrain, river stage, equal pier stationing and exact bank grading are reconstructed visualization, not surveyed engineering levels."
+    },
+    "inputHash": "sha256:c5c89d53a80529d23447a3819fa115f26e7b72f04f28d5b6cf9cd3be11c11c23",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:c5c89d53a80529d23447a3819fa115f26e7b72f04f28d5b6cf9cd3be11c11c23",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 48 current frames in one author/inspect/fix pass: 9 portable, 9 shared, 21 medium-fi and 9 native. Ten paired shallow bowstrings, clear river openings, continuous deck, open steel trestles, rounded masonry piers, three-bar rails, downstream utility main and pole line match the observed 2023 exterior. The skyline end pavement cap, rear near-LOD trestle bracing and small return pipe were corrected during this pass. Source and canonical runtime masters retain their exact original bytes.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/preview.png",
+          "hash": "sha256:448c9be2734700a376bdf882444e04a87e5bbde8375922ecb3f70ca10c8e9d7a"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/turntable/angle_0.png",
+          "hash": "sha256:6bdc377f434abf5fe9a7fa01fe76f781de6883ad3721c3e472452b7a3713bb22"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/turntable/angle_1.png",
+          "hash": "sha256:8a3df379f3c287c70af46e7a2eff29dd4fb3bdc8f8de7b6fed004d973c057c34"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/turntable/angle_2.png",
+          "hash": "sha256:92d7100c172811949819a3927443377fa493df0aef3e0fee60ee4e3ffaa8eb8b"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/turntable/angle_3.png",
+          "hash": "sha256:9cbdb5595f3371955d39a372b2ec6ef6aa22a6b404903c6a9d3a683d2c1feab4"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/near-bowstring.png",
+          "hash": "sha256:3a90757b48875a813fbd0e1b22586a4a7e109265e4d958d6fd839fc230c9dcff"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/near-trestle-and-pipe.png",
+          "hash": "sha256:744b628d7e1bde012c965e2499ecc81de58da361b68fe3c7ab7fc7d90017e018"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/near-deck.png",
+          "hash": "sha256:432eef48f2f8126c946274b2b7ab7655a6d52b057de947e7004079b8b7a73a06"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/far-crossing.png",
+          "hash": "sha256:cf2d75da066661e1a8a359bd9e5432eca6d8831a6889ac93e44eef404df4d511"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/angle-0.png",
+          "hash": "sha256:177ab94fce79abd764c082d4b784ebe76974c393ec21d86fbed00b314b306de5"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/angle-1.png",
+          "hash": "sha256:1db2f19334c263bd8b831b41f91acc46d008fc627ac9dc826bf8786e2355b7a1"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/angle-2.png",
+          "hash": "sha256:b670110752aa159546a67a77a044fd4420d09aec22cc4eb7ca0e450ef19eb47b"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/angle-3.png",
+          "hash": "sha256:d1b3546ee9c5ee1a0c9af2372df117a35fa6f3438b9d1fdd232d4d1f8de7d3a4"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/near-bowstring.png",
+          "hash": "sha256:791c1b469198328b7947f8de974f84c607a5bc9b4e5c34e31f967ab656077372"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/near-trestle-and-pipe.png",
+          "hash": "sha256:302562538caf52cd814d90cc9bec45f3f2febf86972e0c5476521de24c6ac25b"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/near-deck.png",
+          "hash": "sha256:1045c1ace5c6ae57a615a196523eb1ce5590336c5cd42dc3e8a6ea1d8981f4be"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/far-crossing.png",
+          "hash": "sha256:fff76b3d37458614746c03b61d0d1dabd3bb580ca23242a26435f9607be4d2d4"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/shots/shared/placement.png",
+          "hash": "sha256:0f8a2479f0ee073b8b0c589bf8b3650c90f923d901073b9a96793af9af1d125d"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/street-noon-economy.png",
+          "hash": "sha256:014441e2d2708d2e4a908ee6667448d84f12081a5dba246c71e870dce347e97e"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/street-noon-high.png",
+          "hash": "sha256:ff31c736a361b1d2d127d66757594de87e6753f98a4f93ed7ddfcb4c2073a196"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/street-late-economy.png",
+          "hash": "sha256:ab3a03f8663eae1172378649a937449f3166e80f08bb595e94cbb5e0cdae6703"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/street-late-high.png",
+          "hash": "sha256:c2b30c34b743870fb841aba30e968fdea1e6cef8ae6e7da5041e58a9f08dd764"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/block-noon-economy.png",
+          "hash": "sha256:be3002b833d81fbd0ab5e99c75f56db3391f9e36fae9aa1f9a8aa7c580f0d885"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/block-noon-high.png",
+          "hash": "sha256:8924cad418f00d38832e521b5b4f1f38685d042e5c13f985baf0212a12082237"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/block-late-economy.png",
+          "hash": "sha256:33f84aa36bdb8ca615da68a9395bcb3f994ee57d568113f42dd65041d4129239"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/block-late-high.png",
+          "hash": "sha256:333c583a728d989babed94d848c71a2257b7c532dae9201a80b6b1327e5e45a3"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:60e47ab820acf5e80008c02e7759ed2a2da23f8efc751ba3537eacfd2b550b0c"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:e41392c5d80876eb70bab969a7bfa08d1924f42f8299119474036f400a025a3a"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:c56f1ef58e6c4aeba9b7621905fbcaaa57297a9bd4d2e7d04eff30218dd22d2c"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/skyline-late-high.png",
+          "hash": "sha256:a7f17d26dca92f321d089a8080a4161ef82fa0fcf4f4a5c8894105ef56b36903"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/silhouette.png",
+          "hash": "sha256:c612e9f97b2eca3ea7f516e09433c912acadbcee93aed29fccb764ad2f276470"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/near-bowstring.png",
+          "hash": "sha256:2f6d4023fee2298e28ca5a64e6f01b28ff74e0a4682a7d09ea8e18be2f0a6554"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/near-trestle-and-pipe.png",
+          "hash": "sha256:e22299d157c39ddff343000e1577b4a4c7e79f64d1455cc3d512d35f8e2e21b0"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/near-deck.png",
+          "hash": "sha256:5fa095f85d0e68677458a7173494712eea303d153159e7bb029c90c63565d3d2"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/far-crossing.png",
+          "hash": "sha256:2b3fbf52ec83d447e51eac0c8fe5932dab09c41b62a5b2a690f84d4de6c1fef7"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/transition-skyline.png",
+          "hash": "sha256:0783d2bdfddfccc38f8eab339290d47ad34d26b2ed03c4c88d8a6ee95045b674"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/transition-district.png",
+          "hash": "sha256:8924cad418f00d38832e521b5b4f1f38685d042e5c13f985baf0212a12082237"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/transition-street.png",
+          "hash": "sha256:880d7c187518b7b9694de69d9f32143472a846670b44faf92f15a9fd39b98df3"
+        },
+        {
+          "path": "content/worldgen/source/places/u7/u7q/gamla_bron/medium-fi/transition-closeup.png",
+          "hash": "sha256:ab378f79d02db8122b32e51f951370bed715a43aea80874d7ee1b7ace3beae15"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-skyline-river-crossing.png",
+          "hash": "sha256:266f5f3cdbce8b83d8c8747b928975d838d555a252edc96453ca5f3e61c84b03"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-district-river-crossing.png",
+          "hash": "sha256:c2625ef6db2c568e178bdc974e79af11baed487ac529fe5fdc68abcf7bffb75d"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-street-river-crossing.png",
+          "hash": "sha256:68bea18155cc5dd886184582c1680c905c425a42f9f93442938b81e4482bd521"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-closeup-river-crossing.png",
+          "hash": "sha256:1d6b094b110edf9ee04bad5c35b9e7ea8f5a681b1fcf639351af2c21eca5b15f"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-closeup-south-bank.png",
+          "hash": "sha256:597118868f441502280d6521d06e5818488c0145d7d50b13c854cad61b978959"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-closeup-north-bank.png",
+          "hash": "sha256:e024d66c54e8a8b7620e89b5af18ae18e1c69c38a9133c1f50e67d9d8de762dc"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-closeup-bowstring-and-trestle.png",
+          "hash": "sha256:34a604a6f7e5e2beca1372d374aa792d62b8d9a2183eea627c647e7a6c741ec0"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-closeup-deck-and-utility.png",
+          "hash": "sha256:da436f792a7fa988ed3e0f3004139d968baa6c52a734b068c1d212a7ff1405b2"
+        },
+        {
+          "path": ".artifacts/gamla-bron-integration/shots/final-failure-river-crossing.png",
+          "hash": "sha256:e623d35d2a2ff2de19eb6978f0ea6a9933d9767b92738d30264698ab073bc8b4"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "Native Molen loads every runtime LOD and handles model failure. All 18 resident buildings remain; no mapped building is replaced. The overlapping bridge cycleway and tiny directly connected end fragments are clipped to the authored pavement. Only connected approach profiles receive height hints/supports. All unrelated road lines, every original DEM sample, native river geometry and shoreline behavior remain. Original source roads are immutable. Failed load retains the full mapped crossing without inferred support geometry. Unload restores native content and releases model and retaining-support geometries."
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:c5c89d53a80529d23447a3819fa115f26e7b72f04f28d5b6cf9cd3be11c11c23",
+      "sourceHash": "sha256:5eed00e4226f063f6e80b67517271c8874a8ddd3be04c9c87fc366b80742dd55",
+      "runtimeHash": "sha256:a430026bc0d3b6820b60994825e4d27420049de0e43c83fee37015f8ee0891bc",
+      "files": {
+        "content/worldgen/source/places/u7/u7q/gamla_bron/models/source.glb": "sha256:5eed00e4226f063f6e80b67517271c8874a8ddd3be04c9c87fc366b80742dd55",
+        "content/worldgen/assets/places/u7/u7q/gamla_bron/model.glb": "sha256:a430026bc0d3b6820b60994825e4d27420049de0e43c83fee37015f8ee0891bc",
+        ".artifacts/gamla-bron-integration/data.json": "sha256:5c211e4436f3310d854c572eba9ad569990cc115857d88d6a88965c5105f6a4f",
+        "content/worldgen/assets/places/u7/u7q/gamla_bron/model.skyline.glb": "sha256:e8e3721589e917e68b7c47b3c5804161306861e77edcce0bda7348b43f36102e",
+        "content/worldgen/assets/places/u7/u7q/gamla_bron/model.district.glb": "sha256:26d6aeff43f93286f8e918c094a4090712a895f48dee28bb07b18e5b15b40c9f",
+        "content/worldgen/assets/places/u7/u7q/gamla_bron/model.street.glb": "sha256:78619cd973878963571d71d571927d4a4aa1f8a624fe5dff1de103b3c6f0f791",
+        "content/worldgen/assets/places/u7/u7q/gamla_bron/model.closeup.glb": "sha256:f85aa374570546792fa4ab1a360c1c859045b886835d05327f71e27731a387eb"
+      },
+      "engine": {
+        "packages/worldgen-earth/src/client/structure-geometry.ts": "sha256:9679860d40f1a9d25d6a4ae04d880ac3f118aa15123d80142376ef3e7c5d1ab4",
+        "packages/terrain/src/surface-bridges.ts": "sha256:a921e62846e7342809bad97b17470531e38ede838c1b2ca1123e038a35cbe811",
+        "packages/terrain/src/surface-client.ts": "sha256:2309d499139b4292ae6097937346395be5cfa0659ba8dd5ba74ca22012c123db"
+      }
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "south-bank",
+              "point": [
+                -155.5,
+                0
+              ],
+              "roadHeight": 19.642434778477877,
+              "rawGround": 19.776382852924463
+            },
+            {
+              "name": "north-bank",
+              "point": [
+                155.5,
+                0
+              ],
+              "roadHeight": 19.581392236449915,
+              "rawGround": 18.293852365503128
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184395987510,
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184395930390,
+              "connections": [
+                {
+                  "point": [
+                    0.3842746918717827,
+                    0.8685486193073573
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184396991000,
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "skyline",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -50.31298828125,
+              13.788470268249512,
+              -148.65621948242188
+            ],
+            "max": [
+              50.31298828125,
+              22.8579158782959,
+              148.65621948242188
+            ]
+          },
+          "sourceBuildings": 18,
+          "remainingBuildings": 18,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 681,
+          "changedIndependentRoads": [
+            35184395987510,
+            35184396991000
+          ],
+          "coveredBridgeIds": [
+            35184398239919
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184398239919,
+              "lines": [
+                [
+                  [
+                    -154.50000000017337,
+                    0.02181895268439149
+                  ],
+                  [
+                    -154.516240575011,
+                    0.02181951767241941
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.gamla_bron"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "south-bank",
+              "point": [
+                -155.5,
+                0
+              ],
+              "roadHeight": 19.642434778477877,
+              "rawGround": 19.776382852924463
+            },
+            {
+              "name": "north-bank",
+              "point": [
+                155.5,
+                0
+              ],
+              "roadHeight": 19.581392236449915,
+              "rawGround": 18.293852365503128
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184395987510,
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184395930390,
+              "connections": [
+                {
+                  "point": [
+                    0.3842746918717827,
+                    0.8685486193073573
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184396991000,
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "district",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -50.31298828125,
+              13.788470268249512,
+              -148.65621948242188
+            ],
+            "max": [
+              50.31298828125,
+              23.233470916748047,
+              148.65621948242188
+            ]
+          },
+          "sourceBuildings": 18,
+          "remainingBuildings": 18,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 681,
+          "changedIndependentRoads": [
+            35184395987510,
+            35184396991000
+          ],
+          "coveredBridgeIds": [
+            35184398239919
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184398239919,
+              "lines": [
+                [
+                  [
+                    -154.50000000017337,
+                    0.02181895268439149
+                  ],
+                  [
+                    -154.516240575011,
+                    0.02181951767241941
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gamla_bron"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "south-bank",
+              "point": [
+                -155.5,
+                0
+              ],
+              "roadHeight": 19.642434778477877,
+              "rawGround": 19.776382852924463
+            },
+            {
+              "name": "north-bank",
+              "point": [
+                155.5,
+                0
+              ],
+              "roadHeight": 19.581392236449915,
+              "rawGround": 18.293852365503128
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184395987510,
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184395930390,
+              "connections": [
+                {
+                  "point": [
+                    0.3842746918717827,
+                    0.8685486193073573
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184396991000,
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "street",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -50.31298828125,
+              13.788470268249512,
+              -148.65621948242188
+            ],
+            "max": [
+              50.31298828125,
+              27.98847007751465,
+              148.65621948242188
+            ]
+          },
+          "sourceBuildings": 18,
+          "remainingBuildings": 18,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 681,
+          "changedIndependentRoads": [
+            35184395987510,
+            35184396991000
+          ],
+          "coveredBridgeIds": [
+            35184398239919
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184398239919,
+              "lines": [
+                [
+                  [
+                    -154.50000000017337,
+                    0.02181895268439149
+                  ],
+                  [
+                    -154.516240575011,
+                    0.02181951767241941
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gamla_bron"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "south-bank",
+              "point": [
+                -155.5,
+                0
+              ],
+              "roadHeight": 19.642434778477877,
+              "rawGround": 19.776382852924463
+            },
+            {
+              "name": "north-bank",
+              "point": [
+                155.5,
+                0
+              ],
+              "roadHeight": 19.581392236449915,
+              "rawGround": 18.293852365503128
+            }
+          ],
+          "approachSupports": 1,
+          "relatedApproaches": [
+            {
+              "id": 35184395987510,
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184395930390,
+              "connections": [
+                {
+                  "point": [
+                    0.3842746918717827,
+                    0.8685486193073573
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            },
+            {
+              "id": 35184396991000,
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 20
+                }
+              ]
+            }
+          ],
+          "level": "closeup",
+          "modelLoaded": true,
+          "modelWorldY": 0,
+          "modelBounds": {
+            "min": [
+              -50.31298828125,
+              13.788470268249512,
+              -148.65621948242188
+            ],
+            "max": [
+              50.31298828125,
+              27.98847007751465,
+              148.65621948242188
+            ]
+          },
+          "sourceBuildings": 18,
+          "remainingBuildings": 18,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 681,
+          "changedIndependentRoads": [
+            35184395987510,
+            35184396991000
+          ],
+          "coveredBridgeIds": [
+            35184398239919
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184398239919,
+              "lines": [
+                [
+                  [
+                    -154.50000000017337,
+                    0.02181895268439149
+                  ],
+                  [
+                    -154.516240575011,
+                    0.02181951767241941
+                  ]
+                ]
+              ],
+              "connections": [
+                {
+                  "point": [
+                    0.3842348196511739,
+                    0.8684935352473986
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 100
+                },
+                {
+                  "point": [
+                    0.6157651803488261,
+                    0.13150646475260147
+                  ],
+                  "elevation": 19.588470390788732,
+                  "radius": 100
+                }
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.gamla_bron"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "approachSamples": [
+            {
+              "name": "south-bank",
+              "point": [
+                -155.5,
+                0
+              ],
+              "roadHeight": 20.071708525138774,
+              "rawGround": 19.776382852924463
+            },
+            {
+              "name": "north-bank",
+              "point": [
+                155.5,
+                0
+              ],
+              "roadHeight": 18.728261560589885,
+              "rawGround": 18.293852365503128
+            }
+          ],
+          "approachSupports": 0,
+          "relatedApproaches": [],
+          "level": "failure",
+          "modelLoaded": false,
+          "modelWorldY": null,
+          "modelBounds": null,
+          "sourceBuildings": 18,
+          "remainingBuildings": 18,
+          "changedIndependentBuildings": [],
+          "originalRoadInputsRetained": true,
+          "independentRoads": 681,
+          "changedIndependentRoads": [],
+          "coveredBridgeIds": [
+            35184398239919
+          ],
+          "retainedBridgePieces": [
+            {
+              "id": 35184398239919,
+              "lines": [
+                [
+                  [
+                    154.4498749941819,
+                    0.011070953606846956
+                  ],
+                  [
+                    137.99758253258986,
+                    -0.06644100671920938
+                  ]
+                ]
+              ]
+            },
+            {
+              "id": 35184398239919,
+              "lines": [
+                [
+                  [
+                    154.4498749941819,
+                    0.011070953606846956
+                  ],
+                  [
+                    -154.516240575011,
+                    0.02181951767241941
+                  ]
+                ]
+              ]
+            }
+          ],
+          "sourceGridRetained": true,
+          "groundRetained": true,
+          "waterRetained": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.gamla_bron"
+          ]
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "The nominal 301 m superstructure, 309 m mapped extent and ten equal reconstructed spans remain distinct; individual pier stationing, dimensions and fittings are photo-proportioned.",
+    "The source master represents the observed 2023 exterior. No surveyed river stage, submerged foundations, interior or current construction state is claimed.",
+    "The native south landing establishes the host-relative deck height; the north connection is an approximate supported grade blend. Original coarse terrain and water are retained.",
+    "Tiny fasteners, individual stone relief and pole wires are omitted from lower LODs; full details remain in the preserved master. Physical phone/laptop timings remain pending.",
+    "Approximate native fit approved at [20.24908069,63.824875538], signed heading 1.266401710014: +X NNE to the city, +Z ESE on the pipe/pole side. The 301 m nominal superstructure and 309 m full envelope remain distinct. The prior sea-level-zero placement was buried in standard terrain. The south mapped cycleway landing now supplies the host terrain reference at model deck Y=5.8, placing this fixture foot at 13.7890 m and deck at 19.5890 m. Both current native bank views are continuous; sampled road joins remain within 0.12 m of deck. Coarse terrain, river stage, equal pier stationing and exact bank grading are reconstructed visualization, not surveyed engineering levels."
+  ],
+  "sourceIndexWriteProvenance": {
+    "previousInputHash": "sha256:20c5621e24fe63faebd1291d5f116d010609312265ab6357b0fb03d77dbe1d58",
+    "inputHash": "sha256:c5c89d53a80529d23447a3819fa115f26e7b72f04f28d5b6cf9cd3be11c11c23",
+    "checkedOn": "2026-10-25",
+    "change": "Generator I/O only: replace source.json atomically using the existing shared writeIndex helper, avoiding reproducible Windows UNKNOWN truncation errors. No geometry, surfaces, map fit, scene, renderer or LOD recipe changed. Selected regeneration and --check pass; all six source/runtime/LOD bytes and existing reviewed image hashes remain exact."
   }
 }

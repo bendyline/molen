@@ -185,7 +185,33 @@
                     "offset": 1.5707963267948966,
                     "scale": -1.5707963267948966
                   }
-                ]
+                ],
+                "sources": {
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": [
+                      "flapPosition"
+                    ]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -15595,7 +15621,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

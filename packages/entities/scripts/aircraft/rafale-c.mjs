@@ -713,7 +713,7 @@ function rafaleCockpit(root, m) {
   });
   ins.available('heading', 'trueHeading', hg.name);
   od.text('NAV / SIM', [0, 0.107, 0.115], 0.008, Math.PI, green);
-  od.text('TRUE', [0, -0.003, 0.115], 0.008, Math.PI, green);
+  od.text('TRUE', [0, -0.003, 0.115], 0.008, Math.PI, green, 'display');
   od.text('FPM', [0, -0.106, 0.115], 0.007, Math.PI, green);
   oi.readout('vertical-speed', [0, -0.123, 0.115], 'verticalFpm', 5, 0.01, green, true, true);
   od.rod([0, 0.1, 0.114], [0, 0.089, 0.114], 0.0015, ink);

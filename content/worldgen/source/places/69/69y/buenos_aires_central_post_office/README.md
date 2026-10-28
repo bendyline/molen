@@ -18,4 +18,4 @@ Pale Beaux-Arts facade includes true inset glazed apertures, representative arch
 
 Fixed dry south approach and raw independent Terrarium field remain unchanged. Composite urban DEM does not certify sidewalk/basement/threshold contact.1.2mdeep base and short own entrance steps are approximate. Exclude whole plaza, street, neighboring buildings, scenery/landscape, construction scaffolds/equipment, lettering/logos, antennas, vehicles and people.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=buenos_aires_central_post_office`. Add `--check` to verify exact regeneration. 51322 triangles; 6 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=buenos_aires_central_post_office`. Add `--check` to verify exact regeneration. 51034 triangles; 6 materials; no embedded photographs.

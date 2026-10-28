@@ -1,0 +1,770 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.white_kitchen_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:f4b52da0db36c71b6436fa644087d0736868c2b4eb0e72bdbf36031d985e71c9",
+  "sourceHash": "sha256:52dfda61f5f51dca0ac94a18e746763eb327927772a0ed87a5002df2d07714ec",
+  "runtimeHash": "sha256:4944b032d7602685dff5d92de60192cc82185fc635be11b476efe177e2e6b30f",
+  "captureReportHash": "sha256:4e2e2b9aeb2fd83bad46621c5097e4caed0cb2d3cd40483bc747aba71a21aa9d",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-log-kitchen-green-hip-and-chimney.png",
+      "shots/door-two-divided-windows-and-threshold.png",
+      "shots/hip-chimney-seating-and-log-corners.png",
+      "shots/rear-hip-closure-and-independent-house.png"
+    ],
+    "captureReportHash": "sha256:4e2e2b9aeb2fd83bad46621c5097e4caed0cb2d3cd40483bc747aba71a21aa9d",
+    "notes": "Inspected 48 current portable/shared/medium-fi/native frames in one continuous author/inspect/fix pass. Complete low log kitchen, closed green hip/eaves, seated pale capped chimney, genuine recessed brown door and two white five-pane windows, corner log ends, modest plinth and five supported treads. The new close group photograph corrects each window to one upper transom over four lower panes; shortened only the central divider. Existing placement, roof, body, terrain and surrounding models remain as previously reviewed. The native context view includes the already reviewed Tolstoy House at its own location and terrain datum."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-log-kitchen-green-hip-and-chimney.png",
+      "shots/shared/door-two-divided-windows-and-threshold.png",
+      "shots/shared/hip-chimney-seating-and-log-corners.png",
+      "shots/shared/rear-hip-closure-and-independent-house.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:20a73f2091b0d6d3de794b815d12950bc5278d5037c40656d9ee2b1f40469778",
+    "notes": "Six existing 256px shared graphs: wood_log, wood_plain, metal_standing_seam, stone_limestone, storefront and plaster_lime. Seven material roles merge by graph; white frames and brown wood use vertex tints. Metric UVs, separate vertex streams, no embedded image/private atlas/new graph. The paired house/kitchen scene reads eight distinct graphs once each, sharing wood, roof, limestone and window materials. Unload releases all model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-log-kitchen-green-hip-and-chimney.png",
+      "medium-fi/door-two-divided-windows-and-threshold.png",
+      "medium-fi/hip-chimney-seating-and-log-corners.png",
+      "medium-fi/rear-hip-closure-and-independent-house.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:9c2c63c7036ba5b4fdde169b14078400e56486bfbf4037b36fd77bf05d5e5575",
+    "notes": "Four source-authored LODs: 208/242/828/1176 triangles; initial skyline+district 42972 bytes. Skyline retains the complete hip, chimney, entrances/windows and supported stair. District adds shared textures and five-pane framing; near levels add restrained log/corner relief. At most six draws per kitchen. Synthetic lighting/distance/transition views pass; physical phone/laptop timings remain pending."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:fe2d28ac64cb8ce46b8ab325533998f2128746812d3a764dcd8c60343dbd549f",
+    "mapFrameHash": "sha256:627e679f8195fda1b41dbb3c96501b4f1f32d52a87b561844717863f16ec9819",
+    "notes": "Approximate photo-derived center[37.526028,54.076367] behind Tolstoy House; X southeast and front+Z southwest toward the photographed flower bed. The kitchen is absent from both the retained PMTiles and the current standard OSM neighborhood query. Unrelated toilet way167382259 was rejected. It owns/replaces no native building and intersects none at levels13/14/15. The single-model pass retained all243resident/295wider native buildings. The final paired pass separately replaces only Tolstoy House35184471786282 and keeps all242resident/294wider independent buildings, original approaches/roads, DEM samples and40070.675m²native water. House/kitchen roots differ0.680791m. Failed loading retains all243original buildings and kitchen ground; unload releases geometry and restores ground after water unload."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Original photo/aerial interpretation, not a mapped or surveyed footprint. Position is estimated within about5m and facing about15degrees; these are author estimates, not measured error bounds. Body9.6x7m, wall2.45m, hip ridge4.05m and chimney5.2m are visual estimates. Hidden rear, exact opening dimensions, roof pitch, historical levels and chimney placement remain reconstructed. Coarse native terrain varies0.86m and exposes more plinth/five steps than the ground photograph establishes; no sloped floor/roof or custom DEM is used. The adjacent icehouse and woodshed remain separate unfinished inventory."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:52dfda61f5f51dca0ac94a18e746763eb327927772a0ed87a5002df2d07714ec\",\"bytes\":110796,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.glb\",\"hash\":\"sha256:4944b032d7602685dff5d92de60192cc82185fc635be11b476efe177e2e6b30f\",\"bytes\":110220,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:f19e0691da09bdc57f9bf3bad98109d3830f10e32aca4d4473b49682819ba5f9\",\"bytes\":17864,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:01b3faff6b98318f38fd705fae44cd2c70d140f6afa350ade83b16c07c6811c1\",\"bytes\":25108,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:938d7bceac9b591287f56db1de253e7df9aad71d37b96309cac5d7bbb999b07a\",\"bytes\":74516,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:3c7b3a2a8469edabea4cafda3424df5bfd8264e199b5bc08399cd8003acdbcbf\",\"bytes\":102812,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "recessed-door-two-five-pane-windows-closed-hip-seated-chimney-and-supported-steps",
+        "passed": true,
+        "notes": "116 actual mesh probes over6GLBs; finite attributes, exact source/runtime/four-LOD hashes, shared materials, budgets and separate GPU streams pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Approximate photo-derived center[37.526028,54.076367] behind Tolstoy House; X southeast and front+Z southwest toward the photographed flower bed. The kitchen is absent from both the retained PMTiles and the current standard OSM neighborhood query. Unrelated toilet way167382259 was rejected. It owns/replaces no native building and intersects none at levels13/14/15. The single-model pass retained all243resident/295wider native buildings. The final paired pass separately replaces only Tolstoy House35184471786282 and keeps all242resident/294wider independent buildings, original approaches/roads, DEM samples and40070.675m²native water. House/kitchen roots differ0.680791m. Failed loading retains all243original buildings and kitchen ground; unload releases geometry and restores ground after water unload."
+    },
+    "inputHash": "sha256:f4b52da0db36c71b6436fa644087d0736868c2b4eb0e72bdbf36031d985e71c9",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:f4b52da0db36c71b6436fa644087d0736868c2b4eb0e72bdbf36031d985e71c9",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected 48 current portable/shared/medium-fi/native frames in one continuous author/inspect/fix pass. Complete low log kitchen, closed green hip/eaves, seated pale capped chimney, genuine recessed brown door and two white five-pane windows, corner log ends, modest plinth and five supported treads. The new close group photograph corrects each window to one upper transom over four lower panes; shortened only the central divider. Existing placement, roof, body, terrain and surrounding models remain as previously reviewed. The native context view includes the already reviewed Tolstoy House at its own location and terrain datum.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/preview.png",
+          "hash": "sha256:e6e6368ca77727b092a167f402ee91c097efd94f85a553b718af56cdad4a1806"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:677e95752d87862e4672cfddebe381957cdff5f15627dffa38d476e43d107ab6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:0103b9496196117d769e65928b5e4656ce2de11d0b5bf0d77dc0b5fc5b21b99a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:d27f4eaf41595e249b4dec7d23470ad63c36dde84f5d807041bdd784163cfcc8"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:4725135d104a488f80bf4cfca3aa6b99b3cd992e2f364e42a514150a04b433eb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/whole-log-kitchen-green-hip-and-chimney.png",
+          "hash": "sha256:74bbf4c5ba1917dbd6633d297ab201e8876a46d7d111839dcf50b6a9697bbfd6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/door-two-divided-windows-and-threshold.png",
+          "hash": "sha256:c708729344d728b2d2e605652ba037bd2c2b7012bfd27f9a661d36d4c34e2dd2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/hip-chimney-seating-and-log-corners.png",
+          "hash": "sha256:dd86560eeb569cf626a2cef7c044f98f5d307afe074ce1ae0110e246bfd2a55e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/rear-hip-closure-and-independent-house.png",
+          "hash": "sha256:afe2b99191100a186ce7e4f1f5c2e3403377f3325a0c8a183aa5111c3912a75d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:82c6dc677a00c2eca1327a6a79dcf52b4e39c57199d5f30f3927140010ad4197"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:b7ded49ce846471c3d2cdc5e0f6c1cd3f08269d165d3fe96664501a118ca624f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:bf54b1c58f4df5949c709209a9a0c494e5170e4bcf0d43dd396c798cf3af3647"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:80953c097e2c6cba3e0134aeb12c10564a7ea1eaae50cb585157cd99e5ed476a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/whole-log-kitchen-green-hip-and-chimney.png",
+          "hash": "sha256:1dc1905fbe52e7685ceee508031afb87dc9db0bcc15f95312f33b4dccf447c1b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/door-two-divided-windows-and-threshold.png",
+          "hash": "sha256:d927b8a9c6593a4b814f01e7e3a69551f787629780db59f19057dbccdb99f964"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/hip-chimney-seating-and-log-corners.png",
+          "hash": "sha256:a93d1ccb715c4c63ce26a6f29a9cf2107d790723ba75443b88ae9103f4228e6f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/rear-hip-closure-and-independent-house.png",
+          "hash": "sha256:62f86726964af46083a8cf4037b9d109d6d3f347b312c099a203449b358888f1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:3a6b6d5694f7096f5291cfdd0e10fac7ea857c85870511593ca6032253719531"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:fdb116f637b724abc9e69fbca0334943252ab31115a4e2cb48f7a336a49815da"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:24d0abab4bf8a8379d0838d4658be3e15add0d9d3ef68de7c7fe2912672e3823"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:451d32bfad5141fd069502e424dd2020443832746c2c2704d3af36be6c154087"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:e95e1d01e428a2202b783a36e7eb457d5b859a137993804b02f4f99621bfc3f9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:6c7cc55c7f2dd0547e33227c694c03b6723a1ea31703c582e66b909ba9f63e0d"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:75de79b191f7af34ea89798c8d4df15dcb80a16bf8058ead2454100747cc0382"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:42f7ad7a33cdec419ff54ece785bdbf47a28826650922b6d1492bd160ab5e1a4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:1de962dffe4edb8ff0c09776e73807c3ebbde3a217b8bc5b376c683348ac2658"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:dbae33f6c998cfe40bfac0c4823a3c8744247e2c1bdc468549fcba803c5d26b5"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:2f0852cbdaa294c90edb58de07fae3a7f10ae3ad53baa756813dc08c46a53441"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:509b2b45e16330589eb9350b7bd0cd2cc49aefc865e47ad1220d06da0a8a88aa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:5e494bfa7d4508cba2a398f24db73c2b3a54ae41ed39d8c7883a9960a2951dac"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:f7a3a60177531a01ddd43438613e9e29fb29148df5f34e9170b9d711e501a2b4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/whole-log-kitchen-green-hip-and-chimney.png",
+          "hash": "sha256:4380f1e19e6099cccf41d4f9115d4c7834011705cbfb6296ad07429a310c980f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/door-two-divided-windows-and-threshold.png",
+          "hash": "sha256:9f6765c3e33ddcdb79643482f8cb3e5e907ad86978547eba3be44445473e6665"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/hip-chimney-seating-and-log-corners.png",
+          "hash": "sha256:7601ad23285b385a56a463158f0b1720be6208a682f504cd9e565a5a02f292fe"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/rear-hip-closure-and-independent-house.png",
+          "hash": "sha256:9322347937ba4fc3f42a67525aeac27c44a0894990fa468a72deb66bd021c730"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:82d62addc7bb9bfc1baafe74ce378e2ca43d0abe8d24f14365a1ec381dc556c9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:75de79b191f7af34ea89798c8d4df15dcb80a16bf8058ead2454100747cc0382"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:c8318943afcf2b5bc4dac153e8cec0eef9d3d7a512f6c65081300cb31ed4c2bb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:1734c1ab4dcdd0568caafd4bd2d23ff9c93f541c51113411cf86885d035cbd09"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-skyline-kitchen-and-tolstoy-house-context.png",
+          "hash": "sha256:3ca6820f587028d055d203604ecb91278e089c55c9d7fa7c72ff900f6a041cc1"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-district-kitchen-and-tolstoy-house-context.png",
+          "hash": "sha256:8ba8ccc533893d28abdc9dab0af21ebee4aa7343c4c4575fe0a0e2ca16cfd3ae"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-street-kitchen-and-tolstoy-house-context.png",
+          "hash": "sha256:4d7151e99d70acfe37c4fac4601699d7d474d9d44c1efd9eec0fc2dc186474c3"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-closeup-kitchen-and-tolstoy-house-context.png",
+          "hash": "sha256:21885160c9147f78457abc28e7da1d3c4ec1d25e9f8df425e1b2bc7e6b901ca4"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-closeup-whole-log-kitchen-green-hip-and-chimney.png",
+          "hash": "sha256:b2114031f2e77f10fa7ffbab5b6f18e33c92631e8b7e1a3f213f3e5515d3116d"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-closeup-door-two-divided-windows-and-threshold.png",
+          "hash": "sha256:0c2bbdf06696db925cd48ca989433c416cda222960ff9df6b77bbee5d694927c"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-closeup-hip-chimney-seating-and-log-corners.png",
+          "hash": "sha256:167ec40d9f37bc62e26ec065b8ec3e23474e7dcce097c2e61216e8924c4ce2cd"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-closeup-rear-hip-closure-and-independent-house.png",
+          "hash": "sha256:a6f46e86cc087ce23dc9de9c3983d963ae1519ecb36ed69f385606f49cf4bdb5"
+        },
+        {
+          "path": ".artifacts/kitchen-integration/shots/final-failure-kitchen-and-tolstoy-house-context.png",
+          "hash": "sha256:126baa1c3ecc4e2f8fce66fa965585008549587b1c22093b50115ee902c747ad"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:f4b52da0db36c71b6436fa644087d0736868c2b4eb0e72bdbf36031d985e71c9",
+      "sourceHash": "sha256:52dfda61f5f51dca0ac94a18e746763eb327927772a0ed87a5002df2d07714ec",
+      "runtimeHash": "sha256:4944b032d7602685dff5d92de60192cc82185fc635be11b476efe177e2e6b30f",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/white_kitchen_yasnaya_polyana/models/source.glb": "sha256:52dfda61f5f51dca0ac94a18e746763eb327927772a0ed87a5002df2d07714ec",
+        "content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.glb": "sha256:4944b032d7602685dff5d92de60192cc82185fc635be11b476efe177e2e6b30f",
+        "content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.skyline.glb": "sha256:f19e0691da09bdc57f9bf3bad98109d3830f10e32aca4d4473b49682819ba5f9",
+        "content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.district.glb": "sha256:01b3faff6b98318f38fd705fae44cd2c70d140f6afa350ade83b16c07c6811c1",
+        "content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.street.glb": "sha256:938d7bceac9b591287f56db1de253e7df9aad71d37b96309cac5d7bbb999b07a",
+        "content/worldgen/assets/places/uc/ucd/white_kitchen_yasnaya_polyana/model.closeup.glb": "sha256:3c7b3a2a8469edabea4cafda3424df5bfd8264e199b5bc08399cd8003acdbcbf",
+        "content/worldgen/source/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/models/source.glb": "sha256:fd97e715b480c159b41576c4d2c49a9733bc66be8552d28b08bb64a46dcfe676",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.glb": "sha256:00aee7aa1053480aea30d476404e4f8e88a196da52ff962d4e23325a35f6f151",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.skyline.glb": "sha256:7d1fbccb43f78df8758748588cccc49371ac09b90aeab612ca31dfe14610c1bb",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.district.glb": "sha256:acf64a87db09df7782a8bef1f6ba889afc3c47e59e27c362a3c24ed5c5ded5cd",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.street.glb": "sha256:6b53fe4d716c738911c1492bb5c46a5bfffef879764ec6ad7b15ec00803ed8e4",
+        "content/worldgen/assets/places/uc/ucd/leo_tolstoy_house_yasnaya_polyana/model.closeup.glb": "sha256:dbdf95b91e77235bccea57703821977ec788e7adf092c9e96d3df04ed5d24299"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [],
+      "companionNativeIds": [
+        35184471786282
+      ],
+      "mapLevels": [
+        {
+          "level": 13,
+          "buildings": 8,
+          "overlappingNativeIds": [],
+          "runtimePassed": true
+        },
+        {
+          "level": 14,
+          "buildings": 14,
+          "overlappingNativeIds": [],
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "buildings": 739,
+          "overlappingNativeIds": [],
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "pairedModelLoaded": true,
+          "companionWorldY": 0.6808020856566444,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000007929815318163946,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.white_kitchen_yasnaya_polyana",
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.988769749470464,
+            "max": 18.99533025052955
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "pairedModelLoaded": true,
+          "companionWorldY": 0.6808020856566444,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000007929815318163946,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.fabric_canvas": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.white_kitchen_yasnaya_polyana",
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.988769749470464,
+            "max": 18.99533025052955
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "pairedModelLoaded": true,
+          "companionWorldY": 0.6808020856566444,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000007929815318163946,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.fabric_canvas": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.white_kitchen_yasnaya_polyana",
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.988769749470464,
+            "max": 18.99533025052955
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "pairedModelLoaded": true,
+          "companionWorldY": 0.6808020856566444,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            false,
+            false,
+            false
+          ],
+          "bankGround": false,
+          "gangwayGround": false,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 0.000007929815318163946,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": false,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.plaster_lime": 1,
+            "molen.worldgen.material.wood_log": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.storefront": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.fabric_canvas": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.white_kitchen_yasnaya_polyana",
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.988769749470464,
+            "max": 18.99533025052955
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "pairedModelLoaded": false,
+          "companionWorldY": null,
+          "terrainAtPairPassage": true,
+          "poolWaterHeights": [
+            null,
+            null,
+            null
+          ],
+          "poolGround": [
+            true,
+            true,
+            true
+          ],
+          "bankGround": true,
+          "gangwayGround": true,
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184471786282,
+              "area": 403.22487688011944
+            }
+          ],
+          "groundCutoutActive": true,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.white_kitchen_yasnaya_polyana",
+            "molen.worldgen.structure.leo_tolstoy_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -37.988769749470464,
+            "max": 18.99533025052955
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "unloaded": {
+          "hydrologyRetainedUntilWaterUnloaded": true,
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Original photo/aerial interpretation, not a mapped or surveyed footprint. Position is estimated within about5m and facing about15degrees; these are author estimates, not measured error bounds. Body9.6x7m, wall2.45m, hip ridge4.05m and chimney5.2m are visual estimates. Hidden rear, exact opening dimensions, roof pitch, historical levels and chimney placement remain reconstructed. Coarse native terrain varies0.86m and exposes more plinth/five steps than the ground photograph establishes; no sloped floor/roof or custom DEM is used. The adjacent icehouse and woodshed remain separate unfinished inventory."
+  ]
+}

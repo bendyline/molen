@@ -1,6 +1,6 @@
 /** HartRAO26m principal radio telescope: native instrument identity, NASA staff photographs. */
 import './install-deterministic-math.mjs';
-import { beam, cross, normalFor, normalize } from './authored-structure-mesh.mjs';
+import { beam, beamPath, cross, normalFor, normalize } from './authored-structure-mesh.mjs';
 import { B, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
@@ -196,8 +196,7 @@ function polarMount(out, d) {
     n = [8, 12, 20, 32][d],
     depth = d === 0 ? [0] : [-0.65, 0.65],
     hoops = depth.map((off) => ring(add(center, axis, off), X, v, 4.7, n));
-  for (const r of hoops)
-    for (let i = 0; i < n; i++) beam(out, 'dark', r[i], r[(i + 1) % n], 0.31, 0.29, dark);
+  for (const r of hoops) beamPath(out, 'dark', r.slice(0, n), 0.31, 0.29, dark, true);
   if (d > 0)
     for (let i = 0; i < n; i++) {
       beam(out, 'frame', hoops[0][i], hoops[1][i], 0.15, 0.15, frame);

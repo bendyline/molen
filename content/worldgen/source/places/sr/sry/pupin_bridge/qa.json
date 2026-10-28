@@ -1,0 +1,556 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.pupin_bridge",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:593e79f04984f50e09dac87c2bda1ec3ab8c12441567cf0a5316777d2016ad0f",
+  "sourceHash": "sha256:0bd3807ebabefca98a70dd857cf1d708534d9a1506cda965cbb418451467e8a3",
+  "runtimeHash": "sha256:2e2481a353dfde4755d41ee48d64a9b1ff97322dc2dbd96da066dba15db7e04d",
+  "captureReportHash": "sha256:97ebdb66155732ba427804dfe38ee3d94769396c0c63f9ea904c075da0802cc6",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-downstream.png",
+      "shots/whole-upstream.png",
+      "shots/main-haunches.png",
+      "shots/river-pier-and-bearings.png",
+      "shots/six-lane-deck.png",
+      "shots/approach-pier-rhythm.png",
+      "shots/outside-walk-and-lights.png",
+      "shots/borca-landing.png"
+    ],
+    "captureReportHash": "sha256:97ebdb66155732ba427804dfe38ee3d94769396c0c63f9ea904c075da0802cc6",
+    "notes": "Inspected 70 current frames: 13 portable, 13 shared-material/geographic, 25 medium-fi and 19 native. The complete mapped crossing has two concrete box-girder decks, three haunched river spans, regular approach spans, paired supports, six traffic lanes, outside paths, open metal barriers and repeating double-arm lights. Near levels retain chamfered pier heads, caps, bearings, joints, rail posts and lamp housings. The street level simplifies columns and fittings while retaining the defining crossing shape. Widened only the small landing caps after the native review found a mapped path edge just outside the old footprint."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-downstream.png",
+      "shots/shared/whole-upstream.png",
+      "shots/shared/main-haunches.png",
+      "shots/shared/river-pier-and-bearings.png",
+      "shots/shared/six-lane-deck.png",
+      "shots/shared/approach-pier-rhythm.png",
+      "shots/shared/outside-walk-and-lights.png",
+      "shots/shared/borca-landing.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:b6c639bdd714fa9b597a00ef8fd2a0fbafce35fc889820b4d62c3558f62c2062",
+    "notes": "Two existing shared 256px graphs, concrete_plain and metal_painted, serve three semantic material groups with metric UVs and linear vertex tints. Asphalt, paving and concrete use distinct tints/roughness over the common low-frequency graph. No embedded/private images, downloaded meshes or copied photo pixels. Each graph is read once per native view; all four runtime files use separate GPU attribute streams."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-downstream.png",
+      "medium-fi/whole-upstream.png",
+      "medium-fi/main-haunches.png",
+      "medium-fi/river-pier-and-bearings.png",
+      "medium-fi/six-lane-deck.png",
+      "medium-fi/approach-pier-rhythm.png",
+      "medium-fi/outside-walk-and-lights.png",
+      "medium-fi/borca-landing.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:422cc4b65b9262d8174822d001dc88889fa343bde7bd6ff2a5494e6773af7162",
+    "notes": "Detailed source master: 51228 triangles / 6149812 bytes. Runtime levels: 960 / 3780 / 15452 / 32580 triangles, 83836 / 335664 / 1345608 / 2778228 bytes and 1 / 3 / 3 / 3 draws. Initial skyline plus district is 419500 bytes. Strict medium-fi budgets pass; physical laptop/phone timing remains unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:880be116af4daae01138fa40fee3341dc981f0d7261caff457939f5b4421811b",
+    "mapFrameHash": "sha256:10192ddfb5e16b5438576d451ad65b85b53fb178b8ed9a6caf019a409666e3a4",
+    "notes": "Exact-QID OSM way 662893894 / Q3397334 supplies the 1492.189 m by 29.107 m overall plan, while standard PMTiles supplies both named carriageways and outside cycle paths. Anchor [20.383373068,44.867175721], heading 1.020039121409: +X northeast toward Borča, -X southwest toward Zemun, +Z southeast downstream along the Danube. Source datum 64.2 m follows native water 65.6534 m and a declared deck grade between the high and low banks. All 69 actual mapped cut-boundary width samples have model support at every LOD. Fifty also retain rendered map paving, meeting within 0.026719 m; the other 19 lie inside the replaced map road area. These join differences are renderer checks, not surveyed geographic accuracy."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Scoped exterior and approximate standard-terrain placement complete. Detailed source master: 51228 triangles / 6149812 bytes. Runtime levels: 960 / 3780 / 15452 / 32580 triangles, 83836 / 335664 / 1345608 / 2778228 bytes and 1 / 3 / 3 / 3 draws. Initial skyline plus district is 419500 bytes. Strict medium-fi budgets pass; physical laptop/phone timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/sr/sry/pupin_bridge/models/source.glb\",\"hash\":\"sha256:0bd3807ebabefca98a70dd857cf1d708534d9a1506cda965cbb418451467e8a3\",\"bytes\":6149812,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/sr/sry/pupin_bridge/model.glb\",\"hash\":\"sha256:2e2481a353dfde4755d41ee48d64a9b1ff97322dc2dbd96da066dba15db7e04d\",\"bytes\":6149432,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/sr/sry/pupin_bridge/model.skyline.glb\",\"hash\":\"sha256:51f5ffa5e7ea332f7948d49c3fcc9c3d26b18989522399e3aea5231fbd6f6249\",\"bytes\":83836,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/sr/sry/pupin_bridge/model.district.glb\",\"hash\":\"sha256:e7bf169c713d52e21e035c63424e6d7e44e46141bc52b1123f3730dde8abc85d\",\"bytes\":335664,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/sr/sry/pupin_bridge/model.street.glb\",\"hash\":\"sha256:586fb79cd991045df86d54c6cbc6d6e1efbaebf5fd3f5ab40690170a6bcea136\",\"bytes\":1345608,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/sr/sry/pupin_bridge/model.closeup.glb\",\"hash\":\"sha256:632754173a5ea2df18095bbf4d71424b1f52407f8f9244359fd75294b4a72595\",\"bytes\":2778228,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "twin-decks-haunches-paired-supports-water-clearance-landings",
+        "passed": true,
+        "notes": "1014 front-face and clearance probes across source, imported master and four runtime levels. Includes graded carriageways/walks, widened supported landings, haunch side faces, open water passages, all paired support stations and the separated median."
+      },
+      {
+        "check": "headless-scene",
+        "passed": true,
+        "notes": "CLI scene validation and 30 ticks passed; state hash sha256:bccee9633547f4adae04a7c5e9a745f5d83636d17e4c93a1a73ecc65a792d358."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Exact-QID OSM way 662893894 / Q3397334 supplies the 1492.189 m by 29.107 m overall plan, while standard PMTiles supplies both named carriageways and outside cycle paths. Anchor [20.383373068,44.867175721], heading 1.020039121409: +X northeast toward Borča, -X southwest toward Zemun, +Z southeast downstream along the Danube. Source datum 64.2 m follows native water 65.6534 m and a declared deck grade between the high and low banks. All 69 actual mapped cut-boundary width samples have model support at every LOD. Fifty also retain rendered map paving, meeting within 0.026719 m; the other 19 lie inside the replaced map road area. These join differences are renderer checks, not surveyed geographic accuracy."
+    },
+    "inputHash": "sha256:593e79f04984f50e09dac87c2bda1ec3ab8c12441567cf0a5316777d2016ad0f",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:593e79f04984f50e09dac87c2bda1ec3ab8c12441567cf0a5316777d2016ad0f",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected 70 current frames: 13 portable, 13 shared-material/geographic, 25 medium-fi and 19 native. The complete mapped crossing has two concrete box-girder decks, three haunched river spans, regular approach spans, paired supports, six traffic lanes, outside paths, open metal barriers and repeating double-arm lights. Near levels retain chamfered pier heads, caps, bearings, joints, rail posts and lamp housings. The street level simplifies columns and fittings while retaining the defining crossing shape. Widened only the small landing caps after the native review found a mapped path edge just outside the old footprint.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/scene-preview.png",
+          "hash": "sha256:46b9ffd90f4e5dbe068e4ad2bafe469dc458181819235641da7b5d27fbd2ef4b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:1ca1881d3cc274fa07f724e01afd09e0451d6f9c4433f7349c9d2dfe440c38d9"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:92755823c4ecdb0c80e955bf58acacfc9eaef82e98fe55bf724970bfc014d276"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:3bd737eced5f8b2b754e1a393326f11492c58d93cd5fc3862739de8190dfd6d9"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:2ae7e90aa2e2430043e0cadb46c18240c934520f5b15ebbb8825b5cc92e4c81b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/whole-downstream.png",
+          "hash": "sha256:46b9ffd90f4e5dbe068e4ad2bafe469dc458181819235641da7b5d27fbd2ef4b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/whole-upstream.png",
+          "hash": "sha256:802c5e4ac9362329e86f469a3829911dad835c8e9ee0edb42efba92c47fd7cbc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/main-haunches.png",
+          "hash": "sha256:2f3e6a377e7dd1a4c51c6aa298af90d3f190c5745484de48a19b426cd8106090"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/river-pier-and-bearings.png",
+          "hash": "sha256:0d4423be5ec1c3a78eb50dc418dee5935980a8d6eadeccd94bfe472e23f76309"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/six-lane-deck.png",
+          "hash": "sha256:ad89a93b55ecf9c53d39f61f69dad71662df2fa193aa8af931b7651377a36149"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/approach-pier-rhythm.png",
+          "hash": "sha256:68ac270a68b544a9ed12910477d3d1e739b0424cbc82ace699007c24a8e3f5a5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/outside-walk-and-lights.png",
+          "hash": "sha256:6e4fc31f84e23a3a87685109f3389354636f8751a87b7f180b8f3c54dc23358c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/borca-landing.png",
+          "hash": "sha256:faec2da0e50af84ca0c30aecfec87db53e248c572b0d71d24c9afb14b67040f4"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:1c6577c59243a1e36fba5e88a86cba389aca4bd2b745fb11f2d484c194615f53"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:cafddbf5d427f2d17bfbf483ea75737b3050909661f154ee8ffa7a7004a0387d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:911af4bc66e097a5ebf7358389196a11c7c23e17115d2bd8c454fc3327c71126"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:e9c957cc4b7e07c56d5b693dd1f172d7263e900ddf52886ab7c28edb68b7857a"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/whole-downstream.png",
+          "hash": "sha256:bd34b02c42cbf63e6d690de3e6529e45a3e9151196814c48969e661dfc15c0f2"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/whole-upstream.png",
+          "hash": "sha256:3c9d25fb366d3bf6794dfc6375e2dab3ee1becfebd46f28a30dc3a8a995dc9c4"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/main-haunches.png",
+          "hash": "sha256:671edf9d9a93fc319e2f7e56e15e5f5cd775d437f8a32d358db6faad451055c0"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/river-pier-and-bearings.png",
+          "hash": "sha256:2462a19ebf199ae8c13979f0cbc5351144e97c49bd13aa5dd10f4729deb577b2"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/six-lane-deck.png",
+          "hash": "sha256:f7f67386874a5ec229e82572513d1c9944f122d1dc9a958d09ec1334d446ac28"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/approach-pier-rhythm.png",
+          "hash": "sha256:e244e2ab53c53e62e46de8fb17d04d3e41defe42c31f5b63b9563954edbc6a37"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/outside-walk-and-lights.png",
+          "hash": "sha256:34efcfacb3fceddc70cb7befcb282e05681eca434e7900f0cfead3d468d42771"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/borca-landing.png",
+          "hash": "sha256:36f05cf190cb0dc5d3e12f63006ee6369efea18ab139129d5ae12105cdbcbe59"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/shots/shared/placement.png",
+          "hash": "sha256:5a8ff4f166cca69dc8305b2e0d10ea049ee7bc9d89e8e40202fcd79abf1271b5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:81074d91667a45d0a5ba770e04de77d983edb2227ff55abb487a24c38874e9c2"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:1ee391f249f627b7c8cd4f03c2516b59f77a03da08173d452c1040e0762f343b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:a07cc41b8d7274a1ca3d6e0dd25d66d816650cc0d877580673e8d8d6bf014aa1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:b6fb37c24fe09b106271872ea337c9fc594ce894cbe5859af2f5f56cae614f92"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:709168809a5832d65aeed3cda95525d22bcf9bb6e15723bd15414600332b06ad"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:775b8a877bdc959968cca8a0459a3bc3f862a6fc8e12b266277d58f63eac5a4f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:caeab51139f7da1e2cb75695bd50b333764d0745e44d1d375f9dda9597c6ba62"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:82d36fe4887b74179ea83a67b24631688e32d003ae039af127cf3f5ed0412f16"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:acc8a33baf37fad4b93fb6ba3b19448dbaf88dc3b3492e84b973c9c7804e2d8c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:b2867c68c1f0ee385136b5dd947359a3422f2640cba3d03f67f8ebd9e14e40a3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:693ba61113cc8e515bd7dbc80399f73f972e7019a43fdf6834f02b39605311f6"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:c510f4471bcbc1405371f56645f7f373e27249af66fa8f73a0c3df78313465de"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:3aed78ecb670159da629d587866d293e3c81838b7e4d525e52026824896347eb"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/whole-downstream.png",
+          "hash": "sha256:4154491b89a2d2fa9a3677f80205ee9fd5498c7741a95acce2bdb00598246de3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/whole-upstream.png",
+          "hash": "sha256:18bd07c5cbd44e9229705a6411b7d31b024e8415c5f698105e999c0212732b0f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/main-haunches.png",
+          "hash": "sha256:8f4a0b442d936c79013a277963d7bbc7ce0b290c8fafcbe8546c5b6edaf13123"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/river-pier-and-bearings.png",
+          "hash": "sha256:78fa3b823b9ff2fbe89900f437457d79b3e829b1ae2d8c68d84d6b14d85ff020"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/six-lane-deck.png",
+          "hash": "sha256:899acd5822ab47b2e6848688d45e050d93cc6f058de7119b4e17b5b1e119f974"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/approach-pier-rhythm.png",
+          "hash": "sha256:ffa11a995862b428a8c12fbf0b4a96fae1f0ac2b8aac5ffa24a15c03e9c99936"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/outside-walk-and-lights.png",
+          "hash": "sha256:21facedbb56240ed04acd2fcc538d0c2f1a12606d1d6286ce9e10ba369249594"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/borca-landing.png",
+          "hash": "sha256:07c8827a88fdd01e3cfb8d78ade79dc1432ca36de6b22c4a1a32edd80fe04a5d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:d83245a22c006f57ed73efe4808aa720b7785ef8a233bb96bf56c7ef66026370"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:775b8a877bdc959968cca8a0459a3bc3f862a6fc8e12b266277d58f63eac5a4f"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:39c84ce3051abd2a63d26d0040efeaac0debd644740f91ce3666bc104a9e15cc"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/sry/pupin_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:74c8df724fb6c29cd8b72d959b8eae2dcf19841a410e9831765ddc240b4824a7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:dff71634924447f21a601ec4d50f18b2b1f848448b51e5aa59077621dfa6452b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:95bc796abb73887f61b5ba386b2dc1c8d1663e97cea17661596675970ad9ee0e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-street-whole-downstream.png",
+          "hash": "sha256:7a6585c8056df8c224327819bae95b59227ad52f328d9b20146fc1e625e0b48f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-street-whole-upstream.png",
+          "hash": "sha256:fae5fa1053715fa0b718cce511ace555553aa8f239d86cea89ea09bad825a293"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-street-main-haunches.png",
+          "hash": "sha256:629f84954db2d24065c6f7cb3f985a1f310175740323aee6fe8860e21c249a69"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-street-river-pier-and-bearings.png",
+          "hash": "sha256:4a8486d6829b63e24b808f4a8f8a2add10eb93a04f94cee928a13ce19740be41"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-whole-downstream.png",
+          "hash": "sha256:09def5f50332fc0c0cd435e3aabc5152409da7e46b9d4bbe0174c19273367bcf"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-whole-upstream.png",
+          "hash": "sha256:2ca8887c9075ffeb9b0defd2f78e6d5e7ea1b7690e965720965e36a43465b0fd"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-main-haunches.png",
+          "hash": "sha256:a8ac2ee87f09af10c9e66a8991c99b883e4c0223be5b9acc040a282d18526289"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-river-pier-and-bearings.png",
+          "hash": "sha256:ff30e3b7da68d56990b05e1e1d48cfa84e8c46bfe343b8944374fbcedefe3397"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-six-lane-deck.png",
+          "hash": "sha256:da6df319421308e63a42810dcd4432e29947ead8c70d532f4a5f81126669cbdb"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-approach-pier-rhythm.png",
+          "hash": "sha256:f1c2823c220ecbb59321f38d08fb554b4da3a44f4112f830623046e565a239e8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-outside-walk-and-lights.png",
+          "hash": "sha256:ea1855808a2285daae3bdfbf2344021d44e8ffef9edf0590aa8094e48ec65932"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-borca-landing.png",
+          "hash": "sha256:6f46bca55e08bf944acc22b26d4f7154b369ef6581817bb8620763d52cfab854"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-zemun-bank-join.png",
+          "hash": "sha256:cc09fa15693c00e293509ad53fd39170d4f75e65f38df4b9f98cf96bfb518726"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-borca-bank-join.png",
+          "hash": "sha256:29312cfd5e47ede87ea547a2cbf30dd8a89d64d2ae536c3233b6538c4735cebd"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:16ff597ae30e24e17670475249e8bd8a9d6880eab3f9cda6d8fcfe41429d71c8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-closeup-economy-context.png",
+          "hash": "sha256:5bba6c51087ce8f68beac80cbc0e1c97d6ea6eadd2e77850b5ffb16432a93b66"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\pupin-review/native/shots/final-failure-whole-downstream.png",
+          "hash": "sha256:86aab5b305ca03623053ddaca1027fef13325820d85aaa9c0a592a3484b396f1"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All 403 resident buildings and 159 independent input road records remain. Original road inputs, DEM samples, displayed ground and water geometry stay unchanged; connected approach paving is deliberately graded. Failed loading retains the original map crossing. Unloading preserves native ground/water and releases every model/support geometry resource. No ground cutout was needed."
+    },
+    "nativeReport": {
+      "path": ".artifacts/pupin-review/native/final-report.json",
+      "hash": "sha256:b960e0bd89698bf6a5aedbfb34cc060e8420b768a422108c51ec2b2247e4ed61",
+      "frozenViewerInputsHash": "sha256:b077e85c08d8fc3c7130fe74fd27c7cad4533f603fd16b3f0ea661aad40c1449"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "mappedWidthSamples": 69,
+        "roadAndModelSamples": 50,
+        "replacementInteriorSamples": 19,
+        "maximumJoinErrorMeters": 0.02671815528742627,
+        "buildings": 403,
+        "independentRoadRecords": 159,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "mappedWidthSamples": 69,
+        "roadAndModelSamples": 50,
+        "replacementInteriorSamples": 19,
+        "maximumJoinErrorMeters": 0.02671815528742627,
+        "buildings": 403,
+        "independentRoadRecords": 159,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "mappedWidthSamples": 69,
+        "roadAndModelSamples": 50,
+        "replacementInteriorSamples": 19,
+        "maximumJoinErrorMeters": 0.02671815528742627,
+        "buildings": 403,
+        "independentRoadRecords": 159,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "mappedWidthSamples": 69,
+        "roadAndModelSamples": 50,
+        "replacementInteriorSamples": 19,
+        "maximumJoinErrorMeters": 0.02671815528742627,
+        "buildings": 403,
+        "independentRoadRecords": 159,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "mappedWidthSamples": 0,
+        "roadAndModelSamples": 0,
+        "replacementInteriorSamples": 0,
+        "maximumJoinErrorMeters": null,
+        "buildings": 403,
+        "independentRoadRecords": 159,
+        "rawRoadInputsRetained": true,
+        "rawGridRetained": true,
+        "groundRetained": true,
+        "waterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Exterior geometry uses ordinary photographs and the mapped overall plan. Span proportions, girder sections, pier/railing profiles and foundations are regularized visual approximations; no as-built engineering survey is claimed.",
+    "The exact mapped footprint is 1492.189m long and 29.107m wide, versus the nominal 1507m reference. The model follows that span; small 3.6 m long landing caps widen 0.7 m beyond each side to support the current mapped path edges.",
+    "Three haunched river spans use a photo-led 95/172/95m schedule, followed by 24 regularized approach spans of about 47.09m. These inferred dimensions/counts are authoring controls, not independently established construction facts.",
+    "The two carriageways, outside paths, open metal barriers, paired supports and repeating double-arm lights preserve the photo-led visual identity. Fine joints, fasteners, surface wear, inscriptions and exact lamp housings are omitted or simplified.",
+    "The standard native water surface is 65.6534m and the source datum 64.2m. The deck profile meets the steep coarse Zemun bank and descends toward Borča; it is a visualization grade, not a surveyed roadway profile.",
+    "Support bases sample the retained standard terrain. The lowest approach spans merge into the coarse landing ground; adjacent streets, floodplain, riverbanks and buildings remain independent context.",
+    "Skyline retains the two slabs, haunches and paired supports. Closer levels restore tapered piers, bearings, lane markings, rail posts, expansion joints and lamp fittings.",
+    "The surrounding buildings, riverbanks, floodplain paths, automatic retaining faces and surface fixtures are procedural context, not a reconstruction of historic Belgrade.",
+    "The span schedule, structural sections, deck grade and support elevations are photo-led/standard-terrain visualization approximations. Small landing caps support generalized path edges. Lowest approach spans merge into coarse ground near Borča."
+  ]
+}

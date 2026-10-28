@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gran_hotel_palma",
+  "kind": "static-structure",
+  "title": "Gran Hotel, Palma",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gran_hotel_palma",
+        "output": "assets/places/sp/sp1/gran_hotel_palma/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:de9b4cb097d3a03ff1af3b1ef9a910b365c89b64d733fad6a234fb6000c7178a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gran-hotel-palma",
+        "path": "models/generate-gran-hotel-palma.mjs"
+      },
+      {
+        "id": "gran-hotel-palma-model",
+        "path": "models/gran-hotel-palma-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/hotel-building.json",
+      "terrain-acquisition-envelope.json",
+      "native-map/street-facing-context.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16625-12455.png",
+      "terrain-sources/terrarium-15-16625-12456.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

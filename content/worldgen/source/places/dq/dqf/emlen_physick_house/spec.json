@@ -1,0 +1,408 @@
+{
+  "planId": "emlen_physick_house",
+  "id": "emlen_physick_house",
+  "assetId": "molen.worldgen.structure.emlen_physick_house",
+  "title": "Emlen Physick House",
+  "wikidataId": "Q5372658",
+  "category": "victorian-stick-style-house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.9147824,
+    "latitude": 38.94033885
+  },
+  "size": [
+    27.984487533569336,
+    15.699999570846558,
+    26.45842170715332
+  ],
+  "actualBounds": {
+    "min": [
+      -14.369621276855469,
+      -0.2874000072479248,
+      -13.606490135192871
+    ],
+    "max": [
+      13.614866256713867,
+      15.412599563598633,
+      12.85193157196045
+    ]
+  },
+  "visualBrief": "Whole restored1879 Emlen Physick House, the actual named/pictured house selected for CapeMay Victorian story. Native12-control whole house/attachedrearwing/porches, flared mansard/hip roofs/jerkinhead dormers/projecting southwestcrossgable, inverted stepped tall brick chimneys, exposed stickwork/woodclapboards/arcaded porch/heavycurved braces/physical sash-window and door recesses. Exact cleared published1961 JackBoucher/HABS federal photo first/only. Hidden profiles/heights/census/currentpaint-finish/contact are original bounded estimates; no copied sourcepixels/interiors/estateoutbuildings/gardens. Geographicpreview/replacementfalse.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:EmlenPhysickHouse.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cape-may-victorian-wk",
+      "url": "https://qualla.com/cape-may-victorian/"
+    }
+  ],
+  "referenceInputHash": "f9a0fd3304cea4eac35d90073f831f40ae8bfc46aaed824b3ecbf8a67cc9c409",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dq/dqf/emlen_physick_house/models/emlen-physick-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/emlen-physick-house-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "emlenPhysickHouseSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "emlenPhysickHouseDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "emlenPhysickHouseStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "emlenPhysickHouseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_painted_lap",
+    "wood_plain",
+    "slate",
+    "brick_flemish",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": 0.1126,
+    "cameraYaw": 1.5707963267948966
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent256m129x12916641sample/two rawtiles/nativewholebboxanchor/heading0/SW2.5735m providerrelative datum frozen BEFORE all floor/sections/roof/porch/chimney/geometry. Once-only northwestporch exterior originalsample fixesfloor0.2126m. Original photo-bounded verticalsections:deck1m,porch3.75/4.65,firstfloor4.25/main7.85,mansardshoulder11.1/ridge12.3,frontbay8/12.1,SWcrossgable7.85/12.2,frontjerkinheaddormers8.3/10.6/12.1,rearwing6.3/9,twosteppedinvertedchimneys15.2/15.0. Native12XZcontrols retained. Exactheight/roofprofiles/fineornament/hiddenjoins/census/currentcolors-finish and foundationcontact originalestimates. B&W1961reference does not certify currentpaint; restrainedoriginalgray-greensiding/darkstickwork/slate/redbrownbrickpalette. No latefield/floor/anchor changes or fitting/flattening/reacquiring/reframing/raising.",
+    "anchor": [
+      -74.9147824,
+      38.94033885
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.91582184353737,
+        38.93953036994251
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed southwest source datum before original independent field/floor/sections/geometry; not surveyed entry/basement/foundation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/261320494"
+    ],
+    "source": "https://www.openstreetmap.org/way/261320494",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:727ff2ae245e90550717bbb1d73eba0f2d6b3c48bf25a1ce16014bf373feb396",
+    "notes": "Cape May Victorian-resort story resolved to its explicitly pictured and named Emlen Physick House/Q5372658,1048WashingtonStreet. Whole surviving restored1879 Stick-style main house/nativeway261320494/all12perimetercontrols, attached rearwing/porches/boxy projections, complex combined mansard/hip/gable/dormer roofs, tall inverted stepped brick chimneys, exposed stickwork/arcaded porch/physical sash-window and door recesses. Not the whole town, CapeMayLighthouse or a generic Victorian house. Separate carriage house/eight estate outbuildings/gardens/trees/furnishings excluded. Complete whole house/roof before geographic preview; fine colors/heights/hidden roof joins/currentfinish original bounded estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole current native12-control main house/attached rearwing and porch envelope, fixed native bbox anchor/heading0 before independent field, floor/sections/geometry. Whole enduring restored1879 shell; historical photo is exterior detail evidence, not a replacement for actual current footprint.",
+    "Whole12-control nativehouse/attachedrearwing/porch envelope retained in fixed original bbox/heading0. InternalU follows actualnative0-to1 long southwestedge, internalV positive southwest; northwestfront facesnegativeU. Nativepolygon is a coarse envelope, not separate measured roof/porch/upperwall parts. Maincore/frontbay/porch/combinedroof/dormer/crossgable/chimney subdivisions are original photo-bounded estimates, all12nativeXZ controls remain in physical foundation. Rearwing is actualnative1-2-3 projection. Separatecarriagehouse/outbuildings/gardens not substituted for wholehouse.",
+    "Original independent256m129x12916641sample/two rawtiles/nativewholebboxanchor/heading0/SW2.5735m providerrelative datum frozen BEFORE all floor/sections/roof/porch/chimney/geometry. Once-only northwestporch exterior originalsample fixesfloor0.2126m. Original photo-bounded verticalsections:deck1m,porch3.75/4.65,firstfloor4.25/main7.85,mansardshoulder11.1/ridge12.3,frontbay8/12.1,SWcrossgable7.85/12.2,frontjerkinheaddormers8.3/10.6/12.1,rearwing6.3/9,twosteppedinvertedchimneys15.2/15.0. Native12XZcontrols retained. Exactheight/roofprofiles/fineornament/hiddenjoins/census/currentcolors-finish and foundationcontact originalestimates. B&W1961reference does not certify currentpaint; restrainedoriginalgray-greensiding/darkstickwork/slate/redbrownbrickpalette. No latefield/floor/anchor changes or fitting/flattening/reacquiring/reframing/raising.",
+    "Exact1961JackBoucher/HABS PD-USGov published Qualla original personally inspected/nativeSHA1matched/unchangedguardpassed; no supplemental/questionable imagery/source-rights repair/reclassification/bypass. Currentstateoperator andstatepreservation factual descriptions support enduring restored1879shell. B&W reference cannot certify currentcolors; palette/fineornament/hiddenparts/window-chimneycensus/preciseprofiles original bounded estimates. No estate/garden/furniture/sourcepixel geometry.",
+    "Originalindependent256m129x12916641sample/two rawtiles/SW2.5735m datum/fixednativebbox/heading0 beforefloor.2126m andallarchitecturalchoices. No latefit/flatten/reacquire/reframe/floorretune/modelraise. Ground/basement/thresholdcontact unverified; geographicpreview/replacementfalse. Portableflatground/contexthouses are fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-rear-wing-and-main-house",
+      "position": [
+        68.93679333939775,
+        30.2126,
+        -9.985916286509006
+      ],
+      "lookAt": [
+        0.8577838328388036,
+        6.2126,
+        0.514010599229599
+      ]
+    },
+    {
+      "name": "northwest-arcaded-porch-mansard-dormers-and-stepped-chimneys",
+      "position": [
+        -42.36528553560533,
+        15.2126,
+        -9.065460908670309
+      ],
+      "lookAt": [
+        -5.146702997032821,
+        7.2126,
+        -3.084063595377594
+      ]
+    },
+    {
+      "name": "whole-native-house-rearwing-and-porch-plan",
+      "position": [
+        0.1,
+        100.2126,
+        0.15
+      ],
+      "lookAt": [
+        0,
+        4.2126,
+        0
+      ]
+    },
+    {
+      "name": "southwest-projecting-crossgable-and-stickwork",
+      "position": [
+        -14.212163905703129,
+        13.2126,
+        39.28122194022774
+      ],
+      "lookAt": [
+        -2.570052996147995,
+        7.2126,
+        4.288919164194017
+      ]
+    },
+    {
+      "name": "porch-true-open-volume-and-sash-recesses",
+      "position": [
+        -22.125545283451668,
+        4.2126,
+        -3.9319519211111507
+      ],
+      "lookAt": [
+        -8.234065094778831,
+        3.0126,
+        -3.7683115602275876
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12302,
+    "vertices": 36906,
+    "materials": 6,
+    "bytes": 1676932,
+    "sha256": "sha256:180e184c1e2ab7fd81230ad0442ac9ff0cb01e20d755cedfe0ff099abb0eecc8"
+  }
+}

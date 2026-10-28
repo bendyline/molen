@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { encodeStructureGeohash } from '../../worldgen-earth/dist/kernel.mjs';
 import {
   encodeSourceGeohash,
+  isStructureRecipePath,
   knownSourceEntries,
   proposedStructureSourcePath,
   sourcePathWithin,
@@ -21,6 +22,22 @@ const collections = JSON.parse(
 ).collections;
 
 describe('geographic structure source addressing', () => {
+  it('loads owned bundle recipes while rejecting traversal and other bundles', () => {
+    const source = 'content/worldgen/source/places/sr/sr2/palazzo_dei_conservatori';
+    expect(isStructureRecipePath(`${source}/models/palazzo-model.mjs`, source)).toBe(true);
+    expect(
+      isStructureRecipePath('packages/worldgen/scripts/wurzburg-residence-model.mjs', source),
+    ).toBe(true);
+    for (const path of [
+      `${source}/models/../foreign.mjs`,
+      `${source}/models/nested/model.mjs`,
+      `${source}/models/model.mjs/extra`,
+      'content/worldgen/source/places/sr/sr2/other/models/model.mjs',
+      'D:/foreign.mjs',
+      undefined,
+    ])
+      expect(isStructureRecipePath(path, source)).toBe(false);
+  });
   it('pins every registered bundle to its indexed path and preserves exact source keys', () => {
     const entries = knownSourceEntries();
     expect(entries.length).toBeGreaterThan(100);

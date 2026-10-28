@@ -123,7 +123,21 @@
                     "axis": "y",
                     "scale": 0.35
                   }
-                ]
+                ],
+                "sources": {
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "pitch"
+                    ]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": [
+                      "yaw"
+                    ]
+                  }
+                }
               },
               "interior": {
                 "nodes": [
@@ -740,7 +754,7 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.025177079452068346,
+              "profileDrag": 0.02316816549493576,
               "inducedDrag": 0.06898944474333593,
               "gearDrag": 0.004,
               "flapDrag": 0.075,
@@ -754,13 +768,13 @@
               "brakeDeceleration": 4,
               "rollingDeceleration": 0.22,
               "groundTrackRate": 12,
-              "fixedGear": true,
               "groundEffect": true,
               "criticalMach": 0.62,
               "waveDrag": 0.22,
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 76.54933333333334,
-              "flapLimitSpeed": 45
+              "flapLimitSpeed": 45,
+              "fixedGear": true
             },
             "engines": [
               {
@@ -782,6 +796,7 @@
                 "maxThrust": 3610,
                 "minPropellerSpeed": 25,
                 "propellerEfficiency": 0.85,
+                "mixtureControl": true,
                 "propulsion": "propeller",
                 "densityExponent": 1,
                 "ratedDensityRatio": 1
@@ -819,7 +834,9 @@
           "stalled": false,
           "grounded": true,
           "crashed": false,
-          "waitingForTerrain": false
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0
         },
         "mountable": {
           "seats": [

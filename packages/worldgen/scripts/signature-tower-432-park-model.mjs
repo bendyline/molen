@@ -1,5 +1,5 @@
 /** 432 Park Avenue: exposed concrete basket, punched window units and five real open drums. */
-import { beam, loft, radialRing } from './authored-structure-mesh.mjs';
+import { beam, beamPath, loft, radialRing } from './authored-structure-mesh.mjs';
 import {
   commonLimit,
   face,
@@ -93,7 +93,7 @@ function bay(out, f, column, row) {
     q,
     blue.map((c) => c * shade),
   );
-  for (let j = 0; j < 4; j++) beam(out, 'metal', q[j], q[(j + 1) % 4], 0.048, 0.055, metal);
+  beamPath(out, 'metal', q.slice(0, 4), 0.048, 0.055, metal, true);
   // An inset hopper sash is separate from the 10ft insulated picture-window perimeter.
   const a = left + 0.22,
     b = right - 0.22,

@@ -79,9 +79,9 @@ export interface TerrainMvtSemanticDecoderOptions {
 }
 
 const DEFAULT_LAYERS: TerrainMvtSemanticLayerNames = {
-  landcover: ['landcover'],
+  landcover: ['landcover', 'aeroway'],
   water: ['water'],
-  transportation: ['transportation'],
+  transportation: ['transportation', 'aeroway'],
   building: ['building'],
   poi: ['poi'],
 };
@@ -218,6 +218,7 @@ const STRUCTURE_TAGS = [
   'religion',
   'denomination',
   'location',
+  'lit',
 ] as const;
 
 function structureIdentity(properties: MvtProperties): TerrainStructureIdentity {

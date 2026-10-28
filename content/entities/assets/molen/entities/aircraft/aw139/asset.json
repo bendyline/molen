@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:51d6ecdb3d66c12750f1e6462fb87b8a5ea25c5590f1f2f26e937189e7d2677d",
-  "sourceHash": "sha256:907c541269f31bbbeffcc6de0f6df9ad040ace258532ad4433de66f4955b5f83",
+  "hash": "sha256:f75218563034fe6f245360d7b4198d965bad2635eb9576f5c22388bbe86b3153",
+  "sourceHash": "sha256:3af92a46b2d253dae65a9e03892c45b13e7afd71cbcad52e261d6b6310b92d66",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 51152,
-    "vertices": 101350,
-    "meshes": 115,
-    "primitives": 115,
-    "materials": 22,
-    "textures": 0,
+    "triangles": 25146,
+    "vertices": 26758,
+    "meshes": 125,
+    "primitives": 125,
+    "materials": 32,
+    "textures": 11,
     "animations": 0,
-    "sizeBytes": 1996536
+    "sizeBytes": 1130368
   },
   "nodes": [
     {
       "name": "AW139-shell-AW139-white",
-      "triangles": 1236
+      "triangles": 1122
     },
     {
       "name": "AW139-shell-AW139-glass",
@@ -51,11 +51,11 @@
     },
     {
       "name": "AW139-shell-AW139-trim",
-      "triangles": 2712
+      "triangles": 1416
     },
     {
       "name": "AW139-shell-AW139-metal",
-      "triangles": 5880
+      "triangles": 4200
     },
     {
       "name": "AW139-shell-AW139-teal",
@@ -279,7 +279,7 @@
     },
     {
       "name": "AW139-cockpit-AW139-trim",
-      "triangles": 540
+      "triangles": 324
     },
     {
       "name": "AW139-cockpit-detail-trim",
@@ -296,10 +296,6 @@
     {
       "name": "AW139-cockpit-avionics-earth",
       "triangles": 12
-    },
-    {
-      "name": "AW139-cockpit-detail-lettering",
-      "triangles": 14880
     },
     {
       "name": "AW139-cockpit-avionics-route",
@@ -319,11 +315,11 @@
     },
     {
       "name": "AW139-cockpit-avionics-water",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "AW139-cockpit-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "AW139-cockpit-avionics-black",
@@ -351,11 +347,11 @@
     },
     {
       "name": "AW139-cockpit-avionics-water",
-      "triangles": 144
+      "triangles": 96
     },
     {
       "name": "AW139-cockpit-avionics-route",
-      "triangles": 48
+      "triangles": 36
     },
     {
       "name": "AW139-cockpit-avionics-black",
@@ -382,6 +378,18 @@
       "triangles": 576
     },
     {
+      "name": "AW139-cockpit-detail-lettering",
+      "triangles": 3888
+    },
+    {
+      "name": "AW139-cockpit-detail-lettering-display-print",
+      "triangles": 122
+    },
+    {
+      "name": "AW139-cockpit-detail-lettering-panel-print",
+      "triangles": 58
+    },
+    {
       "name": "horizon-detail-amber",
       "triangles": 12
     },
@@ -402,10 +410,6 @@
       "triangles": 24
     },
     {
-      "name": "pedestal-detail-lettering",
-      "triangles": 12480
-    },
-    {
       "name": "pedestal-AW139-panel",
       "triangles": 744
     },
@@ -422,6 +426,14 @@
       "triangles": 768
     },
     {
+      "name": "pedestal-detail-lettering",
+      "triangles": 264
+    },
+    {
+      "name": "pedestal-detail-lettering-panel-print",
+      "triangles": 224
+    },
+    {
       "name": "AW139-seat-AW139-seats",
       "triangles": 84
     },
@@ -435,7 +447,7 @@
     },
     {
       "name": "cyclic-AW139-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -475,7 +487,7 @@
     },
     {
       "name": "cyclic-AW139-trim",
-      "triangles": 100
+      "triangles": 76
     },
     {
       "name": "cyclic-detail-red",
@@ -500,18 +512,6 @@
     {
       "name": "pedal-AW139-trim",
       "triangles": 24
-    },
-    {
-      "name": "AW139-seat-AW139-seats",
-      "triangles": 84
-    },
-    {
-      "name": "AW139-seat-AW139-metal",
-      "triangles": 60
-    },
-    {
-      "name": "AW139-seat-AW139-harness",
-      "triangles": 4
     },
     {
       "name": "AW139-seat-AW139-seats",
@@ -630,9 +630,23 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "AW139-panel",
+      "name": "AW139-panel-satin",
       "slots": [
-        "baseColor"
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "AW139-trim-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -663,14 +677,6 @@
     },
     {
       "name": "avionics-earth",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "detail-lettering",
       "slots": [
         "baseColor"
       ],
@@ -710,9 +716,49 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "detail-alloy",
+      "name": "detail-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering",
       "slots": [
         "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "detail-lettering-modern-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "detail-lettering-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "AW139-metal-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
@@ -727,6 +773,64 @@
     },
     {
       "name": "AW139-harness",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-panel-satin",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-alloy-brushed",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-grip-rubber",
+      "slots": [
+        "baseColor",
+        "roughness",
+        "metalness",
+        "normal"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend-technical-font",
+      "slots": [
+        "baseColor",
+        "emissive"
+      ],
+      "doubleSided": false,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "flight-control-master",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "flight-control-legend",
       "slots": [
         "baseColor"
       ],
@@ -797,30 +901,30 @@
       {
         "node": "AW139-shell-AW139-trim",
         "points": [
-          -1.1446,
-          0.526,
+          -1.147,
+          0.5266,
           -1.44,
-          -1.1446,
-          0.526,
-          3.567,
-          -1.1446,
-          2.85,
+          -1.147,
+          0.5266,
+          3.5655,
+          -1.147,
+          2.8499,
           -1.44,
-          -1.1446,
-          2.85,
-          3.567,
-          1.1446,
-          0.526,
+          -1.147,
+          2.8499,
+          3.5655,
+          1.147,
+          0.5266,
           -1.44,
-          1.1446,
-          0.526,
-          3.567,
-          1.1446,
-          2.85,
+          1.147,
+          0.5266,
+          3.5655,
+          1.147,
+          2.8499,
           -1.44,
-          1.1446,
-          2.85,
-          3.567
+          1.147,
+          2.8499,
+          3.5655
         ]
       },
       {
@@ -2593,35 +2697,6 @@
         ]
       },
       {
-        "node": "AW139-cockpit-detail-lettering",
-        "points": [
-          -0.6732,
-          1.2077,
-          2.83,
-          -0.6732,
-          1.2077,
-          2.8535,
-          -0.6732,
-          1.5215,
-          2.83,
-          -0.6732,
-          1.5215,
-          2.8535,
-          0.6818,
-          1.2077,
-          2.83,
-          0.6818,
-          1.2077,
-          2.8535,
-          0.6818,
-          1.5215,
-          2.83,
-          0.6818,
-          1.5215,
-          2.8535
-        ]
-      },
-      {
         "node": "AW139-cockpit-avionics-route",
         "points": [
           0.6021,
@@ -3202,6 +3277,93 @@
         ]
       },
       {
+        "node": "AW139-cockpit-detail-lettering",
+        "points": [
+          -0.6642,
+          1.2077,
+          2.83,
+          -0.6642,
+          1.2077,
+          2.8535,
+          -0.6642,
+          1.5177,
+          2.83,
+          -0.6642,
+          1.5177,
+          2.8535,
+          0.6687,
+          1.2077,
+          2.83,
+          0.6687,
+          1.2077,
+          2.8535,
+          0.6687,
+          1.5177,
+          2.83,
+          0.6687,
+          1.5177,
+          2.8535
+        ]
+      },
+      {
+        "node": "AW139-cockpit-detail-lettering-display-print",
+        "points": [
+          -0.6742,
+          1.2296,
+          2.833,
+          -0.6742,
+          1.2296,
+          2.833,
+          -0.6742,
+          1.5213,
+          2.833,
+          -0.6742,
+          1.5213,
+          2.833,
+          0.6808,
+          1.2296,
+          2.833,
+          0.6808,
+          1.2296,
+          2.833,
+          0.6808,
+          1.5213,
+          2.833,
+          0.6808,
+          1.5213,
+          2.833
+        ]
+      },
+      {
+        "node": "AW139-cockpit-detail-lettering-panel-print",
+        "points": [
+          -0.6048,
+          1.2894,
+          2.833,
+          -0.6048,
+          1.2894,
+          2.848,
+          -0.6048,
+          1.4941,
+          2.833,
+          -0.6048,
+          1.4941,
+          2.848,
+          0.6233,
+          1.2894,
+          2.833,
+          0.6233,
+          1.2894,
+          2.848,
+          0.6233,
+          1.4941,
+          2.833,
+          0.6233,
+          1.4941,
+          2.848
+        ]
+      },
+      {
         "node": "horizon-detail-amber",
         "points": [
           0.5694,
@@ -3347,35 +3509,6 @@
         ]
       },
       {
-        "node": "pedestal-detail-lettering",
-        "points": [
-          -0.2097,
-          0.5048,
-          2.8844,
-          -0.2097,
-          0.5048,
-          3.255,
-          -0.2097,
-          0.9913,
-          2.8844,
-          -0.2097,
-          0.9913,
-          3.255,
-          0.2111,
-          0.5048,
-          2.8844,
-          0.2111,
-          0.5048,
-          3.255,
-          0.2111,
-          0.9913,
-          2.8844,
-          0.2111,
-          0.9913,
-          3.255
-        ]
-      },
-      {
         "node": "pedestal-AW139-panel",
         "points": [
           -0.218,
@@ -3492,6 +3625,64 @@
         ]
       },
       {
+        "node": "pedestal-detail-lettering",
+        "points": [
+          -0.2067,
+          0.5048,
+          2.8844,
+          -0.2067,
+          0.5048,
+          3.255,
+          -0.2067,
+          0.9913,
+          2.8844,
+          -0.2067,
+          0.9913,
+          3.255,
+          0.2067,
+          0.5048,
+          2.8844,
+          0.2067,
+          0.5048,
+          3.255,
+          0.2067,
+          0.9913,
+          2.8844,
+          0.2067,
+          0.9913,
+          3.255
+        ]
+      },
+      {
+        "node": "pedestal-detail-lettering-panel-print",
+        "points": [
+          -0.2104,
+          0.5148,
+          2.9415,
+          -0.2104,
+          0.5148,
+          3.2455,
+          -0.2104,
+          0.9017,
+          2.9415,
+          -0.2104,
+          0.9017,
+          3.2455,
+          0.2106,
+          0.5148,
+          2.9415,
+          0.2106,
+          0.5148,
+          3.2455,
+          0.2106,
+          0.9017,
+          2.9415,
+          0.2106,
+          0.9017,
+          3.2455
+        ]
+      },
+      {
         "node": "AW139-seat-AW139-seats",
         "points": [
           -0.705,
@@ -3586,25 +3777,25 @@
           2.205,
           -0.5175,
           0.59,
-          2.418,
+          2.4156,
           -0.5175,
           1.19,
           2.205,
           -0.5175,
           1.19,
-          2.418,
+          2.4156,
           -0.4425,
           0.59,
           2.205,
           -0.4425,
           0.59,
-          2.418,
+          2.4156,
           -0.4425,
           1.19,
           2.205,
           -0.4425,
           1.19,
-          2.418
+          2.4156
         ]
       },
       {
@@ -3876,25 +4067,25 @@
           2.205,
           0.4425,
           0.59,
-          2.418,
+          2.4156,
           0.4425,
           1.19,
           2.205,
           0.4425,
           1.19,
-          2.418,
+          2.4156,
           0.5175,
           0.59,
           2.205,
           0.5175,
           0.59,
-          2.418,
+          2.4156,
           0.5175,
           1.19,
           2.205,
           0.5175,
           1.19,
-          2.418
+          2.4156
         ]
       },
       {
@@ -4359,93 +4550,6 @@
           0.985,
           1.585,
           0.98
-        ]
-      },
-      {
-        "node": "AW139-seat-AW139-metal",
-        "points": [
-          0.5744,
-          0.61,
-          0.612,
-          0.5744,
-          0.61,
-          0.93,
-          0.5744,
-          0.915,
-          0.612,
-          0.5744,
-          0.915,
-          0.93,
-          0.9456,
-          0.61,
-          0.612,
-          0.9456,
-          0.61,
-          0.93,
-          0.9456,
-          0.915,
-          0.612,
-          0.9456,
-          0.915,
-          0.93
-        ]
-      },
-      {
-        "node": "AW139-seat-AW139-harness",
-        "points": [
-          0.61,
-          0.895,
-          0.62,
-          0.61,
-          0.895,
-          0.91,
-          0.61,
-          1.37,
-          0.62,
-          0.61,
-          1.37,
-          0.91,
-          0.91,
-          0.895,
-          0.62,
-          0.91,
-          0.895,
-          0.91,
-          0.91,
-          1.37,
-          0.62,
-          0.91,
-          1.37,
-          0.91
-        ]
-      },
-      {
-        "node": "AW139-seat-AW139-seats",
-        "points": [
-          -0.985,
-          0.7625,
-          -0.45,
-          -0.985,
-          0.7625,
-          0.06,
-          -0.985,
-          1.585,
-          -0.45,
-          -0.985,
-          1.585,
-          0.06,
-          -0.535,
-          0.7625,
-          -0.45,
-          -0.535,
-          0.7625,
-          0.06,
-          -0.535,
-          1.585,
-          -0.45,
-          -0.535,
-          1.585,
-          0.06
         ]
       }
     ]

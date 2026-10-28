@@ -11,7 +11,11 @@ const P51 = 'molen.entities.aircraft.p51d';
 const OH6 = 'molen.entities.aircraft.oh6';
 
 /** Flat ground at 12 m, a vehicles world, and aircraft sharing it. */
-function setup() {
+function setup(
+  loadModel: () => Promise<THREE.Object3D> = async () => {
+    throw new Error('no models in unit tests');
+  },
+) {
   const root = new THREE.Group();
   const vehicles = new EarthVehicles({
     root,
@@ -23,9 +27,7 @@ function setup() {
     world: vehicles.world,
     root,
     sampleHeight: () => 12,
-    loadModel: async () => {
-      throw new Error('no models in unit tests');
-    },
+    loadModel,
     types: ENTITY_TYPES,
     vehicleEnvironment: vehicles.environment,
   });
@@ -39,6 +41,108 @@ function setup() {
 }
 
 describe('earth aircraft', () => {
+  it('ignores an old model load when an airport stand is evicted and recreated with the same id', async () => {
+    const loads: Array<(model: THREE.Object3D) => void> = [];
+    const { aircraft, vehicles } = setup(() => new Promise((resolve) => loads.push(resolve)));
+    aircraft.spawn(P51, { position: [0, 12, 0], heading: 0 }, { id: 'apron:a' });
+    aircraft.remove('apron:a');
+    aircraft.spawn(P51, { position: [20, 12, 0], heading: 0 }, { id: 'apron:a' });
+    loads[1]?.(new THREE.Group());
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    loads[0]?.(new THREE.Group());
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(aircraft.object.children).toHaveLength(1);
+    expect(aircraft.pose('apron:a')?.position).toEqual([20, 12, 0]);
+    aircraft.dispose();
+    vehicles.dispose();
+  });
+  it('breaks the wing against streamed geometry and restores the aircraft on recovery', async () => {
+    const { root, vehicles, aircraft, fly } = setup(async () => new THREE.Group());
+    const wall = new THREE.Mesh(new THREE.BoxGeometry(3, 8, 0.05), new THREE.MeshBasicMaterial());
+    wall.position.set(4, 32, 5);
+    root.add(wall);
+    root.updateMatrixWorld(true);
+    const id = aircraft.spawn(P51, {
+      position: [0, 30, 0],
+      heading: Math.PI,
+      airborne: { speed: 70 },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(aircraft.board(id)).toBe(true);
+    fly(0.25);
+    const state = vehicles.world.get(id, AircraftState);
+    expect(
+      state?.damage?.['left-wing']?.detached,
+      JSON.stringify({ state, transform: vehicles.world.get(id, Transform) }),
+    ).toBe(true);
+    expect(state?.velocity[2]).toBeGreaterThan(30);
+    expect(state?.debris?.length).toBe(1);
+    expect(aircraft.recover()).toBe(true);
+    expect(vehicles.world.get(id, AircraftState)?.damage).toBeUndefined();
+    expect(vehicles.world.get(id, AircraftState)?.debris).toBeUndefined();
+    aircraft.dispose();
+    vehicles.dispose();
+    wall.geometry.dispose();
+    (wall.material as THREE.Material).dispose();
+  });
+  it('retains cockpit power, mixes spring-loaded axes with keyboard intent, and drives independent engines', async () => {
+    const { aircraft, vehicles, fly } = setup(async () => new THREE.Group());
+    const id = aircraft.spawn('molen.entities.aircraft.baron_g58', {
+      position: [0, 500, 0],
+      heading: 0,
+      airborne: {},
+    });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(aircraft.board(id)).toBe(true);
+    aircraft.view = 'cockpit';
+    const session = aircraft.cockpitSession();
+    if (!session) throw new Error('Expected active cockpit');
+    const controls = session.cockpit.controls;
+    const stick = controls.find((c) => c.action === 'stick');
+    const throttles = controls.filter((c) => c.action === 'power' && c.engine);
+    expect(throttles).toHaveLength(2);
+    const [left, right] = throttles;
+    if (!stick || !left?.engine || !right?.engine) throw new Error('Missing primary controls');
+    session.change({ control: left, value: 0.9 });
+    session.change({ control: right, value: 0.2 });
+    session.change({ control: stick, value: 0.3, pitch: 0.2 });
+    fly(0.5);
+    expect(vehicles.world.get(id, AircraftInput)?.pitch).toBe(0.2);
+    expect(vehicles.world.get(id, AircraftInput)?.roll).toBe(0.3);
+    const engines = vehicles.world.get(id, AircraftState)?.engines;
+    expect(engines?.[left.engine]?.thrust).toBeGreaterThan(
+      engines?.[right.engine]?.thrust ?? Infinity,
+    );
+    session.release();
+    fly(0.1);
+    expect(vehicles.world.get(id, AircraftInput)?.pitch).toBe(0);
+    expect(vehicles.world.get(id, AircraftInput)?.roll).toBe(0);
+    expect(vehicles.world.get(id, AircraftInput)?.engines?.[left.engine]?.power).toBe(0.9);
+    const brake = controls.find((c) => c.action === 'brake');
+    if (!brake) throw new Error('Expected brake control');
+    session.change({ control: brake, value: 1 });
+    fly(0.1);
+    expect(vehicles.world.get(id, AircraftInput)?.brake).toBe(true);
+    fly(0.1, { throttle: 1 });
+    expect(vehicles.world.get(id, AircraftInput)?.engines?.[left.engine]?.power).toBeUndefined();
+    const mixture = controls.find((c) => c.action === 'mixture' && c.engine === left.engine);
+    const propeller = controls.find((c) => c.action === 'propeller' && c.engine === right.engine);
+    if (!mixture || !propeller) throw new Error('Expected independent engine controls');
+    session.change({ control: mixture, value: 0 });
+    session.change({ control: propeller, value: 0 });
+    fly(0.2, { throttle: 1 });
+    const retained = vehicles.world.get(id, AircraftInput)?.engines;
+    expect(retained?.[left.engine]?.mixture).toBe(0);
+    expect(retained?.[right.engine]?.propeller).toBe(0);
+    expect(vehicles.world.get(id, AircraftState)?.engines?.[left.engine]?.thrust).toBe(0);
+    expect(vehicles.world.get(id, AircraftState)?.engines?.[right.engine]?.thrust).toBeGreaterThan(
+      0,
+    );
+    aircraft.view = 'chase';
+    expect(aircraft.cockpitSession()).toBeUndefined();
+    aircraft.dispose();
+    vehicles.dispose();
+  });
   it('preserves the Osprey parked vertical nacelle preset while airborne launches use forward thrust', () => {
     const { vehicles, aircraft } = setup();
     const id = aircraft.spawn('molen.entities.aircraft.mv_22b', {

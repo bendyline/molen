@@ -1,0 +1,376 @@
+{
+  "planId": "basilica_of_st_peter_columbia_south_carolina",
+  "id": "basilica_of_st_peter_columbia_south_carolina",
+  "assetId": "molen.worldgen.structure.basilica_of_st_peter_columbia_south_carolina",
+  "title": "Basilica of Saint Peter, Columbia",
+  "wikidataId": "Q7591423",
+  "category": "gothic-basilica-and-connected-wing",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.03803679999999,
+    "latitude": 34.00558255
+  },
+  "size": [
+    73.38264465332031,
+    50.23239907622337,
+    63.94822692871094
+  ],
+  "actualBounds": {
+    "min": [
+      -36.49871063232422,
+      0.1678999960422516,
+      -32.016231536865234
+    ],
+    "max": [
+      36.883934020996094,
+      50.400299072265625,
+      31.931995391845703
+    ]
+  },
+  "visualBrief": "Whole actual native39-control Columbia basilica/connectedwing/corridor compound: dark red brick high nave/low sideaisles/shallow transepts/polygonalapse/ambulatory, physical lancet/rose/entrance recesses with original plain tinted glazing/tracery, stepped buttresses/corbel cornices, central entrance tower/tripartite window/twelve upper lancets/four actual louver recesses/white Gothic gables and pinnacles/slate octagonal spire/LatinCross. Whole northern attached brick wing and eastconnector retained with original bounded sections/fenestration. Exact cleared published Qualla2009KudzuVine ownPD photo first; no copied stainedglass/art/photo pixels. Primary historic163ft=49.6824m ground-to-cross; whole compound exceeds church-only dimensions. Hidden front/wing/currentfinish/exactgradecontact original estimates.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:St._Peter%27s_Roman_Catholic_Church_(Columbia,_South_Carolina).JPG"
+  ],
+  "stories": [
+    {
+      "id": "basilica-of-st-peter-columbia-south-carolina-wp",
+      "url": "https://qualla.com/basilica-of-st-peter-columbia-south-carolina/"
+    }
+  ],
+  "referenceInputHash": "f67c1fe10088e64ba7a1bb04414889038fddfdd7ff57b1bd26fa88e967e7f5cf",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dn/dnn/basilica_of_st_peter_columbia_south_carolina/models/st-peters-basilica-columbia-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/st-peters-basilica-columbia-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "stPetersBasilicaColumbiaSkyline",
+    "errorMeters": 1.4,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.07,
+        "alphaMode": "OPAQUE"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "stPetersBasilicaColumbiaDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.07,
+            "alphaMode": "OPAQUE"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "stPetersBasilicaColumbiaStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.07,
+            "alphaMode": "OPAQUE"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "stPetersBasilicaColumbiaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.07,
+            "alphaMode": "OPAQUE"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone",
+    "slate",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1.1",
+    "groundY": 0.1179
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole39-control native compound and fixed bboxanchor/heading0 retained; original256m129x12916641samples/one rawtile/SW93.0425m provider-relative datum frozen before every floor/section/geometry choice. Floor0.7179m chosen once from original grid at eastern entrance before geometry, no refitting/reframing/reacquisition/flattening/late modelraise. Primary1989architect/committee NRHP facts: historicchurch131ftlong/64ftnave-and-aisles/79fttransept/163ftground-to-cross/12ftrose, cruciformhighnave/lowaisles/polygonalapse/5bays/centralGothictower/3lancetsperupperface/4louvergables/octagonalslatespire/redbrick/lightstoneandterracotta;1967northattachment. Original estimated sections: aisle7.6/nave13.2-18.8/transept13.6-19.3/apse13.2-17.2/hiddennorthwing7.1-7.42/connector4.2; tower9.8/18.5/26.5-35.4, spire33.2-47.65/finial48.35/cross49.6824. Native interior roof-part joins/hiddennorthwingheight-flat-roof/fenestration/frontdetails/roofprofiles/finecarving/currentfinish all original estimates, not surveyed or mapped buildingparts. Wholephysicalscope retained including all39 native perimeter controls; no cemetery/separate school/interiors/art/copiedsourcepixels. Exactgradecontact unverified, preview/replaceFootprintfalse.",
+    "anchor": [
+      -81.03803679999999,
+      34.00558255
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.03849192471924,
+        34.00520525930651
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed exteriorSWreference before floors/sections/geometry; independent provider-relative unsurveyed datum, not model-derived threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/513681742"
+    ],
+    "source": "https://www.openstreetmap.org/way/513681742",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:01f665457676b27b22c45c8137ddd392107c943690fc7bd5c4bd3afbe9d60773",
+    "notes": "Whole named Basilica of Saint Peter, Columbia: actual39-control church/connected-building envelope way513681742/Q7591423, high nave/lower side aisles/projecting transepts/polygonal apse and ambulatory, central facade entrance tower/gothic belfry/slate octagonal spire/Latin cross, physical lancet/rose openings with original plain tinted glazing and stone tracery/buttresses/cornices. Retain all actual mapped attached wings/passages, including the low attached northern volume, rather than narrowing to tower or historic nave. Native whole compound significantly exceeds historic church-only39.93x24.08m dimensions; subdivision/attached-wing sections must be documented as original estimates. Separate schoolways/cemetery/graves/grounds/playequipment/art/people/trees/interiorrooms/sourcepixels excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact whole named native39control way513681742/Q7591423, including attached compound rather than an invented church-only rectangle. Fixed nativebboxanchor/heading0/+Xeast+Zsouth chosen before independent terrain/floor/sections. Original rotated outline retained. Primary1989architect/committee NationalRegister text supplies historic church-only dimensions and architectural facts; no protected imagery/plans copied. Modern attachedwing/surveyed internal parts/exactgrades not verified.",
+    "Whole39-control native compound and fixed bboxanchor/heading0 retained; original256m129x12916641samples/one rawtile/SW93.0425m provider-relative datum frozen before every floor/section/geometry choice. Floor0.7179m chosen once from original grid at eastern entrance before geometry, no refitting/reframing/reacquisition/flattening/late modelraise. Primary1989architect/committee NRHP facts: historicchurch131ftlong/64ftnave-and-aisles/79fttransept/163ftground-to-cross/12ftrose, cruciformhighnave/lowaisles/polygonalapse/5bays/centralGothictower/3lancetsperupperface/4louvergables/octagonalslatespire/redbrick/lightstoneandterracotta;1967northattachment. Original estimated sections: aisle7.6/nave13.2-18.8/transept13.6-19.3/apse13.2-17.2/hiddennorthwing7.1-7.42/connector4.2; tower9.8/18.5/26.5-35.4, spire33.2-47.65/finial48.35/cross49.6824. Native interior roof-part joins/hiddennorthwingheight-flat-roof/fenestration/frontdetails/roofprofiles/finecarving/currentfinish all original estimates, not surveyed or mapped buildingparts. Wholephysicalscope retained including all39 native perimeter controls; no cemetery/separate school/interiors/art/copiedsourcepixels. Exactgradecontact unverified, preview/replaceFootprintfalse.",
+    "Cleared published Qualla2009KudzuVine own/PD-self original individually inspected/nativeSHA1matched and unchanged policy guard passed. Abductive conflictedhero, attribution/sharealike photos, uncertain historical postcard and Flickr some-rights-reserved source excluded unchanged without source/rights repair or same-image bypass. Primary architect/committee NationalRegister text factual dimensions/details only; no nomination photographs or protected stained-glass/figure art copied. Roof/part joins/hidden facade/large northern wing height-flat roof/fenestration/fine tracery/currentfinish original estimates. Generic plain glazing/original tracery, no interior/art/cemetery/separate school/grounds/trees/sourcepixels.",
+    "Original independent256m129x12916641samples/one rawtile/fixedSW93.0425m provider-relative source datum frozen before all floors/sections/geometry. Floor.7179m fixed once from original eastern entry sample before geometry; nativebbox frame unchanged/no terrainfit/flatten/reacquisition/modelraising. Exact grades/threshold/constructioncontact unverified; geographicpreview/replaceFootprint=false. Flat reviewground/syntheticneighbors are fixtures."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Creator-public-domain reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaCameras": [
+    {
+      "name": "whole-opposite-church-wing-and-connector",
+      "position": [
+        -112,
+        62.7179,
+        -125
+      ],
+      "lookAt": [
+        0,
+        16.7179,
+        0
+      ]
+    },
+    {
+      "name": "tower-deep-door-tripartite-window-and-lancets",
+      "position": [
+        71.64225013161919,
+        20.7179,
+        11.505998265188001
+      ],
+      "lookAt": [
+        31.377869396474292,
+        16.7179,
+        9.56186760720948
+      ]
+    },
+    {
+      "name": "gabled-louvered-belfry-pinnacles-and-slate-spire",
+      "position": [
+        55.85203756124813,
+        37.7179,
+        20.653084521613906
+      ],
+      "lookAt": [
+        31.683323442328227,
+        34.7179,
+        9.59277190903728
+      ]
+    },
+    {
+      "name": "transept-rose-sideaisle-and-five-bay-clerestory",
+      "position": [
+        21.362540989489595,
+        17.7179,
+        53.93182587742025
+      ],
+      "lookAt": [
+        14.651725639809063,
+        9.7179,
+        19.061136791276684
+      ]
+    },
+    {
+      "name": "whole-modern-attached-wing-and-open-courtyard",
+      "position": [
+        -63.81228757587249,
+        23.7179,
+        -21.931528773301455
+      ],
+      "lookAt": [
+        -3.2805940831535314,
+        5.7179,
+        -3.039358889894058
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 30715,
+    "vertices": 92145,
+    "materials": 5,
+    "bytes": 3878240,
+    "sha256": "sha256:45d69ae15e5bd2dc8738fe0adf511b30d9c87e6ffc11dadd13f828eee4dff349"
+  }
+}

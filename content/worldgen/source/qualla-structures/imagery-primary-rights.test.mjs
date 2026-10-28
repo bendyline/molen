@@ -885,6 +885,102 @@ test('historical prints require exact named creators, dated citations, native gr
   }
 });
 
+test('the original Arnaud map requires both native grants and its exact named BnF object', async (t) => {
+  const { inspectHistoricalPrintReference } = await import('./imagery-inventory.mjs');
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-arnaud-map-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const dir = path.join(root, 'content/worldgen/source/places/t4/t48/marib_dam');
+  fs.mkdirSync(path.join(dir, 'reference-rights'), { recursive: true });
+  const bytes = Buffer.from('exact original nineteenth century map'),
+    hash = (b, a = 'sha256') => createHash(a).update(b).digest('hex'),
+    title = 'File:Plan de la digue - Fait par Mr. Th. Joseph Arnaud en 1843 (2 of 4).jpg',
+    artist = 'Arnaud, Thomas-Joseph (1812-1884). Auteur du texte',
+    citation = '{{fr|1=Bibliothèque nationale de France, département Cartes et plans, GE D-14364}}',
+    wiki = `{{Artwork\n|author=${artist}\nMohl, J. (18..-19..?). Auteur du texte\n|title=Plan de la digue / Fait par Mr. Th. Joseph Arnaud en 1843\n|date=1873\n|source=${citation}\n{{ARK-BNF|ark:/12148/btv1b84924810}} (2/4)\n}}\n{{PD-France}}\n{{PD-US-expired}}`,
+    page = {
+      title,
+      revisions: [{ revid: 21, slots: { main: { '*': wiki } } }],
+      imageinfo: [
+        {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Arnaud.jpg',
+          sha1: hash(bytes, 'sha1'),
+          extmetadata: { Artist: { value: artist }, LicenseShortName: { value: 'Public domain' } },
+        },
+      ],
+    },
+    record = {
+      source: `https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo%7Crevisions&titles=${encodeURIComponent(title)}`,
+      query: { pages: { 1: page } },
+    },
+    proof = {
+      kind: 'commons-native-expired-historical-print',
+      path: 'content/worldgen/source/places/t4/t48/marib_dam/reference-rights/native.json',
+      recordClass: 'bnf-arnaud-1843-map',
+      publicationYear: 1873,
+      creatorDied: 1884,
+      archiveItem: 'btv1b84924810',
+      sourceCitation: citation,
+    },
+    ref = {
+      path: 'plan.jpg',
+      origin: 'commons-expired-historical-print',
+      sourceUrl: `https://commons.wikimedia.org/wiki/${encodeURIComponent(title)}`,
+      artist,
+      license: 'Public domain',
+      sha256: hash(bytes),
+      publicDomainEvidence: proof,
+      rightsEvidence: { path: 'reference-rights/native.json' },
+      visuallyReviewedForThisPolicy: true,
+      originalReview: { status: 'inspected', rendition: 'native-original' },
+    };
+  fs.writeFileSync(path.join(dir, 'plan.jpg'), bytes);
+  const save = () => {
+      const b = JSON.stringify(record);
+      fs.writeFileSync(path.join(root, proof.path), b);
+      proof.sha256 = hash(b);
+      ref.rightsEvidence.sha256 = hash(b);
+    },
+    run = () => {
+      save();
+      return inspectHistoricalPrintReference(dir, ref, root).eligible;
+    };
+  assert.equal(run(), true);
+  for (const [from, to] of [
+    ['{{PD-France}}', ''],
+    ['{{PD-US-expired}}', ''],
+    ['{{PD-France}}', '{{PD-old-assumed}}'],
+    [artist, 'Unknown author'],
+    ['|date=1873', '|date=1973'],
+    ['GE D-14364', 'GE D-99999'],
+    ['btv1b84924810', 'btv1b99999999'],
+    [wiki, `${wiki}\n{{CC-by-sa-4.0}}`],
+  ]) {
+    page.revisions[0].slots.main['*'] = wiki.replace(from, to);
+    assert.equal(run(), false, from);
+  }
+  page.revisions[0].slots.main['*'] = wiki;
+  for (const [field, value] of [
+    ['creatorDied', 1934],
+    ['publicationYear', 1934],
+    ['archiveItem', 'other'],
+  ]) {
+    const old = proof[field];
+    proof[field] = value;
+    assert.equal(run(), false, field);
+    proof[field] = old;
+  }
+  page.imageinfo[0].sha1 = hash('other original', 'sha1');
+  assert.equal(run(), false);
+  page.imageinfo[0].sha1 = hash(bytes, 'sha1');
+  ref.visuallyReviewedForThisPolicy = false;
+  assert.equal(run(), false);
+  ref.visuallyReviewedForThisPolicy = true;
+  fs.writeFileSync(path.join(dir, 'plan.jpg'), 'different pixels');
+  assert.equal(run(), false);
+  fs.writeFileSync(path.join(dir, 'plan.jpg'), bytes);
+  assert.equal(run(), true);
+});
+
 test('an expired named library photograph can recover an omitted category without changing published media', (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-library-photo-rights-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));

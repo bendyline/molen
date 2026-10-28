@@ -1,0 +1,911 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:89c05af9058923ded91acd1dbc11ca3a37e8fd2a16f33458ca00252e1c029202",
+  "sourceHash": "sha256:1bf69b38caaaf4bcafd33ce3c13cfa2aa6c8ab6bbd5bff699b6b8ef493005a06",
+  "runtimeHash": "sha256:4c11c029790f53013ae874148c621f855c52e747d24ae3be8138a9ca64d09e79",
+  "captureReportHash": "sha256:7d2a6bd91aa24115b21bbe0102ee8ab112f9c877a15467b3a1e8e239b9cf2e2a",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/five-bay-front-central-arch-and-balcony.png",
+      "shots/supported-balcony-recessed-entry-and-treads.png",
+      "shots/northeast-open-porch-and-blind-side-panels.png",
+      "shots/rear-pediment-arched-glazing-and-green-hip-roof.png"
+    ],
+    "notes": "Inspected all48 current portable/shared/medium-fi/native frames in labeled contact sheets, plus full-resolution native front, balcony/entrance, northeast porch and rear views. The compact five-bay white house, green hip roof, two pale chimney caps, central round-headed upper glazing and pediments, supported open balcony/lattice and brackets, recessed doors, closed treads and open side porch read coherently. Ordinary front/northeast pictures and retained standard PMTiles guided one continuous author/inspect/fix pass. The entrance contact pass added short supported rear threshold treads."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/five-bay-front-central-arch-and-balcony.png",
+      "shots/shared/supported-balcony-recessed-entry-and-treads.png",
+      "shots/shared/northeast-open-porch-and-blind-side-panels.png",
+      "shots/shared/rear-pediment-arched-glazing-and-green-hip-roof.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Six roles reuse five existing256px graphs: stucco, wood_plain, stone_limestone, metal_standing_seam and storefront. Trim and doorway wood share one graph. Metric UVs, linear tints, five nearby draws/one skyline, separate POSITION/NORMAL streams and matching CPU/GPU geometry accounting. No embedded image, private atlas or new graph. Each used graph reads once; unload releases every model geometry.",
+    "captureReportHash": "sha256:fad69d1c11a92cd16c1e795d567b0e90a2dcd9b7d627885d339ad7a4df18c41f"
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/five-bay-front-central-arch-and-balcony.png",
+      "medium-fi/supported-balcony-recessed-entry-and-treads.png",
+      "medium-fi/northeast-open-porch-and-blind-side-panels.png",
+      "medium-fi/rear-pediment-arched-glazing-and-green-hip-roof.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Four authored LODs788/1352/3612/3808 triangles. Initial skyline+district183472bytes; closeup304688bytes. Skyline retains the complete main/porch roof, two stacks, front/rear pediments, physical balcony/bracket proxies, recessed entrances, supported porch and treads. It omits window/arched glazing and lattice modules. District adds five-bay window rhythm and six-segment arched heads; street/closeup add open lattice, finer arch segments, quoin bands, vents and pipes. Synthetic contexts check style/LOD/tier coherence; native frames establish approximate geographic fit.",
+    "captureReportHash": "sha256:37eb95cd775511f19578b43cbbab668768948075268babd5bf8daf11929b831d"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:8ce8fc22343118be11bedfe7e1f7c2a8d39cb0ccedc02b41330812af9822667f",
+    "mapFrameHash": "sha256:bb7a484dbc194a88b7c6f64f5cee386003a6a1a3d99c66e7a3598c49b209e75d",
+    "notes": "Named Флигель Кузминских POI and way167382261 identify this house independently from Tolstoy and Volkonsky houses. The mapped long southeast edge fixes+X southwest along the facade and+Z southeast into the front garden; axes baked east/up/south, heading0. Ordinary southeast and northeast photographs confirm the compact five-bay long fronts, central arched upper opening/pediment and northeast side porch. Photo-visible balcony, treads and side porch extend outside the simple map rectangle. Retained standard Protomaps20261020 and Mapzen ground; outside front garden provider[0,7] supplies227.14409009244258m datum. Main boundary grades-0.048..0.944m, floor+1.2m and closed foundation-0.3m. Original garden/approaches, estate neighbors, roads and ponds remain. Coarse exposed plinth, historical thresholds and accessibility approximate; no bespoke terrain or flattening. Inspected initial native front/side views: white mass and green roof align with the mapped garden paths; closed plinth, front stairs and open side porch are supported. One owned house is replaced,242 resident independent buildings and original roads/pond water remain. Rear threshold treads approximate the coarse slope; historic levels and accessibility remain approximate. The one owned house is replaced while242 resident/294 wider independent buildings, original garden/approach ground, roads and40070.675m² pond water remain. Failure retains all243 originals; every LOD/failure/unload case restores ground/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Recognizable medium-fi exterior. The mapped17.95m by11.7m envelope fixes horizontal scale; balconies, risalits, northeast porch and stairs are picture-led additions. Main boundary grades-.048..+.944m relative to227.14409009244258m outside-garden datum, floor+1.2m and foundation-.3m support the body with low-side plinth exposure up to about1.25m. Historic heights, hidden rear glazing/balcony/door arrangement, blind side panels, chimney inventory, thresholds and accessibility remain approximate. Map nominal8m is a scale cue, not a survey. Bushes/conifers obscure portions of the reference elevations. Flat synthetic contexts partly bury bases/treads and some close views crop the opposite edge; whole/native views cover the envelope. Other estate houses remain independent procedural context in this isolated fixture. No copied plaques, texts, furnishings, artworks, planting or photo pixels. Physical phone/laptop and dense-city timings remain pending."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:1bf69b38caaaf4bcafd33ce3c13cfa2aa6c8ab6bbd5bff699b6b8ef493005a06\",\"bytes\":351860,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.glb\",\"hash\":\"sha256:4c11c029790f53013ae874148c621f855c52e747d24ae3be8138a9ca64d09e79\",\"bytes\":351348,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:6241c720ab54dcc824020c123c97f6f7933cf468154d9105ba3711c2e6aff0b1\",\"bytes\":71068,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:7aac69cff644eea8fb7f5c42aad2851f066a3722e3a00ffbc1a2a68cac478b2a\",\"bytes\":112404,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:575d82653e59ef19220b1f937268a9dfc1405a13b389449479e7057de5d8b567\",\"bytes\":288896,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:ddaa4a5623f986b05a6d18d1d8a4da9c94a5f4e6f7ee0c5a24f545a4bc53fdfc\",\"bytes\":304688,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "mapped-hip-roof-foundation-two-chimneys-recessed-entries-open-porch-balconies-treads-arches-and-budgets",
+        "passed": true,
+        "notes": "184 actual mesh/contact probes and all six GLB pins pass. Finite attributes, shared bindings, strict LOD caps, separate vertex streams and initial download budget checked."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Флигель Кузминских POI and way167382261 identify this house independently from Tolstoy and Volkonsky houses. The mapped long southeast edge fixes+X southwest along the facade and+Z southeast into the front garden; axes baked east/up/south, heading0. Ordinary southeast and northeast photographs confirm the compact five-bay long fronts, central arched upper opening/pediment and northeast side porch. Photo-visible balcony, treads and side porch extend outside the simple map rectangle. Retained standard Protomaps20261020 and Mapzen ground; outside front garden provider[0,7] supplies227.14409009244258m datum. Main boundary grades-0.048..0.944m, floor+1.2m and closed foundation-0.3m. Original garden/approaches, estate neighbors, roads and ponds remain. Coarse exposed plinth, historical thresholds and accessibility approximate; no bespoke terrain or flattening. Inspected initial native front/side views: white mass and green roof align with the mapped garden paths; closed plinth, front stairs and open side porch are supported. One owned house is replaced,242 resident independent buildings and original roads/pond water remain. Rear threshold treads approximate the coarse slope; historic levels and accessibility remain approximate. The one owned house is replaced while242 resident/294 wider independent buildings, original garden/approach ground, roads and40070.675m² pond water remain. Failure retains all243 originals; every LOD/failure/unload case restores ground/water and releases geometry."
+    },
+    "inputHash": "sha256:89c05af9058923ded91acd1dbc11ca3a37e8fd2a16f33458ca00252e1c029202",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:89c05af9058923ded91acd1dbc11ca3a37e8fd2a16f33458ca00252e1c029202",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected all48 current portable/shared/medium-fi/native frames in labeled contact sheets, plus full-resolution native front, balcony/entrance, northeast porch and rear views. The compact five-bay white house, green hip roof, two pale chimney caps, central round-headed upper glazing and pediments, supported open balcony/lattice and brackets, recessed doors, closed treads and open side porch read coherently. Ordinary front/northeast pictures and retained standard PMTiles guided one continuous author/inspect/fix pass. The entrance contact pass added short supported rear threshold treads.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/preview.png",
+          "hash": "sha256:03b3df9e7df7d91c990f76851b37b9f73085e11797e1aba3cd6933fef6e699ff"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:ffebc84ae61a8b6f808c1e8dd311d62dc5c77c05a5bccf968ad8283f411efd32"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:e8b70f01f4881ebf4b3ca110052359a03d0017c1194624c5e54d108fb715abc9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:274619693f908bd0fb99fd789767ae290f2edc8d938781b6f70db93e5a0f753f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:f26e1a53246484765405d4536be122fc5e3a09c54ce071b150282ca83d235576"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/five-bay-front-central-arch-and-balcony.png",
+          "hash": "sha256:22ff135568d6a666a1a5fd6f8327f173ca8ca19d0aaa0b29398da1080215280c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/supported-balcony-recessed-entry-and-treads.png",
+          "hash": "sha256:259040a40b2212d69d352c6101b5350adb445301e0c845c839cb4eea0ff87677"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/northeast-open-porch-and-blind-side-panels.png",
+          "hash": "sha256:7bb5cbd838ca0dcd3a06fcde2fe8b1f678669f66de43949ea3ccc12a20a679fb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/rear-pediment-arched-glazing-and-green-hip-roof.png",
+          "hash": "sha256:8b362e683f5836483517ff8d26425f6f2a2bc811ed6a4bfc053b288924dc07b8"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:97cc11295f1e0284fdf60f8c8c15f874d0a92b0ebfe68ca0c3788685527c64d0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:b105056aa3bacd7da718420c3dc0c786ec1c81c507f5ab2e93b93f8c7dc1b8cf"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:a2c4589a3ec07bb3cc55b18ce4b4c2d8b08f085e9e198ff7aab930f345ef666e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:a4e544b28605551e97f1f2b968a7fa71e7e8b0a9ce7406388e155e5e189f4db3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/five-bay-front-central-arch-and-balcony.png",
+          "hash": "sha256:3fb7d5d1f69a759f3f590a7c54433f0cdabd1dafb0c2d6f986b4a311b276f71b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/supported-balcony-recessed-entry-and-treads.png",
+          "hash": "sha256:51ac93edc1a944634519ab889ce27eb993a9650af1f254ca3f3095abafb23536"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/northeast-open-porch-and-blind-side-panels.png",
+          "hash": "sha256:8dd7e5d769ef5e41a089d771e27dadafbd1501b7366428ecb7dc8d1271cd3391"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/rear-pediment-arched-glazing-and-green-hip-roof.png",
+          "hash": "sha256:43accd9e1daec9c8372365a32834ca849156ef3f3d138bc683c9c258ad9d0846"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:73d772e68ce8390a632f1c6286ae2deb0773a2e4730fc9470e6ce42f6a3a416b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:fdac4020b59281b5821c522c22007f70cf54243abe3f07df0961eab3ac8be04f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:b71bdddd407ac77089cb6361d9f44b5c1c4b4bc437f5632d96beb999269853bd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:0bd49cdf4f23261e9252b28882aa56eb8cc540e56a0a66266fce2a19547a9766"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:50449ad6cbc6b7b2dbc634a442757778aef7e1b4febbc38395988ddf98839f87"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:9820c16364ac759daca950b92c8d5b6fd9cb32a934d5372ffdb46e0c7989f272"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:040cce108a0d9339bd6db28a32c9dca732c7489f390ec22a67d45050820539d6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:c856653b20784bbc4cdf56cb9f5fe92dd2a8ff6e128ed4f7d66b5f6558eddfc2"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:867d86bdb98f53eab4694c5fd9a94a753ad320f23c3a3e5b4c63d4982752852a"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:314ec22248b15e8c4e1e6e09bccdf852bbf1e39ae695f5de02fa30179504d402"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:e78e96aa9d5d275202d40e5321de481d75094de332b8461a2869e50060ea0558"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:fdc939590d1e52df55262ddeeb00f74ace92dbd9bb0037370732b0ba1f95fbee"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:91ab67212b0bbf58700e9f033e770a4ed67dc26757240e02bd50b1d0dc7d37c0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:fd82f640b1c754c71cba69c536b8100488a32da625695620d0f269877ea83d33"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/five-bay-front-central-arch-and-balcony.png",
+          "hash": "sha256:1985f97de9c1dfef16b255335c76e9517426ffa515a094284ce2d8dc1ab2cfa0"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/supported-balcony-recessed-entry-and-treads.png",
+          "hash": "sha256:bc008e7af3f26a42c38dfc31ccc2c835db59088e2f27d6c376fe440d55288949"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/northeast-open-porch-and-blind-side-panels.png",
+          "hash": "sha256:cea12b7c9fedf545acb6dafba0492a00c95c8c4fa67bede7c95071307c0b6a09"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/rear-pediment-arched-glazing-and-green-hip-roof.png",
+          "hash": "sha256:b8df4643e31441ab2542b5171153c403d29e66754f67d139458294d382144cc6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:e156492c08f9002e21b434121eaaf8daa4934f78911ba765da1043d39946beee"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:040cce108a0d9339bd6db28a32c9dca732c7489f390ec22a67d45050820539d6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:3e5f830b9328ec1841c9e76c8dcf785a5d4a09f92826a9ea151d0e0646d51864"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:9d17d084d354c648bd6840cd5a52d8b2e678b0063c577e7b6c1ff5acb27c69ad"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:6e63a4714126c61e1cd85e5b302950edd7c042ecc947770ed39f7c6c3403878e"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:3ff81d64f904c3494ed002e78969ae97b0651f867a5ae8f31dfe3a6de480e9f9"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:47d9fd68cb64a538b69520ce9d87c92351c1eac97b80ab71147ec0d621ac99ab"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:4a670a4ca0d2a4b6d1adc297517d9bb91c818f9f0a488d236be8325ca8d034ff"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-closeup-five-bay-front-central-arch-and-balcony.png",
+          "hash": "sha256:b7f2cea65e898147e508deb307d217afe6b9d75ecb18fe2f701bfcd05b1565ff"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-closeup-supported-balcony-recessed-entry-and-treads.png",
+          "hash": "sha256:888685896cc4c655eab7c2fe47b38c9cfa7825e799a5f6d5c8e12e2d0f1d8f58"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-closeup-northeast-open-porch-and-blind-side-panels.png",
+          "hash": "sha256:7a841ae5e38fa033a5d4d7128284c4db88292f715833eecbc9d5d3bc40376fe2"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-closeup-rear-pediment-arched-glazing-and-green-hip-roof.png",
+          "hash": "sha256:7bbdb44881e41da67947c73797ec5670ba21dd542c60b9b8e536396911b3d759"
+        },
+        {
+          "path": ".artifacts/kuzminsky-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:84e81ef4e5f71510e2a2460317d9fb89e236264bb50f59e2bbd0c17f32a017aa"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:89c05af9058923ded91acd1dbc11ca3a37e8fd2a16f33458ca00252e1c029202",
+      "sourceHash": "sha256:1bf69b38caaaf4bcafd33ce3c13cfa2aa6c8ab6bbd5bff699b6b8ef493005a06",
+      "runtimeHash": "sha256:4c11c029790f53013ae874148c621f855c52e747d24ae3be8138a9ca64d09e79",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/kuzminsky_house_yasnaya_polyana/models/source.glb": "sha256:1bf69b38caaaf4bcafd33ce3c13cfa2aa6c8ab6bbd5bff699b6b8ef493005a06",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.glb": "sha256:4c11c029790f53013ae874148c621f855c52e747d24ae3be8138a9ca64d09e79",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.skyline.glb": "sha256:6241c720ab54dcc824020c123c97f6f7933cf468154d9105ba3711c2e6aff0b1",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.district.glb": "sha256:7aac69cff644eea8fb7f5c42aad2851f066a3722e3a00ffbc1a2a68cac478b2a",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.street.glb": "sha256:575d82653e59ef19220b1f937268a9dfc1405a13b389449479e7057de5d8b567",
+        "content/worldgen/assets/places/uc/ucd/kuzminsky_house_yasnaya_polyana/model.closeup.glb": "sha256:ddaa4a5623f986b05a6d18d1d8a4da9c94a5f4e6f7ee0c5a24f545a4bc53fdfc"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [
+        35184539471093
+      ],
+      "mapLevels": [
+        {
+          "level": 14,
+          "tile": [
+            9899,
+            5254
+          ],
+          "id": 35184471786280,
+          "owned": false,
+          "covered": 0.2902449333504829,
+          "area": 724.0849888730244,
+          "runtimeMode": "generalized-area-clipping",
+          "runtimePassed": true
+        },
+        {
+          "level": 15,
+          "tile": [
+            19799,
+            10509
+          ],
+          "id": 35184539471093,
+          "owned": true,
+          "covered": 0.999999558758082,
+          "area": 210.1620920678607,
+          "runtimeMode": "whole-feature-coverage",
+          "runtimePassed": true
+        }
+      ],
+      "residentIndependent": 242,
+      "widerIndependent": 294,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 8.18251351120125e-8,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -40.39339009244259,
+            "max": 16.590709907557425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-skyline-whole-site.png",
+            "hash": "sha256:6e63a4714126c61e1cd85e5b302950edd7c042ecc947770ed39f7c6c3403878e",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 13,
+              "triangles": 271166
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.2492797452717248,
+                22,
+                46.38361025317082
+              ],
+              "lookAt": [
+                -3.123465949056751,
+                4,
+                -3.9043514781693265
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 8.18251351120125e-8,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -40.39339009244259,
+            "max": 16.590709907557425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-district-whole-site.png",
+            "hash": "sha256:3ff81d64f904c3494ed002e78969ae97b0651f867a5ae8f31dfe3a6de480e9f9",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 271730
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.2492797452717248,
+                22,
+                46.38361025317082
+              ],
+              "lookAt": [
+                -3.123465949056751,
+                4,
+                -3.9043514781693265
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 8.18251351120125e-8,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -40.39339009244259,
+            "max": 16.590709907557425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-street-whole-site.png",
+            "hash": "sha256:47d9fd68cb64a538b69520ce9d87c92351c1eac97b80ab71147ec0d621ac99ab",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 273990
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.2492797452717248,
+                22,
+                46.38361025317082
+              ],
+              "lookAt": [
+                -3.123465949056751,
+                4,
+                -3.9043514781693265
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": false,
+          "terrainAtCoreCenter": false,
+          "modelWorldY": 8.18251351120125e-8,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 242,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": true,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_limestone": 1,
+            "molen.worldgen.material.stucco": 1,
+            "molen.worldgen.material.metal_standing_seam": 1,
+            "molen.worldgen.material.wood_plain": 1,
+            "molen.worldgen.material.storefront": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -40.39339009244259,
+            "max": 16.590709907557425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-closeup-whole-site.png",
+            "hash": "sha256:4a670a4ca0d2a4b6d1adc297517d9bb91c818f9f0a488d236be8325ca8d034ff",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 274186
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.2492797452717248,
+                22,
+                46.38361025317082
+              ],
+              "lookAt": [
+                -3.123465949056751,
+                4,
+                -3.9043514781693265
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-five-bay-front-central-arch-and-balcony.png",
+            "hash": "sha256:b7f2cea65e898147e508deb307d217afe6b9d75ecb18fe2f701bfcd05b1565ff",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 274186
+            },
+            "camera": {
+              "name": "five-bay-front-central-arch-and-balcony",
+              "position": [
+                16.08584582927259,
+                10,
+                21.708191171925712
+              ],
+              "lookAt": [
+                -0.6246931898113501,
+                4,
+                -0.7808702956338653
+              ],
+              "fov": 53
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-supported-balcony-recessed-entry-and-treads.png",
+            "hash": "sha256:888685896cc4c655eab7c2fe47b38c9cfa7825e799a5f6d5c8e12e2d0f1d8f58",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 17,
+              "triangles": 274186
+            },
+            "camera": {
+              "name": "supported-balcony-recessed-entry-and-treads",
+              "position": [
+                4.060482883555709,
+                4.5,
+                14.680343277742216
+              ],
+              "lookAt": [
+                0,
+                3,
+                0
+              ],
+              "fov": 58
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-northeast-open-porch-and-blind-side-panels.png",
+            "hash": "sha256:7a841ae5e38fa033a5d4d7128284c4db88292f715833eecbc9d5d3bc40376fe2",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 274458
+            },
+            "camera": {
+              "name": "northeast-open-porch-and-blind-side-panels",
+              "position": [
+                9.995182437853869,
+                9,
+                -25.92482069434652
+              ],
+              "lookAt": [
+                1.874110036391472,
+                3,
+                -10.46363758792786
+              ],
+              "fov": 55
+            }
+          },
+          {
+            "path": "shots/site-integration/final-closeup-rear-pediment-arched-glazing-and-green-hip-roof.png",
+            "hash": "sha256:7bbdb44881e41da67947c73797ec5670ba21dd542c60b9b8e536396911b3d759",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": true,
+              "draws": 18,
+              "triangles": 274458
+            },
+            "camera": {
+              "name": "rear-pediment-arched-glazing-and-green-hip-roof",
+              "position": [
+                -33.42115420556143,
+                15,
+                -12.962501748045524
+              ],
+              "lookAt": [
+                -6.246931898113502,
+                4,
+                -7.808702956338653
+              ],
+              "fov": 55
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 242,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [
+            {
+              "id": 35184539471093,
+              "area": 210.1631170732654
+            }
+          ],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.kuzminsky_house_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -40.39339009244259,
+            "max": 16.590709907557425
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": "shots/site-integration/final-failure-whole-site.png",
+            "hash": "sha256:84e81ef4e5f71510e2a2460317d9fb89e236264bb50f59e2bbd0c17f32a017aa",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 12,
+              "triangles": 271705
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                1.2492797452717248,
+                22,
+                46.38361025317082
+              ],
+              "lookAt": [
+                -3.123465949056751,
+                4,
+                -3.9043514781693265
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Recognizable medium-fi exterior. The mapped17.95m by11.7m envelope fixes horizontal scale; balconies, risalits, northeast porch and stairs are picture-led additions. Main boundary grades-.048..+.944m relative to227.14409009244258m outside-garden datum, floor+1.2m and foundation-.3m support the body with low-side plinth exposure up to about1.25m. Historic heights, hidden rear glazing/balcony/door arrangement, blind side panels, chimney inventory, thresholds and accessibility remain approximate. Map nominal8m is a scale cue, not a survey. Bushes/conifers obscure portions of the reference elevations. Flat synthetic contexts partly bury bases/treads and some close views crop the opposite edge; whole/native views cover the envelope. Other estate houses remain independent procedural context in this isolated fixture. No copied plaques, texts, furnishings, artworks, planting or photo pixels. Physical phone/laptop and dense-city timings remain pending."
+  ]
+}

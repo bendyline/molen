@@ -1,0 +1,424 @@
+{
+  "planId": "tomb_of_yuya_and_thuya",
+  "id": "tomb_of_yuya_and_thuya",
+  "assetId": "molen.worldgen.structure.tomb_of_yuya_and_thuya",
+  "title": "Tomb of Yuya and Thuya (KV46)",
+  "wikidataId": "Q1719159",
+  "category": "rock-cut-tomb",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 32.6027919,
+    "latitude": 25.74088905
+  },
+  "size": [
+    10.180000305175781,
+    12.717359900474548,
+    21.959796905517578
+  ],
+  "actualBounds": {
+    "min": [
+      -2.0399999618530273,
+      -12.562651634216309,
+      -4
+    ],
+    "max": [
+      8.140000343322754,
+      0.15470826625823975,
+      17.959796905517578
+    ]
+  },
+  "visualBrief": "Whole KV46 rock-cut tomb:15-riseropenentrance/firstportal, longslopingplaincorridor,17-riserlowerstair/pairedside-recesses, shortlowerlanding/1.20mdoorway, irregulartransverseburialchamber/one-metresectionfloorstep andclosedrockceilings. Original1907dimensionedplan/section andcurrentnativewholeT-plan/entrancecontext; ancientcarvedarchitectureonly, no furnishedtableau/genericmausoleum/naturalhill. Currentweathering/visitorhardware/ceilingroughness/nicheledgeprofile/floorstepinterpretation/groundcontact approximate.",
+  "nativeAxes": {
+    "x": "north-northwest",
+    "y": "up",
+    "z": "east-northeast into the tomb"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://archive.org/details/tombofiouiyatoui03davi"
+  ],
+  "stories": [
+    {
+      "id": "tomb-of-yuya-and-thuya-wp",
+      "url": "https://qualla.com/tomb-of-yuya-and-thuya/"
+    }
+  ],
+  "referenceInputHash": "7adc416987bd7470eb4084f2749d1c789a315451e5f8245cb2715eb2777c92f2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ss/ssx/tomb_of_yuya_and_thuya/models/yuya-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/yuya-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "yuyaSkyline",
+    "errorMeters": 0.5,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "worn": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "yuyaDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "yuyaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "yuyaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.7,
+    "groundY": -12.7,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "far": 1800
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original128m129x129field/16641samples/2rawtiles frozen before floors/mainsections/mesh. Fixed entrytop datum0 at[0,-4]. Fifteen4mgoing/4.2mdropupperrisers, firstdoorfloor-4.2;9.26minclined/8.78mprojectedcorridordrop2.942651865239923;17lowersteps3.04mgoing/3.84mdrop to-10.982651865239923;1.05mlowerlandingthen1mfloordrop towholeburialchamberfloor-11.982651865239923. Publishedsectionguidesceilings; exactunevenrockprofile, nicheledgeheight andplacementof1mchamberfloorstep are originalestimatedinterpretations. No laterterrain/floor/sectionfitting. ContemporaryDEMdoesnotresolveundergroundvoids orhistoricthreshold.",
+    "anchor": [
+      32.6027919,
+      25.74088905
+    ],
+    "heading": 1.904358606813322,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        32.60275420777654,
+        25.74087728532041
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed inferredtopofpublished4mentryflight beforeindependentterrain/floor/mainsections/mesh. Nativeentrycontext approximate; notsurveyedactualthreshold."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          1.0296078253523286,
+          -4.620361841638435
+        ],
+        [
+          1.1929773095646667,
+          -0.12784469778762392
+        ],
+        [
+          0.7217211250309951,
+          -0.02583416007192596
+        ],
+        [
+          -0.04009737191533158,
+          -0.0032819187555796422
+        ],
+        [
+          -0.7217211250309951,
+          0.02583416007192596
+        ],
+        [
+          -1.580818838419719,
+          0.05712706350163499
+        ],
+        [
+          -1.8465688897674204,
+          -4.003928284559427
+        ],
+        [
+          -0.16199944297834223,
+          -4.343471330440308
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            1.0296078253523286,
+            -4.620361841638435
+          ],
+          [
+            1.1929773095646667,
+            -0.12784469778762392
+          ],
+          [
+            0.7217211250309951,
+            -0.02583416007192596
+          ],
+          [
+            -0.04009737191533158,
+            -0.0032819187555796422
+          ],
+          [
+            -0.7217211250309951,
+            0.02583416007192596
+          ],
+          [
+            -1.580818838419719,
+            0.05712706350163499
+          ],
+          [
+            -1.8465688897674204,
+            -4.003928284559427
+          ],
+          [
+            -0.16199944297834223,
+            -4.343471330440308
+          ]
+        ]
+      ],
+      "additionalOutlines": [],
+      "basis": "Actualmappedexteriorentrystairextentonly. Closedsubterraneancorridor/chamberretainoriginaloverburdenfield; no chamberwideopenpit/hillflattening. Approximatecurrentgroundcontactnotverified."
+    },
+    "featureIds": [
+      "way/1238121173",
+      "way/813717253",
+      "node/1047983931"
+    ],
+    "source": "https://www.openstreetmap.org/way/1238121173",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:342d6ecf9f6972ff56b2c4ccc4b3018921b5e29dde55717e4d64901a61122cbb",
+    "notes": "PublishedQualla42families/zero conflicts first; clearobjects do not establishtombarchitecture. Exactoriginal1907universitylibrarybooknowselected forplan/section;2000restrictedreprint unused. NativeQ1719159/node1047983931/entryway813717253/wholeundergroundwallway1238121173 independentlyresolveactualKV46, notKV3/KV62. All-statusnext1000candidates+collectionmemberactualQID/features/aliases checkedzero. Nativewallvertices guidehorizontalshape andbearing; originalmetricsection guidescarvedlevels, fixedbeforemesh. Currentdoor/gate/modernvisitorfurniture unverified andoutsideancientcarvedshellscope; no preciseground/thresholdclaim."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole KV46 ancient rock-cut tomb from exactoriginal1907Davisvolume printedxxiv/PDF36plan/section. MetricTplan reconstructedwithpublishedwidths/staircounts/slopes/chamberdepth, oneorthogonalnativeaxisframe. Current21-controlundergroundnativewalloutline and8-controlentryextent retained independently inmap-frame/native-controls asapproximategeographiccontext; neither is a solidbuilding/siteparcel. Bookmetricplanandnativeoutline differlocallybydecimetres; no aniso warp orsurveyfit.",
+    "Original128m129x129field/16641samples/2rawtiles frozen before floors/mainsections/mesh. Fixed entrytop datum0 at[0,-4]. Fifteen4mgoing/4.2mdropupperrisers, firstdoorfloor-4.2;9.26minclined/8.78mprojectedcorridordrop2.942651865239923;17lowersteps3.04mgoing/3.84mdrop to-10.982651865239923;1.05mlowerlandingthen1mfloordrop towholeburialchamberfloor-11.982651865239923. Publishedsectionguidesceilings; exactunevenrockprofile, nicheledgeheight andplacementof1mchamberfloorstep are originalestimatedinterpretations. No laterterrain/floor/sectionfitting. ContemporaryDEMdoesnotresolveundergroundvoids orhistoricthreshold.",
+    "The model represents ancient carvedarchitecturalgeometry andplainunpaintedrock, not a furnished1905discovery tableau or contemporaryvisitorequipment. Presentgate/rails/conservationweathering/paint not observedunderallowedimagepolicy.",
+    "Firstdoor.25mthickness/ceilingshape/nicheledges/chips/materialcolorsandpreciselocalfloorstepinterpretationoriginalmedium-fiestimates. Bookdimensions areoriginalperiodmeasurements, not a newcurrent survey.",
+    "Wholeundergroundchamberhasclosedrockroof/intradosandremainsnaturallycovered inEarth; onlyexternalentrystaircutout. Completegeometryshowninportableisolationandinsidecameras. No openpit/wholechamberterrainclearing ornaturalhillmesh.",
+    "Currentterraincontact/DEMclassification/overburden/internalsurvey/navigationcollisionunverified. Floors andnativeframe remainfixed; coarsefieldneverflattened orfitted."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Public-domain excavation-plan reference originals are retained as local provenance inputs and are never embedded as textures.",
+  "qaLodCameras": [
+    {
+      "name": "whole-tomb-skyline",
+      "position": [
+        27,
+        10,
+        -24
+      ],
+      "lookAt": [
+        1,
+        -6.2,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tomb-district",
+      "position": [
+        27,
+        10,
+        -24
+      ],
+      "lookAt": [
+        1,
+        -6.2,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tomb-street",
+      "position": [
+        27,
+        10,
+        -24
+      ],
+      "lookAt": [
+        1,
+        -6.2,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tomb-closeup",
+      "position": [
+        27,
+        10,
+        -24
+      ],
+      "lookAt": [
+        1,
+        -6.2,
+        7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-architectural-envelope",
+      "position": [
+        27,
+        10,
+        -24
+      ],
+      "lookAt": [
+        1,
+        -6.2,
+        7
+      ]
+    },
+    {
+      "name": "entry-flight-and-rock-cut-portal",
+      "position": [
+        0.1,
+        1.7,
+        -7
+      ],
+      "lookAt": [
+        0,
+        -2.6,
+        -0.5
+      ]
+    },
+    {
+      "name": "inside-sloping-corridor",
+      "position": [
+        0,
+        -3.5,
+        1
+      ],
+      "lookAt": [
+        0,
+        -6,
+        8.5
+      ]
+    },
+    {
+      "name": "inside-lower-stair-and-paired-recesses",
+      "position": [
+        0,
+        -5.8,
+        10.4
+      ],
+      "lookAt": [
+        0,
+        -9.8,
+        13.7
+      ]
+    },
+    {
+      "name": "inside-transverse-burial-chamber",
+      "position": [
+        -0.8,
+        -10.1,
+        15.8
+      ],
+      "lookAt": [
+        7,
+        -10.1,
+        15.8
+      ]
+    },
+    {
+      "name": "burial-chamber-return-and-floor-step",
+      "position": [
+        6.8,
+        -10.5,
+        16.2
+      ],
+      "lookAt": [
+        0.1,
+        -9.7,
+        13.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1226,
+    "vertices": 3678,
+    "materials": 1,
+    "bytes": 224132,
+    "sha256": "sha256:c82e5c429ff125d20c2d6af2ff559ec17eee7eac7efee2f6e32a7f50c4a0c8f0"
+  }
+}

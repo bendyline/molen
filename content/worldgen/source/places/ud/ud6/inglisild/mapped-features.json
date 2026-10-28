@@ -1,0 +1,104 @@
+{
+  "id": "inglisild",
+  "anchor": [
+    26.717632704376012,
+    58.37959986270152
+  ],
+  "heading": -0.9482293478071121,
+  "plan": {
+    "length": 31.40948950935123,
+    "width": 4.6
+  },
+  "line": [
+    [
+      -14.615345420985541,
+      0
+    ],
+    [
+      16.794144088365687,
+      0
+    ]
+  ],
+  "referenceCoordinate": [
+    26.717625,
+    58.37959444
+  ],
+  "featureIds": [
+    35184405327539
+  ],
+  "identityBasis": "Named Inglisild bridge footway35184405327539 and Angel’s Bridge POI17592517490936 in standard PMTiles; original Q12364556 reference. Anchor is refined to the crossing with Lossi for correctly centered portico bays; unequal bank wings retain the mapped footway ends. No exact-QID footprint claimed.",
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "url": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "maxLevel": 15,
+      "attribution": "© OpenStreetMap contributors",
+      "extractMinLevel": 0,
+      "layersPresent": [
+        "boundaries",
+        "buildings",
+        "earth",
+        "landcover",
+        "landuse",
+        "places",
+        "pois",
+        "roads",
+        "water"
+      ],
+      "note": "The extract keeps zooms 0-maxLevel, so the archive also carries layers the app never reads: landcover (zoom 0-7), earth, boundaries and places.",
+      "dataLicenses": [
+        {
+          "source": "OpenStreetMap",
+          "license": "ODbL-1.0",
+          "attribution": "© OpenStreetMap contributors",
+          "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "appliesTo": "roads, buildings, water, landuse, earth, boundaries, places, pois"
+        },
+        {
+          "source": "Daylight Landcover, derived from ESA WorldCover",
+          "license": "CC-BY-4.0",
+          "attribution": "© ESA WorldCover project; contains modified Copernicus Sentinel data processed by the ESA WorldCover consortium",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "appliesTo": "landcover layer, zoom 0-7"
+        },
+        {
+          "source": "Natural Earth",
+          "license": "public domain",
+          "attribution": "Natural Earth",
+          "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+          "appliesTo": "low-zoom context attributes in boundaries/places and the places minzoom configuration"
+        }
+      ],
+      "licenseReference": "https://github.com/protomaps/basemaps/blob/main/LICENSE_DATA.md",
+      "extractHash": "sha256:52c52fb7f10efec08c8e91b11769ed718feb8ddb13fe5279a2daf4bc2655fa67"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "minLevel": 13,
+      "maxLevel": 14,
+      "overviewMaxLevel": 13,
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": 0,
+        "max": 5000
+      },
+      "observedHeightRange": [
+        31,
+        86.29296875
+      ],
+      "flattenedSubseaSamples": 0,
+      "subseaPolicy": "Negative Terrarium values are flattened to the sea/lake surface datum (0 m); this fixture does not encode bathymetry.",
+      "attribution": "Mapzen; terrain data courtesy of the U.S. Geological Survey",
+      "licenseReference": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+      "extractHash": "sha256:1805d892bf6108c16c6f2d8b4e7d23d5ab0d2d78af39f53efd62e28cfa79975d"
+    }
+  },
+  "sourceLayers": [
+    "roads",
+    "pois"
+  ]
+}

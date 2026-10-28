@@ -1,0 +1,357 @@
+{
+  "planId": "maniguin_island_lighthouse",
+  "id": "maniguin_island_lighthouse",
+  "assetId": "molen.worldgen.structure.maniguin_island_lighthouse",
+  "title": "Maniguin Island Lighthouse",
+  "wikidataId": "Q6749580",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.6982018,
+    "latitude": 11.5963853
+  },
+  "size": [
+    6.699999809265137,
+    29.80000038444996,
+    6.699999809265137
+  ],
+  "actualBounds": {
+    "min": [
+      -3.3499999046325684,
+      -0.20000000298023224,
+      -3.3499999046325684
+    ],
+    "max": [
+      3.3499999046325684,
+      29.600000381469727,
+      3.3499999046325684
+    ]
+  },
+  "visualBrief": "Whole original1906 concrete lighthouse, exacthistoricnativepoint distinctfrommodernreplacement: splayedcylindricalshaft, twoopenrailedgalleries/corbels/watchroom, physicaldoor/windowrecesses, lantern/curvedmetalroof/finial. Historic1907 publicdomainsection informs profile; currentfinish/hiddenfaces/doorbearing unsurveyed. Detachedkeeperhouse/ruins/modernreplacement excluded.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Antique-Maniguin_Lighthouse-American_design.png"
+  ],
+  "stories": [
+    {
+      "id": "maniguin-island-lighthouse-wp",
+      "url": "https://qualla.com/maniguin-island-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "332bd223e4ac5d74c2b2577272c4d127d57d5f0f1b943dcc1a117ac95162a033",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/wd/wdn/maniguin_island_lighthouse/models/maniguin-island-lighthouse-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/maniguin-runtime-overlay.mjs",
+    "level": "skyline",
+    "export": "maniguinSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.18
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.23
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "maniguinDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.23
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "maniguinStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.23
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "maniguinCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.23
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": "1",
+    "groundY": -0.25
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Originalboundedprofile/radii/windowcensus/glazingrail/cupolafaceting chosen afterimmutable400mfieldfreeze. Nativeheight29.6m usedasoverallcontrol, floor0 relativefixed29.8472m provider datum. Historic1907section isstructuralreference, notcurrentfinishsurvey; hiddenfaces/doorwindowazimuth andsmallfittings remain boundedinterpretations. No mappedperimeter invented. Facing0/entrance+Z isreviewed180degree visualizationapproximation. Exactground/thresholdcontact unresolved; nofit/flatten/reacquire.",
+    "anchor": [
+      121.6982018,
+      11.5963853
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.69812843762838,
+        11.596313435106
+      ],
+      "modelHeight": 0,
+      "basis": "FixedSW8m referencebeforeallfloor/section/geometrydecisions; provider-relativeunsurveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/3708631958"
+    ],
+    "source": "https://www.openstreetmap.org/node/3708631958",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:eb96df36e87bae2cad865ce155c6fbf2251f2b54715f30bec196dfd7adf9fd32",
+    "notes": "Wholeoriginal1906 Maniguin concrete lighthouse tower/Q6749580: cylindricalsplayedbase/shaft, twinwatchroomandlantern galleries/openrails/corbels, exteriorwindowanddoorrecesses, lanternandcurvedcupola/finial. Historic1907 publicdomainstructuraldrawing informs standingtower architecture; currentfinish/hiddenfaces unsurveyed. Detachedkeeperhouse/ruins, islandterrain anddistinctmodernreplacementlight excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "ExactnativeOldManiguinIslandLighthouse node3708631958/Q6749580 anchors wholehistoric1906tower; separatemodernlight node3708631957 isabout25.6m north, not substituted. No mappedtowerfootprint exists here; circularprofile/radii are boundedreconstruction frompublicdomain1907 section, never describedasmeasurednativeoutline. Heading0 gives +Xeast/+Zsouth; entrance/apertureazimuth is an explicit180degree visualizationapproximation, not inferredfromnode.",
+    "Originalboundedprofile/radii/windowcensus/glazingrail/cupolafaceting chosen afterimmutable400mfieldfreeze. Nativeheight29.6m usedasoverallcontrol, floor0 relativefixed29.8472m provider datum. Historic1907section isstructuralreference, notcurrentfinishsurvey; hiddenfaces/doorwindowazimuth andsmallfittings remain boundedinterpretations. No mappedperimeter invented. Facing0/entrance+Z isreviewed180degree visualizationapproximation. Exactground/thresholdcontact unresolved; nofit/flatten/reacquire.",
+    "Only exactpublished419x7811907Americansection/elevation/plan original adopted; explicitPD-US/SpencerCosby/ASCE1907publication pinned. Historicdrawing isstructuralreference, notcurrentconditionphotography. Hero/unbuiltSpanishdesign/unrelatedCorregidorimagery unselected. No newprotectedphotos/generatedbitmaps/copiedtexturepixels/article/media/rightsmetadata repairs. Tower29.6m nativeheight retained; radii/windowcensus/lanternfaceting/corbels/hiddenwalls/finish originalboundedestimates. Interiorstair/lens/keeperhouse/ruins/modernreplacement/terrain/lettering excluded.",
+    "Independent400m129x129field/16641values/oneoriginalrawtile frozen beforefloor0/profilesections. Fixed29.8472m provider datum remains independent; exactfooting/thresholdcontact unresolved. Nativepoint anchorsoriginaltower, notdrawnfootprint; doorazimuth reviewed180degreeapproximation. Geographicpreview/replaceFootprint=false; nofit/flatten/reacquire."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-original-tower-splayed-base-double-galleries-and-cupola",
+      "position": [
+        35,
+        20,
+        42
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "opposite-shaft-window-recesses-and-original-profile",
+      "position": [
+        -28,
+        18,
+        -35
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "two-open-guardrails-corbels-watchroom-and-lantern",
+      "position": [
+        12,
+        28,
+        13
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "name": "closed-entrance-in-physical-recess-and-splayed-base",
+      "position": [
+        9,
+        4,
+        11
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "whole-top-plan-of-concentric-galleries-and-native-anchor",
+      "position": [
+        12,
+        48,
+        10
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10790,
+    "vertices": 32370,
+    "materials": 5,
+    "bytes": 1298092,
+    "sha256": "sha256:d405c66c55e10246fef60ff4d9b79647f04c24f0631014e7f1af3c9363e11e58"
+  }
+}

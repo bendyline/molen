@@ -20,8 +20,9 @@ export interface AdaptiveQualitySample {
   /** False while hidden, suspended, or deliberately not rendering. Resets measurement history. */
   active?: boolean;
   /**
-   * Loading never authorizes an upgrade. With CPU/GPU work measurements it lowers detail only
-   * when that work itself is heavy; otherwise sustained overload while loading still lowers it.
+   * Loading alone never authorizes an upgrade. Sustained on-target frames with both CPU and GPU
+   * headroom can recover during continuous streaming. Measured loading stalls do not lower detail
+   * unless rendering itself is heavy.
    */
   loading?: boolean;
   /** Optional measured work, excluding waiting for the next animation frame. */
@@ -225,6 +226,7 @@ export class AdaptiveQualityController {
       this.gpuSamples > 0 ? this.gpuTotalMs / this.gpuSamples : 0,
     );
     const measured = this.cpuSamples > 0 || this.gpuSamples > 0;
+    const measuredBoth = this.cpuSamples > 0 && this.gpuSamples > 0;
     const loading = this.loading;
     this.resetWindow();
     const overloaded =
@@ -233,7 +235,7 @@ export class AdaptiveQualityController {
     // RAF cadence is refresh-limited, so sustained on-target frames authorize a cautious probe.
     // Real CPU/GPU work, when supplied, must also have margin; submission time is not GPU time.
     const headroom =
-      !loading &&
+      (!loading || measuredBoth) &&
       memory < 0.85 &&
       mean <= this.targetFrameMs * 1.05 &&
       this.p90FrameMs <= this.targetFrameMs * 1.15 &&

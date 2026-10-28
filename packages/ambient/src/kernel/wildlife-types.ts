@@ -38,7 +38,10 @@ export interface WildlifeSpecies {
     accent: string;
     details: Array<
       | 'antlers'
+      | 'palmate'
       | 'horns'
+      | 'straight-horns'
+      | 'mane'
       | 'long-neck'
       | 'bushy-tail'
       | 'stripes'
@@ -100,7 +103,10 @@ export const wildlifeSpeciesSchema: z.ZodType<WildlifeSpecies> = z
       details: z.array(
         z.enum([
           'antlers',
+          'palmate',
           'horns',
+          'straight-horns',
+          'mane',
           'long-neck',
           'bushy-tail',
           'stripes',

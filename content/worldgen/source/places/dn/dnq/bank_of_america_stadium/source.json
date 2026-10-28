@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bank_of_america_stadium",
+  "kind": "static-structure",
+  "title": "Bank of America Stadium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bank_of_america_stadium",
+        "output": "assets/places/dn/dnq/bank_of_america_stadium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1ce4f8bf8626e7f3450eab5cd1b724c4ce610d1335ae791e4bcf0415dd00aa79"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-bank-of-america-stadium",
+        "path": "models/generate-bank-of-america-stadium.mjs"
+      },
+      {
+        "id": "bank-of-america-stadium-model",
+        "path": "models/bank-of-america-stadium-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/whole-stadium.json",
+      "dimension-evidence.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9024-12953.png",
+      "terrain-sources/terrarium-15-9024-12954.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

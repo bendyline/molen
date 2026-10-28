@@ -1,0 +1,2612 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.pont_du_garigliano",
+  "reviewedOn": "2026-10-27",
+  "inputHash": "sha256:87deb385d10590c4b8d3c56cc92c1074fe2276c5f7c8ecfefc304173f33f9dd1",
+  "sourceHash": "sha256:cceccbe1e0e1a88bc540d655a1ee7ee12e0ff5fc8f5dbd3aa2de4ccf24d30898",
+  "runtimeHash": "sha256:3be6e67ac19c68738fa388d0d6e77569566a637b22bea5dbcd6363c056676f6a",
+  "captureReportHash": "sha256:7f271465bbf59fa69be82c180e70847ad47a4cca00fec04bc714663454fa90fb",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-green-crossing.png",
+      "shots/haunched-three-spans.png",
+      "shots/tapered-pier-opening.png",
+      "shots/curved-lamp-and-railing.png",
+      "shots/road-and-raised-walks.png",
+      "shots/underside-ribs.png"
+    ],
+    "captureReportHash": "sha256:7f271465bbf59fa69be82c180e70847ad47a4cca00fec04bc714663454fa90fb",
+    "notes": "Inspected61 current frames:11 portable,11 shared-material/geographic-flat-terrain,23 medium-fi and16 actual native views. Full scoped crossing is present: three green haunched spans, six longitudinal girders, cross ribs/braces, two paired tapered stone-clad piers with open trapezoid portals, broad raised walks, six-lane road, vertical railings and curved lamps. Added short flared landing meshes and native road crown/walk tapers in the same pass. Dedicated piers/haunch/railing/road/underside and both unobstructed landing views supplement small distant turntables. The source preserves the detailed body while the far landing rails drop below pixel scale."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-green-crossing.png",
+      "shots/shared/haunched-three-spans.png",
+      "shots/shared/tapered-pier-opening.png",
+      "shots/shared/curved-lamp-and-railing.png",
+      "shots/shared/road-and-raised-walks.png",
+      "shots/shared/underside-ribs.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:07ababd8877952bef139c9706f3655aa62e8affc7bf8e6e266f06d6bca2a284c",
+    "notes": "Three existing shared256px stone_limestone_raw, concrete_plain and metal_painted graphs, metric UVs and linear vertex tints. Three near semantic groups, one far tinted group; no private/embedded images. The raw limestone graph keeps large modeled cladding joints clear. Each shared graph loads once and all model/support geometry disposes."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-green-crossing.png",
+      "medium-fi/haunched-three-spans.png",
+      "medium-fi/tapered-pier-opening.png",
+      "medium-fi/curved-lamp-and-railing.png",
+      "medium-fi/road-and-raised-walks.png",
+      "medium-fi/underside-ribs.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:fa2526ba0b326eb65eb7e627dba0ebbce1aa8b32c078b11a427ab0a2d23e1fbe",
+    "notes": "Source 51836 triangles / 6152840 bytes. Runtime triangles 992 / 3760 / 15124 / 37900, bytes 79128 / 308548 / 1228768 / 3282024, draws 1 / 3 / 3 / 3. Initial skyline plus district 387676 bytes. Actual triangle/download budgets and separate GPU streams pass. Physical laptop/phone timings remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:fc725f5f74d9ead251e6105253c184c6a1d712841efb9c97db81dfbe36af7a92",
+    "mapFrameHash": "sha256:209d56b51aacde5b99b55649b77fb71de69f0484bad60e7072ab31dfb18fec57",
+    "notes": "Exact-QID way374027143/Q2426843 establishes the footprint; street relation11836164 and current named PMTiles road35184388972507 establish the traffic frame. Anchor[2.268379032611847,48.83932476764754], heading2.5366514902219626: +X northwest/Exelmans/Auteuil, -X southeast/General-Martial-Valin/Javel, +Z northeast/upstream/Pont Mirabeau. The205.947441m traffic extent remains separate from209m catalog length. Width26m, pier stations, sections and absolute deck/water levels are photo/map reconstruction controls. The southeast bridge junction was an existing interior vertex of a longer street loop. The runtime now splits that explicit same-kind/same-layer node to carry the authored grade, preserving original input vertices. Known road endpoints and bank hints also respect kind/layer. Short source landings extend6.2m southeast and3.3m northwest with flared walks and a small northwest road crown. At all four LODs,21 actual outer-boundary samples (9 street and12 path) retain native paving and model support with worst difference 0.022372928m. Six body-end lane samples meet within0.0122m. These are approximate visualization joins, not surveyed elevations, engineering or vehicle-navigation certification."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete scoped static exterior and approximate native placement; source/LOD/material/landing views inspected. Source 51836 triangles / 6152840 bytes. Runtime triangles 992 / 3760 / 15124 / 37900, bytes 79128 / 308548 / 1228768 / 3282024, draws 1 / 3 / 3 / 3. Initial skyline plus district 387676 bytes. Actual triangle/download budgets and separate GPU streams pass. Physical laptop/phone timings remain unmeasured. The southeast bridge junction was an existing interior vertex of a longer street loop. The runtime now splits that explicit same-kind/same-layer node to carry the authored grade, preserving original input vertices. Known road endpoints and bank hints also respect kind/layer. Short source landings extend6.2m southeast and3.3m northwest with flared walks and a small northwest road crown. At all four LODs,21 actual outer-boundary samples (9 street and12 path) retain native paving and model support with worst difference 0.022372928m. Six body-end lane samples meet within0.0122m. These are approximate visualization joins, not surveyed elevations, engineering or vehicle-navigation certification."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/u0/u09/pont_du_garigliano/models/source.glb\",\"hash\":\"sha256:cceccbe1e0e1a88bc540d655a1ee7ee12e0ff5fc8f5dbd3aa2de4ccf24d30898\",\"bytes\":6152840,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-master",
+        "passed": true,
+        "notes": "{\"name\":\"master\",\"path\":\"content/worldgen/assets/places/u0/u09/pont_du_garigliano/model.glb\",\"hash\":\"sha256:3be6e67ac19c68738fa388d0d6e77569566a637b22bea5dbcd6363c056676f6a\",\"bytes\":6152456,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/u0/u09/pont_du_garigliano/model.skyline.glb\",\"hash\":\"sha256:4e5998ad5b6dfa5aaa26dc0e7a99dd639037c3dbda1345451bbd892665eafa06\",\"bytes\":79128,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/u0/u09/pont_du_garigliano/model.district.glb\",\"hash\":\"sha256:94ce204b29e9430f684003f1674a684c4ded9b18cfeee2884b51392fa8915cc7\",\"bytes\":308548,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/u0/u09/pont_du_garigliano/model.street.glb\",\"hash\":\"sha256:29956be4ac6f17c95e7473c91791171a5df76580baad40146e23632dad86ce46\",\"bytes\":1228768,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/u0/u09/pont_du_garigliano/model.closeup.glb\",\"hash\":\"sha256:ad9d7f4755eeef9d42c51aee41af5da98b4e8d3a22f743a724a093675904c4bc\",\"bytes\":3282024,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "road-walks-spans-piers-haunches-and-landings",
+        "passed": true,
+        "notes": "540 physical rays across six GLBs verify complete road/walks, three clear river spans, both open pier portals, solid outward pier legs, outer haunches and both landing road/walk surfaces."
+      },
+      {
+        "check": "native-boundary-joins",
+        "passed": true,
+        "notes": "The southeast bridge junction was an existing interior vertex of a longer street loop. The runtime now splits that explicit same-kind/same-layer node to carry the authored grade, preserving original input vertices. Known road endpoints and bank hints also respect kind/layer. Short source landings extend6.2m southeast and3.3m northwest with flared walks and a small northwest road crown. At all four LODs,21 actual outer-boundary samples (9 street and12 path) retain native paving and model support with worst difference 0.022372928m. Six body-end lane samples meet within0.0122m. These are approximate visualization joins, not surveyed elevations, engineering or vehicle-navigation certification."
+      },
+      {
+        "check": "scene-and-headless-loop",
+        "passed": true,
+        "notes": "Scene validation and30 ticks pass; sha256:8c4adf48b5bbe8b051a834ae22735f9202dde61702df8df2900733482c33fdc7."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:87deb385d10590c4b8d3c56cc92c1074fe2276c5f7c8ecfefc304173f33f9dd1",
+    "visualFit": {
+      "status": "passed",
+      "basis": "The southeast bridge junction was an existing interior vertex of a longer street loop. The runtime now splits that explicit same-kind/same-layer node to carry the authored grade, preserving original input vertices. Known road endpoints and bank hints also respect kind/layer. Short source landings extend6.2m southeast and3.3m northwest with flared walks and a small northwest road crown. At all four LODs,21 actual outer-boundary samples (9 street and12 path) retain native paving and model support with worst difference 0.022372928m. Six body-end lane samples meet within0.0122m. These are approximate visualization joins, not surveyed elevations, engineering or vehicle-navigation certification."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:87deb385d10590c4b8d3c56cc92c1074fe2276c5f7c8ecfefc304173f33f9dd1",
+      "reviewedOn": "2026-10-27",
+      "method": "Inspected61 current frames:11 portable,11 shared-material/geographic-flat-terrain,23 medium-fi and16 actual native views. Full scoped crossing is present: three green haunched spans, six longitudinal girders, cross ribs/braces, two paired tapered stone-clad piers with open trapezoid portals, broad raised walks, six-lane road, vertical railings and curved lamps. Added short flared landing meshes and native road crown/walk tapers in the same pass. Dedicated piers/haunch/railing/road/underside and both unobstructed landing views supplement small distant turntables. The source preserves the detailed body while the far landing rails drop below pixel scale.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/scene-preview.png",
+          "hash": "sha256:6726f5caca340932fb23ba51ca085781f389697b3b5b6809d1bf1fb0357f406b"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/turntable/angle_0.png",
+          "hash": "sha256:c6362d6f37f0dd58cc6d16ef8c7ceffd2d09e81208fd90944bf4eda2c220906c"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/turntable/angle_1.png",
+          "hash": "sha256:71a5e8a86105bdb7d6872628fc6e9a65706af920d123d045c2da13f7d100bd4e"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/turntable/angle_2.png",
+          "hash": "sha256:88faf2b38580f3b996dac9c31171c0af096632e7653cd45953d8e475c5e98957"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/turntable/angle_3.png",
+          "hash": "sha256:d3077df8359edb8f7648ceae21aeaad4df4b320dbe2be3bb043e3f874bb62ae3"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/whole-green-crossing.png",
+          "hash": "sha256:6726f5caca340932fb23ba51ca085781f389697b3b5b6809d1bf1fb0357f406b"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/haunched-three-spans.png",
+          "hash": "sha256:716b20e20ffef0021ed5402c632570eee105149e0adbae1a3234df21bb61560c"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/tapered-pier-opening.png",
+          "hash": "sha256:e330d4a2a6201a8297b9568c997e280ad8fa35326403b7f6ecb1a6bfaa01fad8"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/curved-lamp-and-railing.png",
+          "hash": "sha256:830e3674e6891e235119eab9675ecc126212a392b9725c877d2b77f59bc53438"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/road-and-raised-walks.png",
+          "hash": "sha256:11250a72b45c2004d89cc92f48c3e965670d4d2b0b486a31f2f173c02977206f"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/underside-ribs.png",
+          "hash": "sha256:e7333c15cc5a33d758ab5b4547e30c9be5bc2ef2e15f39164c644357eb1ef355"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/angle-0.png",
+          "hash": "sha256:df5f31d2d2db1168a9627b8396ed8f2fd1277da21f2c76041ce89b0a676b3b81"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/angle-1.png",
+          "hash": "sha256:807f22eaecf0b3d9e222b2e272e7b58ca46c1d634b961ee0536ae0abb2a636eb"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/angle-2.png",
+          "hash": "sha256:00cd0314a8bb104c6134266756d9b330c353219fe902a9b0115ae0287e223180"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/angle-3.png",
+          "hash": "sha256:fd5c5ba2e458c6aced6569c5df467c14adace77fa43a49b5fcba5c718bbe69df"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/whole-green-crossing.png",
+          "hash": "sha256:259b58a835ea7174948fe06a346c2df098a551e42dd33c40faddc19bf2af855f"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/haunched-three-spans.png",
+          "hash": "sha256:978ccb681f89fbac5796b841a8bc6a6c19798d440804e0b7f575a6c12b948a9d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/tapered-pier-opening.png",
+          "hash": "sha256:d36c7b8257a35a4a0ba283d53dc7b5d63700f44d705d916a3a82cc52d2881636"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/curved-lamp-and-railing.png",
+          "hash": "sha256:562424664e48af4cec8b288b59e7dd82da37444f3868c8ad4409953424c086a0"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/road-and-raised-walks.png",
+          "hash": "sha256:261af175bedd1c9792dcf1e0dc6401198a543e71efdd4c9a2fe322db6d973708"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/underside-ribs.png",
+          "hash": "sha256:a4397d00abef50802b447496100e68bf4b7f2b8b8cc469a556e01909db93f247"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/shots/shared/placement.png",
+          "hash": "sha256:0bb97c027c3224100707a8452348fc5cfd87467c7ead678a30fa1c3803f2d187"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/street-noon-economy.png",
+          "hash": "sha256:cbd882af528f2139f23a8c316e2017bea829a6af350dd168bf1b1c4f75326971"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/street-noon-high.png",
+          "hash": "sha256:d374d141b0156bb7026834d9617cd403a4cd34dfb006f575c7a11c35d4052698"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/street-late-economy.png",
+          "hash": "sha256:fae18cad5944e863b4a7e42dbdd0f0781fc2ae219ab5f43466bafb50111f5496"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/street-late-high.png",
+          "hash": "sha256:058eb59d7701cc2857d4271eb1a2acf302fff9a7c21a15baab608cbfa5620dfb"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/block-noon-economy.png",
+          "hash": "sha256:9447d19fd4c8508d17416d741fa54a6ef3f606845a968fff7faec517256e99fc"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/block-noon-high.png",
+          "hash": "sha256:4080005b0ad3de60258e4e14762325378d582d7ca8f3a6cf719d9f35ad927448"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/block-late-economy.png",
+          "hash": "sha256:b60bc2800527d2876ce4e4019e4865e56fb2e51467201140406c8ee2760d664c"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/block-late-high.png",
+          "hash": "sha256:8573285e08a435ad149eca26879f8717d44e45f96948203f3faab7b9357bae8e"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:5a8f67992ad1b4c54ed2b27eda992cba99b8c7bd3865d52332a5058801a1c8ea"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:35eaab7f860b3be6f6de4401687a7570f870d46df0d5bcd7ccdfed16e718bd34"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:79505f0b8f064d435a0d7a9720020466b884653f6e0dcad8beaee057baf4f5cf"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/skyline-late-high.png",
+          "hash": "sha256:bb1e806153e2a955e31169486dfafe1d448c3b307f2713ce7f6547873644a51b"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/silhouette.png",
+          "hash": "sha256:57dd495c953a8854739b3cf07a95d7fef99b3959916456a49a712cd3bd4fd7ad"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/whole-green-crossing.png",
+          "hash": "sha256:186dd2b71ee6ba705249d17abbf787bb5a59e05f6c3bc55e5a59b1b66707b7f2"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/haunched-three-spans.png",
+          "hash": "sha256:6e70dd58cfc450df92635f54f258191aa67902fdd768930978702d9cedf26c8a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/tapered-pier-opening.png",
+          "hash": "sha256:2d811eb9aacf1d5fd88eed8db402e22b3205b9571bb458719103036a491b3015"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/curved-lamp-and-railing.png",
+          "hash": "sha256:5c17f7fea998734a3064926ae44eb4fee12afff956edc8dd8938319dbc89551b"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/road-and-raised-walks.png",
+          "hash": "sha256:177b2afc9e5a0bbe9964a808cba25f6ab9d29fd763cde6153c02b668e2967d04"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/underside-ribs.png",
+          "hash": "sha256:b0c481477a6958b54ec725271a474e040b3fbc452a49405262243b806cae3602"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/transition-skyline.png",
+          "hash": "sha256:54542b3440f21dfafae720252404c422087d2845f1cce146cb8c8d398cd45571"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/transition-district.png",
+          "hash": "sha256:4080005b0ad3de60258e4e14762325378d582d7ca8f3a6cf719d9f35ad927448"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/transition-street.png",
+          "hash": "sha256:81800a1677860ffe1e947b4b5ffb169524225c66971f4b95a5c4891e48edbde9"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_du_garigliano/medium-fi/transition-closeup.png",
+          "hash": "sha256:8e51bd6be2dc18f909b9838a4c518fdc70f4e6c4f3ba08e128c8ea85a8894e00"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-skyline-skyline-context.png",
+          "hash": "sha256:f943477c5dfe66578704d64eb11426b16f1747978c94728e061b7be458e8771b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-district-district-context.png",
+          "hash": "sha256:9a8a4b2fb64e5b343934667ffa33e0c79842edf5d6d4f740dc33deefb6f54e01"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-street-whole-green-crossing.png",
+          "hash": "sha256:362c568ab382dfbaab90ae1a02f80555afb1049cda248dcb98be1fefa2837a70"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-street-haunched-three-spans.png",
+          "hash": "sha256:c1910f31fd26f4849cc48d5df3c025554c32ab62262ca15f43eb94fda3d00d46"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-street-tapered-pier-opening.png",
+          "hash": "sha256:4063dadc0a3f846fbc2b4f78017e622ef53445b3e900188fb02bbe924ce6a89b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-street-curved-lamp-and-railing.png",
+          "hash": "sha256:94808e4998035d81add7c26cb4465a8b50e59e298b856a7872b9b1f05d8c2275"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-whole-green-crossing.png",
+          "hash": "sha256:d992fe0c414c96f8b59e3cd70612d157233e50db255d3f6c9ed36b9ade7d2c70"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-haunched-three-spans.png",
+          "hash": "sha256:28ecc8813e011ac4e76d02c333eabb19720f2b71326a4086f3125d9b20a08d02"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-tapered-pier-opening.png",
+          "hash": "sha256:87a371933e7d63cd314ea64bd31ea46a1c20f7679f07843cfab7eb15f7321b9e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-curved-lamp-and-railing.png",
+          "hash": "sha256:d5234330ea37209f31fceecd6aa70b81c83770bebb93bdd2380f1ef59e1a0de5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-road-and-raised-walks.png",
+          "hash": "sha256:d1efe71115281e4041bdcebb7f7d06437f64d5516c425f76d6e548ae48a0f496"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-underside-ribs.png",
+          "hash": "sha256:78be518f46a88c13da717b4a895d60b684c024188b6a714a81391255e310856e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-southeast-approach.png",
+          "hash": "sha256:473607ebbb6105bde14636cfa4e3d9cf0abbbd1d356b07851c2a1542927a7048"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-northwest-approach.png",
+          "hash": "sha256:8560b03433180a9807ad65a865e3d69030c4dd7e4159452bce604d9b71f0f8f8"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-closeup-district-context.png",
+          "hash": "sha256:6d7c9857581f593ecd1649f6a4e7cd75b822807915117b8891f37003cc3b5e45"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\garigliano-review/native-canonical/shots/canonical-failure-whole-green-crossing.png",
+          "hash": "sha256:199163b727de80b6a6df0f21f6bca22addcd6fafb90f47befdb66e3cfec97ecd"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All66 resident buildings,156 independent road centerline records, raw road inputs, DEM, displayed ground and five water features remain. The loaded output still has167 road records: one fully replaced named crossing is removed and its connected street loop splits into two graded branches; connected bridge/path pieces are clipped/graded. Failed loading retains all167 inputs and creates no support geometry. Unload releases every model/support geometry and preserves ground/water. No ground or building cutout. Native coarse banks, raised approach paving/automatic retaining faces, generic roads and unmeasured water stage remain reconstruction limits."
+    },
+    "nativeReport": {
+      "path": ".artifacts/garigliano-review/native-canonical/canonical-report.json",
+      "hash": "sha256:3a3d6befb7e29c4e82013740253ea166f468de436a0a4f83bbb8348234849278"
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "modelLoaded": true,
+        "buildings": 66,
+        "roads": 167,
+        "independentCenterlines": 156,
+        "endpointSamples": [
+          {
+            "name": "south-lane--3",
+            "point": [
+              -103.07372057086684,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.425808,
+              31.444409
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42580795288063,
+            "rawGround": 31.134493565687116,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43195420122697,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "south-lane-0",
+            "point": [
+              -103.07372057086684,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.427807,
+              41.425808,
+              31.569968
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.25451448250006,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.431954173550366,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "south-lane-3",
+            "point": [
+              -103.07372057086684,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.427807,
+              31.636783
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.31678257459427,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43195414587399,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "north-lane--3",
+            "point": [
+              103.07372057086687,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.434865
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.434864946804964,
+            "rawGround": 40.912623497916286,
+            "modelHeight": 41.43423242457584,
+            "modelBoundaryHeight": 41.431954248192596,
+            "visibleHeight": 41.434864946804964
+          },
+          {
+            "name": "north-lane-0",
+            "point": [
+              103.07372057086687,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.43423
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43423006214039,
+            "rawGround": 40.82752259105365,
+            "modelHeight": 41.43423254317304,
+            "modelBoundaryHeight": 41.431954236648835,
+            "visibleHeight": 41.43423254317304
+          },
+          {
+            "name": "north-lane-3",
+            "point": [
+              103.07372057086687,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.433595
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43359517747581,
+            "rawGround": 40.78655192546899,
+            "modelHeight": 41.434232661770466,
+            "modelBoundaryHeight": 41.4319542251053,
+            "visibleHeight": 41.434232661770466
+          }
+        ],
+        "landingBoundarySamples": [
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -2.6366676712751254
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.77549420584256,
+            "gap": 0.002002716064453125
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              2.554907932491897
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.844413250811748,
+            "gap": 0.004001617431640625
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              7.7464835362589195
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.43290506490189,
+            "roadPavingHeights": [
+              41.427807
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424782,
+            "rawGround": 31.906899573404072,
+            "gap": 0.00509821065406868
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -9.421497064858988
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.4343814678482,
+            "roadPavingHeights": [
+              41.429806,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.579154472140285,
+            "gap": 0.004575712232963269
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -3.794066365520599
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.750591863695494,
+            "gap": 0.002002716064453125
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              1.8333643338177903
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42980575561546,
+            "rawGround": 31.838389835864838,
+            "gap": 0.0020027160642257513
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -17.740997582601686
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.434381623763784,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.285406285024365,
+            "gap": 0.002573152084096364
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -16.42676192455031
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43438159911466,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.320582509974017,
+            "gap": 0.0025731274349709565
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -15.112526266498932
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.434381574465306,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.35985282243493,
+            "gap": 0.0025731027856181754
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              15.673035474099802
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.4343811219353,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.0505965062236,
+            "gap": 0.002572650255615372
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              17.041348082922376
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.434381096271636,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.08568676421722,
+            "gap": 0.0025726245919486246
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              18.40966069174495
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.4343810706082,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.12075174163622,
+            "gap": 0.002572598928509251
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              -4.828944826256441
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.51132138059461,
+            "roadPavingHeights": [
+              41.51249
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.5124901147401,
+            "rawGround": 41.03752111389855,
+            "gap": 0.0011687341454944544
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              -0.028762508636557764
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.51132157035727,
+            "roadPavingHeights": [
+              41.51177
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.511770031949936,
+            "rawGround": 40.944926166088216,
+            "gap": 0.00044846159266853647
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              4.771419808983325
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.511321760120154,
+            "roadPavingHeights": [
+              41.512589
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.51258905874829,
+            "rawGround": 40.865140409341016,
+            "gap": 0.0012672986281359044
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              10.074676739618074
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.43488577927246,
+            "roadPavingHeights": [
+              41.412513
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.412512851562724,
+            "rawGround": 40.94499138053878,
+            "gap": 0.022372927709739088
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              11.035378248955986
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.434885939973356,
+            "roadPavingHeights": [
+              41.426148
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4261480192572,
+            "rawGround": 40.96288906552033,
+            "gap": 0.008737920716157532
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              11.996079758293899
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.43488610067425,
+            "roadPavingHeights": [
+              41.444189
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.44418908494299,
+            "rawGround": 40.98884213430791,
+            "gap": 0.009302984268742875
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -12.083104449635687
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.43488636295615,
+            "roadPavingHeights": [
+              41.429806,
+              41.423762
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 40.86107995659498,
+            "gap": 0.005080607340914867
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -11.121866846540321
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43488629001149,
+            "roadPavingHeights": [
+              41.424147
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4241474267767,
+            "rawGround": 40.90398006060089,
+            "gap": 0.010738863234792007
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -10.160629243444955
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.434886217066605,
+            "roadPavingHeights": [
+              41.424533
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4245329109001,
+            "rawGround": 40.9420634104669,
+            "gap": 0.010353306166507537
+          }
+        ],
+        "sharedGraphReads": {},
+        "rawInputsAndGroundRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "modelLoaded": true,
+        "buildings": 66,
+        "roads": 167,
+        "independentCenterlines": 156,
+        "endpointSamples": [
+          {
+            "name": "south-lane--3",
+            "point": [
+              -103.07372057086684,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.425808,
+              31.444409
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42580795288063,
+            "rawGround": 31.134493565687116,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43196877507171,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "south-lane-0",
+            "point": [
+              -103.07372057086684,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.427807,
+              41.425808,
+              31.569968
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.25451448250006,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43996830340075,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "south-lane-3",
+            "point": [
+              -103.07372057086684,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.427807,
+              31.636783
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.31678257459427,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.4319687141824,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "north-lane--3",
+            "point": [
+              103.07372057086687,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.434865
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.434864946804964,
+            "rawGround": 40.912623497916286,
+            "modelHeight": 41.43423242457584,
+            "modelBoundaryHeight": 41.43196882661641,
+            "visibleHeight": 41.434864946804964
+          },
+          {
+            "name": "north-lane-0",
+            "point": [
+              103.07372057086687,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.43423
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43423006214039,
+            "rawGround": 40.82752259105365,
+            "modelHeight": 41.43423254317304,
+            "modelBoundaryHeight": 41.43996806423593,
+            "visibleHeight": 41.43423254317304
+          },
+          {
+            "name": "north-lane-3",
+            "point": [
+              103.07372057086687,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.433595
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43359517747581,
+            "rawGround": 40.78655192546899,
+            "modelHeight": 41.434232661770466,
+            "modelBoundaryHeight": 41.43196880121991,
+            "visibleHeight": 41.434232661770466
+          }
+        ],
+        "landingBoundarySamples": [
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -2.6366676712751254
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.77549420584256,
+            "gap": 0.002002716064453125
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              2.554907932491897
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.844413250811748,
+            "gap": 0.004001617431640625
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              7.7464835362589195
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.43290506490189,
+            "roadPavingHeights": [
+              41.427807
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424782,
+            "rawGround": 31.906899573404072,
+            "gap": 0.00509821065406868
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -9.421497064858988
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.4343814678482,
+            "roadPavingHeights": [
+              41.429806,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.579154472140285,
+            "gap": 0.004575712232963269
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -3.794066365520599
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.750591863695494,
+            "gap": 0.002002716064453125
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              1.8333643338177903
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42980575561546,
+            "rawGround": 31.838389835864838,
+            "gap": 0.0020027160642257513
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -17.740997582601686
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.434381623763784,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.285406285024365,
+            "gap": 0.002573152084096364
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -16.42676192455031
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43438159911466,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.320582509974017,
+            "gap": 0.0025731274349709565
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -15.112526266498932
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.434381574465306,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.35985282243493,
+            "gap": 0.0025731027856181754
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              15.673035474099802
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.4343811219353,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.0505965062236,
+            "gap": 0.002572650255615372
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              17.041348082922376
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.434381096271636,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.08568676421722,
+            "gap": 0.0025726245919486246
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              18.40966069174495
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.4343810706082,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.12075174163622,
+            "gap": 0.002572598928509251
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              -4.828944826256441
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.51132138059461,
+            "roadPavingHeights": [
+              41.51249
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.5124901147401,
+            "rawGround": 41.03752111389855,
+            "gap": 0.0011687341454944544
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              -0.028762508636557764
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.51132157035727,
+            "roadPavingHeights": [
+              41.51177
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.511770031949936,
+            "rawGround": 40.944926166088216,
+            "gap": 0.00044846159266853647
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              4.771419808983325
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.511321760120154,
+            "roadPavingHeights": [
+              41.512589
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.51258905874829,
+            "rawGround": 40.865140409341016,
+            "gap": 0.0012672986281359044
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              10.074676739618074
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.43488577927246,
+            "roadPavingHeights": [
+              41.412513
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.412512851562724,
+            "rawGround": 40.94499138053878,
+            "gap": 0.022372927709739088
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              11.035378248955986
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.434885939973356,
+            "roadPavingHeights": [
+              41.426148
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4261480192572,
+            "rawGround": 40.96288906552033,
+            "gap": 0.008737920716157532
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              11.996079758293899
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.43488610067425,
+            "roadPavingHeights": [
+              41.444189
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.44418908494299,
+            "rawGround": 40.98884213430791,
+            "gap": 0.009302984268742875
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -12.083104449635687
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.43488636295615,
+            "roadPavingHeights": [
+              41.429806,
+              41.423762
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 40.86107995659498,
+            "gap": 0.005080607340914867
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -11.121866846540321
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43488629001149,
+            "roadPavingHeights": [
+              41.424147
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4241474267767,
+            "rawGround": 40.90398006060089,
+            "gap": 0.010738863234792007
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -10.160629243444955
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.434886217066605,
+            "roadPavingHeights": [
+              41.424533
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4245329109001,
+            "rawGround": 40.9420634104669,
+            "gap": 0.010353306166507537
+          }
+        ],
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "rawInputsAndGroundRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "modelLoaded": true,
+        "buildings": 66,
+        "roads": 167,
+        "independentCenterlines": 156,
+        "endpointSamples": [
+          {
+            "name": "south-lane--3",
+            "point": [
+              -103.07372057086684,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.425808,
+              31.444409
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42580795288063,
+            "rawGround": 31.134493565687116,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43197605498381,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "south-lane-0",
+            "point": [
+              -103.07372057086684,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.427807,
+              41.425808,
+              31.569968
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.25451448250006,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43997558871524,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "south-lane-3",
+            "point": [
+              -103.07372057086684,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.427807,
+              31.636783
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.31678257459427,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.431975991329864,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "north-lane--3",
+            "point": [
+              103.07372057086687,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.434865
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.434864946804964,
+            "rawGround": 40.912623497916286,
+            "modelHeight": 41.43423242457584,
+            "modelBoundaryHeight": 41.431976108963,
+            "visibleHeight": 41.434864946804964
+          },
+          {
+            "name": "north-lane-0",
+            "point": [
+              103.07372057086687,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.43423
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43423006214039,
+            "rawGround": 40.82752259105365,
+            "modelHeight": 41.43423254317304,
+            "modelBoundaryHeight": 41.43997533853735,
+            "visibleHeight": 41.43423254317304
+          },
+          {
+            "name": "north-lane-3",
+            "point": [
+              103.07372057086687,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.433595
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43359517747581,
+            "rawGround": 40.78655192546899,
+            "modelHeight": 41.434232661770466,
+            "modelBoundaryHeight": 41.43197608241326,
+            "visibleHeight": 41.434232661770466
+          }
+        ],
+        "landingBoundarySamples": [
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -2.6366676712751254
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.77549420584256,
+            "gap": 0.002002716064453125
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              2.554907932491897
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.844413250811748,
+            "gap": 0.004001617431640625
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              7.7464835362589195
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.43290506490189,
+            "roadPavingHeights": [
+              41.427807
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424782,
+            "rawGround": 31.906899573404072,
+            "gap": 0.00509821065406868
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -9.421497064858988
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.4343814678482,
+            "roadPavingHeights": [
+              41.429806,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.579154472140285,
+            "gap": 0.004575712232963269
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -3.794066365520599
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.750591863695494,
+            "gap": 0.002002716064453125
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              1.8333643338177903
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42980575561546,
+            "rawGround": 31.838389835864838,
+            "gap": 0.0020027160642257513
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -17.740997582601686
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.434381623763784,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.285406285024365,
+            "gap": 0.002573152084096364
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -16.42676192455031
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43438159911466,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.320582509974017,
+            "gap": 0.0025731274349709565
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -15.112526266498932
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.434381574465306,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.35985282243493,
+            "gap": 0.0025731027856181754
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              15.673035474099802
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.4343811219353,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.0505965062236,
+            "gap": 0.002572650255615372
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              17.041348082922376
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.434381096271636,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.08568676421722,
+            "gap": 0.0025726245919486246
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              18.40966069174495
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.4343810706082,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.12075174163622,
+            "gap": 0.002572598928509251
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              -4.828944826256441
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.51132138059461,
+            "roadPavingHeights": [
+              41.51249
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.5124901147401,
+            "rawGround": 41.03752111389855,
+            "gap": 0.0011687341454944544
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              -0.028762508636557764
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.51132157035727,
+            "roadPavingHeights": [
+              41.51177
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.511770031949936,
+            "rawGround": 40.944926166088216,
+            "gap": 0.00044846159266853647
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              4.771419808983325
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.511321760120154,
+            "roadPavingHeights": [
+              41.512589
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.51258905874829,
+            "rawGround": 40.865140409341016,
+            "gap": 0.0012672986281359044
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              10.074676739618074
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.43488577927246,
+            "roadPavingHeights": [
+              41.412513
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.412512851562724,
+            "rawGround": 40.94499138053878,
+            "gap": 0.022372927709739088
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              11.035378248955986
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.434885939973356,
+            "roadPavingHeights": [
+              41.426148
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4261480192572,
+            "rawGround": 40.96288906552033,
+            "gap": 0.008737920716157532
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              11.996079758293899
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.43488610067425,
+            "roadPavingHeights": [
+              41.444189
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.44418908494299,
+            "rawGround": 40.98884213430791,
+            "gap": 0.009302984268742875
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -12.083104449635687
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.43488636295615,
+            "roadPavingHeights": [
+              41.429806,
+              41.423762
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 40.86107995659498,
+            "gap": 0.005080607340914867
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -11.121866846540321
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43488629001149,
+            "roadPavingHeights": [
+              41.424147
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4241474267767,
+            "rawGround": 40.90398006060089,
+            "gap": 0.010738863234792007
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -10.160629243444955
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.434886217066605,
+            "roadPavingHeights": [
+              41.424533
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4245329109001,
+            "rawGround": 40.9420634104669,
+            "gap": 0.010353306166507537
+          }
+        ],
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "rawInputsAndGroundRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "modelLoaded": true,
+        "buildings": 66,
+        "roads": 167,
+        "independentCenterlines": 156,
+        "endpointSamples": [
+          {
+            "name": "south-lane--3",
+            "point": [
+              -103.07372057086684,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.425808,
+              31.444409
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42580795288063,
+            "rawGround": 31.134493565687116,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43197969387984,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "south-lane-0",
+            "point": [
+              -103.07372057086684,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.427807,
+              41.425808,
+              31.569968
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.25451448250006,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43997922807307,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "south-lane-3",
+            "point": [
+              -103.07372057086684,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.427807,
+              31.636783
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.31678257459427,
+            "modelHeight": 41.43180847167946,
+            "modelBoundaryHeight": 41.43197962884369,
+            "visibleHeight": 41.43180847167946
+          },
+          {
+            "name": "north-lane--3",
+            "point": [
+              103.07372057086687,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.434865
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.434864946804964,
+            "rawGround": 40.912623497916286,
+            "modelHeight": 41.43423242457584,
+            "modelBoundaryHeight": 41.43197974818372,
+            "visibleHeight": 41.434864946804964
+          },
+          {
+            "name": "north-lane-0",
+            "point": [
+              103.07372057086687,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.43423
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43423006214039,
+            "rawGround": 40.82752259105365,
+            "modelHeight": 41.43423254317304,
+            "modelBoundaryHeight": 41.43997897381223,
+            "visibleHeight": 41.43423254317304
+          },
+          {
+            "name": "north-lane-3",
+            "point": [
+              103.07372057086687,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.433595
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43359517747581,
+            "rawGround": 40.78655192546899,
+            "modelHeight": 41.434232661770466,
+            "modelBoundaryHeight": 41.43197972105759,
+            "visibleHeight": 41.434232661770466
+          }
+        ],
+        "landingBoundarySamples": [
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -2.6366676712751254
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.77549420584256,
+            "gap": 0.002002716064453125
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              2.554907932491897
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424805,
+            "rawGround": 31.844413250811748,
+            "gap": 0.004001617431640625
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              7.7464835362589195
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.43290506490189,
+            "roadPavingHeights": [
+              41.427807
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42780685424782,
+            "rawGround": 31.906899573404072,
+            "gap": 0.00509821065406868
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -9.421497064858988
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.4343814678482,
+            "roadPavingHeights": [
+              41.429806,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.579154472140285,
+            "gap": 0.004575712232963269
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              -3.794066365520599
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 31.750591863695494,
+            "gap": 0.002002716064453125
+          },
+          {
+            "id": 35184388968890,
+            "end": -1,
+            "kind": "street",
+            "point": [
+              -109.17372057086685,
+              1.8333643338177903
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.43180847167969,
+            "roadPavingHeights": [
+              41.429806,
+              41.427807,
+              41.425808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.42980575561546,
+            "rawGround": 31.838389835864838,
+            "gap": 0.0020027160642257513
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -17.740997582601686
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.434381623763784,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.285406285024365,
+            "gap": 0.002573152084096364
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -16.42676192455031
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43438159911466,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.320582509974017,
+            "gap": 0.0025731274349709565
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              -15.112526266498932
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.434381574465306,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 31.35985282243493,
+            "gap": 0.0025731027856181754
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              15.673035474099802
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.4343811219353,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.0505965062236,
+            "gap": 0.002572650255615372
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              17.041348082922376
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.434381096271636,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.08568676421722,
+            "gap": 0.0025726245919486246
+          },
+          {
+            "id": 35184459499140,
+            "end": -1,
+            "kind": "path",
+            "point": [
+              -109.17372057086685,
+              18.40966069174495
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.4343810706082,
+            "roadPavingHeights": [
+              41.431808
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.43180847167969,
+            "rawGround": 32.12075174163622,
+            "gap": 0.002572598928509251
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              -4.828944826256441
+            ],
+            "offset": -4.800000000000001,
+            "modelBoundaryHeight": 41.51132138059461,
+            "roadPavingHeights": [
+              41.51249
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.5124901147401,
+            "rawGround": 41.03752111389855,
+            "gap": 0.0011687341454944544
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              -0.028762508636557764
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.51132157035727,
+            "roadPavingHeights": [
+              41.51177
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.511770031949936,
+            "rawGround": 40.944926166088216,
+            "gap": 0.00044846159266853647
+          },
+          {
+            "id": 35184396120090,
+            "end": 1,
+            "kind": "street",
+            "point": [
+              106.27372057086684,
+              4.771419808983325
+            ],
+            "offset": 4.800000000000001,
+            "modelBoundaryHeight": 41.511321760120154,
+            "roadPavingHeights": [
+              41.512589
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.51258905874829,
+            "rawGround": 40.865140409341016,
+            "gap": 0.0012672986281359044
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              10.074676739618074
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.43488577927246,
+            "roadPavingHeights": [
+              41.412513
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.412512851562724,
+            "rawGround": 40.94499138053878,
+            "gap": 0.022372927709739088
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              11.035378248955986
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.434885939973356,
+            "roadPavingHeights": [
+              41.426148
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4261480192572,
+            "rawGround": 40.96288906552033,
+            "gap": 0.008737920716157532
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              11.996079758293899
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.43488610067425,
+            "roadPavingHeights": [
+              41.444189
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.44418908494299,
+            "rawGround": 40.98884213430791,
+            "gap": 0.009302984268742875
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -12.083104449635687
+            ],
+            "offset": -0.96,
+            "modelBoundaryHeight": 41.43488636295615,
+            "roadPavingHeights": [
+              41.429806,
+              41.423762
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.429805755615234,
+            "rawGround": 40.86107995659498,
+            "gap": 0.005080607340914867
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -11.121866846540321
+            ],
+            "offset": 0,
+            "modelBoundaryHeight": 41.43488629001149,
+            "roadPavingHeights": [
+              41.424147
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4241474267767,
+            "rawGround": 40.90398006060089,
+            "gap": 0.010738863234792007
+          },
+          {
+            "id": 35184459499140,
+            "end": 1,
+            "kind": "path",
+            "point": [
+              106.27372057086684,
+              -10.160629243444955
+            ],
+            "offset": 0.96,
+            "modelBoundaryHeight": 41.434886217066605,
+            "roadPavingHeights": [
+              41.424533
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.4245329109001,
+            "rawGround": 40.9420634104669,
+            "gap": 0.010353306166507537
+          }
+        ],
+        "sharedGraphReads": {
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1
+        },
+        "rawInputsAndGroundRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "modelLoaded": false,
+        "buildings": 66,
+        "roads": 167,
+        "independentCenterlines": 156,
+        "endpointSamples": [
+          {
+            "name": "south-lane--3",
+            "point": [
+              -103.07372057086684,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              31.444409,
+              31.442409
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 31.444409220380066,
+            "rawGround": 31.134493565687116,
+            "modelHeight": null,
+            "modelBoundaryHeight": null,
+            "visibleHeight": 31.444409220380066
+          },
+          {
+            "name": "south-lane-0",
+            "point": [
+              -103.07372057086684,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              31.569968,
+              31.569967,
+              31.567969
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 31.569967599236634,
+            "rawGround": 31.25451448250006,
+            "modelHeight": null,
+            "modelBoundaryHeight": null,
+            "visibleHeight": 31.569967599236634
+          },
+          {
+            "name": "south-lane-3",
+            "point": [
+              -103.07372057086684,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              31.636783,
+              31.632784
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 31.636782861730808,
+            "rawGround": 31.31678257459427,
+            "modelHeight": null,
+            "modelBoundaryHeight": null,
+            "visibleHeight": 31.636782861730808
+          },
+          {
+            "name": "north-lane--3",
+            "point": [
+              103.07372057086687,
+              -3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.226227
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.22622658262276,
+            "rawGround": 40.912623497916286,
+            "modelHeight": null,
+            "modelBoundaryHeight": null,
+            "visibleHeight": 41.22622658262276
+          },
+          {
+            "name": "north-lane-0",
+            "point": [
+              103.07372057086687,
+              0
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.148684
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.14868445343518,
+            "rawGround": 40.82752259105365,
+            "modelHeight": null,
+            "modelBoundaryHeight": null,
+            "visibleHeight": 41.14868445343518
+          },
+          {
+            "name": "north-lane-3",
+            "point": [
+              103.07372057086687,
+              3
+            ],
+            "expectedDeck": 41.446806945800894,
+            "roadPavingHeights": [
+              41.113212
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 41.11321165409595,
+            "rawGround": 40.78655192546899,
+            "modelHeight": null,
+            "modelBoundaryHeight": null,
+            "visibleHeight": 41.11321165409595
+          }
+        ],
+        "landingBoundarySamples": [],
+        "sharedGraphReads": {},
+        "rawInputsAndGroundRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Original photo-led full static exterior. Exact-QID footprint and named PMTiles traffic line establish the geographic frame; mapped road extent205.947441m is retained separately from catalog length209m. Approximate span arrangement58/93/58m, sections and heights are reconstruction controls, not surveyed engineering dimensions.",
+    "Piers, girder haunch, stone-cladding grid, railing spacing and lamp sections are interpreted from three inspected ordinary photographs. The 18m catalog height does not establish a surveyed deck or water datum.",
+    "Selected green appearance and road/sidewalk layout use the2006 side elevation and2016 sidewalk/underside photographs. This is a static exterior reconstruction; temporary signs, vehicles, boats, quays, station and independent street furniture are separate context.",
+    "Native placement must be inspected against the standard PMTiles/Mapzen fixture before activation. No arbitrary neighboring terrain alteration or distorted bridge is approved by source generation.",
+    "Short visualization landings extend6.2m southeast and3.3m northwest to the standard mapped paving. The northwest road crown and terminal walk tapers meet the viewer surfaces; they are approximate reconstruction controls, not surveyed bridge engineering or vehicle navigation grades.",
+    "Independent Le Telephone artwork, neighboring quays, boats, tram/RER station, approach junction street furniture and buildings are not part of this bridge exterior asset. No photo pixels or downloaded model are used. Physical-device timings are unmeasured.",
+    "Native standard terrain smooths banks and can sit below deliberately graded approach paving. Automatic retaining faces and approximate footing/bank embedding remain visible. Independent quays, buildings, station, artwork and street infrastructure are separate map context; no unique models for them are approved here."
+  ],
+  "metadataReconciliation": {
+    "kind": "import-order-and-whitespace-only",
+    "oldInputHash": "sha256:a3869fe906073a35e4bbcd76e722bdde9757e1eacb3fcfae0859d460be1b169c",
+    "inputHash": "sha256:87deb385d10590c4b8d3c56cc92c1074fe2276c5f7c8ecfefc304173f33f9dd1",
+    "changedFiles": [
+      "models/garigliano-landings.mjs",
+      "models/garigliano-model.mjs"
+    ],
+    "glbsByteUnchanged": 6,
+    "inspectedImagesByteUnchanged": 61,
+    "method": "Exact before/after text assertions permit only moving the landing helper import into the import group and inserting blank lines. All other source bundle inputs, six GLBs and61 inspected images remain byte-identical."
+  }
+}

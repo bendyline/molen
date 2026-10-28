@@ -7,6 +7,10 @@ import {
   type TerrainAgricultureSource,
 } from './agriculture-grid';
 import type { TerrainSemanticTileSource } from './semantic-client';
+import {
+  setTerrainSemanticTileContentHash,
+  terrainSemanticTileContentHash,
+} from './semantic-types';
 
 export function createAgricultureTileEnricher(
   source: TerrainAgricultureSource,
@@ -108,7 +112,17 @@ export function createAgricultureTileEnricher(
       }
       const [tile, grid] = await Promise.all([base.load(address, signal), request]);
       if (signal.aborted) return undefined;
-      return tile && grid ? applyAgricultureGrid(tile, address, grid) : tile;
+      if (!tile || !grid) return tile;
+      const enriched = applyAgricultureGrid(tile, address, grid);
+      // Keyed by the base tile's content and the grid's checked identity, so caches keyed by
+      // content need not serialize the enriched tile whole.
+      const hash = terrainSemanticTileContentHash(tile);
+      if (enriched !== tile && hash !== undefined)
+        setTerrainSemanticTileContentHash(
+          enriched,
+          `${hash}|agriculture:${grid.source}@${grid.year}:${grid.level}/${grid.x}/${grid.z}>${address.level}/${address.x}/${address.z}`,
+        );
+      return enriched;
     },
   });
 }

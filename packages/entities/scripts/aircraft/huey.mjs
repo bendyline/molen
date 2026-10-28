@@ -506,6 +506,9 @@ function addHueyCockpit(root) {
     [338, 675],
   ].map(([x, y]) => panelDrawing(x, y));
   const panelPoint = (x, y, z = 2.68) => [x, y, z + (1.62 - y) * 0.12];
+  // The windshield sweeps aft at its corners. Keep the calibrated instrument face
+  // flat, but taper the forward housing depth so its shoulders stay behind the glass.
+  const panelFront = (x, y) => panelPoint(x, y, 2.96 - 0.24 * (x / 0.88) ** 2);
   sheet(
     d,
     panelOutline.map(([x, y]) => panelPoint(x, y)),
@@ -514,22 +517,18 @@ function addHueyCockpit(root) {
   );
   sheet(
     d,
-    panelOutline.map(([x, y]) => panelPoint(x, y, 2.96)),
+    panelOutline.map(([x, y]) => panelFront(x, y)),
     coaming,
     [0, 0, 1],
   );
   for (let i = 0; i < panelOutline.length; i++) {
     const a = panelOutline[i],
       b = panelOutline[(i + 1) % panelOutline.length];
-    quad(
-      d,
-      panelPoint(...a),
-      panelPoint(...b),
-      panelPoint(...b, 2.96),
-      panelPoint(...a, 2.96),
-      panel,
-      [a[0], a[1] - 1.6, 0],
-    );
+    quad(d, panelPoint(...a), panelPoint(...b), panelFront(...b), panelFront(...a), panel, [
+      a[0],
+      a[1] - 1.6,
+      0,
+    ]);
   }
   // Rounded hood wraps around, with visible forward depth, rather than a rectangular shelf.
   const hood = [
@@ -548,15 +547,25 @@ function addHueyCockpit(root) {
     [1100, 483],
     [1085, 541],
     [1062, 599],
-  ].map(([x, y]) => panelDrawing(x, y));
+  ].map(([px, py]) => {
+    const [x, y] = panelDrawing(px, py);
+    // Pull only the overhanging ears inward; preserve the opening around the panel.
+    const width = Math.min(Math.abs(x), 0.88) + Math.max(0, Math.abs(x) - 0.88) * 0.25;
+    return [Math.sign(x) * width, y];
+  });
+  const hoodFront = (x, y) => panelPoint(x, y, 2.93 - 0.29 * (x / 0.96) ** 2);
   for (let i = 0; i < hood.length - 1; i++) {
     const a = panelPoint(...hood[i], 2.58),
       b = panelPoint(...hood[i + 1], 2.58),
-      c = panelPoint(...hood[i + 1], 2.93),
-      e = panelPoint(...hood[i], 2.93);
+      c = hoodFront(...hood[i + 1]),
+      e = hoodFront(...hood[i]);
     quad(d, a, b, c, e, coaming, [0, 1, 0]);
-    d.rod(a, b, 0.022, coaming);
   }
+  d.path(
+    hood.map((p) => panelPoint(...p, 2.58)),
+    0.022,
+    coaming,
+  );
   const hoodInner = [
     [338, 599],
     [338, 500],

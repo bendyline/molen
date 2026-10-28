@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.brussels_town_hall",
+  "kind": "static-structure",
+  "title": "Brussels Town Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.brussels_town_hall",
+        "output": "assets/places/u1/u15/brussels_town_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8ef61b2d2792172fb2865445574728da2bdc41db1740c3e5fa21847036f1c660"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-brussels-town-hall",
+        "path": "models/generate-brussels-town-hall.mjs"
+      },
+      {
+        "id": "brussels-town-hall-model",
+        "path": "models/brussels-town-hall-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "reference-rights/published-native.json",
+      "native-map/town-hall-components.json",
+      "terrain-acquisition-envelope.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16779-10991.png",
+      "terrain-sources/terrarium-15-16779-10992.png",
+      "terrain-sources/terrarium-15-16780-10991.png",
+      "terrain-sources/terrarium-15-16780-10992.png",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

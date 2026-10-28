@@ -18,4 +18,4 @@ Whole individual tower and intrinsic connected oilhouse/passage exterior only. F
 
 Independent160mTerrariumfield stays unchanged at fixed southwestentry. Grid samples/source pixels are not survey accuracy; sandy grass/pavement/base/threshold and host contact remain approximate. No fullsite slab or authored landscape.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=bodie_island_lighthouse`. Add `--check` to verify exact regeneration. 8542 triangles; 7 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=bodie_island_lighthouse`. Add `--check` to verify exact regeneration. 8414 triangles; 7 materials; no embedded photographs.

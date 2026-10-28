@@ -1,12 +1,14 @@
 import {
   type AircraftStateData,
   type BoatStateData,
+  boostSpeedMultiplier,
   type JsonObject,
   resolveWeather,
   type VehicleData,
   type VehicleSpec,
   type WeatherData,
 } from '@bendyline/molen-schema';
+import { isBoostMode } from './boost';
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
 import { approach, yawOf } from './math3d';
@@ -24,6 +26,8 @@ export interface VehicleInputData extends JsonObject {
   handbrake?: boolean;
 }
 export interface VehicleStateData extends JsonObject {
+  /** Kernel-owned: horizontal speeds include the 4× travel boost. */
+  boosted?: boolean;
   speed: number;
   steer: number;
   yaw: number;
@@ -105,6 +109,8 @@ export function vehicleMounts(spec: VehicleSpec): MountableData {
 }
 /** Host collision adapter. All positions are absolute metric coordinates. */
 export interface VehicleEnvironment {
+  /** Override the world's boost mode (pure step calls default to false). */
+  boostMode?: boolean;
   groundHeight(x: number, z: number): number | undefined;
   canOccupy?(
     position: [number, number, number],
@@ -234,7 +240,22 @@ export function stepVehicle(
 ): { transform: TransformData; state: VehicleStateData; impact: number } {
   let pos: [number, number, number] = [...t.pos];
   const next = { ...state, waitingForTerrain: false };
-  const steps = Math.max(1, Math.ceil(dt / (1 / 120)));
+  const travel = boostSpeedMultiplier(env.boostMode);
+  const previousTravel = boostSpeedMultiplier(state.boosted);
+  // Solve tire forces at normal handling speed, then scale travel and speed telemetry together.
+  // Check boosted motion at least every half meter as well as at the usual 120 Hz.
+  const steps = Math.max(
+    1,
+    Math.ceil(
+      dt *
+        Math.max(
+          120,
+          travel > 1
+            ? (Math.hypot(state.speed, state.lateralSpeed ?? 0) / previousTravel) * travel * 2
+            : 0,
+        ),
+    ),
+  );
   const h = dt / steps;
   const g = 9.81;
   const weight = spec.mass * g;
@@ -255,8 +276,8 @@ export function stepVehicle(
   const side = (1.1 * spec.length) / spec.width;
   const field = env.weather ? windField(env.weather) : undefined;
   const throttle = m.clamp(input.throttle, -1, 1);
-  let u = state.speed;
-  let v = state.lateralSpeed ?? 0;
+  let u = state.speed / previousTravel;
+  let v = (state.lateralSpeed ?? 0) / previousTravel;
   let r = state.yawRate ?? 0;
   let bodyPitch = state.bodyPitch ?? 0;
   let bodyPitchRate = state.bodyPitchRate ?? 0;
@@ -361,8 +382,8 @@ export function stepVehicle(
     const wind = field
       ? field.at([pos[0], pos[1] + 1, pos[2]], (env.time ?? 0) + step * h, pos[1])
       : undefined;
-    const airForward = u - (wind ? wind[0] * sx + wind[2] * cz : 0);
-    const airLeft = v - (wind ? wind[0] * cz - wind[2] * sx : 0);
+    const airForward = u - (wind ? (wind[0] * sx + wind[2] * cz) / travel : 0);
+    const airLeft = v - (wind ? (wind[0] * cz - wind[2] * sx) / travel : 0);
     const air = m.hypot(airForward, airLeft);
     fx -= spec.mass * spec.aerodynamicResistance * air * airForward;
     fy -= spec.mass * spec.aerodynamicResistance * side * air * airLeft;
@@ -408,9 +429,9 @@ export function stepVehicle(
     const fs = m.sin(yaw);
     const fc = m.cos(yaw);
     const candidate: [number, number, number] = [
-      pos[0] + (fs * u + fc * v) * h,
+      pos[0] + (fs * u + fc * v) * h * travel,
       pos[1],
-      pos[2] + (fc * u - fs * v) * h,
+      pos[2] + (fc * u - fs * v) * h * travel,
     ];
     const heights: number[] = [];
     for (const z of [spec.wheelbase / 2, -spec.wheelbase / 2]) {
@@ -458,7 +479,7 @@ export function stepVehicle(
     if (env.canOccupy && !env.canOccupy(candidate, yaw, spec, id)) {
       // Stay at the last free position and answer the hit with an impulse at the corner that
       // struck: a bounce that grows with impact speed, scraping friction, and a spin.
-      const reach = m.max(0.15, m.hypot(u, v) * h * 2);
+      const reach = m.max(0.15, m.hypot(u, v) * h * travel * 2);
       const contact = contactNormal(env, pos, next.yaw, spec, id, reach);
       const sy = m.sin(next.yaw);
       const cy = m.cos(next.yaw);
@@ -528,7 +549,7 @@ export function stepVehicle(
     next.yaw = yaw;
     next.pitch = approach(next.pitch, pitch, h * spec.terrainAlignRate);
     next.roll = approach(next.roll, roll, h * spec.terrainAlignRate);
-    next.wheelAngle = (next.wheelAngle + (u * h) / spec.wheelRadius) % m.TAU;
+    next.wheelAngle = (next.wheelAngle + (u * h * travel) / spec.wheelRadius) % m.TAU;
     if (spec.cycle?.pedals && throttle > 0 && !braking && next.grounded)
       next.pedalAngle =
         ((next.pedalAngle ?? 0) +
@@ -536,8 +557,10 @@ export function stepVehicle(
         m.TAU;
     pos = candidate;
   }
-  next.speed = u;
-  next.lateralSpeed = v;
+  next.speed = u * travel;
+  next.lateralSpeed = v * travel;
+  if (env.boostMode) next.boosted = true;
+  else delete next.boosted;
   next.yawRate = r;
   next.bodyPitch = bodyPitch;
   next.bodyPitchRate = bodyPitchRate;
@@ -551,7 +574,7 @@ export function stepVehicle(
       rot: vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll),
     },
     state: next,
-    impact,
+    impact: impact * travel,
   };
 }
 export function mountEntity(
@@ -672,6 +695,10 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
   const env = environment ?? {
     groundHeight: (x: number, z: number) => groundFieldOf(world)?.sampleHeight(x, z) ?? 0,
   };
+  // States found dormant, with the vehicle they were judged for. Every write clones a component,
+  // so a car stays skipped only until something moves or changes it; keyed by object, the map
+  // holds no entity alive.
+  const dormant = new WeakMap<VehicleStateData, VehicleData>();
   world.addSystem(
     (w, ctx) => {
       const driven = new Set<string>();
@@ -684,8 +711,21 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
           driven.add(mounted.vehicle);
       }
       const weather = env.weather ?? weatherOf(w);
-      const current = { ...env, time: ctx.tick * ctx.dt, ...(weather ? { weather } : {}) };
-      for (const [id, t, vehicle, state] of w.query(Transform, Vehicle, VehicleState)) {
+      const current = {
+        ...env,
+        boostMode: env.boostMode ?? isBoostMode(w),
+        time: ctx.tick * ctx.dt,
+        ...(weather ? { weather } : {}),
+      };
+      // Ids, then components by lookup: a town's parked cars are thousands of dormant vehicles,
+      // and building a query row for each one every tick only to skip it cost milliseconds a frame.
+      for (const id of w.query(Transform, Vehicle, VehicleState).ids()) {
+        const state = w.get(id, VehicleState);
+        const vehicle = w.get(id, Vehicle);
+        if (state === undefined || vehicle === undefined) continue;
+        if (dormant.get(state) === vehicle && !driven.has(id)) continue;
+        const t = w.get(id, Transform);
+        if (t === undefined) continue;
         // Dormant parked vehicles cost no physics work. Their placement already includes support.
         if (
           !driven.has(id) &&
@@ -698,8 +738,10 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
               m.abs(state.bodyPitch ?? 0) +
               m.abs(state.bodyPitchRate ?? 0) <
               1e-5)
-        )
+        ) {
+          dormant.set(state, vehicle);
           continue;
+        }
         const input = driven.has(id)
           ? (w.get(id, VehicleInput) ?? IDLE_VEHICLE_INPUT)
           : IDLE_VEHICLE_INPUT;

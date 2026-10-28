@@ -7,6 +7,9 @@ ten general aviation aircraft, ten fighters, five cargo transports, the MV-22B O
 and thirteen utility, regional, historic and business aircraft. All use clean configurations without
 external weapons.
 
+Compare national markings and camouflage in the [livery gallery](livery-gallery.md), then
+find every aircraft’s choices and reference evidence in the [livery catalog](livery-catalog.md#aircraft).
+
 Use the **P-51 Mustang**, **OH-6** or **Bendy Small Airliner** buttons to visit the practice airfield, then press **E** to
 board. The aircraft buttons also work from the example hub's world view. A direct link can use
 `?aircraft=p51d`, `?aircraft=oh6` or `?aircraft=airliner`. The **Aircraft catalog** selector visits
@@ -94,6 +97,40 @@ rotors, controls, gear, flaps, ailerons, elevators and rudder animate from simul
 Mustang's gear takes 12 seconds: its inner wheel doors open, each main leg swings inboard into a
 well in the wing root, the tail wheel folds forward into the fuselage, and the doors close behind
 them. Its flaps take 13 seconds to run down to 50°.
+
+## Collisions and breakable sections
+
+Aircraft contacts apply impulses at the point of impact, including angular response, friction
+and a small rebound. A wingtip strike can turn the aircraft while it keeps moving; a wreck
+continues to fall, tumble and slide. Terrain is tested at the airframe probes as well as at the
+landing origin, so a banked wing can hit the runway before the wheels or fuselage.
+
+The Mustang has detachable wings, tail surfaces and propeller; the OH-6 has a detachable rotor
+and tail; the small airliner has detachable wings (with their engines) and tail. Strong impacts
+or repeated loaded scrapes consume joint integrity. Separation removes the section's collision
+probes, reduces lift/control authority and can disable its attached engines. An asymmetric wing
+loss produces a rolling moment. Detached geometry retains its own velocity and spin, then falls,
+bounces and slows against terrain and resident obstacles. Debris expires after 20 simulation
+seconds; the missing section stays missing. **R** repairs the aircraft and clears debris.
+The remaining aircraft use their existing probes with the new contact response; they need
+authored section bindings to display parts breaking away.
+
+For custom models, `spec.collisionParts` replaces `collisionProbes`. Every section declares a
+unique `id`, a `role` (`body`, `leftWing`, `rightWing`, `tail`, `rotor`, `gear` or `engine`), local
+probe centers and sphere `radius`, a section `center`, `massFraction`, and GLB `nodes`. Add
+`breakSpeed` in m/s for a breakable joint and `engines` for engines carried by that section.
+Keep a non-detachable `body` and at least 20% of the mass. Optional `fragments` selects triangles
+from shared static detail meshes using a model-space bounding box, so markings follow a wing.
+These are gameplay approximations with authored joint strengths, not a structural engineering
+or accident-reconstruction model. Pieces use sphere collision proxies; mesh deformation, fire,
+debris-to-debris contacts and impulse transfer into other vehicles are not simulated.
+
+Hosts provide `AircraftEnvironment.contacts(probes, entity)` with world-space contact points,
+outward normals and penetration depths. `aircraftObstacleContacts` from `client/aircraft`
+adapts a collision tree, cars and other aircraft to this contract; the Earth view and world
+explorer use it. The legacy `canOccupy` callback remains supported with a simple recoil because
+it supplies no contact normal. `aircraftState.damage` and `debris` are serializable and survive
+keyframes; `crashed` means damage requiring recovery and no longer freezes motion.
 
 ## Reuse in another experience
 
@@ -359,7 +396,7 @@ setAircraftEngineFailed(world, 'twin', 'left', false); // explicit repair
 `setAircraftEngineFailed` returns false for an unknown aircraft or engine. A failure immediately
 removes powered thrust and lets that propeller spool down; pilot throttle/switch input cannot
 repair it. Failure triggers belong to the experience (for example a damage or training command).
-The world explorer supplies common engine controls; failure scenarios are authored through
+The world explorer supplies common and individual engine controls; failure scenarios are authored through
 this API, without automatic random failures.
 
 `aircraftState.engines[id]` stores `rpm`, `rotorAngle`, `failed` and current `thrust` in newtons.
@@ -392,9 +429,94 @@ collides with terrain. Do not add a second physics body that also writes the air
 This is a game flight model with recognizable polygonal aircraft, not a full aircraft systems
 simulation or a calibrated replica of any airplane's handling. Rotor blade-element aerodynamics,
 autorotation, a quantitatively validated spin model, fuel, automatic engine damage, detailed
-avionics and weapons are outside this implementation. Cockpit switches and pedals are visual details; the listed input
-controls operate the simulated systems. Collision uses coarse airframe probes and resident world
+avionics and weapons are outside this implementation. Primary cockpit controls operate the simulated
+systems as described below; switches for unsupported systems remain decorative. Collision uses coarse airframe probes and resident world
 geometry; it does not model deformation or distant unloaded obstacles.
+
+## Clickable cockpits
+
+Earth views and the world explorer enable pointer controls while occupying the cockpit. Drag a
+yoke or cyclic sideways to bank and down to pull up; release it to center. Pedals drag sideways
+and also center on release. Drag a throttle or collective upward to increase its retained setting.
+Modeled gear selectors toggle on click; flap and thrust-vector levers accept intermediate positions.
+Solid panel geometry blocks clicks behind it. Dragging empty space still looks around.
+
+All 53 bundled cockpits have physical controls for their supported systems, including engine
+master switches, individual engine switches and throttles for airplanes with named engine banks,
+parking brakes, and applicable gear, flap and nozzle controls. Supplemental labeled modules fill
+gaps in the original models; their layout approximates the aircraft rather than reproducing every
+real switch. The Cessna 172's existing master rocker and flap selector are directly operable.
+Moving common power (including Shift/Ctrl or the modeled **PWR ALL** handle)
+synchronizes all throttle levers while preserving individual engine cutoffs, mixtures and propeller settings. A throttle indicates
+commanded power; shaft RPM follows the simulation's spool response. Retractable airplane gear is
+locked on the ground. Helicopters retain the existing shared engine/gearbox model and collective.
+Manual-mixture aircraft have operable mixture controls, and aircraft with manual propeller governors
+have operable propeller RPM controls. Fuel selectors, avionics and other unmodeled systems remain decorative.
+
+### Mixture and propeller governors
+
+`AircraftInputData.mixture` and `.propeller` are retained 0–1 selections, both defaulting to 1.
+The same fields in `engines[id]` override the common selections independently. A common adjustment
+synchronizes only its own control, preserving throttle, cutoff and the other engine settings.
+Drag the modeled mixture or propeller lever upward to increase its setting.
+
+An engine with `mixtureControl: true` uses a reduced fuel/air model: 0 cuts fuel immediately;
+1 is full rich. At reduced intake-air density a lower setting can recover power, while excessive
+leaning or enrichment reduces combustion, thrust and available shaft power. The existing
+`ratedDensityRatio` approximates boosted intake air before leaning becomes necessary. Mixture
+cutoff spools the engine down without latching a failure; restoring mixture can restart it when
+the engine master is on. This assisted restart does not model a starter or ignition sequence.
+
+`propellerControl: { minRpm: 0.6 }` enables a constant-speed governor: the lever selects between
+60% and 100% of rated RPM. It does not directly set blade angle. At sufficient power the governor
+holds selected RPM; at low power the fine-pitch stop permits RPM to fall. Reduced selected RPM
+limits shaft power in the torque-limited approximation and lowers the static thrust cap. RPM,
+propeller rotation, torque and thrust all follow these inputs. This follows the distinction between
+throttle, mixture and governed RPM in the [FAA engine-controls overview](https://www.faasafety.gov/gslac/ALC/libview_printerfriendly.aspx?id=6849).
+
+These are estimated simulation curves, not aircraft performance tables or operating procedures.
+There is no fuel consumption, EGT/CHT, detonation, feathering, reverse thrust or blade-element model.
+Fixed-pitch Cessna 172S and Cherokee aircraft expose mixture without a propeller lever; the DA42
+and PC-12 NGX retain automatic scheduling. Turboprops have no piston mixture. Combined condition
+levers used for propeller RPM currently cover the governed range; engine cutoff remains a separate
+switch. The R44's mixture affects the shared piston/rotor power model without adding a propeller control.
+
+Per-engine `aircraftState.engines[id].combustion` reports effectiveness (0–1), and `shaftPower`
+reports delivered watts. Model signals expose these as `engines.<id>.combustion` and `.shaftPowerW`;
+`.mixture` and `.propeller` are commanded lever positions. The live cockpit review shows these
+settings alongside RPM and shaft power so cutoff and independent engine effects are visible.
+
+Hosts pass the camera to `visual.updateView(camera)` each frame (in the coordinates of
+`visual.object.position`). The cabin, the interior's `nodes`, is drawn only within three times
+the aircraft's length or span of it (at least 60 m): cockpits held most of an aircraft's draw calls
+and as many again in the shadow pass, yet from farther away they are a few pixels behind the canopy.
+Boarded and chase views are always near enough. Earth views and the world explorer also prepare an
+aircraft's shaders before its model joins the scene.
+
+`createAircraftVisual` exposes `cockpit`, a mesh picker and control inventory derived from the
+interior's authored primary-input bindings and glTF node `extras.aircraftControl` metadata.
+An `AircraftControlNode` declares a supported `action`, optional engine ID, and optional
+rest-relative `motion` (`property`, `axis`, `scale`, optional `offset`). Switches and selectors animate their commands;
+gear, flaps and engine RPM still follow the simulation's transit/spool response.
+Separate throttle levers are associated with engine
+positions from pilot-left to pilot-right; duplicated collective/thrust levers remain linked.
+`bindAircraftCockpitPointer` from `@bendyline/molen-client/aircraft` binds a canvas, camera and
+active pilot session. The HTML companion panel is opt-in with `companionPanel: true`, for
+accessibility or older models with incomplete geometry. Call its `update()` each frame
+and `dispose()` on teardown. Hosts apply changes with `applyAircraftControl`, submit the result
+through `flyAircraft`, and mix `AircraftPointerAxes` with their keyboard/gamepad inputs. Session
+release must clear transient axes. The binder cancels drags on exit, view change, blur and pointer
+cancellation; it does not write simulation components directly.
+
+In the engine repository, build the client and kernel, then run a local live review of all 53 bundled aircraft:
+
+```sh
+pnpm --filter @bendyline/molen-examples-world-explorer exec vite --config ../../packages/entities/scripts/cockpit-controls-vite.mjs
+```
+
+Open `http://127.0.0.1:4322/packages/entities/scripts/cockpit-controls.html`. The review runs the
+real aircraft solver, displays commanded power beside actual RPM, and offers parked, airborne
+and exterior views.
 
 ## Reproducible review
 

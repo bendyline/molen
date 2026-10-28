@@ -27,6 +27,7 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 
 ## Reconstruction limits
 
-- Exterior reconstruction with metric masonry detail; heights, shore vault stations, mihrab decoration and individual block layout are reconstructed from published field photographs, not survey ordinates.
-- Historical sources disagree on total arch counts and describe buried end spans. Eleven exposed/reconstructed vaults are modeled; the buried ends use closed approach masonry.
-- Absolute datum follows a2009 river study. Host terrain, present channel bed and river stage can differ; shoreline and nearby statues are separate features.
+- The 466,084-triangle detailed source master remains exact. Four separate runtime representations prioritize the full vaults, complete deck/parapets, mapped asymmetric cutwaters, recessed prayer niche and supported opposite balcony.
+- Runtime surfaces use shared low-frequency graphs. Dense individual wall/paving side faces are omitted to avoid automatic-decimation noise; closeup retains radial masonry, carved niche and rosette detail.
+- Eleven exposed/reconstructed openings are represented; historical total counts, buried ends, precise vault dimensions, channel-bottom datum and seasonal river stage are not a current engineering survey.
+- Native nearby statues, town buildings, shore landscaping and interiors remain outside the bridge asset. Physical device timings remain pending.

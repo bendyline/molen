@@ -1811,6 +1811,7 @@ const recipes = {
 const common =
   (await text('./authored-landmark-lods.mjs')) +
   (await text('../../worldgen/scripts/authored-structure-mesh.mjs')) +
+  (await text('../../worldgen/scripts/joined-path.mjs')) +
   (await text('../../worldgen/scripts/structure-mesh.mjs')) +
   (await text('../../worldgen/scripts/standard-materials.mjs'));
 export async function landmarkLodRecipeHash(id) {

@@ -134,8 +134,10 @@ export type {
 } from './kernel/stylepack-types';
 export type {
   BuildingAppearance,
+  BuildingApproach,
   BuildingRecord,
   BuildingRequest,
+  BuildingYard,
   HeightSampler,
   MaterialSlot,
   MeshBuffers,
@@ -153,6 +155,7 @@ export type {
   WorldgenBudgets,
   WorldgenProgress,
   WorldgenStats,
+  YardFenceKind,
 } from './kernel/types';
 export { emptyWorldgenStats, FLAT_GROUND, PLACEMENT_STRIDE } from './kernel/types';
 
@@ -167,6 +170,7 @@ export type { QueuedBuilding, WorldgenBatchInput, WorldgenBatchOutput } from './
 export {
   generateWorldgenBatch,
   generateWorldgenBatchSteps,
+  hashWorldgenOutput,
   queueBuildings,
   worldgenTransferables,
 } from './kernel/batch';

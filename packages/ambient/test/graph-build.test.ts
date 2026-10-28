@@ -9,6 +9,35 @@ import {
 import { gridDocument, streetFeature } from './helpers';
 
 describe('transport graph', () => {
+  it('shares complete airport runways across streamed tiles without creating car lanes', () => {
+    const net = new TransportNetwork();
+    for (const [key, originZ] of [
+      ['north', 0],
+      ['south', 1000],
+    ] as const) {
+      net.registerTile({
+        key,
+        origin: [0, originZ],
+        tileSize: 1000,
+        features: [
+          streetFeature([0.5, -originZ / 1000], [0.5, (3000 - originZ) / 1000], {
+            class: 'aeroway',
+            subclass: 'runway',
+            width: 60,
+          }),
+          streetFeature([0.6, 0], [0.6, 1], { class: 'aeroway', subclass: 'taxiway' }),
+        ],
+      });
+    }
+    expect(net.runways()).toHaveLength(1);
+    expect(net.runways()[0]).toMatchObject({ ax: 500, az: 0, bx: 500, bz: 3000 });
+    expect([...net.edgeList()]).toHaveLength(0);
+    net.unregisterTile('north');
+    expect(net.runways()).toHaveLength(1);
+    net.unregisterTile('south');
+    expect(net.runways()).toHaveLength(0);
+  });
+
   it('keeps regional lanes and turn permissions in one network, including export and reload', () => {
     const net = new TransportNetwork();
     for (const [index, drivingSide] of (['left', 'right'] as const).entries()) {
@@ -177,6 +206,62 @@ describe('transport graph', () => {
         const x = edge.path.points[i]?.[0] as number,
           t = Math.max(0, Math.min(1, x / 20));
         expect(edge.ys[i]).toBeCloseTo(5.32 + (18 - 5.32) * (1 - t * t * (3 - 2 * t)), 5);
+      }
+  });
+  it.each([
+    false,
+    true,
+  ])('carries sampled approach elevations through graph splits (tile parts: %s)', (parts) => {
+    const net = new TransportNetwork();
+    const tile: Parameters<TransportNetwork['registerTile']>[0] = {
+      key: 'graded',
+      origin: [1000, 2000],
+      tileSize: 100,
+      heightAt: () => 5,
+      features: [
+        {
+          class: 'residential',
+          lines: [
+            [
+              [0, 0.5],
+              [1, 0.5],
+            ],
+          ],
+          bridgeApproachProfile: [
+            { point: [0, 0.5], elevation: 18, flatness: 1 },
+            { point: [0.4, 0.5], elevation: 18, flatness: 1 },
+            { point: [0.8, 0.5], elevation: 5.32, flatness: 0 },
+            { point: [1, 0.5], elevation: 5.32, flatness: 0 },
+          ],
+        },
+        {
+          class: 'residential',
+          lines: [
+            [
+              [0.1, 0.5],
+              [0.1, 0.8],
+            ],
+          ],
+        },
+      ],
+    };
+    if (parts) {
+      for (const i of [0, 1])
+        net.registerTile({
+          ...tile,
+          key: `graded:${i}`,
+          bounds: [1000 + i * 50, 2000, 1050 + i * 50, 2100],
+        });
+    } else net.registerTile(tile);
+    const edges = [...net.edgeList()].filter((e) =>
+      e.path.points.every((p) => Math.abs(p[1] - 2050) < 1e-6),
+    );
+    expect(edges.length).toBeGreaterThan(1);
+    for (const edge of edges)
+      for (const [i, p] of edge.path.points.entries()) {
+        const x = p[0] - 1000;
+        const expected = x <= 40 ? 18 : x >= 80 ? 5.32 : 18 + ((5.32 - 18) * (x - 40)) / 40;
+        expect(edge.ys[i]).toBeCloseTo(expected, 5);
       }
   });
   it('builds a signalised crossroads from a document', () => {
@@ -440,5 +525,39 @@ describe('tile stitching', () => {
     net.registerTile(right);
     // Road from x=20 to x=180: 160 m of centreline, 2 lanes.
     expect(net.stats().laneKm.road).toBeCloseTo(0.32, 1);
+  });
+
+  it('builds a tile registered in parts like the whole tile, stitched across the parts', () => {
+    const tile = {
+      key: 'T',
+      origin: [0, 0] as [number, number],
+      tileSize: 200,
+      features: [
+        streetFeature([0.1, 0.3], [0.9, 0.3]),
+        streetFeature([0.3, 0.1], [0.3, 0.9]),
+        streetFeature([0.1, 0.7], [0.9, 0.7]),
+      ],
+    };
+    const whole = new TransportNetwork();
+    whole.registerTile(tile);
+    const parts = new TransportNetwork();
+    for (const [i, j] of [
+      [0, 0],
+      [1, 0],
+      [0, 1],
+      [1, 1],
+    ] as const)
+      parts.registerTile({
+        ...tile,
+        key: `T:${i},${j}`,
+        bounds: [i * 100, j * 100, i * 100 + 100, j * 100 + 100],
+      });
+    expect(parts.stats().laneKm.road).toBeCloseTo(whole.stats().laneKm.road, 6);
+    // Eastbound at x=90 on the z=60 street runs straight on into the next part.
+    const east = parts.lane(parts.laneAt(90, 62, { class: 'road' })?.lane ?? '');
+    const next = parts.lane(east?.next.find((m) => m.turn === 'straight')?.to ?? '');
+    expect(parts.edge(next?.edge ?? '')?.tile).toBe('T:1,0');
+    // Both crossroads form, part borders adding none.
+    expect(parts.stats().junctions).toBe(whole.stats().junctions);
   });
 });

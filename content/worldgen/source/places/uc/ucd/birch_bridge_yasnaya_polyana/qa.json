@@ -1,0 +1,988 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.birch_bridge_yasnaya_polyana",
+  "reviewedOn": "2026-10-25",
+  "inputHash": "sha256:fdcd89d4940256149b6aa232241300981db4062ef5a5bcd0737f7cafea55178f",
+  "sourceHash": "sha256:82ecfc2efef19a13c857792887a6a4db64288831821abbee396036e76872419a",
+  "runtimeHash": "sha256:cf5f5ab8d2de97a878d131babea37c6eca18faf0a0956e554cfc4b295b7ef513",
+  "captureReportHash": "sha256:6fa1c966bf303ca20083c6356d3bcb1fc893feb5a7028df227b68fcdbe52c7e2",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-birch-deck-stringers-and-braced-rails.png",
+      "shots/clear-walking-deck-between-birch-rails.png",
+      "shots/bank-sill-deck-end-and-original-path.png",
+      "shots/roundwood-bark-branches-and-under-deck-clearance.png"
+    ],
+    "captureReportHash": "sha256:6fa1c966bf303ca20083c6356d3bcb1fc893feb5a7028df227b68fcdbe52c7e2",
+    "notes": "Inspected48 current frames:9 portable,9 shared-material,21 medium-fi and9 native/failed-load, plus full-resolution deck/rail/bank-join views during authoring. Complete small birch roundwood bridge with a flattened cross-log walking deck, two stringers, four posts on each side, two round rails and diagonal branch braces across three bays, and two grounded bank sills. Near LODs add restrained original dark bark patches and lightly irregular log sections. The continuous pass flattened excessively scalloped deck logs and aligned both ends with Molen’s actual painted path lift. Synthetic ground is context, not source geometry."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-birch-deck-stringers-and-braced-rails.png",
+      "shots/shared/clear-walking-deck-between-birch-rails.png",
+      "shots/shared/bank-sill-deck-end-and-original-path.png",
+      "shots/shared/roundwood-bark-branches-and-under-deck-clearance.png",
+      "shots/shared/placement.png"
+    ],
+    "captureReportHash": "sha256:31baa9308237ae0841e90e9a422895a8cdf9209031fbf1cec540052fe94399e2",
+    "notes": "Three roles—birch, bark and cutwood—reuse one existing256px wood_plain graph with pale birch, restrained dark bark and exposed wood tints. No embedded bitmap, private atlas or new graph. Metric projection, linear tints, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Each used graph reads once; unload releases model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-birch-deck-stringers-and-braced-rails.png",
+      "medium-fi/clear-walking-deck-between-birch-rails.png",
+      "medium-fi/bank-sill-deck-end-and-original-path.png",
+      "medium-fi/roundwood-bark-branches-and-under-deck-clearance.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:7ca8178c1acca780ed79ea9e0eaa7d5d1459406f54f70d3dec206541a62fb06e",
+    "notes": "Four authored LODs 700/1106/3596/7320triangles. Initial skyline+district157732bytes; closeup520852bytes. Skyline retains full bridge deck, both braced railings/stringers and bank supports below the1k structure ceiling; district adds separate transverse logs, while street/closeup add coarse bark patches and log facets. At most1nearby draws. Physical laptop/phone and dense-city measurements remain pending."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:1c9ec72fecb41cf5b65da4f2867b3a0de7e72e6e04f449eca897368265657989",
+    "mapFrameHash": "sha256:6a1bdfe56006e3dc673c82a603d8781a6ca3e2781227dcdfccd6ee8f0f35fd22",
+    "notes": "Named Берёзовый мостик POI node6338741863 and retained bridge way220075404/native35184592164236. Keep assigned catalog anchor[37.529629489862515,54.07371484837336]; model center follows the actual named bridge line, not the offset POI. Its7.19130507498251m span controls scale; local +X points southeast along the crossing, +Z southwest. Geographic heading-0.976052820930474rad rotates bridge-aligned model coordinates. The crossing center is3.6093086519670456m from the assigned POI. Width1.7m, upright height1.02m and gentle camber are photo-led approximations. Both path connections remain at original mapped endpoints. Retained standard Protomaps20261020 and Mapzen201x201/6m field; outside path control[-6.895367313634742,2.7818017351262614]sets datum204.78745102461338m. Original terrain/pond heights remain unchanged; the two solid bank sills seat into the original terrain without ground cutouts. Deck end tops align with shipped PATH_SURFACE_LIFT0.43m plus0.02m clearance, so the approach paths join the walking surface. Supports extend from that deck down into original ground. The narrow brook/ravine is not resolved by this coarse grid: under-deck ground may be close to the deck. Do not excavate or add water to imply unverified bathymetry. Native visual acceptance must check deck clearance and both bank joins. Replace only loaded bridge-tagged road segments in the exact deck outline; untagged paths and failed-load fallback remain. Inspected native whole bridge, clear walking route and both supported bank ends. Actual rendered path joins differ from deck ends by-0.0203/+0.0161m. The named bridge road segment is removed only after actual model load; all independent paths/buildings remain. Flattened cross-log walking faces remove deep artificial scallops between deck logs. The standard grid does not resolve the small brook/ravine; this is an explicit approximate site fit, not verified bathymetry. Actual bank joins differ from rendered path heights by-0.0203/+0.0161m. Loading removes only the named bridge-tagged segment; all other path geometry,243 resident/295 wider independent buildings and40070.675m² original pond water remain unchanged. Solid bank sills seat into original ground without cutouts; all ground remains under the span, supports and both approaches. Failed loading preserves the map bridge and all buildings; unload restores all terrain/water and releases geometry."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete small birch roundwood footbridge: transverse pale-log deck, two longitudinal stringers, paired four-post railings with two round rails and diagonal branch braces, two bank sills and coarse dark bark patches. Original geometry and shared wood_plain material graph, with four authored LODs. No private texture atlas, copied photo pixels, invented pond or excavated channel. Hidden joinery and support sizes are reconstructed. Deck end tops follow the shipped path painter lift0.43m plus0.02m clearance above the original standard terrain; end heights relative to bank datum are[0.40270173368444945,0.0452890245445417]m with0.12m gentle central camber. Cross logs have flattened walking faces, round lower sections and shared pale wood with restrained bark patches. Four posts per side, two rails and diagonal branch braces form three bays. Two end sills extend0.22m into original ground. Clear walking width about1.45m. Exact log census, bark inventory, joinery, width and historical levels/accessibility remain approximate. Retained standard Protomaps20261020 and Mapzen201x201/6m field; outside path control[-6.895367313634742,2.7818017351262614]sets datum204.78745102461338m. Original terrain/pond heights remain unchanged; the two solid bank sills seat into the original terrain without ground cutouts. Deck end tops align with shipped PATH_SURFACE_LIFT0.43m plus0.02m clearance, so the approach paths join the walking surface. Supports extend from that deck down into original ground. The narrow brook/ravine is not resolved by this coarse grid: under-deck ground may be close to the deck. Do not excavate or add water to imply unverified bathymetry. Native visual acceptance must check deck clearance and both bank joins. Replace only loaded bridge-tagged road segments in the exact deck outline; untagged paths and failed-load fallback remain. Ordinary close photograph establishes pale birch bark, roundwood deck/rails/posts and diagonal branch braces; source center/axis/span follow the named mapped crossing. Coarse standard terrain does not resolve the narrow brook/ravine, so its precise channel, bathymetry, under-deck clearance and bank cross-slope are not survey verified. Shared wood grain approximates bark; sparse geometry carries identity markings. Exact width, log/brace census, hidden joinery and historic levels/accessibility remain reconstructed. Native placement is an explicitly approximate fit, not a channel reconstruction. Other estate structures remain procedural context in the isolated fixture."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/models/source.glb\",\"hash\":\"sha256:82ecfc2efef19a13c857792887a6a4db64288831821abbee396036e76872419a\",\"bytes\":655596,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.glb\",\"hash\":\"sha256:cf5f5ab8d2de97a878d131babea37c6eca18faf0a0956e554cfc4b295b7ef513\",\"bytes\":655360,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.skyline.glb\",\"hash\":\"sha256:edfd4f79a280892f974ffbd658d8bae6f717e91e534915e3dd843b2930768405\",\"bytes\":67984,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.district.glb\",\"hash\":\"sha256:18dd29bf1b23faa117a2d97fc1ba468fb604453329b5ee26ab18760dc89b8dce\",\"bytes\":89748,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.street.glb\",\"hash\":\"sha256:9028b77ab8eb9a1b6080f03fd46b89f2c8e5ad62a1a0e000c5171e17ece93d41\",\"bytes\":270404,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.closeup.glb\",\"hash\":\"sha256:b93887a5c07fb14cee89f3650fd7845bd0579a6ba53df46bb2402afea007ad2b\",\"bytes\":520852,\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "full-roundwood-bridge-deck-rails-stringers-and-bank-sills",
+        "passed": true,
+        "notes": "210 actual mesh/contact probes across six GLBs; finite attributes, all byte pins, shared bindings, LOD caps, separate streams and initial download budget pass."
+      }
+    ]
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Named Берёзовый мостик POI node6338741863 and retained bridge way220075404/native35184592164236. Keep assigned catalog anchor[37.529629489862515,54.07371484837336]; model center follows the actual named bridge line, not the offset POI. Its7.19130507498251m span controls scale; local +X points southeast along the crossing, +Z southwest. Geographic heading-0.976052820930474rad rotates bridge-aligned model coordinates. The crossing center is3.6093086519670456m from the assigned POI. Width1.7m, upright height1.02m and gentle camber are photo-led approximations. Both path connections remain at original mapped endpoints. Retained standard Protomaps20261020 and Mapzen201x201/6m field; outside path control[-6.895367313634742,2.7818017351262614]sets datum204.78745102461338m. Original terrain/pond heights remain unchanged; the two solid bank sills seat into the original terrain without ground cutouts. Deck end tops align with shipped PATH_SURFACE_LIFT0.43m plus0.02m clearance, so the approach paths join the walking surface. Supports extend from that deck down into original ground. The narrow brook/ravine is not resolved by this coarse grid: under-deck ground may be close to the deck. Do not excavate or add water to imply unverified bathymetry. Native visual acceptance must check deck clearance and both bank joins. Replace only loaded bridge-tagged road segments in the exact deck outline; untagged paths and failed-load fallback remain. Inspected native whole bridge, clear walking route and both supported bank ends. Actual rendered path joins differ from deck ends by-0.0203/+0.0161m. The named bridge road segment is removed only after actual model load; all independent paths/buildings remain. Flattened cross-log walking faces remove deep artificial scallops between deck logs. The standard grid does not resolve the small brook/ravine; this is an explicit approximate site fit, not verified bathymetry. Actual bank joins differ from rendered path heights by-0.0203/+0.0161m. Loading removes only the named bridge-tagged segment; all other path geometry,243 resident/295 wider independent buildings and40070.675m² original pond water remain unchanged. Solid bank sills seat into original ground without cutouts; all ground remains under the span, supports and both approaches. Failed loading preserves the map bridge and all buildings; unload restores all terrain/water and releases geometry."
+    },
+    "inputHash": "sha256:fdcd89d4940256149b6aa232241300981db4062ef5a5bcd0737f7cafea55178f",
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:fdcd89d4940256149b6aa232241300981db4062ef5a5bcd0737f7cafea55178f",
+      "reviewedOn": "2026-10-25",
+      "method": "Inspected48 current frames:9 portable,9 shared-material,21 medium-fi and9 native/failed-load, plus full-resolution deck/rail/bank-join views during authoring. Complete small birch roundwood bridge with a flattened cross-log walking deck, two stringers, four posts on each side, two round rails and diagonal branch braces across three bays, and two grounded bank sills. Near LODs add restrained original dark bark patches and lightly irregular log sections. The continuous pass flattened excessively scalloped deck logs and aligned both ends with Molen’s actual painted path lift. Synthetic ground is context, not source geometry.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/preview.png",
+          "hash": "sha256:fb60e809680c4e0c8cc33783f9cb65cb07088cef23fc23792a017cedfdc68675"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/turntable/angle_0.png",
+          "hash": "sha256:94d1e27605998d42d5c5d50026e1817a1f90b44becdff04f32572bac81be06a1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/turntable/angle_1.png",
+          "hash": "sha256:9ebffbca138b0c24aa89e1c17aac90b62454f7727c15a4827850af4841ce8967"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/turntable/angle_2.png",
+          "hash": "sha256:6d850cf7b4ea1c488fff98c82654cc2b2ff0f91e20df005a47c70267cec7a381"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/turntable/angle_3.png",
+          "hash": "sha256:3973906313d02f14afedbd2a2e92433376ae69691483ebaf4da47d5a29ae321b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/whole-birch-deck-stringers-and-braced-rails.png",
+          "hash": "sha256:571aa7061edf971f2233c31fee7c26e51a2929d4cca98d28c8f5823c29673e40"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/clear-walking-deck-between-birch-rails.png",
+          "hash": "sha256:63215f9f2dc590326180dfba1e3c8cf503c5b9689147756d3e23f1db675f35ab"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/bank-sill-deck-end-and-original-path.png",
+          "hash": "sha256:8e217a098e2607371a4d8ba8ef60518e6469b71871531a33623ff9f11b719846"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/roundwood-bark-branches-and-under-deck-clearance.png",
+          "hash": "sha256:f5b2b44853054fc58ebfc52265e7cd7a9b6ed249aede0c5f933344d2e2301ed3"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/angle-0.png",
+          "hash": "sha256:ba51017c0bd9ab150e3d39a01bfb55899b5a74eac244c91f18e3683cbe4d2b7c"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/angle-1.png",
+          "hash": "sha256:efbd543796a20a9fc0fd3f32cee5a399d0f531551169decfd4e1d71cdb338cd1"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/angle-2.png",
+          "hash": "sha256:e0127c437f8c597de5ba64fefaf2415fe106e1e55077c8aaa252519b6326bbed"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/angle-3.png",
+          "hash": "sha256:fce4163082c84f3c7310031c0944b7217028e183412dec8c200808143576cad4"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/whole-birch-deck-stringers-and-braced-rails.png",
+          "hash": "sha256:f88d3ee55253d33376b91368aeca07a8b8a49daf330c656e2ca2f2fbeeacc879"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/clear-walking-deck-between-birch-rails.png",
+          "hash": "sha256:6b410542f2aeea218f29d0ee5f01286bfd3aed4593f756198953773aa124e338"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/bank-sill-deck-end-and-original-path.png",
+          "hash": "sha256:f69d1b7b0e90cfec6537d81c77770a9c55e23111b9704dcea7766d9503f877b6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/roundwood-bark-branches-and-under-deck-clearance.png",
+          "hash": "sha256:0606b43ada5e40bcdcd4f32c57ae10e637f73770f43d9aa471f2601d1a94751f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/shots/shared/placement.png",
+          "hash": "sha256:6b66f6e58550e2f0e1de8264431a94f28199e4e4dfac15d33a6e66b4774338fa"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/street-noon-economy.png",
+          "hash": "sha256:8334af3b7f5f61d756121498313a9a97c602334ff28c80a7eccc7c635cb9e85e"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/street-noon-high.png",
+          "hash": "sha256:1508f6aee7061d67d54fcc858b7ba807e057a7c60ec68b5540041f43387b57ea"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/street-late-economy.png",
+          "hash": "sha256:0654a1a1ae2fe7bbad1d0d09d1cfb27ccd6b66e5fd7d5f922746754b76e6dffb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/street-late-high.png",
+          "hash": "sha256:94ac291f6612040cdde79e92dfcc21e4a69d1070039e1602f510d0497ae4704b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/block-noon-economy.png",
+          "hash": "sha256:e79d6dc16f1db701d094399248f8b01a276ec247cea326af719b5f32402812f9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/block-noon-high.png",
+          "hash": "sha256:7624b3551c9adc53fc2d0eb94b134fbc563567c71db7bf89d487e83e5217ca88"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/block-late-economy.png",
+          "hash": "sha256:99a06af76301569df0693d5e65b95dd528d17f0a5d69181307d7653811a15c2b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/block-late-high.png",
+          "hash": "sha256:e45db42fdd0ee0d00ef3ac3f2328b7234fbfcc3d8c4b99f6b09603ae7f3ad8ec"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:e14d2e1abe5f53ff86f483741fe384ec0c56a50cf30b247d9a7764bd3db75d29"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:8c3448160f31804675c9fe4e0faf5057595b3b890d294f1a86200fb8f3ccb691"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:27bd1237722db5b0ca6a0676810eb81a2ea39beb46a13666b94ffa3dc23804cd"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/skyline-late-high.png",
+          "hash": "sha256:15a959d2ba2ff3d500f11908195984a18b750b1fa4ac5d939b677c752772926b"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/silhouette.png",
+          "hash": "sha256:3f71f432fa59638f8c2b6344cb4978e58f058139727a5d8774b4751395be18bb"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/whole-birch-deck-stringers-and-braced-rails.png",
+          "hash": "sha256:3c650a99af75ef1c4b1164a0f2bd680822aa8bbc7265235079f4a1953fa9bd98"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/clear-walking-deck-between-birch-rails.png",
+          "hash": "sha256:d3372c46acf1235083b6ad4664133ed64b5b174d0e8a7928292f145d3fe15db6"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/bank-sill-deck-end-and-original-path.png",
+          "hash": "sha256:581e0a7ccdfd7618d5f5135610bcf36fe786efc5252639da6311518f922eea34"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/roundwood-bark-branches-and-under-deck-clearance.png",
+          "hash": "sha256:b5cc2ebdd5a6c6a06c9c0ba9dda8f3e8b22baf322ae08e6a64fc1ff46b2ca75f"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/transition-skyline.png",
+          "hash": "sha256:53afe1597f3a75d94d6423a20e38f9939bb223a37675e7d2cfe668bce4d833c9"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/transition-district.png",
+          "hash": "sha256:7624b3551c9adc53fc2d0eb94b134fbc563567c71db7bf89d487e83e5217ca88"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/transition-street.png",
+          "hash": "sha256:b9172e6a014aa1bccfb95bc3feb5957f06d55e2b80256e05bc9c030795089f37"
+        },
+        {
+          "path": "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/medium-fi/transition-closeup.png",
+          "hash": "sha256:0e73a6965fcff0068d3e453c899fecd0ee1fec45972aee4eb1da333951c9fa4b"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-skyline-whole-site.png",
+          "hash": "sha256:03f62f613150e67370a353a44e139c486376945ffe38178a2c68b99791b7e7b6"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-district-whole-site.png",
+          "hash": "sha256:6e328fa404ea2ff227579dea45791bf155bb8640262ed351233834408d37cc04"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-street-whole-site.png",
+          "hash": "sha256:fdd9443f5fd547081ebaf113d7ceed286214954e7ebfa8a7a4e6450c0ac9157e"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-closeup-whole-site.png",
+          "hash": "sha256:126eaa874e519219cca393f616a19af8e3e46a80605fd8d3cf0a6a3c6dddb117"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-closeup-whole-birch-deck-stringers-and-braced-rails.png",
+          "hash": "sha256:4957d7587eaaaefe1819f899760b9b17598c4ab0951163db818ebe1a33a58157"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-closeup-clear-walking-deck-between-birch-rails.png",
+          "hash": "sha256:2bb100a6b5747e317e4c27f4b2995ecc3a69b0929eb9da1a9495714bd1f1eacd"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-closeup-bank-sill-deck-end-and-original-path.png",
+          "hash": "sha256:8aef71b3bdcc749ce4b2a75f15fb771f5ec6d3b95d3d3c1eb1c2b4c9a77b01d6"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-closeup-roundwood-bark-branches-and-under-deck-clearance.png",
+          "hash": "sha256:86596cf4210a319e593d874573d8299208cf43460dc01c7ad336f87be9802f56"
+        },
+        {
+          "path": ".artifacts/birch-bridge-integration/shots/final-failure-whole-site.png",
+          "hash": "sha256:5a3b3cbb7c3220d67d88ddcd5db03e73b8098d9b371df2c5c8428b567d173fa0"
+        }
+      ]
+    },
+    "sceneInputs": {
+      "inputHash": "sha256:fdcd89d4940256149b6aa232241300981db4062ef5a5bcd0737f7cafea55178f",
+      "sourceHash": "sha256:82ecfc2efef19a13c857792887a6a4db64288831821abbee396036e76872419a",
+      "runtimeHash": "sha256:cf5f5ab8d2de97a878d131babea37c6eca18faf0a0956e554cfc4b295b7ef513",
+      "files": {
+        "content/worldgen/source/places/uc/ucd/birch_bridge_yasnaya_polyana/models/source.glb": "sha256:82ecfc2efef19a13c857792887a6a4db64288831821abbee396036e76872419a",
+        "content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.glb": "sha256:cf5f5ab8d2de97a878d131babea37c6eca18faf0a0956e554cfc4b295b7ef513",
+        "content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.skyline.glb": "sha256:edfd4f79a280892f974ffbd658d8bae6f717e91e534915e3dd843b2930768405",
+        "content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.district.glb": "sha256:18dd29bf1b23faa117a2d97fc1ba468fb604453329b5ee26ab18760dc89b8dce",
+        "content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.street.glb": "sha256:9028b77ab8eb9a1b6080f03fd46b89f2c8e5ad62a1a0e000c5171e17ece93d41",
+        "content/worldgen/assets/places/uc/ucd/birch_bridge_yasnaya_polyana/model.closeup.glb": "sha256:b93887a5c07fb14cee89f3650fd7845bd0579a6ba53df46bb2402afea007ad2b"
+      }
+    },
+    "nativeOverlapAudit": {
+      "status": "passed",
+      "ownedNativeIds": [],
+      "ownedRoadIds": [
+        35184592164236
+      ],
+      "mapLevels": [
+        {
+          "source": "retained detailed named bridge segment",
+          "id": 35184592164236,
+          "owned": true,
+          "level": 15,
+          "runtimePassed": true,
+          "heading": -0.976052820930474
+        }
+      ],
+      "residentIndependent": 243,
+      "widerIndependent": 295,
+      "originalGridRetained": true
+    },
+    "reports": [
+      {
+        "level": "skyline",
+        "state": {
+          "bankConnections": [
+            {
+              "side": -1,
+              "roadY": 0.4230375353533873,
+              "deckY": 0.40270173368444945,
+              "difference": -0.020335801668937836
+            },
+            {
+              "side": 1,
+              "roadY": 0.02917313162015489,
+              "deckY": 0.0452890245445417,
+              "difference": 0.01611589292438681
+            }
+          ],
+          "namedBridgeRemaining": 0,
+          "independentRoadsUnchanged": true,
+          "terrainUnderDeck": true,
+          "bankJoinGround": [
+            true,
+            true
+          ],
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "skyline",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.birch_bridge_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.03675102461338,
+            "max": 38.94734897538663
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-skyline-whole-site.png",
+            "hash": "sha256:03f62f613150e67370a353a44e139c486376945ffe38178a2c68b99791b7e7b6",
+            "state": {
+              "level": "skyline",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 272601
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                9.700285223856513,
+                7,
+                13.781801735126262
+              ],
+              "lookAt": [
+                -2.2997147761434875,
+                0.7439953791144955,
+                2.7818017351262614
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "district",
+        "state": {
+          "bankConnections": [
+            {
+              "side": -1,
+              "roadY": 0.4230375353533873,
+              "deckY": 0.40270173368444945,
+              "difference": -0.020335801668937836
+            },
+            {
+              "side": 1,
+              "roadY": 0.02917313162015489,
+              "deckY": 0.0452890245445417,
+              "difference": 0.01611589292438681
+            }
+          ],
+          "namedBridgeRemaining": 0,
+          "independentRoadsUnchanged": true,
+          "terrainUnderDeck": true,
+          "bankJoinGround": [
+            true,
+            true
+          ],
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "district",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.birch_bridge_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.03675102461338,
+            "max": 38.94734897538663
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-district-whole-site.png",
+            "hash": "sha256:6e328fa404ea2ff227579dea45791bf155bb8640262ed351233834408d37cc04",
+            "state": {
+              "level": "district",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 273007
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                9.700285223856513,
+                7,
+                13.781801735126262
+              ],
+              "lookAt": [
+                -2.2997147761434875,
+                0.7439953791144955,
+                2.7818017351262614
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "street",
+        "state": {
+          "bankConnections": [
+            {
+              "side": -1,
+              "roadY": 0.4230375353533873,
+              "deckY": 0.40270173368444945,
+              "difference": -0.020335801668937836
+            },
+            {
+              "side": 1,
+              "roadY": 0.02917313162015489,
+              "deckY": 0.0452890245445417,
+              "difference": 0.01611589292438681
+            }
+          ],
+          "namedBridgeRemaining": 0,
+          "independentRoadsUnchanged": true,
+          "terrainUnderDeck": true,
+          "bankJoinGround": [
+            true,
+            true
+          ],
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "street",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.birch_bridge_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.03675102461338,
+            "max": 38.94734897538663
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-street-whole-site.png",
+            "hash": "sha256:fdd9443f5fd547081ebaf113d7ceed286214954e7ebfa8a7a4e6450c0ac9157e",
+            "state": {
+              "level": "street",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 275497
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                9.700285223856513,
+                7,
+                13.781801735126262
+              ],
+              "lookAt": [
+                -2.2997147761434875,
+                0.7439953791144955,
+                2.7818017351262614
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "closeup",
+        "state": {
+          "bankConnections": [
+            {
+              "side": -1,
+              "roadY": 0.4230375353533873,
+              "deckY": 0.40270173368444945,
+              "difference": -0.020335801668937836
+            },
+            {
+              "side": 1,
+              "roadY": 0.02917313162015489,
+              "deckY": 0.0452890245445417,
+              "difference": 0.01611589292438681
+            }
+          ],
+          "namedBridgeRemaining": 0,
+          "independentRoadsUnchanged": true,
+          "terrainUnderDeck": true,
+          "bankJoinGround": [
+            true,
+            true
+          ],
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": 0,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "closeup",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": false,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": true,
+          "surfaceReads": {
+            "molen.worldgen.material.wood_plain": 1
+          },
+          "loads": [
+            "molen.worldgen.structure.birch_bridge_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.03675102461338,
+            "max": 38.94734897538663
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-closeup-whole-site.png",
+            "hash": "sha256:126eaa874e519219cca393f616a19af8e3e46a80605fd8d3cf0a6a3c6dddb117",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 279221
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                9.700285223856513,
+                7,
+                13.781801735126262
+              ],
+              "lookAt": [
+                -2.2997147761434875,
+                0.7439953791144955,
+                2.7818017351262614
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-closeup-whole-birch-deck-stringers-and-braced-rails.png",
+            "hash": "sha256:4957d7587eaaaefe1819f899760b9b17598c4ab0951163db818ebe1a33a58157",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 279221
+            },
+            "camera": {
+              "name": "whole-birch-deck-stringers-and-braced-rails",
+              "position": [
+                7.700285223856513,
+                5,
+                9.781801735126262
+              ],
+              "lookAt": [
+                -2.2997147761434875,
+                0.8439953791144956,
+                2.7818017351262614
+              ],
+              "fov": 48
+            }
+          },
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-closeup-clear-walking-deck-between-birch-rails.png",
+            "hash": "sha256:2bb100a6b5747e317e4c27f4b2995ecc3a69b0929eb9da1a9495714bd1f1eacd",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 279221
+            },
+            "camera": {
+              "name": "clear-walking-deck-between-birch-rails",
+              "position": [
+                -10.299714776143487,
+                3,
+                2.7818017351262614
+              ],
+              "lookAt": [
+                -2.2997147761434875,
+                0.8439953791144956,
+                2.7818017351262614
+              ],
+              "fov": 52
+            }
+          },
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-closeup-bank-sill-deck-end-and-original-path.png",
+            "hash": "sha256:8aef71b3bdcc749ce4b2a75f15fb771f5ec6d3b95d3d3c1eb1c2b4c9a77b01d6",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 279221
+            },
+            "camera": {
+              "name": "bank-sill-deck-end-and-original-path",
+              "position": [
+                -7.299714776143487,
+                2,
+                6.781801735126262
+              ],
+              "lookAt": [
+                -5.895367313634742,
+                0.3027017336844494,
+                2.7818017351262614
+              ],
+              "fov": 50
+            }
+          },
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-closeup-roundwood-bark-branches-and-under-deck-clearance.png",
+            "hash": "sha256:86596cf4210a319e593d874573d8299208cf43460dc01c7ad336f87be9802f56",
+            "state": {
+              "level": "closeup",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 14,
+              "triangles": 279221
+            },
+            "camera": {
+              "name": "roundwood-bark-branches-and-under-deck-clearance",
+              "position": [
+                -0.2997147761434875,
+                2,
+                7.781801735126262
+              ],
+              "lookAt": [
+                -2.2997147761434875,
+                0.7439953791144955,
+                2.7818017351262614
+              ],
+              "fov": 50
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      },
+      {
+        "level": "failure",
+        "state": {
+          "bankConnections": [
+            {
+              "side": -1,
+              "roadY": 0.4230375353533873,
+              "deckY": 0.40270173368444945,
+              "difference": -0.020335801668937836
+            },
+            {
+              "side": 1,
+              "roadY": 0.02917313162015489,
+              "deckY": 0.0452890245445417,
+              "difference": 0.01611589292438681
+            }
+          ],
+          "namedBridgeRemaining": 1,
+          "independentRoadsUnchanged": true,
+          "terrainUnderDeck": true,
+          "bankJoinGround": [
+            true,
+            true
+          ],
+          "ensemble": false,
+          "terrainAtAllPassages": true,
+          "terrainAtAllCourtyards": true,
+          "terrainAtForecourtApproaches": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "terrainAtUnderCanopy": true,
+          "terrainAtUnderCanopyCenter": true,
+          "terrainAtCourtyard": true,
+          "terrainAtPortico": true,
+          "terrainAtNorthApproach": true,
+          "terrainAtCoreFloor": true,
+          "terrainAtCoreCenter": true,
+          "modelWorldY": null,
+          "terrainAtAttachment": true,
+          "nativeRoadInputsUnchanged": true,
+          "level": "failure",
+          "partial": false,
+          "groundOutsideResidentTile": true,
+          "terrainAtMapAnchor": true,
+          "failedLoad": true,
+          "sourceBuildings": 243,
+          "independentBuildings": 243,
+          "remainingBuildings": 243,
+          "changedIndependent": [],
+          "remainingAuthored": [],
+          "groundCutoutActive": false,
+          "modelLoaded": false,
+          "surfaceReads": {},
+          "loads": [
+            "molen.worldgen.structure.birch_bridge_yasnaya_polyana"
+          ],
+          "rawTerrainRange": {
+            "min": -18.03675102461338,
+            "max": 38.94734897538663
+          },
+          "sourceGridModified": false,
+          "waterCutoutActive": false,
+          "sourceWaterArea": 40070.6754971639,
+          "remainingWaterArea": 40070.6754971639,
+          "nativeWaterUnchanged": true
+        },
+        "frames": [
+          {
+            "path": ".artifacts/birch-bridge-integration/shots/final-failure-whole-site.png",
+            "hash": "sha256:5a3b3cbb7c3220d67d88ddcd5db03e73b8098d9b371df2c5c8428b567d173fa0",
+            "state": {
+              "level": "failure",
+              "mode": "high",
+              "groundCutoutActive": false,
+              "draws": 13,
+              "triangles": 271981
+            },
+            "camera": {
+              "name": "whole-site",
+              "position": [
+                9.700285223856513,
+                7,
+                13.781801735126262
+              ],
+              "lookAt": [
+                -2.2997147761434875,
+                0.7439953791144955,
+                2.7818017351262614
+              ],
+              "fov": 48
+            }
+          }
+        ],
+        "unloaded": {
+          "groundRestored": true,
+          "waterRestored": true,
+          "liveGeometries": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limitations": [
+    "Complete small birch roundwood footbridge: transverse pale-log deck, two longitudinal stringers, paired four-post railings with two round rails and diagonal branch braces, two bank sills and coarse dark bark patches. Original geometry and shared wood_plain material graph, with four authored LODs. No private texture atlas, copied photo pixels, invented pond or excavated channel. Hidden joinery and support sizes are reconstructed. Deck end tops follow the shipped path painter lift0.43m plus0.02m clearance above the original standard terrain; end heights relative to bank datum are[0.40270173368444945,0.0452890245445417]m with0.12m gentle central camber. Cross logs have flattened walking faces, round lower sections and shared pale wood with restrained bark patches. Four posts per side, two rails and diagonal branch braces form three bays. Two end sills extend0.22m into original ground. Clear walking width about1.45m. Exact log census, bark inventory, joinery, width and historical levels/accessibility remain approximate. Retained standard Protomaps20261020 and Mapzen201x201/6m field; outside path control[-6.895367313634742,2.7818017351262614]sets datum204.78745102461338m. Original terrain/pond heights remain unchanged; the two solid bank sills seat into the original terrain without ground cutouts. Deck end tops align with shipped PATH_SURFACE_LIFT0.43m plus0.02m clearance, so the approach paths join the walking surface. Supports extend from that deck down into original ground. The narrow brook/ravine is not resolved by this coarse grid: under-deck ground may be close to the deck. Do not excavate or add water to imply unverified bathymetry. Native visual acceptance must check deck clearance and both bank joins. Replace only loaded bridge-tagged road segments in the exact deck outline; untagged paths and failed-load fallback remain. Ordinary close photograph establishes pale birch bark, roundwood deck/rails/posts and diagonal branch braces; source center/axis/span follow the named mapped crossing. Coarse standard terrain does not resolve the narrow brook/ravine, so its precise channel, bathymetry, under-deck clearance and bank cross-slope are not survey verified. Shared wood grain approximates bark; sparse geometry carries identity markings. Exact width, log/brace census, hidden joinery and historic levels/accessibility remain reconstructed. Native placement is an explicitly approximate fit, not a channel reconstruction. Other estate structures remain procedural context in the isolated fixture."
+  ]
+}

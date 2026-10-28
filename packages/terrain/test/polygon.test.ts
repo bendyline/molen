@@ -1,6 +1,8 @@
+import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import {
   clampBounds,
+  convexTrianglePieces,
   isDegenerateRing,
   normalizeRing,
   pointInPolygon,
@@ -57,7 +59,11 @@ describe('semantic polygon helpers', () => {
     expect(roadWidth('path')).toBe(2.5);
     expect(roadWidth('service', 4.5)).toBe(4.5);
     expect(waterwayWidth('river')).toBe(10);
-    expect(waterwayWidth(undefined)).toBe(5);
+    expect(waterwayWidth(undefined)).toBe(2.5);
+    expect(waterwayWidth('canal')).toBe(5);
+    expect(waterwayWidth('ditch')).toBe(1);
+    expect(waterwayWidth('moat')).toBe(4);
+    expect(waterwayWidth('canal', 18)).toBe(18);
   });
 });
 
@@ -95,5 +101,76 @@ describe('degenerate ring detection', () => {
         [0, 1],
       ]),
     ).toBe(false);
+  });
+});
+
+describe('convexTrianglePieces', () => {
+  const area = (points: readonly (readonly [number, number])[], cycle: readonly number[]) =>
+    cycle.reduce((sum, v, i) => {
+      const p = points[v] as readonly [number, number];
+      const q = points[cycle[(i + 1) % cycle.length] as number] as readonly [number, number];
+      return sum + p[0] * q[1] - q[0] * p[1];
+    }, 0) / 2;
+
+  it('merges a triangulated shape into fewer convex pieces covering the same area', () => {
+    // A river-like strip with bends and an island, triangulated as the water mesh is.
+    const outer: [number, number][] = [];
+    for (let i = 0; i <= 40; i++) outer.push([i * 10, Math.sin(i / 4) * 30]);
+    for (let i = 40; i >= 0; i--) outer.push([i * 10, Math.sin(i / 4) * 30 + 25 + (i % 7)]);
+    const hole: [number, number][] = [
+      [150, -12],
+      [170, -12],
+      [170, -4],
+      [150, -4],
+    ];
+    const toVectors = (ring: [number, number][]) => ring.map(([x, y]) => new THREE.Vector2(x, y));
+    const triangles = THREE.ShapeUtils.triangulateShape(toVectors(outer), [toVectors(hole)]) as [
+      number,
+      number,
+      number,
+    ][];
+    const points = [...outer, ...hole];
+    const pieces = convexTrianglePieces(points, triangles);
+    expect(pieces.length).toBeGreaterThan(0);
+    expect(pieces.length).toBeLessThan(triangles.length / 2);
+    const winding = Math.sign(area(points, triangles[0] as number[]));
+    let total = 0;
+    for (const piece of pieces) {
+      // Convex, wound like the triangles.
+      for (let i = 0; i < piece.length; i++) {
+        const a = points[piece[i] as number] as [number, number];
+        const b = points[piece[(i + 1) % piece.length] as number] as [number, number];
+        const c = points[piece[(i + 2) % piece.length] as number] as [number, number];
+        const turn = (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]);
+        expect(turn * winding).toBeGreaterThanOrEqual(0);
+      }
+      total += area(points, piece);
+    }
+    const expected = triangles.reduce((sum, t) => sum + area(points, t), 0);
+    expect(total).toBeCloseTo(expected, 6);
+    // Every triangle lies in exactly one piece.
+    for (const t of triangles) {
+      const cx = t.reduce((s, v) => s + (points[v] as [number, number])[0], 0) / 3;
+      const cy = t.reduce((s, v) => s + (points[v] as [number, number])[1], 0) / 3;
+      const holders = pieces.filter((piece) =>
+        pointInPolygon([cx, cy], { outer: piece.map((v) => points[v] as [number, number]) }),
+      );
+      expect(holders).toHaveLength(1);
+    }
+  });
+
+  it('leaves zero-area triangles out and keeps a lone triangle as it is', () => {
+    const points: [number, number][] = [
+      [0, 0],
+      [1, 0],
+      [0, 1],
+      [2, 0],
+    ];
+    expect(
+      convexTrianglePieces(points, [
+        [0, 1, 2],
+        [0, 1, 3],
+      ]),
+    ).toEqual([[0, 1, 2]]);
   });
 });

@@ -20,7 +20,7 @@ Primary engineer/architect photographs and drawings consulted, not embedded. Ori
 
 ## Authored geometry and materials
 
-1,489,974 triangles, 2,822,476 vertices, 8 surface groups; 119,496,776 source bytes. SHA-256: `sha256:7f5d758f4ce38887b3cb8a9c064b2f2d9fd8cef2451fb58308e01e1ae9f74ad0`. Actual bounds: -168.582, 0.000, -188.877 to 168.553, 108.000, 188.751 m.
+1,388,718 triangles, 2,828,068 vertices, 8 surface groups; 118,483,016 source bytes. SHA-256: `sha256:ee57bbf1b1f86508b39fc73abeaa76c93ad3da83a0284010c50ee9fef8f7786d`. Actual bounds: -168.582, 0.000, -188.877 to 168.553, 108.000, 188.751 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_expanded_diamond` (0.12 × 0.04 m), `matgraph:molen.worldgen.material.membrane` (4 × 4 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Mapped roof centre at external street datum. +Z follows the roof major axis northwest. Field8m and main entry18m above street follow the scaled architect sections."}.
 

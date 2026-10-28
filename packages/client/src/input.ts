@@ -2,6 +2,8 @@ import type { GamepadAxisBinding, InputDevice, InputProfile } from '@bendyline/m
 import { inputProfileIssues, inputProfileSchema } from '@bendyline/molen-schema';
 
 type Unsubscribe = () => void;
+/** With no gamepad announced, the browser's pads are still polled every this many updates. */
+const IDLE_POLL = 120;
 export interface InputBindings {
   bindings: Record<string, string>;
 }
@@ -101,6 +103,13 @@ export class InputMap {
   private readonly provider: () => readonly (InputGamepad | null)[];
   private readonly listeners: Array<[string, (ev: unknown) => void]> = [];
   private status: 'available' | 'unavailable' | 'blocked' = 'unavailable';
+  /**
+   * With the browser's own gamepads and a target that reports `gamepadconnected`, the pads
+   * connected since (and the updates since the last poll): `navigator.getGamepads()` blocked
+   * Chrome's main thread several milliseconds a frame on Windows with no gamepad attached.
+   */
+  private padsAnnounced: number | undefined;
+  private idleUpdates = 0;
 
   constructor(opts: InputMapOptions) {
     // Pick only profile fields: options contain host objects/functions, never serialized data.
@@ -123,6 +132,19 @@ export class InputMap {
     )
       this.status = 'available';
     if (this.target) this.attach(this.target);
+    if (opts.getGamepads === undefined && this.target && this.status === 'available') {
+      this.padsAnnounced = 0;
+      const add = (type: string, fn: (ev: unknown) => void): void => {
+        this.target?.addEventListener(type, fn);
+        this.listeners.push([type, fn]);
+      };
+      add('gamepadconnected', () => {
+        this.padsAnnounced = (this.padsAnnounced ?? 0) + 1;
+      });
+      add('gamepaddisconnected', () => {
+        this.padsAnnounced = Math.max(0, (this.padsAnnounced ?? 0) - 1);
+      });
+    }
   }
 
   private get accepting(): boolean {
@@ -183,21 +205,28 @@ export class InputMap {
   /** Poll fresh browser objects; unplugging or losing permission releases affected controls. */
   update(): void {
     if (this.disposed) return;
+    // Probe once immediately: a controller may already be connected before we attach listeners.
+    // With no pad announced or found, poll only now and then in case an announcement was missed.
+    const quiet =
+      this.padsAnnounced === 0 && this.pads.length === 0 && this.idleUpdates++ % IDLE_POLL !== 0;
     try {
-      this.pads = this.provider()
-        .filter((pad): pad is InputGamepad => pad?.connected === true)
-        .map((pad) => ({
-          id: pad.id,
-          index: pad.index,
-          connected: pad.connected,
-          mapping: pad.mapping,
-          axes: Array.from(pad.axes),
-          buttons: Array.from(pad.buttons, (button) => ({
-            pressed: button.pressed,
-            value: button.value,
-          })),
-        }));
-      if (this.status === 'blocked') this.status = 'available';
+      if (quiet) this.pads = [];
+      else {
+        this.pads = this.provider()
+          .filter((pad): pad is InputGamepad => pad?.connected === true)
+          .map((pad) => ({
+            id: pad.id,
+            index: pad.index,
+            connected: pad.connected,
+            mapping: pad.mapping,
+            axes: Array.from(pad.axes),
+            buttons: Array.from(pad.buttons, (button) => ({
+              pressed: button.pressed,
+              value: button.value,
+            })),
+          }));
+        if (this.status === 'blocked') this.status = 'available';
+      }
     } catch {
       this.pads = [];
       this.status = 'blocked';
@@ -361,6 +390,20 @@ export class InputMap {
   /** Numeric action value; strongest absolute contribution wins, keyboard wins ties. */
   value(action: string): number {
     return this.values.get(action) ?? 0;
+  }
+  /** Whether an enabled, connected axis supplies this action, including a zero reading. */
+  hasAxis(action: string): boolean {
+    return (
+      !this.disposed &&
+      this.accepting &&
+      (this.profile.axes ?? []).some(
+        (binding) =>
+          binding.action === action &&
+          this.pads.some(
+            (pad) => matches(binding.device, pad) && Number.isFinite(pad.axes[binding.axis]),
+          ),
+      )
+    );
   }
   isActive(action: string): boolean {
     return this.value(action) !== 0;
