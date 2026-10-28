@@ -213,7 +213,16 @@ function assertLine(line: TerrainSemanticLine, path: string, minimumPoints: numb
     throw new Error(`${path} must contain at least ${minimumPoints} points`);
   }
   for (let index = 0; index < line.length; index++) {
-    assertPoint(line[index] as TerrainSemanticPoint, `${path}/${index}`);
+    const point = line[index] as TerrainSemanticPoint;
+    // The point's path is built only to report it: a string per point was most of the garbage
+    // a dense tile's check made.
+    if (
+      !Array.isArray(point) ||
+      point.length !== 2 ||
+      !Number.isFinite(point[0]) ||
+      !Number.isFinite(point[1])
+    )
+      assertPoint(point, `${path}/${index}`);
   }
 }
 
@@ -269,7 +278,47 @@ function assertStructureIdentity(feature: TerrainStructureIdentity): void {
 }
 
 /** Fail early when a source decoder violates the renderer's normalized semantic contract. */
+/**
+ * Tiles that passed assertTerrainSemanticTile. A tile was checked by every source, layer and
+ * renderer it passed through, three times on the main thread, a few percent of a streaming
+ * frame; now once (a decoder worker checks its tiles before posting them). A checked tile is
+ * treated as immutable.
+ */
+const checkedTiles = new WeakSet<TerrainSemanticTile>();
+
+/** Internal: record a tile checked elsewhere (see installTerrainSemanticDecoderWorker). */
+export function markTerrainSemanticTileChecked(tile: TerrainSemanticTile): void {
+  checkedTiles.add(tile);
+}
+
+/** Internal: whether assertTerrainSemanticTile has passed `tile`. */
+export function terrainSemanticTileChecked(tile: TerrainSemanticTile): boolean {
+  return checkedTiles.has(tile);
+}
+
+const contentHashes = new WeakMap<TerrainSemanticTile, string>();
+
+/**
+ * A content hash computed where the tile was decoded (a decoder worker), for in-memory cache
+ * keys: equal content gives equal hashes. Undefined for tiles made elsewhere; hash those yourself.
+ * Hashing a dense town's tile on the main thread cost 8-20 ms a tile.
+ */
+export function terrainSemanticTileContentHash(tile: TerrainSemanticTile): string | undefined {
+  return contentHashes.get(tile);
+}
+
+/** Internal: record a content hash computed elsewhere (see terrainSemanticTileContentHash). */
+export function setTerrainSemanticTileContentHash(tile: TerrainSemanticTile, hash: string): void {
+  contentHashes.set(tile, hash);
+}
+
 export function assertTerrainSemanticTile(tile: TerrainSemanticTile): void {
+  if (checkedTiles.has(tile)) return;
+  checkTerrainSemanticTile(tile);
+  checkedTiles.add(tile);
+}
+
+function checkTerrainSemanticTile(tile: TerrainSemanticTile): void {
   if (tile.format !== 'molen/terrain-semantics@1') {
     throw new Error(`terrain semantic tile format must be molen/terrain-semantics@1`);
   }

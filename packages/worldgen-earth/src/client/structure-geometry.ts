@@ -6,6 +6,7 @@ import type {
   TerrainSemanticTile,
 } from '@bendyline/molen-terrain/kernel';
 import {
+  deriveTerrainSemanticTilePacket,
   pointInPolygon,
   pointInRing,
   polygonBounds,
@@ -312,8 +313,12 @@ export function withoutStructureRoads(
         z = context.origin[1] + v * context.tileSize - cz;
       return [c * x - s * z, s * x + c * z];
     };
-    const nodeKey = ([u, v]: TerrainSemanticPoint) =>
-      `${Math.round((context.origin[0] + u * context.tileSize) * 10)}/${Math.round((context.origin[1] + v * context.tileSize) * 10)}`;
+    // A node's key's first half, alone: a cheap test that a road end can't be a keyed join, before
+    // building its key, for every end of every road in a dense tile.
+    const nodeX = ([u]: TerrainSemanticPoint) =>
+      Math.round((context.origin[0] + u * context.tileSize) * 10);
+    const nodeKey = (point: TerrainSemanticPoint) =>
+      `${nodeX(point)}/${Math.round((context.origin[1] + point[1] * context.tileSize) * 10)}`;
     const bankJoins = new Map<string, (typeof connections)[number]>();
     const coveredBridgeRoadEnds = new Set<string>();
     const roadNode = (point: TerrainSemanticPoint, kind: string, layer = 0) =>
@@ -517,6 +522,7 @@ export function withoutStructureRoads(
         return changed ? lines.map((line) => ({ ...feature, lines: [line] })) : [feature];
       });
     }
+    const bankXs = new Set([...bankJoins.values()].map((join) => nodeX(join.point)));
     const input = entry.replaceRoads.includeConnectedApproaches
       ? transportation.flatMap((feature) =>
           feature.lines.map((line) =>
@@ -534,6 +540,7 @@ export function withoutStructureRoads(
       // walks, steps, road crossings and other layers are not proximity matches.
       const coveredFootway =
         !feature.bridge &&
+        coveredBridgePathEnds.size > 0 &&
         transportKind(feature) === 'path' &&
         !/steps/.test(`${feature.class} ${feature.subclass ?? ''}`) &&
         feature.lines.some((line) =>
@@ -544,6 +551,7 @@ export function withoutStructureRoads(
       const coveredApproach =
         coveredFootway ||
         (!feature.bridge &&
+          coveredBridgeEnds.size > 0 &&
           feature.lines.some((line) =>
             [0, line.length - 1].some((index) => {
               if (line.length < 2) return false;
@@ -561,10 +569,12 @@ export function withoutStructureRoads(
         feature.lines.map((line) => {
           if (line.length < 2) return { ...feature, lines: [line] };
           const hints = [];
-          for (const index of [0, line.length - 1]) {
+          for (const index of bankJoins.size > 0 ? [0, line.length - 1] : []) {
             const point = line[index] as TerrainSemanticPoint,
               next = line[index === 0 ? 1 : index - 1] as TerrainSemanticPoint;
-            const hint = bankJoins.get(roadNode(point, transportKind(feature), feature.layer));
+            const hint = bankXs.has(nodeX(point))
+              ? bankJoins.get(roadNode(point, transportKind(feature), feature.layer))
+              : undefined;
             if (!hint) continue;
             const p = localPoint(point),
               q = localPoint(next);
@@ -814,15 +824,16 @@ export function withoutStructureRoads(
         }
       }
     if (!joins.size) continue;
+    const joinXs = new Set([...joins.values()].map((join) => nodeX(join.point)));
     transportation = transportation.map((feature) => {
       if (feature.tunnel || (feature.bridge && !clippedBridges.includes(feature))) return feature;
       const hints = [];
       for (const line of feature.lines) {
         if (line.length < 2) continue;
-        const length = lineLength(line);
+        let length: number | undefined;
         for (const index of [0, line.length - 1]) {
           const point = line[index] as TerrainSemanticPoint,
-            hint = joins.get(nodeKey(point));
+            hint = joinXs.has(nodeX(point)) ? joins.get(nodeKey(point)) : undefined;
           if (!hint) continue;
           if (!feature.bridge) {
             const p = localPoint(point),
@@ -830,6 +841,7 @@ export function withoutStructureRoads(
             if (Math.abs(q[0]) <= Math.abs(p[0]) || Math.abs(q[1] - p[1]) > Math.abs(q[0] - p[0]))
               continue;
           }
+          length ??= lineLength(line);
           hints.push({ ...hint, radius: feature.bridge ? 100 : Math.min(hint.radius, length) });
         }
       }
@@ -838,10 +850,15 @@ export function withoutStructureRoads(
         : feature;
     });
   }
-  const result = transportation === tile.transportation ? tile : { ...tile, transportation };
-  return structures.some((entry) => entry.replaceRoads?.includeConnectedApproaches)
-    ? gradeStructureApproaches(result, context)
-    : result;
+  let result = transportation === tile.transportation ? tile : { ...tile, transportation };
+  if (structures.some((entry) => entry.replaceRoads?.includeConnectedApproaches))
+    result = gradeStructureApproaches(result, context);
+  if (result !== tile) {
+    // Kept roads stay the base tile's: a surface worker gets the base packet and this edit,
+    // including the final bridge approach grades.
+    deriveTerrainSemanticTilePacket(tile, result);
+  }
+  return result;
 }
 
 /**

@@ -11,7 +11,11 @@ import type { SemanticTileObserver } from './ambient-tiles';
 type Point = [number, number];
 interface Tile {
   object: THREE.Object3D;
-  tile: TerrainSemanticTile;
+  /**
+   * What a sample reads: never a features tile's buildings, and of a tile too coarse to choose
+   * the surface underfoot (see sample) only its water.
+   */
+  tile: Pick<TerrainSemanticTile, 'water' | 'landcover' | 'transportation'>;
   context: TerrainPyramidTileLayerContext;
 }
 export interface EarthAudioTerrainSample {
@@ -128,11 +132,23 @@ function surfaceOf(value: string): string | undefined {
   )[value];
 }
 
+/** The coarsest tile (m) whose land cover and roads choose the surface underfoot. */
+const FINE_TILE_SIZE = 2048;
+
 export class EarthAudioTerrain {
   private readonly tiles = new Map<THREE.Object3D, Tile>();
   readonly observer: SemanticTileObserver = {
     added: (object, tile, context) => {
-      this.tiles.set(object, { object, tile, context });
+      const coarse = context.tileSize > FINE_TILE_SIZE;
+      this.tiles.set(object, {
+        object,
+        tile: {
+          water: tile.water,
+          landcover: coarse ? [] : tile.landcover,
+          transportation: coarse ? [] : tile.transportation,
+        },
+        context,
+      });
     },
     removed: (object) => {
       this.tiles.delete(object);
@@ -196,7 +212,8 @@ export class EarthAudioTerrain {
           }
         }
       }
-      if (tileSize > 2048) continue; // Fine geometry is needed to choose the surface under a foot.
+      // Fine geometry is needed to choose the surface under a foot.
+      if (tileSize > FINE_TILE_SIZE) continue;
       for (const land of tile.landcover)
         if (
           tileSize <= surfaceLevel &&

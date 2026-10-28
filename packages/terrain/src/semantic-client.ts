@@ -23,6 +23,7 @@ import { visibleLandcoverPolygons } from './landcover-surface';
 import { appendTerrainSurfaceArea, TerrainSurfaceMeshBuilder } from './linear-features';
 import {
   clampBounds,
+  convexTrianglePieces,
   isDegenerateRing,
   pointInPolygon,
   polygonArea,
@@ -691,10 +692,15 @@ function appendRibbonLine(
   context: TerrainPyramidTileLayerContext,
   positions: number[],
   indices: number[],
+  normals: number[],
 ): void {
   if (line.length < 2) return;
   const sampled: TerrainSemanticPoint[] = [line[0] as TerrainSemanticPoint];
-  const maxSegmentLength = Math.max(24, width * 2.5);
+  // No finer than the ground's own grid, which a ribbon cannot follow more closely: a coarse
+  // tile's rivers were sampled every 24 m, many times its grid, at 10-15 ms a tile.
+  const spacing =
+    context.tileSize / Math.max(1, (context.surfaceResolution ?? context.heightfield.cols) - 1);
+  const maxSegmentLength = Math.max(24, width * 2.5, spacing);
   for (let index = 1; index < line.length; index++) {
     const from = line[index - 1] as TerrainSemanticPoint;
     const to = line[index] as TerrainSemanticPoint;
@@ -728,6 +734,21 @@ function appendRibbonLine(
       context.heightfield.sampleHeight(context.origin[0] + rightX, context.origin[1] + rightZ) +
       verticalOffset;
     positions.push(leftX, leftY, leftZ, rightX, rightY, rightZ);
+    // The surface normal from the ribbon's own frame: across (right to left, with its bank-to-bank
+    // tilt) crossed with along. computeVertexNormals over a city's canals took 10-20 ms a tile.
+    const acrossX = leftX - rightX,
+      acrossY = leftY - rightY,
+      acrossZ = leftZ - rightZ;
+    let nx = acrossY * dz,
+      ny = acrossZ * dx - acrossX * dz,
+      nz = -acrossY * dx;
+    if (ny < 0) {
+      nx = -nx;
+      ny = -ny;
+      nz = -nz;
+    }
+    const n = Math.hypot(nx, ny, nz) || 1;
+    normals.push(nx / n, ny / n, nz / n, nx / n, ny / n, nz / n);
     if (index < sampled.length - 1) {
       const left = firstVertex + index * 2;
       indices.push(left, left + 2, left + 1, left + 1, left + 2, left + 3);
@@ -742,6 +763,7 @@ function createWaterwayMesh(
 ): THREE.Mesh | undefined {
   const positions: number[] = [];
   const indices: number[] = [];
+  const normals: number[] = [];
   for (const feature of tile.water) {
     for (const line of feature.lines ?? []) {
       appendRibbonLine(
@@ -751,14 +773,15 @@ function createWaterwayMesh(
         context,
         positions,
         indices,
+        normals,
       );
     }
   }
   if (indices.length === 0) return undefined;
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
   geometry.setIndex(indices);
-  geometry.computeVertexNormals();
   const mesh = new THREE.Mesh(geometry, options.materials?.water ?? DEFAULT_WATER_MATERIAL);
   mesh.name = 'semantic:waterways';
   markTerrainWaterSurface(mesh);
@@ -965,14 +988,95 @@ const SEA_BAND = 2;
 /** The sea's surface above the datum, clearing coastal elevation noise. */
 const SEA_MARGIN = 1.5;
 
-function createBuildingMesh(
+/**
+ * Every footprint as a flat-roofed prism written straight into one buffer: roof (earcut), walls,
+ * and a floor only under a raised part (`minHeight`), where it can be seen. A THREE.ExtrudeGeometry
+ * per building, its normals recomputed and all of them merged, held a streaming frame 10-30 ms
+ * for a dense town's distant tile. Positions match the extrusion's: x = u, z = v tile metres.
+ */
+/** A slice of main-thread work: when it began, and how long it may run before yielding. */
+interface SliceClock {
+  start: number;
+  readonly ms: number;
+}
+
+/** Yield (and start a new slice) once the current slice has run its time. */
+function* pauseWhenDue(clock: SliceClock): Generator<void, void> {
+  if (performance.now() - clock.start <= clock.ms) return;
+  yield;
+  clock.start = performance.now();
+}
+
+/** Run steps to completion with no pauses. */
+function finish<T>(steps: Generator<void, T>): T {
+  for (;;) {
+    const step = steps.next();
+    if (step.done) return step.value;
+  }
+}
+
+/**
+ * The tile's buildings as one mesh, a slice at a time: pauses between footprints (see
+ * SliceClock), and returns the mesh when every footprint is built.
+ */
+function* buildingMeshSteps(
   tile: TerrainSemanticTile,
   context: TerrainPyramidTileLayerContext,
   options: TerrainSemanticMeshOptions,
-): THREE.Mesh | undefined {
-  const geometries: THREE.BufferGeometry[] = [];
+  clock: SliceClock,
+): Generator<void, THREE.Mesh | undefined> {
   const palette = options.buildingColors;
+  const size = context.tileSize;
+  // Written straight into typed arrays, grown by doubling: number arrays, and their copies into
+  // attributes, were most of the garbage a coarse tile's shells made.
+  let capacity = 1024;
+  let count = 0;
+  let colored = 0;
+  let positions = new Float32Array(capacity * 3);
+  let normals = new Float32Array(capacity * 3);
+  let uvs = new Float32Array(capacity * 2);
+  let colors = new Float32Array(palette ? capacity * 3 : 0);
+  const grown = (array: Float32Array, itemSize: number): Float32Array<ArrayBuffer> => {
+    const next = new Float32Array(capacity * itemSize);
+    next.set(array);
+    return next;
+  };
+  const vertex = (
+    x: number,
+    y: number,
+    z: number,
+    nx: number,
+    ny: number,
+    nz: number,
+    u: number,
+    v: number,
+    color: THREE.Color | undefined,
+  ): void => {
+    if (count === capacity || (color && colored === capacity)) {
+      capacity *= 2;
+      positions = grown(positions, 3);
+      normals = grown(normals, 3);
+      uvs = grown(uvs, 2);
+      colors = grown(colors, 3);
+    }
+    positions[count * 3] = x;
+    positions[count * 3 + 1] = y;
+    positions[count * 3 + 2] = z;
+    normals[count * 3] = nx;
+    normals[count * 3 + 1] = ny;
+    normals[count * 3 + 2] = nz;
+    uvs[count * 2] = u;
+    uvs[count * 2 + 1] = v;
+    count++;
+    if (color) {
+      colors[colored * 3] = color.r;
+      colors[colored * 3 + 1] = color.g;
+      colors[colored * 3 + 2] = color.b;
+      colored++;
+    }
+  };
   for (const feature of tile.buildings) {
+    yield* pauseWhenDue(clock);
     const height = Math.max(
       0.5,
       feature.height ??
@@ -981,34 +1085,85 @@ function createBuildingMesh(
           : (options.defaultBuildingHeight ?? 9)),
     );
     for (const polygon of feature.polygons) {
-      const shape = shapeFromPolygon(polygon, context.tileSize);
-      if (shape === undefined) continue;
-      const geometry = new THREE.ExtrudeGeometry(shape, {
-        depth: height,
-        bevelEnabled: false,
-        curveSegments: 1,
+      if (isDegenerateRing(polygon.outer)) continue;
+      const rings = [polygon.outer, ...(polygon.holes ?? []).filter((h) => !isDegenerateRing(h))];
+      const plan = rings.map((ring) => {
+        const points = ring.map((p) => new THREE.Vector2(p[0] * size, p[1] * size));
+        const last = points[points.length - 1] as THREE.Vector2;
+        // A closed ring repeats its first point; the cap and walls want it once.
+        if (points.length > 3 && last.equals(points[0] as THREE.Vector2)) points.pop();
+        return points;
       });
-      geometry.rotateX(-Math.PI / 2);
-      geometry.translate(0, averageGroundHeight(polygon, context) + (feature.minHeight ?? 0), 0);
+      const outer = plan[0] as THREE.Vector2[];
+      const holes = plan.slice(1);
+      const floor = averageGroundHeight(polygon, context) + (feature.minHeight ?? 0);
+      const top = floor + height;
+      let roof: THREE.Color | undefined;
+      let wall: THREE.Color | undefined;
       if (palette) {
         const seed = buildingSeed(feature.id, polygon, context);
-        const roof = weightedColor(palette.roofs, hash01(seed));
-        const wall = weightedColor(palette.walls, hash01(seed ^ 0x5bd1e995));
-        const normals = geometry.getAttribute('normal');
-        const colors = new Float32Array(normals.count * 3);
-        for (let index = 0; index < normals.count; index++) {
-          const color = normals.getY(index) > 0.5 ? roof : wall;
-          colors.set([color.r, color.g, color.b], index * 3);
-        }
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        roof = weightedColor(palette.roofs, hash01(seed));
+        wall = weightedColor(palette.walls, hash01(seed ^ 0x5bd1e995));
       }
-      geometries.push(geometry);
+      // triangulateShape drops a repeated end point in place: index the rings after it.
+      const triangles = THREE.ShapeUtils.triangulateShape(outer, holes);
+      const all = plan.flat();
+      const caps = (feature.minHeight ?? 0) > 0 ? [top, floor] : [top];
+      for (const y of caps) {
+        const up = y === top;
+        for (const [a = 0, b = 0, c = 0] of triangles) {
+          const pa = all[a] as THREE.Vector2;
+          let pb = all[b] as THREE.Vector2;
+          let pc = all[c] as THREE.Vector2;
+          // Wound to face up (the roof) or down (a raised part's floor).
+          const facing = (pb.y - pa.y) * (pc.x - pa.x) - (pb.x - pa.x) * (pc.y - pa.y);
+          if (facing < 0 === up) [pb, pc] = [pc, pb];
+          for (const q of [pa, pb, pc]) vertex(q.x, y, q.y, 0, up ? 1 : -1, 0, q.x, -q.y, roof);
+        }
+      }
+      for (const [index, ring] of plan.entries()) {
+        let area = 0;
+        for (let i = 0; i < ring.length; i++) {
+          const a = ring[i] as THREE.Vector2;
+          const b = ring[(i + 1) % ring.length] as THREE.Vector2;
+          area += a.x * b.y - b.x * a.y;
+        }
+        // Outward from the solid: away from the outer ring's inside, into each hole.
+        const sign = (index === 0 ? 1 : -1) * (area > 0 ? 1 : -1);
+        let along = 0;
+        for (let i = 0; i < ring.length; i++) {
+          const a = ring[i] as THREE.Vector2;
+          const b = ring[(i + 1) % ring.length] as THREE.Vector2;
+          const dx = b.x - a.x;
+          const dz = b.y - a.y;
+          const length = Math.hypot(dx, dz);
+          if (length === 0) continue;
+          const nx = (sign * dz) / length;
+          const nz = (sign * -dx) / length;
+          const corners: [THREE.Vector2, number, number][] = [
+            [a, floor, along],
+            [b, floor, along + length],
+            [b, top, along + length],
+            [a, top, along],
+          ];
+          // (a, b, b-top) faces -(dz, -dx): reverse it when the wall faces +(dz, -dx).
+          const order = sign > 0 ? [0, 2, 1, 0, 3, 2] : [0, 1, 2, 0, 2, 3];
+          for (const k of order) {
+            const [q, y, u] = corners[k] as [THREE.Vector2, number, number];
+            vertex(q.x, y, q.y, nx, 0, nz, u, y - floor, wall);
+          }
+          along += length;
+        }
+      }
     }
   }
-  if (geometries.length === 0) return undefined;
-  const geometry = mergeGeometries(geometries, false);
-  for (const source of geometries) source.dispose();
-  if (geometry === null) return undefined;
+  if (count === 0) return undefined;
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions.slice(0, count * 3), 3));
+  geometry.setAttribute('normal', new THREE.BufferAttribute(normals.slice(0, count * 3), 3));
+  geometry.setAttribute('uv', new THREE.BufferAttribute(uvs.slice(0, count * 2), 2));
+  if (palette)
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors.slice(0, colored * 3), 3));
   const mesh = new THREE.Mesh(
     geometry,
     options.materials?.building ??
@@ -1019,17 +1174,24 @@ function createBuildingMesh(
   return mesh;
 }
 
-function createWaterMesh(
+/**
+ * The tile's water as one mesh with its banks, a slice at a time: pauses between polygons and
+ * before the merge and the banks (see SliceClock). A harbor's polygons, triangulated in one go,
+ * held a frame 11 ms.
+ */
+function* waterMeshSteps(
   tile: TerrainSemanticTile,
   context: TerrainPyramidTileLayerContext,
   options: TerrainSemanticMeshOptions,
-): THREE.Mesh | undefined {
+  clock: SliceClock,
+): Generator<void, THREE.Mesh | undefined> {
   const geometries: THREE.BufferGeometry[] = [];
   const shoreline: TerrainGroundOutline[] = [];
   const shorelineLevels: number[] = [];
   const waters: { polygon: TerrainSemanticPolygon; height: number }[] = [];
   for (const feature of tile.water) {
     for (const polygon of feature.polygons ?? []) {
+      yield* pauseWhenDue(clock);
       const shape = shapeFromPolygon(polygon, context.tileSize);
       if (shape === undefined) continue;
       const geometry = new THREE.ShapeGeometry(shape);
@@ -1046,21 +1208,31 @@ function createWaterMesh(
       }
       positions.needsUpdate = true;
       waters.push({ polygon, height });
-      const indices = geometry.index;
-      for (let i = 0; i < (indices?.count ?? positions.count); i += 3) {
-        shorelineLevels.push(height);
-        shoreline.push(
-          [0, 1, 2].map((k) => {
-            const index = indices?.getX(i + k) ?? i + k;
-            return [positions.getX(index), positions.getZ(index)] as const;
-          }),
-        );
-      }
-      geometry.computeVertexNormals();
+      // Flat: ShapeGeometry's normals, turned up with the shape, are already exact.
       geometries.push(geometry);
+      yield* pauseWhenDue(clock);
+      // The water's ground openings, as its triangles merged into convex pieces: ground is cut
+      // one convex opening at a time, and a river's 1,400 triangles held a tile's cut for 180 ms
+      // of main thread. A river's merge is a slice of its own, after its triangulation.
+      const indices = geometry.index;
+      const corners: [number, number][] = [];
+      for (let v = 0; v < positions.count; v++)
+        corners.push([positions.getX(v), positions.getZ(v)]);
+      const triangles: [number, number, number][] = [];
+      for (let i = 0; i + 2 < (indices?.count ?? positions.count); i += 3)
+        triangles.push([
+          indices?.getX(i) ?? i,
+          indices?.getX(i + 1) ?? i + 1,
+          indices?.getX(i + 2) ?? i + 2,
+        ]);
+      for (const piece of convexTrianglePieces(corners, triangles)) {
+        shorelineLevels.push(height);
+        shoreline.push(piece.map((v) => corners[v] as [number, number]));
+      }
     }
   }
   if (geometries.length === 0) return undefined;
+  yield* pauseWhenDue(clock);
   const geometry = mergeGeometries(geometries, false);
   for (const source of geometries) source.dispose();
   if (geometry === null) return undefined;
@@ -1074,6 +1246,7 @@ function createWaterMesh(
   mesh.userData.terrainWaterSurface = true;
   tagTerrainObject('water', mesh);
   setTerrainShorelineCutouts(mesh, shoreline, shorelineLevels);
+  yield* pauseWhenDue(clock);
   const bankGeometry = buildTerrainWaterBanks(
     waters,
     context,
@@ -1112,31 +1285,94 @@ export function createTerrainSemanticObject(
   options: TerrainSemanticMeshOptions = {},
 ): THREE.Group {
   assertTerrainSemanticTile(tile);
+  const group = semanticGroup(context);
+  finish(
+    semanticObjectSteps(tile, context, options, group, {
+      start: 0,
+      ms: Number.POSITIVE_INFINITY,
+    }),
+  );
+  return group;
+}
+
+function semanticGroup(context: TerrainPyramidTileLayerContext): THREE.Group {
   const group = new THREE.Group();
   group.name = `terrain-semantics:${context.address.level}/${context.address.x}/${context.address.z}`;
+  return group;
+}
+
+/** createTerrainSemanticObject's parts, added to `group` in order, pausing between slices. */
+function* semanticObjectSteps(
+  tile: TerrainSemanticTile,
+  context: TerrainPyramidTileLayerContext,
+  options: TerrainSemanticMeshOptions,
+  group: THREE.Group,
+  clock: SliceClock,
+): Generator<void, void> {
   if ((options.renderLandcover ?? true) && (options.renderLandcoverSurface ?? true)) {
     const landcover = createLandcoverMesh(tile, context, options);
     if (landcover !== undefined) group.add(landcover);
+    yield* pauseWhenDue(clock);
   }
-  if (options.renderLandcover ?? true)
+  if (options.renderLandcover ?? true) {
     addTrees(group, collectTrees(tile, context, options), options);
+    yield* pauseWhenDue(clock);
+  }
   if (options.renderWater ?? true) {
-    const water = createWaterMesh(tile, context, options);
+    const water = yield* waterMeshSteps(tile, context, options, clock);
     if (water !== undefined) group.add(water);
     const waterways = createWaterwayMesh(tile, context, options);
     if (waterways !== undefined) group.add(waterways);
+    yield* pauseWhenDue(clock);
   }
   if (options.renderTransportation ?? true) {
     group.add(
       options.surfaceRenderer?.createTile(tile, context) ??
         createTerrainSurfaceObject(tile, context, options.surfaces, options.materials?.road),
     );
+    yield* pauseWhenDue(clock);
   }
   if (options.renderBuildings ?? true) {
-    const buildings = createBuildingMesh(tile, context, options);
+    const buildings = yield* buildingMeshSteps(tile, context, options, clock);
     if (buildings !== undefined) group.add(buildings);
   }
-  return group;
+}
+
+/**
+ * createTerrainSemanticObject a few milliseconds at a time: each slice runs through `run` (a
+ * frame's admission, say), pausing between water polygons, footprints and the object's parts. A
+ * harbor's water or a coarse tile's thousands of footprints, built in one go, held a frame
+ * 11-19 ms. The same group as createTerrainSemanticObject's, or undefined once `context.signal`
+ * aborts (with anything built so far disposed).
+ */
+export async function createTerrainSemanticObjectSliced(
+  tile: TerrainSemanticTile,
+  context: TerrainPyramidTileLayerContext,
+  options: TerrainSemanticMeshOptions,
+  run: <T>(slice: () => T) => Promise<T>,
+  sliceMs = 2,
+): Promise<THREE.Group | undefined> {
+  assertTerrainSemanticTile(tile);
+  const group = semanticGroup(context);
+  const clock: SliceClock = { start: 0, ms: sliceMs };
+  const steps = semanticObjectSteps(tile, context, options, group, clock);
+  try {
+    for (;;) {
+      if (context.signal.aborted) {
+        steps.return();
+        disposeTerrainSemanticObject(group);
+        return undefined;
+      }
+      const step = await run(() => {
+        clock.start = performance.now();
+        return steps.next();
+      });
+      if (step.done) return group;
+    }
+  } catch (error) {
+    disposeTerrainSemanticObject(group);
+    throw error;
+  }
 }
 
 export interface DefaultTerrainSemanticRendererOptions extends TerrainSemanticMeshOptions {}
@@ -1145,19 +1381,34 @@ export interface DefaultTerrainSemanticRendererOptions extends TerrainSemanticMe
 export function createDefaultTerrainSemanticRenderer(
   options: DefaultTerrainSemanticRendererOptions = {},
 ): TerrainSemanticTileRenderer {
+  // With an admission queue, the object is built a slice per admitted job (see
+  // createTerrainSemanticObjectSliced); without one, in one go.
+  const build = (
+    tile: TerrainSemanticTile,
+    context: TerrainPyramidTileLayerContext,
+    meshOptions: TerrainSemanticMeshOptions,
+  ): Promise<THREE.Group | undefined> => {
+    const admission = context.admission;
+    if (admission === undefined)
+      return Promise.resolve(createTerrainSemanticObject(tile, context, meshOptions));
+    return createTerrainSemanticObjectSliced(tile, context, meshOptions, (slice) =>
+      admission.run(slice, { signal: context.signal, label: 'semantic-object' }),
+    );
+  };
   return {
     async createTile(tile, context): Promise<THREE.Group | undefined> {
       if (!options.surfaceRenderer || options.renderTransportation === false)
-        return createTerrainSemanticObject(tile, context, options);
+        return build(tile, context, options);
       // Await surfaces before publishing the tile, preserving streaming backpressure and idle
       // semantics. Cancellation cannot leave an untracked placeholder in the scene.
       const surfaces = await options.surfaceRenderer.createTileAsync(tile, context);
       if (!surfaces) return undefined;
       try {
-        const group = createTerrainSemanticObject(tile, context, {
-          ...options,
-          renderTransportation: false,
-        });
+        const group = await build(tile, context, { ...options, renderTransportation: false });
+        if (group === undefined) {
+          options.surfaceRenderer.disposeTile(surfaces);
+          return undefined;
+        }
         group.add(surfaces);
         return group;
       } catch (error) {

@@ -10,6 +10,12 @@ import {
   createDefaultTerrainSemanticRenderer,
   disposeTerrainSemanticObject,
 } from '../src/semantic-client';
+import {
+  deriveTerrainSemanticTilePacket,
+  packTerrainSemanticTile,
+  rememberTerrainSemanticTilePacket,
+  terrainSemanticTilePacket,
+} from '../src/semantic-packet';
 import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
 import {
   createTerrainSurfaceObject,
@@ -398,6 +404,64 @@ describe('surface worker', () => {
       disposeTerrainSurfaceObject(actual);
       disposeTerrainSurfaceObject(direct);
     }
+    bridge.dispose();
+  });
+
+  it('renders a derived tile from its base packet and edits as it renders the tile itself', async () => {
+    const base = fixture();
+    rememberTerrainSemanticTilePacket(base, packTerrainSemanticTile(base));
+    // Roads a landmark replaced: the bridge dropped, the primary road split in two.
+    const [primary, ...rest] = base.transportation;
+    if (primary === undefined) throw new Error('fixture has no roads');
+    const derived = {
+      ...base,
+      transportation: [
+        ...primary.lines.map((line) => ({ ...primary, lines: [line] })),
+        ...rest.filter((feature) => feature.bridge !== true),
+      ],
+    };
+    deriveTerrainSemanticTilePacket(base, derived);
+    const packet = terrainSemanticTilePacket(derived);
+    expect(packet?.edits).toHaveLength(1);
+    const ctx = context();
+    const thread = worker();
+    const bridge = createTerrainSurfaceWorkerBridge(thread.bridge);
+    const direct = createTerrainSurfaceObject(derived, ctx, { style: 'modern', fonts });
+    const generated = bridge.generate(derived, ctx, { style: 'modern', fonts });
+    expect((thread.requests[0] as { packet?: unknown }).packet).toBeDefined();
+    thread.run();
+    const actual = (await generated) as THREE.Group;
+    const meshes = (group: THREE.Object3D) => {
+      const found: THREE.Mesh[] = [];
+      group.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) found.push(child as THREE.Mesh);
+      });
+      return found;
+    };
+    const wanted = meshes(direct);
+    const got = meshes(actual);
+    expect(got.map((mesh) => mesh.name)).toEqual(wanted.map((mesh) => mesh.name));
+    for (const [index, expected] of wanted.entries()) {
+      const mesh = got[index] as THREE.Mesh;
+      for (const attr of ['position', 'normal', 'color']) {
+        const a = mesh.geometry.getAttribute(attr)?.array;
+        const b = expected.geometry.getAttribute(attr)?.array;
+        expect(a?.length).toBe(b?.length);
+        if (a && b)
+          expect(
+            Buffer.from(a.buffer, a.byteOffset, a.byteLength).equals(
+              Buffer.from(b.buffer, b.byteOffset, b.byteLength),
+            ),
+          ).toBe(true);
+      }
+      const instances = mesh as THREE.InstancedMesh;
+      if (instances.isInstancedMesh)
+        expect(instances.instanceMatrix.array).toEqual(
+          (expected as THREE.InstancedMesh).instanceMatrix.array,
+        );
+    }
+    disposeTerrainSurfaceObject(actual);
+    disposeTerrainSurfaceObject(direct);
     bridge.dispose();
   });
 

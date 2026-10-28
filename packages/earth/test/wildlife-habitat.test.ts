@@ -70,6 +70,34 @@ describe('wildlife mapped habitat', () => {
     expect(index.sample(100, 100, 0.5)).toBeUndefined();
   });
 
+  it('answers a kept sample again until a tile under the point changes', () => {
+    const { index, features, root } = setup();
+    index.observer('features').added(features, empty(), context());
+    index.sync([100, 5, 100], 300);
+    const kept = index.sample(100, 100, 0.5, true);
+    expect(kept).toMatchObject({ kind: 'forest', safe: true });
+    expect(index.sample(100, 100, 0.5, true)).toBe(kept);
+    expect(index.sample(100, 100, 0.5)).not.toBe(kept);
+    // A finer features tile now holds the point: sampled again, against it.
+    const finer = new THREE.Group();
+    root.add(finer);
+    const road = empty();
+    road.transportation.push({
+      class: 'primary',
+      lines: [
+        [
+          [0, 0.25],
+          [1, 0.25],
+        ],
+      ],
+    });
+    index.observer('features').added(finer, road, { ...context(200), tileSize: 200 });
+    index.sync([100, 5, 100], 300);
+    const fresh = index.sample(100, 50, 0.5, true);
+    expect(fresh?.safe).toBe(false);
+    expect(index.sample(100, 100, 0.5, true)).not.toBe(kept);
+  });
+
   it('excludes buffered roads and buildings while preserving courtyard holes', () => {
     const { index, features } = setup();
     const tile = empty();

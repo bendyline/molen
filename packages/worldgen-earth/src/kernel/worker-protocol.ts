@@ -6,7 +6,11 @@
  * generation between cooperative steps.
  */
 
-import type { TerrainSemanticTile } from '@bendyline/molen-terrain/kernel';
+import {
+  type TerrainSemanticTile,
+  type TerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+} from '@bendyline/molen-terrain/kernel';
 import {
   buildingCellTransferables,
   createHeightSampler,
@@ -16,6 +20,7 @@ import {
   type WorldgenBudgets,
   worldgenTransferables,
 } from '@bendyline/molen-worldgen/kernel';
+import { type PackedPolygons, unpackPolygons } from './packed-polygons';
 import { createPlacesContent, type PlacesContent, type PlacesContentDocs } from './places';
 import { createRegionResolver, type RegionResolver } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
@@ -41,10 +46,15 @@ export interface WorldgenWorkerConfigure {
 export interface WorldgenWorkerGenerate {
   buildingInfill?: SemanticAdapterOptions['buildingInfill'];
   buildingInfillExclusions?: SemanticAdapterOptions['buildingInfillExclusions'];
+  /** The exclusions packed (see packPolygons), as a host thread sends them. */
+  packedInfillExclusions?: PackedPolygons;
   renderCellsOnly?: boolean;
   kind: 'generate';
   id: number;
-  tile: TerrainSemanticTile;
+  /** The tile, or (from a host thread) its packet: cloning a town tile whole cost the host's
+   * main thread 5-10 ms (see terrainSemanticTilePacket). */
+  tile?: TerrainSemanticTile;
+  packet?: TerrainSemanticTilePacket;
   geom: TileGeometry;
   /** Tile ground as a plain grid (transferable). */
   ground: HeightGrid;
@@ -142,13 +152,17 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
       const generationStart = performance.now();
       const steps = generateWorldgenTileSteps(
         {
-          tile: request.tile,
+          tile:
+            request.tile ??
+            terrainSemanticTileFromPacket(request.packet as TerrainSemanticTilePacket),
           ...(request.buildingInfill !== undefined
             ? { buildingInfill: request.buildingInfill }
             : {}),
           ...(request.buildingInfillExclusions !== undefined
             ? { buildingInfillExclusions: request.buildingInfillExclusions }
-            : {}),
+            : request.packedInfillExclusions !== undefined
+              ? { buildingInfillExclusions: unpackPolygons(request.packedInfillExclusions) }
+              : {}),
           geom: request.geom,
           ground: createHeightSampler(request.ground),
           // Streaming never reads the output hash.

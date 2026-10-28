@@ -72,6 +72,8 @@ describe('mapped World audio context', () => {
         ],
       },
     ];
+    // A tile's water read anew is a new tile: the observer keeps the arrays it was given.
+    terrain.observer.added(object, tile, context(100));
     expect(terrain.sample(150, 50).coastDistance).toBe(Infinity);
     tile.water = [
       {
@@ -85,6 +87,7 @@ describe('mapped World audio context', () => {
         width: 2,
       },
     ];
+    terrain.observer.added(object, tile, context(100));
     expect(terrain.sample(150, 55).riverDistance).toBeCloseTo(4);
     object.visible = false;
     expect(terrain.sample(150, 55).riverDistance).toBe(Infinity);

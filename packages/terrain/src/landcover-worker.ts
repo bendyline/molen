@@ -6,6 +6,11 @@ import { createTerrainGroundMaterial } from './ground-material';
 import { Heightfield } from './heightfield';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { createLandcoverMesh, type TerrainSemanticMeshOptions } from './semantic-client';
+import {
+  type TerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+  terrainSemanticTilePacket,
+} from './semantic-packet';
 import type { TerrainSemanticTile } from './semantic-types';
 
 export interface TerrainLandcoverGenerator {
@@ -32,7 +37,11 @@ export interface TerrainLandcoverWorker {
 
 interface Request {
   id: number;
-  tile: TerrainSemanticTile;
+  /** The whole tile as the packet it arrived in (see terrainSemanticTilePacket): the worker
+   * sets aside what land cover does not draw, after measuring building coverage from it. */
+  packet?: TerrainSemanticTilePacket;
+  /** Otherwise the land cover alone, its building coverage measured by the host. */
+  tile?: TerrainSemanticTile;
   context: Omit<TerrainPyramidTileLayerContext, 'heightfield' | 'signal' | 'admission'>;
   ground: {
     samples: Float32Array;
@@ -78,10 +87,25 @@ export function installTerrainLandcoverWorker(
         ...ground,
         validated: true,
       });
+      const whole = request.packet
+        ? terrainSemanticTileFromPacket(request.packet)
+        : (request.tile as TerrainSemanticTile);
+      const urban = request.options.urbanGround;
       const mesh = createLandcoverMesh(
-        request.tile,
+        // Land cover draws none of the buildings, roads or water; only buildings' coverage.
+        { ...whole, buildings: [], transportation: [], water: [] },
         { ...request.context, heightfield, signal: new AbortController().signal },
-        request.options,
+        {
+          ...request.options,
+          ...(urban
+            ? {
+                urbanGround: {
+                  ...urban,
+                  coverage: urban.coverage ?? terrainBuildingCoverage(whole),
+                },
+              }
+            : {}),
+        },
       );
       const result: Result = { id: request.id };
       if (mesh) {
@@ -187,9 +211,12 @@ export function createTerrainLandcoverWorkerBridge(
     generate(tile, context, options) {
       if (disposed || context.signal.aborted) return Promise.resolve(undefined);
       const { heightfield, signal, admission: _admission, ...rest } = context;
+      const packet = terrainSemanticTilePacket(tile);
       const request: Request = {
         id: nextId++,
-        tile: { ...tile, buildings: [], transportation: [], water: [] },
+        ...(packet
+          ? { packet }
+          : { tile: { ...tile, buildings: [], transportation: [], water: [] } }),
         context: rest,
         ground: {
           samples: heightfield.copySamples(),
@@ -208,12 +235,14 @@ export function createTerrainLandcoverWorkerBridge(
           ...(options.landcoverOffset !== undefined
             ? { landcoverOffset: options.landcoverOffset }
             : {}),
-          // The worker's tile has no buildings; their coverage travels as a small grid.
+          // A packet carries the buildings, measured in the worker; else coverage travels.
           ...(options.urbanGround
             ? {
                 urbanGround: {
                   ...options.urbanGround,
-                  coverage: options.urbanGround.coverage ?? terrainBuildingCoverage(tile),
+                  ...(packet === undefined
+                    ? { coverage: options.urbanGround.coverage ?? terrainBuildingCoverage(tile) }
+                    : {}),
                 },
               }
             : {}),

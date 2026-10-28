@@ -5,7 +5,11 @@ import {
   decodeAgricultureGrid,
   type TerrainAgricultureGrid,
 } from '../src/agriculture-grid';
-import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
+import {
+  createEmptyTerrainSemanticTile,
+  setTerrainSemanticTileContentHash,
+  terrainSemanticTileContentHash,
+} from '../src/semantic-types';
 
 const grid = (): TerrainAgricultureGrid => ({
   format: 'molen/agriculture-grid@1',
@@ -140,6 +144,33 @@ describe('agricultural retrieval', () => {
       fetch: (async () => new Response(null, { status: 404 })) as typeof fetch,
     });
     expect(await missing(base).load(address, signal)).toEqual(await base.load());
+  });
+  it('hashes an enriched tile from its base and the grid, when the base has a hash', async () => {
+    const source = {
+      urlTemplate: 'https://test.invalid/{z}/{x}/{y}.json',
+      level: 10,
+      source: 'fixture',
+      year: 2021,
+    };
+    const enrich = createAgricultureTileEnricher(source, undefined, {
+      fetch: (async () => new Response(JSON.stringify(grid()))) as typeof fetch,
+    });
+    const signal = new AbortController().signal;
+    const hashedBase = {
+      load: async () => {
+        const tile = createEmptyTerrainSemanticTile();
+        setTerrainSemanticTileContentHash(tile, 'base');
+        return tile;
+      },
+    };
+    const enriched = await enrich(hashedBase).load(address, signal);
+    const hash = enriched ? terrainSemanticTileContentHash(enriched) : undefined;
+    expect(hash).toMatch(/^base\|agriculture:fixture@2021:/);
+    const plain = await enrich({ load: async () => createEmptyTerrainSemanticTile() }).load(
+      address,
+      signal,
+    );
+    expect(plain && terrainSemanticTileContentHash(plain)).toBeUndefined();
   });
   it('rejects mismatched provenance and byte overruns without taking down the basemap', async () => {
     for (const payload of [JSON.stringify({ ...grid(), year: 2025 }), ' '.repeat(2048)]) {

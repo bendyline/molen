@@ -185,6 +185,7 @@ const parkedMaterial = new THREE.MeshStandardMaterial({
   metalness: 0.12,
 });
 const parkedTemplates = new Map<string, THREE.BufferGeometry>();
+const paints = new Map<string, THREE.Color>();
 
 function coloredBox(
   x: number,
@@ -224,19 +225,33 @@ export interface VehicleProxyDimensions {
  * Cached by dimensions; never dispose the returned geometry.
  */
 export function vehicleProxyGeometry(dimensions: VehicleProxyDimensions): THREE.BufferGeometry {
-  return parkedTemplate(dimensions, '#ffffff');
+  return parkedTemplate(dimensions);
 }
 
 /** The shared vertex-coloured material of parked and proxy vehicles. */
 export const vehicleProxyMaterial: THREE.MeshStandardMaterial = parkedMaterial;
 
-/** Generic dimension-driven proxy used only for large dormant parking batches. */
-function parkedTemplate(spec: VehicleProxyDimensions, color: string): THREE.BufferGeometry {
-  const key = `${spec.width}:${spec.length}:${spec.height}:${spec.wheelbase}:${color}`;
+/**
+ * Generic dimension-driven proxy used only for large dormant parking batches, its body white:
+ * the body is its first `userData.bodyVertices` vertices, painted as a batch bakes it. A template
+ * per paint as well was dozens built for a tile's first cars, 7 ms of one frame.
+ */
+function parkedTemplate(spec: VehicleProxyDimensions): THREE.BufferGeometry {
+  const key = `${spec.width}:${spec.length}:${spec.height}:${spec.wheelbase}`;
   const cached = parkedTemplates.get(key);
   if (cached !== undefined) return cached;
+  const body = coloredBox(
+    0,
+    spec.height * 0.34,
+    0,
+    spec.width,
+    spec.height * 0.48,
+    spec.length,
+    '#ffffff',
+  );
+  const bodyVertices = body.getAttribute('position').count;
   const parts = [
-    coloredBox(0, spec.height * 0.34, 0, spec.width, spec.height * 0.48, spec.length, color),
+    body,
     coloredBox(
       0,
       spec.height * 0.72,
@@ -275,6 +290,7 @@ function parkedTemplate(spec: VehicleProxyDimensions, color: string): THREE.Buff
   for (const part of parts) part.dispose();
   geometry.computeBoundingBox();
   geometry.computeBoundingSphere();
+  geometry.userData.bodyVertices = bodyVertices;
   parkedTemplates.set(key, geometry);
   return geometry;
 }
@@ -292,7 +308,7 @@ export function createParkedVehicleBatch(
   const group = new THREE.Group();
   group.name = 'surface:parked-cars';
   if (placements.length === 0) return group;
-  const templates = placements.map((placement) => parkedTemplate(placement.spec, placement.color));
+  const templates = placements.map((placement) => parkedTemplate(placement.spec));
   const vertices = templates.reduce(
     (sum, template) => sum + template.getAttribute('position').count,
     0,
@@ -360,6 +376,17 @@ export function createParkedVehicleBatch(
         (e[2] as number) * nx + (e[6] as number) * ny + (e[10] as number) * nz;
     }
     colors.set(template.getAttribute('color').array as Float32Array, base);
+    let paint = paints.get(placement.color);
+    if (paint === undefined) {
+      paint = new THREE.Color(placement.color);
+      paints.set(placement.color, paint);
+    }
+    const body = base + (template.userData.bodyVertices as number) * 3;
+    for (let i = base; i < body; i += 3) {
+      colors[i] = paint.r;
+      colors[i + 1] = paint.g;
+      colors[i + 2] = paint.b;
+    }
     const source = template.getAttribute('position');
     ranges[index * 2] = offset;
     ranges[index * 2 + 1] = source.count;

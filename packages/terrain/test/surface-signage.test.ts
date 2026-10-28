@@ -335,8 +335,9 @@ describe('road signage', () => {
     expect(postedSpeed('65 mph')).toEqual(['65', 'MPH']);
     for (const value of ['none', 'signals', 'US:urban', '50;70', '50 @ (wet)', '0', 'NaN'])
       expect(postedSpeed(value)).toBeUndefined();
+    assertTerrainSemanticTile(freeway());
+    // A checked tile is not checked again (it is treated as immutable): edit a fresh one.
     const tile = freeway();
-    assertTerrainSemanticTile(tile);
     Object.assign(road(tile, 0), { maxspeed: 60 });
     expect(() => assertTerrainSemanticTile(tile)).toThrow();
   });

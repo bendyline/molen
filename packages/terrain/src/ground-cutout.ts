@@ -17,12 +17,17 @@ const preservePavementOwners = new WeakSet<THREE.Object3D>();
 const shorelineLevels = new WeakMap<THREE.Object3D, readonly number[]>();
 const ownerRefs = new Set<WeakRef<THREE.Object3D>>();
 const surfaceRefs = new Set<WeakRef<THREE.Mesh>>();
+const cutScopes = new WeakSet<THREE.Object3D>();
+const scopedOwners = new WeakSet<THREE.Object3D>();
+const outlineCeilings = new WeakMap<THREE.Object3D, readonly number[]>();
 interface CutState {
   source: THREE.BufferGeometry;
   rendered: THREE.BufferGeometry;
   key: string;
   /** What the cut was made from (see TerrainGroundCutoutController.update), cheaply compared. */
   depends?: number[];
+  /** The source normals' version the rendered copy carries (see copyCutNormals). */
+  normals?: number;
   release(): void;
 }
 
@@ -63,6 +68,17 @@ export function markTerrainGroundSurface(mesh: THREE.Mesh, shoreline = true): vo
   else shorelineSurfaces.delete(mesh);
 }
 
+/**
+ * Confine native shoreline openings to the ground within this object (a streamed tile): a tile's
+ * water then cuts only its own ground and land cover, which it covers exactly. Unscoped, every
+ * water triangle cut every overlapping ground mesh, so each level change of a neighboring tile's
+ * water re-cut the ground around it: panning over Seattle's lakes and Sound held frames for
+ * 70-600 ms, many times a second. Model-owned openings still cut across scopes.
+ */
+export function markTerrainGroundCutScope(object: THREE.Object3D): void {
+  cutScopes.add(object);
+}
+
 /** Mark native water that can be replaced by an explicit model-owned water opening. */
 export function markTerrainWaterSurface(mesh: THREE.Mesh): void {
   markTerrainGroundSurface(mesh, false);
@@ -87,6 +103,14 @@ export function setTerrainGroundCutout(
     preservePaving?: boolean;
     minHeight?: number;
     pavingOutlines?: readonly TerrainGroundOutline[];
+    /**
+     * The outlines lie within the owner's cut scope (its tile, see markTerrainGroundCutScope):
+     * they cut only that scope's ground, as shorelines do. A city's tunnel bores are thousands
+     * of owners; checked against every ground mesh, they made each pass cost 10 ms and more.
+     */
+    withinScope?: boolean;
+    /** A ceiling per outline (model-local Y), in place of `maxHeight` for each. */
+    ceilings?: readonly number[];
   },
 ): void {
   setTerrainGroundCutouts(object, [outline], maxHeight, options);
@@ -102,6 +126,14 @@ export function setTerrainGroundCutouts(
     preservePaving?: boolean;
     minHeight?: number;
     pavingOutlines?: readonly TerrainGroundOutline[];
+    /**
+     * The outlines lie within the owner's cut scope (its tile, see markTerrainGroundCutScope):
+     * they cut only that scope's ground, as shorelines do. A city's tunnel bores are thousands
+     * of owners; checked against every ground mesh, they made each pass cost 10 ms and more.
+     */
+    withinScope?: boolean;
+    /** A ceiling per outline (model-local Y), in place of `maxHeight` for each. */
+    ceilings?: readonly number[];
   },
 ): void {
   if (maxHeight !== undefined && !Number.isFinite(maxHeight))
@@ -140,6 +172,14 @@ export function setTerrainGroundCutouts(
   else pavementOpenings.delete(object);
   waterOwners.delete(object);
   shorelineOwners.delete(object);
+  if (options?.withinScope) scopedOwners.add(object);
+  else scopedOwners.delete(object);
+  const perOutline = options?.ceilings;
+  if (perOutline !== undefined) {
+    if (perOutline.length !== outlines.length || !perOutline.every(Number.isFinite))
+      throw new Error('Ground cutout ceilings need one finite height per outline');
+    outlineCeilings.set(object, [...perOutline]);
+  } else outlineCeilings.delete(object);
   if (options?.preservePaving) preservePavementOwners.add(object);
   else preservePavementOwners.delete(object);
   if (options?.minHeight !== undefined) floors.set(object, options.minHeight);
@@ -224,17 +264,43 @@ function pieces(outline: TerrainGroundOutline): Point[][] {
     [],
   ).map((t) => t.map((i) => points[i] as Point));
 }
-function clipByDistance(polygon: number[][], distance: (p: number[]) => number): number[][] {
+/**
+ * One side of a cutter: an outline edge from (ax, az) along (ex, ez), positive to its left; or
+ * a ceiling (positive below `h`) or floor (positive above it). Made once per cut, not per clipped
+ * triangle: closures per triangle and cutter were most of a streaming flight's garbage.
+ */
+interface ClipPlane {
+  kind: 0 | 1 | 2;
+  ax: number;
+  az: number;
+  ex: number;
+  ez: number;
+  h: number;
+}
+
+function planeDistance(plane: ClipPlane, p: readonly number[]): number {
+  if (plane.kind === 0)
+    return plane.ex * ((p[2] as number) - plane.az) - plane.ez * ((p[0] as number) - plane.ax);
+  return plane.kind === 1 ? plane.h - (p[1] as number) : (p[1] as number) - plane.h;
+}
+
+/** The part of `polygon` on the plane's positive side (`sign` 1) or negative side (-1). */
+function clipByPlane(polygon: number[][], plane: ClipPlane, sign: 1 | -1): number[][] {
+  // The same walk and arithmetic as the closure version it replaced, so cuts are unchanged.
   const result: number[][] = [];
-  for (let i = 0; i < polygon.length; i++) {
+  const n = polygon.length;
+  for (let i = 0; i < n; i++) {
     const p = polygon[i] as number[],
-      q = polygon[(i + 1) % polygon.length] as number[],
-      dp = distance(p),
-      dq = distance(q);
+      q = polygon[(i + 1) % n] as number[],
+      dp = sign * planeDistance(plane, p),
+      dq = sign * planeDistance(plane, q);
     if (dp >= 0) result.push(p);
     if (dp >= 0 !== dq >= 0) {
       const t = dp / (dp - dq);
-      result.push(p.map((v, k) => v + ((q[k] as number) - v) * t));
+      const point = new Array<number>(p.length);
+      for (let k = 0; k < p.length; k++)
+        point[k] = (p[k] as number) + ((q[k] as number) - (p[k] as number)) * t;
+      result.push(point);
     }
   }
   return result;
@@ -249,15 +315,51 @@ export function subtractTerrainGroundGeometry(
   maxHeights: readonly (number | undefined)[] = [],
   minHeights: readonly (number | undefined)[] = [],
 ): THREE.BufferGeometry {
+  const steps = terrainGroundCutSteps(source, outlines, maxHeights, minHeights);
+  for (;;) {
+    const step = steps.next();
+    if (step.done) return step.value;
+  }
+}
+
+/** A sliced cut pauses once a slice has run SLICE_MS, checking the clock every SLICE_CHECK work
+ * units: a triangle copied whole counts 1, one near an opening 5, and a clipped one CLIP_WORK
+ * more for each opening it is clipped against (one under many water triangles can take a
+ * millisecond on its own, and a flat count let a harbor's slices run past 10 ms). */
+const SLICE_MS = 1;
+const SLICE_CHECK = 256;
+const CLIP_WORK = 24;
+
+/**
+ * subtractTerrainGroundGeometry in slices: it pauses after about SLICE_MS of work and returns the
+ * geometry when done. A coarse tile under Puget Sound took 300 ms to cut in one go.
+ */
+function* terrainGroundCutSteps(
+  source: THREE.BufferGeometry,
+  outlines: readonly TerrainGroundOutline[],
+  maxHeights: readonly (number | undefined)[],
+  minHeights: readonly (number | undefined)[],
+): Generator<void, THREE.BufferGeometry> {
+  let work = 0;
+  let slice = performance.now();
   const names = ['position', ...Object.keys(source.attributes).filter((n) => n !== 'position')];
   const attrs = names.map((n) => source.getAttribute(n));
   const cutters = outlines.flatMap((outline, i) =>
-    pieces(outline).map((points) => ({
-      points,
-      bounds: bounds(points),
-      maxHeight: maxHeights[i],
-      minHeight: minHeights[i],
-    })),
+    pieces(outline).map((points) => {
+      const maxHeight = maxHeights[i];
+      const minHeight = minHeights[i];
+      const planes: ClipPlane[] = points.map((a, j) => {
+        const b = points[(j + 1) % points.length] as Point;
+        return { kind: 0, ax: a[0], az: a[1], ex: b[0] - a[0], ez: b[1] - a[1], h: 0 };
+      });
+      // A bore removes only ground below its ceiling. The hill above it stays intact.
+      if (maxHeight !== undefined)
+        planes.push({ kind: 1, ax: 0, az: 0, ex: 0, ez: 0, h: maxHeight });
+      // Bridges remove only obstructing high ground, retaining lower dry banks.
+      if (minHeight !== undefined)
+        planes.push({ kind: 2, ax: 0, az: 0, ex: 0, ez: 0, h: minHeight });
+      return { points, bounds: bounds(points), maxHeight, minHeight, planes };
+    }),
   );
   // A mapped bore has hundreds of short cutters. Index them so a fine DEM triangle
   // only visits nearby segments instead of scanning every opening on the tile.
@@ -309,6 +411,11 @@ export function subtractTerrainGroundGeometry(
     reach[3] = Math.max(reach[3] as number, b[3]);
   }
   const [reachMinX, reachMinZ, reachMaxX, reachMaxZ] = reach as [number, number, number, number];
+  // A city tile's thousands of openings, planed and indexed, are a slice of their own.
+  if (performance.now() - slice > SLICE_MS) {
+    yield;
+    slice = performance.now();
+  }
   // Whether any cutter's bounds overlap a box: nearbyCutters without building the list. Most of a
   // tile's triangles lie away from every opening and take the plain copy below.
   const touchesCutter = (minX: number, minZ: number, maxX: number, maxZ: number): boolean => {
@@ -339,26 +446,15 @@ export function subtractTerrainGroundGeometry(
   // Indexed output over a copy of every source vertex: triangles away from all openings keep their
   // own indices, and only clipped pieces add vertices. A tile with one small opening is then a
   // bulk copy and an index pass; de-indexing every triangle took tens of milliseconds a tile.
+  // Clipped pieces' vertices gather apart, and each attribute is allocated once at its final size:
+  // growing and trimming whole copies of a tile's attributes was most of a flight's garbage.
   const sizes = attrs.map((a) => a.itemSize);
   const sourceVertices = (attrs[0] as THREE.BufferAttribute).count;
-  let capacity = sourceVertices + 64;
-  let outputs = attrs.map((attribute, k) => {
-    const size = sizes[k] as number;
-    const output = new Float32Array(capacity * size);
-    const plain =
-      attribute instanceof THREE.BufferAttribute &&
-      !attribute.normalized &&
-      attribute.array instanceof Float32Array
-        ? attribute.array
-        : undefined;
-    if (plain !== undefined) output.set(plain.subarray(0, sourceVertices * size));
-    else
-      for (let v = 0; v < sourceVertices; v++)
-        for (let j = 0; j < size; j++) output[v * size + j] = attribute.getComponent(v, j);
-    return output;
-  });
+  let capacity = 256;
+  let added = attrs.map((_, k) => new Float32Array(capacity * (sizes[k] as number)));
   let written = sourceVertices;
-  let indices = new Uint32Array(Math.max(3, count));
+  // Room for every source triangle and a few hundred clipped pieces, so most cuts never grow it.
+  let indices = new Uint32Array(Math.max(3, count + 768));
   let indexed = 0;
   const pushIndex = (value: number): void => {
     if (indexed === indices.length) {
@@ -369,9 +465,10 @@ export function subtractTerrainGroundGeometry(
     indices[indexed++] = value;
   };
   const writeVertex = (values: readonly number[]): void => {
-    if (written === capacity) {
+    const slot = written - sourceVertices;
+    if (slot === capacity) {
       capacity *= 2;
-      outputs = outputs.map((output, k) => {
+      added = added.map((output, k) => {
         const grown = new Float32Array(capacity * (sizes[k] as number));
         grown.set(output);
         return grown;
@@ -380,8 +477,8 @@ export function subtractTerrainGroundGeometry(
     let offset = 0;
     for (let k = 0; k < attrs.length; k++) {
       const size = sizes[k] as number;
-      const output = outputs[k] as Float32Array;
-      for (let j = 0; j < size; j++) output[written * size + j] = values[offset + j] as number;
+      const output = added[k] as Float32Array;
+      for (let j = 0; j < size; j++) output[slot * size + j] = values[offset + j] as number;
       offset += size;
     }
     pushIndex(written++);
@@ -441,6 +538,13 @@ export function subtractTerrainGroundGeometry(
     const stride = position.itemSize;
     const order = index?.array;
     for (let i = Math.max(group.start, source.drawRange.start); i + 2 < end; i += 3) {
+      if (++work >= SLICE_CHECK) {
+        work = 0;
+        if (performance.now() - slice > SLICE_MS) {
+          yield;
+          slice = performance.now();
+        }
+      }
       const v0 = order ? (order[i] as number) : i,
         v1 = order ? (order[i + 1] as number) : i + 1,
         v2 = order ? (order[i + 2] as number) : i + 2;
@@ -470,9 +574,11 @@ export function subtractTerrainGroundGeometry(
         pushIndex(v2);
         continue;
       }
+      work += 4;
       const vertices = [v0, v1, v2];
       const triangleBounds = bounds(vertices.map((v) => [position.getX(v), position.getZ(v)]));
       const nearby = nearbyCutters(triangleBounds);
+      work += nearby.length;
       const corners = vertices.map(
         (v) => [position.getX(v), position.getY(v), position.getZ(v)] as const,
       );
@@ -482,6 +588,7 @@ export function subtractTerrainGroundGeometry(
         pushIndex(v2);
         continue;
       }
+      work += CLIP_WORK * nearby.length;
       let polygons = [
         vertices.map((v) => {
           const values: number[] = [];
@@ -491,33 +598,29 @@ export function subtractTerrainGroundGeometry(
         }),
       ];
       for (const cutter of nearby) {
-        polygons = polygons.flatMap((polygon) => {
-          if (
-            !overlaps(bounds(polygon.map((p) => [p[0] as number, p[2] as number])), cutter.bounds)
-          )
-            return [polygon];
-          const outside: number[][][] = [];
+        const next: number[][][] = [];
+        for (const polygon of polygons) {
+          let minX = Infinity,
+            minZ = Infinity,
+            maxX = -Infinity,
+            maxZ = -Infinity;
+          for (const p of polygon) {
+            minX = Math.min(minX, p[0] as number);
+            maxX = Math.max(maxX, p[0] as number);
+            minZ = Math.min(minZ, p[2] as number);
+            maxZ = Math.max(maxZ, p[2] as number);
+          }
+          if (!overlaps([minX, minZ, maxX, maxZ], cutter.bounds)) {
+            next.push(polygon);
+            continue;
+          }
+          const outside = next;
           let remainder = polygon;
-          const planes = cutter.points.map((a, j) => {
-            const b = cutter.points[(j + 1) % cutter.points.length] as Point;
-            return (p: number[]) =>
-              (b[0] - a[0]) * ((p[2] as number) - a[1]) - (b[1] - a[1]) * ((p[0] as number) - a[0]);
-          });
-          // A bore removes only ground below its ceiling. The hill above it stays intact.
-          if (cutter.maxHeight !== undefined) {
-            const ceiling = cutter.maxHeight;
-            planes.push((p) => ceiling - (p[1] as number));
-          }
-          // Bridges remove only obstructing high ground, retaining lower dry banks.
-          if (cutter.minHeight !== undefined) {
-            const floor = cutter.minHeight;
-            planes.push((p) => (p[1] as number) - floor);
-          }
-          for (const distance of planes) {
+          for (const plane of cutter.planes) {
             if (remainder.length < 3) break;
-            const fragment = clipByDistance(remainder, (p) => -distance(p));
+            const fragment = clipByPlane(remainder, plane, -1);
             if (fragment.length >= 3) outside.push(fragment);
-            remainder = clipByDistance(remainder, distance);
+            remainder = clipByPlane(remainder, plane, 1);
           }
           if (cutter.minHeight !== undefined && remainder.length >= 3) {
             const floor = cutter.minHeight;
@@ -532,39 +635,62 @@ export function subtractTerrainGroundGeometry(
               }),
             );
           }
-          return outside;
-        });
+        }
+        polygons = next;
         if (!polygons.length) break;
       }
       for (const polygon of polygons)
         for (let j = 1; j + 1 < polygon.length; j++) {
-          const tri = [polygon[0], polygon[j], polygon[j + 1]] as number[][];
-          const a = new THREE.Vector3(...(tri[0]?.slice(0, 3) as [number, number, number])),
-            b = new THREE.Vector3(...(tri[1]?.slice(0, 3) as [number, number, number])),
-            c = new THREE.Vector3(...(tri[2]?.slice(0, 3) as [number, number, number]));
-          if (b.sub(a).cross(c.sub(a)).lengthSq() < 1e-18) continue;
-          for (const p of tri) writeVertex(p);
+          const a = polygon[0] as number[],
+            b = polygon[j] as number[],
+            c = polygon[j + 1] as number[];
+          // Skip slivers: |(b - a) x (c - a)|^2, without vectors.
+          const ux = (b[0] as number) - (a[0] as number),
+            uy = (b[1] as number) - (a[1] as number),
+            uz = (b[2] as number) - (a[2] as number),
+            vx = (c[0] as number) - (a[0] as number),
+            vy = (c[1] as number) - (a[1] as number),
+            vz = (c[2] as number) - (a[2] as number);
+          const cx = uy * vz - uz * vy,
+            cy = uz * vx - ux * vz,
+            cz = ux * vy - uy * vx;
+          if (cx * cx + cy * cy + cz * cz < 1e-18) continue;
+          writeVertex(a);
+          writeVertex(b);
+          writeVertex(c);
         }
     }
     const emitted = indexed - start;
     if (emitted) result.addGroup(start, emitted, group.materialIndex);
   }
-  names.forEach((name, i) => {
-    const size = sizes[i] as number;
-    const output = outputs[i] as Float32Array;
-    result.setAttribute(
-      name,
-      new THREE.BufferAttribute(
-        output.length === written * size ? output : output.slice(0, written * size),
-        size,
-      ),
+  // Copying a large tile's attributes out is a slice of its own.
+  if (performance.now() - slice > SLICE_MS) yield;
+  names.forEach((name, k) => {
+    const size = sizes[k] as number;
+    const attribute = attrs[k] as THREE.BufferAttribute;
+    const output = new Float32Array(written * size);
+    const plain =
+      attribute instanceof THREE.BufferAttribute &&
+      !attribute.normalized &&
+      attribute.array instanceof Float32Array
+        ? attribute.array
+        : undefined;
+    if (plain !== undefined) output.set(plain.subarray(0, sourceVertices * size));
+    else
+      for (let v = 0; v < sourceVertices; v++)
+        for (let j = 0; j < size; j++) output[v * size + j] = attribute.getComponent(v, j);
+    output.set(
+      (added[k] as Float32Array).subarray(0, (written - sourceVertices) * size),
+      sourceVertices * size,
     );
+    result.setAttribute(name, new THREE.BufferAttribute(output, size));
   });
+  // A view of the room left over, not a trimmed copy: openings remove only a few triangles.
   result.setIndex(
     new THREE.BufferAttribute(
       written <= 65_536
         ? Uint16Array.from(indices.subarray(0, indexed))
-        : indices.slice(0, indexed),
+        : indices.subarray(0, indexed),
       1,
     ),
   );
@@ -597,9 +723,212 @@ export function subtractTerrainGroundGeometry(
   return result;
 }
 
+interface Cutter {
+  points: THREE.Vector3[];
+  bounds: [number, number, number, number];
+  maxHeight?: number;
+  minHeight?: number;
+  water: boolean;
+  owner: THREE.Object3D;
+  outline: object;
+  ceiling: number;
+  shoreline: boolean;
+  preservePaving: boolean;
+  pavingOnly: boolean;
+  minimumHeight?: number;
+}
+
+/**
+ * An owner's openings in world space, kept while what they are made from stays the same: its
+ * placement, the registered outline lists (replaced, never mutated) and its options.
+ */
+interface OwnerCutters {
+  matrix: Float64Array;
+  openings: object | undefined;
+  paving: object | undefined;
+  ceiling: number | undefined;
+  floor: number | undefined;
+  levels: object | undefined;
+  ceilingList: object | undefined;
+  flags: number;
+  cutters: Cutter[];
+  /** The union of the cutters' bounds, in the root's frame. */
+  bounds: [number, number, number, number];
+}
+
+function unionBounds(cutters: readonly Cutter[]): [number, number, number, number] {
+  const all: [number, number, number, number] = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const { bounds: b } of cutters) {
+    all[0] = Math.min(all[0], b[0]);
+    all[1] = Math.min(all[1], b[1]);
+    all[2] = Math.max(all[2], b[2]);
+    all[3] = Math.max(all[3], b[3]);
+  }
+  return all;
+}
+const ownerCutters = new WeakMap<THREE.Object3D, OwnerCutters>();
+
+/**
+ * An object's placement in `root`'s frame: the product of the local matrices between them.
+ * Hosts move the world under a moving camera (a floating origin) every frame, and world matrices
+ * moved with it: each pass of a flight rebuilt every opening and re-checked every cut. Cuts depend
+ * only on placements relative to one another, which the world's motion leaves alone.
+ */
+function placementIn(
+  root: THREE.Object3D,
+  object: THREE.Object3D,
+  target: THREE.Matrix4,
+  parents: Map<THREE.Object3D, THREE.Matrix4>,
+): THREE.Matrix4 {
+  // Local matrices only: refreshing whole world-matrix chains for every opening and ground mesh
+  // was a millisecond and more of each pass. Parents' placements are shared within a pass (a
+  // tunnel's segments, a tile's meshes).
+  if (object.matrixAutoUpdate) object.updateMatrix();
+  target.copy(object.matrix);
+  const parent = object.parent;
+  if (parent && parent !== root) {
+    let above = parents.get(parent);
+    if (above === undefined) {
+      above = placementIn(root, parent, new THREE.Matrix4(), parents);
+      parents.set(parent, above);
+    }
+    target.premultiply(above);
+  }
+  return target;
+}
+
+function ownerFlags(object: THREE.Object3D): number {
+  return (
+    (waterOwners.has(object) ? 1 : 0) |
+    (shorelineOwners.has(object) ? 2 : 0) |
+    (preservePavementOwners.has(object) ? 4 : 0)
+  );
+}
+
+/** Compared in place: a stamp array per owner per pass was much of a Sydney pass's time. */
+function ownerCurrent(
+  cached: OwnerCutters,
+  object: THREE.Object3D,
+  placement: THREE.Matrix4,
+): boolean {
+  const elements = placement.elements;
+  for (let i = 0; i < 16; i++) if (cached.matrix[i] !== elements[i]) return false;
+  return (
+    cached.openings === owners.get(object) &&
+    cached.paving === pavementOpenings.get(object) &&
+    cached.ceiling === ceilings.get(object) &&
+    cached.floor === floors.get(object) &&
+    cached.levels === shorelineLevels.get(object) &&
+    cached.ceilingList === outlineCeilings.get(object) &&
+    cached.flags === ownerFlags(object)
+  );
+}
+
+function buildOwnerCutters(object: THREE.Object3D, placement: THREE.Matrix4): Cutter[] {
+  const floor = floors.get(object);
+  const perOutline = outlineCeilings.get(object);
+  const openings = [
+    ...(owners.get(object) ?? []).map((outline) => ({ outline, pavingOnly: false })),
+    ...(pavementOpenings.get(object) ?? []).map((outline) => ({ outline, pavingOnly: true })),
+  ];
+  return openings.map(({ outline, pavingOnly }, index) => {
+    const points = outline.map(([x, z]) => new THREE.Vector3(x, 0, z).applyMatrix4(placement));
+    const ceiling = (pavingOnly ? undefined : perOutline?.[index]) ?? ceilings.get(object);
+    return {
+      points,
+      owner: object,
+      outline,
+      ceiling: ceiling ?? Number.NEGATIVE_INFINITY,
+      water: waterOwners.has(object),
+      shoreline: shorelineOwners.has(object),
+      preservePaving: preservePavementOwners.has(object),
+      pavingOnly,
+      ...(shorelineOwners.has(object)
+        ? {
+            minimumHeight: new THREE.Vector3(
+              0,
+              shorelineLevels.get(object)?.[index] ?? 0,
+              0,
+            ).applyMatrix4(placement).y,
+          }
+        : {}),
+      bounds: bounds(points.map((p) => [p.x, p.z])),
+      ...(ceiling !== undefined
+        ? { maxHeight: new THREE.Vector3(0, ceiling, 0).applyMatrix4(placement).y }
+        : {}),
+      ...(floor !== undefined
+        ? { minHeight: new THREE.Vector3(0, floor, 0).applyMatrix4(placement).y }
+        : {}),
+    };
+  });
+}
+
+function attributeVersion(
+  attribute: THREE.BufferAttribute | THREE.InterleavedBufferAttribute,
+): number {
+  return attribute instanceof THREE.InterleavedBufferAttribute
+    ? attribute.data.version
+    : attribute.version;
+}
+
+/**
+ * Versions a cut is made from: every attribute but the normals. Neighbors loading refresh a
+ * tile's border normals, and re-cutting for that held frames; the rendered copy takes the new
+ * normals instead (see copyCutNormals).
+ */
+function cutVersions(source: THREE.BufferGeometry): number[] {
+  const versions: number[] = [];
+  for (const [name, attribute] of Object.entries(source.attributes))
+    if (name !== 'normal') versions.push(attributeVersion(attribute));
+  return versions;
+}
+
+/** Copy the source's normals onto the cut's copies of its vertices, which come first. */
+function copyCutNormals(state: CutState): void {
+  const from = state.source.getAttribute('normal');
+  const to = state.rendered.getAttribute('normal');
+  if (from === undefined || to === undefined || to.itemSize !== 3) return;
+  const version = attributeVersion(from);
+  if (state.normals === version) return;
+  state.normals = version;
+  const target = to.array as Float32Array;
+  const count = Math.min(from.count, to.count);
+  if (
+    from instanceof THREE.BufferAttribute &&
+    from.array instanceof Float32Array &&
+    !from.normalized
+  )
+    target.set(from.array.subarray(0, count * 3));
+  else
+    for (let v = 0; v < count; v++) {
+      target[v * 3] = from.getX(v);
+      target[v * 3 + 1] = from.getY(v);
+      target[v * 3 + 2] = from.getZ(v);
+    }
+  (to as THREE.BufferAttribute).needsUpdate = true;
+}
+
+/** A cut in progress, advanced a slice at a time (see terrainGroundCutSteps). */
+interface CutJob {
+  /** The mesh's pass inputs when the job last checked its openings (see `settled`). */
+  inputs: number[];
+  key: string;
+  depends: number[];
+  source: THREE.BufferGeometry;
+  steps: Generator<void, THREE.BufferGeometry>;
+}
+
 /** Coordinates cutouts across tile and LOD boundaries. No material or source grid is mutated. */
 export class TerrainGroundCutoutController {
   private readonly active = new Map<THREE.Mesh, CutState>();
+  private readonly jobs = new Map<THREE.Mesh, CutJob>();
+  /**
+   * Each ground mesh's last settled pass: what it was made from (placement, geometry, which
+   * owners' openings could reach it) and whether it was cut. Unchanged, the mesh is skipped:
+   * filtering a harbor's thousands of shoreline openings for every mesh in every pass, while
+   * one sliced cut was pending, cost Sydney's frames 10-20 ms.
+   */
+  private readonly settled = new WeakMap<THREE.Mesh, { inputs: number[]; cut: boolean }>();
   private readonly changed = new Set<THREE.Mesh>();
   /** Meshes whose rendered geometry the last `update` replaced or restored. */
   get changedMeshes(): ReadonlySet<THREE.Mesh> {
@@ -611,16 +940,18 @@ export class TerrainGroundCutoutController {
   }
   private deferred = false;
   /**
-   * Bring every visible ground mesh's cut up to date. With `budgetMs`, cuts after the first stop
-   * once that much time has passed: the rest keep their current state (or stay uncut a moment
-   * longer) and `pending` asks for another update. Several tiles arriving together each needed
-   * their own cut, and made in one pass they held a frame for 20-40 ms.
+   * Bring every visible ground mesh's cut up to date. With `budgetMs`, cutting stops once that
+   * much time has passed: a cut in progress resumes in the next update, its ground keeping the
+   * current state (or staying uncut a moment longer) until it is done, and `pending` asks for
+   * that update. Each update advances at least one cut a slice. Several tiles arriving together
+   * each needed their own cut, and made in one pass they held a frame for 20-40 ms; a coarse
+   * tile under open water took 300 ms on its own.
    */
   update(root: THREE.Object3D, budgetMs: number = Number.POSITIVE_INFINITY): boolean {
     this.changed.clear();
     this.deferred = false;
-    const started = performance.now();
-    let cuts = 0;
+    let started = performance.now();
+    let stepped = false;
     // Weak registries avoid walking every building in regions with no ground openings.
     const visibleWithin = (object: THREE.Object3D): boolean => {
       for (let cursor: THREE.Object3D | null = object; cursor; cursor = cursor.parent) {
@@ -629,20 +960,25 @@ export class TerrainGroundCutoutController {
       }
       return false;
     };
-    const cutters: Array<{
-      points: THREE.Vector3[];
-      bounds: [number, number, number, number];
-      maxHeight?: number;
-      minHeight?: number;
-      water: boolean;
-      owner: THREE.Object3D;
-      outline: object;
-      ceiling: number;
-      shoreline: boolean;
-      preservePaving: boolean;
-      pavingOnly: boolean;
-      minimumHeight?: number;
-    }> = [];
+    const scopeOf = (object: THREE.Object3D): THREE.Object3D | undefined => {
+      for (let cursor: THREE.Object3D | null = object; cursor; cursor = cursor.parent) {
+        if (cutScopes.has(cursor)) return cursor;
+        if (cursor === root) return undefined;
+      }
+      return undefined;
+    };
+    let cutterCount = 0;
+    // Shoreline openings within a cut scope reach only that scope's ground (see
+    // markTerrainGroundCutScope); every other opening may reach any ground mesh.
+    const unscoped: Cutter[] = [];
+    const scoped = new Map<THREE.Object3D, Cutter[]>();
+    // The owners each scope (undefined: unscoped) brings, as identities of their cutter sets.
+    const reachers = new Map<THREE.Object3D | undefined, number[]>();
+    // Unscoped owners (landmarks, bores) with their bounds: a ground mesh's memo names only
+    // those that reach it, so a landmark toggling as the view turns leaves the rest settled.
+    const unscopedOwners: { id: number; bounds: [number, number, number, number] }[] = [];
+    const ownerPlacement = new THREE.Matrix4();
+    const parentPlacements = new Map<THREE.Object3D, THREE.Matrix4>();
     for (const ref of ownerRefs) {
       const object = ref.deref();
       if (!object) {
@@ -650,170 +986,268 @@ export class TerrainGroundCutoutController {
         continue;
       }
       if (!visibleWithin(object)) continue;
-      object.updateWorldMatrix(true, false);
-      const ceiling = ceilings.get(object);
-      const floor = floors.get(object);
-      const openings = [
-        ...(owners.get(object) ?? []).map((outline) => ({ outline, pavingOnly: false })),
-        ...(pavementOpenings.get(object) ?? []).map((outline) => ({ outline, pavingOnly: true })),
-      ];
-      for (const [index, { outline, pavingOnly }] of openings.entries()) {
-        const points = outline.map(([x, z]) =>
-          new THREE.Vector3(x, 0, z).applyMatrix4(object.matrixWorld),
-        );
-        cutters.push({
-          points,
-          owner: object,
-          outline,
-          ceiling: ceiling ?? Number.NEGATIVE_INFINITY,
-          water: waterOwners.has(object),
-          shoreline: shorelineOwners.has(object),
-          preservePaving: preservePavementOwners.has(object),
-          pavingOnly,
-          ...(shorelineOwners.has(object)
-            ? {
-                minimumHeight: new THREE.Vector3(
-                  0,
-                  shorelineLevels.get(object)?.[index] ?? 0,
-                  0,
-                ).applyMatrix4(object.matrixWorld).y,
-              }
-            : {}),
-          bounds: bounds(points.map((p) => [p.x, p.z])),
-          ...(ceiling !== undefined
-            ? { maxHeight: new THREE.Vector3(0, ceiling, 0).applyMatrix4(object.matrixWorld).y }
-            : {}),
-          ...(floor !== undefined
-            ? { minHeight: new THREE.Vector3(0, floor, 0).applyMatrix4(object.matrixWorld).y }
-            : {}),
-        });
+      // A water mesh's hundreds of triangles were placed into world space again on every pass.
+      const placement = placementIn(root, object, ownerPlacement, parentPlacements);
+      let cached = ownerCutters.get(object);
+      if (cached === undefined || !ownerCurrent(cached, object, placement)) {
+        cached = {
+          matrix: Float64Array.from(placement.elements),
+          openings: owners.get(object),
+          paving: pavementOpenings.get(object),
+          ceiling: ceilings.get(object),
+          floor: floors.get(object),
+          levels: shorelineLevels.get(object),
+          ceilingList: outlineCeilings.get(object),
+          flags: ownerFlags(object),
+          cutters: [],
+          bounds: [Infinity, Infinity, -Infinity, -Infinity],
+        };
+        cached.cutters = buildOwnerCutters(object, placement);
+        cached.bounds = unionBounds(cached.cutters);
+        ownerCutters.set(object, cached);
       }
+      const scope =
+        shorelineOwners.has(object) || scopedOwners.has(object) ? scopeOf(object) : undefined;
+      let list = unscoped;
+      if (scope !== undefined) {
+        list = scoped.get(scope) ?? [];
+        scoped.set(scope, list);
+      }
+      for (const cutter of cached.cutters) list.push(cutter);
+      if (scope === undefined) unscopedOwners.push({ id: identity(cached), bounds: cached.bounds });
+      else {
+        const ids = reachers.get(scope) ?? [];
+        ids.push(identity(cached));
+        reachers.set(scope, ids);
+      }
+      cutterCount += cached.cutters.length;
     }
-    if (!cutters.length && !this.active.size) return false;
+    if (!cutterCount && !this.active.size && !this.jobs.size) return false;
     const targets: THREE.Mesh[] = [];
-    if (cutters.length)
+    if (cutterCount)
       for (const ref of surfaceRefs) {
         const mesh = ref.deref();
         if (!mesh) {
           surfaceRefs.delete(ref);
           continue;
         }
-        if (visibleWithin(mesh)) targets.push(mesh);
+        // Ground a covering layer hides (render layers off) is cut once it shows again.
+        if (mesh.layers.mask !== 0 && visibleWithin(mesh)) targets.push(mesh);
       }
+    // The budget is for cutting: the pass's fixed work (gathering openings) does not spend it.
+    started = performance.now();
     const seen = new Set<THREE.Mesh>();
     let changed = false;
 
     for (const mesh of targets) {
       const source = terrainGroundSourceGeometry(mesh);
+      const placement = placementIn(root, mesh, new THREE.Matrix4(), parentPlacements);
+      const scope = scopeOf(mesh);
+      const versions = cutVersions(source);
       if (!source.boundingBox) source.computeBoundingBox();
-      const box = source.boundingBox;
-      mesh.updateWorldMatrix(true, false);
-      const inverse = new THREE.Matrix4().copy(mesh.matrixWorld).invert();
-      const worldBox = box?.clone().applyMatrix4(mesh.matrixWorld);
-      const nearby = cutters.filter(
-        (c) =>
-          c.water === waterSurfaces.has(mesh) &&
-          (!c.pavingOnly || pavementSurfaces.has(mesh)) &&
-          !(c.preservePaving && !c.pavingOnly && pavementSurfaces.has(mesh)) &&
-          (!c.shoreline || shorelineSurfaces.has(mesh)) &&
-          worldBox &&
-          (c.minHeight === undefined || worldBox.max.y > c.minHeight) &&
-          (c.minimumHeight === undefined || worldBox.max.y > c.minimumHeight) &&
-          overlaps([worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z], c.bounds),
-      );
-      if (!nearby.length) continue;
-      // The exact key below transforms every opening's outline into the mesh's frame and
-      // serializes it, for every ground mesh in each visibility pass. When nothing it is made
-      // from changed (the mesh's placement and geometry, which openings and their placements),
-      // the cut stands; at High detail the keys alone cost more than the cuts.
-      const depends: number[] = [...mesh.matrixWorld.elements, identity(source)];
-      for (const attribute of Object.values(source.attributes))
-        depends.push(
-          attribute instanceof THREE.InterleavedBufferAttribute
-            ? attribute.data.version
-            : attribute.version,
-        );
-      for (const c of nearby)
-        depends.push(
-          identity(c.outline),
-          c.ceiling,
-          c.minHeight ?? Number.NEGATIVE_INFINITY,
-          c.minimumHeight ?? Number.NEGATIVE_INFINITY,
-          ...c.owner.matrixWorld.elements,
-        );
-      const current = this.active.get(mesh);
-      if (current?.depends !== undefined && sameNumbers(current.depends, depends)) {
+      // Bounds in the root's frame, like the openings' (see placementIn).
+      const worldBox = source.boundingBox?.clone().applyMatrix4(placement);
+      const near = worldBox
+        ? [worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z]
+        : [-Infinity, -Infinity, Infinity, Infinity];
+      const inputs: number[] = [
+        ...placement.elements,
+        identity(source),
+        ...versions,
+        (waterSurfaces.has(mesh) ? 1 : 0) |
+          (pavementSurfaces.has(mesh) ? 2 : 0) |
+          (shorelineSurfaces.has(mesh) ? 4 : 0),
+        -1,
+        ...unscopedOwners.filter((owner) => overlaps(near, owner.bounds)).map((owner) => owner.id),
+        -2,
+        ...(scope === undefined ? [] : (reachers.get(scope) ?? [])),
+      ];
+      const memo = this.settled.get(mesh);
+      if (memo !== undefined && sameNumbers(memo.inputs, inputs)) {
+        if (!memo.cut) continue;
+        const standing = this.active.get(mesh);
+        if (standing !== undefined) {
+          seen.add(mesh);
+          copyCutNormals(standing);
+          continue;
+        }
+      }
+      this.settled.delete(mesh);
+      const settle = (cut: boolean): void => {
+        this.settled.set(mesh, { inputs, cut });
+      };
+      const spent = (): boolean => stepped && performance.now() - started > budgetMs;
+      let job = this.jobs.get(mesh);
+      // A cut in progress from unchanged inputs resumes at once: refiltering a harbor's openings
+      // for every pending cut, every pass, was most of a flight's cutout time.
+      const quick = job !== undefined && job.source === source && sameNumbers(job.inputs, inputs);
+      if (!quick && spent()) {
+        // Out of time before the openings' filter: decided in a later pass, current cut kept.
         seen.add(mesh);
-        continue;
-      }
-      const outlines = nearby.flatMap((c) => {
-        if (
-          !worldBox ||
-          !overlaps([worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z], c.bounds)
-        )
-          return [];
-        return [
-          c.points.map((point) => {
-            const p = point.clone().applyMatrix4(inverse);
-            return [p.x, p.z] as Point;
-          }),
-        ];
-      });
-      const maxHeights = nearby.map((c) =>
-        c.maxHeight === undefined
-          ? undefined
-          : new THREE.Vector3(0, c.maxHeight, 0).applyMatrix4(inverse).y,
-      );
-      const minHeights = nearby.map((c) =>
-        c.minHeight === undefined
-          ? undefined
-          : new THREE.Vector3(0, c.minHeight, 0).applyMatrix4(inverse).y,
-      );
-      if (!outlines.length) continue;
-      seen.add(mesh);
-      const key = JSON.stringify([
-        outlines.map((outline) => outline.map(([x, z]) => [millimeters(x), millimeters(z)])),
-        maxHeights.map((height) => (height === undefined ? undefined : millimeters(height))),
-        minHeights.map((height) => (height === undefined ? undefined : millimeters(height))),
-        Object.values(source.attributes).map((a) =>
-          a instanceof THREE.InterleavedBufferAttribute ? a.data.version : a.version,
-        ),
-      ]);
-      if (current?.key === key) {
-        current.depends = depends;
-        continue;
-      }
-      if (cuts > 0 && performance.now() - started > budgetMs) {
         this.deferred = true;
         continue;
       }
-      cuts++;
+      if (!quick) {
+        const inverse = placement.clone().invert();
+        const reachable =
+          scope === undefined ? unscoped : [...unscoped, ...(scoped.get(scope) ?? [])];
+        const nearby = reachable.filter(
+          (c) =>
+            c.water === waterSurfaces.has(mesh) &&
+            (!c.pavingOnly || pavementSurfaces.has(mesh)) &&
+            !(c.preservePaving && !c.pavingOnly && pavementSurfaces.has(mesh)) &&
+            (!c.shoreline || shorelineSurfaces.has(mesh)) &&
+            worldBox &&
+            (c.minHeight === undefined || worldBox.max.y > c.minHeight) &&
+            (c.minimumHeight === undefined || worldBox.max.y > c.minimumHeight) &&
+            overlaps([worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z], c.bounds),
+        );
+        if (!nearby.length) {
+          settle(false);
+          continue;
+        }
+        // The exact key below transforms every opening's outline into the mesh's frame and
+        // serializes it, for every ground mesh in each visibility pass. When nothing it is made
+        // from changed (the mesh's placement and geometry, which openings and their placements),
+        // the cut stands; at High detail the keys alone cost more than the cuts.
+        const depends: number[] = [...placement.elements, identity(source), ...versions];
+        // A water mesh brings hundreds of triangles from one owner: its placement once per run.
+        let previous: THREE.Object3D | undefined;
+        for (const c of nearby) {
+          depends.push(
+            identity(c.outline),
+            c.ceiling,
+            c.minHeight ?? Number.NEGATIVE_INFINITY,
+            c.minimumHeight ?? Number.NEGATIVE_INFINITY,
+          );
+          if (c.owner !== previous)
+            depends.push(identity(c.owner), ...(ownerCutters.get(c.owner)?.matrix ?? []));
+          previous = c.owner;
+        }
+        const current = this.active.get(mesh);
+        if (current?.depends !== undefined && sameNumbers(current.depends, depends)) {
+          seen.add(mesh);
+          copyCutNormals(current);
+          settle(true);
+          continue;
+        }
+        // A cut in progress from the same openings resumes without rebuilding its key, a long string.
+        const resuming =
+          job !== undefined && job.source === source && sameNumbers(job.depends, depends);
+        if (!resuming && spent()) {
+          // Out of time: whether this ground needs a new cut is decided in a later pass.
+          seen.add(mesh);
+          this.deferred = true;
+          continue;
+        }
+        if (!resuming || job === undefined) {
+          const outlines = nearby.flatMap((c) => {
+            if (
+              !worldBox ||
+              !overlaps([worldBox.min.x, worldBox.min.z, worldBox.max.x, worldBox.max.z], c.bounds)
+            )
+              return [];
+            return [
+              c.points.map((point) => {
+                const p = point.clone().applyMatrix4(inverse);
+                return [p.x, p.z] as Point;
+              }),
+            ];
+          });
+          const maxHeights = nearby.map((c) =>
+            c.maxHeight === undefined
+              ? undefined
+              : new THREE.Vector3(0, c.maxHeight, 0).applyMatrix4(inverse).y,
+          );
+          const minHeights = nearby.map((c) =>
+            c.minHeight === undefined
+              ? undefined
+              : new THREE.Vector3(0, c.minHeight, 0).applyMatrix4(inverse).y,
+          );
+          if (!outlines.length) {
+            settle(false);
+            continue;
+          }
+          seen.add(mesh);
+          const key = JSON.stringify([
+            outlines.map((outline) => outline.map(([x, z]) => [millimeters(x), millimeters(z)])),
+            maxHeights.map((height) => (height === undefined ? undefined : millimeters(height))),
+            minHeights.map((height) => (height === undefined ? undefined : millimeters(height))),
+            versions,
+          ]);
+          if (current?.key === key) {
+            current.depends = depends;
+            copyCutNormals(current);
+            settle(true);
+            continue;
+          }
+          if (job === undefined || job.key !== key || job.source !== source) {
+            job = {
+              inputs,
+              key,
+              depends,
+              source,
+              steps: terrainGroundCutSteps(source, outlines, maxHeights, minHeights),
+            };
+            this.jobs.set(mesh, job);
+          } else job.depends = depends;
+        }
+        job.inputs = inputs;
+      }
+      if (job === undefined) continue;
+      seen.add(mesh);
+      let rendered: THREE.BufferGeometry | undefined;
+      // Every cut works in slices, the first in a pass too; at least one slice per update.
+      while (!spent()) {
+        stepped = true;
+        const step = job.steps.next();
+        if (step.done) {
+          rendered = step.value;
+          break;
+        }
+      }
+      if (rendered === undefined) {
+        this.deferred = true;
+        continue;
+      }
+      this.jobs.delete(mesh);
       this.active.get(mesh)?.release();
-      const rendered = subtractTerrainGroundGeometry(source, outlines, maxHeights, minHeights);
+      const cut = rendered;
       let released = false;
       const release = (disposeRendered = true) => {
         if (released) return;
         released = true;
-        rendered.removeEventListener('dispose', onDispose);
+        cut.removeEventListener('dispose', onDispose);
         mesh.geometry = source;
         states.delete(mesh);
         this.active.delete(mesh);
-        if (disposeRendered) rendered.dispose();
+        if (disposeRendered) cut.dispose();
       };
       // If an adapter disposes a derived mesh first, its retained source must also leave memory.
       const onDispose = () => {
         release(false);
         source.dispose();
       };
-      const state: CutState = { source, rendered, key, depends, release };
-      rendered.addEventListener('dispose', onDispose);
+      const state: CutState = {
+        source,
+        rendered: cut,
+        key: job.key,
+        depends: job.depends,
+        release,
+      };
+      // The source's normals may have been refreshed while the cut was in progress.
+      copyCutNormals(state);
+      cut.addEventListener('dispose', onDispose);
       states.set(mesh, state);
       this.active.set(mesh, state);
-      mesh.geometry = rendered;
+      mesh.geometry = cut;
       this.changed.add(mesh);
       changed = true;
+      settle(true);
     }
     const shown = new Set(targets);
+    // A cut whose ground left the view (or the scene) is dropped; it starts over if needed.
+    for (const mesh of [...this.jobs.keys()]) if (!seen.has(mesh)) this.jobs.delete(mesh);
     const attached = (object: THREE.Object3D): boolean => {
       for (let cursor: THREE.Object3D | null = object; cursor; cursor = cursor.parent)
         if (cursor === root) return true;
@@ -824,7 +1258,7 @@ export class TerrainGroundCutoutController {
         // Hidden ground keeps its cut while openings remain: tiles hide and show again as the
         // camera's cut changes, and cutting each one again when it came back stalled a fast
         // flight for tens of milliseconds at a time. Shown again, it is checked like the rest.
-        if (cutters.length > 0 && !shown.has(mesh) && attached(mesh)) continue;
+        if (cutterCount > 0 && !shown.has(mesh) && attached(mesh)) continue;
         state.release();
         this.changed.add(mesh);
         changed = true;
@@ -833,9 +1267,13 @@ export class TerrainGroundCutoutController {
   }
   /** Restore original grids before normal tile disposal. */
   restore(root: THREE.Object3D): void {
-    root.traverse((object) => this.active.get(object as THREE.Mesh)?.release());
+    root.traverse((object) => {
+      this.jobs.delete(object as THREE.Mesh);
+      this.active.get(object as THREE.Mesh)?.release();
+    });
   }
   dispose(): void {
+    this.jobs.clear();
     for (const state of this.active.values()) state.release();
   }
 }

@@ -1731,6 +1731,7 @@ async function main(): Promise<void> {
   let lastGpuMs: number | undefined;
   let lastGpuTime = -Infinity;
   let surfaceGeometryRevision = -1;
+  let memoryRefreshTime = Number.NEGATIVE_INFINITY;
   let streamingBusy = true;
   // Quality adapts once the first view has finished loading (or after 20 s). Until then frames
   // carry one-time work: the first ground refining under the camera, collision trees rebuilt
@@ -2285,10 +2286,17 @@ async function main(): Promise<void> {
         stats.loadingLayers > 0 ||
         (isPyramidStats(stats) && stats.retryingLayers > 0) ||
         surfaceStats.loading > 0;
-      if (surfaceStats.loading === 0 && surfaceStats.geometryRevision !== surfaceGeometryRevision) {
-        // Surface detail changes in place on tiles in view; the rest of the cache is counted.
+      // Surface detail changes in place on tiles in view; the rest of the cache is counted. The
+      // recount walks every displayed mesh (4-6 ms in a city), so a pan's constant surface changes
+      // recount every two seconds rather than at every status update.
+      if (
+        surfaceStats.loading === 0 &&
+        surfaceStats.geometryRevision !== surfaceGeometryRevision &&
+        now - memoryRefreshTime >= 2000
+      ) {
         pyramidEarth?.stream.refreshMemoryUsage('displayed');
         surfaceGeometryRevision = surfaceStats.geometryRevision;
+        memoryRefreshTime = now;
       }
       const nearVehicle =
         navigation === 'walk' && walker.ready ? vehicles.nearest(camera.pos) : undefined;

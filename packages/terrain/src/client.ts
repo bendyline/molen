@@ -147,6 +147,7 @@ export {
 export {
   createDefaultTerrainSemanticRenderer,
   createTerrainSemanticObject,
+  createTerrainSemanticObjectSliced,
   createTerrainSemanticPyramidLayer,
   createTerrainWaterMaterial,
   createTerrainWaterMaterialAsync,
@@ -177,6 +178,7 @@ export {
   type TerrainStructureIdentity,
   type TerrainTransportationFeature,
   type TerrainWaterFeature,
+  terrainSemanticTileContentHash,
 } from './semantic-types';
 export { splatColor } from './splat';
 export {
@@ -329,5 +331,16 @@ export {
   installTerrainSemanticDecoderWorker,
   type TerrainSemanticDecoderWorker,
 } from './semantic-decoder-worker';
+export {
+  deriveOverzoomTerrainSemanticTilePacket,
+  deriveTerrainSemanticTilePacket,
+  keepTerrainSemanticTile,
+  packTerrainSemanticTile,
+  type TerrainSemanticTileEdit,
+  type TerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+  terrainSemanticTilePacket,
+  unpackTerrainSemanticTile,
+} from './semantic-packet';
 export type { SurfaceSign } from './surface-sign-mesh';
 export { taggedTerrainObjects, tagTerrainObject } from './tagged-objects';

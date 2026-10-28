@@ -630,6 +630,52 @@ describe('terrain package semantic sidecars', () => {
       },
     ]);
   });
+
+  it('serves recently decoded tiles again, and retries a failed decode', async () => {
+    const pkg = semanticPackage();
+    let reads = 0;
+    let decodes = 0;
+    let fail = true;
+    const archive: TerrainTileArchive = {
+      async getZxy(): Promise<{ data: ArrayBuffer }> {
+        reads++;
+        return { data: Uint8Array.of(1).buffer };
+      },
+    };
+    const decoder = {
+      decode: () => {
+        decodes++;
+        if (fail) {
+          fail = false;
+          throw new Error('decode failed');
+        }
+        return createEmptyTerrainSemanticTile();
+      },
+    };
+    for (const source of [
+      createTerrainPackageCombinedSemanticSource(pkg, archive, decoder),
+      createTerrainPackageSemanticSource(pkg, 'features', archive, decoder),
+    ]) {
+      reads = 0;
+      decodes = 0;
+      fail = true;
+      const address = { level: 4, x: 3, z: 5 };
+      const signal = new AbortController().signal;
+      await expect(source.load(address, signal)).rejects.toThrow(/decode failed/);
+      const first = await source.load(address, signal);
+      // Another layer asking a moment later shares the decoded tile.
+      const again = await source.load(address, signal);
+      expect(again).toBe(first);
+      expect([reads, decodes]).toEqual([2, 2]);
+      // A caller that went away gets nothing; the shared decode is not cancelled for others.
+      const gone = new AbortController();
+      gone.abort();
+      await expect(source.load({ level: 4, x: 4, z: 5 }, gone.signal)).resolves.toBeUndefined();
+      // Every other tile decodes once, however many the source keeps.
+      for (let x = 0; x < 20; x++) await source.load({ level: 4, x, z: 0 }, signal);
+      expect(decodes).toBe(22);
+    }
+  });
 });
 
 describe('terrain package metersPerUnit (Mercator scale)', () => {

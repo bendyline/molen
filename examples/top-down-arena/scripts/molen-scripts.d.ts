@@ -712,6 +712,7 @@ type MolenEnvironmentData = {
       dayAmbient?: number;
       nightAmbient?: number;
       skyLightSaturation?: number;
+      referenceElevation?: number;
       castShadow?: boolean;
     };
     dome?: {
@@ -760,6 +761,7 @@ type MolenEnvironmentData = {
       dayAmbient?: number;
       nightAmbient?: number;
       skyLightSaturation?: number;
+      referenceElevation?: number;
       castShadow?: boolean;
     };
     dome?: {

@@ -17,6 +17,7 @@ import {
 import { normalizeRing, pointInPolygon, polygonBounds } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import { DEFAULT_ROAD_SIGN_PROFILE, type TerrainRoadSignProfile } from './road-sign-styles';
+import { keepTerrainSemanticTile } from './semantic-packet';
 import type {
   TerrainSemanticPoint,
   TerrainSemanticPolygon,
@@ -1444,7 +1445,8 @@ export function createTerrainSurfaceRenderer(
   };
   resolveTerrainSurfaceStyle(options.style, options.details);
   interface Entry {
-    tile: TerrainSemanticTile;
+    /** The tile, for rebuilds when options change (see keepTerrainSemanticTile). */
+    tile: () => TerrainSemanticTile;
     context: TerrainPyramidTileLayerContext;
     controller?: AbortController;
     pending?: Promise<void>;
@@ -1480,7 +1482,7 @@ export function createTerrainSurfaceRenderer(
     const abort = (): void => renderer.disposeTile(root);
     context.signal.addEventListener('abort', abort, { once: true });
     tiles.set(root, {
-      tile,
+      tile: keepTerrainSemanticTile(tile),
       context,
       cleanup: () => context.signal.removeEventListener('abort', abort),
     });
@@ -1495,11 +1497,11 @@ export function createTerrainSurfaceRenderer(
     const build = async (): Promise<void> => {
       const object = generator
         ? await generator.generate(
-            entry.tile,
+            entry.tile(),
             { ...entry.context, signal: controller.signal },
             requested,
           )
-        : createTerrainSurfaceObject(entry.tile, entry.context, requested);
+        : createTerrainSurfaceObject(entry.tile(), entry.context, requested);
       if (!object) return;
       if (disposed || controller.signal.aborted || !tiles.has(root)) {
         disposeTerrainSurfaceObject(object);

@@ -309,10 +309,8 @@ function spawnCandidates(ctx: SpawnContext, kind: LaneKind): SpawnCandidates {
   const edges: TransportEdge[] = [];
   let total = 0;
   for (const span of spans) {
-    const edge = net.edge(span.edge) as TransportEdge;
-    let lanes = 0;
-    for (const id of edge.lanes) if (net.lane(id)?.class === cls) lanes++;
-    let w = lanes * (span.d1 - span.d0);
+    const edge = span.ref;
+    let w = span.lanes[cls] * (span.d1 - span.d0);
     // Spread traffic onto city streets: wide motorways would otherwise take most spawns.
     if (kind === 'car') w *= SPAWN_WEIGHT[edge.kind] ?? 1;
     weights.push(w);

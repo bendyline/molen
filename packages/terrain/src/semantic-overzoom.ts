@@ -13,6 +13,7 @@
 
 import { polygonBounds } from './polygon';
 import type { TerrainPyramidTileAddress } from './pyramid-types';
+import { deriveOverzoomTerrainSemanticTilePacket } from './semantic-packet';
 import type {
   TerrainSemanticLine,
   TerrainSemanticPoint,
@@ -301,7 +302,10 @@ export function createOverzoomTerrainSemanticSource(
       };
       const tile = await ancestorTile(ancestor);
       if (tile === undefined || signal.aborted) return undefined;
-      return overzoomTerrainSemanticTile(tile, ancestor, address, options);
+      const overzoomed = overzoomTerrainSemanticTile(tile, ancestor, address, options);
+      // Workers rebuild it from the ancestor's packet; caches key it by the ancestor's hash.
+      deriveOverzoomTerrainSemanticTilePacket(tile, overzoomed, ancestor, address, options.buffer);
+      return overzoomed;
     },
   };
 }

@@ -4,6 +4,7 @@ import {
   stepWildlife,
   WILDLIFE_TICK_RATE,
   type WildlifeAgent,
+  type WildlifeChoice,
   type WildlifeSpecies,
   type WildlifeWorld,
   wildlifeCandidates,
@@ -12,7 +13,7 @@ import type { RegionalEnvironment } from '@bendyline/molen-worldgen-earth/kernel
 import type * as THREE from 'three';
 import type { EarthAmbientBudget } from './ambient';
 import type { SemanticTileObserver } from './ambient-tiles';
-import { WildlifeHabitatTiles } from './wildlife-habitat';
+import { WildlifeHabitatTiles, type WildlifeLocalHabitat } from './wildlife-habitat';
 
 export interface EarthWildlifeStats {
   animals: number;
@@ -24,15 +25,25 @@ export class EarthWildlife {
   readonly features: SemanticTileObserver;
   private readonly habitat: WildlifeHabitatTiles;
   private readonly renderer: WildlifeRenderer;
+  /** The streamed habitat, sampled afresh: animals move every step. */
   private readonly world: WildlifeWorld;
+  /** The same, its fixed candidate points' samples and choices kept (see `local`). */
+  private readonly grid: WildlifeWorld;
   private agents: WildlifeAgent[] = [];
   private tick = 0;
   private accumulator = 0;
   private lastSync = -Infinity;
   private habitatVersion = -1;
+  private habitatLost = 0;
   private budget = { animals: 24, radius: 250, density: 0.65 };
   private enabled = true;
-  private readonly local = new Map<string, ReturnType<WildlifeHabitatTiles['sample']>>();
+  // Species choices by candidate point, for the habitat sample they were read from: a resample
+  // asks about every cell within reach, and sampling each again cost it 5 ms. A kept sample is
+  // the same object until a tile under the point changes (see WildlifeHabitatTiles.sample).
+  private readonly local = new Map<
+    string,
+    { habitat: WildlifeLocalHabitat; choices: readonly WildlifeChoice[] }
+  >();
   private readonly winter = new Map<string, WildlifeSpecies>();
 
   constructor(
@@ -48,15 +59,24 @@ export class EarthWildlife {
     parent.add(this.renderer.group);
     this.world = {
       choices: (x, z) => {
-        const key = `${x},${z}`;
-        let habitat = this.local.get(key);
-        if (!this.local.has(key)) {
-          habitat = this.habitat.sample(x, z, 0);
-          this.local.set(key, habitat);
-        }
+        const habitat = this.habitat.sample(x, z, 0);
         return habitat === undefined ? [] : environment.wildlife(x, z, habitat);
       },
       habitat: (x, z, margin) => this.habitat.sample(x, z, margin),
+    };
+    this.grid = {
+      choices: (x, z) => {
+        const habitat = this.habitat.sample(x, z, 0, true);
+        if (habitat === undefined) return [];
+        const key = `${x},${z}`;
+        const known = this.local.get(key);
+        if (known?.habitat === habitat) return known.choices;
+        if (this.local.size > 16_384) this.local.clear();
+        const choices = environment.wildlife(x, z, habitat);
+        this.local.set(key, { habitat, choices });
+        return choices;
+      },
+      habitat: (x, z, margin) => this.habitat.sample(x, z, margin, true),
     };
   }
 
@@ -83,17 +103,25 @@ export class EarthWildlife {
 
   update(dt: number, camera: readonly [number, number, number]): void {
     if (!this.enabled) return;
-    this.local.clear();
     this.habitat.sync(camera, this.budget.radius);
+    // Habitat changes resample sooner than the once-a-second refresh: at once when animals may
+    // stand on lost habitat or there are none yet, else within half a second. The visible tiles
+    // change most frames while the view turns, and each resample walks ~90 cells.
+    const since = this.tick - this.lastSync;
+    const changed = this.habitat.version !== this.habitatVersion;
     if (
-      this.habitat.version !== this.habitatVersion ||
-      this.tick - this.lastSync >= WILDLIFE_TICK_RATE
+      (changed &&
+        (this.habitat.lostVersion !== this.habitatLost ||
+          this.agents.length === 0 ||
+          since >= WILDLIFE_TICK_RATE / 2)) ||
+      since >= WILDLIFE_TICK_RATE
     ) {
-      const candidates = wildlifeCandidates(this.world, camera, this.budget, this.tick);
+      const candidates = wildlifeCandidates(this.grid, camera, this.budget, this.tick);
       const old = new Map(this.agents.map((agent) => [agent.id, agent]));
       this.agents = candidates.map((candidate) => old.get(candidate.id) ?? candidate);
       this.lastSync = this.tick;
       this.habitatVersion = this.habitat.version;
+      this.habitatLost = this.habitat.lostVersion;
     }
     this.accumulator += Math.max(0, Math.min(0.2, Number.isFinite(dt) ? dt : 0));
     const step = 1 / WILDLIFE_TICK_RATE;

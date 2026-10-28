@@ -142,6 +142,36 @@ describe('generic sky and lighting', () => {
     sky.dispose();
   });
 
+  it('redraws the dome and stars once the sky has moved enough to show, or on demand', () => {
+    const sky = new SkyVisual(earth, {
+      stars: [
+        { direction: [0, 1, 0], magnitude: 1 },
+        { direction: [0.6, 0.8, 0], magnitude: 2 },
+      ],
+    });
+    const dome = sky.scene.getObjectByName('molen:sky-dome') as THREE.Mesh;
+    const stars = sky.scene.getObjectByName('molen:sky-stars') as THREE.Points;
+    const versions = () => [
+      dome.geometry.getAttribute('color').version,
+      stars.geometry.getAttribute('position').version,
+    ];
+    sky.update(43200);
+    const midnight = versions();
+    // A second of sky motion is far below a pixel.
+    sky.update(43201);
+    expect(versions()).toEqual(midnight);
+    // Ten minutes is not.
+    sky.update(43800);
+    const later = versions();
+    expect(later[0]).toBeGreaterThan(midnight[0] as number);
+    expect(later[1]).toBeGreaterThan(midnight[1] as number);
+    // A new observer redraws at once.
+    sky.setObserver({ latitude: 10, longitude: 20 });
+    sky.update(43801);
+    expect(versions()[0]).toBeGreaterThan(later[0] as number);
+    sky.dispose();
+  });
+
   it('provides authored bodies and custom stars without Earth time or location', () => {
     const sky = new SkyVisual(
       {

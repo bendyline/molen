@@ -60,6 +60,12 @@ export interface AmbientTileInput {
   heightAt?: (x: number, z: number) => number;
   /** Infer sidewalks along streets without mapped footways (default true). */
   sidewalks?: boolean;
+  /**
+   * Build only this world X/Z part of the tile, [minX, minZ, maxX, maxZ] (default: all of it).
+   * A large tile registered as parts, each under its own key, costs a tick a part instead of
+   * one long tick; edges stitch across part borders as across tile borders.
+   */
+  bounds?: readonly [number, number, number, number];
 }
 
 export interface TransportNetworkOptions {
@@ -127,9 +133,15 @@ export class TransportNetwork implements GraphStore {
   private readonly nodes = new Map<string, TransportNode>();
   private readonly edges = new Map<string, TransportEdge>();
   private readonly lanes = new Map<string, TransportLane>();
+  /** Each edge's lane count per class (see lanesOfClass), kept with its lanes. */
+  private readonly classLanes = new Map<string, Partial<Record<TransportClass, number>>>();
   private readonly junctions = new Map<string, TransportJunction>();
   private readonly tiles = new Map<string, TileRecord>();
-  private readonly borders = new Map<string, string[]>();
+  /**
+   * Border nodes by class and layer, then by rounded position (see borderCell): stitching probes
+   * the 25 positions around each new border node, and a string key for each was most of it.
+   */
+  private readonly borders = new Map<string, Map<number, string[]>>();
   private readonly crossings = new Map<string, TransportCrossing>();
   private readonly crossingsByEdge = new Map<string, TransportCrossing[]>();
   private readonly signalCells = new Map<string, WorldPoi[]>();
@@ -166,6 +178,13 @@ export class TransportNetwork implements GraphStore {
   }
   lane(id: string): TransportLane | undefined {
     return this.lanes.get(id);
+  }
+  /**
+   * How many of an edge's lanes are of `cls`. A city's spawn ring is tens of thousands of spans,
+   * and looking up every lane of each one held a spawning tick near 10 ms.
+   */
+  lanesOfClass(edgeId: string, cls: TransportClass): number {
+    return this.classLanes.get(edgeId)?.[cls] ?? 0;
   }
   junction(id: string): TransportJunction | undefined {
     return this.junctions.get(id);
@@ -256,13 +275,15 @@ export class TransportNetwork implements GraphStore {
     if (this.tiles.has(input.key)) this.unregisterTile(input.key);
     const { drafts, runways } = featureDrafts(input, { tunnels: this.tunnels });
     for (const draft of drafts) draft.drivingSide = input.drivingSide ?? this.traffic;
-    const pois = tilePois(input.pois, input.origin, input.tileSize);
-    const rect: [number, number, number, number] = [
-      input.origin[0],
-      input.origin[1],
-      input.origin[0] + input.tileSize,
-      input.origin[1] + input.tileSize,
-    ];
+    const pois = tilePois(input.pois, input.origin, input.tileSize, input.bounds);
+    const rect: [number, number, number, number] = input.bounds
+      ? [input.bounds[0], input.bounds[1], input.bounds[2], input.bounds[3]]
+      : [
+          input.origin[0],
+          input.origin[1],
+          input.origin[0] + input.tileSize,
+          input.origin[1] + input.tileSize,
+        ];
     this.addTile(
       input.key,
       drafts,
@@ -289,24 +310,32 @@ export class TransportNetwork implements GraphStore {
         }
       }
     }
+    const gone: string[] = [];
     for (const edgeId of tile.edges) {
       const edge = this.edges.get(edgeId);
       if (edge === undefined) continue;
       for (const laneId of edge.lanes) this.lanes.delete(laneId);
-      this.grid.remove(edgeId);
+      this.classLanes.delete(edgeId);
+      gone.push(edgeId);
       this.edges.delete(edgeId);
       this.crossingsByEdge.delete(edgeId);
     }
+    this.grid.removeAll(gone);
     for (const id of tile.crossings) this.crossings.delete(id);
     for (const nodeId of tile.nodes) {
       const node = this.nodes.get(nodeId);
       if (node === undefined) continue;
       this.junctions.delete(nodeId);
       if (node.border) {
-        const key = borderKey(node);
-        const list = this.borders.get(key)?.filter((id) => id !== nodeId) ?? [];
-        if (list.length === 0) this.borders.delete(key);
-        else this.borders.set(key, list);
+        const group = borderGroup(node);
+        const cells = this.borders.get(group);
+        const cell = borderCell(dmath.round(node.x), dmath.round(node.z));
+        const list = cells?.get(cell)?.filter((id) => id !== nodeId) ?? [];
+        if (list.length > 0) cells?.set(cell, list);
+        else {
+          cells?.delete(cell);
+          if (cells?.size === 0) this.borders.delete(group);
+        }
       }
       this.nodes.delete(nodeId);
     }
@@ -565,6 +594,12 @@ export class TransportNetwork implements GraphStore {
       };
       this.lanes.set(id, lane);
       edge.lanes.push(id);
+      let counts = this.classLanes.get(edge.id);
+      if (counts === undefined) {
+        counts = {};
+        this.classLanes.set(edge.id, counts);
+      }
+      counts[cls] = (counts[cls] ?? 0) + 1;
     };
     if (draft.class === 'road') {
       const total = draft.lanes;
@@ -602,8 +637,15 @@ export class TransportNetwork implements GraphStore {
   }
 
   private stitch(node: TransportNode): void {
-    const own = borderKey(node);
-    const candidates: string[] = [...(this.borders.get(own) ?? [])];
+    const group = borderGroup(node);
+    let cells = this.borders.get(group);
+    if (cells === undefined) {
+      cells = new Map();
+      this.borders.set(group, cells);
+    }
+    const bx = dmath.round(node.x);
+    const bz = dmath.round(node.z);
+    const own = borderCell(bx, bz);
     let best: TransportNode | undefined;
     let bestDistance = 1.01;
     const consider = (ids: readonly string[], limit: number): void => {
@@ -620,19 +662,16 @@ export class TransportNetwork implements GraphStore {
         }
       }
     };
-    consider(candidates, 1.01);
+    consider(cells.get(own) ?? [], 1.01);
     if (best === undefined) {
       // Second pass: neighbouring keys within 2 m (overzoomed and native tiles disagree slightly).
       bestDistance = 2.01;
-      const [cls, layer] = own.split('/');
-      const bx = dmath.round(node.x);
-      const bz = dmath.round(node.z);
       for (let ox = -2; ox <= 2; ox++)
         for (let oz = -2; oz <= 2; oz++)
-          consider(this.borders.get(`${cls}/${layer}/${bx + ox}/${bz + oz}`) ?? [], 2.01);
+          consider(cells.get(borderCell(bx + ox, bz + oz)) ?? [], 2.01);
     }
-    const list = this.borders.get(own);
-    if (list === undefined) this.borders.set(own, [node.id]);
+    const list = cells.get(own);
+    if (list === undefined) cells.set(own, [node.id]);
     else list.push(node.id);
     const partner = best as TransportNode | undefined;
     if (partner !== undefined) {
@@ -777,6 +816,17 @@ export class TransportNetwork implements GraphStore {
     return best;
   }
 
+  /** The network's sizes, without the walks `stats()` makes. */
+  sizes(): Pick<TransportNetworkStats, 'tiles' | 'nodes' | 'edges' | 'lanes' | 'junctions'> {
+    return {
+      tiles: this.tiles.size,
+      nodes: this.nodes.size,
+      edges: this.edges.size,
+      lanes: this.lanes.size,
+      junctions: this.junctions.size,
+    };
+  }
+
   stats(): TransportNetworkStats {
     const laneKm: Record<TransportClass, number> = { road: 0, rail: 0, walk: 0, air: 0, water: 0 };
     for (const lane of this.lanes.values()) laneKm[lane.class] += lane.length / 1000;
@@ -817,8 +867,13 @@ function q(value: number): number {
   return dmath.round(value * 10);
 }
 
-function borderKey(node: TransportNode): string {
-  return `${node.class}/${node.layer}/${dmath.round(node.x)}/${dmath.round(node.z)}`;
+function borderGroup(node: TransportNode): string {
+  return `${node.class}/${node.layer}`;
+}
+
+/** A rounded border position as one number: exact for metres within 33,000 km of the origin. */
+function borderCell(x: number, z: number): number {
+  return (x + 2 ** 25) * 2 ** 26 + (z + 2 ** 25);
 }
 
 function linePath(points: Point2[]): TerrainLinePath {

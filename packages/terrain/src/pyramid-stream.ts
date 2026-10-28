@@ -11,6 +11,7 @@ import type { SceneAdmission } from '@bendyline/molen-client';
 import * as THREE from 'three';
 import type { TerrainDescriptor } from './descriptor-types';
 import {
+  markTerrainGroundCutScope,
   markTerrainGroundSurface,
   TerrainGroundCutoutController,
   terrainGroundSourceGeometry,
@@ -498,8 +499,15 @@ function distanceToBounds(
   return Math.hypot(dx, dy, dz);
 }
 
-/** Main-thread time (ms) one visibility pass spends on new ground cuts after its first. */
+/**
+ * Main-thread time (ms) the visibility passes of one frame spend on new ground cuts: the frame's
+ * own pass (each stream update renews the budget) and the passes tiles request before the next
+ * one (see requestVisibility). Each taking a full budget held frames past 50 ms while panning
+ * low over a city.
+ */
 const CUT_BUDGET_MS = 4;
+/** Without stream updates (no frames: a hidden page, a test), the budget renews this often. */
+const CUT_IDLE_WINDOW_MS = 100;
 
 const VIEW_GUARD_RADIANS = THREE.MathUtils.degToRad(12);
 
@@ -957,9 +965,19 @@ function isAbortError(error: unknown): boolean {
   return error instanceof Error && error.name === 'AbortError';
 }
 
+// Parsed tile keys: each visibility pass reads every candidate's, several passes a frame.
+const parsedKeys = new Map<string, TerrainPyramidTileAddress>();
+
+/** A tile key's address (shared: callers must not change it). */
 function addressFromKey(key: string): TerrainPyramidTileAddress {
-  const [level, x, z] = key.split('/').map(Number);
-  return { level: level as number, x: x as number, z: z as number };
+  let address = parsedKeys.get(key);
+  if (address === undefined) {
+    const [level, x, z] = key.split('/').map(Number);
+    address = { level: level as number, x: x as number, z: z as number };
+    if (parsedKeys.size >= 8192) parsedKeys.clear();
+    parsedKeys.set(key, address);
+  }
+  return address;
 }
 
 export function surfaceDescriptor(
@@ -1139,6 +1157,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
    * otherwise reran on every 10 Hz camera update with nothing to change.
    */
   private cutoutsDirty = true;
+  /** When the current cut budget began, and the cutting it has paid for (see CUT_BUDGET_MS). */
+  private cutWindowStart = Number.NEGATIVE_INFINITY;
+  private cutWindowSpent = 0;
   /**
    * A visibility pass requested by a publication. A fast flight publishes dozens of tiles and
    * layers in one admission flush, and each ran the whole pass (the selection against displayed
@@ -1239,6 +1260,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ...(view.direction === undefined ? {} : { direction: [...view.direction] }),
     };
     this.usage++;
+    this.cutWindowStart = performance.now();
+    this.cutWindowSpent = 0;
     this.selection = selectTerrainPyramidTiles(this.descriptor, this.view, {
       ...this.budget,
       previousTiles: this.selection.tiles,
@@ -1844,6 +1867,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     skipHiddenWorldMatrices(object);
     const origin = terrainPyramidTileOrigin(this.descriptor, address);
     object.name = `tile:${key}`;
+    // The tile's own water cuts its ground and land cover; neighbors' level changes leave it be.
+    markTerrainGroundCutScope(object);
     object.position.set(origin[0], 0, origin[1]);
     // Collision scans skip tiles out of reach (see WalkCollision); content overhangs a tile edge
     // by a few meters at most.
@@ -2189,10 +2214,24 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   /** Choose one non-overlapping cut, keeping a parent whenever a child still needs it. */
   private withoutCoveredDescendants(candidates: Set<string>): Set<string> {
     const result = new Set(candidates);
+    const addresses: TerrainPyramidTileAddress[] = [];
+    const present = new Set<number>();
     for (const key of candidates) {
       const address = this.resident.get(key)?.address ?? addressFromKey(key);
-      for (let level = address.level - 1; level >= this.descriptor.minLevel; level--) {
-        if (candidates.has(terrainPyramidTileKey(terrainPyramidAncestor(address, level)))) {
+      addresses.push(address);
+      present.add(address.level);
+    }
+    // Only a level some candidate is at can hold a covering ancestor: building every ancestor's
+    // key, down to the root, for each candidate was a few milliseconds of every pass.
+    const levels = [...present].filter((level) => level >= this.descriptor.minLevel);
+    let i = 0;
+    for (const key of candidates) {
+      const address = addresses[i++] as TerrainPyramidTileAddress;
+      for (const level of levels) {
+        if (
+          level < address.level &&
+          candidates.has(terrainPyramidTileKey(terrainPyramidAncestor(address, level)))
+        ) {
           result.delete(key);
           break;
         }
@@ -2363,20 +2402,31 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       // `visible`, so the stream's own display state stays untouched.
       const surface = tile.surface;
       surface.userData.terrainLayerMask ??= surface.layers.mask;
-      surface.layers.mask = covered ? 0 : (surface.userData.terrainLayerMask as number);
+      const mask = covered ? 0 : (surface.userData.terrainLayerMask as number);
+      // Covered ground is not cut (see TerrainGroundCutoutController.update); uncovered, it is.
+      if (surface.layers.mask !== mask) this.cutoutsDirty = true;
+      surface.layers.mask = mask;
       // A warm tile can contain hundreds of LOD groups. Hide its root too, so renderer
       // traversal and WebGPU command inspection stop before visiting that cached subtree.
       const retained = this.visiblyRetains(key);
       if (tile.object.visible !== retained) this.cutoutsDirty = true;
       tile.object.visible = retained;
     }
-    if (this.cutoutsDirty) {
+    const now = performance.now();
+    if (now - this.cutWindowStart >= CUT_IDLE_WINDOW_MS) {
+      this.cutWindowStart = now;
+      this.cutWindowSpent = 0;
+    }
+    // Out of budget, the pass waits: the next frame's update makes one before it renders. A pass
+    // with a sliver left would still cut a whole slice and gather every opening first.
+    if (this.cutoutsDirty && this.cutWindowSpent <= CUT_BUDGET_MS - 1) {
       this.cutoutsDirty = false;
-      if (this.groundCutouts.update(this.object, CUT_BUDGET_MS))
+      if (this.groundCutouts.update(this.object, CUT_BUDGET_MS - this.cutWindowSpent))
         this.trackCutAllocations(this.groundCutouts.changedMeshes);
       // The rest follow in later passes (each stream update makes one), a budget at a time; a
       // pass requested now would only run in this same task.
       if (this.groundCutouts.pending) this.cutoutsDirty = true;
+      this.cutWindowSpent += performance.now() - now;
     }
     this.refreshDisplayedBytes();
   }

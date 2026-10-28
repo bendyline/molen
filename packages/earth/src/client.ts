@@ -176,4 +176,5 @@ export {
   type EarthViewWorkers,
   type EarthWorldgen,
   generationWorkers,
+  surfaceWorkers,
 } from './client/worldgen';

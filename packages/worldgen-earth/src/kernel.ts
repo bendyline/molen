@@ -100,7 +100,11 @@ export {
   suggestStructureStyles,
 } from './kernel/structure-index';
 export { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
-export { matchMapStructures, orientMappedStructure } from './kernel/structure-matching';
+export {
+  matchMapStructures,
+  orientMappedStructure,
+  orientMappedStructures,
+} from './kernel/structure-matching';
 export type { WorldgenQualityPreset } from './kernel/tile-budgets';
 export { worldgenBuildingCellSize, worldgenTileBudgetForQuality } from './kernel/tile-budgets';
 export type { EdgeDecision } from './kernel/tile-edges';

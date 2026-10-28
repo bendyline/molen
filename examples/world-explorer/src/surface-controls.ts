@@ -1,4 +1,4 @@
-import { generationWorkers } from '@bendyline/molen-earth/client';
+import { surfaceWorkers } from '@bendyline/molen-earth/client';
 import type { FontLibrary } from '@bendyline/molen-materials/text';
 import {
   createTerrainSurfaceRenderer,
@@ -77,10 +77,10 @@ export function createSurfaceControls(
     typeof Worker !== 'undefined' &&
     params.get('worker') !== '0' &&
     params.get('surfaceWorker') !== '0'
-      ? // As many workers as world generation (see generationWorkers).
+      ? // One surface worker (see surfaceWorkers).
         createTerrainSurfaceWorkerPool(
           Array.from(
-            { length: generationWorkers() },
+            { length: surfaceWorkers() },
             () => new Worker(new URL('./surface-worker.ts', import.meta.url), { type: 'module' }),
           ),
         )

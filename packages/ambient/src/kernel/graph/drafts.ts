@@ -205,6 +205,13 @@ export interface TileDraftInput {
   origin: readonly [number, number];
   tileSize: number;
   features: readonly TerrainTransportationFeature[];
+  /** World X/Z part of the tile to keep (see AmbientTileInput.bounds); default the whole tile. */
+  bounds?: readonly [number, number, number, number];
+}
+
+/** Whether a point belongs to a tile part: half-open, so a point on a shared border has one. */
+function inPart(bounds: readonly [number, number, number, number], x: number, z: number): boolean {
+  return x >= bounds[0] && x < bounds[2] && z >= bounds[1] && z < bounds[3];
 }
 
 export interface TileDrafts {
@@ -212,17 +219,74 @@ export interface TileDrafts {
   runways: { a: Point2; b: Point2 }[];
 }
 
-/** Convert a tile's transportation features to clipped world-metre drafts. */
-export function featureDrafts(input: TileDraftInput, options: FeatureDraftOptions): TileDrafts {
+/** A feature's draft fields and its joined lines in world metres, before any clipping. */
+interface PreparedFeature {
+  draft: Omit<EdgeDraft, 'points'>;
+  /**
+   * World bounds of each source line (4 numbers a line) and of them all, made when a part first
+   * asks. A group of like features (every unnamed street) spans the tile; a part joins only the
+   * lines that reach it, where joining all of them was most of a dense tile's first part.
+   */
+  boxes?: Float64Array;
+  box?: [number, number, number, number];
+  source: TerrainTransportationFeature;
+}
+
+function worldBox(
+  points: readonly (readonly [number, number])[],
+): [number, number, number, number] {
+  const box: [number, number, number, number] = [
+    Number.POSITIVE_INFINITY,
+    Number.POSITIVE_INFINITY,
+    Number.NEGATIVE_INFINITY,
+    Number.NEGATIVE_INFINITY,
+  ];
+  for (const [x, z] of points) {
+    box[0] = dmath.min(box[0], x);
+    box[1] = dmath.min(box[1], z);
+    box[2] = dmath.max(box[2], x);
+    box[3] = dmath.max(box[3], z);
+  }
+  return box;
+}
+
+interface PreparedTile {
+  origin: readonly [number, number];
+  tileSize: number;
+  tunnels: FeatureDraftOptions['tunnels'];
+  features: PreparedFeature[];
+  runways: { a: Point2; b: Point2 }[];
+  /**
+   * Feature positions by cell of a PART_CELLS x PART_CELLS grid over the tile (by their boxes,
+   * edges clamped), made when a part first asks: every part of a dense tile tested every one of
+   * its features against its bounds.
+   */
+  cells?: number[][];
+}
+
+const PART_CELLS = 16;
+
+/**
+ * Joined world lines per features list: a tile registered in parts (AmbientTileInput.bounds)
+ * grouped and joined all its lines again for every part, most of a part's drafting time.
+ */
+const preparedTiles = new WeakMap<readonly TerrainTransportationFeature[], PreparedTile>();
+
+function prepareTile(input: TileDraftInput, options: FeatureDraftOptions): PreparedTile {
   const { origin, tileSize } = input;
-  const minX = origin[0];
-  const minZ = origin[1];
-  const maxX = origin[0] + tileSize;
-  const maxZ = origin[1] + tileSize;
-  const drafts: EdgeDraft[] = [];
-  const runways: { a: Point2; b: Point2 }[] = [];
+  const cached = preparedTiles.get(input.features);
+  if (
+    cached !== undefined &&
+    cached.origin[0] === origin[0] &&
+    cached.origin[1] === origin[1] &&
+    cached.tileSize === tileSize &&
+    cached.tunnels === options.tunnels
+  )
+    return cached;
   const toWorld = (line: TerrainSemanticLine): Point2[] =>
     line.map((p) => [origin[0] + p[0] * tileSize, origin[1] + p[1] * tileSize] as Point2);
+  const features: PreparedFeature[] = [];
+  const runways: { a: Point2; b: Point2 }[] = [];
   for (const feature of groupTransportationFeatures(input.features)) {
     const classified = classifyFeature(feature);
     if (classified === undefined) continue;
@@ -245,38 +309,157 @@ export function featureDrafts(input: TileDraftInput, options: FeatureDraftOption
             ? 3
             : transportWidth(feature, kind);
     const lanes = classified.class === 'road' ? roadLanes(feature, width).total : 2;
-    const link = isTransportLink(feature);
-    for (const line of joinTerrainLines(feature.lines, feature.oneway === true)) {
-      for (const piece of clipPolyline(toWorld(line), minX, minZ, maxX, maxZ)) {
-        const draft: EdgeDraft = {
-          class: classified.class,
-          kind: classified.kind,
-          points: piece,
-          width,
-          lanes,
-          oneway:
-            feature.oneway === true &&
-            (classified.class === 'road' || classified.class === 'water'),
-          layer: feature.layer ?? 0,
-          bridge: feature.bridge === true,
-          tunnel: feature.tunnel === true,
-          link,
-          ...(feature.name !== undefined ? { name: feature.name } : {}),
-          ...(feature.deckElevation !== undefined ? { deckElevation: feature.deckElevation } : {}),
-        };
-        if (feature.bridgeConnections !== undefined && feature.bridgeConnections.length > 0)
-          draft.bridgeConnections = feature.bridgeConnections.map((c) => ({
-            point: [origin[0] + c.point[0] * tileSize, origin[1] + c.point[1] * tileSize],
-            elevation: c.elevation,
-            radius: c.radius,
-          }));
-        if (feature.bridgeApproachProfile?.length)
-          draft.bridgeApproachProfile = feature.bridgeApproachProfile.map((sample) => ({
-            ...sample,
-            point: [origin[0] + sample.point[0] * tileSize, origin[1] + sample.point[1] * tileSize],
-          }));
-        drafts.push(draft);
-      }
+    const draft: Omit<EdgeDraft, 'points'> = {
+      class: classified.class,
+      kind: classified.kind,
+      width,
+      lanes,
+      oneway:
+        feature.oneway === true && (classified.class === 'road' || classified.class === 'water'),
+      layer: feature.layer ?? 0,
+      bridge: feature.bridge === true,
+      tunnel: feature.tunnel === true,
+      link: isTransportLink(feature),
+      ...(feature.name !== undefined ? { name: feature.name } : {}),
+      ...(feature.deckElevation !== undefined ? { deckElevation: feature.deckElevation } : {}),
+    };
+    if (feature.bridgeConnections !== undefined && feature.bridgeConnections.length > 0)
+      draft.bridgeConnections = feature.bridgeConnections.map((c) => ({
+        point: [origin[0] + c.point[0] * tileSize, origin[1] + c.point[1] * tileSize],
+        elevation: c.elevation,
+        radius: c.radius,
+      }));
+    if (feature.bridgeApproachProfile?.length)
+      draft.bridgeApproachProfile = feature.bridgeApproachProfile.map((sample) => ({
+        ...sample,
+        point: [origin[0] + sample.point[0] * tileSize, origin[1] + sample.point[1] * tileSize],
+      }));
+    features.push({ draft, source: feature });
+  }
+  const prepared = { origin, tileSize, tunnels: options.tunnels, features, runways };
+  preparedTiles.set(input.features, prepared);
+  return prepared;
+}
+
+/** World bounds of each of a feature's source lines and of them all (see PreparedFeature). */
+function lineBoxes(feature: PreparedFeature, origin: readonly [number, number], tileSize: number) {
+  if (feature.boxes !== undefined) return;
+  const source = feature.source.lines;
+  const boxes = new Float64Array(source.length * 4);
+  const all: [number, number, number, number] = [
+    Number.POSITIVE_INFINITY,
+    Number.POSITIVE_INFINITY,
+    Number.NEGATIVE_INFINITY,
+    Number.NEGATIVE_INFINITY,
+  ];
+  source.forEach((line, i) => {
+    const box = worldBox(line);
+    boxes[i * 4] = origin[0] + box[0] * tileSize;
+    boxes[i * 4 + 1] = origin[1] + box[1] * tileSize;
+    boxes[i * 4 + 2] = origin[0] + box[2] * tileSize;
+    boxes[i * 4 + 3] = origin[1] + box[3] * tileSize;
+    all[0] = dmath.min(all[0], boxes[i * 4] as number);
+    all[1] = dmath.min(all[1], boxes[i * 4 + 1] as number);
+    all[2] = dmath.max(all[2], boxes[i * 4 + 2] as number);
+    all[3] = dmath.max(all[3], boxes[i * 4 + 3] as number);
+  });
+  feature.boxes = boxes;
+  feature.box = all;
+}
+
+/**
+ * The prepared features whose boxes may reach a part, in their order (every one for a whole
+ * tile), boxes made. Each still checks its own box against the part.
+ */
+function partFeatures(
+  prepared: PreparedTile,
+  origin: readonly [number, number],
+  tileSize: number,
+  bounds: readonly [number, number, number, number] | undefined,
+): PreparedFeature[] {
+  const cell = (value: number, start: number): number =>
+    dmath.clamp(dmath.floor(((value - start) / tileSize) * PART_CELLS), 0, PART_CELLS - 1);
+  if (bounds === undefined) {
+    for (const feature of prepared.features) lineBoxes(feature, origin, tileSize);
+    return prepared.features;
+  }
+  let cells = prepared.cells;
+  if (cells === undefined) {
+    const made: number[][] = Array.from({ length: PART_CELLS * PART_CELLS }, () => []);
+    prepared.features.forEach((feature, index) => {
+      lineBoxes(feature, origin, tileSize);
+      const [x0, z0, x1, z1] = feature.box as [number, number, number, number];
+      for (let row = cell(z0, origin[1]); row <= cell(z1, origin[1]); row++)
+        for (let col = cell(x0, origin[0]); col <= cell(x1, origin[0]); col++)
+          (made[row * PART_CELLS + col] as number[]).push(index);
+    });
+    prepared.cells = made;
+    cells = made;
+  }
+  const picked = new Set<number>();
+  for (let row = cell(bounds[1], origin[1]); row <= cell(bounds[3], origin[1]); row++)
+    for (let col = cell(bounds[0], origin[0]); col <= cell(bounds[2], origin[0]); col++)
+      for (const index of cells[row * PART_CELLS + col] as number[]) picked.add(index);
+  return [...picked]
+    .sort((a, b) => a - b)
+    .map((index) => prepared.features[index] as PreparedFeature);
+}
+
+/** Convert a tile's transportation features to clipped world-metre drafts. */
+export function featureDrafts(input: TileDraftInput, options: FeatureDraftOptions): TileDrafts {
+  const { origin, tileSize, bounds } = input;
+  const minX = bounds?.[0] ?? origin[0];
+  const minZ = bounds?.[1] ?? origin[1];
+  const maxX = bounds?.[2] ?? origin[0] + tileSize;
+  const maxZ = bounds?.[3] ?? origin[1] + tileSize;
+  const prepared = prepareTile(input, options);
+  const drafts: EdgeDraft[] = [];
+  // Unclipped: a part keeps the runways whose midpoint it holds.
+  const runways = prepared.runways
+    .filter(({ a, b }) => !bounds || inPart(bounds, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2))
+    .map(({ a, b }) => ({ a: [a[0], a[1]] as Point2, b: [b[0], b[1]] as Point2 }));
+  for (const feature of partFeatures(prepared, origin, tileSize, bounds)) {
+    const source = feature.source.lines;
+    const reach = feature.box as [number, number, number, number];
+    if (reach[2] < minX || reach[0] > maxX || reach[3] < minZ || reach[1] > maxZ) continue;
+    const boxes = feature.boxes as Float64Array;
+    const reaching = source.filter(
+      (_, i) =>
+        !(
+          (boxes[i * 4 + 2] as number) < minX ||
+          (boxes[i * 4] as number) > maxX ||
+          (boxes[i * 4 + 3] as number) < minZ ||
+          (boxes[i * 4 + 1] as number) > maxZ
+        ),
+    );
+    if (!reaching.length) continue;
+    const draft = feature.draft;
+    for (const line of joinTerrainLines(reaching, feature.source.oneway === true)) {
+      const points = line.map(
+        (p) => [origin[0] + p[0] * tileSize, origin[1] + p[1] * tileSize] as Point2,
+      );
+      for (const piece of clipPolyline(points, minX, minZ, maxX, maxZ))
+        drafts.push({
+          ...draft,
+          // Fresh points and connections: the prepared lines are shared by every part.
+          points: piece.map((p) => [p[0], p[1]] as Point2),
+          ...(draft.bridgeConnections !== undefined
+            ? {
+                bridgeConnections: draft.bridgeConnections.map((c) => ({
+                  ...c,
+                  point: [c.point[0], c.point[1]] as Point2,
+                })),
+              }
+            : {}),
+          ...(draft.bridgeApproachProfile !== undefined
+            ? {
+                bridgeApproachProfile: draft.bridgeApproachProfile.map((sample) => ({
+                  ...sample,
+                  point: [sample.point[0], sample.point[1]] as Point2,
+                })),
+              }
+            : {}),
+        });
     }
   }
   return { drafts, runways };
@@ -315,28 +498,53 @@ const POI_KINDS: ReadonlySet<string> = new Set([
 ]);
 
 /** Convert a tile's POIs to world points (only those inside the tile). */
+/**
+ * A tile's POIs matched and placed once: a tile registered in parts read and matched every one of
+ * them again for each part.
+ */
+const placedPois = new WeakMap<
+  readonly TerrainPoiFeature[],
+  { origin: [number, number]; tileSize: number; pois: WorldPoi[] }
+>();
+
 export function tilePois(
   pois: readonly TerrainPoiFeature[] | undefined,
   origin: readonly [number, number],
   tileSize: number,
+  bounds?: readonly [number, number, number, number],
 ): WorldPoi[] {
-  const result: WorldPoi[] = [];
-  for (const poi of pois ?? []) {
-    const kind = (poi.subclass ?? poi.class).toLowerCase();
-    const matched = POI_KINDS.has(kind) ? kind : POI_KINDS.has(poi.class) ? poi.class : undefined;
-    if (matched === undefined) continue;
-    if (['traffic_signals', 'stop', 'give_way'].includes(matched) && (poi.bridge || poi.tunnel))
-      continue;
-    const [u, v] = poi.point;
-    if (u < 0 || u > 1 || v < 0 || v > 1) continue;
-    result.push({
-      kind: (matched === 'stop' ? 'give_way' : matched) as WorldPoi['kind'],
-      x: origin[0] + u * tileSize,
-      z: origin[1] + v * tileSize,
-      ...(poi.name !== undefined ? { name: poi.name } : {}),
-      ...(poi.stop === 'all' ? { allWay: true } : {}),
-      layer: poi.layer ?? 0,
-    });
+  if (pois === undefined) return [];
+  let placed = placedPois.get(pois);
+  if (
+    placed === undefined ||
+    placed.origin[0] !== origin[0] ||
+    placed.origin[1] !== origin[1] ||
+    placed.tileSize !== tileSize
+  ) {
+    const all: WorldPoi[] = [];
+    for (const poi of pois) {
+      const kind = (poi.subclass ?? poi.class).toLowerCase();
+      const matched = POI_KINDS.has(kind) ? kind : POI_KINDS.has(poi.class) ? poi.class : undefined;
+      if (matched === undefined) continue;
+      if (['traffic_signals', 'stop', 'give_way'].includes(matched) && (poi.bridge || poi.tunnel))
+        continue;
+      const [u, v] = poi.point;
+      if (u < 0 || u > 1 || v < 0 || v > 1) continue;
+      all.push({
+        kind: (matched === 'stop' ? 'give_way' : matched) as WorldPoi['kind'],
+        x: origin[0] + u * tileSize,
+        z: origin[1] + v * tileSize,
+        ...(poi.name !== undefined ? { name: poi.name } : {}),
+        ...(poi.stop === 'all' ? { allWay: true } : {}),
+        layer: poi.layer ?? 0,
+      });
+    }
+    placed = { origin: [origin[0], origin[1]], tileSize, pois: all };
+    placedPois.set(pois, placed);
   }
+  // Copies: the network forgets a part's signals by identity.
+  const result: WorldPoi[] = [];
+  for (const poi of placed.pois)
+    if (!bounds || inPart(bounds, poi.x, poi.z)) result.push({ ...poi });
   return result;
 }

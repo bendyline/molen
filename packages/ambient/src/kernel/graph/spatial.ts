@@ -12,6 +12,12 @@ export const GRID_CELL = 64;
 
 export interface EdgeSpan {
   readonly edge: string;
+  /**
+   * The edge itself and its lanes of each class, as inserted: a spawner weighs every span within
+   * reach, and looking both up by id for each was most of a run's few milliseconds.
+   */
+  readonly ref: TransportEdge;
+  readonly lanes: Readonly<Record<TransportClass, number>>;
   /** Edge-path distances bounding the span. */
   readonly d0: number;
   readonly d1: number;
@@ -69,7 +75,7 @@ export class LaneGrid {
         row.set(cx, cell);
         this.cellCount++;
       }
-      cell.spans.push({ edge: edge.id, d0, d1, x, z });
+      cell.spans.push({ edge: edge.id, ref: edge, lanes: laneCounts, d0, d1, x, z });
       const meters = { road: 0, rail: 0, walk: 0, air: 0, water: 0 };
       for (const cls of CLASSES) {
         const m = (d1 - d0) * laneCounts[cls];
@@ -83,21 +89,39 @@ export class LaneGrid {
   }
 
   remove(edgeId: string): void {
-    const touched = this.edgeCells.get(edgeId);
-    if (touched === undefined) return;
-    for (const { cx, cz, meters } of touched) {
-      const row = this.rows.get(cz);
-      const cell = row?.get(cx);
-      if (row === undefined || cell === undefined) continue;
-      cell.spans = cell.spans.filter((span) => span.edge !== edgeId);
-      for (const cls of CLASSES) cell.meters[cls] = dmath.max(0, cell.meters[cls] - meters[cls]);
+    this.removeAll([edgeId]);
+  }
+
+  /**
+   * Remove edges together, each touched cell's spans filtered once: a tile's edges share its
+   * cells, and filtering a dense city cell again for each of its edges held a frame 5 ms as the
+   * tile left.
+   */
+  removeAll(edgeIds: Iterable<string>): void {
+    const gone = new Set<string>();
+    const cells = new Map<Cell, { row: Map<number, Cell>; cx: number; cz: number }>();
+    for (const edgeId of edgeIds) {
+      const touched = this.edgeCells.get(edgeId);
+      if (touched === undefined) continue;
+      gone.add(edgeId);
+      for (const { cx, cz, meters } of touched) {
+        const row = this.rows.get(cz);
+        const cell = row?.get(cx);
+        if (row === undefined || cell === undefined) continue;
+        for (const cls of CLASSES) cell.meters[cls] = dmath.max(0, cell.meters[cls] - meters[cls]);
+        cells.set(cell, { row, cx, cz });
+      }
+      this.edgeCells.delete(edgeId);
+    }
+    if (gone.size === 0) return;
+    for (const [cell, { row, cx, cz }] of cells) {
+      cell.spans = cell.spans.filter((span) => !gone.has(span.edge));
       if (cell.spans.length === 0) {
         row.delete(cx);
         this.cellCount--;
         if (row.size === 0) this.rows.delete(cz);
       }
     }
-    this.edgeCells.delete(edgeId);
     this.version++;
   }
 

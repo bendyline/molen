@@ -22,7 +22,10 @@ See the [Gamepad specification](https://www.w3.org/TR/gamepad/) and
 
 `input.update()` obtains fresh snapshots; `input.devices()` returns detached copies with `id`,
 `index`, `mapping`, raw `axes`, and raw `buttons` (`pressed` and `value`). Poll every animation
-frame in a custom host. `mountExperience`/`applyInputRules` poll automatically (default 50 ms;
+frame in a custom host. With the default adapter and an event `target`, `update()` calls
+`navigator.getGamepads()` only once the target has reported `gamepadconnected` (or a poll found a
+device), and otherwise every 120th update: the call blocked Chrome's main thread for several
+milliseconds a frame on Windows with no gamepad attached. `mountExperience`/`applyInputRules` poll automatically (default 50 ms;
 use `pollMs: 16` for more responsive controls). `gamepadStatus` reports `available`, `unavailable`,
 or `blocked`. An available API can still have no detected devices.
 

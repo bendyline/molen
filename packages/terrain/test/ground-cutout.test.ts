@@ -149,6 +149,8 @@ describe('model-owned ground openings', () => {
     // The bridge cap lies below the source grid and must remain inside culling/raycast bounds.
     expect(upper.geometry.boundingBox?.min.y).toBeCloseTo(-3, 5);
     expect(upper.geometry.boundingSphere?.containsPoint(new THREE.Vector3(0, -3, 0))).toBe(true);
+    // Cutting reads local placements only; a raycast needs world matrices, as a frame makes.
+    scene.updateMatrixWorld(true);
     const hit = new THREE.Raycaster(
       new THREE.Vector3(0, 20, 0),
       new THREE.Vector3(0, -1, 0),
@@ -533,7 +535,64 @@ describe('model-owned ground openings', () => {
     expect(ground.geometry).toBe(source);
     controller.dispose();
   });
-  it('updates clipped normals from the retained grid without corrupting original topology', () => {
+  it('applies a ceiling per outline (tunnel segments in one owner)', () => {
+    // The plane rises as y = 2x + 3z: the first square's ground is 5-10 m, the second's 30-35 m.
+    const ring = (x: number): [number, number][] => [
+      [x, x],
+      [x + 1, x],
+      [x + 1, x + 1],
+      [x, x + 1],
+    ];
+    const removed = (ceilings: number[]): number => {
+      const root = new THREE.Group(),
+        ground = new THREE.Mesh(plane()),
+        owner = new THREE.Group();
+      markTerrainGroundSurface(ground);
+      root.add(ground, owner);
+      setTerrainGroundCutouts(owner, [ring(1), ring(6)], undefined, { ceilings });
+      const controller = new TerrainGroundCutoutController();
+      controller.update(root);
+      const left = area(ground.geometry);
+      controller.dispose();
+      return 100 - left;
+    };
+    expect(removed([4, 4])).toBeCloseTo(0, 5);
+    expect(removed([4, 100])).toBeCloseTo(1, 5);
+    expect(removed([100, 100])).toBeCloseTo(2, 5);
+    expect(() =>
+      setTerrainGroundCutouts(new THREE.Group(), [ring(1)], undefined, { ceilings: [1, 2] }),
+    ).toThrow('one finite height per outline');
+  });
+  it('keeps its cuts while the world above the root moves (a floating origin)', () => {
+    const world = new THREE.Group(),
+      root = new THREE.Group(),
+      tile = new THREE.Group(),
+      ground = new THREE.Mesh(plane()),
+      owner = new THREE.Group();
+    markTerrainGroundSurface(ground);
+    world.add(root);
+    root.add(tile);
+    tile.add(ground, owner);
+    tile.position.set(100, 0, 50);
+    setTerrainGroundCutout(owner, square);
+    const controller = new TerrainGroundCutoutController();
+    world.updateMatrixWorld(true);
+    expect(controller.update(root)).toBe(true);
+    const cut = ground.geometry;
+    for (let step = 1; step <= 3; step++) {
+      world.position.set(step * 1234.567, 0, -step * 89.01);
+      world.updateMatrixWorld(true);
+      expect(controller.update(root)).toBe(false);
+      expect(ground.geometry).toBe(cut);
+    }
+    // A placement within the root still re-cuts.
+    owner.position.x = 1;
+    world.updateMatrixWorld(true);
+    expect(controller.update(root)).toBe(true);
+    expect(ground.geometry).not.toBe(cut);
+    controller.dispose();
+  });
+  it('copies refreshed normals from the retained grid onto its cut without cutting again', () => {
     const root = new THREE.Group(),
       ground = new THREE.Mesh(plane()),
       owner = new THREE.Group();
@@ -547,9 +606,11 @@ describe('model-owned ground openings', () => {
     const normals = terrainGroundSourceGeometry(ground).getAttribute('normal');
     for (let i = 0; i < normals.count; i++) normals.setXYZ(i, 0, 1, 0);
     normals.needsUpdate = true;
-    expect(controller.update(root)).toBe(true);
-    expect(ground.geometry).not.toBe(old);
+    // Neighbors refresh border normals as they load: the cut stands and takes the new normals.
+    expect(controller.update(root)).toBe(false);
+    expect(ground.geometry).toBe(old);
     expect(ground.geometry.getAttribute('normal').getY(0)).toBe(1);
+    expect(ground.geometry.getAttribute('normal').getY(normals.count - 1)).toBe(1);
     controller.dispose();
     expect(ground.geometry).toBe(source);
   });

@@ -265,6 +265,8 @@ export class Renderer {
   private readonly shadowLights = new WeakSet<THREE.DirectionalLight>();
   /** Kinds of shadow caster prepared so far (WebGL); see noteShadowCaster. */
   private readonly casterVariants = new Set<string>();
+  /** Whether the shadow pass has drawn shadowCasterWarmup's casters (WebGL). */
+  private shadowCastersWarmed = false;
   // WebGPU's getClearColor expects an alpha field; both backends accept this RGB scratch color.
   private readonly reflectionClearColor = Object.assign(new THREE.Color(), { a: 1 });
   private starCatalog: readonly SkyStar[] | undefined;
@@ -328,6 +330,7 @@ export class Renderer {
         } else light.castShadow = false;
         continue;
       }
+      if (!light.castShadow) this.shadowCastersWarmed = false;
       light.castShadow = true;
       light.shadow.autoUpdate = true;
       light.shadow.intensity = 1;
@@ -1459,16 +1462,73 @@ export class Renderer {
   private hideReflectedAmbient(light: THREE.HemisphereLight | undefined): void {
     const hidden = this.hiddenAmbient;
     if (hidden !== undefined && hidden.light !== light) {
+      if (hidden.light.visible !== hidden.visible) this.shadowCastersWarmed = false;
       hidden.light.visible = hidden.visible;
       this.hiddenAmbient = undefined;
     }
     if (light === undefined) return;
     this.hiddenAmbient ??= { light, visible: light.visible };
+    if (light.visible) this.shadowCastersWarmed = false;
     light.visible = false;
   }
 
   private renderScene(): void {
-    this.optimized(() => this.three.render(this.scene, this.camera));
+    const warmup = this.shadowCasterWarmup();
+    if (warmup !== undefined) this.scene.add(warmup);
+    try {
+      this.optimized(() => this.three.render(this.scene, this.camera));
+    } finally {
+      if (warmup !== undefined) {
+        warmup.removeFromParent();
+        for (const child of warmup.children) {
+          const mesh = child as THREE.Mesh;
+          mesh.geometry.dispose();
+          (mesh.material as THREE.Material).dispose();
+        }
+      }
+    }
+  }
+
+  /**
+   * Once WebGL sun shadows draw, a frame of degenerate casters (one plain and one instanced mesh
+   * per side): the shadow pass builds a depth program for each kind of caster the first time it
+   * draws one, and the first double-sided caster in view held a mid-flight frame 10 ms. The
+   * shadow pass keeps its depth materials, so the programs stay built; three keys them by the
+   * scene's light counts too, so a light the renderer shows or hides warms them again.
+   */
+  private shadowCasterWarmup(): THREE.Group | undefined {
+    if (this.shadowCastersWarmed || this.backend !== 'webgl' || !this.three.shadowMap.enabled)
+      return undefined;
+    if (!this.sunLights().some((light) => light.castShadow && light.shadow.intensity > 0))
+      return undefined;
+    this.shadowCastersWarmed = true;
+    const group = new THREE.Group();
+    group.name = 'molen:shadow-caster-warmup';
+    for (const side of [THREE.FrontSide, THREE.BackSide, THREE.DoubleSide])
+      for (const instanced of [false, true]) {
+        // One triangle with no area: nothing to draw, in either pass.
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute(
+          'position',
+          new THREE.Float32BufferAttribute(new Array(9).fill(0), 3),
+        );
+        geometry.setAttribute(
+          'normal',
+          new THREE.Float32BufferAttribute([0, 1, 0, 0, 1, 0, 0, 1, 0], 3),
+        );
+        const material = new THREE.MeshBasicMaterial({
+          side,
+          colorWrite: false,
+          depthWrite: false,
+        });
+        const mesh = instanced
+          ? new THREE.InstancedMesh(geometry, material, 1)
+          : new THREE.Mesh(geometry, material);
+        mesh.castShadow = true;
+        mesh.frustumCulled = false;
+        group.add(mesh);
+      }
+    return group;
   }
 
   private optimized(draw: () => void): void {

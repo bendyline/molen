@@ -354,7 +354,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     ...(workers.landcover !== undefined
       ? {
           landcoverGenerator: landcoverPool(
-            Array.from({ length: Math.min(2, generationWorkers()) }, () =>
+            Array.from({ length: surfaceWorkers() }, () =>
               createTerrainLandcoverWorkerBridge((workers.landcover as () => Worker)()),
             ),
           ),
@@ -388,16 +388,26 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
 }
 
 /**
- * Generation workers per kind (world generation, land cover, road surfaces): a quarter of the
- * logical cores, at most two. One worker per kind worked through a city's tiles one at a time;
- * four per kind, three kinds at once, took the cores the frame needs: on a 12-core laptop a jet's
- * frames drew the same scene up to twice as slowly while a town streamed in, and a frame over
- * 33 ms came every few seconds. Two per kind halved those for a tile generated ~170 ms later
- * (most of it hidden by the predicted views loading ahead).
+ * World generation workers: a quarter of the logical cores, at most two. One worked through a
+ * city's tiles one at a time; four, beside as many for land cover and road surfaces, took the
+ * cores the frame needs: on a 12-core laptop a jet's frames drew the same scene up to twice as
+ * slowly while a town streamed in, and a frame over 33 ms came every few seconds. Two halved those
+ * for a tile generated ~170 ms later (most of it hidden by the predicted views loading ahead).
  */
 export function generationWorkers(): number {
   const cores = typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency ?? 4) : 4;
   return Math.max(1, Math.min(2, Math.floor(cores / 4)));
+}
+
+/**
+ * Land cover and road surface workers: one each. Their jobs are short beside world generation's,
+ * and a second of each still took the frame's cores: with two, panning low over Kyoto, Sydney or
+ * Seattle drew the same scene up to three times as slowly in some frames (a few a minute over
+ * 50 ms, at about 80-90 fps); with one, none, at 100+ fps. A low flight streamed just as fast;
+ * the first view loaded about a fifth later.
+ */
+export function surfaceWorkers(): number {
+  return 1;
 }
 
 /** Landcover tiles go to whichever worker has the fewest in flight. */

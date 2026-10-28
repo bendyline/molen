@@ -165,7 +165,7 @@ import {
   createEarthWorldgen,
   type EarthViewWorkers,
   type EarthWorldgen,
-  generationWorkers,
+  surfaceWorkers,
 } from './worldgen';
 
 export type EarthViewMode = 'orbit' | 'walk' | 'drive' | 'fly';
@@ -1078,7 +1078,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const surfaceWorker =
           options.workers?.surface !== undefined
             ? createTerrainSurfaceWorkerPool(
-                Array.from({ length: generationWorkers() }, options.workers.surface),
+                Array.from({ length: surfaceWorkers() }, options.workers.surface),
               )
             : undefined;
         const surface = createTerrainSurfaceRenderer(

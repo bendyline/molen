@@ -2,7 +2,11 @@ import { createEmptyTerrainSemanticTile, worldToWgs84 } from '@bendyline/molen-t
 import { describe, expect, it } from 'vitest';
 import type { TileGeometry } from '../src/kernel/semantic-adapter';
 import type { StructureMapRule, StructurePlacement } from '../src/kernel/structure-index';
-import { matchMapStructures, orientMappedStructure } from '../src/kernel/structure-matching';
+import {
+  matchMapStructures,
+  orientMappedStructure,
+  orientMappedStructures,
+} from '../src/kernel/structure-matching';
 
 const geometry: TileGeometry = {
   level: 15,
@@ -173,6 +177,67 @@ describe('mapped reusable structures', () => {
     expect(
       orientMappedStructure({ ...entry, anchor: worldToWgs84(1, 900, 900) }, tile, geometry),
     ).toBeUndefined();
+  });
+
+  it('orients a batch as one entry at a time would, indexing the tile once', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    const square = (u: number, v: number) => [
+      {
+        outer: [
+          [u, v],
+          [u + 0.02, v],
+          [u + 0.02, v + 0.04],
+          [u, v + 0.04],
+        ] as [number, number][],
+      },
+    ];
+    tile.buildings = [
+      { class: 'tower', wikidata: 'Q1', polygons: square(0.2, 0.2) },
+      { class: 'hall', name: 'Old Hall', polygons: square(0.5, 0.5) },
+      { class: 'hall', name: ' old hall ', polygons: square(0.52, 0.5) },
+      { class: 'church', name: 'St. Mark', polygons: square(0.7, 0.3) },
+    ];
+    tile.pois = [{ class: 'tower', name: 'Gate', heading: 0.5, point: [0.3, 0.6] }];
+    tile.transportation = [
+      {
+        class: 'major_road',
+        bridge: true,
+        name: 'River Bridge',
+        lines: [
+          [
+            [0.1, 0.8],
+            [0.3, 0.8],
+          ],
+        ],
+      },
+    ];
+    const at = (x: number, z: number) => worldToWgs84(1, x, z);
+    const mapped = (id: string, anchor: [number, number], mapIdentity: object) =>
+      ({
+        id,
+        title: id,
+        asset: `unique.${id}`,
+        anchor,
+        orientation: 'mapped',
+        mapIdentity,
+        status: 'preview',
+        source: 'https://example.com',
+      }) as StructurePlacement;
+    const entries: StructurePlacement[] = [
+      mapped('tower', at(210, 220), { wikidata: 'Q1' }),
+      mapped('hall', at(510, 520), { names: ['Old Hall'] }),
+      mapped('church', at(710, 320), { names: ['nothing', 'ST. MARK'] }),
+      mapped('gate', at(300, 600), { names: ['Gate'] }),
+      mapped('bridge', at(200, 800), { names: ['River Bridge'] }),
+      mapped('missing', at(400, 400), { wikidata: 'Q404' }),
+      { ...mapped('fixed', at(100, 100), {}), orientation: undefined } as StructurePlacement,
+    ];
+    const one = entries.flatMap((entry) => {
+      const resolved = orientMappedStructure(entry, tile, geometry);
+      return resolved ? [resolved] : [];
+    });
+    expect(orientMappedStructures(entries, tile, geometry)).toEqual(one);
+    expect(one.map((entry) => entry.id)).toEqual(['tower', 'church', 'gate', 'bridge', 'fixed']);
   });
 
   it('rejects ambiguous exact names and resolves identities across the antimeridian', () => {

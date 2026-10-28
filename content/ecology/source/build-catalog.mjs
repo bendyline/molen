@@ -186,7 +186,9 @@ const plants = [
     11,
     '#88915e',
   ),
-  plant('mesquite', 'American desert low woodland form', 'broadleaf', 'umbrella', 6, 9, '#859269', {
+  // Desert crowns read dark olive in half-meter NAIP of Yuma's yards and the Colorado's banks
+  // (about #5f6444 lit); the earlier sage tones rendered as pale lawn green from the air.
+  plant('mesquite', 'American desert low woodland form', 'broadleaf', 'umbrella', 6, 9, '#5f6644', {
     crownBase: 0.42,
   }),
   plant(
@@ -255,11 +257,11 @@ const plants = [
     lean: 0.16,
     bark: '#a58e70',
   }),
-  plant('date_palm', 'Cultivated date palm form', 'palm', 'feather', 13, 9, '#94a276', {
+  plant('date_palm', 'Cultivated date palm form', 'palm', 'feather', 13, 9, '#6b7652', {
     stemRadius: 0.42,
     lean: 0.015,
   }),
-  plant('fan_palm', 'Warm climate fan palm form', 'palm', 'fan', 14, 7, '#83965b', {
+  plant('fan_palm', 'Warm climate fan palm form', 'palm', 'fan', 14, 7, '#5f6e44', {
     stemRadius: 0.28,
     lean: 0.01,
   }),

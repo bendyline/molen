@@ -1,5 +1,12 @@
 import type { TerrainPyramidTileLayerContext } from '@bendyline/molen-terrain/client';
-import { createEmptyTerrainSemanticTile, Heightfield } from '@bendyline/molen-terrain/kernel';
+import {
+  createEmptyTerrainSemanticTile,
+  Heightfield,
+  packTerrainSemanticTile,
+  rememberTerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+  terrainSemanticTilePacket,
+} from '@bendyline/molen-terrain/kernel';
 import * as THREE from 'three';
 import { assert, describe, expect, it, vi } from 'vitest';
 import {
@@ -328,6 +335,7 @@ describe('curved bridge road ends', () => {
         includeConnectedApproaches: true,
       },
     };
+    rememberTerrainSemanticTilePacket(tile, packTerrainSemanticTile(tile));
     const result = withoutStructureRoads(tile, context, [model], 1),
       bank = result.transportation.find((f) => f.id === 'bank-walk');
     expect(bank?.lines[0]?.[0]).toEqual([0.73, 0.55]);
@@ -336,6 +344,11 @@ describe('curved bridge road ends', () => {
     expect(result.transportation.find((f) => f.id === 'independent')).toBe(tile.transportation[2]);
     expect(result.transportation.find((f) => f.id === 'steps')).toBe(tile.transportation[3]);
     expect(tile.transportation[1]?.lines[0]?.[0]).toEqual(point);
+    const packet = terrainSemanticTilePacket(result);
+    assert(packet);
+    expect(packet.edits).toHaveLength(1);
+    // Workers must receive the final approach grades as well as the clipped geometry.
+    expect(terrainSemanticTileFromPacket(structuredClone(packet))).toEqual(result);
   });
   it.each([
     false,

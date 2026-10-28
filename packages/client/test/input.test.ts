@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { InputMap, resolveAction } from '../src/input';
 
 const bindings = {
@@ -17,6 +17,38 @@ describe('resolveAction', () => {
 });
 
 describe('InputMap', () => {
+  it('polls the browser for gamepads only once one is announced, and now and then before', () => {
+    let polls = 0;
+    vi.stubGlobal('navigator', {
+      getGamepads: () => {
+        polls++;
+        return [];
+      },
+    });
+    try {
+      const handlers = new Map<string, (ev: unknown) => void>();
+      const target = {
+        addEventListener: (type: string, fn: (ev: unknown) => void) => handlers.set(type, fn),
+        removeEventListener: (type: string) => handlers.delete(type),
+      };
+      const im = new InputMap({ bindings, target });
+      for (let i = 0; i < 119; i++) im.update();
+      expect(polls).toBe(0);
+      im.update();
+      expect(polls).toBe(1);
+      handlers.get('gamepadconnected')?.({});
+      im.update();
+      im.update();
+      expect(polls).toBe(3);
+      handlers.get('gamepaddisconnected')?.({});
+      im.update();
+      expect(polls).toBe(3);
+      im.dispose();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it('reserves bound gameplay keys without consuming browser shortcuts or control input', () => {
     const handlers = new Map<string, (ev: unknown) => void>();
     const target = {

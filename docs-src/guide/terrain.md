@@ -413,6 +413,19 @@ advance its highlights without discontinuities across floating-origin shifts. Op
 avoids dark overlap seams while adjacent or parent/child water tiles refine. Expensive semantics
 can be level-bounded, toggled without re-decoding resident objects, and disposed with the elevation
 tile. Applications may replace the decoder, renderer, materials, or model geometry independently.
+When the layer context carries an `admission` queue, the default renderer builds each tile with
+`createTerrainSemanticObjectSliced`: the same group as `createTerrainSemanticObject`, built a couple
+of milliseconds per admitted job (pausing between water polygons and building footprints), so a
+harbor's water or a coarse tile's thousands of footprints no longer hold one frame.
+
+Package semantic sources keep the last few decoded tiles, and older ones while a layer still holds
+them, so the layers that each load a tile (classification, surfaces, water, tunnels, building
+detail) share one decode. Tiles cross to workers as packets (`terrainSemanticTilePacket`); a tile
+derived by replacing its buildings or transportation can carry its base's packet and the edit
+(`deriveTerrainSemanticTilePacket`) instead of being cloned whole. A renderer that keeps tiles to
+rebuild them later keeps `keepTerrainSemanticTile(tile)` rather than the tile: calling it answers
+the tile while it lives, else decodes it again from its packet, so the decoded points need not
+stay on the heap meanwhile.
 
 Mapped lake polygons also clear coarse elevation and landcover beneath their water surface,
 preserving polygon holes as islands. Small bank faces close the difference between the rendered

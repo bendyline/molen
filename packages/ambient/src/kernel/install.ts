@@ -73,6 +73,18 @@ export interface AmbientOptions {
   seed?: string | number;
   /** Cars yield to vehicles someone is driving (`mounted` riders); default true. */
   yieldToDriven?: boolean;
+  /**
+   * Tile registrations a tick applies, in queue order (removals are not counted); default all.
+   * A dense tile's network takes tens of milliseconds to build, so a host streaming many tiles
+   * (or one tile in parts, see AmbientTileInput.bounds) passes 1 to keep each tick short.
+   */
+  registrationsPerTick?: number;
+  /**
+   * Tile removals a tick applies, in queue order; default all. A tile streamed in parts leaves
+   * all at once, and removing every part (rebuilding the junctions they were stitched to) in one
+   * tick held it 10 ms.
+   */
+  removalsPerTick?: number;
 }
 
 export interface AmbientStats {
@@ -96,7 +108,7 @@ export interface AmbientBox {
 export interface AmbientHandle {
   readonly world: World;
   readonly network: TransportNetwork;
-  /** Queue a streamed tile (applied at the next tick, or by `flush()`). */
+  /** Queue a streamed tile (applied at a coming tick, see registrationsPerTick, or by `flush()`). */
   registerTile(tile: AmbientTileInput): void;
   unregisterTile(key: string): void;
   /** Apply queued tile changes now (outside a tick). */
@@ -233,6 +245,44 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
       else network.unregisterTile(change.key);
     }
   };
+  const perTick = options.registrationsPerTick ?? Number.POSITIVE_INFINITY;
+  const removalsPerTick = options.removalsPerTick ?? Number.POSITIVE_INFINITY;
+  /**
+   * The tick's share of the queue, in queue order: up to `removalsPerTick` removals and up to
+   * `perTick` registrations. Removals do not wait behind registrations (a key's own queued
+   * registration was cancelled when its removal was queued, so the two never meet), but a key's
+   * registration does wait behind its own removal when that is left for a later tick.
+   */
+  const flushTick = (): void => {
+    if (perTick === Number.POSITIVE_INFINITY && removalsPerTick === Number.POSITIVE_INFINITY) {
+      flush();
+      return;
+    }
+    let added = 0;
+    let removed = 0;
+    let write = 0;
+    // Keys with a change left queued: their later changes stay behind it.
+    let held: Set<string> | undefined;
+    for (const change of pending) {
+      const key = change.op === 'add' ? change.tile.key : change.key;
+      if (held?.has(key) !== true) {
+        if (change.op === 'remove' && removed < removalsPerTick) {
+          removed++;
+          network.unregisterTile(change.key);
+          continue;
+        }
+        if (change.op === 'add' && added < perTick) {
+          added++;
+          network.registerTile(change.tile);
+          continue;
+        }
+      }
+      held ??= new Set();
+      held.add(key);
+      pending[write++] = change;
+    }
+    pending.length = write;
+  };
 
   const writeState = (patch: Partial<AmbientStateData>): void => {
     const current = world.get(AMBIENT_ENTITY, AmbientState) ?? {
@@ -248,7 +298,7 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
 
   world.addSystem(
     (w, ctx) => {
-      flush();
+      flushTick();
       const state = w.get(AMBIENT_ENTITY, AmbientState);
       const observer = resolveObserver(w, state);
       const policy = observerPolicy(effectivePolicy(), observer);
@@ -350,6 +400,11 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
       pending.push({ op: 'add', tile });
     },
     unregisterTile(key) {
+      // A registration still queued is dropped; the removal still clears an earlier one.
+      for (let i = pending.length - 1; i >= 0; i--) {
+        const change = pending[i];
+        if (change?.op === 'add' && change.tile.key === key) pending.splice(i, 1);
+      }
       pending.push({ op: 'remove', key });
     },
     flush,

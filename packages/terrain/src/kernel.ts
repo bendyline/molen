@@ -218,3 +218,14 @@ export {
   type TerrainRouteShieldLibrary,
   terrainRouteShieldLibrarySchema,
 } from './route-shields';
+export {
+  deriveOverzoomTerrainSemanticTilePacket,
+  deriveTerrainSemanticTilePacket,
+  keepTerrainSemanticTile,
+  packTerrainSemanticTile,
+  type TerrainSemanticTileEdit,
+  type TerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+  terrainSemanticTilePacket,
+  unpackTerrainSemanticTile,
+} from './semantic-packet';

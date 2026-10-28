@@ -11,68 +11,89 @@ export function buildTerrainWaterBanks(
 ): THREE.BufferGeometry | undefined {
   const size = context.tileSize;
   const spacing = size / Math.max(1, (context.surfaceResolution ?? context.heightfield.cols) - 1);
+  const [ox, oz] = context.origin;
   const sample = renderedGroundSampler(
     context.heightfield,
     context.origin,
     size,
     context.surfaceResolution,
   );
-  const positions: number[] = [];
+  // Written straight into one growing buffer, each cut point's height reused by the next
+  // segment: arrays per edge and segment cost a river tile's banks 60 ms on the main thread.
+  let positions = new Float32Array(3 * 1024);
+  let written = 0;
+  const push = (x: number, y: number, z: number): void => {
+    if (written + 3 > positions.length) {
+      const grown = new Float32Array(positions.length * 2);
+      grown.set(positions);
+      positions = grown;
+    }
+    positions[written++] = x;
+    positions[written++] = y;
+    positions[written++] = z;
+  };
+  const cuts: number[] = [];
+  const addCuts = (u: number, v: number): void => {
+    if (Math.abs(v - u) < 1e-10) return;
+    for (let k = Math.floor(Math.min(u, v) / spacing) + 1; k * spacing < Math.max(u, v); k++) {
+      const t = (k * spacing - u) / (v - u);
+      if (t > 0 && t < 1) cuts.push(t);
+    }
+  };
+  const edge = (value: number): number =>
+    Math.abs(value) < 1e-7 ? 0 : Math.abs(value - size) < 1e-7 ? 1 : -1;
   for (const { polygon, height } of waters) {
+    const bottom = height - 0.05;
     for (const ring of [polygon.outer, ...(polygon.holes ?? [])]) {
       for (let i = 0; i < ring.length; i++) {
-        const a = ring[i]?.map((v) => v * size) as [number, number];
-        const b = ring[(i + 1) % ring.length]?.map((v) => v * size) as [number, number];
+        const a = ring[i] as readonly [number, number];
+        const b = ring[(i + 1) % ring.length] as readonly [number, number];
+        const ax = a[0] * size,
+          az = a[1] * size,
+          bx = b[0] * size,
+          bz = b[1] * size;
         // Tile clipping is not a physical bank. Adjacent water tiles meet without curtains.
-        if (
-          [0, 1].some(
-            (axis) =>
-              (Math.abs(a[axis] as number) < 1e-7 && Math.abs(b[axis] as number) < 1e-7) ||
-              (Math.abs((a[axis] as number) - size) < 1e-7 &&
-                Math.abs((b[axis] as number) - size) < 1e-7),
-          )
-        )
-          continue;
-        const cuts = new Set([0, 1]);
+        const ex = edge(ax),
+          ez = edge(az);
+        if ((ex >= 0 && ex === edge(bx)) || (ez >= 0 && ez === edge(bz))) continue;
         // Split at every grid edge and cell diagonal so the upper edge follows actual triangles.
-        for (const [u, v] of [
-          [a[0], b[0]],
-          [a[1], b[1]],
-          [a[0] + a[1], b[0] + b[1]],
-        ]) {
-          if (u === undefined || v === undefined || Math.abs(v - u) < 1e-10) continue;
-          for (
-            let k = Math.floor(Math.min(u, v) / spacing) + 1;
-            k * spacing < Math.max(u, v);
-            k++
-          ) {
-            const t = (k * spacing - u) / (v - u);
-            if (t > 0 && t < 1) cuts.add(t);
+        cuts.length = 0;
+        cuts.push(0, 1);
+        addCuts(ax, bx);
+        addCuts(az, bz);
+        addCuts(ax + az, bx + bz);
+        cuts.sort((left, right) => left - right);
+        let pt = cuts[0] as number;
+        let px = ax + (bx - ax) * pt,
+          pz = az + (bz - az) * pt;
+        let py = sample(ox + px, oz + pz) + groundOffset;
+        for (let j = 1; j < cuts.length; j++) {
+          const t = cuts[j] as number;
+          if (t === pt) continue;
+          const qx = ax + (bx - ax) * t,
+            qz = az + (bz - az) * t;
+          const qy = sample(ox + qx, oz + qz) + groundOffset;
+          if (py > height || qy > height) {
+            const pTop = Math.max(py, height),
+              qTop = Math.max(qy, height);
+            push(px, pTop, pz);
+            push(px, bottom, pz);
+            push(qx, qTop, qz);
+            push(qx, qTop, qz);
+            push(px, bottom, pz);
+            push(qx, bottom, qz);
           }
-        }
-        const ordered = [...cuts].sort((a, b) => a - b);
-        for (let j = 1; j < ordered.length; j++) {
-          const points = [ordered[j - 1], ordered[j]].map((t) => {
-            const x = a[0] + (b[0] - a[0]) * (t as number);
-            const z = a[1] + (b[1] - a[1]) * (t as number);
-            return [x, sample(context.origin[0] + x, context.origin[1] + z) + groundOffset, z];
-          }) as [number[], number[]];
-          if (points.every((p) => (p[1] as number) <= height)) continue;
-          const [p, q] = points;
-          const vertices = [
-            [p[0], Math.max(p[1] as number, height), p[2]],
-            [p[0], height - 0.05, p[2]],
-            [q[0], Math.max(q[1] as number, height), q[2]],
-            [q[0], height - 0.05, q[2]],
-          ];
-          for (const k of [0, 1, 2, 2, 1, 3]) positions.push(...(vertices[k] as number[]));
+          pt = t;
+          px = qx;
+          pz = qz;
+          py = qy;
         }
       }
     }
   }
-  if (!positions.length) return undefined;
+  if (written === 0) return undefined;
   const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions.slice(0, written), 3));
   geometry.computeVertexNormals();
   return geometry;
 }

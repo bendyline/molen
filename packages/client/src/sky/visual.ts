@@ -10,6 +10,8 @@ import type { SkyReflectionState } from '../three/sky-reflections';
 import { type EarthSkyState, evaluateEarthSky, skyDirection, skyTimeMs } from './astronomy';
 
 const RAD = Math.PI / 180;
+/** Sky motion (radians) before the dome and stars redraw: about half a pixel at 70 degrees. */
+const SKY_REDRAW_ANGLE = 4e-4;
 const clamp = (x: number): number => Math.max(0, Math.min(1, x));
 const rgb = (color: THREE.Color): [number, number, number] => [color.r, color.g, color.b];
 function smooth(a: number, b: number, x: number): number {
@@ -131,6 +133,15 @@ export class SkyVisual {
   private catalog: readonly CatalogStar[];
   private readonly palette: Record<keyof Required<SkyPalette>, THREE.Color>;
   private lastTime: number | undefined;
+  /**
+   * What the dome's colors and the stars were last written for. The sun and the sky turn a
+   * quarter of a degree a minute: rewriting the dome and every star each second cost a frame
+   * 3-5 ms for changes far below a pixel, so they are rewritten once those changes could show.
+   */
+  private drawnDome: { sun: THREE.Vector3; daylight: number } | undefined;
+  private drawnStars:
+    | { rotation: THREE.Matrix4; visibility: number; moon: THREE.Vector3 | undefined }
+    | undefined;
   private cloudAttenuation = 0;
   private currentFrame!: SkyFrame;
   private currentReflections!: SkyReflectionState;
@@ -219,6 +230,11 @@ export class SkyVisual {
     const time =
       data.mode === 'earth' ? Math.floor(skyTimeMs(data.time, simulationSeconds) / 1000) * 1000 : 0;
     if (time === this.lastTime) return this.currentFrame;
+    // A forced update (a new observer, star catalog or cloud cover) rewrites everything.
+    if (this.lastTime === undefined) {
+      this.drawnDome = undefined;
+      this.drawnStars = undefined;
+    }
     this.lastTime = time;
     const earth = data.mode === 'earth' ? evaluateEarthSky(time, data.observer) : undefined;
     const sunDirection =
@@ -393,6 +409,15 @@ export class SkyVisual {
   }
 
   private updateDome(altitude: number, sun: THREE.Vector3, daylight: number): void {
+    const drawn = this.drawnDome;
+    // About 0.02 degrees of sun, a few seconds of its travel.
+    if (
+      drawn !== undefined &&
+      drawn.sun.distanceToSquared(sun) < SKY_REDRAW_ANGLE ** 2 &&
+      Math.abs(drawn.daylight - daylight) < 1e-3
+    )
+      return;
+    this.drawnDome = { sun: sun.clone(), daylight };
     const colors = this.dome.geometry.getAttribute('color');
     const positions = this.dome.geometry.getAttribute('position');
     const horizon = this.palette.nightHorizon.clone().lerp(this.palette.dayHorizon, daylight);
@@ -505,6 +530,19 @@ export class SkyVisual {
   ): void {
     this.stars.visible = visibility > 0 && this.catalog.length > 0;
     if (!this.stars.visible) return;
+    const drawn = this.drawnStars;
+    if (
+      drawn !== undefined &&
+      Math.abs(drawn.visibility - visibility) < 1e-3 &&
+      drawn.rotation.elements.every(
+        (value, i) => Math.abs(value - (rotation.elements[i] as number)) < SKY_REDRAW_ANGLE,
+      ) &&
+      (moon === undefined
+        ? drawn.moon === undefined
+        : drawn.moon !== undefined && drawn.moon.distanceToSquared(moon) < SKY_REDRAW_ANGLE ** 2)
+    )
+      return;
+    this.drawnStars = { rotation: rotation.clone(), visibility, moon: moon?.clone() };
     const positions = this.stars.geometry.getAttribute('position');
     const colors = this.stars.geometry.getAttribute('color');
     const d = new THREE.Vector3(),

@@ -31,6 +31,7 @@ import {
   type TerrainSemanticDecoderWorker,
 } from './semantic-decoder-worker';
 import { createOverzoomTerrainSemanticSource } from './semantic-overzoom';
+import { composeTerrainSemanticTile } from './semantic-packet';
 import { withTerrainTunnels } from './tunnels';
 
 export interface TerrainPackageSemanticLayerStyle {
@@ -213,15 +214,7 @@ export async function createTerrainPackageSemanticLayers(
         )
           return tile;
         const features = await featureSource.load(address, signal);
-        return features
-          ? {
-              ...features,
-              landcover: tile.landcover,
-              ...(features.pois === undefined && tile.pois !== undefined
-                ? { pois: tile.pois }
-                : {}),
-            }
-          : tile;
+        return features ? composeTerrainSemanticTile(features, tile, { pois: true }) : tile;
       },
     };
     layers.push(
@@ -298,7 +291,7 @@ export async function createTerrainPackageSemanticLayers(
         )
           return tile;
         const land = await landSource.load(address, signal);
-        return land ? { ...tile, landcover: land.landcover } : tile;
+        return land ? composeTerrainSemanticTile(tile, land) : tile;
       },
     };
     const inner =

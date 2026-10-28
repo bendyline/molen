@@ -5,7 +5,10 @@
  * and produce byte-identical tiles (both sample the ground through the same height grid).
  */
 
-import type { TerrainSemanticTile } from '@bendyline/molen-terrain/kernel';
+import {
+  type TerrainSemanticTile,
+  terrainSemanticTilePacket,
+} from '@bendyline/molen-terrain/kernel';
 import {
   type HeightGrid,
   type HeightSampler,
@@ -13,6 +16,7 @@ import {
   type ResolvedStylePack,
   type WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
+import { packPolygons } from '../kernel/packed-polygons';
 import type { PlacesContentDocs } from '../kernel/places';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
 import type { RegionalEnvironmentDocs } from '../kernel/regional-environment';
@@ -171,14 +175,19 @@ export function createWorldgenWorkerBridge(
       if (signal.aborted) return Promise.resolve(undefined);
       const id = nextId++;
       const ground = tileHeightGrid(request.ground, request.geom, request.resolution);
+      const exclusions =
+        request.buildingInfillExclusions !== undefined
+          ? packPolygons(request.buildingInfillExclusions)
+          : undefined;
       const message: WorldgenWorkerGenerate = {
         ...(request.buildingInfill !== undefined ? { buildingInfill: request.buildingInfill } : {}),
-        ...(request.buildingInfillExclusions !== undefined
-          ? { buildingInfillExclusions: request.buildingInfillExclusions }
-          : {}),
+        ...(exclusions !== undefined ? { packedInfillExclusions: exclusions } : {}),
         kind: 'generate',
         id,
-        tile: request.tile,
+        // A decoded tile goes as the packet it arrived in; one made here goes as itself.
+        ...((packet) => (packet ? { packet } : { tile: request.tile }))(
+          terrainSemanticTilePacket(request.tile),
+        ),
         geom: request.geom,
         ground,
         ...(request.renderCellsOnly ? { renderCellsOnly: true } : {}),
@@ -203,7 +212,12 @@ export function createWorldgenWorkerBridge(
             reject(error);
           },
         });
-        worker.postMessage(message, [ground.heights.buffer]);
+        worker.postMessage(message, [
+          ground.heights.buffer,
+          ...(exclusions !== undefined
+            ? [exclusions.points.buffer, exclusions.rings.buffer, exclusions.polygons.buffer]
+            : []),
+        ]);
       });
     },
     dispose(): void {

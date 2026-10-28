@@ -14,9 +14,11 @@ import {
 } from '../src/semantic-building-detail';
 import {
   createEmptyTerrainSemanticTile,
+  setTerrainSemanticTileContentHash,
   type TerrainBuildingFeature,
   type TerrainSemanticRing,
   type TerrainSemanticTile,
+  terrainSemanticTileContentHash,
 } from '../src/semantic-types';
 
 function rect(minU: number, minV: number, maxU: number, maxV: number): TerrainSemanticRing {
@@ -214,6 +216,46 @@ describe('building detail source', () => {
     // The house's center (0.5, 0.5) of 15/20/40 lies in the 16/41/81 quadrant (u, v ≥ 0.5).
     expect(tile?.buildings.map((b) => b.id)).toEqual(['house-20-40']);
     expect(tile?.buildingsGeneralized).toBe(false);
+  });
+
+  it('hashes detailed tiles from their parts when every part has a hash', async () => {
+    const hashed = (tile: TerrainSemanticTile, hash: string): TerrainSemanticTile => {
+      setTerrainSemanticTileContentHash(tile, hash);
+      return tile;
+    };
+    const source = (detailHash: (address: TerrainPyramidTileAddress) => string | undefined) =>
+      createBuildingDetailTerrainSemanticSource(
+        { load: async (address) => hashed(coarse(), `coarse-${address.level}`) },
+        {
+          load: async (address) => {
+            const tile = house(address);
+            const hash = detailHash(address);
+            return hash === undefined ? tile : hashed(tile, hash);
+          },
+        },
+        { level: 15 },
+      );
+    const signal = new AbortController().signal;
+    const byAddress = (address: TerrainPyramidTileAddress) => `house-${address.x}-${address.z}`;
+    const composed = await source(byAddress).load({ level: 14, x: 10, z: 20 }, signal);
+    const again = await source(byAddress).load({ level: 14, x: 10, z: 20 }, signal);
+    const finer = await source(byAddress).load({ level: 16, x: 41, z: 81 }, signal);
+    const elsewhere = await source(byAddress).load({ level: 16, x: 40, z: 81 }, signal);
+    const changed = await source((a) => `${byAddress(a)}-v2`).load(
+      { level: 14, x: 10, z: 20 },
+      signal,
+    );
+    const hashOf = (tile: TerrainSemanticTile | undefined) =>
+      tile === undefined ? undefined : terrainSemanticTileContentHash(tile);
+    expect(hashOf(composed)).toBeDefined();
+    expect(hashOf(composed)).toBe(hashOf(again));
+    expect(hashOf(finer)).toBeDefined();
+    expect(
+      new Set([hashOf(composed), hashOf(finer), hashOf(elsewhere), hashOf(changed)]).size,
+    ).toBe(4);
+    // A part without a hash leaves the tile for its consumer to hash.
+    const unhashed = await source(() => undefined).load({ level: 14, x: 10, z: 20 }, signal);
+    expect(hashOf(unhashed)).toBeUndefined();
   });
 });
 

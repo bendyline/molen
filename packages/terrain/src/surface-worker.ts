@@ -8,6 +8,11 @@ import type { TerrainLandcoverWorker } from './landcover-worker';
 import { TERRAIN_PAVEMENT } from './linear-features';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import type { TerrainRouteShieldLibrary } from './route-shields';
+import {
+  type TerrainSemanticTilePacket,
+  terrainSemanticTileFromPacket,
+  terrainSemanticTilePacket,
+} from './semantic-packet';
 import type { TerrainSemanticTile } from './semantic-types';
 import {
   createTerrainSurfaceObject,
@@ -25,7 +30,10 @@ export type TerrainSurfaceWorker = TerrainLandcoverWorker;
 
 interface Request {
   id: number;
-  tile: TerrainSemanticTile;
+  /** The tile as the packet it arrived in (see terrainSemanticTilePacket), else the tile itself:
+   * cloning a decoded town tile whole cost the main thread 5-10 ms. */
+  packet?: TerrainSemanticTilePacket;
+  tile?: TerrainSemanticTile;
   context: Omit<TerrainPyramidTileLayerContext, 'heightfield' | 'signal' | 'admission'>;
   ground: {
     samples: Float32Array;
@@ -81,7 +89,9 @@ export function installTerrainSurfaceWorker(
       if (request.shieldUpdate) routeShields = request.shieldUpdate.routeShields;
       const ground = request.ground;
       object = createTerrainSurfaceObject(
-        request.tile,
+        request.packet
+          ? terrainSemanticTileFromPacket(request.packet)
+          : (request.tile as TerrainSemanticTile),
         {
           ...request.context,
           heightfield: new Heightfield(ground.samples, ground.cols, ground.rows, {
@@ -223,7 +233,9 @@ export function createTerrainSurfaceWorkerBridge(
       const { fonts, routeShields, ...options } = job.options;
       const request: Request = {
         id: job.id,
-        tile: job.tile,
+        ...((packet) => (packet ? { packet } : { tile: job.tile }))(
+          terrainSemanticTilePacket(job.tile),
+        ),
         context,
         ground: {
           samples: heightfield.copySamples(),

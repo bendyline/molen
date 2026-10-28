@@ -456,6 +456,65 @@ function openSectionArchive(
 }
 
 /** Adapt one declared semantic sidecar into normalized, format-neutral tile geometry. */
+/**
+ * Decoded semantic tiles by address: the last `size` loads, and older ones while anything else
+ * still holds them. Classification, surfaces, water, tunnels and building detail each load their
+ * own tiles, and with in-flight requests alone shared, a tile in view decoded a dozen times in
+ * ten seconds of panning: each copy garbage the main thread then had to collect. Held weakly
+ * past the last few, a tile no layer keeps is still released as before.
+ */
+class DecodedSemanticTiles {
+  private readonly recent = new Map<string, DecodedSemanticEntry>();
+  private readonly older = new Map<string, WeakRef<TerrainSemanticTile>>();
+  constructor(private readonly size: number) {}
+
+  load(
+    key: string,
+    decode: () => Promise<TerrainSemanticTile | undefined>,
+  ): Promise<TerrainSemanticTile | undefined> {
+    const known = this.recent.get(key);
+    if (known !== undefined) {
+      this.recent.delete(key);
+      this.recent.set(key, known);
+      return known.request;
+    }
+    const held = this.older.get(key)?.deref();
+    this.older.delete(key);
+    const entry: DecodedSemanticEntry =
+      held !== undefined ? { request: Promise.resolve(held), tile: held } : { request: decode() };
+    this.recent.set(key, entry);
+    entry.request.then(
+      (tile) => {
+        if (tile !== undefined) entry.tile = tile;
+      },
+      // A failed load is tried again by the next request.
+      () => {
+        if (this.recent.get(key) === entry) this.recent.delete(key);
+      },
+    );
+    while (this.recent.size > this.size) {
+      const [oldest, evicted] = this.recent.entries().next().value as [
+        string,
+        DecodedSemanticEntry,
+      ];
+      this.recent.delete(oldest);
+      if (evicted.tile !== undefined) this.older.set(oldest, new WeakRef(evicted.tile));
+    }
+    if (this.older.size > this.size * 8)
+      for (const [address, ref] of this.older)
+        if (ref.deref() === undefined) this.older.delete(address);
+    return entry.request;
+  }
+}
+
+interface DecodedSemanticEntry {
+  request: Promise<TerrainSemanticTile | undefined>;
+  tile?: TerrainSemanticTile;
+}
+
+/** Decoded tiles a package semantic source keeps strongly (see DecodedSemanticTiles). */
+const RECENT_SEMANTIC_TILES = 16;
+
 export function createTerrainPackageSemanticSource(
   pkg: TerrainPackageDescriptor,
   content: TerrainPackageSemanticContent,
@@ -483,32 +542,37 @@ export function createTerrainPackageSemanticSource(
   }
   const layers = landcover !== undefined ? [landcover.layer] : (features?.layers ?? []);
   const encoding = landcover?.encoding ?? 'mvt';
+  const decoded = new DecodedSemanticTiles(RECENT_SEMANTIC_TILES);
   return {
     async load(
       address: TerrainPyramidTileAddress,
       signal: AbortSignal,
     ): Promise<TerrainSemanticTile | undefined> {
       if (address.level < minLevel || address.level > maxLevel || signal.aborted) return undefined;
-      const count = 2 ** address.level;
-      const archiveY = pkg.tileMatrix.scheme === 'tms' ? count - 1 - address.z : address.z;
-      const archiveTile = await archive.getZxy(address.level, address.x, archiveY, signal);
-      if (archiveTile === undefined || signal.aborted) return undefined;
-      const decoded = await decoder.decode(new Uint8Array(archiveTile.data), {
-        address: { ...address },
-        content,
-        encoding,
-        layers,
+      // A decode serves every layer asking for its tile, so no single caller's signal cancels it.
+      const tile = await decoded.load(`${address.level}/${address.x}/${address.z}`, async () => {
+        const count = 2 ** address.level;
+        const archiveY = pkg.tileMatrix.scheme === 'tms' ? count - 1 - address.z : address.z;
+        const archiveTile = await archive.getZxy(address.level, address.x, archiveY);
+        if (archiveTile === undefined) return undefined;
+        const result = await decoder.decode(new Uint8Array(archiveTile.data), {
+          address: { ...address },
+          content,
+          encoding,
+          layers,
+        });
+        assertTerrainSemanticTile(result);
+        return result;
       });
-      if (signal.aborted) return undefined;
-      assertTerrainSemanticTile(decoded);
-      return decoded;
+      return signal.aborted ? undefined : tile;
     },
   };
 }
 
 /**
- * Decode a shared MVT sidecar once when landcover and feature layers use the same archive.
- * Only in-flight work is cached, so renderer-owned resident objects remain the memory authority.
+ * Decode a shared MVT sidecar once when landcover and feature layers use the same archive. Past
+ * the last few decoded tiles, only tiles something else still holds are reused (see
+ * DecodedSemanticTiles), so renderer-owned resident objects remain the memory authority.
  */
 export function createTerrainPackageCombinedSemanticSource(
   pkg: TerrainPackageDescriptor,
@@ -541,38 +605,28 @@ export function createTerrainPackageCombinedSemanticSource(
       `combined semantic levels must fit package levels ${pkg.tileMatrix.minLevel}-${pkg.tileMatrix.maxLevel}`,
     );
   }
-  const pending = new Map<string, Promise<TerrainSemanticTile | undefined>>();
+  const decoded = new DecodedSemanticTiles(RECENT_SEMANTIC_TILES);
   return {
     async load(
       address: TerrainPyramidTileAddress,
       signal: AbortSignal,
     ): Promise<TerrainSemanticTile | undefined> {
       if (address.level < minLevel || address.level > maxLevel || signal.aborted) return undefined;
-      const key = `${address.level}/${address.x}/${address.z}`;
-      let request = pending.get(key);
-      if (request === undefined) {
-        request = (async (): Promise<TerrainSemanticTile | undefined> => {
-          const count = 2 ** address.level;
-          const archiveY = pkg.tileMatrix.scheme === 'tms' ? count - 1 - address.z : address.z;
-          const archiveTile = await archive.getZxy(address.level, address.x, archiveY);
-          if (archiveTile === undefined) return undefined;
-          const decoded = await decoder.decode(new Uint8Array(archiveTile.data), {
-            address: { ...address },
-            content: 'all',
-            encoding: 'mvt',
-            layers: [landcover.layer, ...features.layers],
-          });
-          assertTerrainSemanticTile(decoded);
-          return decoded;
-        })();
-        pending.set(key, request);
-        void request.then(
-          () => pending.delete(key),
-          () => pending.delete(key),
-        );
-      }
-      const decoded = await request;
-      return signal.aborted ? undefined : decoded;
+      const tile = await decoded.load(`${address.level}/${address.x}/${address.z}`, async () => {
+        const count = 2 ** address.level;
+        const archiveY = pkg.tileMatrix.scheme === 'tms' ? count - 1 - address.z : address.z;
+        const archiveTile = await archive.getZxy(address.level, address.x, archiveY);
+        if (archiveTile === undefined) return undefined;
+        const result = await decoder.decode(new Uint8Array(archiveTile.data), {
+          address: { ...address },
+          content: 'all',
+          encoding: 'mvt',
+          layers: [landcover.layer, ...features.layers],
+        });
+        assertTerrainSemanticTile(result);
+        return result;
+      });
+      return signal.aborted ? undefined : tile;
     },
   };
 }
