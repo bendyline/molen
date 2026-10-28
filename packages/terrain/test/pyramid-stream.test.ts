@@ -2951,6 +2951,10 @@ describe('budgeted terrain publication', () => {
   });
 
   it('recomputes ground cutouts only when visibility or a surface changes', async () => {
+    // whenIdle waits for loading, not frame-budgeted cuts. Keep the clock fixed so setup
+    // finishes cutting even on a busy runner; this test measures invalidation, not budgets.
+    const clock = vi.spyOn(performance, 'now').mockReturnValue(0);
+    const update = vi.spyOn(TerrainGroundCutoutController.prototype, 'update');
     const d = descriptor({ maxLevel: 0 });
     const stream = createTerrainPyramidStream(
       d,
@@ -2983,15 +2987,17 @@ describe('budgeted terrain publication', () => {
     );
     try {
       await stream.whenIdle();
-      const update = vi.spyOn(TerrainGroundCutoutController.prototype, 'update');
+      expect(update).toHaveBeenCalled();
+      update.mockClear();
       // A still camera reselects ten times a second; nothing it shows has changed.
       for (let i = 0; i < 5; i++) stream.update(VIEW);
       expect(update).not.toHaveBeenCalled();
       stream.setLayerVisible('cutters', false);
       expect(update).toHaveBeenCalled();
-      update.mockRestore();
     } finally {
       stream.dispose();
+      update.mockRestore();
+      clock.mockRestore();
     }
   });
 });

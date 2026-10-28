@@ -145,8 +145,10 @@ export function clipStructureObject(source: THREE.Object3D, size: number): THREE
       const part = new THREE.Mesh(geometry, mesh.material);
       part.name = mesh.name;
       part.renderOrder = mesh.renderOrder;
-      part.castShadow = true;
-      part.receiveShadow = true;
+      part.castShadow = mesh.userData.shadowCaster !== false;
+      part.receiveShadow = mesh.userData.shadowCaster !== false;
+      if (mesh.userData.shadowCaster === false) part.userData.shadowCaster = false;
+      if (mesh.userData.walkIgnore === true) part.userData.walkIgnore = true;
       part.userData.worldgenOwnedGeometry = true;
       result.add(part);
     });

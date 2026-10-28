@@ -173,6 +173,7 @@ export {
   BRIDGE_SURFACE_LIFT,
   groupTransportationFeatures,
   inferLaneCount,
+  isAeroway,
   isArterialRoad,
   isPaintedTransport,
   isTransportLink,

@@ -54,6 +54,7 @@ import {
   type WildlifeRangesDoc,
   wildlifeRangesSchema,
 } from '@bendyline/molen-worldgen-earth/kernel';
+import { createEarthAirports, type EarthAirportIndex, type EarthAirports } from './airports';
 import type { EarthFleetContent } from './fleet';
 import { withModelArchives } from './model-archives';
 import type { EarthRoadSignContent } from './road-signs';
@@ -94,6 +95,8 @@ export interface EarthWorldgenContent {
 }
 
 export interface EarthContent {
+  /** Optional surveyed runway catalog and detailed airport layouts from the Earth pack. */
+  airports?: EarthAirports;
   /** Shared lettering faces loaded from the Earth pack, if available. */
   fonts?: FontLibrary;
   packs: PackSet;
@@ -447,6 +450,14 @@ export async function loadEarthContent(
     ),
   );
   const earthPack = byId.get(EARTH_PACK_IDS.earth);
+  const airportPath = earthPack?.manifest.provides.airports?.[0];
+  const airports =
+    earthPack && airportPath
+      ? await createEarthAirports(
+          await earthPack.readJson<EarthAirportIndex>(airportPath),
+          (path) => earthPack.readJson(path),
+        )
+      : undefined;
   const signPath = earthPack?.manifest.provides['road-signs']?.[0];
   const signAtlasPath = earthPack?.manifest.provides['road-sign-regions']?.[0];
   const signProfiles = earthPack
@@ -492,6 +503,7 @@ export async function loadEarthContent(
       : undefined;
   return {
     packs,
+    ...(airports ? { airports } : {}),
     ...(fonts ? { fonts } : {}),
     ...(roadSigns ? { roadSigns } : {}),
     ...(types !== undefined ? { types } : {}),

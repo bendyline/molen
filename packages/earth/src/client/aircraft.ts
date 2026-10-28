@@ -11,14 +11,18 @@ import {
   AircraftPointerAxes,
   type AircraftVisual,
   aircraftCameraPose,
+  aircraftObstacleContacts,
   applyAircraftControl,
   createAircraftVisual,
 } from '@bendyline/molen-client/aircraft';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   Aircraft,
+  type AircraftCollisionProbe,
+  type AircraftContact,
   AircraftInput,
   AircraftState,
+  aircraftCollisionProbes,
   flyAircraft,
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
@@ -181,6 +185,7 @@ export class EarthAircraft {
   private readonly types: TypeLibrary;
   private readonly vehicleEnvironment: VehicleEnvironment;
   private readonly visuals = new Map<string, AircraftVisual>();
+  private readonly modelLoads = new Map<string, object>();
   private readonly spawned = new Set<string>();
   /** Spawned aircraft a host owns: they survive `release` until removed. */
   private readonly owned = new Set<string>();
@@ -253,7 +258,7 @@ export class EarthAircraft {
     this.root.add(this.object);
     installAircraft(this.world, {
       groundHeight: (x, z, y) => this.sampleHeight(x, z, y),
-      canOccupy: (t, spec, id) => this.canOccupy(t, spec, id),
+      contacts: (probes, id) => this.contacts(probes, id),
     });
   }
 
@@ -325,13 +330,16 @@ export class EarthAircraft {
     };
     this.world.spawnRaw(components, id);
     this.spawned.add(id);
+    const modelLoad = {};
+    this.modelLoads.set(id, modelLoad);
     if (placement.airborne !== undefined) this.launch(id, data.spec, yaw, placement.airborne);
     void this.loadModel(typeId)
       .then(async (model) => {
-        if (this.disposed || !this.world.exists(id)) return;
+        if (this.disposed || this.modelLoads.get(id) !== modelLoad || !this.world.exists(id))
+          return;
         const visual = createAircraftVisual(model, data.spec, this.world.get(id, Livery));
         await this.prepare?.(visual.object);
-        if (this.disposed || !this.world.exists(id)) {
+        if (this.disposed || this.modelLoads.get(id) !== modelLoad || !this.world.exists(id)) {
           visual.dispose();
           return;
         }
@@ -341,7 +349,8 @@ export class EarthAircraft {
       })
       .catch((error: unknown) => {
         // The flight model runs regardless; only the picture is missing.
-        this.message = `Aircraft model could not load: ${String(error)}`;
+        if (this.modelLoads.get(id) === modelLoad)
+          this.message = `Aircraft model could not load: ${String(error)}`;
       });
     return id;
   }
@@ -412,6 +421,7 @@ export class EarthAircraft {
 
   /** Remove an aircraft and its model. */
   remove(id: string): void {
+    this.modelLoads.delete(id);
     if (this.world.get(PLAYER, Mounted)?.vehicle === id) this.world.remove(PLAYER, Mounted);
     this.visuals.get(id)?.dispose();
     this.visuals.delete(id);
@@ -715,46 +725,42 @@ export class EarthAircraft {
   }
 
   private canOccupy(t: TransformData, spec: AircraftSpec, id: string): boolean {
-    let probeReach = 0;
-    for (const offset of spec.collisionProbes)
-      probeReach = Math.max(probeReach, Math.hypot(offset[0], offset[1], offset[2]));
+    return this.contacts(aircraftCollisionProbes(t, spec), id).length === 0;
+  }
+
+  private contacts(probes: readonly AircraftCollisionProbe[], id: string): AircraftContact[] {
+    if (probes.length === 0) return [];
+    const center = new THREE.Vector3();
+    for (const probe of probes) center.add(new THREE.Vector3().fromArray(probe.center));
+    center.multiplyScalar(1 / probes.length);
+    const probeReach = Math.max(
+      ...probes.map(
+        (probe) => center.distanceTo(new THREE.Vector3().fromArray(probe.center)) + probe.radius,
+      ),
+    );
     // Cars near enough to touch this airframe this step, gathered once instead of per probe.
     // None reaches an airframe well above the ground: in flight, scanning every parked car in a
     // city for each aircraft every tick was most of the flight model's time.
     const nearbyCars: Array<{ transform: TransformData; spec: VehicleSpec }> = [];
-    const ground = this.sampleHeight(t.pos[0], t.pos[2], t.pos[1]);
-    if (ground === undefined || t.pos[1] - probeReach - ground < CAR_CLEARANCE)
+    const ground = this.sampleHeight(center.x, center.z, center.y);
+    if (ground === undefined || center.y - probeReach - ground < CAR_CLEARANCE)
       for (const [, carT, car] of this.world.query(Transform, Vehicle)) {
-        if (Math.hypot(carT.pos[0] - t.pos[0], carT.pos[2] - t.pos[2]) > probeReach + 5) continue;
+        if (
+          Math.hypot(carT.pos[0] - center.x, carT.pos[2] - center.z) >
+          probeReach + Math.max(car.spec.width, car.spec.length)
+        )
+          continue;
         nearbyCars.push({ transform: carT, spec: car.spec });
       }
     const others: Array<[number, number, number]> = [];
     for (const [other, otherT] of this.world.query(Transform, Aircraft))
       if (other !== id) others.push([otherT.pos[0], otherT.pos[1] + 1.2, otherT.pos[2]]);
-    for (const offset of spec.collisionProbes) {
-      const point = vehicleLocalPoint(t, offset);
-      const sphere = new THREE.Sphere(
-        new THREE.Vector3().fromArray(point).sub(this.collision.origin),
-        0.3,
-      );
-      if (this.collision.octree.sphereIntersect(sphere)) return false;
-      for (const { transform: carT, spec: carSpec } of nearbyCars) {
-        if (Math.hypot(carT.pos[0] - point[0], carT.pos[2] - point[2]) > 5) continue;
-        const localPoint = new THREE.Vector3()
-          .fromArray(point)
-          .sub(new THREE.Vector3().fromArray(carT.pos))
-          .applyQuaternion(new THREE.Quaternion().fromArray(carT.rot).invert());
-        const bounds = new THREE.Box3(
-          new THREE.Vector3(-carSpec.width / 2, 0, -carSpec.length / 2),
-          new THREE.Vector3(carSpec.width / 2, carSpec.height, carSpec.length / 2),
-        );
-        if (bounds.intersectsSphere(new THREE.Sphere(localPoint, 0.3))) return false;
-      }
-      for (const other of others)
-        if (Math.hypot(point[0] - other[0], point[1] - other[1], point[2] - other[2]) < 1.5)
-          return false;
-    }
-    return true;
+    return aircraftObstacleContacts(probes, {
+      origin: this.collision.origin,
+      octree: this.collision.octree,
+      cars: nearbyCars,
+      aircraft: others,
+    });
   }
 
   dispose(): void {

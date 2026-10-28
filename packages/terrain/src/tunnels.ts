@@ -275,6 +275,7 @@ export function withTerrainTunnels(
 ): TerrainSemanticTileRenderer {
   const owned = new WeakMap<THREE.Object3D, THREE.Object3D>();
   return {
+    createEmptyTile: (context) => renderer.createEmptyTile?.(context),
     async createTile(tile, context) {
       if (context.address.level < minLevel || !tile.transportation.some((f) => f.tunnel))
         return renderer.createTile(tile, context);

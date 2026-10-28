@@ -25,6 +25,7 @@ import {
   terrainSemanticTileContentHash,
 } from '@bendyline/molen-terrain/client';
 import {
+  isAeroway,
   pointInPolygon,
   polygonBounds,
   wgs84ToWorld,
@@ -1228,6 +1229,23 @@ export function createWorldgenSemanticRenderers(
                 : Promise.resolve(slice()),
           );
           if (shells !== undefined) group.add(shells);
+          // Runways must remain readable from aircraft altitude, where ordinary roads are omitted.
+          if (options.roads?.surfaceRenderer && mapped.transportation.some(isAeroway)) {
+            const airport = await options.roads.surfaceRenderer.createTileAsync(
+              {
+                ...mapped,
+                buildings: [],
+                water: [],
+                pois: [],
+                transportation: mapped.transportation.filter(isAeroway),
+                landcover: mapped.landcover.filter((f) =>
+                  /^(apron|runway|taxiway)$/.test(f.subclass ?? f.class),
+                ),
+              },
+              context,
+            );
+            if (airport) group.add(airport);
+          }
           if (context.signal.aborted) {
             disposeHumanTile(group);
             return undefined;

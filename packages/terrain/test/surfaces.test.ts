@@ -341,7 +341,7 @@ describe('surface styles', () => {
     const cluster = new SurfaceNetwork(tile, 200, resolveTerrainSurfaceStyle());
     expect(inferTerrainParkingAreas(tile, cluster, 200).length).toBeGreaterThan(0);
   });
-  it('builds fully paved parking with holes, clipped markings, four corner lights and bounded parked cars', () => {
+  it('builds fully paved parking with holes, clipped markings, corner/block lights and bounded parked cars', () => {
     const tile = fixture();
     const ctx = context();
     const object = createTerrainSurfaceObject(tile, ctx, {
@@ -351,7 +351,7 @@ describe('surface styles', () => {
       roads: 2,
       parkingAreas: 1,
       junctions: 1,
-      streetlights: 4,
+      streetlights: 17,
       trafficSignals: 0,
       roadSigns: 2,
     });
@@ -493,7 +493,7 @@ describe('surface styles', () => {
       ],
     ];
     const object = createTerrainSurfaceObject(tile, context());
-    expect(stats(object)).toMatchObject({ junctions: 1, streetlights: 3, trafficSignals: 0 });
+    expect(stats(object)).toMatchObject({ junctions: 1, streetlights: 14, trafficSignals: 0 });
     tile.transportation = [
       {
         class: 'residential',
@@ -507,6 +507,23 @@ describe('surface styles', () => {
       },
     ];
     expect(stats(createTerrainSurfaceObject(tile, context())).junctions).toBe(0);
+  });
+
+  it('keeps unlit roads and disabled styles dark and bounds lamps without reducing parking', () => {
+    const tile = fixture();
+    for (const road of tile.transportation) road.tags = { lit: 'no' };
+    const unlit = createTerrainSurfaceObject(tile, context());
+    expect(stats(unlit).streetlights).toBe(0);
+    expect(unlit.getObjectByName('surface:night-pools')).toBeUndefined();
+    const disabled = createTerrainSurfaceObject(fixture(), context(), {
+      details: { streetlights: false },
+    });
+    expect(stats(disabled).streetlights).toBe(0);
+    const capped = createTerrainSurfaceObject(fixture(), context(), {
+      details: { maxStreetlightsPerTile: 3 },
+    });
+    expect(stats(capped).streetlights).toBeLessThanOrEqual(3);
+    for (const object of [unlit, disabled, capped]) disposeTerrainSurfaceObject(object);
   });
 
   it('stacks crossing roads, shared stall lines and all, so no two pieces of paving share a plane', () => {

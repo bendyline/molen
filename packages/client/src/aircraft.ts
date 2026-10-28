@@ -6,8 +6,10 @@ import type {
 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { type AircraftCockpit, createAircraftCockpit } from './aircraft-controls';
+import { createAircraftDamageVisual } from './aircraft-damage';
 
 export * from './aircraft-cockpit-pointer';
+export * from './aircraft-collision';
 export * from './aircraft-controls';
 
 import { applyLivery } from './livery';
@@ -85,10 +87,12 @@ export function createAircraftVisual(
       if ((object as THREE.Mesh).isMesh) object.userData.walkIgnore = true;
     });
   const cabinRange = Math.max(60, 3 * Math.max(spec.length, spec.span));
+  const damage = createAircraftDamageVisual(model, spec);
   let cabinShown = true;
   return {
     setLivery(data) {
       appearance?.dispose();
+      damage.reset();
       appearance = data === undefined ? undefined : applyLivery(model, data);
     },
     object: model,
@@ -216,6 +220,7 @@ export function createAircraftVisual(
       });
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
+      damage.update(state);
     },
     updateView(camera) {
       if (cabin.length === 0) return;
@@ -228,6 +233,7 @@ export function createAircraftVisual(
       for (const node of cabin) node.visible = shown;
     },
     dispose() {
+      damage.reset();
       appearance?.dispose();
       const geometries = new Set<THREE.BufferGeometry>(),
         materials = new Set<THREE.Material>();

@@ -551,7 +551,9 @@ function buildFuselage(g) {
   mesh(
     g,
     'fuselage-interior',
-    orient(liningGeo, (m) => fuselageAxis(m).multiplyScalar(2).sub(m)),
+    // orient() points away from its reference. Reflect the axis beyond the skin so the
+    // winding, like the supplied normals, faces into the cockpit instead of being culled.
+    orient(liningGeo, (m) => m.clone().multiplyScalar(2).sub(fuselageAxis(m))),
     green,
   );
   for (const side of [-1, 1]) {
@@ -1736,6 +1738,8 @@ function mustang() {
   }
   addRivetRows(g, [g.getObjectByName('fuselage')], rows);
   addInterior(g, interiorLayout, {
+    // Sidewall fittings follow the inner skin, including the narrowing below the canopy rail.
+    cabinWidth: (y, z) => halfWidth(station(z), y, -0.018),
     group,
     box,
     rod,

@@ -119,6 +119,8 @@ export interface TerrainSurfaceDetails {
   parkingOccupancy?: number;
   /** Fixture and car count limit per tile, default 160. */
   maxFixturesPerTile?: number;
+  /** Separate lamp budget, default 1.5 × maxFixturesPerTile; lamps do not displace parked cars. */
+  maxStreetlightsPerTile?: number;
   /** Marking/parking layout work limit per tile, default 16,000. */
   maxDetailElements?: number;
   /** Render details at this many levels below the finest level, default 0. */
@@ -184,7 +186,12 @@ export function resolveTerrainSurfaceStyle(
       'Surface widths must be finite; road scale positive and sidewalk width nonnegative',
     );
   }
-  for (const key of ['maxFixturesPerTile', 'maxDetailElements', 'detailLevelsBelowMax'] as const) {
+  for (const key of [
+    'maxFixturesPerTile',
+    'maxStreetlightsPerTile',
+    'maxDetailElements',
+    'detailLevelsBelowMax',
+  ] as const) {
     const value = details[key];
     if (value !== undefined && (!Number.isSafeInteger(value) || value < 0)) {
       throw new Error(`${key} must be a nonnegative safe integer`);

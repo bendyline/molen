@@ -9,6 +9,35 @@ import {
 import { gridDocument, streetFeature } from './helpers';
 
 describe('transport graph', () => {
+  it('shares complete airport runways across streamed tiles without creating car lanes', () => {
+    const net = new TransportNetwork();
+    for (const [key, originZ] of [
+      ['north', 0],
+      ['south', 1000],
+    ] as const) {
+      net.registerTile({
+        key,
+        origin: [0, originZ],
+        tileSize: 1000,
+        features: [
+          streetFeature([0.5, -originZ / 1000], [0.5, (3000 - originZ) / 1000], {
+            class: 'aeroway',
+            subclass: 'runway',
+            width: 60,
+          }),
+          streetFeature([0.6, 0], [0.6, 1], { class: 'aeroway', subclass: 'taxiway' }),
+        ],
+      });
+    }
+    expect(net.runways()).toHaveLength(1);
+    expect(net.runways()[0]).toMatchObject({ ax: 500, az: 0, bx: 500, bz: 3000 });
+    expect([...net.edgeList()]).toHaveLength(0);
+    net.unregisterTile('north');
+    expect(net.runways()).toHaveLength(1);
+    net.unregisterTile('south');
+    expect(net.runways()).toHaveLength(0);
+  });
+
   it('keeps regional lanes and turn permissions in one network, including export and reload', () => {
     const net = new TransportNetwork();
     for (const [index, drivingSide] of (['left', 'right'] as const).entries()) {

@@ -242,9 +242,16 @@ export class TransportNetwork implements GraphStore {
   }
 
   runways(): TransportRunway[] {
-    const out: TransportRunway[] = [];
-    for (const tile of this.tiles.values()) out.push(...tile.runways);
-    return out;
+    const unique = new Map<string, TransportRunway>();
+    for (const tile of this.tiles.values())
+      for (const runway of tile.runways) {
+        const ends = [
+          `${Math.round(runway.ax)},${Math.round(runway.az)}`,
+          `${Math.round(runway.bx)},${Math.round(runway.bz)}`,
+        ].sort();
+        unique.set(ends.join('/'), runway);
+      }
+    return [...unique.values()];
   }
 
   /** Aerodrome POIs (and runway midpoints) across registered tiles. */

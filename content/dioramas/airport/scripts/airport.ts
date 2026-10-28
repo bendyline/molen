@@ -53,7 +53,7 @@ function person(id: string, pos: Point, color: string, yaw = 0, height = 1.7): v
     id,
   );
 }
-// A parked commuter aircraft, a tug towing three baggage carts, a service van and ramp crew.
+// A tug towing three baggage carts, a service van and ramp crew. Aircraft live in the host flight world.
 function vehicle(id: string, cart: boolean): void {
   molen.spawn({ transform: { pos: [0, 0.2, 0], rot: [0, 0, 0, 1] } }, id);
   shape(
@@ -96,25 +96,6 @@ if (!molen.state.built) {
     shape(`lane-${n}`, [-38 + n * 5, 0.1, 24], [2.5, 0.025, 0.15], '#efe3c4');
   for (const x of [-16, 16]) shape(`stand-line-${x}`, [x, 0.1, -8], [0.18, 0.025, 34], '#e6bf58');
   shape('stop-mark', [0, 0.1, -22], [13, 0.025, 0.22], '#e6bf58');
-  shape('aircraft-body', [0, 3.3, -7], [2.6, 2.6, 2.6], '#e5dfcf', 'sphere');
-  molen.patch('aircraft-body', 'transform', { scale: [1, 0.95, 9.5] });
-  shape('aircraft-wing', [0, 3.3, -6], [25, 0.35, 3.8], '#d1d0c5');
-  shape('aircraft-tailplane', [0, 4.2, -17], [9, 0.25, 2.4], '#456f8e');
-  shape('aircraft-fin', [0, 6, -17], [0.3, 5.6, 2.8], '#456f8e');
-  shape('cockpit', [0, 4, 2.4], [1.9, 0.7, 1.6], '#4d6178');
-  for (const side of [-1, 1]) {
-    shape(`engine-${side}`, [side * 5.5, 3, -3.5], [1.5, 1.5, 1.5], '#e5dfcf', 'sphere');
-    molen.patch(`engine-${side}`, 'transform', { scale: [1, 1, 2.5] });
-    shape(`propeller-${side}`, [side * 5.5, 3, -1.55], [0.2, 3.6, 0.15], '#48505a');
-    for (let n = 0; n < 8; n++)
-      shape(
-        `window-${side}-${n}`,
-        [side * 1.29, 3.6, -13 + n * 1.65],
-        [0.06, 0.45, 0.65],
-        '#4d6178',
-      );
-    for (const z of [-8, 0]) shape(`gear-${side}-${z}`, [side, 1, z], [0.5, 1.8, 0.5], '#48505a');
-  }
   shape('belt-support', [4, 0.85, -14], [2.2, 1.5, 5.4], '#d4b965');
   shape('baggage-belt', [3.3, 2, -14], [1.1, 0.2, 6], '#4b565a');
   molen.patch('baggage-belt', 'transform', {

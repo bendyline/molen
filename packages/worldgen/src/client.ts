@@ -35,6 +35,11 @@ export {
   createVertexColorMaterialSet,
   TEXTURED_SURFACE_MEAN,
 } from './client/materials';
+export {
+  type ModelNightLight,
+  NightWindowLighting,
+  type NightWindowRange,
+} from './client/night-windows';
 export { createPlantGeometry } from './client/plant-geometry';
 export {
   createScatterMaterial,

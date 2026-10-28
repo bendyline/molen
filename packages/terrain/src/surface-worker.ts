@@ -21,6 +21,7 @@ import {
   type TerrainSurfaceGenerator,
   type TerrainSurfaceStats,
 } from './surface-client';
+import { appendTerrainStreetLights, type TerrainStreetLight } from './surface-lights';
 import type { SurfaceSign } from './surface-sign-mesh';
 import { appendTerrainSignalLenses, type TerrainSignalHead } from './surface-signals';
 import type { TerrainSurfaceOptions } from './surface-styles';
@@ -71,6 +72,7 @@ interface Result {
   inferredParkingAreas?: number;
   vehicles?: VehiclePlacement[];
   signalHeads?: TerrainSignalHead[];
+  streetLights?: TerrainStreetLight[];
   roadSigns?: SurfaceSign[];
   error?: string;
 }
@@ -106,7 +108,10 @@ export function installTerrainSurfaceWorker(
       );
       const transfer: ArrayBuffer[] = [];
       const meshes = object.children
-        .filter((child) => !child.name.startsWith('surface:signal-'))
+        .filter(
+          (child) =>
+            !child.name.startsWith('surface:signal-') && !child.name.startsWith('surface:night-'),
+        )
         .map((child): MeshData => {
           const mesh = child as THREE.Mesh;
           const instances = mesh as THREE.InstancedMesh;
@@ -153,6 +158,7 @@ export function installTerrainSurfaceWorker(
           inferredParkingAreas: object.userData.inferredParkingAreas as number,
           vehicles: object.userData.vehicles as VehiclePlacement[],
           signalHeads: object.userData.trafficSignalHeads as TerrainSignalHead[],
+          streetLights: object.userData.streetLights as TerrainStreetLight[],
           roadSigns: object.userData.roadSigns as SurfaceSign[],
         } satisfies Result,
         transfer,
@@ -337,6 +343,7 @@ export function createTerrainSurfaceWorkerBridge(
     if (result.vehicles?.length)
       group.add(createParkedVehicleBatch(result.vehicles, job.context.origin));
     appendTerrainSignalLenses(group, result.signalHeads ?? []);
+    appendTerrainStreetLights(group, result.streetLights ?? [], job.context);
     markTerrainSurfaceDetail(group);
     return group;
   };

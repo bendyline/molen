@@ -250,7 +250,9 @@ describe('aircraft flight and mounting', () => {
       canOccupy: () => false,
     });
     expect(hit.state.crashed).toBe(true);
-    expect(hit.state.velocity).toEqual([0, 0, 0]);
+    // A legacy boolean obstacle has no surface normal: recoil instead of freezing in midair.
+    expect(Math.abs(hit.state.velocity[2])).toBeLessThan(5);
+    expect(Math.hypot(...hit.state.velocity)).toBeGreaterThan(0);
     const landing = stepAircraft(
       { ...t, pos: [0, 0.02, 0] },
       s,

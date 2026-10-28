@@ -5441,6 +5441,140 @@ Required: `kind`, `spec`
           },
           "description": "External collisionProbes setting."
         },
+        "collisionParts": {
+          "description": "Breakable airframe sections: local probe spheres, section center, mass fraction, normal break speed (m/s), GLB nodes and attached engines. Replaces collisionProbes.",
+          "minItems": 1,
+          "maxItems": 64,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                "description": "Unique section id used by damage and debris state."
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "body",
+                  "leftWing",
+                  "rightWing",
+                  "tail",
+                  "rotor",
+                  "gear",
+                  "engine"
+                ],
+                "description": "Flight role; +X is the left wing. Body sections cannot detach."
+              },
+              "probes": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "description": "Local collision sphere centers, meters."
+              },
+              "radius": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Probe and detached-piece collision radius, meters."
+              },
+              "center": {
+                "minItems": 3,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Section center in model coordinates, meters."
+              },
+              "massFraction": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1,
+                "description": "Share of the original mass removed on separation."
+              },
+              "breakSpeed": {
+                "description": "Joint failure speed in m/s for a normal impact. Loaded sliding also causes shear damage. Omit for an unbreakable section.",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "nodes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "GLB node names belonging to this section, including attached controls."
+              },
+              "fragments": {
+                "description": "Optional region for splitting shared markings and detail meshes.",
+                "type": "object",
+                "properties": {
+                  "nodes": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "Shared static meshes to partition by triangle centroid."
+                  },
+                  "min": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Minimum corner of the section region in model meters."
+                  },
+                  "max": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Maximum corner of the section region in model meters."
+                  }
+                },
+                "required": [
+                  "nodes",
+                  "min",
+                  "max"
+                ],
+                "additionalProperties": false
+              },
+              "engines": {
+                "description": "Engine ids that fail when this section detaches.",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+                  "description": "Stable engine id, such as left or right; single-engine form uses main."
+                }
+              }
+            },
+            "required": [
+              "id",
+              "role",
+              "probes",
+              "radius",
+              "center",
+              "massFraction",
+              "nodes"
+            ],
+            "additionalProperties": false
+          }
+        },
         "visual": {
           "type": "object",
           "properties": {
@@ -6302,6 +6436,98 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "damage": {
+      "description": "Persistent section integrity and separation, keyed by collision part id.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "integrity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Remaining joint integrity, 0 broken to 1 intact."
+          },
+          "detached": {
+            "type": "boolean",
+            "description": "Section has separated and no longer supplies lift or collision probes."
+          }
+        },
+        "required": [
+          "integrity",
+          "detached"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "debris": {
+      "description": "Detached sections in world coordinates, simulated for 20 seconds. Their removal does not repair the aircraft.",
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "part": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Owning collision section id."
+          },
+          "pos": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Section center in world meters."
+          },
+          "rot": {
+            "minItems": 4,
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "World-space section orientation quaternion."
+          },
+          "velocity": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "World velocity in m/s, inherited at separation including travel boost."
+          },
+          "angularVelocity": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Local angular velocity about +X, +Y and +Z, rad/s."
+          },
+          "age": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Simulated seconds since separation; expires at 20 seconds."
+          }
+        },
+        "required": [
+          "part",
+          "pos",
+          "rot",
+          "velocity",
+          "angularVelocity",
+          "age"
+        ],
+        "additionalProperties": false
+      }
+    },
     "boosted": {
       "description": "Speeds include the 4× travel boost; kernel-owned.",
       "type": "boolean"
@@ -6490,7 +6716,7 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
     },
     "crashed": {
       "type": "boolean",
-      "description": "Hard landing or obstruction impact; explicit recovery required."
+      "description": "Airframe damage requiring recovery. Motion continues under forces and collision impulses."
     },
     "waitingForTerrain": {
       "type": "boolean",

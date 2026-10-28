@@ -1,8 +1,11 @@
 import * as THREE from 'three';
 import type { GlbSharedSurface } from '../kernel/glb';
 import type { ModelLoader } from './instanced-models';
+import type { NightWindowLighting } from './night-windows';
 
 export interface StructureModelLibraryOptions {
+  /** Night layers for tagged glass/lamp materials. Caller owns the controller. */
+  nightWindows?: NightWindowLighting;
   /** Borrow a shared material owned by the caller. Undefined preserves the GLB's fallback.
    * The returned material must outlive acquired models and may upgrade progressively. */
   resolveSurface?: (surface: GlbSharedSurface) => THREE.Material | undefined;
@@ -155,7 +158,7 @@ export class StructureModelLibrary {
     if (!this.options.resolveSurface) return;
     const original = new Set<THREE.Material>();
     const retained = new Set<THREE.Material>();
-    const borrowed = new Set<THREE.Material>();
+    const borrowed = this.borrowed.get(scene) ?? new Set<THREE.Material>();
     // Also preserve borrowed aliases if a later surface resolver fails before assignment.
     this.borrowed.set(scene, borrowed);
     const resolved = new Map<THREE.Material, THREE.Material>();
@@ -246,6 +249,12 @@ export class StructureModelLibrary {
               throw new Error(`Structure model "${ref}" has no geometry`);
             }
             try {
+              if (this.options.nightWindows) {
+                const borrowed = this.borrowed.get(scene) ?? new Set<THREE.Material>();
+                borrowed.add(this.options.nightWindows.material);
+                this.borrowed.set(scene, borrowed);
+                this.options.nightWindows.attachModel(scene);
+              }
               this.bindSurfaces(scene);
             } catch (error) {
               this.disposeOwnedScene(scene);

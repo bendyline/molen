@@ -95,6 +95,7 @@ export function completeCockpitControls(model, spec, frame = {}) {
     'Bell Boeing MV-22B Osprey': [0, eye[1] - 0.7, panelZ - 0.18],
     'Dassault Rafale C': [0, eye[1] - 1.05, panelZ - 0.055],
     'Eurofighter Typhoon': [0, eye[1] - 0.7, panelZ - 0.14],
+    'Lockheed Martin F-22A Raptor': [0, 1.99, panelZ - 0.055],
     'De Havilland Canada DHC-2 Beaver': [0.4, eye[1] - 0.5, panelZ - 0.055],
   };
   const center = mounts[spec.label] ?? [0, eye[1] - 0.7, panelZ - 0.055];

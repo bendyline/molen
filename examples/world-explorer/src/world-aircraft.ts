@@ -5,12 +5,15 @@ import {
   AircraftPointerAxes,
   type AircraftVisual,
   aircraftCameraPose,
+  aircraftObstacleContacts,
   applyAircraftControl,
   createAircraftVisual,
 } from '@bendyline/molen-client/aircraft';
 import { type NavigationInput, WalkCollision } from '@bendyline/molen-client/navigation';
 import {
   Aircraft,
+  type AircraftCollisionProbe,
+  type AircraftContact,
   AircraftInput,
   AircraftState,
   flyAircraft,
@@ -24,7 +27,6 @@ import { Transform, type TransformData, type World } from '@bendyline/molen-kern
 import type {
   AircraftData,
   AircraftInputData,
-  AircraftSpec,
   ComponentMap,
   VehicleSpec,
 } from '@bendyline/molen-schema';
@@ -110,6 +112,10 @@ export class WorldAircraft {
   private disposed = false;
   private requested: AircraftChoice | undefined;
   private readonly requests = new Map<AircraftChoice, Promise<void>>();
+  private readonly apron = new Map<
+    string,
+    { type: string; position: [number, number, number]; yaw: number }
+  >();
   private extraLoading: Promise<void> | undefined;
   // An airframe moves tens of meters a second: a wider neighborhood rebuilt every 24 m, bounded
   // vertically so the ground far below never enters the tree, and rescanned at 5 Hz while hovering.
@@ -133,7 +139,7 @@ export class WorldAircraft {
     const kind = this.mountedKind;
     const visual = kind ? this.visuals.get(kind) : undefined;
     if (!kind || !visual) return undefined;
-    const spec = this.aircraftData(entityId(kind)).spec;
+    const spec = this.aircraftData(this.typeId(kind)).spec;
     return {
       id: kind,
       cockpit: visual.cockpit,
@@ -171,7 +177,7 @@ export class WorldAircraft {
     root.add(this.object);
     installAircraft(world, {
       groundHeight: (x, z, y) => this.groundHeight(x, z, y),
-      canOccupy: (t, spec, id) => this.canOccupy(t, spec, id),
+      contacts: (probes, id) => this.contacts(probes, id),
     });
   }
   /** Read-only: callers that change a component map take a fresh one from the library. */
@@ -190,6 +196,81 @@ export class WorldAircraft {
       this.aircraftTypes.set(id, data);
     }
     return data;
+  }
+  private typeId(kind: string): string {
+    return this.apron.get(kind)?.type ?? entityId(kind);
+  }
+  label(kind: string): string {
+    return this.aircraftData(this.typeId(kind)).spec.label;
+  }
+  get apronCount(): number {
+    return [...this.apron.keys()].filter((id) => this.visuals.has(id)).length;
+  }
+  /** An individual, boardable aircraft on real airport pavement; no practice runway is created. */
+  async spawnApron(
+    kind: string,
+    type: string,
+    x: number,
+    z: number,
+    heading: number,
+  ): Promise<boolean> {
+    const height = this.terrainHeight(x, z);
+    if (height === undefined || this.disposed) return false;
+    if (this.apron.has(kind)) return true;
+    const yaw = Math.PI - heading;
+    const placement = { type, position: [x, height, z] as [number, number, number], yaw };
+    this.apron.set(kind, placement);
+    let visual: AircraftVisual | undefined;
+    try {
+      const model = await this.loadModel(type);
+      visual = createAircraftVisual(model, this.aircraftData(type).spec);
+      dropTinyShadowCasters(visual.object);
+      visual.object.traverse(skipWhenHidden);
+      visual.updateView(FAR_AWAY);
+      // A visitor may be waiting beside this stand. Background-only admission can starve
+      // indefinitely while terrain streams on a slow renderer; population already loads one
+      // aircraft at a time, so use the normal lane like an explicitly selected aircraft.
+      await this.prepare?.(visual.object);
+      if (this.disposed || this.apron.get(kind) !== placement) {
+        visual.dispose();
+        return false;
+      }
+      const components = this.types.components(type);
+      components.transform = {
+        pos: [...placement.position],
+        rot: [0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2)],
+      };
+      components.aircraftState = initialAircraftState(yaw);
+      components.aircraftInput = { ...IDLE_AIRCRAFT_INPUT };
+      this.world.spawnRaw(components, `aircraft-${kind}`);
+      this.visuals.set(kind, visual);
+      this.object.add(visual.object);
+      this.render();
+      return true;
+    } catch (error) {
+      visual?.dispose();
+      this.apron.delete(kind);
+      throw error;
+    }
+  }
+  removeApron(kind: string): void {
+    if (kind === this.mountedKind) return;
+    this.apron.delete(kind);
+    this.visuals.get(kind)?.dispose();
+    this.visuals.delete(kind);
+    if (this.world.exists(`aircraft-${kind}`)) this.world.destroy(`aircraft-${kind}`);
+  }
+  apronPose(
+    kind: string,
+  ): { position: [number, number, number]; occupied: boolean; speed: number } | undefined {
+    const id = `aircraft-${kind}`;
+    const transform = this.world.get(id, Transform);
+    if (!transform) return undefined;
+    return {
+      position: [...transform.pos],
+      occupied: this.mountedKind === kind,
+      speed: Math.hypot(...(this.world.get(id, AircraftState)?.velocity ?? [0, 0, 0])),
+    };
   }
   get choices(): { kind: string; label: string }[] {
     return this.types
@@ -219,8 +300,8 @@ export class WorldAircraft {
         });
     }
     const request = (async () => {
-      const model = await this.loadModel(entityId(kind));
-      const visual = createAircraftVisual(model, this.aircraftData(entityId(kind)).spec);
+      const model = await this.loadModel(this.typeId(kind));
+      const visual = createAircraftVisual(model, this.aircraftData(this.typeId(kind)).spec);
       dropTinyShadowCasters(visual.object);
       visual.object.traverse(skipWhenHidden);
       // Drawn before its shaders were built, each aircraft at the airfield built them in a frame.
@@ -238,7 +319,12 @@ export class WorldAircraft {
         return;
       }
       for (const [previous, oldVisual] of this.visuals) {
-        if (KINDS.includes(previous) || previous === this.mountedKind || KINDS.includes(kind))
+        if (
+          this.apron.has(previous) ||
+          KINDS.includes(previous) ||
+          previous === this.mountedKind ||
+          KINDS.includes(kind)
+        )
           continue;
         oldVisual.dispose();
         this.visuals.delete(previous);
@@ -246,7 +332,7 @@ export class WorldAircraft {
       }
       this.visuals.set(kind, visual);
       this.object.add(visual.object);
-      const components = this.types.components(entityId(kind));
+      const components = this.types.components(this.typeId(kind));
       components.transform = { pos: this.spawnPosition(kind), rot: [0, 0, 0, 1] };
       this.world.spawnRaw(components, `aircraft-${kind}`);
       this.render();
@@ -260,8 +346,9 @@ export class WorldAircraft {
   }
   get mountedKind(): AircraftChoice | undefined {
     const id = this.world.get(PLAYER, Mounted)?.vehicle;
-    const kind = id ? this.world.get(id, Aircraft)?.kind : undefined;
-    return kind === undefined ? undefined : choiceForId(kind);
+    return id?.startsWith('aircraft-') && this.world.has(id, Aircraft)
+      ? id.slice('aircraft-'.length)
+      : undefined;
   }
   get state(): import('@bendyline/molen-schema').AircraftStateData | undefined {
     const kind = this.mountedKind;
@@ -281,6 +368,8 @@ export class WorldAircraft {
     return this.terrainHeight(x, z, y);
   }
   spawnPosition(kind: AircraftChoice): [number, number, number] {
+    const apron = this.apron.get(kind);
+    if (apron) return [...apron.position];
     if (!KINDS.includes(kind)) return [this.center[0], this.elevation ?? 0, this.center[1] - 600];
     return [
       this.center[0] + (kind === 'p51d' ? -25 : kind === 'oh6' ? 23 : 0),
@@ -291,7 +380,7 @@ export class WorldAircraft {
   visitPosition(kind: AircraftChoice): [number, number, number] {
     const p = this.world.get(`aircraft-${kind}`, Transform)?.pos ?? this.spawnPosition(kind);
     if (!KINDS.includes(kind)) {
-      const mounts = this.typeComponents(entityId(kind)).mountable as {
+      const mounts = this.typeComponents(this.typeId(kind)).mountable as {
         entries: [number, number, number][];
       };
       const entry = mounts.entries[0] ?? [0, 0, 0];
@@ -387,8 +476,8 @@ export class WorldAircraft {
     for (const kind of this.visuals.keys()) {
       const t = this.world.get(`aircraft-${kind}`, Transform);
       if (!t) continue;
-      const components = this.typeComponents(entityId(kind));
-      const aircraft = this.aircraftData(entityId(kind));
+      const components = this.typeComponents(this.typeId(kind));
+      const aircraft = this.aircraftData(this.typeId(kind));
       const mountable = components.mountable as {
         reach: number;
         entries?: [number, number, number][];
@@ -406,14 +495,14 @@ export class WorldAircraft {
     if (!t) return false;
     this.collision.update(this.root, position[0], position[2], position[1]);
     const a = new THREE.Vector3().fromArray(position).sub(this.collision.origin);
-    const mountable = this.typeComponents(entityId(kind)).mountable as {
+    const mountable = this.typeComponents(this.typeId(kind)).mountable as {
       entries?: [number, number, number][];
     };
     const b = new THREE.Vector3()
       .fromArray(
         vehicleLocalPoint(
           t,
-          mountable.entries?.[0] ?? this.aircraftData(entityId(kind)).spec.pilotEye,
+          mountable.entries?.[0] ?? this.aircraftData(this.typeId(kind)).spec.pilotEye,
         ),
       )
       .sub(this.collision.origin);
@@ -435,17 +524,20 @@ export class WorldAircraft {
     if (code === 'KeyI') this.inputs.engine = !this.inputs.engine;
     if (code === 'KeyG' && !this.state?.grounded) this.inputs.gear = !this.inputs.gear;
     if (code === 'KeyF') this.inputs.flaps = !this.inputs.flaps;
-    if (code === 'KeyJ' && this.aircraftData(entityId(this.mountedKind)).spec.poweredLift)
+    if (code === 'KeyJ' && this.aircraftData(this.typeId(this.mountedKind)).spec.poweredLift)
       this.inputs.thrustVector = ((Math.round((this.inputs.thrustVector ?? 0) * 4) + 1) % 5) / 4;
     if (code === 'KeyR' && this.state?.crashed) {
       const kind = this.mountedKind;
+      const yaw = this.apron.get(kind)?.yaw ?? 0;
       this.world.set(`aircraft-${kind}`, Transform, {
         pos: this.spawnPosition(kind),
-        rot: [0, 0, 0, 1],
+        rot: [0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2)],
       });
-      this.inputs = { ...this.types.component<AircraftInputData>(entityId(kind), 'aircraftInput') };
+      this.inputs = {
+        ...this.types.component<AircraftInputData>(this.typeId(kind), 'aircraftInput'),
+      };
       this.world.set(`aircraft-${kind}`, AircraftState, {
-        ...initialAircraftState(),
+        ...initialAircraftState(yaw),
         ...(this.inputs.thrustVector === undefined
           ? {}
           : { thrustVectorPosition: this.inputs.thrustVector }),
@@ -475,7 +567,7 @@ export class WorldAircraft {
           control: { id: 'common', label: 'Power', action: 'power', nodes: [] },
           value: pilot.power ?? this.inputs.power + Math.min(dt, 0.1) * 0.22 * pilot.throttle,
         },
-        this.aircraftData(entityId(kind)).spec,
+        this.aircraftData(this.typeId(kind)).spec,
       );
     }
     this.inputs = {
@@ -530,7 +622,7 @@ export class WorldAircraft {
     if (!kind) return;
     const t = this.world.get(`aircraft-${kind}`, Transform);
     if (!t) return;
-    return aircraftCameraPose(t, this.aircraftData(entityId(kind)).spec, {
+    return aircraftCameraPose(t, this.aircraftData(this.typeId(kind)).spec, {
       view,
       lookYaw,
       lookPitch,
@@ -546,10 +638,15 @@ export class WorldAircraft {
     const s = this.state,
       kind = this.mountedKind;
     if (!s || !kind) return this.message;
-    const spec = this.aircraftData(entityId(kind)).spec;
+    const spec = this.aircraftData(this.typeId(kind)).spec;
     const airplane = spec.model === 'airplane';
+    const missing = Object.entries(s.damage ?? {})
+      .filter(([, part]) => part.detached)
+      .map(([id]) => id.replaceAll('-', ' '));
     const alert = s.crashed
-      ? 'Impact — R recover'
+      ? missing.length
+        ? `Lost ${missing.join(', ')} — R recover`
+        : 'Airframe damaged — R recover'
       : s.waitingForTerrain
         ? 'Waiting for terrain'
         : (s.departure ?? 0) > 0.8 && Math.abs(s.yawRate ?? 0) > 0.8
@@ -593,52 +690,28 @@ export class WorldAircraft {
     this.message =
       'Land, stop, press I to shut down, and wait for the rotor to stop before exiting';
   }
-  private canOccupy(t: TransformData, spec: AircraftSpec, id: string): boolean {
-    // Every resident parked car is an entity. Gather the few that could touch this airframe
-    // once per step, instead of scanning all of them again for each probe.
-    let probeReach = 0;
-    for (const offset of spec.collisionProbes)
-      probeReach = Math.max(probeReach, Math.hypot(offset[0], offset[1], offset[2]));
-    const nearbyCars: Array<{ transform: TransformData; spec: VehicleSpec }> = [];
-    // No car reaches an airframe well above the ground: in flight the scan over every parked
-    // car in a city, for each aircraft every tick, was most of the flight model's time.
-    const ground = this.groundHeight(t.pos[0], t.pos[2], t.pos[1]);
-    if (ground === undefined || t.pos[1] - probeReach - ground < CAR_CLEARANCE)
-      for (const car of this.cars())
-        if (
-          Math.hypot(car.transform.pos[0] - t.pos[0], car.transform.pos[2] - t.pos[2]) <=
-          probeReach + 5
-        )
-          nearbyCars.push(car);
+  private contacts(probes: readonly AircraftCollisionProbe[], id: string): AircraftContact[] {
+    if (probes.length === 0) return [];
+    const center = new THREE.Vector3();
+    for (const probe of probes) center.add(new THREE.Vector3().fromArray(probe.center));
+    center.multiplyScalar(1 / probes.length);
+    const reach = Math.max(
+      ...probes.map(
+        (probe) => center.distanceTo(new THREE.Vector3().fromArray(probe.center)) + probe.radius,
+      ),
+    );
+    const ground = this.groundHeight(center.x, center.z, center.y);
+    const cars =
+      ground === undefined || center.y - reach - ground < CAR_CLEARANCE ? this.cars() : [];
     const others: Array<[number, number, number]> = [];
-    for (const [other, otherT] of this.world.query(Transform, Aircraft))
-      if (other !== id) others.push([otherT.pos[0], otherT.pos[1] + 1.2, otherT.pos[2]]);
-    for (const offset of spec.collisionProbes) {
-      const point = vehicleLocalPoint(t, offset);
-      const sphere = new THREE.Sphere(
-        new THREE.Vector3().fromArray(point).sub(this.collision.origin),
-        0.3,
-      );
-      if (this.collision.octree.sphereIntersect(sphere)) {
-        return false;
-      }
-      for (const { transform: carT, spec: carSpec } of nearbyCars) {
-        if (Math.hypot(carT.pos[0] - point[0], carT.pos[2] - point[2]) > 5) continue;
-        const localPoint = new THREE.Vector3()
-          .fromArray(point)
-          .sub(new THREE.Vector3().fromArray(carT.pos))
-          .applyQuaternion(new THREE.Quaternion().fromArray(carT.rot).invert());
-        const bounds = new THREE.Box3(
-          new THREE.Vector3(-carSpec.width / 2, 0, -carSpec.length / 2),
-          new THREE.Vector3(carSpec.width / 2, carSpec.height, carSpec.length / 2),
-        );
-        if (bounds.intersectsSphere(new THREE.Sphere(localPoint, 0.3))) return false;
-      }
-      for (const other of others)
-        if (Math.hypot(point[0] - other[0], point[1] - other[1], point[2] - other[2]) < 1.5)
-          return false;
-    }
-    return true;
+    for (const [other, t] of this.world.query(Transform, Aircraft))
+      if (other !== id) others.push([t.pos[0], t.pos[1] + 1.2, t.pos[2]]);
+    return aircraftObstacleContacts(probes, {
+      origin: this.collision.origin,
+      octree: this.collision.octree,
+      cars,
+      aircraft: others,
+    });
   }
   /** Every vehicle's pose, gathered once per world tick for all aircraft. */
   private cars(): ReadonlyArray<{ transform: TransformData; spec: VehicleSpec }> {

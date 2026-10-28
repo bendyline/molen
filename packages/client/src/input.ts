@@ -205,9 +205,10 @@ export class InputMap {
   /** Poll fresh browser objects; unplugging or losing permission releases affected controls. */
   update(): void {
     if (this.disposed) return;
-    // No pad announced or found: poll only now and then, in case an announcement was missed.
+    // Probe once immediately: a controller may already be connected before we attach listeners.
+    // With no pad announced or found, poll only now and then in case an announcement was missed.
     const quiet =
-      this.padsAnnounced === 0 && this.pads.length === 0 && ++this.idleUpdates % IDLE_POLL !== 0;
+      this.padsAnnounced === 0 && this.pads.length === 0 && this.idleUpdates++ % IDLE_POLL !== 0;
     try {
       if (quiet) this.pads = [];
       else {

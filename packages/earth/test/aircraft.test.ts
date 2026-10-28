@@ -41,6 +41,50 @@ function setup(
 }
 
 describe('earth aircraft', () => {
+  it('ignores an old model load when an airport stand is evicted and recreated with the same id', async () => {
+    const loads: Array<(model: THREE.Object3D) => void> = [];
+    const { aircraft, vehicles } = setup(() => new Promise((resolve) => loads.push(resolve)));
+    aircraft.spawn(P51, { position: [0, 12, 0], heading: 0 }, { id: 'apron:a' });
+    aircraft.remove('apron:a');
+    aircraft.spawn(P51, { position: [20, 12, 0], heading: 0 }, { id: 'apron:a' });
+    loads[1]?.(new THREE.Group());
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    loads[0]?.(new THREE.Group());
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(aircraft.object.children).toHaveLength(1);
+    expect(aircraft.pose('apron:a')?.position).toEqual([20, 12, 0]);
+    aircraft.dispose();
+    vehicles.dispose();
+  });
+  it('breaks the wing against streamed geometry and restores the aircraft on recovery', async () => {
+    const { root, vehicles, aircraft, fly } = setup(async () => new THREE.Group());
+    const wall = new THREE.Mesh(new THREE.BoxGeometry(3, 8, 0.05), new THREE.MeshBasicMaterial());
+    wall.position.set(4, 32, 5);
+    root.add(wall);
+    root.updateMatrixWorld(true);
+    const id = aircraft.spawn(P51, {
+      position: [0, 30, 0],
+      heading: Math.PI,
+      airborne: { speed: 70 },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(aircraft.board(id)).toBe(true);
+    fly(0.25);
+    const state = vehicles.world.get(id, AircraftState);
+    expect(
+      state?.damage?.['left-wing']?.detached,
+      JSON.stringify({ state, transform: vehicles.world.get(id, Transform) }),
+    ).toBe(true);
+    expect(state?.velocity[2]).toBeGreaterThan(30);
+    expect(state?.debris?.length).toBe(1);
+    expect(aircraft.recover()).toBe(true);
+    expect(vehicles.world.get(id, AircraftState)?.damage).toBeUndefined();
+    expect(vehicles.world.get(id, AircraftState)?.debris).toBeUndefined();
+    aircraft.dispose();
+    vehicles.dispose();
+    wall.geometry.dispose();
+    (wall.material as THREE.Material).dispose();
+  });
   it('retains cockpit power, mixes spring-loaded axes with keyboard intent, and drives independent engines', async () => {
     const { aircraft, vehicles, fly } = setup(async () => new THREE.Group());
     const id = aircraft.spawn('molen.entities.aircraft.baron_g58', {

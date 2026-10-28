@@ -12,6 +12,9 @@ composes:
 
 You speak latitude and longitude; the view keeps its metric world frame internally.
 
+[Night lighting](night-lighting.md) follows the sky’s Sun position: occupied windows and street
+lamps fade in through dusk. Existing model glass can opt in with material lighting metadata.
+
 [Boost mode](boost-mode.md) makes walking, driving and flying four times faster: press **T**, or
 call `view.setBoostMode(true)`. Pass `boostMode: true` at mount to start enabled; read
 `view.boostMode` and listen for `boostchange` to keep a host's toggle in sync.
@@ -92,6 +95,11 @@ shadow map follows that focus in whole texels, so edges hold still as it moves. 
 turns shadows off at its two lowest levels; `shadows: false` turns them off entirely. Only layer
 parts taller than `EARTH_SHADOW_CASTER_HEIGHT` (3.5 m) cast: shrubs, brambles and saplings stay
 out of the shadow pass, where their shadows would mostly fall inside the canopy's.
+
+In flight the shadow footprint widens with height above the local ground: its half-width is
+four times that height, capped at 5 km, with a tighter footprint near the ground. This pushes
+the shadow boundary farther into the distance in aerial views, trading some shadow sharpness
+for coverage at the same map resolution. Walking and driving keep their tighter footprints.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
@@ -1067,3 +1075,40 @@ pieces such as a football game, apron traffic or a market. Each geographic place
 a lazy scene loader, optional calendar policy, and entry/exit distances. It waits for terrain,
 plays nearby, and releases its local world when out of range. See [Dioramas](dioramas.md) for
 the full contract and current prototype limits.
+
+## Airport layouts
+
+The `molen.earth` content pack supplies a lazy worldwide runway catalog and a detailed Boeing
+Field layout. Both Earth hosts use measured runway endpoints and widths, draw runway numbers,
+thresholds and centre lines, and keep airport pavement visible from flight altitude. Mapped
+taxiways and aprons have airport markings; airside areas do not become car parks or city streets.
+The airport overlay also supplies mapped hangar/building footprints and suppresses inferred
+vegetation and buildings on the airfield. Aircraft traffic uses the runway approach/departure
+corridors and remains simulated, rather than live aviation tracking.
+
+The runway snapshot covers 10,746 airports with complete endpoint and width records. Detailed
+aprons, taxiways and hangars are currently bundled for Boeing Field; elsewhere these depend on
+the map's coverage. Building heights and untagged taxiway widths are interpreted. Runways with
+missing endpoints, closed runways and water runways are omitted. Supplemental airports also
+render when the basemap has no tile (Boeing Field lies south of the bundled Seattle street-detail
+coverage). No airport data is fetched without a supplied pack. Hosts composing their own
+terrain renderer can use `withEarthAirports`
+around semantic renderers and observers, passing `content.airports` from `loadEarthContent`.
+
+Mapped layouts also populate their aprons with boardable aircraft. Fleet profiles distinguish
+general aviation, regional service, airline hubs and mixed operations; Boeing Field uses a mix
+of light aircraft, business aircraft and larger jets. Aircraft are fitted inside apron polygons
+with clearance from buildings, taxiways, runways, other aircraft and reserved diorama areas.
+The fleet and parking positions are simulated, not live aircraft tracking or exact stand assignments.
+
+Walk to an aircraft's door and press **E** to board, **I** to start, and **Shift/Ctrl** to adjust
+power. The same aircraft taxis and flies away; its original stand remains empty for the session.
+Land, stop and shut down before exiting. Automatic parking keeps at most twelve unclaimed
+aircraft within 1.8 km; claimed aircraft remain owned vehicles across terrain re-anchors.
+Set `airportTraffic: false` on `mountEarthView`, or `?airportTraffic=0` in World Explorer, to
+disable automatic parking. Hosts composing their own loop can use `planAirportApron` and
+`EarthAirportPopulation` with callbacks into their aircraft world.
+
+Detailed apron population currently ships for Boeing Field. Runway-only catalog records do
+not invent parking ground. The **Living places** picker also offers flight-school briefing and
+cargo handling there; these ground scenes reserve space beside the boardable fleet.

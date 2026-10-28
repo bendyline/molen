@@ -342,5 +342,10 @@ export {
   terrainSemanticTilePacket,
   unpackTerrainSemanticTile,
 } from './semantic-packet';
+export {
+  appendTerrainStreetLights,
+  type TerrainStreetLight,
+  updateTerrainStreetLights,
+} from './surface-lights';
 export type { SurfaceSign } from './surface-sign-mesh';
 export { taggedTerrainObjects, tagTerrainObject } from './tagged-objects';

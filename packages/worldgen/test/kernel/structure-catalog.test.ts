@@ -136,7 +136,8 @@ describe('default structure catalog', () => {
     expect(catalog.taxonomies).toHaveLength(13);
     expect(catalog.entries.map((entry) => entry.style).sort()).toEqual(
       Object.keys(pack.archstyles)
-        .filter((id) => !id.startsWith('molen.worldgen.regional.'))
+        // Airport footprint recipes have their own integration coverage; this is the curated catalog.
+        .filter((id) => !/^molen\.worldgen\.(regional|airport)\./.test(id))
         .sort(),
     );
     for (const entry of catalog.entries) {

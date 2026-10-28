@@ -73,7 +73,10 @@ export function classifyFeature(
 ): { class: TransportClass; kind: RoadKind } | 'runway' | undefined {
   const cls = feature.class.toLowerCase();
   const sub = (feature.subclass ?? '').toLowerCase();
-  if (cls === 'aeroway' || /runway|taxiway|apron/.test(sub)) {
+  if (
+    /^(aeroway|runway|taxiway|taxilane|parking_position)$/.test(cls) ||
+    /^(runway|taxiway|taxilane|apron|parking_position)$/.test(sub)
+  ) {
     return sub === 'runway' || cls === 'runway' ? 'runway' : undefined;
   }
   if (cls === 'ferry' || sub === 'ferry') return { class: 'water', kind: 'ferry' };

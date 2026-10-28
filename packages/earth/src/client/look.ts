@@ -70,6 +70,13 @@ export const EARTH_WATER_COLOR = '#1b4450';
 export const EARTH_TONE_MAPPING: 'aces' = 'aces';
 export const EARTH_EXPOSURE = 1.05;
 
+/** Artificial lights fade in through civil dusk: off at +2°, fully on at -6°. */
+export function earthNightFactor(sunAltitudeDeg: number): number {
+  if (!Number.isFinite(sunAltitudeDeg)) throw new Error('Sun altitude must be finite');
+  const t = Math.max(0, Math.min(1, (2 - sunAltitudeDeg) / 8));
+  return t * t * (3 - 2 * t);
+}
+
 /**
  * Layer meshes taller than this many meters cast sun shadows: buildings, trees and landmarks.
  * Shrubs, brambles and saplings (up to 3.4 m) stay out of the shadow pass, where they drew
@@ -129,13 +136,16 @@ export function earthShadowFocus(
   const [x, y, z] = position;
   const height = Math.max(0, y - ground);
   // A low flying camera sees mostly what is near it, so it gets a tighter, sharper square (about
-  // 5 cm texels at eye level on a 4096 map), widening to 300 m by 25 m up.
+  // 5 cm texels at eye level on a 4096 map), widening to 300 m by 25 m up. Above
+  // rooftop height cover four times the altitude: the previous 2x footprint ended in the
+  // middle of an aircraft's view, leaving a conspicuous boundary across sunlit neighborhoods.
+  // Keep the same map resolution; the broader aerial coverage trades texel detail for range.
   const radius =
     mode === 'walk'
       ? 160
       : mode === 'drive'
         ? 280
-        : Math.min(2_500, Math.max(height * 2, Math.min(300, 100 + height * 8)));
+        : Math.min(5_000, Math.max(height * 4, Math.min(300, 100 + height * 8)));
   const forward = Math.hypot(direction[0], direction[2]) || 1;
   const reach = radius * 0.5;
   return {

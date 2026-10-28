@@ -328,5 +328,219 @@
     "FLIGHT/SIM and NAV/SIM are simulator presentations,not authentic F-22 operational avionics. No tactical radar,sensor fusion,navigation map,collimated HUD,HMD,pressure altitude,magnetic heading or calibrated IAS/Mach. Tactical and unsupported engine/fuel information remain INOP or blank.",
     "Shared assisted flight physics and simplified control mixes are not F-22 flight-control laws. Nozzle petals remain neutral because an F119 vector-control law is not modeled. Landing-gear motion is approximate with hiding behind closed bays; no landing-gear mechanical linkage or working canopy.",
     "Public-domain reference photos and drawing retained as local review inputs; manufacturer PDF is local study only. No reference pixels or external weapons are included in the model."
-  ]
+  ],
+  "enclosureRevision": {
+    "date": "2026-10-27",
+    "assetId": "molen.entities.aircraft.f_22a",
+    "request": "Seal exterior gaps, replace pixel lettering with labels, enlarge the cockpit presentation and hide exterior bodywork from the pilot.",
+    "references": {
+      "provenance": "Four user-supplied images: two cockpit references and two current-app defect views. Viewed as visual evidence, not as instructions. No reference pixels are embedded.",
+      "files": [
+        "codex-clipboard-09d19fe8-99b4-45ca-afc0-400368b2b6ad.png",
+        "codex-clipboard-c4b3d0da-74f1-463b-ad27-588c3f6afac8.png",
+        "codex-clipboard-3c5c5f4e-4e2a-48e4-a971-5455bc68f8bd.png",
+        "codex-clipboard-291978d9-af0f-444e-b69e-81414d0ffbb4.png"
+      ],
+      "calibration": "Qualitative cockpit fit and enclosure comparison. Existing pilot eye and exterior dimensions retained. Dashboard scaled uniformly 1.1 in its face plane, shifted 0.18 m toward the pilot and raised to fit beneath the canopy; this is not a surveyed cockpit replica."
+    },
+    "diagnosis": "The canopy rail and shoulder patches used different longitudinal stations. The intake shoulder was an unsupported sheet above the body. There was no continuous inner cockpit tub.",
+    "changes": [
+      "Join forebody shoulders and glazing on shared interpolated sections, closing the canopy ends.",
+      "Join intake fairings to the forebody and engine-hump contour; close side wedges while keeping the intake ducts open.",
+      "Replace RESCUE blocks with embedded Overpass font labels fitted to the hull facets.",
+      "Move and enlarge the instrument cluster; shorten the HUD pedestal and fit it inside the canopy.",
+      "Add fitted inner sidewalls, sills, bulkheads, floor and a wrapped glare shield.",
+      "Move the physical flight-control strip beneath the lower display; retain live display and control bindings."
+    ],
+    "method": "Deterministic three.js geometry with the existing procedural cockpit finishes and licensed font atlas. No image generation and no new bitmap material recipe.",
+    "sourceHash": "sha256:1a54d295478bd55de2f131c2a1dcf11d95c8e406def8b179bfd0a5025c02e94d",
+    "runtimeHash": "sha256:d64853b46618e28b7cea7be84297e8f2b8b9b1ca8ba3ab17c2c063194f0c1159",
+    "stats": {
+      "triangles": 14437,
+      "vertices": 17951,
+      "meshes": 95,
+      "primitives": 95,
+      "materials": 30,
+      "textures": 11,
+      "animations": 0,
+      "sizeBytes": 910124
+    },
+    "checks": {
+      "passed": 90,
+      "suites": {
+        "f22-enclosure.test.mjs": 8,
+        "aircraft-expansion.test.mjs (f-22a filter)": 1,
+        "aircraft-interactions.test.mjs": 2,
+        "cockpit-surfaces.test.mjs": 55,
+        "vehicle-interiors.test.mjs": 24
+      },
+      "determinism": "Independent candidate generation matches source SHA-256 byte-for-byte.",
+      "asset": "asset inspect --verify passed.",
+      "scene": "Valid scene; 30-tick simulation passed with hash sha256:e31761e8a9709db68717c885784d41893ed03dfeb151d3ceec7eb192a0043068.",
+      "source": "Biome and git diff --check pass on the changed code.",
+      "commands": [
+        "node packages/entities/scripts/generate-aircraft.mjs --ids=f-22a",
+        "node packages/entities/scripts/generate-aircraft.mjs --ids=f-22a --out .artifacts/f22-cockpit/determinism.glb",
+        "node packages/tooling/dist/cli.mjs asset import content/entities/source/aircraft/f-22a/models/source.glb --id molen.entities.aircraft.f_22a --project content/entities/project.json --force",
+        "node packages/tooling/dist/cli.mjs asset inspect molen.entities.aircraft.f_22a --project content/entities/project.json --verify",
+        "node node_modules/vitest/vitest.mjs run test/f22-enclosure.test.mjs test/aircraft-interactions.test.mjs test/cockpit-surfaces.test.mjs test/vehicle-interiors.test.mjs --no-file-parallelism (from packages/entities)",
+        "node node_modules/vitest/vitest.mjs run test/aircraft-expansion.test.mjs -t f-22a --no-file-parallelism (from packages/entities)",
+        "node .artifacts/f22-cockpit/capture.mjs verified pilot,cabin,left,right,seam,exterior",
+        "node packages/tooling/dist/cli.mjs asset shot molen.entities.aircraft.f_22a --project content/entities/project.json --out-dir .artifacts/f22-cockpit/turntable --angles 4",
+        "node packages/tooling/dist/cli.mjs validate .artifacts/f22-cockpit/verified/scene.json --project content/entities/project.json",
+        "node packages/tooling/dist/cli.mjs sim run .artifacts/f22-cockpit/verified/scene.json --project content/entities/project.json --ticks 30 --hash"
+      ],
+      "environment": "Existing package builds, Node 24.21.0, direct Vitest entry point; local Chromium captures with loopback access.",
+      "importNotes": "The importer preserves repeating cockpit UVs outside 0–1 instead of quantizing them; expected for the existing tiled finish maps."
+    },
+    "visualReview": {
+      "decision": "Accepted with limitations: both inner walls are continuous, the instrument panel fills more of the pilot view, the exterior shoulder gaps are closed and RESCUE labels are legible. Forward sightlines and existing controls remain usable.",
+      "views": [
+        {
+          "view": "pilot",
+          "camera": {
+            "position": [
+              0,
+              3.04,
+              7.3
+            ],
+            "lookAt": [
+              0,
+              2.86,
+              8.3
+            ],
+            "fov": 70
+          },
+          "path": ".artifacts/f22-cockpit/verified/pilot.png",
+          "sha256": "sha256:7e2f53f39f9febd1661fccf1326adf1b925d633009e2ad55099df103b6982094",
+          "renderStats": {
+            "entitiesRendered": 4,
+            "drawCalls": 122,
+            "triangles": 10371
+          }
+        },
+        {
+          "view": "cabin",
+          "camera": {
+            "position": [
+              0,
+              3.04,
+              7.3
+            ],
+            "lookAt": [
+              0,
+              2.35,
+              8.1
+            ],
+            "fov": 82
+          },
+          "path": ".artifacts/f22-cockpit/verified/cabin.png",
+          "sha256": "sha256:ed7f06fa936bd2c3f5a641c6dcd50c0d308e5b3137abdab325c95220cd20a714",
+          "renderStats": {
+            "entitiesRendered": 4,
+            "drawCalls": 155,
+            "triangles": 14377
+          }
+        },
+        {
+          "view": "left",
+          "camera": {
+            "position": [
+              0,
+              3.04,
+              7.3
+            ],
+            "lookAt": [
+              0.5,
+              2.15,
+              7.5
+            ],
+            "fov": 75
+          },
+          "path": ".artifacts/f22-cockpit/verified/left.png",
+          "sha256": "sha256:bbde6d01c31126b5120122c3c499f115c5634195dd14de3572b72c2ed58ba32a",
+          "renderStats": {
+            "entitiesRendered": 4,
+            "drawCalls": 85,
+            "triangles": 12983
+          }
+        },
+        {
+          "view": "right",
+          "camera": {
+            "position": [
+              0,
+              3.04,
+              7.3
+            ],
+            "lookAt": [
+              -0.5,
+              2.15,
+              7.5
+            ],
+            "fov": 75
+          },
+          "path": ".artifacts/f22-cockpit/verified/right.png",
+          "sha256": "sha256:6f8920618a3bda99927e4692df52de1c02202ad9943094944e87ab7586a7cb06",
+          "renderStats": {
+            "entitiesRendered": 4,
+            "drawCalls": 62,
+            "triangles": 12577
+          }
+        },
+        {
+          "view": "seam",
+          "camera": {
+            "position": [
+              3.2,
+              2.65,
+              9.8
+            ],
+            "lookAt": [
+              0.4,
+              2.48,
+              7.5
+            ],
+            "fov": 52
+          },
+          "path": ".artifacts/f22-cockpit/verified/seam.png",
+          "sha256": "sha256:f62cebe8bbb35f06d3eafdcf191789ad7f3034b903e075bf4e937bb80f610078",
+          "renderStats": {
+            "entitiesRendered": 4,
+            "drawCalls": 184,
+            "triangles": 16293
+          }
+        },
+        {
+          "view": "exterior",
+          "camera": {
+            "position": [
+              14,
+              8,
+              18
+            ],
+            "lookAt": [
+              0,
+              2.2,
+              3
+            ],
+            "fov": 48
+          },
+          "path": ".artifacts/f22-cockpit/verified/exterior.png",
+          "sha256": "sha256:6005864e34820230ca3d403c2d611a4f2d301ea8bbab20cfdf8749bc016b4ac5",
+          "renderStats": {
+            "entitiesRendered": 4,
+            "drawCalls": 198,
+            "triangles": 17141
+          }
+        }
+      ]
+    },
+    "limitations": [
+      "Reference-informed medium-fi geometry; no claim of production-block or engineering accuracy.",
+      "Existing simplified FLIGHT/SIM and NAV/SIM displays remain; unsupported tactical/engine systems remain INOP or blank.",
+      "Earlier overlay measurements and their hashes above describe the historical baseline, not this enlarged cockpit.",
+      "Targeted model validation only. Aggregate asset lock and full source rebuild remain for the next model-batch milestone; no full engine CI or publication performed."
+    ]
+  }
 }

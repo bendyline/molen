@@ -36,16 +36,19 @@ import {
   EARTH_STICKY_QUALITY,
   EARTH_WATER_COLOR,
   EARTH_WATER_CONDITIONS,
+  EarthAirportPopulation,
   EarthAmbient,
   type EarthAudio,
   EarthAudioTerrain,
   type EarthFleet,
+  EarthNightLighting,
   type EarthRoadSigns,
   EarthVehicles,
   EarthWildlife,
   type EarthWorldgen,
   earthAdmission,
   earthMemoryBudget,
+  earthNightFactor,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
@@ -55,8 +58,9 @@ import {
   regionalEarthAttribution,
   SemanticTileBuffer,
   updateEarthFog,
+  withEarthAirports,
 } from '@bendyline/molen-earth/client';
-import { type AircraftData, validateByKind } from '@bendyline/molen-schema';
+import { validateByKind } from '@bendyline/molen-schema';
 import type { TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
 import {
   createDefaultTerrainSemanticRenderer,
@@ -122,7 +126,6 @@ const DEMO_LEVEL = 13;
 const DEMO_MIN_LEVEL = 8;
 const DEMO_RESOLUTION = 33;
 type AircraftKind = string;
-const aircraftEntityId = (kind: AircraftKind) => `molen.entities.aircraft.${kind}` as const;
 
 const DEMO_PACKAGE: TerrainPackageDescriptor = {
   format: 'molen/terrain-package@1',
@@ -975,9 +978,12 @@ async function main(): Promise<void> {
   ): WorldgenSemanticRenderers['humanFeatures'] => {
     const observed =
       wildlifeFeatures !== undefined ? observeSemanticTiles(renderer, wildlifeFeatures) : renderer;
-    return observeSemanticTiles(
-      ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
-      audioTerrain.observer,
+    return withEarthAirports(
+      observeSemanticTiles(
+        ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
+        audioTerrain.observer,
+      ),
+      content.airports,
     );
   };
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
@@ -1022,25 +1028,30 @@ async function main(): Promise<void> {
         ...(worldgen !== undefined
           ? {
               landcoverLayer: {
-                renderer:
+                renderer: withEarthAirports(
                   wildlifeCover !== undefined
                     ? observeSemanticTiles(
                         observeSemanticTiles(worldgen.classification, wildlifeCover),
                         audioTerrain.observer,
                       )
                     : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                  content.airports,
+                ),
               },
               featuresLayer: { renderer: observeRoads(worldgen.humanFeatures) },
             }
           : {
               landcoverLayer: {
-                renderer: observeSemanticTiles(
-                  createDefaultTerrainSemanticRenderer({
-                    renderWater: false,
-                    renderTransportation: false,
-                    renderBuildings: false,
-                  }),
-                  audioTerrain.observer,
+                renderer: withEarthAirports(
+                  observeSemanticTiles(
+                    createDefaultTerrainSemanticRenderer({
+                      renderWater: false,
+                      renderTransportation: false,
+                      renderBuildings: false,
+                    }),
+                    audioTerrain.observer,
+                  ),
+                  content.airports,
                 ),
               },
               featuresLayer: {
@@ -1111,6 +1122,7 @@ async function main(): Promise<void> {
   qualitySelect.value = automaticQuality ? 'auto' : quality;
   const allAttribution = [
     ...loaded.descriptor.attribution,
+    ...(content.airports?.attribution ?? []),
     ...regionalEarthAttribution(content.worldgen?.environment),
   ];
   for (const attribution of allAttribution) {
@@ -1511,6 +1523,38 @@ async function main(): Promise<void> {
     params.get('warmup') !== '0' ? (object) => viewer.renderer.prepareObject(object) : undefined,
   );
   const flight = aircraft;
+  const nightLighting = new EarthNightLighting({
+    root: stream.object,
+    world: vehicles.world,
+    surface: surfaceRenderer,
+    vehicleHeights: roadContent.heights,
+    sampleHeight,
+  });
+  const airportPopulation =
+    content.airports && params.get('airportTraffic') !== '0'
+      ? new EarthAirportPopulation(content.airports, content.types, {
+          spawn: (stand) => {
+            const [x, z] = wgs84ToWebMercator(stand.longitude, stand.latitude);
+            return flight.spawnApron(
+              stand.id,
+              stand.type,
+              x * metersPerUnit,
+              z * metersPerUnit,
+              stand.heading,
+            );
+          },
+          remove: (id) => flight.removeApron(id),
+          pose: (id) => {
+            const pose = flight.apronPose(id);
+            if (!pose) return undefined;
+            const [longitude, latitude] = webMercatorToWgs84(
+              pose.position[0] / metersPerUnit,
+              pose.position[2] / metersPerUnit,
+            );
+            return { longitude, latitude, occupied: pose.occupied, speed: pose.speed };
+          },
+        })
+      : undefined;
   const cockpitPointer = bindAircraftCockpitPointer({
     element: canvas,
     camera: viewer.renderer.camera,
@@ -1601,8 +1645,10 @@ async function main(): Promise<void> {
       audioTerrain.clear();
       controllerControls.dispose();
       input.dispose();
+      airportPopulation?.dispose();
       flight.dispose();
       cockpitPointer.dispose();
+      nightLighting.dispose();
       vehicles.dispose();
     }
   });
@@ -1680,6 +1726,7 @@ async function main(): Promise<void> {
     if (navigation !== 'walk' || (!vehicles.mountedId && !walker.ready)) return;
     if (vehicles.mountedId) exitVehicle();
     else if (flight.enter(camera.pos) || vehicles.enter(camera.pos)) {
+      if (flight.mountedKind) airportPopulation?.claim(flight.mountedKind);
       input.map.reset();
       vehicles.view = 'cockpit';
       vehicles.lookYaw = 0;
@@ -2078,6 +2125,13 @@ async function main(): Promise<void> {
             }),
       });
     const waterOrigin = viewer.renderer.getWorldOrigin();
+    if (airportPopulation) {
+      const [longitude, latitude] = webMercatorToWgs84(
+        camera.pos[0] / metersPerUnit,
+        camera.pos[2] / metersPerUnit,
+      );
+      airportPopulation.update(now, { longitude, latitude });
+    }
     dioramas.update({
       root: stream.object,
       camera: viewer.renderer.camera,
@@ -2163,6 +2217,19 @@ async function main(): Promise<void> {
       latitude: skyLocation[1],
       longitude: skyLocation[0],
       elevation: camera.pos[1],
+    });
+    const sunY = viewer.renderer.sky?.frame.sunDirection[1];
+    const night =
+      sunY === undefined
+        ? 0
+        : earthNightFactor((Math.asin(Math.max(-1, Math.min(1, sunY))) * 180) / Math.PI);
+    worldgen?.setNightFactor(night);
+    surfaceRenderer.setNightFactor(night);
+    nightLighting.update({
+      camera: camera.pos,
+      direction: viewDirection,
+      factor: night,
+      drivenVehicleId: vehicles.mountedId,
     });
     if (appliedShadowQuality !== shadowQuality) {
       viewer.renderer.setShadowQuality(shadowQuality);
@@ -2305,7 +2372,7 @@ async function main(): Promise<void> {
       const navigationText = flight.mountedKind
         ? flight.status()
         : nearAircraft
-          ? `E · Board ${content.types.component<AircraftData>(aircraftEntityId(nearAircraft), 'aircraft').spec.label} · I starts the engine`
+          ? `E · Board ${flight.label(nearAircraft)} · I starts the engine`
           : flight.message ||
             (vehicles.mountedId
               ? `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${vehicles.speed < -0.1 ? 'Reverse' : 'Drive'} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`
@@ -2332,6 +2399,7 @@ async function main(): Promise<void> {
       );
       navigationStatus.dataset.speed = (flight.state?.airspeed ?? vehicles.speed).toFixed(3);
       navigationStatus.dataset.aircraft = flight.mountedKind ?? '';
+      navigationStatus.dataset.apronAircraft = String(flight.apronCount);
       navigationStatus.dataset.agl = (flight.state?.altitudeAGL ?? 0).toFixed(2);
       navigationStatus.dataset.crashed = String(flight.state?.crashed ?? false);
       navigationStatus.dataset.power = String(Math.round(flight.power * 100));
@@ -2431,7 +2499,7 @@ async function main(): Promise<void> {
           : []),
         (() => {
           const s = surfaceStats;
-          return `surfaces ${s.style} · ${s.parkingAreas} lots · ${s.parkingBays} bays · ${s.junctions} junctions · ${s.streetlights} lights · ${s.parkedCars} cars`;
+          return `surfaces ${s.style} · airport fragments: ${s.runways} runway / ${s.taxiways} taxiway / ${s.aprons} apron · ${s.parkingAreas} lots · ${s.parkingBays} bays · ${s.junctions} junctions · ${s.streetlights} lights · ${s.parkedCars} cars`;
         })(),
         ...(ambient === undefined
           ? []

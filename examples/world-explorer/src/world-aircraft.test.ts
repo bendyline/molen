@@ -46,6 +46,60 @@ async function setup(
   return { root, vehicles, flight };
 }
 describe('world aircraft', () => {
+  it('boards and flies one of two apron aircraft of the same type without moving the other', async () => {
+    const { flight, vehicles } = await setup();
+    const type = 'molen.entities.aircraft.cessna_172s';
+    await flight.spawnApron('apron:a', type, 0, 0, Math.PI);
+    await flight.spawnApron('apron:b', type, 100, 0, Math.PI);
+    const mountable = ENTITY_TYPES.components(type).mountable as {
+      entries: [number, number, number][];
+    };
+    const entry = mountable.entries[0] as [number, number, number];
+    expect(flight.enter([...entry])).toBe(true);
+    expect(flight.mountedKind).toBe('apron:a');
+    expect(flight.label('apron:a')).toContain('172');
+    flight.key('KeyI');
+    for (let n = 0; n < 3600 && (flight.state?.grounded ?? true); n++) {
+      const input = controls([
+        'ShiftLeft',
+        ...((flight.state?.airspeed ?? 0) > 32 ? ['KeyS'] : []),
+      ]);
+      flight.input(1 / 60, input);
+      vehicles.world.step();
+    }
+    expect(flight.apronPose('apron:a')?.position[2]).toBeGreaterThan(100);
+    expect(flight.state?.grounded, JSON.stringify(flight.state)).toBe(false);
+    expect(flight.apronPose('apron:b')?.position).toEqual([100, 0, 0]);
+    flight.removeApron('apron:a');
+    expect(flight.apronPose('apron:a')).toBeDefined();
+    flight.dispose();
+    vehicles.dispose();
+  });
+  it('uses contact normals at the practice runway instead of freezing on a wing strike', async () => {
+    const { root, vehicles, flight } = await setup();
+    flight.enter(flight.visitPosition('p51d'));
+    vehicles.world.patch('aircraft-p51d', Transform, { pos: [0, 30, 0], rot: [0, 0, 0, 1] });
+    vehicles.world.patch('aircraft-p51d', AircraftState, {
+      grounded: false,
+      velocity: [0, 0, 70],
+      gearPosition: 1,
+    });
+    const wall = new THREE.Mesh(new THREE.BoxGeometry(3, 8, 0.05), new THREE.MeshBasicMaterial());
+    wall.position.set(4, 32, 5);
+    root.add(wall);
+    root.updateMatrixWorld(true);
+    for (let i = 0; i < 12; i++) {
+      flight.input(1 / 60, controls());
+      vehicles.world.step();
+    }
+    expect(flight.state?.damage?.['left-wing']?.detached).toBe(true);
+    expect(flight.state?.velocity[2]).toBeGreaterThan(30);
+    expect(flight.status()).toContain('left wing');
+    flight.dispose();
+    vehicles.dispose();
+    wall.geometry.dispose();
+    (wall.material as THREE.Material).dispose();
+  });
   it('preserves cockpit controls while keyboard or joystick axes override their movement', async () => {
     const { vehicles, flight } = await setup();
     flight.enter(flight.visitPosition('p51d'));

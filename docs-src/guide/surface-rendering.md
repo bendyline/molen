@@ -1,5 +1,8 @@
 # Surface styles and parameterized line features
 
+[Night lighting](night-lighting.md) adds dusk-driven lamp heads and pavement pools to modern
+street fixtures, with separate lamp budgets and matching direct/worker output.
+
 The terrain client renders roads, parking areas, pedestrian surfaces, and street fixtures from
 normalized semantic tiles. World explorer exposes **Surfaces → Modern traffic / Circa 1910 /
 Simple surfaces** in Human mode. Styles change in place, preserving the camera, streamed data,

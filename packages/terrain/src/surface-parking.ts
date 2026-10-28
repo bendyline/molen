@@ -98,7 +98,7 @@ export function inferTerrainParkingAreas(
     ...tile.water.flatMap((f) => f.polygons ?? []),
     ...tile.landcover
       .filter((f) =>
-        /parking|car_park|grass|garden|wood|forest|park|playground|pitch|wetland|scrub|village_green|recreation_ground/.test(
+        /aerodrome|airport|apron|runway|taxiway|parking|car_park|grass|garden|wood|forest|park|playground|pitch|wetland|scrub|village_green|recreation_ground/.test(
           `${f.class} ${f.subclass ?? ''}`,
         ),
       )

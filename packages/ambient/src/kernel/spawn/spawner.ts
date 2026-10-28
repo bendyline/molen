@@ -524,9 +524,11 @@ function spawnAircraft(ctx: SpawnContext): boolean {
   const runways = env.net
     .runways()
     .filter(
-      (r) => dmath.hypot((r.ax + r.bx) / 2 - observer.x, (r.az + r.bz) / 2 - observer.z) < 6000,
+      (r) =>
+        dmath.hypot((r.ax + r.bx) / 2 - observer.x, (r.az + r.bz) / 2 - observer.z) < 6000 &&
+        dmath.hypot(r.bx - r.ax, r.bz - r.az) >= dmath.max(350, length * 35),
     );
-  if (runways.length > 0 && rng.next() < 0.4) {
+  if (runways.length > 0 && rng.next() < 0.85) {
     const runway = runways[rng.int(runways.length)] as (typeof runways)[number];
     const flip = rng.next() < 0.5;
     const ax = flip ? runway.bx : runway.ax;

@@ -2,6 +2,7 @@
 import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
 import type { VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
+import { appendAirportSurfaces } from './airport-surfaces';
 import { sampleTerrainLine } from './line-path';
 import {
   appendTerrainLineBand,
@@ -29,6 +30,11 @@ import {
   bridgeDeckProfile,
 } from './surface-bridges';
 import { incomingArm, surfaceJunctionControls } from './surface-controls';
+import {
+  appendTerrainStreetLights,
+  type TerrainStreetLight,
+  updateTerrainStreetLights,
+} from './surface-lights';
 import { isSurfaceLink, SurfaceNetwork, type SurfaceRoad } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
 import { appendSurfaceSign } from './surface-sign-mesh';
@@ -48,6 +54,10 @@ import { tagTerrainObject } from './tagged-objects';
 import { inferLaneCount } from './transport-features';
 
 export interface TerrainSurfaceStats {
+  /** Resident tile fragments; a runway crossing tiles contributes more than once. */
+  runways: number;
+  taxiways: number;
+  aprons: number;
   roads: number;
   parkingAreas: number;
   junctions: number;
@@ -72,6 +82,11 @@ export function disposeTerrainSurfaceObject(object: THREE.Object3D): void {
     if (mesh.userData.terrainOwnedInstances) {
       (mesh as THREE.InstancedMesh).dispose();
       mesh.userData.terrainOwnedInstances = false;
+    }
+    if (mesh.userData.terrainOwnedMaterial) {
+      for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
+        material.dispose();
+      mesh.userData.terrainOwnedMaterial = false;
     }
   });
 }
@@ -182,6 +197,9 @@ export function createTerrainSurfaceObject(
   group.userData.shadowCaster = false;
   group.userData.surfaceStyle = style.id;
   const stats: TerrainSurfaceStats = {
+    runways: tile.transportation.filter((f) => (f.subclass ?? f.class) === 'runway').length,
+    taxiways: tile.transportation.filter((f) => (f.subclass ?? f.class) === 'taxiway').length,
+    aprons: tile.landcover.filter((f) => (f.subclass ?? f.class) === 'apron').length,
     roads: 0,
     parkingAreas: 0,
     junctions: 0,
@@ -194,6 +212,7 @@ export function createTerrainSurfaceObject(
     detailLimited: false,
   };
   group.userData.surfaceStats = stats;
+  appendAirportSurfaces(group, tile, context, options, roadMaterial);
   const network = new SurfaceNetwork(tile, context.tileSize, style);
   if (detailed) {
     network.findJunctions();
@@ -255,6 +274,7 @@ export function createTerrainSurfaceObject(
   }
   const fixtures: TerrainBoxPlacement[] = [];
   const signalHeads: TerrainSignalHead[] = [];
+  const streetLights: TerrainStreetLight[] = [];
   const vehicles: VehiclePlacement[] = [];
   group.userData.vehicles = vehicles;
   tagTerrainObject('parked-vehicles', group);
@@ -262,6 +282,7 @@ export function createTerrainSurfaceObject(
   let remaining = details.maxDetailElements ?? 16_000;
   const parkingReserve = Math.floor(remaining * 0.35);
   const maxFixtures = details.maxFixturesPerTile ?? 160;
+  const maxStreetlights = details.maxStreetlightsPerTile ?? Math.round(maxFixtures * 1.5);
   // Poles, lines and hydrants have their own budget, so they never crowd out lights and signals.
   // A finest tile can hold well over ten kilometers of suburban street; at a box or two per
   // element these budgets furnish all of it rather than only the roads that come first.
@@ -464,6 +485,72 @@ export function createTerrainSurfaceObject(
           { spacing: 6, ...clipPath, heightAt: bridgeProfiles.get(road) },
         );
     if (!detailed) continue;
+    // Lit urban blocks get regular fixtures between intersections, including long roads with
+    // no junctions in the tile. Respect explicit unlit roads and omit bridges/tunnels here.
+    if (
+      style.streetlights &&
+      grounded &&
+      !road.feature.tunnel &&
+      !road.unpaved &&
+      sidewalked(road) &&
+      road.feature.tags?.lit !== 'no'
+    ) {
+      for (
+        let d = 18;
+        d < road.path.length - 12 && streetLights.length < Math.floor(maxStreetlights * 0.65);
+        d += 28
+      ) {
+        const side = Math.floor(d / 28) % 2 === 0 ? 1 : -1;
+        const p = sampleTerrainLine(road.path, d, side * (road.width / 2 + 0.7));
+        if (!inTile(p.x, p.z) || blocked(p.x, p.z) || network.occupied(p.x, p.z, 0.4, road))
+          continue;
+        if (
+          details.preferMappedProps &&
+          (tile.pois ?? []).some(
+            (poi) =>
+              poi.class === 'street_lamp' &&
+              Math.hypot(
+                poi.point[0] * context.tileSize - p.x,
+                poi.point[1] * context.tileSize - p.z,
+              ) < 18,
+          )
+        )
+          continue;
+        const dx = side * p.dz,
+          dz = -side * p.dx;
+        const yaw = Math.atan2(dx, dz);
+        const ground =
+          context.heightfield.sampleHeight(context.origin[0] + p.x, context.origin[1] + p.z) +
+          elevation;
+        fixtures.push(
+          { x: p.x, z: p.z, y: ground + 3.7, yaw, size: [0.16, 7.4, 0.16], color: '#667078' },
+          {
+            x: p.x + dx * 0.9,
+            z: p.z + dz * 0.9,
+            y: ground + 7.35,
+            yaw,
+            size: [0.12, 0.12, 1.9],
+            color: '#667078',
+          },
+          {
+            x: p.x + dx * 1.8,
+            z: p.z + dz * 1.8,
+            y: ground + 7.3,
+            yaw,
+            size: [0.48, 0.18, 0.85],
+            color: '#efe8ba',
+          },
+        );
+        streetLights.push({
+          x: p.x + dx * 1.8,
+          z: p.z + dz * 1.8,
+          y: ground + 7.2,
+          yaw,
+          groundLift: Math.max(0.5, elevation + 0.06),
+        });
+        stats.streetlights++;
+      }
+    }
     if (road.kind === 'rail') {
       for (const offset of [-0.72, 0.72])
         band(marks, road, {
@@ -940,8 +1027,20 @@ export function createTerrainSurfaceObject(
             p.class === 'street_lamp' &&
             Math.hypot(p.point[0] * context.tileSize - x, p.point[1] * context.tileSize - z) < 18,
         );
-      if (style.streetlights && !mappedLampNearby) {
+      if (
+        style.streetlights &&
+        !mappedLampNearby &&
+        streetLights.length < maxStreetlights &&
+        arms.some((arm) => arm.road.feature.tags?.lit !== 'no')
+      ) {
         stats.streetlights++;
+        streetLights.push({
+          x: x + dx * 1.8,
+          z: z + dz * 1.8,
+          y: y + 7.2,
+          yaw,
+          groundLift: Math.max(0.5, a.road.elevation + a.road.stack + 0.06),
+        });
         fixtures.push(
           { x, z, y: y + 3.7, yaw, size: [0.16, 7.4, 0.16], color: '#667078' },
           { x, z, y: y + 0.15, yaw, size: [0.45, 0.3, 0.45], color: '#888d8b' },
@@ -1347,8 +1446,13 @@ export function createTerrainSurfaceObject(
   if (renderVehicles && vehicles.length)
     group.add(createParkedVehicleBatch(vehicles, context.origin));
   appendTerrainSignalLenses(group, signalHeads);
+  appendTerrainStreetLights(group, streetLights, context);
   markTerrainSurfaceDetail(group);
-  stats.detailLimited = remaining <= 0 || fixtureCount >= maxFixtures || signs.length >= 48;
+  stats.detailLimited =
+    remaining <= 0 ||
+    fixtureCount >= maxFixtures ||
+    streetLights.length >= maxStreetlights ||
+    signs.length >= 48;
   return group;
 }
 
@@ -1380,6 +1484,10 @@ export interface TerrainSurfaceRenderer {
   setMaterial(material: THREE.Material | undefined): void;
   /** Absolute simulation time in seconds; optionally resolve colours from a traffic graph. */
   updateSignals(elapsedSeconds: number, resolve?: TerrainTrafficSignalResolver): void;
+  /** Fade streetlamp emission and pavement pools, 0 (day) to 1 (night). */
+  setNightFactor(factor: number): void;
+  /** Visit lamps on attached, visible tiles; positions are local to each source object. */
+  visitStreetLights(visit: (light: TerrainStreetLight, source: THREE.Object3D) => void): void;
   /**
    * Hide each tile's small street detail (signs, fixtures, signal lenses, lane markings, parked
    * cars) when the tile lies farther from `position` (the scene camera's world position) than
@@ -1414,7 +1522,7 @@ export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
         ? MARKING_DISTANCE
         : child.name === 'surface:parked-cars'
           ? PARKED_CAR_DISTANCE
-          : /^surface:(road-signs|street-fixtures|signal-)/.test(child.name)
+          : /^surface:(road-signs|street-fixtures|signal-|night-)/.test(child.name)
             ? FIXTURE_DISTANCE
             : undefined;
     if (distance !== undefined) child.userData.detailDistance = distance;
@@ -1457,6 +1565,7 @@ export function createTerrainSurfaceRenderer(
   let geometryRevision = 0;
   let disposed = false;
   let signalTime = 0;
+  let nightFactor = 0;
   let signalResolver: TerrainTrafficSignalResolver | undefined;
   let detailRevision = -1;
   const detailAt = new THREE.Vector3(Number.POSITIVE_INFINITY, 0, 0);
@@ -1465,6 +1574,7 @@ export function createTerrainSurfaceRenderer(
   let pavement: THREE.Material | undefined;
   const plain = new WeakMap<THREE.Mesh, THREE.Material | THREE.Material[]>();
   const dress = (object: THREE.Object3D): void => {
+    updateTerrainStreetLights(object, nightFactor);
     object.traverse((child) => {
       const mesh = child as THREE.Mesh;
       if (!mesh.isMesh || mesh.userData[TERRAIN_PAVEMENT] !== true) return;
@@ -1580,6 +1690,28 @@ export function createTerrainSurfaceRenderer(
       pavement = material;
       for (const root of tiles.keys()) dress(root);
     },
+    setNightFactor(factor) {
+      if (!Number.isFinite(factor)) throw new Error('Night factor must be finite');
+      const next = Math.max(0, Math.min(1, factor));
+      if (next === nightFactor) return;
+      nightFactor = next;
+      for (const root of tiles.keys()) {
+        const object = root.children[0];
+        if (object) updateTerrainStreetLights(object, nightFactor);
+      }
+    },
+    visitStreetLights(visit) {
+      for (const root of tiles.keys()) {
+        const source = root.children[0];
+        if (!source || !root.parent) continue;
+        let visible = true;
+        for (let parent: THREE.Object3D | null = source; parent; parent = parent.parent)
+          if (!parent.visible) visible = false;
+        if (!visible) continue;
+        for (const light of (source.userData.streetLights ?? []) as TerrainStreetLight[])
+          visit(light, source);
+      }
+    },
     updateDetail(position) {
       if (detailRevision === geometryRevision && detailAt.distanceToSquared(position) < 625) return;
       detailRevision = geometryRevision;
@@ -1620,6 +1752,9 @@ export function createTerrainSurfaceRenderer(
     },
     stats() {
       const sum = {
+        runways: 0,
+        taxiways: 0,
+        aprons: 0,
         roads: 0,
         parkingAreas: 0,
         junctions: 0,
@@ -1640,6 +1775,9 @@ export function createTerrainSurfaceRenderer(
         const stats = root.children[0]?.userData.surfaceStats as TerrainSurfaceStats | undefined;
         if (!stats) continue;
         for (const key of [
+          'runways',
+          'taxiways',
+          'aprons',
           'roads',
           'parkingAreas',
           'junctions',

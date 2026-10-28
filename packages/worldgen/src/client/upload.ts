@@ -4,8 +4,11 @@ import * as THREE from 'three';
 import type { MaterialSlot, MeshBuffers } from '../kernel/types';
 import { packedColorAttribute } from './color-attribute';
 import { bindMaterialGroups } from './material-groups';
+import type { NightWindowLighting } from './night-windows';
 
 export interface WorldgenMaterialSet {
+  /** Optional shared nighttime overlay controller; the caller owns its lifetime. */
+  nightWindows?: NightWindowLighting;
   /** Material for a (slot, materialRef) pair; may be shared across groups and batches. */
   materialFor(slot: MaterialSlot, materialRef: string): THREE.Material;
   dispose?(): void;
@@ -23,6 +26,10 @@ export function buffersToObject3D(
   geometry.setAttribute('uv', new THREE.BufferAttribute(buffers.uvs, 2));
   geometry.setAttribute('color', packedColorAttribute(buffers.colors));
   geometry.setIndex(new THREE.BufferAttribute(buffers.indices, 1));
+  const night = materials.nightWindows?.createGeometry(
+    geometry,
+    buffers.groups.filter((g) => g.slot === 'window'),
+  );
   const list = bindMaterialGroups(geometry, buffers.groups, materials);
   geometry.computeBoundingSphere();
   const mesh = new THREE.Mesh(geometry, list);
@@ -30,6 +37,7 @@ export function buffersToObject3D(
   mesh.castShadow = true;
   mesh.receiveShadow = true;
   mesh.userData.worldgenOwnedGeometry = true;
+  if (night && materials.nightWindows) mesh.add(materials.nightWindows.mesh(night));
   return mesh;
 }
 

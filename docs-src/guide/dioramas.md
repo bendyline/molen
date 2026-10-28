@@ -10,8 +10,8 @@ The content pack includes a high-school football stage: two uniform palettes, fo
 players running a repeated play, sixty seated/standing spectators, stands, goalposts and a
 scoreboard with changing digits and a pulsing light. Its 24-second cycle lines up, runs,
 celebrates and returns. The scores are decorative choreography. Content lives in the separate
-`molen.dioramas` content pack, outside the npm runtime. Five more scenes stage an airport ramp,
-little league, fireworks, a fair and a Saturday market. Every scene is a self-contained source
+`molen.dioramas` content pack, outside the npm runtime. Seven more scenes stage an airport ramp,
+flight-school briefing and maintenance, cargo handling, little league, fireworks, a fair and a Saturday market. Every scene is a self-contained source
 bundle with a typed script, local bounds and fixed entity pools.
 
 ## Definition and local simulation
@@ -109,8 +109,8 @@ lighting, weather or sky clock.
 ## Earth placement
 
 World Explorer enables the shipped placement catalog by default. Its **Living places** checkbox
-controls playback; its place picker and **Visit** button open any of the six registered scenes.
-Direct links accept `?diorama=football`, `airport`, `little-league`, `fireworks`, `fair` or `market`.
+controls playback; its place picker and **Visit** button open any of the eight registered scenes.
+Direct links accept `?diorama=football`, `airport`, `flight-school`, `airport-cargo`, `little-league`, `fireworks`, `fair` or `market`.
 Visit framing adapts to the viewport and fits above the loaded terrain; explicit camera
 parameters take precedence. `?dioramas=0` disables playback. Source locations and orientation are data in
 `content/dioramas/placements.json`. Content and script text stay in a separate lazy chunk until
@@ -145,6 +145,13 @@ does not reshape the terrain, fit arbitrary polygons or remove existing stadium 
 Local axes are east/up/south, and positive yaw rotates +Z toward east. Geographic registrations
 survive terrain re-anchoring; old instances are disposed and recreated in the new frame.
 Automatic matching of map features to dioramas is a future host policy, not silently enabled.
+
+The Boeing Field flight-school and cargo placements reserve their footprints in the airport layout.
+Their crews, carts and forklift stay in these small service areas. Aircraft are separate entities
+in the host's flight world: walking up to one and pressing E boards it, and flying it away leaves
+its stand empty. The ground scenes contain no decorative aircraft. Other useful airport scenes
+include passenger turnaround, hangar maintenance, fuel service and a fire/rescue station; author
+their service areas with the same clearance from taxiways and parked airframes.
 
 ## Shipped performances
 

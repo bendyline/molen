@@ -98,6 +98,40 @@ Mustang's gear takes 12 seconds: its inner wheel doors open, each main leg swing
 well in the wing root, the tail wheel folds forward into the fuselage, and the doors close behind
 them. Its flaps take 13 seconds to run down to 50°.
 
+## Collisions and breakable sections
+
+Aircraft contacts apply impulses at the point of impact, including angular response, friction
+and a small rebound. A wingtip strike can turn the aircraft while it keeps moving; a wreck
+continues to fall, tumble and slide. Terrain is tested at the airframe probes as well as at the
+landing origin, so a banked wing can hit the runway before the wheels or fuselage.
+
+The Mustang has detachable wings, tail surfaces and propeller; the OH-6 has a detachable rotor
+and tail; the small airliner has detachable wings (with their engines) and tail. Strong impacts
+or repeated loaded scrapes consume joint integrity. Separation removes the section's collision
+probes, reduces lift/control authority and can disable its attached engines. An asymmetric wing
+loss produces a rolling moment. Detached geometry retains its own velocity and spin, then falls,
+bounces and slows against terrain and resident obstacles. Debris expires after 20 simulation
+seconds; the missing section stays missing. **R** repairs the aircraft and clears debris.
+The remaining aircraft use their existing probes with the new contact response; they need
+authored section bindings to display parts breaking away.
+
+For custom models, `spec.collisionParts` replaces `collisionProbes`. Every section declares a
+unique `id`, a `role` (`body`, `leftWing`, `rightWing`, `tail`, `rotor`, `gear` or `engine`), local
+probe centers and sphere `radius`, a section `center`, `massFraction`, and GLB `nodes`. Add
+`breakSpeed` in m/s for a breakable joint and `engines` for engines carried by that section.
+Keep a non-detachable `body` and at least 20% of the mass. Optional `fragments` selects triangles
+from shared static detail meshes using a model-space bounding box, so markings follow a wing.
+These are gameplay approximations with authored joint strengths, not a structural engineering
+or accident-reconstruction model. Pieces use sphere collision proxies; mesh deformation, fire,
+debris-to-debris contacts and impulse transfer into other vehicles are not simulated.
+
+Hosts provide `AircraftEnvironment.contacts(probes, entity)` with world-space contact points,
+outward normals and penetration depths. `aircraftObstacleContacts` from `client/aircraft`
+adapts a collision tree, cars and other aircraft to this contract; the Earth view and world
+explorer use it. The legacy `canOccupy` callback remains supported with a simple recoil because
+it supplies no contact normal. `aircraftState.damage` and `debris` are serializable and survive
+keyframes; `crashed` means damage requiring recovery and no longer freezes motion.
+
 ## Reuse in another experience
 
 All 53 aircraft are registered in the `molen.entities` content pack, with their type documents and models.

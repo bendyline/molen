@@ -1,0 +1,21 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "boeing-field-boardable-apron",
+  "path": "/?region=seattle-bellevue-sammamish&lat=47.5255&lon=-122.295&alt=85&yaw=-2.4&pitch=-0.5&mode=human&quality=economy&backend=webgl&hud=0&weather=sunny&sky=daylight",
+  "viewport": [1280, 800],
+  "probes": [
+    { "name": "status", "selector": "#status" },
+    { "name": "aircraft", "selector": "#navigation-status" }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain",
+      "stableMs": 500,
+      "timeoutMs": 240000
+    },
+    { "type": "wait", "durationMs": 150000 },
+    { "type": "screenshot", "name": "boeing-field-apron", "timeoutMs": 120000 }
+  ]
+}

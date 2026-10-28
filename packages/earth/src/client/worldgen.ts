@@ -25,6 +25,7 @@ import {
   type BuildingMaterialDecorator,
   createResolvedMaterialSet,
   ModelLibrary,
+  NightWindowLighting,
   type ScreenSpaceLodPolicy,
   StructureLodStreamer,
   StructureModelLibrary,
@@ -70,6 +71,8 @@ export interface EarthViewWorkers {
 }
 
 export interface EarthWorldgen extends WorldgenSemanticRenderers {
+  /** Fade building/model lights with a 0 (day) to 1 (night) factor. */
+  setNightFactor(factor: number): void;
   readonly environment: RegionalEnvironment | undefined;
   /** Wait for the initial requested surfaces; later visible buildings request textures on demand. */
   prepareMaterials(): Promise<void>;
@@ -223,6 +226,8 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     maxTextureBytes:
       streamingOptions.budget?.maxTextureBytes ?? structureStreamingBudget(mobile).maxTextureBytes,
   });
+  const nightWindows = new NightWindowLighting();
+  materials.nightWindows = nightWindows;
   const sharedRefs = new Set(Object.entries(pack.materials).map(([ref, kind]) => `${kind}:${ref}`));
   const structureLoader = new GLTFLoader();
   const ownedImageScenes = new WeakSet<THREE.Object3D>();
@@ -237,6 +242,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
             return parsed.scene;
           },
           {
+            nightWindows,
             ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
             resolveSurface: ({ ref, slot }) =>
               sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
@@ -280,6 +286,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
           },
           {
             ...options.landmarkStreaming,
+            nightWindows,
             ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
             ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
             resolveSurface: ({ ref, slot }) =>
@@ -366,6 +373,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   });
   return {
     ...renderers,
+    setNightFactor: (factor) => nightWindows.setNightFactor(factor),
     environment,
     prepareMaterials,
     updateStructures: (view) => streamingStructures?.update(view),
@@ -380,6 +388,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       renderers.dispose();
       generator?.dispose();
       structureObjects.dispose();
+      nightWindows.dispose();
       materials.dispose();
       models.dispose();
       assets.dispose();

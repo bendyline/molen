@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { loadFontLibrary } from '@bendyline/molen-materials/text';
-import type * as THREE from 'three';
+import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { Heightfield } from '../src/heightfield';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
@@ -176,6 +176,54 @@ const readFont = async (path: string) =>
   );
 const fonts = await loadFontLibrary(await readFont('catalog.json'), readFont);
 describe('surface worker', () => {
+  it('keeps night lamps and draped pools identical across the worker path, reload and daytime changes', async () => {
+    const thread = worker(),
+      bridge = createTerrainSurfaceWorkerBridge(thread.bridge);
+    const ctx = context(),
+      tile = fixture();
+    const renderer = createTerrainSurfaceRenderer({}, bridge);
+    renderer.setNightFactor(1);
+    const pending = renderer.createTileAsync(tile, ctx);
+    thread.run();
+    const root = await pending;
+    if (!root?.children[0]) throw new Error('Missing surface result');
+    const scene = new THREE.Group();
+    scene.add(root);
+    let visited = 0;
+    renderer.visitStreetLights(() => visited++);
+    expect(visited).toBeGreaterThan(0);
+    scene.visible = false;
+    renderer.visitStreetLights(() => {
+      throw Error('Hidden lamps must not illuminate');
+    });
+    scene.visible = true;
+    const actual = root.children[0];
+    const direct = createTerrainSurfaceObject(tile, ctx);
+    expect(actual.userData.streetLights.length).toBeGreaterThan(0);
+    expect(actual.userData.streetLights).toEqual(direct.userData.streetLights);
+    const pools = actual.getObjectByName('surface:night-pools') as THREE.Mesh;
+    const reference = direct.getObjectByName('surface:night-pools') as THREE.Mesh;
+    expect(pools.geometry.getAttribute('position').array).toEqual(
+      reference.geometry.getAttribute('position').array,
+    );
+    const material = pools.material as THREE.MeshBasicMaterial;
+    expect(material.visible).toBe(true);
+    renderer.setNightFactor(0);
+    expect(material.visible).toBe(false);
+    renderer.setNightFactor(1);
+    expect(material.visible).toBe(true);
+    const disposed = vi.spyOn(material, 'dispose');
+    const replacement = renderer.setOptions({ details: { maxStreetlightsPerTile: 8 } });
+    thread.run();
+    await replacement;
+    const replaced = root.getObjectByName('surface:night-pools') as THREE.Mesh;
+    expect((replaced.material as THREE.Material).visible).toBe(true);
+    expect(renderer.stats().streetlights).toBeLessThanOrEqual(8);
+    renderer.dispose();
+    expect(disposed).toHaveBeenCalledTimes(1);
+    disposeTerrainSurfaceObject(direct);
+    bridge.dispose();
+  });
   it('caches route artwork and renders identical direct/worker geometry, including clear and reload', async () => {
     const shields = terrainRouteShieldLibrarySchema.parse(
       JSON.parse(

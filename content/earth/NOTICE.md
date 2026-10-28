@@ -24,3 +24,12 @@ medium-fi signs, plus authored primitive shapes. See [signs/americana-LICENSE.tx
 and [signs/README.md](signs/README.md) for pinned revisions, changes and reproduction commands.
 The state boundary layer uses public-domain Natural Earth 1:50m admin-1 data; its upstream
 revision, source URL and hash are retained in `source/signs/us-state-boundaries.json`.
+# Airport data
+
+Runway endpoints and dimensions: OurAirports, public domain,
+https://ourairports.com/data/ . Imported from the Qualla airport cache.
+
+Boeing Field layout: © OpenStreetMap contributors, ODbL-1.0,
+https://www.openstreetmap.org/copyright . The derived airport layout database and retained
+source extract are available under https://opendatacommons.org/licenses/odbl/1-0/ .
+See airports/README.md for scope, provenance and rebuilding.

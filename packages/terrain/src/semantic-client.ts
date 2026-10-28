@@ -62,6 +62,10 @@ export interface TerrainSemanticTileRenderer {
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
   ): THREE.Object3D | undefined | Promise<THREE.Object3D | undefined>;
+  /** Optional supplemental content outside the basemap's coverage (for example airports). */
+  createEmptyTile?(
+    context: TerrainPyramidTileLayerContext,
+  ): THREE.Object3D | undefined | Promise<THREE.Object3D | undefined>;
   disposeTile?(object: THREE.Object3D): void;
 }
 
@@ -352,7 +356,8 @@ export function createTerrainSemanticPyramidLayer(
     ...(options.maxLevel !== undefined ? { maxLevel: options.maxLevel } : {}),
     async createTile(context): Promise<THREE.Object3D | undefined> {
       const tile = await options.source.load(context.address, context.signal);
-      if (tile === undefined || context.signal.aborted) return undefined;
+      if (context.signal.aborted) return undefined;
+      if (tile === undefined) return options.renderer.createEmptyTile?.(context);
       assertTerrainSemanticTile(tile);
       return options.renderer.createTile(tile, context);
     },
