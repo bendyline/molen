@@ -1,9 +1,11 @@
-import type { TerrainPyramidTileLayerContext } from '@bendyline/molen-terrain/client';
+import {
+  createTerrainSemanticDecoderWorker,
+  type TerrainPyramidTileLayerContext,
+} from '@bendyline/molen-terrain/client';
 import {
   createEmptyTerrainSemanticTile,
   Heightfield,
   packTerrainSemanticTile,
-  rememberTerrainSemanticTilePacket,
   terrainSemanticTileFromPacket,
   terrainSemanticTilePacket,
 } from '@bendyline/molen-terrain/kernel';
@@ -298,8 +300,8 @@ describe('curved bridge road ends', () => {
     expect(result.transportation.find((f) => f.id === 'nearby')).toBe(tile.transportation[4]);
     expect(JSON.stringify(tile)).toBe(before);
   });
-  it('joins a bridge sidewalk that turns along the bank, preserving nearby unconnected walks and steps', () => {
-    const tile = createEmptyTerrainSemanticTile();
+  it('joins a bridge sidewalk that turns along the bank, preserving nearby unconnected walks and steps', async () => {
+    let tile = createEmptyTerrainSemanticTile();
     const point: [number, number] = [0.73, 0.53];
     tile.transportation.push(
       { id: 'bridge-walk', class: 'path', bridge: true, lines: [[[0.25, 0.53], point]] },
@@ -335,7 +337,27 @@ describe('curved bridge road ends', () => {
         includeConnectedApproaches: true,
       },
     };
-    rememberTerrainSemanticTilePacket(tile, packTerrainSemanticTile(tile));
+    const sourcePacket = packTerrainSemanticTile(tile);
+    let reply: (event: { data: unknown }) => void = () => {};
+    const decoder = createTerrainSemanticDecoderWorker({
+      addEventListener: (_type, listener) => {
+        reply = listener;
+      },
+      postMessage: (message) =>
+        reply({
+          data: {
+            id: (message as { id: number }).id,
+            ...structuredClone(sourcePacket),
+          },
+        }),
+    });
+    tile = await decoder.decode(new Uint8Array(), {
+      address: { level: 14, x: 1, z: 2 },
+      content: 'all',
+      encoding: 'mvt',
+      layers: ['transportation'],
+    });
+    decoder.dispose();
     const result = withoutStructureRoads(tile, context, [model], 1),
       bank = result.transportation.find((f) => f.id === 'bank-walk');
     expect(bank?.lines[0]?.[0]).toEqual([0.73, 0.55]);
