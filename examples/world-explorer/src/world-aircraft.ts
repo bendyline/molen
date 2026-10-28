@@ -206,6 +206,9 @@ export class WorldAircraft {
   get apronCount(): number {
     return [...this.apron.keys()].filter((id) => this.visuals.has(id)).length;
   }
+  get apronPending(): number {
+    return this.apron.size - this.apronCount;
+  }
   /** An individual, boardable aircraft on real airport pavement; no practice runway is created. */
   async spawnApron(
     kind: string,
@@ -236,6 +239,7 @@ export class WorldAircraft {
         return false;
       }
       const components = this.types.components(type);
+      placement.position[1] = this.terrainHeight(x, z) ?? placement.position[1];
       components.transform = {
         pos: [...placement.position],
         rot: [0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2)],
@@ -506,6 +510,9 @@ export class WorldAircraft {
         ),
       )
       .sub(this.collision.origin);
+    // Entry markers are on the ground. Sight the doorway above the pavement, otherwise
+    // draped apron surfaces a few centimetres above terrain can block boarding from eye height.
+    b.y = Math.max(b.y, t.pos[1] + 1.2 - this.collision.origin.y);
     const hit = this.collision.octree.rayIntersect(new THREE.Ray(a, b.clone().sub(a).normalize()));
     if (hit && hit.distance < a.distanceTo(b) - 0.1) return false;
     this.world.patch(PLAYER, Transform, { pos: [...position] });
@@ -589,13 +596,25 @@ export class WorldAircraft {
       pilot === undefined ? undefined : this.world.get(`aircraft-${pilot}`, AircraftState);
     const passing = own !== undefined && Math.hypot(...own.velocity) > CABIN_PASS_SPEED;
     for (const [kind, visual] of this.visuals) {
-      const t = this.world.get(`aircraft-${kind}`, Transform),
-        s = this.world.get(`aircraft-${kind}`, AircraftState),
+      let t = this.world.get(`aircraft-${kind}`, Transform);
+      const s = this.world.get(`aircraft-${kind}`, AircraftState),
         input = this.world.get(`aircraft-${kind}`, AircraftInput);
       if (!t || !s || !input) continue;
+      if (this.apron.has(kind) && s.grounded && !input.engine && Math.hypot(...s.velocity) < 0.01) {
+        const height = this.terrainHeight(t.pos[0], t.pos[2]);
+        if (height !== undefined && Math.abs(height - t.pos[1]) > 0.01) {
+          t = { ...t, pos: [t.pos[0], height, t.pos[2]] };
+          this.world.set(`aircraft-${kind}`, Transform, t);
+        }
+      }
       visual.object.position.fromArray(t.pos);
       visual.object.quaternion.fromArray(t.rot);
-      if (camera !== undefined) visual.updateView(passing && kind !== pilot ? FAR_AWAY : camera);
+      if (camera !== undefined) {
+        const distantApron =
+          this.apron.has(kind) &&
+          Math.hypot(t.pos[0] - camera[0], t.pos[1] - camera[1], t.pos[2] - camera[2]) > 12;
+        visual.updateView(kind !== pilot && (passing || distantApron) ? FAR_AWAY : camera);
+      }
       const channels = this.world.get(`aircraft-${kind}`, Aircraft)?.spec.visual;
       visual.update(
         s,

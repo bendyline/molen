@@ -2400,6 +2400,7 @@ async function main(): Promise<void> {
       navigationStatus.dataset.speed = (flight.state?.airspeed ?? vehicles.speed).toFixed(3);
       navigationStatus.dataset.aircraft = flight.mountedKind ?? '';
       navigationStatus.dataset.apronAircraft = String(flight.apronCount);
+      navigationStatus.dataset.apronLoading = String(flight.apronPending);
       navigationStatus.dataset.agl = (flight.state?.altitudeAGL ?? 0).toFixed(2);
       navigationStatus.dataset.crashed = String(flight.state?.crashed ?? false);
       navigationStatus.dataset.power = String(Math.round(flight.power * 100));
