@@ -596,13 +596,28 @@ export class EarthAircraft {
    */
   render(camera?: readonly [number, number, number]): void {
     for (const [id, visual] of this.visuals) {
-      const t = this.world.get(id, Transform);
+      let t = this.world.get(id, Transform);
       const state = this.world.get(id, AircraftState);
       const input = this.world.get(id, AircraftInput);
       if (!t || !state || !input) continue;
+      // Automatic apron entities follow supporting terrain refinements while parked.
+      const apron = id.startsWith('apron:');
+      if (apron && state.grounded && !input.engine && Math.hypot(...state.velocity) < 0.01) {
+        const height = this.sampleHeight(t.pos[0], t.pos[2]);
+        if (height !== undefined && Math.abs(height - t.pos[1]) > 0.01) {
+          t = { ...t, pos: [t.pos[0], height, t.pos[2]] };
+          this.world.set(id, Transform, t);
+        }
+      }
       visual.object.position.fromArray(t.pos);
       visual.object.quaternion.fromArray(t.rot);
-      if (camera !== undefined) visual.updateView(camera);
+      if (camera !== undefined) {
+        const distantApron =
+          apron &&
+          id !== this.mountedId &&
+          Math.hypot(t.pos[0] - camera[0], t.pos[1] - camera[1], t.pos[2] - camera[2]) > 12;
+        visual.updateView(distantApron ? [Infinity, Infinity, Infinity] : camera);
+      }
       const channels = this.world.get(id, Aircraft)?.spec.visual;
       const weather = weatherOf(this.world);
       const atmosphere = weather ? sampleAtmosphere(weather, t.pos[1]) : undefined;

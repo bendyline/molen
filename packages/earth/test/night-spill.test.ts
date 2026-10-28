@@ -71,9 +71,13 @@ it('moves head/tail lenses and beams with traffic, excludes hidden agents, and b
   expect(front.count).toBe(12);
   expect(rear.count).toBe(12);
   const matrix = new THREE.Matrix4();
+  front.updateWorldMatrix(true, false);
+  rear.updateWorldMatrix(true, false);
   front.getMatrixAt(0, matrix);
+  matrix.premultiply(front.matrixWorld);
   expect(new THREE.Vector3().setFromMatrixPosition(matrix).x).toBeCloseTo(1052.055, 3);
   rear.getMatrixAt(0, matrix);
+  matrix.premultiply(rear.matrixWorld);
   expect(new THREE.Vector3().setFromMatrixPosition(matrix).x).toBeCloseTo(1047.945, 3);
   const beams = lighting.object.children.filter(
     (o): o is THREE.SpotLight => o instanceof THREE.SpotLight,
@@ -111,5 +115,35 @@ it('keeps parked lamps off but lights a stationary driven car', () => {
   expect(lenses.count).toBe(0);
   lighting.update({ ...frame, drivenVehicleId: 'parked' });
   expect(lenses.count).toBe(2);
+  lighting.dispose();
+});
+
+it('keeps sub-metre lens placement precise at Earth-scale coordinates', () => {
+  const root = new THREE.Group(),
+    world = new World();
+  root.position.set(-7542570, 0, 2919254);
+  const position: [number, number, number] = [7542570.125, 220.5, -2919254.375];
+  world.spawnRaw(
+    {
+      transform: { pos: position, rot: [0, 0, 0, 1] },
+      ambientAgent: { kind: 'car', width: 2, length: 4, speed: 1 },
+    },
+    'car',
+  );
+  const lighting = new EarthNightLighting({
+    root,
+    world,
+    sampleHeight: () => 220,
+    surface: { visitStreetLights: () => {} },
+  });
+  lighting.update({ camera: position, direction: [0, 0, 1], factor: 1 });
+  const lenses = lighting.object.getObjectByName('earth:headlights') as THREE.InstancedMesh;
+  const matrix = new THREE.Matrix4();
+  lenses.getMatrixAt(0, matrix);
+  lenses.updateWorldMatrix(true, false);
+  const actual = new THREE.Vector3().setFromMatrixPosition(matrix).applyMatrix4(lenses.matrixWorld);
+  expect(actual.x).toBeCloseTo(-0.495, 3);
+  expect(actual.y).toBeCloseTo(221.16, 3);
+  expect(actual.z).toBeCloseTo(1.68, 3);
   lighting.dispose();
 });

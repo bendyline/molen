@@ -23,6 +23,7 @@ function controls(keys: string[] = []) {
 
 async function setup(
   loadModel: (id: string) => Promise<THREE.Object3D> = async () => new THREE.Group(),
+  terrainHeight: () => number = () => 0,
 ) {
   const root = new THREE.Group();
   let flight: WorldAircraft;
@@ -36,7 +37,7 @@ async function setup(
   flight = new WorldAircraft(
     vehicles.world,
     root,
-    () => 0,
+    terrainHeight,
     [10000, 50, 20000],
     loadModel,
     ENTITY_TYPES,
@@ -46,8 +47,41 @@ async function setup(
   return { root, vehicles, flight };
 }
 describe('world aircraft', () => {
+  it('settles apron aircraft onto refined ground and hides other cockpits until approached', async () => {
+    let height = 12;
+    const type = 'molen.entities.aircraft.cessna_172s';
+    const data = ENTITY_TYPES.component<import('@bendyline/molen-schema').AircraftData>(
+      type,
+      'aircraft',
+    );
+    const cabinName = data.spec.visual.interior?.nodes?.[0];
+    if (!cabinName) throw new Error('Missing cockpit');
+    const cabin = new THREE.Group();
+    cabin.name = cabinName;
+    const { flight, vehicles } = await setup(
+      async (id) => {
+        const model = new THREE.Group();
+        if (id === type) model.add(cabin);
+        return model;
+      },
+      () => height,
+    );
+    await flight.spawnApron('apron:a', type, 0, 0, 0);
+    height = 18;
+    flight.render([100, 20, 0]);
+    expect(flight.apronPose('apron:a')?.position[1]).toBe(18);
+    expect(cabin.visible).toBe(false);
+    flight.render([0, 20, 0]);
+    expect(cabin.visible).toBe(true);
+    vehicles.world.patch('aircraft-apron:a', AircraftState, { grounded: false });
+    height = 30;
+    flight.render([0, 20, 0]);
+    expect(flight.apronPose('apron:a')?.position[1]).toBe(18);
+    flight.dispose();
+    vehicles.dispose();
+  });
   it('boards and flies one of two apron aircraft of the same type without moving the other', async () => {
-    const { flight, vehicles } = await setup();
+    const { flight, vehicles, root } = await setup();
     const type = 'molen.entities.aircraft.cessna_172s';
     await flight.spawnApron('apron:a', type, 0, 0, Math.PI);
     await flight.spawnApron('apron:b', type, 100, 0, Math.PI);
@@ -55,7 +89,13 @@ describe('world aircraft', () => {
       entries: [number, number, number][];
     };
     const entry = mountable.entries[0] as [number, number, number];
-    expect(flight.enter([...entry])).toBe(true);
+    const pavement = new THREE.Mesh(
+      new THREE.BoxGeometry(80, 0.12, 80),
+      new THREE.MeshBasicMaterial(),
+    );
+    pavement.position.y = 0.06;
+    root.add(pavement);
+    expect(flight.enter([entry[0], 1.7, entry[2]])).toBe(true);
     expect(flight.mountedKind).toBe('apron:a');
     expect(flight.label('apron:a')).toContain('172');
     flight.key('KeyI');
@@ -74,6 +114,8 @@ describe('world aircraft', () => {
     expect(flight.apronPose('apron:a')).toBeDefined();
     flight.dispose();
     vehicles.dispose();
+    pavement.geometry.dispose();
+    (pavement.material as THREE.Material).dispose();
   });
   it('uses contact normals at the practice runway instead of freezing on a wing strike', async () => {
     const { root, vehicles, flight } = await setup();

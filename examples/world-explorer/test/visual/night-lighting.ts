@@ -176,7 +176,7 @@ for (const [i, position] of (
         transform: { pos: position, rot: i === 1 ? [0, 1, 0, 0] : [0, 0, 0, 1] },
         ambientAgent: { kind: 'car', type: 'sedan', length: 4.65, width: 1.82, speed: 5 },
       },
-      'traffic-' + i,
+      `traffic-${i}`,
     );
 }
 const spill = new EarthNightLighting({

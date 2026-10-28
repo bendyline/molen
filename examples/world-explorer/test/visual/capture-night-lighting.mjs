@@ -103,7 +103,7 @@ try {
         };
         const gain = mean(frames.night) - mean(frames[probeIndex === 2 ? 'beam-off' : 'glow-only']);
         console.log(JSON.stringify({ backend, worker, probe: [x, y], gain }));
-        assert(gain > 3, 'Real light reaches wall/car receiver: ' + gain);
+        assert(gain > 3, `Real light reaches wall/car receiver: ${gain}`);
       }
       assert(brighter > 500, `Visible window and pavement light coverage: ${brighter}`);
       const repeated = await page.screenshot();

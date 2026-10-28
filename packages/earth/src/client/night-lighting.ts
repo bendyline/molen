@@ -51,6 +51,7 @@ export class EarthNightLighting {
   private readonly front = new THREE.InstancedMesh(this.geometry, this.frontMaterial, MAX_CARS * 2);
   private readonly rear = new THREE.InstancedMesh(this.geometry, this.rearMaterial, MAX_CARS * 2);
   private readonly point = new THREE.Vector3();
+  private readonly lensOrigin = new THREE.Vector3();
   private readonly rotation = new THREE.Quaternion();
   private readonly scale = new THREE.Vector3();
   private readonly matrix = new THREE.Matrix4();
@@ -97,6 +98,13 @@ export class EarthNightLighting {
     this.front.count = this.rear.count = 0;
     if (night === 0) return;
     const { camera, direction } = frame;
+    // Instance matrices are float32. Keep lenses near a local anchor so Earth coordinates
+    // millions of metres from zero do not round a headlight into its bumper or the next lane.
+    this.lensOrigin.set(
+      ...(camera.map((value) => Math.floor(value / 256) * 256) as [number, number, number]),
+    );
+    this.front.position.copy(this.lensOrigin);
+    this.rear.position.copy(this.lensOrigin);
     const ground = this.options.sampleHeight(camera[0], camera[2]) ?? camera[1];
     const reach =
       direction[1] < -0.05 ? Math.min(500, Math.max(0, camera[1] - ground) / -direction[1]) : 60;
@@ -117,7 +125,7 @@ export class EarthNightLighting {
       }
       this.point.set(lamp.x, lamp.y - 0.2, lamp.z).applyMatrix4(this.sourceMatrix);
       const d = distance(this.point.x, this.point.z);
-      const key = source.uuid + ':' + lamp.x + ',' + lamp.z;
+      const key = `${source.uuid}:${lamp.x},${lamp.z}`;
       if (d < 600)
         lamps.push({
           key,
@@ -183,7 +191,10 @@ export class EarthNightLighting {
           [this.rear, -1],
         ] as const) {
           this.point.set(side * car.width * 0.31, height, end * (car.length / 2 + 0.055));
-          this.point.applyQuaternion(this.rotation).add(this.carPosition(car.position));
+          this.point
+            .applyQuaternion(this.rotation)
+            .add(this.carPosition(car.position))
+            .sub(this.lensOrigin);
           mesh.setMatrixAt(
             i * 2 + sideIndex,
             this.matrix.compose(this.point, this.rotation, this.scale),
