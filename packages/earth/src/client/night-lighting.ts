@@ -39,7 +39,8 @@ interface Car {
 
 /**
  * Sixteen street lights and four car beams keep shader/light counts constant as tiles stream.
- * Unused slots have zero intensity, including in daylight; none casts an extra shadow map.
+ * Unused slots have zero intensity; none casts an extra shadow map. Daylight hides the whole rig,
+ * since zero-intensity lights still cost every lit fragment; the first dusk compiles its variant.
  */
 export class EarthNightLighting {
   readonly object: THREE.Group = new THREE.Group();
@@ -96,6 +97,7 @@ export class EarthNightLighting {
     const night = Math.max(0, Math.min(1, frame.factor));
     for (const light of [...this.streets, ...this.beams]) light.intensity = 0;
     this.front.count = this.rear.count = 0;
+    this.object.visible = night > 0;
     if (night === 0) return;
     const { camera, direction } = frame;
     // Instance matrices are float32. Keep lenses near a local anchor so Earth coordinates

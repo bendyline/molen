@@ -34,7 +34,7 @@ try {
     ],
   });
   const port = server.httpServer.address().port;
-  for (const backend of ['webgl', 'webgpu'])
+  for (const backend of process.env.MOLEN_SKIP_WEBGPU === '1' ? ['webgl'] : ['webgl', 'webgpu'])
     for (const worker of [false, true]) {
       const page = await browser.newPage({
         viewport: { width: 960, height: 700 },

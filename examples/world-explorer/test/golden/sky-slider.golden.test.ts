@@ -79,7 +79,10 @@ describe('browser: sky time slider', () => {
         >;
       });
     try {
-      await page.goto(`${url}/index.html?synthetic=1&quality=economy&freeze=1&backend=webgl`);
+      // Pin local noon: the default (today, runner-zone noon) is pre-dawn Seattle on UTC CI.
+      await page.goto(
+        `${url}/index.html?synthetic=1&quality=economy&freeze=1&backend=webgl&date=2024-03-24T19:00:00Z`,
+      );
       await page.waitForFunction(
         () => document.querySelector('#location')?.textContent?.includes('Altitude'),
         undefined,

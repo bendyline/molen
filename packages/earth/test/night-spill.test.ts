@@ -33,9 +33,11 @@ it('keeps a fixed light budget, positions street spill through floating origins,
   expect(points[0]?.position.toArray()).toEqual([1000, 7.8, 2012]);
   expect(points[0]?.getWorldPosition(new THREE.Vector3()).toArray()).toEqual([0, 7.8, 12]);
   lighting.update({ ...frame, factor: 0 });
-  expect(points.every((o) => o.visible && o.intensity === 0)).toBe(true);
+  expect(points.every((o) => o.intensity === 0)).toBe(true);
+  expect(lighting.object.visible).toBe(false);
   resident = false;
   lighting.update(frame);
+  expect(lighting.object.visible).toBe(true);
   expect(points.every((o) => o.intensity === 0)).toBe(true);
   lighting.dispose();
   expect(lighting.object.parent).toBeNull();
@@ -90,7 +92,8 @@ it('moves head/tail lenses and beams with traffic, excludes hidden agents, and b
   expect(front.count).toBe(10);
   lighting.update({ ...frame, factor: 0 });
   expect(front.count).toBe(0);
-  expect(beams.every((o) => o.visible && o.intensity === 0)).toBe(true);
+  expect(beams.every((o) => o.intensity === 0)).toBe(true);
+  expect(lighting.object.visible).toBe(false);
   lighting.dispose();
 });
 

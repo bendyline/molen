@@ -36,8 +36,9 @@ it('moves the explorer from a connected joystick and suspends it while remapping
       });
       Object.assign(window, { joystickTestPad: pad });
     });
+    // Pin local noon: movement is per frame, and the default date is night on UTC CI.
     await page.goto(
-      `${url}/?synthetic=1&worldgen=0&mode=bare&ambient=0&audio=0&backend=webgl&quality=low`,
+      `${url}/?synthetic=1&worldgen=0&mode=bare&ambient=0&audio=0&backend=webgl&quality=low&date=2024-03-24T19:00:00Z`,
     );
     const status = page.locator('#navigation-status');
     const position = () =>
