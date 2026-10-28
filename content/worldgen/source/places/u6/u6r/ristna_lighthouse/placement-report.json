@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.ristna_lighthouse",
-  "inputHash": "sha256:e3235f3213304b06a9bb55814c9cebe00456de0b385b323b177adb86d2f9e5ba",
+  "inputHash": "sha256:d0bdc6d758337cefa269c314dbeae5ee4a15d9e19c9f57dc2e9107250734a81f",
   "placementHash": "sha256:771defa06a8a46621cc04ae9b96b4bf77c5fa1f542d4418863d3a36063a396e7",
   "entry": {
     "id": "ristna.lighthouse",
@@ -25,5 +25,11 @@
     "source": "https://nma.transpordiamet.ee/aton/2844/",
     "note": "Mapped road is station context; no mapped tower footprint or surveyed doorway azimuth is available. Aerial coastal/station arrangement supports the southeast door quadrant, not a precise bearing. National authority anchor is retained instead of the offset OSM point. Y=0 is host terrain contact; no surveyed foundation elevation, detached station buildings or shoreline is included. Public API returned 429 on 2026-10-09; this review uses the dated 2026-09-28 map snapshot. +Y up; +Z southeast and +X northeast. Entrance quadrant is reconstructed from the inspected 2014 aerial and archival site layout; the eight ribs retain 45-degree rotational symmetry. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval.",
+  "reviewRefresh": {
+    "reviewedOn": "2026-10-28",
+    "sourceHash": "sha256:6fdaecdf31aa34667a2f7c9de51eb1e8926650ab6c0cf2015a2bc08ce80d6259",
+    "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+    "notes": "Retained the national aid 673 anchor 22.05526516,58.9400605 and distinction between 27.2m base-relative height and 35.9m focal elevation. The exact-QID OSM node lies slightly offset and was not substituted for the authority center. Heading 0.7853981634 retains a reconstructed southeast +Z doorway quadrant and northeast +X; it is not a surveyed bearing. Current north-up station-road context inspected. The dated 2026-09-28 road snapshot is context, not an entry line. Y=0 uses host terrain; flat staging verifies no coastal/foundation elevation. No new terrain or map survey is claimed."
+  }
 }

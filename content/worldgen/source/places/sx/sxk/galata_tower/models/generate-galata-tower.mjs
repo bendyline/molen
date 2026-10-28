@@ -15,8 +15,10 @@ import {
   smoothMeshNormals,
   validateAuthoredMesh,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { hashEvidenceText } from '../../../../../../../../packages/worldgen/scripts/evidence-text-hash.mjs';
 import { MATERIAL_REPEAT_METERS } from '../../../../../../../../packages/worldgen/scripts/standard-materials.mjs';
 import { structureAssetSidecarPath } from '../../../../../../../../packages/worldgen/scripts/structure-asset-paths.mjs';
+import { readOptionalJson } from '../../../../../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { structureSourceDirectory } from '../../../../../../../../packages/worldgen/scripts/structure-source-paths.mjs';
 import { galataStudies } from './galata-tower-model.mjs';
 
@@ -144,6 +146,9 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     assetId = `molen.worldgen.structure.${key}`,
     dir = structureSourceDirectory(key),
     modelPath = resolve(dir, 'models/source.glb');
+  const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+  if (reviewScope && reviewScope.fidelityTarget !== 'medium-fi')
+    throw new Error(`${asset.id}: review scope must declare medium-fi`);
   try {
     const source = JSON.parse(await readFile(resolve(dir, 'source.json'), 'utf8'));
     if (hash(await readFile(modelPath)) !== source.files.models[0].sha256)
@@ -185,6 +190,14 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     category: 'tower',
     quality: 'detailed',
     actualBounds: { min, max },
+    mesh: {
+      file: 'models/source.glb',
+      sha256: hash(glb),
+      triangles: mesh.triangleCount,
+      vertices: mesh.vertexCount,
+      primitives: mesh.groups.length,
+      bytes: glb.length,
+    },
     geometrySource:
       'Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.',
     sourceLicense:
@@ -204,6 +217,19 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     importReason:
       'Keep thin gallery rails, lightning conductors, window reveals and small anchors until a measured LOD chain is reviewed.',
   };
+  if (reviewScope)
+    Object.assign(spec, {
+      fidelityTarget: reviewScope.fidelityTarget,
+      appearance: reviewScope.appearance,
+      mediumFiContext: reviewScope.mediumFiContext,
+      runtimeLodOverlay: {
+        ...reviewScope.runtimeLodOverlay,
+        componentRecipeHash: hashEvidenceText(
+          await readFile(new URL('./galata-tower-model.mjs', import.meta.url)),
+        ),
+      },
+      qaLodCameras: reviewScope.qaLodCameras,
+    });
   const h = max[1],
     extent = Math.max(max[0] - min[0], h, max[2] - min[2]);
   const scene = {
@@ -269,6 +295,9 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
         'capture-report.json',
         'shared-capture-report.json',
         'placement-report.json',
+        'review-scope.json',
+        'medium-fi-report.json',
+        'QA-REVIEW.md',
         'qa.json',
       ].includes(name),
     )
@@ -296,7 +325,14 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
       scripts: [],
       textures: [],
       sounds: [],
-      documents: ['README.md', 'preview.png', ...optional],
+      documents: [
+        ...new Set([
+          'README.md',
+          'preview.png',
+          ...optional,
+          ...(reviewScope?.sourceDocuments ?? []),
+        ]),
+      ],
     },
   };
   const readme = `# ${asset.title} — ${asset.id}\n\n![Lit Molen preview](preview.png)\n\n${asset.visualBrief}\n\n## Identity and evidence\n\nExact catalog identity **${asset.wikidataId}**. Source facts: \`${JSON.stringify(asset.sourceFacts)}\`. The source specification keeps published dimensions separate from reconstructed details.\n\n${asset.referencePages.map((url) => `- ${url}`).join('\n')}\n\n${asset.referenceRights}\n\n## Authored geometry and materials\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles, ${mesh.vertexCount.toLocaleString('en-US')} vertices, ${mesh.groups.length} surface groups; ${glb.length.toLocaleString('en-US')} source bytes. SHA-256: \`${hash(glb)}\`. Actual bounds: ${min.map((n) => n.toFixed(3)).join(', ')} to ${max.map((n) => n.toFixed(3)).join(', ')} m.\n\n${spec.materialMethod} Shared references: ${spec.sharedSurfaces.map((surface) => `\`${surface.ref}\` (${surface.repeatMeters.join(' × ')} m)`).join(', ')}. Model-native axes: ${JSON.stringify(asset.nativeAxes)}.\n\n## Placement proposal\n\n${asset.geographicProposal.notes} Proposed anchor ${asset.geographicProposal.anchor.join(', ')} (longitude, latitude), heading ${asset.geographicProposal.heading} radians. Elevation policy: **${asset.geographicProposal.elevationMode}**. This is a reviewable proposal, not a completed site-fit certification. The tower uses terrain contact at its outside paving grade.\n\n## Limitations and review\n\n${asset.limitations.map((note) => `- ${note}`).join('\n')}\n\nNear/far fixtures are in \`spec.qaCameras\`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.\n\nRegenerate with \`node content/worldgen/source/places/sx/sxk/galata_tower/models/generate-galata-tower.mjs --ids=${asset.id}\`; add \`--check\` for reproducibility. Editable component recipes are in \`content/worldgen/source/places/sx/sxk/galata_tower/models/galata-tower-model.mjs\`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.\n`;

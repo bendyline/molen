@@ -54,6 +54,10 @@ try {
     deviceScaleFactor: 1,
   });
   page.on('pageerror', (e) => errors.push(e.message));
+  page.on('console', (message) => {
+    if (message.type() === 'warning' || message.type() === 'error')
+      console.log(`browser ${message.type()}: ${message.text()}`);
+  });
   await page.goto(`http://127.0.0.1:${server.httpServer.address().port}/torun-grade.html`, {
     waitUntil: 'networkidle',
   });

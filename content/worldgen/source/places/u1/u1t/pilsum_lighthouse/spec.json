@@ -133,6 +133,158 @@
   "assetId": "molen.worldgen.structure.pilsum_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "appearance": {
+    "identity": "Seven red/yellow steel daymark bands, recessed rear/sector windows, north-northeast door, projecting vents, canted roof railing, dark cone and red ventilator ball.",
+    "master": "Preserve the current detailed source master exactly; separate authored browser models replace automatic reductions.",
+    "browser": "Component-based levels retain band boundaries, signed optical openings, attached stairs, full cone/ball/rod height and open canted rail. Near levels restore vent hoods, roof vents/seams, bars and plate joints; omit individual rivets.",
+    "scope": "Existing photo-proportioned exterior and retained mapped center/entrance direction. The host supplies dyke contact; no surveyed terrain or historic navigational-sector certification."
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u1t/pilsum_lighthouse/models/pilsum-lods.mjs",
+    "export": "pilsumSkyline",
+    "level": "skyline",
+    "errorMeters": 0.35,
+    "authoredLevels": {
+      "district": {
+        "export": "pilsumDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "pilsumStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "pilsumCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "sector-windows-street",
+      "position": [
+        5.9,
+        9.2,
+        -7.1
+      ],
+      "lookAt": [
+        0,
+        8.7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "roof-rail-district",
+      "position": [
+        7,
+        13,
+        8
+      ],
+      "lookAt": [
+        0,
+        10.7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "bands-skyline",
+      "position": [
+        15,
+        8,
+        -16
+      ],
+      "lookAt": [
+        0,
+        5.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ],
   "actualBounds": {
     "min": [
       -2.6300601959228516,

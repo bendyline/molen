@@ -1,13 +1,25 @@
 # Current structure round
 
-Updated 2026-10-27. **Goal paused at the owner’s request after completing Lakhta Centre.**
+**Production resumed at the owner’s request. Toruń and Wiesgħa are complete; Laboe Naval Memorial is next.** Updated2026-10-28.
 
 ## Current status
 
-- **519 of 1,000 candidates ready; 669 original candidate masters; 729 authored/imported assets; 701 active geographic asset previews.** Original candidates and independent collection members have different totals. The full source rebuild retained all 669 original masters. Of 71 stale approvals, 39 were reconciled with exact input/output/image proofs; Grande Arche, Emley Moor, Bell Rock, Palacio Barolo and Lakhta Centre have refreshed changed-output reviews. The other 27 changed-output records remain pending. These counts supersede older incremental counts below.
-- Saved Delal, Bhupen Hazarika, Ponte Umberto I and Ponte Cavour drafts are integrated for their reviewed exterior/placement scope. Status-only reconciliation preserved all 24 GLBs and 236 bound inspected images. All **24 recent review pins / 144 GLBs** are current.
+- **528 of 1,000 candidates ready; 669 original candidate masters; 729 authored/imported assets; 701 active geographic asset previews.** Original candidates and independent collection members have different totals. The full source rebuild retained all 669 original masters. Of 71 stale approvals, 39 were reconciled with exact input/output/image proofs; Grande Arche, Emley Moor, Bell Rock, Palacio Barolo and Lakhta Centre have refreshed changed-output reviews. The other 18 changed-output records remain pending. These counts supersede older incremental counts below.
+- Saved Delal, Bhupen Hazarika, Ponte Umberto I and Ponte Cavour drafts are integrated for their reviewed exterior/placement scope. Status-only reconciliation preserved all 24 GLBs and 236 bound inspected images. All **33 recent review pins / 198 GLBs** are current.
 - Muntplein, Ferreres, Kokushkin and Spean Thma remain disabled incomplete drafts. Yasnaya Polyana has 19/19 declared members reviewed, but the separate woodshed is unresolved. Stari Most's towers and historic quays remain outside its asset scope. Ava has a historical placement, not a present-day intact crossing.
-- Model production is paused; no subsequent building has started. The owner manages Git; GLBs remain ignored generated outputs. No new upload or release is performed.
+- Model work is authorized to continue. The earlier pause-after-building request is revoked. The current two-model pass completed Toruń and Wiesgħa. Laboe Naval Memorial is next; no new model process is running at this checkpoint.
+
+## Resumed model pass — 2026-10-28
+
+- **40_wall_street**: 62 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 546 / 3716 / 8660 / 15780; initial 355,444 bytes; closeup 1,199,484 bytes. Current source and retained geographic scope are bound to the review.
+- **ristna_lighthouse**: 46 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 998 / 3442 / 14326 / 40234; initial 319,320 bytes; closeup 2,917,400 bytes. Current source and retained geographic scope are bound to the review.
+- **pilsum_lighthouse**: 45 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 932 / 2822 / 6006 / 9074; initial 263,232 bytes; closeup 615,008 bytes. Current source and retained geographic scope are bound to the review.
+- **azadi_tower**: 46 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 640 / 1484 / 8444 / 29212; initial 204,804 bytes; closeup 2,781,224 bytes. Current source and retained geographic scope are bound to the review.
+- **galata_tower**: 45 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 540 / 3970 / 13946 / 38174; initial 336,340 bytes; closeup 2,863,772 bytes. Current source and retained geographic scope are bound to the review.
+- **mole_antonelliana**: 46 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 965 / 3973 / 15933 / 51817; initial 351,996 bytes; closeup 3,845,552 bytes. Current source and retained geographic scope are bound to the review.
+- **giottos_campanile**: 45 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 670 / 3206 / 15520 / 52768; initial 273,836 bytes; closeup 4,378,556 bytes. Current source and retained geographic scope are bound to the review.
+- **leaning_tower_of_torun**: 72 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 986 / 3998 / 14596 / 39126; initial 337,100 bytes; closeup 2,679,648 bytes. Current source and retained geographic scope are bound to the review.
+- **triq_il_wiesg_a_tower**: 44 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 598 / 3198 / 6770 / 22250; initial 281,496 bytes; closeup 1,719,452 bytes. Current source and retained geographic scope are bound to the review.
 
 ## Current completed model pass
 
@@ -17,21 +29,22 @@ Updated 2026-10-27. **Goal paused at the owner’s request after completing Lakh
 
 **Lakhta Centre:** refreshed main-tower exterior and retained attributed geographic frame, **904 / 3,996 / 14,962 / 14,962 triangles**, **556,640 initial bytes**, **1,440,988 closeup bytes**. All 44 current images were inspected against retained designer pictures. Six clean GLBs and two focused skyline/reconstruction tests pass; shared granite/painted-metal graphs load once and model geometry unloads. Current joined-path outputs supersede the historical 15,202-triangle approval. Adjacent wings/arch and surveyed plaza grade remain excluded. [Review](../places/ud/udt/lakhta_centre/QA-REVIEW.md).
 
-The final cached source build verified **7,411 GLBs** as **assets-fb2b8de4471f28e0**. All 24 integrated input pins / 144 GLB hashes remain current; the full readiness ledger check passes. Bulk images remain local and GLBs ignored. Goal work is stopped at this checkpoint.
+The final cached source build verified **7,411 GLBs** as **assets-fb2b8de4471f28e0**. All 24 integrated input pins / 144 GLB hashes remain current; the full readiness ledger check passes. Bulk images remain local and GLBs ignored. This is the completed prior batch checkpoint.
 
 Grande Arche's refresh inspected 25 current medium-fi frames and retained 20 unchanged portable/shared frames with explicit proofs. Six clean GLBs and three tests pass; initial download is 316,164 bytes. Emley Moor's changed source/runtime/closeup were reviewed in 68 fresh frames; six clean GLBs and three tests pass. Its browser levels are 866 / 3,978 / 15,880 / 51,104 triangles; initial download is 369,020 bytes. Existing epoch, approximate bearing and host-terrain limits remain explicit.
 
-## Planned next structure after owner resume — 40_wall_street
+## Current explicit structure — Laboe Naval Memorial next
 
-Refresh 40 Wall Street's changed medium-fi outputs against its retained source-local pictures and placement work in one targeted pass. Preserve reconstruction limits and actual source masters; no new bespoke engineering or terrain research.
+The current resumed pass completed two structures in one continuous build/review cycle each:
 
-- [ ] Reproduce selected source and compare current source/runtime/LOD records.
-- [ ] Inspect current portable/shared/lighting/LOD views against retained pictures and the geographic frame.
-- [ ] Record current hashes, materials, checks and explicit limits; refresh readiness once.
+- **Leaning Tower of Toruń:** current39,126triangle joined-frame exterior, four budgeted levels986/3,998/14,596/39,126triangles,337,100initial bytes. All72 current images, including20 interpreted relative-grade views, inspected; six clean GLBs and three focused tests pass. Restored missing LOD variant registrations. Corrected obsolete claims that current bytes equal the historical45,782triangle master. Existing north-street/south-base grade remains interpreted rather than surveyed. [Review](../places/u3/u3m/leaning_tower_of_torun/QA-REVIEW.md).
+- **Triq il-Wiesgħa Tower:** detailed22,250triangle master byte-preserved. New source-local browser levels598/3,198/6,770/22,250triangles;281,496initial bytes. All44 current images inspected; six clean GLBs and two focused tests pass. Distant stone courses/arch heads aggregate while keeping the batter, recessed openings, open terrace, corner shelter and pole. Three existing shared256px graphs; no private images. Retained approximate coastal frame and height/terrain limitations. [Review](../places/sq/sq6/triq_il_wiesg_a_tower/QA-REVIEW.md).
 
-The bridge runtime integration passed all 398 worldgen-earth tests, repository lint/type checks, source/schema checks, packed-install smoke, documentation consistency and sample-viewer visual checks. Four stale regional-atlas expectations were corrected; one cube browser capture passed unchanged on a focused retry. These completed runtime gates need not repeat for ordinary model edits. Current work uses the targeted model loop; refresh the cached source-build stamp for a meaningful batch.
+All **33 accepted review pins /198 GLBs** remain intact. The nine recent refreshes total **451 inspected frames,54 clean GLBs and21 focused passing tests**. The latest broad source-build milestone remains **7,615 GLBs /assets-2400cca990366d44**; this targeted two-model pass does not repeat the full source build, engine CI or npm audit. A later meaningful batch milestone will refresh that input-addressed stamp.
 
-Register source and authoring indexes before binding capture input hashes. A targeted import must restore runtime LOD metadata before readiness checks. Retaining inspected renders across metadata-only edits requires exact input/output/pixel proofs; changed outputs require current visual inspection. Physical phone/laptop timing remains unmeasured.
+**The full goal remains incomplete:528 ready,472 unready;331 still without source masters.** Continue with Laboe’s current source/LOD/materials/render review using retained references and map work. Complete and record each model before moving to the next. Existing native-fit drafts, collections with unresolved members and category activation remain incomplete. Physical laptop/phone timings remain unmeasured.
+
+The owner explicitly requested resuming production. The app’s goal API still reports paused and the available status tool cannot set active; its Resume control is needed for automatic continuation between chat turns. No new pause has been requested or issued.
 
 ## Pont du Garigliano — scoped exterior and approximate native placement complete
 

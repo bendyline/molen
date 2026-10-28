@@ -35,7 +35,10 @@
   "scaleBasis": "The named OSM footprint measures approximately 8.50 × 8.43 m. The national inventory independently locates the tower and identifies the inland door, opposite sea window, roof embrasures and wall-contained stair. Original photographs by the custodian and Joseph Psaila establish the restored exterior and block courses. Vertical intervals, aperture dimensions and shelter depth are proportional photographic reconstructions tied to the mapped base, not a measured elevation survey. The complete body, roof and restored shelter are authored; temporary ladders and neighboring pillboxes are separate.",
   "appearance": {
     "state": "restored exterior after 2009 works",
-    "currentWorldEligible": true
+    "currentWorldEligible": true,
+    "identity": "Restored 1659 Maltese coastal watchtower with battered limestone plinth, two projecting stringcourses, elevated inland entry, seaward window, shallow roof embrasures and a corner stair shelter.",
+    "master": "Preserve the current22250triangle detailed exterior and imported master bytes.",
+    "browser": "All four levels retain the battered body, projecting stringcourses, raised inland door, opposite sea window, flank loop, open terrace/parapet notches, corner stair shelter and flagpole. Far arches aggregate their shallow curved heads; district uses coarse flat stone courses; street retains original course rhythms as flat cards; closeup retains the detailed master."
   },
   "geographicProposal": {
     "mapGeometrySource": "map-frame.json",
@@ -113,9 +116,9 @@
     "Current restored exterior is modeled. The internal rooms, spiral stair and neighboring World War II pillboxes are separate from this exterior asset.",
     "Individual masonry joints and repair tints are original reconstructions of the photographic pattern; they are not a stone-by-stone survey.",
     "Mapped plan is approximately 8.5 m square. No target-specific measured elevation was published in the consulted inventory; heights and small roof fittings are proportioned from primary photographs.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Current browser levels aggregate shallow distant arch heads and individual stone relief; no coastal rock/terrain survey, interior, individual conservation stone pattern or physical-device performance claim."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -184,6 +187,144 @@
         6,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 0.65
+  },
+  "mesh": {
+    "triangles": 22250,
+    "vertices": 44484,
+    "groups": 4,
+    "bytes": 1871252,
+    "sha256": "sha256:0f22e10df3adf8c8009dd0bddc26dbfd0acf95fc345c8141a686f9527b7efa2d",
+    "min": [
+      -4.2817254066467285,
+      0,
+      -4.2817254066467285
+    ],
+    "max": [
+      4.2817254066467285,
+      13.800000190734863,
+      4.670000076293945
+    ]
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sq/sq6/triq_il_wiesg_a_tower/models/wiesgha-lods.mjs",
+    "export": "wiesghaSkyline",
+    "level": "skyline",
+    "errorMeters": 0.2,
+    "authoredLevels": {
+      "district": {
+        "export": "wiesghaDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7
+          },
+          "shadow": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "wiesghaStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7
+          },
+          "shadow": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "wiesghaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7
+          },
+          "shadow": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "district-whole",
+      "position": [
+        18,
+        13,
+        22
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "skyline-terrace",
+      "position": [
+        12,
+        21,
+        -16
+      ],
+      "lookAt": [
+        0,
+        8.5,
+        0
+      ],
+      "reviewLod": "skyline"
     }
   ]
 }

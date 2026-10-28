@@ -1,0 +1,142 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "state": "restored exterior after 2009 works",
+    "currentWorldEligible": true,
+    "identity": "Restored 1659 Maltese coastal watchtower with battered limestone plinth, two projecting stringcourses, elevated inland entry, seaward window, shallow roof embrasures and a corner stair shelter.",
+    "master": "Preserve the current22250triangle detailed exterior and imported master bytes.",
+    "browser": "All four levels retain the battered body, projecting stringcourses, raised inland door, opposite sea window, flank loop, open terrace/parapet notches, corner stair shelter and flagpole. Far arches aggregate their shallow curved heads; district uses coarse flat stone courses; street retains original course rhythms as flat cards; closeup retains the detailed master."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 0.65
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sq/sq6/triq_il_wiesg_a_tower/models/wiesgha-lods.mjs",
+    "export": "wiesghaSkyline",
+    "level": "skyline",
+    "errorMeters": 0.2,
+    "authoredLevels": {
+      "district": {
+        "export": "wiesghaDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7
+          },
+          "shadow": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "wiesghaStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7
+          },
+          "shadow": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "wiesghaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.7
+          },
+          "shadow": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Current restored exterior is modeled. The internal rooms, spiral stair and neighboring World War II pillboxes are separate from this exterior asset.",
+    "Individual masonry joints and repair tints are original reconstructions of the photographic pattern; they are not a stone-by-stone survey.",
+    "Mapped plan is approximately 8.5 m square. No target-specific measured elevation was published in the consulted inventory; heights and small roof fittings are proportioned from primary photographs.",
+    "Current browser levels aggregate shallow distant arch heads and individual stone relief; no coastal rock/terrain survey, interior, individual conservation stone pattern or physical-device performance claim."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "district-whole",
+      "position": [
+        18,
+        13,
+        22
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "skyline-terrace",
+      "position": [
+        12,
+        21,
+        -16
+      ],
+      "lookAt": [
+        0,
+        8.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ],
+  "sourceDocuments": [
+    "models/wiesgha-lods.mjs",
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md"
+  ]
+}

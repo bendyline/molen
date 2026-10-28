@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.ristna_lighthouse",
-  "sourceHash": "sha256:d3328345835d0fc4183bba5a833628ac5c70f6a31c71a4b5f33b4bd23d5869a1",
-  "runtimeHash": "sha256:8cf6ddc2767969926f1c2f20a5d72b9e28ed23afd1ab2cc3c06d2a911be68d23",
-  "fixtureHash": "sha256:f55930ad1e6f65444be9b7980501d0eef3dc3c6d3706028226a99cf0509c2cb6",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.ristna_lighthouse",
+    "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0"
+  },
+  "sourceHash": "sha256:6fdaecdf31aa34667a2f7c9de51eb1e8926650ab6c0cf2015a2bc08ce80d6259",
+  "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 4268,
   "runtimeLods": [
@@ -52,24 +59,24 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:337251a0dd348a8cfc36a5ff2544164ca609ceb29596feaf12cc43e8947c90cd",
-      "bytes": 1088544,
-      "gzipBytes": 186061,
-      "triangles": 14278,
-      "cpuBytes": 1082364,
-      "gpuBytes": 1082364,
+      "hash": "sha256:5aa8882235f9835e93d37defc47731600dd1b36c85eb5d5f0d8a3475f473d443",
+      "bytes": 1075548,
+      "gzipBytes": 183365,
+      "triangles": 14326,
+      "cpuBytes": 1069368,
+      "gpuBytes": 1069368,
       "errorMeters": 0.12,
       "drawCalls": 5
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:8cdfb838440a07d698c02fee4d18caae0f6160657b68ac72aa6f21df9677a534",
-      "bytes": 3211424,
-      "gzipBytes": 539843,
-      "triangles": 41242,
-      "cpuBytes": 3205224,
-      "gpuBytes": 3205224,
+      "hash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
+      "bytes": 2917400,
+      "gzipBytes": 500510,
+      "triangles": 40234,
+      "cpuBytes": 2911200,
+      "gpuBytes": 2911200,
       "errorMeters": 0.04,
       "drawCalls": 5
     }
@@ -81,14 +88,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:b6d1c611398409b347e885d67ac30af2fc1fcc5f93a22bdef95d9aeb0601d98a",
+      "hash": "sha256:6201f4b4c8be4593844bce4efb85d94bc0aad9b1b6e4fcd5c1d29b5a2215ea7b",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 45712,
+        "triangles": 44704,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -110,19 +120,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:083d51044dc00fa7fc554c47a083103263d7536f11d76d79068c8b05e1d9517b",
+      "hash": "sha256:e2c0e146211efb791ad57809604b8f3aea283f074ff88a2e5d694675dfb47b2b",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 45712,
+        "triangles": 44704,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -144,19 +159,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:d59f2e186f41c1275a177a1328efa5faf061f30cdc043790b3f53f071ef50f1a",
+      "hash": "sha256:61127e9a3d7a11819cd64d810b78c651726c7b144ba3eab72d013f52be29c0af",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 45712,
+        "triangles": 44704,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -178,19 +198,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:08042e7b753b49dca6db2e457df3920801ea17e0bcb9aa9caa3c26cd6ffcb9b8",
+      "hash": "sha256:78c94a44cea7be98f2bfa99e56b9058fbcfc589cfb585278dc5d9d1e67960187",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 45712,
+        "triangles": 44704,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -212,13 +237,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:5db54fe66464a9c147e6a408d2733a4c83b6a574363d5279355e4b2ecf773b52",
+      "hash": "sha256:21d3449cb831c85d1e94e577d579f43fd7b9e592e8afa9485e74ba1133f51ba0",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:c5135d64b18ec07c253bc799e5a0fb5a5bbb42ffbbc2f8e8b030b0f87704eb7e",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -246,13 +276,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:a7910ef2aa6cdc29b9c1bda615d68a307fd87819a60d950832170f0ddb7922f7",
+      "hash": "sha256:1f7f1791f852c670a8be3dea873e20058ef07108377c1f38574a1d2afd055f65",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:c5135d64b18ec07c253bc799e5a0fb5a5bbb42ffbbc2f8e8b030b0f87704eb7e",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -280,13 +315,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:6ae6ae673bf553019c23ad34c9fb46c61347f1ac18a2a8d17761d99ae89a69d4",
+      "hash": "sha256:8992a90db9a8135ecabcdcf9538f2e13bb1b30b5a154c089d244b6739c04da32",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:c5135d64b18ec07c253bc799e5a0fb5a5bbb42ffbbc2f8e8b030b0f87704eb7e",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -314,13 +354,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:fbd8e6ab52a9887b57c42238e96957071d1f807023ba36235576fc52e90bda91",
+      "hash": "sha256:22821f69aeccceefe6ce4f798ef33cbed303b2e261f8469efcc257847961aec6",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:c5135d64b18ec07c253bc799e5a0fb5a5bbb42ffbbc2f8e8b030b0f87704eb7e",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -348,13 +393,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:b5547a49c8d735b5da5226e861954382da922c14b4af1f2624caab3a69989ccd",
+      "hash": "sha256:9eb5fc16aea71ebc14501d060a9e7545e298eb65df1a254edc28647cafbd8625",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:0a1e01604811c0d48ae8b88696da9422ab805c22984c4abc71c360b8b9bd58ef",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -382,13 +432,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:6ceb154c07f7b1636406d05d94dbcf8d7dd5c0a49e6263c5e0f95395bd2e9f53",
+      "hash": "sha256:f99b1463e00b846391eaa26635cfa41ad47713525037ca1dec3b7cf99a0e7c56",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:0a1e01604811c0d48ae8b88696da9422ab805c22984c4abc71c360b8b9bd58ef",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -416,13 +471,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:51b900676cccef85a188de00d2b32d9abd1e5d835cdd242bfa1b1c2a978040a2",
+      "hash": "sha256:4638630a5a7ba206064607fa83de9bca9ef33631fdbc4db0c1452ee2d5413819",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:0a1e01604811c0d48ae8b88696da9422ab805c22984c4abc71c360b8b9bd58ef",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -450,13 +510,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:ed4317d2eefab187498c384e077e283f5732b70e1693d0de005f76edea0511fb",
+      "hash": "sha256:9977b76d9138678a184501bb60b1e7c5e687fea0b019974c41dc00580d569947",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:0a1e01604811c0d48ae8b88696da9422ab805c22984c4abc71c360b8b9bd58ef",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -484,13 +549,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:91143355d5aaaa49682e70a5314a07d3e84277b3c6433d74519846963905ab31",
+      "hash": "sha256:b47d2c3e7e37b8e3bd8bded7df60c4552ad6288c74c73f78d0b7d7277df3325e",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:0a1e01604811c0d48ae8b88696da9422ab805c22984c4abc71c360b8b9bd58ef",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -518,19 +588,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/near-entry-ribs.png",
-      "hash": "sha256:0cec7ed20f5c417159ccdd351a2cf230546d0f862092d71db490b3e568c7899e",
+      "hash": "sha256:366d1516c76be0ef6e103bc7d9778fa8856e9058b0f72de2f834f91003ae082b",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 45312,
+        "triangles": 44304,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -552,19 +627,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/near-concrete-braces.png",
-      "hash": "sha256:f062a92e44c5b89cfef4f634f194408368997bc907fb8e3a5387ca27c6b641e7",
+      "hash": "sha256:ee3dadc61ac3972dd73557888e930f075034da46c9a0b7eebf3a4df602d0285a",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 44164,
+        "triangles": 43156,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -586,19 +666,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/near-service-gallery.png",
-      "hash": "sha256:93349a1dd9c82dd0e70f503437c673015dc43bfe03ce26b970bfc1088deba1d2",
+      "hash": "sha256:cd749d4cc3946ae37523aecdbd7ad580b98a57a6c6eb64a01b4f8c7a96506445",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 44564,
+        "triangles": 43556,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -620,19 +705,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/near-lantern.png",
-      "hash": "sha256:e9cfe6d887db81769a1cd8704854f5fdb043b00319bde9756718ab5ac6aa6c54",
+      "hash": "sha256:a9558c29753699f0155ba24681bd8f845f558e2e6916690daf550a001f84eb1a",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 39276,
+        "triangles": 38268,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -654,19 +744,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:4f8341c9a6930f6689873e57f02a1c03ddf01e003a3cd834c759958e90c60476",
+      "hash": "sha256:872d22ea7a27c7a6cdb63327863c0d62366f850845ac17cbea4d8322a8693d51",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 45712,
+        "triangles": 44704,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -688,19 +783,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/ports-street.png",
-      "hash": "sha256:7bd17a2ec4555f3b2d79af1c0423ca8a5eab05ef17ca248f3551b04d67687876",
+      "hash": "sha256:96001291e783aaa7e30bb16c0ee2ea30baa4673bbca7ff7b8b3ec50c2b81681c",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:5aa8882235f9835e93d37defc47731600dd1b36c85eb5d5f0d8a3475f473d443",
         "level": "street",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 18240,
+        "triangles": 18288,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -722,13 +822,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/ribs-district.png",
-      "hash": "sha256:29d7d3187109275f5128e55c6ea7b2ab5d1cee82c771b5dabb5557b9592a15a9",
+      "hash": "sha256:6e441e6a086e5af568745806357f0b17a779866c76eabff8307f489da01cbd8f",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:c5135d64b18ec07c253bc799e5a0fb5a5bbb42ffbbc2f8e8b030b0f87704eb7e",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -756,19 +861,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/lantern-closeup.png",
-      "hash": "sha256:f33983def35fd453aab8aa0ca038dcc3b825153b784ed9d7e38dfe20b753187f",
+      "hash": "sha256:82690203c747450e16fe5577006a513d866751294480c2b491a87095b9b91683",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 39276,
+        "triangles": 38268,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -790,19 +900,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/lantern-street.png",
-      "hash": "sha256:6ef854bb4b56c216342af331f14a670b89fc979e39d6735e3b548d271a485f0f",
+      "hash": "sha256:b8f4f2906889337da9141ef4b200acb2660dc3204438299f6bd297ac6cd3d581",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:5aa8882235f9835e93d37defc47731600dd1b36c85eb5d5f0d8a3475f473d443",
         "level": "street",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 16196,
+        "triangles": 16244,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -824,13 +939,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:989ee54ba7022cf9242c50c9f1c62c5bfc19a00cd61be10cd0514343478c7ea5",
+      "hash": "sha256:f0f47f63bdd7e954f44ed814e0d1cf1c564fbafe8f17a3f8c532c2f2bf420e13",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:0a1e01604811c0d48ae8b88696da9422ab805c22984c4abc71c360b8b9bd58ef",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -858,13 +978,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:a7910ef2aa6cdc29b9c1bda615d68a307fd87819a60d950832170f0ddb7922f7",
+      "hash": "sha256:1f7f1791f852c670a8be3dea873e20058ef07108377c1f38574a1d2afd055f65",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:c5135d64b18ec07c253bc799e5a0fb5a5bbb42ffbbc2f8e8b030b0f87704eb7e",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -892,19 +1017,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:6246c89e6ea038196296668e516d2c3f45d853738ec47e1077fdc53535ab0ff2",
+      "hash": "sha256:9bae180f5e74fd01708d5f167c79ced89c56fc9f293debf56231e1c39b04e472",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:5aa8882235f9835e93d37defc47731600dd1b36c85eb5d5f0d8a3475f473d443",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 18620,
+        "triangles": 18668,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -926,19 +1056,24 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:419ea3b2cd1f88f4b2b65b57c4767fb526f363317d61d744af91f4368844c3e6",
+      "hash": "sha256:8321d8e5327c98132e122f07ccba959ba552a9ba3b120f28cb299f3b35e8aadd",
       "state": {
+        "assetId": "molen.worldgen.structure.ristna_lighthouse",
+        "runtimeHash": "sha256:aa122b5af65f632322271665123dd380d1b410bb872572ccc67d4bdee319feb0",
+        "lodHash": "sha256:705a8916d689ae0c4e2a4178c6e2ef870967bf21f930f224eaf1b41250bfc2c9",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 45712,
+        "triangles": 44704,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -960,7 +1095,9 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 1
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
       }
     }
   ],

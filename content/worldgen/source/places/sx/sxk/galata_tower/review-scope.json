@@ -1,0 +1,209 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.6
+  },
+  "appearance": {
+    "identity": "Cylindrical masonry tower, two brick repair bands, fourteen-bay lower arcade, stepped corbelled balcony, upper observation windows, conical lead roof/four dormers/gold finial and south double stair.",
+    "master": "Detailed builder defaults reproduce the original master byte for byte. Four derivatives vary component sampling and retain separately declared scope.",
+    "browser": "Skyline keeps massing, two brick bands, dark observation band, full roof/ornament height and stairs. District restores real recessed large shaft windows and fourteen-bay arcades; street restores all window rows, open rail and corbels; closeup restores bars, chain courses, roof seams, finial balls and finer stair/curve samples.",
+    "scope": "Existing full static exterior, photo-proportioned openings/fittings and exact-QID center/south entrance. Host-supplied paving grade; individual repaired stones and historical calligraphy remain approximate."
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sx/sxk/galata_tower/models/galata-lods.mjs",
+    "export": "galataSkyline",
+    "level": "skyline",
+    "errorMeters": 0.35,
+    "authoredLevels": {
+      "district": {
+        "export": "galataDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "lead": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.62,
+            "metallic": 0.78,
+            "cylinder": true
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "galataStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "lead": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.62,
+            "metallic": 0.78,
+            "cylinder": true
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "galataCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.95,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0,
+            "cylinder": true
+          },
+          "lead": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.62,
+            "metallic": 0.78,
+            "cylinder": true
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "district-arcade",
+      "position": [
+        18,
+        49,
+        28
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-south-entry",
+      "position": [
+        11,
+        8,
+        23
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "skyline-whole",
+      "position": [
+        60,
+        33,
+        95
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ],
+  "sourceDocuments": [
+    "models/galata-lods.mjs",
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md"
+  ]
+}

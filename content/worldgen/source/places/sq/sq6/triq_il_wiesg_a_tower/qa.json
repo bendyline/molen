@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.triq_il_wiesg_a_tower",
-  "inputHash": "sha256:95a17ce399a261e83d32792c878309879364e7605704ed6396ac9374295bf35a",
-  "captureReportHash": "sha256:59be028a0d7c8519d34c897d34791f04460059d3d6ec1cc45cd5fbe787e757e8",
+  "inputHash": "sha256:5feb366653f23fe1eec450637af047482f11684a49f41f73c84567afb72e35d7",
+  "captureReportHash": "sha256:b424050d2cfd7f68588e89e05e37a2f8fa5c60fe548cba8e33c1692001e19028",
   "visualReview": {
     "status": "passed",
     "scope": "Complete detailed world-viewer exterior reconstruction",
@@ -18,14 +18,12 @@
       "shots/roof-embrasures-and-turret.png",
       "shots/far-silhouette.png"
     ],
-    "notes": [
-      "Inspected all 10 current portable frames: the square battered base, two projecting stringcourses, elevated inland doorway, opposite sea window, flank loop, shallow parapet embrasures, western corner stair shelter, roof vent, drain and flagpole are intact.",
-      "The roof remains open behind the parapet; the shelter doorway opens onto it. Repair tints and individual stone courses distinguish the reconstructed upper and lower facade. No stray or floating geometry, visible holes in wall surfaces, or clipped apertures were found."
-    ]
+    "notes": "Inspected all ten current portable master frames against retained restored exterior photographs, distinguishing the modern completed restoration from the retained historical ruin images. The complete battered limestone body, projecting lower/upper stringcourses, elevated inland door and stepped pale repair, opposite sea window, flank loop, shallow parapet embrasures, corner stair shelter with openings, drainage/ventilation fittings and flagpole remain represented. The22250triangle detailed editing/source and imported master bytes are preserved in this pass. Literal conservation stone-cut patterns and interiors remain outside scope.",
+    "captureReportHash": "sha256:b424050d2cfd7f68588e89e05e37a2f8fa5c60fe548cba8e33c1692001e19028"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fb29bc0ba0fad42a93d906aff20851f601a14b4d94e97117c0d40b986a41e430",
+    "captureReportHash": "sha256:6e0c4c0eeaa226550a529ad0442e9d1a7e88793deff83562262daab32d9ed353",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -38,23 +36,256 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": [
-      "Inspected all 10 current shared sky-PMREM frames, including north-up placement. Raw limestone has subtle mineral variation without a second ashlar grid over the modeled joints. Pale repaired stone, recessed timber door and metal fittings retain their relative material character.",
-      "The geographic fixture loads this model through the real placement renderer and passes unloading assertions. All four facades, the raised door close-up, roof and distant silhouette were reviewed; the original frame report predates the optional terrain-cutout fixture addition, which does not apply to this model."
-    ]
+    "notes": "Inspected all ten shared-material and geographic frames. Three existing256px raw limestone, plain wood and painted-metal graphs load once; opaque local shadow surfaces retain recessed openings. Metric stone grain sits over original modeled course joints and repair tints. Six GLBs contain no embedded or private images. North-up source-local mapped outline is visible beneath the projecting parapet and confirms the signed entrance/sea faces. The model library disposes all geometry on unload. Shared neutral stone remains a stylized surface, not unique photographic stonework."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:c685de5cdc7a197fd0e9f58bb8b091e20e07954eb28e1d8d6df82e5529e57e38",
-    "notes": [
-      "Source-local map-frame.json is bound by the spec hash and records the named tower footprint way 191444573. The way has no Wikidata tag: identity is manually corroborated against NICPMI 1384's map and photograph, the custodian's restored exterior, and the unique coastal location.",
-      "The footprint center [14.564199,35.877973175] and southeast-directed first edge fix heading -0.9087991986513986 radians. Native +Z is inland southwest, matching the elevated doorway; native -Z is the opposite seaward window. The 8.49 m authored square agrees with the mapped 8.496 by 8.432 m body within approximately 0.08 m per corner. The projecting inland base repair is intentionally additional to the main wall outline.",
-      "The north-up capture confirms the applied heading and ground contact. This initial capture does not include a magenta outline because the global evidence record is reference-only; the independently reviewed source-local frame provides the exact plan evidence. Vertical intervals are proportional reconstructions from photographs, not a measured elevation survey; surrounding shore rocks and slope remain terrain data."
-    ]
+    "notes": "Retained named OSM way191444573, anchor[14.564199,35.877973175], heading-0.9087991986513986. The mapped approximately8.496x8.432m shaft agrees with the8.49m authored base, with projecting inland base repair additional to that footprint. Native+Z is inland southwest with the elevated door; native-Z faces the sea northeast with the opposite window. The map has no Wikidata tag; existing manual identity corroboration remains explicit rather than claiming exact-QID identification. Current north-up source-local outline confirms the transform. GroundY0 is nominal host coastal terrain contact; surrounding rock slope and absolute grade are not surveyed or replaced by this flat fixture."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Current medium-fi exterior/browser review supersedes the old maximum-fidelity approval. Detailed source remains sha256:0f22e10df3adf8c8009dd0bddc26dbfd0acf95fc345c8141a686f9527b7efa2d and runtime master sha256:3fc8b3dfc01fbb51386cb757365486ba03aedeb6c13590287b850fe7871ec11d. The master recipe is unchanged. Source-local component derivatives aggregate only distant stone relief, shallow arch heads and band joints. Vertical intervals remain proportional photographic reconstructions tied to the mapped base. Original repair tints and individual course patterns are not a stone-by-stone restoration survey. Interior rooms/stairs, neighboring pillboxes, temporary ladders and shore terrain remain separate."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:0f22e10df3adf8c8009dd0bddc26dbfd0acf95fc345c8141a686f9527b7efa2d",
+  "runtimeHash": "sha256:3fc8b3dfc01fbb51386cb757365486ba03aedeb6c13590287b850fe7871ec11d",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7d1e2270ac153c96c67e9e20927a980eb1f8a2614e68f81159614aa0e1649b16",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/inland-door-and-batter.png",
+      "medium-fi/seaward-window.png",
+      "medium-fi/repaired-stone-and-door.png",
+      "medium-fi/roof-embrasures-and-turret.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/district-whole.png",
+      "medium-fi/skyline-terrace.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all24 current medium-fi frames: economy/high noon/late, silhouette, five exterior detail views, whole district, skyline terrace and four transitions. Every level preserves the battered body, two stringcourses, recessed door/window/loop, open terrace with shallow parapet notches, southwest corner shelter and full13.8m flagpole envelope. Skyline drops individual courses and aggregates shallow segmental arch heads into square recesses while retaining their depth. District uses coarser flat stone courses. Street retains the original course rhythm as flat cards; closeup keeps the original detailed stone relief and hardware. These intentional distance reductions remove subpixel stone side faces while retaining the architectural exterior. The terrace center remains below parapet height; the preserved detailed source's upper stringcourse cap forms its8.85m surface. No missing walls, inward visible faces or floating roof components were found."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
-    "notes": "Finished detailed original exterior of the restored 2009 appearance using the custodian, the national inventory and original Joseph Psaila photographs. Modeled the battered stone base and joints, projecting cornices, raised door and hardware, sea window, flank loop, roof parapet and embrasures, restored stair shelter, roof vent, drain and pole. No target-specific surveyed elevation was published in the consulted inventory. Heights, aperture sizes, block pattern and small fittings are photographic reconstructions tied to the mapped plan. The internal rooms and spiral stair, temporary ladders, surrounding shoreline and adjacent World War II pillboxes are separate from the requested exterior model."
-  }
+    "notes": "Finished detailed original exterior of the restored 2009 appearance using the custodian, the national inventory and original Joseph Psaila photographs. Modeled the battered stone base and joints, projecting cornices, raised door and hardware, sea window, flank loop, roof parapet and embrasures, restored stair shelter, roof vent, drain and pole. No target-specific surveyed elevation was published in the consulted inventory. Heights, aperture sizes, block pattern and small fittings are photographic reconstructions tied to the mapped plan. The internal rooms and spiral stair, temporary ladders, surrounding shoreline and adjacent World War II pillboxes are separate from the requested exterior model.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sq/sq6/triq_il_wiesg_a_tower/models/source.glb",
+        "hash": "sha256:0f22e10df3adf8c8009dd0bddc26dbfd0acf95fc345c8141a686f9527b7efa2d",
+        "bytes": 1871252,
+        "triangles": 22250,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -4.2817254066467285,
+          0,
+          -4.2817254066467285
+        ],
+        "max": [
+          4.2817254066467285,
+          13.800000190734863,
+          4.670000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sq/sq6/triq_il_wiesg_a_tower/model.glb",
+        "hash": "sha256:3fc8b3dfc01fbb51386cb757365486ba03aedeb6c13590287b850fe7871ec11d",
+        "bytes": 1870788,
+        "triangles": 22250,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -4.2817254066467285,
+          0,
+          -4.2817254066467285
+        ],
+        "max": [
+          4.2817254066467285,
+          13.800000190734863,
+          4.670000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sq/sq6/triq_il_wiesg_a_tower/model.skyline.glb",
+        "hash": "sha256:2ff6b196abdeec9bb736f1cb874bcf6acc76093c0659d30c6d50242fc54784de",
+        "bytes": 47844,
+        "triangles": 598,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -4.244999885559082,
+          0,
+          -4.244999885559082
+        ],
+        "max": [
+          4.244999885559082,
+          13.800000190734863,
+          4.670000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sq/sq6/triq_il_wiesg_a_tower/model.district.glb",
+        "hash": "sha256:941f9cad780bfa90314e3207e1b44cefd64a0f378526652ffa525c9dd69a8ce2",
+        "bytes": 233652,
+        "triangles": 3198,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -4.2817254066467285,
+          0,
+          -4.2817254066467285
+        ],
+        "max": [
+          4.2817254066467285,
+          13.800000190734863,
+          4.670000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sq/sq6/triq_il_wiesg_a_tower/model.street.glb",
+        "hash": "sha256:eb1da057102a30b8fd4b08e2f88266869c219e1a3090a981a22e9a49a28dfcde",
+        "bytes": 511988,
+        "triangles": 6770,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -4.2817254066467285,
+          0,
+          -4.2817254066467285
+        ],
+        "max": [
+          4.2817254066467285,
+          13.800000190734863,
+          4.670000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sq/sq6/triq_il_wiesg_a_tower/model.closeup.glb",
+        "hash": "sha256:9dfb6975378febea016ea9d463cac5c6b7afe0bab49c5199e7795ccfdee88bea",
+        "bytes": 1719452,
+        "triangles": 22250,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -4.2817254066467285,
+          0,
+          -4.2817254066467285
+        ],
+        "max": [
+          4.2817254066467285,
+          13.800000190734863,
+          4.670000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six GLBs are Khronos-clean with zero errors/warnings/images. Two focused tests pass in2.13s: complete height/base, independently compared batter and directed door/sea-window/flank-loop depths against the original detailed builder, low terrace center versus open parapet notches and complete corner shelter; deterministic four-file rebuild preserving current source/runtime SHA-256 digests, registered variants, budgets and separate12-byte position/normal GPU streams. Selected source/import verification and strict medium-fi checks pass. The original terrace cap was used as an independent reference when correcting the test's assumed roof plane; geometry was not altered to satisfy that assumption."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:87f1bbc5d9183ba5e259b7cb8cb35ebb86f3adbd02a5a4216c92804331234493",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:2ff6b196abdeec9bb736f1cb874bcf6acc76093c0659d30c6d50242fc54784de",
+        "bytes": 47844,
+        "gzipBytes": 7140,
+        "triangles": 598,
+        "cpuBytes": 46428,
+        "gpuBytes": 46428,
+        "errorMeters": 0.2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:941f9cad780bfa90314e3207e1b44cefd64a0f378526652ffa525c9dd69a8ce2",
+        "bytes": 233652,
+        "gzipBytes": 46838,
+        "triangles": 3198,
+        "cpuBytes": 228708,
+        "gpuBytes": 228708,
+        "errorMeters": 0.12,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:eb1da057102a30b8fd4b08e2f88266869c219e1a3090a981a22e9a49a28dfcde",
+        "bytes": 511988,
+        "gzipBytes": 89848,
+        "triangles": 6770,
+        "cpuBytes": 507036,
+        "gpuBytes": 507036,
+        "errorMeters": 0.04,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:9dfb6975378febea016ea9d463cac5c6b7afe0bab49c5199e7795ccfdee88bea",
+        "bytes": 1719452,
+        "gzipBytes": 269822,
+        "triangles": 22250,
+        "cpuBytes": 1714476,
+        "gpuBytes": 1714476,
+        "errorMeters": 0,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 281496,
+    "notes": "598 /3198 /6770 /22250triangles,1 /4 /4 /4draws. Initial skyline+district281496bytes; street511988bytes; closeup1719452bytes. All1k/4k/16k/64k geometry limits and initial3MBphone/6MBlaptop budgets pass. Previous automatic district4035 and street16011 exceeded their strict caps; authored component levels now fit. Error reservations0.2/0.12/0.04/0m describe authored aggregation, not measured global surface error. Physical-device timings remain unmeasured."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:5feb366653f23fe1eec450637af047482f11684a49f41f73c84567afb72e35d7",
+    "sourceHash": "sha256:0f22e10df3adf8c8009dd0bddc26dbfd0acf95fc345c8141a686f9527b7efa2d",
+    "runtimeHash": "sha256:3fc8b3dfc01fbb51386cb757365486ba03aedeb6c13590287b850fe7871ec11d",
+    "framesInspected": 44,
+    "note": "All44 current portable/shared/medium-fi frames were freshly captured and inspected. Retained restored exterior photographs and the existing source-local coastal map frame were reused; historical ruin photographs were not treated as the current exterior. No bespoke terrain/engineering research or new textures. Local derivative module and scope were registered before final capture/input binding. No full engine CI, npm audit, upload or Git mutation was performed."
+  },
+  "limitations": [
+    "Current acceptance covers the restored static medium-fi exterior and retained approximate signed coastal placement. Detailed masters are preserved; far stone relief and shallow arch heads are intentionally aggregated. Heights and shore contact remain photographic/host-terrain approximations, not a measured conservation or coastal terrain survey. Physical laptop/phone timings remain unmeasured."
+  ]
 }

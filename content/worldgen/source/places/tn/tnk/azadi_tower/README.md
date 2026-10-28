@@ -25,6 +25,5 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs aza
 - Blade curvature, arch intrados, soffit tile lattice and crown opening dimensions are fitted to official exterior photography rather than the original structural drawings.
 - Blue joints and crossed soffit ribs are geometric; their exact tile tessellation, marble panel seam layout and tiny crown motifs remain simplified.
 - The under-plaza museum, fountain and landscaped square are outside this exterior monument asset.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

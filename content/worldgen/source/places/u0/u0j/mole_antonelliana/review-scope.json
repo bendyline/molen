@@ -1,0 +1,181 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 4.5
+  },
+  "appearance": {
+    "identity": "Asymmetric portico/rear wings, lower classical colonnade and semicircular clerestory, convex pavilion cupola with parallel ribs and circular roof lights, double-order tempietto, circular galleries, octagonal spire and current star.",
+    "master": "Keep the detailed source and runtime masters byte-identical. Browser derivatives use source-local component sampling rather than whole-mesh reduction.",
+    "browser": "Skyline retains full massing, portico/rear-wing asymmetry, main cupola profile and stepped upper silhouette at full167.5m height. District restores recessed facade/clerestory and a sparse colonnade while aggregating thin upper rails/columns. Street restores full lower column rhythm, ribs and roof lights; closeup adds profile details, more samples, square/circular rails and ribs with side faces. Tiny individual roof fasteners and subpixel joints are omitted.",
+    "scope": "Full static exterior with declared photographic reconstruction of minor details. Retained exact-QID center and entrance/rear-wing direction; host supplies nominal base grade. Museum interiors, independent neighbouring buildings and precise sloping street edge are excluded."
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u0/u0j/mole_antonelliana/models/mole-lods.mjs",
+    "export": "moleSkyline",
+    "level": "skyline",
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "moleDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.15
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "moleStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.15
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "moleCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.15
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "district-whole",
+      "position": [
+        240,
+        120,
+        320
+      ],
+      "lookAt": [
+        0,
+        82,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "district-tempietto",
+      "position": [
+        24,
+        97,
+        31
+      ],
+      "lookAt": [
+        0,
+        96,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-cupola-ribs",
+      "position": [
+        38,
+        65,
+        54
+      ],
+      "lookAt": [
+        0,
+        62,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "skyline-whole",
+      "position": [
+        240,
+        120,
+        320
+      ],
+      "lookAt": [
+        0,
+        82,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ],
+  "sourceDocuments": [
+    "models/mole-lods.mjs",
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md"
+  ],
+  "limitations": [
+    "Lower facade floor heights and exact glazing subdivisions are fitted to museum exterior photography. The measured upper structure is reconstructed with simplified capitals and scroll brackets.",
+    "Roof ribs and 18 circular roof lights per side follow the contemporary engineering account; irregular restoration patches and individual iron fittings are simplified.",
+    "The nineteenth-century plate supplies structural dimensions but the present star and modern glazing follow museum photographs. Tiny carved figures and allegorical pediment sculpture are represented only by their architectural surrounds.",
+    "Current medium-fi browser models deliberately aggregate distant colonnades and rails, omit subpixel roof fasteners and joints, and use a full-height point proxy for the small terminal star at skyline/district. The true star and roof-light pattern return in street/closeup. Nominal ground contact is host supplied; no surveyed sloping street grade or physical-device performance claim."
+  ]
+}

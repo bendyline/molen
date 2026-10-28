@@ -1,0 +1,149 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 2.2
+  },
+  "appearance": {
+    "identity": "Polychrome white/green/rose marble, octagonal reinforced corners,26 hexagonal and28 diamond lower relief panels,16 statue niches, paired biforas and three-light belfry, Gothic gables and an open flat roof terrace.",
+    "master": "Keep the current detailed source and imported master byte-identical. Browser levels use explicit component sampling rather than a whole-mesh reduction.",
+    "browser": "Skyline retains the full height/footprint, north recess, three loggia levels and open terrace. District adds grouped rose/green corner inlays, both narrative panel cycles,16 niche figures and coarse Gothic surrounds. Street restores more corner fields, three-dimensional figures, mullions, tracery, pinnacles and open crown posts. Closeup restores15 corner fields, four arch-band rings, geometric rosettes, profiled columns and sparse crockets. Fine marble inlays use flat colored surfaces on the shared neutral marble graph.",
+    "scope": "Full static architectural exterior with the existing original geometric artwork reconstructions; not literal casts or inscriptions. Retained exact-QID center, facade axes and cathedral-facing north entrance. Ground contact remains host-supplied nominal pavement."
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sr/srb/giottos_campanile/models/giotto-lods.mjs",
+    "export": "giottoSkyline",
+    "level": "skyline",
+    "errorMeters": 0.6,
+    "authoredLevels": {
+      "district": {
+        "export": "giottoDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "darkstone": {
+            "graph": "stone_basalt",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "giottoStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "darkstone": {
+            "graph": "stone_basalt",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "giottoCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "darkstone": {
+            "graph": "stone_basalt",
+            "slot": "trim",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The narrative bas-reliefs and statues retain their counts, shapes and architectural niches but are original simplified sculptural reliefs, not reproductions of the individual named artworks.",
+    "Panel elevations, marble flower designs, moulding sections and window tracery are fitted to exterior photography. Exact conservation stone-cut patterns are not claimed.",
+    "Permanent exterior is modeled; temporary restoration scaffolding is excluded.",
+    "Current browser levels deliberately aggregate distant inlays/sculpture/rails and omit subpixel robe folds and tiny fittings. Geometric figures and reliefs preserve the architectural program rather than individual artworks. No surveyed pavement grade or physical-device performance claim."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "district-whole",
+      "position": [
+        100,
+        55,
+        130
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-biforas",
+      "position": [
+        17,
+        50,
+        24
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "skyline-terrace",
+      "position": [
+        30,
+        107,
+        38
+      ],
+      "lookAt": [
+        0,
+        81,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ],
+  "sourceDocuments": [
+    "models/giotto-lods.mjs",
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md"
+  ]
+}
