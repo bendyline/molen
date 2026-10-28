@@ -1534,6 +1534,8 @@ async function main(): Promise<void> {
     content.airports && params.get('airportTraffic') !== '0'
       ? new EarthAirportPopulation(content.airports, content.types, {
           spawn: (stand) => {
+            // Let the supporting airport pavement arrive before models compete for admission.
+            if (surfaceRenderer.stats().aprons === 0) return false;
             const [x, z] = wgs84ToWebMercator(stand.longitude, stand.latitude);
             return flight.spawnApron(
               stand.id,

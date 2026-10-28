@@ -2641,6 +2641,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             content.types,
             {
               spawn: (stand) => {
+                if (!stack || stack.surface.stats().aprons === 0) return false;
                 ownedApi.spawn({
                   id: stand.id,
                   type: stand.type,
