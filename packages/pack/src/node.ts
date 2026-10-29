@@ -1,7 +1,7 @@
 // Node-only pack helpers: open packs from files and source directories, build them, extract them.
 
-import { mkdir, open, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
-import { dirname, join, relative, resolve, sep } from 'node:path';
+import { copyFile, mkdir, open, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { basename, dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
   PACK_MANIFEST_ENTRY,
@@ -13,6 +13,7 @@ import {
 } from '@bendyline/molen-schema';
 import { createPack, type PackFile, type PackOptions, sha256 } from './build';
 import {
+  isDirectoryPackUrl,
   type OpenPackOptions,
   openDirectoryPack,
   openPack,
@@ -333,11 +334,23 @@ export async function writeDirectoryPack(
   return { manifest, manifestBytes: new TextEncoder().encode(text).length };
 }
 
+/**
+ * The largest zip `hostPacks` publishes as is (4 MiB): readers fetch an archive this small whole
+ * (`openPack`'s `wholeThreshold`, `cachingRangeReader`'s `wholeBelow`), so it costs one request
+ * however many files it holds.
+ */
+export const HOSTED_ZIP_BELOW: number = 4 * 1024 * 1024;
+
 export interface HostPacksOptions {
   /** Where to publish: `<pack id>/<version>/…` per pack, then `index.json`. */
   outDir: string;
   /** Which pack ids to publish (default: every pack in the index). */
   include?(id: string): boolean;
+  /**
+   * Publish a pack as its zip when the zip is at most this many bytes (default
+   * `HOSTED_ZIP_BELOW`); larger packs are published unzipped. 0 unzips every pack.
+   */
+  zipBelow?: number;
   log?(line: string): void;
 }
 
@@ -349,6 +362,8 @@ export interface HostedPacks {
   written: string[];
   /** Pack ids whose version directory was already complete. */
   reused: string[];
+  /** Pack ids published as their zip rather than unzipped. */
+  zipped: string[];
 }
 
 /** A pack version's directory: the first 12 hex digits of its contentHash. */
@@ -357,12 +372,14 @@ export function hostedVersionDir(contentHash: string): string {
 }
 
 /**
- * Publish the packs a pack index lists (a `molen/pack-index@1` file beside its built zips)
- * unzipped, for a CDN. Each pack version goes to `<id>/<12 hex of its contentHash>/` once and never
- * changes, so a host can serve those files as immutable; `index.json`, written last and the only
- * document that changes between releases, names each version's `molen-pack.json`. Complete
- * version directories from an earlier run are kept; older versions are left in place for clients
- * still holding an older index.
+ * Publish the packs a pack index lists (a `molen/pack-index@1` file beside its built zips) for a
+ * CDN. Each pack version goes to `<id>/<12 hex of its contentHash>/` once and never changes, so a
+ * host can serve those files as immutable. A pack whose zip is at most `zipBelow` bytes is
+ * published as that zip, which readers fetch whole in one request; a larger one is published
+ * unzipped, every file at its own path, so readers fetch only the files they use. `index.json`,
+ * written last and the only document that changes between releases, names each version's zip or
+ * `molen-pack.json`. Complete versions from an earlier run are kept; older versions are left in
+ * place for clients still holding an older index.
  */
 export async function hostPacks(
   sourceIndexPath: string,
@@ -376,15 +393,44 @@ export async function hostPacks(
   });
   const parsed = validate('pack-index', JSON.parse(raw));
   if (!parsed.ok) throw new Error(`${source} is not a pack index:\n${parsed.formatted}`);
+  const zipBelow = options.zipBelow ?? HOSTED_ZIP_BELOW;
   const packs: Record<string, PackIndexEntry> = {};
   const written: string[] = [];
   const reused: string[] = [];
+  const zipped: string[] = [];
   const ids = Object.keys(parsed.value.packs).sort();
   for (const id of ids) {
     if (options.include !== undefined && !options.include(id)) continue;
     const entry = parsed.value.packs[id] as PackIndexEntry;
     const version = hostedVersionDir(entry.contentHash);
     const dir = join(outDir, id, version);
+    const sourceFile = join(dirname(source), ...entry.file.split('/'));
+    if (!isDirectoryPackUrl(entry.file) && (await stat(sourceFile)).size <= zipBelow) {
+      // The zip itself, under its own name (a hash of its bytes), beside any earlier unzipped copy.
+      const name = basename(sourceFile);
+      const target = join(dir, name);
+      let complete = false;
+      try {
+        (await openFilePack(target, { expect: { contentHash: entry.contentHash } })).close();
+        complete = true;
+      } catch {}
+      if (complete) reused.push(id);
+      else {
+        (await openFilePack(sourceFile, { expect: { contentHash: entry.contentHash } })).close();
+        await mkdir(dir, { recursive: true });
+        await copyFile(sourceFile, target);
+        written.push(id);
+        log(`${id}@${entry.version} → ${id}/${version}/${name}`);
+      }
+      zipped.push(id);
+      packs[id] = {
+        version: entry.version,
+        file: `${id}/${version}/${name}`,
+        contentHash: entry.contentHash,
+        size: (await stat(target)).size,
+      };
+      continue;
+    }
     const manifestPath = join(dir, PACK_MANIFEST_ENTRY);
     let manifestBytes: number | undefined;
     try {
@@ -397,7 +443,7 @@ export async function hostPacks(
     if (manifestBytes === undefined) {
       // Missing or interrupted: write the version directory from scratch.
       await rm(dir, { recursive: true, force: true });
-      const pack = await openPackAt(join(dirname(source), ...entry.file.split('/')), {
+      const pack = await openPackAt(sourceFile, {
         expect: { contentHash: entry.contentHash },
       });
       try {
@@ -421,5 +467,5 @@ export async function hostPacks(
   await mkdir(outDir, { recursive: true });
   const indexPath = join(outDir, PACK_INDEX_FILE);
   await writeFile(indexPath, `${JSON.stringify(index, null, 2)}\n`);
-  return { indexPath, index, written, reused };
+  return { indexPath, index, written, reused, zipped };
 }

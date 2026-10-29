@@ -21,7 +21,7 @@ it('rehosts a directory index and downloads only selected vehicle files on a no-
       size: built.bytes.length,
       contentHash: built.manifest.contentHash,
     });
-    const first = await hostPacks(index, { outDir: join(root, 'first') });
+    const first = await hostPacks(index, { outDir: join(root, 'first'), zipBelow: 0 });
     const second = await hostPacks(first.indexPath, { outDir: join(root, 'second') });
     const entry = second.index.packs['example.fleet']!;
     const local = await openPackAt(join(root, 'second', entry.file));

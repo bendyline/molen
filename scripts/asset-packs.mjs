@@ -431,6 +431,23 @@ export async function packAssets({
 }
 
 /** The installed GLBs are this checkout's bundle: its inputs' key, with every file intact. */
+/** Runtime LODs a sidecar records but does not name in files.variants, where packs look them up. */
+async function sidecarProblems(root, directory) {
+  const path = `${directory}/asset.json`;
+  const sidecar = await readFile(join(root, path), 'utf8').then(JSON.parse, (error) => {
+    if (error.code !== 'ENOENT') throw error;
+  });
+  const lods = sidecar?.format === 'molen/asset@1' ? sidecar.runtimeLods : undefined;
+  if (!lods) return [];
+  const problems = [];
+  if (lods.masterHash !== sidecar.hash)
+    problems.push(`${path}: runtimeLods were derived from another master`);
+  for (const level of lods.levels ?? [])
+    if (sidecar.files?.variants?.[level.name] !== level.file)
+      problems.push(`${path}: files.variants.${level.name} must name ${level.file}`);
+  return problems;
+}
+
 export async function checkAssets({ root = ROOT, prefix = '', log = console.log } = {}) {
   const current = await assetInputs(root);
   const stamp = await readStamp(root);
@@ -452,6 +469,13 @@ export async function checkAssets({ root = ROOT, prefix = '', log = console.log 
       errors.push(`Changed ${file.path}; run pnpm assets:build, or pnpm assets:fetch --force.`);
   }
   if (errors.length) throw new Error(errors.join('\n'));
+  // Builds rewrite runtime sidecars beside these GLBs, so check what they say about them too.
+  for (const directory of new Set(files.map((f) => dirname(f.path))))
+    errors.push(...(await sidecarProblems(root, directory)));
+  if (errors.length)
+    throw new Error(
+      `${errors.join('\n')}\nRegenerate their LOD metadata: node packages/tooling/scripts/generate-landmark-lods.mjs`,
+    );
   const listed = new Set(stamp.files.map((f) => f.path));
   const masters = await readMasters(root);
   const local = (await inventory(root)).filter(

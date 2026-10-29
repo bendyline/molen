@@ -411,6 +411,35 @@ test('check explains changed inputs, reports missing files and notes local work'
   await assert.rejects(checkAssets({ root, log: quiet }), /Missing assets\/test\/model.glb/);
 });
 
+test('check rejects a sidecar whose runtime LODs are not its variants', async () => {
+  const root = await fixture();
+  await asset(root, 'assets/test/model.glb');
+  await asset(root, 'assets/test/model.skyline.glb');
+  await installFixture(root);
+  const sidecar = {
+    format: 'molen/asset@1',
+    files: { main: 'model.glb', variants: {} },
+    hash: 'sha256:master',
+    runtimeLods: {
+      masterHash: 'sha256:master',
+      levels: [{ name: 'skyline', file: 'model.skyline.glb' }],
+    },
+  };
+  const write = () => writeFile(join(root, 'assets/test/asset.json'), JSON.stringify(sidecar));
+  // What an import replay followed by an LOD reuse used to leave behind.
+  await write();
+  await assert.rejects(
+    checkAssets({ root, log: quiet }),
+    /assets\/test\/asset.json: files.variants.skyline must name model.skyline.glb\n.*generate-landmark-lods/,
+  );
+  sidecar.files.variants.skyline = 'model.skyline.glb';
+  await write();
+  await checkAssets({ root, log: quiet });
+  sidecar.hash = 'sha256:reimported';
+  await write();
+  await assert.rejects(checkAssets({ root, log: quiet }), /derived from another master/);
+});
+
 async function sourceBundleFixture(
   root,
   { models = [{ path: 'models/source.glb' }], documents = ['reference.json'], textures = [] } = {},

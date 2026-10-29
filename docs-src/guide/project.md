@@ -78,7 +78,7 @@ archives, several GB in all) are on the rolling
 [`packs` release](https://github.com/bendyline/molen/releases/tag/packs) with every other pack:
 `npx molen pack fetch https://github.com/bendyline/molen/releases/download/packs/index.json
 <ids…>`. A browser can't read those downloads directly (GitHub sends no CORS headers); host the
-zips yourself, or read the unzipped copy at `https://qualla.com/_a/index.json`. Without its model
+zips yourself, or read the hosted copy at `https://qualla.com/_a/index.json`. Without its model
 archives, the style pack draws landmarks as procedural buildings.
 
 A project lists the packs it uses, in order, and their types join the registry like the

@@ -1,10 +1,13 @@
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
+import { createBlockCache, createMemoryByteStore } from '../src/block-cache';
 import { createPack, type PackFile } from '../src/build';
-import { hostedVersionDir, hostPacks, recordInPackIndex } from '../src/node';
+import { cachingRangeReader } from '../src/cache-adapters';
+import { HOSTED_ZIP_BELOW, hostedVersionDir, hostPacks, recordInPackIndex } from '../src/node';
 import { isDirectoryPackUrl, openDirectoryPack, openPack, PackIntegrityError } from '../src/pack';
+import { urlRangeReader } from '../src/source';
 import { encode, sampleFiles } from './helpers';
 
 const temps: string[] = [];
@@ -69,7 +72,7 @@ describe('unzipped packs', () => {
 
   it('publishes versioned directories that read back byte for byte', async () => {
     const out = await temp();
-    const hosted = await hostPacks(await builtPacks(), { outDir: out });
+    const hosted = await hostPacks(await builtPacks(), { outDir: out, zipBelow: 0 });
     const entry = hosted.index.packs['example.pack'];
     if (entry === undefined) throw new Error('example.pack is not in the hosted index');
     const version = hostedVersionDir(entry.contentHash);
@@ -108,8 +111,8 @@ describe('unzipped packs', () => {
   it('skips version directories that are already complete', async () => {
     const out = await temp();
     const index = await builtPacks();
-    await hostPacks(index, { outDir: out });
-    const again = await hostPacks(index, { outDir: out });
+    await hostPacks(index, { outDir: out, zipBelow: 0 });
+    const again = await hostPacks(index, { outDir: out, zipBelow: 0 });
     expect(again.written).toEqual([]);
     expect(again.reused).toEqual(['example.pack']);
   });
@@ -117,10 +120,10 @@ describe('unzipped packs', () => {
   it('rewrites a version directory whose manifest was never written', async () => {
     const out = await temp();
     const index = await builtPacks();
-    const first = await hostPacks(index, { outDir: out });
+    const first = await hostPacks(index, { outDir: out, zipBelow: 0 });
     const file = first.index.packs['example.pack']?.file as string;
     await rm(join(out, file));
-    const again = await hostPacks(index, { outDir: out });
+    const again = await hostPacks(index, { outDir: out, zipBelow: 0 });
     expect(again.written).toEqual(['example.pack']);
     expect((await readFile(join(out, file))).length).toBeGreaterThan(0);
   });
@@ -134,7 +137,7 @@ describe('unzipped packs', () => {
   it('escapes each path segment when fetching', async () => {
     const out = await temp();
     const files = [{ path: 'docs/a b#c.txt', bytes: encode('spaced') }];
-    const hosted = await hostPacks(await builtPacks(files), { outDir: out });
+    const hosted = await hostPacks(await builtPacks(files), { outDir: out, zipBelow: 0 });
     const entry = hosted.index.packs['example.pack'] as { file: string };
     const pack = await openPack(new URL(entry.file, CDN), { fetch: cdn(out) });
     expect(await pack.readText('docs/a b#c.txt')).toBe('spaced');
@@ -142,7 +145,7 @@ describe('unzipped packs', () => {
 
   it('fails a file whose bytes do not match the manifest', async () => {
     const out = await temp();
-    const hosted = await hostPacks(await builtPacks(), { outDir: out });
+    const hosted = await hostPacks(await builtPacks(), { outDir: out, zipBelow: 0 });
     const entry = hosted.index.packs['example.pack'] as { file: string };
     const dir = join(out, entry.file, '..');
     await writeFile(join(dir, 'NOTICE.md'), 'tampered');
@@ -166,7 +169,7 @@ describe('unzipped packs', () => {
       openDirectoryPack(new URL('molen-pack.json', CDN), { fetch: cdn(out) }),
     ).rejects.toThrow(/solid blocks/);
 
-    const hosted = await hostPacks(await builtPacks(), { outDir: out });
+    const hosted = await hostPacks(await builtPacks(), { outDir: out, zipBelow: 0 });
     const entry = hosted.index.packs['example.pack'] as { file: string };
     await expect(
       openDirectoryPack(new URL(entry.file, CDN), {
@@ -181,5 +184,103 @@ describe('unzipped packs', () => {
     await expect(
       openDirectoryPack(new URL('missing/molen-pack.json', CDN), { fetch: cdn(out) }),
     ).rejects.toThrow(/404/);
+  });
+});
+
+describe('hosted zips', () => {
+  it('publishes a small pack as its zip, read whole in one request', async () => {
+    const out = await temp();
+    const index = await builtPacks();
+    const zip = await readFile(join(dirname(index), 'example.pack-0001.zip'));
+    expect(zip.length).toBeLessThanOrEqual(HOSTED_ZIP_BELOW);
+    const hosted = await hostPacks(index, { outDir: out });
+    const entry = hosted.index.packs['example.pack'];
+    if (entry === undefined) throw new Error('example.pack is not in the hosted index');
+    const version = hostedVersionDir(entry.contentHash);
+    expect(entry.file).toBe(`example.pack/${version}/example.pack-0001.zip`);
+    expect(entry.size).toBe(zip.length);
+    expect(hosted.zipped).toEqual(['example.pack']);
+    expect(hosted.written).toEqual(['example.pack']);
+    expect(await readFile(join(out, entry.file))).toEqual(zip);
+
+    // Every file, however many, from one request.
+    const fetch = cdn(out);
+    const pack = await openPack(new URL(entry.file, CDN), {
+      fetch,
+      sizeHint: entry.size,
+      integrity: 'sha256',
+      expect: { contentHash: entry.contentHash },
+    });
+    for (const file of sampleFiles()) {
+      expect(new Uint8Array(await pack.readBytes(file.path))).toEqual(file.bytes);
+    }
+    expect(fetch.requests).toEqual([`/${entry.file}`]);
+    pack.close();
+  });
+
+  it('opens a hosted zip from cached bytes after one request', async () => {
+    const out = await temp();
+    const hosted = await hostPacks(await builtPacks(), { outDir: out });
+    const entry = hosted.index.packs['example.pack'] as { file: string; size: number };
+    const archive = { key: 'example.pack', url: new URL(entry.file, CDN).href, size: entry.size };
+    const store = createMemoryByteStore();
+    const fetch = cdn(out);
+    const open = async (cache = createBlockCache(store)) =>
+      openPack(
+        cachingRangeReader(urlRangeReader(archive.url, { ...archive, fetch }), cache, archive),
+      );
+
+    const cache = createBlockCache(store);
+    const first = await open(cache);
+    for (const file of sampleFiles()) await first.readBytes(file.path);
+    expect(fetch.requests).toEqual([`/${entry.file}`]);
+    await cache.flush();
+
+    const again = await open();
+    for (const file of sampleFiles()) {
+      expect(new Uint8Array(await again.readBytes(file.path))).toEqual(file.bytes);
+    }
+    expect(fetch.requests).toHaveLength(1);
+  });
+
+  it('unzips a pack whose zip is larger than zipBelow', async () => {
+    const index = await builtPacks();
+    const size = (await readFile(join(dirname(index), 'example.pack-0001.zip'))).length;
+    const atLimit = await hostPacks(index, { outDir: await temp(), zipBelow: size });
+    expect(atLimit.index.packs['example.pack']?.file).toMatch(/\.zip$/);
+    const over = await hostPacks(index, { outDir: await temp(), zipBelow: size - 1 });
+    expect(over.index.packs['example.pack']?.file).toMatch(/\/molen-pack\.json$/);
+    expect(over.zipped).toEqual([]);
+  });
+
+  it('keeps a published zip and rewrites a truncated one', async () => {
+    const out = await temp();
+    const index = await builtPacks();
+    const first = await hostPacks(index, { outDir: out });
+    const again = await hostPacks(index, { outDir: out });
+    expect(again.written).toEqual([]);
+    expect(again.reused).toEqual(['example.pack']);
+
+    const file = join(out, first.index.packs['example.pack']?.file as string);
+    const whole = await readFile(file);
+    await writeFile(file, whole.subarray(0, whole.length - 10));
+    const repaired = await hostPacks(index, { outDir: out });
+    expect(repaired.written).toEqual(['example.pack']);
+    expect(await readFile(file)).toEqual(whole);
+  });
+
+  it('refuses a zip whose contentHash the index does not match', async () => {
+    const dir = await temp();
+    const built = await createPack(sampleFiles(), { id: 'example.pack', version: '1.0.0' });
+    await writeFile(join(dir, 'example.pack-0001.zip'), built.bytes);
+    const index = await recordInPackIndex(dir, 'example.pack', {
+      version: '1.0.0',
+      file: 'example.pack-0001.zip',
+      contentHash: `sha256:${'0'.repeat(64)}`,
+      size: built.bytes.length,
+    });
+    await expect(hostPacks(index, { outDir: await temp() })).rejects.toThrow(
+      /expected sha256:0000/,
+    );
   });
 });
