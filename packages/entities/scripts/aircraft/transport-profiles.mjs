@@ -125,9 +125,38 @@ export const transportProfiles = {
     eye: [0.57, 4.15, 4.05],
     cabinWidth: 2.65,
     smoothNose: true,
-    nose: [[0,0.012,2.59,2.62],[0.1,0.22,2.41,2.83],[0.4,0.5,2.12,3.13],[1,0.89,1.78,3.62],[1.8,1.23,1.53,4.1],[2.65,1.51,1.42,4.63],[3.5,1.72,1.38,5.01],[4.5,1.86,1.38,5.2],[6,1.88,1.38,5.22]],
+    nose: [
+      [0, 0.012, 2.59, 2.62],
+      [0.1, 0.22, 2.41, 2.83],
+      [0.4, 0.5, 2.12, 3.13],
+      [1, 0.89, 1.78, 3.62],
+      [1.8, 1.23, 1.53, 4.1],
+      [2.65, 1.51, 1.42, 4.63],
+      [3.5, 1.72, 1.38, 5.01],
+      [4.5, 1.86, 1.38, 5.2],
+      [6, 1.88, 1.38, 5.22],
+    ],
     // Pane corners: [half-width, height, distance aft of tip].
-    glazing: [[[0.038,4.02,2.2],[1.13,4.02,2.94],[1.06,4.65,3.51],[0.038,4.69,3.03]],[[1.18,4,3.05],[1.57,3.77,4.05],[1.37,4.61,4.12],[1.11,4.64,3.61]],[[1.6,3.78,4.18],[1.75,4.01,5.02],[1.57,4.6,4.83],[1.4,4.61,4.25]]],
+    glazing: [
+      [
+        [0.038, 4.02, 2.2],
+        [1.13, 4.02, 2.94],
+        [1.06, 4.65, 3.51],
+        [0.038, 4.69, 3.03],
+      ],
+      [
+        [1.18, 4, 3.05],
+        [1.57, 3.77, 4.05],
+        [1.37, 4.61, 4.12],
+        [1.11, 4.64, 3.61],
+      ],
+      [
+        [1.6, 3.78, 4.18],
+        [1.75, 4.01, 5.02],
+        [1.57, 4.6, 4.83],
+        [1.4, 4.61, 4.25],
+      ],
+    ],
     cabin: {
       count: 41,
       front: 6.8,
@@ -220,9 +249,34 @@ export const transportProfiles = {
     eye: [0.53, 3.37, 3.75],
     cabinWidth: 2.35,
     smoothNose: true,
-    nose: [[0,0.01,2.05,2.08],[0.12,0.2,1.9,2.25],[0.45,0.43,1.62,2.55],[1.1,0.76,1.32,2.94],[1.9,1.04,1.21,3.39],[2.8,1.26,1.2,3.81],[3.8,1.41,1.2,4.04],[5.1,1.47,1.2,4.06],[6.3,1.47,1.2,4.06]],
+    nose: [
+      [0, 0.01, 2.05, 2.08],
+      [0.12, 0.2, 1.9, 2.25],
+      [0.45, 0.43, 1.62, 2.55],
+      [1.1, 0.76, 1.32, 2.94],
+      [1.9, 1.04, 1.21, 3.39],
+      [2.8, 1.26, 1.2, 3.81],
+      [3.8, 1.41, 1.2, 4.04],
+      [5.1, 1.47, 1.2, 4.06],
+      [6.3, 1.47, 1.2, 4.06],
+    ],
     // Pane corners: [half-width, height, distance aft of tip].
-    glazing: [[[0.035,3.13,1.56],[0.95,3.14,2.31],[0.88,3.76,3.16],[0.035,3.79,2.58]],[[1,3.15,2.44],[1.32,3.16,3.96],[1.36,3.2,4.08],[1.23,3.67,4.06],[1.17,3.73,3.95],[0.94,3.75,3.28]]],
+    glazing: [
+      [
+        [0.035, 3.13, 1.56],
+        [0.95, 3.14, 2.31],
+        [0.88, 3.76, 3.16],
+        [0.035, 3.79, 2.58],
+      ],
+      [
+        [1, 3.15, 2.44],
+        [1.32, 3.16, 3.96],
+        [1.36, 3.2, 4.08],
+        [1.23, 3.67, 4.06],
+        [1.17, 3.73, 3.95],
+        [0.94, 3.75, 3.28],
+      ],
+    ],
     cabin: { count: 8, front: 6.65, back: 18.95, halfWidth: 0.355, halfHeight: 0.26 },
     engine: { radius: 0.91, length: 3.65, x: 2.04, y: 3.35, z: -7.0 },
     wing: { y: 1.65, z: -1.65, span: 13.35, sweep: 9.3, root: 5.9, tip: 0.98, dihedral: 0.035 },
@@ -254,9 +308,32 @@ export const transportProfiles = {
     eye: [0.53, 3.72, 3.55],
     cabinWidth: 2.3,
     smoothNose: true,
-    nose: [[0,0.012,2.35,2.38],[0.1,0.22,2.16,2.59],[0.35,0.47,1.93,2.85],[0.9,0.8,1.65,3.26],[1.6,1.09,1.46,3.75],[2.4,1.31,1.37,4.25],[3.25,1.45,1.35,4.51],[4.4,1.505,1.35,4.59],[5.7,1.505,1.35,4.59]],
+    nose: [
+      [0, 0.012, 2.35, 2.38],
+      [0.1, 0.22, 2.16, 2.59],
+      [0.35, 0.47, 1.93, 2.85],
+      [0.9, 0.8, 1.65, 3.26],
+      [1.6, 1.09, 1.46, 3.75],
+      [2.4, 1.31, 1.37, 4.25],
+      [3.25, 1.45, 1.35, 4.51],
+      [4.4, 1.505, 1.35, 4.59],
+      [5.7, 1.505, 1.35, 4.59],
+    ],
     // Pane corners: [half-width, height, distance aft of tip].
-    glazing: [[[0.035,3.57,1.65],[1.01,3.56,2.37],[0.94,4.18,3.08],[0.035,4.22,2.47]],[[1.06,3.55,2.5],[1.4,3.36,3.81],[1.22,4.15,3.59],[1,4.18,3.2]]],
+    glazing: [
+      [
+        [0.035, 3.57, 1.65],
+        [1.01, 3.56, 2.37],
+        [0.94, 4.18, 3.08],
+        [0.035, 4.22, 2.47],
+      ],
+      [
+        [1.06, 3.55, 2.5],
+        [1.4, 3.36, 3.81],
+        [1.22, 4.15, 3.59],
+        [1, 4.18, 3.2],
+      ],
+    ],
     cabin: {
       count: 23,
       front: 6.1,
@@ -289,9 +366,32 @@ export const transportProfiles = {
     eye: [0.5, 3.2, 3.5],
     cabinWidth: 2.16,
     smoothNose: true,
-    nose: [[0,0.012,1.63,1.66],[0.1,0.2,1.48,1.88],[0.4,0.42,1.3,2.11],[1,0.76,1.22,2.56],[1.7,1.04,1.23,3.12],[2.4,1.22,1.25,3.61],[3.3,1.32,1.26,3.87],[4.4,1.345,1.26,3.9],[5.6,1.345,1.26,3.9]],
+    nose: [
+      [0, 0.012, 1.63, 1.66],
+      [0.1, 0.2, 1.48, 1.88],
+      [0.4, 0.42, 1.3, 2.11],
+      [1, 0.76, 1.22, 2.56],
+      [1.7, 1.04, 1.23, 3.12],
+      [2.4, 1.22, 1.25, 3.61],
+      [3.3, 1.32, 1.26, 3.87],
+      [4.4, 1.345, 1.26, 3.9],
+      [5.6, 1.345, 1.26, 3.9],
+    ],
     // Pane corners: [half-width, height, distance aft of tip].
-    glazing: [[[0.032,2.94,1.56],[0.88,2.97,2.12],[0.82,3.53,2.82],[0.032,3.57,2.34]],[[0.93,2.96,2.23],[1.24,2.98,3.86],[1.11,3.51,3.68],[0.87,3.52,2.91]]],
+    glazing: [
+      [
+        [0.032, 2.94, 1.56],
+        [0.88, 2.97, 2.12],
+        [0.82, 3.53, 2.82],
+        [0.032, 3.57, 2.34],
+      ],
+      [
+        [0.93, 2.96, 2.23],
+        [1.24, 2.98, 3.86],
+        [1.11, 3.51, 3.68],
+        [0.87, 3.52, 2.91],
+      ],
+    ],
     cabin: {
       count: 27,
       front: 7.1,
@@ -322,10 +422,12 @@ export const transportProfiles = {
 // pane vertices determine the actual 3D shape, including the nearly level brow.
 export function prepareGlazing(p) {
   const s = { length: 0 };
-  p.windows = p.glazing.map((pane) => pane.map(([x, y, d]) => {
-    const [, w, b, t] = transportSection(s, p, -d);
-    return [Math.atan2(x / w, (y - (b + t) / 2) / ((t - b) / 2)) * 180 / Math.PI, d];
-  }));
+  p.windows = p.glazing.map((pane) =>
+    pane.map(([x, y, d]) => {
+      const [, w, b, t] = transportSection(s, p, -d);
+      return [(Math.atan2(x / w, (y - (b + t) / 2) / ((t - b) / 2)) * 180) / Math.PI, d];
+    }),
+  );
   return p;
 }
 for (const p of Object.values(transportProfiles)) if (p.glazing) prepareGlazing(p);
@@ -375,13 +477,22 @@ export function transportSection(s, p, z) {
   return a.map((v, k) => {
     if (!p.smoothNose || !k || i >= p.nose.length) return v + (b[k] - v) * t;
     const slope = (j) => {
-      const prev = sections[Math.max(0, j - 1)], here = sections[j], next = sections[Math.min(sections.length - 1, j + 1)];
-      const left = j ? (here[k] - prev[k]) / (here[0] - prev[0]) : (next[k] - here[k]) / (next[0] - here[0]);
+      const prev = sections[Math.max(0, j - 1)],
+        here = sections[j],
+        next = sections[Math.min(sections.length - 1, j + 1)];
+      const left = j
+        ? (here[k] - prev[k]) / (here[0] - prev[0])
+        : (next[k] - here[k]) / (next[0] - here[0]);
       const right = j < sections.length - 1 ? (next[k] - here[k]) / (next[0] - here[0]) : left;
-      return left * right <= 0 ? 0 : 2 * left * right / (left + right);
+      return left * right <= 0 ? 0 : (2 * left * right) / (left + right);
     };
     const h = b[0] - a[0];
-    return (2*t*t*t-3*t*t+1)*v + (t*t*t-2*t*t+t)*h*slope(i-1) + (-2*t*t*t+3*t*t)*b[k] + (t*t*t-t*t)*h*slope(i);
+    return (
+      (2 * t * t * t - 3 * t * t + 1) * v +
+      (t * t * t - 2 * t * t + t) * h * slope(i - 1) +
+      (-2 * t * t * t + 3 * t * t) * b[k] +
+      (t * t * t - t * t) * h * slope(i)
+    );
   });
 }
 
@@ -402,7 +513,9 @@ function paneData(s, p) {
         s.length / 2 - d,
         side > 0 ? (a * Math.PI) / 180 : 2 * Math.PI - (a * Math.PI) / 180,
       ]);
-      const world = p.glazing ? p.glazing[index].map(([x,y,d]) => [side*x,y,s.length/2-d]) : uv.map(([z, a]) => transportPoint(s, p, z, a));
+      const world = p.glazing
+        ? p.glazing[index].map(([x, y, d]) => [side * x, y, s.length / 2 - d])
+        : uv.map(([z, a]) => transportPoint(s, p, z, a));
       panes.push({ uv, world });
     }
   windowCache.set(p, panes);
@@ -446,7 +559,7 @@ function panePoint(s, p, uv, only) {
         return A.map((v, k) => v + (B[k] - v) * t);
       }
     }
-    {
+    if (only || p.glazing) {
       for (let j = 1; j < pane.uv.length - 1; j++) {
         const [a, b, c] = [pane.uv[0], pane.uv[j], pane.uv[j + 1]],
           den = (b[1] - c[1]) * (a[0] - c[0]) + (c[0] - b[0]) * (a[1] - c[1]);
@@ -466,7 +579,9 @@ function panePoint(s, p, uv, only) {
   if (nearest && nearest.dist < 0.7) {
     const t = 1 - nearest.dist / 0.7,
       weight = t * t * (3 - 2 * t);
-    return base.map((v, k) => v + nearest.delta[k] * weight);
+    return base.map((v, k) =>
+      p.glazing && k === 0 && Math.abs(Math.sin(uv[1])) < 1e-10 ? 0 : v + nearest.delta[k] * weight,
+    );
   }
   return base;
 }

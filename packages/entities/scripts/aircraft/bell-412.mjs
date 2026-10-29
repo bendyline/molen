@@ -29,7 +29,7 @@ export const bell412Frame = () => ({
   cabinZ: 2.12,
   cabinWidth: 2.25,
   eye: [-0.55, 1.94, 2.12],
-  panelZ: 2.91,
+  panelZ: 2.78,
   floor: 0.55,
   mainRotorPosition: [0, 3.52, 0],
 });
@@ -278,6 +278,26 @@ export function buildBell412(s) {
     );
     d.rod([side * 0.92, 1.39, 3.14], [side * 0.91, 1.39, 3.72], 0.012, metal);
   }
+  // Structural centre mullion and roof seam between the two windscreen halves.
+  // The two round edge seals alone leave a narrow open slot down the centre.
+  quad(
+    d,
+    np(rows[5], -Math.asin(0.035 / 0.93)).map((v, i) => (i === 1 ? v - 0.003 : v)),
+    np(rows[5], Math.asin(0.035 / 0.93)).map((v, i) => (i === 1 ? v - 0.003 : v)),
+    [0.035, 2.25, 2.56],
+    [-0.035, 2.25, 2.56],
+    paint,
+    [0, 0.4, 1],
+  );
+  quad(
+    d,
+    [-0.035, 2.25, 2.56],
+    [0.035, 2.25, 2.56],
+    [0.035, 2.26, 1.68],
+    [-0.035, 2.26, 1.68],
+    paint,
+    [0, 1, 0],
+  );
   // Close the nose aft underside without filling the cockpit volume.
   sheet(
     d,
@@ -498,16 +518,19 @@ export function buildBell412(s) {
 
 function cockpit412(root, m, sections) {
   const cabin = group(root, 'cockpit'),
-    d = detailKit(cabin, '412-cockpit'),
-    tools = panelTools(d),
+    panelRoot = group(cabin, '412-instrument-panel'),
     panel = mat('412-panel-gray', '#b3b8b5'),
     cloth = mat('412-gray-fabric', '#69716d', { roughness: 0.95 }),
     floor = mat('412-floor', '#514d43'),
     bindings = [],
-    z = 2.91;
+    z = 2.78;
+  let d = detailKit(cabin, '412-cockpit-floor');
   fittedFloor(d, sections, floor, { y: 0.64, front: 2.65, back: -1.95, width: 2.24 });
   d.box([1.0, 1.3, 0.65], [0, 1.22, -1.92], m.paint);
-  const xy = (u, v) => [(900 - u) / 900, 1.73 - v / 900];
+  d.finish();
+  d = detailKit(panelRoot, '412-panel');
+  const tools = panelTools(d),
+    xy = (u, v) => [(900 - u) / 1000, 1.73 - v / 1000];
   const outlinePixels = [
       [0, 150],
       [240, 65],
@@ -521,21 +544,19 @@ function cockpit412(root, m, sections) {
     ],
     face = outlinePixels.map(([u, v]) => [...xy(u, v), z]);
   const gaugeOpenings = [];
-  sheet(
-    d,
-    face.map(([x, y]) => [x, y, z + 0.28]),
-    m.dark,
-    [0, 0, 1],
-  );
+  // The glare shield narrows and falls towards the windscreen. Extruding the
+  // full panel rectangle forward pushed its shoulders through both windscreens.
+  const rear = face.map(([x, y]) => [x * 0.76, y - 0.16, z + 0.25]);
+  sheet(d, rear, m.dark, [0, 0, 1]);
   for (let i = 0; i < face.length; i++) {
     const a = face[i],
       b = face[(i + 1) % face.length];
-    quad(d, a, b, [b[0], b[1], z + 0.28], [a[0], a[1], z + 0.28], m.dark, [0, 1, 0]);
+    quad(d, a, b, rear[(i + 1) % face.length], rear[i], m.dark, [0, 1, 0]);
   }
   outline(d, face.slice(0, 7), 0.028, m.dark, false);
   const gauge = (u, v, r, label, source, att = false) => {
     const [x, y] = xy(u, v),
-      radius = r / 900;
+      radius = r / 1000;
     gaugeOpenings.push(
       Array.from({ length: 32 }, (_, i) => [
         x + Math.cos((i * Math.PI) / 16) * radius,
@@ -546,7 +567,7 @@ function cockpit412(root, m, sections) {
     tools.gauge(x, y, z - 0.001, radius, undefined, false);
     d.text(label, [x, y - radius * 0.35, z - 0.005], radius * 0.17, Math.PI, d.ivory);
     if (att) {
-      const h = group(cabin, `412-horizon-${u}`, [x, y, z - 0.006]),
+      const h = group(panelRoot, `412-horizon-${u}`, [x, y, z - 0.006]),
         hd = detailKit(h, 'attitude');
       const sky = mat('412-attitude-sky', '#628da3'),
         earth = mat('412-attitude-earth', '#81714e');
@@ -558,7 +579,7 @@ function cockpit412(root, m, sections) {
       bindings.push({ node: h.name, source: 'roll', property: 'rotation', axis: 'z', scale: 1 });
       d.rod([x - radius * 0.7, y, z - 0.012], [x + radius * 0.7, y, z - 0.012], 0.0025, d.amber);
     } else {
-      const n = group(cabin, `412-needle-${u}-${v}`, [x, y, z - 0.008]),
+      const n = group(panelRoot, `412-needle-${u}-${v}`, [x, y, z - 0.008]),
         nd = detailKit(n, 'needle');
       nd.rod([0, -radius * 0.2, 0], [0, radius * 0.77, 0], 0.002, nd.ivory);
       nd.finish();
@@ -620,7 +641,7 @@ function cockpit412(root, m, sections) {
   sheet(d, face, panel, [0, 0, -1], gaugeOpenings);
   const box = (u, v, w, h, material = m.dark) => {
     const [x, y] = xy(u, v);
-    return d.box([w / 900, h / 900, 0.013], [x, y, z - 0.021], material);
+    return d.box([w / 1000, h / 1000, 0.013], [x, y, z - 0.021], material);
   };
   box(680, 454, 215, 155);
   for (let row = 0; row < 7; row++)
@@ -669,6 +690,8 @@ function cockpit412(root, m, sections) {
     const [x, y] = xy(u, v);
     d.text(label, [x, y, z - 0.032], 0.01, Math.PI, m.seam);
   }
+  d.finish();
+  d = detailKit(cabin, '412-cockpit');
   const console = group(cabin, '412-console', [0, 0.82, 1.9]);
   console.rotation.x = Math.PI / 2 - 0.18;
   const pd = detailKit(console, 'pedestal'),
@@ -781,7 +804,7 @@ function cockpit412(root, m, sections) {
       scale: -0.4,
     });
     for (const k of [-1, 1]) {
-      const pedal = group(cabin, `412-pedal-${side}-${k}`, [x + k * 0.13, 0.65, 3.1]),
+      const pedal = group(cabin, `412-pedal-${side}-${k}`, [x + k * 0.13, 0.7, 3.1]),
         p = detailKit(pedal, 'pedal');
       p.box([0.18, 0.08, 0.04], [0, 0, 0], m.dark);
       p.rod([0, -0.1, 0.1], [0, 0, 0], 0.012, m.metal);

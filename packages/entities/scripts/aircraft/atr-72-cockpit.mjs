@@ -1,7 +1,9 @@
 /** ATR Training Center V14 (11-2015) panel arrangement, cross-checked with ATR's
  * published cockpit photograph. Geometry only; no copyrighted image pixels shipped.
  */
+
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { atr72Nose } from './atr-72-shape.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -14,6 +16,7 @@ import {
   sheet,
   T,
 } from './mesh-kit.mjs';
+import { transportCoaming } from './transport-profiles.mjs';
 
 const rect = (x, y, w, h, z) => [
   [x - w / 2, y - h / 2, z],
@@ -23,10 +26,14 @@ const rect = (x, y, w, h, z) => [
 ];
 export function buildATR72Cockpit(root, m, sections) {
   const cabin = group(root, 'cockpit'),
-    d = detailKit(cabin, 'ATR72-cabin'),
-    ins = instrumentGeometry(cabin, 'ATR72'),
-    { bindings, derived, ink, black } = ins,
-    pt = panelTools(d);
+    panelRoot = group(cabin, 'ATR72-instrument-panel', [0, 0, -0.38]),
+    ins = instrumentGeometry(panelRoot, 'ATR72'),
+    { bindings, derived, ink, black } = ins;
+  let d = detailKit(panelRoot, 'ATR72-panel');
+  // The poster is an unfolded layout; its full width cannot be used at the
+  // narrower forward fuselage station occupied by the installed dashboard.
+  panelRoot.scale.x = 0.87;
+  const pt = panelTools(d);
   const face = mat('ATR72-panel', '#627d8c'),
     liner = mat('ATR72-liner', '#d2d7d3'),
     seat = mat('ATR72-upholstery', '#677477'),
@@ -80,16 +87,12 @@ export function buildATR72Cockpit(root, m, sections) {
   outline(d, coaming, 0.018, m.dark);
   // The unfolded training poster separates these surfaces; the actual panel joins them.
   d.box([2.04, 0.15, 0.05], [0, py(665), z + 0.07], face);
-  for (const side of [-1, 1])
-    quad(
-      d,
-      [0, 3.03, 11.42],
-      [side * 0.91, 2.88, 11.42],
-      [side * 0.76, 2.89, 11.94],
-      [0, 2.94, 12.1],
-      m.dark,
-      [0, 1, 0],
-    );
+  transportCoaming(
+    cabin,
+    { length: 27.166 },
+    { profile: atr72Nose, eye: [0, 3.235, 10.45], panelZ: 11.02 },
+    m.dark,
+  );
   const sources = {};
   for (const [name, component, path] of [
     ['trueAirspeed', 'aircraftState', ['airspeed']],
@@ -279,7 +282,7 @@ export function buildATR72Cockpit(root, m, sections) {
       d.box([0.018, 0.018, 0.007], at(529 + side * 14, 839 + j * 24, -0.014), black);
       d.box([0.011, 0.004, 0.003], at(529 + side * 14, 835 + j * 24, -0.02), ink);
     }
-  const gear = group(cabin, 'ATR72-gear-lever', at(803, 822, -0.027)),
+  const gear = group(panelRoot, 'ATR72-gear-lever', at(803, 822, -0.027)),
     gd = detailKit(gear, gear.name);
   gd.rod([0, 0, 0], [0, -0.035, -0.035], 0.006, m.metal);
   gd.add(
@@ -296,7 +299,7 @@ export function buildATR72Cockpit(root, m, sections) {
     scale: 0.65,
   });
   for (let j = 0; j < 3; j++) {
-    const g = group(cabin, `ATR72-gear-lamp-${j}`, at(787 + j * 16, 772, -0.02)),
+    const g = group(panelRoot, `ATR72-gear-lamp-${j}`, at(787 + j * 16, 772, -0.02)),
       dd = detailKit(g, g.name);
     sheet(
       dd,
@@ -329,6 +332,8 @@ export function buildATR72Cockpit(root, m, sections) {
       d.box([0.012, 0.005, 0.004], at(u - w * 0.37 + j * w * 0.148, v - 12, -0.04), black);
     }
   }
+  d.finish();
+  d = detailKit(cabin, 'ATR72-cabin');
   // Two independent pitch columns and rectangular ram-horn wheels with top-mounted switches.
   for (const side of [-1, 1]) {
     const column = group(cabin, `ATR72-column-${side}`, [side * 0.58, 1.66, 10.9]),
@@ -389,7 +394,7 @@ export function buildATR72Cockpit(root, m, sections) {
       });
     }
     // Side shelf, oxygen mask, sill, chart holder and tiller on the captain's side.
-    d.box([0.25, 0.05, 1.4], [side * 1.02, 2.03, 10.65], face);
+    d.box([0.2, 0.05, 1.2], [side * 0.94, 2.03, 10.55], face);
     // Continuous kick panel and shelf return, joined to the floor and forward firewall.
     quad(
       d,
@@ -411,11 +416,11 @@ export function buildATR72Cockpit(root, m, sections) {
     );
     d.box([0.17, 0.17, 0.06], [side * 1.02, 2.13, 10.94], m.dark);
     d.rod([side * 1.08, 2.1, 10.9], [side * 0.98, 2.16, 10.77], 0.018, m.accent);
-    d.box([0.16, 0.13, 0.02], [side * 0.99, 2.45, 11.23], m.dark);
+    d.box([0.16, 0.13, 0.02], [side * 0.94, 2.45, 11.23], m.dark);
     for (let j = 0; j < 4; j++)
       d.rod(
-        [side * 0.99 - 0.05, 2.48 - j * 0.02, 11.217],
-        [side * 0.99 + 0.05, 2.48 - j * 0.02, 11.217],
+        [side * 0.94 - 0.05, 2.48 - j * 0.02, 11.217],
+        [side * 0.94 + 0.05, 2.48 - j * 0.02, 11.217],
         0.001,
         ink,
       );
@@ -505,7 +510,7 @@ export function buildATR72Cockpit(root, m, sections) {
   }
   pd.finish();
   // Overhead uses the four-column ATR arrangement. Switch positions are static decoration.
-  const oh = group(cabin, 'ATR72-overhead', [0, 3.43, 10.62]);
+  const oh = group(cabin, 'ATR72-overhead', [0, 3.34, 10.62]);
   oh.rotation.x = -Math.PI / 2;
   const od = detailKit(oh, oh.name),
     op = panelTools(od);
@@ -536,22 +541,22 @@ export function buildATR72Cockpit(root, m, sections) {
   od.finish();
   // Cabin follows the 72-seat, 29-inch-pitch manufacturer plan and 2.57 m cross section.
   fittedFloor(d, sections, m.dark, { y: 1.57, front: 11.6, back: -8.25, width: 2.24 });
-  d.box([0.05, 1.85, 0.055], [1.16, 2.48, 8.75], liner);
-  d.box([0.05, 1.85, 0.055], [-1.16, 2.48, 8.75], liner);
+  d.box([0.05, 1.5, 0.055], [1.04, 2.31, 8.75], liner);
+  d.box([0.05, 1.5, 0.055], [-1.04, 2.31, 8.75], liner);
   for (const side of [-1, 1]) {
     // Forward baggage compartment separates flight deck from passenger rows.
     sheet(
       d,
       [
         [side * 0.39, 1.56, 8.1],
-        [side * 1.22, 1.56, 8.1],
-        [side * 1.22, 3.17, 8.1],
+        [side * 1.06, 1.56, 8.1],
+        [side * 1.06, 3.12, 8.1],
         [side * 0.39, 3.4, 8.1],
       ],
       liner,
       [0, 0, 1],
     );
-    d.box([0.4, 0.34, 14.1], [side * 0.93, 3.2, -0.75], liner);
+    d.box([0.3, 0.3, 13.2], [side * 0.8, 2.98, -0.3], liner);
     for (let row = 0; row < 18; row++) {
       const zz = 5.65 - row * 0.7366;
       d.rod([side * 0.71, 3.04, zz], [side * 1.12, 3.04, zz], 0.002, m.dark);

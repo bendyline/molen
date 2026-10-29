@@ -2,7 +2,10 @@
  * checked against the 2020 fact sheet and Pierre Barthe's in-flight photograph.
  * Metres, +Z forward. References are local review inputs, never runtime textures.
  */
+
+import { smoothSurface } from '../surface-normals.mjs';
 import { buildATR72Cockpit } from './atr-72-cockpit.mjs';
+import { atr72Nose, atr72Stations } from './atr-72-shape.mjs';
 import {
   cleanGeometry,
   detailKit,
@@ -16,6 +19,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { transportCell, transportSection, transportWindowFrames } from './transport-profiles.mjs';
 export const atr72Frame = () => ({
   heli: false,
   fighter: false,
@@ -23,10 +27,10 @@ export const atr72Frame = () => ({
   radius: 1.43,
   cy: 2.31,
   ry: 1.31,
-  cabinZ: 10.7,
+  cabinZ: 10.45,
   cabinWidth: 2.57,
-  eye: [0.52, 3.28, 10.7],
-  panelZ: 11.4,
+  eye: [0.52, 3.14, 10.45],
+  panelZ: 11.02,
   floor: 1.53,
 });
 export function buildATR72(s) {
@@ -52,83 +56,73 @@ export function buildATR72(s) {
   const ppm = 1033 / 27.166,
     z = (u) => 13.583 - (u - 35) / ppm,
     y = (v) => (330 - v) / ppm;
-  const samples = [
-    [35, 0.012, 261, 260],
-    [55, 0.38, 278, 243],
-    [85, 0.76, 287, 225],
-    [105, 0.97, 291, 206],
-    [135, 1.15, 292, 194],
-    [180, 1.36, 293, 193],
-    [240, 1.43, 293, 193],
-    [350, 1.43, 293, 193],
-    [474, 1.43, 293, 193],
-    [618, 1.43, 293, 193],
-    [742, 1.4, 292, 194],
-    [800, 1.32, 284, 198],
-    [880, 1.06, 269, 202],
-    [960, 0.68, 248, 207],
-    [1035, 0.3, 229, 212],
-    [1068, 0.015, 222, 218],
-  ];
-  const stations = samples.map(([u, w, b, t]) => [z(u), w, y(b), y(t)]);
+  const stations = atr72Stations;
   const rings = stations.map(([zz, w, b, t]) => ({
     z: zz,
-    points: Array.from({ length: 16 }, (_, j) => {
-      const a = (j * Math.PI) / 8;
+    points: Array.from({ length: 64 }, (_, j) => {
+      const a = (j * Math.PI) / 32;
       return [Math.sin(a) * w, (b + t) / 2 + (Math.cos(a) * (t - b)) / 2];
     }),
   }));
-  const p = (i, j) => [...rings[i].points[(j + 16) % 16], rings[i].z];
-  const skipCockpit = (i, j) =>
-    (i === 2 && [0, 1, 14, 15].includes(j)) ||
-    (i === 3 && [1, 2, 13, 14].includes(j)) ||
-    (i >= 4 && i <= 11 && [2, 3, 12, 13].includes(j));
-  loft(d, rings, paint, { skip: skipCockpit });
+  const p = (i, j) => [...rings[i].points[((j + 16) % 16) * 4], rings[i].z];
+  // The nose and each pane share a clipped boundary. Never turn whole roof
+  // facets into glazing: those old cuts exposed the avionics through the skin.
+  const noseEnd = 7;
+  loft(d, rings, paint, {
+    skip: (i, j) =>
+      i < noseEnd || (i >= 7 && i <= 12 && ((j >= 8 && j < 16) || (j >= 48 && j < 56))),
+  });
   const lining = mat('ATR72-cockpit-lining', '#a5aaa5', { side: T.DoubleSide });
   const inset = (q) => {
-    const i = stations.findIndex(
-      (a, i) => i < stations.length - 1 && q[2] <= a[0] && q[2] >= stations[i + 1][0],
-    );
-    const a = stations[Math.max(0, i)],
-      b = stations[Math.max(0, i) + 1],
-      u = (a[0] - q[2]) / (a[0] - b[0]),
-      center = ((a[2] + a[3]) * (1 - u) + (b[2] + b[3]) * u) / 2;
+    const [, , b, t] = transportSection(s, atr72Nose, q[2]);
+    const center = (b + t) / 2;
     return [q[0] * 0.985, center + (q[1] - center) * 0.985, q[2]];
   };
-  loft(
-    d,
-    rings
-      .slice(0, 7)
-      .map((r) => ({ z: r.z, points: r.points.map((q) => inset([...q, r.z]).slice(0, 2)) })),
-    lining,
-    { skip: skipCockpit, caps: false },
-  );
-  for (const [i, js] of [
-    [2, [0, 1, 14, 15]],
-    [3, [1, 2, 13, 14]],
-  ])
-    for (const j of js) {
-      quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), glass, [0, 1, 1]);
+  const noseRoot = group(root, 'ATR72-nose'),
+    nd = detailKit(noseRoot, 'ATR72-nose-skin');
+  const cuts = [
+    ...new Set([
+      ...stations.slice(0, noseEnd + 1).map((a) => a[0]),
+      ...atr72Nose.windows.flat().map((a) => s.length / 2 - a[1]),
+      ...Array.from(
+        { length: 61 },
+        (_, i) => stations[0][0] + ((stations[noseEnd][0] - stations[0][0]) * i) / 60,
+      ),
+    ]),
+  ].sort((a, b) => a - b);
+  for (let i = 0; i < cuts.length - 1; i++)
+    for (let j = 0; j < 64; j++) {
+      const a = (j * Math.PI) / 32,
+        b = ((j + 1) * Math.PI) / 32;
+      transportCell(
+        s,
+        atr72Nose,
+        [
+          [cuts[i], a],
+          [cuts[i + 1], a],
+          [cuts[i + 1], b],
+          [cuts[i], b],
+        ],
+        (kind, points) => {
+          sheet(nd, points, kind === 'glass' ? glass : paint, [
+            Math.sin((a + b) / 2),
+            Math.cos((a + b) / 2),
+            0,
+          ]);
+          if (kind === 'skin')
+            sheet(nd, points.map(inset), lining, [
+              -Math.sin((a + b) / 2),
+              -Math.cos((a + b) / 2),
+              0,
+            ]);
+        },
+      );
     }
-  for (const [i, start] of [
-    [2, 0],
-    [2, 14],
-    [3, 1],
-    [3, 13],
-  ])
-    outline(
-      d,
-      [
-        p(i, start),
-        p(i + 1, start),
-        p(i + 1, start + 1),
-        p(i + 1, start + 2),
-        p(i, start + 2),
-        p(i, start + 1),
-      ],
-      0.013,
-      dark,
-    );
+  nd.finish();
+  noseRoot.traverse((node) => {
+    if (node.isMesh) node.geometry = smoothSurface(node.geometry, 40);
+  });
+  transportWindowFrames(d, s, atr72Nose, dark);
   const sample = (zz, k) => {
     for (let i = 0; i < stations.length - 1; i++)
       if (zz <= stations[i][0] && zz >= stations[i + 1][0]) {
@@ -147,15 +141,6 @@ export function buildATR72(s) {
     };
     const pt = (zz, yy, off = 0) => [sideX(zz, yy) + side * off, yy, zz];
     const holes = [];
-    // Sliding aft cockpit side window, then the passenger belt (25 openings per side).
-    holes.push(
-      [
-        [139, 207],
-        [150, 207],
-        [151, 224],
-        [139, 225],
-      ].map(([u, v]) => pt(z(u), y(v))),
-    );
     for (let j = 0; j < 25; j++) {
       const zz = z(257 + j * 20.65),
         yy = y(233),
@@ -175,7 +160,7 @@ export function buildATR72(s) {
         ].map(([dz, dy]) => pt(zz + dz, yy + dy)),
       );
     }
-    for (let i = 4; i <= 11; i++) {
+    for (let i = 7; i <= 12; i++) {
       const upper = side > 0 ? 2 : 14,
         lower = side > 0 ? 4 : 12,
         a = stations[i][0],
@@ -191,7 +176,7 @@ export function buildATR72(s) {
         [side, 0, 0],
         relevant,
       );
-      if (i <= 5)
+      if (i <= 7)
         sheet(
           d,
           [p(i, upper), p(i + 1, upper), p(i + 1, lower), p(i, lower)].map(inset),
@@ -257,7 +242,7 @@ export function buildATR72(s) {
     ld.text('ATR 72 600', [0, 0, 0], 0.14, 0, accent);
     ld.finish();
     // Windscreen wipers, pitot and static ports visible from the pilot position.
-    d.rod([side * 0.2, 2.82, 12.13], [side * 0.47, 3.12, 11.85], 0.008, dark);
+    d.rod([side * 0.2, 2.85, 11.91], [side * 0.6, 2.91, 11.72], 0.008, dark);
     d.rod([side * 0.85, 2.48, 12.08], [side * 0.91, 2.46, 12.47], 0.011, metal);
   }
   // High wing, straight inner panel and tapered outer panel. Printed 61 m² takes priority over artwork.
