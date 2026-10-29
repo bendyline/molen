@@ -1,3 +1,27 @@
+## @bendyline/molen-worldgen [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.11...@bendyline/molen-worldgen@0.0.12) (2026-10-29)
+
+### Bug Fixes
+
+* Airport updates ([85cd2ea](https://github.com/bendyline/molen/commit/85cd2eaab5fb65e2634ac9c9fdab6ccba0432f34))
+* GF improvements ([7279720](https://github.com/bendyline/molen/commit/72797205a2867c284475f6c25346aa18b56d2589))
+* Improve visuals ([b0ea25f](https://github.com/bendyline/molen/commit/b0ea25fa3b64ab874c862bb72e44951dc75719c4))
+* More building contents ([f887eb7](https://github.com/bendyline/molen/commit/f887eb7a7474ee2fc1ece39313c1a793c8372247))
+* More buildings ([33defac](https://github.com/bendyline/molen/commit/33defac9f493f64175740204274ad7d0d974fce5))
+* More content, various fixes ([7308136](https://github.com/bendyline/molen/commit/730813689b841e08c37cd96cece241c72e1dabaa))
+* More structures ([3f91b1a](https://github.com/bendyline/molen/commit/3f91b1aa0f7a292f17e8ccf85cf0995bf1472db7))
+* Perf updates ([810adf4](https://github.com/bendyline/molen/commit/810adf4baab9f24e18f13cccbe7f6bf5254c310f))
+* Update graphics ([d0b84a7](https://github.com/bendyline/molen/commit/d0b84a7fac3b0906c0b1e783eee9f594e8f0ce9d))
+* Update scripts ([3dfa193](https://github.com/bendyline/molen/commit/3dfa1937d13098996b2e979c8f89af37fe36567d))
+* Updated structures ([2fa20fc](https://github.com/bendyline/molen/commit/2fa20fc83064584882456ff511039f513b3f7f8c))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.9
+* **@bendyline/molen-materials:** upgraded to 0.0.10
+* **@bendyline/molen-schema:** upgraded to 0.0.9
+* **@bendyline/molen-client:** upgraded to 0.0.11
+
 ## @bendyline/molen-worldgen [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.10...@bendyline/molen-worldgen@0.0.11) (2026-10-25)
 
 ### Bug Fixes

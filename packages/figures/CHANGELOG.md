@@ -1,3 +1,16 @@
+## @bendyline/molen-figures [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-figures@0.0.10...@bendyline/molen-figures@0.0.11) (2026-10-29)
+
+### Bug Fixes
+
+* Image updates ([a97689a](https://github.com/bendyline/molen/commit/a97689aebf7f2ef76b226b20b61e6b908eef0e35))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.9
+* **@bendyline/molen-schema:** upgraded to 0.0.9
+* **@bendyline/molen-client:** upgraded to 0.0.11
+
 ## @bendyline/molen-figures [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-figures@0.0.9...@bendyline/molen-figures@0.0.10) (2026-10-25)
 
 ### Bug Fixes

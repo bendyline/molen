@@ -1,3 +1,16 @@
+## @bendyline/molen-kernel [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-kernel@0.0.8...@bendyline/molen-kernel@0.0.9) (2026-10-29)
+
+### Bug Fixes
+
+* Airport updates ([85cd2ea](https://github.com/bendyline/molen/commit/85cd2eaab5fb65e2634ac9c9fdab6ccba0432f34))
+* GF improvements ([7279720](https://github.com/bendyline/molen/commit/72797205a2867c284475f6c25346aa18b56d2589))
+* More structures ([3f91b1a](https://github.com/bendyline/molen/commit/3f91b1aa0f7a292f17e8ccf85cf0995bf1472db7))
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.9
+
 ## @bendyline/molen-kernel [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-kernel@0.0.7...@bendyline/molen-kernel@0.0.8) (2026-10-25)
 
 ### Bug Fixes

@@ -1,3 +1,33 @@
+## @bendyline/molen-earth [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.12...@bendyline/molen-earth@0.0.13) (2026-10-29)
+
+### Bug Fixes
+
+* Airport updates ([85cd2ea](https://github.com/bendyline/molen/commit/85cd2eaab5fb65e2634ac9c9fdab6ccba0432f34))
+* Final view changes ([66bfcda](https://github.com/bendyline/molen/commit/66bfcdaf974d988e35443be88695d56066d74cfa))
+* GF improvements ([7279720](https://github.com/bendyline/molen/commit/72797205a2867c284475f6c25346aa18b56d2589))
+* More content, various fixes ([7308136](https://github.com/bendyline/molen/commit/730813689b841e08c37cd96cece241c72e1dabaa))
+* More structures ([3f91b1a](https://github.com/bendyline/molen/commit/3f91b1aa0f7a292f17e8ccf85cf0995bf1472db7))
+* More updates ([12b1a6b](https://github.com/bendyline/molen/commit/12b1a6be43841bb215a64f1d176e55ae0072e408))
+* Perf updates ([810adf4](https://github.com/bendyline/molen/commit/810adf4baab9f24e18f13cccbe7f6bf5254c310f))
+* Stabilize CI lighting and preview assets ([2723f46](https://github.com/bendyline/molen/commit/2723f4625549e1fec54874eddfdc4b1afd43e2e8))
+* Update graphics ([d0b84a7](https://github.com/bendyline/molen/commit/d0b84a7fac3b0906c0b1e783eee9f594e8f0ce9d))
+* Update schema and scripts ([931c224](https://github.com/bendyline/molen/commit/931c224599ab680b9cd757dad93138b037776218))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.13
+* **@bendyline/molen-figures:** upgraded to 0.0.11
+* **@bendyline/molen-kernel:** upgraded to 0.0.9
+* **@bendyline/molen-materials:** upgraded to 0.0.10
+* **@bendyline/molen-pack:** upgraded to 0.0.10
+* **@bendyline/molen-schema:** upgraded to 0.0.9
+* **@bendyline/molen-terrain:** upgraded to 0.0.13
+* **@bendyline/molen-worldgen:** upgraded to 0.0.12
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.13
+* **@bendyline/molen-dioramas:** upgraded to 0.0.4
+* **@bendyline/molen-client:** upgraded to 0.0.11
+
 ## @bendyline/molen-earth [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-earth@0.0.11...@bendyline/molen-earth@0.0.12) (2026-10-25)
 
 ### Bug Fixes

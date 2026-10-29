@@ -1,3 +1,14 @@
+## @bendyline/molen-pack [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-pack@0.0.9...@bendyline/molen-pack@0.0.10) (2026-10-29)
+
+### Bug Fixes
+
+* Build and script updates ([4691d2b](https://github.com/bendyline/molen/commit/4691d2b242b139a453a87af50417dcb1a6fad0e5))
+
+
+### Dependencies
+
+* **@bendyline/molen-schema:** upgraded to 0.0.9
+
 ## @bendyline/molen-pack [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-pack@0.0.8...@bendyline/molen-pack@0.0.9) (2026-10-25)
 
 ### Bug Fixes
