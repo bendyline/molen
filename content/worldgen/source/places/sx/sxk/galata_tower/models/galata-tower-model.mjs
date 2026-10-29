@@ -13,539 +13,631 @@ import {
   tube,
 } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 
-const tau = Math.PI * 2;
-const stone = [0.81, 0.77, 0.65],
-  pale = [0.89, 0.85, 0.74];
-const red = [0.6, 0.35, 0.25],
-  iron = [0.19, 0.2, 0.19],
-  lead = [0.49, 0.53, 0.55];
-const point = (a, y, r) => [Math.sin(a) * r, y, Math.cos(a) * r];
-const face = (out, slot, p, color) => quad(out, slot, p, normalFor(...p), color);
-function turn(out, a) {
-  const c = Math.cos(a),
-    s = Math.sin(a);
-  const p = ([x, y, z]) => [c * x + s * z, y, -s * x + c * z];
-  return {
-    addQuad(slot, ref, ps, n, uv, color) {
-      out.addQuad(slot, ref, ps.map(p), p(n), uv, color);
-    },
-    addTriangle(slot, ref, ps, n, uv, color) {
-      out.addTriangle(slot, ref, ps.map(p), p(n), uv, color);
-    },
-    addConvexPolygon(slot, ref, ps, n, uv, color) {
-      out.addConvexPolygon(slot, ref, ps.map(p), p(n), uv, color);
-    },
-  };
-}
-function lathe(out, slot, profile, color, sides = 192) {
-  loft(
-    out,
-    slot === 'ashlar' ? 'ashlar_round' : slot,
-    profile.map(([y, r]) => radialRing(y, r, r, sides)),
-    color,
-  );
-}
-function delta(a, b) {
-  let d = a - b;
-  while (d > Math.PI) d -= tau;
-  while (d < -Math.PI) d += tau;
-  return d;
-}
-
-/** Curved wall with actual openings, recessed panes, jambs, sills, and arched soffits. */
-function piercedCylinder(out, { radius, y0, y1, holes, slot = 'stone', color = stone }) {
-  const angles = Array.from({ length: 257 }, (_, i) => (i * tau) / 256);
-  for (const h of holes) {
-    h.halfAngle = h.width / (2 * radius);
-    for (let i = 0; i <= 24; i++)
-      angles.push((h.a - h.halfAngle + (2 * h.halfAngle * i) / 24 + tau) % tau);
-  }
-  angles.sort((a, b) => a - b);
-  const cuts = angles.filter((a, i) => !i || a - angles[i - 1] > 0.0000001);
-  const top = (h, a) => {
-    const x = Math.max(-1, Math.min(1, delta(a, h.a) / h.halfAngle));
-    return (
-      h.y +
-      h.height -
-      h.rise +
-      h.rise * (h.pointed ? 1 - Math.pow(Math.abs(x), 1.45) : Math.sqrt(Math.max(0, 1 - x * x)))
-    );
-  };
-  for (let i = 1; i < cuts.length; i++) {
-    const a = cuts[i - 1],
-      b = cuts[i],
-      mid = (a + b) / 2;
-    const gaps = holes
-      .filter((h) => Math.abs(delta(mid, h.a)) < h.halfAngle - 1e-8)
-      .sort((a, b) => a.y - b.y);
-    let lowA = y0,
-      lowB = y0;
-    const panel = (a0, b0, a1, b1, r, material, tint) => {
-      if (Math.max(a1 - a0, b1 - b0) < 1e-7) return;
-      face(
-        out,
-        material,
-        [point(a, a0, r), point(b, b0, r), point(b, b1, r), point(a, a1, r)],
-        tint,
-      );
+export function createGalataBuilder(cfg) {
+  const tau = Math.PI * 2;
+  const stone = [0.81, 0.77, 0.65],
+    pale = [0.89, 0.85, 0.74];
+  const red = [0.6, 0.35, 0.25],
+    iron = [0.19, 0.2, 0.19],
+    lead = [0.49, 0.53, 0.55];
+  const point = (a, y, r) => [Math.sin(a) * r, y, Math.cos(a) * r];
+  const face = (out, slot, p, color) => quad(out, slot, p, normalFor(...p), color);
+  function turn(out, a) {
+    const c = Math.cos(a),
+      s = Math.sin(a);
+    const p = ([x, y, z]) => [c * x + s * z, y, -s * x + c * z];
+    return {
+      addQuad(slot, ref, ps, n, uv, color) {
+        out.addQuad(slot, ref, ps.map(p), p(n), uv, color);
+      },
+      addTriangle(slot, ref, ps, n, uv, color) {
+        out.addTriangle(slot, ref, ps.map(p), p(n), uv, color);
+      },
+      addConvexPolygon(slot, ref, ps, n, uv, color) {
+        out.addConvexPolygon(slot, ref, ps.map(p), p(n), uv, color);
+      },
     };
-    for (const h of gaps) {
-      panel(lowA, lowB, h.y, h.y, radius, slot, color);
-      const ta = top(h, a),
-        tb = top(h, b),
-        back = radius - (h.depth ?? 0.5);
-      panel(h.y, h.y, ta, tb, back, h.backSlot ?? 'glass', h.backColor ?? [0.14, 0.19, 0.22]);
-      face(
-        out,
-        slot,
-        [
-          point(a, h.y, radius),
-          point(a, h.y, back),
-          point(b, h.y, back),
-          point(b, h.y, radius),
-        ].reverse(),
-        pale,
-      );
-      face(
-        out,
-        slot,
-        [
-          point(b, tb, radius),
-          point(b, tb, back),
-          point(a, ta, back),
-          point(a, ta, radius),
-        ].reverse(),
-        color,
-      );
-      if (Math.abs(delta(a, h.a) + h.halfAngle) < 1e-6)
-        face(
-          out,
-          slot,
-          [
-            point(a, h.y, back),
-            point(a, h.y, radius),
-            point(a, ta, radius),
-            point(a, ta, back),
-          ].reverse(),
-          pale,
-        );
-      if (Math.abs(delta(b, h.a) - h.halfAngle) < 1e-6)
-        face(
-          out,
-          slot,
-          [
-            point(b, h.y, radius),
-            point(b, h.y, back),
-            point(b, tb, back),
-            point(b, tb, radius),
-          ].reverse(),
-          pale,
-        );
-      lowA = ta;
-      lowB = tb;
-    }
-    panel(lowA, lowB, y1, y1, radius, slot, color);
   }
-  // Caps at slab levels close the shell without filling any aperture.
-  for (const [y, n, reverse] of [
-    [y1, [0, 1, 0], false],
-    [y0, [0, -1, 0], true],
-  ]) {
-    const ring = radialRing(y, radius, radius, 192);
-    out.addConvexPolygon(
-      slot,
-      'palette:#ffffff',
-      reverse ? ring.reverse() : ring,
-      n,
-      (p) => [p[0], p[2]],
+  function lathe(out, slot, profile, color, sides = cfg.sides) {
+    loft(
+      out,
+      slot === 'ashlar' ? 'ashlar_round' : slot,
+      profile.map(([y, r]) => radialRing(y, r, r, sides)),
       color,
     );
   }
-  for (const h of holes) {
-    const o = turn(out, h.a),
-      z = radius + 0.02,
-      w = h.width / 2;
-    const trim = h.trim ?? 0.15,
-      spring = h.y + h.height - h.rise;
-    for (const side of [-1, 1]) {
+  function delta(a, b) {
+    let d = a - b;
+    while (d > Math.PI) d -= tau;
+    while (d < -Math.PI) d += tau;
+    return d;
+  }
+
+  /** Curved wall with actual openings, recessed panes, jambs, sills, and arched soffits. */
+  function piercedCylinder(out, { radius, y0, y1, holes, slot = 'stone', color = stone }) {
+    const angles = Array.from({ length: cfg.wallSides + 1 }, (_, i) => (i * tau) / cfg.wallSides);
+    for (const h of holes) {
+      h.halfAngle = h.width / (2 * radius);
+      for (let i = 0; i <= cfg.arch; i++)
+        angles.push((h.a - h.halfAngle + (2 * h.halfAngle * i) / cfg.arch + tau) % tau);
+    }
+    angles.sort((a, b) => a - b);
+    const cuts = angles.filter((a, i) => !i || a - angles[i - 1] > 0.0000001);
+    const top = (h, a) => {
+      const x = Math.max(-1, Math.min(1, delta(a, h.a) / h.halfAngle));
+      return (
+        h.y +
+        h.height -
+        h.rise +
+        h.rise * (h.pointed ? 1 - Math.pow(Math.abs(x), 1.45) : Math.sqrt(Math.max(0, 1 - x * x)))
+      );
+    };
+    for (let i = 1; i < cuts.length; i++) {
+      const a = cuts[i - 1],
+        b = cuts[i],
+        mid = (a + b) / 2;
+      const gaps = holes
+        .filter((h) => Math.abs(delta(mid, h.a)) < h.halfAngle - 1e-8)
+        .sort((a, b) => a.y - b.y);
+      let lowA = y0,
+        lowB = y0;
+      const panel = (a0, b0, a1, b1, r, material, tint) => {
+        if (Math.max(a1 - a0, b1 - b0) < 1e-7) return;
+        face(
+          out,
+          material,
+          [point(a, a0, r), point(b, b0, r), point(b, b1, r), point(a, a1, r)],
+          tint,
+        );
+      };
+      for (const h of gaps) {
+        panel(lowA, lowB, h.y, h.y, radius, slot, color);
+        const ta = top(h, a),
+          tb = top(h, b),
+          back = radius - (h.depth ?? 0.5);
+        panel(h.y, h.y, ta, tb, back, h.backSlot ?? 'glass', h.backColor ?? [0.14, 0.19, 0.22]);
+        face(
+          out,
+          slot,
+          [
+            point(a, h.y, radius),
+            point(a, h.y, back),
+            point(b, h.y, back),
+            point(b, h.y, radius),
+          ].reverse(),
+          pale,
+        );
+        face(
+          out,
+          slot,
+          [
+            point(b, tb, radius),
+            point(b, tb, back),
+            point(a, ta, back),
+            point(a, ta, radius),
+          ].reverse(),
+          color,
+        );
+        if (Math.abs(delta(a, h.a) + h.halfAngle) < 1e-6)
+          face(
+            out,
+            slot,
+            [
+              point(a, h.y, back),
+              point(a, h.y, radius),
+              point(a, ta, radius),
+              point(a, ta, back),
+            ].reverse(),
+            pale,
+          );
+        if (Math.abs(delta(b, h.a) - h.halfAngle) < 1e-6)
+          face(
+            out,
+            slot,
+            [
+              point(b, h.y, radius),
+              point(b, h.y, back),
+              point(b, tb, back),
+              point(b, tb, radius),
+            ].reverse(),
+            pale,
+          );
+        lowA = ta;
+        lowB = tb;
+      }
+      panel(lowA, lowB, y1, y1, radius, slot, color);
+    }
+    // Caps at slab levels close the shell without filling any aperture.
+    for (const [y, n, reverse] of [
+      [y1, [0, 1, 0], false],
+      [y0, [0, -1, 0], true],
+    ]) {
+      const ring = radialRing(y, radius, radius, cfg.sides);
+      out.addConvexPolygon(
+        slot,
+        'palette:#ffffff',
+        reverse ? ring.reverse() : ring,
+        n,
+        (p) => [p[0], p[2]],
+        color,
+      );
+    }
+    for (const h of holes) {
+      if (cfg.trimArch === 0) continue;
+      const o = turn(out, h.a),
+        z = radius + 0.02,
+        w = h.width / 2;
+      const trim = h.trim ?? 0.15,
+        spring = h.y + h.height - h.rise;
+      for (const side of [-1, 1]) {
+        box(
+          o,
+          h.trimSlot ?? 'ashlar',
+          [side * w - (side < 0 ? trim : 0), h.y - 0.08, z - 0.09],
+          [side * w + (side > 0 ? trim : 0), spring, z + 0.07],
+          pale,
+        );
+      }
+      for (let j = 0; j < cfg.trimArch; j++) {
+        const a = (Math.PI * j) / cfg.trimArch + 0.004,
+          b = (Math.PI * (j + 1)) / cfg.trimArch - 0.004;
+        const p = (t, extra, zz) => [
+          Math.cos(t) * (w + extra),
+          spring + Math.sin(t) * (h.rise + extra),
+          zz,
+        ];
+        const front = [
+          p(a, 0, z + 0.07),
+          p(a, trim, z + 0.07),
+          p(b, trim, z + 0.07),
+          p(b, 0, z + 0.07),
+        ];
+        face(o, h.trimSlot ?? 'ashlar', front, j % 3 === 0 ? stone : pale);
+        face(
+          o,
+          h.trimSlot ?? 'ashlar',
+          [p(b, trim, z + 0.07), p(a, trim, z + 0.07), p(a, trim, z - 0.11), p(b, trim, z - 0.11)],
+          pale,
+        );
+      }
       box(
         o,
-        h.trimSlot ?? 'ashlar',
-        [side * w - (side < 0 ? trim : 0), h.y - 0.08, z - 0.09],
-        [side * w + (side > 0 ? trim : 0), spring, z + 0.07],
+        'ashlar',
+        [-w - trim * 1.5, h.y - 0.13, z - 0.1],
+        [w + trim * 1.5, h.y + 0.015, z + 0.2],
         pale,
       );
+      if (h.mullions && cfg.bars) {
+        const depth = h.depth ?? 0.5;
+        for (let x = -w + 0.24; x < w; x += 0.3)
+          tube(
+            o,
+            'metal',
+            [x, h.y + 0.04, z - depth + 0.06],
+            [x, spring, z - depth + 0.06],
+            0.017,
+            iron,
+            cfg.tubeSides,
+          );
+        for (let y = h.y + 0.35; y < spring; y += 0.55)
+          tube(
+            o,
+            'metal',
+            [-w, y, z - depth + 0.06],
+            [w, y, z - depth + 0.06],
+            0.017,
+            iron,
+            cfg.tubeSides,
+          );
+      }
     }
-    for (let j = 0; j < 18; j++) {
-      const a = (Math.PI * j) / 18 + 0.004,
-        b = (Math.PI * (j + 1)) / 18 - 0.004;
-      const p = (t, extra, zz) => [
-        Math.cos(t) * (w + extra),
-        spring + Math.sin(t) * (h.rise + extra),
-        zz,
-      ];
-      const front = [
-        p(a, 0, z + 0.07),
-        p(a, trim, z + 0.07),
-        p(b, trim, z + 0.07),
-        p(b, 0, z + 0.07),
-      ];
-      face(o, h.trimSlot ?? 'ashlar', front, j % 3 === 0 ? stone : pale);
-      face(
-        o,
-        h.trimSlot ?? 'ashlar',
-        [p(b, trim, z + 0.07), p(a, trim, z + 0.07), p(a, trim, z - 0.11), p(b, trim, z - 0.11)],
-        pale,
+  }
+
+  function galleryRail(out, y, r) {
+    for (const dy of cfg.railRings)
+      torus(
+        out,
+        'metal',
+        [0, y + dy, 0],
+        r,
+        dy === 1.13 ? 0.042 : 0.022,
+        iron,
+        cfg.railSides,
+        cfg.tubeSides,
       );
+    for (let i = 0; i < cfg.railPosts; i++) {
+      const a = (i * tau) / cfg.railPosts;
+      tube(
+        out,
+        'metal',
+        point(a, y, r),
+        point(a, y + 1.12, r),
+        i % 6 === 0 ? 0.034 : 0.018,
+        iron,
+        cfg.tubeSides,
+      );
+      if (cfg.finials && i % 6 === 0)
+        sphere(
+          out,
+          'metal',
+          point(a, y + 1.18, r),
+          [0.067, 0.073, 0.067],
+          iron,
+          cfg.tubeSides + 2,
+          6,
+        );
     }
-    box(
-      o,
+  }
+
+  function buildGalata(out) {
+    lathe(
+      out,
       'ashlar',
-      [-w - trim * 1.5, h.y - 0.13, z - 0.1],
-      [w + trim * 1.5, h.y + 0.015, z + 0.2],
+      [
+        [0, 8.225],
+        [0.42, 8.225],
+        [0.65, 8.1],
+      ],
+      stone,
+    );
+    const holes = [
+      {
+        a: 0,
+        y: 2.5,
+        height: 3.8,
+        rise: 0.15,
+        width: 2.3,
+        depth: 0.7,
+        trim: 0.32,
+        backSlot: 'wood',
+        backColor: [0.23, 0.19, 0.14],
+      },
+    ];
+    for (const [row, y, width, height] of [
+      [0, 8.4, 0.64, 1.28],
+      [1, 14.3, 0.7, 1.34],
+      [2, 20.4, 0.85, 1.68],
+      [3, 27.2, 1.15, 2.2],
+      [4, 34.4, 1.35, 2.7],
+      [5, 40.8, 0.62, 1.38],
+    ])
+      for (let k = 0; k < (row === 5 ? 12 : 6); k++)
+        if (!cfg.largeWindowsOnly || row === 3 || row === 4)
+          holes.push({
+            a: ((k + (row % 2) * 0.5) * tau) / (row === 5 ? 12 : 6),
+            y,
+            width,
+            height,
+            rise: width * 0.53,
+            trim: row < 2 ? 0.1 : 0.17,
+            trimSlot: row === 3 || row === 4 ? 'brick' : 'ashlar',
+            depth: 0.62,
+            mullions: true,
+          });
+    piercedCylinder(out, { radius: 8.1, y0: 0.65, y1: 43.7, holes });
+    // Documented brick repair bands at 13.20 m and 17.17 m, plus geometric chain ornament.
+    for (const y of [13.2, 17.17]) {
+      lathe(
+        out,
+        'brick',
+        [
+          [y, 8.12],
+          [y + 0.25, 8.12],
+        ],
+        red,
+      );
+      for (let i = 0; i < cfg.chainCount; i++) {
+        const a = (i * tau) / cfg.chainCount,
+          b = ((i + 0.5) * tau) / cfg.chainCount,
+          c = ((i + 1) * tau) / cfg.chainCount;
+        beam(out, 'brick', point(a, y + 0.27, 8.14), point(b, y + 0.54, 8.14), 0.11, 0.045, red);
+        beam(out, 'brick', point(b, y + 0.54, 8.14), point(c, y + 0.27, 8.14), 0.11, 0.045, red);
+      }
+    }
+    // Lower corbel table, continuous drip edge, and deeply recessed arcade.
+    lathe(
+      out,
+      'ashlar',
+      [
+        [43.65, 8.08],
+        [43.87, 8.4],
+        [44.2, 8.73],
+        [44.55, 8.78],
+        [44.72, 8.35],
+      ],
       pale,
     );
-    if (h.mullions) {
-      const depth = h.depth ?? 0.5;
-      for (let x = -w + 0.24; x < w; x += 0.3)
+    for (let i = 0; i < cfg.corbelCount; i++) {
+      const o = turn(out, (i * tau) / cfg.corbelCount);
+      loft(
+        o,
+        'ashlar',
+        [
+          [
+            [-0.12, 43.65, 8.0],
+            [-0.12, 43.65, 8.18],
+            [0.12, 43.65, 8.18],
+            [0.12, 43.65, 8.0],
+          ],
+          [
+            [-0.18, 44.22, 8.0],
+            [-0.18, 44.22, 8.65],
+            [0.18, 44.22, 8.65],
+            [0.18, 44.22, 8.0],
+          ],
+        ],
+        pale,
+      );
+    }
+    const arcade = Array.from({ length: 14 }, (_, k) => ({
+      a: (k * tau) / 14,
+      y: 44.95,
+      width: 2.96,
+      height: 5.15,
+      rise: 1.48,
+      depth: 0.57,
+      trim: 0.19,
+      backSlot: 'ashlar_round',
+      backColor: stone,
+    }));
+    piercedCylinder(out, {
+      radius: 8.3,
+      y0: 44.72,
+      y1: 50.55,
+      holes: arcade,
+      slot: 'ashlar_round',
+      color: pale,
+    });
+    for (const h of arcade) {
+      const o = turn(out, h.a),
+        z = 7.77;
+      const outline = [
+        [-0.61, 45.03, z],
+        [0.61, 45.03, z],
+        [0.61, 47.33, z],
+      ];
+      for (let i = 1; i <= cfg.arch; i++)
+        outline.push([
+          0.61 * Math.cos((i * Math.PI) / cfg.arch),
+          47.33 + 0.61 * Math.sin((i * Math.PI) / cfg.arch),
+          z,
+        ]);
+      o.addConvexPolygon(
+        'glass',
+        'palette:#ffffff',
+        outline,
+        [0, 0, 1],
+        (p) => [p[0], p[1]],
+        [0.18, 0.24, 0.29],
+      );
+      if (cfg.bars)
+        for (const x of [-0.59, 0, 0.59])
+          tube(o, 'metal', [x, 45.02, z + 0.02], [x, 47.33, z + 0.02], 0.032, iron, cfg.tubeSides);
+      if (cfg.bars)
         tube(
           o,
           'metal',
-          [x, h.y + 0.04, z - depth + 0.06],
-          [x, spring, z - depth + 0.06],
-          0.017,
+          [-0.6, 46.14, z + 0.02],
+          [0.6, 46.14, z + 0.02],
+          0.032,
           iron,
-          8,
+          cfg.tubeSides,
         );
-      for (let y = h.y + 0.35; y < spring; y += 0.55)
-        tube(o, 'metal', [-w, y, z - depth + 0.06], [w, y, z - depth + 0.06], 0.017, iron, 8);
+      box(o, 'ashlar', [-0.84, 44.87, z - 0.04], [0.84, 45.04, 8.25], pale);
     }
-  }
-}
-
-function galleryRail(out, y, r) {
-  for (const dy of [0.09, 0.44, 0.96, 1.13])
-    torus(out, 'metal', [0, y + dy, 0], r, dy === 1.13 ? 0.042 : 0.022, iron, 192, 8);
-  for (let i = 0; i < 168; i++) {
-    const a = (i * tau) / 168;
-    tube(out, 'metal', point(a, y, r), point(a, y + 1.12, r), i % 6 === 0 ? 0.034 : 0.018, iron, 8);
-    if (i % 6 === 0)
-      sphere(out, 'metal', point(a, y + 1.18, r), [0.067, 0.073, 0.067], iron, 10, 6);
-  }
-}
-
-export function buildGalata(out) {
-  lathe(
-    out,
-    'ashlar',
-    [
-      [0, 8.225],
-      [0.42, 8.225],
-      [0.65, 8.1],
-    ],
-    stone,
-  );
-  const holes = [
-    {
-      a: 0,
-      y: 2.5,
-      height: 3.8,
-      rise: 0.15,
-      width: 2.3,
-      depth: 0.7,
-      trim: 0.32,
-      backSlot: 'wood',
-      backColor: [0.23, 0.19, 0.14],
-    },
-  ];
-  for (const [row, y, width, height] of [
-    [0, 8.4, 0.64, 1.28],
-    [1, 14.3, 0.7, 1.34],
-    [2, 20.4, 0.85, 1.68],
-    [3, 27.2, 1.15, 2.2],
-    [4, 34.4, 1.35, 2.7],
-    [5, 40.8, 0.62, 1.38],
-  ])
-    for (let k = 0; k < (row === 5 ? 12 : 6); k++)
-      holes.push({
-        a: ((k + (row % 2) * 0.5) * tau) / (row === 5 ? 12 : 6),
-        y,
-        width,
-        height,
-        rise: width * 0.53,
-        trim: row < 2 ? 0.1 : 0.17,
-        trimSlot: row === 3 || row === 4 ? 'brick' : 'ashlar',
-        depth: 0.62,
-        mullions: true,
-      });
-  piercedCylinder(out, { radius: 8.1, y0: 0.65, y1: 43.7, holes });
-  // Documented brick repair bands at 13.20 m and 17.17 m, plus geometric chain ornament.
-  for (const y of [13.2, 17.17]) {
     lathe(
       out,
-      'brick',
-      [
-        [y, 8.12],
-        [y + 0.25, 8.12],
-      ],
-      red,
-    );
-    for (let i = 0; i < 176; i++) {
-      const a = (i * tau) / 176,
-        b = ((i + 0.5) * tau) / 176,
-        c = ((i + 1) * tau) / 176;
-      beam(out, 'brick', point(a, y + 0.27, 8.14), point(b, y + 0.54, 8.14), 0.11, 0.045, red);
-      beam(out, 'brick', point(b, y + 0.54, 8.14), point(c, y + 0.27, 8.14), 0.11, 0.045, red);
-    }
-  }
-  // Lower corbel table, continuous drip edge, and deeply recessed arcade.
-  lathe(
-    out,
-    'ashlar',
-    [
-      [43.65, 8.08],
-      [43.87, 8.4],
-      [44.2, 8.73],
-      [44.55, 8.78],
-      [44.72, 8.35],
-    ],
-    pale,
-  );
-  for (let i = 0; i < 112; i++) {
-    const o = turn(out, (i * tau) / 112);
-    loft(
-      o,
       'ashlar',
       [
-        [
-          [-0.12, 43.65, 8.0],
-          [-0.12, 43.65, 8.18],
-          [0.12, 43.65, 8.18],
-          [0.12, 43.65, 8.0],
-        ],
-        [
-          [-0.18, 44.22, 8.0],
-          [-0.18, 44.22, 8.65],
-          [0.18, 44.22, 8.65],
-          [0.18, 44.22, 8.0],
-        ],
+        [50.5, 8.28],
+        [50.85, 8.51],
+        [51.12, 8.93],
+        [51.45, 8.96],
+        [51.65, 9.08],
       ],
       pale,
     );
-  }
-  const arcade = Array.from({ length: 14 }, (_, k) => ({
-    a: (k * tau) / 14,
-    y: 44.95,
-    width: 2.96,
-    height: 5.15,
-    rise: 1.48,
-    depth: 0.57,
-    trim: 0.19,
-    backSlot: 'ashlar_round',
-    backColor: stone,
-  }));
-  piercedCylinder(out, {
-    radius: 8.3,
-    y0: 44.72,
-    y1: 50.55,
-    holes: arcade,
-    slot: 'ashlar_round',
-    color: pale,
-  });
-  for (const h of arcade) {
-    const o = turn(out, h.a),
-      z = 7.77;
-    const outline = [
-      [-0.61, 45.03, z],
-      [0.61, 45.03, z],
-      [0.61, 47.33, z],
-    ];
-    for (let i = 1; i <= 24; i++)
-      outline.push([
-        0.61 * Math.cos((i * Math.PI) / 24),
-        47.33 + 0.61 * Math.sin((i * Math.PI) / 24),
-        z,
-      ]);
-    o.addConvexPolygon(
-      'glass',
-      'palette:#ffffff',
-      outline,
-      [0, 0, 1],
-      (p) => [p[0], p[1]],
-      [0.18, 0.24, 0.29],
+    galleryRail(out, 51.65, 8.89);
+    const upper = Array.from({ length: 14 }, (_, k) => ({
+      a: (k * tau) / 14,
+      y: 51.66,
+      width: 1.78,
+      height: 2.72,
+      rise: 0.89,
+      depth: 0.2,
+      trim: 0.12,
+      mullions: true,
+    }));
+    piercedCylinder(out, {
+      radius: 7.09,
+      y0: 51.65,
+      y1: 54.83,
+      holes: upper,
+      slot: 'ashlar_round',
+      color: pale,
+    });
+    lathe(
+      out,
+      'ashlar',
+      [
+        [54.8, 7.12],
+        [54.92, 7.42],
+        [55.08, 7.9],
+        [55.18, 7.96],
+      ],
+      pale,
     );
-    for (const x of [-0.59, 0, 0.59])
-      tube(o, 'metal', [x, 45.02, z + 0.02], [x, 47.33, z + 0.02], 0.032, iron, 8);
-    tube(o, 'metal', [-0.6, 46.14, z + 0.02], [0.6, 46.14, z + 0.02], 0.032, iron, 8);
-    box(o, 'ashlar', [-0.84, 44.87, z - 0.04], [0.84, 45.04, 8.25], pale);
-  }
-  lathe(
-    out,
-    'ashlar',
-    [
-      [50.5, 8.28],
-      [50.85, 8.51],
-      [51.12, 8.93],
-      [51.45, 8.96],
-      [51.65, 9.08],
-    ],
-    pale,
-  );
-  galleryRail(out, 51.65, 8.89);
-  const upper = Array.from({ length: 14 }, (_, k) => ({
-    a: (k * tau) / 14,
-    y: 51.66,
-    width: 1.78,
-    height: 2.72,
-    rise: 0.89,
-    depth: 0.2,
-    trim: 0.12,
-    mullions: true,
-  }));
-  piercedCylinder(out, {
-    radius: 7.09,
-    y0: 51.65,
-    y1: 54.83,
-    holes: upper,
-    slot: 'ashlar_round',
-    color: pale,
-  });
-  lathe(
-    out,
-    'ashlar',
-    [
-      [54.8, 7.12],
-      [54.92, 7.42],
-      [55.08, 7.9],
-      [55.18, 7.96],
-    ],
-    pale,
-  );
-  lathe(
-    out,
-    'lead',
-    [
-      [55.16, 7.97],
-      [55.29, 7.97],
-      [62.5, 0.12],
-      [62.59, 0.05],
-    ],
-    lead,
-    224,
-  );
-  for (let i = 0; i < 112; i++) {
-    const a = (i * tau) / 112;
-    tube(out, 'metal', point(a, 55.31, 7.94), point(a, 62.47, 0.16), 0.013, [0.37, 0.4, 0.41], 6);
-  }
-  for (let j = 1; j <= 13; j++) {
-    const y = 55.3 + j * 0.5,
-      r = (7.95 * (62.59 - y)) / (62.59 - 55.29);
-    torus(out, 'metal', [0, y, 0], r + 0.024, 0.014, [0.4, 0.43, 0.44], 144, 6);
-  }
-  // Four roof dormers. A closed triangular shell intersects the cone without sky gaps.
-  for (let k = 0; k < 4; k++) {
-    const o = turn(out, (k * Math.PI) / 2 + Math.PI / 4),
-      z = 6.42;
-    box(o, 'lead', [-0.48, 56.18, z - 1.1], [0.48, 57.76, z], lead);
-    box(o, 'glass', [-0.32, 56.4, z + 0.012], [0.32, 57.47, z + 0.033], [0.15, 0.19, 0.23]);
-    for (const side of [-1, 1])
-      face(
-        o,
+    lathe(
+      out,
+      'lead',
+      [
+        [55.16, 7.97],
+        [55.29, 7.97],
+        [62.5, 0.12],
+        [62.59, 0.05],
+      ],
+      lead,
+      cfg.roofSides,
+    );
+    for (let i = 0; i < cfg.roofSeams; i++) {
+      const a = (i * tau) / cfg.roofSeams;
+      tube(out, 'metal', point(a, 55.31, 7.94), point(a, 62.47, 0.16), 0.013, [0.37, 0.4, 0.41], 6);
+    }
+    for (let j = 1; j <= cfg.roofRings; j++) {
+      const y = 55.3 + j * 0.5,
+        r = (7.95 * (62.59 - y)) / (62.59 - 55.29);
+      torus(
+        out,
+        'metal',
+        [0, y, 0],
+        r + 0.024,
+        0.014,
+        [0.4, 0.43, 0.44],
+        cfg.roofRingSides,
+        cfg.roofRingTubeSides,
+      );
+    }
+    // Four roof dormers. A closed triangular shell intersects the cone without sky gaps.
+    for (let k = 0; k < 4; k++) {
+      const o = turn(out, (k * Math.PI) / 2 + Math.PI / 4),
+        z = 6.42;
+      box(o, 'lead', [-0.48, 56.18, z - 1.1], [0.48, 57.76, z], lead);
+      box(o, 'glass', [-0.32, 56.4, z + 0.012], [0.32, 57.47, z + 0.033], [0.15, 0.19, 0.23]);
+      for (const side of [-1, 1])
+        face(
+          o,
+          'lead',
+          [
+            [0, 58.0, z + 0.16],
+            [side * 0.58, 57.67, z + 0.16],
+            [side * 0.58, 57.67, z - 1.2],
+            [0, 58.0, z - 1.2],
+          ],
+          lead,
+        );
+      o.addTriangle(
         'lead',
+        'palette:#ffffff',
         [
-          [0, 58.0, z + 0.16],
-          [side * 0.58, 57.67, z + 0.16],
-          [side * 0.58, 57.67, z - 1.2],
-          [0, 58.0, z - 1.2],
+          [-0.58, 57.67, z + 0.16],
+          [0.58, 57.67, z + 0.16],
+          [0, 58, z + 0.16],
+        ],
+        [0, 0, 1],
+        [
+          [0, 0],
+          [1, 0],
+          [0.5, 1],
         ],
         lead,
       );
-    o.addTriangle(
-      'lead',
-      'palette:#ffffff',
+    }
+    const gold = [0.77, 0.59, 0.23];
+    lathe(
+      out,
+      'gold',
       [
-        [-0.58, 57.67, z + 0.16],
-        [0.58, 57.67, z + 0.16],
-        [0, 58, z + 0.16],
+        [62.5, 0.065],
+        [62.9, 0.14],
+        [63.35, 0.14],
+        [63.62, 0.09],
+        [64.2, 0.08],
+        [65.0, 0.07],
+        [66.9, 0.012],
       ],
-      [0, 0, 1],
-      [
-        [0, 0],
-        [1, 0],
-        [0.5, 1],
-      ],
-      lead,
+      gold,
+      cfg.finialSides,
     );
-  }
-  const gold = [0.77, 0.59, 0.23];
-  lathe(
-    out,
-    'gold',
-    [
-      [62.5, 0.065],
-      [62.9, 0.14],
-      [63.35, 0.14],
-      [63.62, 0.09],
-      [64.2, 0.08],
-      [65.0, 0.07],
-      [66.9, 0.012],
-    ],
-    gold,
-    48,
-  );
-  for (const [y, r] of [
-    [62.92, 0.33],
-    [63.67, 0.22],
-    [64.38, 0.15],
-  ])
-    sphere(out, 'gold', [0, y, 0], [r, r * 1.22, r], gold, 32, 18);
-  // Empire-style south entry, bifurcated marble stair and forged handrails.
-  box(out, 'ashlar', [-1.75, 2.28, 7.98], [1.75, 2.5, 10.12], pale);
-  for (const side of [-1, 1]) {
-    for (let j = 0; j < 14; j++) {
-      const x = 1.75 + j * 0.29,
-        y = (2.5 * (14 - j)) / 14;
+    if (cfg.ballRings > 0)
+      for (const [y, r] of [
+        [62.92, 0.33],
+        [63.67, 0.22],
+        [64.38, 0.15],
+      ])
+        sphere(out, 'gold', [0, y, 0], [r, r * 1.22, r], gold, cfg.ballSides, cfg.ballRings);
+    // Empire-style south entry, bifurcated marble stair and forged handrails.
+    box(out, 'ashlar', [-1.75, 2.28, 7.98], [1.75, 2.5, 10.12], pale);
+    for (const side of [-1, 1]) {
+      for (let j = 0; j < cfg.stairSteps; j++) {
+        const x = 1.75 + j * (cfg.stairSteps === 14 ? 0.29 : 4.06 / cfg.stairSteps),
+          y = (2.5 * (cfg.stairSteps - j)) / cfg.stairSteps;
+        box(
+          out,
+          'ashlar',
+          [side > 0 ? x : -x - (cfg.stairSteps === 14 ? 0.29 : 4.06 / cfg.stairSteps), 0, 8.4],
+          [side > 0 ? x + (cfg.stairSteps === 14 ? 0.29 : 4.06 / cfg.stairSteps) : -x, y, 10.1],
+          pale,
+        );
+        if (cfg.stairRails && j % 2 === 0)
+          for (const z of [8.43, 10.02])
+            tube(
+              out,
+              'metal',
+              [side * (x + 0.1), y, z],
+              [side * (x + 0.1), y + 0.93, z],
+              0.027,
+              iron,
+              8,
+            );
+      }
+      if (cfg.stairRails)
+        for (const z of [8.43, 10.02])
+          tube(out, 'metal', [side * 1.85, 3.43, z], [side * 5.62, 1.11, z], 0.038, iron, 10);
+    }
+    for (const x of [-1.55, 1.55]) {
+      box(out, 'ashlar', [x - 0.21, 2.5, 8.11], [x + 0.21, 6.9, 8.53], pale);
+      box(out, 'ashlar', [x - 0.3, 2.5, 8.05], [x + 0.3, 2.92, 8.61], pale);
       box(
         out,
         'ashlar',
-        [side > 0 ? x : -x - 0.29, 0, 8.4],
-        [side > 0 ? x + 0.29 : -x, y, 10.1],
+        [x - 0.29, 6.5, 8.06],
+        [x + (cfg.stairSteps === 14 ? 0.29 : 4.06 / cfg.stairSteps), 6.93, 8.61],
         pale,
       );
-      if (j % 2 === 0)
-        for (const z of [8.43, 10.02])
-          tube(
-            out,
-            'metal',
-            [side * (x + 0.1), y, z],
-            [side * (x + 0.1), y + 0.93, z],
-            0.027,
-            iron,
-            8,
-          );
     }
-    for (const z of [8.43, 10.02])
-      tube(out, 'metal', [side * 1.85, 3.43, z], [side * 5.62, 1.11, z], 0.038, iron, 10);
+    box(out, 'ashlar', [-1.93, 6.84, 8.01], [1.93, 7.13, 8.68], pale);
+    box(out, 'ashlar', [-1.63, 7.13, 8.05], [1.63, 8.5, 8.27], pale);
+    box(out, 'ashlar', [-1.89, 8.47, 8.03], [1.89, 8.74, 8.48], pale);
+    // Four panel fields record the inscription's layout without fabricated calligraphy.
+    for (const x of [-0.76, 0.76])
+      for (const y of [7.41, 8.03])
+        box(
+          out,
+          'plaster',
+          [x - 0.66, y - 0.22, 8.274],
+          [x + 0.66, y + 0.22, 8.284],
+          [0.67, 0.65, 0.57],
+        );
   }
-  for (const x of [-1.55, 1.55]) {
-    box(out, 'ashlar', [x - 0.21, 2.5, 8.11], [x + 0.21, 6.9, 8.53], pale);
-    box(out, 'ashlar', [x - 0.3, 2.5, 8.05], [x + 0.3, 2.92, 8.61], pale);
-    box(out, 'ashlar', [x - 0.29, 6.5, 8.06], [x + 0.29, 6.93, 8.61], pale);
-  }
-  box(out, 'ashlar', [-1.93, 6.84, 8.01], [1.93, 7.13, 8.68], pale);
-  box(out, 'ashlar', [-1.63, 7.13, 8.05], [1.63, 8.5, 8.27], pale);
-  box(out, 'ashlar', [-1.89, 8.47, 8.03], [1.89, 8.74, 8.48], pale);
-  // Four panel fields record the inscription's layout without fabricated calligraphy.
-  for (const x of [-0.76, 0.76])
-    for (const y of [7.41, 8.03])
-      box(
-        out,
-        'plaster',
-        [x - 0.66, y - 0.22, 8.274],
-        [x + 0.66, y + 0.22, 8.284],
-        [0.67, 0.65, 0.57],
-      );
+
+  return buildGalata;
 }
+export const galataDetailedConfig = {
+  sides: 192,
+  wallSides: 256,
+  arch: 24,
+  trimArch: 18,
+  bars: true,
+  tubeSides: 8,
+  railRings: [0.09, 0.44, 0.96, 1.13],
+  railSides: 192,
+  railPosts: 168,
+  finials: true,
+  largeWindowsOnly: false,
+  chainCount: 176,
+  corbelCount: 112,
+  roofSides: 224,
+  roofSeams: 112,
+  roofRings: 13,
+  roofRingSides: 144,
+  roofRingTubeSides: 6,
+  finialSides: 48,
+  ballSides: 32,
+  ballRings: 18,
+  stairSteps: 14,
+  stairRails: true,
+};
+export const buildGalata = createGalataBuilder(galataDetailedConfig);
 
 export const galataStudies = [
   {

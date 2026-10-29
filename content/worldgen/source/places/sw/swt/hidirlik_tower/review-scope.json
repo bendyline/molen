@@ -1,0 +1,153 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Roman Antalya tower with17.2x17.3m square podium,15.8m round drum, northeast Ionic entrance with twelve fasces, blocked northwest doorway, projecting cornices, open roof around central pedestal, twelve northern merlons and higher southern defensive infill with a real window. Current Turkish flag and pole complete the exterior.",
+    "master": "Preserve the77044triangle detailed source and imported master unchanged.",
+    "browser": "Four complete source-local levels retain the full monument and orientation. Shared limestone and painted metal replace distant ashlar microgeometry. A double-sided vector crescent/star flag replaces the original24576triangle flag grid without an image. District keeps the recessed doors, all merlons and fasces cards; street restores course faces and full relief; closeup restores beveled ashlar and stone-by-stone parapets."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sw/swt/hidirlik_tower/models/hidirlik-lods.mjs",
+    "export": "hidirlikSkyline",
+    "errorMeters": 0.6,
+    "authoredLevels": {
+      "district": {
+        "export": "hidirlikDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          },
+          "turf": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "hidirlikStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          },
+          "turf": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "hidirlikCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          },
+          "turf": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Podium, drum and entrance use retained dimensional controls and exact mapped frame. Intermediate heights, courses, relief and erosion remain proportional reconstruction. Architectural height is approximately14m; the separate current flagpole reaches17.2m.",
+    "Ground contact is the exposed plinth. Surrounding archaeological terrace, coastal cliff, excavated walls and contemporary glass decks remain host terrain/map features. The synthetic placement overlay does not verify native terrain clearance.",
+    "Detailed source masters are preserved. Browser ashlar and tiny fittings aggregate with distance; the vector national flag retains the crescent and star on both sides. Vegetation, exact weathering, interiors and transient equipment are excluded. Physical-device timings remain pending."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "skyline-whole-tower-and-national-flag",
+      "position": [
+        27,
+        19,
+        35
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-door-fasces-and-parapet",
+      "position": [
+        17,
+        13,
+        25
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-southern-window-and-current-flag",
+      "position": [
+        -20,
+        21,
+        -24
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/hidirlik-lods.mjs"
+  ]
+}

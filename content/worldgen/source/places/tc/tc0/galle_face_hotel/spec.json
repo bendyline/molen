@@ -1,0 +1,428 @@
+{
+  "planId": "galle_face_hotel",
+  "id": "galle_face_hotel",
+  "assetId": "molen.worldgen.structure.galle_face_hotel",
+  "title": "Galle Face Hotel, Colombo (2022)",
+  "wikidataId": "Q4039225",
+  "category": "hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 79.846208,
+    "latitude": 6.920008
+  },
+  "size": [
+    132.01848602294922,
+    23.899999260902405,
+    150.07730102539062
+  ],
+  "actualBounds": {
+    "min": [
+      -67.01441955566406,
+      -1.600000023841858,
+      -84.50804138183594
+    ],
+    "max": [
+      65.00406646728516,
+      22.299999237060547,
+      65.56925964355469
+    ]
+  },
+  "visualBrief": "Whole Galle Face Hotel in approximate2022 restored form: complete native north heritage block/three projecting hipped pavilions and intrinsic octagonal Jubilee volume, long central connecting room/veranda wing, south Regency room block, attached low GrandBallroom/meeting/service range and link canopy. Actual four connected building outlines plus canopy, not the whole hotel property parcel. Historic1908 northfront supplies architectural type/details; primary owner restoration/history/venue text supports complete present complex, hidden roofs/heights/partitions/census/grade are estimates. Exclude detached shore bars/pool/gardens/event structures and neighboring residences/oldchancery/church.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2022-07-13",
+    "validFrom": "2022-01-01",
+    "validUntil": "2023-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_book_of_Ceylon;_being_a_guide_to_its_railway_system_and_an_account_of_its_varied_attractions_for_the_vistor_and_tourist_(IA_bookofceylonbein00cave).pdf"
+  ],
+  "stories": [
+    {
+      "id": "galle-face-hotel-wp",
+      "url": "https://qualla.com/galle-face-hotel/"
+    }
+  ],
+  "referenceInputHash": "8c67889a8db494911ef4adf45165b008d20d8fc2a4642327af7a9a0f98edd024",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tc/tc0/galle_face_hotel/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tc/tc0/galle_face_hotel/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#3d5051",
+        "roughness": 0.32,
+        "metallic": 0.08,
+        "alphaMode": "OPAQUE"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3d5051",
+            "roughness": 0.32,
+            "metallic": 0.08,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3d5051",
+            "roughness": 0.32,
+            "metallic": 0.08,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#3d5051",
+            "roughness": 0.32,
+            "metallic": 0.08,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "tile_flat",
+    "stone_limestone",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 2500,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original north-up full67nativecontrols/actual4connectedbuilding+canopy frame and independent512m129squarefield/16641heights/one rawzoom15tile/datum7.1865m frozen before all floor/roof/main sections. Now fixed floor+.8/foundation-1.6m; four-storey native north/central/south room wings eaves15.1/14.9m, lower northpolygonalhall8.3/easttwo-storey8.5/canopy4.6m; whole native outline retained, north polygon divided internally only for lowhall section. Three photo-supported front pavilions clerestory18.1/hiproof+4.2m, complete clipped hipped/valley roofs on all remaining blocks. Arcade3.55m spring/4.9m apex/3.2m depth, upperwindow/cornice/stair census and all metrics/hidden roofs/phasefinish/grade are explicit estimates. No field/frame/floor/roof/main-section refit after renders.",
+    "anchor": [
+      79.846208,
+      6.920008
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        79.84575554845182,
+        6.920008
+      ],
+      "modelHeight": 0,
+      "basis": "Native west hotel-lawn point outside mapped connected building footprints, chosen before independent field and all main parameters. Original source datum, not a measured foundation or flattened pad."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/341982692",
+      "way/341982694",
+      "way/341982691",
+      "way/341982695",
+      "way/1430312628"
+    ],
+    "source": "https://www.openstreetmap.org/way/1430312630",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fa60b2f42ad95834e109f732db802d791d5defafb0d2588d75ce0606c4bf8c25",
+    "notes": "Whole Galle Face Hotel in approximate2022 restored form: complete native north heritage block/three projecting hipped pavilions and intrinsic octagonal Jubilee volume, long central connecting room/veranda wing, south Regency room block, attached low GrandBallroom/meeting/service range and link canopy. Actual four connected building outlines plus canopy, not the whole hotel property parcel. Historic1908 northfront supplies architectural type/details; primary owner restoration/history/venue text supports complete present complex, hidden roofs/heights/partitions/census/grade are estimates. Exclude detached shore bars/pool/gardens/event structures and neighboring residences/oldchancery/church."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole Galle Face Hotel in approximate2022 restored form: complete native north heritage block/three projecting hipped pavilions and intrinsic octagonal Jubilee volume, long central connecting room/veranda wing, south Regency room block, attached low GrandBallroom/meeting/service range and link canopy. Actual four connected building outlines plus canopy, not the whole hotel property parcel. Historic1908 northfront supplies architectural type/details; primary owner restoration/history/venue text supports complete present complex, hidden roofs/heights/partitions/census/grade are estimates. Exclude detached shore bars/pool/gardens/event structures and neighboring residences/oldchancery/church.",
+    "Exact native1908book northfront photo is the only imagery, explicit US expired publication grant; individual plate photographer unassigned, current physical sections not falsely asserted photographed.",
+    "Native hotel property1430312630 establishes named ownership scope, not an extrudable building. Four connected building outlines/canopy control complete physical model. Separate1074017046 lies south outside the property and is excluded along with oldUSchancery/neighboringchurch/detachedshorebars/pool/landscape.",
+    "Choose complete source frame/independent original field before all floor/roof/main sections; preserve afterward. Hidden current roofs/partitions/heights/finish/census/registration/grade estimates allowed; no exact survey/full-current-photo gate.",
+    "Current approximate2022 whole complex uses actual4connected native polygons and linkcanopy, all67outercontrols; no propertyparcel/neighbor1074017046/oldchancery/church/detachedshorebar/pool/landscape proxy. The internal northmain/lowpolygonalhall split is a section estimate; exact namedJubilee/Grand room association within the low volumes is not surveyed.",
+    "1908 northfront plate70 establishes three projecting hip-roof pavilions, linking veranda facades and ground arcade. Owner describes successive north/central/south construction and2006/2015restoration. Current roof/clerestory/subdivision continuity from that reference is approximate; no claim all current sides were photographed.",
+    "All eaves/ridges/floor grades/roof pitches/pavilion extents, hidden courtyards and roofs, room/window/arcade/stair census, mouldings and finishcolour are estimates. Monochrome book is not calibrated colour; warm lime plaster/muted clay-red roof/dark timber/glazing chosen as an explicit medium-fi finish approximation.",
+    "Lower current hall and service wings follow native full footprint. All roofs use actual concave contours with clipped hip/valley geometry; three northfront tall hip roofs distinct. Upper windows closed/recessed glazing, ground arcade has true openings and deep inner wall; no facade photographs/interior props/art/logos/people.",
+    "Original independent coastal field absolute-1.9879..26.2187m at7.1865m west-lawn datum preserved. Coarse DEM/neighbor canopy/building artifacts can occlude lowstructure; no surveyed foundation or certified ground-contact/current2026 claim.",
+    "Four authored LODs retain whole building outlines/lowvolume/three highpavilions/linkcanopy and keyfrontentry, with fewer window/arch segments and roof subdivisions at distance. Source runtime and meaningful representative frontface probes/strictmediumfi/current visual review required."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Only exact native1908Cavebook/plate70 under explicit expiredUSpublication grant/nativePDFSHA1f64053a6e96e192b1a1c719a0e04b95c10fc3a42 and primaryUCLAlibrary NOT_IN_COPYRIGHT-US record used as imagery. Bookauthor/contributors inspected, individual plate photographer unassigned; no invented lifespan/source metadata repair. Primary owner architectural/history/restoration/venue TEXT supports full2022complex; no protected contemporary photo/drawing pixels. Actual native four connected building polygons and canopy67controls underODbL, propertyparcel and neighbors excluded. All numeric heights/roof sections/census/colour/phasecontinuity/grade estimated. Original independent field/frame/floors/main sections fixed first; no phototextures/people/art/props/landscape/generatedbitmap.",
+  "qaLodCameras": [
+    {
+      "name": "whole-galle-face-skyline",
+      "position": [
+        -214.98507771143144,
+        112,
+        -141.52885345896715
+      ],
+      "lookAt": [
+        -1.0955783648129118,
+        7,
+        -3.8470388673048093
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-galle-face-district",
+      "position": [
+        -214.98507771143144,
+        112,
+        -141.52885345896715
+      ],
+      "lookAt": [
+        -1.0955783648129118,
+        7,
+        -3.8470388673048093
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-galle-face-street",
+      "position": [
+        -214.98507771143144,
+        112,
+        -141.52885345896715
+      ],
+      "lookAt": [
+        -1.0955783648129118,
+        7,
+        -3.8470388673048093
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-galle-face-closeup",
+      "position": [
+        -214.98507771143144,
+        112,
+        -141.52885345896715
+      ],
+      "lookAt": [
+        -1.0955783648129118,
+        7,
+        -3.8470388673048093
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-north-central-south-and-ballroom-hotel-complex",
+      "position": [
+        -214.98507771143144,
+        112,
+        -141.52885345896715
+      ],
+      "lookAt": [
+        -1.0955783648129118,
+        7,
+        -3.8470388673048093
+      ]
+    },
+    {
+      "name": "three-northfront-hipped-pavilions-and-true-ground-arcade",
+      "position": [
+        -35.344916855676026,
+        11,
+        -109.50678907020036
+      ],
+      "lookAt": [
+        -20.828503521904945,
+        10,
+        -58.53352407841164
+      ]
+    },
+    {
+      "name": "whole-sea-veranda-south-room-wing-and-intrinsic-low-range",
+      "position": [
+        -101.92534264972731,
+        70,
+        164.1956897294679
+      ],
+      "lookAt": [
+        3.2867350944387352,
+        7,
+        11.541116601914428
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 30088,
+    "vertices": 90264,
+    "materials": 5,
+    "bytes": 3790788,
+    "sha256": "sha256:199461056f08678a4ce81a7b43b4e40168db3ca206586cc78834550cc71d5387"
+  }
+}

@@ -144,6 +144,8 @@ function shaft(out) {
   }
 }
 function glazedRing(out, y0, y1, r, count = 48) {
+  // The narrow top ring needs enough facets to stay outside the concrete core.
+  if (r < 6) count = Math.max(count, sides);
   cylinder(out, 'glass', y0, y1, r - 0.08, glazing, count);
   annulus(out, 'concrete', 4.96, r + 0.22, y0 - 0.23, y0, concrete, sides);
   annulus(out, 'concrete', 4.96, r + 0.22, y1, y1 + 0.25, concrete, sides);
@@ -343,7 +345,12 @@ function buildGerbrandy(out) {
   decks(out);
   mast(out);
   for (const anchor of map.anchors) {
-    const ring = [...anchor.outline].reverse();
+    // Map rings have mixed winding; loft caps require clockwise XZ rings.
+    const area = anchor.outline.reduce((sum, p, i) => {
+      const q = anchor.outline[(i + 1) % anchor.outline.length];
+      return sum + p[0] * q[1] - q[0] * p[1];
+    }, 0);
+    const ring = area > 0 ? anchor.outline.toReversed() : [...anchor.outline];
     loft(
       out,
       'concrete',

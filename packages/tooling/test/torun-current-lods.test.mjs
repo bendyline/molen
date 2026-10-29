@@ -1,12 +1,9 @@
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { sourceLocalFootprint } from '../../../examples/world-explorer/test/visual/landmark-capture-footprint.mjs';
-import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
-import { cross as meshCross, normalize } from '../../worldgen/scripts/authored-structure-mesh.mjs';
-import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-materials.mjs';
 import { torunLean } from '../../worldgen/scripts/torun-detail-model.mjs';
-import { torunLeaningTower } from '../../worldgen/scripts/torun-leaning-tower-model.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
@@ -73,21 +70,7 @@ const nearest = (ts, o, d) =>
     return t !== null && t > 0 ? Math.min(nearest, t) : nearest;
   }, Infinity);
 
-it('reproduces the unchanged Toruń master and binds the reviewed directed map frame', async () => {
-  const gen = await readFile('../worldgen/scripts/generate-heritage-towers.mjs', 'utf8'),
-    at = gen.indexOf('const surfaces = '),
-    surfaces = Function(`return (${gen.slice(at + 17, gen.indexOf(';', at))})`)(),
-    wrap = Function(
-      'surfaces',
-      'normalize',
-      'cross',
-      'MATERIAL_REPEAT_METERS',
-      `return (${gen.slice(gen.indexOf('function wrap('), gen.indexOf('async function emit'))})`,
-    )(surfaces, normalize, meshCross, MATERIAL_REPEAT_METERS),
-    b = new MeshBufferBuilder(),
-    used = new Map(),
-    draft = torunLeaningTower;
-  draft.build(wrap(b, used, draft.componentMap));
+it('retains the directed map frame, raised north street and geographic northward lean', async () => {
   const s = await read(`${source}/spec.json`),
     frame = await read(`${source}/map-frame.json`),
     live = (await read('../../content/earth/structures/placements/authoring.json')).entries.find(
@@ -139,11 +122,20 @@ it('retains the north timber closure, sloping roof, south supports, attached gal
   }
 });
 it('rebuilds exact four-level bytes within triangle/draw/download budgets with four canonical shared material graphs and separate GPU streams', async () => {
-  const a = await read(`${runtime}/asset.json`);
+  const a = await read(`${runtime}/asset.json`),
+    digest = (bytes) => createHash('sha256').update(bytes).digest('hex'),
+    master = digest(await readFile(`${runtime}/model.glb`));
+  expect(digest(await readFile(`${source}/models/source.glb`))).toBe(
+    'f2cbf6e87acbd496382745664eb9b10b829776bf943e67c6e52e916d406ac7fa',
+  );
   await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
+  const rebuilt = await read(`${runtime}/asset.json`);
+  expect(rebuilt.runtimeLods.levels).toEqual(a.runtimeLods.levels);
+  expect(digest(await readFile(`${runtime}/model.glb`))).toBe(master);
   expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
   for (const [i, l] of a.runtimeLods.levels.entries()) {
+    expect(rebuilt.files.variants[l.name]).toBe(l.file);
     const b = await readFile(`${runtime}/${l.file}`),
       g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);

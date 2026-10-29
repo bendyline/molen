@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.torre_dei_lamberti",
-  "inputHash": "sha256:b25558cd2604f6b07297a66e6775189f95cbe9ba2200be37590cd5ecd4e3151b",
-  "captureReportHash": "sha256:db62311684b6b3d6e013154c4d82fe9b6272bec7806cfa1c999718a21743befc",
+  "inputHash": "sha256:cef27f9323e09aa3e5c0eb42db6222556f3dcdc8dc7d7ed35e67744fd497c32c",
+  "captureReportHash": "sha256:743e0adc0017d0d3bb67a5b62c47f0c954e51dbe01f557e0fa898f054ccea59f",
   "visualReview": {
     "status": "passed",
     "scope": "Complete detailed world-viewer exterior reconstruction",
@@ -19,11 +19,12 @@
       "shots/roof-plan.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "All 11 current portable frames inspected: preview, four turntables, southwest clock, northeast rear, clock/trifora, open marble belfry, roof plan and far silhouette. Corrected whole-tower framing contains the 84 m tip and ground. Lower alternating brick/tuff courses, recessed openings, Roman clock relief, four open triforas, terrace rails, octagonal two-light belfry, bell frames and low metal roof remain intact."
+    "notes": "Inspected all11 portable views against retained operator whole-tower and belfry pictures. The84m shaft, lower tuff/cotto courses, southwest clock, four true triple-arched galleries, corbelled square terrace, octagonal drum and white paired-arched belfry, four bells, copper roof and vane remain represented. Detailed89562triangle source/master geometry is unchanged.",
+    "captureReportHash": "sha256:743e0adc0017d0d3bb67a5b62c47f0c954e51dbe01f557e0fa898f054ccea59f"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4d1404e7beae6a273655761df57362b23cdd901cae3539c2bc9856315f0b1886",
+    "captureReportHash": "sha256:73ec641fb8e4db55f986c6803988c3fa815ff09014eecb62ce47b1bf6c1e6b70",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -37,16 +38,258 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All 11 current shared-surface frames inspected under sky-PMREM lighting, including the north-up mapped placement. Seven material graphs retain metric courses and raw stone, marble, painted metal, concrete, timber and copper surfaces. The clock, slender columns, open arches and bells remain legible. Geographic loading, material sharing and distant unload assertions passed."
+    "notes": "Inspected all11 current shared-material/placement views. Seven existing256px raw limestone, brick, marble, painted-metal, concrete, timber and copper graphs are reused with local recess colors. Six GLBs contain no private/embedded images. Graph bindings and geometry disposal pass. The north-up mapped shaft overlay retains its signed clock-facing orientation."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:41dc96598f856614120450373b0d7c5cd964aece990b272c475d7cd02007a3eb",
-    "notes": "Exact Q1819804 OSM way138829597 supplies the 9.04 by 9.27 m shaft anchor and axes. Operator rooftop photographs from Palazzo Maffei show the clock on the southwest facade, establishing the directed phase; native +Z faces southwest rather than taking an arbitrary rectangular-axis sign. The north-up placement capture confirms the mapped shaft with the expected projecting cornices and terraces. Ordinary host terrain supplies ground contact. Connected Palazzo della Ragione wings and Arco della Costa remain separate surrounding buildings."
+    "notes": "Retained Q1819804 tower way138829597,9.04x9.27m shaft, anchor[10.997722857,45.442970539], heading-1.1411119762658966. Native+Z is the southwest clock face toward Piazza delle Erbe;+X is southeast. Current north-up placement matches that shaft outline with the expected projecting terraces. Ordinary host ground contact and photo-proportioned intermediate heights remain approximate; Palazzo della Ragione wings, palace roofs and Arco della Costa remain independent excluded buildings."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Current medium-fi acceptance supersedes the historical maximum-fidelity wording. Source sha256:b741403ffec1690b3a0b8c29847dc72f2fe58fffc447627e6d0d8739c2793dd3 and imported master sha256:0d0ac473c4067299415e669bba0bb58e18d90b4af804f29759b98c1bb5925692 remain exact. Browser geometry is editable in one indexed source-local module, retaining original architectural stations. Fine joint boxes, shield outlines, clock-stroke extrusion and tiny corbel ornaments aggregate into shared textures/flat detail. Shields remain plain relief and the clock is static; no interior or surveyed masonry reproduction is claimed."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:b741403ffec1690b3a0b8c29847dc72f2fe58fffc447627e6d0d8739c2793dd3",
+  "runtimeHash": "sha256:0d0ac473c4067299415e669bba0bb58e18d90b4af804f29759b98c1bb5925692",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:671bff39331c1e820241a3043ef69c88b97feaf9fb2c5046026acd96c6a480a8",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/southwest-clock.png",
+      "medium-fi/northeast-rear.png",
+      "medium-fi/clock-and-trifora.png",
+      "medium-fi/open-marble-belfry.png",
+      "medium-fi/roof-plan.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/skyline-complete-clock-and-belfry.png",
+      "medium-fi/district-trifora-and-octagonal-gallery.png",
+      "medium-fi/street-clock-and-corbels.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all26 browser frames, including selected LOD details and transitions. All12 lower gallery bays and16 upper belfry bays remain open with their columns and all four bells. Skyline aggregates the lower fine courses into their area-weighted color; district keeps quiet coarse bands, smoothed arch profiles, sparse corbels/guards,12 clock ticks and four faceted bells. Street restores actual lower stripe rhythm, Roman clock markings, full corbel stations, finer guards and bell/clapper fittings; closeup restores recessed putlogs and denser arches/rails. Thin vane reverse faces are present in every browser tier. The early angular district arches and overly strong coarse stripes were corrected in this continuous pass. Final images show no missing tower sections. Exact contact-sheet hashes retain inspection proof for unchanged portable/shared/near recaptures; all changed sheets were inspected again."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
-    "notes": "Passed for the detailed permanent exterior reconstruction. Operator history and municipal records establish 84 m total height, the 37 m original alternating brick/tuff shaft, fifteenth-century octagonal belfry and 1795 clock. Current operator photographs establish course rhythm, upper window phases, four open triforas, balconies/corbels, marble paired belfry bays, four bells and low metal roof. The campanology measurement establishes the 1.831 m Rengo bell diameter. Intermediate level heights, minor mouldings, individual voussoirs, secondary bell sizes and static clock display are explicit proportional reconstructions; interior rooms and the adjacent palace are outside this exterior asset scope."
-  }
+    "notes": "Passed for the detailed permanent exterior reconstruction. Operator history and municipal records establish 84 m total height, the 37 m original alternating brick/tuff shaft, fifteenth-century octagonal belfry and 1795 clock. Current operator photographs establish course rhythm, upper window phases, four open triforas, balconies/corbels, marble paired belfry bays, four bells and low metal roof. The campanology measurement establishes the 1.831 m Rengo bell diameter. Intermediate level heights, minor mouldings, individual voussoirs, secondary bell sizes and static clock display are explicit proportional reconstructions; interior rooms and the adjacent palace are outside this exterior asset scope.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u0p/torre_dei_lamberti/models/source.glb",
+        "hash": "sha256:b741403ffec1690b3a0b8c29847dc72f2fe58fffc447627e6d0d8739c2793dd3",
+        "bytes": 7630404,
+        "triangles": 89562,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -5.317999839782715,
+          0,
+          -5.433000087738037
+        ],
+        "max": [
+          5.317999839782715,
+          84,
+          5.433000087738037
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u0p/torre_dei_lamberti/model.glb",
+        "hash": "sha256:0d0ac473c4067299415e669bba0bb58e18d90b4af804f29759b98c1bb5925692",
+        "bytes": 7629664,
+        "triangles": 89562,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -5.317999839782715,
+          0,
+          -5.433000087738037
+        ],
+        "max": [
+          5.317999839782715,
+          84,
+          5.433000087738037
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u0/u0p/torre_dei_lamberti/model.skyline.glb",
+        "hash": "sha256:d230ba3e4f3cff46e1af497cdb0cd6a45418809d4f755a29530b6c3f7d1947ac",
+        "bytes": 62084,
+        "triangles": 790,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -5.320000171661377,
+          0,
+          -5.434999942779541
+        ],
+        "max": [
+          5.320000171661377,
+          84,
+          5.434999942779541
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u0/u0p/torre_dei_lamberti/model.district.glb",
+        "hash": "sha256:a75137d017f5743afa2f3bad0dd41d7b636c2f639c45ac8236d8fed8b645b945",
+        "bytes": 303064,
+        "triangles": 4000,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -5.317999839782715,
+          0,
+          -5.433000087738037
+        ],
+        "max": [
+          5.317999839782715,
+          84,
+          5.433000087738037
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u0/u0p/torre_dei_lamberti/model.street.glb",
+        "hash": "sha256:472b78b705ec679c2308e798a34bb010bc8015f14a25372a2bfc92a3be33a03f",
+        "bytes": 1180796,
+        "triangles": 15940,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -5.317999839782715,
+          0,
+          -5.433000087738037
+        ],
+        "max": [
+          5.317999839782715,
+          84,
+          5.433000087738037
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u0/u0p/torre_dei_lamberti/model.closeup.glb",
+        "hash": "sha256:1deb074cbc92692ac3362cc19cf68a44158a06cefafb181f51eebaa40961f5e8",
+        "bytes": 1897460,
+        "triangles": 28254,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -5.317999839782715,
+          0,
+          -5.433000087738037
+        ],
+        "max": [
+          5.317999839782715,
+          84,
+          5.433000087738037
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six Khronos-clean GLBs: zero errors/warnings/images. Two focused tests pass: all gallery/belfry openings and columns, four independent bell rays, southwest clock phase, open square terrace, pitched roof,84m height and both vane sides at every level; deterministic reconstruction with exact masters, variant registration, budgets and separate12-byte GPU streams. Selected source/import, strict medium-fi and scene validation pass.30ticks produce zero events, hash sha256:889fe21e93ebc3ac4420de9707640dbca4ed81b9d29240d812809888e5bd5356."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:50a961c193db93a43dd3773e8dc687d99f2778c2a74bd78da9939fc21f35896f",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:d230ba3e4f3cff46e1af497cdb0cd6a45418809d4f755a29530b6c3f7d1947ac",
+        "bytes": 62084,
+        "gzipBytes": 9859,
+        "triangles": 790,
+        "cpuBytes": 60684,
+        "gpuBytes": 60684,
+        "errorMeters": 0.7,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:a75137d017f5743afa2f3bad0dd41d7b636c2f639c45ac8236d8fed8b645b945",
+        "bytes": 303064,
+        "gzipBytes": 53894,
+        "triangles": 4000,
+        "cpuBytes": 293424,
+        "gpuBytes": 293424,
+        "errorMeters": 0.6,
+        "drawCalls": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:472b78b705ec679c2308e798a34bb010bc8015f14a25372a2bfc92a3be33a03f",
+        "bytes": 1180796,
+        "gzipBytes": 201153,
+        "triangles": 15940,
+        "cpuBytes": 1171104,
+        "gpuBytes": 1171104,
+        "errorMeters": 0.18,
+        "drawCalls": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:1deb074cbc92692ac3362cc19cf68a44158a06cefafb181f51eebaa40961f5e8",
+        "bytes": 1897460,
+        "gzipBytes": 348414,
+        "triangles": 28254,
+        "cpuBytes": 1887732,
+        "gpuBytes": 1887732,
+        "errorMeters": 0.15,
+        "drawCalls": 8
+      }
+    ],
+    "initialBytes": 365148,
+    "notes": "790 /4000 /15940 /28254triangles;1 /8 /8 /8draws. Initial skyline+district365148bytes; street1180796bytes; closeup1897460bytes. Geometry, draw and initial3MBphone/6MBlaptop caps pass. Far shared-surface colors use the0.65 mean.0.7/0.6/0.18/0.15m reservations describe intentional detail aggregation rather than a surveyed error guarantee. Physical device timings remain pending."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:cef27f9323e09aa3e5c0eb42db6222556f3dcdc8dc7d7ed35e67744fd497c32c",
+    "sourceHash": "sha256:b741403ffec1690b3a0b8c29847dc72f2fe58fffc447627e6d0d8739c2793dd3",
+    "runtimeHash": "sha256:0d0ac473c4067299415e669bba0bb58e18d90b4af804f29759b98c1bb5925692",
+    "framesInspected": 48,
+    "note": "All48 current frames rendered and inspected using retained ordinary pictures and existing map work. No bespoke research, new textures, downloaded meshes or terrain. Only targeted model/scene checks; the previous full source milestone already passed and this derivative joins the next batch. No engine CI, npm audit, Git mutation or upload."
+  },
+  "limitations": [
+    "Acceptance covers the independent connected tower exterior and retained approximate map frame. Nearby palace structures, interiors, live clock/bell behavior and exact heraldry are excluded. Fine courses and fittings aggregate with distance; physical-device timing remains unmeasured."
+  ]
 }

@@ -1,0 +1,213 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "The84m tower with alternating tuff/cotto lower shaft, southwest clock, four triple-arched open galleries, projecting terraces/corbels, octagonal brick drum, white paired-arched belfry with four bells and shallow copper roof/vane.",
+    "master": "Preserve the89562triangle detailed source and imported master unchanged.",
+    "browser": "Four complete source-local derivatives keep the connected tower and true open gallery/belfry bays. Distant stripes, corbels, rails, putlogs, shield outlines, clock relief and bell fittings aggregate. Street restores full lower stripe rhythm; closeup restores recessed putlogs and denser rails/arches. All browser vanes have reverse faces."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u0p/torre_dei_lamberti/models/lamberti-lods.mjs",
+    "export": "lambertiSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "lambertiDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.6
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "lambertiStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.6
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "lambertiCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.6
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The tower is independent of attached Palazzo della Ragione wings, palace roofs and Arco della Costa. Interiors are excluded.",
+    "Retained mapped shaft anchor/orientation and photo-proportioned intermediate levels remain approximate at ordinary host ground contact.",
+    "Clock hands are a fixed decorative display. Shields carry plain relief; tiny corbel ornament, putlog depth, railing density and bell fittings aggregate at distance. No physical-device performance measurements are claimed."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-clock-and-belfry",
+      "position": [
+        70,
+        57,
+        110
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-trifora-and-octagonal-gallery",
+      "position": [
+        21,
+        75,
+        33
+      ],
+      "lookAt": [
+        0,
+        67,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-clock-and-corbels",
+      "position": [
+        9,
+        55,
+        29
+      ],
+      "lookAt": [
+        0,
+        50,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/lamberti-lods.mjs"
+  ]
+}

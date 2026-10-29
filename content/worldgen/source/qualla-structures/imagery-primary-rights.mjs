@@ -114,6 +114,8 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-whitehouse-photo',
       'commons-native-usace-photo',
       'commons-native-doe-photo',
+      'commons-native-reviewed-state-department-photo',
+      'commons-native-state-department-staff-photo',
       'commons-native-nps-photo',
       'commons-native-usaf-reference-series-photo',
       'commons-native-expired-publication',
@@ -181,7 +183,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       proof.kind,
     ) &&
       (!reference.artist?.trim() ||
-        !text(info.extmetadata?.Artist?.value).includes(reference.artist)))
+        !text(info.extmetadata?.Artist?.value).includes(text(reference.artist))))
   )
     return failed;
   let basis, creatorAttribution;
@@ -571,6 +573,58 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       return failed;
     basis =
       'Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release';
+  } else if (proof.kind === 'commons-native-state-department-staff-photo') {
+    const id = proof.flickrId;
+    if (
+      proof.flickrAccountId !== '9364837@N06' ||
+      !/^\d{11}$/.test(id ?? '') ||
+      !title.endsWith(`(${id}).jpg`) ||
+      !/^[A-Za-z][A-Za-z .'-]+ [A-Za-z][A-Za-z .'-]+$/.test(photographer) ||
+      reference.artist !== text(info.extmetadata?.Artist?.value) ||
+      !reference.artist.startsWith('U.S. Department of State') ||
+      !clean.includes(`State Department photo by ${photographer}/ Public Domain`) ||
+      !wiki.includes('[https://www.flickr.com/people/9364837@N06 U.S. Department of State]') ||
+      !wiki.includes(`https://www.flickr.com/photos/statephotos/${id}/`) ||
+      !/\{\{\s*PD-USGov-DOS\s*\}\}/i.test(wiki) ||
+      !wiki.includes(
+        `{{FlickreviewR|status=passed|author=U.S. Department of State|sourceurl=https://flickr.com/photos/9364837@N06/${id}|`,
+      ) ||
+      !/\|reviewlicense=United States Government Work\|reviewer=FlickreviewR 2\}\}/.test(wiki) ||
+      /contractor|courtesy|provided by/i.test(clean) ||
+      /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value) ||
+      info.size !== original.length ||
+      !/\.jpe?g$/i.test(nativeUrl.pathname)
+    )
+      return failed;
+    basis =
+      'Exact native State Department staff photograph: named staff/Public Domain caption, official statephotos account, PD-USGov-DOS and independently reviewed United States Government Work release; original bytes and native record bound.';
+  } else if (proof.kind === 'commons-native-reviewed-state-department-photo') {
+    const id = proof.flickrId;
+    if (
+      reference.artist !== 'US Embassy  South Africa' ||
+      proof.flickrAccountId !== '101005855@N06' ||
+      !/^\d{11}$/.test(id ?? '') ||
+      title !== `File:Market Theatre (${id}).jpg` ||
+      !/\{\{\s*PD-USGov-DOS\s*\}\}/i.test(wiki) ||
+      !wiki.includes(`[https://www.flickr.com/people/101005855@N06 US Embassy  South Africa]`) ||
+      !wiki.includes(`https://www.flickr.com/photos/usembassysa/${id}/`) ||
+      !wiki.includes(
+        `{{FlickreviewR|status=passed|author=USEmbassySA|sourceurl=https://flickr.com/photos/101005855@N06/${id}|`,
+      ) ||
+      !/\|reviewlicense=United States Government Work\|reviewer=FlickreviewR 2\}\}/.test(wiki) ||
+      /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value) ||
+      info.size !== original.length ||
+      !/\.jpe?g$/i.test(nativeUrl.pathname)
+    )
+      return failed;
+    basis =
+      'Exact native official US Embassy South Africa photograph; pinned PD-USGov-DOS release, matching official agency Flickr account and reviewed United States Government Work grant. Original bytes and native record bound; no Qualla metadata repair.';
   } else if (proof.kind === 'commons-native-nps-photo') {
     if (
       reference.artist !== 'NPS' ||

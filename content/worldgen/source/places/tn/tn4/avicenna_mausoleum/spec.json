@@ -110,12 +110,11 @@
     }
   ],
   "limitations": [
-    "The broad exterior, rib count, cone and portico dimensions are published; stair and ramp grades, roof planting limits, small lightwell widths and individual granite stones are proportioned reconstructions.",
-    "The architectural 28.5 m dimension fixes the tower composition; the broader connected museum platform follows the current mapped outline. Its full extent is inferred from the museum mapping rather than forced into a 28.5 m square.",
-    "No interior museum displays, library contents, grave chamber, exact inscription glyphs or temporary site furniture are represented.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Ordinary host ground contact is retained. The surrounding garden, separate Aref Qazvini grave, freestanding Avicenna statue and interiors are outside this building asset.",
+    "Retained published proportions and mapped footprint guide the reconstruction; small openings, stonework, roof planting boundaries, ramps and stairs are approximate.",
+    "Distant openings use flat cards and stairs become graded volumes. Physical phone and laptop timings remain unmeasured."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -197,6 +196,116 @@
         10,
         6
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Open twelve-rib taper and cone, raised granite plinth, ten-column east entrance, complete asymmetrical museum roof, attached stair passage, paired rear ramps and roof gardens.",
+    "master": "Preserve the 36740-triangle detailed source and imported master unchanged.",
+    "browser": "Authored skyline and district retain the full mapped museum, all twelve ribs and ten entrance columns. District restores actual recessed clerestories/entry openings, all four stair flights and rounded inner rib noses; shared granite/concrete/metal graphs carry broad surfaces. Street and closeup retain the existing budgeted detailed geometry."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "mesh": {
+    "triangles": 36740,
+    "vertices": 72062,
+    "groups": 5,
+    "bytes": 3038268,
+    "sha256": "sha256:bcebdae63418b9f4496ccdf7f3db2572029acb83795a5b493a5205dd73b0d37d",
+    "min": [
+      -26.751258850097656,
+      0,
+      -13.670000076293945
+    ],
+    "max": [
+      40.08442687988281,
+      28.5,
+      27.402498245239258
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tn/tn4/avicenna_mausoleum/models/avicenna-lods.mjs",
+    "export": "avicennaSkyline",
+    "errorMeters": 0.4,
+    "authoredLevels": {
+      "district": {
+        "export": "avicennaDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "avicenna_granite": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.96
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.96
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "turf": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 1
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-whole-museum-and-twelve-ribs",
+      "position": [
+        75,
+        37,
+        95
+      ],
+      "lookAt": [
+        5,
+        10,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-open-ribs-and-colonnade",
+      "position": [
+        23,
+        15,
+        43
+      ],
+      "lookAt": [
+        1.4,
+        11,
+        8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-roof-stair-passage",
+      "position": [
+        -35,
+        28,
+        35
+      ],
+      "lookAt": [
+        -10,
+        5,
+        6
+      ],
+      "reviewLod": "street"
     }
   ]
 }

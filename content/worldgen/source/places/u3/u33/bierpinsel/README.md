@@ -22,10 +22,8 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs bie
 
 ## Remaining detail and review
 
-- Current September 2026 exterior; the restaurant is closed and the district reports recent facade-panel loss. This model does not claim the proposed restoration or reopening has occurred.
-- Berlin’s measured 42.514 m exterior envelope differs from the tourism description of 47 m. The difference is preserved in the source evidence; no unverified foundation or roof extension is invented to reconcile it.
-- Facade cassette profiles, stair landings and occupied-floor heights are proportionally reconstructed from primary photographs and the architect plan. The street-art mural retains broad color fields and forms without reproducing every painted face, tag, stain or missing panel.
-- Adjacent road bridge, subway entrances, commercial signs and interiors are outside the tower asset. The attached street stair and pedestrian landing are included; their connection elevation remains a local photographic reconstruction.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Retained September2026 closed-building exterior and42.514m envelope; no proposed restoration or reopening is represented. Current facade art is abstracted as original color fields/forms, not copied artwork or a panel-by-panel damage inventory.
+- Mapped projected head footprint and smaller D-shaped street stem remain separate controls. Surrounding road bridge, subway entrances, neighboring buildings, commercial signs and interiors remain excluded. Attached stair-to-road landing fit is photographic and unverified against native host terrain/road elevation.
+- Detailed masters remain intact. Stair treads aggregate to ramps at skyline, louver/cassette density and tiny fittings aggregate with distance. Shared256px graphs are reused; exact mural marks and stains are excluded. Physical-device timings remain pending.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

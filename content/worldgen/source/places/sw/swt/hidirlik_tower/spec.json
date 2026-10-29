@@ -94,12 +94,11 @@
     }
   ],
   "limitations": [
-    "The measured podium, drum and entrance dimensions govern scale. Intermediate heights, individual ashlar lengths, modillion profiles and parapet erosion are reconstructed from published photographs rather than represented as a laser survey.",
-    "The twelve fasces retain shallow rod-bundle and axe relief, with weathered detail abstracted in the shared polygonal style. The rooftop pedestal footprint is documented; its current height, paving joints and small fittings are proportional exterior reconstruction.",
-    "Current2026 photographs verify the surviving tower silhouette and restored surroundings. Excavated neighboring monuments, glazed visitor terraces, interiors and movable equipment are not incorporated into this individual tower model.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Podium, drum and entrance use retained dimensional controls and exact mapped frame. Intermediate heights, courses, relief and erosion remain proportional reconstruction. Architectural height is approximately14m; the separate current flagpole reaches17.2m.",
+    "Ground contact is the exposed plinth. Surrounding archaeological terrace, coastal cliff, excavated walls and contemporary glass decks remain host terrain/map features. The synthetic placement overlay does not verify native terrain clearance.",
+    "Detailed source masters are preserved. Browser ashlar and tiny fittings aggregate with distance; the vector national flag retains the crescent and star on both sides. Vegetation, exact weathering, interiors and transient equipment are excluded. Physical-device timings remain pending."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -207,6 +206,163 @@
         7,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Roman Antalya tower with17.2x17.3m square podium,15.8m round drum, northeast Ionic entrance with twelve fasces, blocked northwest doorway, projecting cornices, open roof around central pedestal, twelve northern merlons and higher southern defensive infill with a real window. Current Turkish flag and pole complete the exterior.",
+    "master": "Preserve the77044triangle detailed source and imported master unchanged.",
+    "browser": "Four complete source-local levels retain the full monument and orientation. Shared limestone and painted metal replace distant ashlar microgeometry. A double-sided vector crescent/star flag replaces the original24576triangle flag grid without an image. District keeps the recessed doors, all merlons and fasces cards; street restores course faces and full relief; closeup restores beveled ashlar and stone-by-stone parapets."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "mesh": {
+    "triangles": 77044,
+    "vertices": 153464,
+    "groups": 4,
+    "bytes": 6451944,
+    "sha256": "sha256:11be190e693c630ea30f2d6485d6a89706be4a0a670bbb96f5af84c2a369edad",
+    "min": [
+      -9.029999732971191,
+      0,
+      -9.079999923706055
+    ],
+    "max": [
+      9.029999732971191,
+      17.200000762939453,
+      9.079999923706055
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sw/swt/hidirlik_tower/models/hidirlik-lods.mjs",
+    "export": "hidirlikSkyline",
+    "errorMeters": 0.6,
+    "authoredLevels": {
+      "district": {
+        "export": "hidirlikDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          },
+          "turf": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "hidirlikStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          },
+          "turf": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "hidirlikCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "limestone_raw": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          },
+          "turf": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-whole-tower-and-national-flag",
+      "position": [
+        27,
+        19,
+        35
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-door-fasces-and-parapet",
+      "position": [
+        17,
+        13,
+        25
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-southern-window-and-current-flag",
+      "position": [
+        -20,
+        21,
+        -24
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "street"
     }
   ]
 }

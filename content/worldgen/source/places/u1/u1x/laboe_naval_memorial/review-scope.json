@@ -1,0 +1,214 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Distinctive curved red-clinker naval memorial tower with the seaward pointed granite spine, two observation terraces, recessed slit windows, separate inland entrance doors, short splayed entrance walls and fine metal roof guards.",
+    "master": "Preserve the current47862triangle detailed exterior and imported master bytes.",
+    "browser": "Retain the complete curved red-brick body, pointed granite seaward spine, two terrace heights, grouped slit windows, separate inland doors and entrance wings. Skyline uses flat slit cards and aggregate guards. District restores recesses, coarse flat granite courses and sparse guards. Street retains all slit frames/sills and original granite course rhythm as flat cards. Closeup retains the detailed master."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 2
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u1x/laboe_naval_memorial/models/laboe-lods.mjs",
+    "export": "laboeSkyline",
+    "level": "skyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "laboeDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "laboe_granite": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "darkstone": {
+            "graph": "stone_basalt",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "laboeStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "laboe_granite": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "darkstone": {
+            "graph": "stone_basalt",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "laboeCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "laboe_granite": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "darkstone": {
+            "graph": "stone_basalt",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.84
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Exterior terrace elevations, rail spacing, mortar joints and slit widths are proportioned from the section and owner photographs; individual blocks are original reconstructions.",
+    "Temporary scaffolding, staining and repair marks vary by maintenance campaign. Interior memorial rooms and stairs are outside this exterior asset.",
+    "The adjoining courtyard galleries, memorial hall and submarine are separate assets, not part of this tower footprint.",
+    "Current browser levels aggregate distant slit depth, stone relief and guard posts. Vertical sections remain photographic reconstructions; no host plaza survey or physical-device performance claim."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "district-whole",
+      "position": [
+        92,
+        50,
+        92
+      ],
+      "lookAt": [
+        -2,
+        35,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "skyline-terraces",
+      "position": [
+        -50,
+        102,
+        55
+      ],
+      "lookAt": [
+        -8,
+        64,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "street-spine",
+      "position": [
+        -42,
+        37,
+        30
+      ],
+      "lookAt": [
+        -12,
+        35,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "sourceDocuments": [
+    "models/laboe-lods.mjs",
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md"
+  ]
+}

@@ -109,12 +109,11 @@
     }
   ],
   "limitations": [
-    "Intermediate floor heights and small roof scrolls are reconstructed from photographs. Weathering is an original deterministic pattern, not the exact current stain distribution. Inscription plaque relief fields preserve the location; individual historic calligraphy is not copied.",
-    "Gallery openings are genuinely open with wall reveals and inner faces. Interior rooms, altar contents, transient vegetation and maintenance equipment are outside the exterior model scope.",
-    "The island perimeter and lake level belong to map/terrain providers. A coarse map that omits the island will need host terrain refinement before real-water clearance can be approved.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "The monument follows the retained mapped footprint and east-facing circular aperture. Host terrain/water must retain its small island; no new lake-level or island-contact survey is claimed.",
+    "Intermediate heights and fine roof relief remain proportional reconstructions. Inscription fields and medallions preserve layout without copied calligraphy or heraldic artwork.",
+    "Dense weathered masters are preserved. Browser plaster uses shared textures and quiet material colors; exact stains, tiny fittings and guard/scroll density aggregate. Interiors, transient vegetation and maintenance equipment remain excluded. Physical-device timing is pending."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -196,6 +195,163 @@
         4,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Raised8.8m Hanoi lake monument: attached east steps, two shrinking open pointed arcades with ten unequal bays each, pilasters and cornices, brick lower parapet, stone upper balustrade, east circular aperture/plaque, relief medallions and four curled roof tips with paired scrolls.",
+    "master": "Preserve the269320triangle dense weathered source and imported master unchanged.",
+    "browser": "Four complete source-local levels preserve the20 arcade openings, east round aperture and whole roof. Shared low-frequency plaster replaces dense weathering tessellation; inner walls use the same physical plaster tint and runtime lighting. Skyline uses coarse curls/scrolls and guard cards. District restores inner gallery faces, bowed gables and roof scrolls; street/closeup restore finer relief, balusters and lights."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "mesh": {
+    "triangles": 269320,
+    "vertices": 807384,
+    "groups": 4,
+    "bytes": 32300472,
+    "sha256": "sha256:744945e16c61052b4e4e1583bc19763aeb3e57bbd9635767f882fdfe5129df1a",
+    "min": [
+      -3.4820334911346436,
+      0,
+      -2.6120333671569824
+    ],
+    "max": [
+      3.4820334911346436,
+      8.797402381896973,
+      4.099999904632568
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w7/w7e/turtle_tower/models/turtle-lods.mjs",
+    "export": "turtleSkyline",
+    "errorMeters": 0.25,
+    "authoredLevels": {
+      "district": {
+        "export": "turtleDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      },
+      "street": {
+        "export": "turtleStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      },
+      "closeup": {
+        "export": "turtleCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-two-open-arcades-and-curled-roof",
+      "position": [
+        14,
+        9,
+        19
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-open-pointed-bays",
+      "position": [
+        5,
+        3.4,
+        8
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-east-aperture-and-scrolls",
+      "position": [
+        3.8,
+        8.4,
+        6.5
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0
+      ],
+      "reviewLod": "street"
     }
   ]
 }

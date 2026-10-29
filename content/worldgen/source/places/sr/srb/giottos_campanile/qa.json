@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.giottos_campanile",
-  "inputHash": "sha256:7c1a596bd06bffc3cfc118b75ccf9777e94955a91ac8b3a5d970b1b6e8c0f6fe",
-  "captureReportHash": "sha256:861b2b6526f63ddaea364aa0311f41de4ee0c066f51d892f8339cef5e430d3a4",
+  "inputHash": "sha256:467060654e7f06fa3d55aa2420b99dd8b09ee48583a8d563cddde44b1ecfbafb",
+  "captureReportHash": "sha256:3f62fde572a86eec4755a0cdb68cd02a0e600884a1a721c892c73653daaef42e",
   "visualReview": {
     "status": "passed",
     "scope": "Complete detailed world-viewer exterior reconstruction",
@@ -18,11 +18,12 @@
       "shots/north-door.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "Every standard frame inspected: correct open loggia sequence, polychrome arch bands, corner strengthening, relief cycles, statue niches, north entrance, projecting corbels and flat crown. The previously occluded entrance and empty loggia backgrounds are corrected."
+    "notes": "Inspected all ten current portable master images against the retained full-height exterior photograph. Complete reinforced octagonal corners, white/green/rose marble divisions, lower hexagonal/diamond panel cycles, sixteen statue niches, paired biforas, upper three-light loggia, Gothic gables, projecting crown corbels, north entrance and open flat roof terrace remain represented. The 207864-triangle source/runtime editing masters are byte-preserved. Reliefs and figures are original geometric approximations, not individual artwork facsimiles.",
+    "captureReportHash": "sha256:3f62fde572a86eec4755a0cdb68cd02a0e600884a1a721c892c73653daaef42e"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:641a84b775da476b56a373707e11d41892e04899510345b19d16997027483ee2",
+    "captureReportHash": "sha256:cc1146812784ba9bfaf6184984bfe2fe3d70cecdff1913769d110aeb6f82edec",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -35,16 +36,257 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Every shared frame inspected. White, green and rose marble tints retain metric shared texture without masonry joints across sculpture. Near panel, door, crown and loggia frames show stable normals and readable relief; far silhouette is fully framed."
+    "notes": "Inspected all ten current shared-material and north-up footprint views. Existing shared256px marble and basalt graphs load once, with an opaque local interior-shadow group; the six GLBs contain no private or embedded images. Green/rose fields use vertex tints and metric shared marble UVs. The footprint overlay retains the reinforced-corner shaft under the projecting crown. All model geometry disposes on unload. Shared stone colors and simplified sculpture remain the library's medium-fi interpretation."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:3b31c37b33bc4691e51228bfc2ade35fdb8dd64bfd7afce6f0ba6f735bda3767",
-    "notes": "Mapped center and square wall axes match the north-up footprint beneath the projecting crown. The directed north entrance is on the cathedral-facing side; native published 84.7 m height and ground-contact base are retained."
+    "notes": "Retained exact-QID OSM way251650632, anchor[11.2556971,43.772849685] and heading-0.01934505583489665. Facade axes establish the nearly north/south frame; the retained cathedral-facing entrance resolves the square plan's quarter-turn ambiguity and remains native-Z. Current north-up footprint overlay preserves the reinforced-corner shaft under the wider crown. BaseY0 is nominal host-supplied exterior pavement. Existing approximate preview placement remains; no new surveyed pavement grade, interior access or temporary scaffolding fit is claimed."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Fresh medium-fi exterior/browser acceptance supersedes the old maximum-detail browser approval. Detailed source remains sha256:f935db50e9d925e2f150160a4fa19165d8c74262d195b382202120ad8b1a9cae; runtime master remains sha256:426dbe2afe8663ef1c2abe750befd333ed9e7347e86f9280042cc8e4e4cf2405. The original master recipe is unchanged. Source-local derivatives preserve the architectural program and full dimensional envelope while aggregating distant inlays/sculpture/rails. Named bas-reliefs, statue likenesses, marble flower patterns, tracery and moulding sections retain their declared photographic reconstruction limits. Conservation survey, literal artwork copies and interiors are outside scope."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:f935db50e9d925e2f150160a4fa19165d8c74262d195b382202120ad8b1a9cae",
+  "runtimeHash": "sha256:426dbe2afe8663ef1c2abe750befd333ed9e7347e86f9280042cc8e4e4cf2405",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:4ece2b00089c78b9993d7c1514593292ebcd7771b43d5b45de0870f4a7fc027b",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/lower-marble-cycles.png",
+      "medium-fi/bifora-loggias.png",
+      "medium-fi/crown-corbelwork.png",
+      "medium-fi/north-door.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/district-whole.png",
+      "medium-fi/street-biforas.png",
+      "medium-fi/skyline-terrace.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all25 current browser-level frames: economy/high noon and late lighting, silhouette, lower marble cycles, biforas, crown, north entrance, far view, whole district, street biforas, skyline terrace and four transitions. All levels preserve84.7m height, three recessed loggia stages, directed north entrance and open roof center. Skyline aggregates colored detail and uses a solid parapet surrounding the terrace floor. District adds grouped corner inlays, both narrative panel cycles, sixteen niche figures and coarse polychrome Gothic surrounds. Street restores corner fields, three-dimensional figures, tracery, finials and open crown posts; closeup adds more arch rings, geometric rosettes, profiled columns and sparse crockets. Subpixel robe folds, tiny fittings and individual stone-cut patterns are omitted. Browser crown/body contacts and normal/shadow behavior are coherent. Synthetic neighboring buildings and flat stage do not establish surveyed native pavement contact."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
-    "notes": "Passed for the complete detailed polygonal exterior. The named sculptural artworks are represented by original geometric figures and relief motifs within the documented counts and architectural surrounds; literal casts, inscriptions and conservation stone-cut patterns are outside this reconstruction style. The recognizable silhouette, facade divisions, loggias, cladding and visible crown are complete."
-  }
+    "notes": "Passed for the complete detailed polygonal exterior. The named sculptural artworks are represented by original geometric figures and relief motifs within the documented counts and architectural surrounds; literal casts, inscriptions and conservation stone-cut patterns are outside this reconstruction style. The recognizable silhouette, facade divisions, loggias, cladding and visible crown are complete.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sr/srb/giottos_campanile/models/source.glb",
+        "hash": "sha256:f935db50e9d925e2f150160a4fa19165d8c74262d195b382202120ad8b1a9cae",
+        "bytes": 18632648,
+        "triangles": 207864,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -8.149999618530273,
+          0,
+          -8.149999618530273
+        ],
+        "max": [
+          8.149999618530273,
+          84.69999694824219,
+          8.149999618530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sr/srb/giottos_campanile/model.glb",
+        "hash": "sha256:426dbe2afe8663ef1c2abe750befd333ed9e7347e86f9280042cc8e4e4cf2405",
+        "bytes": 18632252,
+        "triangles": 207864,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -8.149999618530273,
+          0,
+          -8.149999618530273
+        ],
+        "max": [
+          8.149999618530273,
+          84.69999694824219,
+          8.149999618530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sr/srb/giottos_campanile/model.skyline.glb",
+        "hash": "sha256:c30de3f0e124a5427688f870b5fbb5fc3b994d52f12e187808e1cf9b2ede67f8",
+        "bytes": 52524,
+        "triangles": 670,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -8.149999618530273,
+          0,
+          -8.149999618530273
+        ],
+        "max": [
+          8.149999618530273,
+          84.69999694824219,
+          8.149999618530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sr/srb/giottos_campanile/model.district.glb",
+        "hash": "sha256:177823759f06238bbffbe7718114e77d5dbfec056fc21a3f6617805e0a7e9aae",
+        "bytes": 221312,
+        "triangles": 3206,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -8.149999618530273,
+          0,
+          -8.149999618530273
+        ],
+        "max": [
+          8.149999618530273,
+          84.69999694824219,
+          8.149999618530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sr/srb/giottos_campanile/model.street.glb",
+        "hash": "sha256:c2674a217faf28e619f12c58d17235fee4aa4bb433b1288a138c902bdae96ae9",
+        "bytes": 1119500,
+        "triangles": 15520,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -8.149999618530273,
+          0,
+          -8.149999618530273
+        ],
+        "max": [
+          8.149999618530273,
+          84.69999694824219,
+          8.149999618530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sr/srb/giottos_campanile/model.closeup.glb",
+        "hash": "sha256:d5291a0b641f5d0edec4af702225aba90ca35745cb746f20acdd1bfdab880edd",
+        "bytes": 4378556,
+        "triangles": 52768,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -8.149999618530273,
+          0,
+          -8.149999618530273
+        ],
+        "max": [
+          8.149999618530273,
+          84.69999694824219,
+          8.149999618530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six current GLBs are Khronos-clean with zero errors/warnings and no images. Two focused tests pass in5.35s: complete height/base, directed north recess versus three solid faces, roof-center ray reaching the terrace floor, both lights in each bifora and all three top lights on all four elevations compared independently against the unchanged detailed master, and front mullion retention; deterministic four-file rebuild preserving exact source/runtime master digests, registered variants, budgets and separate12-byte GPU position/normal streams. Selected source regeneration/import and strict medium-fi budget checks pass. Ray probes are not a global surface-distance certificate."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:fa18733b7586ea33420feb8bcd12077b801d6a6242ac256f540b33f6a93ad13c",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:c30de3f0e124a5427688f870b5fbb5fc3b994d52f12e187808e1cf9b2ede67f8",
+        "bytes": 52524,
+        "gzipBytes": 8047,
+        "triangles": 670,
+        "cpuBytes": 51108,
+        "gpuBytes": 51108,
+        "errorMeters": 0.6,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:177823759f06238bbffbe7718114e77d5dbfec056fc21a3f6617805e0a7e9aae",
+        "bytes": 221312,
+        "gzipBytes": 41310,
+        "triangles": 3206,
+        "cpuBytes": 218712,
+        "gpuBytes": 218712,
+        "errorMeters": 0.45,
+        "drawCalls": 2
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:c2674a217faf28e619f12c58d17235fee4aa4bb433b1288a138c902bdae96ae9",
+        "bytes": 1119500,
+        "gzipBytes": 202329,
+        "triangles": 15520,
+        "cpuBytes": 1115700,
+        "gpuBytes": 1115700,
+        "errorMeters": 0.18,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:d5291a0b641f5d0edec4af702225aba90ca35745cb746f20acdd1bfdab880edd",
+        "bytes": 4378556,
+        "gzipBytes": 901672,
+        "triangles": 52768,
+        "cpuBytes": 4374744,
+        "gpuBytes": 4374744,
+        "errorMeters": 0.08,
+        "drawCalls": 3
+      }
+    ],
+    "initialBytes": 273836,
+    "notes": "670 /3206 /15520 /52768 triangles,1 /2 /3 /3 draws. Initial skyline plus district273836 bytes; street1119500 bytes; closeup4378556 bytes. All1k/4k/16k/64k triangle caps and initial phone/laptop download budgets pass. Previous automatic district and closeup exceeded their geometry caps; closeup was6782376 bytes. Shared graphs avoid per-model texture copies. Error reservations0.6 /0.45 /0.18 /0.08m describe component faceting/omitted detail, not measured global errors. Physical-device timings remain unmeasured."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:467060654e7f06fa3d55aa2420b99dd8b09ee48583a8d563cddde44b1ecfbafb",
+    "sourceHash": "sha256:f935db50e9d925e2f150160a4fa19165d8c74262d195b382202120ad8b1a9cae",
+    "runtimeHash": "sha256:426dbe2afe8663ef1c2abe750befd333ed9e7347e86f9280042cc8e4e4cf2405",
+    "framesInspected": 45,
+    "note": "All45 current frames were captured and inspected in this authoring pass. Retained ordinary exterior photography and the existing signed mapped footprint were reused without bespoke engineering/terrain research or new texture generation. Source-local module and review scope were registered before capture/input binding. The detailed source and imported master hashes are unchanged. This model pass used focused checks rather than engine CI, npm audit, uploads or Git mutations."
+  },
+  "limitations": [
+    "Current acceptance covers the medium-fi static architectural exterior and retained approximate cathedral-facing map placement. Detailed editing masters are preserved. Distant inlays, sculpture, tracery and railings are intentionally aggregated. No surveyed pavement contact, literal sculptural-artwork reproduction or physical-device performance claim is made."
+  ]
 }

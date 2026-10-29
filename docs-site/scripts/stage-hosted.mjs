@@ -11,8 +11,9 @@
 //
 // The samples that load content packs (dist/packs/) are staged without them: their pages get
 // `<meta name="molen-packs" content="…">` naming ASSETS_INDEX, every pack including the landmark
-// model archives, unzipped on qualla.com's CDN (published from molen's packs by qualla-internal's
-// `npm run build:molen-assets` and `scripts/sync-to-r2.sh --assets`). The archives are gigabytes;
+// model archives, on qualla.com's CDN (published from molen's packs by qualla-internal's
+// `npm run build:molen-assets` and `scripts/sync-to-r2.sh --assets`: small packs as one zip each,
+// larger ones unzipped; see `hostPacks` in @bendyline/molen-pack/node). The archives are gigabytes;
 // GitHub Pages publishes at most 1 GB. Publish `_a` for a release before deploying its site.
 //
 // VitePress never sees these directories: they are plain static files copied in after it finishes,

@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.galata_tower",
-  "inputHash": "sha256:be366e1e4fe2b4483ab53f14c39c01ec82c3f382aeffb4609898e1afefa40f13",
-  "captureReportHash": "sha256:38f560f1f8d3aba1c1fda2ccd55bac71c044a9d44e2e9c76e714e2b632397d60",
+  "inputHash": "sha256:7efd7c942361a4582f0c8d85a7d7008742526a327f2a79993636f322084fb472",
+  "captureReportHash": "sha256:82b24fa5059f91517f7d20332c0e0869356fa6013ea262b5dc5741dc4f39c184",
   "visualReview": {
     "status": "passed",
     "scope": "Detailed complete architectural exterior for the world viewer.",
@@ -18,11 +18,12 @@
       "shots/near-masonry.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "Inspected all ten current portable frames: lit scene, four turntable angles and entrance/gallery/roof/masonry/far detail views. Rebuilt the former coarse study. Aperture jambs, sills and soffits face into the recess; the model has no visible through-wall sky gaps. South stairs, two arcaded levels, corbels, iron rails, four roof dormers, panel seams and finial remain distinct at close and distant views."
+    "notes": "Inspected ten current portable master views and the retained operator exterior photograph. The full stone shaft, both brick repair bands, recessed windows, fourteen-bay lower arcade, upper observation level, stepped gallery, iron rails, four roof dormers, conical lead roof, gold finial and south bifurcated stair remain intact. The detailed master remains 121046 triangles with exactly the original source/runtime bytes. The reference photograph's lower shaft is partly obscured by planting; entry details retain their earlier documented reconstruction scope.",
+    "captureReportHash": "sha256:82b24fa5059f91517f7d20332c0e0869356fa6013ea262b5dc5741dc4f39c184"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:7e96d585094e777156b092c4509db00973729b4805cd31d4749f10073c3a859a",
+    "captureReportHash": "sha256:4d67f5f70d9293fffa94e420f45dd81d5ece5aec235352ef88e64c5b079f3c98",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -35,16 +36,257 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all ten current shared frames. Seven shared surface graphs resolve once; wall/roof courses unwrap continuously around radial surfaces. Reveals use planar metric UVs to avoid the collapsed cylindrical coordinates found in the first review. Palette fallback and shared renders agree on silhouette and component boundaries. Geometry releases fully after tile eviction."
+    "notes": "Inspected ten current shared-material/geographic views. The original master reuses seven canonical 256px graphs, with opaque local recess and gold fallback materials; four browser derivatives reduce to five shared graphs and one opaque local recess group near. Wood-door and inscription-field appearances use tinted shared painted metal/ashlar in the browser models; no private image is introduced. Curved masonry/roof surfaces keep metric repeat UVs, recessed reveals remain planar. All six GLBs contain zero images. North-up placement retains the south stair. Shared graphs load once and the library disposes all model geometry on unload."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:befb05e1d23e624768d1b370674075c86866f17ef8bcc5d74014eca8091cf70f",
-    "notes": "Exact-QID OSM way/23236783 supplies the circular footprint center. The operator museum brochure explicitly states a south-axis entrance, matching native +Z with heading0. Orthographic north-up overlay verifies the footprint envelope and south stair direction at correct local metric scale. Published 16.45m base diameter is retained instead of stretching the tower to the less precise mapped17.2m roof/footprint envelope. Model baseY0 follows host terrain contact, consistent with this viewer landmark contract; host DEM precision is independent of the verified anchor and orientation."
+    "notes": "Retained exact-QID OSM way23236783 center [28.974214291,41.025634117] and heading0, native+Z toward the documented south entrance. Current north-up overlay shows the correct stair direction and footprint envelope. Published16.45m base diameter is retained separately from the approximately17.2m mapped roof/footprint envelope. BaseY0 is host-supplied outside paving grade; the model includes its entrance stair. This refresh adds no surveyed native plaza/terrain claim. Published roof tip62.59m, ornament66.90m and observation deck51.65m remain separate controls. Adjacent paving, buildings and temporary signs are outside the tower asset."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Fresh medium-fi exterior/browser acceptance supersedes the old maximum-fidelity browser approval. Detailed source remains9860488 bytes at sha256:7a506d2e3030de406497406511c51ce742a0166c514e16da348401e63b689801; runtime master remains sha256:88a4b540acd2e6ea927b4ed14374aa346509da58f6930ae8beb3a8d762a86e75. The source builder now exposes explicit sampling controls with its original defaults byte-preserved; separate local configurations create each derivative. Recognition features remain, while minor frame dimensions, repaired-stone patterns, panel seams, historical calligraphy and changing signs remain reconstructed or omitted as documented. No unrelated interior is claimed."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:7a506d2e3030de406497406511c51ce742a0166c514e16da348401e63b689801",
+  "runtimeHash": "sha256:88a4b540acd2e6ea927b4ed14374aa346509da58f6930ae8beb3a8d762a86e75",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:f552e297f304ce6575bd881212b851645d827ba8f827bcbe9b74c2abdf26897a",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-entrance.png",
+      "medium-fi/near-gallery.png",
+      "medium-fi/near-roof.png",
+      "medium-fi/near-masonry.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/district-arcade.png",
+      "medium-fi/street-south-entry.png",
+      "medium-fi/skyline-whole.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all25 final medium-fi frames across economy/high noon/late lighting, silhouette, entry/gallery/roof/masonry details, district arcade, street entry and four transitions. Every level preserves full roof/ornament height and south stair projection. Skyline deliberately omits individual windows/rail posts and uses a dark observation band. District retains rounded recessed fourteen-bay arcades, the two largest shaft-window rows and simplified stair, with seven gallery posts; smaller openings and trim appear at street. Street restores all shaft-window rows, fourteen lower arcade windows, corbels, open railing and roof seams. Closeup restores bars, chain courses, finer rail/stair samples and finial balls. The first district review revealed pointed-looking arches; four-segment arch sampling corrected them inside the3970-triangle budget. Round forms remain deliberately faceted. Detail crops are intentional and other frames show the full tower. Synthetic apartments establish style/lighting only, not native plaza grade."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
-    "notes": "Reviewed as the maximum-detail architectural exterior in Molen’s shared material style: 121046 retained triangles, true recessed arched windows, fourteen-bay upper arcade, geometry for corbel and chain courses, double entrance stair/portal, gallery rails and posts, separate dormers, lead seams, and finial. Published base diameter, roof/ornament heights, observation level and repair-band elevations are represented. Compared with the operator’s exterior photograph and museum/municipal dimensional evidence. Individual repaired stones and fine historical calligraphy are represented by shared masonry and framed inscription fields, not a photogrammetric facsimile. Reconstructed window-row, seam and railing dimensions are documented. These do not remove the distinctive exterior components or require an unrelated interior model."
-  }
+    "notes": "Reviewed as the maximum-detail architectural exterior in Molen’s shared material style: 121046 retained triangles, true recessed arched windows, fourteen-bay upper arcade, geometry for corbel and chain courses, double entrance stair/portal, gallery rails and posts, separate dormers, lead seams, and finial. Published base diameter, roof/ornament heights, observation level and repair-band elevations are represented. Compared with the operator’s exterior photograph and museum/municipal dimensional evidence. Individual repaired stones and fine historical calligraphy are represented by shared masonry and framed inscription fields, not a photogrammetric facsimile. Reconstructed window-row, seam and railing dimensions are documented. These do not remove the distinctive exterior components or require an unrelated interior model.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sx/sxk/galata_tower/models/source.glb",
+        "hash": "sha256:7a506d2e3030de406497406511c51ce742a0166c514e16da348401e63b689801",
+        "bytes": 9860488,
+        "triangles": 121046,
+        "materials": 9,
+        "images": 0,
+        "min": [
+          -9.079999923706055,
+          0,
+          -9.079999923706055
+        ],
+        "max": [
+          9.079999923706055,
+          66.9000015258789,
+          10.119999885559082
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sx/sxk/galata_tower/model.glb",
+        "hash": "sha256:88a4b540acd2e6ea927b4ed14374aa346509da58f6930ae8beb3a8d762a86e75",
+        "bytes": 9859716,
+        "triangles": 121046,
+        "materials": 9,
+        "images": 0,
+        "min": [
+          -9.079999923706055,
+          0,
+          -9.079999923706055
+        ],
+        "max": [
+          9.079999923706055,
+          66.9000015258789,
+          10.119999885559082
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sx/sxk/galata_tower/model.skyline.glb",
+        "hash": "sha256:8d6163f94b4845025b9de64e1d368f3c24806253d22bd503e2c6f86b3d494cba",
+        "bytes": 40072,
+        "triangles": 540,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -9.079999923706055,
+          0,
+          -9.079999923706055
+        ],
+        "max": [
+          9.079999923706055,
+          66.9000015258789,
+          10.119999885559082
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sx/sxk/galata_tower/model.district.glb",
+        "hash": "sha256:77a06c73bffc5105cae73cfcb8a78d94676040f83119cd3de3e15722c91564e2",
+        "bytes": 296268,
+        "triangles": 3970,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -9.079999923706055,
+          0,
+          -9.079999923706055
+        ],
+        "max": [
+          9.079999923706055,
+          66.9000015258789,
+          10.119999885559082
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sx/sxk/galata_tower/model.street.glb",
+        "hash": "sha256:c1cb68e34f175a814b12f3387022bad3f2a0616cad1123a5c3f7bae2e66574ff",
+        "bytes": 1036284,
+        "triangles": 13946,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -9.079999923706055,
+          0,
+          -9.079999923706055
+        ],
+        "max": [
+          9.079999923706055,
+          66.9000015258789,
+          10.119999885559082
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sx/sxk/galata_tower/model.closeup.glb",
+        "hash": "sha256:97d9df3d458d3a633b221d1f76b562b3d24629eeec5a0de4f5743a660dabb739",
+        "bytes": 2863772,
+        "triangles": 38174,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -9.079999923706055,
+          0,
+          -9.079999923706055
+        ],
+        "max": [
+          9.079999923706055,
+          66.9000015258789,
+          10.119999885559082
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six current GLBs are Khronos-clean with zero errors/warnings and no images. Two focused tests pass: full66.9m silhouette/base and south stair projection at all levels, true recessed large shaft windows and all14 arcade centers at district/street/closeup; deterministic four-file reconstruction preserving exact detailed source/runtime bytes, strict triangle/download/draw budgets and separate12-byte GPU streams. Selected source regeneration and import verification pass. The initial import check exposed missing old variant registrations; forcing this model's LOD generation restored the generated four-file table and the subsequent import check passed. Radius/feature probes are not a global surface-distance certificate."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:c24f89b3c5b4017bb2ab30ff03ec6472f0e40c1c00c19513df30df794351eed2",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:8d6163f94b4845025b9de64e1d368f3c24806253d22bd503e2c6f86b3d494cba",
+        "bytes": 40072,
+        "gzipBytes": 7321,
+        "triangles": 540,
+        "cpuBytes": 38664,
+        "gpuBytes": 38664,
+        "errorMeters": 0.35,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:77a06c73bffc5105cae73cfcb8a78d94676040f83119cd3de3e15722c91564e2",
+        "bytes": 296268,
+        "gzipBytes": 54534,
+        "triangles": 3970,
+        "cpuBytes": 288924,
+        "gpuBytes": 288924,
+        "errorMeters": 0.2,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:c1cb68e34f175a814b12f3387022bad3f2a0616cad1123a5c3f7bae2e66574ff",
+        "bytes": 1036284,
+        "gzipBytes": 185273,
+        "triangles": 13946,
+        "cpuBytes": 1028892,
+        "gpuBytes": 1028892,
+        "errorMeters": 0.1,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:97d9df3d458d3a633b221d1f76b562b3d24629eeec5a0de4f5743a660dabb739",
+        "bytes": 2863772,
+        "gzipBytes": 501691,
+        "triangles": 38174,
+        "cpuBytes": 2856324,
+        "gpuBytes": 2856324,
+        "errorMeters": 0.05,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 336340,
+    "notes": "540 /3970 /13946 /38174 triangles,1 /6 /6 /6 draws. Skyline plus district336340 bytes; street1036284 bytes; closeup2863772 bytes. Initial and near models meet the phone/laptop budgets and all1k/4k/16k/64k caps. The preserved editing master has9 materials and is flagged by the material audit; the actual browser derivatives use at most6. Component error reservations0.35 /0.2 /0.1 /0.05m describe radial faceting and omitted fittings rather than global measured errors. Shared maps remain reusable256px graphs. Physical-device timings are unmeasured."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:7efd7c942361a4582f0c8d85a7d7008742526a327f2a79993636f322084fb472",
+    "sourceHash": "sha256:7a506d2e3030de406497406511c51ce742a0166c514e16da348401e63b689801",
+    "runtimeHash": "sha256:88a4b540acd2e6ea927b4ed14374aa346509da58f6930ae8beb3a8d762a86e75",
+    "framesInspected": 45,
+    "note": "45 current images were captured and inspected during this pass. Reused the retained operator photograph and mapped frame; no bespoke engineering/terrain research or new textures. Source/scope/derivative paths are registered in the source and authoring indexes. The generator records its component-recipe hash in the LOD definition so changes to imported component construction invalidate derivative caches even if detailed-master bytes stay unchanged. No dependency audit, full engine suite, release upload or Git mutation was run for this model-only pass."
+  },
+  "limitations": [
+    "Current acceptance covers the medium-fi exterior and retained approximate mapped center/entrance frame. The detailed master retains nine editing materials; browser derivatives use at most six draws. No surveyed plaza-grade, literal repaired-stone/calligraphy facsimile or physical-device performance claim is made."
+  ]
 }

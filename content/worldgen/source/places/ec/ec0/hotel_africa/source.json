@@ -1,0 +1,67 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hotel_africa",
+  "kind": "static-structure",
+  "title": "Hotel Africa, Liberia (2025 ruin)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hotel_africa",
+        "output": "assets/places/ec/ec0/hotel_africa/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:69072c872dc96c57c32cb7a4a0a86e1e8fa918dba0f82a555536b84cad71ca23"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-structural-facts.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/hotel-africa-2025-original.png",
+      "reference-rights/hotel-africa-cc0-native.json",
+      "native-map/coastline-native-plan.json",
+      "native-map/compiled-ruin-location.json",
+      "native-map/article-identity.json",
+      "native-map/building-wikidata.json",
+      "native-map/story-coordinate-context.json",
+      "models/ruin-mesh.mjs",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-15400-15800.png",
+      "terrain-sources/terrarium-15-15400-15801.png",
+      "terrain-sources/terrarium-15-15401-15800.png",
+      "terrain-sources/terrarium-15-15401-15801.png",
+      "import-report.json",
+      "geometry-review.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

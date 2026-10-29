@@ -1,8 +1,9 @@
 # Qualla compat — next 300
 
-**Goal paused at user request after Governor Nobre de Carvalho Bridge:244/300 accepted;56remain. Next:Market Theatre.**
 
-**244 / 300 accepted completions; 118 currently pass strict readiness.** Core100 complete. Finish each regional model and its story annotation in one pass.
+**Goal paused at user request after completing Galle Face Hotel.**
+
+**250 / 300 accepted completions; 121 currently pass strict readiness.** Core100 complete. Finish each regional model and its story annotation in one pass.
 
 | # | Structure / Qualla story | Region | Category | State |
 | ---: | --- | --- | --- | --- |
@@ -11,7 +12,7 @@
 | 3 | [Bloukrans Bridge](https://qualla.com/bloukrans-bridge/) | Africa and Middle East | bridge | [Completed](../../places/k9/k9b/bloukrans_bridge/README.md) |
 | 4 | [Embassy of the United States, Tehran](https://qualla.com/embassy-of-the-united-states-tehran/) | Africa and Middle East | civic-institutional | [Completed](../../places/tn/tnk/tehran_former_us_embassy/README.md) |
 | 5 | [Aswan Dam](https://qualla.com/aswan-dam/) | Africa and Middle East | dam | [Completed](../../places/ss/ssr/aswan_high_dam/README.md) |
-| 6 | [Hotel Africa](https://qualla.com/hotel-africa/) | Africa and Middle East | hotel-commercial | deferred-imagery |
+| 6 | [Hotel Africa](https://qualla.com/hotel-africa/) | Africa and Middle East | hotel-commercial | [Completed structure](../../places/ec/ec0/hotel_africa/README.md) |
 | 7 | [Abadan Refinery](https://qualla.com/abadan-refinery/) | Africa and Middle East | industrial | [Completed](../../places/tj/tj6/abadan_refinery/README.md) |
 | 8 | [David's Tomb](https://qualla.com/david-s-tomb/) | Africa and Middle East | monument | [Completed](../../places/sv/sv9/davids_tomb/README.md) |
 | 9 | [Hartebeesthoek Radio Astronomy Observatory](https://qualla.com/hartebeesthoek-radio-astronomy-observatory/) | Africa and Middle East | scientific-instrument | [Completed](../../places/ke/ke7/hartrao_26m_antenna/README.md) |
@@ -103,13 +104,13 @@
 | 95 | [Pamban Bridge](https://qualla.com/pamban-bridge/) | South and Central Asia | bridge | [Completed](../../places/tc/tc8/pamban_bridge/README.md) |
 | 96 | [Cellular Jail](https://qualla.com/cellular-jail/) | South and Central Asia | civic-institutional | [Completed](../../places/w4/w41/cellular_jail/README.md) |
 | 97 | [Tehri Dam](https://qualla.com/tehri-dam/) | South and Central Asia | dam | deferred-imagery |
-| 98 | [Galle Face Hotel](https://qualla.com/galle-face-hotel/) | South and Central Asia | hotel-commercial | deferred-imagery |
+| 98 | [Galle Face Hotel](https://qualla.com/galle-face-hotel/) | South and Central Asia | hotel-commercial | [Completed structure](../../places/tc/tc0/galle_face_hotel/README.md) |
 | 99 | [Giant Metrewave Radio Telescope](https://qualla.com/giant-metrewave-radio-telescope/) | South and Central Asia | industrial | [Completed](../../places/te/tek/giant_metrewave_radio_telescope/README.md) |
 | 100 | [Statue of Unity](https://qualla.com/statue-of-unity/) | South and Central Asia | monument | [Completed](../../places/te/teu/statue_of_unity/README.md) |
 | 101 | [Daulatabad Fort](https://qualla.com/daulatabad-fort/) | South and Central Asia | palace-castle-fort | [Completed](../../places/te/tet/daulatabad_fort/README.md) |
 | 102 | [Fondukistan monastery](https://qualla.com/fondukistan-monastery/) | South and Central Asia | religious | deferred-imagery |
 | 103 | [Quaid-e-Azam House](https://qualla.com/quaid-e-azam-house/) | South and Central Asia | residence | [Completed](../../places/tk/tkr/quaid_e_azam_house/README.md) |
-| 104 | [Salang Tunnel](https://qualla.com/salang-tunnel/) | South and Central Asia | transport | deferred-imagery |
+| 104 | [Salang Tunnel](https://qualla.com/salang-tunnel/) | South and Central Asia | transport | [Completed structure](../../places/tw/tw3/salang_tunnel/README.md) |
 | 105 | [Black Pyramid](https://qualla.com/black-pyramid/) | Africa and Middle East | archaeological | [Completed](../../places/st/stq/black_pyramid/README.md) |
 | 106 | [Khaju Bridge](https://qualla.com/khaju-bridge/) | Africa and Middle East | bridge | [Completed](../../places/tj/tju/khaju_bridge/README.md) |
 | 107 | [Edward J. Roye Building](https://qualla.com/edward-j-roye-building/) | Africa and Middle East | civic-institutional | deferred-imagery |
@@ -206,13 +207,13 @@
 | 198 | [Wazir Mansion](https://qualla.com/wazir-mansion/) | South and Central Asia | residence | [Completed](../../places/tk/tkr/wazir_mansion/README.md) |
 | 199 | [Great Pyramid of Giza](https://qualla.com/great-pyramid-of-giza/) | Africa and Middle East | archaeological | [Completed](../../places/st/stq/great_pyramid_of_giza/README.md) |
 | 200 | [Dona Ana Bridge](https://qualla.com/dona-ana-bridge/) | Africa and Middle East | bridge | [Completed](../../places/ku/kub/dona_ana_bridge/README.md) |
-| 201 | [Kuwait National Assembly Building](https://qualla.com/kuwait-national-assembly-building/) | Africa and Middle East | civic-institutional | deferred-imagery |
+| 201 | [Kuwait National Assembly Building](https://qualla.com/kuwait-national-assembly-building/) | Africa and Middle East | civic-institutional | [Completed structure](../../places/tj/tj4/kuwait_national_assembly_building/README.md) |
 | 202 | [Cahora Bassa Dam](https://qualla.com/cahora-bassa-dam/) | Africa and Middle East | dam | [Completed](../../places/kt/ktp/cahora_bassa_dam/README.md) |
 | 203 | [Grand Bazaar, Isfahan](https://qualla.com/grand-bazaar-isfahan/) | Africa and Middle East | hotel-commercial | deferred-imagery |
 | 204 | [Southern African Large Telescope](https://qualla.com/southern-african-large-telescope/) | Africa and Middle East | industrial | [Completed](../../places/k6/k6n/southern_african_large_telescope/README.md) |
 | 205 | [Tomb of Tutankhamun](https://qualla.com/tomb-of-tutankhamun/) | Africa and Middle East | monument | [Completed](../../places/ss/ssx/tomb_of_tutankhamun/README.md) |
 | 206 | [Palace of Darius in Susa](https://qualla.com/palace-of-darius-in-susa/) | Africa and Middle East | palace-castle-fort | [Completed](../../places/tj/tjd/palace_of_darius_in_susa/README.md) |
-| 207 | [Market Theatre (Johannesburg)](https://qualla.com/market-theatre-johannesburg/) | Africa and Middle East | performance-sport | deferred-imagery |
+| 207 | [Market Theatre (Johannesburg)](https://qualla.com/market-theatre-johannesburg/) | Africa and Middle East | performance-sport | [Completed structure](../../places/ke/ke7/market_theatre_johannesburg/README.md) |
 | 208 | [Khalid ibn al-Walid Mosque](https://qualla.com/khalid-ibn-al-walid-mosque/) | Africa and Middle East | religious | [Completed](../../places/sy/sy4/khalid_ibn_al_walid_mosque/README.md) |
 | 209 | [House of Wonders](https://qualla.com/house-of-wonders/) | Africa and Middle East | residence | [Completed](../../places/ky/kyg/house_of_wonders/README.md) |
 | 210 | [Hassan Tower](https://qualla.com/hassan-tower/) | Africa and Middle East | tower | [Completed](../../places/ey/ey5/hassan_tower/README.md) |
@@ -276,7 +277,7 @@
 | 268 | [Theatre Royal, Hobart](https://qualla.com/theatre-royal-hobart/) | Oceania | performance-sport | queued |
 | 269 | [Cathedral Square, Christchurch](https://qualla.com/cathedral-square-christchurch/) | Oceania | religious | [Completed](../../places/rb/rb6/cathedral_square_christchurch/README.md) |
 | 270 | [Jimbour Homestead](https://qualla.com/jimbour-homestead/) | Oceania | residence | [Completed](../../places/r7/r75/jimbour_homestead/README.md) |
-| 271 | [Qantas Hangar, Longreach](https://qualla.com/qantas-hangar-longreach/) | Oceania | transport | queued |
+| 271 | [Qantas Hangar, Longreach](https://qualla.com/qantas-hangar-longreach/) | Oceania | transport | [Completed structure](../../places/r5/r5y/qantas_hangar_longreach/README.md) |
 | 272 | [Puente de la Mujer](https://qualla.com/puente-de-la-mujer/) | South America | bridge | [Completed](../../places/69/69y/puente_de_la_mujer/README.md) |
 | 273 | [Caseros Prison](https://qualla.com/caseros-prison/) | South America | civic-institutional | [Completed structure](../../places/69/69y/caseros_prison/README.md) |
 | 274 | [Hotel de Inmigrantes](https://qualla.com/hotel-de-inmigrantes/) | South America | hotel-commercial | queued |
@@ -307,4 +308,4 @@
 | 299 | [Fort Orange (Dutch Brazil)](https://qualla.com/fort-orange-dutch-brazil/) | South America | palace-castle-fort | [Completed](../../places/7n/7nx/fort_orange_dutch_brazil/README.md) |
 | 300 | [Quito Metropolitan Cathedral](https://qualla.com/quito-metropolitan-cathedral/) | South America | religious | [Completed](../../places/6r/6rb/quito_metropolitan_cathedral/README.md) |
 
-Next: Market Theatre (Johannesburg). [Current evidence ledger](qualla-002.PROGRESS.md).
+Paused after Galle Face Hotel; await the user’s request to resume the remaining 50 entries.

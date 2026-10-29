@@ -1,7 +1,7 @@
 // Local dependency records are independent of published bundles. They are written only after a
 // successful job, and validate both the inputs it read and the outputs it produced.
 import { createHash, randomUUID } from 'node:crypto';
-import { createReadStream, existsSync, readdirSync, readFileSync } from 'node:fs';
+import { createReadStream, existsSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
 import { mkdir, readdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,7 +13,8 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // Capture the originals before the tracing preload patches node:fs.
 const read = readFileSync,
   list = readdirSync,
-  exists = existsSync;
+  exists = existsSync,
+  realpath = realpathSync.native;
 const sha = (value) => createHash('sha256').update(value).digest('hex');
 const derivedSidecar = (path) => /(?:^|\/)assets\/.*\/asset\.json$/.test(path);
 const metadataBytes = async (root, paths) =>
@@ -24,11 +25,31 @@ const metadataBytes = async (root, paths) =>
     })),
   );
 
+const realRoots = new Map();
+function realRoot(root) {
+  let real = realRoots.get(root);
+  if (real === undefined) {
+    try {
+      real = realpath(root);
+    } catch {
+      real = root;
+    }
+    realRoots.set(root, real);
+  }
+  return real;
+}
+
 export function dependencyPath(root, value) {
   if (value instanceof URL) value = fileURLToPath(value);
   if (Buffer.isBuffer(value)) value = value.toString();
   if (typeof value !== 'string') return undefined;
-  const path = relative(root, resolve(value)).split(sep).join('/');
+  const absolute = resolve(value);
+  let path = relative(root, absolute);
+  // A generator resolves relative paths against its real cwd, so a root reached through a
+  // symlink (macOS's /var → /private/var temp directories) must match its real form too.
+  if (isAbsolute(path) || path === '..' || path.startsWith(`..${sep}`))
+    path = relative(realRoot(root), absolute);
+  path = path.split(sep).join('/');
   if (
     !path ||
     isAbsolute(path) ||

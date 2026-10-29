@@ -22,9 +22,8 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs tor
 
 ## Remaining detail and review
 
-- Intermediate gallery elevations, individual repaired masonry and minor stone moulding profiles are proportionally reconstructed from current operator photographs. The small coats of arms retain shield relief rather than copied heraldic artwork.
-- Clock hands represent a fixed decorative display, not live time. Bell mounting positions are reconstructed from the visible open belfry; the four-bell identity and largest bell mouth diameter are sourced.
-- The tower is modeled independently of its attached palace wings; interiors, neighboring palace roofs and Arco della Costa are excluded.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- The tower is independent of attached Palazzo della Ragione wings, palace roofs and Arco della Costa. Interiors are excluded.
+- Retained mapped shaft anchor/orientation and photo-proportioned intermediate levels remain approximate at ordinary host ground contact.
+- Clock hands are a fixed decorative display. Shields carry plain relief; tiny corbel ornament, putlog depth, railing density and bell fittings aggregate at distance. No physical-device performance measurements are claimed.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

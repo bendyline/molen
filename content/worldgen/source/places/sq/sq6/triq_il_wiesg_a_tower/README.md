@@ -25,6 +25,6 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs tri
 - Current restored exterior is modeled. The internal rooms, spiral stair and neighboring World War II pillboxes are separate from this exterior asset.
 - Individual masonry joints and repair tints are original reconstructions of the photographic pattern; they are not a stone-by-stone survey.
 - Mapped plan is approximately 8.5 m square. No target-specific measured elevation was published in the consulted inventory; heights and small roof fittings are proportioned from primary photographs.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Current browser levels aggregate shallow distant arch heads and individual stone relief; no coastal rock/terrain survey, interior, individual conservation stone pattern or physical-device performance claim.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

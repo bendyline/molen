@@ -22,9 +22,8 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs hid
 
 ## Remaining detail and review
 
-- The measured podium, drum and entrance dimensions govern scale. Intermediate heights, individual ashlar lengths, modillion profiles and parapet erosion are reconstructed from published photographs rather than represented as a laser survey.
-- The twelve fasces retain shallow rod-bundle and axe relief, with weathered detail abstracted in the shared polygonal style. The rooftop pedestal footprint is documented; its current height, paving joints and small fittings are proportional exterior reconstruction.
-- Current2026 photographs verify the surviving tower silhouette and restored surroundings. Excavated neighboring monuments, glazed visitor terraces, interiors and movable equipment are not incorporated into this individual tower model.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Podium, drum and entrance use retained dimensional controls and exact mapped frame. Intermediate heights, courses, relief and erosion remain proportional reconstruction. Architectural height is approximately14m; the separate current flagpole reaches17.2m.
+- Ground contact is the exposed plinth. Surrounding archaeological terrace, coastal cliff, excavated walls and contemporary glass decks remain host terrain/map features. The synthetic placement overlay does not verify native terrain clearance.
+- Detailed source masters are preserved. Browser ashlar and tiny fittings aggregate with distance; the vector national flag retains the crescent and star on both sides. Vegetation, exact weathering, interiors and transient equipment are excluded. Physical-device timings remain pending.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

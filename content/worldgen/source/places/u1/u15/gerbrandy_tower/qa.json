@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.gerbrandy_tower",
-  "inputHash": "sha256:39195f47a27e6bb86556a6ce13851d3ec9bb3155a25bdb5a3664c7730e70b77e",
-  "captureReportHash": "sha256:01fb9592e95cb4c64a6c96fe3ba2b82a80a5ba2d138fb55ae1f8a49591bd2e21",
+  "inputHash": "sha256:20e1768f5b7392e607fd51ed2145a7bb9230a30a34541e43f8c2d41f438788e3",
+  "captureReportHash": "sha256:2b81162c4dc76e3cbb0c2013fdfc5a0a17fea52812d8b34bee0b47b200e79fb6",
   "visualReview": {
     "status": "passed",
     "scope": "Complete detailed world-viewer exterior",
@@ -23,14 +23,12 @@
       "shots/mapped-three-anchor-plan.png",
       "shots/far-silhouette.png"
     ],
-    "notes": [
-      "Inspected all 15 current portable frames: complete silhouette, four turntables, concrete galleries, shaft entrance, octagonal reportage cabin, individually modeled upper dipoles, current digital tip, southwest guy foundation and complete three-anchor layout.",
-      "Corrected the octagonal cabin frames to its actual flat faces, opened the upper shaft windows, separated the four guy fittings along each mapped concrete block and reframed the digital tip and entrance. Rechecked all current renders; no detached frames, obstructed window recesses or missing major surfaces remain."
-    ]
+    "notes": "Inspected all15 current portable frames against retained contractor whole-tower photographs and platform picture. The100m shaft, two broad glazed balconies plus narrow top glazing, six open equipment galleries, nine radomes,2m mast, octagonal reportage cabin, equipment arrays, digital tip and12 guys to3 unequal foundations remain represented. A separate current northern-anchor close-up also shows its corrected top/side surfaces and all four fittings.",
+    "captureReportHash": "sha256:2b81162c4dc76e3cbb0c2013fdfc5a0a17fea52812d8b34bee0b47b200e79fb6"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:140102768edd87e080d292a87ea91b6be69e22abf38534c1455ff9500151267c",
+    "captureReportHash": "sha256:3074c40edc0cabccfb9feaa219bcc3ce084700e2fbc3b2ea24f3ddc1a1497efc",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -48,22 +46,279 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": [
-      "Inspected all 15 current shared frames with sky reflections, including the north-up map overlay. The 100 m concrete base, two glazed gallery rings and 2 m metal pipe retain metric shared surfaces. Smooth glazing stays independent of the shared concrete and metal graphs.",
-      "All three nonuniform anchor vectors remain part of the same geographic model. Actual geographic loading and unloading succeeded; extremely thin distant 75 mm cables become subpixel at city-scale camera distance, as expected from their real scale."
-    ]
+    "notes": "Inspected all15 current shared-material/geographic frames. Existing256px concrete and painted-metal graphs are reused with local glazing, no private/embedded images. Graph bindings, geographic loading and disposal pass. The north-up overlay retains the asymmetric three-anchor frame; its synthetic flat ground does not prove native foundation elevations."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:3494726eae836edd77683d6506bad9918310a682b7918c58506a8b19476c7516",
-    "notes": [
-      "Native +X is east and +Z south with heading zero deliberately selected for a circular shaft; this is not an unresolved default direction. Exact-QID shaft way54688034 and three surveyed guy blocks178703435/178704223/178709104, connected by mapped support ways, fix the asymmetric full site. Anchor[5.053550924,52.010046448] is the mapped shaft center.",
-      "The concrete shaft is terrain-contact at nativeY0 and the broad polder site is treated with one local foundation datum. Independent below-ground anchor depths and fine site grading are outside this exterior reconstruction. The source-local geometry and capture overlay are hash bound; current region loading/unloading is verified."
-    ]
+    "notes": "Retained exact Q778390 shaft way54688034, anchor[5.053550924,52.010046448], heading0. Native+X east,+Z south; unequal mapped anchor blocks178703435/178704223/178709104 fix the site orientation. All foundations retain their own mapped outlines/positions and share the shaftY0 terrain datum. Host polder grading is approximate and not newly verified. Nearby equipment buildings, below-ground works and seasonal Christmas strings remain excluded. Retained372m envelope,100m shaft and2m pipe remain distinct from conflicting374/367m accounts; fine heights, equipment phase and illustrative cable sag remain reconstructive."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Current medium-fi acceptance supersedes historical maximum wording. The full detailed master is retained and corrected, rather than decimated: one mixed-winding northern foundation ring is normalized, and narrow top glazing is refined from32 to96 facets to prevent concrete clipping. Source triangle count becomes141970, with source sha256:e99fc388a8d5e7f2f34586b2c20b45442a0257671fec3af4c55b583844b6c3c6 and runtime sha256:83d27e44c0ab500e5226ea214fcd57b7e665366e8f83afa2f7cb5ab3c7a6036e. Dimensions, equipment stations and anchor topology are retained; historical GLBs were preserved locally before correction. Source-local derivatives share the same architectural stations. Interiors, exact antenna engineering and hidden foundations are excluded."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:e99fc388a8d5e7f2f34586b2c20b45442a0257671fec3af4c55b583844b6c3c6",
+  "runtimeHash": "sha256:83d27e44c0ab500e5226ea214fcd57b7e665366e8f83afa2f7cb5ab3c7a6036e",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:55515171824e3e9dd1e5ec36da9fc7a45b20161ccdf79f8f2db8d7f142d0274a",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/complete-guyed-tower.png",
+      "medium-fi/concrete-shaft-and-galleries.png",
+      "medium-fi/glazed-balconies-equipment.png",
+      "medium-fi/shaft-windows-and-entrance.png",
+      "medium-fi/reportage-cabin.png",
+      "medium-fi/upper-dipole-array.png",
+      "medium-fi/digital-tip.png",
+      "medium-fi/southwest-anchor.png",
+      "medium-fi/mapped-three-anchor-plan.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/skyline-full-twelve-guys-three-anchors.png",
+      "medium-fi/district-open-galleries-and-glazed-rings.png",
+      "medium-fi/street-reportage-cabin-and-guy-band.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all30 final browser frames: whole/site views,10 architectural cameras, three explicit LOD views, transitions and noon/late economy/high settings. All12 cables remain continuous and all3 foundations, gallery/platform stations, glazed rings, octagonal cabin and full372m tip remain at every level. Skyline aggregates fine window/antenna/rail coverage. District keeps92 window positions, seven aggregate antenna racks per side, sparse guards and thin mast-platform faces; street restores14 racks, curved guards and true window openings; closeup restores detailed fittings/reveals, bolt-head faces and fine joined cable paths. Railing and brace phases were aligned to each floor polygon so posts stay seated. Thin cables can rasterize as intermittent subpixel lines in distant views; their actual geometry remains connected."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
-    "notes": "Passed as a complete detailed world-viewer exterior. Current Cellnex/Saval dimensions, the government RCE heritage inspection and current firsthand contractor photographs support the100m concrete shaft, two glazed balcony rings, equipment galleries,2m pipe,220m reportage cabin, four guy levels with twelve cables, fourteen repeated dipole tiers, upper digital rod and three mapped anchor blocks. The current372m owner/installer height governs the envelope; conflicting374m contractor and367m old map figures remain explicit. Intermediate guy bands, exact balcony elevations, minor antenna phase and small service-window placement are proportional photographic reconstruction. The published226m guy band and surveyed anchor layout constrain them. Permanent exterior is complete; underground footings, interiors, detached generator buildings and seasonal Christmas strings are excluded."
+    "notes": "Passed as a complete detailed world-viewer exterior. Current Cellnex/Saval dimensions, the government RCE heritage inspection and current firsthand contractor photographs support the100m concrete shaft, two glazed balcony rings, equipment galleries,2m pipe,220m reportage cabin, four guy levels with twelve cables, fourteen repeated dipole tiers, upper digital rod and three mapped anchor blocks. The current372m owner/installer height governs the envelope; conflicting374m contractor and367m old map figures remain explicit. Intermediate guy bands, exact balcony elevations, minor antenna phase and small service-window placement are proportional photographic reconstruction. The published226m guy band and surveyed anchor layout constrain them. Permanent exterior is complete; underground footings, interiors, detached generator buildings and seasonal Christmas strings are excluded.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u1/u15/gerbrandy_tower/models/source.glb",
+        "hash": "sha256:e99fc388a8d5e7f2f34586b2c20b45442a0257671fec3af4c55b583844b6c3c6",
+        "bytes": 11398488,
+        "triangles": 141970,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -139.03504943847656,
+          0,
+          -209.17510986328125
+        ],
+        "max": [
+          221.94064331054688,
+          372,
+          178.4504852294922
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u1/u15/gerbrandy_tower/model.glb",
+        "hash": "sha256:83d27e44c0ab500e5226ea214fcd57b7e665366e8f83afa2f7cb5ab3c7a6036e",
+        "bytes": 11398116,
+        "triangles": 141970,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -139.03504943847656,
+          0,
+          -209.17510986328125
+        ],
+        "max": [
+          221.94064331054688,
+          372,
+          178.4504852294922
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u1/u15/gerbrandy_tower/model.skyline.glb",
+        "hash": "sha256:45e87289814e5b3fbbc029ab3e5b642bf4220c01e07eba66ecfc582248088d8c",
+        "bytes": 83988,
+        "triangles": 996,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -139.03504943847656,
+          0,
+          -209.17510986328125
+        ],
+        "max": [
+          221.94064331054688,
+          372,
+          178.4504852294922
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u1/u15/gerbrandy_tower/model.district.glb",
+        "hash": "sha256:1ffdf27885481168c47168d1d32a957c83753400be000bbec76bdcbf390a9b69",
+        "bytes": 306652,
+        "triangles": 3948,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -139.03504943847656,
+          0,
+          -209.17510986328125
+        ],
+        "max": [
+          221.94064331054688,
+          372,
+          178.4504852294922
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u1/u15/gerbrandy_tower/model.street.glb",
+        "hash": "sha256:45ed54687158d6514e13c97a706d2afe3aa8b63dc949232e58796fd0a21ce771",
+        "bytes": 1054152,
+        "triangles": 14978,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -139.03504943847656,
+          0,
+          -209.17510986328125
+        ],
+        "max": [
+          221.94064331054688,
+          372,
+          178.4504852294922
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u1/u15/gerbrandy_tower/model.closeup.glb",
+        "hash": "sha256:7a18fe9be0c8e9d5aea4f4350963c9cac39bfad961f478d1f7ea7a860d1596b2",
+        "bytes": 4608292,
+        "triangles": 63046,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -139.03504943847656,
+          0,
+          -209.17510986328125
+        ],
+        "max": [
+          221.94064331054688,
+          372,
+          178.4504852294922
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six Khronos-clean GLBs, zero errors/warnings/images. Two focused tests pass in10.74s: detailed master plus all4 levels retain mapped foundation extents and top surfaces,12 guys sampled at both ends and midpoint, six supported/open equipment galleries, all authored gallery posts seated on their floors, three shaft glazing rings and cabin glazing,92 near window positions, eight mast-platform levels, rising entry and full372m tip. Deterministic reconstruction, exact corrected masters, registered variants, geometry/download caps and separate12-byte GPU streams pass. Source/import, strict medium-fi, scene validation and30ticks pass, zero events, hash sha256:259e2c2a812227a762484c42a9dea2cecaed1057613d20ca172c9168ef86cef6."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:4da421e3e422fb9ebb8ead16ce88f1d944aaea082b1395293fe7441a7e1b6841",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:45e87289814e5b3fbbc029ab3e5b642bf4220c01e07eba66ecfc582248088d8c",
+        "bytes": 83988,
+        "gzipBytes": 15645,
+        "triangles": 996,
+        "cpuBytes": 82584,
+        "gpuBytes": 82584,
+        "errorMeters": 1.5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:1ffdf27885481168c47168d1d32a957c83753400be000bbec76bdcbf390a9b69",
+        "bytes": 306652,
+        "gzipBytes": 65612,
+        "triangles": 3948,
+        "cpuBytes": 302904,
+        "gpuBytes": 302904,
+        "errorMeters": 1.3,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:45ed54687158d6514e13c97a706d2afe3aa8b63dc949232e58796fd0a21ce771",
+        "bytes": 1054152,
+        "gzipBytes": 200016,
+        "triangles": 14978,
+        "cpuBytes": 1050384,
+        "gpuBytes": 1050384,
+        "errorMeters": 0.4,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:7a18fe9be0c8e9d5aea4f4350963c9cac39bfad961f478d1f7ea7a860d1596b2",
+        "bytes": 4608292,
+        "gzipBytes": 787933,
+        "triangles": 63046,
+        "cpuBytes": 4604496,
+        "gpuBytes": 4604496,
+        "errorMeters": 0.2,
+        "drawCalls": 3
+      }
+    ],
+    "initialBytes": 390640,
+    "notes": "996 /3948 /14978 /63046triangles;1 /3 /3 /3draws. Initial skyline+district390640bytes, street1054152bytes, closeup4608292bytes. All1k/4k/16k/64k and initial3MBphone/6MBlaptop caps pass. Far material colors use the0.65 shared-surface mean.1.5/1.3/0.4/0.2m detail reservations describe faceting/guard/cable aggregation, not a surveyed global error guarantee. Physical laptop/phone timings remain pending."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:20e1768f5b7392e607fd51ed2145a7bb9230a30a34541e43f8c2d41f438788e3",
+    "sourceHash": "sha256:e99fc388a8d5e7f2f34586b2c20b45442a0257671fec3af4c55b583844b6c3c6",
+    "runtimeHash": "sha256:83d27e44c0ab500e5226ea214fcd57b7e665366e8f83afa2f7cb5ab3c7a6036e",
+    "framesInspected": 60,
+    "note": "All60 standard current frames inspected, plus one separate corrected-northern-anchor close-up. The30 portable/shared PNGs remained byte-identical after the final browser-only railing fix, proven by individual frame hashes; all30 final medium-fi frames were inspected again. Retained ordinary pictures/map work only, no bespoke research or terrain download. The source generator and focused tests now cover the discovered foundation/glazing defects. This is the second targeted model since the7615GLB/assets-c9fe4c6121f21d79 source checkpoint; use the next meaningful four-model milestone. No engine CI, npm audit, Git mutation or upload."
+  },
+  "limitations": [
+    "Native foundation grading, cable engineering/collision certification and physical-device timings remain unverified. Subpixel cable aliasing is visible at long distance although all12 strands are geometrically continuous. Fine rails, bolts, flanges, windows and antenna density aggregate with distance."
+  ],
+  "geometryCorrectionsReview": {
+    "inputHash": "sha256:20e1768f5b7392e607fd51ed2145a7bb9230a30a34541e43f8c2d41f438788e3",
+    "sourceHash": "sha256:e99fc388a8d5e7f2f34586b2c20b45442a0257671fec3af4c55b583844b6c3c6",
+    "runtimeHash": "sha256:83d27e44c0ab500e5226ea214fcd57b7e665366e8f83afa2f7cb5ab3c7a6036e",
+    "corrections": [
+      "Mixed winding normalized for northern foundation178709104 without moving its outline.",
+      "Narrow top glazing refined to stay outside concrete core.",
+      "Browser rail and brace phases follow their supporting floor polygons."
+    ],
+    "additionalFrame": {
+      "rootRelativePath": ".artifacts/gerbrandy-refresh/north-anchor-corrected.png",
+      "hash": "sha256:c1d54ab8453a816ac9696d93b8ba6df5467bd0d63b7db0f4ed4e17f0491148fa",
+      "inspected": true,
+      "command": "node packages/tooling/dist/cli.mjs shot content/worldgen/source/places/u1/u15/gerbrandy_tower/scene.json --project content/worldgen/project.json --camera=-100,7,-216 --look=-82.204776,1.4,-206.319767 --size 1000x700 --out .artifacts/gerbrandy-refresh/north-anchor-corrected.png"
+    },
+    "notes": "Prior detailed GLBs retained locally. Source equipment/dimensions retained. Supplemental image stays local; standard60-frame current review is independent of a review archive."
   }
 }

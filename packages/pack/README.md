@@ -62,20 +62,26 @@ built.file; // 'my.props-3f2a9c1e5b7d.zip', named by a hash of its bytes
 const pack = await openDirPack('content/my-props');
 ```
 
-## Host packs unzipped
+## Host packs on a CDN
 
-A CDN serves a pack just as well with its files loose: every file is its own cacheable URL, and a
-new release uploads only the packs that changed. `hostPacks` publishes the packs a pack index lists
-that way. Each version goes to `<pack id>/<12 hex of its contentHash>/` once and never changes, so
-those files can be served as immutable, and the `index.json` it writes last is the only document
-that changes between releases:
+`hostPacks` publishes the packs a pack index lists for a CDN. Each version goes to
+`<pack id>/<12 hex of its contentHash>/` once and never changes, so its files can be served as
+immutable, and the `index.json` it writes last is the only document that changes between releases;
+a new release uploads only the packs that changed.
+
+A pack whose zip is at most `zipBelow` bytes (default `HOSTED_ZIP_BELOW`, 4 MiB) is published as
+that zip: readers fetch an archive that small whole, so a pack of a thousand small documents costs
+one request. A larger pack is published unzipped, every file at its own cacheable URL, so readers
+fetch only the files they use. `zipBelow: 0` unzips every pack.
 
 ```ts
 import { hostPacks } from '@bendyline/molen-pack/node';
 
 // dist/packs/index.json lists built zips; _a/ becomes the directory to upload.
 await hostPacks('dist/packs/index.json', { outDir: '_a' });
-// _a/index.json → { "molen.sky": { "file": "molen.sky/b42226982545/molen-pack.json", … } }
+// _a/index.json → {
+//   "molen.sky": { "file": "molen.sky/b42226982545/molen.sky-3f2a9c1e5b7d.zip", … },
+//   "molen.sounds": { "file": "molen.sounds/3d503f19b517/molen-pack.json", … } }
 ```
 
 `openPack` (and `openPacksFromIndex` in `@bendyline/molen-earth`) opens a URL ending in

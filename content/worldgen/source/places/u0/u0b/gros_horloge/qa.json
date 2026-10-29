@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.gros_horloge",
-  "inputHash": "sha256:8fcf41ec07509e0fbe9e86965b10daf30c94c68dfdad28a4254df803020bce96",
-  "captureReportHash": "sha256:8fe3cb40e98e4f6fab2bca5b8d460fc897923e97376e07bdd0d1fd13601c8f4b",
+  "inputHash": "sha256:c073a2f516858e1b85b5a9a1ec9368e231f8f42c2c958fe706a5bcf4f07161b4",
+  "captureReportHash": "sha256:bf98d3e196d634dd2ca1b91857cf91cdf47d65a00ce90b60d0ef2c137d839b7f",
   "visualReview": {
     "status": "passed",
     "scope": "Complete detailed world-viewer exterior reconstruction",
@@ -22,11 +22,12 @@
       "shots/workshop-and-fountain.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "Inspected all 14 current portable frames: lit preview, four complete turntable views, two street-side ensemble views, distant silhouette, both decorated clocks, carved arch underside, belfry tracery, dome and open lantern, workshop and fountain. The revised narrow pavilion fits its mapped roof and remains distinct from the wider museum-cast arch surround. Full-view cameras contain the entire finial and base; close cameras deliberately show cropped details. Open arch clearance, true window recesses, louver/tracery depth, curved roof surfaces, clock numerals and relief layers render without overlaps or missing faces."
+    "notes": "Inspected all 14 current portable master views against the retained municipal street and clock photographs. Both clock elevations, open lowered street barrel, pastoral soffit and spandrel reliefs, pavilion dormers and roof crest, adjoining buttressed Gothic belfry, ribbed dome, open bell lantern and cross, rear stair turret, timber workshop and fountain remain represented. Detailed 273,346-triangle source and imported master are byte-preserved. The principal figures and ornament are original polygonal interpretations rather than literal sculptural casts.",
+    "captureReportHash": "sha256:bf98d3e196d634dd2ca1b91857cf91cdf47d65a00ce90b60d0ef2c137d839b7f"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:3876358ff445b7fbfab0f2852aee76bd423c3d5c6d4a24f84b90ed66ff000499",
+    "captureReportHash": "sha256:1d4702d868dece5a02b42cc401ff981047b6f75dac50b12f132515fa16b094fa",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -43,16 +44,261 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 14 current shared-surface frames, including four full angles, nine named views and north-up geographic placement. Five shared metric materials retain coherent limestone coursing on walls, continuous raw limestone on carved reliefs, painted metal roof/gold clock details, timber trim and plaster. Sky reflections and vertex tints retain dark-blue clock grounds, warm gilt rays and legible sculpted depth. Geographic load and unload assertions passed."
+    "notes": "Inspected all 14 current shared-material and geographic frames. Five existing 256px limestone, raw limestone, painted-metal, wood and lime-plaster graphs are reused; opaque local dark recesses and carved-stone palette groups remain. Stone coursing, dark lead-colored roofing and gilded navy clock panels remain distinct. No embedded or private image textures in any of the six GLBs. Model geometries dispose on unload. North-up mapped clock-pavilion outline remains aligned with the signed frame; surrounding apartment blocks are separate structures."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:7245dd8297ebfc24961f3e7b1fd7549492b6a44c6849b53ec6d5096e413a11eb",
-    "notes": "Source-local registration uses exact clock-pavilion way 63205872 (Q3116957) at [1.091260626819452,49.44152658119305], heading 1.1133012813694583 radians. Adjoining exact belfry way 63206189 and the 1929 BnF/Rouen survey independently establish the southwest belfry, street-facing workshop, fountain and rear stair turret arrangement. The roof overlay in the north-up capture agrees with the approximately 5.94 m pavilion span; the 7.44 m museum-cast dimension governs the wider arch/jamb framing, not an oversized upper pavilion. Native +Z faces east-southeast toward the cathedral. The ordinary ground-contact model is registered at street level; neighboring apartment blocks remain separate."
+    "notes": "Retained exact clock-pavilion Q3116957 way63205872 and adjoining belfry Q22952095 way63206189. Anchor [1.091260626819452,49.44152658119305], heading1.1133012813694583. Native +X runs north-northeast across the pavilion; +Z east-southeast along Rue du Gros-Horloge toward the cathedral. Source Y0 is the public street. Current north-up overlay retains the mapped pavilion registration and southwest belfry/workshop/fountain arrangement. The 7.44m measured arch/jamb envelope is separate from the narrower upper pavilion. Existing approximate host-terrain contact is retained; no surveyed pavement or neighboring-building seam claim is made."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Fresh medium-fi exterior/browser acceptance supersedes the historical maximum-fidelity review. Detailed source sha256:b0f423686e0a51f1adbe4bf9da646892a86602b2947bf876d01eb78a5953762f and imported master sha256:59b74c4b2e315e43b3da72832e2399652c21a2742c2dadb6c6282f6f83122ef6 are unchanged. One source-local module contains explicit complete skyline/district ensembles and an authored closeup; the original detailed master recipe remains unchanged. Both clocks are static at ten. Sculpture, lunar/weekday states, intermediate heights and nominal street contact remain reconstructive approximations. Neighboring apartments and interiors remain outside this exterior asset's scope."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:b0f423686e0a51f1adbe4bf9da646892a86602b2947bf876d01eb78a5953762f",
+  "runtimeHash": "sha256:59b74c4b2e315e43b3da72832e2399652c21a2742c2dadb6c6282f6f83122ef6",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:8c6fc1e30c6e51f91d16333060e40ecafdfa74e0bf9c7b47680ca1c32d82fce5",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/cathedral-side-ensemble.png",
+      "medium-fi/market-side-ensemble.png",
+      "medium-fi/renaissance-clock.png",
+      "medium-fi/reverse-clock.png",
+      "medium-fi/pastoral-arch.png",
+      "medium-fi/gothic-tracery.png",
+      "medium-fi/ribbed-dome-and-lantern.png",
+      "medium-fi/workshop-and-fountain.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/skyline-whole.png",
+      "medium-fi/district-clock-and-arch.png",
+      "medium-fi/street-dial.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 29 current browser frames, including noon/late economy/high, nine architectural views, three selected LOD features and four transition views. Every level retains the full 43m cross height, pavilion and traversable barrel, two dials, belfry, open lantern and hanging bell, rear stair turret, workshop and fountain. Replaced automatically pruned district geometry after it lost the cross. Visual inspection caught inward sun-ray and hand faces, now corrected on both far clock elevations; corrected Gothic cards use a proper rectangle and pointed triangle. Current district dial shows all 24 rays, single hand and Roman strokes; skyline aggregates numeral strokes, tracery and reliefs. Closeup retains detailed dials and principal sculpture while planar ornament uses ribbons/scallops and small figures use coarse facets. Street simplification deliberately reduces tiny dial/relief strokes. Final frames have no missing ensemble sections or visibly inward clock faces. Flat stages and synthetic neighbors do not establish native street-grade contact."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
-    "notes": "Passed for the detailed original world-viewer exterior after comparison with municipal current imagery and 2024 booklet, French heritage inventory, the BnF/Rouen measured plan, physical museum arch cast and first-hand horological conservation photographs. The modeled ensemble includes the lowered arch and its cherub/spandrel/pastoral reliefs, two 2.50 m clock dials with 24 rays, Roman numerals and single lamb hour hands, moon spheres and weekday carts, sculpted Renaissance pavilion, curved metal roof and finials, Gothic recessed belfry windows and louver tracery, dome, open bell lantern, octagonal stair turret, timber workshop and Rococo fountain group. The primary 31 m roof-support datum constrains the belfry; intermediate heights and approximately 43 m finial are explicitly reconstructed in proportion. Original polygonal figures preserve placement and iconographic arrangement without claiming exact restoration-grade facial/inscription reproduction. These recorded local reconstruction limits do not omit visible exterior components."
-  }
+    "notes": "Passed for the detailed original world-viewer exterior after comparison with municipal current imagery and 2024 booklet, French heritage inventory, the BnF/Rouen measured plan, physical museum arch cast and first-hand horological conservation photographs. The modeled ensemble includes the lowered arch and its cherub/spandrel/pastoral reliefs, two 2.50 m clock dials with 24 rays, Roman numerals and single lamb hour hands, moon spheres and weekday carts, sculpted Renaissance pavilion, curved metal roof and finials, Gothic recessed belfry windows and louver tracery, dome, open bell lantern, octagonal stair turret, timber workshop and Rococo fountain group. The primary 31 m roof-support datum constrains the belfry; intermediate heights and approximately 43 m finial are explicitly reconstructed in proportion. Original polygonal figures preserve placement and iconographic arrangement without claiming exact restoration-grade facial/inscription reproduction. These recorded local reconstruction limits do not omit visible exterior components.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u0b/gros_horloge/models/source.glb",
+        "hash": "sha256:b0f423686e0a51f1adbe4bf9da646892a86602b2947bf876d01eb78a5953762f",
+        "bytes": 30018208,
+        "triangles": 273346,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -10.9399995803833,
+          0,
+          -8.196000099182129
+        ],
+        "max": [
+          3.7200000286102295,
+          43,
+          2.609999895095825
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u0b/gros_horloge/model.glb",
+        "hash": "sha256:59b74c4b2e315e43b3da72832e2399652c21a2742c2dadb6c6282f6f83122ef6",
+        "bytes": 30017540,
+        "triangles": 273346,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -10.9399995803833,
+          0,
+          -8.196000099182129
+        ],
+        "max": [
+          3.7200000286102295,
+          43,
+          2.609999895095825
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u0/u0b/gros_horloge/model.skyline.glb",
+        "hash": "sha256:0cd5eda653f244a50addbdfebdafe89d0afa5aa07a44ace8079a1ba8a29dc579",
+        "bytes": 72212,
+        "triangles": 900,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -10.90999984741211,
+          0,
+          -8.140000343322754
+        ],
+        "max": [
+          3.7200000286102295,
+          43,
+          2.3399999141693115
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u0/u0b/gros_horloge/model.district.glb",
+        "hash": "sha256:44625bb2b832a6f5a831007f7d470386bc64a4a5ef1e3709efd1307c4dc36586",
+        "bytes": 221960,
+        "triangles": 2690,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -10.90999984741211,
+          0,
+          -8.140000343322754
+        ],
+        "max": [
+          3.7200000286102295,
+          43,
+          2.380000114440918
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u0/u0b/gros_horloge/model.street.glb",
+        "hash": "sha256:917d6a787171206b6aa827ae3ad2a4dd227952ac0b81471e82740656c4699d6d",
+        "bytes": 1690436,
+        "triangles": 15813,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -10.9399995803833,
+          0,
+          -8.196000099182129
+        ],
+        "max": [
+          3.7200000286102295,
+          43,
+          2.5899999141693115
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u0/u0b/gros_horloge/model.closeup.glb",
+        "hash": "sha256:83accac06f1c7ec78b34c8eab81ea67f1fde9918792918cb43544ab646e025d8",
+        "bytes": 5162020,
+        "triangles": 62308,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -10.9399995803833,
+          0,
+          -8.196000099182129
+        ],
+        "max": [
+          3.7200000286102295,
+          43,
+          2.609999895095825
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six GLBs are Khronos-clean with zero errors, warnings or embedded images. Two focused tests pass in5.90s: all-level full43m silhouette, open street barrel from both approaches, both dial planes, open lantern and retained bell/support, workshop roof and fountain; outward sun-ray/hour-hand surfaces on both distant elevations; deterministic four-level reconstruction preserving exact detailed source/master digests, registered variants, material counts, triangle/draw/download budgets and separate12-byte position/normal GPU streams. Selected import/hash verification and strict medium-fi audit pass. Test rays begin outside the arch barrel and below the unrelated belfry cornice, avoiding false obstruction from valid attached context. Probes do not constitute a global surface-error certificate."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:a3de133430ea4c65a0c965804aa9e0db146ccb89dc60e93a5ec63d4d7525c200",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:0cd5eda653f244a50addbdfebdafe89d0afa5aa07a44ace8079a1ba8a29dc579",
+        "bytes": 72212,
+        "gzipBytes": 13129,
+        "triangles": 900,
+        "cpuBytes": 70812,
+        "gpuBytes": 70812,
+        "errorMeters": 0.5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:44625bb2b832a6f5a831007f7d470386bc64a4a5ef1e3709efd1307c4dc36586",
+        "bytes": 221960,
+        "gzipBytes": 45051,
+        "triangles": 2690,
+        "cpuBytes": 214752,
+        "gpuBytes": 214752,
+        "errorMeters": 0.5,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:917d6a787171206b6aa827ae3ad2a4dd227952ac0b81471e82740656c4699d6d",
+        "bytes": 1690436,
+        "gzipBytes": 372845,
+        "triangles": 15813,
+        "cpuBytes": 1682012,
+        "gpuBytes": 1682012,
+        "errorMeters": 0.1614152198688559,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:83accac06f1c7ec78b34c8eab81ea67f1fde9918792918cb43544ab646e025d8",
+        "bytes": 5162020,
+        "gzipBytes": 1431670,
+        "triangles": 62308,
+        "cpuBytes": 5153556,
+        "gpuBytes": 5153556,
+        "errorMeters": 0.08,
+        "drawCalls": 7
+      }
+    ],
+    "initialBytes": 294172,
+    "notes": "900 /2690 /15813 /62308triangles;1 /6 /7 /7draws. Initial skyline plus district294172bytes; street1690436bytes; closeup5162020bytes. All1k/4k/16k/64k geometry caps and initial3MBphone/6MBlaptop targets pass. The30MB detailed editing master is preserved separately. Authored error reservations0.5/0.5/0.08m describe far feature aggregation and closeup faceting, not measured global error; street reports its bounded simplification deviation. Shared texture graphs are reused; physical laptop/phone timings remain unmeasured."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:c073a2f516858e1b85b5a9a1ec9368e231f8f42c2c958fe706a5bcf4f07161b4",
+    "sourceHash": "sha256:b0f423686e0a51f1adbe4bf9da646892a86602b2947bf876d01eb78a5953762f",
+    "runtimeHash": "sha256:59b74c4b2e315e43b3da72832e2399652c21a2742c2dadb6c6282f6f83122ef6",
+    "framesInspected": 57,
+    "note": "All57 current frames were captured and inspected. The final28 portable/shared frames are pixel-identical to the inspected sheets before derivative-only face corrections, confirmed by SHA-256 of regenerated contact sheets; all29 final browser frames were inspected again. Retained municipal ordinary pictures and signed map work were reused without bespoke source/terrain research, downloaded meshes or new textures. Source module and scope were registered before final input binding. Targeted checks only; no engine CI, npm audit, Git mutation or upload."
+  },
+  "limitations": [
+    "Current acceptance covers the complete static medium-fi exterior ensemble and retained approximate signed map placement. Detailed masters remain available. Far sculpture, tracery and numeral strokes aggregate deliberately; no surveyed pavement contact, literal sculptural restoration, live clock simulation or physical-device performance claim is made."
+  ]
 }

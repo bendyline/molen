@@ -25,6 +25,6 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs mol
 - Lower facade floor heights and exact glazing subdivisions are fitted to museum exterior photography. The measured upper structure is reconstructed with simplified capitals and scroll brackets.
 - Roof ribs and 18 circular roof lights per side follow the contemporary engineering account; irregular restoration patches and individual iron fittings are simplified.
 - The nineteenth-century plate supplies structural dimensions but the present star and modern glazing follow museum photographs. Tiny carved figures and allegorical pediment sculpture are represented only by their architectural surrounds.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Current medium-fi browser models deliberately aggregate distant colonnades and rails, omit subpixel roof fasteners and joints, and use a full-height point proxy for the small terminal star at skyline/district. The true star and roof-light pattern return in street/closeup. Nominal ground contact is host supplied; no surveyed sloping street grade or physical-device performance claim.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

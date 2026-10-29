@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
-  "sourceHash": "sha256:c5c86fdcafa19a24c65d1a76be3550aba29d05dcbde8a48f3c3fba07e6944789",
-  "runtimeHash": "sha256:47393ba5e7e9216a0e440c27c6d6e6e049ce63d30e0e54a21ca65b499e4af8f7",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+    "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6"
+  },
+  "sourceHash": "sha256:f2cbf6e87acbd496382745664eb9b10b829776bf943e67c6e52e916d406ac7fa",
+  "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5312,
   "runtimeLods": [
@@ -52,24 +59,24 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:b0aedb8245b70c389fa96ff9bd35f650493426ced4d9fdc413fa36a245ec67cd",
-      "bytes": 1099488,
-      "gzipBytes": 305731,
-      "triangles": 15844,
-      "cpuBytes": 1092156,
-      "gpuBytes": 1092156,
+      "hash": "sha256:f17eb9eb3ecb3970559209058baf8c19b1f19b5aa434e5c9e6d9680f2469c995",
+      "bytes": 996092,
+      "gzipBytes": 272945,
+      "triangles": 14596,
+      "cpuBytes": 988764,
+      "gpuBytes": 988764,
       "errorMeters": 0.12,
       "drawCalls": 6
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:90b96c42671e2956755656e8a61bbbbedabec1b44e8edad1c68e34376a6fe080",
-      "bytes": 3219988,
-      "gzipBytes": 917277,
-      "triangles": 45782,
-      "cpuBytes": 3212616,
-      "gpuBytes": 3212616,
+      "hash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
+      "bytes": 2679648,
+      "gzipBytes": 737930,
+      "triangles": 39126,
+      "cpuBytes": 2672280,
+      "gpuBytes": 2672280,
       "errorMeters": 0.04,
       "drawCalls": 6
     }
@@ -81,14 +88,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:5b60147bafe750afb9bda85d8720f639bda93ac80888a174ffd68220628fcfa3",
+      "hash": "sha256:90783c9a6fa3fb771288816e35264d46a99f8b0810c99bd08d93efb54525d226",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -112,19 +122,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:ce6401277326c6f57374c98b8d905e9504c520e9a1d9b89ba3c4952dde1bf0f6",
+      "hash": "sha256:0e5bdb8035801e28f0d16119c854de5b106d3a78bb8119b6028dcfb76970524d",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -148,19 +162,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:663c3d9df3772f18ce876de7df287b3aebeb3f2110142208451e9dd679fc8ac4",
+      "hash": "sha256:16d745045e9e4c3aecafe2a9cc38a7ddad796d850a97d38eb596bfdc1730a818",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -184,19 +202,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:3d0a307dc248856389ae958e82545f522232c198e11d5c96ebb4c553433cb427",
+      "hash": "sha256:9637f9b84ead16b1db453e2f70e5db325ae04dd581f293adc6a79799658758a3",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -220,13 +242,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:62e67f504234f07b56b3a78b5337f67c0ea8d3e63b7513cb83a4a8bb9711f1db",
+      "hash": "sha256:0aeb4007177106ea018d1ea67ecd92e88bb78cb651ed8f26d2fb519911e65bad",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:45e17528f6983a451af244d5bbf3b7f9fb8dc0dc29d4139b6b4ad99db1bd14ad",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -256,13 +282,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:67df7cd524f241bcacd7334a16a45813ee8833f1b92d022aa7dc59acc8360980",
+      "hash": "sha256:24a204084f3d7b5ae05796e79cf9305656a65239203b39e83544a2baece5bc48",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:45e17528f6983a451af244d5bbf3b7f9fb8dc0dc29d4139b6b4ad99db1bd14ad",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -292,13 +322,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:a2491fe4a01719076f32443ffbce4007aa1a337da1806a36c9d0437402bbfa8e",
+      "hash": "sha256:0ca21acac2a1cbbc619ac6a5215f0615a1614b399d65cc8d3b1b1faca6c2333e",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:45e17528f6983a451af244d5bbf3b7f9fb8dc0dc29d4139b6b4ad99db1bd14ad",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -328,13 +362,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:254eb5d17cb5efbf01942ba86d620e2f30c8e47711d70cde84790f70e59cc37d",
+      "hash": "sha256:11cd7aca0a5e5f58444062d6d7f5f82e657df29240928b3957e90f5b17bf5e9c",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:45e17528f6983a451af244d5bbf3b7f9fb8dc0dc29d4139b6b4ad99db1bd14ad",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -364,13 +402,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:40e347d665a19dbc5d59b1aa8c291b9313174335b084aa529dda490153400bb9",
+      "hash": "sha256:8758f6123da769dc5632ebd90c1187c682d1f36286cb803711851c56030f732a",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:e8cf83c6f227a25ef6090cc386d4063d25336a68882bd787dc9ea9f3e0bbe891",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -400,13 +442,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:b1c53814726450b82a226cbe56ef68afecb69479202e307a0bd249bc0646d2f6",
+      "hash": "sha256:01bd9948e620bd7fd39e747f205a3901e2ac76db372d3868566ddb9b02f1110b",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:e8cf83c6f227a25ef6090cc386d4063d25336a68882bd787dc9ea9f3e0bbe891",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -436,13 +482,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:96efe56a3cc4b7d25323285097e0df48cf3e1bcc9b9f3ce24bff0dc8ea8aa059",
+      "hash": "sha256:e71d935b87f2f383015e43da898f433711652e394e63c11cbbdafc2c7bf3457d",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:e8cf83c6f227a25ef6090cc386d4063d25336a68882bd787dc9ea9f3e0bbe891",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -472,13 +522,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:1e8db63a12de64e2d709506f86de1fc1eeee12fcc69ed3a8534e7167cfbd193f",
+      "hash": "sha256:43512aa81f8fec0d674779960a236e5466c366fa8cb549eca2641e0a2465328e",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:e8cf83c6f227a25ef6090cc386d4063d25336a68882bd787dc9ea9f3e0bbe891",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -508,13 +562,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:9a27a4797cf026ff00b6b0278de8834b010adafa8ba0f350faf5b124e7ad9e2d",
+      "hash": "sha256:50fc793644018a18f3688e2c2354917cfd8eaf665c6d42c8cf30c360b4d49838",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:e8cf83c6f227a25ef6090cc386d4063d25336a68882bd787dc9ea9f3e0bbe891",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -544,19 +602,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/timber-north-and-gallery.png",
-      "hash": "sha256:41747d362448fded9260c46e36d0e7cba61f80a4d8302352accc07980c138a2f",
+      "hash": "sha256:3831ab8aecb7956cfb728ad51f5d32c5a0eccc66f9f5fe34ac176555f96b639c",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -580,19 +642,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/southern-friezes-and-lean.png",
-      "hash": "sha256:d183c3545eb05b678dbad3c02e8355445115e8602df23d58f79609b3d339137b",
+      "hash": "sha256:b4919bee30a7cddd67ab712111351a8a11c2e21d481b3ebbe6b57e7cc28d6bd4",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -616,19 +682,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/east-covered-stair.png",
-      "hash": "sha256:202e83813e87ca3fd810c3bc60f60c049dfaeb32b5fc2067fc8d4c44a06a4bee",
+      "hash": "sha256:1d2fb06b683108a1b16f0bf9c0ab301628bae002c9fecaecfbbd39802b9c9437",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -652,19 +722,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/roof-and-latrine.png",
-      "hash": "sha256:3942588c04a9fea82c9c222a00e795d7d27ccddbbbf1e1414ecf8d8d96604c09",
+      "hash": "sha256:181ba2110883ac4863a471ad518c860e9cd3b9e2a6db85b5ef6955b53a431746",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -688,19 +762,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:25093151f3fd3833b46473d5def985845562b5823835ecc96e28ee69e7af72e4",
+      "hash": "sha256:546c735208ba8c0d2269adb2bbcd657732563a107d5d6b176a03b2a9edf20e1e",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -724,19 +802,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/north-jetties.png",
-      "hash": "sha256:ad2237c6bf856c64c1c85f6c628b20b5693e4dd6fbf65d83a2d61658a17d9cbe",
+      "hash": "sha256:cf4023940402e29bd0722a9f77f2ccc3affe7deba0e3921480a7e487aa2a14f8",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -760,19 +842,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/closed-parapet.png",
-      "hash": "sha256:26bdebf8c3cb120050c21a923f749c6931bdfabab5f2927143c4618f483e00d4",
+      "hash": "sha256:2b6d9d0f2bc748d639b0d116f82deff5e695a61381855e9dcc0570a072eeee90",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -796,13 +882,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/whole-district.png",
-      "hash": "sha256:1072a19c11dedb822f875f02ebbadb36d9e05ae5d096b58d757b2e7f840c8c97",
+      "hash": "sha256:e73416c1ae2f1547232c671cb8c223238c66bcc1656e1772173cfa96e657fe23",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:45e17528f6983a451af244d5bbf3b7f9fb8dc0dc29d4139b6b4ad99db1bd14ad",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -832,19 +922,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/north-street.png",
-      "hash": "sha256:9c12ca0ac3f19809b71df0c12eff38b0e7ae0fa530348c14ba17873882ac3569",
+      "hash": "sha256:26fdf0ded61b6c173d5b8c7e433c8b842e2b0b6d8143f5586dee4c08e8323d96",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:f17eb9eb3ecb3970559209058baf8c19b1f19b5aa434e5c9e6d9680f2469c995",
         "level": "street",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 21158,
+        "triangles": 19910,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -868,19 +962,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/gallery-closeup.png",
-      "hash": "sha256:115012bb531e1d55df578b10527dbb02b72a620dbbedfae87aff1b7a66541add",
+      "hash": "sha256:d532303b108580f68ed72f67cb3c69e02342a502788b44edc1dfadc6c31de70b",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -904,19 +1002,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/east-stair-closeup.png",
-      "hash": "sha256:5e2672e3e8fb08ba214edc9a1a0f209e9bf0a0ead2f2c6aff24a316c795ef505",
+      "hash": "sha256:00d54a79e295c7f51dad88b0262366dbcb6a6108b166792124520bb8f657cb9e",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -940,13 +1042,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:3a5cf32461aacb57d23a39832b06dca6f3fb80f34bef73fbfea68508c6aeb117",
+      "hash": "sha256:0767da7d105578d923458fd67bb2ced32e4a079b93673893a02cc898795d83cf",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:e8cf83c6f227a25ef6090cc386d4063d25336a68882bd787dc9ea9f3e0bbe891",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -976,13 +1082,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:67df7cd524f241bcacd7334a16a45813ee8833f1b92d022aa7dc59acc8360980",
+      "hash": "sha256:24a204084f3d7b5ae05796e79cf9305656a65239203b39e83544a2baece5bc48",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:45e17528f6983a451af244d5bbf3b7f9fb8dc0dc29d4139b6b4ad99db1bd14ad",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -1012,19 +1122,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:4a11d94d5bab95013381f7acd847a160197a8b91d62325fcad84b48032e3d52a",
+      "hash": "sha256:82818bdf615661657992d24f807925650a70f7d12233dab11c926842b5ab3a5a",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:f17eb9eb3ecb3970559209058baf8c19b1f19b5aa434e5c9e6d9680f2469c995",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 21158,
+        "triangles": 19910,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1048,19 +1162,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:2c8edf0a61be76d22062f051a458b1b43d3696e8f6bdaef65d751e4f2824c86a",
+      "hash": "sha256:29989464834ce198516e2c0abee42243b131228bb5300cac54fae80eb6972088",
       "state": {
+        "assetId": "molen.worldgen.structure.leaning_tower_of_torun",
+        "runtimeHash": "sha256:ad05af8b80c5232ebc4228ad3b30aa38ac5bd5170706cc5e6d41183701eb8ce6",
+        "lodHash": "sha256:9881fa6a5b0e2771db913641d51ca4ac863a0945e759922d35ef5e2ff6050b60",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 51096,
+        "triangles": 44440,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1084,7 +1202,8 @@
         },
         "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     }
   ],

@@ -25,6 +25,6 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs lab
 - Exterior terrace elevations, rail spacing, mortar joints and slit widths are proportioned from the section and owner photographs; individual blocks are original reconstructions.
 - Temporary scaffolding, staining and repair marks vary by maintenance campaign. Interior memorial rooms and stairs are outside this exterior asset.
 - The adjoining courtyard galleries, memorial hall and submarine are separate assets, not part of this tower footprint.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Current browser levels aggregate distant slit depth, stone relief and guard posts. Vertical sections remain photographic reconstructions; no host plaza survey or physical-device performance claim.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

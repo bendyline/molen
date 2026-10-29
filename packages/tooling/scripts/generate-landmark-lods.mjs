@@ -71,6 +71,11 @@ if (one) {
         if (current) {
           const sidecar = JSON.parse(await readFile(sidecarPath, 'utf8'));
           sidecar.runtimeLods = current;
+          // A replayed import sidecar has no variants; packs find each level only through them.
+          sidecar.files.variants = {
+            ...sidecar.files.variants,
+            ...Object.fromEntries(current.levels.map((level) => [level.name, level.file])),
+          };
           await writeIndex(sidecarPath, `${JSON.stringify(sidecar, null, 2)}\n`);
           retainedPaths.push(
             ...current.levels.map((level) => resolve(dirname(sidecarPath), level.file)),

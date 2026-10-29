@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.pilsum_lighthouse",
-  "inputHash": "sha256:4f435e0b644a3ff646c9d8aa220089efa79da96cd959fa7c3aa0b9880876bc49",
-  "captureReportHash": "sha256:cd5e20bf8cade9c2aa1973188dd267e806349e44b10c83e61ca9cc84422e88d0",
+  "inputHash": "sha256:ca8db4dc27d370e9ba42343b1a787ef98baac647f152199c37a95c5907da52d4",
+  "captureReportHash": "sha256:c7d343d89d99c122170747258656567413816e7f938340ee1c44420adc9fd3c2",
   "visualReview": {
     "status": "passed",
     "scope": "Detailed exterior and portable materials.",
@@ -18,12 +18,13 @@
       "shots/near-banded-plates.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "All ten portable and ten shared frames inspected. Seven daymark bands, riveted steel courses, entry, barred small windows, two broad sector windows, vent hoods, outward roof railing, roof seams and ventilator remain visible and connected in all inspected quadrants."
+    "notes": "Inspected all 10 current portable source images against the retained heritage, tourism and close railing/window pictures. Seven red/yellow bands, two broad black optical windows, small barred rear windows, north-northeast doorway/steps, projecting vents, canted roof railing, dark cone, ventilator ball and lightning rod remain intact. The current detailed 67386-triangle source and runtime masters remain byte-identical through the browser upgrade.",
+    "captureReportHash": "sha256:c7d343d89d99c122170747258656567413816e7f938340ee1c44420adc9fd3c2"
   },
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:dc121a3ef9d8165ab6b1428ec097a94ce5a2d92cbc1b83755e76e51ee8bdb259",
+    "captureReportHash": "sha256:6648ff4222a4c951a2ecef2ad821849766ded8a8b57fd819093a5a5c3c8cf0e8",
     "fixtureHash": "sha256:3dc3824114fb46029b6a424af8098d75a98b8b5bd306db741d028163415abde5",
     "inputHash": "sha256:4f435e0b644a3ff646c9d8aa220089efa79da96cd959fa7c3aa0b9880876bc49",
     "materialGraphs": {
@@ -52,17 +53,259 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Shared painted-metal and mineral-base surfaces preserve authored metric scale and original vertex tints. Dark windows remain distinct and any lantern clear glazing preserves the physical frame. The unload and material sharing assertions passed in the capture report."
+    "notes": "Inspected all 10 current shared-material/geographic images. Three existing canonical 256px brick, painted-metal and granite graphs load once; opaque dark glazing remains distinct. Painted steel preserves the red/yellow daymark, foundation has a masonry finish and steps remain gray. All six GLBs have no private or embedded images. The north-up center and signed door placement remain; unload disposes all model geometry."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:eb03b70823615ce5f7a9866ea25b4da4812efc9ecdcb4df0b157be056c809023",
-    "notes": "Exact-QID circle centers the tower; explicit OSM main-entrance node and steps resolve the doorway north-northeast. North-up placement aligns foundation and entrance. The unrelated 65.3m map height is rejected in favor of the approximately 12m heritage record."
+    "notes": "Retained exact-QID circle way 243297523, center 7.045705623,53.497985478, explicit entrance node 8949335764 and two-step way 967353310. Heading 2.7044851587053764 keeps native +Z doorway north-northeast. Current north-up placement and asymmetrical window/door views inspected. Ground Y=0 is host-supplied dyke-top contact; the immediate plinth/steps are included, separate lock sculpture and dyke terrain excluded. Existing map height 65.3m remains rejected for this approximately 12m structure; model rod reaches 12.45m. Optical-sector directions and small fittings are photo-proportioned. Flat staging establishes no surveyed dyke grade or historic navigational-sector bearing."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Fresh medium-fi exterior acceptance. Preserved detailed master is 67386 triangles / 6502820 source bytes at sha256:bf019c4ec154dbe528cf0b4eacbc6639f4bd72deaa93bc93a3756bf1f5c3993a; runtime master remains sha256:90ba7b2464f9e18135a49b234bfa93cd0f2c9a4bf25370519d6e5f1f4ebbb4eb. Four explicit source-local derivatives replace inaccurate automatic reductions. Shape, seven bands, signed optical apertures, entry and roof vocabulary carry recognition. Rivets, fine vent slots and unseen interiors are omitted; fittings and foundations retain declared picture-based approximation."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:bf019c4ec154dbe528cf0b4eacbc6639f4bd72deaa93bc93a3756bf1f5c3993a",
+  "runtimeHash": "sha256:90ba7b2464f9e18135a49b234bfa93cd0f2c9a4bf25370519d6e5f1f4ebbb4eb",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:6ba9d81f6553a2786f62b4812e64b144f0194a83b84e75721b05324c78a309ee",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-entry.png",
+      "medium-fi/near-sector-windows.png",
+      "medium-fi/near-roof-railing.png",
+      "medium-fi/near-banded-plates.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/sector-windows-street.png",
+      "medium-fi/roof-rail-district.png",
+      "medium-fi/bands-skyline.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all 25 current medium-fi frames: economy/high noon/late, silhouette, source feature cameras, street sector windows, district roof railing, skyline bands and four transitions. New component-based levels retain all seven bands, real recessed optical windows, attached entry steps, conical roof, ventilator and complete rod height. Skyline omits small rear windows and hoods; district restores the openings/hoods and eight rail posts; street/closeup restore twenty canted uprights, three rail rings, roof vents and seams. Closeup adds bars, door hardware and interrupted plate joints. No individual rivets are drawn in browser levels. Whole and far views give full coverage; detail crops are intentional. The untextured distant silhouette is fogged; useful skyline views retain the daymark. Synthetic cottages are context, not the native dyke."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "Heritage authority and municipal tourism photographs control the current seven-band steel exterior, window and railing architecture. Heritage height is approximate; lightning rod extends to 12.45m. Historic optical-sector bearings are reconstructed visually and are not certified for navigation."
-  }
+    "notes": "Heritage authority and municipal tourism photographs control the current seven-band steel exterior, window and railing architecture. Heritage height is approximate; lightning rod extends to 12.45m. Historic optical-sector bearings are reconstructed visually and are not certified for navigation.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u1/u1t/pilsum_lighthouse/models/source.glb",
+        "hash": "sha256:bf019c4ec154dbe528cf0b4eacbc6639f4bd72deaa93bc93a3756bf1f5c3993a",
+        "bytes": 6502820,
+        "triangles": 67386,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -2.6300601959228516,
+          0,
+          -2.6300601959228516
+        ],
+        "max": [
+          2.6300601959228516,
+          12.449999809265137,
+          2.9600000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u1/u1t/pilsum_lighthouse/model.glb",
+        "hash": "sha256:90ba7b2464f9e18135a49b234bfa93cd0f2c9a4bf25370519d6e5f1f4ebbb4eb",
+        "bytes": 6502388,
+        "triangles": 67386,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -2.6300601959228516,
+          0,
+          -2.6300601959228516
+        ],
+        "max": [
+          2.6300601959228516,
+          12.449999809265137,
+          2.9600000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u1/u1t/pilsum_lighthouse/model.skyline.glb",
+        "hash": "sha256:9ab32b43c7aeb58d1e58d10c3e8fb9ad69ad4732db1b58c08698ba67de5cbb87",
+        "bytes": 69580,
+        "triangles": 932,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -2.6310925483703613,
+          0,
+          -2.6310925483703613
+        ],
+        "max": [
+          2.6310925483703613,
+          12.449999809265137,
+          2.9600000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u1/u1t/pilsum_lighthouse/model.district.glb",
+        "hash": "sha256:bbbf5b6c20d4334a67632b698ce28ec7f0eb374fe679ba67ef2294270493134a",
+        "bytes": 193652,
+        "triangles": 2822,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -2.6310925483703613,
+          0,
+          -2.6310925483703613
+        ],
+        "max": [
+          2.6310925483703613,
+          12.449999809265137,
+          2.9600000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u1/u1t/pilsum_lighthouse/model.street.glb",
+        "hash": "sha256:219a360bfbd042adb04e8f0412588f682b35f75afc14084916678c4e6ad1f60f",
+        "bytes": 401332,
+        "triangles": 6006,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -2.6282668113708496,
+          0,
+          -2.6282668113708496
+        ],
+        "max": [
+          2.6282668113708496,
+          12.449999809265137,
+          2.9600000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u1/u1t/pilsum_lighthouse/model.closeup.glb",
+        "hash": "sha256:3639bd438ffd24370a70e6c09d5dc659393ffe7743777ab23c65b62c4fdc6237",
+        "bytes": 615008,
+        "triangles": 9074,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -2.6310925483703613,
+          0,
+          -2.6310925483703613
+        ],
+        "max": [
+          2.6310925483703613,
+          12.449999809265137,
+          2.9600000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six current GLBs are Khronos-clean with zero errors/warnings and no images. Two focused tests pass: visible first-hit colors of all seven bands, true recesses at both optical sectors and full 12.45m height at every level; deterministic four-level reconstruction preserving exact detailed source/runtime bytes, strict budgets and separate 12-byte GPU streams. Geometry probes reserve the chosen component approximation; they are not a global surface-distance proof."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:3848b6b4ed51169fe4688febc09934c92bcba7c13e4f467cfd062837a6681abe",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:9ab32b43c7aeb58d1e58d10c3e8fb9ad69ad4732db1b58c08698ba67de5cbb87",
+        "bytes": 69580,
+        "gzipBytes": 13067,
+        "triangles": 932,
+        "cpuBytes": 68160,
+        "gpuBytes": 68160,
+        "errorMeters": 0.35,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:bbbf5b6c20d4334a67632b698ce28ec7f0eb374fe679ba67ef2294270493134a",
+        "bytes": 193652,
+        "gzipBytes": 37862,
+        "triangles": 2822,
+        "cpuBytes": 188724,
+        "gpuBytes": 188724,
+        "errorMeters": 0.2,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:219a360bfbd042adb04e8f0412588f682b35f75afc14084916678c4e6ad1f60f",
+        "bytes": 401332,
+        "gzipBytes": 75132,
+        "triangles": 6006,
+        "cpuBytes": 396396,
+        "gpuBytes": 396396,
+        "errorMeters": 0.08,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:3639bd438ffd24370a70e6c09d5dc659393ffe7743777ab23c65b62c4fdc6237",
+        "bytes": 615008,
+        "gzipBytes": 111226,
+        "triangles": 9074,
+        "cpuBytes": 610068,
+        "gpuBytes": 610068,
+        "errorMeters": 0.05,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 263232,
+    "notes": "932 / 2822 / 6006 / 9074 triangles; 1 / 4 / 4 / 4 draws. Initial skyline plus district is 263232 bytes; street 401332 bytes, closeup 615008 bytes. Original automatic levels exceeded district/street/closeup caps and closeup was 6516540 bytes. New levels satisfy 1k/4k/16k/64k caps and phone/laptop download budgets. Error reservations 0.35 / 0.2 / 0.08 / 0.05m describe authored faceting and omitted fittings, not measured Hausdorff bounds. Physical device timings remain unmeasured."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:ca8db4dc27d370e9ba42343b1a787ef98baac647f152199c37a95c5907da52d4",
+    "sourceHash": "sha256:bf019c4ec154dbe528cf0b4eacbc6639f4bd72deaa93bc93a3756bf1f5c3993a",
+    "runtimeHash": "sha256:90ba7b2464f9e18135a49b234bfa93cd0f2c9a4bf25370519d6e5f1f4ebbb4eb",
+    "framesInspected": 45,
+    "note": "All 45 current source/shared/medium-fi images were freshly captured and inspected. Local editable derivative module and review scope are registered in source and authoring indexes before capture hash binding. Original detailed source and runtime bytes were asserted unchanged before and after generation. Shared graphs are reused; no new textures or bespoke research were introduced."
+  },
+  "limitations": [
+    "This current medium-fi acceptance supersedes the historical maximum-fidelity browser review. Detailed master remains available; runtime derivatives deliberately omit subpixel rivets and vary rail/curve density with distance."
+  ]
 }

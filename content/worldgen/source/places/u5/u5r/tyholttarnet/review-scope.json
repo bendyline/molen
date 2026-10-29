@@ -1,0 +1,138 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "The124m communications tower: mapped hipped square base, narrow concrete shaft, five circular equipment platforms,26 representative dishes, twelve-faceted flared restaurant glazing and stepped white roof, tapering open lattice mast and red tip beacon.",
+    "master": "Preserve the133426triangle detailed source and imported master unchanged.",
+    "browser": "Four complete source-local derivatives retain the tower from ground to tip. Skyline uses all five platforms,26 two-sided dish silhouettes and open mast bracing. District restores major frames/guards and dish mounts. Street restores bowl-shaped dishes, denser glazing, mast lattice and ladders. Closeup restores cast lift joints, denser equipment, curved rails and dish feed details. Subpixel formwork points and rail/ladder spacing aggregate."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u5/u5r/tyholttarnet/models/tyholt-lods.mjs",
+    "export": "tyholtSkyline",
+    "errorMeters": 0.6,
+    "authoredLevels": {
+      "district": {
+        "export": "tyholtDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      },
+      "street": {
+        "export": "tyholtStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      },
+      "closeup": {
+        "export": "tyholtCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The base follows retained co-centered mapped parts. Conflicting restaurant/shaft map labels are preserved as source data and overridden by the photographed narrow shaft and broad pod.",
+    "Antenna phases, intermediate levels and ground contact are approximate. The attached H-shaped office building remains independent; restaurant interiors and projection lighting are excluded.",
+    "Distant hardware, rail/ladder density, formwork points and dish depth aggregate. Physical laptop and phone timings remain pending."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-base-to-tip",
+      "position": [
+        115,
+        85,
+        190
+      ],
+      "lookAt": [
+        0,
+        61,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-five-platforms-and-flared-pod",
+      "position": [
+        29,
+        65,
+        48
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-open-mast-and-pod-roof",
+      "position": [
+        16,
+        103,
+        30
+      ],
+      "lookAt": [
+        0,
+        96,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/tyholt-lods.mjs"
+  ]
+}

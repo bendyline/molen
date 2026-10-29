@@ -1,0 +1,30 @@
+# Bengtskär Lighthouse — current medium-fi review
+
+Reviewed 2026-10-28. **42 current images inspected.**
+
+Inspected all9 current portable views against retained operator exterior photographs. Both stepped keeper masses, three storeys of divided red-brown windows, projecting quoins, green copper gable roof and chimney, curved south pediment and divided oculus, tall tapered shaft, red gallery, white lantern astragals, copper dome and both radio aerials remain represented. The31258triangle detailed source and imported master are byte-preserved.46m structure height remains separate from52m sea-relative elevation.
+
+Inspected all9 current shared-material and geographic views. Four existing256px ashlar, granite, painted-metal and wood graphs are reused with an opaque local glass group. Coursed walls, projecting dressed corners, copper seams and red-brown joinery remain clear. No embedded or private images in any of the six GLBs. All model geometry disposes on unload. North-up mapped outline agrees with the stepped western keeper block and eastern circular tower; rock-island contact is supplied by host terrain.
+
+Inspected all24 final browser frames: economy/high noon/late, silhouette, four architectural feature views, selected skyline/district/street views and four transitions. Replaced the automatic district after current renders showed that it had erased keeper windows and damaged small pediment scrolls. Authored district retains all three window rows and divided frames, coarse projecting quoins, curved oculus pediment, roof seams, gallery, lantern and aerials. Street retains true window recesses, full frame/stone-corner rhythm and principal pediment details; fine wood muntins flatten to outward ribbons, curves use fewer samples and gallery posts become sparser. Closeup retains the original detailed exterior. Skyline preserves the entire ensemble and window rhythm with flat cards, coarse curved forms and aggregate volutes; its textured-surface colors use the viewer's0.65 mean to reduce brightness change. Final transition views preserve recognition without the blank-house regression. Far pediment volutes, window depth and tiny radio fittings aggregate deliberately. Synthetic neighbors and flat stages do not certify native shoreline contact.
+
+| Level | Triangles | Bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 946 | 74,000 | 1 |
+| district | 3,710 | 289,816 | 5 |
+| street | 15,482 | 1,189,228 | 5 |
+| closeup | 31,258 | 2,539,040 | 5 |
+
+946 /3710 /15482 /31258triangles;1 /5 /5 /5draws. Initial skyline plus district363816bytes; street1189228bytes; closeup2539040bytes. All1k/4k/16k/64k caps and initial3MBphone/6MBlaptop targets pass. Previous automatic street17643triangles was over budget. Authored reservations0.4/0.5/0.1/0m describe feature aggregation and faceting, not global survey error. Four shared graphs load once; physical laptop/phone timings remain unmeasured.
+
+Retained tower-part way1119816492 and connected stepped building way1119816491, anchor[22.499259431579,59.723439410526], heading0.068090906725. The mapped circular tower center remains the origin; keeper block extends west and the round-window pediment faces south. Current north-up overlay preserves that frame. SourceY0 is the local building foot;52m sea-relative elevation is not used as building height or offset. Existing host-rock contact remains approximate. Detached outbuildings, trenches, landing infrastructure and natural rocks remain separate map/terrain features.
+
+Six GLBs are Khronos-clean with zero errors/warnings/images. Two focused tests pass in2.17s: complete stepped plan/46m top, roof ridge and separate eastern roof, oculus, independent taper-radius controls, gallery, lantern and chimney, visible glazing distinct from wall at all three storeys in district/street/closeup, actual recessed windows at street/closeup; deterministic four-level rebuild preserving exact detailed source/master digests, registered variants, geometry/draw/download caps and separate12-byte GPU position/normal streams. Selected import/hash and strict medium-fi checks pass. These probes do not establish a measured global surface error.
+
+Fresh medium-fi exterior/browser acceptance supersedes the historical maximum-fidelity approval. Source sha256:68dff7c364eb38c5a076484a7b1337ba29ed565c303b0ac5630499495edd47b5 and imported master sha256:9c4258d4c8b361c69c22a3f86f70d3316b2cd0ba20623089eeda410715d76a37 remain unchanged. Source-local skyline/district/street recipes preserve the complete connected exterior, with one module included in the LOD recipe hash. Individual stones, roof seams, aerial fittings and pediment scrolls remain photographic reconstruction. Common graphs approximate the real stone; no unique damage map or literal restoration survey is claimed. Interiors and detached site features remain excluded.
+
+All42 current frames were captured and inspected. Final18 portable/shared images remain pixel-identical to the previously inspected sheets after derivative-only changes, verified by SHA-256 of regenerated contact sheets; all24 final browser frames were inspected again. Retained ordinary operator photographs and signed map work were reused without bespoke engineering/terrain research, new textures or downloaded meshes. Source-local recipes and scope were registered before final binding. Targeted checks only; no engine CI, npm audit, Git mutation or upload.
+
+Current acceptance covers the complete connected medium-fi lighthouse/keeper-building exterior and retained approximate signed map placement. Detailed masters are preserved. Far quoins, scrolls, window recesses and fittings aggregate deliberately; no surveyed rock contact, full-island reconstruction or physical-device performance claim is made.
+
+Retained ordinary sources: [operator](https://www.bengtskar.fi/en/home/), [keeper footprint](https://www.openstreetmap.org/way/1119816491), [tower origin](https://www.openstreetmap.org/way/1119816492). Existing original attribution remains in spec.json; no new bespoke historical, engineering or terrain research was performed.

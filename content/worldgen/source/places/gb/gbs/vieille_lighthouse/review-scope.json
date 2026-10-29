@@ -1,0 +1,102 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Complete square taper with full-height rounded north stair projection, alternating corner stones, deep corbels, castellated gallery, restored dark lantern, southern solar pair, aerials and surviving north doorway flight. The lost Temperley loading mast remains absent.",
+    "master": "Preserve the current11636triangle detailed source and imported master unchanged.",
+    "browser": "Authored complete skyline and district retain the full structure and attached flight. Distant windows use flat cards; district restores corner quoins, bracket rhythm, northern doorway/window recesses and sparse rails. Street and closeup retain the original detailed exterior. Tiny far solar cells, ladder rungs, stone corners and thin rail posts aggregate deliberately."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gb/gbs/vieille_lighthouse/models/vieille-lods.mjs",
+    "export": "vieilleSkyline",
+    "errorMeters": 0.45,
+    "authoredLevels": {
+      "district": {
+        "export": "vieilleDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Complete connected exterior after the2022 lantern restoration.26.9m is structure height;36m sea-relative elevation is not used as building height or terrain offset.",
+    "Host terrain supplies Gorle Bella rock contact. Exact mapped footprint and retained north-projection identity constrain orientation; no new reef survey or shoreline level is claimed.",
+    "Distant corners, glazing depth, tiny PV cells and rail/ladder density aggregate intentionally. Individual stones, fittings and sector panes remain photographic reconstructions, with no live navigational-light or physical-device performance claim."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-north-flight",
+      "position": [
+        -25,
+        17,
+        -36
+      ],
+      "lookAt": [
+        0,
+        12,
+        -1.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-gallery-and-pv",
+      "position": [
+        12,
+        25,
+        15
+      ],
+      "lookAt": [
+        0,
+        22.9,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "district-northern-turret",
+      "position": [
+        -12,
+        14,
+        -19
+      ],
+      "lookAt": [
+        0,
+        12,
+        -2
+      ],
+      "reviewLod": "district"
+    }
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/vieille-lods.mjs"
+  ]
+}

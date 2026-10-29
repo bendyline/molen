@@ -25,6 +25,6 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs gio
 - The narrative bas-reliefs and statues retain their counts, shapes and architectural niches but are original simplified sculptural reliefs, not reproductions of the individual named artworks.
 - Panel elevations, marble flower designs, moulding sections and window tracery are fitted to exterior photography. Exact conservation stone-cut patterns are not claimed.
 - Permanent exterior is modeled; temporary restoration scaffolding is excluded.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Current browser levels deliberately aggregate distant inlays/sculpture/rails and omit subpixel robe folds and tiny fittings. Geometric figures and reliefs preserve the architectural program rather than individual artworks. No surveyed pavement grade or physical-device performance claim.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

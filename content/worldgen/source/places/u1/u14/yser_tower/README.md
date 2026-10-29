@@ -22,9 +22,8 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs yse
 
 ## Remaining detail and review
 
-- This models the current 1965 tower, not the demolished 1930 tower. Facade plans and gross dimensions are sourced; individual stone positions, exact brick repair patches, small terrace equipment and bell attachment details are reconstructed.
-- The roof flag is a plain variable banner; no heraldic image, downloaded mesh or photograph is embedded.
-- Interiors and the independent Pax gate/old-tower crypt are outside this exterior model.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- This is the current1965 tower. Independent Pax gate, ruined1930 tower/crypt, forecourt ticket building, park and interiors remain separate structures.
+- The retained mapped ground frame and photo-proportioned fittings do not certify a surveyed forecourt grade.84m is structural height;89.8m is the modeled flagpole top.
+- Distant stone relief, pixel inscriptions, tiny bell/clapper fittings and guard/frame spacing aggregate. The flag is a plain variable banner, with no invented heraldic texture or live flag motion. Physical laptop/phone measurements remain pending.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

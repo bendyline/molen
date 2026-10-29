@@ -1,0 +1,157 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 2
+  },
+  "appearance": {
+    "identity": "Four flared marble blades, pointed great arch, lower crossing arch, blue curved joint lines, crossed soffit lattice and windcatcher-like crown.",
+    "master": "Preserve the detailed deterministic source and runtime masters exactly. Browser levels resample components separately.",
+    "browser": "Four authored levels retain both open arch axes and all four feet. Increase curved blade samples, blue line density and crossed vault lattice toward the near model; use simple pointed crown recesses instead of oversampled narrow trim.",
+    "scope": "Existing photograph-fitted exterior and approximate mapped crossed-foot frame. Published 64m span is retained instead of stretching to the mapped 69m tips. Museum, fountain, ramps and plaza/landscape are outside this monument asset."
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tn/tnk/azadi_tower/models/azadi-lods.mjs",
+    "export": "azadiSkyline",
+    "level": "skyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "azadiDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "azadiStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "azadiCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "sourceDocuments": [
+    "review-scope.json",
+    "models/azadi-lods.mjs",
+    "medium-fi-report.json",
+    "QA-REVIEW.md"
+  ],
+  "qaLodCameras": [
+    {
+      "name": "district-open-arches",
+      "position": [
+        75,
+        24,
+        110
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-vault-lattice",
+      "position": [
+        12,
+        12,
+        18
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-crown",
+      "position": [
+        22,
+        44,
+        32
+      ],
+      "lookAt": [
+        0,
+        40,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "skyline-whole",
+      "position": [
+        95,
+        55,
+        130
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ]
+}

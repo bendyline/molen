@@ -22,9 +22,8 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs tur
 
 ## Remaining detail and review
 
-- Intermediate floor heights and small roof scrolls are reconstructed from photographs. Weathering is an original deterministic pattern, not the exact current stain distribution. Inscription plaque relief fields preserve the location; individual historic calligraphy is not copied.
-- Gallery openings are genuinely open with wall reveals and inner faces. Interior rooms, altar contents, transient vegetation and maintenance equipment are outside the exterior model scope.
-- The island perimeter and lake level belong to map/terrain providers. A coarse map that omits the island will need host terrain refinement before real-water clearance can be approved.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- The monument follows the retained mapped footprint and east-facing circular aperture. Host terrain/water must retain its small island; no new lake-level or island-contact survey is claimed.
+- Intermediate heights and fine roof relief remain proportional reconstructions. Inscription fields and medallions preserve layout without copied calligraphy or heraldic artwork.
+- Dense weathered masters are preserved. Browser plaster uses shared textures and quiet material colors; exact stains, tiny fittings and guard/scroll density aggregate. Interiors, transient vegetation and maintenance equipment remain excluded. Physical-device timing is pending.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

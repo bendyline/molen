@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.avicenna_mausoleum",
-  "inputHash": "sha256:a5536ef3a303d377fb7eaeacc034a234057d494b2f4e53b50cfafed2e24cc222",
-  "captureReportHash": "sha256:e8a7aae5e72959a2888642a929f5191ee972d04240374e2fbdc4e88379207a86",
+  "inputHash": "sha256:9598fc88a6692df152b9ee8e8833dc6b61a3b4f480bd383c34d1825ffe6c2674",
+  "captureReportHash": "sha256:4a7d54644377161cfe59b8a8e1cf8fdcdfdf90420726517d508a2c0555aab875",
   "visualReview": {
     "status": "passed",
     "scope": "Complete detailed world-viewer exterior reconstruction",
@@ -19,11 +19,12 @@
       "shots/column-portico-detail.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "All 11 current portable frames inspected: lit whole-building preview, four turntable angles, east colonnade, western ramps, roof/stair plan, twelve-rib close view, portico detail and far silhouette. Reversed base-wall winding was corrected; stone faces no longer disappear. Rear ramps have closed end faces and roof landings. The cone, twelve open ribs, central plinth, ten columns and asymmetric extended platform remain intact."
+    "notes": "Inspected all11 current portable views against retained ordinary front and oblique museum photographs. The full asymmetrical stone museum, roof gardens, ten tapered entrance columns, twelve independent ribs and cone, raised clerestory plinth, memorial marker, four stair flights and paired rear ramps remain present. The36740triangle detailed source and imported master are unchanged.",
+    "captureReportHash": "sha256:4a7d54644377161cfe59b8a8e1cf8fdcdfdf90420726517d508a2c0555aab875"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:aa068ecbb605e31dc7d5561017f2a840eb7892d58e46a589da906013d4c6977e",
+    "captureReportHash": "sha256:1e084a6386bd9523040e5a92b6a7faee953a353d226e733f816af2f297ec2591",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -37,16 +38,258 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All 11 current shared-surface frames inspected, including the north-up placement. Rough granite uses the raw basalt graph on separately modeled stone courses, with concrete and painted metal bindings at metric scale. The current captures preserve the corrected outward wall faces and complete tower framing. Geographic load and unload assertions passed."
+    "notes": "Inspected all11 current shared-material/geographic views. Existing256px basalt/granite, plain concrete and painted-metal graphs are reused alongside local roof planting and opaque recess colors. No private or embedded texture images in any of the six GLBs. Distinct concrete tower and stone base remain legible. Shared capture verifies graph bindings and model-geometry disposal. The north-up central-platform overlay retains its signed frame; synthetic ground is not surveyed native terrain."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:9da4c7b449a1fa6971343224981e1d736ace7ffb340c154d3b3bfc6eed29911c",
-    "notes": "Exact Q5952145 way698835434 identifies the central raised plinth and its axis; adjoining Q5684744 museum way698835433 establishes the extended asymmetric platform. The official VisitIran description identifies the east entrance, fixing native +Z east and +X approximately north. North-up placement shows the central plinth aligned to that exact feature, while the source-local parts document establishes the larger base. Ordinary host terrain supplies ground contact. The 30/33 m OSM height tags are explicitly discarded in favor of the official dimensions; surrounding park, separate grave and freestanding statue are excluded."
+    "notes": "Retained exact Q5952145 central plinth way698835434 and connected Q5684744 museum way698835433. Anchor[48.513132367,34.791529098], heading1.416495630687; native+Z east toward the ten-column entrance and+X approximately north. Current north-up placement aligns the central plinth to that mapped platform; the larger asymmetrical base follows the retained museum parts outline. Tower center remains offset0.44m north. SourceY0 is exterior ground. Published28.5m total composition remains separate from conflicting30/33m map tags. Ordinary host terrain contact, stair/ramp grades and planting boundaries remain approximate. Surrounding park, separate Aref Qazvini grave and freestanding statue are outside this asset."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Current medium-fi acceptance supersedes the historical maximum-fidelity wording. Detailed source sha256:bcebdae63418b9f4496ccdf7f3db2572029acb83795a5b493a5205dd73b0d37d and imported master sha256:1a4392767dbcc3051a4531f1982c7e2dddf1e2de92337e9afae03fc7ab5c928b remain unchanged. All changing distant geometry lives in the indexed source-local module. Skyline and district deliberately aggregate stone bevels, fine window/door divisions and column facets while preserving silhouette and all major connected parts. No invented inscription glyphs or interiors are claimed."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:bcebdae63418b9f4496ccdf7f3db2572029acb83795a5b493a5205dd73b0d37d",
+  "runtimeHash": "sha256:1a4392767dbcc3051a4531f1982c7e2dddf1e2de92337e9afae03fc7ab5c928b",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:2e41960c37098ebb7c60f83088139a2bcfb46660e64e48d25e8e8fb50bba1982",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/east-colonnade.png",
+      "medium-fi/western-ramps.png",
+      "medium-fi/twelve-rib-tower.png",
+      "medium-fi/roof-and-stair-plan.png",
+      "medium-fi/column-portico-detail.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/skyline-whole-museum-and-twelve-ribs.png",
+      "medium-fi/district-open-ribs-and-colonnade.png",
+      "medium-fi/street-roof-stair-passage.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all26 current browser views, including architectural details, three selected LOD cameras, transitions and economy/high noon/late scenes. Initial inspection found the automatic district reduction fragmented course masonry around openings; it was replaced in this same pass by clean source-authored walls with actual recessed clerestories and entry apertures. All four stair flights, both rear ramps, roof gardens,12 rounded-inner-nose ribs and10 columns remain at district. Skyline keeps the complete composition with flat distant opening cards, six-sided columns and graded stair volumes. Street/closeup retain the detailed exterior. Final images show continuous district walls with open rib/column gaps and no missing building sections. Current portable/shared and unaffected medium contact sheets exactly match the earlier inspected image hashes; all changed medium sheets were inspected again."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
-    "notes": "Passed for the permanent detailed world-viewer exterior reconstruction. Official Persian tourism dimensions establish twelve ribs, ten entrance columns, 4.10 m column height, 0.95/0.75 m base/top diameters, 23 m tower above roof, 2.05 m cone radius and 3.4 m cone height. The national-heritage plan, architect archive and current official photographs establish rib cross sections, narrow circular cap, rough granite, raised clerestory platform, colonnade and rooftop marker. The extended base follows mapped museum geometry; stair grades, ramp landings, roof planting boundaries, lightwell widths and individual masonry are explicitly proportional reconstructions. The 28.5 m architectural composition sets tower height; it is not misused to shrink the whole connected museum footprint. Interior exhibits and exact inscription glyphs are outside the exterior asset."
-  }
+    "notes": "Passed for the permanent detailed world-viewer exterior reconstruction. Official Persian tourism dimensions establish twelve ribs, ten entrance columns, 4.10 m column height, 0.95/0.75 m base/top diameters, 23 m tower above roof, 2.05 m cone radius and 3.4 m cone height. The national-heritage plan, architect archive and current official photographs establish rib cross sections, narrow circular cap, rough granite, raised clerestory platform, colonnade and rooftop marker. The extended base follows mapped museum geometry; stair grades, ramp landings, roof planting boundaries, lightwell widths and individual masonry are explicitly proportional reconstructions. The 28.5 m architectural composition sets tower height; it is not misused to shrink the whole connected museum footprint. Interior exhibits and exact inscription glyphs are outside the exterior asset.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/tn/tn4/avicenna_mausoleum/models/source.glb",
+        "hash": "sha256:bcebdae63418b9f4496ccdf7f3db2572029acb83795a5b493a5205dd73b0d37d",
+        "bytes": 3038268,
+        "triangles": 36740,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -26.751258850097656,
+          0,
+          -13.670000076293945
+        ],
+        "max": [
+          40.08442687988281,
+          28.5,
+          27.402498245239258
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/tn/tn4/avicenna_mausoleum/model.glb",
+        "hash": "sha256:1a4392767dbcc3051a4531f1982c7e2dddf1e2de92337e9afae03fc7ab5c928b",
+        "bytes": 3037720,
+        "triangles": 36740,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -26.751258850097656,
+          0,
+          -13.670000076293945
+        ],
+        "max": [
+          40.08442687988281,
+          28.5,
+          27.402498245239258
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/tn/tn4/avicenna_mausoleum/model.skyline.glb",
+        "hash": "sha256:86ea85cbdf9ab644f3b8adae8aa8503ff0e013cf52560f92f9e4a91e89070330",
+        "bytes": 73188,
+        "triangles": 906,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -26.681900024414062,
+          0,
+          -13.670000076293945
+        ],
+        "max": [
+          40.022300720214844,
+          28.5,
+          27.337200164794922
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/tn/tn4/avicenna_mausoleum/model.district.glb",
+        "hash": "sha256:0bfd8242cf126e4590885b3fb6e00836b0a9aa814455931b052f5ded4bc05e51",
+        "bytes": 226352,
+        "triangles": 3160,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -26.681900024414062,
+          0,
+          -13.670000076293945
+        ],
+        "max": [
+          40.022300720214844,
+          28.5,
+          27.337200164794922
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/tn/tn4/avicenna_mausoleum/model.street.glb",
+        "hash": "sha256:078fe4a256d3105145ffdc13b077c52d44b043460b3bd15715602f382964fd39",
+        "bytes": 1557964,
+        "triangles": 15990,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -26.751258850097656,
+          0,
+          -13.670000076293945
+        ],
+        "max": [
+          40.08442687988281,
+          28.5,
+          27.402498245239258
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/tn/tn4/avicenna_mausoleum/model.closeup.glb",
+        "hash": "sha256:c95ea8f9989e9293436b2826cad71376cc855795680871d50fffc9eccc6f71e1",
+        "bytes": 3037968,
+        "triangles": 36740,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -26.751258850097656,
+          0,
+          -13.670000076293945
+        ],
+        "max": [
+          40.08442687988281,
+          28.5,
+          27.402498245239258
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six GLBs pass Khronos Validator with zero errors, warnings and embedded images. Two focused tests pass in2.23s: complete28.5m extent and both museum wings,12 independent rib and gap rays at two heights,10 columns with nine portico gaps, two supported rear inclines and open stair passage at all levels; deterministic reconstruction retaining exact source/master hashes, registered variants, geometry/draw/download budgets and separate12-byte GPU attribute streams. Selected import/hash and strict medium-fi checks pass. Scene validation and30ticks pass with zero events, hash sha256:f64a9ce0ac032ec5c3442f2c8095f6715021f9ed3ac1c0bdf2a7662c7ee12e6a. Geometry probes are not a surveyed error certificate."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:5895e9f93a79ffb3ca3633091e0f776b236ccd46a55b203721e83a8f2db1a43a",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:86ea85cbdf9ab644f3b8adae8aa8503ff0e013cf52560f92f9e4a91e89070330",
+        "bytes": 73188,
+        "gzipBytes": 12743,
+        "triangles": 906,
+        "cpuBytes": 71784,
+        "gpuBytes": 71784,
+        "errorMeters": 0.4,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:0bfd8242cf126e4590885b3fb6e00836b0a9aa814455931b052f5ded4bc05e51",
+        "bytes": 226352,
+        "gzipBytes": 50678,
+        "triangles": 3160,
+        "cpuBytes": 220380,
+        "gpuBytes": 220380,
+        "errorMeters": 0.15,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:078fe4a256d3105145ffdc13b077c52d44b043460b3bd15715602f382964fd39",
+        "bytes": 1557964,
+        "gzipBytes": 431817,
+        "triangles": 15990,
+        "cpuBytes": 1551960,
+        "gpuBytes": 1551960,
+        "errorMeters": 0.08925576527892065,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:c95ea8f9989e9293436b2826cad71376cc855795680871d50fffc9eccc6f71e1",
+        "bytes": 3037968,
+        "gzipBytes": 716801,
+        "triangles": 36740,
+        "cpuBytes": 3035112,
+        "gpuBytes": 3035112,
+        "errorMeters": 0,
+        "drawCalls": 5
+      }
+    ],
+    "initialBytes": 299540,
+    "notes": "906 /3160 /15990 /36740triangles,1 /5 /5 /5draws. Initial skyline plus district299540bytes; street1557964bytes; closeup3037968bytes. All1k/4k/16k/64k geometry caps and initial3MBphone/6MBlaptop targets pass. The old automatic skyline had20.708m reported error; the complete authored skyline reserves0.4m for distant aggregation. Authored district reserves0.15m for low-frequency surface/rib/column aggregation. Far textured surface colors multiply the shared0.65 mean; local planting/recess colors remain unchanged. Physical phone/laptop timings remain pending."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:9598fc88a6692df152b9ee8e8833dc6b61a3b4f480bd383c34d1825ffe6c2674",
+    "sourceHash": "sha256:bcebdae63418b9f4496ccdf7f3db2572029acb83795a5b493a5205dd73b0d37d",
+    "runtimeHash": "sha256:1a4392767dbcc3051a4531f1982c7e2dddf1e2de92337e9afae03fc7ab5c928b",
+    "framesInspected": 48,
+    "note": "All48 current frames were rendered and inspected, with exact inspected-sheet identity proofs for unaffected recaptures. Retained ordinary photographs and signed map work were reused without new bespoke research, terrain downloads, textures or meshes. Concave museum/stair-hole caps use the public MeshBufferBuilder API. Only targeted source/model/scene/render checks were run for this model; the next four-model batch checkpoint will prove full source reconstruction. No engine CI, npm audit, Git mutation or upload."
+  },
+  "limitations": [
+    "Acceptance covers the complete connected museum and memorial-tower exterior with retained approximate map frame. Surrounding site structures and interiors remain excluded; minor stonework, stairs, planting boundaries and host ground contact are reconstructions. Distant details aggregate deliberately and physical-device performance remains unmeasured."
+  ]
 }

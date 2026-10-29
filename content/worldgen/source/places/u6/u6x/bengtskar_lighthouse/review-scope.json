@@ -1,0 +1,139 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Complete attached granite keeper block and46m tapered lighthouse, green copper gable roof and curved south oculus pediment, three storeys of divided red-brown windows, projecting quoins, red open gallery, white lantern astragals, green dome and radio aerials.",
+    "master": "Preserve the current31258triangle detailed source and imported master unchanged.",
+    "browser": "Complete explicit skyline keeps both stepped keeper masses, curved oculus pediment, chimney, shaft profile, window rhythm, gallery, lantern, dome and aerials. Authored district retains all three storeys of divided windows, coarse alternating quoins, oculus, roof seams, lantern diagonals and shared surfaces; the old automatic district had erased the keeper windows. Source-local street component derivative retains real window recesses, divided red-brown frames, projecting quoins, pediment/oculus/volutes, roof seams, gallery and radio aerials while reducing radial samples and rail-post density. Closeup retains the detailed exterior unchanged. Tiny far quoins, muntins, roof seams, lantern diagonals and scroll relief aggregate deliberately."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u6/u6x/bengtskar_lighthouse/models/bengtskar-lods.mjs",
+    "export": "bengtskarSkyline",
+    "errorMeters": 0.4,
+    "authoredLevels": {
+      "street": {
+        "export": "bengtskarStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "district": {
+        "export": "bengtskarDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 1.1
+  },
+  "limitations": [
+    "Current scope is the connected lighthouse and keeper block. Detached island buildings, trenches, landing infrastructure and natural rocks are separate map/terrain features.",
+    "46m is the retained tower structure height;52m is sea-relative elevation. Nominal host terrain supplies the rock-island contact; no new measured shoreline grade is claimed.",
+    "Stone blocks, copper roof seams, windows and aerial fittings remain photographic reconstructions. Far quoins, scrolls, frame subdivisions and rail posts aggregate with distance. Physical phone/laptop measurements remain pending."
+  ],
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-ensemble",
+      "position": [
+        -57,
+        30,
+        69
+      ],
+      "lookAt": [
+        -7,
+        21,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-pediment",
+      "position": [
+        -12,
+        19,
+        24
+      ],
+      "lookAt": [
+        -11.5,
+        15.5,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-lantern",
+      "position": [
+        11,
+        44,
+        15
+      ],
+      "lookAt": [
+        0,
+        42.3,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/bengtskar-lods.mjs"
+  ]
+}

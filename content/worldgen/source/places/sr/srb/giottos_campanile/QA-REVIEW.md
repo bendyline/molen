@@ -1,0 +1,30 @@
+# Giotto’s Campanile — current medium-fi review
+
+Reviewed 2026-10-28. **45 current images inspected.**
+
+Inspected all ten current portable master images against the retained full-height exterior photograph. Complete reinforced octagonal corners, white/green/rose marble divisions, lower hexagonal/diamond panel cycles, sixteen statue niches, paired biforas, upper three-light loggia, Gothic gables, projecting crown corbels, north entrance and open flat roof terrace remain represented. The 207864-triangle source/runtime editing masters are byte-preserved. Reliefs and figures are original geometric approximations, not individual artwork facsimiles.
+
+Inspected all ten current shared-material and north-up footprint views. Existing shared256px marble and basalt graphs load once, with an opaque local interior-shadow group; the six GLBs contain no private or embedded images. Green/rose fields use vertex tints and metric shared marble UVs. The footprint overlay retains the reinforced-corner shaft under the projecting crown. All model geometry disposes on unload. Shared stone colors and simplified sculpture remain the library's medium-fi interpretation.
+
+Inspected all25 current browser-level frames: economy/high noon and late lighting, silhouette, lower marble cycles, biforas, crown, north entrance, far view, whole district, street biforas, skyline terrace and four transitions. All levels preserve84.7m height, three recessed loggia stages, directed north entrance and open roof center. Skyline aggregates colored detail and uses a solid parapet surrounding the terrace floor. District adds grouped corner inlays, both narrative panel cycles, sixteen niche figures and coarse polychrome Gothic surrounds. Street restores corner fields, three-dimensional figures, tracery, finials and open crown posts; closeup adds more arch rings, geometric rosettes, profiled columns and sparse crockets. Subpixel robe folds, tiny fittings and individual stone-cut patterns are omitted. Browser crown/body contacts and normal/shadow behavior are coherent. Synthetic neighboring buildings and flat stage do not establish surveyed native pavement contact.
+
+| Level | Triangles | Bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 670 | 52,524 | 1 |
+| district | 3,206 | 221,312 | 2 |
+| street | 15,520 | 1,119,500 | 3 |
+| closeup | 52,768 | 4,378,556 | 3 |
+
+670 /3206 /15520 /52768 triangles,1 /2 /3 /3 draws. Initial skyline plus district273836 bytes; street1119500 bytes; closeup4378556 bytes. All1k/4k/16k/64k triangle caps and initial phone/laptop download budgets pass. Previous automatic district and closeup exceeded their geometry caps; closeup was6782376 bytes. Shared graphs avoid per-model texture copies. Error reservations0.6 /0.45 /0.18 /0.08m describe component faceting/omitted detail, not measured global errors. Physical-device timings remain unmeasured.
+
+Retained exact-QID OSM way251650632, anchor[11.2556971,43.772849685] and heading-0.01934505583489665. Facade axes establish the nearly north/south frame; the retained cathedral-facing entrance resolves the square plan's quarter-turn ambiguity and remains native-Z. Current north-up footprint overlay preserves the reinforced-corner shaft under the wider crown. BaseY0 is nominal host-supplied exterior pavement. Existing approximate preview placement remains; no new surveyed pavement grade, interior access or temporary scaffolding fit is claimed.
+
+Six current GLBs are Khronos-clean with zero errors/warnings and no images. Two focused tests pass in5.35s: complete height/base, directed north recess versus three solid faces, roof-center ray reaching the terrace floor, both lights in each bifora and all three top lights on all four elevations compared independently against the unchanged detailed master, and front mullion retention; deterministic four-file rebuild preserving exact source/runtime master digests, registered variants, budgets and separate12-byte GPU position/normal streams. Selected source regeneration/import and strict medium-fi budget checks pass. Ray probes are not a global surface-distance certificate.
+
+Fresh medium-fi exterior/browser acceptance supersedes the old maximum-detail browser approval. Detailed source remains sha256:f935db50e9d925e2f150160a4fa19165d8c74262d195b382202120ad8b1a9cae; runtime master remains sha256:426dbe2afe8663ef1c2abe750befd333ed9e7347e86f9280042cc8e4e4cf2405. The original master recipe is unchanged. Source-local derivatives preserve the architectural program and full dimensional envelope while aggregating distant inlays/sculpture/rails. Named bas-reliefs, statue likenesses, marble flower patterns, tracery and moulding sections retain their declared photographic reconstruction limits. Conservation survey, literal artwork copies and interiors are outside scope.
+
+All45 current frames were captured and inspected in this authoring pass. Retained ordinary exterior photography and the existing signed mapped footprint were reused without bespoke engineering/terrain research or new texture generation. Source-local module and review scope were registered before capture/input binding. The detailed source and imported master hashes are unchanged. This model pass used focused checks rather than engine CI, npm audit, uploads or Git mutations.
+
+Current acceptance covers the medium-fi static architectural exterior and retained approximate cathedral-facing map placement. Detailed editing masters are preserved. Distant inlays, sculpture, tracery and railings are intentionally aggregated. No surveyed pavement contact, literal sculptural-artwork reproduction or physical-device performance claim is made.
+
+Retained references: [Opera del Duomo monument description](https://duomo.firenze.it/en/discover/giotto-s-bell-tower), [Roberto Di Ferdinando exterior photograph](https://curiositadifirenze.blogspot.com/2018/01/campanile-di-giotto.html), [mapped footprint](https://www.openstreetmap.org/way/251650632). Original source attributions remain in spec.json; no new bespoke source search was performed.
