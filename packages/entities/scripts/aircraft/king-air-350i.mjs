@@ -1,7 +1,7 @@
 /** 2015 FL-1031+ King Air 350i / Pro Line Fusion. Main axle origin, +Z nose.
  * Factory three-view and cockpit photograph calibrated in reference-review.json.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

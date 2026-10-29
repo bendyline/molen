@@ -1,6 +1,6 @@
 /** MV-22B, from the USAF rescue arrangement and cited cockpit photography.
  * Geometry is original; dimensions without an independent drawing remain estimates. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -25,7 +25,7 @@ export const mv22Frame = () => ({
   ry: 1.3,
   cabinZ: 5.85,
   cabinWidth: 2.1,
-  eye: [0.62, 2.65, 5.85],
+  eye: [0.62, 2.4, 5.65],
   panelZ: 6.65,
   floor: 1.05,
 });

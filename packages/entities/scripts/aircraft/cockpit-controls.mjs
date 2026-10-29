@@ -67,6 +67,12 @@ export function completeCockpitControls(model, spec, frame = {}) {
   // A lower fascia joins the existing instrument panel. It does not cover the flight displays.
   const mounts = {
     ...Object.fromEntries(
+      ['Airbus H125', 'Beechcraft Bonanza G36'].map((label) => [
+        label,
+        [0, eye[1] - 0.5, panelZ - 0.055],
+      ]),
+    ),
+    ...Object.fromEntries(
       [
         'Airbus A220-300',
         'Airbus A320neo',
@@ -75,9 +81,15 @@ export function completeCockpitControls(model, spec, frame = {}) {
         'De Havilland Canada Dash 8-400',
         'Embraer E175',
         'Gulfstream G650ER',
-        'Airbus H125',
-        'Beechcraft Bonanza G36',
-      ].map((label) => [label, [0, eye[1] - 0.5, panelZ - 0.055]]),
+      ].map((label) => [
+        label,
+        [
+          label === 'Airbus A220-300' ? 0.56 : label === 'Embraer E175' ? -0.18 : 0,
+          Math.max(eye[1] - (label === 'Cessna Citation CJ4' ? 0.62 : 0.8), floor + 0.16),
+          panelZ -
+            (label === 'Cessna Citation CJ4' ? 0.47 : label === 'Embraer E175' ? 0.08 : 0.18),
+        ],
+      ]),
     ),
     'Cessna 172S Skyhawk': [-0.42, 1.13, 1.065],
     'Beechcraft Baron G58': [0, 1.395, 1.065],
@@ -92,11 +104,15 @@ export function completeCockpitControls(model, spec, frame = {}) {
     'Airbus A400M Atlas': [0, eye[1] - 1, panelZ - 0.055],
     'Lockheed Martin C-130J Super Hercules': [0, eye[1] - 1, panelZ - 0.055],
     'ATR 72-600': [0, eye[1] - 0.95, panelZ - 0.055],
-    'Bell Boeing MV-22B Osprey': [0, eye[1] - 0.7, panelZ - 0.18],
+    'Bell Boeing MV-22B Osprey': [0, 1.95, panelZ - 0.18],
+    'Sikorsky UH-60M Black Hawk': [0, 1.21, panelZ - 0.055],
     'Dassault Rafale C': [0, eye[1] - 1.05, panelZ - 0.055],
     'Eurofighter Typhoon': [0, eye[1] - 0.7, panelZ - 0.14],
     'Lockheed Martin F-22A Raptor': [0, 1.99, panelZ - 0.055],
     'De Havilland Canada DHC-2 Beaver': [0.4, eye[1] - 0.5, panelZ - 0.055],
+    'Airbus A220-300': [0, eye[1] - 0.8, panelZ - 0.36],
+    'De Havilland Canada Dash 8-400': [0, eye[1] - 0.8, panelZ - 0.32],
+    'Gulfstream G650ER': [0, eye[1] - 0.8, panelZ - 0.32],
   };
   const center = mounts[spec.label] ?? [0, eye[1] - 0.7, panelZ - 0.055];
   const mountZ = center[2] + 0.055;

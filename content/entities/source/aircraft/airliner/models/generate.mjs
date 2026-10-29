@@ -1,3 +1,10 @@
+import {
+  transportCell,
+  transportCoaming,
+  transportProfiles,
+  transportSection,
+  transportWindowFrames,
+} from '../../../../../../packages/entities/scripts/aircraft/transport-profiles.mjs';
 /**
  * Deterministic Bendy Small Airliner, with an operator cabin and polygonal close-view fittings.
  * Local shared procedural finishes. Nose +Z; origin at ground level with gear down.
@@ -6,7 +13,7 @@
  */
 
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
@@ -22,7 +29,7 @@ import {
   addRivetRows,
   detailKit,
 } from '../../../../../../packages/entities/scripts/vehicle-detail.mjs';
-import { panelTools } from '../../../../../../packages/entities/scripts/vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../../../../../../packages/entities/scripts/vehicle-interiors.mjs';
 
 // GLTFExporter uses FileReader only to pack its binary buffer in Node.
 globalThis.FileReader = class {
@@ -140,38 +147,55 @@ function airliner() {
   fuselage.name = 'fuselage';
   g.add(fuselage);
   tube(fuselage, 'cabin', R, R, 27, 0.5, paint);
-  // Faceted cockpit shell with actual glazed openings, so the pilot looks through the skin.
-  const noseSections = [
-    [14, R],
-    [15, 1.8],
-    [16.5, 1.45],
-    [18, 0.85],
-    [19.5, 0.25],
-  ];
-  const skin = [],
+  // Airliner-specific drooped radome and six straight-edged flight-deck panes.
+  const template = transportProfiles['airbus-a320neo'];
+  const profile = {
+    ...template,
+    cy: 0,
+    ry: R,
+    radius: R,
+    nose: template.nose.map(([d, w, b, t]) => [
+      d,
+      (w * R) / template.radius,
+      ((b - template.cy) * R) / template.ry,
+      ((t - template.cy) * R) / template.ry,
+    ]),
+  };
+  const spec = { length: 39, category: 'airliner' },
+    skin = [],
     glazing = [];
-  for (let j = 0; j < noseSections.length - 1; j++)
-    for (let k = 0; k < 24; k++) {
-      const a = (k * Math.PI * 2) / 24,
-        b = ((k + 1) * Math.PI * 2) / 24;
-      const [z0, r0] = noseSections[j],
-        [z1, r1] = noseSections[j + 1];
-      const points = [
-        [r0 * Math.cos(a), r0 * Math.sin(a), z0],
-        [r1 * Math.cos(a), r1 * Math.sin(a), z1],
-        [r1 * Math.cos(b), r1 * Math.sin(b), z1],
-        [r0 * Math.cos(b), r0 * Math.sin(b), z0],
-      ];
-      const window = j < 3 && k >= 1 && k <= 10 && !(k >= 4 && k <= 7 && j < 2);
-      (window ? glazing : skin).push(
-        ...points[0],
-        ...points[2],
-        ...points[1],
-        ...points[0],
-        ...points[3],
-        ...points[2],
+  const cuts = [
+    14,
+    19.5,
+    ...profile.nose.map((a) => 19.5 - a[0]).filter((z) => z > 14),
+    ...profile.windows.flatMap((w) => w.map((a) => 19.5 - a[1])),
+  ];
+  for (let z = 14; z < 19.5; z += 0.12) cuts.push(z);
+  cuts.sort((a, b) => a - b);
+  for (let i = 0; i < cuts.length - 1; i++)
+    for (let j = 0; j < 64; j++) {
+      const a = (j * Math.PI) / 32,
+        b = ((j + 1) * Math.PI) / 32;
+      transportCell(
+        spec,
+        profile,
+        [
+          [cuts[i], a],
+          [cuts[i + 1], a],
+          [cuts[i + 1], b],
+          [cuts[i], b],
+        ],
+        (kind, points) => {
+          const target = kind === 'skin' ? skin : glazing;
+          for (let k = 1; k < points.length - 1; k++)
+            target.push(...points[0], ...points[k], ...points[k + 1]);
+        },
       );
     }
+  const frames = detailKit(fuselage, 'flight-deck-window-frames');
+  transportWindowFrames(frames, spec, profile, metal);
+  frames.finish();
+  transportCoaming(g, spec, { profile, eye: [0.55, 0.85, 15.4], panelZ: 15.975 }, dark);
   for (const [name, positions, material] of [
     ['nose', skin, paint],
     ['flight-deck-glazing', glazing, glass],
@@ -182,6 +206,29 @@ function airliner() {
     mesh.name = name;
     fuselage.add(mesh);
   }
+  // The exterior nose was one-sided: from the seats its entire lower half vanished.
+  // Follow the same measured facets with inward-facing trim, preserving every window.
+  const liningPositions = [];
+  for (let i = 0; i < skin.length; i += 9) {
+    if ([2, 5, 8].some((j) => skin[i + j] > 19)) continue;
+    for (const j of [0, 6, 3]) {
+      const z = skin[i + j + 2];
+      const sec = transportSection(spec, profile, z),
+        center = (sec[2] + sec[3]) / 2;
+      liningPositions.push(skin[i + j] * 0.992, center + (skin[i + j + 1] - center) * 0.992, z);
+    }
+  }
+  const liningGeometry = new T.BufferGeometry();
+  liningGeometry.setAttribute('position', new T.Float32BufferAttribute(liningPositions, 3));
+  liningGeometry.computeVertexNormals();
+  const noseLining = new T.Mesh(liningGeometry, mat('flight-deck-lining', '#7d8788'));
+  noseLining.name = 'flight-deck-lining';
+  fuselage.add(noseLining);
+  const noseCap = new T.Mesh(new T.CircleGeometry(profile.nose[0][1], 64), paint);
+  noseCap.scale.y = (profile.nose[0][3] - profile.nose[0][2]) / (2 * profile.nose[0][1]);
+  noseCap.name = 'nose-end-cap';
+  noseCap.position.set(0, (profile.nose[0][2] + profile.nose[0][3]) / 2, 19.5);
+  fuselage.add(noseCap);
   tube(fuselage, 'tail-cone', R, 0.5, 6.5, 0.5 - 13.5 - 3.25, paint);
   box(fuselage, 'belly-fairing', [R * 1.3, 0.9, 11], [0, -R + 0.25, 1.5], belly);
   box(fuselage, 'cheatline', [R * 2.02, 0.22, 27], [0, 0.35, 0.5], livery);
@@ -316,6 +363,13 @@ function airliner() {
   // Keep cabin finishes independent from the airframe fittings that use the same base palette.
   detail.finish();
   detail = detailKit(g, 'airliner-cabin-detail');
+  detail.box([2.2, 0.055, 2.7], [0, -0.39, 15.6], detail.dark);
+  // Solid console returns bridge the main panel to the fitted lower shell.
+  for (const side of [-1, 1]) {
+    detail.box([0.3, 0.7, 1.6], [side * 1.02, -0.015, 15.55], detail.dark);
+    detail.box([0.06, 0.035, 0.28], [side * 0.87, 0.35, 15.2], detail.metal);
+  }
+  detail.box([2.1, 0.7, 0.08], [0, -0.04, 16.35], detail.dark);
   for (const side of [-1, 1]) {
     detail.box([0.5, 0.13, 0.6], [side * 0.55, -0.15, 15.2], detail.dark);
     detail.box([0.5, 0.75, 0.12], [side * 0.55, 0.15, 14.93], detail.dark);
@@ -417,7 +471,8 @@ const pinned = JSON.parse(sourceText).files.models.find(
   (m) => m.path === 'models/source.glb',
 )?.sha256;
 const definitionPath = resolve(root, '../entity.types.json');
-const definition = JSON.parse(await readFile(definitionPath, 'utf8'));
+const definitionText = await readFile(definitionPath, 'utf8');
+const definition = JSON.parse(definitionText);
 const controlSpec = Object.values(definition.types)[0].components.aircraft.spec;
 controlSpec.visual.interior.nodes = [
   'airliner-cabin-detail',
@@ -455,6 +510,19 @@ if (!current?.equals(bytes)) await writeFile(path, bytes);
 const source = JSON.parse(sourceText);
 source.files.models.find((model) => model.path === 'models/source.glb').sha256 = generatedHash;
 source.files.textures = await writeCockpitTextures(resolve(root, '..'), bytes);
-await writeFile(sourcePath, `${JSON.stringify(source, null, 2)}\n`);
-await writeFile(definitionPath, `${JSON.stringify(definition, null, 2)}\n`);
+async function writeChangedJson(path, value, previous) {
+  const text = `${JSON.stringify(value, null, 2)}\n`;
+  if (text === previous) return;
+  // Live Windows editors can memory-map these manifests. Replace a completed
+  // file instead of truncating it, as the aircraft batch generator does.
+  const temporary = `${path}.${process.pid}.tmp`;
+  try {
+    await writeFile(temporary, text);
+    await rename(temporary, path);
+  } finally {
+    await rm(temporary, { force: true });
+  }
+}
+await writeChangedJson(sourcePath, source, sourceText);
+await writeChangedJson(definitionPath, definition, definitionText);
 console.log(`airliner: ${bytes.length} bytes, ${generatedHash}`);

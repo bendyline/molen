@@ -2,7 +2,7 @@
  * Ground datum at main wheels; +Z forward. No later tapered wing or glass cockpit.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

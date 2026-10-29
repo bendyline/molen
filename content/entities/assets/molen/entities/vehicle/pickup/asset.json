@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:c8b3fff1a0c7bf7bf5f9bdccbbd3a68c2daf1b30913d4b911bd35ef714fe7de3",
-  "sourceHash": "sha256:0181ff9528bf88a3698e977c07a13e6576cddab185a8c32c8e5d0564643ec47f",
+  "hash": "sha256:ac06b5c3c34051674f3860ff63cf93d687bd873dd6ef2b996d538df176ba1854",
+  "sourceHash": "sha256:f2892610f0d269fe8cb6ade9f41f947373cffca1ffac8de96ecd2bf47433c758",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 9236,
-    "vertices": 12070,
-    "meshes": 20,
-    "primitives": 20,
-    "materials": 9,
+    "triangles": 10360,
+    "vertices": 14318,
+    "meshes": 21,
+    "primitives": 21,
+    "materials": 10,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 274848
+    "sizeBytes": 327108
   },
   "nodes": [
     {
       "name": "body",
-      "triangles": 1216
+      "triangles": 1124
     },
     {
       "name": "windows",
@@ -114,6 +114,10 @@
       "triangles": 24
     },
     {
+      "name": "legacy-body-lining",
+      "triangles": 1124
+    },
+    {
       "name": "close-detail-detail-alloy",
       "triangles": 636
     },
@@ -131,15 +135,15 @@
     },
     {
       "name": "cabin-detail-trim",
-      "triangles": 632
+      "triangles": 648
     },
     {
       "name": "cabin-cabin-trim",
-      "triangles": 60
+      "triangles": 72
     },
     {
       "name": "cabin-detail-alloy",
-      "triangles": 1668
+      "triangles": 1732
     },
     {
       "name": "cabin-detail-lettering",
@@ -207,6 +211,14 @@
     },
     {
       "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "legacy-body-lining",
       "slots": [
         "baseColor"
       ],
@@ -771,6 +783,35 @@
         ]
       },
       {
+        "node": "legacy-body-lining",
+        "points": [
+          -1.1001,
+          0.2199,
+          -2.5925,
+          -1.1001,
+          0.2199,
+          2.5642,
+          -1.1001,
+          1.8001,
+          -2.5925,
+          -1.1001,
+          1.8001,
+          2.5642,
+          1.1001,
+          0.2199,
+          -2.5925,
+          1.1001,
+          0.2199,
+          2.5642,
+          1.1001,
+          1.8001,
+          -2.5925,
+          1.1001,
+          1.8001,
+          2.5642
+        ]
+      },
+      {
         "node": "close-detail-detail-alloy",
         "points": [
           -1.0091,
@@ -919,29 +960,29 @@
         "node": "cabin-cabin-trim",
         "points": [
           -0.8405,
-          0.8801,
+          0.88,
           0.33,
           -0.8405,
-          0.8801,
-          1.0435,
+          0.88,
+          1.0735,
           -0.8405,
-          1.1669,
+          1.2855,
           0.33,
           -0.8405,
-          1.1669,
-          1.0435,
+          1.2855,
+          1.0735,
           0.8405,
-          0.8801,
+          0.88,
           0.33,
           0.8405,
-          0.8801,
-          1.0435,
+          0.88,
+          1.0735,
           0.8405,
-          1.1669,
+          1.2855,
           0.33,
           0.8405,
-          1.1669,
-          1.0435
+          1.2855,
+          1.0735
         ]
       },
       {

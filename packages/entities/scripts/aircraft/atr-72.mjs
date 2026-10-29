@@ -79,12 +79,30 @@ export function buildATR72(s) {
     }),
   }));
   const p = (i, j) => [...rings[i].points[(j + 16) % 16], rings[i].z];
-  loft(d, rings, paint, {
-    skip: (i, j) =>
-      (i === 2 && [0, 1, 14, 15].includes(j)) ||
-      (i === 3 && [1, 2, 13, 14].includes(j)) ||
-      (i >= 4 && i <= 11 && [2, 3, 12, 13].includes(j)),
-  });
+  const skipCockpit = (i, j) =>
+    (i === 2 && [0, 1, 14, 15].includes(j)) ||
+    (i === 3 && [1, 2, 13, 14].includes(j)) ||
+    (i >= 4 && i <= 11 && [2, 3, 12, 13].includes(j));
+  loft(d, rings, paint, { skip: skipCockpit });
+  const lining = mat('ATR72-cockpit-lining', '#a5aaa5', { side: T.DoubleSide });
+  const inset = (q) => {
+    const i = stations.findIndex(
+      (a, i) => i < stations.length - 1 && q[2] <= a[0] && q[2] >= stations[i + 1][0],
+    );
+    const a = stations[Math.max(0, i)],
+      b = stations[Math.max(0, i) + 1],
+      u = (a[0] - q[2]) / (a[0] - b[0]),
+      center = ((a[2] + a[3]) * (1 - u) + (b[2] + b[3]) * u) / 2;
+    return [q[0] * 0.985, center + (q[1] - center) * 0.985, q[2]];
+  };
+  loft(
+    d,
+    rings
+      .slice(0, 7)
+      .map((r) => ({ z: r.z, points: r.points.map((q) => inset([...q, r.z]).slice(0, 2)) })),
+    lining,
+    { skip: skipCockpit, caps: false },
+  );
   for (const [i, js] of [
     [2, [0, 1, 14, 15]],
     [3, [1, 2, 13, 14]],
@@ -173,6 +191,14 @@ export function buildATR72(s) {
         [side, 0, 0],
         relevant,
       );
+      if (i <= 5)
+        sheet(
+          d,
+          [p(i, upper), p(i + 1, upper), p(i + 1, lower), p(i, lower)].map(inset),
+          lining,
+          [-side, 0, 0],
+          relevant.map((h) => h.map(inset)),
+        );
     }
     for (const h of holes) {
       sheet(d, h, glass, [side, 0, 0]);
@@ -551,7 +577,7 @@ export function buildATR72(s) {
   ])
     d.rod([0, 3.61, z(u)], [0, 3.61 + h, z(u) - 0.1], 0.015, dark);
   d.finish();
-  const interior = buildATR72Cockpit(root, { paint, accent, dark, metal });
+  const interior = buildATR72Cockpit(root, { paint, accent, dark, metal }, rings);
   cleanGeometry(root);
   return {
     root,

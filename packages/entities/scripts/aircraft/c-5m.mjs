@@ -1,7 +1,7 @@
 /** C-5M: explicit Galaxy stations and AMP flight deck, +Z nose.
  * General-arrangement proportions are checked against the cited drawings/photos;
  * the older drawing's TF39 engines are replaced by CF6/F138 nacelles. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

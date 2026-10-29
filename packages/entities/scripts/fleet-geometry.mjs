@@ -51,6 +51,8 @@ export function fleetModel(s) {
   }
   // Loft rectangular cross-sections [z, half-width, bottom, top]. Consistent outward winding.
   function loft(g, sections, m, name, openTop = false, openBottom = false) {
+    // Recipes may describe a cowl from nose to tail; winding must still face outward.
+    sections = [...sections].sort((a, b) => a[0] - b[0]);
     const points = sections.flatMap(([z, w, b, t]) => [
       [-w, b, z],
       [w, b, z],
@@ -266,9 +268,9 @@ export function fleetModel(s) {
     const neck = [
       0,
       H * (s.shape === 'road-bicycle' ? 0.88 : 0.78),
-      wb * (s.shape === 'cargo-bicycle' ? 0.12 : 0.34),
+      wb * (s.shape === 'cargo-bicycle' ? -0.05 : 0.34),
     ];
-    const radius = bike ? 0.028 : 0.055;
+    const radius = bike ? 0.018 : 0.035;
     wheel('wheel-front', 0, front[2], r, bike ? 0.06 : 0.16, bike);
     wheel('wheel-rear', 0, back[2], r, bike ? 0.06 : 0.2, bike);
     if (bike) {
@@ -293,9 +295,31 @@ export function fleetModel(s) {
         rod(body, [x, pivot[1], pivot[2]], [x, r, back[2]], 0.032, dark);
         rod(body, [x, r * 1.3, back[2] + 0.1], [x, H * 0.67, -wb * 0.34], 0.03, metal);
         rod(body, [x, H * 0.64, -wb * 0.14], [x, H * 0.69, -wb * 0.5], 0.02, dark);
+        // Short uprights tie the padded saddle to the subframe instead of leaving it afloat.
+        for (const z of [saddle[2] - 0.23, saddle[2] + 0.08]) {
+          rod(body, [x, H * 0.65, z], [x, saddle[1] - 0.035, z], 0.018, dark);
+        }
+        rod(
+          body,
+          [x, saddle[1] - 0.035, saddle[2] - 0.28],
+          [x, saddle[1] - 0.035, saddle[2] + 0.12],
+          0.018,
+          dark,
+        );
       }
     }
-    if (!scooter)
+    if (s.shape === 'cargo-bicycle') {
+      // Long-john steering links run beneath/beside the box, leaving its load space clear.
+      const forkTop = [0, r + 0.19, front[2] - 0.06];
+      rod(body, neck, [0, r * 0.85, neck[2]], radius, paint);
+      const forwardBeam = [0, r * 0.85, forkTop[2]];
+      rod(body, [0, r * 0.85, neck[2]], forwardBeam, radius * 1.2, paint);
+      rod(body, forwardBeam, forkTop, radius * 1.2, paint);
+      for (const x of [-0.055, 0.055])
+        rod(body, [x, r, front[2]], [x, forkTop[1], forkTop[2]], radius * 0.8, metal);
+      rod(body, [-0.31, r * 1.05, neck[2]], [-0.31, r * 1.05, forkTop[2]], 0.009, metal);
+      rod(body, [-0.31, r * 1.05, forkTop[2]], forkTop, 0.009, metal);
+    } else if (!scooter)
       for (const x of [-0.1, 0.1])
         rod(body, [x, r, front[2]], [x, neck[1], neck[2]], radius * 0.8, metal);
     rod(body, neck, [0, H * 0.96, neck[2] - 0.04], radius, metal);
@@ -304,10 +328,11 @@ export function fleetModel(s) {
     handlebar.position.set(0, H * 0.96, neck[2]);
     root.add(handlebar);
     const sweep = s.handlebarSweep ?? 0;
-    if (sweep > 0) rod(handlebar, [0, 0, 0], [0, 0, -sweep], radius, metal);
-    rod(handlebar, [-W / 2, 0, -sweep], [W / 2, 0, -sweep], radius, metal);
-    for (const x of [-W * 0.43, W * 0.43])
-      box(handlebar, [W * 0.16, 0.055, 0.08], [x, 0, -sweep], dark);
+    const barRadius = bike ? 0.012 : 0.014;
+    if (sweep > 0) rod(handlebar, [0, 0, 0], [0, 0, -sweep], barRadius, metal);
+    rod(handlebar, [-W / 2, 0, -sweep], [W / 2, 0, -sweep], barRadius, metal);
+    for (const side of [-1, 1])
+      rod(handlebar, [side * W * 0.34, 0, -sweep], [side * W * 0.49, 0, -sweep], 0.018, dark, 12);
     // Saddles taper from a broad rear to a narrow nose instead of being a flat block.
     const [, sy, sz] = saddle;
     if (bike)
@@ -349,13 +374,51 @@ export function fleetModel(s) {
       }
       if (s.shape === 'city-bicycle') {
         box(body, [0.35, 0.03, 0.45], [0, H * 0.7, back[2]], metal);
-        box(body, [0.36, 0.23, 0.28], [0, H * 0.85, neck[2] + 0.22], deck, 'basket');
+        for (const side of [-1, 1]) {
+          rod(
+            body,
+            [side * 0.09, r, back[2]],
+            [side * 0.15, H * 0.7, back[2] - 0.14],
+            0.009,
+            metal,
+          );
+          rod(
+            body,
+            [side * 0.15, H * 0.7, back[2] + 0.17],
+            [side * 0.04, saddle[1] - 0.12, saddle[2]],
+            0.009,
+            metal,
+          );
+        }
+        const basketY = H * 0.85,
+          basketZ = neck[2] + 0.22;
+        box(body, [0.36, 0.025, 0.28], [0, basketY - 0.1, basketZ], deck, 'basket-floor');
+        for (const side of [-1, 1]) {
+          box(body, [0.018, 0.23, 0.28], [side * 0.171, basketY, basketZ], deck, 'basket-side');
+          box(body, [0.36, 0.23, 0.018], [0, basketY, basketZ + side * 0.131], deck, 'basket-end');
+          rod(
+            body,
+            [side * 0.1, basketY - 0.1, basketZ],
+            [side * 0.055, neck[1], neck[2]],
+            0.009,
+            metal,
+          );
+        }
       }
       if (s.shape === 'cargo-bicycle') {
-        const z = wb * 0.2;
-        box(body, [0.58, 0.06, 0.78], [0, r * 1.2, z], deck);
-        for (const x of [-0.28, 0.28]) box(body, [0.04, 0.38, 0.78], [x, r * 1.2 + 0.2, z], deck);
-        for (const dz of [-0.37, 0.37])
+        // Stop the box behind the front tyre's swept envelope; it must not pierce the load floor.
+        const rearZ = neck[2] + 0.08;
+        const frontZ = front[2] - r - 0.07;
+        const length = frontZ - rearZ;
+        const z = (rearZ + frontZ) / 2;
+        // Two cross-bearers carry the load box above the low steering beam.
+        for (const mountZ of [rearZ + 0.08, frontZ - 0.08]) {
+          rod(body, [0, r * 0.85, mountZ], [0, r * 1.2 - 0.03, mountZ], 0.018, metal);
+          rod(body, [-0.27, r * 1.2 - 0.03, mountZ], [0.27, r * 1.2 - 0.03, mountZ], 0.014, metal);
+        }
+        box(body, [0.58, 0.06, length], [0, r * 1.2, z], deck);
+        for (const x of [-0.28, 0.28]) box(body, [0.04, 0.38, length], [x, r * 1.2 + 0.2, z], deck);
+        for (const dz of [-length / 2 + 0.02, length / 2 - 0.02])
           box(body, [0.58, 0.38, 0.04], [0, r * 1.2 + 0.2, z + dz], deck);
       }
       if (s.shape === 'road-bicycle')
@@ -470,7 +533,13 @@ export function fleetModel(s) {
     shell.position.set(...lampAt);
     const lens = mesh(lampGroup, new T.CircleGeometry(lamp * 0.88, 16), light);
     lens.position.set(lampAt[0], lampAt[1], lampAt[2] + lamp * 0.66);
-    box(body, [0.09, 0.055, 0.04], scooter ? [0, 0.76, -0.935] : [0, H * 0.68, -wb * 0.52], red);
+    const rearLamp = scooter
+      ? [0, 0.76, -0.935]
+      : bike
+        ? [0, saddle[1] - 0.09, saddle[2] - 0.075]
+        : [0, H * 0.68, -wb * 0.52];
+    if (bike) rod(body, [0, saddle[1] - 0.09, saddle[2]], rearLamp, 0.012, dark);
+    box(body, [0.09, 0.055, 0.04], rearLamp, red);
   } else {
     const big = L > 50;
     const ferry = s.shape.includes('ferry');
@@ -630,7 +699,8 @@ export function fleetModel(s) {
       const bottomY = Math.min(-d * P.bilge, -d + 0.5 * b * Math.tan(P.deadrise));
       const topside = [(b + g) / 2 + (g - b) * 0.1, deckY * 0.55];
       const points = [
-        [Math.min(0.03 * W, b * 0.1), -d],
+        // Both halves share the keel; a nonzero half-width leaves the entire bottom open.
+        [0, -d],
         [0.5 * b, bottomY],
         [0.93 * b, -d * P.bilge],
         [b, 0],
@@ -757,15 +827,65 @@ export function fleetModel(s) {
       },
     };
     const cabin = (z, len, width, y, height) => {
-      const windowHeight = Math.min(1.4, height * 0.65);
-      const sill = height - windowHeight;
-      box(body, [width, sill, len], [0, y + sill / 2, z], cream);
-      box(
-        body,
-        [width * 1.015, windowHeight, len * 0.99],
-        [0, y + sill + windowHeight / 2, z],
-        glass,
-      );
+      let windowHeight = Math.min(1.4, height * 0.65);
+      let sill = height - windowHeight;
+      const eye = s.driverEye;
+      const operatorCabin =
+        eye && Math.abs(eye[2] - z) < len / 2 && eye[1] > y && eye[1] < y + height + 0.2;
+      if (operatorCabin) {
+        // A solid accommodation block is fine below the bridge, but the bridge itself is hollow.
+        const floorY = Math.min(y + sill - 0.04, eye[1] - 1.15);
+        // Wheelhouse windows sit on solid lower walls, not a glass band down to the floor.
+        // Keep the sill below the operator's eye and leave at least a 55 cm window opening.
+        const lowerTop = Math.min(y + height - 0.55, Math.max(y + sill, floorY + 0.75));
+        sill = lowerTop - y;
+        windowHeight = height - sill;
+        if (floorY - 0.06 > y)
+          box(body, [width, floorY - 0.06 - y, len], [0, (floorY - 0.06 + y) / 2, z], cream);
+        const wallHeight = Math.max(0.06, y + sill - floorY);
+        box(body, [width, 0.06, len], [0, floorY - 0.03, z], dark, 'bridge-floor');
+        for (const side of [-1, 1]) {
+          box(
+            body,
+            [0.075, wallHeight, len],
+            [side * (width / 2 - 0.0375), floorY + wallHeight / 2, z],
+            cream,
+            'bridge-side-lining',
+          );
+          box(
+            body,
+            [width, wallHeight, 0.075],
+            [0, floorY + wallHeight / 2, z + side * (len / 2 - 0.0375)],
+            cream,
+            'bridge-end-lining',
+          );
+        }
+        s = { ...s, helmFloor: floorY };
+      } else box(body, [width, sill, len], [0, y + sill / 2, z], cream);
+      // Four vertical panes only: a transparent box also puts a glass floor across the bridge.
+      const panes = new T.BoxGeometry(width * 1.015, windowHeight, len * 0.99);
+      const indices = [];
+      for (const side of [0, 1, 4, 5]) {
+        const group = panes.groups[side];
+        for (let i = group.start; i < group.start + group.count; i++)
+          indices.push(panes.index.getX(i));
+      }
+      panes.setIndex(indices);
+      panes.clearGroups();
+      mesh(body, panes, glass).position.set(0, y + sill + windowHeight / 2, z);
+      const paneCount = big ? 5 : 3;
+      for (const face of [-1, 1])
+        for (let i = 1; i < paneCount; i++)
+          box(
+            body,
+            [big ? 0.075 : 0.045, windowHeight, 0.065],
+            [
+              -width / 2 + (width * i) / paneCount,
+              y + sill + windowHeight / 2,
+              z + face * len * 0.495,
+            ],
+            cream,
+          );
       box(body, [width * 1.07, 0.12, len * 1.05], [0, y + height + 0.04, z], cream);
       for (let j = 0; j < Math.max(2, Math.floor(len / (big ? 3 : 1.1))); j++)
         for (const x of [-width / 2, width / 2])
@@ -800,7 +920,15 @@ export function fleetModel(s) {
               );
         }
         // Bridge wings reach the ship's sides so the bridge can see down them.
-        box(body, [W * 0.96, 0.3, len * 0.28], [0, y + sill - 0.12, z + len * 0.32], cream);
+        const wingWidth = (W * 0.96 - width) / 2;
+        for (const side of [-1, 1])
+          box(
+            body,
+            [wingWidth, 0.3, len * 0.28],
+            [side * (width / 2 + wingWidth / 2), y + sill - 0.12, z + len * 0.32],
+            cream,
+            'bridge-wing',
+          );
         // Funnel aft of the bridge, in hull color with a dark top.
         const funnelZ = z - len * 0.28;
         box(body, [W * 0.13, 6, W * 0.17], [0, y + height + 3, funnelZ], paint, 'funnel');
@@ -853,7 +981,8 @@ export function fleetModel(s) {
           box(body, [W * 0.55, 0.2, L * 0.1], [0, deckY + 0.15, z], metal, 'loading-ramp');
       } else cabin(-L * 0.05, L * 0.66, W * 0.82, deckY, H * 0.35);
       cabin(L * 0.16, L * 0.2, W * 0.75, deckY + (car ? 6.4 : H * 0.38), 1.8);
-      box(body, [W * 0.17, 1.8, L * 0.08], [0, H * 0.82, -L * 0.23], paint, 'funnel');
+      const funnelBase = deckY + (car ? 6.2 : H * 0.35) + 0.08;
+      box(body, [W * 0.17, 1.8, L * 0.08], [0, funnelBase + 0.9, -L * 0.23], paint, 'funnel');
     } else if (s.shape === 'sailboat') {
       cabin(-L * 0.06, L * 0.37, W * 0.65, deckY, 0.6);
       rod(body, [0, deckY, L * 0.06], [0, H, L * 0.06], 0.055, metal);
@@ -872,9 +1001,32 @@ export function fleetModel(s) {
       mesh(body, sail, sailMat, 'mainsail');
       rod(body, [0, deckY + 1.15, -L * 0.37], [0, deckY + 1.15, L * 0.06], 0.045, metal);
     } else if (s.shape === 'speedboat') {
-      box(body, [W * 0.69, 0.35, L * 0.28], [0, deckY + 0.25, -L * 0.17], cream);
+      // A rear bench leaves the helm footwell clear; the previous solid cockpit block cut the wheel and seats.
+      box(body, [W * 0.69, 0.32, L * 0.1], [0, deckY + 0.16, -L * 0.34], cream);
+      s = { ...s, helmFloor: deckY + 0.025 };
       const windscreen = box(body, [W * 0.75, 0.48, 0.05], [0, deckY + 0.45, L * 0.08], glass);
       windscreen.rotation.x = -0.35;
+      const lowerY = deckY + 0.45 - 0.24 * Math.cos(0.35);
+      const lowerZ = L * 0.08 + 0.24 * Math.sin(0.35);
+      const upperY = deckY + 0.45 + 0.24 * Math.cos(0.35);
+      const upperZ = L * 0.08 - 0.24 * Math.sin(0.35);
+      box(
+        body,
+        [W * 0.76, lowerY - deckY + 0.02, 0.18],
+        [0, (deckY + lowerY) / 2, lowerZ + 0.045],
+        cream,
+        'windscreen-coaming',
+      );
+      for (const side of [-1, 1])
+        rod(
+          body,
+          [side * W * 0.375, lowerY, lowerZ],
+          [side * W * 0.375, upperY, upperZ],
+          0.018,
+          metal,
+        );
+      rod(body, [-W * 0.375, lowerY, lowerZ], [W * 0.375, lowerY, lowerZ], 0.018, metal);
+      rod(body, [-W * 0.375, upperY, upperZ], [W * 0.375, upperY, upperZ], 0.018, metal);
       box(body, [0.45, 0.75, 0.42], [0, 0.24, -L * 0.51], dark, 'outboard');
     } else {
       const tug = s.shape === 'tugboat';
@@ -883,8 +1035,8 @@ export function fleetModel(s) {
       if (tug) {
         box(
           body,
-          [W * 0.17, H * 0.25, L * 0.11],
-          [0, deckY + H * 0.33, -L * 0.19],
+          [W * 0.17, H * 0.455, L * 0.11],
+          [0, deckY + H * 0.2275, -L * 0.19],
           dark,
           'exhaust',
         );

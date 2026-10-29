@@ -1,7 +1,7 @@
 /** Cessna 182T NAV III / GFC700, 2007 handbook fit. Main axle origin, +Z nose.
  * Independently measured airframe and panel; see the per-model reference review.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

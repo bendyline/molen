@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:3965bca379d6937e8298132ab4edab91e83aaf53003833f6b88b1b3731b16032",
-  "sourceHash": "sha256:feb4d6e55d411e86a8b3dde75f7e8417281643a0dbd20f96d2697450e27f7f1c",
+  "hash": "sha256:eb118ee270cb210e289f23ed2af00c2125a189a4808d644a498b0641518f5c7d",
+  "sourceHash": "sha256:fd8aebf08b4b8bf9ed102921b69cf3d0ee405e060c8435428cbbcf81b3087c0e",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,19 @@
     }
   },
   "stats": {
-    "triangles": 9122,
-    "vertices": 11991,
-    "meshes": 20,
-    "primitives": 20,
-    "materials": 9,
+    "triangles": 10128,
+    "vertices": 14177,
+    "meshes": 21,
+    "primitives": 21,
+    "materials": 10,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 272860
+    "sizeBytes": 323176
   },
   "nodes": [
     {
       "name": "body",
-      "triangles": 1162
+      "triangles": 1038
     },
     {
       "name": "windows",
@@ -114,6 +114,10 @@
       "triangles": 24
     },
     {
+      "name": "legacy-body-lining",
+      "triangles": 1038
+    },
+    {
       "name": "close-detail-detail-alloy",
       "triangles": 636
     },
@@ -131,15 +135,15 @@
     },
     {
       "name": "cabin-detail-trim",
-      "triangles": 692
+      "triangles": 708
     },
     {
       "name": "cabin-cabin-trim",
-      "triangles": 60
+      "triangles": 72
     },
     {
       "name": "cabin-detail-alloy",
-      "triangles": 1584
+      "triangles": 1648
     },
     {
       "name": "cabin-detail-lettering",
@@ -207,6 +211,14 @@
     },
     {
       "name": "detail-red",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "legacy-body-lining",
       "slots": [
         "baseColor"
       ],
@@ -771,6 +783,35 @@
         ]
       },
       {
+        "node": "legacy-body-lining",
+        "points": [
+          -0.97,
+          0.22,
+          -1.9925,
+          -0.97,
+          0.22,
+          1.9662,
+          -0.97,
+          1.48,
+          -1.9925,
+          -0.97,
+          1.48,
+          1.9662,
+          0.97,
+          0.22,
+          -1.9925,
+          0.97,
+          0.22,
+          1.9662,
+          0.97,
+          1.48,
+          -1.9925,
+          0.97,
+          1.48,
+          1.9662
+        ]
+      },
+      {
         "node": "close-detail-detail-alloy",
         "points": [
           -0.8789,
@@ -923,25 +964,25 @@
           -0.1,
           -0.73,
           0.58,
-          0.6135,
+          0.6435,
           -0.73,
-          0.867,
+          0.95,
           -0.1,
           -0.73,
-          0.867,
-          0.6135,
+          0.95,
+          0.6435,
           0.73,
           0.58,
           -0.1,
           0.73,
           0.58,
-          0.6135,
+          0.6435,
           0.73,
-          0.867,
+          0.95,
           -0.1,
           0.73,
-          0.867,
-          0.6135
+          0.95,
+          0.6435
         ]
       },
       {
@@ -954,10 +995,10 @@
           0.242,
           0.8875,
           -0.7107,
-          0.9933,
+          1.0035,
           0.13,
           -0.7107,
-          0.9933,
+          1.0035,
           0.8875,
           0.7107,
           0.242,
@@ -966,10 +1007,10 @@
           0.242,
           0.8875,
           0.7107,
-          0.9933,
+          1.0035,
           0.13,
           0.7107,
-          0.9933,
+          1.0035,
           0.8875
         ]
       },

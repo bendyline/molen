@@ -2,7 +2,7 @@
  * Main wheel axle datum, +Z nose, +X pilot left. Composite shell and true window apertures.
  * POH 13772-007 three-view/cabin plan and 2020 factory cockpit photograph.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { addG1000Readouts } from './g1000-panel.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {

@@ -1,7 +1,15 @@
 import { readFile } from 'node:fs/promises';
 import { Group, Mesh, MeshStandardMaterial, Raycaster, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { cleanGeometry, loft, outline, quad, sheet } from '../scripts/aircraft/mesh-kit.mjs';
+import {
+  cleanGeometry,
+  fittedFloor,
+  loft,
+  outline,
+  quad,
+  sheet,
+} from '../scripts/aircraft/mesh-kit.mjs';
+import { transportWinglet } from '../scripts/aircraft/transport-profiles.mjs';
 import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
 const material = new MeshStandardMaterial();
@@ -42,6 +50,43 @@ function boundaryEdges(root) {
 }
 
 describe('aircraft surface construction', () => {
+  it('closes the curved sharklet transition and both end caps', () => {
+    const d = fixture();
+    transportWinglet(
+      d,
+      [0, 0, 0],
+      1,
+      { height: 2.43, out: 0.805, root: 1.4, tip: 0.43, sweep: 1.35 },
+      material,
+    );
+    expect(boundaryEdges(d.root)).toEqual([]);
+  });
+  it('fits a watertight floor inside a tapered belly instead of piercing the skin', () => {
+    const d = fixture();
+    const rings = [0, 1, 2].map((z) => ({
+      z,
+      points: [
+        [-1 + z * 0.2, 0],
+        [0, -1],
+        [1 - z * 0.2, 0],
+        [0, 1],
+      ],
+    }));
+    fittedFloor(d, rings, material, { y: -0.5, front: 1.9, back: 0.1, width: 2, thickness: 0.04 });
+    expect(boundaryEdges(d.root)).toHaveLength(0);
+    d.root.traverse((mesh) => {
+      if (!mesh.isMesh) return;
+      const p = mesh.geometry.getAttribute('position');
+      for (let i = 0; i < p.count; i++) {
+        const halfWidth = (1 - 0.2 * p.getZ(i)) * (1 + p.getY(i));
+        expect(Math.abs(p.getX(i))).toBeLessThan(halfWidth);
+      }
+    });
+    for (const z of [0.12, 0.75, 1.5, 1.88]) {
+      expect(intersect(d.root, [0, 0, z], [0, -1, 0])[0].point.y).toBeCloseTo(-0.5);
+      expect(intersect(d.root, [0, -2, z], [0, 1, 0])[0].point.y).toBeCloseTo(-0.54);
+    }
+  });
   it('keeps duct side walls even when their winding hint points along the duct', () => {
     const d = fixture();
     quad(d, [1, 0, 0], [1, 1, 0], [1, 1, 2], [1, 0, 2], material, [0, 0, 1]);

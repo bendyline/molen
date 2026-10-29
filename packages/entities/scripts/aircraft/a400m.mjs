@@ -1,6 +1,6 @@
 /** A400M Atlas: explicit stations from Airbus's 2025 general-arrangement views.
  * Cockpit layout from Belyakov's ILA2014 and MOD flight-deck photographs. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

@@ -2,7 +2,7 @@
  * A/L drawings constrain common dimensions, never M avionics or blade geometry.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,
@@ -26,7 +26,7 @@ export const uh60Frame = () => ({
   ry: 0.9,
   cabinZ: 2.8,
   cabinWidth: 2.2,
-  eye: [-0.56, 1.91, 2.75],
+  eye: [-0.56, 1.8, 2.67],
   panelZ: 3.18,
   floor: 0.56,
   mainRotorPosition: [0, 3.42, 0],

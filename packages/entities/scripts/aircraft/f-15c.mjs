@@ -1,7 +1,7 @@
 /** F-15C MSIP, clean airframe, 1992 F100-PW-220 configuration.
  * Main-axle datum, +Z forward, +X pilot left. Separate measured SAC and MSIP panels.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

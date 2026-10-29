@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:d1378d5dd6cd3bf2fe030b8803834b35ff79545442e7a01f7bb527a57f637f62",
-  "sourceHash": "sha256:1ea9997fd3c48273016b182d78e727b76a9532ef2561da4457533db40099f6a4",
+  "hash": "sha256:0cdb7a00acf22a82d7777e7354cac845edc42405dea6cc87e91cf4152485e8c6",
+  "sourceHash": "sha256:e3926eb6f59147b266dadaebf30ba72fe3383e011952a8a19d769c042f9bd1af",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,14 +31,14 @@
     }
   },
   "stats": {
-    "triangles": 5836,
-    "vertices": 8798,
-    "meshes": 19,
-    "primitives": 19,
-    "materials": 13,
+    "triangles": 6152,
+    "vertices": 9174,
+    "meshes": 20,
+    "primitives": 20,
+    "materials": 14,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 190556
+    "sizeBytes": 198788
   },
   "nodes": [
     {
@@ -59,11 +59,15 @@
     },
     {
       "name": "body-ivory",
-      "triangles": 796
+      "triangles": 808
     },
     {
       "name": "body-glazing",
       "triangles": 12
+    },
+    {
+      "name": "body-brushed-metal",
+      "triangles": 128
     },
     {
       "name": "close-detail-detail-alloy",
@@ -87,15 +91,15 @@
     },
     {
       "name": "helm-marine-console",
-      "triangles": 12
+      "triangles": 36
     },
     {
       "name": "helm-detail-alloy",
-      "triangles": 372
+      "triangles": 508
     },
     {
       "name": "helm-detail-trim",
-      "triangles": 156
+      "triangles": 172
     },
     {
       "name": "helm-detail-lettering",
@@ -168,6 +172,14 @@
       ],
       "doubleSided": true,
       "alphaMode": "BLEND"
+    },
+    {
+      "name": "brushed-metal",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     },
     {
       "name": "detail-alloy",
@@ -348,28 +360,28 @@
         "node": "body-ivory",
         "points": [
           -1.183,
-          0.6499,
+          0.6401,
           -3.2025,
           -1.183,
-          0.6499,
+          0.6401,
           3.2,
           -1.183,
-          1.0751,
+          0.9699,
           -3.2025,
           -1.183,
-          1.0751,
+          0.9699,
           3.2,
           1.183,
-          0.6499,
+          0.6401,
           -3.2025,
           1.183,
-          0.6499,
+          0.6401,
           3.2,
           1.183,
-          1.0751,
+          0.9699,
           -3.2025,
           1.183,
-          1.0751,
+          0.9699,
           3.2
         ]
       },
@@ -400,6 +412,35 @@
           0.8813,
           1.334,
           0.6177
+        ]
+      },
+      {
+        "node": "body-brushed-metal",
+        "points": [
+          -0.8992,
+          0.8565,
+          0.4117,
+          -0.8992,
+          0.8565,
+          0.6123,
+          -0.8992,
+          1.3435,
+          0.4117,
+          -0.8992,
+          1.3435,
+          0.6123,
+          0.8992,
+          0.8565,
+          0.4117,
+          0.8992,
+          0.8565,
+          0.6123,
+          0.8992,
+          1.3435,
+          0.4117,
+          0.8992,
+          1.3435,
+          0.6123
         ]
       },
       {
@@ -551,26 +592,26 @@
         "node": "helm-marine-console",
         "points": [
           -0.0235,
-          0.945,
-          -0.23,
+          0.675,
+          -0.47,
           -0.0235,
-          0.945,
+          0.675,
           0.15,
           -0.0235,
           1.195,
-          -0.23,
+          -0.47,
           -0.0235,
           1.195,
           0.15,
           0.9165,
-          0.945,
-          -0.23,
+          0.675,
+          -0.47,
           0.9165,
-          0.945,
+          0.675,
           0.15,
           0.9165,
           1.195,
-          -0.23,
+          -0.47,
           0.9165,
           1.195,
           0.15
@@ -580,29 +621,29 @@
         "node": "helm-detail-alloy",
         "points": [
           0.0877,
-          0.9185,
+          0.675,
           -0.7738,
           0.0877,
-          0.9185,
-          -0.223,
+          0.675,
+          -0.04,
           0.0877,
           1.2865,
           -0.7738,
           0.0877,
           1.2865,
-          -0.223,
+          -0.04,
           0.7421,
-          0.9185,
+          0.675,
           -0.7738,
           0.7421,
-          0.9185,
-          -0.223,
+          0.675,
+          -0.04,
           0.7421,
           1.2865,
           -0.7738,
           0.7421,
           1.2865,
-          -0.223
+          -0.04
         ]
       },
       {

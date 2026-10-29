@@ -3,7 +3,7 @@
  * This is its own seven-seat shell, glazing, rotor head, stabilizer and glass panel.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,

@@ -2,7 +2,7 @@
  * Dimensions from 7.01.16-E rev5 and the 2024 factory cabin drawing/photo.
  * Composite skin: joints/access fasteners, not a fictitious sheet-metal rivet grid.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { addG1000Bezels, addG1000Readouts } from './g1000-panel.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {

@@ -1,7 +1,7 @@
 /** Standard, unstretched C-130J. USAF rescue drawing and Lockheed flight-station layout.
  * Meter geometry, +Y up, +Z nose, +X pilot left. Reference stations remain approximate.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

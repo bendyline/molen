@@ -1,13 +1,14 @@
 /** Original DHC-2 Mk.I landplane, PSM 1-2-1 Fig 1-3/1-4/1-10.
  * Dimensions/contours are reference-authored; no photograph textures.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -474,7 +475,7 @@ export function buildBeaver(s) {
   d.rod([0, 2.93, 2.05], [0, 3.15, 2.02], 0.014, dark);
   d.rod([0, 3.15, 2.02], [0, 3.65, -3.55], 0.002, dark);
   d.finish();
-  const interior = beaverCockpit(airframe, { paint, accent, metal, dark });
+  const interior = beaverCockpit(airframe, { paint, accent, metal, dark }, rings);
   Object.assign(interior.derived, {
     aileronDroop: { op: 'multiply', args: ['flapPosition', -0.18] },
     rollLeft: { op: 'multiply', args: ['rollInput', -0.32] },
@@ -502,7 +503,7 @@ export function buildBeaver(s) {
     },
   };
 }
-function beaverCockpit(root, m) {
+function beaverCockpit(root, m, sections) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'Beaver-cockpit'),
     pt = panelTools(d),
@@ -786,7 +787,7 @@ function beaverCockpit(root, m) {
     scale: 0.45,
   });
   d.add(new T.CylinderGeometry(0.067, 0.067, 0.06, 20), m.accent, [-0.2, 1.14, 2.65]);
-  d.box([1.33, 0.035, 2.95], [0, 1.04, 1.5], m.dark);
+  fittedFloor(d, sections, m.dark, { y: 1.09, front: 3.2, back: 0.025, width: 1.33 });
   for (const side of [-1, 1]) {
     d.box([0.025, 0.3, 1.2], [side * 0.7, 1.4, 2.1], liner);
     d.rod([side * 0.67, 1.68, 2.6], [side * 0.67, 1.68, 2.12], 0.021, m.dark);

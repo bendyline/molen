@@ -2,7 +2,7 @@
  * Own shell stations, glazing apertures and panel layout; no generic helicopter body.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,

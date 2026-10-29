@@ -1,4 +1,4 @@
-import { World } from '@bendyline/molen-kernel/world';
+import { Transform, World } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
 import { expect, it } from 'vitest';
 import { EarthNightLighting } from '../src/client/night-lighting';
@@ -84,9 +84,23 @@ it('moves head/tail lenses and beams with traffic, excludes hidden agents, and b
   const beams = lighting.object.children.filter(
     (o): o is THREE.SpotLight => o instanceof THREE.SpotLight,
   );
-  expect(beams.filter((o) => o.intensity > 0)).toHaveLength(4);
+  expect(beams.filter((o) => o.intensity > 0)).toHaveLength(8);
   expect(beams[0]?.target.position.x).toBeGreaterThan(beams[0]?.position.x ?? 0);
   expect(beams[0]?.target.position.y).toBeLessThan(beams[0]?.position.y ?? 0);
+  // Steering, a pitched chassis and a shifted render origin must move both beam sources
+  // with their visible lenses, rather than leave illumination at the previous pose.
+  world.patch('car-5', Transform, {
+    pos: [1070, 3, 2015],
+    rot: new THREE.Quaternion().setFromEuler(new THREE.Euler(0.15, -0.8, 0.05)).toArray(),
+  });
+  root.position.set(-1060, 0, -2000);
+  lighting.update({ ...frame, drivenVehicleId: 'car-5' });
+  front.updateWorldMatrix(true, false);
+  for (let i = 0; i < 2; i++) {
+    front.getMatrixAt(i, matrix);
+    const lens = new THREE.Vector3().setFromMatrixPosition(matrix).applyMatrix4(front.matrixWorld);
+    expect(beams[i]?.getWorldPosition(new THREE.Vector3()).distanceTo(lens)).toBeLessThan(0.001);
+  }
   world.destroy('car-5');
   lighting.update(frame);
   expect(front.count).toBe(10);
@@ -148,5 +162,13 @@ it('keeps sub-metre lens placement precise at Earth-scale coordinates', () => {
   expect(actual.x).toBeCloseTo(-0.495, 3);
   expect(actual.y).toBeCloseTo(221.16, 3);
   expect(actual.z).toBeCloseTo(1.68, 3);
+  const beams = lighting.object.children.filter(
+    (o): o is THREE.SpotLight => o instanceof THREE.SpotLight,
+  );
+  for (let i = 0; i < 2; i++) {
+    lenses.getMatrixAt(i, matrix);
+    const lens = new THREE.Vector3().setFromMatrixPosition(matrix).applyMatrix4(lenses.matrixWorld);
+    expect(beams[i]?.getWorldPosition(new THREE.Vector3()).distanceTo(lens)).toBeLessThan(0.001);
+  }
   lighting.dispose();
 });

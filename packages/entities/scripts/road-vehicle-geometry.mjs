@@ -70,7 +70,8 @@ export function roadVehicleModel(s) {
     const box = d.box,
       add = d.add,
       rod = d.rod,
-      ring = d.ring;
+      ring = d.ring,
+      contour = d.path;
     d.box = (size, at, material) => {
       if (size[0] < 0.28) return conform(box(size, at, material), at[0]);
       const count = Math.ceil(size[0] / 0.075);
@@ -90,6 +91,13 @@ export function roadVehicleModel(s) {
         material,
       );
     d.ring = (r, t, at, material, axis) => conform(ring(r, t, at, material, axis), at[0]);
+    d.path = (points, radius, material, ...options) =>
+      contour(
+        points.map((p) => [p[0], p[1], p[2] - end * endOffset(p[0], end)]),
+        radius,
+        material,
+        ...options,
+      );
   }
   // Polygon surface with explicit outward normal; bodies are hollow rather than filled slabs.
   function face(d, points, material, normal) {
@@ -215,8 +223,13 @@ export function roadVehicleModel(s) {
   for (const end of [-1, 1])
     for (let i = 0; i <= 8; i++)
       stations.add(end * (L / 2 - ((end > 0 ? noseRound : tailRound) * i) / 8));
-  for (const a of [axleFront, axleRear])
+  for (const a of [axleFront, axleRear]) {
     for (let i = 0; i <= 20; i++) stations.add(a - arch + (2 * arch * i) / 20);
+    // The arch ends at hub height, then drops to the sill. Sample both sides of that
+    // discontinuity so interpolation cannot cut a long triangular opening in a door.
+    for (const end of [-1, 1])
+      for (const offset of [-0.0001, 0.0001]) stations.add(a + end * arch + offset);
+  }
   const zs = [...stations].filter((z) => z >= -L / 2 && z <= L / 2).sort((a, b) => a - b);
   // A pickup bed is about 0.55 m deep below its rails, not a well down to the sills.
   const bedFloor = Math.max(clearance + 0.3, belt - 0.56);
@@ -563,18 +576,35 @@ export function roadVehicleModel(s) {
         f.blackPillar ? black : paint,
         [side, 0, 0],
       );
-    // Shoulder strip closes the small gap between the side skin and window sill.
-    face(
-      shell,
-      [
-        [side * widthAt(rb) * 0.96, belt, rb],
-        [side * widthAt(cowl) * 0.96, belt, cowl],
-        points[0],
-        points[3],
-      ],
-      paint,
-      [0, 1, 0],
-    );
+    // Follow the waist at every body station, including the narrow centre of a sports car.
+    const cabinStations = zs.filter((z) => z >= rb && z <= cowl);
+    for (let i = 1; i < cabinStations.length; i++) {
+      const a = cabinStations[i - 1],
+        b = cabinStations[i];
+      const sillX = (z) => side * W * (0.45 + (0.005 * (z - rb)) / (cowl - rb));
+      face(
+        shell,
+        [
+          [side * widthAt(a) * 0.96, belt, a],
+          [side * widthAt(b) * 0.96, belt, b],
+          [sillX(b), belt, b],
+          [sillX(a), belt, a],
+        ],
+        paint,
+        [0, 1, 0],
+      );
+      face(
+        cabin,
+        [
+          [side * (widthAt(a) * 0.91 - 0.025), clearance + 0.035, a],
+          [side * (widthAt(b) * 0.91 - 0.025), clearance + 0.035, b],
+          [side * (widthAt(b) * 0.91 - 0.025), belt - 0.055, b],
+          [side * (widthAt(a) * 0.91 - 0.025), belt - 0.055, a],
+        ],
+        black,
+        [-side, 0, 0],
+      );
+    }
     if (!f.openTop)
       path(
         details,
@@ -631,13 +661,6 @@ export function roadVehicleModel(s) {
     details.box([0.17, 0.1, 0.22], [mx, my, mz], paint);
     details.box([0.145, 0.073, 0.006], [mx, my, mz - 0.114], chrome);
     details.box([0.13, 0.012, 0.012], [mx, my - 0.02, mz + 0.116], light);
-    cabin.box(
-      [0.035, 0.23, Math.max(0.5, cowl - rb - 0.3)],
-      [side * W * 0.445, belt - 0.17, (cowl + rb) / 2],
-      black,
-    );
-    cabin.box([0.055, 0.045, 0.35], [side * W * 0.42, belt - 0.15, bz + 0.3], seat);
-    cabin.box([0.02, 0.022, 0.12], [side * W * 0.416, belt - 0.06, bz + 0.4], chrome);
     if (f.rails) {
       path(
         details,
@@ -1317,43 +1340,70 @@ export function roadVehicleModel(s) {
       : eye[1] - 0.27,
     dashZ = eye[2] + 0.57;
   const seatY = eye[1] - 0.59;
+  const cabinWidth =
+    Math.min(...zs.filter((z) => z >= eye[2] - 0.7 && z <= cowl).map(widthAt)) * 1.8 - 0.035;
+  const headroomAt = (x, z) => {
+    if (f.openTop) return H + 0.3;
+    if (z >= rr && z <= rf) return roofEdge(z) + roofCrown * (1 - (x / roofW) ** 2);
+    const front = z > rf;
+    const base = front ? cowl : rb;
+    const top = front ? rf : rr;
+    const t = Math.max(0, Math.min(1, (z - base) / (top - base)));
+    const halfWidth = W * (front ? 0.455 : 0.45) * (1 - t) + roofW * t;
+    return (
+      belt + ((front ? frontGlassY : roofY) - belt) * t + roofCrown * (1 - (x / halfWidth) ** 2) * t
+    );
+  };
   for (let row = 0; row < (f.rows ?? 2); row++)
     for (const x of [-W * 0.23, W * 0.23]) {
       const z = eye[2] - 0.14 - row * 0.77;
       if (z < rb + 0.17) continue;
-      cabin.box([0.43, 0.1, 0.45], [x, seatY, z], seat);
-      const back = cabin.box([0.43, 0.48, 0.08], [x, seatY + 0.25, z - 0.2], seat);
+      const seatRoot = new T.Group();
+      seatRoot.name = `seat-${row}-${x > 0 ? 'left' : 'right'}`;
+      root.add(seatRoot);
+      const upholstery = detailKit(seatRoot, 'upholstery');
+      const ceiling =
+        Math.min(
+          ...[-0.215, 0.215].flatMap((dx) =>
+            [-0.29, 0.225].map((dz) => headroomAt(x + dx, z + dz)),
+          ),
+        ) - 0.055;
+      // Rear seats in a fastback have less headroom than the front row. Fit the complete seat,
+      // including its headrest and belt, beneath the actual roof/rear-glass profile.
+      seatRoot.position.y = seatY;
+      seatRoot.scale.y = Math.min(1, Math.max(0.4, (ceiling - seatY) / 0.67));
+      upholstery.box([0.43, 0.1, 0.45], [x, 0, z], seat);
+      const back = upholstery.box([0.43, 0.48, 0.08], [x, 0.25, z - 0.2], seat);
       back.rotation.x = -0.13;
       for (const dx of [-0.17, 0.17])
-        cabin.box([0.045, 0.4, 0.11], [x + dx, seatY + 0.25, z - 0.16], black);
-      cabin.box([0.25, 0.16, 0.09], [x, seatY + 0.59, z - 0.22], seat);
+        upholstery.box([0.045, 0.4, 0.11], [x + dx, 0.25, z - 0.16], black);
+      upholstery.box([0.25, 0.16, 0.09], [x, 0.59, z - 0.22], seat);
       for (const dx of [-0.075, 0.075])
-        cabin.rod(
-          [x + dx, seatY + 0.42, z - 0.22],
-          [x + dx, seatY + 0.55, z - 0.22],
-          0.008,
-          chrome,
-        );
+        upholstery.rod([x + dx, 0.42, z - 0.22], [x + dx, 0.55, z - 0.22], 0.008, chrome);
       for (const dx of [-0.11, 0.11])
-        cabin.rod(
-          [x + dx, seatY + 0.065, z - 0.16],
-          [x + dx, seatY + 0.065, z + 0.17],
-          0.0025,
-          chrome,
-        );
-      cabin.rod(
-        [x + Math.sign(x) * 0.15, seatY + 0.45, z - 0.16],
-        [x - Math.sign(x) * 0.15, seatY + 0.07, z + 0.08],
+        upholstery.rod([x + dx, 0.065, z - 0.16], [x + dx, 0.065, z + 0.17], 0.0025, chrome);
+      upholstery.rod(
+        [x + Math.sign(x) * 0.15, 0.45, z - 0.16],
+        [x - Math.sign(x) * 0.15, 0.07, z + 0.08],
         0.013,
         black,
       );
+      upholstery.finish();
+      seatRoot.updateMatrixWorld(true);
+      seatRoot.traverse((mesh) => {
+        if (!mesh.isMesh) return;
+        cabin.add(mesh.geometry.clone().applyMatrix4(mesh.matrixWorld), mesh.material);
+        mesh.geometry.dispose();
+      });
+      root.remove(seatRoot);
     }
   addRoadDashboard(
     root,
     s,
     {
       eye,
-      width: W,
+      width: cabinWidth,
+      doorTop: belt - 0.025,
       dashY,
       dashZ,
       seatY,
@@ -1368,31 +1418,49 @@ export function roadVehicleModel(s) {
     },
     detailKit,
   );
-  // Deep, low cabins need a continuous dash top up to the windshield base. The short fascia
-  // alone leaves the wheel wells visible through the open cowl when the seated camera looks down.
-  if (cowl > dashZ + 0.17) {
-    const nearZ = dashZ + 0.1;
-    const farZ = cowl + 0.015;
-    const nearY = dashY + 0.04;
-    const farY = belt - 0.018;
-    const dz = farZ - nearZ;
-    const dy = farY - nearY;
-    const cover = cabin.box(
-      [W * 0.86, 0.025, Math.sqrt(dz * dz + dy * dy)],
-      [0, (nearY + farY) / 2, (nearZ + farZ) / 2],
+  // Match the bowed windshield base and the fascia with one continuous, tapered cowl.
+  // A rotated rectangular box left open strips at its edges and around the lower A-pillars.
+  const nearZ = dashZ - (f.fitCabin && belt - 0.055 < eye[1] - 0.36 ? 0.075 : 0);
+  const nearY = dashY + 0.064;
+  const cowlPoint = (u) => [u * W * 0.455, belt + 0.004, cowl + 0.008];
+  for (let i = 1; i < across.length; i++) {
+    const a = across[i - 1],
+      b = across[i];
+    face(
+      cabin,
+      [
+        [a * cabinWidth * 0.425, nearY, nearZ],
+        [b * cabinWidth * 0.425, nearY, nearZ],
+        cowlPoint(b),
+        cowlPoint(a),
+      ],
       black,
+      [0, 1, 0],
     );
-    cover.rotation.x = -Math.atan2(dy, dz);
   }
-  if (axleFront - arch < cowl) {
-    // Opaque inner wheel-arch liners keep tires out of the footwells in short cabins.
-    for (const side of [-1, 1])
-      cabin.add(new T.CircleGeometry(arch, 24, 0, Math.PI).rotateY((-side * Math.PI) / 2), black, [
-        side * (track / 2 - tireW / 2 - 0.015),
-        R,
-        axleFront,
-      ]);
+  for (const side of [-1, 1]) {
+    face(
+      cabin,
+      [
+        [side * cabinWidth * 0.425, nearY, nearZ],
+        cowlPoint(side),
+        [side * W * 0.445, clearance + 0.035, cowl],
+        [side * cabinWidth * 0.425, clearance + 0.035, nearZ],
+      ],
+      black,
+      [-side, 0, 0],
+    );
   }
+  // Each wheel well has an inner wall; an open rear arch otherwise exposes the far-side sky.
+  for (const axle of [axleFront, axleRear])
+    for (const side of [-1, 1]) {
+      const x = side * (track / 2 - tireW / 2 - 0.015);
+      const rim = Array.from({ length: 25 }, (_, i) => {
+        const z = axle - arch + (i * arch) / 12;
+        return [x, R + archRise(z - axle), z];
+      });
+      face(cabin, [...rim, [x, R, axle + arch], [x, R, axle - arch]], black, [-side, 0, 0]);
+    }
   // Interior mirror mounted inside the top of the windscreen.
   cabin.box([0.2, 0.06, 0.025], [0, frontGlassY - 0.11, rf + 0.12], black);
   cabin.box([0.18, 0.043, 0.005], [0, frontGlassY - 0.11, rf + 0.105], chrome);

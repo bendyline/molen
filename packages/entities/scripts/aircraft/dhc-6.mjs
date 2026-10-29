@@ -1,13 +1,14 @@
 /** Series 400 Twin Otter. Viking 01-18 three-view and Bidini C-GOVN cockpit.
  * Hand-authored contours in metres; photo/reference calibration is in reference-review.json.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -519,7 +520,7 @@ export function buildTwinOtter(s) {
   d.rod([0, 2.88, -2.6], [0, 3.18, -2.8], 0.016, dark);
   d.rod([0, 3.18, -2.8], [0, 5.77, -6.37], 0.003, dark);
   d.finish();
-  const interior = twinOtterCockpit(root, { paint, accent, dark, metal });
+  const interior = twinOtterCockpit(root, { paint, accent, dark, metal }, rings);
   cleanGeometry(root);
   return {
     root,
@@ -534,7 +535,7 @@ export function buildTwinOtter(s) {
   };
 }
 
-function twinOtterCockpit(root, m) {
+function twinOtterCockpit(root, m, sections) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'TwinOtter-cabin'),
     ins = instrumentGeometry(cabin, 'TwinOtter'),
@@ -863,7 +864,7 @@ function twinOtterCockpit(root, m) {
     return m.metal;
   }
   // Floor, two pilot seats, belts, pedals, side door trim and 19-seat utility cabin.
-  d.box([1.68, 0.035, 6.15], [0, 1.04, 1.5], m.dark);
+  fittedFloor(d, sections, m.dark, { y: 1.09, front: 5.3, back: -1.575, width: 1.68 });
   for (const side of [-1, 1]) {
     d.box([0.025, 0.28, 1.15], [side * 0.88, 1.36, 4.46], liner);
     d.rod([side * 0.84, 1.66, 4.75], [side * 0.84, 1.66, 4.23], 0.019, m.dark);

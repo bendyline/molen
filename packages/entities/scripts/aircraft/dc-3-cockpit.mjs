@@ -1,6 +1,6 @@
 /** Wright-powered DC-3, Knoxville museum panel; Carol M. Highsmith, LOC 2015630848.
  * The panel photograph supplies layout, not surveyed cockpit dimensions. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import { beveledBox, detailKit, ellipsoid, group, mat, outline, sheet, T } from './mesh-kit.mjs';
 export function dc3Cockpit(root, m) {

@@ -2,7 +2,7 @@
  * Main axle datum; +Z forward and +X pilot left. General-arrangement dimensions,
  * separate tandem-canopy photograph, and distinct front/rear panel references.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

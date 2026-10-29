@@ -81,6 +81,82 @@ export function quad(d, a, b, c, e, material, normal) {
   geometry.computeVertexNormals();
   return d.add(geometry, material);
 }
+/** A closed cabin deck trimmed to the authored fuselage cross sections.
+ * A rectangular floor can otherwise cut through a rounded belly or tapered aft cabin.
+ * Sections and floor coordinates must use the same (unposed) airframe datum.
+ */
+export function fittedFloor(d, sections, material, { y, front, back, width, thickness = 0.035 }) {
+  const rings = [...sections].sort((a, b) => a.z - b.z);
+  const low = Math.max(back, rings[0].z),
+    high = Math.min(front, rings.at(-1).z);
+  const bottom = y - thickness;
+  const bounds = (z) => {
+    let i = rings.findIndex((r) => r.z >= z);
+    i = Math.max(1, i);
+    const a = rings[i - 1],
+      b = rings[i],
+      t = (z - a.z) / (b.z - a.z);
+    const points = a.points.map((p, j) => p.map((v, k) => v + (b.points[j][k] - v) * t));
+    let left = -width / 2,
+      right = width / 2;
+    for (const h of [bottom, y]) {
+      const xs = [];
+      for (let j = 0; j < points.length; j++) {
+        const p = points[j],
+          q = points[(j + 1) % points.length];
+        if ((p[1] <= h && q[1] > h) || (q[1] <= h && p[1] > h))
+          xs.push(p[0] + ((h - p[1]) * (q[0] - p[0])) / (q[1] - p[1]));
+      }
+      if (xs.length < 2) return [0, 0];
+      left = Math.max(left, Math.min(...xs) + 0.025);
+      right = Math.min(right, Math.max(...xs) - 0.025);
+    }
+    return left < right ? [left, right] : [0, 0];
+  };
+  const cuts = [low, high, ...rings.filter((r) => r.z > low && r.z < high).map((r) => r.z)];
+  for (let z = low; z < high; z += 0.08) cuts.push(z);
+  cuts.sort((a, b) => a - b);
+  const zs = cuts.filter((z, i) => !i || z - cuts[i - 1] > 1e-7);
+  let open = false,
+    last;
+  const cap = (z, x, normal) =>
+    quad(d, [x[0], bottom, z], [x[1], bottom, z], [x[1], y, z], [x[0], y, z], material, normal);
+  for (let i = 0; i < zs.length - 1; i++) {
+    const a = zs[i],
+      b = zs[i + 1],
+      xa = bounds(a),
+      xb = bounds(b);
+    if (xa[0] === xa[1] || xb[0] === xb[1]) {
+      if (open) cap(a, last, [0, 0, 1]);
+      open = false;
+      continue;
+    }
+    if (!open) cap(a, xa, [0, 0, -1]);
+    quad(d, [xa[0], y, a], [xb[0], y, b], [xb[1], y, b], [xa[1], y, a], material, [0, 1, 0]);
+    quad(
+      d,
+      [xa[0], bottom, a],
+      [xb[0], bottom, b],
+      [xb[1], bottom, b],
+      [xa[1], bottom, a],
+      material,
+      [0, -1, 0],
+    );
+    for (const side of [0, 1])
+      quad(
+        d,
+        [xa[side], bottom, a],
+        [xb[side], bottom, b],
+        [xb[side], y, b],
+        [xa[side], y, a],
+        material,
+        [side ? 1 : -1, 0, 0],
+      );
+    open = true;
+    last = xb;
+  }
+  if (open) cap(high, last, [0, 0, 1]);
+}
 /**
  * Each section supplies its measured contour, clockwise as seen from +Z. Sampled curves
  * (12+ points) shade continuously; sparse polygonal profiles retain their planes. Authors

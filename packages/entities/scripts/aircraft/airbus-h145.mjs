@@ -2,7 +2,7 @@
  * rev.1, page 4. Helionix face follows page 16; see reference-review.json.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,

@@ -2,7 +2,7 @@
  * Meter landmarks are tied to the dimension sheet. Panel pitch is an explicit estimate.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import {
   beveledBox,
   cleanGeometry,

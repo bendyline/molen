@@ -2,7 +2,7 @@
  * Independent dimensions govern span, length, wheelbase, propeller and display size.
  * The published three-view is schematic: see reference-review.json for residuals.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { finishCockpit } from './cockpit-surfaces.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {

@@ -1,6 +1,6 @@
 /** An-124-100: individual Ruslan stations, ten main struts and six-place analog flight deck.
  * See reference-review.json for diagram discrepancies and estimated cockpit dimensions. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

@@ -1,7 +1,7 @@
 /** 2015 Bonanza G36, E-4063–4080 equipment. Main axle origin; +Z nose, +X pilot left.
  * Manufacturer three-view and panel diagram, with exterior/cabin photographic checks.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { addG1000Bezels, addG1000Readouts } from './g1000-panel.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {

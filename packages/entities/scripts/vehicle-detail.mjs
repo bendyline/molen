@@ -344,7 +344,7 @@ export function addCycleDetail(root, s) {
     // Tank-top speedometer; mounted to the chassis rather than turning with the handlebars.
     const instruments = detailKit(root, 'tank-instruments');
     const face = new T.Group();
-    face.rotation.x = -0.8;
+    face.rotation.x = 0.8;
     face.position.set(0, H * 0.87, 0.04);
     instruments.root.add(face);
     const kit = detailKit(face, 'cruiser-gauge');
@@ -510,6 +510,13 @@ export function addTransitDetail(root, rail = false) {
     py = floor + 1.31,
     pz = front - 0.765;
   d.box([1.9, 0.25, 0.5], [0, floor + 1.26, front - 0.5], d.dark);
+  // The fascia closes into the front body and has supported returns beside the driver's knees.
+  d.box([W - 0.16, 1.15, 0.12], [0, floor + 0.575, front - 0.16], d.dark);
+  for (const side of [-1, 1])
+    d.box([0.18, 1.15, 0.58], [side * 0.86, floor + 0.575, front - 0.48], d.dark);
+  d.box([0.36, 0.12, 0.45], [0.27, floor + 1.16, front - 0.92], d.dark);
+  if (!rail)
+    d.rod([0.55, floor + 1.25, front - 1.04], [0.55, floor + 0.5, front - 0.48], 0.045, d.dark);
   if (rail) {
     // Driver display, separate vehicle-monitor screen, guarded door and emergency controls.
     cab.display(0.53, py + 0.025, pz, 0.34, 0.2, 'driver');
@@ -546,6 +553,7 @@ export function addTransitDetail(root, rail = false) {
   for (let i = 0; i < 7; i++)
     d.ring(0.013, 0.002, [-0.86, py - 0.1 - i * 0.016, pz - 0.035], d.metal, 'y');
   d.box([0.5, 0.12, 0.5], [0.55, floor + 0.65, front - 1.3], d.dark);
+  d.box([0.24, 0.59, 0.28], [0.55, floor + 0.295, front - 1.3], d.dark);
   d.box([0.5, 0.7, 0.1], [0.55, floor + 1, front - 1.55], d.dark);
   if (rail) {
     for (let i = -5; i <= 5; i++)

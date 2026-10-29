@@ -6,8 +6,8 @@
     "main": "model.glb",
     "variants": {}
   },
-  "hash": "sha256:4553efb78cc80d03b2f7ae54e3d7f0d0a54ba265f0fc2aa4fa135ecec068763f",
-  "sourceHash": "sha256:98e6b7acaa36c81bd75fafeaf6907fc7458143f848021dd48f6b252fe5fd8a78",
+  "hash": "sha256:3be8d481a74f3637b60982d9c4c3aec90cf1b4fc7689c55c6dfb2a3e7abcf7e5",
+  "sourceHash": "sha256:6b7cf44bc8e6b7e48081b0536dfa8c65afd1eb20c3ee47b776458081f727a38a",
   "bounds": {
     "aabb": {
       "min": [
@@ -31,19 +31,23 @@
     }
   },
   "stats": {
-    "triangles": 53224,
-    "vertices": 71894,
-    "meshes": 137,
-    "primitives": 137,
-    "materials": 31,
+    "triangles": 55440,
+    "vertices": 74490,
+    "meshes": 138,
+    "primitives": 138,
+    "materials": 32,
     "textures": 11,
     "animations": 0,
-    "sizeBytes": 2178148
+    "sizeBytes": 2253812
   },
   "nodes": [
     {
       "name": "ATR72-shell-ATR72-ivory",
       "triangles": 1100
+    },
+    {
+      "name": "ATR72-shell-ATR72-cockpit-lining",
+      "triangles": 168
     },
     {
       "name": "ATR72-shell-ATR72-glazing",
@@ -331,7 +335,7 @@
     },
     {
       "name": "ATR72-cabin-ATR72-trim",
-      "triangles": 3520
+      "triangles": 5560
     },
     {
       "name": "ATR72-cabin-detail-alloy",
@@ -346,12 +350,12 @@
       "triangles": 408
     },
     {
-      "name": "ATR72-cabin-ATR72-teal",
-      "triangles": 48
+      "name": "ATR72-cabin-ATR72-liner",
+      "triangles": 1836
     },
     {
-      "name": "ATR72-cabin-ATR72-liner",
-      "triangles": 1828
+      "name": "ATR72-cabin-ATR72-teal",
+      "triangles": 48
     },
     {
       "name": "ATR72-cabin-ATR72-upholstery",
@@ -548,10 +552,6 @@
     {
       "name": "ATR72-PFD-0-altitude-2-2-ATR72-instrument-ink",
       "triangles": 12
-    },
-    {
-      "name": "ATR72-PFD-0-altitude-2-3-ATR72-instrument-ink",
-      "triangles": 12
     }
   ],
   "nodesTruncated": true,
@@ -559,6 +559,14 @@
   "materials": [
     {
       "name": "ATR72-ivory",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "ATR72-cockpit-lining",
       "slots": [
         "baseColor"
       ],
@@ -858,6 +866,35 @@
           -13.583,
           13.525,
           7.6493,
+          13.583
+        ]
+      },
+      {
+        "node": "ATR72-shell-ATR72-cockpit-lining",
+        "points": [
+          -1.4085,
+          0.9927,
+          8.1919,
+          -1.4085,
+          0.9927,
+          13.583,
+          -1.4085,
+          3.5832,
+          8.1919,
+          -1.4085,
+          3.5832,
+          13.583,
+          1.4085,
+          0.9927,
+          8.1919,
+          1.4085,
+          0.9927,
+          13.583,
+          1.4085,
+          3.5832,
+          8.1919,
+          1.4085,
+          3.5832,
           13.583
         ]
       },
@@ -2923,29 +2960,29 @@
       {
         "node": "ATR72-cabin-ATR72-trim",
         "points": [
-          -1.1204,
-          1.5071,
-          -8.25,
-          -1.1204,
-          1.5071,
+          -1.1197,
+          1.535,
+          -8.17,
+          -1.1197,
+          1.535,
           12.1,
-          -1.1204,
-          3.0423,
-          -8.25,
-          -1.1204,
-          3.0423,
+          -1.1197,
+          3.0419,
+          -8.17,
+          -1.1197,
+          3.0419,
           12.1,
-          1.1204,
-          1.5071,
-          -8.25,
-          1.1204,
-          1.5071,
+          1.1197,
+          1.535,
+          -8.17,
+          1.1197,
+          1.535,
           12.1,
-          1.1204,
-          3.0423,
-          -8.25,
-          1.1204,
-          3.0423,
+          1.1197,
+          3.0419,
+          -8.17,
+          1.1197,
+          3.0419,
           12.1
         ]
       },
@@ -3037,6 +3074,35 @@
         ]
       },
       {
+        "node": "ATR72-cabin-ATR72-liner",
+        "points": [
+          -1.22,
+          1.5552,
+          -7.8,
+          -1.22,
+          1.5552,
+          11.55,
+          -1.22,
+          3.4048,
+          -7.8,
+          -1.22,
+          3.4048,
+          11.55,
+          1.22,
+          1.5552,
+          -7.8,
+          1.22,
+          1.5552,
+          11.55,
+          1.22,
+          3.4048,
+          -7.8,
+          1.22,
+          3.4048,
+          11.55
+        ]
+      },
+      {
         "node": "ATR72-cabin-ATR72-teal",
         "points": [
           -1.0946,
@@ -3063,35 +3129,6 @@
           1.0946,
           2.1756,
           10.9106
-        ]
-      },
-      {
-        "node": "ATR72-cabin-ATR72-liner",
-        "points": [
-          -1.2197,
-          1.5554,
-          -7.8,
-          -1.2197,
-          1.5554,
-          10.45,
-          -1.2197,
-          3.4046,
-          -7.8,
-          -1.2197,
-          3.4046,
-          10.45,
-          1.2197,
-          1.5554,
-          -7.8,
-          1.2197,
-          1.5554,
-          10.45,
-          1.2197,
-          3.4046,
-          -7.8,
-          1.2197,
-          3.4046,
-          10.45
         ]
       },
       {
@@ -4512,35 +4549,6 @@
           11.3876,
           0.6629,
           2.5851,
-          11.3884
-        ]
-      },
-      {
-        "node": "ATR72-PFD-0-altitude-2-3-ATR72-instrument-ink",
-        "points": [
-          0.663,
-          2.5818,
-          11.3876,
-          0.663,
-          2.5818,
-          11.3884,
-          0.663,
-          2.5823,
-          11.3876,
-          0.663,
-          2.5823,
-          11.3884,
-          0.6656,
-          2.5818,
-          11.3876,
-          0.6656,
-          2.5818,
-          11.3884,
-          0.6656,
-          2.5823,
-          11.3876,
-          0.6656,
-          2.5823,
           11.3884
         ]
       }

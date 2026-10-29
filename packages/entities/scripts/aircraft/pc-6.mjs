@@ -1,12 +1,13 @@
 /** PC-6/B2-H4, analog panel. Pilatus drawing 190.000.1711 and Luigi Rosa cockpit photo.
  * Original meter-scale geometry; reference pixels are never embedded in the GLB. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -490,7 +491,7 @@ export function buildPorter(s) {
   d.rod([0, 2.1, -0.25], [0, 2.38, -0.4], 0.012, dark);
   d.rod([0, 2.48, 1.62], [0, 3.86, -4.3], 0.0018, dark);
   d.finish();
-  const interior = porterCockpit(body, { white, red, dark, metal });
+  const interior = porterCockpit(body, { white, red, dark, metal }, sections);
   cleanGeometry(root);
   return {
     root,
@@ -511,7 +512,7 @@ export function buildPorter(s) {
     },
   };
 }
-function porterCockpit(root, m) {
+function porterCockpit(root, m, sections) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'Porter-cockpit'),
     pt = panelTools(d),
@@ -764,7 +765,7 @@ function porterCockpit(root, m) {
     d.box([0.025, 0.27, 1.15], [side * 0.6, 0.78, 2.02], liner);
     d.rod([side * 0.58, 1.12, 2.6], [side * 0.58, 1.12, 2.1], 0.02, m.dark);
   }
-  d.box([1.18, 0.035, 3.28], [0, 0.59, 0.98], m.dark);
+  fittedFloor(d, sections, m.dark, { y: 0.66, front: 2.9, back: -0.66, width: 1.18 });
   for (const [x, z] of [
     [0.3, 1.78],
     [-0.3, 1.78],

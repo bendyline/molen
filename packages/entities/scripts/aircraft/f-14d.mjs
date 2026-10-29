@@ -1,7 +1,7 @@
 /** F-14D, clean airframe. Main-axle datum, +Z forward, +X pilot left.
  * Navy SAC exterior drawing and separate D-model front/RIO panel references.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

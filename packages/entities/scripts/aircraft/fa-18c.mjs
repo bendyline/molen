@@ -1,7 +1,7 @@
 /** Late F/A-18C, clean configuration. NATOPS dimensions and FO-5 cockpit.
  * Main axle datum; +Z forward, +X pilot left. See reference-review.json.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

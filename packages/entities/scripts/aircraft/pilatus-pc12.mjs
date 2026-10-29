@@ -2,7 +2,7 @@
  * Main axle datum; +Z nose, +X pilot left. POH 02406 and factory plans/photos.
  * The model-building plan contains legacy four-blade callouts; the NGX POH wins.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

@@ -1,12 +1,12 @@
 /** ATR Training Center V14 (11-2015) panel arrangement, cross-checked with ATR's
  * published cockpit photograph. Geometry only; no copyrighted image pixels shipped.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
   detailKit,
-  ellipsoid,
+  fittedFloor,
   group,
   mat,
   outline,
@@ -21,7 +21,7 @@ const rect = (x, y, w, h, z) => [
   [x + w / 2, y + h / 2, z],
   [x - w / 2, y + h / 2, z],
 ];
-export function buildATR72Cockpit(root, m) {
+export function buildATR72Cockpit(root, m, sections) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'ATR72-cabin'),
     ins = instrumentGeometry(cabin, 'ATR72'),
@@ -390,6 +390,25 @@ export function buildATR72Cockpit(root, m) {
     }
     // Side shelf, oxygen mask, sill, chart holder and tiller on the captain's side.
     d.box([0.25, 0.05, 1.4], [side * 1.02, 2.03, 10.65], face);
+    // Continuous kick panel and shelf return, joined to the floor and forward firewall.
+    quad(
+      d,
+      [side * 0.9, 1.57, 9.95],
+      [side * 0.9, 2.03, 9.95],
+      [side * 0.9, 2.03, 11.35],
+      [side * 0.9, 1.57, 11.35],
+      liner,
+      [-side, 0, 0],
+    );
+    quad(
+      d,
+      [side * 0.9, 1.57, 11.35],
+      [side * 0.9, 2.32, 11.35],
+      [0, 2.32, 11.55],
+      [0, 1.57, 11.55],
+      liner,
+      [0, 0, -1],
+    );
     d.box([0.17, 0.17, 0.06], [side * 1.02, 2.13, 10.94], m.dark);
     d.rod([side * 1.08, 2.1, 10.9], [side * 0.98, 2.16, 10.77], 0.018, m.accent);
     d.box([0.16, 0.13, 0.02], [side * 0.99, 2.45, 11.23], m.dark);
@@ -516,7 +535,7 @@ export function buildATR72Cockpit(root, m) {
   }
   od.finish();
   // Cabin follows the 72-seat, 29-inch-pitch manufacturer plan and 2.57 m cross section.
-  d.box([2.24, 0.045, 19.2], [0, 1.53, 1.35], m.dark);
+  fittedFloor(d, sections, m.dark, { y: 1.57, front: 11.6, back: -8.25, width: 2.24 });
   d.box([0.05, 1.85, 0.055], [1.16, 2.48, 8.75], liner);
   d.box([0.05, 1.85, 0.055], [-1.16, 2.48, 8.75], liner);
   for (const side of [-1, 1]) {

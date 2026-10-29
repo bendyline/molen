@@ -1,6 +1,6 @@
 /** AV-8B II Plus, clean configuration. Public NATOPS Fig1-2 sheet2 and FO-1.
  * Original geometry. Dimensioned layout and estimated transverse sections are kept separate. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

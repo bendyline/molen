@@ -2,12 +2,13 @@
  * Tandem hub spacing, 60-foot rotors and ramp/sponson contours are authored here.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,
   cleanGeometry,
   detailKit,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -26,7 +27,7 @@ export const ch47Frame = () => ({
   ry: 1.25,
   cabinZ: 6.12,
   cabinWidth: 2.25,
-  eye: [-0.57, 2.63, 6.12],
+  eye: [-0.57, 2.3, 6.02],
   panelZ: 6.72,
   floor: 1.15,
   mainRotorPosition: [0, 4.03, 5.9309],
@@ -76,13 +77,22 @@ export function buildCH47(s) {
   });
   const rings = measured.map(ring),
     p = (i, j) => [...rings[i].points[j], rings[i].z];
-  loft(d, rings, paint, {
-    skip: (i, j) =>
-      (i === 3 && [0, 1, 8, 9].includes(j)) ||
-      ([2, 3, 4, 5, 6].includes(i) && [2, 7].includes(j)) ||
-      (i === 4 && [0, 9].includes(j)) ||
-      (i === 2 && [3, 6].includes(j)),
-  });
+  const skip = (i, j) =>
+    (i === 3 && [0, 1, 8, 9].includes(j)) ||
+    ([2, 3, 4, 5, 6].includes(i) && [2, 7].includes(j)) ||
+    (i === 4 && [0, 9].includes(j)) ||
+    (i === 2 && [3, 6].includes(j));
+  loft(d, rings, paint, { skip });
+  const lining = mat('CH47-cockpit-lining', '#666e69', { side: T.DoubleSide });
+  const inset = (q) => [q[0] * 0.987, 1.8 + (q[1] - 1.8) * 0.987, q[2]];
+  loft(
+    d,
+    rings
+      .slice(0, 7)
+      .map((r) => ({ z: r.z, points: r.points.map((q) => inset([...q, r.z]).slice(0, 2)) })),
+    lining,
+    { skip, caps: false },
+  );
   // Three forward panes; the central pane is broader than the narrow structural posts.
   for (const j of [0, 1, 8, 9])
     quad(d, p(3, j), p(4, j), p(4, (j + 1) % 10), p(3, (j + 1) % 10), glass, [0, 1, 1]);
@@ -139,14 +149,14 @@ export function buildCH47(s) {
     const windows = [
       [
         [7.03, 1.73],
-        [6.76, 2.08],
-        [6.68, 2.08],
+        [6.76, 1.85],
+        [6.68, 1.9],
         [6.68, 1.34],
         [6.88, 1.35],
       ],
       [
-        [6.6, 2.19],
-        [6.02, 2.82],
+        [6.6, 2.04],
+        [6.02, 2.69],
         [5.55, 2.84],
         [5.55, 2.02],
         [6.6, 1.99],
@@ -154,8 +164,8 @@ export function buildCH47(s) {
       [
         [6.6, 1.9],
         [5.55, 1.9],
-        [5.55, 1.13],
-        [6.24, 1.15],
+        [5.55, 1.25],
+        [6.24, 1.28],
         [6.6, 1.4],
       ],
       [
@@ -171,28 +181,49 @@ export function buildCH47(s) {
           q(z + Math.cos((i * Math.PI) / 12) * 0.255, 2.13 + Math.sin((i * Math.PI) / 12) * 0.255),
         ),
       );
-    sheet(
-      d,
-      [
-        p(2, j),
-        p(3, j),
-        p(4, j),
-        p(5, j),
-        p(6, j),
-        p(7, j),
-        p(7, k),
-        p(6, k),
-        p(5, k),
-        p(4, k),
-        p(3, k),
-        p(2, k),
-      ],
-      paint,
-      [side, 0, 0],
-      windows,
-    );
+    // Clip openings into each planar side section. A single nonplanar polygon
+    // with holes extending beyond its contour produced disconnected triangles.
+    const clip = (points, dist) => {
+      const out = [];
+      for (let i = 0; i < points.length; i++) {
+        const a = points[i],
+          b = points[(i + 1) % points.length],
+          da = dist(a),
+          db = dist(b);
+        if (da >= -1e-9) out.push(a);
+        if (da < 0 !== db < 0) out.push(a.map((v, k) => v + ((b[k] - v) * da) / (da - db)));
+      }
+      return out;
+    };
+    for (let station = 2; station < 7; station++) {
+      let pieces = [[p(station, j), p(station + 1, j), p(station + 1, k), p(station, k)]];
+      for (const hole of windows) {
+        const area = hole.reduce((sum, a, i) => {
+            const b = hole[(i + 1) % hole.length];
+            return sum + a[2] * b[1] - b[2] * a[1];
+          }, 0),
+          next = [];
+        for (const cell of pieces) {
+          let inside = cell;
+          for (let i = 0; i < hole.length && inside.length; i++) {
+            const a = hole[i],
+              b = hole[(i + 1) % hole.length];
+            const dist = (q) =>
+              Math.sign(area) * ((b[2] - a[2]) * (q[1] - a[1]) - (b[1] - a[1]) * (q[2] - a[2]));
+            const out = clip(inside, (q) => -dist(q));
+            if (out.length >= 3) next.push(out);
+            inside = clip(inside, dist);
+          }
+          if (inside.length >= 3) sheet(d, inside, glass, [side, 0, 0]);
+        }
+        pieces = next;
+      }
+      for (const cell of pieces) {
+        sheet(d, cell, paint, [side, 0, 0]);
+        if (station < 6) sheet(d, cell.map(inset), lining, [-side, 0, 0]);
+      }
+    }
     for (const h of windows) {
-      sheet(d, h, glass, [side, 0, 0]);
       outline(d, h, 0.018, trim);
     }
     // Lower chin panels look down beside the nose rather than being opaque decals.
@@ -414,7 +445,7 @@ export function buildCH47(s) {
     rd.finish();
   }
   d.finish();
-  const interior = cockpit(root, { paint, trim, metal });
+  const interior = cockpit(root, { paint, trim, metal }, rings);
   cleanGeometry(root);
   return {
     root,
@@ -445,7 +476,7 @@ function wheel(d, p, r, w, rubber, metal, paint) {
     d.ring(r * 0.38, 0.012, [p[0] + s * w * 0.57, p[1], p[2]], metal, 'x');
   }
 }
-function cockpit(root, m) {
+function cockpit(root, m, rings) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'CH47-cockpit'),
     bindings = [],
@@ -564,7 +595,7 @@ function cockpit(root, m) {
     d.box([0.15, 0.027, 0.024], at(885, v, -0.023), m.trim);
     for (let i = 0; i < 7; i++)
       d.box([0.01, 0.004, 0.004], at(839 + i * 16, v - 8, -0.04), i % 2 ? d.amber : d.ivory);
-    d.text('ENG ' + (v === 781 ? '1' : '2'), at(887, v, -0.042), 0.007, Math.PI, d.ivory);
+    d.text(`ENG ${v === 781 ? '1' : '2'}`, at(887, v, -0.042), 0.007, Math.PI, d.ivory);
   }
   // Two CDU keypads descend into a broad inclined pedestal, matching the Army photo.
   const pg = group(cabin, 'CH47-pedestal', [0, 1.72, 6.67]);
@@ -606,7 +637,7 @@ function cockpit(root, m) {
       );
     }
   pd.finish();
-  d.box([2.22, 0.05, 11.3], [0, 1.13, 0.85], m.trim);
+  fittedFloor(d, rings, m.trim, { y: 1.155, front: 7.3, back: -4.8, width: 2.22, thickness: 0.05 });
   const addSeat = (parent, x, y, z, armored = false) => {
     const sd = detailKit(parent, 'CH47-seat');
     beveledBox(sd, [0.5, 0.13, 0.5], [x, y, z], seat);

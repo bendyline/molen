@@ -1,7 +1,7 @@
 /** 2021 Grand Caravan EX, four-blade McCauley propeller, G1000 NXi, commuter cabin.
  * Main axle origin; +Y up, +Z nose, +X pilot left. See the per-aircraft reference review.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,

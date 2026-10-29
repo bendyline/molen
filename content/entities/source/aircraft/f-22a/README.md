@@ -1,6 +1,6 @@
 # Lockheed Martin F-22A Raptor
 
-**Visual status: Canopy joins, cockpit enclosure and labels reviewed with limitations.** Current hashes, views and checks are in the enclosure revision of [reference-review.json](reference-review.json). The earlier [batch review](../../aircraft-expansion-review.json) records the historical full-airframe comparison.
+**Visual status: Prototype; individual exterior and cockpit rework/review required.** See the hash-bound [review record](../../aircraft-expansion-review.json) and [batch review](../../AIRCRAFT-EXPANSION.md).
 
 Original unarmed polygonal aircraft, 18.923 m long, 13.5636 m span/rotor diameter and 5.08 m nominal overall height. +Y up, +Z forward; ground-contact origin.
 

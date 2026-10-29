@@ -1,6 +1,6 @@
 /** C-17A: USAF T.O.1C-17A-1 three-view and photographed four-display flight deck.
  * +Z nose, +Y up. Explicit stations, not a scaled generic transport. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -889,19 +889,20 @@ function cockpit(root, m) {
   // HUDs are physical projector/combiner assemblies. Collimated symbology is not simulated.
   for (const side of [-1, 1]) {
     const x = side * 0.87;
-    d.box([0.41, 0.16, 0.44], [x, 5.56, 23.12], m.dark);
-    d.box([0.34, 0.025, 0.35], [x, 5.655, 23.12], black);
+    // The projector is suspended above the combiner, clear of the pilot's eye line.
+    d.box([0.33, 0.055, 0.25], [x, 5.94, 23.12], m.dark);
+    d.box([0.26, 0.014, 0.19], [x, 5.905, 23.12], black);
     const pts = [
-      [x - 0.14, 5.68, 23.12],
-      [x + 0.14, 5.68, 23.12],
-      [x + 0.165, 6.05, 23.3],
-      [x - 0.165, 6.05, 23.3],
+      [x - 0.14, 5.27, 23.12],
+      [x + 0.14, 5.27, 23.12],
+      [x + 0.165, 5.83, 23.3],
+      [x - 0.165, 5.83, 23.3],
     ];
     sheet(d, pts, m.glass, [0, 1, -1]);
     outline(d, pts, 0.009, m.dark);
     for (const dx of [-0.18, 0.18]) {
-      d.rod([x + dx, 5.64, 23.1], [x + dx, 5.93, 23.3], 0.015, m.dark);
-      d.rod([x + dx, 5.93, 23.3], [x + dx, 6.12, 23.27], 0.012, m.dark);
+      d.rod([x + dx, 5.53, 23.2], [x + dx, 5.83, 23.3], 0.012, m.dark);
+      d.rod([x + dx, 5.83, 23.3], [x + dx, 5.94, 23.12], 0.01, m.dark);
     }
   }
   const ped = group(cabin, 'C17-center-console', [0, 4.63, 22.28]);
