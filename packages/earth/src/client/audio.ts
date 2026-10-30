@@ -31,6 +31,7 @@ import {
 } from './audio-soundscape';
 import type { EarthAudioTerrainSample } from './audio-terrain';
 import { type BirdsongLocation, birdsongLevel, loadBirdsongProfiles } from './birdsong';
+import { VehicleAudio } from './vehicle-audio';
 
 /** Sources in trees and grass (birds, crickets): full on the ground, gone by 60 m up. */
 const NEAR_GROUND: AudioSignalBinding = {
@@ -251,6 +252,8 @@ export interface EarthAudioFrame {
   solarHour?: number;
   /** Mapped surface, streets and water; sampled by the host at a modest cadence. */
   terrain?: EarthAudioTerrainSample;
+  /** Surface at a vehicle's contact point; used on touchdown, never inferred from the camera. */
+  surfaceAt?: (x: number, z: number) => string | undefined;
   /** Override the mapped walking surface, e.g. an interior floor or a bridge deck. */
   surface?: string;
   /** Enclosed cabin: defaults to drive/pilot. Set false for open boats or outside cameras. */
@@ -357,32 +360,32 @@ export async function createEarthAudio(
   });
   if (options.music === false) layer.setBusGain('music', 0);
   const detachUnlock = attachAutoplayUnlock(layer, options.unlockTarget);
+  const vehicleAudio = new VehicleAudio(
+    layer,
+    new Set(banks.flatMap(({ doc }) => Object.keys(doc.sounds))),
+  );
 
   let world: World | undefined;
   let detach: (() => void)[] = [];
   const attachWorld = (next: World | undefined): void => {
     for (const d of detach) d();
     detach = [];
+    vehicleAudio.clear();
     world = next;
     if (!next) return;
     detach.push(layer.attachWorld(next));
     // Engines are data on the vehicle and aircraft types (an `audioSource` that runs while the
     // vehicle is occupied, or from the aircraft's rpm). Boarding a car adds the door and starter.
-    const isCar = (vehicle: string): boolean => next.get(vehicle, Aircraft) === undefined;
     detach.push(
       next.on('vehicle-mounted', (event) => {
-        const vehicle = (event.payload as { vehicle?: string }).vehicle;
-        if (!vehicle || !isCar(vehicle)) return;
-        layer.play('vehicle.door.close', { entity: vehicle });
-        layer.play('vehicle.engine.start', { entity: vehicle });
+        const { vehicle, seat } = event.payload as { vehicle?: string; seat?: string };
+        if (vehicle) vehicleAudio.boarding(next, vehicle, true, seat);
       }),
     );
     detach.push(
       next.on('vehicle-unmounted', (event) => {
         const vehicle = (event.payload as { vehicle?: string }).vehicle;
-        if (!vehicle || !isCar(vehicle)) return;
-        layer.play('vehicle.engine.stop', { entity: vehicle });
-        layer.play('vehicle.door.open', { entity: vehicle });
+        if (vehicle) vehicleAudio.boarding(next, vehicle, false);
       }),
     );
   };
@@ -396,6 +399,7 @@ export async function createEarthAudio(
     update(frame) {
       const position =
         frame.position ?? listenerFromCamera(renderer.camera, renderer.getWorldOrigin()).position;
+      vehicleAudio.update(world, frame.nowMs, frame.surfaceAt ?? (() => undefined));
       startedAt ??= frame.nowMs;
       if (frame.nowMs - streetCheckedAt > STREET_CHECK_MS) {
         streetCheckedAt = frame.nowMs;
@@ -456,6 +460,7 @@ export async function createEarthAudio(
           groundAmbience: Number.isFinite(frame.heightAboveGround) && !cabin,
           terrainKnown: Number.isFinite(frame.heightAboveGround),
           streetDistance: distance,
+          intersectionDistance: frame.terrain?.intersectionDistance ?? Number.MAX_VALUE,
           coastDistance: frame.terrain?.coastDistance ?? Number.MAX_VALUE,
           riverDistance: frame.terrain?.riverDistance ?? Number.MAX_VALUE,
           outdoorGain: cabin ? 0.18 : frame.indoors ? 0.28 : 1,

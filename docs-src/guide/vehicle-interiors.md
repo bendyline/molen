@@ -309,11 +309,42 @@ and last eighth of that travel and stay open in between, while the legs swing:
 
 Each moving part rotates about one local axis, so the model gives it a parent frame aligned with
 its hinge: a canted trunnion, a door's edge. Author the GLB in the at-rest pose (gear down,
-doors as they stand on the ground); keys are displacements from it. A model whose retracted parts
-would show through the skin can also list them in `visual.gearNodes`, hidden while the gear is
-fully up. Simulated gear and flap positions come from `airplane.gearTransitTime` and
+doors as they stand on the ground); keys are displacements from it. Rigged gear stays visible
+inside its well, including exposed stowed wheels. Use an explicit `visible` binding if a part
+must disappear at full retraction. The legacy `visual.gearNodes` hide/show fallback applies
+only to nodes without position or rotation bindings. Simulated gear and flap positions come from `airplane.gearTransitTime` and
 `flapTransitTime` (see [Aircraft](aircraft.md)); a script can drive any other part by publishing
 a component and naming it in `sources`.
+
+## Graduated mechanisms
+
+Vehicle and aircraft specs can declare `actuators`, keyed by a mechanism name. An ordinary
+actuator takes `{ "seconds": 3 }` for a three-second full stroke. The corresponding input's
+`actuators` map selects a number from 0 to 1 (or a boolean); the state component's map records
+the actual position. Selecting the opposite target reverses from the current position. These
+values are part of deterministic simulation and keyframes, including while parked.
+
+For example, a car can declare `spec.actuators.hood = { seconds: 2 }`, receive
+`vehicleInput.actuators.hood = 0.5`, and bind its `hood-hinge` rotation to a source
+`{ "component": "vehicleState", "path": ["actuators", "hood"] }`. Bindings displace the
+authored rest pose, so hinge origins belong in the model.
+
+`mode: "cycle"` makes `seconds` the complete cycle duration: use a 0 → 1 → 0 binding curve
+for a wiper and set its input true to run. Switching off completes the current cycle and parks.
+`seconds: 0` switches a state immediately, such as headlight emission. `mode: "latch"` starts
+an irreversible stroke once selected, suitable for emergency release. Ordinary positional
+actuators are reversible. `initial` supplies the default target and initial position.
+
+Aircraft use the same mechanism map for `canopy`, `tailHook` and `speedBrake`; gear and flaps
+retain `gearPosition` and `flapPosition`. Set `airplane.speedBrakeDrag` to the drag coefficient
+added at full speed-brake deployment. Helicopters default to fixed gear; a wheeled retractable
+model sets `helicopter.fixedGear: false` and `gearTransitTime`.
+
+The navigation drive/pilot profiles emit actuator press counts: B speed brakes, H hook,
+O canopy, K wipers, L lights, 1–4 doors, 5 hood, 6 rear access. Earth vehicle/aircraft hosts
+apply supported controls only. Use `EarthVehicles.toggleActuators` before `update` when
+consuming navigation input directly. Aircraft cockpit panels expose fractional targets.
+Unsupported equipment should be omitted from the spec instead of drawing fictional parts.
 
 ## Exterior views and detail levels
 

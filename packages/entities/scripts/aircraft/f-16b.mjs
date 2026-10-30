@@ -40,10 +40,13 @@ export function buildF16B(s) {
     radome = mat('F16-radome', '#6b7378'),
     dark = mat('F16-seals', '#22282c'),
     metal = mat('F16-alloy', '#adb4b8', { metalness: 0.7 }),
-    nozzle = mat('F16-exhaust', '#716d66', { metalness: 0.7 }),
-    glass = mat('F16-canopy', '#b6c0b2', {
+    // Ducts and petals are seen from inside: single-sided walls would cull to sky or paint.
+    nozzle = mat('F16-exhaust', '#716d66', { metalness: 0.7, side: T.DoubleSide }),
+    duct = mat('F16-duct', '#262b2f', { roughness: 0.8, side: T.DoubleSide }),
+    // Gold-tinted canopy, so the long bubble reads from outside as it does in photographs.
+    glass = mat('F16-canopy', '#a49c74', {
       transparent: true,
-      opacity: 0.19,
+      opacity: 0.26,
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.18,
@@ -55,10 +58,12 @@ export function buildF16B(s) {
     ailerons = [];
   // Per-station fuselage sections: the intake is a separate hollow duct below it.
   const stations = [
-    [8.8, 0.015, 1.59, 1.64],
-    [8.25, 0.16, 1.5, 1.82],
-    [7.6, 0.32, 1.45, 2.01],
-    [7.03, 0.48, 1.45, 2.22],
+    // Ogival radome, slightly wider than deep (three-view: 0.62 x 0.45m at 8.25, 0.9 x 0.69m
+    // at 7.6), so the nose is not a needle in plan or profile.
+    [8.8, 0.02, 1.61, 1.67],
+    [8.25, 0.31, 1.5, 1.955],
+    [7.6, 0.45, 1.465, 2.16],
+    [7.03, 0.52, 1.47, 2.31],
     [6.45, 0.55, 1.44, 2.35],
     [5.65, 0.59, 1.43, 2.43],
     [4.75, 0.61, 1.43, 2.46],
@@ -163,32 +168,39 @@ export function buildF16B(s) {
       );
     }
   // Intake upper lip is flattened, lower lip a deep ellipse; recessed interior blocks sky-through.
+  // The lower half is a superellipse: head-on the mouth is a wide flat-bottomed smile.
   const intakeSection = (z, w, b, t) => ({
     z,
     points: Array.from({ length: 28 }, (_, j) => {
-      const a = (j * Math.PI) / 14;
-      return [Math.sin(a) * w, (t + b) / 2 + (Math.cos(a) * (t - b)) / 2];
+      const a = (j * Math.PI) / 14,
+        s = Math.sin(a),
+        c = Math.cos(a),
+        e = c < 0 ? 0.7 : 1;
+      return [
+        Math.sign(s) * Math.pow(Math.abs(s), e) * w,
+        (t + b) / 2 + (Math.sign(c) * Math.pow(Math.abs(c), e) * (t - b)) / 2,
+      ];
     }),
   });
   const intake = [
-    intakeSection(4.8, 0.62, 0.83, 1.58),
-    intakeSection(4.68, 0.67, 0.77, 1.63),
-    intakeSection(4.1, 0.65, 0.71, 1.62),
-    intakeSection(2.8, 0.66, 0.64, 1.68),
+    intakeSection(4.8, 0.7, 0.83, 1.58),
+    intakeSection(4.68, 0.74, 0.77, 1.63),
+    intakeSection(4.1, 0.7, 0.71, 1.62),
+    intakeSection(2.8, 0.68, 0.64, 1.68),
     intakeSection(1.2, 0.7, 0.65, 1.75),
     intakeSection(0.2, 0.72, 0.72, 1.82),
   ];
   loft(d, intake, paint, { caps: false });
   const inner = [
-    intakeSection(4.8, 0.565, 0.88, 1.54),
-    intakeSection(4.1, 0.54, 0.92, 1.57),
-    intakeSection(3.1, 0.48, 1.02, 1.7),
+    intakeSection(4.8, 0.65, 0.88, 1.54),
+    intakeSection(4.1, 0.59, 0.92, 1.57),
+    intakeSection(3.1, 0.51, 1.02, 1.7),
   ];
-  loft(d, inner, dark, { caps: false });
+  loft(d, inner, duct, { caps: false });
   sheet(
     d,
     inner.at(-1).points.map((q) => [...q, 3.1]),
-    dark,
+    duct,
     [0, 0, 1],
   );
   for (let j = 0; j < 28; j++)
@@ -201,6 +213,17 @@ export function buildF16B(s) {
       metal,
       [0, 0, 1],
     );
+  // Rounded lip roll along the mouth, so the lower lip reads as a thick curved edge.
+  outline(
+    d,
+    intake[0].points.map((q, j) => [
+      (q[0] + inner[0].points[j][0]) / 2,
+      (q[1] + inner[0].points[j][1]) / 2,
+      4.795,
+    ]),
+    0.03,
+    paint,
+  );
   d.box([1.0, 0.055, 0.35], [0, 1.66, 4.72], paint);
   d.box([0.035, 0.1, 0.8], [0, 1.69, 4.35], paint);
   // Blended wing-root extensions and the 40-degree swept, thin wings.
@@ -209,8 +232,8 @@ export function buildF16B(s) {
     wing(
       d,
       [
-        [x(0.52), 1.81, 6.18, 1.9, 0.05],
-        [x(0.85), 1.91, 4.25, -1.62, 0.06],
+        [x(0.55), 1.81, 6.6, 1.9, 0.05],
+        [x(0.86), 1.91, 4.5, -1.62, 0.06],
         [x(1.37), 1.94, 2.15, -1.62, 0.055],
       ],
       upper,
@@ -264,8 +287,8 @@ export function buildF16B(s) {
       td,
       [
         [0, 0, 1.55, -0.92, 0.055],
-        [x(1.75), -0.31, 0.1, -0.93, 0.025],
-        [x(1.9), -0.335, -0.12, -0.7, 0.012],
+        [x(1.62), -0.285, 0.1, -0.88, 0.025],
+        [x(1.76), -0.31, -0.12, -0.66, 0.012],
       ],
       upper,
     );
@@ -349,8 +372,8 @@ export function buildF16B(s) {
   // Petal nozzle, internal tunnel and recessed turbine disk. No luminous fake flame.
   const nr = [
     [-5.23, 0.51],
-    [-5.4, 0.51],
-    [-5.61, 0.43],
+    [-5.36, 0.505],
+    [-5.66, 0.435],
   ];
   for (let j = 0; j < 20; j++) {
     const a = (j * Math.PI) / 10,
@@ -366,11 +389,11 @@ export function buildF16B(s) {
         nozzle,
         [Math.sin(a), Math.cos(a), 0],
       );
-    d.rod(p(0.512, a, -5.24), p(0.432, a, -5.61), 0.005, dark);
+    d.rod(p(0.508, a, -5.36), p(0.437, a, -5.66), 0.005, dark);
   }
   d.add(
     new T.CylinderGeometry(0.415, 0.36, 0.55, 32, true).rotateX(Math.PI / 2),
-    dark,
+    duct,
     [0, 1.86, -5.3],
   );
   d.add(new T.CircleGeometry(0.36, 32).rotateY(Math.PI), dark, [0, 1.86, -5.02]);
@@ -384,9 +407,16 @@ export function buildF16B(s) {
       g = group(root, `F16-gear-${i}`, pivot),
       dd = detailKit(g, g.name),
       at = (a) => a.map((v, k) => v - pivot[k]);
-    dd.rod(at(pivot), at([x, r + 0.17, z + 0.08]), 0.045, metal);
+    // The nose leg starts at the duct floor, so no strut shows inside the dark inlet mouth.
+    const top = i ? pivot : [0, 0.82, 4.17];
+    dd.rod(at(top), at([x, r + 0.17, z + 0.08]), 0.045, metal);
     dd.rod(at([x, r + 0.17, z + 0.08]), at([x, r, z]), 0.03, metal);
-    dd.rod(at([i ? x * 0.2 : 0.19, 1.14, z + 0.72]), at([x, r + 0.2, z + 0.06]), 0.018, metal);
+    dd.rod(
+      at(i ? [x * 0.2, 1.14, z + 0.72] : [0.15, 0.81, 4.55]),
+      at([x, r + 0.2, z + 0.06]),
+      0.018,
+      metal,
+    );
     dd.add(
       new T.CylinderGeometry(r, r, i ? 0.19 : 0.14, 28).rotateZ(Math.PI / 2),
       rubber,
@@ -448,7 +478,7 @@ export function buildF16B(s) {
     // The shaft branches into the arrowhead; do not trace an arm out and back as one rail.
     d.rod(arrow[0], arrow[1], 0.006, d.ivory);
     outline(d, [arrow[2], arrow[1], arrow[4]], 0.006, d.ivory, false);
-    d.text('DANGER INTAKE', [side * 0.66, 1.28, 4.48], 0.035, yaw, d.ivory);
+    d.text('DANGER INTAKE', [side * 0.72, 1.28, 4.48], 0.035, yaw, d.ivory);
     // Operator identifiers belong to the selected livery, not the shared airframe.
     d.box([0.12, 0.035, 0.22], [side * 0.68, 1.8, 4.5], side === 1 ? d.red : d.green);
   }

@@ -52,6 +52,42 @@ function sectionAt(sections, z) {
   }
   throw Error(`F-22 section out of range: ${z}`);
 }
+/** Symmetric thin-airfoil slab in a fin's local frame: stations [y, leadingZ, trailingZ, half]. */
+function finSlab(kit, stations, material, blunt = false) {
+  const sections = stations.map(([y, le, te, h]) => {
+    const at = (f) => le + (te - le) * f;
+    return blunt
+      ? [
+          [h, y, le],
+          [h * 0.55, y, at(0.5)],
+          [0, y, te],
+          [-h * 0.55, y, at(0.5)],
+          [-h, y, le],
+        ]
+      : [
+          [0, y, le],
+          [h, y, at(0.3)],
+          [h * 0.45, y, at(0.75)],
+          [0, y, te],
+          [-h * 0.45, y, at(0.75)],
+          [-h, y, at(0.3)],
+        ];
+  });
+  const n = sections[0].length;
+  for (let i = 0; i < sections.length - 1; i++)
+    for (let j = 0; j < n; j++) {
+      const face = [
+        sections[i][j],
+        sections[i + 1][j],
+        sections[i + 1][(j + 1) % n],
+        sections[i][(j + 1) % n],
+      ];
+      const x = face.reduce((sum, p) => sum + p[0], 0);
+      quad(kit, ...face, material, Math.abs(x) > 1e-6 ? [Math.sign(x), 0, 0] : [0, 0, 1]);
+    }
+  sheet(kit, sections[0], material, [0, -1, 0]);
+  sheet(kit, sections.at(-1), material, [0, 1, 0]);
+}
 
 export function buildF22A(s) {
   const root = new T.Group();
@@ -60,11 +96,12 @@ export function buildF22A(s) {
     upper = mat('F22-gray', '#78848b', { side: T.DoubleSide }),
     dark = mat('F22-seals', '#303638'),
     metal = mat('F22-alloy', '#a2a9a9', { metalness: 0.7 }),
-    nozzle = mat('F22-nozzle', '#77756d', { metalness: 0.65, side: T.DoubleSide }),
+    nozzle = mat('F22-nozzle', '#8c897f', { metalness: 0.35, side: T.DoubleSide }),
     lining = mat('F22-duct', '#202528', { side: T.DoubleSide }),
-    glass = mat('F22-canopy', '#b7ac79', {
+    // Gold-tinted bubble: dense enough that it reads as glass from outside, not as a hole.
+    glass = mat('F22-canopy', '#a8975a', {
       transparent: true,
-      opacity: 0.23,
+      opacity: 0.32,
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.15,
@@ -101,30 +138,40 @@ export function buildF22A(s) {
   const stations = [...new Set([...fore, ...canopySections].map(([z]) => z))].sort((a, b) => b - a);
   const rings = stations
     .map((z) => sectionAt(fore, z))
-    .map(([z, w, b, t, c]) => ({
-      z,
-      points: [
-        [0, t],
-        [w * 0.7, t - 0.08],
-        [w * 0.96, c + 0.19],
-        [w, c],
-        [w * 0.7, b + 0.08],
-        [0, b],
-        [-w * 0.7, b + 0.08],
-        [-w, c],
-        [-w * 0.96, c + 0.19],
-        [-w * 0.7, t - 0.08],
-      ],
-    }));
+    .map(([z, w, b, t, c]) => {
+      // Facet offsets shrink with the section so the radome closes to a point instead of
+      // ending in a 0.26 m vertical blade.
+      const k = Math.min(1, w / 0.6);
+      return {
+        z,
+        points: [
+          [0, t],
+          [w * 0.7, t - 0.08 * k],
+          [w * 0.96, c + 0.19 * k],
+          [w, c],
+          [w * 0.7, b + 0.08 * k],
+          [0, b],
+          [-w * 0.7, b + 0.08 * k],
+          [-w, c],
+          [-w * 0.96, c + 0.19 * k],
+          [-w * 0.7, t - 0.08 * k],
+        ],
+      };
+    });
   const opening = (i) => rings[i].z <= 9.45 && rings[i + 1].z >= 5.95;
   loft(d, rings, paint, { skip: (i, j) => opening(i) && (j === 0 || j === 9) });
   const canopy = canopySections;
+  // Slightly superelliptic section: the bubble keeps full shoulders, as seen head-on.
   const cr = canopy.map(([z, w, b, t]) => ({
     z,
-    points: Array.from({ length: 21 }, (_, j) => [
-      Math.cos((j * Math.PI) / 20) * w,
-      b + Math.sin((j * Math.PI) / 20) * (t - b),
-    ]),
+    points: Array.from({ length: 21 }, (_, j) => {
+      const c = Math.cos((j * Math.PI) / 20),
+        s = Math.sin((j * Math.PI) / 20);
+      return [
+        Math.sign(c) * Math.pow(Math.abs(c), 0.85) * w,
+        b + Math.pow(Math.max(s, 0), 0.85) * (t - b),
+      ];
+    }),
   }));
   loft(d, cr, glass, { caps: false, skip: (_, j) => j === 20 });
   for (const j of [0, 20])
@@ -167,15 +214,17 @@ export function buildF22A(s) {
       }
   }
   // Broad blended body carries two engine humps. Maximum thickness remains inboard.
+  // Below the wing chine the side walls cant inward (USAF front view: about 30 degrees,
+  // parallel to the fins) down to a narrow flat keel; the tail narrows onto the booms.
   const aft = [
-    [6.12, 1.91, 1.08, 2.65],
-    [5.45, 1.98, 1.04, 2.73],
-    [3.3, 2.18, 1.03, 2.65],
-    [2.5, 2.4, 1.03, 2.62],
-    [0, 2.48, 1.07, 2.58],
-    [-2.4, 2.33, 1.16, 2.53],
-    [-4.45, 2.03, 1.45, 2.48],
-  ].map(([z, w, b, t]) => ({
+    [6.12, 1.91, 1.08, 2.65, 1.8, 1.3],
+    [5.45, 1.98, 1.04, 2.73, 1.8, 1.3],
+    [3.3, 2.18, 1.03, 2.65, 1.8, 1.3],
+    [2.5, 2.4, 1.03, 2.62, 1.8, 1.3],
+    [0, 2.48, 1.07, 2.58, 1.8, 1.3],
+    [-2.4, 2.33, 1.16, 2.53, 1.75, 1.3],
+    [-4.45, 1.72, 1.45, 2.48, 1.64, 1.26],
+  ].map(([z, w, b, t, wu, wl]) => ({
     z,
     points: [
       [0, t - 0.09],
@@ -183,11 +232,13 @@ export function buildF22A(s) {
       [1.17, t],
       [1.58, t - 0.12],
       [w, 2.11],
-      [w * 0.9, b + 0.13],
-      [1.05, b],
+      [wu, 2.0],
+      [wl, b + 0.1],
+      [1.12, b],
       [0, b],
-      [-1.05, b],
-      [-w * 0.9, b + 0.13],
+      [-1.12, b],
+      [-wl, b + 0.1],
+      [-wu, 2.0],
       [-w, 2.11],
       [-1.58, t - 0.12],
       [-1.17, t],
@@ -195,22 +246,75 @@ export function buildF22A(s) {
     ],
   }));
   loft(d, aft, paint, { caps: false });
-  // End the painted fairing before the ducts; a dark internal bulkhead closes the unseen interior.
+  // Painted aft face around the two close-set 2-D nozzle boxes (USAF top view: nozzle pair
+  // spans about +/-1.2 m, centre divider only); the booms continue aft under the fins.
+  const nozzleCenter = 0.64,
+    nozzleHalf = [0.56, 0.38];
   sheet(
     d,
     aft.at(-1).points.map((p) => [...p, -4.45]),
-    lining,
+    paint,
     [0, 0, -1],
+    [-1, 1].map((side) =>
+      [
+        [-1, 1],
+        [1, 1],
+        [1, -1],
+        [-1, -1],
+      ].map(([u, v]) => [side * nozzleCenter + u * nozzleHalf[0], 2.0 + v * nozzleHalf[1], -4.45]),
+    ),
   );
   for (const side of [-1, 1]) {
-    // Inlet lips are a raked, trapezoidal aperture, with a dark duct behind them.
+    // Tail booms carry the stabilator pivots and the fin roots past the nozzle exits.
+    const boom = [
+      [-4.4, 0.22, 1.72, 2.4],
+      [-5.2, 0.17, 1.86, 2.33],
+      [-5.95, 0.03, 2.02, 2.17],
+    ].map(([z, w, b, t]) => ({
+      z,
+      points: [
+        [side * 1.45, t],
+        [side * (1.45 + w), (t * 2 + b) / 3],
+        [side * (1.45 + w * 0.8), b + 0.04],
+        [side * 1.45, b],
+        [side * (1.45 - w * 0.8), b + 0.04],
+        [side * (1.45 - w), (t * 2 + b) / 3],
+      ],
+    }));
+    loft(d, boom, paint);
+  }
+  // Centre stinger between the nozzles.
+  loft(
+    d,
+    [
+      [-4.4, 0.07, 1.82, 2.2],
+      [-5.85, 0.025, 1.98, 2.06],
+    ].map(([z, w, b, t]) => ({
+      z,
+      points: [
+        [0, t],
+        [w, (t + b) / 2],
+        [0, b],
+        [-w, (t + b) / 2],
+      ],
+    })),
+    paint,
+  );
+  for (const side of [-1, 1]) {
+    // Inlet lips are a raked caret aperture: the outer wall cants inward with the body
+    // side and the lower lip runs in beside the forebody keel (USAF front view, NMUSAF photo).
     const mouth = [
       [side * 0.86, 2.25, 6.78],
       [side * 1.92, 2.29, 6.12],
-      [side * 1.68, 1.13, 6.07],
-      [side * 1.03, 1.15, 6.6],
+      [side * 1.3, 1.1, 6.16],
+      [side * 0.6, 1.1, 6.72],
     ];
-    const rear = mouth.map(([x, y, z]) => [x * 0.98, y + 0.04, z - 1.2]);
+    // The duct turns outboard away from the forebody so no painted skin shows inside it.
+    const rear = mouth.map(([x, y, z], j) => [
+      j === 0 || j === 3 ? x + side * 0.25 : x * 0.98,
+      y + 0.04,
+      z - 1.2,
+    ]);
     for (let j = 0; j < 4; j++)
       quad(d, mouth[j], rear[j], rear[(j + 1) % 4], mouth[(j + 1) % 4], lining, [0, 0, 1]);
     sheet(d, rear, lining, [0, 0, 1]);
@@ -246,14 +350,27 @@ export function buildF22A(s) {
       0,
     ]);
     sheet(d, [back[3], back[4], [side * 1.91, 2.11, 6.12]], paint, [0, 0, 1]);
+    // Close the lip to the canted body side and under the duct floor.
+    sheet(
+      d,
+      [
+        mouth[1],
+        [side * 1.91, 2.11, 6.12],
+        [side * 1.8, 2.0, 6.12],
+        [side * 1.3, 1.18, 6.12],
+        mouth[2],
+      ],
+      paint,
+      [0, 0, 1],
+    );
     quad(
       d,
-      [side * 1.92, 2.29, 6.12],
-      [side * 1.98, 2.11, 5.45],
-      [side * 1.98, 1.17, 5.45],
-      [side * 1.68, 1.13, 6.07],
+      [side * 0.45, 1.06, 6.72],
+      [side * 1.3, 1.06, 6.16],
+      [side * 1.12, 1.06, 6.12],
+      [side * 0.45, 1.06, 6.12],
       paint,
-      [side, 0, 0],
+      [0, -1, 0],
     );
     // Aligned wing planform, separate leading flap and two trailing controls.
     const stations = [
@@ -390,30 +507,27 @@ export function buildF22A(s) {
       fg = group(root, `F22-fin-${side}`, [side * 1.55, 2.4, -1.25]);
     fg.rotation.z = (-side * 27 * Math.PI) / 180;
     const fd = detailKit(fg, fg.name);
-    for (const x of [-0.035, 0.035])
-      sheet(
-        fd,
-        [
-          [x, 0, 0],
-          [x, height, -1.35],
-          [x, height, -2.13],
-          [x, 0.14, -3.84],
-        ],
-        paint,
-        [Math.sign(x), 0, 0],
-      );
+    // Airfoil-section fin (about 4 % thick at the root) so it still reads edge-on from
+    // ahead and behind; the hinge line is the fixed fin's trailing edge.
+    finSlab(
+      fd,
+      [
+        [0, 0, -3.84, 0.085],
+        [0.14, -0.07, -3.84, 0.082],
+        [height, -1.35, -2.13, 0.022],
+      ],
+      paint,
+    );
     const rg = group(fg, `F22-rudder-${side}`, [0, 0.14, -3.84]),
       rd = detailKit(rg, rg.name);
-    sheet(
+    finSlab(
       rd,
       [
-        [0, 0, 0],
-        [0, height - 0.14, 1.71],
-        [0, height - 0.14, 1.22],
-        [0, 0, -0.5],
+        [0, 0, -0.5, 0.03],
+        [height - 0.14, 1.71, 1.22, 0.012],
       ],
       upper,
-      [side, 0, 0],
+      true,
     );
     rd.finish();
     mountHinge(rg, [0, 1, 0], [0, height - 0.14, 1.71]);
@@ -429,60 +543,80 @@ export function buildF22A(s) {
     fd.finish();
     // Rectangular, open exhausts with upper/lower 2D petals. Static neutral nozzle angle:
     // the kernel has no F119 pitch-vector control law, so do not invent pitch-input coupling.
-    const ex = group(root, `F22-exhaust-${side}`, [side * 1.0, 2.0, -4.45]),
+    const ex = group(root, `F22-exhaust-${side}`, [side * nozzleCenter, 2.0, -4.45]),
       ed = detailKit(ex, ex.name);
-    const sections = [
-      [0, 0.69, 0.43],
-      [-0.72, 0.67, 0.37],
-      [-1.56, 0.62, 0.29],
-    ].map(([z, w, h]) => ({
-      z,
-      points: [
-        [-w, h],
-        [w, h],
-        [w, -h],
-        [-w, -h],
-      ],
-    }));
-    loft(ed, sections, nozzle, { caps: false });
+    // Dark duct liner from the aft face to the flap hinges; its end plate sits aft of the
+    // engine face, which the converged real nozzle hides as well.
+    const [hw, hh] = nozzleHalf;
     loft(
       ed,
-      sections.map((r) => ({ z: r.z, points: r.points.map(([x, y]) => [x * 0.95, y * 0.88]) })),
+      [0.3, 0].map((z) => ({
+        z,
+        points: [
+          [-hw * 0.95, hh * 0.92],
+          [hw * 0.95, hh * 0.92],
+          [hw * 0.95, -hh * 0.92],
+          [-hw * 0.95, -hh * 0.92],
+        ],
+      })),
       lining,
       { caps: false },
     );
     sheet(
       ed,
       [
-        [-0.72, 0.46, 0.01],
-        [0.72, 0.46, 0.01],
-        [0.72, -0.46, 0.01],
-        [-0.72, -0.46, 0.01],
+        [-hw, hh, 0.12],
+        [hw, hh, 0.12],
+        [hw, -hh, 0.12],
+        [-hw, -hh, 0.12],
       ],
       lining,
       [0, 0, -1],
     );
-    for (const y of [-1, 1])
-      for (let j = 0; j < 7; j++)
-        ed.rod(
-          [-0.57 + j * 0.19, y * 0.433, -0.02],
-          [-0.55 + j * 0.183, y * 0.296, -1.56],
-          0.006,
-          metal,
-        );
-    for (const x of [-0.66, 0.66])
-      outline(
-        ed,
-        [
-          [x, 0.35, -0.7],
-          [x, 0.29, -1.56],
-          [x, -0.29, -1.56],
-          [x, -0.35, -0.7],
-        ],
-        0.009,
-        dark,
-        false,
-      );
+    // Upper and lower wedge flaps (USAF plan: chevron trailing edge, tip on the nozzle axis at
+    // the exit station) converge to a shallow slot. Closed 4 cm slabs, sooty on the inside.
+    const fw = 0.55,
+      fx = [-fw, -fw / 2, 0, fw / 2, fw],
+      flapEnd = (x) => -0.68 + (0.36 * Math.abs(x)) / fw;
+    for (const [v, rootY] of [
+      [1, 0.42],
+      [-1, 0.4],
+    ]) {
+      const slope = (rootY - 0.17) / 0.68,
+        at = (x, z, inset = 0) => [x, v * (rootY + slope * z - inset), z],
+        rootOut = fx.map((x) => at(x, 0)),
+        rootIn = fx.map((x) => at(x, 0, 0.04)),
+        tipOut = fx.map((x) => at(x, flapEnd(x))),
+        tipIn = fx.map((x) => at(x, flapEnd(x), 0.04));
+      for (let i = 0; i < fx.length - 1; i++) {
+        quad(ed, rootOut[i], rootOut[i + 1], tipOut[i + 1], tipOut[i], nozzle, [0, v, -0.4]);
+        quad(ed, rootIn[i], rootIn[i + 1], tipIn[i + 1], tipIn[i], lining, [0, -v, 0.4]);
+        quad(ed, tipOut[i], tipOut[i + 1], tipIn[i + 1], tipIn[i], nozzle, [0, 0, -1]);
+      }
+      for (const i of [0, fx.length - 1])
+        quad(ed, rootOut[i], tipOut[i], tipIn[i], rootIn[i], nozzle, [Math.sign(fx[i]), 0, 0]);
+      for (const x of [-0.4, -0.14, 0.14, 0.4]) {
+        const a = at(x, -0.01),
+          b = at(x, flapEnd(x) + 0.02);
+        ed.rod([a[0], a[1] + v * 0.006, a[2]], [b[0], b[1] + v * 0.006, b[2]], 0.006, metal);
+      }
+    }
+    // Chevron side plates bound the flaps, pointing aft like the sawtooth side walls.
+    const plate = [
+      [0.42, 0],
+      [0.31, -0.3],
+      [0, -0.47],
+      [-0.31, -0.3],
+      [-0.4, 0],
+    ];
+    for (const x of [-1, 1]) {
+      const inner = plate.map(([y, z]) => [x * (fw + 0.01), y, z]),
+        outer = plate.map(([y, z]) => [x * (fw + 0.04), y, z]);
+      sheet(ed, inner, nozzle, [-x, 0, 0]);
+      sheet(ed, outer, nozzle, [x, 0, 0]);
+      for (let i = 0; i < plate.length - 1; i++)
+        quad(ed, inner[i], inner[i + 1], outer[i + 1], outer[i], dark, [0, 0, -1]);
+    }
     ed.finish();
   }
   // Main wheels and nose wheel match the three-view track/wheelbase proportions.
@@ -493,8 +627,10 @@ export function buildF22A(s) {
   ]) {
     const g = group(root, `F22-gear-${name}`, [x, top, z]),
       gd = detailKit(g, g.name);
-    gd.rod([0, 0, 0], [0, radius - top, 0], name === 'nose' ? 0.045 : 0.065, metal);
-    gd.rod([0, -0.1, -0.6], [0, radius - top + 0.12, 0], 0.035, metal);
+    // Main legs splay outboard from bays in the canted lower body (USAF front view).
+    const inboard = name === 'nose' ? 0 : -Math.sign(x) * 0.33;
+    gd.rod([inboard, 0, 0], [0, radius - top, 0], name === 'nose' ? 0.045 : 0.065, metal);
+    gd.rod([inboard * 0.9, -0.1, -0.6], [0, radius - top + 0.12, 0], 0.035, metal);
     gd.add(new T.CylinderGeometry(radius, radius, width, 28).rotateZ(Math.PI / 2), dark, [
       0,
       radius - top,
@@ -506,7 +642,11 @@ export function buildF22A(s) {
       [0, radius - top, 0],
     );
     const doorSide = name === 'right' ? -1 : 1;
-    gd.box([0.025, 0.65, name === 'nose' ? 0.7 : 0.9], [doorSide * 0.2, -0.15, -0.19], paint);
+    gd.box(
+      [0.025, 0.65, name === 'nose' ? 0.7 : 0.9],
+      name === 'nose' ? [doorSide * 0.2, -0.15, -0.19] : [inboard * 0.55, -0.32, -0.19],
+      paint,
+    );
     gd.finish();
     bindings.push(
       {
@@ -654,8 +794,8 @@ export function buildF22A(s) {
     root,
     frame: f22Frame(),
     enginePoints: [
-      { id: 'engine-1', position: [1, 2, -4.45] },
-      { id: 'engine-2', position: [-1, 2, -4.45] },
+      { id: 'engine-1', position: [0.64, 2, -5.0] },
+      { id: 'engine-2', position: [-0.64, 2, -5.0] },
     ],
     visual: {
       rotors: [],

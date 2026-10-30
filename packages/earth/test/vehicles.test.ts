@@ -205,7 +205,8 @@ describe('earth vehicles', () => {
     const { root, tile, placements, vehicles } = setup();
     expect(vehicles.world.exists('car')).toBe(true);
     expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
-    expect(vehicles.cameraPose()?.position[0]).toBeCloseTo(1000.4);
+    // Bendy Sedan driver eye (0.4186, 1.13, -0.1) relative to the parked car at x 1000, z 2000.
+    expect(vehicles.cameraPose()?.position[0]).toBeCloseTo(1000.4186);
     for (let i = 0; i < 120; i++)
       vehicles.update(1 / 60, { throttle: 1, steering: 0, brake: false });
     expect(vehicles.world.get('car', Transform)?.pos[2]).toBeGreaterThan(2006);
@@ -239,7 +240,7 @@ describe('earth vehicles', () => {
     root.position.set(-1000, 0, -2000);
     root.updateMatrixWorld(true);
     expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
-    expect(vehicles.cameraPose()?.position[2]).toBeCloseTo(2000.25);
+    expect(vehicles.cameraPose()?.position[2]).toBeCloseTo(1999.9);
     vehicles.dispose();
     const other = setup();
     other.root.remove(other.tile);

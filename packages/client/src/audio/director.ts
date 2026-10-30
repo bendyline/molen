@@ -1,4 +1,7 @@
 import {
+  type AircraftData,
+  type AircraftInputData,
+  type AircraftStateData,
   type AudioEnvironmentData,
   type AudioSignalDrive,
   type AudioSourceData,
@@ -14,6 +17,7 @@ import {
   type SoundSpatial,
 } from '@bendyline/molen-schema';
 import { type ResolvedSound, type SoundBank, unitRandom } from './bank';
+import { rotorAcoustics } from './rotor-acoustics';
 import {
   curve,
   type EntityMotion,
@@ -29,6 +33,7 @@ import type {
   DirectorInput,
   VoiceCommand,
   VoiceSpatial,
+  VoiceTone,
 } from './types';
 
 // The audio director: documents + signals + events in, voice commands out. Pure — no Web Audio,
@@ -62,6 +67,7 @@ export interface VoiceSnapshot {
 }
 
 interface Desired {
+  tone?: VoiceTone;
   key: string;
   sound: ResolvedSound;
   loop: boolean;
@@ -78,6 +84,7 @@ interface Desired {
 }
 
 interface LiveVoice {
+  tone?: VoiceTone;
   key: string;
   voice: string;
   sound: string;
@@ -149,6 +156,12 @@ function vec3(v: unknown): AudioVec3 | undefined {
 
 function dist(a: AudioVec3, b: AudioVec3): number {
   return Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+}
+
+function vec4(value: unknown): [number, number, number, number] {
+  return Array.isArray(value) && value.length === 4 && value.every(Number.isFinite)
+    ? (value as [number, number, number, number])
+    : [0, 0, 0, 1];
 }
 
 function spatialOf(s: SoundSpatial): Omit<VoiceSpatial, 'position'> {
@@ -710,8 +723,37 @@ export class AudioDirector {
         const active = gate.update(evalWhen(d.when, entityCtx, gate.active), now);
         const position = this.entityPos(source, id);
         const spatial = this.spatialFor(d.spatial, sound, position);
-        const gain = (sound.entry.gain ?? 1) * (d.gain ?? 1) * this.bound(d.gainFrom, entityCtx);
+        let gain = (sound.entry.gain ?? 1) * (d.gain ?? 1) * this.bound(d.gainFrom, entityCtx);
         const pitchMul = (d.pitch ?? 1) * this.bound(d.pitchFrom, entityCtx);
+        let tone: VoiceTone | undefined;
+        const aircraft = source.get(id, 'aircraft') as AircraftData | undefined;
+        const state = source.get(id, 'aircraftState') as AircraftStateData | undefined;
+        if (aircraft?.spec.model === 'helicopter' && state && sound.entry.tags?.includes('rotor')) {
+          const delta = ctx.listener.position.map((v, i) => v - (position?.[i] ?? 0));
+          // Inverse quaternion rotation into the aircraft's left/up/forward coordinate frame.
+          const q = vec4(source.get(id, 'transform')?.rot);
+          const [x, y, z] = delta as AudioVec3;
+          const tx = 2 * (q[2] * y - q[1] * z);
+          const ty = 2 * (q[0] * z - q[2] * x);
+          const tz = 2 * (q[1] * x - q[0] * y);
+          const local = [
+            x + q[3] * tx - q[1] * tz + q[2] * ty,
+            y + q[3] * ty - q[2] * tx + q[0] * tz,
+            z + q[3] * tz - q[0] * ty + q[1] * tx,
+          ];
+          const rotor = rotorAcoustics(
+            aircraft.spec,
+            state,
+            source.get(id, 'aircraftInput') as AircraftInputData | undefined,
+            local,
+          );
+          gain *= rotor.gain;
+          tone = {
+            lowpassHz: rotor.lowpassHz,
+            pulseHz: rotor.pulseHz,
+            pulseDepth: rotor.pulseDepth,
+          };
+        }
         const bus = d.bus ?? sound.entry.bus ?? 'sfx';
         const loop = d.loop ?? sound.entry.loop ?? false;
         const autoplay = d.autoplay ?? true;
@@ -738,6 +780,7 @@ export class AudioDirector {
             fadeOutS: 0.5,
             rampS: this.smoothing(0.15, d.pitchFrom, d.gainFrom),
             priority: 3,
+            ...(tone ? { tone } : {}),
             entity: id,
             ...(spatial ? { spatial } : {}),
             ...(position ? { position } : {}),
@@ -1141,7 +1184,8 @@ export class AudioDirector {
         if (!d.spatial) return true;
         return distance <= d.spatial.maxDistance * (this.live.has(d.key) ? 1.1 : 1);
       })
-      .sort((a, b) => a.d.priority - b.d.priority || b.score - a.score);
+      // Interactive emitters must survive ambience crossfades at the voice budget.
+      .sort((a, b) => b.d.priority - a.d.priority || b.score - a.score);
     const budget = Math.max(0, (env?.maxVoices ?? 32) - (this.musicState?.voice ? 1 : 0));
     const kept = scored.slice(0, budget).map((s) => s.d);
     const keep = new Set(kept.map((d) => d.key));
@@ -1174,6 +1218,7 @@ export class AudioDirector {
           bus: d.bus,
           ...(d.spatial && d.position ? { spatial: { ...d.spatial, position: d.position } } : {}),
           fadeInS: d.fadeInS,
+          ...(d.tone ? { tone: d.tone } : {}),
         });
         this.live.set(d.key, {
           key: d.key,
@@ -1185,6 +1230,7 @@ export class AudioDirector {
           pitch,
           basePitch,
           fadeOutS: d.fadeOutS,
+          ...(d.tone ? { tone: d.tone } : {}),
           ...(d.position ? { position: d.position } : {}),
           ...(d.entity !== undefined ? { entity: d.entity } : {}),
         });
@@ -1193,6 +1239,17 @@ export class AudioDirector {
       const pitch = live.basePitch * d.pitchMul;
       const set: Extract<VoiceCommand, { op: 'set' }> = { op: 'set', voice: live.voice };
       let changed = false;
+      if (
+        d.tone &&
+        (!live.tone ||
+          Math.abs(d.tone.lowpassHz - live.tone.lowpassHz) > 20 ||
+          Math.abs(d.tone.pulseHz - live.tone.pulseHz) > 0.02 ||
+          Math.abs(d.tone.pulseDepth - live.tone.pulseDepth) > 0.005)
+      ) {
+        set.tone = d.tone;
+        live.tone = d.tone;
+        changed = true;
+      }
       if (Math.abs(d.gain - live.gain) > 0.005) {
         set.gain = d.gain;
         live.gain = d.gain;

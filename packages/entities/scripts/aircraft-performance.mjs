@@ -24,6 +24,12 @@ export function referenceSpeed(profile) {
 /** Coefficients fit one declared anchor; independent conditions must be tested separately. */
 export function tuneAircraftPerformance(id, spec) {
   configureEngineControls(id, spec);
+  // Tailwheel layout does not imply fixed mains: both of these transports retract them.
+  if (id.endsWith('.beech_18') || id.endsWith('.dc_3')) {
+    delete spec.airplane.fixedGear;
+    spec.airplane.gearTransitTime = 8;
+    spec.airplane.gearDrag = 0.025;
+  }
   const p = performanceProfiles.get(id);
   if (!p) throw Error(`Missing performance profile: ${id}`);
   const speed = referenceSpeed(p),

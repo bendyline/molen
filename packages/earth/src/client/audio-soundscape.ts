@@ -211,6 +211,32 @@ export function earthSoundscapeEnvironment(
         );
         gain = 0.3;
         break;
+      case 'crossing':
+        // This recording contains an audible pedestrian signal, not a generic road bed.
+        // Missing junction data is deliberately silent, even alongside a busy street.
+        drives.push(
+          {
+            signal: 'listener.heightAboveGround',
+            curve: [
+              [3, 1],
+              [10, 0.5],
+              [25, 0],
+            ],
+          },
+          identity('host.terrainKnown'),
+          {
+            signal: 'host.intersectionDistance',
+            curve: [
+              [0, 1],
+              [12, 0.7],
+              [30, 0.2],
+              [55, 0],
+            ],
+            smoothS: 0.2,
+          },
+        );
+        gain = 0.24;
+        break;
       default:
         continue;
     }
@@ -222,7 +248,7 @@ export function earthSoundscapeEnvironment(
       when: { [`host.soundscape.${clip.category}`]: clip.id },
       gain,
       gainFrom: drives,
-      fadeS: 5,
+      fadeS: clip.category === 'crossing' ? 0.3 : 5,
     });
   }
   return { ...base, ambience, maxVoices: 16 };

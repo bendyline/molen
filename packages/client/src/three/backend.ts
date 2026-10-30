@@ -1,6 +1,13 @@
-import type { EntityId, LiveryData, ModelSignalSpec } from '@bendyline/molen-schema';
+import type {
+  EntityId,
+  GlassData,
+  GlassStateData,
+  LiveryData,
+  ModelSignalSpec,
+} from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import type { AssetCache } from '../assets';
+import { createGlassVisual, type GlassVisual } from '../glass';
 import type { InterpTransform } from '../interpolation';
 import { applyLivery, type LiveryVisual } from '../livery';
 import {
@@ -167,6 +174,10 @@ export class ThreeSceneBackend implements SceneBackend {
       signals: ModelSignals;
       visual?: ModelSignalVisual;
     }
+  >();
+  private readonly glass = new Map<
+    EntityId,
+    { key: string; data: GlassData; state?: GlassStateData; visual?: GlassVisual }
   >();
   private readonly identities = new Map<EntityId, string>();
   private readonly lights = new Map<EntityId, THREE.Light>();
@@ -368,6 +379,14 @@ export class ThreeSceneBackend implements SceneBackend {
 
   create(id: EntityId, renderable: Renderable): void {
     this.identities.set(id, this.identityOf(renderable));
+    if (renderable.kind === 'glass') {
+      const group = new THREE.Group();
+      group.name = id;
+      group.visible = renderable.visible !== false;
+      this.scene.add(group);
+      this.objects.set(id, group);
+      return;
+    }
     if (renderable.kind !== 'gltf' && renderable.kind !== 'primitive') {
       this.createKind(id, renderable);
       return;
@@ -446,6 +465,7 @@ export class ThreeSceneBackend implements SceneBackend {
         this.bindModelSignals(id, instance);
         this.applyAnimation(id, binding, instance);
         this.applyModelSignals(id);
+        this.bindGlass(id);
         this.batchDirty.add(id);
       })
       .catch((e: unknown) => {
@@ -598,7 +618,45 @@ export class ThreeSceneBackend implements SceneBackend {
     state?.visual?.update(state.signals, this.animationTick / this.animationTickRate);
   }
 
+  setGlass(id: EntityId, data: GlassData | undefined, state: GlassStateData | undefined): void {
+    const key = data === undefined ? undefined : JSON.stringify(data);
+    const previous = this.glass.get(id);
+    if (key === previous?.key) {
+      if (previous) previous.state = state;
+    } else {
+      previous?.visual?.dispose();
+      this.glass.delete(id);
+      this.batches?.remove(id);
+      this.batchDirty.add(id);
+      if (data) {
+        this.glass.set(id, { key: key as string, data, state });
+        if (!this.gltf.has(id) || this.objects.get(id)?.children.length) this.bindGlass(id);
+      }
+    }
+    this.applyGlass(id);
+  }
+
+  private bindGlass(id: EntityId): void {
+    const binding = this.glass.get(id),
+      object = this.objects.get(id);
+    if (!binding || !object) return;
+    binding.visual?.dispose();
+    binding.visual = createGlassVisual(object, binding.data);
+    if (binding.visual.missingNodes.length)
+      console.warn(
+        `[molen] entity "${id}": glass missing nodes: ${binding.visual.missingNodes.join(', ')}`,
+      );
+    this.applyGlass(id);
+  }
+
+  private applyGlass(id: EntityId): void {
+    const binding = this.glass.get(id);
+    binding?.visual?.update(binding.state, this.animationTick / this.animationTickRate);
+  }
+
   destroy(id: EntityId): void {
+    this.glass.get(id)?.visual?.dispose();
+    this.glass.delete(id);
     this.liveries.get(id)?.visual?.dispose();
     this.liveries.delete(id);
     this.modelSignals.delete(id);
@@ -654,6 +712,7 @@ export class ThreeSceneBackend implements SceneBackend {
       else obj.scale.set(1, 1, 1);
       if (changed || obj.matrixAutoUpdate) obj.updateMatrix();
       obj.matrixAutoUpdate = this.escaped.has(id);
+      this.applyGlass(id);
     }
     const light = this.lights.get(id);
     if (light !== undefined) {
@@ -745,6 +804,7 @@ export class ThreeSceneBackend implements SceneBackend {
       if (binding) this.poseAnimation(binding);
     }
     for (const id of this.modelSignals.keys()) this.applyModelSignals(id);
+    for (const id of this.glass.keys()) this.applyGlass(id);
     for (const handle of this.handles.values()) handle.setTick?.(tick, tickRate, undefined);
     if (this.pointLightSlots.length > 0 && this.renderer)
       this.updateLocalLights(this.renderer.camera);
@@ -755,12 +815,17 @@ export class ThreeSceneBackend implements SceneBackend {
     for (const id of this.batchDirty) {
       const object = this.objects.get(id);
       if (!object || this.escaped.has(id) || this.handles.has(id)) continue;
-      if (!this.animations.has(id) && !this.modelSignals.has(id))
+      if (!this.animations.has(id) && !this.modelSignals.has(id) && !this.glass.has(id))
         object.traverse((child) => {
           child.updateMatrix();
           child.matrixAutoUpdate = false;
         });
-      if (!this.dynamic.has(id) && !this.animations.has(id) && !this.modelSignals.has(id))
+      if (
+        !this.dynamic.has(id) &&
+        !this.animations.has(id) &&
+        !this.modelSignals.has(id) &&
+        !this.glass.has(id)
+      )
         this.batches?.add(id, object);
     }
     this.batchDirty.clear();
@@ -816,6 +881,7 @@ export class ThreeSceneBackend implements SceneBackend {
     }
     for (const id of this.modelSignals.keys())
       if (!this.animations.has(id)) this.applyModelSignals(id);
+    for (const id of this.glass.keys()) this.applyGlass(id);
     for (const [id, handle] of this.handles) {
       if (handle.setTick === undefined) continue;
       const object = handle.object;

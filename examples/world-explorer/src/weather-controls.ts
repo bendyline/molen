@@ -1,4 +1,5 @@
 import {
+  type CloudType,
   type Renderer,
   resolveWeather,
   type WeatherData,
@@ -6,7 +7,16 @@ import {
 } from '@bendyline/molen-client';
 import { Weather, type World } from '@bendyline/molen-kernel/world';
 
-const profiles = ['fair', 'sunny', 'partly-cloudy', 'overcast', 'rain', 'snow', 'fog'] as const;
+const profiles = [
+  'fair',
+  'sunny',
+  'partly-cloudy',
+  'overcast',
+  'rain',
+  'storm',
+  'snow',
+  'fog',
+] as const;
 type ExplorerProfile = (typeof profiles)[number];
 
 /**
@@ -34,6 +44,7 @@ export function createWeatherControls(
   const input = (id: string): HTMLInputElement =>
     document.getElementById(`weather-${id}`) as HTMLInputElement;
   const kind = document.getElementById('weather-precipitation') as HTMLSelectElement;
+  const type = document.getElementById('weather-type') as HTMLSelectElement;
   if (params.get('sky') === 'daylight' && !params.has('weather')) {
     root.hidden = true;
     return { update() {} };
@@ -51,6 +62,9 @@ export function createWeatherControls(
     input('coverage').value = String(Math.round(w.clouds.coverage * 100));
     input('density').value = String(Math.round(w.clouds.density * 100));
     input('base').value = String(w.clouds.baseAltitude);
+    input('thickness').value = String(w.clouds.thickness);
+    input('cirrus').value = String(Math.round(w.clouds.cirrus * 100));
+    type.value = w.clouds.type;
     input('intensity').value = String(Math.round(w.precipitation.intensity * 100));
     input('visibility').value = String(w.visibility / 1000);
     input('temperature').value = (w.atmosphere.temperatureK - 273.15).toFixed(1);
@@ -84,6 +98,9 @@ export function createWeatherControls(
         coverage: Number(input('coverage').value) / 100,
         density: Number(input('density').value) / 100,
         baseAltitude: Number(input('base').value),
+        thickness: Number(input('thickness').value),
+        cirrus: Number(input('cirrus').value) / 100,
+        type: type.value as CloudType,
       },
       precipitation: {
         kind: kind.value as 'none' | 'rain' | 'snow',

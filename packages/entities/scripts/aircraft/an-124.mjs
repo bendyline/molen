@@ -80,107 +80,186 @@ export function buildAn124(s) {
     bindings = [],
     rotors = [],
     enginePoints = [];
-  // Side coordinates from the cited public-domain drawing; overall length69.1m.
+  // Side coordinates from the cited public-domain drawing; overall length69.1m. Plan widths follow
+  // the Commons PD 3-view: blunt ogival nose, 8m barrel and a broad ramp section.
   const ppm = 1074 / 69.1,
     sz = (u) => 34.55 - (u - 866) / ppm,
     sy = (v) => (1042 - v) / ppm;
+  // Windshield station and flight-deck roof follow the side photographs: a steep screen rising
+  // about 1.1m to a roof level with the barrel (the drawing's sill is lower, but its cupola dips
+  // below the barrel and would cut the authored flight deck).
   const sections = [
     [866, 0.025, 970, 969],
-    [880, 0.85, 990, 946],
-    [920, 1.85, 1001, 923],
-    [950, 2.42, 1007, 914],
-    [974, 2.8, 1011, 893],
-    [990, 3.05, 1013, 891],
-    [1040, 3.43, 1017, 891],
-    [1168, 3.72, 1018, 890],
-    [1305, 3.72, 1019, 889],
-    [1440, 3.67, 1018, 888],
-    [1570, 3.48, 1008, 888],
-    [1680, 2.92, 987, 888],
-    [1770, 2.25, 960, 887],
-    [1845, 1.48, 934, 887],
-    [1904, 0.65, 918, 893],
+    [880, 1.3, 990, 946],
+    [920, 2.75, 1001, 923],
+    [950, 3.3, 1007, 906],
+    [974, 3.6, 1011, 889],
+    [990, 3.72, 1013, 888],
+    [1040, 3.92, 1017, 889],
+    [1168, 4.0, 1018, 890],
+    [1305, 4.0, 1019, 889],
+    [1440, 4.0, 1018, 888],
+    [1570, 3.95, 1008, 888],
+    [1680, 3.6, 987, 888],
+    [1770, 3.15, 960, 887],
+    [1845, 2.2, 934, 887],
+    [1904, 0.95, 918, 893],
     [1940, 0.025, 902, 902],
   ];
-  const rings = sections.map(([u, w, b, t]) => {
-    const top = sy(t),
-      bottom = sy(b),
-      h = top - bottom;
-    return {
-      z: sz(u),
-      points: [
-        [0, top],
-        [0.5 * w, top - 0.025 * h],
-        [0.82 * w, top - 0.12 * h],
-        [w, top - 0.32 * h],
-        [w, bottom + 0.32 * h],
-        [0.85 * w, bottom + 0.1 * h],
-        [0.5 * w, bottom + 0.025 * h],
-        [0, bottom],
-        [-0.5 * w, bottom + 0.025 * h],
-        [-0.85 * w, bottom + 0.1 * h],
-        [-w, bottom + 0.32 * h],
-        [-w, top - 0.32 * h],
-        [-0.82 * w, top - 0.12 * h],
-        [-0.5 * w, top - 0.025 * h],
+  // Round Ruslan section (head-on photographs): a circular nose, a broad flat-topped upper deck
+  // over the flight deck and a full, flat lower body aft. Index order is unchanged.
+  const section = (i, w, bottom, top) => {
+    const [crown, belly, k] =
+        i < 3
+          ? [2.1, 2.3, 0.45]
+          : i < 7
+            ? [2.45, 2.6, 0.42]
+            : i < 10
+              ? [2.4, 2.8, 0.45]
+              : [2.3, 3, 0.5],
+      mid = bottom + k * (top - bottom),
+      up = (a) => [
+        w * Math.pow(Math.sin(a), 2 / crown),
+        mid + (top - mid) * Math.pow(Math.cos(a), 2 / crown),
       ],
-    };
-  });
+      down = (a) => [
+        w * Math.pow(Math.sin(a), 2 / belly),
+        mid - (mid - bottom) * Math.pow(Math.cos(a), 2 / belly),
+      ],
+      right = [up(0), up(0.5), up(0.98), up(1.42), down(1.42), down(0.98), down(0.5), down(0)];
+    return [
+      ...right,
+      ...right
+        .slice(1, 7)
+        .map(([x, y]) => [-x, y])
+        .reverse(),
+    ];
+  };
+  const rings = sections.map(([u, w, b, t], i) => ({
+    z: sz(u),
+    points: section(i, w, sy(b), sy(t)),
+  }));
   const p = (i, j) => [...rings[i].points[(j + 14) % 14], rings[i].z],
     lerp = (a, b, t) => a.map((v, k) => v + (b[k] - v) * t);
-  loft(d, rings, paint, {
-    skip: (i, j) => [3, 4].includes(i) && [0, 1, 2, 11, 12, 13].includes(j),
+  // Blunt visor and rounded tail-cone ends: domed rings between each tip and its neighbour.
+  const domeRings = (tip, next) => {
+    const tipY = (tip.points[0][1] + tip.points[7][1]) / 2,
+      nextY = (next.points[0][1] + next.points[7][1]) / 2;
+    return [0.02, 0.08, 0.25, 0.52].map((f) => {
+      const s = Math.sqrt(1 - (1 - f) * (1 - f)),
+        y = tipY + (nextY - tipY) * f;
+      return {
+        z: tip.z + (next.z - tip.z) * f,
+        points: next.points.map(([x, yy]) => [x * s, y + (yy - nextY) * s]),
+      };
+    });
+  };
+  const nose = domeRings(rings[0], rings[1]),
+    tail = domeRings(rings.at(-1), rings.at(-2)).reverse();
+  const glazed = (i, j) =>
+    (i === 3 && [0, 1, 12, 13].includes(j)) || ([4, 5].includes(i) && [1, 12].includes(j));
+  loft(d, [rings[0], ...nose, ...rings.slice(1, -1), ...tail, rings.at(-1)], paint, {
+    skip: (i, j) => glazed(i - nose.length, j),
   });
-  const bot = [
-      [0, 9.22, 28.95],
-      [0.75, 9.19, 28.84],
-      [1.43, 9.14, 28.15],
-      [1.87, 9.12, 26.65],
-    ],
-    top = [
-      [0, 9.96, 28.09],
-      [0.69, 9.94, 27.99],
-      [1.32, 9.9, 27.47],
-      [1.78, 9.72, 26.5],
-    ];
-  for (const side of [-1, 1]) {
-    const b = bot.map((q) => [side * q[0], q[1], q[2]]),
-      t = top.map((q) => [side * q[0], q[1], q[2]]);
-    sheet(
-      d,
-      [
-        p(3, 0),
-        p(3, side),
-        p(3, 2 * side),
-        p(3, 3 * side),
-        p(4, 3 * side),
-        p(5, 3 * side),
-        ...b.slice().reverse(),
+  // Glazing is cut into the skin facets so it follows the crown: two front panes either side of
+  // a center post, a quarter pane and two side windows each side. The cut facet is triangulated
+  // in its own (u, v) space with normals blended from the neighbouring stations, so it keeps the
+  // shell's smooth shading instead of reading as a flat pale patch.
+  const normalAt = (i, j) => {
+    const q = p(i, j),
+      mid = (rings[i].points[0][1] + rings[i].points[7][1]) / 2,
+      n = new T.Vector3(...p(i, j + 1))
+        .sub(new T.Vector3(...p(i, j - 1)))
+        .cross(new T.Vector3(...p(Math.max(i - 1, 0), j)).sub(new T.Vector3(...p(i + 1, j))))
+        .normalize();
+    return n.dot(new T.Vector3(q[0], q[1] - mid, 0)) < 0 ? n.negate() : n;
+  };
+  const glaze = (i, j, side, panes) => {
+    const m = (q) => [q[0] * side, q[1], q[2]],
+      a = m(p(i, j)),
+      b = m(p(i + 1, j)),
+      c = m(p(i + 1, j + 1)),
+      e = m(p(i, j + 1)),
+      [na, nb, nc, ne] = [
+        [i, j],
+        [i + 1, j],
+        [i + 1, j + 1],
+        [i, j + 1],
+      ].map(([ii, jj]) => m(normalAt(ii, jj).toArray())),
+      at = (u, v) => lerp(lerp(a, b, v), lerp(e, c, v), u),
+      normal = (u, v) => new T.Vector3(...lerp(lerp(na, nb, v), lerp(ne, nc, v), u)).normalize(),
+      outer = [
+        [0, 0],
+        [0, 1],
+        [1, 1],
+        [1, 0],
       ],
-      paint,
-      [side * 0.4, 0.7, 0.5],
-    );
-    sheet(d, [...t, p(5, 3 * side), p(5, 2 * side), p(5, side), p(5, 0)], paint, [
-      side * 0.3,
-      1,
-      0,
-    ]);
-    for (let j = 0; j < 3; j++) {
-      quad(d, b[j], b[j + 1], t[j + 1], t[j], glass, [side * 0.4, 0.4, 1]);
-      outline(d, [b[j], b[j + 1], t[j + 1], t[j]], 0.031, dark);
+      holes = panes.map(([u0, u1, v0, v1]) => [
+        [u0, v0],
+        [u0, v1],
+        [u1, v1],
+        [u1, v0],
+      ]),
+      uv = [outer, ...holes].flat(),
+      index = T.ShapeUtils.triangulateShape(
+        outer.map(([u, v]) => new T.Vector2(u, v)),
+        holes.map((h) => h.map(([u, v]) => new T.Vector2(u, v))),
+      ).flat();
+    for (let k = 0; k < index.length; k += 3) {
+      const [pa, pb, pc] = index.slice(k, k + 3).map((n) => new T.Vector3(...at(...uv[n])));
+      if (
+        pb
+          .sub(pa)
+          .cross(pc.sub(pa))
+          .dot(normal(...uv[index[k]])) < 0
+      )
+        [index[k + 1], index[k + 2]] = [index[k + 2], index[k + 1]];
     }
-    d.rod([side * 0.4, 9.25, 28.92], [side * 0.7, 9.52, 28.59], 0.012, dark);
-    d.rod([side * 0.7, 9.52, 28.59], [side * 0.95, 9.75, 28.1], 0.01, dark);
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute(
+      'position',
+      new T.Float32BufferAttribute(
+        uv.flatMap((q) => at(...q)),
+        3,
+      ),
+    );
+    geometry.setAttribute(
+      'normal',
+      new T.Float32BufferAttribute(
+        uv.flatMap((q) => normal(...q).toArray()),
+        3,
+      ),
+    );
+    geometry.setIndex(index);
+    d.add(geometry, paint);
+    for (const h of holes) {
+      const pane = h.map((q) => at(...q));
+      sheet(d, pane, glass, normal(0.5, 0.5).toArray());
+      outline(d, pane, 0.028, dark);
+    }
+    return at;
+  };
+  for (const side of [-1, 1]) {
+    const front = glaze(3, 0, side, [[0.05, 0.93, 0.28, 0.95]]);
+    glaze(3, 1, side, [[0.04, 0.4, 0.5, 0.95]]);
+    glaze(4, 1, side, [[0.06, 0.4, 0.12, 0.88]]);
+    glaze(5, 1, side, [[0.06, 0.4, 0.04, 0.28]]);
+    // Wipers parked on the front panes.
+    const lift = (q) => [q[0], q[1] + 0.02, q[2] + 0.012];
+    d.rod(lift(front(0.3, 0.33)), lift(front(0.55, 0.6)), 0.012, dark);
+    d.rod(lift(front(0.55, 0.6)), lift(front(0.78, 0.86)), 0.01, dark);
   }
-  // Plan-view calibrated stations, marked anhedral. Main engine span stations use operator dimensions.
+  // Plan-view calibrated stations. Anhedral (about 5.5 degrees) is matched to a long-lens frontal
+  // photograph (Moffett, visor up): the drawing's front view droops the outer panels too far.
+  // Main engine span stations use operator dimensions.
   const ws = [
     [0, 9.55, 15.2, 0.5, 0.5],
     [3.7, 9.45, 13.9, -0.2, 0.48],
-    [9.932, 8.7, 9.35, -2.25, 0.4],
-    [17.688, 7.65, 4.25, -5.55, 0.3],
-    [28.5, 6.25, -3.15, -8.75, 0.17],
-    [35.1, 5.4, -7.45, -10.8, 0.1],
-    [36.65, 5.2, -9.3, -11.5, 0.055],
+    [9.932, 8.89, 9.35, -2.25, 0.4],
+    [17.688, 8.1, 4.25, -5.55, 0.3],
+    [28.5, 7.05, -3.15, -8.75, 0.17],
+    [35.1, 6.41, -7.45, -10.8, 0.1],
+    [36.65, 6.26, -9.3, -11.5, 0.055],
   ];
   const station = (x) => {
     const i = ws.findIndex((a) => a[0] >= x),
@@ -241,7 +320,7 @@ export function buildAn124(s) {
         seam,
         false,
       );
-    ellipsoid(d, [side * 36.59, 5.29, -10.5], [0.06, 0.07, 0.2], side > 0 ? d.red : d.green, 8);
+    ellipsoid(d, [side * 36.59, 6.35, -10.5], [0.06, 0.07, 0.2], side > 0 ? d.red : d.green, 8);
   }
   // Conventional low horizontal tail, swept tall fin, separate canted rudder hinge.
   const fin = [
@@ -357,52 +436,52 @@ export function buildAn124(s) {
     loft(
       d,
       [
-        [front, 1.39],
-        [front - 0.16, 1.51],
-        [front - 1.5, 1.58],
-        [front - 4.8, 1.5],
-        [front - 5.4, 1.22],
+        [front, 1.25],
+        [front - 0.16, 1.36],
+        [front - 1.5, 1.42],
+        [front - 4.8, 1.35],
+        [front - 5.4, 1.1],
       ].map(([z, r]) => ring(z, r)),
       paint,
       { caps: false },
     );
-    loft(d, [ring(front, 1.39), ring(front - 0.14, 1.28), ring(front - 0.75, 1.25)], metal, {
+    loft(d, [ring(front, 1.25), ring(front - 0.14, 1.15), ring(front - 0.75, 1.12)], metal, {
       caps: false,
     });
-    d.add(new T.CircleGeometry(1.25, 32), dark, [x, cy, front - 0.91]);
+    d.add(new T.CircleGeometry(1.12, 32), dark, [x, cy, front - 0.91]);
     const fan = group(root, `AN124-engine-fan-${i + 1}`, [x, cy, front - 0.82]),
       fd = detailKit(fan, fan.name);
     for (let j = 0; j < 33; j++) {
       const a = (j * 2 * Math.PI) / 33,
         p = (r, o = 0) => [Math.sin(a + o) * r, Math.cos(a + o) * r, 0];
-      sheet(fd, [p(0.3), p(1.24, 0.08), p(1.24, 0.15), p(0.3, 0.12)], metal, [0, 0, 1]);
+      sheet(fd, [p(0.3), p(1.11, 0.08), p(1.11, 0.15), p(0.3, 0.12)], metal, [0, 0, 1]);
     }
     ellipsoid(fd, [0, 0, 0.12], [0.32, 0.32, 0.52], dark, 16);
     fd.finish();
     rotors.push({ node: fan.name, axis: 'z', multiplier: 1, engine: id });
     const rear = front - 5.4;
-    loft(d, [ring(rear, 1.22), ring(rear - 0.7, 0.95), ring(rear - 1.25, 0.85)], metal, {
+    loft(d, [ring(rear, 1.1), ring(rear - 0.7, 0.9), ring(rear - 1.25, 0.8)], metal, {
       caps: false,
     });
-    d.add(new T.CircleGeometry(0.85, 24).rotateY(Math.PI), dark, [x, cy, rear - 1.26]);
+    d.add(new T.CircleGeometry(0.8, 24).rotateY(Math.PI), dark, [x, cy, rear - 1.26]);
     ellipsoid(d, [x, cy, rear - 1.1], [0.4, 0.4, 0.7], dark, 16);
     const [, wy, le, te] = station(Math.abs(x));
     for (const side of [-1, 1])
       sheet(
         d,
         [
-          [x + side * 0.2, cy + 1, rear],
+          [x + side * 0.2, cy + 0.9, rear],
           [x + side * 0.2, wy, te + 0.4],
           [x + side * 0.2, wy + 0.05, le + 0.1],
-          [x + side * 0.2, cy + 1.45, front - 1.6],
+          [x + side * 0.2, cy + 1.3, front - 1.6],
         ],
         paint,
         [side, 0, 0],
       );
     for (const [z, r] of [
-      [front - 0.35, 1.54],
-      [front - 3.7, 1.54],
-      [front - 4.8, 1.51],
+      [front - 0.35, 1.39],
+      [front - 3.7, 1.39],
+      [front - 4.8, 1.36],
     ])
       d.ring(r, 0.013, [x, cy, z], seam);
     enginePoints.push({ id, position: [x, cy, front - 2.8] });
@@ -418,21 +497,22 @@ export function buildAn124(s) {
       dd.ring(r * 0.8, 0.012, [x + side * (w / 2 + 0.015), y, z], dark, 'x');
     }
   };
-  // Five independently suspended twin-wheel axles per side, and two twin-wheel nose struts.
+  // Five independently suspended twin-wheel axles per side, and two twin-wheel nose struts. The
+  // long gear fairings grow out of the lower side skin: the wide lower body seen head-on.
   for (const side of [-1, 1]) {
     loft(
       d,
       [
-        [9.2, 0.2, 2.6, 0.2],
-        [7.6, 0.75, 2.2, 0.65],
-        [3, 0.88, 2, 0.8],
-        [-4, 0.86, 2, 0.8],
-        [-9.1, 0.55, 2.3, 0.4],
-        [-10.6, 0.1, 2.5, 0.1],
+        [9.6, 0.2, 2.75, 0.2],
+        [8.0, 0.95, 2.5, 0.85],
+        [5.6, 1.28, 2.38, 1.12],
+        [-4, 1.3, 2.35, 1.15],
+        [-8.6, 1.05, 2.5, 0.85],
+        [-10.6, 0.25, 2.8, 0.22],
       ].map(([z, rx, cy, ry]) => ({
         z,
         points: Array.from({ length: 16 }, (_, j) => [
-          side * 3.55 + Math.sin((j * Math.PI) / 8) * rx,
+          side * 3.45 + Math.sin((j * Math.PI) / 8) * rx,
           cy + Math.cos((j * Math.PI) / 8) * ry,
         ]),
       })),
@@ -541,7 +621,7 @@ export function buildAn124(s) {
         blue,
         [side, 0, 0],
       );
-    d.text('AN-124', [side * 3.73, 6.7, 13.8], 0.48, (side * Math.PI) / 2, blue);
+    d.text('AN-124', [side * 4.01, 6.7, 13.8], 0.48, (side * Math.PI) / 2, blue);
   }
   for (const i of [6, 7, 9, 11, 13]) {
     const r = rings[i];
@@ -576,7 +656,17 @@ export function buildAn124(s) {
     );
   ellipsoid(d, [0, 10.3, 14], [0.14, 0.1, 0.17], d.red, 8);
   d.finish();
-  const interior = cockpit(root, { paint, dark, metal, glass });
+  // The flight-deck rear bulkhead follows the crown at its station instead of a square sheet.
+  const bz = 20.9,
+    bi = rings.findIndex((r) => r.z < bz),
+    bt = (rings[bi - 1].z - bz) / (rings[bi - 1].z - rings[bi].z),
+    bring = rings[bi - 1].points.map((q, j) => lerp(q, rings[bi].points[j], bt)),
+    bmid = (bring[0][1] + bring[7][1]) / 2,
+    bulkhead = [11, 12, 13, 0, 1, 2, 3]
+      .map((j) => [bring[j][0] * 0.95, bmid + (bring[j][1] - bmid) * 0.97, bz])
+      .filter((q) => q[1] > 7.6);
+  bulkhead.push([bulkhead.at(-1)[0], 7.525, bz], [bulkhead[0][0], 7.525, bz]);
+  const interior = cockpit(root, { paint, dark, metal, glass, bulkhead });
   cleanGeometry(root);
   return {
     root,
@@ -661,7 +751,7 @@ function cockpit(root, m) {
     );
   sheet(d, contour, face, [0, 0, -1], holes);
   outline(d, contour, 0.013, m.dark);
-  const blank = (name, u, v, r = 0.065) => {
+  const blank = (_name, u, v, r = 0.065) => {
     d.add(new T.CylinderGeometry(r, r, 0.012, 24).rotateX(Math.PI / 2), black, at(u, v, -0.009));
     d.ring(r * 0.97, 0.004, at(u, v, -0.017), m.metal);
     d.text('--', at(u, v, -0.02), r * 0.3, Math.PI, ink);
@@ -821,16 +911,17 @@ function cockpit(root, m) {
     missing: 'hide',
   });
   // Glareshield radios/autoflight housings, separate from the roof-mounted panel.
-  d.box([3.1, 0.13, 0.24], [0, 9.04, 28.4], m.dark);
-  d.box([1.28, 0.24, 0.22], [0, 9.25, 28.37], m.dark);
+  // Housings sit under the raked windshield glass.
+  d.box([2.5, 0.13, 0.22], [0, 8.85, 28.34], m.dark);
+  d.box([1.2, 0.22, 0.2], [0, 8.97, 28.33], m.dark);
   for (const side of [-1, 1]) {
-    d.box([0.57, 0.2, 0.025], [side * 0.31, 9.25, 28.24], side > 0 ? m.dark : face);
-    d.box([0.27, 0.06, 0.008], [side * 0.31, 9.29, 28.22], black);
-    d.text('--', [side * 0.31, 9.29, 28.21], 0.018, Math.PI, ink);
-    for (let j = 0; j < 4; j++) pt.knob(side * 0.31 - 0.21 + j * 0.14, 9.2, 28.21, 0.018);
+    d.box([0.57, 0.2, 0.025], [side * 0.31, 9.08, 28.24], side > 0 ? m.dark : face);
+    d.box([0.27, 0.06, 0.008], [side * 0.31, 9.12, 28.22], black);
+    d.text('--', [side * 0.31, 9.12, 28.21], 0.018, Math.PI, ink);
+    for (let j = 0; j < 4; j++) pt.knob(side * 0.31 - 0.21 + j * 0.14, 9.03, 28.21, 0.018);
   }
-  d.box([0.36, 0.16, 0.09], [0, 9.45, 28.36], m.dark);
-  d.text('NAV --', [0, 9.45, 28.31], 0.02, Math.PI, ink, 'display');
+  d.box([0.36, 0.16, 0.09], [0, 9.28, 28.1], m.dark);
+  d.text('NAV --', [0, 9.28, 28.05], 0.02, Math.PI, ink, 'display');
   // Long pedestal with four tall ivory levers, low radar scopes and offset flap handle.
   const ped = group(cabin, 'AN124-pedestal', [0, 8.12, 27.4]);
   ped.rotation.x = Math.PI / 2;
@@ -903,7 +994,7 @@ function cockpit(root, m) {
     }
   od.finish();
   for (const side of [-1, 1]) {
-    const fan = group(cabin, `AN124-cabin-fan-${side}`, [side * 0.52, 9.72, 28.04]),
+    const fan = group(cabin, `AN124-cabin-fan-${side}`, [side * 0.52, 9.55, 27.25]),
       fd = detailKit(fan, fan.name);
     fd.rod([0, 0.19, 0.04], [0, 0, 0], 0.014, m.metal);
     fd.ring(0.11, 0.01, [0, 0, 0], m.dark);
@@ -913,7 +1004,7 @@ function cockpit(root, m) {
     }
     ellipsoid(fd, [0, 0, -0.01], [0.03, 0.03, 0.035], m.dark, 8);
     fd.finish();
-    d.box([0.55, 0.025, 0.28], [side * 1.3, 9.62, 27.5], m.dark);
+    d.box([0.5, 0.025, 0.28], [side * 1.28, 9.4, 27.45], m.dark);
   }
   // Columns, U-shaped handwheels, pedal pairs and six seats.
   function seatAt(name, x, z, rotation = 0) {
@@ -1053,9 +1144,9 @@ function cockpit(root, m) {
     }
   }
   d.box([4.35, 0.08, 7.7], [0, 7.51, 24.7], m.dark);
-  d.box([3.0, 0.05, 3.2], [0, 9.48, 22.8], liner);
-  for (const zz of [21.5, 22.7, 23.9]) d.rod([-1.48, 9.445, zz], [1.48, 9.445, zz], 0.008, m.metal);
-  sheet(d, rect(0, 8.7, 4.4, 2.35, 20.9), liner, [0, 0, 1], [rect(0, 8.5, 0.8, 1.9, 20.9)]);
+  d.box([2.7, 0.05, 3.2], [0, 9.48, 22.8], liner);
+  for (const zz of [21.5, 22.7, 23.9]) d.rod([-1.33, 9.445, zz], [1.33, 9.445, zz], 0.008, m.metal);
+  sheet(d, m.bulkhead, liner, [0, 0, 1], [rect(0, 8.5, 0.8, 1.9, 20.9)]);
 
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };

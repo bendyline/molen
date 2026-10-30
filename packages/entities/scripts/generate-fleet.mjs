@@ -1,6 +1,6 @@
 /** Generate only recipe-backed fleet models. --ids=slug,slug narrows the authoring loop. */
 import { createHash } from 'node:crypto';
-import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { readdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
@@ -24,6 +24,11 @@ const selection = process.argv
   .find((arg) => arg.startsWith('--ids='))
   ?.slice(6)
   .split(',');
+async function writeAtomic(path, bytes) {
+  const temporary = `${path}.animation.tmp`;
+  await writeFile(temporary, bytes);
+  await rename(temporary, path);
+}
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 let count = 0;
 for (const category of ['vehicles', 'cycles', 'watercraft']) {
@@ -41,7 +46,12 @@ for (const category of ['vehicles', 'cycles', 'watercraft']) {
     const sourcePath = resolve(directory, 'source.json');
     const sourceText = await readFile(sourcePath, 'utf8');
     const source = JSON.parse(sourceText);
-    const output = recipe.master ? 'models/detailed.glb' : 'models/source.glb';
+    // A generated recipe may name its output, e.g. a bundle that keeps a legacy source.glb master.
+    const output = recipe.output
+      ? `models/${recipe.output}`
+      : recipe.master
+        ? 'models/detailed.glb'
+        : 'models/source.glb';
     const pin = source.files.models.find((m) => m.path === output).sha256;
     const definition = JSON.parse(await readFile(resolve(directory, 'entity.types.json'), 'utf8'));
     const components = definition.types[recipe.id].components;
@@ -73,7 +83,15 @@ for (const category of ['vehicles', 'cycles', 'watercraft']) {
         driverEye,
       });
     }
-    const bytes = Buffer.from(await new GLTFExporter().parseAsync(model, { binary: true }));
+    if (components.vehicle)
+      model.traverse((node) => {
+        if (!node.userData.molenActuators) return;
+        components.vehicle.spec.actuators = node.userData.molenActuators;
+        components.vehicle.visual.animation = node.userData.molenAnimation;
+      });
+    const bytes = Buffer.from(
+      await new GLTFExporter().parseAsync(model, { binary: true, onlyVisible: false }),
+    );
     const path = resolve(directory, output);
     const previous = await readFile(path).catch((e) => {
       if (e.code === 'ENOENT') return undefined;
@@ -85,8 +103,13 @@ for (const category of ['vehicles', 'cycles', 'watercraft']) {
       if (!previous?.equals(bytes) || hash(bytes) !== pin)
         throw new Error(`Stale fleet model: ${path}`);
     } else {
+      if (components.vehicle?.spec.actuators)
+        await writeAtomic(
+          resolve(directory, 'entity.types.json'),
+          `${JSON.stringify(definition, null, 2)}\n`,
+        );
       if (!previous?.equals(bytes)) await writeFile(path, bytes);
-      if (pin !== hash(bytes)) await writeFile(sourcePath, sourceText.replace(pin, hash(bytes)));
+      if (pin !== hash(bytes)) await writeAtomic(sourcePath, sourceText.replace(pin, hash(bytes)));
     }
     console.log(`${recipe.id}: ${bytes.length} bytes ${hash(bytes)}`);
     count++;

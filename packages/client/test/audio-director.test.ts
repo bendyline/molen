@@ -403,6 +403,39 @@ describe('footsteps and music', () => {
 });
 
 describe('zones, budget, determinism', () => {
+  it('keeps vehicle emitters audible during ambience crossfades at the voice limit', () => {
+    const s = new FakeSource();
+    s.set('car', 'transform', { pos: [1, 0, 0] });
+    s.set('car', 'audioSource', { sound: 'engine.car' });
+    const d = director({
+      maxVoices: 1,
+      ambience: [{ sound: 'ambience.rain' }, { sound: 'ambience.birds' }],
+    });
+    d.update({ nowMs: 0, source: s });
+    expect(d.voices().map((v) => v.sound)).toEqual(['engine.car']);
+  });
+
+  it('passes changing rotor tone to the backend without restarting or repitching the engine', () => {
+    const s = new FakeSource();
+    s.set('heli', 'transform', { pos: [0, 0, 0], rot: [0, 0, 0, 1] });
+    s.set('heli', 'audioSource', { sound: 'engine.car' });
+    s.set('heli', 'aircraft', { spec: { model: 'helicopter', engine: { rotorAngularSpeed: 48 } } });
+    s.set('heli', 'aircraftState', { rpm: 1, airspeed: 20, grounded: false });
+    s.set('heli', 'aircraftInput', { power: 0.6, pitch: 0, roll: 0 });
+    const bank = {
+      ...BANK,
+      sounds: { ...BANK.sounds, 'engine.car': { ...BANK.sounds['engine.car']!, tags: ['rotor'] } },
+    };
+    const d = new AudioDirector({ bank: mergeSoundbanks([bank]) });
+    const first = starts(d.update({ nowMs: 0, source: s }))[0]!;
+    expect(first.tone?.pulseDepth).toBeGreaterThan(0);
+    s.set('heli', 'aircraftInput', { power: 0.6, pitch: 0, roll: -0.8 });
+    const commands = d.update({ nowMs: 16, source: s });
+    expect(starts(commands)).toHaveLength(0);
+    const change = commands.find((c) => c.op === 'set');
+    expect(change?.op === 'set' && change.tone!.pulseDepth).toBeGreaterThan(first.tone!.pulseDepth);
+    expect(change?.op === 'set' && change.pitch).toBeUndefined();
+  });
   it('fades a zone with distance outside its shape', () => {
     const s = new FakeSource();
     s.set('creek', 'transform', { pos: [0, 0, 0] });

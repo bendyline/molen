@@ -196,7 +196,7 @@ describe.each(['source', 'imported'])('joined aircraft (%s)', (version) => {
     const root = await load('mig-29a', 'mig_29a', version);
     for (const side of [-1, 1])
       for (const direction of [-1, 1]) {
-        const hits = intersect(root, [side * 1.15 + direction * 0.407, 1.59, -7], [0, 0, 1]);
+        const hits = intersect(root, [side * 0.87 + direction * 0.44, 1.62, -7], [0, 0, 1]);
         expect(hits.length).toBeGreaterThan(0);
         expect(hits[0].point.z).toBeCloseTo(-6.61, 3);
       }

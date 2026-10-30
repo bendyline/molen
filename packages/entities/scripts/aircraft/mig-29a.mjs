@@ -40,10 +40,10 @@ export function buildMiG29A(s) {
     seam = mat('MiG29-seal', '#384441'),
     dark = mat('MiG29-duct', '#161e1d', { side: T.DoubleSide }),
     metal = mat('MiG29-alloy', '#b2b9b5', { metalness: 0.7 }),
-    hot = mat('MiG29-nozzle', '#74766c', { side: T.DoubleSide, metalness: 0.7 }),
-    glass = mat('MiG29-glass', '#a2b9b6', {
+    hot = mat('MiG29-nozzle', '#7a7b72', { side: T.DoubleSide, metalness: 0.45 }),
+    glass = mat('MiG29-glass', '#7f9895', {
       transparent: true,
-      opacity: 0.16,
+      opacity: 0.26,
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.15,
@@ -74,9 +74,9 @@ export function buildMiG29A(s) {
     [310, 0.51, 133, 198],
     [408, 0.5, 124, 197],
     [445, 0.48, 127, 195],
-    [550, 0.47, 141, 197],
-    [650, 0.4, 152, 199],
-    [743, 0.3, 158, 201],
+    [550, 0.47, 128, 197],
+    [650, 0.4, 142, 199],
+    [743, 0.3, 153, 201],
     [840, 0.2, 169, 204],
     [930, 0.04, 179, 208],
   ];
@@ -103,21 +103,26 @@ export function buildMiG29A(s) {
   for (const side of [-1, 1]) {
     d.rod([side * 0.012, y(193), 8.72], [side * 0.065, y(193), 8.65], 0.006, metal);
   }
+  // The bubble stands proud of the spine with full sides (superellipse arch), as photographed.
   const canopy = [
     [262, 0.025, 139, 138],
-    [310, 0.35, 132, 103],
-    [325, 0.4, 130, 100],
-    [365, 0.43, 126, 98],
-    [408, 0.39, 124, 104],
-    [435, 0.2, 126, 109],
-    [445, 0.025, 127, 126],
+    [310, 0.35, 132, 99],
+    [325, 0.4, 130, 95],
+    [365, 0.43, 126, 92],
+    [408, 0.39, 124, 97],
+    [435, 0.2, 126, 102],
+    [445, 0.025, 127, 122],
   ];
   const cr = canopy.map(([u, w, b, t]) => ({
     z: z(u),
-    points: Array.from({ length: 17 }, (_, j) => [
-      Math.cos((j * Math.PI) / 16) * w,
-      y(b) + Math.sin((j * Math.PI) / 16) * (y(t) - y(b)),
-    ]),
+    points: Array.from({ length: 17 }, (_, j) => {
+      const c = Math.cos((j * Math.PI) / 16),
+        s = Math.sin((j * Math.PI) / 16);
+      return [
+        Math.sign(c) * Math.pow(Math.abs(c), 0.8) * w,
+        y(b) + Math.pow(s, 0.8) * (y(t) - y(b)),
+      ];
+    }),
   }));
   loft(d, cr, glass, { caps: false, skip: (_, j) => j === 16 });
   for (const i of [0, 1, 6])
@@ -202,6 +207,28 @@ export function buildMiG29A(s) {
       cr[1].points[j][1] + 0.014,
       cr[1].z,
     ]);
+  // Dorsal hump: the canopy runs into a raised spine that falls gently to the wing box
+  // (3.16m at the canopy end, about 3.0m at z 1.5, joining the body by z 0.2).
+  loft(
+    d,
+    [
+      [2.25, 0.3, 3.16, 2.55],
+      [2.0, 0.37, 3.13, 2.52],
+      [1.5, 0.38, 3.02, 2.5],
+      [0.9, 0.34, 2.88, 2.5],
+      [0.2, 0.2, 2.78, 2.5],
+    ].map(([zz, w, t, b]) => ({
+      z: zz,
+      points: [
+        ...Array.from({ length: 13 }, (_, k) => {
+          const a = -Math.PI / 2 + (k * Math.PI) / 12;
+          return [Math.sin(a) * w, b + (t - b) * Math.pow(Math.cos(a), 0.8)];
+        }),
+        [0, b - 0.05],
+      ],
+    })),
+    paint,
+  );
   // Offset IRST ball ahead of the windscreen, port-side built-in cannon fairing only.
   d.add(new T.SphereGeometry(0.12, 16, 10).scale(1, 0.8, 1), dark, [-0.2, 2.64, z(250)]);
   d.add(new T.SphereGeometry(0.085, 12, 8), glass, [-0.2, 2.65, z(245)]);
@@ -210,14 +237,17 @@ export function buildMiG29A(s) {
   // Broad center lifting body and LERX, with narrow 9.12 spine above it.
   const broad = [
     [270, 0.44, 2.3, 1.65],
-    [360, 1.02, 2.38, 1.69],
-    [445, 1.44, 2.36, 1.66],
-    [550, 1.67, 2.29, 1.66],
+    [360, 0.88, 2.38, 1.69],
+    [445, 1.28, 2.36, 1.66],
+    [550, 1.64, 2.29, 1.66],
     [720, 1.67, 2.13, 1.67],
     [840, 1.5, 2.02, 1.69],
-    [920, 1.22, 1.91, 1.73],
-    [940, 0.05, 1.88, 1.78],
+    // Ends ahead of the nozzle bulkhead so no lifting-body skin shows inside the exhausts.
+    [912, 1.22, 1.91, 1.73],
+    [922, 0.05, 1.88, 1.78],
   ];
+  // The LERX underside is a thin, nearly flat blade that curves down into the body, not one
+  // flat wedge facet from the leading edge to the belly.
   const br = broad.map(([u, w, t, b]) => ({
     z: z(u),
     points: [
@@ -225,16 +255,20 @@ export function buildMiG29A(s) {
       [w * 0.6, t + 0.02],
       [w, t - 0.03],
       [w, t - 0.065],
+      [w * 0.84, t - 0.1 - (t - b) * 0.05],
+      [w * 0.68, t - 0.065 - (t - 0.065 - b) * 0.45],
       [w * 0.6, b],
       [0, b - 0.02],
       [-w * 0.6, b],
+      [-w * 0.68, t - 0.065 - (t - 0.065 - b) * 0.45],
+      [-w * 0.84, t - 0.1 - (t - b) * 0.05],
       [-w, t - 0.065],
       [-w, t - 0.03],
       [-w * 0.6, t + 0.02],
     ],
   }));
   // Do not lay a center roof across the cockpit aperture: front sections are separate shoulders.
-  loft(d, br, paint, { caps: false, skip: (i, j) => i < 3 && (j === 0 || j === 9) });
+  loft(d, br, paint, { caps: false, skip: (i, j) => i < 3 && (j === 0 || j === 13) });
   // Join the widening wing-root shoulders to the tub at both profiles' stations.
   const joins = [
     ...new Set([
@@ -260,7 +294,7 @@ export function buildMiG29A(s) {
       const a = joins[i],
         b = joins[i + 1],
         body = side === 1 ? 6 : 18,
-        outer = side === 1 ? 1 : 9;
+        outer = side === 1 ? 1 : 13;
       quad(
         d,
         shoulderAt(a, body),
@@ -272,19 +306,22 @@ export function buildMiG29A(s) {
       );
     }
   for (const side of [-1, 1]) {
-    const x = side * 1.15;
+    // Intakes and engine pods sit close under the lifting body: compressor faces about 0.95m
+    // and nozzles 0.86m off the centreline (three-view and rear photographs), leaving the
+    // narrow tunnel and brake-chute fairing between round, not squashed, RD-33 nozzles.
+    const x = side * 0.95;
     // Rectangular intake lips, aft-sloping lower leading edge, real empty ducts.
     const mouth = [
-      [0.64, 2.12, 2.44],
-      [1.47, 2.12, 2.44],
-      [1.57, 1.13, 1.18],
-      [0.72, 1.07, 1.18],
+      [0.5, 2.12, 2.44],
+      [1.22, 2.12, 2.44],
+      [1.3, 1.13, 1.18],
+      [0.55, 1.07, 1.18],
     ].map(([xx, yy, zz]) => [xx * side, yy, zz]);
     const back = [
-      [0.64, 2.16, -0.15],
-      [1.55, 2.16, -0.15],
-      [1.66, 1.03, -0.15],
-      [0.66, 0.97, -0.15],
+      [0.46, 2.16, -0.15],
+      [1.38, 2.16, -0.15],
+      [1.46, 1.03, -0.15],
+      [0.47, 0.97, -0.15],
     ].map(([xx, yy, zz]) => [xx * side, yy, zz]);
     const lipCenter = mouth.reduce(
       (sum, p) => sum.map((v, i) => v + p[i] / mouth.length),
@@ -340,27 +377,88 @@ export function buildMiG29A(s) {
       );
     }
     d.add(new T.ConeGeometry(0.09, 0.18, 16).rotateX(Math.PI / 2), metal, [x, 1.74, -0.55]);
+    // Perforated FOD door: on the ground it hangs from the duct roof and closes the main
+    // inlet (air then enters through the LERX louvers), so the inlets read as recessed grey
+    // panels, not open black holes; it folds flat against the roof as the gear retracts.
+    const door = group(root, `MiG29-intake-door-${side === 1 ? 'left' : 'right'}`, [
+        side * 0.925,
+        2.09,
+        1.0,
+      ]),
+      dd = detailKit(door, door.name);
+    sheet(
+      dd,
+      [
+        [-0.37, 0, 0],
+        [0.37, 0, 0],
+        [0.37, -1.0, -0.4],
+        [-0.37, -1.0, -0.4],
+      ],
+      paint,
+      [0, -0.37, 0.93],
+    );
+    for (let j = 1; j < 8; j++)
+      dd.rod(
+        [-0.31, -0.125 * j - 0.004, -0.05 * j + 0.011],
+        [0.31, -0.125 * j - 0.004, -0.05 * j + 0.011],
+        0.012,
+        dark,
+      );
+    dd.finish();
+    bindings.push({
+      node: door.name,
+      source: 'gear',
+      property: 'rotation',
+      axis: 'x',
+      scale: -1.2,
+      offset: 1.2,
+    });
     const pods = [
-      [-0.65, 0.568125, 1.57, 0.618125],
-      [-1.6, 0.58, 1.57, 0.63],
-      [-3.1, 0.57, 1.59, 0.61],
-      [-4.55, 0.55, 1.62, 0.55],
-      [-5.1, 0.52, 1.63, 0.45],
-      [-5.35, 0.48, 1.61, 0.38],
-      [-6.61, 0.43, 1.59, 0.31],
+      [-0.65, 0.55, 1.57, 0.6, 0.95],
+      [-1.6, 0.55, 1.57, 0.61, 0.95],
+      [-3.1, 0.55, 1.59, 0.6, 0.93],
+      [-4.55, 0.54, 1.61, 0.56, 0.9],
+      [-5.1, 0.53, 1.62, 0.53, 0.88],
+      [-5.35, 0.51, 1.62, 0.51, 0.87],
+      [-6.61, 0.47, 1.62, 0.47, 0.86],
     ];
-    const pr = pods.map(([zz, r, cy, ry]) => ({
+    const pr = pods.map(([zz, r, cy, ry, cx]) => ({
       z: zz,
+      cx: side * cx,
+      cy,
       points: Array.from({ length: 28 }, (_, j) => [
-        x + side * Math.sin(angle(j)) * r,
+        side * cx + side * Math.sin(angle(j)) * r,
         cy + Math.cos(angle(j)) * ry,
       ]),
     }));
     loft(d, [throat, ...pr.slice(0, 5)], paint, { caps: false });
-    loft(d, pr.slice(4), hot, { caps: false });
+    loft(d, pr.slice(4, 6), hot, { caps: false });
+    // Fourteen flat convergent petals (double-sided), each ending in a shallow point so the
+    // exit reads serrated, as on the RD-33, instead of a smooth cone.
+    for (let k = 0; k < 14; k++) {
+      const [r0, r1] = [pr[5], pr[6]],
+        at = (r, j, s = 1) => [
+          r.cx + (r.points[j % 28][0] - r.cx) * s,
+          r.cy + (r.points[j % 28][1] - r.cy) * s,
+          r.z,
+        ],
+        mid = at(r1, 2 * k + 1, Math.cos(Math.PI / 14));
+      sheet(
+        d,
+        [
+          at(r0, 2 * k),
+          at(r0, 2 * k + 2),
+          at(r1, 2 * k + 2),
+          [mid[0], mid[1], r1.z - 0.08],
+          at(r1, 2 * k),
+        ],
+        hot,
+        [mid[0] - r1.cx, mid[1] - r1.cy, -0.05],
+      );
+    }
     const inner = pr.slice(4).map((r) => ({
       ...r,
-      points: r.points.map(([xx, yy]) => [x + (xx - x) * 0.91, 1.61 + (yy - 1.61) * 0.91]),
+      points: r.points.map(([xx, yy]) => [r.cx + (xx - r.cx) * 0.91, r.cy + (yy - r.cy) * 0.91]),
     }));
     loft(d, inner, dark, { caps: false });
     for (let j = 0; j < 28; j++) {
@@ -383,7 +481,7 @@ export function buildMiG29A(s) {
         d,
         pr.slice(4).map((r) => {
           const [xx, yy] = r.points[j * 2];
-          return [x + (xx - x) * 1.004, 1.61 + (yy - 1.61) * 1.004, r.z];
+          return [r.cx + (xx - r.cx) * 1.004, r.cy + (yy - r.cy) * 1.004, r.z];
         }),
         0.004,
         seam,
@@ -395,16 +493,34 @@ export function buildMiG29A(s) {
       0.012,
       metal,
     );
-    d.add(new T.CircleGeometry(0.4, 28).rotateY(Math.PI), dark, [x, 1.59, -5.7]);
-    // Upper auxiliary intake louvers: closed flight configuration, no invented intake telemetry.
+    d.add(new T.CircleGeometry(0.44, 28).rotateY(Math.PI), dark, [side * 0.87, 1.62, -5.7]);
+    // Upper auxiliary intake louvers feed the engines while the inlet doors are shut: on the
+    // ground (gear down, the built pose) each slat hangs open into its recess, and it closes
+    // flush as the gear retracts.
     for (let j = 0; j < 5; j++) {
       const zz = z(446 + j * 13);
       d.box([0.49, 0.018, 0.18], [side * 0.78, 2.398, zz], dark);
-      d.box([0.45, 0.019, 0.135], [side * 0.78, 2.412, zz + 0.014], paint);
+      const slat = group(root, `MiG29-louver-${side === 1 ? 'left' : 'right'}-${j}`, [
+          side * 0.78,
+          2.412,
+          zz + 0.0815,
+        ]),
+        sd = detailKit(slat, slat.name);
+      sd.box([0.45, 0.019, 0.135], [0, 0, -0.0675], paint);
+      sd.finish();
+      slat.rotation.x = -0.6;
+      bindings.push({
+        node: slat.name,
+        source: 'gear',
+        property: 'rotation',
+        axis: 'x',
+        scale: -0.6,
+        offset: 0.6,
+      });
     }
     for (const u of [445, 512, 550, 650, 720, 840]) {
       const yy = 2.35 - (u - 445) * 0.001;
-      d.rod([side * 0.52, yy, z(u)], [side * 1.42, yy - 0.03, z(u)], 0.003, seam);
+      d.rod([side * 0.52, yy, z(u)], [side * (u < 500 ? 1.2 : 1.42), yy - 0.03, z(u)], 0.003, seam);
     }
   }
   // Swept wings with separately hinged leading slats, inboard flaps and outboard ailerons.
@@ -676,8 +792,8 @@ export function buildMiG29A(s) {
     root,
     frame: mig29Frame(),
     enginePoints: [
-      { id: 'engine-1', position: [1.15, 1.61, -5.5] },
-      { id: 'engine-2', position: [-1.15, 1.61, -5.5] },
+      { id: 'engine-1', position: [0.87, 1.62, -5.5] },
+      { id: 'engine-2', position: [-0.87, 1.62, -5.5] },
     ],
     visual: {
       rotors: [],

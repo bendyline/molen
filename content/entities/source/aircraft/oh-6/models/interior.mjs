@@ -80,16 +80,18 @@ export function addInterior(parent, layout, api) {
     );
     ring.rotation.x = Math.PI / 2;
   }
-  box(cabin, 'pedestal-body', [0.24, 0.27, 0.25], [0, 0.82, 1.465], gray);
+  box(cabin, 'pedestal-body', [0.24, 0.25, 0.25], [0, 0.84, 1.45], gray);
   box(cabin, 'center-console', [0.23, 0.08, 0.63], [0, 0.72, 0.69], gray);
   for (let i = 0; i < 4; i++) toggle(cabin, `console-switch-${i}`, [0.075 - i * 0.05, 0.767, 0.84]);
-  box(cabin, 'floor', [1.25, 0.035, 1.72], [0, 0.68, 0.31], gray);
+  // Sized to stay inside the slim egg's lower skin (1.48 m wide, Army 3-view).
+  box(cabin, 'floor', [0.8, 0.035, 1.4], [0, 0.68, 0.29], gray);
   for (const side of [-1, 1]) {
     // One front seat each side, on exposed tubing, plus the aft cabin bench.
     const x = side * 0.38;
     const seat = group(cabin, `front-seat-${side}`);
     for (const dx of [-0.19, 0.19]) {
-      rod(seat, `seat-leg-${dx}`, [x + dx, 0.7, 0.24], [x + dx, 1.01, 0.2], 0.013, silver);
+      // Legs splay in toward the floor, clear of the egg's lower sides.
+      rod(seat, `seat-leg-${dx}`, [x + dx * 0.8, 0.7, 0.24], [x + dx, 1.01, 0.2], 0.013, silver);
       rod(seat, `seat-back-frame-${dx}`, [x + dx, 0.94, 0.18], [x + dx, 1.63, 0.08], 0.016, silver);
     }
     rod(seat, 'seat-upper-rail', [x - 0.19, 1.62, 0.08], [x + 0.19, 1.62, 0.08], 0.015, silver);
@@ -137,27 +139,22 @@ export function addInterior(parent, layout, api) {
     mesh(stick, 'cyclic-shaft', new T.TubeGeometry(curve, 16, 0.015, 8, false), silver);
     grip(stick, 'cyclic-grip', [0, 0.385, -0.15], 0.12);
     const collective = group(cabin, side === -1 ? 'collective' : 'collective_1', [
-      x + 0.24,
+      x + 0.21,
       0.8,
       0.26,
     ]);
     rod(collective, 'collective-shaft', [0, 0, 0], [0, 0.18, 0.29], 0.015, dark);
     const handle = grip(collective, 'collective-throttle', [0, 0.205, 0.32], 0.14);
     handle.rotation.x = 0.8;
+    // Pedals sit back from the chin skin of the slim egg.
     for (const dx of [-0.115, 0.115]) {
-      rod(
-        cabin,
-        `pedal-arm-${side}-${dx}`,
-        [x + dx, 0.7, 1.12],
-        [x + dx, 0.81, 1.27],
-        0.009,
-        green,
-      );
+      const px = x + Math.sign(dx) * 0.075;
+      rod(cabin, `pedal-arm-${side}-${dx}`, [px, 0.73, 0.98], [px, 0.82, 1.1], 0.009, green);
       rod(
         cabin,
         `rudder-pedal-${side}-${dx}`,
-        [x + dx - 0.064, 0.81, 1.27],
-        [x + dx + 0.064, 0.81, 1.27],
+        [px - 0.04, 0.82, 1.1],
+        [px + 0.04, 0.82, 1.1],
         0.012,
         dark,
       );
@@ -170,20 +167,20 @@ export function addInterior(parent, layout, api) {
       };
     }
   }
-  box(cabin, 'aft-seat-bench', [1.1, 0.1, 0.43], [0, 0.91, -0.51], fabric);
-  box(cabin, 'aft-seat-back', [1.08, 0.47, 0.07], [0, 1.16, -0.77], fabric);
+  box(cabin, 'aft-seat-bench', [0.96, 0.1, 0.43], [0, 0.91, -0.51], fabric);
+  box(cabin, 'aft-seat-back', [0.98, 0.47, 0.07], [0, 1.16, -0.77], fabric);
   for (const x of [-0.36, 0, 0.36])
     box(cabin, `aft-seat-belt-${x}`, [0.036, 0.38, 0.009], [x, 1.18, -0.727], white);
   for (const side of [-1, 1]) {
     rod(
       cabin,
       `door-inner-handle-${side}`,
-      [side * 0.77, 1.19, 0.5],
-      [side * 0.77, 1.19, 0.67],
+      [side * 0.68, 1.19, 0.5],
+      [side * 0.68, 1.19, 0.67],
       0.013,
       dark,
     );
-    box(cabin, `door-map-pocket-${side}`, [0.035, 0.2, 0.26], [side * 0.73, 0.9, 0.24], rubber);
+    box(cabin, `door-map-pocket-${side}`, [0.035, 0.2, 0.26], [side * 0.6, 0.92, 0.24], rubber);
   }
   finishCockpit(cabin, (mesh) => {
     if (['instrument-panel', 'pedestal-body', 'center-console'].includes(mesh.name)) return 'panel';

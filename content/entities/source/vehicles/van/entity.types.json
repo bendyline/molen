@@ -4,7 +4,7 @@
   "owner": "@bendyline/molen-entities",
   "types": {
     "molen.entities.vehicle.van": {
-      "doc": "Bendy Van. Cargo van with a high center of mass and restrained road performance.",
+      "doc": "Bendy Van. Passenger van with sliding doors, a high center of mass and restrained road performance.",
       "components": {
         "transform": {
           "pos": [
@@ -45,9 +45,9 @@
             "maxSteer": 0.55,
             "grip": 6.5,
             "driverEye": [
-              0.43,
+              0.4485,
               1.59,
-              1.1
+              0.6
             ],
             "steeringRate": 1.8,
             "steeringFadeSpeed": 18,
@@ -60,7 +60,34 @@
             "drive": "front",
             "rollStiffness": 0.075,
             "pitchStiffness": 0.038,
-            "suspensionFrequency": 1.25
+            "suspensionFrequency": 1.25,
+            "actuators": {
+              "hood": {
+                "seconds": 1.8
+              },
+              "trunk": {
+                "seconds": 1.8
+              },
+              "headlights": {
+                "seconds": 0
+              },
+              "wipers": {
+                "seconds": 1.4,
+                "mode": "cycle"
+              },
+              "doorFrontRight": {
+                "seconds": 1.2
+              },
+              "doorRearRight": {
+                "seconds": 1.2
+              },
+              "doorFrontLeft": {
+                "seconds": 1.2
+              },
+              "doorRearLeft": {
+                "seconds": 1.2
+              }
+            }
           },
           "visual": {
             "wheelNodes": [
@@ -76,9 +103,8 @@
             "paintMaterial": "vehicle-paint-and-trim",
             "interior": {
               "nodes": [
-                "body",
-                "steering-wheel",
-                "cabin"
+                "cabin",
+                "steering-wheel"
               ],
               "bindings": [
                 {
@@ -96,6 +122,198 @@
                   "scale": 0.065,
                   "min": 0,
                   "max": 3.9
+                }
+              ]
+            },
+            "animation": {
+              "sources": {
+                "hood": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "hood"
+                  ]
+                },
+                "trunk": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "trunk"
+                  ]
+                },
+                "headlights": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "headlights"
+                  ]
+                },
+                "wipers": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "wipers"
+                  ]
+                },
+                "doorFrontRight": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorFrontRight"
+                  ]
+                },
+                "doorRearRight": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorRearRight"
+                  ]
+                },
+                "doorFrontLeft": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorFrontLeft"
+                  ]
+                },
+                "doorRearLeft": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorRearLeft"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "doorFrontRight",
+                  "source": "doorFrontRight",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 1.15
+                },
+                {
+                  "node": "doorRearRight",
+                  "source": "doorRearRight",
+                  "property": "position",
+                  "axis": "z",
+                  "scale": -0.9
+                },
+                {
+                  "node": "doorRearRight",
+                  "source": "doorRearRight",
+                  "property": "position",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.15,
+                      -0.12
+                    ],
+                    [
+                      1,
+                      -0.12
+                    ]
+                  ]
+                },
+                {
+                  "node": "doorFrontLeft",
+                  "source": "doorFrontLeft",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1.15
+                },
+                {
+                  "node": "doorRearLeft",
+                  "source": "doorRearLeft",
+                  "property": "position",
+                  "axis": "z",
+                  "scale": -0.9
+                },
+                {
+                  "node": "doorRearLeft",
+                  "source": "doorRearLeft",
+                  "property": "position",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.15,
+                      0.12
+                    ],
+                    [
+                      1,
+                      0.12
+                    ]
+                  ]
+                },
+                {
+                  "node": "hood",
+                  "source": "hood",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": -1.05
+                },
+                {
+                  "node": "trunk",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 1.05
+                },
+                {
+                  "node": "wiper--1",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "wiper-1",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "headlights-lit",
+                  "source": "headlights",
+                  "property": "visible",
+                  "scale": 1
                 }
               ]
             }
@@ -123,18 +341,18 @@
               "id": "driver",
               "role": "driver",
               "position": [
-                0.43,
+                0.4485,
                 1.59,
-                1.1
+                0.6
               ]
             },
             {
               "id": "passenger",
               "role": "passenger",
               "position": [
-                -0.43,
+                -0.4485,
                 1.59,
-                1.1
+                0.6
               ]
             }
           ],
@@ -142,12 +360,12 @@
             [
               1.48,
               0,
-              1.1
+              0.6
             ],
             [
               -1.48,
               0,
-              1.1
+              0.6
             ]
           ],
           "reach": 2.8

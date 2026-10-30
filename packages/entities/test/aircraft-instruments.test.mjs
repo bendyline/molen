@@ -2040,8 +2040,10 @@ it('uses a live period Cherokee panel, with rate rather than bank for the turn n
   expect(scene.getObjectByName('Cherokee-heading-drum').visible).toBe(false);
   expect(signals.bindings.map((b) => b.node).join(' ')).not.toMatch(/CLOCK|VACUUM|ADF|VOR/);
   scene.updateMatrixWorld(true);
+  // The front seats look out through the door windows at the pilot's station.
+  const seatZ = components.aircraft.spec.pilotEye[2];
   for (const side of [-1, 1]) {
-    const hits = new Raycaster(new Vector3(0, 1.5, 0), new Vector3(side, 0, 0)).intersectObject(
+    const hits = new Raycaster(new Vector3(0, 1.5, seatZ), new Vector3(side, 0, 0)).intersectObject(
       scene,
       true,
     );

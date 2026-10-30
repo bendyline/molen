@@ -133,6 +133,27 @@ describe('World soundscape content and behavior', () => {
     });
     expect(category(coastal, 'coast')).toHaveLength(1);
     expect(category(run(), 'coast')).toHaveLength(0);
+    const crossing = {
+      location: places[1],
+      terrain: {
+        streetDistance: 0,
+        coastDistance: Infinity,
+        riverDistance: Infinity,
+        intersectionDistance: 8,
+      },
+    };
+    expect(category(run(crossing), 'traffic').some((v) => v.sound.endsWith('690155'))).toBe(true);
+    expect(
+      run({ ...crossing, terrain: { ...crossing.terrain, intersectionDistance: 80 } }).some((v) =>
+        v.sound.endsWith('690155'),
+      ),
+    ).toBe(false);
+    expect(
+      run({
+        ...crossing,
+        terrain: { streetDistance: 0, coastDistance: Infinity, riverDistance: Infinity },
+      }).some((v) => v.sound.endsWith('690155')),
+    ).toBe(false);
     expect(category(run({ heightAboveGround: 800 }), 'birds')).toHaveLength(0);
     for (const heightAboveGround of [undefined, Number.NaN, Number.POSITIVE_INFINITY]) {
       const ground = run({ heightAboveGround });

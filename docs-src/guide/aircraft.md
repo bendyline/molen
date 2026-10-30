@@ -34,10 +34,10 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | --- | --- |
 | E | Board, or exit after landing, stopping and engine shutdown |
 | I | Start/stop engine; allow the propeller or rotor to spool |
-| Shift / Ctrl | Increase/decrease throttle or helicopter collective; fighter afterburners engage above 85% throttle |
+| = / − | Increase/decrease throttle or helicopter collective; fighter afterburners engage above 85% throttle |
 | W / S | Nose down / nose up |
 | A / D | Bank left / right; helicopter cyclic |
-| Q / Z | Left / right rudder or anti-torque pedals; ground steering in the Mustang |
+| Z / C | Left / right rudder or anti-torque pedals; ground steering in the Mustang |
 | Space | Wheel brakes |
 | G | Retract/extend airplane gear while airborne |
 | F | Toggle airplane flaps |
@@ -48,7 +48,7 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 
 Mustang: start the engine, set flaps, hold the brake while raising throttle, then release the brake.
 The propeller swings the nose left as the tail gets light, and a crosswind turns it into the wind:
-hold a little right rudder (Z), or rudder away from the wind, to keep the runway centerline.
+hold a little right rudder (C), or rudder away from the wind, to keep the runway centerline.
 Rotate around 85–100 knots and release the pitch key once the nose is about 10 degrees up; the
 airplane keeps the attitude it lifted off at. At climb power the propeller's torque rolls it
 slowly left, so tap right bank (D) as needed. Retract gear and flaps after climbing. Reduce
@@ -79,7 +79,7 @@ markings are decorative, while live flight readings come from the HUD. Board at 
 entry point. Its larger footprint needs substantially more runway and clearance.
 
 Osprey and Harrier: use J to select vertical thrust (the parked Osprey starts there), allow the nacelles/nozzles to
-reach 90°, start the engine and increase power smoothly. W/S, A/D and Q/Z provide powered pitch,
+reach 90°, start the engine and increase power smoothly. W/S, A/D and Z/C provide powered pitch,
 roll and yaw control in a hover. Transition toward forward thrust gradually while gaining airspeed;
 the nacelles take 12 seconds for full travel and Harrier nozzles take 3. These are simplified
 powered-lift dynamics, with finite travel, vertical thrust, engine-dependent hover authority and
@@ -112,6 +112,9 @@ probes, reduces lift/control authority and can disable its attached engines. An 
 loss produces a rolling moment. Detached geometry retains its own velocity and spin, then falls,
 bounces and slows against terrain and resident obstacles. Debris expires after 20 simulation
 seconds; the missing section stays missing. **R** repairs the aircraft and clears debris.
+Losing both wings switches the fuselage to ballistic wreck motion, disabling thrust and flight
+controls. Ground and obstacle contact dissipates wreck spin as well as sliding motion, so the
+fuselage settles after impact; airborne wrecks continue to fall and tumble.
 The remaining aircraft use their existing probes with the new contact response; they need
 authored section bindings to display parts breaking away.
 
@@ -446,7 +449,7 @@ master switches, individual engine switches and throttles for airplanes with nam
 parking brakes, and applicable gear, flap and nozzle controls. Supplemental labeled modules fill
 gaps in the original models; their layout approximates the aircraft rather than reproducing every
 real switch. The Cessna 172's existing master rocker and flap selector are directly operable.
-Moving common power (including Shift/Ctrl or the modeled **PWR ALL** handle)
+Moving common power (including =/− or the modeled **PWR ALL** handle)
 synchronizes all throttle levers while preserving individual engine cutoffs, mixtures and propeller settings. A throttle indicates
 commanded power; shaft RPM follows the simulation's spool response. Retractable airplane gear is
 locked on the ground. Helicopters retain the existing shared engine/gearbox model and collective.
@@ -538,3 +541,11 @@ hold is a harness feature, not a player control or a certified performance chart
 `packages/kernel/test/aircraft-engines.test.ts` covers symmetric two/four-engine layouts,
 mirrored engine failures, counter-rudder, thrust moment arms, independent switches/spool,
 explicit repair, terrain rollback, exit safety, keyframe restoration and 30/60/120 Hz consistency.
+
+Exterior mechanisms use the snapshot-owned [graduated actuator system](vehicle-interiors.md#graduated-mechanisms).
+Canopies, hooks and speed brakes accept fractional targets through `aircraftInput.actuators`;
+`aircraftState.actuators` holds actual travel. Ordinary mechanisms reverse immediately from
+their current position. Speed-brake drag follows deployment. Retractable helicopter gear
+uses `helicopter.fixedGear: false` and `gearTransitTime`; skids remain fixed by default.
+The supplied aircraft expose only fitted equipment. Helicopter blade release is a gameplay
+escape effect, triggered by the latched `eject` actuator, and removes rotor lift after release.

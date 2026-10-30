@@ -213,9 +213,10 @@ export function applyLivery(model: THREE.Object3D, data: LiveryData): LiveryVisu
     const subtree = binding.node === undefined ? model : model.getObjectByName(binding.node);
     const meshes: THREE.Mesh[] = [],
       bounds = new THREE.Box3();
-    subtree?.traverse((object) => {
+    const collect = (object: THREE.Object3D): void => {
       if (
         !(object instanceof THREE.Mesh) ||
+        meshes.includes(object) ||
         !materialsOf(object).some((m) => binding.materials.includes(m.name))
       )
         return;
@@ -229,7 +230,15 @@ export function applyLivery(model: THREE.Object3D, data: LiveryData): LiveryVisu
       surface.computeBoundingBox();
       if (surface.boundingBox) bounds.union(surface.boundingBox);
       surface.dispose();
-    });
+    };
+    subtree?.traverse(collect);
+    // Articulation can move a cut skin into a hinge outside its original paint subtree.
+    // Preserve that source association through glTF extras, including fully extracted skins.
+    if (binding.node !== undefined)
+      model.traverse((object) => {
+        const sources = object.userData.liverySourceNodes;
+        if (Array.isArray(sources) && sources.includes(binding.node)) collect(object);
+      });
     if (!meshes.length || bounds.isEmpty()) warnings.push(`Slot ${name}: no matching surface`);
     slots.set(name, { meshes, bounds, binding });
   }

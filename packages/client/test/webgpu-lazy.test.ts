@@ -13,6 +13,7 @@ import { describe, expect, it } from 'vitest';
 // through `await import(...)`. Type-only imports are free — they erase.
 
 const WEBGPU_LEAVES = [
+  'webgpu-clouds.ts',
   'webgpu-driver.ts',
   'webgpu-scene-optimizer.ts',
   'webgpu-sky-reflections.ts',

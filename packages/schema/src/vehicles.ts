@@ -1,3 +1,4 @@
+import type { ActuatorSpecs } from './actuators';
 import type { JsonObject } from './json';
 import type { ModelSignalSpec } from './model-signals';
 import type { VehicleInteriorSpec } from './vehicle-interior';
@@ -48,6 +49,7 @@ export interface CycleSpec extends JsonObject {
 
 /** Data-driven tuning consumed by the generic wheeled-vehicle solver. */
 export interface VehicleSpec extends JsonObject {
+  actuators?: ActuatorSpecs;
   label: string;
   /** Generic body style, so a host can classify or relabel the vehicle without its real name. */
   bodyStyle?: VehicleBodyStyle;

@@ -17,7 +17,7 @@ play without opening a browser.
 | `molen.audio.*` | scene scripts | `play`, `stop` and `music`, emitted as `audio.*` events |
 | `@bendyline/molen-client/audio` | the page | `createAudioLayer` loads banks and plays what the rules ask for |
 
-The `molen.sounds` content pack carries 165 CC0 sounds (ambience, vehicles, footsteps, impacts,
+The `molen.sounds` content pack carries 170 CC0 sounds (ambience, vehicles, footsteps, impacts,
 foley, UI, stings and six music tracks). Fetch it into a project with:
 
 ```sh
@@ -211,6 +211,43 @@ Ground ambience requires a known terrain height and fades with altitude; enclose
 boats and exterior cameras retain outside ambience. Only one bed per category plays, with
 staggered rotation and five-second crossfades. See [Earth view](earth-view.md) for host inputs.
 Pass `audio: false` to turn it off, and use `view.audio` for volume.
+
+Vehicle details use the same simulation snapshots as the visuals:
+
+- Pedestrian-signal recordings belong to the `earth:category:crossing` pool. They require a
+  nearby mapped or rendered traffic signal, fade to silence 55 m from the junction edge and
+  25 m above ground, and stay silent when the map context is unknown. Ordinary traffic keeps
+  its separate road-distance mix. The recording contains its own signal cycle; it is not a
+  promise that a simulated crossing is safe to use.
+- Paved airplane touchdowns play a short tire spin-up chirp, scaled by ground speed and descent
+  rate. Retracted gear, crashes, grass/unknown surfaces, parked spawns and rapid landing bounces
+  stay quiet. Composing hosts supply `EarthAudioFrame.surfaceAt(x, z)` so contact uses the
+  aircraft's position; the standard Earth view and World Explorer do this automatically.
+- Door, hood and trunk actuator movement triggers opening/sliding foley; a closing latch sounds
+  only when travel reaches the shut position. Van rear doors slide. Wipers sound at each
+  half-cycle of their actual actuator phase, including the return stroke when switched off.
+  Legacy vehicles retain boarding cues. Passenger boarding never starts or stops an engine.
+- Flap and retractable landing-gear motor loops track changes in `flapPosition` and
+  `gearPosition`. They run during extension/retraction, preserve one voice through reversals,
+  and fade out when the mechanism stops, including partial flap settings. Fixed or instant
+  gear stays silent; retractable helicopter gear is supported. Pauses, teleports, removed
+  aircraft and world switches clean up the loops. The two generic servo recordings are CC0:
+  [vacuumfan7072](https://freesound.org/people/vacuumfan7072/sounds/264592/) and
+  [Burningmonkey](https://freesound.org/people/Burningmonkey/sounds/322021/).
+- Helicopter engine loops tagged `rotor` use estimated collective and cyclic feathering angles,
+  bank/rate, descending inflow and listener direction to change gain, low-pass cutoff and a
+  once-per-revolution loading envelope. Web Audio generates that envelope at audio rate;
+  the recorded blade-passage chop remains intact. RPM still controls playback speed. This is
+  an authored acoustic approximation, not a calibrated aerodynamic noise solver, and it does
+  not change flight physics or replay hashes. The dependency choices are informed by NASA's
+  [maneuvering flight noise study](https://ntrs.nasa.gov/citations/20160005979).
+
+Interactive emitters take priority over background beds when the voice budget is full. Missing
+new foley in older/custom packs is silent. The added recordings are CC0, with source pages,
+authors, verified license dates and source hashes in the sound pack's `sources.json` and credits
+in `NOTICE.md`: [tire foley](https://freesound.org/people/johnnydekk/sounds/614627/),
+[wipers](https://bigsoundbank.com/windshield-wipers-slow-2-s3111.html) and
+[sliding door foley](https://freesound.org/people/SwagMuffinPlus/sounds/176146/).
 
 Sound packs can also provide a `birdsong` document (`molen/earth-birdsong@1`). The default pack
 contains eight CC0 regional recordings, selected by geography, observed habitat, calendar month

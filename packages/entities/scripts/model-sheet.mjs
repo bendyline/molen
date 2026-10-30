@@ -18,6 +18,7 @@
  * Options: --views=q3f,q3r,side,front,rear,top,clay,far,claySide (default all but claySide),
  * --tile=420x280, --cols=4 (views per line), --grid=N (family sheets: N models per line),
  * --out=shots/model-sheets (ignored by Git), --gpu (hardware GPU instead of SwiftShader).
+ * --signals=gear:0.4,canopy:1 poses the model's actual runtime signal bindings.
  * Sheets are local review evidence; see content/ASSET-PACKS.md "Model review images".
  */
 import { createReadStream } from 'node:fs';
@@ -71,7 +72,32 @@ async function bundle(slug) {
           wheelRadius: recipe.wheelRadius,
         }
       : undefined;
-    return { slug, category, label: manifest.title ?? slug, glb, dims };
+    const definition = JSON.parse(await readFile(resolve(directory, 'entity.types.json'), 'utf8'));
+    const components = Object.values(definition.types)[0].components;
+    const visual = components.aircraft?.spec.visual ?? components.vehicle?.visual;
+    const articulation = visual
+      ? {
+          ...visual.animation,
+          bindings: [
+            ...(visual.flaps ?? []).map((b) => ({
+              node: b.node,
+              source: 'flaps',
+              property: 'rotation',
+              axis: b.axis,
+              scale: b.multiplier,
+            })),
+            ...(visual.ailerons ?? []).map((b) => ({
+              node: b.node,
+              source: 'rollInput',
+              property: 'rotation',
+              axis: b.axis,
+              scale: b.multiplier,
+            })),
+            ...(visual.animation?.bindings ?? []),
+          ],
+        }
+      : undefined;
+    return { slug, category, label: manifest.title ?? slug, glb, dims, articulation };
   }
   throw new Error(`No source bundle named ${slug}`);
 }
@@ -176,8 +202,22 @@ const MIME = {
   '.glb': 'model/gltf-binary',
 };
 const served = new Map();
+const esbuild = await import(pathToFileURL(require.resolve('esbuild')).href);
+const signalBundle = await esbuild.build({
+  entryPoints: [resolve(repo, 'packages/client/src/model-signals.ts')],
+  bundle: true,
+  write: false,
+  format: 'esm',
+  platform: 'browser',
+  external: ['three'],
+});
+const signalModules = new Map([['/signals/model-signals.js', signalBundle.outputFiles[0].text]]);
 const server = createServer(async (request, response) => {
   const url = decodeURIComponent(new URL(request.url, 'http://x').pathname);
+  if (signalModules.has(url)) {
+    response.writeHead(200, { 'content-type': 'text/javascript' }).end(signalModules.get(url));
+    return;
+  }
   let path;
   if (url === '/') path = resolve(here, 'model-sheet.html');
   else if (url.startsWith('/three/')) path = resolve(threeRoot, url.slice(7));
@@ -220,6 +260,17 @@ try {
         url: key,
         label: row.label,
         dims: row.dims,
+        articulation: row.articulation,
+        signals: arg('signals')
+          ? Object.fromEntries(
+              arg('signals')
+                .split(',')
+                .map((pair) => {
+                  const [name, value] = pair.split(':');
+                  return [name, Number(value)];
+                }),
+            )
+          : undefined,
         water: row.category === 'watercraft',
         file: relative(repo, row.glb).replaceAll(sep, '/'),
       };

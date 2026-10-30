@@ -1,5 +1,7 @@
 /** A400M Atlas: explicit stations from Airbus's 2025 general-arrangement views.
  * Cockpit layout from Belyakov's ILA2014 and MOD flight-deck photographs. */
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { smoothSurface } from '../surface-normals.mjs';
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
@@ -103,78 +105,314 @@ export function buildA400M(s) {
     [854, 0.75, 212, 198],
     [879, 0.04, 205, 200],
   ];
-  const rings = stations.map(([u, w, b, t]) => {
-    const top = sy(t),
-      bottom = sy(b),
-      h = top - bottom;
-    return {
-      z: sz(u),
-      points: [
-        [0, top],
-        [0.5 * w, top - 0.025 * h],
-        [0.86 * w, top - 0.13 * h],
-        [w, top - 0.31 * h],
-        [w, bottom + 0.32 * h],
-        [0.86 * w, bottom + 0.12 * h],
-        [0.5 * w, bottom + 0.025 * h],
-        [0, bottom],
-        [-0.5 * w, bottom + 0.025 * h],
-        [-0.86 * w, bottom + 0.12 * h],
-        [-w, bottom + 0.32 * h],
-        [-w, top - 0.31 * h],
-        [-0.86 * w, top - 0.13 * h],
-        [-0.5 * w, top - 0.025 * h],
+  // Round Atlas section (head-on photographs): a round nose and barrel; aft of the sponsons the
+  // lower body flattens into the broad loading ramp. Index order is unchanged.
+  const section = (i, w, bottom, top) => {
+    const [crown, belly, k] =
+        i < 3
+          ? [2.15, 2.3, 0.45]
+          : i < 6
+            ? [i < 5 ? 2.9 : 2.65, 2.4, 0.45]
+            : i < 11
+              ? [2.4, 2.6, 0.46]
+              : [2.3, 3.4, 0.55],
+      mid = bottom + k * (top - bottom),
+      up = (a) => [
+        w * Math.pow(Math.sin(a), 2 / crown),
+        mid + (top - mid) * Math.pow(Math.cos(a), 2 / crown),
       ],
-    };
-  });
+      down = (a) => [
+        w * Math.pow(Math.sin(a), 2 / belly),
+        mid - (mid - bottom) * Math.pow(Math.cos(a), 2 / belly),
+      ],
+      right = [up(0), up(0.5), up(0.98), up(1.42), down(1.42), down(0.98), down(0.5), down(0)];
+    return [
+      ...right,
+      ...right
+        .slice(1, 7)
+        .map(([x, y]) => [-x, y])
+        .reverse(),
+    ];
+  };
+  const rings = stations.map(([u, w, b, t], i) => ({
+    z: sz(u),
+    points: section(i, w, sy(b), sy(t)),
+  }));
   const p = (i, j) => [...rings[i].points[(j + 14) % 14], rings[i].z],
     lerp = (a, b, t) => a.map((v, k) => v + (b[k] - v) * t);
-  loft(d, rings, paint, {
-    skip: (i, j) =>
-      i < 2 ||
-      ([2, 3].includes(i) && [0, 1, 12, 13].includes(j)) ||
-      ([3, 4].includes(i) && [2, 11].includes(j)),
-  });
-  // Six continuous window panes. Construction facets do not become extra frames.
-  for (const side of [-1, 1]) {
-    const j = side > 0 ? 2 : 12,
-      k = side > 0 ? 1 : 13,
-      contour = [p(2, 0), p(3, 0), p(4, 0), p(4, k), p(4, j), p(3, j), p(2, j), p(2, k)];
-    const at = (u, v) => lerp(lerp(p(2, 0), p(4, 0), v), lerp(p(2, j), p(4, j), v), u);
-    const hole = [at(0.06, 0.17), at(0.06, 0.7), at(0.9, 0.92), at(0.9, 0.42)];
-    sheet(d, contour, paint, [side * 0.3, 1, 1], [hole]);
-    sheet(d, hole, glass, [side * 0.3, 1, 1]);
-    outline(d, hole, 0.022, dark);
-    for (const i of [3, 4]) {
-      const a = p(i, j),
-        b = p(i + 1, j),
-        c = p(i + 1, j + side),
-        e = p(i, j + side),
-        q = (u, v) => lerp(lerp(a, b, u), lerp(e, c, u), v);
-      const pane = [q(0.11, 0.1), q(0.88, 0.13), q(0.86, 0.78), q(0.14, 0.83)];
-      sheet(d, [a, b, c, e], paint, [side, 1, 0.3], [pane]);
-      sheet(d, pane, glass, [side, 1, 0.3]);
+  // The shell is smoothed as one closed surface before the radome and glazed facets are removed,
+  // so the skin around each cut keeps the normals its window surround is given below.
+  const skinNormals = new Map(),
+    key = (q) => q.map((v) => v.toFixed(4)).join(',');
+  {
+    const cut = (i, j) =>
+        i < 2 ||
+        ([2, 3].includes(i) && [0, 1, 12, 13].includes(j)) ||
+        ([4, 5].includes(i) && [1, 12].includes(j)),
+      parts = [],
+      removed = [];
+    for (let i = 0; i < rings.length - 1; i++)
+      for (let j = 0; j < 14; j++) {
+        const a = p(i, j),
+          b = p(i + 1, j),
+          c = p(i + 1, j + 1),
+          e = p(i, j + 1),
+          normal = new T.Vector3(...b)
+            .sub(new T.Vector3(...a))
+            .cross(new T.Vector3(...e).sub(new T.Vector3(...a)));
+        if (normal.lengthSq() < 1e-14)
+          normal
+            .copy(new T.Vector3(...b).sub(new T.Vector3(...a)))
+            .cross(new T.Vector3(...c).sub(new T.Vector3(...a)));
+        const centre = (r) =>
+            r.points.reduce((s, q) => [s[0] + q[0] / 14, s[1] + q[1] / 14], [0, 0]),
+          c0 = centre(rings[i]),
+          c1 = centre(rings[i + 1]);
+        if (
+          normal.dot(
+            new T.Vector3(
+              (a[0] + b[0] + c[0] + e[0]) / 4 - (c0[0] + c1[0]) / 2,
+              (a[1] + b[1] + c[1] + e[1]) / 4 - (c0[1] + c1[1]) / 2,
+              0,
+            ),
+          ) < 0
+        )
+          normal.negate();
+        if (normal.lengthSq() < 1e-14) continue;
+        quad({ add: (g) => parts.push(g) }, a, b, c, e, paint, normal.toArray());
+        removed.push(cut(i, j));
+      }
+    const merged = mergeGeometries(parts),
+      smooth = smoothSurface(merged),
+      position = smooth.getAttribute('position'),
+      normal = smooth.getAttribute('normal'),
+      kept = [];
+    for (let v = 0; v < position.count; v++) {
+      const q = [position.getX(v), position.getY(v), position.getZ(v)];
+      if (!skinNormals.has(key(q)))
+        skinNormals.set(key(q), [normal.getX(v), normal.getY(v), normal.getZ(v)]);
+      if (!removed[Math.floor(v / 6)]) kept.push(v);
+    }
+    const geometry = new T.BufferGeometry();
+    for (const [name, attribute] of [
+      ['position', position],
+      ['normal', normal],
+    ])
+      geometry.setAttribute(
+        name,
+        new T.Float32BufferAttribute(
+          kept.flatMap((v) => [attribute.getX(v), attribute.getY(v), attribute.getZ(v)]),
+          3,
+        ),
+      );
+    d.add(geometry, paint);
+    sheet(
+      d,
+      rings.at(-1).points.map((q) => [...q, rings.at(-1).z]),
+      paint,
+      [0, 0, -1],
+    );
+    merged.dispose();
+    for (const g of parts) g.dispose();
+  }
+  // A glazed patch of the shell (nu x nv facets from station i0, section point j0 on the right)
+  // is triangulated with its grid nodes as Steiner points, so the painted frame and the pane
+  // edges follow the shell's curvature and keep its smooth normals.
+  const normalAt = (i, j) => {
+    const q = p(i, j),
+      smooth = skinNormals.get(key(q.map((v) => Math.fround(v))));
+    if (smooth) return smooth;
+    const mid = (rings[i].points[0][1] + rings[i].points[7][1]) / 2,
+      n = new T.Vector3(...p(i, j + 1))
+        .sub(new T.Vector3(...p(i, j - 1)))
+        .cross(new T.Vector3(...p(Math.max(i - 1, 0), j)).sub(new T.Vector3(...p(i + 1, j))))
+        .normalize();
+    return n.dot(new T.Vector3(q[0], q[1] - mid, 0)) < 0 ? n.negate().toArray() : n.toArray();
+  };
+  const glazePatch = (i0, j0, nu, nv, side, panes) => {
+    const m = (q) => [q[0] * side, q[1], q[2]],
+      cell = (U, V) => {
+        const cu = Math.min(Math.floor(U), nu - 1),
+          cv = Math.min(Math.floor(V), nv - 1);
+        return [i0 + cv, j0 + cu, U - cu, V - cv];
+      },
+      blend = (f, U, V) => {
+        const [i, j, fu, fv] = cell(U, V);
+        return lerp(lerp(f(i, j), f(i + 1, j), fv), lerp(f(i, j + 1), f(i + 1, j + 1), fv), fu);
+      },
+      at = (U, V) => m(blend(p, U, V)),
+      normal = (U, V) => new T.Vector3(...m(blend(normalAt, U, V))).normalize(),
+      // Pane edges also get a vertex wherever they cross a station or section line.
+      dense = (poly) =>
+        poly.flatMap((q, k) => {
+          const r = poly[(k + 1) % poly.length],
+            ts = [0, 1 / 3, 2 / 3];
+          for (const [c, n] of [
+            [0, nu],
+            [1, nv],
+          ])
+            for (let g = 1; g < n; g++) {
+              const t = (g - q[c]) / (r[c] - q[c]);
+              if (t > 0.02 && t < 0.98) ts.push(t);
+            }
+          return ts
+            .sort((a, b) => a - b)
+            .filter((t, i, a) => i === 0 || t - a[i - 1] > 0.01)
+            .map((t) => lerp(q, r, t));
+        }),
+      outer = [
+        ...Array.from({ length: 4 * nu }, (_, s) => [s / 4, 0]),
+        ...Array.from({ length: 4 * nv }, (_, s) => [nu, s / 4]),
+        ...Array.from({ length: 4 * nu }, (_, s) => [nu - s / 4, nv]),
+        ...Array.from({ length: 4 * nv }, (_, s) => [0, nv - s / 4]),
+      ],
+      holes = panes.map(dense),
+      clear = ([u, v], gap) =>
+        holes.every((h) => {
+          let inside = false,
+            near = Infinity;
+          for (let k = 0, l = h.length - 1; k < h.length; l = k++) {
+            const [ax, ay] = h[k],
+              [bx, by] = h[l];
+            if (ay > v !== by > v && u < ((bx - ax) * (v - ay)) / (by - ay) + ax) inside = !inside;
+            const t = Math.max(
+              0,
+              Math.min(
+                1,
+                ((u - ax) * (bx - ax) + (v - ay) * (by - ay)) /
+                  ((bx - ax) * (bx - ax) + (by - ay) * (by - ay)),
+              ),
+            );
+            near = Math.min(near, Math.hypot(u - ax - t * (bx - ax), v - ay - t * (by - ay)));
+          }
+          return !inside && near > gap;
+        }),
+      steiner = [];
+    // A coarse interior grid, plus close points along the station and section lines where the
+    // shell bends, so no triangle bridges a bend and sags below the neighbouring skin.
+    for (let s = 1; s < 4 * nu; s++)
+      for (let t = 1; t < 4 * nv; t++)
+        if (s % 4 && t % 4 && clear([s / 4, t / 4], 0.06)) steiner.push([[s / 4, t / 4]]);
+    for (let s = 0; s < 25 * Math.max(nu, nv); s++) {
+      const f = (s + 0.3) / 25;
+      for (let k = 1; k < nv; k++) if (f < nu && clear([f, k], 0.012)) steiner.push([[f, k]]);
+      for (let k = 1; k < nu; k++) if (f < nv && clear([k, f], 0.012)) steiner.push([[k, f]]);
+    }
+    // Triangulate the projected shell positions: grid points along a bent station edge are not
+    // collinear there, so the triangulator keeps them and the patch meets its neighbours.
+    const plane = new T.Vector3();
+    for (let k = 0; k < outer.length; k++)
+      plane.add(
+        new T.Vector3(...at(...outer[k])).cross(
+          new T.Vector3(...at(...outer[(k + 1) % outer.length])),
+        ),
+      );
+    plane.normalize();
+    const ax = new T.Vector3(...at(nu, 0)).sub(new T.Vector3(...at(0, 0))).normalize(),
+      ay = plane.clone().cross(ax).normalize(),
+      uv = [outer, ...holes, ...steiner].flat(),
+      flat = (q) => {
+        const p3 = new T.Vector3(...at(...q));
+        return new T.Vector2(p3.dot(ax), p3.dot(ay));
+      },
+      index = T.ShapeUtils.triangulateShape(
+        outer.map(flat),
+        [...holes, ...steiner].map((h) => h.map(flat)),
+      ).flat();
+    for (let k = 0; k < index.length; k += 3) {
+      const [pa, pb, pc] = index.slice(k, k + 3).map((n) => new T.Vector3(...at(...uv[n])));
+      if (
+        pb
+          .sub(pa)
+          .cross(pc.sub(pa))
+          .dot(normal(...uv[index[k]])) < 0
+      )
+        [index[k + 1], index[k + 2]] = [index[k + 2], index[k + 1]];
+    }
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute(
+      'position',
+      new T.Float32BufferAttribute(
+        uv.flatMap((q) => at(...q)),
+        3,
+      ),
+    );
+    geometry.setAttribute(
+      'normal',
+      new T.Float32BufferAttribute(
+        uv.flatMap((q) => normal(...q).toArray()),
+        3,
+      ),
+    );
+    geometry.setIndex(index);
+    d.add(geometry, paint);
+    for (const h of holes) {
+      const pane = h.map((q) => at(...q)),
+        c = h.reduce((s, q) => [s[0] + q[0] / h.length, s[1] + q[1] / h.length], [0, 0]);
+      sheet(d, pane, glass, normal(...c).toArray());
       outline(d, pane, 0.022, dark);
     }
-    d.rod([side * 0.3, 5.13, 20.45], [side * 0.62, 5.26, 20.1], 0.015, dark);
-    d.rod([side * 0.62, 5.26, 20.1], [side * 0.92, 5.38, 19.8], 0.012, dark);
+    return { at, normal };
+  };
+  // Six continuous window panes. Construction facets do not become extra frames.
+  for (const side of [-1, 1]) {
+    // Front and angled windscreen panes, then two side windows, all in one band under the roof
+    // line as in the photographs.
+    const front = glazePatch(2, 0, 2, 2, side, [
+      [
+        [0.12, 0.34],
+        [0.12, 1.4],
+        [0.98, 1.62],
+        [0.98, 0.58],
+      ],
+      [
+        [1.06, 0.6],
+        [1.06, 1.64],
+        [1.82, 1.84],
+        [1.82, 0.86],
+      ],
+    ]);
+    glazePatch(4, 1, 1, 1, side, [
+      [
+        [0.1, 0.1],
+        [0.1, 0.9],
+        [0.92, 0.9],
+        [0.92, 0.1],
+      ],
+    ]);
+    glazePatch(5, 1, 1, 1, side, [
+      [
+        [0.1, 0.05],
+        [0.1, 0.4],
+        [0.88, 0.4],
+        [0.88, 0.05],
+      ],
+    ]);
+    const wiper = (t) => {
+      const q = lerp([0.12, 0.34], [0.98, 0.58], t);
+      return new T.Vector3(...front.at(...q)).addScaledVector(front.normal(...q), 0.02).toArray();
+    };
+    d.rod(wiper(0.15), wiper(0.55), 0.015, dark);
+    d.rod(wiper(0.55), wiper(0.9), 0.012, dark);
   }
-  // Nose radome follows the nose stations rather than an oversized spherical attachment.
-  const noseSection = (u, w, b, t) => ({
-    z: sz(u),
-    points: rings[2].points.map(([x, y]) => [
-      (x / 1.15) * w,
-      sy(b) + ((y - sy(286)) / (sy(231) - sy(286))) * (sy(t) - sy(b)),
-    ]),
-  });
+  // Blunt black radome: an elliptical dome on the radome joint ring (photographs), keeping the
+  // drawing's tip position.
+  const base = rings[2],
+    tipY = (rings[0].points[0][1] + rings[0].points[7][1]) / 2,
+    baseY = (base.points[0][1] + base.points[7][1]) / 2;
   loft(
     d,
     [
       rings[0],
-      noseSection(178, 0.32, 274, 255),
-      rings[1],
-      noseSection(192, 0.95, 283, 240),
-      rings[2],
+      ...[0.02, 0.08, 0.2, 0.38, 0.6, 0.8].map((f) => {
+        const s = Math.sqrt(1 - (1 - f) * (1 - f)),
+          y = tipY + (baseY - tipY) * f;
+        return {
+          z: rings[0].z + (base.z - rings[0].z) * f,
+          points: base.points.map(([x, yy]) => [x * s, y + (yy - baseY) * s]),
+        };
+      }),
+      base,
     ],
     dark,
     { caps: false },
@@ -199,21 +437,22 @@ export function buildA400M(s) {
       dark,
       [1, 0, 0],
     );
-  // Main gear sponsons, carefully separated from the cargo body.
+  // Main gear sponsons, rooted in the lower side skin so they read as the broad lower body of
+  // the head-on photographs.
   for (const side of [-1, 1]) {
     loft(
       d,
       [
-        [9.8, 0.12, 1.7, 0.12],
-        [8.1, 0.62, 1.7, 0.58],
-        [4.3, 0.88, 1.65, 0.78],
-        [-0.8, 0.86, 1.65, 0.68],
-        [-3.2, 0.45, 1.8, 0.42],
-        [-4.1, 0.05, 2, 0.06],
+        [9.8, 0.12, 1.75, 0.12],
+        [8.1, 0.82, 1.75, 0.68],
+        [4.3, 1.08, 1.72, 0.9],
+        [-0.8, 1.04, 1.75, 0.6],
+        [-2.9, 0.62, 2.0, 0.36],
+        [-3.8, 0.1, 2.2, 0.06],
       ].map(([z, r, y, h]) => ({
         z,
         points: Array.from({ length: 16 }, (_, i) => [
-          side * (2.45 + Math.sin((i * Math.PI) / 8) * r),
+          side * (2.25 + Math.sin((i * Math.PI) / 8) * r),
           y + Math.cos((i * Math.PI) / 8) * h,
         ]),
       })),
@@ -286,10 +525,10 @@ export function buildA400M(s) {
   // Tall swept fin and almost level T-tail; dimensions estimated from the manufacturer views.
   const fin = [
       [0, 6.75, -8.75],
-      [0, 7.25, -10.1],
+      [0, 7.4, -9.85],
       [0, 14.7, -14.1],
-      [0, 13.68, -19.8],
-      [0, 6.7, -15.3],
+      [0, 13.68, -19.6],
+      [0, 6.7, -14.85],
     ],
     fth = (p) => (p[1] > 12 ? 0.12 : 0.23);
   for (const side of [-1, 1])
@@ -312,11 +551,11 @@ export function buildA400M(s) {
       [0, b[2] - a[2], a[1] - b[1]],
     );
   }
-  const rm = group(root, 'A400-rudder-mount', [0, 6.7, -15.3]),
+  const rm = group(root, 'A400-rudder-mount', [0, 6.7, -14.85]),
     rg = group(rm, 'A400-rudder');
   rm.quaternion.setFromUnitVectors(
     new T.Vector3(0, 1, 0),
-    new T.Vector3(0, 6.98, -4.5).normalize(),
+    new T.Vector3(0, 6.98, -4.75).normalize(),
   );
   const rd = detailKit(rg, rg.name),
     ri = new T.Matrix4().compose(rm.position, rm.quaternion, new T.Vector3(1, 1, 1)).invert(),
@@ -325,20 +564,20 @@ export function buildA400M(s) {
     sheet(
       rd,
       [
-        rp(side * 0.07, 6.7, -15.3),
-        rp(side * 0.045, 13.68, -19.8),
-        rp(side * 0.045, 13.68, -20.9),
-        rp(side * 0.07, 6.7, -16.6),
+        rp(side * 0.07, 6.7, -14.85),
+        rp(side * 0.045, 13.68, -19.6),
+        rp(side * 0.045, 13.68, -20.65),
+        rp(side * 0.07, 6.7, -16.1),
       ],
       paint,
       [side, 0, 0],
     );
   quad(
     rd,
-    rp(-0.07, 6.7, -16.6),
-    rp(-0.045, 13.68, -20.9),
-    rp(0.045, 13.68, -20.9),
-    rp(0.07, 6.7, -16.6),
+    rp(-0.07, 6.7, -16.1),
+    rp(-0.045, 13.68, -20.65),
+    rp(0.045, 13.68, -20.65),
+    rp(0.07, 6.7, -16.1),
     paint,
     [0, 0, -1],
   );
@@ -475,7 +714,7 @@ export function buildA400M(s) {
   for (const side of [-1, 1]) {
     const g = group(root, `A400-main-gear-${side}`),
       dd = detailKit(g, g.name);
-    for (const z of [6.0, 4.2, 2.4]) {
+    for (const z of [6.1, 4.58, 3.06]) {
       for (const dx of [-0.31, 0.31]) wheel(dd, side * 3.12 + dx, 0.52, z, 0.52, 0.31);
       dd.rod([side * 3.12, 0.52, z], [side * 2.65, 2, z + 0.2], 0.071, metal);
       dd.rod([side * 2.8, 1.45, z + 0.1], [side * 2.55, 1.9, z - 0.7], 0.04, metal);
@@ -561,6 +800,22 @@ export function buildA400M(s) {
     );
     // Exterior operator identifiers are supplied by the selected livery.
   }
+  // Ramp hinge and ramp/upper-door joint across the flat underside (rear 3/4 photographs).
+  for (const z of [-3.4, -11.4]) {
+    let i = 0;
+    while (i < rings.length - 2 && z < rings[i + 1].z) i++;
+    const t = (rings[i].z - z) / (rings[i].z - rings[i + 1].z);
+    outline(
+      d,
+      [5, 6, 7, 8, 9].map((j) => {
+        const q = lerp(rings[i].points[j], rings[i + 1].points[j], t);
+        return [q[0] * 1.004, q[1] - 0.006, z];
+      }),
+      0.015,
+      seam,
+      false,
+    );
+  }
   for (const index of [6, 8, 11, 13]) {
     const r = rings[index];
     outline(
@@ -584,7 +839,17 @@ export function buildA400M(s) {
   }
   ellipsoid(d, [0, 6.28, 12], [0.1, 0.07, 0.13], d.red, 10);
   d.finish();
-  const interior = cockpit(root, { paint, dark, metal, glass });
+  // The flight-deck rear bulkhead follows the crown at its station instead of a square sheet.
+  const bz = 15.9,
+    bi = rings.findIndex((r) => r.z < bz),
+    bt = (rings[bi - 1].z - bz) / (rings[bi - 1].z - rings[bi].z),
+    bring = rings[bi - 1].points.map((q, j) => lerp(q, rings[bi].points[j], bt)),
+    bmid = (bring[0][1] + bring[7][1]) / 2,
+    bulkhead = [11, 12, 13, 0, 1, 2, 3]
+      .map((j) => [bring[j][0] * 0.95, bmid + (bring[j][1] - bmid) * 0.97, bz])
+      .filter((q) => q[1] > 2.65);
+  bulkhead.push([bulkhead.at(-1)[0] * 0.94, 2.6, bz], [bulkhead[0][0] * 0.94, 2.6, bz]);
+  const interior = cockpit(root, { paint, dark, metal, glass, bulkhead });
   cleanGeometry(root);
   return {
     root,
@@ -643,12 +908,12 @@ function cockpit(root, m) {
     h = 0.4,
     screenXs = [1.04, 0.68, 0.19, -0.19, -0.68, -1.04];
   const contour = [
-    [-1.48, 4.23, z],
-    [-1.48, 4.7, z],
-    [-1.23, 4.85, z],
-    [1.23, 4.85, z],
-    [1.48, 4.7, z],
-    [1.48, 4.23, z],
+    [-1.36, 4.23, z],
+    [-1.36, 4.7, z],
+    [-1.13, 4.85, z],
+    [1.13, 4.85, z],
+    [1.36, 4.7, z],
+    [1.36, 4.23, z],
     [0.5, 4.23, z],
     [0.5, 4.13, z],
     [-0.5, 4.13, z],
@@ -822,7 +1087,7 @@ function cockpit(root, m) {
     d.rod([side * 0.58, 4.22, 19.06], [side * 1.18, 4.22, 19.06], 0.014, m.metal);
   }
   // Deep glare shield, FCU and two radio/HUD control banks.
-  d.box([2.77, 0.19, 0.45], [0, 5.0, 19.48], m.dark);
+  d.box([2.5, 0.19, 0.45], [0, 5.0, 19.48], m.dark);
   for (const side of [-1, 1]) {
     d.box([0.63, 0.19, 0.022], [side * 0.92, 5.02, 19.24], face);
     d.box([0.39, 0.044, 0.008], [side * 0.92, 5.05, 19.222], black);
@@ -831,10 +1096,10 @@ function cockpit(root, m) {
       d.box([0.028, 0.021, 0.008], [side * 0.92 - 0.13 + j * 0.051, 4.995, 19.21], m.dark);
     pt.knob(side * 0.92 - 0.27, 5.03, 19.21, 0.024);
     pt.knob(side * 0.92 + 0.27, 5.03, 19.21, 0.024);
-    d.box([0.24, 0.3, 0.03], [side * 1.36, 4.98, 19.31], face);
+    d.box([0.2, 0.3, 0.03], [side * 1.2, 4.98, 19.31], face);
     for (let j = 0; j < 4; j++)
-      d.box([0.045, 0.035, 0.01], [side * 1.4, 5.08 - j * 0.065, 19.29], m.dark);
-    pt.knob(side * 1.3, 5.0, 19.28, 0.025);
+      d.box([0.045, 0.035, 0.01], [side * 1.24, 5.08 - j * 0.065, 19.29], m.dark);
+    pt.knob(side * 1.15, 5.0, 19.28, 0.025);
   }
   for (const [x, label] of [
     [0.42, 'SPD'],
@@ -850,9 +1115,9 @@ function cockpit(root, m) {
   // Roof-mounted HUDs, unlike the C-17's glare-shield projectors.
   for (const side of [-1, 1]) {
     const x = side * 0.83;
-    d.box([0.36, 0.16, 0.5], [x, 5.94, 19.07], m.dark);
-    for (const dx of [-0.17, 0.17]) {
-      d.rod([x + dx, 5.88, 19.08], [x + dx, 5.45, 19.25], 0.017, m.dark);
+    d.box([0.3, 0.14, 0.4], [x - side * 0.03, 5.78, 18.5], m.dark);
+    for (const dx of [-0.15, 0.15]) {
+      d.rod([x + dx, 5.72, 18.66], [x + dx, 5.45, 19.25], 0.017, m.dark);
       d.rod([x + dx, 5.45, 19.25], [x + dx, 5.27, 19.12], 0.012, m.dark);
     }
     const pane = [
@@ -932,7 +1197,7 @@ function cockpit(root, m) {
   }
   td.finish();
   // Overhead groups follow MOD photograph: fire guards aft; fuel/electric/air schematics forward.
-  const over = group(cabin, 'A400-overhead', [0, 6.0, 18.1]);
+  const over = group(cabin, 'A400-overhead', [0, 5.88, 17.95]);
   over.rotation.x = -Math.PI / 2;
   const od = detailKit(over, over.name),
     op = panelTools(od);
@@ -1046,8 +1311,8 @@ function cockpit(root, m) {
         m.dark,
       );
   }
-  d.box([3.0, 0.07, 3.6], [0, 3.365, 17.8], m.dark);
-  sheet(d, rect(0, 4.3, 4.3, 3.4, 15.9), liner, [0, 0, 1], [rect(-1.05, 3.6, 0.78, 1.9, 15.9)]);
+  d.box([3.0, 0.07, 3.3], [0, 3.365, 17.65], m.dark);
+  sheet(d, m.bulkhead, liner, [0, 0, 1], [rect(-1.05, 3.6, 0.78, 1.9, 15.9)]);
   for (let i = 0; i < 6; i++)
     d.box([0.72, 0.08, 0.27], [-1.05, 3.2 - i * 0.32, 15.76 - i * 0.26], m.dark);
   d.box([4, 0.05, 17.7], [0, 2.2, 8.35], liner);

@@ -74,7 +74,20 @@
               ]
             ],
             "visual": {
-              "rotors": [],
+              "rotors": [
+                {
+                  "node": "engine-1-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                },
+                {
+                  "node": "engine-2-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-2"
+                }
+              ],
               "gearNodes": [],
               "flaps": [],
               "ailerons": [],
@@ -110,7 +123,7 @@
                   },
                   {
                     "node": "F22-rudder--1",
-                    "source": "yawInput",
+                    "source": "brakeMix0",
                     "property": "rotation",
                     "axis": "y",
                     "scale": 0.35
@@ -145,7 +158,7 @@
                   },
                   {
                     "node": "F22-rudder-1",
-                    "source": "yawInput",
+                    "source": "brakeMix1",
                     "property": "rotation",
                     "axis": "y",
                     "scale": 0.35
@@ -215,6 +228,60 @@
                     "source": "gearExposed",
                     "property": "visible",
                     "scale": 1
+                  },
+                  {
+                    "node": "canopy-opening",
+                    "source": "canopy",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.85
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.12,
+                        0
+                      ],
+                      [
+                        0.45,
+                        6
+                      ],
+                      [
+                        1,
+                        20
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
                   }
                 ],
                 "derived": {
@@ -252,6 +319,57 @@
                       "gear",
                       0.02
                     ]
+                  },
+                  "brakePosition": {
+                    "op": "coalesce",
+                    "args": [
+                      "speedBrake",
+                      0
+                    ]
+                  },
+                  "brakeMix0Deflection": {
+                    "op": "multiply",
+                    "args": [
+                      "brakePosition",
+                      0.35
+                    ]
+                  },
+                  "brakeMix0Sum": {
+                    "op": "add",
+                    "args": [
+                      "yawInput",
+                      "brakeMix0Deflection"
+                    ]
+                  },
+                  "brakeMix0": {
+                    "op": "clamp",
+                    "args": [
+                      "brakeMix0Sum",
+                      -1,
+                      1
+                    ]
+                  },
+                  "brakeMix1Deflection": {
+                    "op": "multiply",
+                    "args": [
+                      "brakePosition",
+                      -0.35
+                    ]
+                  },
+                  "brakeMix1Sum": {
+                    "op": "add",
+                    "args": [
+                      "yawInput",
+                      "brakeMix1Deflection"
+                    ]
+                  },
+                  "brakeMix1": {
+                    "op": "clamp",
+                    "args": [
+                      "brakeMix1Sum",
+                      -1,
+                      1
+                    ]
                   }
                 },
                 "sources": {
@@ -283,6 +401,27 @@
                     "component": "aircraftState",
                     "path": [
                       "gearPosition"
+                    ]
+                  },
+                  "canopy": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "canopy"
+                    ]
+                  },
+                  "eject": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "eject"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -5883,15 +6022,16 @@
               "maxMach": 2,
               "maxEquivalentAirspeed": 411.75366710698523,
               "gearLimitSpeed": 130,
-              "flapLimitSpeed": 125
+              "flapLimitSpeed": 125,
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
                 "id": "engine-1",
                 "position": [
-                  1,
+                  0.64,
                   2,
-                  -4.45
+                  -5
                 ],
                 "thrustAxis": [
                   0,
@@ -5917,9 +6057,9 @@
               {
                 "id": "engine-2",
                 "position": [
-                  -1,
+                  -0.64,
                   2,
-                  -4.45
+                  -5
                 ],
                 "thrustAxis": [
                   0,
@@ -5942,7 +6082,19 @@
                 "afterburnerThrust": 156000,
                 "afterburnerDetent": 0.85
               }
-            ]
+            ],
+            "actuators": {
+              "canopy": {
+                "seconds": 3
+              },
+              "eject": {
+                "seconds": 1.2,
+                "mode": "latch"
+              },
+              "speedBrake": {
+                "seconds": 1.6
+              }
+            }
           }
         },
         "aircraftInput": {
@@ -5977,7 +6129,12 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {
+            "canopy": 0,
+            "eject": 0,
+            "speedBrake": 0
+          }
         },
         "mountable": {
           "seats": [
@@ -6094,6 +6251,27 @@
               "component": "aircraftInput",
               "path": [
                 "power"
+              ]
+            },
+            "canopy": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "canopy"
+              ]
+            },
+            "eject": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "eject"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -6700,6 +6878,57 @@
               "args": [
                 "pitchDeflection",
                 "rollDeflection"
+              ]
+            },
+            "brakePosition": {
+              "op": "coalesce",
+              "args": [
+                "speedBrake",
+                0
+              ]
+            },
+            "brakeMix0Deflection": {
+              "op": "multiply",
+              "args": [
+                "brakePosition",
+                0.35
+              ]
+            },
+            "brakeMix0Sum": {
+              "op": "add",
+              "args": [
+                "yawInput",
+                "brakeMix0Deflection"
+              ]
+            },
+            "brakeMix0": {
+              "op": "clamp",
+              "args": [
+                "brakeMix0Sum",
+                -1,
+                1
+              ]
+            },
+            "brakeMix1Deflection": {
+              "op": "multiply",
+              "args": [
+                "brakePosition",
+                -0.35
+              ]
+            },
+            "brakeMix1Sum": {
+              "op": "add",
+              "args": [
+                "yawInput",
+                "brakeMix1Deflection"
+              ]
+            },
+            "brakeMix1": {
+              "op": "clamp",
+              "args": [
+                "brakeMix1Sum",
+                -1,
+                1
               ]
             }
           },
@@ -11579,7 +11808,7 @@
             },
             {
               "node": "F22-rudder--1",
-              "source": "yawInput",
+              "source": "brakeMix0",
               "property": "rotation",
               "axis": "y",
               "scale": 0.35
@@ -11614,7 +11843,7 @@
             },
             {
               "node": "F22-rudder-1",
-              "source": "yawInput",
+              "source": "brakeMix1",
               "property": "rotation",
               "axis": "y",
               "scale": 0.35
@@ -11684,6 +11913,60 @@
               "source": "gearExposed",
               "property": "visible",
               "scale": 1
+            },
+            {
+              "node": "canopy-opening",
+              "source": "canopy",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.85
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.12,
+                  0
+                ],
+                [
+                  0.45,
+                  6
+                ],
+                [
+                  1,
+                  20
+                ]
+              ]
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
             }
           ]
         }

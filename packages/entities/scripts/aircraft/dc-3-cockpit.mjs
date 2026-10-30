@@ -231,9 +231,10 @@ export function dc3Cockpit(root, m) {
     'FLAP',
   );
   // Central magnetic-compass housing; engine supplies no magnetic variation, so label true.
-  beveledBox(d, [0.21, 0.26, 0.16], [0, 4.45, 8.17], m.dark, 0.025);
-  ins.headingDrum('compass', [0, 4.46, 8.078], 0.068, 'trueHeading');
-  d.text('TRUE', [0, 4.35, 8.07], 0.016, Math.PI, ink, 'display');
+  // It hangs under the windscreen centre post, inside the roof (it stood 0.24 m through it).
+  beveledBox(d, [0.21, 0.2, 0.16], [0, 4.15, 8.17], m.dark, 0.025);
+  ins.headingDrum('compass', [0, 4.16, 8.078], 0.068, 'trueHeading');
+  d.text('TRUE', [0, 4.07, 8.07], 0.016, Math.PI, ink, 'display');
   const q = group(cabin, 'DC3-quadrant', [0, 2.91, 7.65]),
     qd = detailKit(q, q.name);
   beveledBox(qd, [0.43, 0.48, 0.66], [0, 0, 0], m.dark, 0.025);
@@ -335,7 +336,9 @@ export function dc3Cockpit(root, m) {
       [-side, 0, 0],
     );
   // Original overhead: paired ignition selectors in the middle, electrical switches at the sides.
-  const oh = group(cabin, 'DC3-overhead', [0, 4.32, 7.63]);
+  // Scaled across to the roof's width at the header (its corners stood through the skin).
+  const oh = group(cabin, 'DC3-overhead', [0, 4.3, 7.63]);
+  oh.scale.x = 0.66;
   oh.rotation.x = 0.5;
   const od = detailKit(oh, oh.name);
   sheet(

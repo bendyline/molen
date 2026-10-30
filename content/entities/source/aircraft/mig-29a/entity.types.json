@@ -74,12 +74,121 @@
               ]
             ],
             "visual": {
-              "rotors": [],
+              "rotors": [
+                {
+                  "node": "engine-1-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                },
+                {
+                  "node": "engine-2-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-2"
+                }
+              ],
               "gearNodes": [],
               "flaps": [],
               "ailerons": [],
               "animation": {
                 "bindings": [
+                  {
+                    "node": "MiG29-intake-door-right",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -1.2,
+                    "offset": 1.2
+                  },
+                  {
+                    "node": "MiG29-louver-right-0",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-louver-right-1",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-louver-right-2",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-louver-right-3",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-louver-right-4",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-intake-door-left",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -1.2,
+                    "offset": 1.2
+                  },
+                  {
+                    "node": "MiG29-louver-left-0",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-louver-left-1",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-louver-left-2",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-louver-left-3",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
+                  {
+                    "node": "MiG29-louver-left-4",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6,
+                    "offset": 0.6
+                  },
                   {
                     "node": "MiG29-slat-right",
                     "source": "flapPosition",
@@ -191,6 +300,74 @@
                     "source": "gearExposed",
                     "property": "visible",
                     "scale": 1
+                  },
+                  {
+                    "node": "canopy-opening",
+                    "source": "canopy",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.85
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.12,
+                        0
+                      ],
+                      [
+                        0.45,
+                        6
+                      ],
+                      [
+                        1,
+                        20
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "speed-brake-1--1-0",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.95
+                  },
+                  {
+                    "node": "speed-brake-1-1-0",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.95
                   }
                 ],
                 "derived": {
@@ -231,6 +408,12 @@
                   }
                 },
                 "sources": {
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": [
+                      "gearPosition"
+                    ]
+                  },
                   "flapPosition": {
                     "component": "aircraftState",
                     "path": [
@@ -255,10 +438,25 @@
                       "yaw"
                     ]
                   },
-                  "gear": {
+                  "canopy": {
                     "component": "aircraftState",
                     "path": [
-                      "gearPosition"
+                      "actuators",
+                      "canopy"
+                    ]
+                  },
+                  "eject": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "eject"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -2856,14 +3054,15 @@
               "maxMach": 2.25,
               "maxEquivalentAirspeed": 418.55951284429074,
               "gearLimitSpeed": 130,
-              "flapLimitSpeed": 125
+              "flapLimitSpeed": 125,
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
                 "id": "engine-1",
                 "position": [
-                  1.15,
-                  1.61,
+                  0.87,
+                  1.62,
                   -5.5
                 ],
                 "thrustAxis": [
@@ -2890,8 +3089,8 @@
               {
                 "id": "engine-2",
                 "position": [
-                  -1.15,
-                  1.61,
+                  -0.87,
+                  1.62,
                   -5.5
                 ],
                 "thrustAxis": [
@@ -2915,7 +3114,19 @@
                 "afterburnerThrust": 81300,
                 "afterburnerDetent": 0.85
               }
-            ]
+            ],
+            "actuators": {
+              "canopy": {
+                "seconds": 3
+              },
+              "eject": {
+                "seconds": 1.2,
+                "mode": "latch"
+              },
+              "speedBrake": {
+                "seconds": 1.6
+              }
+            }
           }
         },
         "aircraftInput": {
@@ -2950,7 +3161,12 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {
+            "canopy": 0,
+            "eject": 0,
+            "speedBrake": 0
+          }
         },
         "mountable": {
           "seats": [
@@ -3073,6 +3289,27 @@
               "component": "aircraftInput",
               "path": [
                 "power"
+              ]
+            },
+            "canopy": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "canopy"
+              ]
+            },
+            "eject": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "eject"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -5520,6 +5757,102 @@
               "scale": -0.06
             },
             {
+              "node": "MiG29-intake-door-right",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -1.2,
+              "offset": 1.2
+            },
+            {
+              "node": "MiG29-louver-right-0",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-louver-right-1",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-louver-right-2",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-louver-right-3",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-louver-right-4",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-intake-door-left",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -1.2,
+              "offset": 1.2
+            },
+            {
+              "node": "MiG29-louver-left-0",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-louver-left-1",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-louver-left-2",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-louver-left-3",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
+              "node": "MiG29-louver-left-4",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6,
+              "offset": 0.6
+            },
+            {
               "node": "MiG29-slat-right",
               "source": "flapPosition",
               "property": "rotation",
@@ -5630,6 +5963,74 @@
               "source": "gearExposed",
               "property": "visible",
               "scale": 1
+            },
+            {
+              "node": "canopy-opening",
+              "source": "canopy",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.85
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.12,
+                  0
+                ],
+                [
+                  0.45,
+                  6
+                ],
+                [
+                  1,
+                  20
+                ]
+              ]
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "speed-brake-1--1-0",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.95
+            },
+            {
+              "node": "speed-brake-1-1-0",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.95
             }
           ]
         }

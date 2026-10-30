@@ -55,7 +55,7 @@
             "driverEye": [
               0.465,
               1.82,
-              1.75
+              1.42
             ],
             "drive": "rear",
             "steeringRate": 1.8,
@@ -65,7 +65,28 @@
             "terrainAlignRate": 1.8,
             "supportTolerance": 0.08,
             "maxStepHeight": 0.4,
-            "maxSlope": 0.61
+            "maxSlope": 0.61,
+            "actuators": {
+              "hood": {
+                "seconds": 1.8
+              },
+              "trunk": {
+                "seconds": 4
+              },
+              "headlights": {
+                "seconds": 0
+              },
+              "wipers": {
+                "seconds": 1.4,
+                "mode": "cycle"
+              },
+              "doorFrontRight": {
+                "seconds": 1.2
+              },
+              "doorFrontLeft": {
+                "seconds": 1.2
+              }
+            }
           },
           "visual": {
             "wheelNodes": [
@@ -102,6 +123,635 @@
                   "max": 3.9
                 }
               ]
+            },
+            "animation": {
+              "sources": {
+                "hood": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "hood"
+                  ]
+                },
+                "trunk": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "trunk"
+                  ]
+                },
+                "headlights": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "headlights"
+                  ]
+                },
+                "wipers": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "wipers"
+                  ]
+                },
+                "doorFrontRight": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorFrontRight"
+                  ]
+                },
+                "doorFrontLeft": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorFrontLeft"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "doorFrontRight",
+                  "source": "doorFrontRight",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 1.15
+                },
+                {
+                  "node": "doorFrontLeft",
+                  "source": "doorFrontLeft",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1.15
+                },
+                {
+                  "node": "hood",
+                  "source": "hood",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": -1.05
+                },
+                {
+                  "node": "wiper--1",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "wiper-1",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "headlights-lit",
+                  "source": "headlights",
+                  "property": "visible",
+                  "scale": 1
+                },
+                {
+                  "node": "trunk-slat-0",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "y",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.9375,
+                      1.659375
+                    ],
+                    [
+                      1,
+                      1.659375
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-0",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.9375,
+                      0
+                    ],
+                    [
+                      1,
+                      0.110625
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-0",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.9075,
+                      0
+                    ],
+                    [
+                      0.9675,
+                      -1.5707963267948966
+                    ],
+                    [
+                      1,
+                      -1.5707963267948966
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-1",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "y",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.8125,
+                      1.438125
+                    ],
+                    [
+                      1,
+                      1.438125
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-1",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.8125,
+                      0
+                    ],
+                    [
+                      1,
+                      0.33187500000000003
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-1",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.7825,
+                      0
+                    ],
+                    [
+                      0.8425,
+                      -1.5707963267948966
+                    ],
+                    [
+                      1,
+                      -1.5707963267948966
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-2",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "y",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.6875,
+                      1.216875
+                    ],
+                    [
+                      1,
+                      1.216875
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-2",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.6875,
+                      0
+                    ],
+                    [
+                      1,
+                      0.553125
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-2",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.6575,
+                      0
+                    ],
+                    [
+                      0.7175,
+                      -1.5707963267948966
+                    ],
+                    [
+                      1,
+                      -1.5707963267948966
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-3",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "y",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5625,
+                      0.995625
+                    ],
+                    [
+                      1,
+                      0.995625
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-3",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5625,
+                      0
+                    ],
+                    [
+                      1,
+                      0.774375
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-3",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5325,
+                      0
+                    ],
+                    [
+                      0.5925,
+                      -1.5707963267948966
+                    ],
+                    [
+                      1,
+                      -1.5707963267948966
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-4",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "y",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.4375,
+                      0.774375
+                    ],
+                    [
+                      1,
+                      0.774375
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-4",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.4375,
+                      0
+                    ],
+                    [
+                      1,
+                      0.995625
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-4",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.4075,
+                      0
+                    ],
+                    [
+                      0.4675,
+                      -1.5707963267948966
+                    ],
+                    [
+                      1,
+                      -1.5707963267948966
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-5",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "y",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.31250000000000006,
+                      0.5531250000000001
+                    ],
+                    [
+                      1,
+                      0.5531250000000001
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-5",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.31250000000000006,
+                      0
+                    ],
+                    [
+                      1,
+                      1.216875
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-5",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.2825000000000001,
+                      0
+                    ],
+                    [
+                      0.3425,
+                      -1.5707963267948966
+                    ],
+                    [
+                      1,
+                      -1.5707963267948966
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-6",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "y",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.18750000000000008,
+                      0.33187500000000014
+                    ],
+                    [
+                      1,
+                      0.33187500000000014
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-6",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.18750000000000008,
+                      0
+                    ],
+                    [
+                      1,
+                      1.4381249999999999
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-6",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.15750000000000008,
+                      0
+                    ],
+                    [
+                      0.21750000000000008,
+                      -1.5707963267948966
+                    ],
+                    [
+                      1,
+                      -1.5707963267948966
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-7",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "y",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.06249999999999986,
+                      0.11062499999999975
+                    ],
+                    [
+                      1,
+                      0.11062499999999975
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-7",
+                  "source": "trunk",
+                  "property": "position",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.06249999999999986,
+                      0
+                    ],
+                    [
+                      1,
+                      1.6593750000000003
+                    ]
+                  ]
+                },
+                {
+                  "node": "trunk-slat-7",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.03249999999999986,
+                      0
+                    ],
+                    [
+                      0.09249999999999986,
+                      -1.5707963267948966
+                    ],
+                    [
+                      1,
+                      -1.5707963267948966
+                    ]
+                  ]
+                }
+              ]
             }
           }
         },
@@ -118,7 +768,7 @@
               "position": [
                 0.465,
                 1.82,
-                1.75
+                1.42
               ]
             }
           ],
@@ -126,12 +776,12 @@
             [
               1.45,
               0,
-              1.75
+              1.42
             ],
             [
               -1.45,
               0,
-              1.75
+              1.42
             ]
           ],
           "reach": 2.5

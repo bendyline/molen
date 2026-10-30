@@ -146,6 +146,7 @@ export interface EarthFlightStatus {
 
 /** One frame of pilot intent. Axes are -1..1; switches are presses since the last frame. */
 export interface EarthPilotControls {
+  actuators?: Record<string, number>;
   /** Nose up positive. */
   pitch: number;
   /** Right bank positive. */
@@ -556,6 +557,11 @@ export class EarthAircraft {
     if (t) this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
     const state = this.world.get(id, AircraftState);
     const next = { ...this.controls };
+    const mechanisms = this.world.get(id, Aircraft)?.spec.actuators;
+    for (const [name, presses] of Object.entries(controls.actuators ?? {})) {
+      if (mechanisms?.[name] && presses % 2 === 1)
+        next.actuators = { ...next.actuators, [name]: !next.actuators?.[name] };
+    }
     if ((controls.engine ?? 0) % 2 === 1) next.engine = !next.engine;
     // Gear only moves in the air; flaps anywhere.
     if ((controls.gear ?? 0) % 2 === 1 && state !== undefined && !state.grounded)

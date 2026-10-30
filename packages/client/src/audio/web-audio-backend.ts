@@ -1,6 +1,6 @@
 import { AUDIO_BUSES } from '@bendyline/molen-schema';
 import type { AssetProvider } from '../assets';
-import type { AudioBackend, AudioBackendStats, AudioVec3, VoiceCommand } from './types';
+import type { AudioBackend, AudioBackendStats, AudioVec3, VoiceCommand, VoiceTone } from './types';
 
 type StartCommand = Extract<VoiceCommand, { op: 'start' }>;
 
@@ -25,6 +25,7 @@ interface Voice {
   requestedAt: number;
   targetGain: number;
   pitch: number;
+  tone?: { filter: BiquadFilterNode; pulse: GainNode; oscillator: OscillatorNode; depth: GainNode };
 }
 
 /** Plays director commands through Web Audio: buses, panners, looped buffers, fades. */
@@ -227,6 +228,7 @@ export class WebAudioBackend implements AudioBackend {
       pitch: cmd.pitch,
     };
     this.voices.set(cmd.voice, voice);
+    if (cmd.tone) this.setTone(voice, cmd.tone, 0.01);
     void this.load(cmd.ref).then((buffer) => {
       if (voice.stopped || this.disposed || !buffer) {
         if (!buffer) this.cleanup(cmd.voice, voice);
@@ -242,7 +244,7 @@ export class WebAudioBackend implements AudioBackend {
       if (cmd.loop && cmd.loopStart !== undefined) src.loopStart = cmd.loopStart;
       if (cmd.loop && cmd.loopEnd !== undefined) src.loopEnd = cmd.loopEnd;
       src.playbackRate.value = voice.pitch;
-      src.connect(gain);
+      src.connect(voice.tone?.filter ?? gain);
       const now = ctx.currentTime;
       const fade = cmd.fadeInS ?? 0;
       gain.gain.setValueAtTime(fade > 0 ? 0 : voice.targetGain, now);
@@ -259,6 +261,7 @@ export class WebAudioBackend implements AudioBackend {
     if (!v || v.stopped) return;
     const now = this.context.currentTime;
     const tau = Math.max(0.01, (cmd.rampS ?? 0.1) / 3);
+    if (cmd.tone) this.setTone(v, cmd.tone, tau);
     if (cmd.gain !== undefined) {
       v.targetGain = cmd.gain;
       if (v.src) v.gain.gain.setTargetAtTime(cmd.gain, now, tau);
@@ -273,6 +276,42 @@ export class WebAudioBackend implements AudioBackend {
       v.panner.positionY.setTargetAtTime(y, now, 0.02);
       v.panner.positionZ.setTargetAtTime(z, now, 0.02);
     }
+  }
+
+  private setTone(v: Voice, tone: VoiceTone, tau: number): void {
+    const ctx = this.context;
+    const amount = Math.max(0, Math.min(0.9, tone.pulseDepth)) / 2;
+    const frequency = Math.max(100, Math.min(20000, tone.lowpassHz));
+    const rate = Math.max(0.1, Math.min(60, tone.pulseHz));
+    if (!v.tone) {
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.Q.value = 0.7;
+      filter.frequency.value = frequency;
+      const pulse = ctx.createGain();
+      pulse.gain.value = 1 - amount;
+      const oscillator = ctx.createOscillator();
+      oscillator.frequency.value = rate;
+      const depth = ctx.createGain();
+      depth.gain.value = amount;
+      oscillator.type = 'sine';
+      oscillator.connect(depth);
+      depth.connect(pulse.gain);
+      filter.connect(pulse);
+      pulse.connect(v.gain);
+      if (v.src) {
+        v.src.disconnect();
+        v.src.connect(filter);
+      }
+      v.tone = { filter, pulse, oscillator, depth };
+      oscillator.start();
+    }
+    // The envelope only attenuates (1-depth .. 1), preserving the master headroom.
+    const now = ctx.currentTime;
+    v.tone.filter.frequency.setTargetAtTime(frequency, now, tau);
+    v.tone.oscillator.frequency.setTargetAtTime(rate, now, tau);
+    v.tone.depth.gain.setTargetAtTime(amount, now, tau);
+    v.tone.pulse.gain.setTargetAtTime(1 - amount, now, tau);
   }
 
   private stop(id: string, fadeS = 0.05): void {
@@ -302,6 +341,11 @@ export class WebAudioBackend implements AudioBackend {
       v.src?.disconnect();
       v.gain.disconnect();
       v.panner?.disconnect();
+      v.tone?.oscillator.stop();
+      v.tone?.oscillator.disconnect();
+      v.tone?.depth.disconnect();
+      v.tone?.filter.disconnect();
+      v.tone?.pulse.disconnect();
     } catch {
       // already disconnected
     }

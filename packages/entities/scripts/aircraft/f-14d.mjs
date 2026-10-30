@@ -38,10 +38,15 @@ export function buildF14D(s) {
     nose = mat('F14-radome', '#a0a4a2'),
     dark = mat('F14-seals', '#24292c'),
     metal = mat('F14-alloy', '#b4bcc0', { metalness: 0.7 }),
-    exhaust = mat('F14-exhaust', '#666866', { metalness: 0.72 }),
-    glass = mat('F14-glass', '#98b4b8', {
+    exhaust = mat('F14-exhaust', '#666866', { metalness: 0.72, side: T.DoubleSide }),
+    liner = mat('F14-nozzle-liner', '#2c2b28', {
+      metalness: 0.3,
+      roughness: 0.8,
+      side: T.DoubleSide,
+    }),
+    glass = mat('F14-glass', '#6f878c', {
       transparent: true,
-      opacity: 0.19,
+      opacity: 0.28,
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.18,
@@ -49,28 +54,40 @@ export function buildF14D(s) {
   const d = detailKit(root, 'F14-airframe'),
     bindings = [];
   const stations = [
-    [12.07, 0.014, 2.04, 2.08],
-    [11.5, 0.21, 1.9, 2.32],
-    [10.6, 0.45, 1.76, 2.64],
-    [10, 0.58, 1.73, 2.76],
-    [9.25, 0.65, 1.73, 2.85],
-    [8.5, 0.68, 1.72, 2.92],
-    [7.6, 0.69, 1.72, 2.94],
-    [6.6, 0.7, 1.73, 2.94],
-    [5.55, 0.73, 1.75, 2.94],
-    [4.7, 0.8, 1.76, 2.88],
+    // The AWG-9 radome is a full ogive, not a needle: already 0.6 m across 0.6 m aft of the tip.
+    [12.07, 0.02, 2.02, 2.08],
+    [11.5, 0.3, 1.8, 2.42],
+    [10.6, 0.55, 1.66, 2.72],
+    [10, 0.62, 1.65, 2.8],
+    // Forward fuselage: round top, fuller flat-sided lower half with a soft chine (lower
+    // superellipse exponent), as seen below the cockpit in front 3/4 photos.
+    [9.25, 0.66, 1.67, 2.86, 2, 2.6],
+    [8.5, 0.68, 1.69, 2.92, 2, 3],
+    [7.6, 0.69, 1.72, 2.94, 2, 3.2],
+    [6.6, 0.7, 1.73, 2.94, 2, 3.2],
+    [5.55, 0.73, 1.75, 2.94, 2, 3],
+    [4.7, 0.8, 1.76, 2.88, 2, 2.6],
     [3.3, 1.0, 1.8, 2.7],
     [1.2, 1.1, 1.7, 2.5],
-    [-1, 1.08, 1.58, 2.4],
-    [-3.5, 1.03, 1.6, 2.42],
-    [-5.6, 0.84, 1.68, 2.35],
-    [-6.5, 0.7, 1.8, 2.25],
+    // Flat-bottomed centre body ("pancake") over the tunnel between the nacelles.
+    [-1, 1.08, 1.62, 2.4, 2.5],
+    [-3.5, 1.03, 1.76, 2.42, 3.5],
+    // Beaver tail: a thin flat paddle at nozzle height that spans the gap between the
+    // nacelles (superellipse sections), not a rounded saucer.
+    [-5.6, 1.1, 1.93, 2.22, 4],
+    [-6.55, 1.02, 1.97, 2.09, 4],
   ];
-  const rings = stations.map(([z, w, b, t]) => ({
+  const rings = stations.map(([z, w, b, t, n = 2, lower = n]) => ({
     z,
     points: Array.from({ length: 24 }, (_, j) => {
-      const a = (j * Math.PI) / 12;
-      return [Math.sin(a) * w, (b + t) / 2 + (Math.cos(a) * (t - b)) / 2];
+      const a = (j * Math.PI) / 12,
+        sx = Math.sin(a),
+        sy = Math.cos(a),
+        e = sy < 0 ? lower : n;
+      return [
+        Math.sign(sx) * Math.pow(Math.abs(sx), 2 / e) * w,
+        (b + t) / 2 + (Math.sign(sy) * Math.pow(Math.abs(sy), 2 / e) * (t - b)) / 2,
+      ];
     }),
   }));
   loft(d, rings.slice(0, 4), nose);
@@ -101,12 +118,13 @@ export function buildF14D(s) {
     }),
   }));
   loft(d, canopy, glass, { caps: false });
+  // The windscreen bow and the mid-canopy arch are painted like the airframe.
   for (const i of [0, 1, 4, 7])
     outline(
       d,
       canopy[i].points.map(([x, y]) => [x, y, canopy[i].z]),
       i === 1 ? 0.027 : 0.019,
-      dark,
+      i === 1 || i === 4 ? paint : dark,
       false,
     );
   for (const side of [-1, 1]) {
@@ -151,18 +169,55 @@ export function buildF14D(s) {
       [-w + cant, t - 0.08],
     ];
     const nr = [
-      { z: 5.75, points: rect(0.53, 1.65, 2.53, -side * 0.16) },
+      // Mouth a little taller than wide, as in the head-on photos and the 3-view.
+      { z: 5.75, points: rect(0.47, 1.5, 2.55, -side * 0.14) },
       { z: 2.9, points: rect(0.64, 1.32, 2.52, -side * 0.1) },
       { z: 1.1, points: rect(0.7, 0.98, 2.45) },
-      { z: -1.4, points: rect(0.7, 1.08, 2.46) },
-      { z: -3.7, points: rect(0.65, 1.2, 2.47) },
-      { z: -5.8, points: rect(0.56, 1.24, 2.4) },
     ];
     loft(nd, nr, paint, { caps: false, skip: (i) => i === 0 });
+    // Aft of the glove each nacelle rounds out into the cylindrical engine bay, so the nozzles
+    // end a round tube instead of a chamfered box. Every aft section shares the nozzle's polar
+    // stations (0 at the top, toward +X), sampled on the rectangular duct at z 1.1.
+    const polar = Array.from({ length: 24 }, (_, j) => (j * Math.PI) / 12);
+    const onPolygon = (polygon, cy, a) => {
+      const dx = Math.sin(a),
+        dy = Math.cos(a);
+      let best = Infinity;
+      for (let k = 0; k < polygon.length; k++) {
+        const [x0, y0] = polygon[k],
+          [x1, y1] = polygon[(k + 1) % polygon.length];
+        const ex = x1 - x0,
+          ey = y1 - y0,
+          det = ex * dy - ey * dx;
+        if (Math.abs(det) < 1e-12) continue;
+        const t = (ex * (y0 - cy) - ey * x0) / det,
+          u = (dx * (y0 - cy) - dy * x0) / det;
+        if (t > 0 && u >= -1e-9 && u <= 1 + 1e-9) best = Math.min(best, t);
+      }
+      return [dx * best, cy + dy * best];
+    };
+    const superellipse = (z, cy, a, b, n) => ({
+      z,
+      points: polar.map((t) => {
+        const dx = Math.sin(t),
+          dy = Math.cos(t),
+          r = 1 / Math.pow(Math.pow(Math.abs(dx / a), n) + Math.pow(Math.abs(dy / b), n), 1 / n);
+        return [dx * r, cy + dy * r];
+      }),
+    });
+    const aft = [
+      { z: 1.1, points: polar.map((t) => onPolygon(nr[2].points, 1.715, t)) },
+      superellipse(-0.4, 1.73, 0.7, 0.72, 4.5),
+      superellipse(-1.9, 1.78, 0.68, 0.66, 3.2),
+      superellipse(-3.4, 1.82, 0.645, 0.63, 2.4),
+      superellipse(-4.6, 1.83, 0.62, 0.615, 2),
+      superellipse(-5.85, 1.83, 0.598, 0.598, 2),
+    ];
+    loft(nd, aft, paint, { caps: false });
     // The intake lip is raked in side view: the lower lip is 2.53m aft of its upper edge.
-    const mouth = nr[0].points.map(([xx, y]) => [xx, y, 3.22 + ((y - 1.65) / 0.88) * 2.53]);
+    const mouth = nr[0].points.map(([xx, y]) => [xx, y, 3.22 + ((y - 1.5) / 1.05) * 2.53]);
     outline(nd, mouth, 0.026, paint);
-    const inner = mouth.map(([xx, y, z]) => [xx * 0.92, (y - 2.09) * 0.92 + 2.09, z - 0.025]),
+    const inner = mouth.map(([xx, y, z]) => [xx * 0.95, (y - 2.03) * 0.95 + 2.03, z - 0.025]),
       back = rect(0.48, 1.38, 2.2).map(([xx, y]) => [xx, y, 2.6]);
     for (let j = 0; j < 8; j++) {
       const next = (j + 1) % 8,
@@ -184,14 +239,14 @@ export function buildF14D(s) {
     // Ramps are visible above the duct opening; no flat black painted-on inlet.
     quad(
       nd,
-      [-0.48, 2.35, 5.64],
-      [0.48, 2.35, 5.64],
-      [0.46, 2.14, 3.5],
-      [-0.46, 2.14, 3.5],
+      [-0.42, 2.37, 5.64],
+      [0.42, 2.37, 5.64],
+      [0.42, 2.14, 3.5],
+      [-0.42, 2.14, 3.5],
       upper,
       [0, -1, 0],
     );
-    for (const ring of nr.slice(1, -1))
+    for (const ring of [nr[1], nr[2], aft[2], aft[4]])
       outline(
         nd,
         ring.points.map(([xx, y]) => [xx * 1.003, (y - 1.85) * 1.003 + 1.85, ring.z]),
@@ -205,29 +260,21 @@ export function buildF14D(s) {
         1.83 + Math.cos((j * Math.PI) / 12) * r,
       ]),
     });
-    loft(
-      nd,
-      [
-        {
-          z: -5.8,
-          points: Array.from({ length: 24 }, (_, j) => {
-            const a = (j * Math.PI) / 12;
-            return [Math.sin(a) * 0.56, 1.83 + Math.cos(a) * 0.59];
-          }),
-        },
-        circle(0.58, -6.15),
-        circle(0.53, -6.79),
-      ],
-      exhaust,
-      { caps: false },
-    );
-    loft(nd, [circle(0.49, -6.79), circle(0.43, -5.95)], dark, { caps: false });
-    nd.add(new T.CircleGeometry(0.44, 24).rotateY(Math.PI), dark, [0, 1.83, -5.94]);
+    // F110 nozzle: the outer flaps ("turkey feathers") continue the tube and converge gently.
+    // Seen from behind (closer than ~8 m, or obliquely) the converging flaps and the liner show
+    // their inner faces, so both are double-sided and a lip closes the gap at the exit; with
+    // single-sided shells the nozzle vanished and left the nacelle ending in a flat ring.
+    loft(nd, [circle(0.598, -5.85), circle(0.588, -6.2), circle(0.555, -6.84)], exhaust, {
+      caps: false,
+    });
+    loft(nd, [circle(0.52, -6.84), circle(0.47, -6.0)], liner, { caps: false });
+    nd.add(new T.RingGeometry(0.52, 0.555, 24, 1).rotateY(Math.PI), exhaust, [0, 1.83, -6.84]);
+    nd.add(new T.CircleGeometry(0.47, 24).rotateY(Math.PI), dark, [0, 1.83, -5.99]);
     for (let j = 0; j < 24; j++) {
       const a = (j * Math.PI) / 12;
       nd.rod(
-        [Math.sin(a) * 0.582, 1.83 + Math.cos(a) * 0.582, -6.15],
-        [Math.sin(a) * 0.532, 1.83 + Math.cos(a) * 0.532, -6.79],
+        [Math.sin(a) * 0.59, 1.83 + Math.cos(a) * 0.59, -6.2],
+        [Math.sin(a) * 0.557, 1.83 + Math.cos(a) * 0.557, -6.84],
         0.006,
         metal,
       );
@@ -358,10 +405,12 @@ export function buildF14D(s) {
     // All-moving stabilators, twin canted fins, inset separate rudders.
     const tg = group(root, `F14-stabilator-${side}`, [side * 1.85, 2.12, -4.83]),
       td = detailKit(tg, tg.name);
+    // The root starts at the nacelle skin: further in, its trailing edge crossed the nozzle
+    // and showed as a plank inside the exhaust from behind.
     wing(
       td,
       [
-        [0, 0, 1.05, -1.8, 0.065],
+        [side * 0.33, -0.003, 0.818, -1.814, 0.062],
         [side * 3.08, -0.03, -1.12, -1.93, 0.035],
         [side * 3.28, -0.03, -1.52, -1.88, 0.012],
       ],
@@ -481,6 +530,8 @@ export function buildF14D(s) {
     gd.rod([noseGear ? 0 : -Math.sign(x) * 0.7, 0, -0.6], [0, r - gy + 0.2, 0], 0.045, paint);
     gd.rod([0, -0.45, -0.15], [0, -0.85, -0.35], 0.033, metal);
     gd.rod([0, -0.85, -0.35], [0, -1.08, -0.08], 0.033, metal);
+    // Main legs carry a forward drag brace from the lower strut up into the glove.
+    if (!noseGear) gd.rod([0, r - gy + 0.75, 0.02], [0, -0.12, 0.95], 0.05, metal);
     gd.box(
       [noseGear ? 0.38 : 0.4, 0.035, noseGear ? 1.1 : 1.3],
       [noseGear ? 0.3 : Math.sign(x) * 0.25, -0.05, 0],
@@ -510,7 +561,14 @@ export function buildF14D(s) {
       offset: noseGear ? -Math.PI / 2 : Math.sign(x) * -1.35,
     });
   }
-  d.rod([0, 1.9, -4.8], [0, 1.65, -6.5], 0.04, metal);
+  const hook = group(root, 'arresting-hook', [0, 1.9, -4.8]);
+  const hd = detailKit(hook, 'hook-skin');
+  hd.rod([0, 0, 0], [0, -0.25, -1.7], 0.04, metal);
+  hd.rod([0, -0.25, -1.7], [0, -0.15, -1.82], 0.055, metal);
+  hd.finish();
+  // Fuel-dump fairing on the beaver tail's trailing edge.
+  beveledBox(d, [0.36, 0.15, 0.55], [0, 2.03, -6.56], paint, 0.04);
+  d.add(new T.CircleGeometry(0.055, 12).rotateY(Math.PI), dark, [0, 2.03, -6.842]);
   for (const side of [-1, 1]) {
     // Access seams and selected fastener rows are geometry, never photographic textures.
     for (const [z, y, w, h] of [
@@ -1004,7 +1062,7 @@ function f14Cockpits(root, m) {
       scale: -1,
       period: Math.PI * 2,
     });
-    ins.available(prefix + '-heading', 'trueHeading', hg.name);
+    ins.available(`${prefix}-heading`, 'trueHeading', hg.name);
     d.rod(
       at(hdg[0], hdg[1] - hdg[2], -0.035),
       at(hdg[0], hdg[1] - hdg[2] + 5, -0.035),

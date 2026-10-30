@@ -1,0 +1,93 @@
+{
+  "format": "molen/scene@3",
+  "name": "Glass fracture comparison",
+  "seed": "glass-comparison",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "floor",
+      "components": {
+        "transform": { "pos": [0, -0.15, 0], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [12, 0.2, 6] },
+          "materialRef": "palette:#334b60"
+        }
+      }
+    },
+    {
+      "id": "backdrop",
+      "components": {
+        "transform": { "pos": [0, 1.7, -0.8], "rot": [0, 0, 0, 1] },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "primitive": { "size": [11, 4, 0.1] },
+          "materialRef": "palette:#223344"
+        }
+      }
+    },
+    {
+      "id": "laminated",
+      "components": {
+        "transform": { "pos": [-3, 1.7, 0], "rot": [0, 0, 0, 1] },
+        "glass": {
+          "surfaces": [
+            {
+              "id": "pane",
+              "material": "laminated",
+              "center": [0, 0, 0],
+              "rotation": [0, 0, 0, 1],
+              "size": [2, 1.4],
+              "thickness": 0.005
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "tempered",
+      "components": {
+        "transform": { "pos": [0, 1.7, 0], "rot": [0, 0, 0, 1] },
+        "glass": {
+          "surfaces": [
+            {
+              "id": "pane",
+              "material": "tempered",
+              "center": [0, 0, 0],
+              "rotation": [0, 0, 0, 1],
+              "size": [2, 1.4],
+              "thickness": 0.005
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "annealed",
+      "components": {
+        "transform": { "pos": [3, 1.7, 0], "rot": [0, 0, 0, 1] },
+        "glass": {
+          "surfaces": [
+            {
+              "id": "pane",
+              "material": "annealed",
+              "center": [0, 0, 0],
+              "rotation": [0, 0, 0, 1],
+              "size": [2, 1.4],
+              "thickness": 0.005
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "id": "strike",
+      "checkpoint": "state",
+      "code": "molen.on('tick', () => { if (molen.tick !== 3) return; for (const entity of ['laminated', 'tempered', 'annealed']) molen.emit('glass-impact', { entity, surface: 'pane', impulse: [0, 0, 700], energy: 800, duration: 0.02, point: [0.1, 0.1], distributed: true, velocity: [0, 1, 0.8] }); });"
+    }
+  ]
+}

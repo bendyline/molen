@@ -90,12 +90,14 @@ export function buildGripenC(s) {
     seam,
   );
   d.rod([0, 1.34, 7.1], [0, 1.31, 7.9], 0.009, metal);
+  // The bubble stands about 0.35-0.4 m proud of the spine behind it (side photograph), higher
+  // than the line drawing suggests; the sill line is unchanged.
   const canopy = [
     [4.9, 0.02, 2.02, 2.03],
-    [3.85, 0.4, 2.075, 2.57],
-    [3.45, 0.44, 2.11, 2.68],
-    [2.65, 0.44, 2.2, 2.65],
-    [2.05, 0.4, 2.28, 2.55],
+    [3.85, 0.4, 2.075, 2.65],
+    [3.45, 0.44, 2.11, 2.8],
+    [2.65, 0.44, 2.2, 2.78],
+    [2.05, 0.4, 2.28, 2.65],
     [1.05, 0.02, 2.46, 2.47],
   ];
   const cr = canopy.map(([z, w, b, t]) => ({
@@ -118,7 +120,7 @@ export function buildGripenC(s) {
     outline(
       d,
       cr[i].points.map((p) => [...p, cr[i].z]),
-      i === 1 ? 0.023 : 0.013,
+      i === 1 ? 0.017 : 0.013,
       paint,
       false,
     );
@@ -158,7 +160,7 @@ export function buildGripenC(s) {
         ]);
       }
     }
-  // Intake shoulders blend into the single engine, with a narrow raised dorsal spine.
+  // Intake shoulders blend into the single engine under a broad, rounded dorsal spine.
   const aftData = [
     [1.05, 0.96, 1.1, 2.46],
     [0.25, 1.02, 1.08, 2.44],
@@ -167,13 +169,15 @@ export function buildGripenC(s) {
     [-4.84, 0.72, 1.32, 2.28],
     [-6.1, 0.53, 1.32, 2.28],
   ];
+  // The last ring keeps the narrow top that meets the nozzle circle.
+  const broad = (w) => Math.min(Math.max((w - 0.53) / 0.19, 0), 1);
   const aft = aftData.map(([z, w, b, t]) => ({
     z,
     points: [
       [0, t],
-      [0.27, t - 0.015],
-      [0.46, t - 0.22],
-      [w * 0.95, t - 0.39],
+      [0.27 + 0.03 * broad(w), t - 0.015 - 0.02 * broad(w)],
+      [0.46 + 0.04 * broad(w), t - 0.22 + 0.07 * broad(w)],
+      [w * 0.95, t - 0.39 + 0.03 * broad(w)],
       [w, (b + t) / 2],
       [w * 0.83, b + 0.1],
       [w * 0.45, b],
@@ -203,17 +207,19 @@ export function buildGripenC(s) {
     return [side * 0.5, y, z];
   };
   for (const side of [-1, 1]) {
-    const mouth = [
-      [0.57, 1.94],
-      [0.84, 1.94],
-      [0.94, 1.91],
-      [1.0, 1.82],
-      [1.0, 1.34],
-      [0.94, 1.2],
-      [0.83, 1.16],
-      [0.57, 1.16],
-    ].map(([x, y]) => [side * x, y, 3.05 + (y - 1.55) * 0.1]);
+    // D-shaped mouth: flat inboard splitter side, rounded outboard side (front elevation).
+    const mouth = Array.from({ length: 11 }, (_, k) => {
+      const a = Math.PI / 2 - (k * Math.PI) / 10,
+        c = Math.cos(a),
+        s = Math.sin(a);
+      return [
+        0.57 + 0.43 * Math.pow(Math.max(c, 0), 0.72),
+        1.55 + 0.39 * Math.sign(s) * Math.pow(Math.abs(s), 0.72),
+      ];
+    }).map(([x, y]) => [side * x, y, 3.05 + (y - 1.55) * 0.1]);
     const inside = mouth.map(([x, y, z]) => [x * 0.98, 1.55 + (y - 1.55) * 0.91, z - 0.8]);
+    // A painted lip band inside the mouth, so the opening reads as a lipped D, not a dark slot.
+    const lip = mouth.map((p, i) => p.map((v, k) => v + (inside[i][k] - v) * 0.16));
     const back = mouth.map(([x, y]) => [x * 1.06, 1.58 + (y - 1.55) * 1.2, 1.05]);
     for (let i = 0; i < mouth.length; i++) {
       const j = (i + 1) % mouth.length;
@@ -223,11 +229,12 @@ export function buildGripenC(s) {
           .cross(new T.Vector3(...e).sub(new T.Vector3(...a)));
         quad(d, a, b, c, e, material, normal.toArray());
       };
-      face(mouth[i], mouth[j], inside[j], inside[i], dark);
+      face(mouth[i], mouth[j], lip[j], lip[i], paint);
+      face(lip[i], lip[j], inside[j], inside[i], dark);
       face(mouth[i], back[i], back[j], mouth[j], paint);
     }
     sheet(d, inside, dark, [0, 0, 1]);
-    outline(d, mouth, 0.019, paint);
+    outline(d, mouth, 0.02, paint);
     // Thin inner splitter, with a visible boundary-layer gap beside the forward fuselage.
     quad(
       d,
@@ -316,13 +323,15 @@ export function buildGripenC(s) {
       axis: 'x',
       scale: 0.16,
     });
+    // Close-coupled canards: about 6 deg dihedral (front elevation and head-on photo) and a
+    // visible root thickness, so they still read edge-on in level 3/4 and front views.
     const cg = group(root, `Gripen-canard-${name}`, [side * 0.94, 2.1, 1.65]),
       cd = detailKit(cg, cg.name);
     wing(
       cd,
       [
-        [0, 0, 1.1, -0.9, 0.035],
-        [side * 1.34, -0.03, -0.99, -1.41, 0.012],
+        [0, 0, 1.1, -0.9, 0.055],
+        [side * 1.34, 0.14, -0.99, -1.41, 0.016],
       ],
       paint,
     );
@@ -459,21 +468,57 @@ export function buildGripenC(s) {
       1.8 + Math.cos((i * Math.PI) / 14) * r,
     ]),
   }));
-  loft(d, rings, hot, { caps: false });
-  loft(
-    d,
-    [
-      rings.at(-1),
-      { z: -6.22, points: rings.at(-1).points.map(([x, y]) => [x * 0.9, 1.8 + (y - 1.8) * 0.9]) },
-    ],
-    dark,
-    { caps: false },
-  );
+  // Fixed shroud, then 14 flat convergent petals (double-sided) whose tips run past the seams
+  // into a scalloped trailing edge. Inside the exit a lighter divergent-flap ring leads to the
+  // dark throat (rear photograph); the end plate stays at z -6.21.
+  loft(d, rings.slice(0, 2), hot, { caps: false });
+  const nozzleAt = (a, r, z) => [Math.sin(a) * r, 1.8 + Math.cos(a) * r, z];
+  for (let k = 0; k < 14; k++) {
+    const a0 = (k * Math.PI) / 7,
+      a1 = ((k + 1) * Math.PI) / 7,
+      am = (a0 + a1) / 2,
+      c = Math.cos(Math.PI / 14),
+      seamZ = -6.94,
+      root = nozzleAt(am, 0.49 * c, -6.36),
+      exit = nozzleAt(am, 0.43 * c, seamZ),
+      u = (-7 + 6.36) / (seamZ + 6.36),
+      tip = root.map((v, i) => v + (exit[i] - v) * u);
+    const petal = [
+      nozzleAt(a0, 0.49, -6.36),
+      nozzleAt(a1, 0.49, -6.36),
+      nozzleAt(a1, 0.43, seamZ),
+      tip,
+      nozzleAt(a0, 0.43, seamZ),
+    ];
+    sheet(d, petal, hot, [Math.sin(am), Math.cos(am), 0]);
+    // Sooted inner face, just inside the outer face.
+    sheet(
+      d,
+      petal.map(([x, y, z]) => [x * 0.98, 1.8 + (y - 1.8) * 0.98, z]),
+      dark,
+      [-Math.sin(am), -Math.cos(am), 0],
+    );
+    // Inward-facing divergent flaps, visible from behind through the exit.
+    quad(
+      d,
+      nozzleAt(a0, 0.415, -6.93),
+      nozzleAt(a1, 0.415, -6.93),
+      nozzleAt(a1, 0.385, -6.7),
+      nozzleAt(a0, 0.385, -6.7),
+      metal,
+      [-Math.sin(am), -Math.cos(am), 0],
+    );
+  }
+  const throat = (z, r) => ({
+    z,
+    points: Array.from({ length: 28 }, (_, i) => nozzleAt((i * Math.PI) / 14, r, z).slice(0, 2)),
+  });
+  loft(d, [throat(-6.7, 0.385), throat(-6.22, 0.38)], dark, { caps: false });
   d.add(new T.CircleGeometry(0.38, 28).rotateY(Math.PI), dark, [0, 1.8, -6.21]);
   for (let i = 0; i < 14; i++)
     outline(
       d,
-      rings.map((r) => [...r.points[i * 2], r.z]),
+      rings.slice(0, 2).map((r) => [...r.points[i * 2], r.z]),
       0.004,
       seam,
       false,
@@ -514,6 +559,13 @@ export function buildGripenC(s) {
       gd = detailKit(g, g.name);
     gd.rod([0, 0, -0.13], [0, r - top, 0], 0.036, metal);
     gd.rod([0, -0.05, -0.43], [0, r - top + 0.18, 0], 0.024, metal);
+    if (name !== 'nose') {
+      // Torque-link scissor ahead of the oleo, clear of the tyre.
+      const leg = (f) => [0, (r - top) * f, -0.13 * (1 - f)],
+        knee = [0, (r - top) * 0.46, 0.1];
+      gd.rod(leg(0.34), knee, 0.012, metal);
+      gd.rod(knee, leg(0.56), 0.012, metal);
+    }
     for (const off of name === 'nose' ? [-0.1, 0.1] : [0]) {
       gd.add(new T.CylinderGeometry(r, r, w, 24).rotateZ(Math.PI / 2), seam, [off, r - top, 0]);
       gd.add(
@@ -792,15 +844,29 @@ function gripenCockpit(root, m) {
   d.finish();
   d = detailKit(cabin, 'Gripen-tub');
   // Tub, side consoles and the short centre stick from the installed cockpit arrangement.
-  d.box([0.88, 0.035, 1.9], [0, 1.15, 2.85], panel);
-  d.box([0.86, 0.48, 0.03], [0, 1.4, 4.15], panel);
+  // The tub stays inside the lower forebody and below the canopy-sill bridges: a full-width
+  // floor and upright walls used to show through the belly and the sill as dark strips.
+  d.box([0.36, 0.035, 1.9], [0, 1.17, 2.85], panel);
+  sheet(
+    d,
+    [
+      [-0.25, 1.16],
+      [0.25, 1.16],
+      [0.4, 1.3],
+      [0.42, 1.64],
+      [-0.42, 1.64],
+      [-0.4, 1.3],
+    ].map(([x, y]) => [x, y, 4.15]),
+    panel,
+    [0, 0, -1],
+  );
   for (const side of [-1, 1]) {
     quad(
       d,
-      [side * 0.44, 1.15, 1.95],
-      [side * 0.44, 1.15, 4.2],
-      [side * 0.43, 2.08, 4.2],
-      [side * 0.44, 2.26, 1.95],
+      [side * 0.2, 1.17, 1.95],
+      [side * 0.26, 1.17, 4.2],
+      [side * 0.4, 1.8, 4.2],
+      [side * 0.44, 1.98, 1.95],
       panel,
       [-side, 0, 0],
     );

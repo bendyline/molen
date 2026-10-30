@@ -1,5 +1,9 @@
 # Mountable vehicles and driving
 
+Vehicles can carry authored [glass surfaces](glass.md). Collision impulses load each pane by
+its mass and orientation: laminated windshields crack while retained, tempered panes fragment,
+and frame/interlayer failure is independent of fracture.
+
 Generic vehicles use the Bendy house brand, with stable asset/type IDs. The Bendy Bus and
 Bendy Light Rail are also mountable through the vehicle API. World Explorer has buttons for
 both at the practice area: W/S applies traction or reverse, Space brakes, V switches view,

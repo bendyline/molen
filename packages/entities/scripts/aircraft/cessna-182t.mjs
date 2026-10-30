@@ -26,7 +26,7 @@ export const cessna182Frame = () => ({
   ry: 0.74,
   cabinZ: 0.5,
   cabinWidth: 1.07,
-  eye: [0.28, 1.81, 0.5],
+  eye: [0.28, 1.69, 0.5],
   panelZ: 1.5,
   floor: 0.62,
 });
@@ -49,129 +49,192 @@ export function buildCessna182(s) {
     bindings = [],
     flaps = [],
     ailerons = [];
+  // [z, half width, belly, crown, belt, shoulder, shoulder half width, belly corner radius]:
+  // rounded boxes, not chamfered octagons. A flat crown rolls into the side glass, which leans
+  // in slightly above the belt (widest); slab lower sides turn under on a radiused belly
+  // corner. The cowl is a round-cornered bowl and the tail cone an egg (182T photographs).
   const sections = [
-    [2.72, 0.37, 0.92, 1.49],
-    [2.54, 0.46, 0.71, 1.54],
-    [1.5, 0.565, 0.55, 1.58],
-    [0.82, 0.58, 0.53, 2.02],
-    [0.4, 0.6, 0.51, 2.06],
-    [-0.27, 0.6, 0.51, 2.02],
-    [-1.13, 0.53, 0.55, 1.83],
-    [-1.52, 0.46, 0.59, 1.55],
-    [-3.65, 0.21, 0.92, 1.57],
-    [-4.7, 0.125, 1.14, 1.55],
-    [-5.1, 0.06, 1.39, 1.51],
+    [2.72, 0.37, 0.92, 1.49, 1.25, 1.38, 0.32, 0.2],
+    [2.54, 0.46, 0.71, 1.54, 1.2, 1.38, 0.4, 0.3],
+    [1.5, 0.565, 0.55, 1.58, 1.22, 1.44, 0.565, 0.26],
+    // Roof tucked into the wing root: 182M principal-dimensions view puts the door glazing at
+    // 1.37-1.69 m and the root underside near 1.75 m once scaled by overall length.
+    [0.82, 0.58, 0.53, 1.9, 1.28, 1.76, 0.565],
+    [0.4, 0.6, 0.51, 1.94, 1.28, 1.8, 0.57],
+    [-0.27, 0.6, 0.51, 1.9, 1.27, 1.76, 0.57],
+    [-1.13, 0.53, 0.55, 1.72, 1.18, 1.58, 0.505],
+    [-1.52, 0.46, 0.59, 1.55, 1.1, 1.41, 0.44],
+    [-3.65, 0.21, 0.92, 1.57, 1.2, 1.47, 0.17, 0.14],
+    [-4.7, 0.125, 1.14, 1.55, 1.33, 1.47, 0.1, 0.08],
+    [-5.1, 0.06, 1.39, 1.51, 1.45, 1.49, 0.045, 0.04],
   ];
-  const rings = sections.map(([z, w, b, t]) => ({
-    z,
-    points: [
-      [0, t],
-      [w * 0.78, t - 0.025],
-      [w, t - 0.14],
-      [w, b + 0.16],
-      [w * 0.67, b],
-      [0, b - 0.025],
-      [-w * 0.67, b],
-      [-w, b + 0.16],
-      [-w, t - 0.14],
-      [-w * 0.78, t - 0.025],
-    ],
-  }));
+  // Points: 0 crown, 1-2 roof roll, 3 shoulder, 4 belt, 5-8 belly corner, 9 belly, 10 keel,
+  // then mirrored (16 belt, 17 shoulder on the right side).
+  const rings = sections.map(([z, w, b, t, belt, shoulder, ws, rc = 0.13], i) => {
+    // Roof roll: round on the nose bowl and tail cone, tighter where the cabin meets the wing.
+    const n = z < -3 || i < 2 ? 2.7 : 3.6;
+    const right = [
+      ...[1, 2].map((k) => [
+        ws * Math.pow(Math.sin((k * Math.PI) / 6), 2 / n),
+        shoulder + (t - shoulder) * Math.pow(Math.cos((k * Math.PI) / 6), 2 / n),
+      ]),
+      [ws, shoulder],
+      [w, belt],
+      ...[0, 35, 65, 90].map((deg) => [
+        w - rc + rc * Math.cos((deg * Math.PI) / 180),
+        b + rc - rc * Math.sin((deg * Math.PI) / 180),
+      ]),
+      [(w - rc) * 0.5, b - 0.015],
+    ];
+    return {
+      z,
+      points: [[0, t], ...right, [0, b - 0.025], ...right.reverse().map(([x, y]) => [-x, y])],
+    };
+  });
   const p = (i, j) => [...rings[i].points[j], rings[i].z];
+  const roof = [17, 18, 19, 0, 1, 2];
   loft(d, rings, paint, {
     skip: (i, j) =>
-      (i === 2 && [0, 1, 8, 9].includes(j)) ||
-      ([3, 4, 5].includes(i) && [2, 7].includes(j)) ||
-      (i === 6 && [0, 1, 8, 9].includes(j)),
+      (i === 2 && roof.includes(j)) ||
+      ([2, 3, 4, 5].includes(i) && [3, 16].includes(j)) ||
+      (i === 6 && roof.includes(j)),
   });
-  for (const j of [0, 1, 8, 9]) {
-    quad(d, p(2, j), p(3, j), p(3, (j + 1) % 10), p(2, (j + 1) % 10), glass, [0, 1, 1]);
-    quad(d, p(6, j), p(7, j), p(7, (j + 1) % 10), p(6, (j + 1) % 10), glass, [0, 1, -1]);
+  for (const j of roof) {
+    quad(d, p(2, j), p(3, j), p(3, (j + 1) % 20), p(2, (j + 1) % 20), glass, [0, 1, 1]);
+    quad(d, p(6, j), p(7, j), p(7, (j + 1) % 20), p(6, (j + 1) % 20), glass, [0, 1, -1]);
   }
   outline(
     d,
-    [p(2, 8), p(3, 8), p(3, 9), p(3, 0), p(3, 1), p(3, 2), p(2, 2), p(2, 1), p(2, 0), p(2, 9)],
+    [
+      p(2, 17),
+      ...[...roof, 3].map((j) => p(3, j)),
+      ...[...roof.slice(1), 3].reverse().map((j) => p(2, j)),
+    ],
     0.012,
     paint,
   );
   d.rod(p(6, 0), p(7, 0), 0.01, paint);
+  // Skin half width at a station and height: glazing, doors and trim follow the curved side.
+  const ringAt = (z) => {
+    let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+    if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+    const a = rings[i].points,
+      b = rings[i + 1].points,
+      u = (z - rings[i].z) / (rings[i + 1].z - rings[i].z);
+    return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+  };
+  const halfWidth = (z, y) => {
+    const q = ringAt(z);
+    for (let j = 0; j < 10; j++)
+      if (y <= q[j][1] && y >= q[j + 1][1])
+        return q[j][0] + ((q[j + 1][0] - q[j][0]) * (y - q[j][1])) / (q[j + 1][1] - q[j][1] || 1);
+    return q[4][0];
+  };
+  // Window heights keep the measured layout: fractions of the side from 0.14 m below the crown
+  // (v = 0) to 0.16 m above the belly (v = 1).
+  const glazingY = (i, v) => {
+    const [, , b, t] = sections[i];
+    return t - 0.14 + (b + 0.3 - t) * v;
+  };
+  // Round each pane corner with a quadratic fillet of radius r in the side's (z, y) plane.
+  const fillet = (points, r) =>
+    points.flatMap((c, i) => {
+      const toward = (q) => {
+        const l = Math.hypot(q[0] - c[0], q[1] - c[1]),
+          k = Math.min(r, l * 0.4) / l;
+        return [c[0] + (q[0] - c[0]) * k, c[1] + (q[1] - c[1]) * k];
+      };
+      const a = toward(points[(i + points.length - 1) % points.length]),
+        b = toward(points[(i + 1) % points.length]);
+      return [a, [(a[0] + 2 * c[0] + b[0]) / 4, (a[1] + 2 * c[1] + b[1]) / 4], b];
+    });
   for (const side of [-1, 1]) {
-    const j = side > 0 ? 2 : 7;
+    const j = side > 0 ? 3 : 16,
+      skin = (z, y, out = 0) => [side * (halfWidth(z, y) + out), y, z];
+    // Trim polylines given as [z, y], subdivided so they lie on the curved skin.
+    const trace = (points) =>
+      points.flatMap(([z, y], i) => {
+        const [z2, y2] = points[(i + 1) % points.length];
+        return [0, 1, 2, 3, 4, 5].map((k) =>
+          skin(z + ((z2 - z) * k) / 6, y + ((y2 - y) * k) / 6, 0.003),
+        );
+      });
+    // Forward door glazing runs under the windscreen post to the cowl line.
     for (const [start, end] of [
+      [2, 3],
       [3, 5],
       [5, 6],
     ]) {
-      const a = p(start, j),
-        b = p(end, j),
-        c = p(end, j + 1),
-        e = p(start, j + 1);
-      const q = (u, v) => {
-        const t = side > 0 ? v : 1 - v;
-        return a.map(
-          (_, n) => (a[n] * (1 - u) + b[n] * u) * (1 - t) + (e[n] * (1 - u) + c[n] * u) * t,
-        );
-      };
+      const [za] = sections[start],
+        [zb] = sections[end];
+      const q = (u, v) => [za + (zb - za) * u, glazingY(start, v) * (1 - u) + glazingY(end, v) * u];
       const uv =
-        start === 3
+        start === 2
           ? [
-              [0.09, 0.12],
-              [0.15, 0.07],
-              [0.88, 0.07],
-              [0.93, 0.13],
-              [0.93, 0.38],
-              [0.86, 0.43],
-              [0.12, 0.43],
-              [0.07, 0.36],
+              [0.12, 0.08],
+              [0.985, 0.05],
+              [0.985, 0.39],
+              [0.3, 0.21],
             ]
-          : [
-              [0.08, 0.12],
-              [0.75, 0.14],
-              [0.94, 0.25],
-              [0.77, 0.39],
-              [0.07, 0.42],
-            ];
-      const h = uv.map(([u, v]) => q(u, v));
-      const contour = [a, b, c, e];
-      if (start === 3) {
-        contour.splice(1, 0, p(4, j));
-        contour.splice(4, 0, p(4, j + 1));
-      }
-      sheet(d, contour, paint, [side, 0, 0], [h]);
+          : start === 3
+            ? [
+                [0.09, 0.1],
+                [0.15, 0.05],
+                [0.88, 0.05],
+                [0.93, 0.11],
+                [0.93, 0.34],
+                [0.86, 0.39],
+                [0.12, 0.39],
+                [0.07, 0.32],
+              ]
+            : [
+                [0.08, 0.09],
+                [0.75, 0.11],
+                [0.94, 0.22],
+                [0.77, 0.36],
+                [0.07, 0.39],
+              ];
+      const h = fillet(
+        uv.map(([u, v]) => q(u, v)),
+        0.045,
+      ).map(([z, y]) => skin(z, y));
+      const edge = [];
+      for (let i = start; i <= end; i++) edge.push(p(i, j));
+      for (let i = end; i >= start; i--) edge.push(p(i, j + 1));
+      sheet(d, edge, paint, [side, 0, 0], [h]);
       sheet(d, h, glass, [side, 0, 0]);
       outline(d, h, 0.007, dark);
     }
     outline(
       d,
-      [
-        [side * 0.586, 1.88, 0.8],
-        [side * 0.605, 1.87, -0.27],
-        [side * 0.605, 0.67, -0.27],
-        [side * 0.57, 0.62, 0.73],
-      ],
+      trace([
+        [0.8, 1.76],
+        [-0.27, 1.75],
+        [-0.27, 0.67],
+        [0.73, 0.62],
+      ]),
       0.003,
       metal,
     );
-    d.box([0.02, 0.024, 0.15], [side * 0.608, 1.17, -0.08], metal);
-    for (const z of [0.62, 0.17]) d.box([0.02, 0.05, 0.026], [side * 0.59, 1.82, z], metal);
+    d.box([0.02, 0.024, 0.15], skin(-0.08, 1.17, 0.008), metal);
+    for (const z of [0.62, 0.17]) d.box([0.02, 0.05, 0.026], skin(z, 1.7, 0.008), metal);
     for (let i = 0; i < sections.length - 1; i++) {
       const a = sections[i],
         b = sections[i + 1],
-        y = (q) => q[2] + 0.27;
-      quad(
-        d,
-        [side * (a[1] + 0.003), y(a), a[0]],
-        [side * (b[1] + 0.003), y(b), b[0]],
-        [side * (b[1] + 0.003), y(b) + 0.08, b[0]],
-        [side * (a[1] + 0.003), y(a) + 0.08, a[0]],
-        accent,
-        [side, 0, 0],
-      );
+        y = (q) => q[2] + 0.27,
+        steps = Math.ceil(Math.abs(b[0] - a[0]) / 0.15),
+        at = (k, dy) => {
+          const t = k / steps;
+          return skin(a[0] + (b[0] - a[0]) * t, y(a) + (y(b) - y(a)) * t + dy, 0.003);
+        };
+      for (let k = 0; k < steps; k++)
+        quad(d, at(k, 0), at(k + 1, 0), at(k + 1, 0.08), at(k, 0.08), accent, [side, 0, 0]);
       for (let t = 0; t < 1; t += 0.13 / Math.abs(b[0] - a[0]))
-        d.add(new T.SphereGeometry(0.0026, 5, 3), metal, [
-          side * (a[1] + (b[1] - a[1]) * t + 0.004),
-          y(a) + (y(b) - y(a)) * t - 0.04,
-          a[0] + (b[0] - a[0]) * t,
-        ]);
+        d.add(
+          new T.SphereGeometry(0.0026, 5, 3),
+          metal,
+          skin(a[0] + (b[0] - a[0]) * t, y(a) + (y(b) - y(a)) * t - 0.04, 0.004),
+        );
     }
     for (const i of [1, 2, 7, 8, 9])
       outline(
@@ -183,16 +246,16 @@ export function buildCessna182(s) {
     if (side > 0)
       outline(
         d,
-        [
-          [0.51, 1.35, -1.02],
-          [0.44, 1.35, -1.58],
-          [0.44, 0.67, -1.58],
-          [0.51, 0.62, -1.02],
-        ],
+        trace([
+          [-1.02, 1.35],
+          [-1.58, 1.35],
+          [-1.58, 0.67],
+          [-1.02, 0.62],
+        ]),
         0.003,
         metal,
       );
-    const y = (x) => 1.93 + Math.max(0, Math.abs(x) - 0.6) * 0.0262,
+    const y = (x) => 1.86 + Math.max(0, Math.abs(x) - 0.6) * 0.0262,
       le = (x) => 0.72 - Math.max(0, Math.abs(x) - 2.55) * 0.045,
       te = (x) => -0.9 + Math.max(0, Math.abs(x) - 2.55) * 0.13,
       hinge = (x) => te(x) + (x < 2.56 ? 0.36 : 0.27);
@@ -256,8 +319,8 @@ export function buildCessna182(s) {
           le(x) - u * (le(x) - hinge(x)),
         ]);
       }
-    const a = new T.Vector3(side * 0.57, 0.68, 0.76),
-      b = new T.Vector3(side * 2.7, y(2.7) - 0.015, 0.55),
+    const a = new T.Vector3(side * 0.57, 0.68, 0.8),
+      b = new T.Vector3(side * 2.7, y(2.7) - 0.015, 0.52),
       v = b.clone().sub(a);
     const strut = d.box(
       [0.065, v.length(), 0.19],
@@ -371,12 +434,18 @@ export function buildCessna182(s) {
   d.add(new T.CylinderGeometry(0.028, 0.028, 0.06, 12), d.red, [0, 2.815, -5.15]);
   for (const side of [-1, 1]) {
     d.rod([side * 0.025, 2.36, -5.04], [side * 0.35, 2.36, -4.78], 0.005, metal);
-    d.rod([side * 0.12, 2.04, -0.1], [side * 0.12, 2.32, -0.42], 0.007, paint);
-    ellipsoid(d, [side * 0.19, 1.34, 2.728], [0.135, 0.075, 0.014], dark, 16);
+    d.rod([side * 0.12, 1.92, -0.1], [side * 0.12, 2.2, -0.42], 0.007, paint);
+    // Round induction/cooling inlets with rolled lips either side of the spinner.
+    d.add(new T.CircleGeometry(0.07, 20).scale(0.9, 1.05, 1), dark, [side * 0.235, 1.3, 2.724]);
+    d.add(new T.TorusGeometry(0.073, 0.016, 5, 20).scale(0.9, 1.05, 1), paint, [
+      side * 0.235,
+      1.3,
+      2.727,
+    ]);
     d.rod([side * 0.29, 0.7, 1.83], [side * 0.29, 0.56, 1.7], 0.024, metal);
   }
   d.rod([0, 1.57, -1.85], [0, 1.83, -2.02], 0.007, paint);
-  ellipsoid(d, [0, 1.02, 2.734], [0.09, 0.055, 0.012], dark, 16);
+  ellipsoid(d, [0, 1.01, 2.726], [0.07, 0.034, 0.01], dark, 16);
   const engine = group(root, 'engine-1', [0, 1.279525, 2.735]),
     prop = group(engine, 'Skylane-propeller'),
     pd = detailKit(prop, prop.name);
@@ -432,24 +501,24 @@ export function buildCessna182(s) {
         r,
         z,
       ]);
+    // Egg-shaped speed fairings that close over the tire tops; only the tread shows below.
     const pant = [
       [0.4, 0.035, 0.3, 0.37],
-      [0.28, 0.145, 0.24, 0.45],
-      [0.02, 0.17, 0.21, 0.48],
-      [-0.38, 0.13, 0.24, 0.39],
+      [0.28, 0.145, 0.24, 0.48],
+      [0.02, 0.17, 0.21, 0.54],
+      [-0.38, 0.13, 0.24, 0.44],
       [-0.52, 0.025, 0.28, 0.32],
     ].map(([zz, w, b, t]) => ({
       z: z + zz,
-      points: [
-        [x, t],
-        [x + w * 0.7, t - 0.02],
-        [x + w, t - 0.06],
-        [x + w * 0.8, b],
-        [x, b],
-        [x - w * 0.8, b],
-        [x - w, t - 0.06],
-        [x - w * 0.7, t - 0.02],
-      ],
+      points: Array.from({ length: 12 }, (_, i) => {
+        const a = (i * Math.PI) / 6,
+          c = Math.cos(a),
+          s = Math.sin(a);
+        return [
+          x + w * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
+          (b + t) / 2 + ((t - b) / 2) * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
+        ];
+      }),
     }));
     loft(d, pant, paint);
   }
@@ -776,8 +845,26 @@ function cockpit(root, m) {
       pt.knob(px(u), py(v), z - 0.022, 0.005);
       d.rod(at(u, v, -0.024), at(u, v - 8, -0.035), 0.0025, m.metal);
     }
-  for (const u of [220, 253])
-    d.box([0.017, 0.03, 0.011], at(u, 614, -0.012), u === 220 ? red : ink);
+  // Red master rocker is the engine master; parking-brake T-handle sits under the lower left
+  // panel, outboard of the yoke sightline.
+  d.box([0.017, 0.03, 0.011], at(253, 614, -0.012), ink);
+  const master = group(cabin, 'Skylane-master', at(220, 614, -0.012)),
+    md = detailKit(master, master.name);
+  md.box([0.017, 0.03, 0.011], [0, 0, 0], red);
+  master.userData.aircraftControl = {
+    action: 'engine',
+    motion: { property: 'rotation', axis: 'x', scale: -0.5 },
+  };
+  md.finish();
+  const parkingBrake = group(cabin, 'Skylane-parking-brake', [0.42, 0.98, 1.45]),
+    bd = detailKit(parkingBrake, parkingBrake.name);
+  bd.rod([0, 0, 0.05], [0, 0, -0.022], 0.005, m.metal);
+  bd.box([0.07, 0.016, 0.018], [0, 0, -0.03], black);
+  parkingBrake.userData.aircraftControl = {
+    action: 'brake',
+    motion: { property: 'position', axis: 'z', scale: -0.022 },
+  };
+  bd.finish();
   d.box([0.18, 0.034, 0.015], at(902, 593, -0.01), black);
   d.text('ADF INOP', at(902, 593, -0.02), 0.008, Math.PI, ink);
   d.text('ELT', at(836, 488, -0.012), 0.006, Math.PI, ink);
@@ -879,7 +966,8 @@ function cockpit(root, m) {
       d.box([0.045, 0.014, 0.036], [x, 0.9, zz + 0.08], m.metal);
     }
   for (const side of [-1, 1]) {
-    d.box([0.025, 0.28, 1.45], [side * 0.562, 0.85, 0.05], seats);
+    // Sidewall trim sits inside the skin where the cabin narrows aft of the doors.
+    d.box([0.025, 0.28, 1.45], [side * 0.545, 0.85, 0.05], seats);
     d.rod([side * 0.54, 1.06, 0.4], [side * 0.54, 1.06, 0.05], 0.017, m.dark);
     for (const j of [-1, 1]) {
       const g = group(cabin, `Skylane-pedal-${side}-${j}`, [side * 0.28 + j * 0.08, 0.71, 1.54]),
@@ -896,7 +984,7 @@ function cockpit(root, m) {
         scale: -j * 0.035,
       });
     }
-    d.box([0.3, 0.025, 0.26], [side * 0.33, 1.98, 0.75], seats);
+    d.box([0.3, 0.025, 0.26], [side * 0.33, 1.86, 0.75], seats);
   }
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };

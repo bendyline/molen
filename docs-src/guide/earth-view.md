@@ -91,13 +91,17 @@ neutral olive.
 
 Buildings, trees and landmarks cast sun shadows onto everything around what the camera frames:
 the orbit target (sized to the view), or a little ahead of the walker, car or aircraft. The
-shadow map follows that focus in whole texels, so edges hold still as it moves. Adaptive quality
+shadow map follows that focus in whole texels anchored to world coordinates, including through
+floating-origin rebases. Its coverage changes in small steps with hysteresis, so camera bob and
+minor altitude changes do not resize the texel grid every frame. Adaptive quality
 turns shadows off at its two lowest levels; `shadows: false` turns them off entirely. Only layer
 parts taller than `EARTH_SHADOW_CASTER_HEIGHT` (3.5 m) cast: shrubs, brambles and saplings stay
 out of the shadow pass, where their shadows would mostly fall inside the canopy's.
 
 In flight the shadow footprint widens with height above the local ground: its half-width is
-four times that height, capped at 5 km, with a tighter footprint near the ground. This pushes
+four times that height, capped at 5 km. Below 24 m the half-width is 48 m plus twice the height,
+preserving aircraft and contact-shadow detail on the runway. The renderer rounds coverage up
+to a stable size (and holds it through small changes). This pushes
 the shadow boundary farther into the distance in aerial views, trading some shadow sharpness
 for coverage at the same map resolution. Walking and driving keep their tighter footprints.
 
@@ -1078,6 +1082,14 @@ the full contract and current prototype limits.
 
 ## Airport layouts
 
+Airport terrain is graded before terrain meshes, pavement and ground physics consume it. All
+runways of an airport and its mapped aerodrome grounds share a level surface, with shoulders
+and a smooth transition back to surrounding terrain. The height is inferred from fixed terrain
+samples along the runways; it is not surveyed runway elevation or slope data. The reference
+samples are independent of camera detail and tile load order. Hosts composing a pyramid stream
+can pass `transformHeightfield: createAirportTerrainGrading(content.airports)` alongside their
+`withEarthAirports` semantic renderers.
+
 The `molen.earth` content pack supplies a lazy worldwide runway catalog and a detailed Boeing
 Field layout. Both Earth hosts use measured runway endpoints and widths, draw runway numbers,
 thresholds and centre lines, and keep airport pavement visible from flight altitude. Mapped
@@ -1090,8 +1102,9 @@ The runway snapshot covers 10,746 airports with complete endpoint and width reco
 aprons, taxiways and hangars are currently bundled for Boeing Field; elsewhere these depend on
 the map's coverage. Building heights and untagged taxiway widths are interpreted. Runways with
 missing endpoints, closed runways and water runways are omitted. Supplemental airports also
-render when the basemap has no tile (Boeing Field lies south of the bundled Seattle street-detail
-coverage). No airport data is fetched without a supplied pack. Hosts composing their own
+render when the basemap has no tile (Itami lies outside the bundled Kyoto street-detail
+coverage). Seattle's street-detail coverage includes Boeing Field and its surroundings.
+No airport data is fetched without a supplied pack. Hosts composing their own
 terrain renderer can use `withEarthAirports`
 around semantic renderers and observers, passing `content.airports` from `loadEarthContent`.
 
@@ -1101,7 +1114,7 @@ of light aircraft, business aircraft and larger jets. Aircraft are fitted inside
 with clearance from buildings, taxiways, runways, other aircraft and reserved diorama areas.
 The fleet and parking positions are simulated, not live aircraft tracking or exact stand assignments.
 
-Walk to an aircraft's door and press **E** to board, **I** to start, and **Shift/Ctrl** to adjust
+Walk to an aircraft's door and press **E** to board, **I** to start, and **=/−** to adjust
 power. The same aircraft taxis and flies away; its original stand remains empty for the session.
 Land, stop and shut down before exiting. Automatic parking keeps at most twelve unclaimed
 aircraft within 1.8 km; claimed aircraft remain owned vehicles across terrain re-anchors.

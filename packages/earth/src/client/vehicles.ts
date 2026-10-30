@@ -18,8 +18,10 @@ import {
   installBoats,
 } from '@bendyline/molen-kernel/boats';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
+import { Glass, GlassState } from '@bendyline/molen-kernel/glass';
 import {
   driveVehicle,
+  IDLE_VEHICLE_INPUT,
   initialVehicleState,
   installVehicles,
   Mountable,
@@ -756,6 +758,17 @@ export class EarthVehicles {
    * world (a shared world is stepped once per frame by its owner, see {@link step}) and pose the
    * models.
    */
+  toggleActuators(presses: Readonly<Record<string, number>>): void {
+    const id = this.mountedId;
+    const spec = id ? this.world.get(id, Vehicle)?.spec : undefined;
+    if (!id || !spec) return;
+    const input = this.world.get(id, VehicleInput) ?? IDLE_VEHICLE_INPUT;
+    const actuators = { ...input.actuators };
+    for (const [name, count] of Object.entries(presses)) {
+      if (spec.actuators?.[name] && count % 2 === 1) actuators[name] = !actuators[name];
+    }
+    this.world.set(id, VehicleInput, { ...input, actuators });
+  }
   update(dt: number, input: VehicleInputData): void {
     this.settleSpawned();
     const id = this.mountedId;
@@ -772,7 +785,11 @@ export class EarthVehicles {
           steering: input.steering,
           anchor: input.handbrake === true,
         });
-      else driveVehicle(this.world, PLAYER, input);
+      else
+        driveVehicle(this.world, PLAYER, {
+          ...input,
+          actuators: { ...this.world.get(id, VehicleInput)?.actuators, ...input.actuators },
+        });
     }
     if (this.ownsWorld) this.step(dt);
     this.render();
@@ -925,6 +942,7 @@ export class EarthVehicles {
           ),
         },
         this.world.tick / this.world.tickRate,
+        this.world.get(id, GlassState),
       );
     }
   }
@@ -973,6 +991,7 @@ export class EarthVehicles {
         model,
         this.data(id) ?? vehicle,
         this.world.get(id, Livery),
+        this.world.get(id, Glass),
       );
       if (
         this.disposed ||

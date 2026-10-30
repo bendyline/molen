@@ -1445,11 +1445,11 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.023094448956959935,
+              "profileDrag": 0.027094448956959935,
               "inducedDrag": 0.059619701129855145,
-              "gearDrag": 0.004,
+              "gearDrag": 0.025,
               "flapDrag": 0.075,
-              "gearTransitTime": 0,
+              "gearTransitTime": 8,
               "flapTransitTime": 4,
               "stallDrag": 1.1,
               "propellerEfficiency": 0.85,
@@ -1464,8 +1464,8 @@
               "waveDrag": 0.22,
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 114.20666666666666,
-              "flapLimitSpeed": 57.10333333333333,
-              "fixedGear": true
+              "gearLimitSpeed": 61.86194444444444,
+              "flapLimitSpeed": 57.10333333333333
             },
             "engines": [
               {
@@ -1522,7 +1522,8 @@
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.8
               }
-            ]
+            ],
+            "actuators": {}
           }
         },
         "aircraftInput": {
@@ -1557,7 +1558,8 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {}
         },
         "mountable": {
           "seats": [

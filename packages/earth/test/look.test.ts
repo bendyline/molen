@@ -50,6 +50,15 @@ describe('the shared Earth look', () => {
       'high',
       'high',
     ]);
+    // Cloud shadows come with the two highest tiers' cloud quality.
+    expect([0, 1, 2, 3, 4, 5].map((level) => earthPerformanceTier(level).clouds)).toEqual([
+      'low',
+      'low',
+      'medium',
+      'medium',
+      'high',
+      'ultra',
+    ]);
     const walk = earthShadowFocus('walk', [0, 2, 0], [0, 0, -1], 0);
     expect(walk.radius).toBe(160);
     expect(walk.center).toEqual([0, 0, -80]);
@@ -57,10 +66,10 @@ describe('the shared Earth look', () => {
     const airborne = earthShadowFocus('fly', [0, 600, 0], [1, -0.3, 0], 100);
     expect(airborne.radius).toBe(2_000);
     expect(airborne.center).toEqual([1_000, 100, 0]);
-    expect(earthShadowFocus('fly', [0, 50, 0], [1, 0, 0], 0).radius).toBe(300);
+    expect(earthShadowFocus('fly', [0, 50, 0], [1, 0, 0], 0).radius).toBe(200);
     // Near the ground it is tighter (and sharper) than a walker's.
-    expect(earthShadowFocus('fly', [0, 102, 0], [1, 0, 0], 100).radius).toBe(116);
-    expect(earthShadowFocus('fly', [0, 10, 0], [1, 0, 0], 0).radius).toBe(180);
+    expect(earthShadowFocus('fly', [0, 102, 0], [1, 0, 0], 100).radius).toBe(52);
+    expect(earthShadowFocus('fly', [0, 10, 0], [1, 0, 0], 0).radius).toBe(68);
     expect(earthShadowFocus('fly', [0, 9_000, 0], [1, 0, 0], 0).radius).toBe(5_000);
   });
 });

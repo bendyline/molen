@@ -18,6 +18,135 @@ import {
   wing,
 } from './mesh-kit.mjs';
 
+/** A tyre with rounded shoulders on a dished rim with a domed hub cap, the axle along X through
+ * `at`: radius r, width w. It replaces flat cylinder-and-disc wheels. */
+function wheel(d, at, r, w, tyre, rim, cap = rim) {
+  const lathe = (points, segments) =>
+    new T.LatheGeometry(
+      points.map(([x, y]) => new T.Vector2(x, y)),
+      segments,
+    ).rotateZ(Math.PI / 2);
+  d.add(
+    lathe(
+      // Listed from the -Y bead round to the +Y bead so the lathe faces point outward.
+      [
+        [r * 0.64, -w * 0.5],
+        [r * 0.88, -w * 0.5],
+        [r * 0.97, -w * 0.4],
+        [r, -w * 0.2],
+        [r, w * 0.2],
+        [r * 0.97, w * 0.4],
+        [r * 0.88, w * 0.5],
+        [r * 0.64, w * 0.5],
+      ],
+      20,
+    ),
+    tyre,
+    at,
+  );
+  for (const side of [-1, 1]) {
+    const mirror = (points) => (side > 0 ? points : points.map(([x, y]) => [x, -y]).reverse());
+    d.add(
+      lathe(
+        mirror([
+          [r * 0.64, w * 0.5],
+          [r * 0.6, w * 0.34],
+          [r * 0.3, w * 0.34],
+          [r * 0.22, w * 0.44],
+        ]),
+        16,
+      ),
+      rim,
+      at,
+    );
+    d.add(
+      lathe(
+        mirror(
+          Array.from({ length: 5 }, (_, k) => {
+            const a = (k * Math.PI) / 8;
+            return [r * 0.22 * Math.cos(a), w * 0.44 + r * 0.09 * Math.sin(a)];
+          }),
+        ),
+        12,
+      ),
+      cap,
+      at,
+    );
+  }
+}
+/** A faired leg from a to b: an elliptical section `thick` across and `chord` fore and aft,
+ * tapering to `taper` of its size at b. */
+function fairedLeg(d, a, b, thick, chord, taper, material) {
+  const from = new T.Vector3(...a),
+    v = new T.Vector3(...b).sub(from),
+    geometry = new T.CylinderGeometry(taper, 1, v.length(), 16, 1).scale(thick, 1, chord),
+    mesh = d.add(geometry, material, from.clone().addScaledVector(v, 0.5).toArray());
+  // Keep the chord fore and aft: yaw the leg into the plane of the segment, then tilt it.
+  const sideways = new T.Vector3(v.x, v.y, 0).normalize(),
+    roll = new T.Quaternion().setFromUnitVectors(new T.Vector3(0, 1, 0), sideways),
+    pitch = new T.Quaternion().setFromUnitVectors(sideways, v.clone().normalize());
+  mesh.quaternion.copy(pitch.multiply(roll));
+  return mesh;
+}
+/** Front and back z of a side-view outline [[z, y], ...] at height y (0 width outside it). */
+function chordAt(outline, y) {
+  const zs = [];
+  for (let n = 0; n < outline.length; n++) {
+    const [za, ya] = outline[n],
+      [zb, yb] = outline[(n + 1) % outline.length];
+    if ((ya - y) * (yb - y) <= 0 && ya !== yb) zs.push(za + ((zb - za) * (y - ya)) / (yb - ya));
+  }
+  return zs.length ? [Math.max(...zs), Math.min(...zs)] : [0, 0];
+}
+/** Horizontal ribs [y, front z, back z] of a side-view outline, at every vertex height. */
+function outlineRibs(outline) {
+  const ys = [...new Set(outline.map(([, y]) => y))].sort((a, b) => a - b),
+    low = ys[0] + 0.004,
+    high = ys.at(-1) - 0.004;
+  return [low, ...ys.filter((y) => y > low && y < high), high].map((y) => [
+    y,
+    ...chordAt(outline, y),
+  ]);
+}
+/** Half width of a foil rib at z, for details laid on its surface. */
+function foilX([, front, back, half, lead, trail], z) {
+  const u = (front - z) / (front - back),
+    xs = [
+      [0, lead],
+      [0.3, half],
+      [0.75, trail + (half - trail) * 0.45],
+      [1, trail],
+    ];
+  for (let k = 0; k < 3; k++)
+    if (u <= xs[k + 1][0])
+      return xs[k][1] + ((xs[k + 1][1] - xs[k][1]) * (u - xs[k][0])) / (xs[k + 1][0] - xs[k][0]);
+  return trail;
+}
+/** A symmetric fin or rudder lofted through ribs [y, front z, back z, half thickness at 30 %
+ * chord, front-face half width, back-face half width] and closed at both ends: a tapered
+ * section instead of a constant-thickness slab. */
+function foil(d, ribs, material) {
+  const rings = ribs.map(([y, front, back, half, lead, trail]) => {
+    const c = front - back,
+      right = [
+        [lead, front],
+        [half, front - c * 0.3],
+        [trail + (half - trail) * 0.45, front - c * 0.75],
+        [trail, back],
+      ];
+    return [...right, ...[...right].reverse().map(([x, z]) => [-x, z])].map(([x, z]) => [x, y, z]);
+  });
+  for (let i = 0; i < rings.length - 1; i++)
+    for (let j = 0; j < 8; j++) {
+      const q = [rings[i][j], rings[i + 1][j], rings[i + 1][(j + 1) % 8], rings[i][(j + 1) % 8]],
+        mid = (k) => q.reduce((sum, p) => sum + p[k], 0) / 4,
+        axis = (ribs[i][1] + ribs[i][2] + ribs[i + 1][1] + ribs[i + 1][2]) / 4;
+      quad(d, ...q, material, [mid(0), 0, mid(2) - axis]);
+    }
+  sheet(d, rings[0], material, [0, -1, 0]);
+  sheet(d, rings.at(-1), material, [0, 1, 0]);
+}
+
 const angle = Math.atan2(98, 512),
   ppm = 1161 / 10.9;
 const unpose = (p) => new T.Vector3(...p).applyAxisAngle(new T.Vector3(1, 0, 0), angle).toArray();
@@ -36,12 +165,6 @@ export const porterFrame = () => ({
   panelZ: pose([0, 1.37, 2.65])[2],
   floor: 0.59,
 });
-const rect = (x, y, w, h, z) => [
-  [x - w / 2, y - h / 2, z],
-  [x + w / 2, y - h / 2, z],
-  [x + w / 2, y + h / 2, z],
-  [x - w / 2, y + h / 2, z],
-];
 export function buildPorter(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -78,11 +201,15 @@ export function buildPorter(s) {
     [-4.81, 0.07, 1.4, 1.786],
     [-5.12, 0.035, 1.54, 1.68],
   ];
-  const sections = stations.map(([z, w, b, t]) => {
-      const r = Math.min(0.15, w * 0.65, (t - b) * 0.22);
-      return {
-        z,
-        points: [
+  // The PT6 cowl rings blend from the radiused box toward a superellipse (the Turbo-Porter's long
+  // nose is rounded over the top and chin in the front photos); the cabin keeps its box section.
+  const roundness = [0.75, 0.75, 0.55, 0.25];
+  const sections = stations.map(([z, w, b, t], i) => {
+      const r = Math.min(0.15, w * 0.65, (t - b) * 0.22),
+        k = roundness[i] ?? 0,
+        c = (t + b) / 2,
+        h = (t - b) / 2,
+        right = [
           [0, t],
           [w - r, t],
           [w - r * 0.293, t - r * 0.293],
@@ -91,12 +218,22 @@ export function buildPorter(s) {
           [w - r * 0.293, b + r * 0.293],
           [w - r, b],
           [0, b],
-          [-w + r, b],
-          [-w + r * 0.293, b + r * 0.293],
-          [-w, b + r],
-          [-w, t - r],
-          [-w + r * 0.293, t - r * 0.293],
-          [-w + r, t],
+        ].map(([x, y], j) => {
+          const a = ([0, 32, 58, 78, 102, 122, 148, 180][j] * Math.PI) / 180,
+            q = Math.cos(a);
+          return [
+            x + (w * Math.pow(Math.sin(a), 2 / 2.6) - x) * k,
+            y + (c + Math.sign(q) * h * Math.pow(Math.abs(q), 2 / 2.6) - y) * k,
+          ];
+        });
+      return {
+        z,
+        points: [
+          ...right,
+          ...right
+            .slice(1, 7)
+            .reverse()
+            .map(([x, y]) => [-x, y]),
         ],
       };
     }),
@@ -107,12 +244,12 @@ export function buildPorter(s) {
   });
   for (const j of [0, 1, 2, 11, 12, 13])
     quad(d, p(4, j), p(5, j), p(5, (j + 1) % 14), p(4, (j + 1) % 14), glass, [0, 1, 1]);
-  for (const j of [0, 3, 11]) d.rod(p(4, j), p(5, j), 0.018, dark);
+  for (const j of [0, 3, 11]) d.rod(p(4, j), p(5, j), 0.013, dark);
   for (const i of [4, 5])
     outline(
       d,
       [p(i, 11), p(i, 12), p(i, 13), p(i, 0), p(i, 1), p(i, 2), p(i, 3)],
-      0.018,
+      0.013,
       white,
       false,
     );
@@ -124,45 +261,74 @@ export function buildPorter(s) {
       }
     return stations.at(-1)[k];
   };
+  // Skin half width at height y, so trim on the rounded cowl follows the skin.
+  const skinX = (z, y) => {
+    let i = sections.findIndex(
+      (s, n) => n < sections.length - 1 && z <= s.z && z >= sections[n + 1].z,
+    );
+    if (i < 0) i = z > sections[0].z ? 0 : sections.length - 2;
+    const u = (z - sections[i].z) / (sections[i + 1].z - sections[i].z),
+      q = sections[i].points.map((a, j) => [
+        a[0] + (sections[i + 1].points[j][0] - a[0]) * u,
+        a[1] + (sections[i + 1].points[j][1] - a[1]) * u,
+      ]);
+    for (let j = 0; j < 7; j++)
+      if ((y - q[j][1]) * (y - q[j + 1][1]) <= 0 && q[j][1] !== q[j + 1][1])
+        return q[j][0] + ((q[j + 1][0] - q[j][0]) * (y - q[j][1])) / (q[j + 1][1] - q[j][1]);
+    return sample(z, 1);
+  };
   for (const side of [-1, 1]) {
-    const pt = (z, y, offset = 0) => [side * (sample(z, 1) + offset), y, z],
+    // Windows and door seams stay on the flat cabin side; stripes and rivets follow the skin.
+    const pt = (z, y, offset = 0) => [side * (skinX(z, y) + offset), y, z],
+      flat = (z, y, offset = 0) => [side * (sample(z, 1) + offset), y, z],
       pix = (u, v, offset = 0) => {
         const q = fromSide(u, v);
-        return pt(q[2], q[1], offset);
+        return flat(q[2], q[1], offset);
       };
+    // Tall cockpit-door window (Turbo-Porter 3-view) and the two large D-shaped cabin-door
+    // windows with rounded outer top corners (OE-EMD and PH-LLL photos), 0.55 by 0.44 m, level
+    // in the flight datum and kept below the roof-shoulder radius so occupants see out through
+    // them; they were small chamfered octagons.
+    const dWindow = (zc, forward) => {
+      const w = 0.55,
+        h = 0.44,
+        yc = 1.665,
+        corner = (cz, cy, r, a0) =>
+          [0, 1, 2, 3].map((k) => {
+            const a = a0 + (k * Math.PI) / 6;
+            return [cz + r * Math.cos(a), cy + r * Math.sin(a)];
+          }),
+        big = 0.13,
+        small = 0.03,
+        front = forward ? big : small,
+        rear = forward ? small : big;
+      // Counter-clockwise from the lower front corner in (z, y).
+      return [
+        ...corner(zc + w / 2 - small, yc - h / 2 + small, small, -Math.PI / 2),
+        ...corner(zc + w / 2 - front, yc + h / 2 - front, front, 0),
+        ...corner(zc - w / 2 + rear, yc + h / 2 - rear, rear, Math.PI / 2),
+        ...corner(zc - w / 2 + small, yc - h / 2 + small, small, Math.PI),
+      ].map(([z, y]) => flat(z, y));
+    };
     const win = [
       [
-        [770, 455],
-        [809, 431],
-        [822, 442],
-        [801, 501],
-        [768, 495],
-      ],
-      [
-        [856, 466],
-        [869, 454],
-        [921, 462],
-        [925, 470],
-        [918, 493],
-        [909, 496],
-        [864, 489],
-        [856, 482],
-      ],
-      [
-        [942, 465],
-        [980, 472],
-        [1004, 490],
-        [1007, 501],
-        [999, 509],
-        [939, 500],
-        [936, 491],
-      ],
-    ].map((a) => a.map((q) => pix(...q)));
-    const q = fromSide(1042, 494),
-      rr = 0.135;
+        [770, 439],
+        [776, 432],
+        [809, 430],
+        [815, 436],
+        [806, 501],
+        [799, 507],
+        [774, 507],
+        [768, 501],
+      ].map((q) => pix(...q)),
+      dWindow(1.37, true),
+      dWindow(0.57, false),
+    ];
+    const q = fromSide(1048, 497),
+      rr = 0.12;
     win.push(
       Array.from({ length: 20 }, (_, i) =>
-        pt(q[2] + Math.sin((i * Math.PI) / 10) * rr, q[1] + Math.cos((i * Math.PI) / 10) * rr),
+        flat(q[2] + Math.sin((i * Math.PI) / 10) * rr, q[1] + Math.cos((i * Math.PI) / 10) * rr),
       ),
     );
     sheet(
@@ -177,7 +343,7 @@ export function buildPorter(s) {
     );
     for (const h of win) {
       sheet(d, h, glass, [side, 0, 0]);
-      outline(d, h, 0.0085, dark);
+      outline(d, h, 0.0045, dark);
     }
     for (const a of [
       [
@@ -204,19 +370,24 @@ export function buildPorter(s) {
     d.rod(pix(836, 445, 0.018), pix(1060, 468, 0.018), 0.012, metal);
     d.rod(pix(840, 556, 0.016), pix(1001, 585, 0.016), 0.012, metal);
     d.rod(pix(806, 508, 0.019), pix(816, 511, 0.019), 0.011, metal);
-    for (let i = 2; i < stations.length - 1; i++) {
-      const a = stations[i],
-        b = stations[i + 1];
-      quad(
-        d,
-        pt(a[0], a[2] + 0.08, 0.003),
-        pt(b[0], b[2] + 0.08, 0.003),
-        pt(b[0], b[2] + 0.3, 0.003),
-        pt(a[0], a[2] + 0.3, 0.003),
-        red,
-        [side, 0, 0],
-      );
-    }
+    // Lower red band in four strips that follow the rounded cowl; on the cabin it sits on the
+    // flat side just above the lower corner radius.
+    for (let i = 2; i < stations.length - 1; i++)
+      for (let k = 0; k < 4; k++) {
+        const a = stations[i],
+          b = stations[i + 1],
+          lo = 0.15 + k * 0.055,
+          hi = lo + 0.055;
+        quad(
+          d,
+          pt(a[0], a[2] + lo, 0.005),
+          pt(b[0], b[2] + lo, 0.005),
+          pt(b[0], b[2] + hi, 0.005),
+          pt(a[0], a[2] + hi, 0.005),
+          red,
+          [side, 0, 0],
+        );
+      }
     for (const z of [4.48, 3.8, 3.05, 1.5, 0.65, -0.36, -1.48, -2.7, -3.96]) {
       const b = sample(z, 2),
         t = sample(z, 3);
@@ -243,17 +414,40 @@ export function buildPorter(s) {
   const ep = fromSide(450, 458),
     engine = group(body, 'engine-1', ep),
     nd = detailKit(engine, 'Porter-nose');
-  ellipsoid(nd, [0, 0, 0.18], [0.205, 0.205, 0.34], metal, 24);
-  const intake = [
-    [-0.17, -0.16, -0.02],
-    [0.17, -0.16, -0.02],
-    [0.18, -0.43, -0.035],
-    [0.12, -0.49, -0.035],
-    [-0.12, -0.49, -0.035],
-    [-0.18, -0.43, -0.035],
-  ];
-  sheet(nd, intake, dark, [0, 0, 1]);
-  outline(nd, intake, 0.018, metal);
+  // Pointed conical spinner with slightly convex flanks (3-view and photos), not an egg.
+  nd.add(
+    new T.LatheGeometry(
+      [0, 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1].map(
+        (t, i) => new T.Vector2(i ? 0.205 * Math.pow(1 - t, 0.62) : 0, 0.68 * t - 0.34),
+      ),
+      24,
+    ).rotateX(Math.PI / 2),
+    metal,
+    [0, 0, 0.18],
+  );
+  // PT6 inlet under the spinner: a rounded mouth with a thick white lip around a dark duct set
+  // 6 cm back, rather than a flat dark plate on the cowl face (N365BT/OE-EMD photos).
+  const intake = Array.from({ length: 24 }, (_, i) => {
+      const a = (i * Math.PI) / 12,
+        c = Math.cos(a),
+        s = Math.sin(a);
+      return [
+        0.17 * Math.sign(c) * Math.pow(Math.abs(c), 0.6),
+        -0.33 + 0.14 * Math.sign(s) * Math.pow(Math.abs(s), 0.6),
+        -0.03,
+      ];
+    }),
+    duct = intake.map(([x, y, z]) => [x * 0.85, -0.33 + (y + 0.33) * 0.8, z - 0.06]);
+  sheet(nd, duct, dark, [0, 0, 1]);
+  for (let i = 0; i < intake.length; i++) {
+    const n = (i + 1) % intake.length;
+    quad(nd, intake[i], intake[n], duct[n], duct[i], dark, [
+      -intake[i][0],
+      -intake[i][1] - 0.33,
+      0,
+    ]);
+  }
+  outline(nd, intake, 0.022, white);
   for (const side of [-1, 1]) {
     const ex = group(engine, `Porter-exhaust-${side}`, [side * 0.32, 0.05, -0.36]);
     ex.rotation.y = side * 0.9;
@@ -281,12 +475,13 @@ export function buildPorter(s) {
     bg.rotation.z = (i * Math.PI * 2) / 3;
     const bd = detailKit(bg, bg.name),
       a = [
+        // 2.56 m (101 in) three-blade Hartzell disc.
         [0.14, -0.06, 0],
         [0.48, -0.085, 0.02],
-        [1.15, -0.06, 0.01],
-        [1.335, -0.025, 0],
-        [1.335, 0.025, 0],
-        [1.12, 0.07, -0.015],
+        [1.1, -0.06, 0.01],
+        [1.28, -0.025, 0],
+        [1.28, 0.025, 0],
+        [1.07, 0.07, -0.015],
         [0.48, 0.09, -0.025],
         [0.14, 0.06, 0],
       ];
@@ -297,7 +492,7 @@ export function buildPorter(s) {
       dark,
       [0, 0, -1],
     );
-    bd.box([0.065, 0.07, 0.022], [1.29, 0, 0], white);
+    bd.box([0.065, 0.07, 0.022], [1.235, 0, 0], white);
     bd.finish();
   }
   pd.finish();
@@ -353,10 +548,9 @@ export function buildPorter(s) {
         ]);
       }
     const a = new T.Vector3(side * 0.62, 0.64, 1.1),
-      b = new T.Vector3(side * 3.55, 2.02, 1.5),
-      v = b.clone().sub(a),
-      st = d.box([0.057, v.length(), 0.17], a.clone().addScaledVector(v, 0.5).toArray(), metal);
-    st.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), v.normalize());
+      b = new T.Vector3(side * 3.55, 2.02, 1.5);
+    // Streamlined lift strut (elliptical section, chord fore and aft), not a square box.
+    fairedLeg(d, a.toArray(), b.toArray(), 0.029, 0.085, 1, metal);
     d.rod([side * 2.1, 1.4, 1.32], [side * 2.1, 2.05, 1.32], 0.014, metal);
     // Leading-edge landing light recesses and fixed nav lamps.
     d.add(new T.CircleGeometry(0.07, 16), dark, [side * 6.78, 2.07, 2.126]);
@@ -392,50 +586,61 @@ export function buildPorter(s) {
       scale: 0.45,
     });
   }
-  const solid = (dd, a, m) => {
-    for (const side of [-1, 1])
-      sheet(
-        dd,
-        a.map(([z, y]) => [side * 0.045, y, z]),
-        m,
-        [side, 0, 0],
-      );
-    for (let i = 0; i < a.length; i++) {
-      const p = a[i],
-        q = a[(i + 1) % a.length];
-      quad(
-        dd,
-        [-0.045, p[1], p[0]],
-        [-0.045, q[1], q[0]],
-        [0.045, q[1], q[0]],
-        [0.045, p[1], p[0]],
-        m,
-        [0, 1, 0],
-      );
-    }
-  };
+  // Fin and rudder are tapered sections (12 % of the combined chord, at most 0.12 m thick over
+  // the dorsal fillet), not constant-thickness slabs.
   const fin = [
-    fromSide(1177, 487),
-    fromSide(1403, 466),
-    fromSide(1424, 346),
-    fromSide(1493, 357),
-    fromSide(1458, 548),
-  ].map((q) => [q[2], q[1]]);
-  solid(d, fin, white);
-  const rp = fromSide(1458, 548),
-    rg = group(body, 'Porter-rudder', rp),
-    rd = detailKit(rg, rg.name);
-  solid(
-    rd,
-    [
+      fromSide(1177, 487),
+      fromSide(1403, 466),
+      fromSide(1424, 346),
+      fromSide(1493, 357),
+      fromSide(1458, 548),
+    ].map((q) => [q[2], q[1]]),
+    rp = fromSide(1458, 548),
+    rudderOutline = [
       [0, 0],
       [0, 1.82],
       [-0.43, 1.82],
       [-0.43, 0.02],
     ],
+    span = (outline, y) => {
+      const [front, back] = chordAt(outline, y);
+      return front - back;
+    },
+    finHalf = (y) =>
+      Math.min(0.06, Math.max(0.012, 0.06 * (span(fin, y) + span(rudderOutline, y - rp[1])))),
+    rudderRib = (y) => {
+      const h = finHalf(y + rp[1]);
+      return [y, ...chordAt(rudderOutline, y), h * 0.5, h * 0.55, 0.003];
+    };
+  foil(
+    d,
+    outlineRibs(fin).map(([y, f, b]) => [
+      y,
+      f,
+      b,
+      finHalf(y),
+      finHalf(y) * 0.35,
+      finHalf(y) * 0.55,
+    ]),
+    white,
+  );
+  const rg = group(body, 'Porter-rudder', rp),
+    rd = detailKit(rg, rg.name);
+  foil(
+    rd,
+    outlineRibs(rudderOutline).map(([y]) => rudderRib(y)),
     red,
   );
-  for (let y = 0.13; y < 1.8; y += 0.13) rd.rod([0.05, y, -0.03], [0.05, y, -0.39], 0.002, metal);
+  for (let y = 0.13; y < 1.8; y += 0.13) {
+    const rib = rudderRib(y);
+    outline(
+      rd,
+      [-0.03, -0.13, -0.32, -0.39].map((z) => [foilX(rib, z) + 0.002, y, z]),
+      0.002,
+      metal,
+      false,
+    );
+  }
   rd.finish();
   bindings.push({
     node: rg.name,
@@ -456,22 +661,16 @@ export function buildPorter(s) {
     gd.rod([side * 0.59, 1.4, 2.5], center, 0.06, metal);
     const q = new T.Vector3(...center).lerp(new T.Vector3(side * 0.59, 1.4, 2.5), 0.28);
     gd.rod(center, q.toArray(), 0.045, dark);
-    gd.add(new T.CylinderGeometry(0.335, 0.335, 0.24, 28).rotateZ(Math.PI / 2), rubber, center);
-    for (const sign of [-1, 1]) {
-      gd.add(new T.CircleGeometry(0.2, 24).rotateY((sign * Math.PI) / 2), metal, [
-        center[0] + sign * 0.122,
-        center[1],
-        center[2],
-      ]);
+    wheel(gd, center, 0.335, 0.24, rubber, metal);
+    for (const sign of [-1, 1])
       for (let j = 0; j < 8; j++) {
         const a = (j * Math.PI) / 4;
-        gd.add(new T.CircleGeometry(0.025, 8).rotateY((sign * Math.PI) / 2), dark, [
-          center[0] + sign * 0.124,
-          center[1] + Math.sin(a) * 0.12,
-          center[2] + Math.cos(a) * 0.12,
+        gd.add(new T.SphereGeometry(0.014, 8, 4), dark, [
+          center[0] + sign * 0.083,
+          center[1] + Math.sin(a) * 0.13,
+          center[2] + Math.cos(a) * 0.13,
         ]);
       }
-    }
     gd.finish();
   }
   const tail = fromSide(1559, 653),
@@ -485,7 +684,7 @@ export function buildPorter(s) {
       0.025,
       metal,
     );
-  td.add(new T.CylinderGeometry(0.165, 0.165, 0.12, 22).rotateZ(Math.PI / 2), rubber, tail);
+  wheel(td, tail, 0.165, 0.12, rubber, metal);
   td.finish();
   d.rod([0, 2.12, 1.6], [0, 2.48, 1.62], 0.01, dark);
   d.rod([0, 2.1, -0.25], [0, 2.38, -0.4], 0.012, dark);

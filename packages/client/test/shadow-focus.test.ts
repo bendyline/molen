@@ -14,9 +14,9 @@ describe('focused sun shadows', () => {
     const toSun = new THREE.Vector3(-0.5, 1, 0.3).normalize();
     focusDirectionalShadow(light, toSun, new THREE.Vector3(1_000, 20, -2_000), 400);
     const camera = light.shadow.camera;
-    expect([camera.left, camera.right, camera.top, camera.bottom]).toEqual([-400, 400, 400, -400]);
+    expect([camera.left, camera.right, camera.top, camera.bottom]).toEqual([-416, 416, 416, -416]);
     // The target sits on the focus to within a shadow texel, and the light up the sun's line.
-    const texel = 800 / 1024;
+    const texel = 832 / 1024;
     expect(light.target.position.distanceTo(new THREE.Vector3(1_000, 20, -2_000))).toBeLessThan(
       texel * 1.5,
     );
@@ -55,5 +55,81 @@ describe('focused sun shadows', () => {
       .sub(toSun.clone().multiplyScalar(moved.dot(toSun)))
       .length();
     expect(across).toBeGreaterThan(3);
+  });
+
+  it('holds the projection through altitude noise and uses hysteresis at a size boundary', () => {
+    const light = sun();
+    const direction = new THREE.Vector3(0.3, 1, -0.4).normalize();
+    const center = new THREE.Vector3(120, 0, -60);
+    focusDirectionalShadow(light, direction, center, 68);
+    light.shadow.updateMatrices(light);
+    const matrix = light.shadow.matrix.clone();
+    for (const radius of [68.01, 67.99, 69, 71.99, 68]) {
+      focusDirectionalShadow(light, direction, center, radius);
+      light.shadow.updateMatrices(light);
+      expect(light.shadow.matrix.elements).toEqual(matrix.elements);
+    }
+    // Grow immediately to preserve requested coverage; do not shrink on the next tiny dip.
+    focusDirectionalShadow(light, direction, center, 72.01);
+    const grown = light.shadow.camera.right;
+    expect(grown).toBeGreaterThanOrEqual(72.01);
+    focusDirectionalShadow(light, direction, center, 71.99);
+    expect(light.shadow.camera.right).toBe(grown);
+    // A real descent/zoom-in recovers detail.
+    focusDirectionalShadow(light, direction, center, 48);
+    expect(light.shadow.camera.right).toBe(48);
+  });
+
+  it.each([
+    [0.3, 1, -0.4],
+    [0, 1, 0],
+    [0.001, 1, -0.001],
+  ])('keeps world points on the same shadow texels through rebases (sun %s, %s, %s)', (x, y, z) => {
+    const light = sun();
+    const direction = new THREE.Vector3(x, y, z).normalize();
+    const center = new THREE.Vector3(10_000_012, 25, -5_000_024);
+    const point = center.clone().add(new THREE.Vector3(3, 0, -4));
+    const project = (origin: [number, number, number]): THREE.Vector3 => {
+      const offset = new THREE.Vector3().fromArray(origin);
+      focusDirectionalShadow(light, direction, center.clone().sub(offset), 68, false, origin);
+      light.shadow.updateMatrices(light);
+      return point.clone().sub(offset).applyMatrix4(light.shadow.matrix);
+    };
+    const before = project([10_000_000, 0, -5_000_000]);
+    const after = project([10_000_137, 14.3, -4_999_931]);
+    expect(after.distanceTo(before) * light.shadow.mapSize.x).toBeLessThan(1e-5);
+
+    // The snapping basis must also match the camera when the sun is at/near its zenith.
+    const first = light.shadow.matrix.clone();
+    const right = new THREE.Vector3().setFromMatrixColumn(light.shadow.camera.matrixWorld, 0);
+    const drifted = center.clone().addScaledVector(right, 0.001);
+    const origin: [number, number, number] = [10_000_137, 14.3, -4_999_931];
+    focusDirectionalShadow(
+      light,
+      direction,
+      drifted.sub(new THREE.Vector3().fromArray(origin)),
+      68,
+      false,
+      origin,
+    );
+    light.shadow.updateMatrices(light);
+    expect(
+      new THREE.Vector3()
+        .applyMatrix4(light.shadow.matrix)
+        .distanceTo(new THREE.Vector3().applyMatrix4(first)) * light.shadow.mapSize.x,
+    ).toBeLessThan(1e-5);
+  });
+
+  it('keeps the receiver depth offset below one shadow texel at every quality and extent', () => {
+    for (const size of [1024, 2048, 4096]) {
+      for (const radius of [48, 180, 300, 5_000]) {
+        const light = sun();
+        light.shadow.mapSize.set(size, size);
+        focusDirectionalShadow(light, new THREE.Vector3(0.3, 1, -0.4), new THREE.Vector3(), radius);
+        const camera = light.shadow.camera;
+        const texel = (camera.right - camera.left) / size;
+        expect(Math.abs(light.shadow.bias) * (camera.far - camera.near)).toBeLessThan(texel);
+      }
+    }
   });
 });

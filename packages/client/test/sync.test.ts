@@ -96,6 +96,53 @@ it('bridges custom script component telemetry through deltas, removal and keyfra
 });
 
 describe('SceneMirror reconcile', () => {
+  it('binds standalone glass and carries fracture state through deltas and repair', () => {
+    const mirror = new SceneMirror();
+    const backend = new MockBackend() as MockBackend & SceneBackend;
+    const glass = {
+      surfaces: [
+        {
+          id: 'pane',
+          material: 'laminated',
+          center: [0, 0, 0],
+          rotation: [0, 0, 0, 1],
+          size: [1, 1],
+          thickness: 0.005,
+        },
+      ],
+    };
+    const received: unknown[] = [];
+    backend.setGlass = (_id, data, state) => {
+      received.push({ data, state });
+    };
+    mirror.applyKeyframe(keyframe({ window: { glass } }));
+    mirror.reconcile(backend);
+    expect(backend.created).toEqual(['window']);
+    const glassState = {
+      surfaces: {
+        pane: {
+          fracture: 'shattered',
+          retained: true,
+          damage: 1,
+          retentionDamage: 0,
+          peakStress: 1e8,
+          point: [0, 0],
+        },
+      },
+    };
+    mirror.applyDelta(delta({ changed: { window: { glassState } } }));
+    mirror.reconcile(backend);
+    expect(received.at(-1)).toEqual({ data: glass, state: glassState });
+    mirror.applyDelta(
+      delta({ baseTick: 1, tick: 2, removedComponents: { window: ['glassState'] } }),
+    );
+    mirror.reconcile(backend);
+    expect(received.at(-1)).toEqual({ data: glass, state: undefined });
+    mirror.applyDelta(delta({ baseTick: 2, tick: 3, removedComponents: { window: ['glass'] } }));
+    mirror.reconcile(backend);
+    expect(backend.destroyed).toEqual(['window']);
+  });
+
   it('creates backend objects for entities with a renderable', () => {
     const m = new SceneMirror();
     const backend = new MockBackend();

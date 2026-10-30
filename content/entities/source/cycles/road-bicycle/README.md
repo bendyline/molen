@@ -6,7 +6,7 @@ Original brief: add diverse cars, motorcycles, bicycles, boats, cargo ships and 
 
 Editable recipe: models/recipe.json. Shared engine authoring capability: packages/entities/scripts/fleet-geometry.mjs. Regenerate in the engine repository with `node packages/entities/scripts/generate-fleet.mjs --ids=road-bicycle`. The recipe owns all concrete values; no sibling bundle supplies data.
 
-Dimensions: 1.76 m long × 0.45 m wide × 1.04 m nominal height. +Y up, +Z forward; tires contact Y=0. Bright polygonal medium-fi style, flat PBR colors, no image textures or image-generation prompts. Static pieces merge by material; wheel groups preserve named spin pivots. Convex collision is derived by the importer. Geometry is a stylized generic design, not a licensed make.
+Dimensions: 1.68 m long × 0.45 m wide × 1.04 m nominal height. +Y up, +Z forward; tires contact Y=0. Bright polygonal medium-fi style, flat PBR colors, no image textures or image-generation prompts. Static pieces merge by material; wheel groups preserve named spin pivots. Convex collision is derived by the importer. Geometry is a stylized generic design, not a licensed make.
 
 Rideable through `installVehicles` and the shared mount/drive/exit API. The driver seat anchors the pelvis; model-space grips and footrests drive the procedural rider pose. The front wheel and handlebars steer, both wheels spin, and bicycle cranks turn only under forward power. Self-balancing handling leans inward in turns and stands upright at rest; falls, wheelies and stunt physics are not simulated.
 

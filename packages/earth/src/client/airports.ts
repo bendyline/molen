@@ -52,6 +52,8 @@ export interface EarthAirports {
   readonly layouts: readonly EarthAirportLayout[];
   /** Catalog records in the geographic cell containing this point. */
   at(latitude: number, longitude: number): Promise<readonly EarthAirport[]>;
+  /** Catalog records in cells touching WGS84 [west, south, east, north]; bounded to four cells. */
+  inBounds(bounds: readonly [number, number, number, number]): Promise<readonly EarthAirport[]>;
   augment(
     tile: TerrainSemanticTile,
     context: TerrainPyramidTileLayerContext,
@@ -83,9 +85,28 @@ export async function createEarthAirports(
     if (cache.size > 24) cache.delete(cache.keys().next().value as string);
     return pending;
   };
+  const inBounds: EarthAirports['inBounds'] = async ([west, south, east, north]) => {
+    const min = wgs84ToWebMercatorTile(west, north, index.level);
+    const max = wgs84ToWebMercatorTile(east, south, index.level);
+    if ((max.x - min.x + 1) * (max.y - min.y + 1) > 4) return [];
+    const paths = new Set<string>();
+    for (let x = min.x; x <= max.x; x++)
+      for (let y = min.y; y <= max.y; y++) {
+        const path = index.cells[`${x}-${y}`];
+        if (path) paths.add(path);
+      }
+    return [
+      ...new Map(
+        (await Promise.all([...paths].map(load)))
+          .flat()
+          .map((a) => [`${a.id}:${a.runways[0]?.ends.flat().join(',')}`, a]),
+      ).values(),
+    ];
+  };
   return {
     attribution: index.attribution ?? [],
     layouts,
+    inBounds,
     async at(latitude, longitude) {
       const cell = wgs84ToWebMercatorTile(longitude, latitude, index.level);
       const path = index.cells[`${cell.x}-${cell.y}`];
@@ -97,23 +118,9 @@ export async function createEarthAirports(
         webMercatorToWgs84(x / scale, z / scale);
       const nw = geo(...context.origin),
         se = geo(context.origin[0] + context.tileSize, context.origin[1] + context.tileSize);
-      const min = wgs84ToWebMercatorTile(...nw, index.level),
-        max = wgs84ToWebMercatorTile(...se, index.level);
       // A planetary overview needs no airport geometry or global catalog download.
-      if ((max.x - min.x + 1) * (max.y - min.y + 1) > 4 || context.tileSize > 100_000) return tile;
-      const paths = new Set<string>();
-      for (let x = min.x; x <= max.x; x++)
-        for (let y = min.y; y <= max.y; y++) {
-          const path = index.cells[`${x}-${y}`];
-          if (path) paths.add(path);
-        }
-      const airports = [
-        ...new Map(
-          (await Promise.all([...paths].map(load)))
-            .flat()
-            .map((a) => [`${a.id}:${a.runways[0]?.ends.flat().join(',')}`, a]),
-        ).values(),
-      ];
+      if (context.tileSize > 100_000) return tile;
+      const airports = await inBounds([nw[0], se[1], se[0], nw[1]]);
       if (context.signal.aborted) return tile;
       const local = (p: TerrainSemanticPoint): TerrainSemanticPoint => {
         const [x, z] = wgs84ToWebMercator(...p);

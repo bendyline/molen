@@ -32,6 +32,7 @@ export {
 } from './client/airfields';
 export type { EarthAirportPopulationHost, EarthAirportStand } from './client/airport-population';
 export { EarthAirportPopulation, planAirportApron } from './client/airport-population';
+export { createAirportTerrainGrading } from './client/airport-terrain';
 export {
   createEarthAirports,
   type EarthAirport,

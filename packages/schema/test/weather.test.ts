@@ -4,10 +4,18 @@ import { resolveWeather, weatherProfile, weatherSchema } from '../src/weather';
 
 describe('weather data', () => {
   it('validates every preset and permits independent cloud, phase and visibility choices', () => {
-    for (const name of ['sunny', 'partly-cloudy', 'overcast', 'rain', 'snow', 'fog'] as const)
+    for (const name of [
+      'sunny',
+      'partly-cloudy',
+      'overcast',
+      'rain',
+      'storm',
+      'snow',
+      'fog',
+    ] as const)
       expect(componentIssues('weather', weatherProfile(name), '/weather')).toEqual([]);
     const unusual = {
-      clouds: { coverage: 0 },
+      clouds: { coverage: 0, type: 'cumulonimbus', cirrus: 0.8, cirrusAltitude: 300 },
       precipitation: { kind: 'snow', intensity: 0.5 },
       visibility: 80000,
       atmosphere: { temperatureK: 300, pressurePa: 0 },
@@ -21,6 +29,8 @@ describe('weather data', () => {
       { atmosphere: { windVelocity: [1, 2] } },
       { clouds: { coverage: 1.1 } },
       { clouds: { thickness: 0 } },
+      { clouds: { type: 'cirrus' } },
+      { clouds: { cirrus: 1.5 } },
       { precipitation: { kind: 'auto' } },
       { visibility: 0 },
       { visibility: Infinity },
@@ -36,5 +46,11 @@ describe('weather data', () => {
     expect(resolveWeather(a).atmosphere.windVelocity[0]).toBe(7);
     expect(resolveWeather(weatherProfile('rain')).atmosphere.windVelocity[0]).toBe(7);
     expect(resolveWeather().precipitation.kind).toBe('none');
+    // Existing scenes keep a cumulus layer and gain no cirrus.
+    expect(resolveWeather({ clouds: { coverage: 0.5 } }).clouds).toMatchObject({
+      type: 'cumulus',
+      cirrus: 0,
+      cirrusAltitude: 9000,
+    });
   });
 });

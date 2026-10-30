@@ -1,3 +1,4 @@
+import type { CloudQuality } from '@bendyline/molen-client';
 import type { TerrainPyramidBudget, TerrainQualityPreset } from '@bendyline/molen-terrain/client';
 import type { EarthAmbientBudget } from './ambient';
 
@@ -20,6 +21,11 @@ export interface EarthPerformanceTier {
    * levels, where the extra shadow pass costs more than it shows.
    */
   shadows: 'off' | 'medium' | 'high';
+  /**
+   * Cloud ray-marching work (`renderer.setCloudQuality`): low at the two lowest levels, medium
+   * through Balanced, then high and ultra, which also cast cloud shadows on the ground.
+   */
+  clouds: CloudQuality;
 }
 const MIB = 1024 * 1024;
 const SPECS = [
@@ -166,6 +172,7 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       posesPerFrame: ambient[8],
     },
     shadows: index >= 3 ? 'high' : index === 2 ? 'medium' : 'off',
+    clouds: index >= 5 ? 'ultra' : index === 4 ? 'high' : index >= 2 ? 'medium' : 'low',
   };
 }
 

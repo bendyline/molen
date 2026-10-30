@@ -83,16 +83,19 @@ describe('weather profiles in the explorer', () => {
         );
         const camera = await page.locator('#location').textContent();
         const initial = await page.screenshot({ path: join(out, `${backend}-sunny.png`) });
-        for (const profile of ['partly-cloudy', 'overcast', 'rain', 'snow', 'fog']) {
+        for (const profile of ['partly-cloudy', 'overcast', 'rain', 'storm', 'snow', 'fog']) {
           await page.locator('#weather-profile').selectOption(profile);
           await page.waitForFunction((expected) => {
             const status = document.querySelector<HTMLElement>('#weather-status');
             const w = JSON.parse(status?.dataset.weather ?? '{}');
             const effects = JSON.parse(status?.dataset.effects ?? '{}');
+            // The volumetric layer, plus cirrus where the profile has them.
+            const layers = (w.clouds?.cirrus ?? 0) > 0 ? 2 : 1;
             return (
-              effects.cloudLayers === 2 &&
-              (expected === 'rain' || expected === 'snow'
-                ? effects.particles > 0 && w.precipitation?.kind === expected
+              effects.cloudLayers === layers &&
+              (expected === 'rain' || expected === 'snow' || expected === 'storm'
+                ? effects.particles > 0 &&
+                  w.precipitation?.kind === (expected === 'snow' ? 'snow' : 'rain')
                 : effects.particles === 0)
             );
           }, profile);

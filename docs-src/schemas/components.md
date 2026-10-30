@@ -58,6 +58,8 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `figureState` | figures | Kernel-owned locomotion state of a figure (mode, quantized speed, tick-anchored gait phase). Read it; the figures systems write it. |
 | `force` | physics-rapier | Continuous force/torque applied every tick while present. |
 | `fsm` | kernel/gameplay | Minimal event-driven state machine: transitions fire on world events targeting the entity. |
+| `glass` | kernel/glass | Breakable glass surfaces with metric geometry, material fracture and independent frame/interlayer retention. |
+| `glassState` | kernel/glass | Persistent glass fracture, retention and release state. Missing panes are intact; remove the component to repair. |
 | `health` | content | Common gameplay hit-points component. |
 | `impulse` | physics-rapier | One-shot impulse/torque; consumed the tick it is applied. |
 | `joint` | physics-rapier | Impulse joint to another body (fixed/revolute/spherical/prismatic + limits/motor). |
@@ -4456,6 +4458,44 @@ Required: `kind`, `spec`
     "spec": {
       "type": "object",
       "properties": {
+        "actuators": {
+          "description": "External actuators setting.",
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "seconds": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Seconds for full travel or a full cycle."
+              },
+              "initial": {
+                "description": "Rest position or phase; defaults to zero.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "mode": {
+                "description": "Position by default. Cycles park when off; latches cannot reverse.",
+                "type": "string",
+                "enum": [
+                  "position",
+                  "cycle",
+                  "latch"
+                ]
+              }
+            },
+            "required": [
+              "seconds"
+            ],
+            "additionalProperties": false
+          }
+        },
         "label": {
           "type": "string",
           "minLength": 1,
@@ -5126,6 +5166,11 @@ Required: `kind`, `spec`
               "minimum": 0,
               "description": "Drag coefficient of the landing gear fully down; scales with the gear position."
             },
+            "speedBrakeDrag": {
+              "description": "Additional drag coefficient at full speedBrake actuator extension.",
+              "type": "number",
+              "minimum": 0
+            },
             "flapDrag": {
               "type": "number",
               "minimum": 0,
@@ -5227,6 +5272,15 @@ Required: `kind`, `spec`
           "description": "External helicopter setting.",
           "type": "object",
           "properties": {
+            "fixedGear": {
+              "description": "Fixed skids or wheels by default; false enables retractable gear.",
+              "type": "boolean"
+            },
+            "gearTransitTime": {
+              "description": "Seconds for full retractable gear travel.",
+              "type": "number",
+              "minimum": 0
+            },
             "rotorPosition": {
               "minItems": 3,
               "maxItems": 3,
@@ -6276,6 +6330,27 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "actuators": {
+      "description": "Mechanism targets from zero to one, or on/off selections.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "maxLength": 64,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      }
+    },
     "mixture": {
       "description": "Common mixture: 0 idle cutoff, 1 full rich (default).",
       "type": "number",
@@ -6436,6 +6511,20 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "actuators": {
+      "description": "Current mechanism positions and cycle phases, from zero to one.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "maxLength": 64,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+      },
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
     "damage": {
       "description": "Persistent section integrity and separation, keyed by collision part id.",
       "type": "object",
@@ -6598,7 +6687,7 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
       "maximum": 1
     },
     "gearPosition": {
-      "description": "Airplane landing gear: 0 up and locked, 1 down and locked, between them in transit. Starts at the commanded position.",
+      "description": "Landing gear: 0 up and locked, 1 down and locked, between them in transit. Fixed undercarriages stay down.",
       "type": "number",
       "minimum": 0,
       "maximum": 1
@@ -8201,6 +8290,363 @@ Required: `tweens`
 
 </details>
 
+## Owner: kernel/glass
+
+### `glass`
+
+Breakable glass surfaces with metric geometry, material fracture and independent frame/interlayer retention.
+
+Required: `surfaces`
+
+```json
+{
+  "surfaces": [
+    {
+      "id": "windshield",
+      "material": "laminated",
+      "center": [
+        0,
+        1.2,
+        0.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        1.4,
+        0.7
+      ],
+      "thickness": 0.005
+    }
+  ]
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "surfaces": {
+      "minItems": 1,
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "description": "Stable pane id, unique on its owner."
+          },
+          "material": {
+            "type": "string",
+            "enum": [
+              "laminated",
+              "tempered",
+              "annealed"
+            ],
+            "description": "Laminated retains cracked glass; tempered releases granules; annealed releases larger shards."
+          },
+          "center": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "Pane center in owner coordinates, meters."
+          },
+          "rotation": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "Pane XY orientation in owner coordinates, unit quaternion."
+          },
+          "size": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2,
+            "description": "Width and height in meters."
+          },
+          "thickness": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "Total glass thickness, meters; interlayer thickness excluded."
+          },
+          "density": {
+            "description": "Glass density, kg/m³; default 2500.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "strength": {
+            "description": "Effective bending failure stress, Pa. Defaults: tempered 120e6, others 45e6. Simulation tuning, not certification.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "fractureEnergy": {
+            "description": "Post-initiation fracture work, J/m²; default 80.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "retentionForce": {
+            "description": "Frame/interlayer failure force, N; default 4000 times pane perimeter in meters.",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "retentionEnergy": {
+            "description": "Work to lose frame/interlayer retention, J; default 3000 times area in m².",
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "nodes": {
+            "description": "Dedicated glass mesh/group names; omit for a generated rectangular pane. Never bind a whole vehicle or a shared body mesh.",
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "material",
+          "center",
+          "rotation",
+          "size",
+          "thickness"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Physical glass panes and their model bindings."
+    },
+    "crashPulseSeconds": {
+      "description": "Duration of the vehicle crash pulse, seconds; default 0.06, independent of tick rate.",
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    }
+  },
+  "required": [
+    "surfaces"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `glassState`
+
+Persistent glass fracture, retention and release state. Missing panes are intact; remove the component to repair.
+
+Required: `surfaces`
+
+```json
+{
+  "surfaces": {}
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "surfaces": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "fracture": {
+            "type": "string",
+            "enum": [
+              "intact",
+              "cracked",
+              "shattered"
+            ]
+          },
+          "retained": {
+            "type": "boolean"
+          },
+          "damage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "retentionDamage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "peakStress": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Largest resolved bending stress in Pa."
+          },
+          "point": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "release": {
+            "description": "Snapshot-safe initial world pose, velocity and simulation time for cosmetic debris.",
+            "type": "object",
+            "properties": {
+              "time": {
+                "type": "number",
+                "minimum": 0
+              },
+              "position": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "items": false,
+                "minItems": 3,
+                "maxItems": 3
+              },
+              "rotation": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "items": false,
+                "minItems": 4,
+                "maxItems": 4
+              },
+              "velocity": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "items": false,
+                "minItems": 3,
+                "maxItems": 3
+              },
+              "fragmentSpeed": {
+                "description": "Energy-limited cosmetic fragment dispersion speed, m/s.",
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "time",
+              "position",
+              "rotation",
+              "velocity"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "fracture",
+          "retained",
+          "damage",
+          "retentionDamage",
+          "peakStress",
+          "point"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Per-pane fracture, retention and release state keyed by surface id."
+    }
+  },
+  "required": [
+    "surfaces"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
 ## Owner: kernel/kinematics
 
 ### `collider`
@@ -8605,6 +9051,44 @@ Required: `kind`, `color`, `spec`, `visual`
     "spec": {
       "type": "object",
       "properties": {
+        "actuators": {
+          "description": "External actuators setting.",
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "seconds": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Seconds for full travel or a full cycle."
+              },
+              "initial": {
+                "description": "Rest position or phase; defaults to zero.",
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "mode": {
+                "description": "Position by default. Cycles park when off; latches cannot reverse.",
+                "type": "string",
+                "enum": [
+                  "position",
+                  "cycle",
+                  "latch"
+                ]
+              }
+            },
+            "required": [
+              "seconds"
+            ],
+            "additionalProperties": false
+          }
+        },
         "label": {
           "type": "string",
           "minLength": 1,
@@ -9484,6 +9968,27 @@ Required: `throttle`, `steering`, `brake`
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "actuators": {
+      "description": "Mechanism targets from zero to one, or on/off selections.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "maxLength": 64,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      }
+    },
     "throttle": {
       "type": "number",
       "minimum": -1,
@@ -9544,6 +10049,20 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "actuators": {
+      "description": "Current mechanism positions and cycle phases, from zero to one.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "maxLength": 64,
+        "pattern": "^[a-zA-Z][a-zA-Z0-9]*$"
+      },
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
     "boosted": {
       "description": "Speeds include the 4× travel boost; kernel-owned.",
       "type": "boolean"
@@ -9733,11 +10252,11 @@ Required: none
       "exclusiveMinimum": 0
     },
     "clouds": {
-      "description": "World-anchored, wind-advected cloud layer. Does not imply precipitation.",
+      "description": "World-anchored, wind-advected volumetric cloud layer of one type, plus an optional high cirrus layer. Does not imply precipitation.",
       "type": "object",
       "properties": {
         "coverage": {
-          "description": "Sky coverage 0–1, default 0; controls breaks in the procedural layer.",
+          "description": "Sky coverage 0–1, default 0: the share of the sky the layer covers; 1 closes it.",
           "type": "number",
           "minimum": 0,
           "maximum": 1
@@ -9753,7 +10272,7 @@ Required: none
           "type": "number"
         },
         "thickness": {
-          "description": "Vertical layer thickness in meters, default 600.",
+          "description": "Depth of the layer from base to top in meters, default 600.",
           "type": "number",
           "exclusiveMinimum": 0
         },
@@ -9761,6 +10280,26 @@ Required: none
           "description": "Horizontal cloud-pattern repeat size in meters, default 16000.",
           "type": "number",
           "exclusiveMinimum": 0
+        },
+        "type": {
+          "description": "Cloud type of the layer, default cumulus: separate heaps; stratocumulus a lumpy closed layer; stratus a flat sheet; cumulonimbus towering storm cells (give them a thick layer).",
+          "type": "string",
+          "enum": [
+            "cumulus",
+            "stratocumulus",
+            "stratus",
+            "cumulonimbus"
+          ]
+        },
+        "cirrus": {
+          "description": "Coverage 0–1 of a thin, wispy high cirrus layer, default 0. Independent of the main layer.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "cirrusAltitude": {
+          "description": "Cirrus layer at absolute world Y in meters, default 9000.",
+          "type": "number"
         }
       },
       "additionalProperties": false

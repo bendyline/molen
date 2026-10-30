@@ -18,6 +18,7 @@ const viewerState = vi.hoisted(() => ({
   disposed: 0,
   frames: 0,
   shadowQuality: undefined as string | undefined,
+  cloudQuality: undefined as string | undefined,
   shadowRadius: undefined as number | undefined,
 }));
 
@@ -55,6 +56,9 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
         setStarCatalog: () => {},
         setShadowQuality: (quality: string) => {
           viewerState.shadowQuality = quality;
+        },
+        setCloudQuality: (quality: string) => {
+          viewerState.cloudQuality = quality;
         },
         setShadowFocus: (focus: { radius: number } | undefined) => {
           viewerState.shadowRadius = focus?.radius;
@@ -256,6 +260,8 @@ describe('mountEarthView', () => {
     // Sun shadows cover the orbit target, sized to the 2 km view.
     expect(viewerState.shadowQuality).toBe('high');
     expect(viewerState.shadowRadius).toBeCloseTo(2_400, -1);
+    // Cloud quality follows the same tier (Balanced: ray-marched, no cloud shadows).
+    expect(viewerState.cloudQuality).toBe('medium');
     expect(canvas.tabIndex).toBe(0);
     expect(canvas.style.touchAction).toBe('none');
     expect(errors).toEqual([]);

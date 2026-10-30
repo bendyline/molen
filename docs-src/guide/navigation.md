@@ -120,7 +120,7 @@ Default profiles come from `navigationInputProfiles()`:
 |---|---|---|
 | `orbit`, `fly` | WASD/arrows move, Q/E down/up, Shift sprint | left stick move, right stick look, bumpers up/down |
 | `walk`, `drive` | WASD/arrows move, Space jump/brake, E or F interact, V view, Shift sprint | left stick move, right stick look, A jump, X interact, Y view |
-| `pilot` | W/S or ↑/↓ nose down/up, A/D or ←/→ bank, Q/Z rudder, Shift/Ctrl (or +/−, Page Up/Down) power, I engine, G gear, F flaps, R recover, Space brake, V view, E exit | left stick pitch/bank, right stick look, triggers power, bumpers rudder, A brake, B engine, X exit, Y view |
+| `pilot` | W/S or ↑/↓ nose down/up, A/D or ←/→ bank, Z/C rudder, =/− (or numpad +/−, Page Up/Down) power, I engine, G gear, F flaps, R recover, Space brake, V view, E exit | left stick pitch/bank, right stick look, triggers power, bumpers rudder, A brake, B engine, X exit, Y view |
 
 In the `pilot` profile each `NavigationInput` also carries `pilot`: the held `throttle` and `yaw`
 axes (-1..1) and edge-triggered `engine`, `gear`, `flaps` and `recover` presses. Pitch is

@@ -12,6 +12,7 @@ export default defineConfig({
     'src/determinism.ts',
     'src/content-entry.ts',
     'src/vehicles.ts',
+    'src/glass.ts',
     'src/boats.ts',
     'src/aircraft.ts',
     'src/world-entry.ts',

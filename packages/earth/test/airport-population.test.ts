@@ -71,6 +71,7 @@ describe('airport apron population', () => {
       layouts: [layout],
       attribution: [],
       at: async () => [airport],
+      inBounds: async () => [airport],
       augment: async (tile) => tile,
     };
     const population = new EarthAirportPopulation(data, ENTITY_TYPES, {

@@ -45,9 +45,9 @@
             "maxSteer": 0.58,
             "grip": 7.5,
             "driverEye": [
-              0.36,
+              0.3956,
               1.16,
-              0.22
+              0
             ],
             "steeringRate": 1.8,
             "steeringFadeSpeed": 18,
@@ -59,7 +59,34 @@
             "maxSlope": 0.61,
             "drive": "front",
             "rollStiffness": 0.05,
-            "pitchStiffness": 0.03
+            "pitchStiffness": 0.03,
+            "actuators": {
+              "hood": {
+                "seconds": 1.8
+              },
+              "trunk": {
+                "seconds": 1.8
+              },
+              "headlights": {
+                "seconds": 0
+              },
+              "wipers": {
+                "seconds": 1.4,
+                "mode": "cycle"
+              },
+              "doorFrontRight": {
+                "seconds": 1.2
+              },
+              "doorRearRight": {
+                "seconds": 1.2
+              },
+              "doorFrontLeft": {
+                "seconds": 1.2
+              },
+              "doorRearLeft": {
+                "seconds": 1.2
+              }
+            }
           },
           "visual": {
             "wheelNodes": [
@@ -75,9 +102,8 @@
             "paintMaterial": "vehicle-paint-and-trim",
             "interior": {
               "nodes": [
-                "body",
-                "steering-wheel",
-                "cabin"
+                "cabin",
+                "steering-wheel"
               ],
               "bindings": [
                 {
@@ -95,6 +121,158 @@
                   "scale": 0.065,
                   "min": 0,
                   "max": 3.9
+                }
+              ]
+            },
+            "animation": {
+              "sources": {
+                "hood": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "hood"
+                  ]
+                },
+                "trunk": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "trunk"
+                  ]
+                },
+                "headlights": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "headlights"
+                  ]
+                },
+                "wipers": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "wipers"
+                  ]
+                },
+                "doorFrontRight": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorFrontRight"
+                  ]
+                },
+                "doorRearRight": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorRearRight"
+                  ]
+                },
+                "doorFrontLeft": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorFrontLeft"
+                  ]
+                },
+                "doorRearLeft": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorRearLeft"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "doorFrontRight",
+                  "source": "doorFrontRight",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 1.15
+                },
+                {
+                  "node": "doorRearRight",
+                  "source": "doorRearRight",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 1.15
+                },
+                {
+                  "node": "doorFrontLeft",
+                  "source": "doorFrontLeft",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1.15
+                },
+                {
+                  "node": "doorRearLeft",
+                  "source": "doorRearLeft",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1.15
+                },
+                {
+                  "node": "hood",
+                  "source": "hood",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": -1.05
+                },
+                {
+                  "node": "trunk",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 1.05
+                },
+                {
+                  "node": "wiper--1",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "wiper-1",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "headlights-lit",
+                  "source": "headlights",
+                  "property": "visible",
+                  "scale": 1
                 }
               ]
             }
@@ -122,18 +300,18 @@
               "id": "driver",
               "role": "driver",
               "position": [
-                0.36,
+                0.3956,
                 1.16,
-                0.22
+                0
               ]
             },
             {
               "id": "passenger",
               "role": "passenger",
               "position": [
-                -0.36,
+                -0.3956,
                 1.16,
-                0.22
+                0
               ]
             }
           ],
@@ -141,12 +319,12 @@
             [
               1.36,
               0,
-              0.22
+              0
             ],
             [
               -1.36,
               0,
-              0.22
+              0
             ]
           ],
           "reach": 2.5

@@ -143,6 +143,7 @@ export class SkyVisual {
     | { rotation: THREE.Matrix4; visibility: number; moon: THREE.Vector3 | undefined }
     | undefined;
   private cloudAttenuation = 0;
+  private directCloudAttenuation = 0;
   private currentFrame!: SkyFrame;
   private currentReflections!: SkyReflectionState;
   private disposed = false;
@@ -205,11 +206,17 @@ export class SkyVisual {
     return this.currentReflections;
   }
 
-  /** Diffuse cloud lighting; actual celestial occlusion comes from the cloud layer geometry. */
-  setCloudAttenuation(value: number): void {
+  /**
+   * Diffuse cloud lighting; actual celestial occlusion comes from the cloud layer geometry.
+   * `direct` dims the sun and moon (default `value`); with spatial cloud shadows it is 0, since
+   * the shadows themselves take light away where clouds cover the sun.
+   */
+  setCloudAttenuation(value: number, direct: number = value): void {
     const next = clamp(value);
-    if (next === this.cloudAttenuation) return;
+    const nextDirect = clamp(direct);
+    if (next === this.cloudAttenuation && nextDirect === this.directCloudAttenuation) return;
     this.cloudAttenuation = next;
+    this.directCloudAttenuation = nextDirect;
     this.lastTime = undefined;
   }
 
@@ -327,8 +334,8 @@ export class SkyVisual {
       this.sunLight.intensity *= scale;
       this.ambientLight.intensity *= scale;
     }
-    this.sunLight.intensity *= 1 - this.cloudAttenuation * 0.92;
-    this.moonLight.intensity *= 1 - this.cloudAttenuation * 0.9;
+    this.sunLight.intensity *= 1 - this.directCloudAttenuation * 0.92;
+    this.moonLight.intensity *= 1 - this.directCloudAttenuation * 0.9;
     this.ambientLight.intensity *= 1 - this.cloudAttenuation * 0.2;
     this.ambientLight.color.lerp(
       new THREE.Color('#b9c2cb'),

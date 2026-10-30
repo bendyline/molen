@@ -74,7 +74,14 @@
               ]
             ],
             "visual": {
-              "rotors": [],
+              "rotors": [
+                {
+                  "node": "engine-1-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                }
+              ],
               "gearNodes": [],
               "flaps": [],
               "ailerons": [],
@@ -216,6 +223,67 @@
                     "property": "visible",
                     "scale": 1,
                     "missing": "hide"
+                  },
+                  {
+                    "node": "canopy-opening",
+                    "source": "canopy",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.85
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.12,
+                        0
+                      ],
+                      [
+                        0.45,
+                        6
+                      ],
+                      [
+                        1,
+                        20
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "speed-brake-1-1-0",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.95
                   }
                 ],
                 "derived": {
@@ -262,6 +330,27 @@
                     "component": "aircraftState",
                     "path": [
                       "gearPosition"
+                    ]
+                  },
+                  "canopy": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "canopy"
+                    ]
+                  },
+                  "eject": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "eject"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -6187,7 +6276,8 @@
               "maxMach": 0.82,
               "maxEquivalentAirspeed": 175,
               "gearLimitSpeed": 130,
-              "flapLimitSpeed": 115
+              "flapLimitSpeed": 115,
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
@@ -6225,6 +6315,18 @@
               "rollAuthority": 1.5,
               "yawAuthority": 0.8,
               "damping": 2.2
+            },
+            "actuators": {
+              "canopy": {
+                "seconds": 3
+              },
+              "eject": {
+                "seconds": 1.2,
+                "mode": "latch"
+              },
+              "speedBrake": {
+                "seconds": 1.6
+              }
             }
           }
         },
@@ -6262,6 +6364,11 @@
           "waitingForTerrain": false,
           "gearPosition": 1,
           "flapPosition": 0,
+          "actuators": {
+            "canopy": 0,
+            "eject": 0,
+            "speedBrake": 0
+          },
           "thrustVectorPosition": 0
         },
         "mountable": {
@@ -6387,6 +6494,27 @@
               "component": "aircraftInput",
               "path": [
                 "power"
+              ]
+            },
+            "canopy": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "canopy"
+              ]
+            },
+            "eject": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "eject"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -12295,6 +12423,67 @@
               "property": "visible",
               "scale": 1,
               "missing": "hide"
+            },
+            {
+              "node": "canopy-opening",
+              "source": "canopy",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.85
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.12,
+                  0
+                ],
+                [
+                  0.45,
+                  6
+                ],
+                [
+                  1,
+                  20
+                ]
+              ]
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "speed-brake-1-1-0",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.95
             }
           ]
         }

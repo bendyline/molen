@@ -72,6 +72,9 @@ export function aircraftWrecked(spec: AircraftSpec, state: AircraftStateData): b
     aircraftCollisionParts(spec).some(
       (part) => part.role === 'body' && (state.damage?.[part.id]?.integrity ?? 1) <= 0.2,
     ) ||
+    (spec.model === 'airplane' &&
+      aircraftSectionAuthority(spec, state, 'leftWing') === 0 &&
+      aircraftSectionAuthority(spec, state, 'rightWing') === 0) ||
     aircraftSectionAuthority(spec, state, 'rotor') === 0
   );
 }
@@ -257,7 +260,14 @@ export function resolveAircraftContacts(
       );
     }
     state.velocity = add(state.velocity, scale(quatRotateVec3(t.rot, localImpulse), 1 / mass));
-    const turn = add(omega(state), angularImpulse(localImpulse));
+    let turn = add(omega(state), angularImpulse(localImpulse));
+    if (!detached && aircraftWrecked(spec, state)) {
+      // Point friction cannot resist rolling or spin about the contact normal. A scraping
+      // wreck has a finite contact patch. Dissipate that rotation in proportion to the load
+      // impulse, so sustained support damps it consistently across substeps/probe counts,
+      // while a wreck in free fall keeps tumbling. 0.5 s/m gives about 5/s at rest under gravity.
+      turn = scale(turn, 1 / (1 + (0.5 * impulse) / mass));
+    }
     state.pitchRate = -turn[0];
     state.yawRate = turn[1];
     state.rollRate = turn[2];

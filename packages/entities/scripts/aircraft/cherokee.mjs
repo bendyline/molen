@@ -8,6 +8,7 @@ import {
   beveledBox,
   cleanGeometry,
   detailKit,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -50,85 +51,161 @@ export function buildCherokee(s) {
     bindings = [],
     flaps = [],
     ailerons = [];
+  // [z, half width, belly, crown, belt, shoulder, shoulder half width]. Slab lower sides up to
+  // the window sill (widest), tall side glass leaning slightly in, a rounded crown and radiused
+  // belly corners (C-series three-view, front, 3/4 and rear photos); the cowl and tail cone use
+  // the same rounding.
   const measured = [
-    [2.36, 0.31, 0.82, 1.41],
-    [2.18, 0.41, 0.73, 1.44],
-    [1.34, 0.49, 0.67, 1.46],
-    [0.56, 0.54, 0.57, 1.79],
-    [0.1, 0.55, 0.54, 1.79],
-    [-0.42, 0.53, 0.53, 1.73],
-    [-1.15, 0.43, 0.55, 1.61],
+    [2.36, 0.31, 0.82, 1.41, 1.12, 1.32, 0.26],
+    [2.18, 0.41, 0.73, 1.44, 1.12, 1.35, 0.35],
+    [1.34, 0.49, 0.62, 1.46, 1.15, 1.37, 0.47],
+    [0.56, 0.54, 0.57, 1.79, 1.22, 1.71, 0.47],
+    // This station sits on the door/rear-window pillar so each window sheet contains its opening.
+    [0, 0.55, 0.54, 1.79, 1.22, 1.71, 0.48],
+    [-0.42, 0.53, 0.53, 1.73, 1.2, 1.62, 0.46],
+    [-1.15, 0.43, 0.55, 1.61, 1.15, 1.47, 0.37],
     [-2.6, 0.25, 0.61, 1.34],
     [-3.68, 0.13, 0.67, 1.15],
     [-4.1, 0.08, 0.72, 1.06],
   ];
-  const rings = measured.map(([z, w, b, t]) => ({
-    z,
-    points: [
-      [0, t],
-      [w * 0.76, t - 0.025],
-      [w, t - Math.min(0.12, (t - b) * 0.2)],
-      [w, b + 0.15],
-      [w * 0.65, b],
-      [0, b - 0.02],
-      [-w * 0.65, b],
-      [-w, b + 0.15],
-      [-w, t - Math.min(0.12, (t - b) * 0.2)],
-      [-w * 0.76, t - 0.025],
-    ],
-  }));
-  const p = (i, j) => [...rings[i].points[j], rings[i].z];
+  // Points: 0 crown, 1-3 roof arc, 4 shoulder, 5 belt, 6-8 lower side and belly corner, 9 keel.
+  const rings = measured.map(
+    ([z, w, b, t, belt = b + (t - b) * 0.55, shoulder = b + (t - b) * 0.84, ws = w * 0.8]) => {
+      const right = [
+        ...[1, 2, 3].map((k) => [
+          ws * Math.pow(Math.sin((k * Math.PI) / 8), 2 / 2.2),
+          shoulder + (t - shoulder) * Math.pow(Math.cos((k * Math.PI) / 8), 2 / 2.2),
+        ]),
+        [ws, shoulder],
+        [w, belt],
+        [w * 0.985, b + (belt - b) * 0.35],
+        [w * 0.9, b + Math.min(0.06, (belt - b) * 0.12)],
+        [w * 0.62, b - 0.004],
+      ];
+      return {
+        z,
+        points: [[0, t], ...right, [0, b - 0.02], ...right.reverse().map(([x, y]) => [-x, y])],
+      };
+    },
+  );
+  const count = rings[0].points.length,
+    p = (i, j) => [...rings[i].points[j], rings[i].z];
+  const roof = [14, 15, 16, 17, 0, 1, 2, 3];
   loft(d, rings, paint, {
     skip: (i, j) =>
-      (i === 2 && [0, 1, 8, 9].includes(j)) || ([3, 4, 5].includes(i) && [2, 7].includes(j)),
+      (i === 2 && roof.includes(j)) || ([2, 3, 4, 5].includes(i) && [4, 13].includes(j)),
   });
-  for (const j of [0, 1, 8, 9])
-    quad(d, p(2, j), p(3, j), p(3, (j + 1) % 10), p(2, (j + 1) % 10), glass, [0, 1, 1]);
+  for (const j of roof)
+    quad(d, p(2, j), p(3, j), p(3, (j + 1) % count), p(2, (j + 1) % count), glass, [0, 1, 1]);
+  // Skin half width at a station and height, so windows, doors and trim follow the curved side.
+  const ringAt = (z) => {
+    let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+    if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+    const a = rings[i].points,
+      b = rings[i + 1].points,
+      u = (z - rings[i].z) / (rings[i + 1].z - rings[i].z);
+    return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+  };
+  const halfWidth = (z, y) => {
+    const q = ringAt(z);
+    for (let j = 0; j < 9; j++)
+      if (y <= q[j][1] && y >= q[j + 1][1])
+        return q[j][0] + ((q[j + 1][0] - q[j][0]) * (y - q[j][1])) / (q[j + 1][1] - q[j][1] || 1);
+    return q[5][0];
+  };
+  // Rounded window corners, laid out in side view (z, y).
+  const rounded = (corners, r) =>
+    corners.flatMap((c, n) => {
+      const toward = (o) => {
+        const dz = o[0] - c[0],
+          dy = o[1] - c[1],
+          l = Math.hypot(dz, dy);
+        return [c[0] + (dz * r) / l, c[1] + (dy * r) / l];
+      };
+      const a = toward(corners[(n + corners.length - 1) % corners.length]),
+        b = toward(corners[(n + 1) % corners.length]);
+      return [a, [(a[0] + b[0]) / 4 + c[0] / 2, (a[1] + b[1]) / 4 + c[1] / 2], b];
+    });
+  // Each surface-following polyline is subdivided so straight runs stay on the curved skin.
+  const along = (points, steps, closed = true) =>
+    points.flatMap((a, n) => {
+      if (!closed && n === points.length - 1) return [a];
+      const b = points[(n + 1) % points.length];
+      return Array.from({ length: steps }, (_, k) => a.map((v, m) => v + ((b[m] - v) * k) / steps));
+    });
+  // The one-piece windscreen wraps down the cabin side to the sill, ending at a raked A pillar
+  // parallel to the door window's leading edge (Cherokee C three-view).
+  const wrap = (side) => [side * halfWidth(0.85, 1.3), 1.3, 0.85];
   outline(
     d,
-    [p(2, 8), p(3, 8), p(3, 9), p(3, 0), p(3, 1), p(3, 2), p(2, 2), p(2, 1), p(2, 0), p(2, 9)],
+    [
+      p(2, 14),
+      wrap(-1),
+      ...[...roof, 4].map((j) => p(3, j)),
+      wrap(1),
+      ...[...roof.slice(1), 4].reverse().map((j) => p(2, j)),
+    ],
     0.013,
     paint,
   );
   d.rod(p(2, 0), p(3, 0), 0.014, paint);
   for (const side of [-1, 1]) {
-    const j = side > 0 ? 2 : 7;
-    for (const [i, end] of [
-      [3, 5],
-      [5, 6],
+    const top = side > 0 ? 4 : 14,
+      sill = side > 0 ? 5 : 13,
+      point = (z, y) => [side * halfWidth(z, y), y, z];
+    sheet(d, [p(2, top), wrap(side), p(3, top)], glass, [side, 0, 0]);
+    // Door window centred on the front seats, then the rear window behind a narrow pillar.
+    for (const [i, end, corners] of [
+      [
+        2,
+        4,
+        [
+          [0.764, 1.295],
+          [0.5, 1.68],
+          [0.03, 1.65],
+          [0.054, 1.248],
+        ],
+      ],
+      [
+        4,
+        6,
+        [
+          [-0.065, 1.627],
+          [-0.695, 1.509],
+          [-0.606, 1.208],
+          [-0.046, 1.25],
+        ],
+      ],
     ]) {
-      const a = p(i, j),
-        b = p(end, j),
-        c = p(end, j + 1),
-        e = p(i, j + 1),
-        q = (u, v) =>
-          a.map((_, k) => (a[k] * (1 - u) + b[k] * u) * (1 - v) + (e[k] * (1 - u) + c[k] * u) * v);
-      const h = [
-        [0.075, 0.1],
-        [0.92, 0.12],
-        [0.85, 0.43],
-        [0.1, 0.46],
-      ].map(([u, v]) => q(u, side > 0 ? v : 1 - v));
-      sheet(d, [a, b, c, e], paint, [side, 0, 0], [h]);
+      const edge = [];
+      for (let n = i; n <= end; n++) {
+        edge.push(p(n, top));
+        if (n === 2) edge.push(wrap(side));
+      }
+      for (let n = end; n >= i; n--) edge.push(p(n, sill));
+      const h = rounded(corners, 0.045).map((q) => point(...q));
+      sheet(d, edge, paint, [side, 0, 0], [h]);
       sheet(d, h, glass, [side, 0, 0]);
       outline(d, h, 0.008, metal);
     }
     // Original continuous color belt, following each section rather than floating decals.
     for (let i = 0; i < rings.length - 1; i++) {
       const a = measured[i],
-        b = measured[i + 1];
+        b = measured[i + 1],
+        ta = a[2] + Math.min(0.34, (a[3] - a[2]) * 0.5),
+        tb = b[2] + Math.min(0.34, (b[3] - b[2]) * 0.5);
       quad(
         d,
-        [side * (a[1] + 0.002), a[2] + 0.19, a[0]],
-        [side * (b[1] + 0.002), b[2] + 0.19, b[0]],
-        [side * (b[1] + 0.002), b[2] + Math.min(0.34, (b[3] - b[2]) * 0.5), b[0]],
-        [side * (a[1] + 0.002), a[2] + Math.min(0.34, (a[3] - a[2]) * 0.5), a[0]],
+        [side * (halfWidth(a[0], a[2] + 0.19) + 0.002), a[2] + 0.19, a[0]],
+        [side * (halfWidth(b[0], b[2] + 0.19) + 0.002), b[2] + 0.19, b[0]],
+        [side * (halfWidth(b[0], tb) + 0.002), tb, b[0]],
+        [side * (halfWidth(a[0], ta) + 0.002), ta, a[0]],
         navy,
         [side, 0, 0],
       );
       d.rod(
-        [side * (a[1] + 0.005), a[2] + 0.24, a[0]],
-        [side * (b[1] + 0.005), b[2] + 0.24, b[0]],
+        [side * (halfWidth(a[0], a[2] + 0.24) + 0.005), a[2] + 0.24, a[0]],
+        [side * (halfWidth(b[0], b[2] + 0.24) + 0.005), b[2] + 0.24, b[0]],
         0.009,
         gold,
       );
@@ -136,37 +213,41 @@ export function buildCherokee(s) {
     if (side < 0)
       outline(
         d,
-        [
-          [side * 0.495, 1.43, 1.3],
-          [side * 0.54, 1.75, 0.5],
-          [side * 0.54, 0.72, -0.38],
-          [side * 0.52, 0.67, 1.0],
-        ],
+        along(
+          [
+            [0.54, 1.75],
+            [0.0, 1.74],
+            [0.0, 0.92],
+            [0.9, 0.92],
+            [0.9, 1.25],
+          ],
+          6,
+        ).map(([z, y]) => [side * (halfWidth(z, y) + 0.002), y, z]),
         0.003,
         trim,
       );
-    d.box([0.018, 0.022, 0.085], [side * 0.552, 0.97, 0.38], metal);
-    for (const i of [1, 2, 6, 7, 8]) {
-      const r = rings[i];
-      outline(
-        d,
-        r.points.map((q) => [q[0] * 1.003, q[1], r.z]),
-        0.0028,
-        metal,
-      );
-      for (let j = 0; j < 10; j++) {
-        const a = p(i, j),
-          b = p(i, (j + 1) % 10);
-        for (let k = 1; k < 5; k++) {
-          const t = k / 5;
-          d.add(
-            new T.SphereGeometry(0.003, 6, 4),
-            metal,
-            a.map((v, n) => v + (b[n] - v) * t),
-          );
-        }
-      }
+    d.box([0.018, 0.022, 0.085], [side * (halfWidth(0.12, 1.12) + 0.012), 1.12, 0.12], metal);
+  }
+  for (const i of [1, 2, 6, 7, 8]) {
+    const r = rings[i];
+    outline(
+      d,
+      r.points.map((q) => [q[0] * 1.003, q[1], r.z]),
+      0.0028,
+      metal,
+    );
+    for (let j = 0; j < count; j++) {
+      const a = p(i, j),
+        b = p(i, (j + 1) % count);
+      for (const t of [1 / 3, 2 / 3])
+        d.add(
+          new T.SphereGeometry(0.003, 6, 4),
+          metal,
+          a.map((v, n) => v + (b[n] - v) * t),
+        );
     }
+  }
+  for (const side of [-1, 1]) {
     // Hershey-bar wing: full-span constant 63-inch chord, 5.5-degree dihedral.
     const y = (x) => 0.75 + Math.abs(x) * 0.096;
     wing(
@@ -246,7 +327,7 @@ export function buildCherokee(s) {
     ]);
     if (side < 0) {
       d.box([0.31, 0.008, 0.88], [-0.69, 0.8, -0.02], trim);
-      d.rod([-0.61, 0.61, -0.96], [-0.92, 0.34, -1.05], 0.015, metal);
+      d.rod([-halfWidth(-0.96, 0.64), 0.64, -0.96], [-0.92, 0.34, -1.05], 0.015, metal);
       d.rod([-0.92, 0.34, -1.05], [-1.11, 0.34, -1.05], 0.015, metal);
     }
   }
@@ -326,11 +407,30 @@ export function buildCherokee(s) {
   d.add(new T.SphereGeometry(0.026, 8, 6), d.red, [0, 2.254, -4.05]);
   d.rod([0, 1.78, -0.3], [0, 2.02, -0.47], 0.008, metal);
   // C-series flat cowl face, separated cheeks, induction inlet, spinner and two-blade propeller.
+  // C-series oval nose-bowl mouth around the spinner, with grille slats and a rolled lip, and
+  // the landing light below it (Cherokee C front view).
+  const mouth = rounded(
+    [
+      [-0.265, 1.35],
+      [0.265, 1.35],
+      [0.265, 1.15],
+      [-0.265, 1.15],
+    ],
+    0.09,
+  ).map(([x, y]) => [x, y, 2.363]);
+  sheet(d, mouth, trim, [0, 0, 1]);
+  outline(d, mouth, 0.01, paint);
+  for (const y of [1.2, 1.25, 1.3]) d.rod([-0.245, y, 2.365], [0.245, y, 2.365], 0.004, metal);
+  d.add(new T.CircleGeometry(0.05, 16), d.ivory, [0, 1.05, 2.364]);
+  d.ring(0.05, 0.008, [0, 1.05, 2.365], metal);
   for (const side of [-1, 1]) {
-    d.box([0.16, 0.075, 0.015], [side * 0.2, 1.26, 2.371], trim);
     d.rod([side * 0.28, 0.78, 1.65], [side * 0.29, 0.65, 1.49], 0.025, metal);
     for (let i = 0; i < 9; i++)
-      d.box([0.009, 0.04, 0.022], [side * 0.413, 0.8, 2.05 - i * 0.04], trim);
+      d.box(
+        [0.009, 0.04, 0.022],
+        [side * (halfWidth(2.05 - i * 0.04, 0.8) + 0.002), 0.8, 2.05 - i * 0.04],
+        trim,
+      );
   }
   d.box([0.14, 0.075, 0.02], [0, 0.94, 2.377], trim);
   const eg = group(root, 'engine-1', [0, 1.25, 2.37]),
@@ -371,29 +471,30 @@ export function buildCherokee(s) {
         r,
         z,
       ]);
-    // Wheel-pant shells are open underneath so tires remain grounded.
+    // Smooth teardrop wheel pants, open underneath so tires remain grounded.
     const pant = [
-      [-0.34, 0.025, 0.3, 0.34],
-      [-0.22, 0.13, 0.25, 0.45],
-      [0.15, 0.14, 0.25, 0.5],
-      [0.31, 0.045, 0.31, 0.41],
+      [-0.4, 0.025, 0.33, 0.37],
+      [-0.3, 0.095, 0.27, 0.44],
+      [-0.12, 0.135, 0.25, 0.49],
+      [0.12, 0.14, 0.25, 0.5],
+      [0.27, 0.105, 0.27, 0.45],
+      [0.35, 0.035, 0.32, 0.4],
     ].map(([zz, w, b, t]) => ({
       z: z + zz,
-      points: [
-        [x, t],
-        [x + w * 0.7, t - 0.015],
-        [x + w, t - 0.07],
-        [x + w * 0.85, b],
-        [x, b - 0.005],
-        [x - w * 0.85, b],
-        [x - w, t - 0.07],
-        [x - w * 0.7, t - 0.015],
-      ],
+      points: Array.from({ length: 12 }, (_, i) => {
+        const a = (i * Math.PI) / 6,
+          c = Math.cos(a),
+          s = Math.sin(a);
+        return [
+          x + w * Math.sign(s) * Math.pow(Math.abs(s), 0.85),
+          (b + t) / 2 + ((t - b) / 2) * Math.sign(c) * Math.pow(Math.abs(c), 0.85),
+        ];
+      }),
     }));
     loft(d, pant, paint);
   }
   d.finish();
-  const interior = cockpit(root, { paint, navy, trim, metal });
+  const interior = cockpit(root, { paint, navy, trim, metal, rings });
   cleanGeometry(root);
   return {
     root,
@@ -462,7 +563,7 @@ function cockpit(root, m) {
     );
   // The nominal aperture scale exceeds the narrowing nose at the two panel corners.
   // Trim only that outside contour; keep the measured instrument centers/apertures.
-  const edgeAt = (u, v, depth = 0) => [Math.max(-0.493, Math.min(0.493, px(u))), py(v), z + depth];
+  const edgeAt = (u, v, depth = 0) => [Math.max(-0.48, Math.min(0.48, px(u))), py(v), z + depth];
   sheet(
     d,
     edge.map(([u, v]) => edgeAt(u, v)),
@@ -493,7 +594,7 @@ function cockpit(root, m) {
   const brow = edge.slice(0, 14).map(([u, v]) => edgeAt(u, v, -0.025));
   outline(d, brow, 0.012, m.trim, false);
   const forwardDeck = (x) => {
-    const xx = Math.max(-0.485, Math.min(0.485, x)),
+    const xx = Math.max(-0.465, Math.min(0.465, x)),
       a = Math.abs(xx);
     return [
       xx,
@@ -748,11 +849,13 @@ function cockpit(root, m) {
   d.rod([0, 1.76, 0.2], [0, 1.7, 0.2], 0.009, m.metal);
   d.rod([0, 1.7, 0.2], [0.1, 1.7, 0.2], 0.008, m.metal);
   d.rod([0.1, 1.7, 0.2], [0.1, 1.66, 0.2], 0.01, m.trim);
-  d.box([1.0, 0.035, 1.8], [0, 0.64, -0.06], m.trim);
+  // The floor follows the radiused belly corners; the rear seats sit inside the narrower aft cabin.
+  fittedFloor(d, m.rings, m.trim, { y: 0.6575, front: 0.84, back: -0.96, width: 1.0 });
   for (const zz of [0.24, -0.61])
-    for (const x of [-0.26, 0.26]) {
-      beveledBox(d, [0.43, 0.1, 0.45], [x, 0.83, zz], seat);
-      beveledBox(d, [0.43, 0.51, 0.11], [x, 1.1, zz - 0.19], seat);
+    for (const x of zz > 0 ? [-0.26, 0.26] : [-0.225, 0.225]) {
+      const w = zz > 0 ? 0.43 : 0.4;
+      beveledBox(d, [w, 0.1, 0.45], [x, 0.83, zz], seat);
+      beveledBox(d, [w, 0.51, 0.11], [x, 1.1, zz - 0.19], seat);
       for (const side of [-1, 1]) {
         d.rod([x + side * 0.16, 0.67, zz - 0.1], [x + side * 0.16, 0.79, zz - 0.1], 0.014, m.metal);
         sheet(
@@ -770,7 +873,7 @@ function cockpit(root, m) {
       d.box([0.055, 0.015, 0.04], [x, 0.91, zz + 0.17], m.metal);
     }
   for (const side of [-1, 1]) {
-    d.box([0.022, 0.25, 1.4], [side * 0.515, 0.82, -0.05], seat);
+    d.box([0.022, 0.2, 1.1], [side * 0.5, 0.86, 0.1], seat);
     d.rod([side * 0.49, 1.03, 0.33], [side * 0.49, 1.03, -0.02], 0.018, m.trim);
     for (const j of [-1, 1]) {
       const pedal = group(cabin, `Cherokee-pedal-${side}-${j}`, [

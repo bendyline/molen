@@ -98,7 +98,7 @@ export function completeCockpitControls(model, spec, frame = {}) {
     'Boeing C-17A Globemaster III': [0, 4.89, 23.18],
     'Antonov An-124-100 Ruslan': [0, 8.95, 28.22],
     'Douglas DC-3': [0, 4.1, 6.95],
-    'P-51D Mustang': [-0.16, 1.48, 0.735],
+    'P-51D Mustang': [-0.16, 1.48, 0.485],
     'OH-6': [0, 1.2, 1.265],
     'Bendy Small Airliner': [0, 3.99, 15.92],
     'Airbus A400M Atlas': [0, eye[1] - 1, panelZ - 0.055],

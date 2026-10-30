@@ -53,6 +53,63 @@ const VIEW = {
 };
 
 describe('screen-space terrain pyramid', () => {
+  it.each([
+    false,
+    true,
+  ])('shares graded heights with terrain, physics and layers (worker=%s)', async (worker) => {
+    const d = descriptor({ maxLevel: 0 });
+    const address = { level: 0, x: 0, z: 0 };
+    const original = flatTile(d, address);
+    const graded = new Heightfield(new Float32Array(9).fill(0.1), 3, 3, {
+      origin: d.origin,
+      worldSize: [16, 16],
+      height: d.height,
+    });
+    const source: TerrainPyramidHeightSource = {
+      load: async () => original,
+      ...(worker
+        ? {
+            loadPrepared: async () => ({
+              heightfield: original,
+              geometry: buildChunkGeometry(original, surfaceDescriptor(d, address), 0, 0, {
+                localCoordinates: true,
+              }),
+            }),
+          }
+        : {}),
+    };
+    const createTile = vi.fn(() => new THREE.Group());
+    const transformHeightfield = vi.fn(async (context, raw) => {
+      expect(context.heightfield).toBe(original);
+      expect(raw).toBe(source);
+      expect(context.signal.aborted).toBe(false);
+      return graded;
+    });
+    const stream = createTerrainPyramidStream(d, source, {
+      initialView: VIEW,
+      viewDistance: 100,
+      maxScreenSpaceError: 10000,
+      maxSelectedTiles: 4,
+      maxResidentTiles: 8,
+      maxConcurrentLoads: 4,
+      transformHeightfield,
+      layers: [{ id: 'pavement', category: 'human-feature', createTile }],
+    });
+    try {
+      await stream.whenIdle();
+      expect(transformHeightfield).toHaveBeenCalledOnce();
+      expect(createTile).toHaveBeenCalledWith(expect.objectContaining({ heightfield: graded }));
+      expect(original.sampleHeight(2, 2)).toBe(0);
+      expect(stream.sampleHeight(2, 2)).toBeCloseTo(10, 5);
+      expect(stream.sampleSurfaceHeight(2, 2)).toBeCloseTo(10, 5);
+      stream.object.updateMatrixWorld(true);
+      const ray = new THREE.Raycaster(new THREE.Vector3(2, 100, 2), new THREE.Vector3(0, -1, 0));
+      expect(ray.intersectObject(stream.object, true)[0]?.point.y).toBeCloseTo(10, 5);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it.each([3, 5, 9])('samples displayed triangles at surface resolution %i', async (resolution) => {
     const d = descriptor({ maxLevel: 0, tileResolution: 9, origin: [1000, 2000], rootSize: 100 });
     const samples = Float32Array.from(

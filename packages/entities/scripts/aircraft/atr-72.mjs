@@ -122,7 +122,7 @@ export function buildATR72(s) {
   noseRoot.traverse((node) => {
     if (node.isMesh) node.geometry = smoothSurface(node.geometry, 40);
   });
-  transportWindowFrames(d, s, atr72Nose, dark);
+  transportWindowFrames(d, s, atr72Nose, dark, 0.009);
   const sample = (zz, k) => {
     for (let i = 0; i < stations.length - 1; i++)
       if (zz <= stations[i][0] && zz >= stations[i + 1][0]) {
@@ -144,9 +144,9 @@ export function buildATR72(s) {
     for (let j = 0; j < 25; j++) {
       const zz = z(257 + j * 20.65),
         yy = y(233),
-        w = 0.27,
-        h = 0.36,
-        r = 0.052;
+        w = 0.29,
+        h = 0.39,
+        r = 0.058;
       holes.push(
         [
           [-w / 2 + r, -h / 2],
@@ -353,6 +353,8 @@ export function buildATR72(s) {
       accent,
     );
     ed.finish();
+    // Fin/tailplane junction fairing: a slim bullet along the stabilizer root.
+    if (side > 0) ellipsoid(d, [0, 7.0, -11.35], [0.14, 0.13, 0.95], paint, 16);
     bindings.push({
       node: e.name,
       source: 'pitchInput',
@@ -439,7 +441,9 @@ export function buildATR72(s) {
       }),
     }));
     loft(nd, ns, paint);
-    ellipsoid(nd, [0, -0.42, 0.025], [0.245, 0.12, 0.025], dark, 18);
+    // Chin intake scoop under the spinner: a painted lip around a dark mouth (ZK-MVG photo).
+    ellipsoid(nd, [0, -0.43, -0.02], [0.3, 0.18, 0.12], paint, 18);
+    ellipsoid(nd, [0, -0.43, 0.06], [0.25, 0.135, 0.07], dark, 18);
     for (const r of ns.slice(1, -1))
       outline(
         nd,
@@ -456,20 +460,28 @@ export function buildATR72(s) {
     nd.finish();
     const prop = group(eg, `ATR72-propeller-${i}`, [0, 0, 0.035]),
       pd = detailKit(prop, prop.name);
-    pd.add(new T.ConeGeometry(0.29, 0.72, 24).rotateX(Math.PI / 2), dark, [0, 0, 0.34]);
+    // Spinner about 0.66 m across, nearly filling the cowl nose (ZK-MVG / F-WWEY photos).
+    pd.add(new T.ConeGeometry(0.33, 0.76, 24).rotateX(Math.PI / 2), dark, [0, 0, 0.36]);
     for (let j = 0; j < 6; j++) {
       const blade = group(prop, `ATR72-blade-${i}-${j}`);
       blade.rotation.z = (j * Math.PI) / 3;
+      // 568F scimitar blade: widest at mid-span, the outer third sweeping back to a narrow,
+      // rounded tip (leading edge on -y, ahead in z).
       const bd = detailKit(blade, blade.name),
         pts = [
           [0.2, -0.07, 0],
-          [0.6, -0.16, 0.02],
-          [1.45, -0.15, 0.025],
-          [1.9, -0.1, 0.01],
-          [1.965, -0.04, 0],
-          [1.95, 0.08, 0],
-          [1.55, 0.14, -0.02],
-          [0.65, 0.13, -0.03],
+          [0.5, -0.13, 0.02],
+          [0.9, -0.15, 0.025],
+          [1.3, -0.109, 0.02],
+          [1.6, -0.015, 0.012],
+          [1.85, 0.105, 0.005],
+          [1.95, 0.18, 0],
+          [1.98, 0.225, 0],
+          [1.94, 0.258, 0],
+          [1.6, 0.205, -0.02],
+          [1.3, 0.171, -0.025],
+          [0.9, 0.15, -0.03],
+          [0.5, 0.13, -0.02],
           [0.2, 0.07, 0],
         ];
       sheet(bd, pts, dark, [0, 0, 1]);
@@ -479,7 +491,7 @@ export function buildATR72(s) {
         dark,
         [0, 0, -1],
       );
-      bd.box([0.07, 0.18, 0.024], [1.89, -0.005, -0.003], paint);
+      bd.box([0.07, 0.12, 0.024], [1.9, 0.205, -0.003], paint);
       bd.finish();
     }
     pd.finish();

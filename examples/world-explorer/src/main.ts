@@ -1,5 +1,4 @@
 import {
-  AdaptiveQualityController,
   type AssetProvider,
   applyEnvironment,
   createIndexedDbMaterialStore,
@@ -22,6 +21,7 @@ import {
 } from '@bendyline/molen-client/navigation';
 import {
   ambientContentFromTypes,
+  createAirportTerrainGrading,
   createEarthAdmissionGovernor,
   createEarthFleet,
   createEarthFog,
@@ -30,10 +30,7 @@ import {
   createEarthTilePreloader,
   createEarthWorldgen,
   createRegionalGroundColor,
-  EARTH_CALIBRATION_QUALITY,
-  EARTH_QUALITY_CALIBRATION_MS,
   EARTH_SHADOW_CASTER_HEIGHT,
-  EARTH_STICKY_QUALITY,
   EARTH_WATER_COLOR,
   EARTH_WATER_CONDITIONS,
   EarthAirportPopulation,
@@ -105,11 +102,14 @@ import type { WorldgenSemanticRenderers } from '@bendyline/molen-worldgen-earth/
 import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { airportStart } from './airport-start.js';
 import { startExplorerAudio } from './audio.js';
 import { selectedAntialias, selectedRendererBackend } from './backend-options.js';
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
+import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
 import { formatCameraLocation } from './location-readout.js';
+import { createExplorerQualityController } from './quality-policy.js';
 import {
   createRegionControls,
   DEFAULT_WORLD_REGION,
@@ -121,6 +121,7 @@ import { createSurfaceControls } from './surface-controls.js';
 import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footprints.js';
 import { createWeatherControls } from './weather-controls.js';
 import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.js';
+import { PARACHUTE_HELP, WorldParachute } from './world-parachute.js';
 
 const DEMO_LEVEL = 13;
 const DEMO_MIN_LEVEL = 8;
@@ -647,7 +648,11 @@ function isPyramidStats(
 
 function selectedStart(): { longitude: number; latitude: number; label: string } {
   const params = new URLSearchParams(location.search);
-  const start = selectedRegion(params) ?? DEFAULT_WORLD_REGION;
+  const start = selectedRegion(params) ?? {
+    ...DEFAULT_WORLD_REGION,
+    longitude: -122.0356,
+    latitude: 47.6163,
+  };
   const place = selectedDiorama(params.get('diorama'));
   const framing = Math.max(1, window.innerHeight / window.innerWidth);
   const longitude = Number(
@@ -756,17 +761,7 @@ async function main(): Promise<void> {
   let automaticQuality =
     !params.has('level') && (!params.has('quality') || params.get('quality') === 'auto');
   let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
-  // Auto climbs no higher than Balanced, as EarthView's default maxQualityLevel: High switches
-  // buildings to the high preset, which rebuilds them across the view and hitches mid-flight.
-  const automaticMaxLevel = 3;
-  // Quick recovery while calibrating, then sticky (see EARTH_QUALITY_CALIBRATION_MS), as EarthView.
-  let qualityController = new AdaptiveQualityController({
-    initialLevel: performanceLevel,
-    maxLevel: automaticMaxLevel,
-    ...EARTH_CALIBRATION_QUALITY,
-  });
-  let qualityCalibrated = false;
-  let levelSince = performance.now();
+  const qualityController = createExplorerQualityController(performanceLevel);
   const memoryBudget = earthMemoryBudget();
   // The tier's object error; the frame loop scales it with height above the ground.
   let objectPixelError = automaticQuality
@@ -1159,12 +1154,24 @@ async function main(): Promise<void> {
     credit.hidden = false;
   }
 
+  const region = loaded.synthetic ? undefined : selectedRegion(params);
+  const startingAirport =
+    region && content.airports
+      ? await airportStart(region, content.airports, metersPerUnit)
+      : undefined;
+  const defaultAirportStart =
+    startingAirport && !params.has('lat') && !params.has('lon') && !params.has('diorama')
+      ? startingAirport
+      : undefined;
   const [projectedStartX, projectedStartZ] = wgs84ToWebMercator(start.longitude, start.latitude);
-  const startX = projectedStartX * metersPerUnit;
-  const startZ = projectedStartZ * metersPerUnit;
+  const startX = defaultAirportStart?.position[0] ?? projectedStartX * metersPerUnit;
+  const startZ = defaultAirportStart?.position[1] ?? projectedStartZ * metersPerUnit;
   const camera = {
     pos: [startX, cameraAngles.altitude, startZ] as [number, number, number],
-    yaw: cameraAngles.yaw,
+    yaw:
+      defaultAirportStart && !params.has('yaw')
+        ? Math.PI / 2 - defaultAirportStart.yaw
+        : cameraAngles.yaw,
     pitch: cameraAngles.pitch,
   };
   const initialDirection = cameraForward(camera.yaw, camera.pitch);
@@ -1200,6 +1207,9 @@ async function main(): Promise<void> {
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         ...(loaded.archive !== undefined ? { archive: loaded.archive } : {}),
         ...pyramidBudget,
+        ...(content.airports
+          ? { transformHeightfield: createAirportTerrainGrading(content.airports) }
+          : {}),
         ...(useWorker && params.get('elevationWorker') !== '0'
           ? {
               elevationWorker: new Worker(new URL('./elevation-worker.ts', import.meta.url), {
@@ -1376,6 +1386,8 @@ async function main(): Promise<void> {
       () => {
         shadowQuality = shadowsWanted ? earthPerformanceTier(level).shadows : 'off';
       },
+      // Uniform-driven like shadow parking: switching rebuilds no shader.
+      () => viewer.renderer.setCloudQuality(earthPerformanceTier(level).clouds),
     ];
     levelSteps.length = 0;
     if (staged) levelSteps.push(...steps);
@@ -1390,9 +1402,7 @@ async function main(): Promise<void> {
     }
     automaticQuality = qualitySelect.value === 'auto';
     if (!automaticQuality) quality = qualitySelect.value as TerrainQualityPreset;
-    performanceLevel = automaticQuality
-      ? Math.min(performanceLevel, automaticMaxLevel)
-      : earthQualityLevel(quality);
+    if (!automaticQuality) performanceLevel = earthQualityLevel(quality);
     qualityController.setLevel(performanceLevel);
     applyPerformanceLevel();
     history.replaceState(null, '', next);
@@ -1521,8 +1531,21 @@ async function main(): Promise<void> {
     loadEntityModel,
     content.types,
     params.get('warmup') !== '0' ? (object) => viewer.renderer.prepareObject(object) : undefined,
+    loaded.synthetic ? 'practice' : startingAirport,
+    startingAirport ? () => stream.isAreaReady(...startingAirport.position, 100) : undefined,
   );
   const flight = aircraft;
+  // E in flight: the seat fires and the pilot rides a canopy down, then walks from where it lands.
+  const parachute = new WorldParachute(
+    stream.object,
+    {
+      groundHeight: sampleHeight,
+      waterHeight: (x, z) => vehicles.boatEnvironment.waterAt(x, z)?.height,
+    },
+    params.get('warmup') !== '0' ? (object) => viewer.renderer.prepareObject(object) : undefined,
+  );
+  // Climbing out of a wreck: the landing ray looks past aircraft, so the pilot stands beside it.
+  const besideVehicles = new WalkCollision({ ignoreVehicles: true });
   const nightLighting = new EarthNightLighting({
     root: stream.object,
     world: vehicles.world,
@@ -1557,10 +1580,14 @@ async function main(): Promise<void> {
           },
         })
       : undefined;
+  // F5 while piloting: a camera beside the flight path watches the aircraft go by. It overlays
+  // the cockpit or chase view, which V or F5 returns to.
+  let flyby = false;
+  const flightInstruments = createFlightInstrumentPanel(params.get('hud') !== '0');
   const cockpitPointer = bindAircraftCockpitPointer({
     element: canvas,
     camera: viewer.renderer.camera,
-    session: () => (vehicles.view === 'cockpit' ? flight.cockpitSession() : undefined),
+    session: () => (vehicles.view === 'cockpit' && !flyby ? flight.cockpitSession() : undefined),
   });
   if (ambientTiles !== undefined) {
     ambient = new EarthAmbient({
@@ -1619,13 +1646,7 @@ async function main(): Promise<void> {
     'WASD walk · Shift run · Space jump · E board vehicle · click to look · Esc release mouse';
   const boatHelp =
     'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · E dockside exit · V view';
-  const exitVehicle = (): boolean => {
-    const feet = vehicles.exit();
-    if (!feet) {
-      if (flight.mountedKind) flight.exitHint();
-      return false;
-    }
-    flight.message = '';
+  const standAt = (feet: readonly [number, number, number]): void => {
     walker.feet.fromArray(feet);
     walker.velocity.set(0, 0, 0);
     walker.ready = true;
@@ -1635,8 +1656,58 @@ async function main(): Promise<void> {
     camera.pitch = 0;
     input.map.reset();
     help.textContent = walkHelp;
+  };
+  /**
+   * Leave the mounted vehicle by the kernel's rules, or bail out of an aircraft that cannot be
+   * left that way: a wreck at rest is climbed out of, and with `eject` (E in flight) the seat fires.
+   */
+  const exitVehicle = (eject = false): boolean => {
+    const feet = vehicles.exit();
+    if (feet) {
+      flight.message = '';
+      standAt(feet);
+      return true;
+    }
+    const leaving = flight.mountedKind ? flight.bailOut(eject) : undefined;
+    if (!leaving) {
+      if (flight.mountedKind) flight.exitHint();
+      return false;
+    }
+    // Not the ordinary exit's complaint, now that the pilot is out.
+    vehicles.message = '';
+    if ('ejection' in leaving) {
+      parachute.eject(leaving.ejection);
+      walker.ready = false;
+      vehicles.view = 'chase';
+      vehicles.lookYaw = 0;
+      vehicles.lookPitch = 0;
+      input.map.reset();
+      help.textContent = PARACHUTE_HELP;
+      return true;
+    }
+    const [x, y, z] = leaving.wreck;
+    walker.reset(x, z);
+    walkCollision.invalidate();
+    walkCollision.update(stream.object, x, z);
+    besideVehicles.update(stream.object, x, z);
+    // Open ground at the level the wreck rests on: the raised practice runway or a roof counts.
+    const level = (px: number, pz: number): number | undefined => {
+      const ground = sampleHeight(px, pz);
+      return ground === undefined ? undefined : Math.max(ground, y - 2);
+    };
+    if (walker.place(walkCollision, level, besideVehicles)) {
+      standAt([walker.feet.x, walker.feet.y, walker.feet.z]);
+      return true;
+    }
+    // Nothing open in reach yet: the walk mode keeps looking around the wreck.
+    camera.pos = [x, y, z];
+    camera.pitch = 0;
+    input.map.reset();
+    help.textContent = walkHelp;
     return true;
   };
+  const inputProfile = (): 'pilot' | 'drive' | 'fly' | 'walk' =>
+    flight.mountedKind ? 'pilot' : vehicles.mountedId || parachute.active ? 'drive' : navigation;
   window.addEventListener('pagehide', (event) => {
     if (!event.persisted) {
       audio?.dispose();
@@ -1650,7 +1721,10 @@ async function main(): Promise<void> {
       airportPopulation?.dispose();
       flight.dispose();
       cockpitPointer.dispose();
+      flightInstruments.dispose();
       nightLighting.dispose();
+      parachute.dispose();
+      besideVehicles.clear();
       vehicles.dispose();
     }
   });
@@ -1660,6 +1734,7 @@ async function main(): Promise<void> {
       canvas.focus();
       return;
     }
+    parachute.stop();
     navigation = mode;
     input.setProfile(mode);
     input.map.reset();
@@ -1693,14 +1768,25 @@ async function main(): Promise<void> {
   }
   const visitAircraft = (kind: AircraftKind): void => {
     if (vehicles.mountedId && !exitVehicle()) return;
+    if (!loaded.synthetic && !startingAirport) {
+      help.textContent = 'This terrain package has no starting airport';
+      return;
+    }
     visitingAircraft = kind;
     void flight.request(kind).catch((error) => {
       help.textContent = String(error);
       visitingAircraft = undefined;
     });
     setNavigation('fly');
-    camera.pos = [flight.center[0], camera.pos[1], flight.center[1] - 330];
-    help.textContent = 'Loading practice airfield…';
+    if (startingAirport) {
+      if (hasHumanFeatures) setMode('human');
+      camera.yaw = Math.PI / 2 - startingAirport.yaw;
+      camera.pitch = -0.2;
+    }
+    camera.pos = [flight.center[0], camera.pos[1], flight.center[1] - (loaded.synthetic ? 330 : 0)];
+    help.textContent = startingAirport
+      ? `Loading aircraft at ${startingAirport.label}…`
+      : 'Loading practice airfield…';
   };
   const aircraftCatalog = document.querySelector<HTMLSelectElement>('#aircraft-catalog');
   if (aircraftCatalog) {
@@ -1725,8 +1811,8 @@ async function main(): Promise<void> {
     });
   }
   const interact = (): void => {
-    if (navigation !== 'walk' || (!vehicles.mountedId && !walker.ready)) return;
-    if (vehicles.mountedId) exitVehicle();
+    if (navigation !== 'walk' || parachute.active || (!vehicles.mountedId && !walker.ready)) return;
+    if (vehicles.mountedId) exitVehicle(true);
     else if (flight.enter(camera.pos) || vehicles.enter(camera.pos)) {
       if (flight.mountedKind) airportPopulation?.claim(flight.mountedKind);
       input.map.reset();
@@ -1737,22 +1823,37 @@ async function main(): Promise<void> {
         ? AIRCRAFT_HELP
         : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
           ? boatHelp
-          : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · E exit · V change view · drag to look';
+          : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · 1–4 doors · 5 hood · 6 rear access · K wipers · L lights · E exit · V change view · drag to look';
     }
   };
   window.addEventListener('keydown', (event) => {
-    if (event.defaultPrevented || event.repeat || event.ctrlKey || event.altKey || event.metaKey)
+    if (event.defaultPrevented) return;
+    // Not a reload in mid-flight, wherever focus is; Ctrl+F5 still reloads.
+    if (
+      event.code === 'F5' &&
+      flight.mountedKind &&
+      !(event.ctrlKey || event.altKey || event.metaKey || event.shiftKey)
+    ) {
+      event.preventDefault();
+      if (!event.repeat) flyby = !flyby;
       return;
+    }
+    if (event.repeat || event.ctrlKey || event.altKey || event.metaKey) return;
     if (
       event.target instanceof HTMLElement &&
       (event.target.closest('input, select, textarea, button, a, summary, dialog') ||
         event.target.isContentEditable)
     )
       return;
-    if (event.code === 'KeyB') spawnBoat();
+    if (event.code === 'KeyB' && !flight.mountedKind && !vehicles.mountedId) spawnBoat();
     if (event.code === 'KeyR' && !flight.mountedKind)
       viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
-    if (event.code === 'KeyL' && ambient !== undefined) {
+    if (
+      event.code === 'KeyL' &&
+      ambient !== undefined &&
+      !flight.mountedKind &&
+      !vehicles.mountedId
+    ) {
       ambient.setEnabled(!ambient.isEnabled);
       wildlife?.setEnabled(ambient.isEnabled);
     }
@@ -1816,7 +1917,6 @@ async function main(): Promise<void> {
       const pressure = pyramidEarth?.stream.pressure();
       if (!qualitySettled && (!streamingBusy || now > qualityGraceUntil)) {
         qualitySettled = true;
-        levelSince = now;
       }
       const change = qualityController.sample(frameMs, {
         active: !document.hidden && qualitySettled,
@@ -1830,19 +1930,7 @@ async function main(): Promise<void> {
       });
       if (change) {
         performanceLevel = change.level;
-        levelSince = now;
         applyPerformanceLevel(true);
-      } else if (
-        qualitySettled &&
-        !qualityCalibrated &&
-        now - levelSince >= EARTH_QUALITY_CALIBRATION_MS
-      ) {
-        qualityController = new AdaptiveQualityController({
-          initialLevel: performanceLevel,
-          maxLevel: automaticMaxLevel,
-          ...EARTH_STICKY_QUALITY,
-        });
-        qualityCalibrated = true;
       }
     }
     // One step of a level change per frame (see applyPerformanceLevel).
@@ -1852,25 +1940,30 @@ async function main(): Promise<void> {
     frameMax = Math.max(frameMax, frameMs);
     const dt = Math.max(0, Math.min(0.1, (now - lastTime) / 1000));
     lastTime = now;
-    input.setProfile(flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation);
+    input.setProfile(inputProfile());
     input.map.setEnabled(!document.hidden && document.hasFocus());
     let frameInput = input.read(dt);
     frameInput.jump ||= jumpRequested;
     jumpRequested = false;
     if (frameInput.interact > 0) {
       interact();
-      input.setProfile(flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation);
+      input.setProfile(inputProfile());
       frameInput = input.read(0);
     }
-    if (frameInput.view % 2 === 1 && vehicles.mountedId)
-      vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
-    if (vehicles.mountedId) {
+    flyby &&= flight.mountedKind !== undefined;
+    if (frameInput.view % 2 === 1 && (vehicles.mountedId || parachute.active)) {
+      if (flyby) flyby = false;
+      else vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
+    }
+    if (vehicles.mountedId || parachute.active) {
+      // Under a canopy the view turns all the way round, and down to the landing.
+      const turn = parachute.active ? Math.PI : 1.45;
       vehicles.lookYaw = Math.max(
-        -1.45,
-        Math.min(1.45, vehicles.lookYaw + frameInput.look[0] * 0.003),
+        -turn,
+        Math.min(turn, vehicles.lookYaw + frameInput.look[0] * 0.003),
       );
       vehicles.lookPitch = Math.max(
-        -0.8,
+        parachute.active ? -1.1 : -0.8,
         Math.min(0.8, vehicles.lookPitch - frameInput.look[1] * 0.003),
       );
     } else {
@@ -1893,13 +1986,22 @@ async function main(): Promise<void> {
       camera.pos[2] += direction[2] * amount;
     };
     worldgen?.updateInteriors(camera.pos);
-    // Keep the practice runway out of real geography until the visitor chooses an aircraft.
-    if (loaded.synthetic || visitingAircraft !== undefined) flight.sync();
+    if (visitingAircraft && startingAirport) {
+      // Request ground-level detail before placing the aircraft or pilot. Coarse overview
+      // heights can differ by tens of meters and would drop them through a refining runway.
+      const height = stream.sampleHeight(...startingAirport.position);
+      if (height !== undefined) camera.pos[1] = height + 8;
+    }
+    // Only the synthetic fixture creates a practice field; real regions use existing pavement.
+    if (loaded.synthetic || visitingAircraft !== undefined || visitingTransit !== undefined)
+      flight.sync();
     if (visitingAircraft && flight.ready && flight.has(visitingAircraft)) {
       const position = flight.visitPosition(visitingAircraft);
       setNavigation('walk');
       camera.pos = position;
-      camera.yaw = visitingAircraft === 'p51d' ? Math.atan2(1.1, -1.8) : Math.atan2(-0.8, 1.7);
+      const aircraftPosition =
+        flight.apronPose(visitingAircraft)?.position ?? flight.spawnPosition(visitingAircraft);
+      camera.yaw = Math.atan2(aircraftPosition[2] - position[2], aircraftPosition[0] - position[0]);
       camera.pitch = 0;
       walker.feet.set(position[0], position[1] - WALK_EYE_HEIGHT, position[2]);
       walker.velocity.set(0, 0, 0);
@@ -1971,21 +2073,29 @@ async function main(): Promise<void> {
         : [],
     );
     // Visiting or spawning a vehicle can change the mode after the frame began.
-    const activeProfile = flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation;
+    const activeProfile = inputProfile();
     if (input.map.activeProfile !== activeProfile) {
       input.setProfile(activeProfile);
       frameInput = input.read(0);
     }
     flight.input(dt, frameInput);
+    if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
     vehicles.update(dt, {
       throttle: frameInput.move.forward,
       steering: frameInput.move.right,
       brake: frameInput.jump || document.hidden || !document.hasFocus(),
       handbrake: frameInput.sprint,
     });
+    const landing = parachute.update(dt, {
+      forward: frameInput.move.forward,
+      right: frameInput.move.right,
+      flare: frameInput.jump,
+    });
+    if (landing) standAt(landing);
     // Last frame's camera: parked and distant aircraft draw without their cockpits.
     flight.render(camera.pos);
     cockpitPointer.update();
+    flightInstruments.update(flight.instrumentSource(), flyby || vehicles.view === 'chase', now);
     surfaceRenderer.updateSignals(
       params.has('freeze') ? 0 : vehicles.world.tick / vehicles.world.tickRate,
       ambient?.surfaceSignalColor,
@@ -1997,8 +2107,15 @@ async function main(): Promise<void> {
       graphics.record('ambient-render', performance.now() - ambientStarted);
     }
     wildlife?.update(params.has('freeze') ? 0 : dt, camera.pos);
-    const flightCamera = flight.cameraPose(vehicles.view, vehicles.lookYaw, vehicles.lookPitch);
-    const vehicleCamera = flightCamera ?? vehicles.cameraPose();
+    const flightCamera = flight.cameraPose(
+      flyby ? 'flyby' : vehicles.view,
+      vehicles.lookYaw,
+      vehicles.lookPitch,
+    );
+    const vehicleCamera =
+      flightCamera ??
+      vehicles.cameraPose() ??
+      parachute.cameraPose(vehicles.view, vehicles.lookYaw, vehicles.lookPitch);
     if (vehicleCamera) {
       camera.pos = vehicleCamera.position;
       camera.yaw = vehicleCamera.yaw;
@@ -2299,6 +2416,7 @@ async function main(): Promise<void> {
       ...(wildlife !== undefined ? { regionalAmbience: wildlife.ambience(camera.pos) } : {}),
       nowMs: now,
       ...(audioTerrainSample ? { terrain: audioTerrainSample } : {}),
+      surfaceAt: (x, z) => audioTerrain.sample(x, z).surface,
       ...(viewer.renderer.sky?.frame?.earth
         ? {
             solarHour:
@@ -2310,9 +2428,11 @@ async function main(): Promise<void> {
       ...(audioGround !== undefined ? { heightAboveGround: camera.pos[1] - audioGround } : {}),
       position: [camera.pos[0], camera.pos[1], camera.pos[2]],
       forward: [viewDirection[0], viewDirection[1], viewDirection[2]],
-      mode: flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation,
+      // Under a canopy: the rushing air of flight, not footsteps.
+      mode: parachute.active ? 'fly' : inputProfile(),
       inVehicle:
         vehicles.view === 'cockpit' &&
+        !flyby &&
         (!!flight.mountedKind || (!!vehicles.mountedId && !vehicles.isBoat(vehicles.mountedId))),
       ...(navigation === 'walk' && !vehicleCamera ? { grounded: walker.grounded } : {}),
       ...(viewer.renderer.weather ? { weather: viewer.renderer.weather.data } : {}),
@@ -2373,24 +2493,26 @@ async function main(): Promise<void> {
         navigation === 'walk' && walker.ready ? flight.nearest(camera.pos) : undefined;
       const navigationText = flight.mountedKind
         ? flight.status()
-        : nearAircraft
-          ? `E · Board ${flight.label(nearAircraft)} · I starts the engine`
-          : flight.message ||
-            (vehicles.mountedId
-              ? `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${vehicles.speed < -0.1 ? 'Reverse' : 'Drive'} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`
-              : vehicles.message ||
-                (nearVehicle
-                  ? `E · Enter ${vehicles.label(nearVehicle)}`
-                  : navigation === 'walk'
-                    ? !walker.ready
-                      ? 'Finding open ground nearby… Switch to Fly to choose another spot.'
-                      : walker.waitingForTerrain
-                        ? 'Waiting for terrain…'
-                        : `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`
-                    : 'Fly mode · Explore from above'));
+        : parachute.status() ||
+          (nearAircraft
+            ? `E · Board ${flight.label(nearAircraft)} · I starts the engine`
+            : flight.message ||
+              (vehicles.mountedId
+                ? `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${vehicles.speed < -0.1 ? 'Reverse' : 'Drive'} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`
+                : vehicles.message ||
+                  (nearVehicle
+                    ? `E · Enter ${vehicles.label(nearVehicle)}`
+                    : navigation === 'walk'
+                      ? !walker.ready
+                        ? 'Finding open ground nearby… Switch to Fly to choose another spot.'
+                        : walker.waitingForTerrain
+                          ? 'Waiting for terrain…'
+                          : `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`
+                      : 'Fly mode · Explore from above')));
       if (navigationStatus.textContent !== navigationText)
         navigationStatus.textContent = navigationText;
       navigationStatus.dataset.vehicle = vehicles.mountedId ?? '';
+      navigationStatus.dataset.parachute = parachute.phase ?? '';
       const waterHere = vehicles.boatEnvironment.waterAt(camera.pos[0], camera.pos[2]);
       navigationStatus.dataset.waterHeight = waterHere ? String(waterHere.height) : '';
       navigationStatus.dataset.boat = String(
@@ -2416,7 +2538,7 @@ async function main(): Promise<void> {
                 flight.state.airspeed >= (flight.mountedKind === 'airliner' ? 65 : 42)
               ? 'rotation'
               : 'grounded';
-      navigationStatus.dataset.view = vehicles.view;
+      navigationStatus.dataset.view = flyby ? 'flyby' : vehicles.view;
       navigationStatus.dataset.entities = String(vehicles.world.query({ name: 'vehicle' }).count());
       const ambientStats = ambient?.stats();
       navigationStatus.dataset.ambientCars = String(ambientStats?.cars ?? 0);

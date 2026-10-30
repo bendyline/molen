@@ -18,6 +18,51 @@ import {
   wing,
 } from './mesh-kit.mjs';
 
+/** Front and back z of a side-view outline [[z, y], ...] at height y (0 width outside it). */
+function chordAt(outline, y) {
+  const zs = [];
+  for (let n = 0; n < outline.length; n++) {
+    const [za, ya] = outline[n],
+      [zb, yb] = outline[(n + 1) % outline.length];
+    if ((ya - y) * (yb - y) <= 0 && ya !== yb) zs.push(za + ((zb - za) * (y - ya)) / (yb - ya));
+  }
+  return zs.length ? [Math.max(...zs), Math.min(...zs)] : [0, 0];
+}
+/** Horizontal ribs [y, front z, back z] of a side-view outline, at every vertex height. */
+function outlineRibs(outline) {
+  const ys = [...new Set(outline.map(([, y]) => y))].sort((a, b) => a - b),
+    low = ys[0] + 0.004,
+    high = ys.at(-1) - 0.004;
+  return [low, ...ys.filter((y) => y > low && y < high), high].map((y) => [
+    y,
+    ...chordAt(outline, y),
+  ]);
+}
+/** A symmetric fin or rudder lofted through ribs [y, front z, back z, half thickness at 30 %
+ * chord, front-face half width, back-face half width] and closed at both ends: a tapered
+ * section instead of a constant-thickness slab. */
+function foil(d, ribs, material) {
+  const rings = ribs.map(([y, front, back, half, lead, trail]) => {
+    const c = front - back,
+      right = [
+        [lead, front],
+        [half, front - c * 0.3],
+        [trail + (half - trail) * 0.45, front - c * 0.75],
+        [trail, back],
+      ];
+    return [...right, ...[...right].reverse().map(([x, z]) => [-x, z])].map(([x, z]) => [x, y, z]);
+  });
+  for (let i = 0; i < rings.length - 1; i++)
+    for (let j = 0; j < 8; j++) {
+      const q = [rings[i][j], rings[i + 1][j], rings[i + 1][(j + 1) % 8], rings[i][(j + 1) % 8]],
+        mid = (k) => q.reduce((sum, p) => sum + p[k], 0) / 4,
+        axis = (ribs[i][1] + ribs[i][2] + ribs[i + 1][1] + ribs[i + 1][2]) / 4;
+      quad(d, ...q, material, [mid(0), 0, mid(2) - axis]);
+    }
+  sheet(d, rings[0], material, [0, -1, 0]);
+  sheet(d, rings.at(-1), material, [0, 1, 0]);
+}
+
 export const caravanFrame = () => ({
   heli: false,
   fighter: false,
@@ -27,7 +72,7 @@ export const caravanFrame = () => ({
   ry: 0.85,
   cabinZ: 1.65,
   cabinWidth: 1.63,
-  eye: [0.4, 2.65, 1.65],
+  eye: [0.4, 2.5, 1.65],
   panelZ: 2.45,
   floor: 1.32,
 });
@@ -46,6 +91,15 @@ export function buildCaravan(s) {
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.16,
+    }),
+    // Tinted passenger windows: every EX photo shows them as dark rounded rectangles.
+    tinted = mat('Caravan-cabin-glass', '#26313a', {
+      transparent: true,
+      opacity: 0.6,
+      depthWrite: false,
+      side: T.DoubleSide,
+      metalness: 0.35,
+      roughness: 0.1,
     });
   const d = detailKit(root, 'Caravan-shell'),
     bindings = [],
@@ -53,13 +107,15 @@ export function buildCaravan(s) {
     ailerons = [];
   // Individually measured contour stations, with the tall box cabin and long turbine cowling.
   const stations = [
-    [4.65, 0.34, 1.42, 2.16],
-    [4.4, 0.41, 1.28, 2.22],
-    [3.65, 0.53, 1.13, 2.23],
+    // Rounded intake lip, a chin rising toward it and a cowl top climbing to the windscreen;
+    // the roof stays level instead of peaking over the windscreen (N673EX side profile).
+    [4.65, 0.33, 1.46, 2.07],
+    [4.4, 0.42, 1.38, 2.13],
+    [3.65, 0.53, 1.25, 2.2],
     [2.85, 0.69, 1.11, 2.25],
-    [1.7, 0.78, 1.08, 2.91],
-    [1.18, 0.84, 1.06, 2.84],
-    [0.63, 0.875, 1.04, 2.78],
+    [1.7, 0.78, 1.08, 2.74],
+    [1.18, 0.84, 1.06, 2.77],
+    [0.63, 0.875, 1.04, 2.77],
     [0, 0.875, 1.02, 2.74],
     [-0.9, 0.87, 1.01, 2.7],
     [-1.75, 0.855, 1.02, 2.66],
@@ -70,26 +126,54 @@ export function buildCaravan(s) {
     [-6.8, 0.2, 1.69, 2.52],
     [-7.5, 0.055, 2.02, 2.27],
   ];
-  const rings = stations.map(([z, w, b, t]) => ({
-    z,
-    points: [
-      [0, t],
-      [w * 0.74, t - 0.035],
-      [w, t - 0.17],
-      [w, b + 0.22],
-      [w * 0.7, b],
-      [0, b - 0.035],
-      [-w * 0.7, b],
-      [-w, b + 0.22],
-      [-w, t - 0.17],
-      [-w * 0.74, t - 0.035],
-    ],
-  }));
+  // The cowl rings blend from the cabin's boxy section toward a round superellipse (the cowl
+  // is a rounded nose bowl in every photo); the cabin rings stay as measured.
+  const roundness = [1, 1, 0.6];
+  const rings = stations.map(([z, w, b, t], i) => {
+    const box = [
+        [0, t],
+        [w * 0.74, t - 0.035],
+        [w, t - 0.17],
+        [w, b + 0.22],
+        [w * 0.7, b],
+        [0, b - 0.035],
+      ],
+      k = roundness[i] ?? 0,
+      cy = (t + b - 0.035) / 2,
+      h = (t - b + 0.035) / 2,
+      right = box.map(([x, y], j) => {
+        const a = ([0, 38, 75, 110, 145, 180][j] * Math.PI) / 180,
+          s = Math.sin(a),
+          c = Math.cos(a),
+          rx = w * Math.pow(Math.abs(s), 2 / 2.4),
+          ry = cy + Math.sign(c) * h * Math.pow(Math.abs(c), 2 / 2.4);
+        return [x + (rx - x) * k, y + (ry - y) * k];
+      });
+    return {
+      z,
+      points: [
+        ...right,
+        ...right
+          .slice(1, 5)
+          .reverse()
+          .map(([x, y]) => [-x, y]),
+      ],
+    };
+  });
   const p = (i, j) => [...rings[i].points[j], rings[i].z];
+  // Skin half width at height y on ring i (stripes and rivets follow the rounded cowl).
+  const halfAt = (i, y) => {
+    const q = rings[i].points;
+    for (let j = 0; j < 5; j++)
+      if ((q[j][1] - y) * (q[j + 1][1] - y) <= 0 && q[j][1] !== q[j + 1][1])
+        return q[j][0] + ((q[j + 1][0] - q[j][0]) * (y - q[j][1])) / (q[j + 1][1] - q[j][1]);
+    return stations[i][1];
+  };
   loft(d, rings, paint, {
     skip: (i, j) =>
-      (i === 3 && [0, 1, 8, 9].includes(j)) || (i >= 4 && i <= 11 && [2, 7].includes(j)),
+      i < 3 || (i === 3 && [0, 1, 8, 9].includes(j)) || (i >= 4 && i <= 11 && [2, 7].includes(j)),
   });
+  loft(d, rings.slice(0, 4), paint, { caps: false, smooth: true });
   for (const j of [0, 1, 8, 9])
     quad(d, p(3, j), p(4, j), p(4, (j + 1) % 10), p(3, (j + 1) % 10), glass, [0, 1, 1]);
   outline(
@@ -118,41 +202,44 @@ export function buildCaravan(s) {
           ? [
               [0.06, 0.31],
               [0.25, 0.08],
-              [0.9, 0.11],
+              [0.9, 0.1],
               [0.9, 0.4],
               [0.12, 0.43],
             ]
-          : [
-              [0.13, 0.26],
-              [0.2, 0.22],
-              [0.8, 0.22],
-              [0.88, 0.26],
-              [0.88, 0.49],
-              [0.82, 0.53],
-              [0.19, 0.53],
-              [0.13, 0.49],
-            ];
+          : // Rounded rectangles (corner arcs in bay fractions), not chamfered octagons.
+            [
+              [0.81, 0.38, 0],
+              [0.2, 0.38, 1],
+              [0.2, 0.25, 2],
+              [0.81, 0.25, 3],
+            ].flatMap(([u, v, k]) =>
+              [0, 1, 2, 3].map((n) => {
+                const angle = ((k + n / 3) * Math.PI) / 2;
+                return [u + 0.07 * Math.cos(angle), v + 0.07 * Math.sin(angle)];
+              }),
+            );
       const h = pts.map(([u, v]) => q(u, v));
       sheet(d, [a, b, c, e], paint, [side, 0, 0], [h]);
-      sheet(d, h, glass, [side, 0, 0]);
-      outline(d, h, 0.008, dark);
+      sheet(d, h, i === 4 ? glass : tinted, [side, 0, 0]);
+      outline(d, h, 0.005, dark);
     }
     for (let i = 0; i < stations.length - 1; i++) {
       const a = stations[i],
         b = stations[i + 1],
-        yy = (q) => q[2] + 0.29;
+        yy = (q) => q[2] + 0.29,
+        x = (k, q, dy = 0) => halfAt(k, yy(q) + dy) + 0.002;
       quad(
         d,
-        [side * (a[1] + 0.002), yy(a), a[0]],
-        [side * (b[1] + 0.002), yy(b), b[0]],
-        [side * (b[1] + 0.002), yy(b) + 0.11, b[0]],
-        [side * (a[1] + 0.002), yy(a) + 0.11, a[0]],
+        [side * x(i, a), yy(a), a[0]],
+        [side * x(i + 1, b), yy(b), b[0]],
+        [side * x(i + 1, b, 0.11), yy(b) + 0.11, b[0]],
+        [side * x(i, a, 0.11), yy(a) + 0.11, a[0]],
         blue,
         [side, 0, 0],
       );
       for (let t = 0; t < 1; t += 0.18 / Math.abs(b[0] - a[0]))
         d.add(new T.SphereGeometry(0.003, 5, 3), metal, [
-          side * (a[1] + (b[1] - a[1]) * t + 0.003),
+          side * (x(i, a, -0.04) + (x(i + 1, b, -0.04) - x(i, a, -0.04)) * t + 0.001),
           yy(a) + (yy(b) - yy(a)) * t - 0.04,
           a[0] + (b[0] - a[0]) * t,
         ]);
@@ -167,8 +254,8 @@ export function buildCaravan(s) {
     outline(
       d,
       [
-        [side * 0.78, 2.65, 1.7],
-        [side * 0.84, 2.73, 1.18],
+        [side * 0.78, 2.56, 1.7],
+        [side * 0.84, 2.59, 1.18],
         [side * 0.84, 1.33, 1.18],
         [side * 0.73, 1.3, 2.3],
       ],
@@ -313,40 +400,42 @@ export function buildCaravan(s) {
     [-7.36, 4.55],
     [-7.14, 2.18],
   ];
-  for (const side of [-1, 1])
-    sheet(
-      d,
-      fin.map(([z, y]) => [side * 0.065, y, z]),
-      paint,
-      [side, 0, 0],
-    );
-  for (let i = 0; i < fin.length; i++) {
-    const a = fin[i],
-      b = fin[(i + 1) % fin.length];
-    quad(
-      d,
-      [-0.065, a[1], a[0]],
-      [-0.065, b[1], b[0]],
-      [0.065, b[1], b[0]],
-      [0.065, a[1], a[0]],
-      paint,
-      [0, 1, 0],
-    );
-  }
+  // Fin and rudder are tapered sections (12 % of the combined chord, at most 0.17 m thick over
+  // the dorsal fillet), not constant-thickness slabs.
+  const rudderOutline = [
+      [0, 0],
+      [-0.21, 2.33],
+      [-0.47, 2.31],
+      [-0.43, 0.02],
+    ],
+    span = (outline, y) => {
+      const [front, back] = chordAt(outline, y);
+      return front - back;
+    },
+    finHalf = (y) =>
+      Math.min(0.085, Math.max(0.014, 0.06 * (span(fin, y) + span(rudderOutline, y - 2.22))));
+  foil(
+    d,
+    outlineRibs(fin).map(([y, f, b]) => [
+      y,
+      f,
+      b,
+      finHalf(y),
+      finHalf(y) * 0.35,
+      finHalf(y) * 0.55,
+    ]),
+    paint,
+  );
   const rud = group(root, 'Caravan-rudder', [0, 2.22, -7.15]),
     rd = detailKit(rud, rud.name);
-  for (const side of [-1, 1])
-    sheet(
-      rd,
-      [
-        [side * 0.06, 0, 0],
-        [side * 0.06, 2.33, -0.21],
-        [side * 0.06, 2.31, -0.47],
-        [side * 0.06, 0.02, -0.43],
-      ],
-      blue,
-      [side, 0, 0],
-    );
+  foil(
+    rd,
+    outlineRibs(rudderOutline).map(([y, f, b]) => {
+      const h = finHalf(y + 2.22);
+      return [y, f, b, h * 0.5, h * 0.55, 0.003];
+    }),
+    blue,
+  );
   rd.finish();
   bindings.push({
     node: rud.name,
@@ -361,16 +450,104 @@ export function buildCaravan(s) {
     [-3.65, 2.64],
   ])
     d.rod([0, y, z], [0, y + 0.28, z - 0.22], 0.01, metal);
-  // Optional belly pod intentionally omitted to match the selected manufacturer's three-view.
+  // Belly cargo pod, fitted to most 208Bs in service (Lacoste three-view, PRF PR-FYC and FAH 889
+  // side photos): a blunt rounded nose behind the nose leg, a flat floor 0.58 m up to 1.5 m
+  // behind the main axle, a long curved ramp up to the tail cone and four side doors. The top
+  // edge is buried in the fuselage floor.
+  const keel = (z) => {
+    const i = Math.max(
+        1,
+        stations.findIndex(([sz]) => sz <= z),
+      ),
+      [za, , ba] = stations[i - 1],
+      [zb, , bb] = stations[i];
+    return ba + ((bb - ba) * (z - za)) / (zb - za);
+  };
+  const podStations = [
+    [3.0, 0.3, 0.9],
+    [2.95, 0.44, 0.72],
+    [2.86, 0.53, 0.625],
+    [2.72, 0.58, 0.588],
+    [2.52, 0.6, 0.58],
+    [-1.5, 0.6, 0.58],
+    [-1.75, 0.595, 0.605],
+    [-2.0, 0.58, 0.65],
+    [-2.25, 0.56, 0.71],
+    [-2.5, 0.53, 0.79],
+    [-2.73, 0.49, 0.875],
+    [-2.95, 0.44, 0.96],
+    [-3.1, 0.39, 1.025],
+    [-3.25, 0.33, 1.08],
+    [-3.37, 0.26, 1.125],
+    [-3.48, 0.18, 1.16],
+  ];
+  const pod = podStations.map(([z, w, y0]) => {
+    const y1 = keel(z) + 0.04,
+      r = Math.min(0.15, w * 0.4, (y1 - y0) * 0.45),
+      right = [
+        [w, y1],
+        [w, (y1 + y0 + r) / 2],
+        [w, y0 + r],
+        [w - r + r * Math.cos(Math.PI / 6), y0 + r - r * Math.sin(Math.PI / 6)],
+        [w - r + r * Math.cos(Math.PI / 3), y0 + r - r * Math.sin(Math.PI / 3)],
+        [w - r, y0],
+        [w * 0.45, y0 - 0.008],
+      ];
+    return {
+      z,
+      points: [[0, y1], ...right, [0, y0 - 0.012], ...right.reverse().map(([x, y]) => [-x, y])],
+    };
+  });
+  loft(d, pod, paint);
+  // Pod half width and floor height along its length.
+  const podAt = (z, k) => {
+    const i = Math.max(
+        1,
+        podStations.findIndex(([sz]) => sz <= z),
+      ),
+      a = podStations[i - 1],
+      b = podStations[i];
+    return a[k] + ((b[k] - a[k]) * (z - a[0])) / (b[0] - a[0]);
+  };
+  for (const side of [-1, 1])
+    for (const [front, back] of [
+      [2.45, 1.71],
+      [1.45, 0.71],
+      [-0.3, -1.04],
+      [-1.26, -2.04],
+    ])
+      outline(
+        d,
+        [
+          [front, 1.06],
+          [back, 1.06],
+          [back, Math.max(0.68, podAt(back, 2) + 0.1)],
+          [front, Math.max(0.68, podAt(front, 2) + 0.1)],
+        ].map(([z, y]) => [side * (podAt(z, 1) + 0.003), y, z]),
+        0.004,
+        dark,
+      );
   // EX single right-side exhaust: hollow angled outlet, not a black box.
-  const exhaust = group(root, 'Caravan-exhaust', [-0.49, 1.22, 3.64]);
+  const exhaust = group(root, 'Caravan-exhaust', [-0.49, 1.4, 3.64]);
   exhaust.rotation.z = -0.52;
   const xd = detailKit(exhaust, exhaust.name);
   xd.add(new T.CylinderGeometry(0.12, 0.14, 0.46, 18, 1, true), metal, [0, -0.1, 0]);
   xd.add(new T.CircleGeometry(0.116, 18).rotateX(Math.PI / 2), dark, [0, -0.321, 0]);
   xd.finish();
-  d.box([0.32, 0.14, 0.02], [0, 1.47, 4.665], dark);
-  for (let i = 0; i < 7; i++) d.box([0.007, 0.1, 0.018], [-0.12 + i * 0.04, 1.47, 4.68], metal);
+  // Elliptical lower intake with a rolled lip and screen bars, under the spinner (it was a flat
+  // dark box).
+  d.add(new T.CircleGeometry(1, 24).scale(0.16, 0.048, 1), dark, [0, 1.512, 4.668]);
+  outline(
+    d,
+    Array.from({ length: 24 }, (_, i) => [
+      Math.cos((i * Math.PI) / 12) * 0.165,
+      1.512 + Math.sin((i * Math.PI) / 12) * 0.053,
+      4.672,
+    ]),
+    0.011,
+    paint,
+  );
+  for (let i = 0; i < 5; i++) d.box([0.006, 0.06, 0.012], [-0.08 + i * 0.04, 1.512, 4.672], metal);
   const eng = group(root, 'engine-1', [0, 1.77, 4.68]),
     pg = group(eng, 'Caravan-propeller'),
     pd = detailKit(pg, pg.name);
@@ -770,6 +947,26 @@ function cockpit(root, m) {
       pt.knob(px(290 + col * 35), py(420 + row * 50), z - 0.026, 0.006);
   for (let i = 0; i < 15; i++) pt.knob(px(610 + i * 35), py(543), z - 0.025, i < 7 ? 0.009 : 0.006);
   d.text('GRAND CARAVAN EX', at(1310, 495, -0.02), 0.011, Math.PI, m.dark);
+  // Starter/engine master rocker and parking-brake T-handle on the lower left panel, both
+  // outboard of and above the pilot's yoke sightline.
+  const starter = group(cabin, 'Caravan-starter', at(255, 335, -0.012)),
+    starterKit = detailKit(starter, starter.name);
+  starterKit.box([0.017, 0.03, 0.011], [0, 0, 0], starterKit.red);
+  starter.userData.aircraftControl = {
+    action: 'engine',
+    motion: { property: 'rotation', axis: 'x', scale: -0.5 },
+  };
+  starterKit.finish();
+  const parkingBrake = group(cabin, 'Caravan-parking-brake', at(150, 500, -0.03)),
+    bd = detailKit(parkingBrake, parkingBrake.name);
+  bd.rod([0, 0, 0.03], [0, 0, -0.022], 0.005, m.metal);
+  bd.box([0.07, 0.016, 0.018], [0, 0, -0.03], black);
+  parkingBrake.userData.aircraftControl = {
+    action: 'brake',
+    motion: { property: 'position', axis: 'z', scale: -0.022 },
+  };
+  bd.finish();
+  d.text('PARK BRAKE', at(150, 470, -0.012), 0.005, Math.PI, ink);
   for (const u of [210, 1510]) {
     d.box([0.075, 0.04, 0.008], at(u, 386, -0.006), black);
     d.text('INOP', at(u, 386, -0.011), 0.008, Math.PI, ink);
@@ -888,7 +1085,7 @@ function cockpit(root, m) {
         -0.06,
       ]);
   ed.finish();
-  const overhead = group(cabin, 'Caravan-overhead', [0, 2.79, 1.6]);
+  const overhead = group(cabin, 'Caravan-overhead', [0, 2.68, 1.6]);
   const od = detailKit(overhead, overhead.name);
   beveledBox(od, [0.47, 0.055, 0.35], [0, 0, 0], liner);
   for (const side of [-1, 1]) {
@@ -896,7 +1093,7 @@ function cockpit(root, m) {
     od.add(new T.CylinderGeometry(0.027, 0.027, 0.025, 12), black, [side * 0.13, -0.039, 0.07]);
     od.box([0.05, 0.025, 0.065], [side * 0.1, -0.045, -0.09], black);
     od.rod([side * 0.1, -0.045, -0.09], [side * 0.1, -0.068, -0.04], 0.009, m.metal);
-    const visor = group(cabin, `Caravan-visor-${side}`, [side * 0.43, 2.75, 1.85]);
+    const visor = group(cabin, `Caravan-visor-${side}`, [side * 0.43, 2.6, 1.85]);
     visor.rotation.x = -0.35;
     const vd = detailKit(visor, visor.name);
     vd.box([0.36, 0.13, 0.012], [0, 0, 0], m.dark);

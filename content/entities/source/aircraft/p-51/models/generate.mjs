@@ -2,10 +2,14 @@
  * Deterministic P-51D Mustang master with original procedural cockpit finishes.
  *
  * Frame: the nose faces +Z, +X is the pilot's left, Y is up and the origin is on the ground under
- * the wing. The airframe rests level on its wheels, as the airplane solver holds it on the ground,
- * and keeps the reference points entity.types.json uses: pilot eye (0, 2.28, 0.05), thrust line
- * y 1.58, wing reference (0, 1.08, 0). Proportions follow the real aircraft: 9.83 m long, 11.28 m
- * span, a laminar-flow wing with a straight trailing edge, root glove, 5° dihedral and squared
+ * the main wheels. Like the repo's other taildraggers the airframe is authored in its flight datum
+ * (thrust line y 1.58, wing reference (0, 1.08, 0), pilot eye (0, 2.28, 0.05) in interior.json)
+ * and then posed rigidly in the real three-point attitude: pitched GROUND_ANGLE (13°) nose-up
+ * about X and lifted so both main tyres and the short tail wheel touch the ground, with the
+ * propeller hub 2.43 m up (the published 13 ft 4.5 in tail-down height to the upright blade tip).
+ * entity.types.json holds the posed reference points (POSE in the landing gear section; the kernel
+ * holds that attitude as body pitch 0). Proportions follow the real aircraft: 9.83 m long, 11.28 m
+ * span, a laminar-flow wing with a forward-swept trailing edge, root glove, 5° dihedral and squared
  * tips, a teardrop canopy behind a framed three-panel windscreen, the ventral radiator scoop, a
  * dorsal fillet and a 3.4 m four-blade Hamilton Standard propeller.
  *
@@ -25,7 +29,7 @@
  */
 
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as T from 'three';
@@ -401,7 +405,9 @@ function wheelGeometry(profile, center, sides = 28) {
 
 // ------------------------------------------------------------------------------ fuselage
 const SILL = 2.07;
-const COCKPIT = { front: 1.08, rear: -0.95 };
+// The cockpit opening, windscreen, panel and gunsight sit 0.25 m further aft than the first
+// fit: the 3-view puts the windscreen base at about z 0.82 (it was 1.1). The pilot eye is unchanged.
+const COCKPIT = { front: 0.83, rear: -0.95 };
 const SIDES = 40;
 // Stations, tail to nose: z, top, bottom, half width, height of the widest line, superellipse
 // exponents of the upper and lower halves. Cockpit stations shape the sides only: everything
@@ -509,7 +515,7 @@ function buildFuselage(g) {
     span(-5.3, -1.0, 0.22),
     [-1.0, COCKPIT.rear],
     span(COCKPIT.rear, COCKPIT.front, 0.16),
-    [COCKPIT.front, 1.1],
+    [COCKPIT.front, 0.85, 1.1],
     span(1.1, 2.95, 0.2),
   );
   const skin = skinRings(zs);
@@ -540,8 +546,9 @@ function buildFuselage(g) {
     orient(cap(ANGLES.map((a) => sectionPoint(face, a))), from([0, 1.58, 3])),
   );
 
-  // Cockpit tub lining (facing inward) and the sill ledge joining it to the skin.
-  const liningZ = span(COCKPIT.rear, COCKPIT.front, 0.16);
+  // Cockpit tub lining (facing inward) and the sill ledge joining it to the skin. It runs on
+  // under the hood to the old panel station, closing the footwells below the windscreen.
+  const liningZ = spans(span(COCKPIT.rear, COCKPIT.front, 0.16), [0.85, 1.1]);
   const lining = skinRings(liningZ, -0.018, SILL - 0.004);
   const liningGeo = loft(lining.rings, {
     loop: true,
@@ -619,12 +626,23 @@ function aftPart(af, sts, inside) {
   ];
 }
 
-// Wing: straight trailing edge, leading-edge sweep from taper, root glove, squared tips.
-const WING = { te: -0.88, root: 2.65, tip: 1.27, semi: 5.64, y0: 1.1, dihedral: 5 * DEG };
+// Wing: the laminar-flow planform keeps its quarter-chord line nearly unswept, so the straight
+// leading edge sweeps back about 4° and the straight trailing edge forward about 10° (as the
+// 3-views and underside photographs show), with a leading-edge root glove and squared tips.
+const WING = {
+  le: 1.28,
+  leTip: 0.85,
+  root: 2.65,
+  tip: 1.27,
+  semi: 5.64,
+  y0: 1.1,
+  dihedral: 5 * DEG,
+};
 const BAND = [2.7, 3.05];
 const FLAP = [0.3, 3.25];
 const AILERON = [3.25, 5.33];
-const wingLE = (s) => WING.te + WING.root - ((WING.root - WING.tip) * s) / WING.semi;
+const wingLE = (s) => WING.le + ((WING.leTip - WING.le) * s) / WING.semi;
+const wingTE = (s) => wingLE(s) - WING.root + ((WING.root - WING.tip) * s) / WING.semi;
 const wingChordY = (s) => WING.y0 + s * Math.tan(WING.dihedral);
 // Squared tip with rounded corners: leading/trailing edge pull-in and thickness scale.
 const WING_TIP = [
@@ -639,8 +657,8 @@ const wingTip = table(WING_TIP);
 function wingStation(s) {
   const [inLE, inTE, scale] = s > WING_TIP[0][0] ? wingTip(s) : [0, 0, 1];
   const le = wingLE(s) - inLE,
-    te = WING.te + inTE;
-  const glove = Math.max(0, 2.02 - 0.42 * s - wingLE(s));
+    te = wingTE(s) + inTE;
+  const glove = Math.max(0, 1.56 - 0.26 * s - wingLE(s));
   return { s, le, chord: le - te, glove, t: (0.155 - (0.04 * s) / WING.semi) * scale, hinge: 0.76 };
 }
 const wingPoint = (side) => (st, u, face) => {
@@ -768,32 +786,35 @@ function buildWings(g) {
 
 // ------------------------------------------------------------------------------ empennage
 const RUDDER_HINGE = -5.13;
-const ELEVATOR_HINGE = -5.08;
-const TAIL_Y = 1.66;
+// The elevators end just ahead of the rudder hinge, so the full-depth rudder swings clear of them.
+const ELEVATOR_HINGE = -4.55;
+const TAIL_Y = 1.76;
 // Vertical tail, by height: y, leading edge z, trailing edge z, thickness ratio.
+// The rudder's trailing edge is nearly straight, leaning forward toward the squared tip.
 const VTAIL = [
-  [1.52, -5.13, -5.66, 0.09],
-  [1.62, -3.72, -5.71, 0.09],
-  [1.95, -3.72, -5.77, 0.09],
-  [2.28, -4.03, -5.78, 0.088],
-  [2.61, -4.34, -5.745, 0.086],
-  [2.89, -4.61, -5.66, 0.084],
-  [3.03, -4.76, -5.585, 0.08],
-  [3.105, -4.87, -5.5, 0.072],
-  [3.148, -4.99, -5.4, 0.06],
-  [3.167, -5.12, -5.27, 0.035],
+  [1.52, -5.13, -5.72, 0.09],
+  [1.62, -3.72, -5.78, 0.09],
+  [1.95, -3.72, -5.76, 0.09],
+  [2.28, -4.03, -5.725, 0.088],
+  [2.63, -4.35, -5.685, 0.086],
+  [2.93, -4.64, -5.64, 0.084],
+  [3.08, -4.8, -5.6, 0.08],
+  [3.155, -4.92, -5.54, 0.072],
+  [3.198, -5.04, -5.44, 0.06],
+  [3.217, -5.17, -5.3, 0.035],
 ];
 // Horizontal tail, by span: s, leading edge z, trailing edge z, thickness ratio.
+// Its leading edge sweeps back slightly and its trailing edge forward, like the wing's.
 const HTAIL = [
-  [0, -4.22, -5.54, 0.11],
-  [0.5, -4.32, -5.52, 0.106],
-  [1.0, -4.43, -5.49, 0.102],
-  [1.5, -4.55, -5.45, 0.098],
-  [1.8, -4.63, -5.42, 0.094],
-  [1.93, -4.665, -5.4, 0.09],
-  [1.995, -4.7, -5.375, 0.086],
-  [2.03, -4.76, -5.33, 0.074],
-  [2.045, -4.86, -5.25, 0.05],
+  [0, -3.78, -5.06, 0.11],
+  [0.5, -3.83, -5.0, 0.106],
+  [1.0, -3.9, -4.94, 0.102],
+  [1.5, -3.97, -4.88, 0.098],
+  [1.8, -4.02, -4.84, 0.094],
+  [1.93, -4.06, -4.82, 0.09],
+  [1.995, -4.11, -4.795, 0.086],
+  [2.03, -4.18, -4.75, 0.074],
+  [2.045, -4.28, -4.67, 0.05],
 ];
 const vtailAt = table(VTAIL);
 const htailAt = table(HTAIL);
@@ -879,7 +900,7 @@ function buildTail(g) {
       g,
       `tailplane-${side}`,
       red,
-      orient(af.fullCap(sts.at(-1)), from([side * 1.5, TAIL_Y, -4.8])),
+      orient(af.fullCap(sts.at(-1)), from([side * 1.5, TAIL_Y, -4.45])),
     );
     const elevator = group(g, `elevator-${side}`, [side * 0.12, TAIL_Y, ELEVATOR_HINGE]);
     const elevSts = spans([0.12], span(0.5, 1.8, 0.45), [elevatorEnd]).map((s) =>
@@ -895,7 +916,7 @@ function buildTail(g) {
         elevator,
         'elevator-surface',
         red,
-        into(elevator, orient(af.aftCap(st), from([side * (st.key - out), TAIL_Y, -5.3]))),
+        into(elevator, orient(af.aftCap(st), from([side * (st.key - out), TAIL_Y, -4.8]))),
       );
   }
 }
@@ -985,32 +1006,41 @@ function buildScoops(g) {
 }
 
 // ------------------------------------------------------------------------------ canopy
-const WINDSCREEN = { base: 1.1, top: 0.62 };
+const WINDSCREEN = { base: 0.85, top: 0.37 };
 // Bubble sections: z, height above the sill, superellipse exponent, base half width (0 = sill).
+// The crown sits low over the pilot's head and the long tail fades into the spine behind the
+// cockpit, as on the real hood; the windscreen top is held by the gunsight and coaming behind it.
+// The crown is 4-5 cm lower than the first fit (side photos: the hood stood proud of the spine
+// line), still 0.13 m clear of the headrest.
 const bubbleAt = table([
-  [-1.33, 0.1, 2.2, 0.025],
-  [-1.25, 0.13, 2.4, 0.12],
-  [-1.15, 0.18, 2.6, 0.235],
-  [-1.03, 0.255, 2.6, 0.335],
-  [-0.88, 0.355, 2.45, 0],
-  [-0.68, 0.47, 2.35, 0],
-  [-0.42, 0.57, 2.3, 0],
-  [-0.12, 0.628, 2.3, 0],
-  [0.18, 0.632, 2.35, 0],
-  [0.42, 0.585, 2.45, 0],
-  [0.62, 0.495, 2.6, 0],
+  [-1.5, 0.045, 2.2, 0.03],
+  [-1.4, 0.085, 2.3, 0.1],
+  [-1.28, 0.145, 2.45, 0.2],
+  [-1.14, 0.22, 2.55, 0.29],
+  [-1.0, 0.3, 2.55, 0.345],
+  [-0.85, 0.375, 2.45, 0.36],
+  [-0.62, 0.46, 2.35, 0.37],
+  [-0.35, 0.515, 2.3, 0.37],
+  [-0.08, 0.53, 2.3, 0.37],
+  [0.2, 0.527, 2.35, 0.37],
+  [0.37, 0.495, 2.6, 0.37],
 ]);
+/** Behind the cockpit opening the hood sits on the closed turtle deck rather than on the sill. */
+const onSill = (z) => z >= COCKPIT.rear - 1e-9;
 function bubblePoint(z, a) {
   const [hc, n, override] = bubbleAt(z);
-  const wc = z > -0.95 ? sillWidth(z) + 0.004 : override;
+  const wc = onSill(z) ? sillWidth(z) + 0.004 : override;
   return [wc * spow(Math.cos(a), 2 / n), SILL + hc * Math.pow(Math.sin(a), 2 / n), z];
 }
 function buildCanopy(g) {
+  const slider = new T.Group();
+  slider.name = 'canopy-opening';
+  g.add(slider);
   const arch = span(0, Math.PI, Math.PI / 20);
-  const zs = spans(span(-1.33, -0.95, 0.1), span(-0.95, WINDSCREEN.top, 0.13));
+  const zs = spans(span(-1.5, COCKPIT.rear, 0.11), span(COCKPIT.rear, WINDSCREEN.top, 0.13));
   const rings = zs.map((z) => arch.map((a) => bubblePoint(z, a)));
   add(
-    g,
+    slider,
     'bubble-canopy',
     glass,
     orient(loft(rings), (m) => new T.Vector3(0, SILL, m.z)),
@@ -1041,22 +1071,38 @@ function buildCanopy(g) {
         from([0, 2.1, 0.4]),
       ),
     );
-  const frame = (points, r = 0.016) => add(g, 'canopy-frame', silver, curveTube(points, r));
+  // The flat side panels' top edges are chords of the hood's front arch: close the thin lens
+  // between each chord and the arch so nothing sees out past the windscreen frame.
+  for (const side of [-1, 1])
+    for (const [a0, a1] of [
+      [0, 50 * DEG],
+      [50 * DEG, 72 * DEG],
+    ]) {
+      const lens = span(a0, a1, (a1 - a0) / 6).map((a) => {
+        const [x, y, z] = bubblePoint(WINDSCREEN.top, a);
+        return [side * x, y, z];
+      });
+      add(g, 'canopy-windscreen', glass, orient(cap(lens), from([0, SILL, WINDSCREEN.top - 1])));
+    }
+  const frame = (points, r = 0.016, parent = g) =>
+    add(parent, 'canopy-frame', silver, curveTube(points, r));
   frame(bottom, 0.018);
   for (const k of [2, 3]) frame([bottom[k], top[k]]);
   frame([top[2], top[3]], 0.02);
   frame(
     arch.map((a) => bubblePoint(WINDSCREEN.top - 0.01, a)),
     0.024,
+    slider,
   );
   for (const side of [-1, 1])
     frame(
       span(WINDSCREEN.top, -1.0, 0.1).map((z) => [
-        side * (z > -0.95 ? sillWidth(z) + 0.008 : bubbleAt(z)[2] + 0.008),
+        side * (onSill(z) ? sillWidth(z) + 0.008 : bubbleAt(z)[2] + 0.008),
         SILL + 0.006,
         z,
       ]),
       0.017,
+      slider,
     );
 }
 
@@ -1160,18 +1206,49 @@ const TYRE = [
 // Left-side main gear (mirrored for the right): trunnion pivot, strut end at the axle when down,
 // wheel hub inboard of the strut, trunnion axis (tilted 25° inboard and 20° down from aft) and
 // the swing about it.
+// Three-point stance. The main axle height in the flight datum follows from the published
+// tail-down hub height; the ground offset puts the main tyres on the ground and the tail axle
+// height puts the tail tyre there too, on its real short strut under the dorsal fin.
+const GROUND_ANGLE = 13 * DEG;
+const HUB_HEIGHT = 2.43;
+const THRUST_Y = 1.58;
+const MAIN_TYRE_R = 0.345;
+const TAIL_TYRE_R = 0.155;
+const MAIN_AXLE_Z = 1.08;
+const TAIL_AXLE_Z = -3.62;
+const cosG = Math.cos(GROUND_ANGLE),
+  sinG = Math.sin(GROUND_ANGLE);
+const MAIN_AXLE_Y =
+  (THRUST_Y * cosG + (PROP_Z - MAIN_AXLE_Z) * sinG + MAIN_TYRE_R - HUB_HEIGHT) / cosG;
+const GROUND_OFFSET = MAIN_TYRE_R - (MAIN_AXLE_Y * cosG + MAIN_AXLE_Z * sinG);
+const TAIL_AXLE_Y = (TAIL_TYRE_R - GROUND_OFFSET - TAIL_AXLE_Z * sinG) / cosG;
+/** The posed airframe's matrix: pitch nose-up about X, then lift onto the ground. */
+const POSE = new T.Matrix4()
+  .makeTranslation(0, GROUND_OFFSET, 0)
+  .multiply(new T.Matrix4().makeRotationX(-GROUND_ANGLE));
 const MAIN_GEAR = {
-  trunnion: [1.93, 1.23, 1.1],
-  axle: [1.93, 0.345, 1.3],
+  trunnion: [1.93, 1.23, 0.88],
+  axle: [1.93, MAIN_AXLE_Y, MAIN_AXLE_Z],
   hub: 1.83,
   axis: [Math.tan(25 * DEG), -Math.tan(20 * DEG), -1],
   swing: Math.PI / 2,
 };
-// The wheel well in plan (x, z) and the strut channel's half width.
-const WELL = { center: [1.122, 0.716], radius: 0.39, channel: 0.12 };
-const TAIL_GEAR = { pivot: [0, 1.54, -4.4], axle: [0, 0.155, -4.63] };
+/** Where the retracted main wheel's hub lies (left side), from the trunnion swing itself. */
+function retractedHub() {
+  const top = vec(MAIN_GEAR.trunnion);
+  const turn = new T.Matrix4()
+    .makeTranslation(top.x, top.y, top.z)
+    .multiply(new T.Matrix4().makeRotationAxis(vec(MAIN_GEAR.axis).normalize(), MAIN_GEAR.swing))
+    .multiply(new T.Matrix4().makeTranslation(-top.x, -top.y, -top.z));
+  return vec([MAIN_GEAR.hub, MAIN_GEAR.axle[1], MAIN_GEAR.axle[2]]).applyMatrix4(turn);
+}
+// The wheel well in plan (x, z), centred just behind the stowed wheel, and the strut channel's
+// half width.
+const stowed = retractedHub();
+const WELL = { center: [stowed.x - 0.01, stowed.z + 0.058], radius: 0.39, channel: 0.12 };
+const TAIL_GEAR = { pivot: [0, 1.6, -3.42], axle: [0, TAIL_AXLE_Y, TAIL_AXLE_Z] };
 // Tail wheel slot in the belly: half width and its aft, door-split and forward stations.
-const TAIL_SLOT = { half: 0.085, aft: -4.5, split: -4.2, fore: -2.84 };
+const TAIL_SLOT = { half: 0.085, aft: -3.66, split: -3.36, fore: -2.6 };
 const TAIL_DOOR_OPEN = 1.4;
 
 /** Height of the wing's lower skin at plan point (x, z), from its analytic section. */
@@ -1303,7 +1380,8 @@ function buildMainGear(g, side) {
   const leg = group(gear, `gear-${side}-leg`);
   const put = (parent, name, material, geo) => add(parent, name, material, into(frame, geo));
 
-  const knee = [axle[0], 0.66, lerpY(top[2], axle[2], (top[1] - 0.66) / (top[1] - axle[1]))];
+  const kneeY = axle[1] + 0.315;
+  const knee = [axle[0], kneeY, lerpY(top[2], axle[2], (top[1] - kneeY) / (top[1] - axle[1]))];
   put(leg, 'oleo-strut', silver, tubeBetween(top, knee, 0.058, 12));
   put(leg, 'oleo-strut', panel, tubeBetween(knee, [axle[0], axle[1] + 0.02, axle[2]], 0.042, 12));
   put(
@@ -1312,7 +1390,7 @@ function buildMainGear(g, side) {
     dark,
     tubeBetween(
       [knee[0], knee[1] - 0.06, knee[2] + 0.06],
-      [axle[0], 0.44, axle[2] + 0.08],
+      [axle[0], axle[1] + 0.095, axle[2] + 0.08],
       0.016,
       6,
     ),
@@ -1411,10 +1489,12 @@ function buildTailGear(g) {
   const { pivot, axle } = TAIL_GEAR;
   const tail = group(g, 'tail-gear', pivot);
   const put = (name, material, geo) => add(tail, name, material, into(tail, geo));
-  put('tail-strut', silver, tubeBetween(pivot, [0, 0.37, -4.48], 0.034, 10));
+  const fork = axle[1] + 0.245;
+  const forkZ = axle[2] + 0.14;
+  put('tail-strut', silver, tubeBetween(pivot, [0, fork - 0.03, forkZ + 0.01], 0.034, 10));
   for (const x of [-0.06, 0.06])
-    put('tail-strut', silver, tubeBetween([x, 0.4, -4.49], [x, axle[1], axle[2]], 0.016, 6));
-  put('tail-strut', silver, tubeBetween([-0.07, 0.4, -4.49], [0.07, 0.4, -4.49], 0.02, 6));
+    put('tail-strut', silver, tubeBetween([x, fork, forkZ], [x, axle[1], axle[2]], 0.016, 6));
+  put('tail-strut', silver, tubeBetween([-0.07, fork, forkZ], [0.07, fork, forkZ], 0.02, 6));
   put(
     'tail-wheel',
     rubber,
@@ -1760,6 +1840,11 @@ function mustang() {
   });
   return g;
 }
+/** Pose the flight-datum airframe in its three-point ground attitude. */
+function standUp(model) {
+  for (const child of model.children) child.applyMatrix4(POSE);
+  return model;
+}
 
 // source.json pins the master this generator last wrote. A master that matches neither the pin
 // nor this run's output was edited by hand, and regenerating would discard that work.
@@ -1769,14 +1854,22 @@ const pinned = JSON.parse(sourceText).files.models.find(
   (model) => model.path === 'models/source.glb',
 )?.sha256;
 if (!pinned) throw new Error(`${sourcePath}: models/source.glb has no sha256 pin`);
-const controlSpec = Object.values(
-  JSON.parse(await readFile(resolve(root, '../entity.types.json'), 'utf8')).types,
-)[0].components.aircraft.spec;
-const controlledModel = completeCockpitControls(mustang(), controlSpec, {
-  panelZ: interiorLayout.panelZ,
-  letteringFont: 'period',
-});
+const definition = JSON.parse(await readFile(resolve(root, '../entity.types.json'), 'utf8'));
+const controlSpec = Object.values(definition.types)[0].components.aircraft.spec;
+// The shared control builder mounts the Mustang's added switch module at fixed flight-datum
+// coordinates, so it runs in that frame (interior.json's eye) before the airframe is posed.
+const authoredSpec = { ...controlSpec, pilotEye: interiorLayout.eye };
+const controlledModel = standUp(
+  completeCockpitControls(mustang(), authoredSpec, {
+    panelZ: interiorLayout.panelZ,
+    letteringFont: 'period',
+  }),
+);
 finishAircraftCockpit(controlledModel, controlSpec, 'p-51');
+const { completeAircraftArticulation } = await import(
+  '../../../../../../packages/entities/scripts/aircraft-articulation.mjs'
+);
+completeAircraftArticulation(controlledModel, controlSpec, { slug: 'p-51' });
 const bytes = embedCockpitTextures(
   Buffer.from(
     await new GLTFExporter().parseAsync(controlledModel, { binary: true, onlyVisible: false }),
@@ -1808,5 +1901,12 @@ if (!current?.equals(bytes)) await writeFile(path, bytes);
 const source = JSON.parse(sourceText);
 source.files.models.find((model) => model.path === 'models/source.glb').sha256 = generatedHash;
 source.files.textures = await writeCockpitTextures(resolve(root, '..'), bytes);
-await writeFile(sourcePath, `${JSON.stringify(source, null, 2)}\n`);
+await writeMetadata(sourcePath, source);
+await writeMetadata(resolve(root, '../entity.types.json'), definition);
 console.log(`p51d: ${bytes.length} bytes, ${generatedHash}`);
+
+async function writeMetadata(path, value) {
+  const temporary = `${path}.animation.tmp`;
+  await writeFile(temporary, `${JSON.stringify(value, null, 2)}\n`);
+  await rename(temporary, path);
+}

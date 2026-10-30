@@ -22,6 +22,7 @@ import {
 export type { AircraftCollisionProbe, AircraftContact } from './aircraft-collision';
 export { aircraftCollisionParts, aircraftCollisionProbes } from './aircraft-collision';
 
+import { actuatorsSettled, stepActuators } from './actuators';
 import { isBoostMode } from './boost';
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
@@ -383,6 +384,17 @@ export function stepAircraft(
       break;
     }
     const previous = { ...s, velocity: [...s.velocity] as [number, number, number] };
+    if (spec.actuators)
+      s.actuators = stepActuators(spec.actuators, s.actuators, input.actuators, h);
+    if (helicopter) {
+      const from = s.gearPosition ?? Number(input.gear);
+      s.gearPosition =
+        helicopter.fixedGear !== false
+          ? 1
+          : s.grounded
+            ? from
+            : travel(from, input.gear, helicopter.gearTransitTime, h);
+    }
     // Replace the bank on every substep: rollback at a terrain gap must include every engine.
     const bank = engineStates(s, engines);
     const atmosphere = sampleAtmosphere(env.weather ?? {}, t.pos[1]);
@@ -394,7 +406,12 @@ export function stepAircraft(
       const control = controls[index];
       if (!e || !control) continue;
       const combustion = aircraftMixtureEfficiency(engine, atmosphere, control.mixture);
-      const running = control.enabled && !e.failed && !aircraftWrecked(spec, s) && combustion > 0;
+      const running =
+        control.enabled &&
+        !e.failed &&
+        !aircraftWrecked(spec, s) &&
+        combustion > 0 &&
+        !(helicopter && (s.actuators?.eject ?? 0) > 0);
       const targetRpm = helicopter?.powerLimitedRotor
         ? 1
         : aircraftEngineRpm(engine, control.power, combustion, control.propeller);
@@ -522,7 +539,7 @@ export function stepAircraft(
         density *
         s.airspeed ** 2 *
         airplane.wingArea *
-        aircraftDragCoefficient(
+        (aircraftDragCoefficient(
           airplane,
           cl,
           s.mach,
@@ -531,7 +548,8 @@ export function stepAircraft(
           separation,
           alpha,
           m.max(0, com[1] - ground) / spec.span,
-        );
+        ) +
+          (airplane.speedBrakeDrag ?? 0) * (s.actuators?.speedBrake ?? 0));
       const force: Vec3 = [0, -weight, 0];
       for (let i = 0; i < 3; i++)
         force[i] =
@@ -982,6 +1000,7 @@ export function stepAircraft(
           lift = lo;
         }
       }
+      if ((s.actuators?.eject ?? 0) > 0.08) lift = 0;
       const force = [0, -weight, 0];
       for (let i = 0; i < 3; i++)
         force[i] =
@@ -1011,7 +1030,8 @@ export function stepAircraft(
             m.abs(touchdown.roll) > spec.hardLandingRoll ||
             m.abs(touchdown.pitch) > spec.hardLandingPitch)) ||
         // Only a locked-down gear carries the airplane: anything less is a belly landing.
-        (airplane !== undefined && (s.gearPosition ?? 1) < 1) ||
+        ((airplane !== undefined || helicopter?.fixedGear === false) &&
+          (s.gearPosition ?? 1) < 1) ||
         support - t.pos[1] > spec.maxSupportStep;
       if (hard || aircraftSectionAuthority(spec, s, 'gear') === 0) damageAircraftBody(spec, s);
       pos[1] = support;
@@ -1163,7 +1183,7 @@ export function installAircraft(world: World, environment?: AircraftEnvironment)
         // A parked airplane still steps until its flaps reach the selection; the gear cannot
         // move on the ground, but its position is initialized by the first step.
         const surfacesSettled =
-          aircraft.spec.model !== 'airplane' ||
+          (aircraft.spec.model !== 'airplane' && state.gearPosition !== undefined) ||
           state.crashed ||
           (state.gearPosition !== undefined &&
             state.flapPosition === Number(input.flaps) &&
@@ -1177,7 +1197,8 @@ export function installAircraft(world: World, environment?: AircraftEnvironment)
           Object.values(state.engines ?? {}).every((engine) => engine.rpm === 0) &&
           m.hypot(...state.velocity) === 0 &&
           !state.debris?.length &&
-          surfacesSettled
+          surfacesSettled &&
+          actuatorsSettled(aircraft.spec.actuators, state.actuators, input.actuators)
         )
           continue;
         const result = stepAircraft(t, state, input, aircraft.spec, ctx.dt, currentEnvironment, id);

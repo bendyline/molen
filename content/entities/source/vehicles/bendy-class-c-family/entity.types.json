@@ -55,7 +55,7 @@
             "driverEye": [
               0.4646,
               1.77,
-              3.0749999999999997
+              2.745
             ],
             "drive": "rear",
             "steeringRate": 1.2,
@@ -65,7 +65,31 @@
             "terrainAlignRate": 1.8,
             "supportTolerance": 0.08,
             "maxStepHeight": 0.18,
-            "maxSlope": 0.4
+            "maxSlope": 0.4,
+            "actuators": {
+              "hood": {
+                "seconds": 1.8
+              },
+              "trunk": {
+                "seconds": 1.8
+              },
+              "wipers": {
+                "seconds": 1.4,
+                "mode": "cycle"
+              },
+              "headlights": {
+                "seconds": 0
+              },
+              "doorFrontRight": {
+                "seconds": 1.2
+              },
+              "doorFrontLeft": {
+                "seconds": 1.2
+              },
+              "doorRearRight": {
+                "seconds": 1.2
+              }
+            }
           },
           "visual": {
             "wheelNodes": [
@@ -103,6 +127,144 @@
                   "max": 3.9
                 }
               ]
+            },
+            "animation": {
+              "sources": {
+                "hood": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "hood"
+                  ]
+                },
+                "trunk": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "trunk"
+                  ]
+                },
+                "wipers": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "wipers"
+                  ]
+                },
+                "headlights": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "headlights"
+                  ]
+                },
+                "doorFrontRight": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorFrontRight"
+                  ]
+                },
+                "doorFrontLeft": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorFrontLeft"
+                  ]
+                },
+                "doorRearRight": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "doorRearRight"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "doorFrontRight",
+                  "source": "doorFrontRight",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 1.15
+                },
+                {
+                  "node": "doorFrontLeft",
+                  "source": "doorFrontLeft",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1.15
+                },
+                {
+                  "node": "doorRearRight",
+                  "source": "doorRearRight",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 1.15
+                },
+                {
+                  "node": "hood",
+                  "source": "hood",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": -1.05
+                },
+                {
+                  "node": "trunk",
+                  "source": "trunk",
+                  "property": "rotation",
+                  "axis": "z",
+                  "scale": 1.15
+                },
+                {
+                  "node": "wiper--1",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "wiper-1",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "headlights-lit",
+                  "source": "headlights",
+                  "property": "visible",
+                  "scale": 1
+                }
+              ]
             }
           }
         },
@@ -119,7 +281,7 @@
               "position": [
                 0.4646,
                 1.77,
-                3.0749999999999997
+                2.745
               ]
             }
           ],
@@ -127,7 +289,7 @@
             [
               1.7049999999999998,
               0,
-              3.0749999999999997
+              2.745
             ],
             [
               -1.7049999999999998,
@@ -139,7 +301,7 @@
             [
               1.8414,
               0,
-              3.0749999999999997
+              2.745
             ],
             [
               -1.8414,

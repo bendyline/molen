@@ -135,8 +135,8 @@ export function earthShadowFocus(
 ): { center: [number, number, number]; radius: number } {
   const [x, y, z] = position;
   const height = Math.max(0, y - ground);
-  // A low flying camera sees mostly what is near it, so it gets a tighter, sharper square (about
-  // 5 cm texels at eye level on a 4096 map), widening to 300 m by 25 m up. Above
+  // Keep runway and close aircraft views sharp: about 2.5 cm texels at eye level on a 4096 map.
+  // The old 100 + height * 8 box blurred a small aircraft across several shadow texels. Above
   // rooftop height cover four times the altitude: the previous 2x footprint ended in the
   // middle of an aircraft's view, leaving a conspicuous boundary across sunlit neighborhoods.
   // Keep the same map resolution; the broader aerial coverage trades texel detail for range.
@@ -145,7 +145,7 @@ export function earthShadowFocus(
       ? 160
       : mode === 'drive'
         ? 280
-        : Math.min(5_000, Math.max(height * 4, Math.min(300, 100 + height * 8)));
+        : Math.min(5_000, Math.max(height * 4, 48 + height * 2));
   const forward = Math.hypot(direction[0], direction[2]) || 1;
   const reach = radius * 0.5;
   return {

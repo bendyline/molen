@@ -1,4 +1,6 @@
 import {
+  type ActuatorInputs,
+  type ActuatorPositions,
   type AircraftStateData,
   type BoatStateData,
   boostSpeedMultiplier,
@@ -8,9 +10,14 @@ import {
   type VehicleSpec,
   type WeatherData,
 } from '@bendyline/molen-schema';
+import { actuatorsSettled, stepActuators } from './actuators';
+
+export { actuatorsSettled, stepActuators } from './actuators';
+
 import { isBoostMode } from './boost';
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
+import { applyGlassCrash, type GlassCrashLoad, installGlass } from './glass';
 import { approach, yawOf } from './math3d';
 import { groundFieldOf } from './terrain';
 import { weatherOf } from './weather';
@@ -18,6 +25,7 @@ import { windField } from './wind';
 import type { World } from './world';
 
 export interface VehicleInputData extends JsonObject {
+  actuators?: ActuatorInputs;
   throttle: number;
   steering: number;
   /** Service brakes on all wheels, anti-lock; holds the car at rest. */
@@ -26,6 +34,7 @@ export interface VehicleInputData extends JsonObject {
   handbrake?: boolean;
 }
 export interface VehicleStateData extends JsonObject {
+  actuators?: ActuatorPositions;
   /** Kernel-owned: horizontal speeds include the 4× travel boost. */
   boosted?: boolean;
   speed: number;
@@ -237,9 +246,16 @@ export function stepVehicle(
   dt: number,
   env: VehicleEnvironment,
   id = '',
-): { transform: TransformData; state: VehicleStateData; impact: number } {
+): {
+  transform: TransformData;
+  state: VehicleStateData;
+  impact: number;
+  impacts: GlassCrashLoad[];
+} {
   let pos: [number, number, number] = [...t.pos];
   const next = { ...state, waitingForTerrain: false };
+  if (spec.actuators)
+    next.actuators = stepActuators(spec.actuators, state.actuators, input.actuators, dt);
   const travel = boostSpeedMultiplier(env.boostMode);
   const previousTravel = boostSpeedMultiplier(state.boosted);
   // Solve tire forces at normal handling speed, then scale travel and speed telemetry together.
@@ -285,6 +301,7 @@ export function stepVehicle(
   let bodyRollRate = state.bodyRollRate ?? 0;
   let skid = 0;
   let impact = 0;
+  const impacts: GlassCrashLoad[] = [];
   for (let step = 0; step < steps; step++) {
     // Lock and steering speed both fade with road speed, as a driver's hands do, and full lock
     // asks for at most half again the cornering the tires can give at this speed.
@@ -471,8 +488,17 @@ export function stepVehicle(
     }
     next.vy -= 9.81 * h;
     candidate[1] += next.vy * h;
+    const wasGrounded = next.grounded;
     next.grounded = candidate[1] <= support + spec.supportTolerance;
     if (next.grounded) {
+      if (!wasGrounded && next.vy < 0)
+        impacts.push({
+          deltaVelocity: [0, -next.vy, 0],
+          deltaAngularVelocity: [0, 0, 0],
+          velocity: [(fs * u + fc * v) * travel, next.vy, (fc * u - fs * v) * travel],
+          angularVelocity: [0, r, 0],
+          centerOfMass: spec.centerOfMass,
+        });
       candidate[1] = support;
       next.vy = 0;
     }
@@ -485,6 +511,9 @@ export function stepVehicle(
       const cy = m.cos(next.yaw);
       let vx = sy * u + cy * v;
       let vz = cy * u - sy * v;
+      const beforeVx = vx,
+        beforeVz = vz,
+        beforeR = r;
       if (contact.blocked === 0) {
         // Only the turn hit: the heading stops turning into the obstacle.
         r = 0;
@@ -544,6 +573,16 @@ export function stepVehicle(
         if (m.abs(u) < 1e-9) u = 0;
         if (m.abs(v) < 1e-9) v = 0;
       }
+      const dx = (sy * u + cy * v - beforeVx) * travel;
+      const dz = (cy * u - sy * v - beforeVz) * travel;
+      if (dx !== 0 || dz !== 0 || r !== beforeR)
+        impacts.push({
+          deltaVelocity: [dx, 0, dz],
+          deltaAngularVelocity: [0, r - beforeR, 0],
+          velocity: [beforeVx * travel, next.vy, beforeVz * travel],
+          angularVelocity: [0, beforeR, 0],
+          centerOfMass: spec.centerOfMass,
+        });
       continue;
     }
     next.yaw = yaw;
@@ -575,6 +614,7 @@ export function stepVehicle(
     },
     state: next,
     impact: impact * travel,
+    impacts,
   };
 }
 export function mountEntity(
@@ -615,7 +655,11 @@ export function mountEntity(
   if (seat.role === 'driver') {
     if (world.has(vehicle, { name: 'boat' }))
       world.set(vehicle, { name: 'boatInput' }, { throttle: 0, steering: 0, anchor: true });
-    else world.set(vehicle, VehicleInput, { ...IDLE_VEHICLE_INPUT });
+    else
+      world.set(vehicle, VehicleInput, {
+        ...IDLE_VEHICLE_INPUT,
+        ...mechanismInput(world.get(vehicle, VehicleInput)),
+      });
   }
   world.emit('vehicle-mounted', { actor, vehicle, seat: seatId });
   return true;
@@ -660,7 +704,11 @@ export function unmountEntity(world: World, actor: string, env: VehicleEnvironme
           { name: 'boatInput' },
           { throttle: 0, steering: 0, anchor: true },
         );
-      else world.set(mounted.vehicle, VehicleInput, { ...IDLE_VEHICLE_INPUT });
+      else
+        world.set(mounted.vehicle, VehicleInput, {
+          ...IDLE_VEHICLE_INPUT,
+          ...mechanismInput(world.get(mounted.vehicle, VehicleInput)),
+        });
       if (world.has(mounted.vehicle, { name: 'aircraftInput' }))
         world.patch(
           mounted.vehicle,
@@ -688,10 +736,17 @@ export function driveVehicle(world: World, actor: string, input: VehicleInputDat
     steering: m.clamp(input.steering, -1, 1),
     brake: input.brake,
     ...(input.handbrake === undefined ? {} : { handbrake: input.handbrake }),
+    ...mechanismInput(
+      input.actuators === undefined ? world.get(mounted.vehicle, VehicleInput) : input,
+    ),
   });
   return true;
 }
+function mechanismInput(input?: VehicleInputData): Pick<VehicleInputData, 'actuators'> {
+  return input?.actuators ? { actuators: { ...input.actuators } } : {};
+}
 export function installVehicles(world: World, environment?: VehicleEnvironment): void {
+  installGlass(world);
   const env = environment ?? {
     groundHeight: (x: number, z: number) => groundFieldOf(world)?.sampleHeight(x, z) ?? 0,
   };
@@ -723,12 +778,26 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
         const state = w.get(id, VehicleState);
         const vehicle = w.get(id, Vehicle);
         if (state === undefined || vehicle === undefined) continue;
-        if (dormant.get(state) === vehicle && !driven.has(id)) continue;
+        if (
+          dormant.get(state) === vehicle &&
+          !driven.has(id) &&
+          actuatorsSettled(
+            vehicle.spec.actuators,
+            state.actuators,
+            w.get(id, VehicleInput)?.actuators,
+          )
+        )
+          continue;
         const t = w.get(id, Transform);
         if (t === undefined) continue;
         // Dormant parked vehicles cost no physics work. Their placement already includes support.
         if (
           !driven.has(id) &&
+          actuatorsSettled(
+            vehicle.spec.actuators,
+            state.actuators,
+            w.get(id, VehicleInput)?.actuators,
+          ) &&
           state.speed === 0 &&
           (state.lateralSpeed ?? 0) === 0 &&
           (state.yawRate ?? 0) === 0 &&
@@ -744,10 +813,16 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
         }
         const input = driven.has(id)
           ? (w.get(id, VehicleInput) ?? IDLE_VEHICLE_INPUT)
-          : IDLE_VEHICLE_INPUT;
+          : {
+              ...IDLE_VEHICLE_INPUT,
+              ...(w.get(id, VehicleInput)?.actuators
+                ? { actuators: w.get(id, VehicleInput)?.actuators }
+                : {}),
+            };
         const result = stepVehicle(t, state, input, vehicle.spec, ctx.dt, current, id);
         w.set(id, Transform, result.transform);
         w.set(id, VehicleState, result.state);
+        for (const crash of result.impacts) applyGlassCrash(w, id, crash);
         // Sound and effects hear about real hits, not a car resting against a wall.
         if (result.impact >= 1.5)
           w.emit(result.impact >= 5 ? 'vehicle-impact' : 'vehicle-bump', {

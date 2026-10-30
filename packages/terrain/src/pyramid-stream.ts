@@ -168,6 +168,16 @@ export interface TerrainPyramidStreamOptions
   material?: THREE.Material;
   /** Optional spatial color prior, applied once before upload to both worker and local meshes. */
   surfaceColor?: TerrainSurfaceColor;
+  /**
+   * Grade source heights before publishing terrain or creating layers. Return the original
+   * field when unchanged to retain worker-prepared geometry. A replacement rebuilds the mesh
+   * and becomes the field shared by surface sampling and every layer. `source` is unmodified,
+   * for stable reference samples; work must respect the context's cancellation signal.
+   */
+  transformHeightfield?: (
+    context: TerrainPyramidTileLayerContext,
+    source: TerrainPyramidHeightSource,
+  ) => Heightfield | Promise<Heightfield>;
   layers?: TerrainPyramidTileLayer[];
   /** Maximum vertices along one surface-tile edge; height sampling remains full resolution. */
   maxSurfaceTileResolution?: number;
@@ -1801,11 +1811,28 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       const resolution = this.budget.maxSurfaceTileResolution;
       const request = loadTerrainTileWithTimeout<PreparedTile | undefined>(
         async (signal): Promise<PreparedTile | undefined> => {
-          if (this.source.loadPrepared) {
-            return this.source.loadPrepared(wanted.address, signal, resolution);
-          }
-          const heightfield = await this.source.load(wanted.address, signal);
-          return heightfield === undefined ? undefined : { heightfield };
+          const prepared = this.source.loadPrepared
+            ? await this.source.loadPrepared(wanted.address, signal, resolution)
+            : await this.source
+                .load(wanted.address, signal)
+                .then((heightfield) =>
+                  heightfield === undefined ? undefined : { heightfield, geometry: undefined },
+                );
+          if (!prepared || signal.aborted || !this.options.transformHeightfield) return prepared;
+          const heightfield = await this.options.transformHeightfield(
+            {
+              address: wanted.address,
+              pyramid: this.descriptor,
+              descriptor: surfaceDescriptor(this.descriptor, wanted.address),
+              heightfield: prepared.heightfield,
+              surfaceResolution: surfaceResolution(this.descriptor, resolution),
+              origin: terrainPyramidTileOrigin(this.descriptor, wanted.address),
+              tileSize: terrainPyramidTileSize(this.descriptor, wanted.address.level),
+              signal,
+            },
+            this.source,
+          );
+          return heightfield === prepared.heightfield ? prepared : { heightfield };
         },
         controller.signal,
         this.retryPolicy.requestTimeoutMs,

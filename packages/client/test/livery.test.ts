@@ -76,6 +76,24 @@ function fixture() {
   root.add(glass);
   return { root, door, mesh, glass, material };
 }
+it('keeps named paint slots on panels moved into separate animation hinges', () => {
+  const { root, mesh, material } = fixture();
+  const hinge = new THREE.Group();
+  const panel = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
+  panel.userData.liverySourceNodes = ['body'];
+  hinge.add(panel);
+  root.add(hinge);
+  const appearance = applyLivery(root, {
+    ...data,
+    slots: { body: { materials: ['paint'], node: 'body' } },
+  });
+  expect(appearance.warnings).toEqual([]);
+  expect((panel.material as THREE.MeshStandardMaterial).color.getHexString()).toBe('bb4433');
+  expect((mesh.material as THREE.MeshStandardMaterial).color.getHexString()).toBe('bb4433');
+  appearance.dispose();
+  expect(panel.material).toBe(material);
+});
+
 it('isolates paint and decals, excludes glass, follows moving parts and restores resources', () => {
   const { root, door, mesh, glass, material } = fixture();
   const sibling = root.clone(true),

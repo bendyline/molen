@@ -1,18 +1,20 @@
 # Adaptive rendering performance
 
 The world explorer defaults to **Auto (device)** quality. It measures frame cadence, CPU frame
-work, and asynchronous GPU time when the WebGL extension is available. Six rendering tiers
-target 60 FPS without changing simulation state. Manual Economy, Balanced, and High remain
-available and can be selected without reloading or moving the camera.
+work, and asynchronous GPU time when WebGL timer queries or WebGPU timestamps are available.
+Six rendering tiers target 60 FPS without changing simulation state. Manual Economy, Balanced,
+and High remain available and can be selected without reloading or moving the camera.
 
 ## Feedback and budgets
 
 `AdaptiveQualityController` from `@bendyline/molen-client` returns a new integer tier when the
 host should change its budgets. It evaluates one-second windows, uses trimmed frame averages
 and slow-frame/p90 statistics, and waits for warmup and sustained overload before lowering detail.
-Memory pressure can also lower detail. Recovery requires stable headroom, no pending streaming,
-and memory margin in displayed content; failed upward probes increase the recovery delay. Hidden intervals and
-isolated long pauses reset or bypass measurements instead of being mistaken for normal rendering.
+Memory pressure can also lower detail. Recovery requires stable headroom and memory margin in
+displayed content. During continuous streaming, both CPU and GPU timings must show spare capacity;
+without GPU timing, recovery waits for streaming to settle. Failed upward probes increase the
+recovery delay. Hidden intervals and isolated long pauses reset or bypass measurements instead
+of being mistaken for normal rendering.
 While content streams, slow frames lower detail only when the measured CPU/GPU frame work is itself
 heavy: streaming work runs outside the frame, and a lower tier would restart it. After a memory
 step, the controller lets that step's lower-detail replacements load (up to the recovery delay)
@@ -20,17 +22,21 @@ before stepping again, since retained content keeps displayed bytes high until t
 The explorer starts sampling once its first view has finished loading, or after 20 seconds: the
 first frames carry one-time work (ground refining under the camera, collision trees rebuilt for
 each refinement, models and materials arriving), and measured as overload it stepped a fast
-desktop to the lowest tier before the visitor had moved. While calibrating it recovers quickly
-but lowers detail only after 2.5 s of overload (`EARTH_CALIBRATION_QUALITY`): lifting off reveals
-a whole view at once, and the second of streaming that follows took every takeoff down a level,
-then back up in flight, a rebuild each way. Auto climbs no higher than Balanced, like Earth view's
-default `maxQualityLevel`; above it buildings switch to the high preset, which rebuilds them across
-the view. Once a level has held for
-`EARTH_QUALITY_CALIBRATION_MS` (12 s), the explorer, like Earth view, adapts with
-`EARTH_STICKY_QUALITY` timings: down after 2.5 s of sustained overload, up after 20 s of headroom,
-changes at least 6 s apart. Every change swaps resolution, shadows and building detail across the
-view (Low and Medium differ in worldgen quality, so a step regenerates every resident town tile),
-and the quick defaults flipped a jet between them every 10 to 15 seconds.
+desktop to the lowest tier before the visitor had moved.
+
+The explorer starts at Balanced and can climb through High to Ultra, using measured performance
+rather than the GPU's name. It uses `EARTH_STICKY_QUALITY` timings from the start: down after
+2.5 s of sustained overload, up one tier after 20 s of headroom, and frame-time changes at least
+6 s apart. Measurements use one-second windows, so these are approximate delays. A failed upward
+probe doubles the recovery delay, up to 120 s; that history stays with the controller throughout
+the session. Selecting a manual preset resets it. Hidden time and startup loading do not earn an
+upgrade. Manual presets remain fixed.
+
+High switches buildings to a more detailed preset, so promotions need sustained headroom and the
+explorer applies the resolution, terrain, building, surface and shadow changes over separate
+frames. Brief takeoff/streaming stalls do not immediately undo an upgrade. The embeddable Earth
+view retains its separate default ceiling of Balanced (`maxQualityLevel: 3`) and its initial
+12 s calibration policy; hosts can explicitly raise that ceiling.
 
 The explorer applies each tier to drawing-buffer resolution, terrain screen-space error and
 range, selected/resident tile limits, terrain and semantic request concurrency, worldgen cache

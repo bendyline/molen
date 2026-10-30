@@ -3,6 +3,13 @@ import * as THREE from 'three';
 import type { WebGPURenderer } from 'three/webgpu';
 import { type FrameAdmissionOptions, FrameAdmissionQueue } from '../frame-admission';
 import { type SkyStar, SkyVisual } from '../sky/visual';
+import {
+  type CloudShadowUniforms,
+  createCloudShadowUniforms,
+  installWebGlCloudShadows,
+} from '../weather/cloud-shadows';
+import { type CloudQuality, CloudTextures, type CloudUniforms } from '../weather/clouds';
+import { cloudNoise } from '../weather/noise';
 import { WeatherVisual } from '../weather/visual';
 import { applyEnvironment, defaultEnvironment, findEnvironmentRig } from './environment';
 import {
@@ -30,11 +37,18 @@ export type RendererBackend = 'webgl' | 'webgpu';
 export type RendererBackendPreference = 'auto' | RendererBackend;
 export type ThreeRenderer = THREE.WebGLRenderer | WebGPURenderer;
 
+/** The backend's cloud deck material and lit-shader cloud shadows (WebGPU: webgpu-clouds.ts). */
+interface CloudBackend {
+  material(uniforms: CloudUniforms, textures: CloudTextures): THREE.Material;
+  installShadows(uniforms: CloudShadowUniforms): void;
+}
+
 interface InitializedRenderer {
   three: ThreeRenderer;
   backend: RendererBackend;
   optimizer?: WebGpuSceneOptimizer;
   reflectionFilter?: SkyReflectionFilter;
+  clouds?: CloudBackend;
 }
 
 export interface RendererOptions {
@@ -272,6 +286,15 @@ export class Renderer {
   private starCatalog: readonly SkyStar[] | undefined;
   private activeWeather: WeatherVisual | undefined;
   private weatherTimeOverride: number | undefined;
+  /** Cloud textures and the cloud-shadow uniforms every lit shader reads, for the renderer's life. */
+  private readonly cloudTextures = new CloudTextures(cloudNoise());
+  private readonly cloudShadows: CloudShadowUniforms = createCloudShadowUniforms(
+    this.cloudTextures.shadow,
+  );
+  private readonly cloudBackend: CloudBackend | undefined;
+  private releaseCloudShadows: (() => void) | undefined;
+  private cloudQualityLevel: CloudQuality = 'medium';
+  private cloudShadowMapVersion = -1;
   private readonly weatherLightIntensities = new WeakMap<THREE.Light, number>();
   /** The hemisphere the sky reflection map stands in for, and its authored visibility. */
   private hiddenAmbient: { light: THREE.HemisphereLight; visible: boolean } | undefined;
@@ -288,7 +311,7 @@ export class Renderer {
   }
 
   /**
-   * Aim the sun's shadow at a focus (absolute world coordinates) covering ±`radius` meters, or
+   * Aim the sun's shadow at a focus (absolute world coordinates) covering at least ±`radius` meters, or
    * `undefined` for the environment's own fixed box. Call whenever what the camera frames
    * moves: an orbit target, a walker, a car. Shadows must be on (`setShadowQuality`).
    */
@@ -393,6 +416,7 @@ export class Renderer {
         center,
         focus.radius,
         this.backend === 'webgl' && this.webglReversedPcfShadows(),
+        this.worldOrigin,
       );
     }
   }
@@ -402,11 +426,32 @@ export class Renderer {
     return this.activeWeather;
   }
 
+  /**
+   * Per-pixel cloud work, default 'medium': ray-march steps and light samples, erosion detail
+   * from 'high', and from 'high' also cloud shadows on every lit surface. Takes effect on the
+   * next frame without rebuilding any shader, so adaptive quality tiers may change it freely.
+   */
+  setCloudQuality(quality: CloudQuality): void {
+    this.cloudQualityLevel = quality;
+    this.activeWeather?.setCloudQuality(quality);
+  }
+
+  get cloudQuality(): CloudQuality {
+    return this.cloudQualityLevel;
+  }
+
   /** Apply the singleton weather component without rebuilding the sky or moving the camera. */
   setWeather(data: WeatherData | undefined): void {
     if (data && this.activeWeather) this.activeWeather.setData(data);
     else {
-      const next = data ? new WeatherVisual(data) : undefined;
+      const next = data
+        ? new WeatherVisual(data, {
+            textures: this.cloudTextures,
+            quality: this.cloudQualityLevel,
+            backend: this.backend,
+            ...(this.cloudBackend ? { createCloudMaterial: this.cloudBackend.material } : {}),
+          })
+        : undefined;
       this.activeWeather?.dispose();
       this.activeWeather = next;
       if (next) this.scene.add(next.object);
@@ -496,9 +541,14 @@ export class Renderer {
           opts.optimizeWebGpu === false
             ? undefined
             : new (await import('./webgpu-scene-optimizer')).WebGpuSceneOptimizer(three);
+        const clouds = await import('./webgpu-clouds');
         return new Renderer(opts, {
           three,
           backend: 'webgpu',
+          clouds: {
+            material: clouds.createWebGpuCloudMaterial,
+            installShadows: (uniforms) => clouds.installWebGpuCloudShadows(three, uniforms),
+          },
           ...(optimizer ? { optimizer } : {}),
           ...(opts.reflections === true
             ? {
@@ -549,6 +599,7 @@ export class Renderer {
     this.pixelRatio = pixelRatio;
     this.backend = initialized?.backend ?? 'webgl';
     this.optimizer = initialized?.optimizer;
+    this.cloudBackend = initialized?.clouds;
     this.three =
       initialized?.three ??
       createWebGlRenderer({
@@ -560,6 +611,14 @@ export class Renderer {
         logarithmicDepthBuffer: opts.logarithmicDepthBuffer ?? false,
       });
     this.three.setPixelRatio(pixelRatio);
+    // Before any lit shader is built: every one reads the cloud shadow, which stays off (and
+    // costs a uniform test) until weather with clouds and a 'high' cloud quality turn it on.
+    if (this.cloudBackend) this.cloudBackend.installShadows(this.cloudShadows);
+    else
+      this.releaseCloudShadows = installWebGlCloudShadows(
+        this.three as THREE.WebGLRenderer,
+        this.cloudShadows,
+      );
     if (this.backend === 'webgpu') {
       (this.three as WebGPURenderer).onDeviceLost = (info): void => {
         if (this.disposed) return;
@@ -1351,7 +1410,12 @@ export class Renderer {
     if (this.backend === 'webgpu') this.three.info.reset();
     const sky = this.activeSky;
     const weather = this.activeWeather;
-    sky?.setCloudAttenuation(weather?.cloudAttenuation ?? 0);
+    const cloudAttenuation = weather?.cloudAttenuation ?? 0;
+    // Spatial cloud shadows replace the uniform dimming of direct light. Decided once for the
+    // frame, so the lights and the shadow uniforms always switch over in the same frame.
+    const cloudShadowed = weather?.shadowsActive ?? false;
+    const directAttenuation = cloudShadowed ? 0 : cloudAttenuation;
+    sky?.setCloudAttenuation(cloudAttenuation, directAttenuation);
     sky?.update(this.environmentTimeOverride ?? this.environmentSeconds);
     // Only the environment rig is weather-managed; authored lamps remain independent.
     findEnvironmentRig(this.scene)?.traverse((object) => {
@@ -1370,9 +1434,9 @@ export class Renderer {
       }
       object.intensity =
         base *
-        (1 -
-          (weather?.cloudAttenuation ?? 0) *
-            (object instanceof THREE.DirectionalLight ? 0.92 : 0.2));
+        (object instanceof THREE.DirectionalLight
+          ? 1 - directAttenuation * 0.92
+          : 1 - cloudAttenuation * 0.2);
     });
     weather?.update(
       this.weatherTimeOverride ?? this.environmentSeconds,
@@ -1380,6 +1444,15 @@ export class Renderer {
       this.worldOrigin,
       sky?.frame,
     );
+    if (weather) weather.writeShadows(this.cloudShadows, cloudShadowed);
+    else this.cloudShadows.molenCloudShadow.value.x = 0;
+    // Every lit shader samples the shadow map, but WebGPU uploads a texture's new data only when
+    // some object that binds it refreshes, which static meshes do not: upload it here.
+    const shadowMap = this.cloudShadows.molenCloudMap.value;
+    if (weather && shadowMap.version !== this.cloudShadowMapVersion) {
+      this.cloudShadowMapVersion = shadowMap.version;
+      this.three.initTexture(shadowMap);
+    }
     let reflectedAmbient: THREE.HemisphereLight | undefined;
     if (this.reflections) {
       const rig = findEnvironmentRig(this.scene);
@@ -1439,6 +1512,7 @@ export class Renderer {
         this.applyShadowFocus();
         this.renderScene();
       }
+      if (this.backend === 'webgl') opaqueDrawingBuffer(this.three as THREE.WebGLRenderer);
       // Upload warm-ups and reflection filtering also render offscreen. Only a completed
       // visible frame may replace the stats exposed to hosts and adaptive quality policies.
       const info = this.three.info.render;
@@ -1645,6 +1719,8 @@ export class Renderer {
     this.activeSky = undefined;
     this.activeWeather?.dispose();
     this.activeWeather = undefined;
+    this.releaseCloudShadows?.();
+    this.cloudTextures.dispose();
     this.reflections?.dispose();
     this.hideReflectedAmbient(undefined);
     findEnvironmentRig(this.scene)?.traverse((object) => {
@@ -1813,6 +1889,26 @@ function createWebGlRenderer(options: THREE.WebGLRendererParameters): THREE.WebG
     });
   }
   return renderer;
+}
+
+/**
+ * Three r184 always asks for an alpha drawing buffer and keeps the canvas opaque by having opaque
+ * materials write alpha 1. Alpha-to-coverage materials (frayed pavement edges, leaf cards) write
+ * their coverage as alpha instead, so pixels they only partly covered left the canvas translucent
+ * and the page behind it showed through: pale speckle along curbs and in canopies, plainest at
+ * night. A clear of the alpha channel alone makes the finished frame opaque again.
+ */
+function opaqueDrawingBuffer(renderer: THREE.WebGLRenderer): void {
+  if (renderer.getRenderTarget() !== null) return;
+  const gl = renderer.getContext();
+  const color = renderer.state.buffers.color;
+  // Mask and clear color go through three's state, which caches both and skips calls it thinks
+  // redundant; the clear color it sets again before its own next clear.
+  color.setMask(true);
+  color.setClear(0, 0, 0, 1, false);
+  gl.colorMask(false, false, false, true);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.colorMask(true, true, true, true);
 }
 
 function textureBytes(texture: THREE.Texture): number {

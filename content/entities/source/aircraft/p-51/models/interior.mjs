@@ -19,11 +19,11 @@ export function addInterior(parent, layout, api) {
       y > 2 ? y - 0.018 : y + 0.013,
       layout.panelZ - 0.007,
     );
-  box(cabin, 'lower-switch-panel', [0.76, 0.11, 0.035], [0, 1.49, 0.805], dark);
+  box(cabin, 'lower-switch-panel', [0.76, 0.11, 0.035], [0, 1.49, 0.555], dark);
   for (const [i, label] of ['BAT', 'GEN', 'LIGHT', 'FUEL', 'PITOT', 'GUN'].entries())
-    toggle(cabin, `panel-switch-${i}`, [0.32 - i * 0.105, 1.49, 0.781], label);
-  placard(cabin, 'landing-check', 'GEAR DOWN', [0.185, 1.735, 0.774], 0.13, 0.0011);
-  const brake = group(cabin, 'parking-brake', [0.03, 1.56, 0.743]);
+    toggle(cabin, `panel-switch-${i}`, [0.32 - i * 0.105, 1.49, 0.531], label);
+  placard(cabin, 'landing-check', 'GEAR DOWN', [0.185, 1.735, 0.524], 0.13, 0.0011);
+  const brake = group(cabin, 'parking-brake', [0.03, 1.56, 0.493]);
   brake.userData.aircraftControl = {
     action: 'brake',
     motion: { property: 'position', axis: 'z', scale: -0.025 },
@@ -35,27 +35,30 @@ export function addInterior(parent, layout, api) {
       cabin,
       `gear-indicator-${i}`,
       [0.008, 0.008, 0.004],
-      [0.25 + i * 0.035, 1.955, 0.772],
+      [0.25 + i * 0.035, 1.955, 0.522],
       color,
     );
-  // Narrow flat crown and long sloping legs follow the reference's A-shaped support.
+  // Narrow flat crown and long sloping legs follow the reference's A-shaped support. Panel,
+  // coaming, gunsight, pedals and their fittings sit 0.25 m aft of the first fit, under the
+  // windscreen the 3-view places at z 0.82; their z is given relative to the panel.
+  const panelZ = layout.panelZ;
   const coaming = new T.CatmullRomCurve3(
     [
-      [-0.435, 1.995, 0.79],
-      [-0.385, 2.025, 0.8],
-      [-0.24, 2.2, 0.84],
-      [-0.14, 2.31, 0.86],
-      [-0.08, 2.32, 0.86],
-      [0.08, 2.32, 0.86],
-      [0.14, 2.31, 0.86],
-      [0.24, 2.2, 0.84],
-      [0.385, 2.025, 0.8],
-      [0.435, 1.995, 0.79],
+      [-0.435, 1.995, panelZ],
+      [-0.385, 2.025, panelZ + 0.01],
+      [-0.24, 2.2, panelZ + 0.05],
+      [-0.14, 2.31, panelZ + 0.07],
+      [-0.08, 2.32, panelZ + 0.07],
+      [0.08, 2.32, panelZ + 0.07],
+      [0.14, 2.31, panelZ + 0.07],
+      [0.24, 2.2, panelZ + 0.05],
+      [0.385, 2.025, panelZ + 0.01],
+      [0.435, 1.995, panelZ],
     ].map((p) => new T.Vector3(...p)),
   );
   mesh(cabin, 'windscreen-support-frame', new T.TubeGeometry(coaming, 48, 0.018, 8, false), silver);
   addChecklist(cabin, api);
-  const sight = group(cabin, 'k14-gunsight', [0, 2.19, 0.89]);
+  const sight = group(cabin, 'k14-gunsight', [0, 2.19, panelZ + 0.1]);
   box(sight, 'sight-mount', [0.09, 0.07, 0.11], [0, -0.085, 0.04], dark);
   const body = mesh(
     sight,
@@ -122,7 +125,7 @@ export function addInterior(parent, layout, api) {
     );
   }
   for (const side of [-1, 1]) {
-    const lamp = group(cabin, `panel-lamp-${side}`, [side * 0.385, 2.07, 0.725]);
+    const lamp = group(cabin, `panel-lamp-${side}`, [side * 0.385, 2.07, 0.475]);
     rod(lamp, 'lamp-neck', [0, 0, 0], [-side * 0.035, 0.02, -0.02], 0.005, silver);
     box(lamp, 'lamp-shade', [0.032, 0.021, 0.035], [-side * 0.035, 0.02, -0.02], dark);
     for (const z of [-0.2, 0.11, 0.42]) {
@@ -218,8 +221,8 @@ export function addInterior(parent, layout, api) {
     rod(
       cabin,
       `pedal-link-${side}`,
-      [side * 0.145, 1.32, 0.58],
-      [side * 0.145, 1.4, 0.7],
+      [side * 0.145, 1.32, panelZ - 0.21],
+      [side * 0.145, 1.4, panelZ - 0.09],
       0.009,
       silver,
     );
@@ -227,7 +230,7 @@ export function addInterior(parent, layout, api) {
       cabin,
       `rudder-pedal-${side}`,
       [0.16, 0.12, 0.025],
-      [side * 0.145, 1.42, 0.715],
+      [side * 0.145, 1.42, panelZ - 0.075],
       silver,
     );
     pedal.rotation.x = -0.28;
@@ -236,7 +239,7 @@ export function addInterior(parent, layout, api) {
         cabin,
         `pedal-tread-${side}-${i}`,
         [0.13, 0.008, 0.007],
-        [side * 0.145, 1.38 + i * 0.021, 0.692],
+        [side * 0.145, 1.38 + i * 0.021, panelZ - 0.098],
         dark,
       );
   }
@@ -293,7 +296,9 @@ function addChecklist(cabin, api) {
     emissiveIntensity: 0.12,
     roughness: 0.8,
   });
-  const card = group(cabin, 'takeoff-landing-checklist', [0, 2.2145, 0.735]);
+  // Hung 2.5 cm lower than at the old panel station, so its top clip stays under the pilot's
+  // forward sightline now that it is closer to the eye.
+  const card = group(cabin, 'takeoff-landing-checklist', [0, 2.19, 0.485]);
   mesh(card, 'checklist-backing', new RoundedBoxGeometry(0.25, 0.125, 0.008, 1, 0.003), dark);
   box(card, 'checklist-divider', [0.002, 0.119, 0.002], [0, 0, -0.005], paper);
   const columns = [
@@ -322,7 +327,7 @@ function addChecklist(cabin, api) {
     rod(card, `checklist-support-${x}`, [x, 0.067, 0.008], [x, 0.105, 0.125], 0.003, silver);
   }
   box(card, 'checklist-top-clip', [0.14, 0.012, 0.02], [0, 0.068, 0.005], silver);
-  const warning = group(cabin, 'canopy-release-warning', [0, 2.12, 0.755]);
+  const warning = group(cabin, 'canopy-release-warning', [0, 2.12, 0.505]);
   box(warning, 'warning-card', [0.165, 0.05, 0.003], [0, 0, 0], paper);
   text(warning, 'warning-title', 'WARNING', 0, 0.014, -0.003, 0.0028, warningInk);
   for (const [i, line] of [

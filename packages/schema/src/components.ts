@@ -1,6 +1,8 @@
 import { z } from 'zod';
+import { actuatorInputsSchema, actuatorPositionsSchema, actuatorSpecsSchema } from './actuators';
 import { audioEnvironmentSchema, audioSourceSchema, audioZoneSchema } from './audio';
 import { boatInputSchema, boatSpecSchema, boatStateSchema, waterSettingsSchema } from './boats';
+import { glassSchema, glassStateSchema } from './glass';
 import type { ValidationIssue } from './issues';
 import type { JsonObject, JsonValue } from './json';
 import { liverySchema } from './livery';
@@ -1408,9 +1410,38 @@ const genericLabelSchema = z
     "Name-free display label such as 'Full-size pickup', for hosts that must not show a manufacturer, model or type name.",
   );
 
+registerComponent('glass', glassSchema, {
+  description:
+    'Breakable glass surfaces with metric geometry, material fracture and independent frame/interlayer retention.',
+  owner: 'kernel/glass',
+  docsRef: 'guide/glass.md',
+  examples: [
+    {
+      surfaces: [
+        {
+          id: 'windshield',
+          material: 'laminated',
+          center: [0, 1.2, 0.8],
+          rotation: [0, 0, 0, 1],
+          size: [1.4, 0.7],
+          thickness: 0.005,
+        },
+      ],
+    },
+  ],
+});
+registerComponent('glassState', glassStateSchema, {
+  description:
+    'Persistent glass fracture, retention and release state. Missing panes are intact; remove the component to repair.',
+  owner: 'kernel/glass',
+  docsRef: 'guide/glass.md',
+  examples: [{ surfaces: {} }],
+});
+
 const vehicleSpecSchema = z
   .strictObject(
     describedFields({
+      actuators: actuatorSpecsSchema.optional(),
       label: z.string().min(1),
       bodyStyle: vehicleBodyStyleSchema.optional(),
       genericLabel: genericLabelSchema.optional(),
@@ -1685,6 +1716,9 @@ registerComponent(
 registerComponent(
   'vehicleInput',
   z.strictObject({
+    actuators: actuatorInputsSchema
+      .optional()
+      .describe('Mechanism targets from zero to one, or on/off selections.'),
     throttle: num
       .min(-1)
       .max(1)
@@ -1713,6 +1747,9 @@ registerComponent(
 registerComponent(
   'vehicleState',
   z.strictObject({
+    actuators: actuatorPositionsSchema
+      .optional()
+      .describe('Current mechanism positions and cycle phases, from zero to one.'),
     boosted: z.boolean().optional().describe('Speeds include the 4× travel boost; kernel-owned.'),
     speed: num.describe('Signed forward speed in meters per second.'),
     steer: num.describe('Current front wheel steering angle in radians. Positive turns right.'),
@@ -2004,6 +2041,10 @@ const airplanePhysicsSchema = z.strictObject(
     gearDrag: num
       .nonnegative()
       .describe('Drag coefficient of the landing gear fully down; scales with the gear position.'),
+    speedBrakeDrag: num
+      .nonnegative()
+      .optional()
+      .describe('Additional drag coefficient at full speedBrake actuator extension.'),
     flapDrag: num
       .nonnegative()
       .describe('Drag coefficient of the flaps fully down; scales with the flap position.'),
@@ -2041,6 +2082,14 @@ const airplanePhysicsSchema = z.strictObject(
 );
 const helicopterPhysicsSchema = z.strictObject(
   describedFields({
+    fixedGear: z
+      .boolean()
+      .optional()
+      .describe('Fixed skids or wheels by default; false enables retractable gear.'),
+    gearTransitTime: num
+      .nonnegative()
+      .optional()
+      .describe('Seconds for full retractable gear travel.'),
     rotorPosition: vec3,
     rotorRadius: num.positive(),
     powerLimitedRotor: z
@@ -2211,6 +2260,7 @@ const aircraftEngineId = z
 const aircraftSpecSchema = z
   .strictObject(
     describedFields({
+      actuators: actuatorSpecsSchema.optional(),
       label: z.string().min(1),
       genericLabel: genericLabelSchema.optional(),
       model: z.enum(['airplane', 'helicopter']),
@@ -2585,6 +2635,9 @@ registerComponent(
 registerComponent(
   'aircraftInput',
   z.strictObject({
+    actuators: actuatorInputsSchema
+      .optional()
+      .describe('Mechanism targets from zero to one, or on/off selections.'),
     mixture: num
       .min(0)
       .max(1)
@@ -2655,6 +2708,9 @@ registerComponent(
 registerComponent(
   'aircraftState',
   z.strictObject({
+    actuators: actuatorPositionsSchema
+      .optional()
+      .describe('Current mechanism positions and cycle phases, from zero to one.'),
     damage: z
       .record(
         z.string(),
@@ -2726,7 +2782,7 @@ registerComponent(
       .max(1)
       .optional()
       .describe(
-        'Airplane landing gear: 0 up and locked, 1 down and locked, between them in transit. Starts at the commanded position.',
+        'Landing gear: 0 up and locked, 1 down and locked, between them in transit. Fixed undercarriages stay down.',
       ),
     flapPosition: num
       .min(0)

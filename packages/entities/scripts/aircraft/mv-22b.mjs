@@ -59,6 +59,51 @@ function hingedWing(root, name, stations, material, bindings, source, scale) {
   }
   bindings.push({ node: name, source, property: 'rotation', axis: 'x', scale });
 }
+/** Proprotor blade sections along the span (blade +Y), as loft rings in a z = span frame:
+ * broad inboard (0.9 m chord just outside the spinner), tapering to a swept tip, with about
+ * 44 degrees of nonlinear twist. The leading edge leads the rotation (-side X) and pitches
+ * toward the thrust (+Z). Each station: radius, chord, thickness ratio, pitch-axis chord fraction. */
+function bladeSections(side) {
+  const foil = [
+    [0, 0],
+    [0.05, 0.42],
+    [0.2, 0.62],
+    [0.45, 0.5],
+    [0.8, 0.2],
+    [1, 0],
+    [0.8, -0.1],
+    [0.45, -0.25],
+    [0.2, -0.32],
+    [0.05, -0.25],
+  ];
+  return [
+    [0.35, 0.34, 0.5, 0.4],
+    [0.62, 0.62, 0.28, 0.38],
+    [0.95, 0.84, 0.19, 0.36],
+    [1.1, 0.86, 0.175, 0.355],
+    [1.4, 0.88, 0.15, 0.35],
+    [2.2, 0.82, 0.12, 0.35],
+    [3.2, 0.74, 0.105, 0.35],
+    [4.2, 0.66, 0.095, 0.35],
+    [5.0, 0.6, 0.09, 0.35],
+    [5.5, 0.55, 0.085, 0.35],
+    [5.72, 0.46, 0.08, 0.22],
+    [5.8, 0.24, 0.08, 0.05],
+  ].map(([r, c, tc, axis]) => {
+    const pitch = ((3 + 44 * Math.pow((5.8 - r) / 5.45, 1.6)) * Math.PI) / 180,
+      cos = Math.cos(pitch),
+      sin = Math.sin(pitch);
+    return {
+      z: r,
+      // Blade frame (x, r, z) is authored as loft (x, -z) at z = r, then turned upright.
+      points: foil.map(([u, v]) => {
+        const lead = (axis - u) * c,
+          n = (v * tc * c) / 0.94;
+        return [-side * lead * cos + side * n * sin, -(lead * sin + n * cos)];
+      }),
+    };
+  });
+}
 export function buildMV22(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -67,9 +112,10 @@ export function buildMV22(s) {
     metal = mat('MV22-alloy', '#a9b1b3', { metalness: 0.7 }),
     seam = mat('MV22-seams', '#58696c'),
     rubber = mat('MV22-tires', '#171b1e'),
-    glass = mat('MV22-glass', '#9cb9c4', {
+    // Tinted like the photos' dark cockpit panes, still clear enough to fly through.
+    glass = mat('MV22-glass', '#4b636c', {
       transparent: true,
-      opacity: 0.13,
+      opacity: 0.34,
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.15,
@@ -86,8 +132,8 @@ export function buildMV22(s) {
   const sections = [
     [318, 0.04, 1071, 1057],
     [352, 0.39, 1116, 1048],
-    [400, 0.78, 1127, 1032],
-    [450, 1.08, 1130, 966],
+    [400, 0.99, 1127, 1032],
+    [450, 1.15, 1130, 966],
     [525, 1.25, 1130, 952],
     [660, 1.27, 1127, 947],
     [850, 1.27, 1123, 936],
@@ -121,7 +167,31 @@ export function buildMV22(s) {
       ],
     };
   });
-  loft(d, rings, paint, { skip: (i, j) => i >= 2 && i < 5 && (j < 3 || j >= 11) });
+  // Broad rounded radome (Commons line drawing plan: half width 0.6 m at 0.45 m and 0.9 m at
+  // 0.95 m behind the tip) blending from the cockpit section into a round, slightly low tip.
+  // Rows: metres behind the tip, half width, keel, crown, roundness (0 = cockpit section).
+  const cockpitRing = rings[2],
+    [cw, cb, ct] = [0.99, sy(1127), sy(1032)],
+    radome = [
+      [0, 0, 1.33, 1.33, 1],
+      [0.04, 0.15, 1.12, 1.46, 1],
+      [0.12, 0.27, 0.95, 1.51, 0.9],
+      [0.25, 0.43, 0.8, 1.56, 0.8],
+      [0.45, 0.61, 0.68, 1.625, 0.65],
+      [0.7, 0.78, 0.59, 1.7, 0.45],
+      [0.95, 0.91, 0.535, 1.78, 0.25],
+    ].map(([s, w, b, t, k]) => ({
+      z: sz(318) - s,
+      points: cockpitRing.points.map(([x, y]) => {
+        const u = x / cw,
+          v = (2 * (y - cb)) / (ct - cb) - 1,
+          a = Math.atan2(u, v),
+          q = [u + (Math.sin(a) - u) * k, v + (Math.cos(a) - v) * k];
+        return [q[0] * w, b + ((q[1] + 1) / 2) * (t - b)];
+      }),
+    })),
+    hull = [...radome, ...rings.slice(2)];
+  loft(d, hull, paint, { skip: (i, j) => i >= 7 && i < 10 && (j < 3 || j >= 11) });
   const p = (i, j) => [...rings[i].points[(j + 14) % 14], rings[i].z];
   const bot = [
       [0, 2.13, 7.22],
@@ -138,21 +208,29 @@ export function buildMV22(s) {
   for (const side of [-1, 1]) {
     const b = bot.map((q) => [side * q[0], q[1], q[2]]),
       t = top.map((q) => [side * q[0], q[1], q[2]]);
-    sheet(
-      d,
-      [
-        p(2, 0),
-        p(2, side),
-        p(2, 2 * side),
-        p(2, 3 * side),
-        p(3, 3 * side),
-        p(4, 3 * side),
-        p(5, 3 * side),
-        ...b.slice().reverse(),
-      ],
-      paint,
-      [side * 0.4, 0.7, 0.5],
-    );
+    // Deck from the nose and side skin up to the windscreen base, as an explicit strip between
+    // the two chains: a free triangulation of this warped outline cut through the cockpit.
+    const o = [
+      p(2, 0),
+      p(2, side),
+      p(2, 2 * side),
+      p(2, 3 * side),
+      p(3, 3 * side),
+      p(4, 3 * side),
+      p(5, 3 * side),
+    ];
+    for (const tri of [
+      [o[0], o[1], b[0]],
+      [o[1], b[1], b[0]],
+      [o[1], o[2], b[1]],
+      [o[2], o[3], b[1]],
+      [o[3], o[4], b[1]],
+      [o[4], b[2], b[1]],
+      [o[4], o[5], b[2]],
+      [o[5], b[3], b[2]],
+      [o[5], o[6], b[3]],
+    ])
+      sheet(d, tri, paint, [side * 0.4, 0.7, 0.5]);
     sheet(d, [...t, p(5, 2 * side), p(5, side), p(5, 0)], paint, [side * 0.3, 1, 0]);
     quad(d, b[3], t[3], p(5, 2 * side), p(5, 3 * side), paint, [side, 0, 0]);
     for (let j = 0; j < 3; j++) {
@@ -161,8 +239,47 @@ export function buildMV22(s) {
     }
     d.rod([side * 0.35, 2.17, 7.2], [side * 0.65, 2.58, 6.8], 0.012, dark);
     d.rod([side * 0.65, 2.58, 6.8], [side * 0.81, 2.86, 6.49], 0.01, dark);
+    // Tinted chin window low on the nose side, below the side windscreen (Balikatan photo),
+    // laid on the flat skin panel between the radome joint and the cockpit section.
+    const wall = (z, y) => {
+      const a = p(2, 3 * side),
+        c = p(3, 3 * side),
+        u = (a[2] - z) / (a[2] - c[2]);
+      return [a[0] + (c[0] - a[0]) * u + side * 0.004, y, z];
+    };
+    sheet(
+      d,
+      [
+        [7.45, 1.34],
+        [7.4, 1.52],
+        [7.02, 1.8],
+        [7.07, 1.56],
+      ].map(([z, y]) => wall(z, y)),
+      dark,
+      [side, 0, 0],
+    );
   }
-  // Distinct bulbous main-gear/fuel sponsons, tapering toward both ends.
+  // Main-gear/fuel sponsons, tapering toward both ends. Head-on (line drawing, Balikatan photo)
+  // their top slopes down and outboard from the fuselage side to a rounded outer edge above a
+  // flat bottom, rather than a round pontoon: unit section, inboard (-1) to outboard (+1).
+  const sponson = [
+    [-1, 1],
+    [-0.5, 0.8],
+    [0, 0.58],
+    [0.4, 0.38],
+    [0.7, 0.2],
+    [0.89, 0.04],
+    [0.98, -0.16],
+    [1, -0.4],
+    [0.95, -0.66],
+    [0.82, -0.86],
+    [0.58, -0.97],
+    [0.25, -1],
+    [-0.2, -1],
+    [-0.6, -0.97],
+    [-0.9, -0.86],
+    [-1, -0.5],
+  ];
   for (const side of [-1, 1]) {
     const rr = [
       [5.9, 0.04, 1.3, 0.05],
@@ -173,21 +290,76 @@ export function buildMV22(s) {
       [-4.35, 0.035, 1.65, 0.05],
     ].map(([z, rx, y, ry]) => ({
       z,
-      points: Array.from({ length: 16 }, (_, j) => [
-        side * 1.38 + Math.sin((j * Math.PI) / 8) * rx,
-        y + Math.cos((j * Math.PI) / 8) * ry,
-      ]),
+      points: sponson.map(([u, v]) => [side * (1.38 + u * rx), y + v * ry]),
     }));
-    loft(d, rr, paint);
+    loft(d, rr, paint, { smooth: true });
   }
-  ellipsoid(d, [0, 3.3, 1.9], [1.26, 0.6, 2.3], paint, 24);
-  // Forward-swept wing, with substantial downward flaperons in hover.
+  // Wing/turntable fairing (Balikatan and ILA photos): flat, slightly inclined sides with tight
+  // top edges, ramping up from the cockpit roof to wrap the wing root, then down to the crown.
+  const crown = (z) => {
+    let i = 0;
+    while (i < rings.length - 2 && z < rings[i + 1].z) i++;
+    const a = rings[i],
+      b = rings[i + 1],
+      t = Math.min(1, Math.max(0, (a.z - z) / (a.z - b.z)));
+    return a.points[0][1] + (b.points[0][1] - a.points[0][1]) * t;
+  };
+  loft(
+    d,
+    [
+      [5.35, 0.01, 0.5],
+      [4.7, 3.3, 0.66],
+      [3.9, 3.6, 0.78],
+      [3.1, 3.82, 0.84],
+      [2.5, 3.84, 0.85],
+      [1.6, 3.7, 0.85],
+      [0.9, 3.6, 0.84],
+      [0, 3.42, 0.78],
+      [-0.8, 3.24, 0.66],
+      [-1.5, 0.01, 0.5],
+    ].map(([z, top, w]) => {
+      const c = crown(z),
+        y = Math.max(top, c + 0.01),
+        foot = c - 0.32,
+        r = Math.min(0.1, (y - foot) * 0.3),
+        arc = [0.25, 0.5, 0.75].map((k) => {
+          const a = (k * Math.PI) / 2;
+          return [w - r + Math.sin(a) * r, y - r + Math.cos(a) * r];
+        });
+      return {
+        z,
+        points: [
+          [-0.98, foot],
+          [-w, y - r],
+          ...arc.map(([x, q]) => [-x, q]).reverse(),
+          [-w + r, y],
+          [0, y],
+          [w - r, y],
+          ...arc,
+          [w, y - r],
+          [0.98, foot],
+        ],
+      };
+    }),
+    paint,
+    { smooth: true },
+  );
+  // Forward-swept wing, with substantial downward flaperons in hover. The V-22's stiff wing
+  // is about 23 % thick, so the torque box stands 0.45-0.55 m deep (Balikatan close-up).
   const ws = [
-    [0, 3.55, 2.8, 0.18, 0.18],
-    [1.3, 3.57, 2.88, 0.31, 0.18],
-    [4, 3.76, 3.24, 0.94, 0.15],
-    [7.09, 3.97, 3.66, 1.6, 0.13],
+    [0, 3.55, 2.8, 0.18, 0.34],
+    [1.3, 3.57, 2.88, 0.31, 0.33],
+    [4, 3.76, 3.24, 0.94, 0.3],
+    [7.09, 3.97, 3.66, 1.6, 0.27],
   ];
+  const wsAt = (x) => {
+    let i = ws.findIndex((a) => a[0] >= x);
+    i = Math.max(i, 1);
+    const a = ws[i - 1],
+      b = ws[i],
+      t = (x - a[0]) / (b[0] - a[0]);
+    return a.map((v, k) => v + (b[k] - v) * t);
+  };
   for (const side of [-1, 1]) {
     wing(
       d,
@@ -199,12 +371,7 @@ export function buildMV22(s) {
       [1, 4.02, 7.05],
     ]) {
       const at = (x) => {
-        let i = ws.findIndex((a) => a[0] >= x);
-        i = Math.max(i, 1);
-        const a = ws[i - 1],
-          b = ws[i],
-          t = (x - a[0]) / (b[0] - a[0]),
-          r = a.map((v, k) => v + (b[k] - v) * t);
+        const r = wsAt(x);
         return [x * side, r[1], r[2] + (r[3] - r[2]) * 0.69, r[3], 0.035];
       };
       hingedWing(
@@ -217,50 +384,67 @@ export function buildMV22(s) {
         -side,
       );
     }
+    // Chordwise panel seams on the upper skin facet, and the dark leading-edge band.
     for (const x of [1.7, 2.8, 4, 5.4, 6.7]) {
-      const t = x / 7.09;
+      const [, y, le, te, h] = wsAt(x),
+        box = (te - le) * 0.69;
       d.rod(
-        [side * x, 3.55 + t * 0.42 + 0.14, 2.8 + t * 0.86 - 0.12],
-        [
-          side * x,
-          3.55 + t * 0.42 + 0.1,
-          2.8 + t * 0.86 + (0.2 + t * 1.4 - (2.8 + t * 0.86)) * 0.64,
-        ],
+        [side * x, y + h + 0.004, le + box * 0.25],
+        [side * x, y + h * 0.626 + 0.004, le + box * 0.64],
         0.006,
         seam,
       );
     }
+    // The band wraps the nose of each wing panel between the fairing and the spindle: just
+    // ahead of the leading edge, back to 10 % of the box chord on both facets.
+    for (const [a, b] of [
+      [1.3, 4],
+      [4, 6.75],
+    ])
+      for (const f of [-1, 1]) {
+        const edge = (x) => {
+          const [, y, le, te, h] = wsAt(x);
+          return [
+            [side * x, y, le + 0.012],
+            [side * x, y + f * 0.004 + (f > 0 ? h : -0.65 * h) * 0.4, le + (te - le) * 0.069],
+          ];
+        };
+        const [fa, ba] = edge(a),
+          [fb, bb] = edge(b);
+        quad(d, fa, fb, bb, ba, dark, [0, f, 0.6]);
+      }
     const tip = group(root, `MV22-wingtip-${side}`, [side * 6.88, 4, 2.5]),
       td = detailKit(tip, tip.name);
     td.add(new T.CylinderGeometry(0.44, 0.44, 0.28, 24).rotateZ(Math.PI / 2), metal);
     td.finish();
   }
-  // Tailplane and two tall fins. Their finite thickness survives close edge-on views.
+  // Tailplane and two tall fins with short ventral extensions (Commons line drawing).
+  // Their finite thickness survives close edge-on views.
   for (const side of [-1, 1]) {
     const hs = [
-      [0, 3.27, -6.32, -8.55, 0.08],
-      [2.77, 3.28, -6.12, -8.5, 0.06],
+      [0, 3.0, -6.32, -8.55, 0.08],
+      [2.77, 3.0, -6.12, -8.5, 0.06],
     ];
     wing(
       d,
-      hs.map(([x, y, le, te, h]) => [side * x, y, le, -7.85, h]),
+      hs.map(([x, y, le, _te, h]) => [side * x, y, le, -7.85, h]),
       paint,
     );
     hingedWing(
       root,
       `MV22-elevator-${side}`,
-      hs.map(([x, y, le, te]) => [side * x, y, -7.85, te, 0.025]),
+      hs.map(([x, y, _le, te]) => [side * x, y, -7.85, te, 0.025]),
       paint,
       bindings,
       'pitchInput',
       side * 0.35,
     );
     const contour = [
-      [2.77, 2.55, -6.25],
-      [2.77, 3.4, -6.04],
-      [2.77, 5.47, -6.62],
-      [2.77, 5.46, -7.83],
-      [2.77, 2.5, -7.83],
+      [2.77, 1.98, -6.6],
+      [2.77, 2.46, -6.5],
+      [2.77, 5.42, -7.3],
+      [2.77, 5.4, -8.05],
+      [2.77, 1.98, -8.05],
     ].map(([x, y, z]) => [side * x, y, z]);
     for (const off of [-0.075, 0.075])
       sheet(
@@ -282,9 +466,9 @@ export function buildMV22(s) {
         [0, 1, 1],
       );
     }
-    const g = group(root, `MV22-rudder-${side}`, [side * 2.77, 2.53, -7.83]),
+    const g = group(root, `MV22-rudder-${side}`, [side * 2.77, 2.0, -8.05]),
       dd = detailKit(g, g.name);
-    beveledBox(dd, [0.12, 2.93, 0.64], [0, 1.46, -0.32], paint, 0.025);
+    beveledBox(dd, [0.12, 3.38, 0.64], [0, 1.69, -0.32], paint, 0.025);
     dd.finish();
     bindings.push({
       node: g.name,
@@ -293,7 +477,7 @@ export function buildMV22(s) {
       axis: 'y',
       scale: -0.35,
     });
-    ellipsoid(d, [side * 2.77, 5.48, -7.6], [0.055, 0.055, 0.1], d.red, 8);
+    ellipsoid(d, [side * 2.77, 5.43, -7.8], [0.055, 0.055, 0.1], d.red, 8);
   }
   // Nacelles are authored in airplane coordinates, then rotated as complete assemblies.
   // Each propeller retains a separate local Z rotation inside the moving nacelle.
@@ -302,58 +486,107 @@ export function buildMV22(s) {
       g = group(root, `MV22-nacelle-${i + 1}`, [side * 7.09, 3.97, 2.1]),
       nd = detailKit(g, g.name);
     g.rotation.x = -Math.PI / 2;
+    // Flat-faced rounded-box engine body (Patuxent River and Balikatan close-ups): near-parallel
+    // faces with tight corners, a narrower exhaust box and a round neck as wide as the spinner.
+    const section = (rx, ry, y, n = 3.8) =>
+      Array.from({ length: 24 }, (_, j) => {
+        const s = Math.sin((j * Math.PI) / 12),
+          c = Math.cos((j * Math.PI) / 12);
+        return [
+          Math.sign(s) * Math.pow(Math.abs(s), 2 / n) * rx,
+          y + Math.sign(c) * Math.pow(Math.abs(c), 2 / n) * ry,
+        ];
+      });
+    // Line drawing (helicopter mode): a neck as wide as the spinner, a shoulder stepping 0.7 m
+    // forward of it, a 3 m engine box tapering slightly toward a narrower exhaust box.
     const nr = [
-      [-2.15, 0.36, 0.3, -0.1],
-      [-1.72, 0.52, 0.49, -0.06],
-      [-0.8, 0.63, 0.69, 0],
-      [0.6, 0.63, 0.7, 0.03],
-      [1.45, 0.55, 0.62, 0.03],
-      [2.1, 0.4, 0.43, 0],
-      [2.36, 0.28, 0.29, 0],
-    ].map(([z, rx, ry, y]) => ({
-      z,
-      points: Array.from({ length: 20 }, (_, j) => [
-        Math.sin((j * Math.PI) / 10) * rx,
-        y + Math.cos((j * Math.PI) / 10) * ry,
+      [-2.45, 0.44, 0.5, -0.47, 3.4],
+      [-1.65, 0.47, 0.55, -0.47, 3.4],
+      [-1.45, 0.55, 0.68, -0.43, 3.4],
+      [-0.7, 0.68, 0.88, -0.35],
+      [0.4, 0.72, 0.95, -0.31],
+      [1.45, 0.72, 0.95, -0.31],
+      [1.72, 0.66, 0.86, -0.25, 3.2],
+      [1.95, 0.57, 0.6, 0.04, 2.4],
+      [2.3, 0.5, 0.55, 0.05, 2],
+    ].map(([z, rx, ry, y, n]) => ({ z, points: section(rx, ry, y, n) }));
+    loft(nd, nr, paint);
+    nd.box([0.7, 0.82, 0.18], [0, -0.47, -2.46], dark);
+    outline(nd, rect(0, -0.47, 0.74, 0.86, -2.57), 0.022, metal);
+    // Engine inlet: a deep scoop standing proud of the face that leads in hover, its rounded
+    // lip open toward the proprotor just below the gearbox shoulder (Patuxent River close-up).
+    const face = -0.31 - 0.95,
+      lipArc = (w, p) =>
+        Array.from({ length: 11 }, (_, k) => {
+          const a = ((k - 5) * Math.PI) / 10,
+            s = Math.sin(a);
+          return [
+            w * Math.sign(s) * Math.pow(Math.abs(s), 2 / 3),
+            face + 0.02 - p * Math.pow(Math.cos(a), 2 / 3),
+          ];
+        });
+    loft(
+      nd,
+      [
+        [0.55, 0.02, 0.35],
+        [0.9, 0.17, 0.58],
+        [1.3, 0.29, 0.64],
+        [1.6, 0.32, 0.64],
+      ].map(([z, p, w]) => ({
+        z,
+        points: [[-w * 0.84, face + 0.35], ...lipArc(w, p), [w * 0.84, face + 0.35]],
+      })),
+      paint,
+      { smooth: true },
+    );
+    sheet(
+      nd,
+      [...lipArc(0.55, 0.25), [0.46, face + 0.3], [-0.46, face + 0.3]].map(([x, y]) => [
+        x,
+        y,
+        1.606,
       ]),
-    }));
-    loft(nd, nr, paint, { caps: false });
-    nd.box([0.57, 0.53, 0.18], [0, -0.05, -2.16], dark);
-    outline(nd, rect(0, -0.05, 0.61, 0.57, -2.27), 0.022, metal);
-    ellipsoid(nd, [0, -0.48, -1.35], [0.37, 0.2, 0.43], dark, 16);
-    for (const z of [-1.35, 0.45, 1.5]) {
-      const r = z < 0 ? 0.57 : z > 1 ? 0.5 : 0.64;
+      dark,
+      [0, 0, 1],
+    );
+    outline(
+      nd,
+      lipArc(0.6, 0.29).map(([x, y]) => [x, y, 1.61]),
+      0.06,
+      paint,
+      false,
+    );
+    // Rotor axis rides near the top of the nacelle; the engine body hangs below it (airplane mode).
+    for (const [z, rx, ry, cy] of [
+      [-0.7, 0.686, 0.886, -0.35],
+      [0.4, 0.726, 0.956, -0.31],
+      [1.45, 0.726, 0.956, -0.31],
+    ])
       outline(
         nd,
-        Array.from({ length: 20 }, (_, j) => [
-          Math.sin((j * Math.PI) / 10) * r,
-          Math.cos((j * Math.PI) / 10) * (r + 0.05),
-          z,
-        ]),
+        section(rx, ry, cy).map(([x, y]) => [x, y, z]),
         0.007,
         seam,
       );
-    }
+    // Side access panels and louvres on the parallel part of the engine box.
+    const flank = (y) => 0.726 * Math.pow(1 - Math.pow(Math.abs(y + 0.31) / 0.956, 3.8), 1 / 3.8);
     for (const sideN of [-1, 1]) {
-      outline(
-        nd,
-        [
-          [sideN * 0.61, -0.36, -0.5],
-          [sideN * 0.61, 0.38, -0.5],
-          [sideN * 0.61, 0.38, 0.7],
-          [sideN * 0.61, -0.36, 0.7],
-        ],
-        0.007,
-        seam,
-      );
+      const edge = (z, up) =>
+        Array.from({ length: 7 }, (_, k) => {
+          const y = up ? -0.9 + k * 0.2 : 0.3 - k * 0.2;
+          return [sideN * flank(y), y, z];
+        });
+      outline(nd, [...edge(0.45, true), ...edge(1.4, false)], 0.007, seam);
       nd.add(new T.CircleGeometry(0.075, 12).rotateY((sideN * Math.PI) / 2), dark, [
-        sideN * 0.642,
-        0.05,
-        0.5,
+        sideN * 0.729,
+        -0.3,
+        0.9,
       ]);
     }
-    for (let j = 0; j < 12; j++)
-      nd.add(new T.SphereGeometry(0.009, 5, 3), metal, [0.63, -0.34 + j * 0.06, -0.42]);
+    for (let j = 0; j < 12; j++) {
+      const y = -0.75 + j * 0.06;
+      nd.add(new T.SphereGeometry(0.009, 5, 3), metal, [flank(y), y, 0.2]);
+    }
     nd.finish();
     bindings.push({
       node: g.name,
@@ -365,42 +598,44 @@ export function buildMV22(s) {
     });
     const rotor = group(g, `MV22-proprotor-${i + 1}`, [0, 0, 2.43]),
       rd = detailKit(rotor, rotor.name);
-    ellipsoid(rd, [0, 0, 0.08], [0.39, 0.39, 0.31], dark, 20);
-    rd.ring(0.28, 0.045, [0, 0, -0.1], metal);
+    // Large domed spinner, about 1.1 m across (line drawing); its crown stays near the
+    // published 6.73 m hover height.
+    rd.add(
+      new T.LatheGeometry(
+        [
+          [0.5, -0.27],
+          [0.54, -0.1],
+          [0.52, 0.05],
+          [0.45, 0.18],
+          [0.34, 0.3],
+          [0.2, 0.38],
+          [0.07, 0.42],
+          [0, 0.43],
+        ].map(([r, z]) => new T.Vector2(r, z)),
+        20,
+      ).rotateX(Math.PI / 2),
+      dark,
+    );
+    rd.ring(0.5, 0.03, [0, 0, -0.26], metal);
+    const sections = bladeSections(side),
+      upright = (bd) => ({
+        add: (geometry, material) => bd.add(geometry.rotateX(-Math.PI / 2), material),
+      });
     for (let b = 0; b < 3; b++) {
       const blade = group(rotor, `MV22-blade-${i + 1}-${b}`);
       blade.rotation.z = side * ((b * 2 * Math.PI) / 3 - Math.PI / 2);
-      const bd = detailKit(blade, blade.name),
-        shape = [
-          [-0.15, 0.3, 0],
-          [-0.25, 0.65, 0.04],
-          [-0.36, 1.3, 0.08],
-          [-0.35, 3.6, 0.08],
-          [-0.22, 5.55, 0.02],
-          [-0.06, 5.8, 0],
-          [0.22, 5.76, -0.025],
-          [0.37, 5.3, -0.06],
-          [0.39, 3.2, -0.13],
-          [0.23, 1.05, -0.12],
-          [0.14, 0.3, 0],
-        ].map(([x, y, z]) => [x * side, y, z]);
-      sheet(bd, shape, dark, [0, 0, 1]);
-      sheet(
-        bd,
-        shape.map(([x, y, z]) => [x, y, z - 0.045]),
-        dark,
-        [0, 0, -1],
+      const bd = detailKit(blade, blade.name);
+      // Grey root cuff out to about a fifth of the radius, then the dark grey composite blade.
+      loft(upright(bd), sections.slice(0, 4), paint, { smooth: true });
+      loft(upright(bd), sections.slice(3), seam, { smooth: true });
+      // Painted tip stripe across the upper surface, following the local twist.
+      const tip = sections[9].points;
+      bd.rod(
+        [tip[1][0], 5.35, -tip[1][1] + 0.006],
+        [tip[4][0], 5.35, -tip[4][1] + 0.006],
+        0.016,
+        metal,
       );
-      for (let j = 0; j < shape.length; j++) {
-        const a = shape[j],
-          c = shape[(j + 1) % shape.length];
-        quad(bd, a, c, [c[0], c[1], c[2] - 0.045], [a[0], a[1], a[2] - 0.045], dark, [
-          c[1] - a[1],
-          a[0] - c[0],
-          0,
-        ]);
-      }
-      bd.rod([side * -0.2, 5.55, 0.04], [side * 0.27, 5.55, 0.01], 0.022, metal);
       bd.rod([0, 0.3, 0], [0, 0.9, 0], 0.075, metal);
       bd.finish();
     }
@@ -438,9 +673,9 @@ export function buildMV22(s) {
   // Side hatches and circular cabin windows sit on the actual local skin.
   const skin = (side, y, z) => {
     let i = 0;
-    while (i < rings.length - 2 && z < rings[i + 1].z) i++;
-    const a = rings[i],
-      b = rings[i + 1],
+    while (i < hull.length - 2 && z < hull[i + 1].z) i++;
+    const a = hull[i],
+      b = hull[i + 1],
       t = (a.z - z) / (a.z - b.z),
       pts = a.points.map((p, j) => p.map((v, k) => v + (b.points[j][k] - v) * t));
     for (let j = 0; j < 7; j++) {
@@ -524,7 +759,34 @@ export function buildMV22(s) {
       dark,
       [1, 0, 0],
     );
-  ellipsoid(d, [0, 1.22, 8.18], [0.23, 0.23, 0.25], dark, 12);
+  // FLIR turret under the chin, and the retracted starboard refuelling probe: a faired tube
+  // low on the nose side whose nozzle stops just short of the radome tip (Balikatan photo).
+  ellipsoid(d, [0, 0.48, 8.2], [0.16, 0.16, 0.16], dark, 12);
+  const probe = [
+    [6.15, 0.02],
+    [6.45, 0.1],
+    [6.9, 0.125],
+    [7.7, 0.12],
+    [8.2, 0.1],
+    [8.4, 0.07],
+  ].map(([z, r]) => {
+    const [x] = skin(-1, 1.02, z);
+    return {
+      z,
+      points: Array.from({ length: 12 }, (_, j) => [
+        x - r * 0.45 + Math.sin((j * Math.PI) / 6) * r,
+        1.02 + Math.cos((j * Math.PI) / 6) * r,
+      ]),
+    };
+  });
+  loft(d, probe, paint);
+  const nozzle = probe.at(-1).points[0][0] + 0.03;
+  d.add(new T.CylinderGeometry(0.05, 0.055, 0.26, 12).rotateX(Math.PI / 2), metal, [
+    nozzle,
+    1.02,
+    8.5,
+  ]);
+  ellipsoid(d, [nozzle, 1.02, 8.64], [0.065, 0.065, 0.05], dark, 12);
   ellipsoid(d, [0, 3.37, 2], [0.055, 0.065, 0.08], d.red, 8);
   d.finish();
   const interior = cockpit(root, { paint, dark, metal, glass });
@@ -545,7 +807,7 @@ function cockpit(root, m) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'MV22-cabin'),
     ins = instrumentGeometry(cabin, 'MV22'),
-    { bindings, derived, ink, black, amber } = ins,
+    { bindings, derived, ink, black } = ins,
     pt = panelTools(d);
   const face = mat('MV22-panel', '#343f3f', { side: T.DoubleSide }),
     liner = mat('MV22-liner', '#808884', { side: T.DoubleSide }),
@@ -596,12 +858,13 @@ function cockpit(root, m) {
     py = (v) => 1.95 + ((630 - v) * 2.1) / 1310,
     z = 6.65,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
+  // Upper outer corners chamfered so they stay inside the window sills of the broader nose.
   const contour = [
     [70, 730],
-    [70, 540],
-    [120, 505],
-    [1280, 505],
-    [1340, 540],
+    [100, 575],
+    [150, 505],
+    [1260, 505],
+    [1310, 575],
     [1340, 730],
     [915, 730],
     [915, 805],
@@ -722,12 +985,13 @@ function cockpit(root, m) {
   d.text('AFCS', [0, 2.274, 6.65], 0.015, Math.PI, ink);
   d.box([0.15, 0.033, 0.06], [0, 2.32, 6.7], d.red);
   d.text('APU', [0, 2.32, 6.665], 0.015, Math.PI, ink);
+  // Radio boxes and the glareshield bar stop inside the side glazing (x 0.92 m at the sill).
   for (const side of [-1, 1]) {
-    beveledBox(d, [0.48, 0.09, 0.12], [side * 0.72, 2.23, 6.72], face, 0.01);
-    d.box([0.26, 0.027, 0.01], [side * 0.72, 2.23, 6.654], black);
-    pt.knob(side * 0.91, 2.23, 6.64, 0.02);
+    beveledBox(d, [0.42, 0.09, 0.12], [side * 0.67, 2.23, 6.72], face, 0.01);
+    d.box([0.26, 0.027, 0.01], [side * 0.67, 2.23, 6.654], black);
+    pt.knob(side * 0.84, 2.23, 6.64, 0.02);
   }
-  d.box([2.1, 0.055, 0.22], [0, 2.155, 6.78], m.dark);
+  d.box([1.7, 0.055, 0.22], [0, 2.155, 6.78], m.dark);
   // Lower central display and two independent keypads on a sloping pedestal.
   const console = group(cabin, 'MV22-console', [0.045, 1.6, 6.36]);
   console.rotation.x = 0.55;
@@ -813,7 +1077,8 @@ function cockpit(root, m) {
         }
     }
   od.finish();
-  d.box([1.9, 0.04, 1.85], [0, 3.05, 4.65], liner);
+  // Overhead liner below the cabin roof crown (it stood above the roof at its edges).
+  d.box([1.3, 0.04, 1.85], [0, 2.9, 4.65], liner);
   for (const side of [-1, 1]) {
     const x = side * 0.62,
       g = group(cabin, `MV22-seat-${side}`, [x, 1.05, 5.5]),
@@ -892,8 +1157,27 @@ function cockpit(root, m) {
     }
     bd.finish();
   }
-  d.box([2.25, 0.05, 3.15], [0, 1.04, 5.1], m.dark);
-  sheet(d, rect(0, 2.03, 2.45, 2.05, 3.55), liner, [0, 0, 1], [rect(0, 1.91, 0.7, 1.72, 3.55)]);
+  d.box([2.1, 0.05, 3.15], [0, 1.04, 5.1], m.dark);
+  // Cockpit bulkhead following the cabin section (its square corners stood out of the roof).
+  sheet(
+    d,
+    [
+      [-1.17, 1.005],
+      [1.17, 1.005],
+      [1.22, 1.3],
+      [1.22, 2.3],
+      [1.08, 2.75],
+      [0.68, 2.98],
+      [0, 3.02],
+      [-0.68, 2.98],
+      [-1.08, 2.75],
+      [-1.22, 2.3],
+      [-1.22, 1.3],
+    ].map(([x, y]) => [x, y, 3.55]),
+    liner,
+    [0, 0, 1],
+    [rect(0, 1.91, 0.7, 1.72, 3.55)],
+  );
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };
 }

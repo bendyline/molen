@@ -66,6 +66,7 @@ probe — a pinned backend is what makes a captured frame reproducible.
 | `./camera-track` | `molen/cameratrack@1`: `registerCameraTrackSchema` + `evaluateCameraTrack` for scripted camera moves |
 | `./vite` | `molenScripts()` — a Vite plugin that type-strips `*.ts?raw` scene scripts so the browser never sees TypeScript |
 | `./vehicles` | `createVehicleVisual`, `createParkedVehicleBatch`, `vehicleCameraPose` — car visuals and cockpit/chase views, the render half of `@bendyline/molen-kernel/vehicles` |
+| `./glass` | `createGlassVisual` — retained laminate cracks, released sheets and bounded glass fragments |
 | `./aircraft` | `createAircraftVisual`, `aircraftCameraPose` — animated airframe and instrumented cockpit, the render half of `@bendyline/molen-kernel/aircraft` |
 | `./instruments` | Named signal expressions and reusable wiring for calibrated dials, altimeters, attitude indicators, annunciators and seven-segment readouts; geometry stays in each model |
 | `./navigation` | `OrbitController`, `FlyController`, `WalkController` + `WalkCollision`, `FollowController`, `NavigationInputSource` (keys, gamepad, pointer gestures) and `createTouchJoystick` — camera navigation for `createViewer` hosts |

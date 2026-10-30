@@ -140,6 +140,76 @@ describe('aircraft section collisions', () => {
     expect(damaged.state.velocity[1]).toBeLessThan(healthy.state.velocity[1]);
   });
 
+  it('losing both wings makes the fuselage fall ballistically despite throttle and stick input', () => {
+    const state: AircraftStateData = {
+      ...airborne(),
+      velocity: [0, 0, 0],
+      rpm: 1,
+      pitchRate: 0.2,
+      rollRate: 0.5,
+      yawRate: -0.1,
+      crashed: true,
+      damage: {
+        'left-wing': { integrity: 0, detached: true },
+        'right-wing': { integrity: 0, detached: true },
+      },
+    };
+    const transform: TransformData = { pos: [0, 100, 0], rot: vehicleRotation(0, -1.4, 0) };
+    const idle = stepAircraft(transform, state, input, spec, 1, flat);
+    const powered = stepAircraft(
+      transform,
+      state,
+      { ...input, engine: true, power: 1, pitch: 1, roll: 1, yaw: 1 },
+      spec,
+      1,
+      flat,
+    );
+    expect(powered.transform).toEqual(idle.transform);
+    expect(powered.state.velocity).toEqual(idle.state.velocity);
+    expect(powered.state.velocity[1]).toBeLessThan(-9);
+    expect(powered.state.engines?.main?.thrust).toBe(0);
+    expect(powered.state.grounded).toBe(false);
+    // No contact means no contact damping: the falling wreck must still tumble.
+    expect(powered.state.pitchRate).toBe(state.pitchRate);
+    expect(powered.state.rollRate).toBe(state.rollRate);
+    expect(powered.state.yawRate).toBe(state.yawRate);
+  });
+
+  it.each([30, 60, 120])('a tumbling wingless wreck settles on the runway at %i Hz', (hz) => {
+    let result = {
+      transform: { pos: [0, 5, 0], rot: vehicleRotation(0, -1.4, 0.15) } as TransformData,
+      state: {
+        ...airborne(),
+        velocity: [0, -8, 0],
+        pitchRate: 0.1,
+        yawRate: 0.3,
+        rollRate: 2,
+        crashed: true,
+        damage: {
+          body: { integrity: 0, detached: false },
+          'left-wing': { integrity: 0, detached: true },
+          'right-wing': { integrity: 0, detached: true },
+        },
+      } as AircraftStateData,
+    };
+    for (let i = 0; i < 8 * hz; i++) {
+      result = stepAircraft(result.transform, result.state, input, spec, 1 / hz, flat);
+      if (i < 7 * hz) continue;
+      // Check a whole second: a rocking body passes through zero speed at each turning point.
+      expect(Math.hypot(...result.state.velocity)).toBeLessThan(0.1);
+      expect(
+        Math.hypot(result.state.pitchRate, result.state.yawRate ?? 0, result.state.rollRate),
+      ).toBeLessThan(0.08);
+      const clearance = Math.min(
+        ...aircraftCollisionProbes(result.transform, spec, result.state).map(
+          (probe) => probe.center[1] - probe.radius,
+        ),
+      );
+      expect(clearance).toBeGreaterThanOrEqual(-0.000001);
+      expect(clearance).toBeLessThan(0.01);
+    }
+  });
+
   it('does not mutate input state, rolls back at terrain gaps, and is invariant to contact order', () => {
     const start = airborne();
     const frozen = JSON.stringify(start);

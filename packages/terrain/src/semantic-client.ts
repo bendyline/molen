@@ -157,7 +157,9 @@ export function createTerrainWaterMaterial(
   const material = new THREE.MeshPhysicalMaterial(terrainWaterParameters(options));
   material.name = 'terrain-water';
   material.userData.terrainWaterMaterial = true;
-  material.onBeforeCompile = (shader): void => {
+  material.onBeforeCompile = (shader, renderer): void => {
+    // Renderer-wide hooks (a Molen renderer's cloud shadows) live on the prototype.
+    THREE.Material.prototype.onBeforeCompile.call(material, shader, renderer);
     Object.assign(shader.uniforms, {
       terrainWaterTime: state.time,
       terrainWaterWorldOrigin: state.worldOrigin,

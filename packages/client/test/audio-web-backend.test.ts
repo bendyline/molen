@@ -4,18 +4,43 @@ import { WebAudioBackend } from '../src/audio/web-audio-backend';
 function fixture(maxDecodedBytes: number) {
   const parameter = () => ({
     value: 0,
-    setValueAtTime() {},
-    setTargetAtTime() {},
+    setValueAtTime: vi.fn(),
+    setTargetAtTime: vi.fn(),
     linearRampToValueAtTime() {},
     cancelScheduledValues() {},
   });
   const sources: { onended?: () => void }[] = [];
+  const filters: {
+    frequency: ReturnType<typeof parameter>;
+    disconnect: ReturnType<typeof vi.fn>;
+  }[] = [];
+  const oscillators: {
+    frequency: ReturnType<typeof parameter>;
+    stop: ReturnType<typeof vi.fn>;
+    disconnect: ReturnType<typeof vi.fn>;
+  }[] = [];
   const context = {
     state: 'running',
     currentTime: 0,
     destination: {},
     close: async () => {},
     createGain: () => ({ gain: parameter(), connect() {}, disconnect() {} }),
+    createBiquadFilter: () => {
+      const filter = { frequency: parameter(), Q: parameter(), connect() {}, disconnect: vi.fn() };
+      filters.push(filter);
+      return filter;
+    },
+    createOscillator: () => {
+      const oscillator = {
+        frequency: parameter(),
+        connect() {},
+        start() {},
+        stop: vi.fn(),
+        disconnect: vi.fn(),
+      };
+      oscillators.push(oscillator);
+      return oscillator;
+    },
     createDynamicsCompressor: () => ({
       threshold: parameter(),
       knee: parameter(),
@@ -41,10 +66,49 @@ function fixture(maxDecodedBytes: number) {
   } as unknown as AudioContext;
   const load = vi.fn(async (_ref: string) => new ArrayBuffer(4));
   const backend = new WebAudioBackend({ context, provider: { load }, maxDecodedBytes });
-  return { backend, load, sources };
+  return { backend, load, sources, filters, oscillators };
 }
 
 describe('Web Audio decoded clip budget', () => {
+  it('modulates the rotor at audio rate and releases its oscillator after the voice ends', async () => {
+    const { backend, filters, oscillators, sources } = fixture(8000);
+    backend.apply([
+      {
+        op: 'start',
+        voice: 'rotor',
+        sound: 'rotor',
+        ref: 'rotor.mp3',
+        loop: true,
+        bus: 'sfx',
+        gain: 0.6,
+        pitch: 1,
+        tone: { lowpassHz: 2000, pulseHz: 8, pulseDepth: 0.2 },
+      },
+    ]);
+    // Changes during decode must reach the eventual source as well.
+    backend.apply([
+      { op: 'set', voice: 'rotor', tone: { lowpassHz: 5000, pulseHz: 8, pulseDepth: 0.5 } },
+    ]);
+    await backend.preload(['rotor.mp3']);
+    expect(filters).toHaveLength(1);
+    expect(oscillators).toHaveLength(1);
+    expect(filters[0]!.frequency.setTargetAtTime).toHaveBeenLastCalledWith(
+      5000,
+      0,
+      expect.any(Number),
+    );
+    expect(oscillators[0]!.frequency.setTargetAtTime).toHaveBeenLastCalledWith(
+      8,
+      0,
+      expect.any(Number),
+    );
+    backend.apply([{ op: 'stop', voice: 'rotor', fadeS: 0.1 }]);
+    sources[0]!.onended?.();
+    expect(oscillators[0]!.stop).toHaveBeenCalledOnce();
+    expect(filters[0]!.disconnect).toHaveBeenCalledOnce();
+    expect(backend.stats().voices).toBe(0);
+    backend.dispose();
+  });
   it('evicts the least recently used inactive audio as the listener travels', async () => {
     const { backend, load } = fixture(8000); // two 4000-byte PCM buffers
     await backend.preload(['forest']);

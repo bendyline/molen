@@ -133,7 +133,7 @@ for (const category of ['vehicles', 'cycles', 'watercraft', 'transit', 'aircraft
     });
     if (!cabin.ok) throw new Error(JSON.stringify(cabin));
     const detailCamera = {
-      'p-51': { position: [2.2, 2.5, 2.4], lookAt: [0.4, 1.8, 1.5], fov: 44 },
+      'p-51': { position: [2.2, 3.079, 1.776], lookAt: [0.4, 2.194, 1.057], fov: 44 },
       'oh-6': { position: [2, 1.8, -2], lookAt: [0.2, 1.5, -2], fov: 44 },
       airliner: { position: [4.4, 5, 11.4], lookAt: [1.7, 4.2, 11.4], fov: 50 },
     }[name];

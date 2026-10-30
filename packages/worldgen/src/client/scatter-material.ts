@@ -410,7 +410,9 @@ const GLSL = /* glsl */ `
 export function createScatterMaterial(): THREE.MeshStandardMaterial {
   const material = new THREE.MeshStandardMaterial(parameters());
   material.name = 'worldgen:models';
-  material.onBeforeCompile = (shader): void => {
+  material.onBeforeCompile = (shader, renderer): void => {
+    // Renderer-wide hooks (a Molen renderer's cloud shadows) live on the prototype.
+    THREE.Material.prototype.onBeforeCompile.call(material, shader, renderer);
     shader.vertexShader = `
       attribute float ${SCATTER_CANOPY_ATTRIBUTE};
       varying vec3 vScatterLocal;

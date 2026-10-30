@@ -167,6 +167,7 @@
             <option value="fair">Fair</option><option value="sunny">Sunny / clear</option>
             <option value="partly-cloudy">Partly cloudy</option>
             <option value="overcast">Overcast</option><option value="rain">Rain</option>
+            <option value="storm">Thunderstorms</option>
             <option value="snow">Snow</option><option value="fog">Fog</option>
             <option value="custom" disabled>Custom</option>
           </select>
@@ -174,9 +175,12 @@
         <p id="weather-status" role="status"></p>
         <details><summary>Weather details</summary>
           <div class="weather-options">
+            <label>Cloud type<select id="weather-type"><option value="cumulus">Cumulus</option><option value="stratocumulus">Stratocumulus</option><option value="stratus">Stratus</option><option value="cumulonimbus">Cumulonimbus</option></select></label>
             <label>Cloud cover (%)<input id="weather-coverage" type="range" min="0" max="100" step="1" /></label>
             <label>Cloud density (%)<input id="weather-density" type="range" min="0" max="100" step="1" /></label>
             <label>Cloud base (m)<input id="weather-base" type="number" min="-500" max="50000" step="100" /></label>
+            <label>Cloud depth (m)<input id="weather-thickness" type="number" min="50" max="15000" step="50" /></label>
+            <label>High cirrus (%)<input id="weather-cirrus" type="range" min="0" max="100" step="1" /></label>
             <label>Visibility (km)<input id="weather-visibility" type="number" min="0.1" max="100" step="0.01" /></label>
             <label>Precipitation<select id="weather-precipitation"><option value="none">None</option><option value="rain">Rain</option><option value="snow">Snow</option></select></label>
             <label>Precipitation intensity (%)<input id="weather-intensity" type="range" min="0" max="100" step="1" /></label>
@@ -229,10 +233,10 @@
       </fieldset>
       <p id="worldgen-status" role="status" hidden>Loading buildings…</p>
       <p id="navigation-status" role="status">Fly mode · Explore from above</p>
-      <fieldset id="aircraft-picker" aria-label="Visit practice airfield" style="display:flex;gap:7px;border:0;padding:0;margin-top:8px;pointer-events:auto">
-        <button type="button" data-aircraft="p51d" title="Visit the P-51D at the practice runway">P-51 Mustang</button>
-        <button type="button" data-aircraft="oh6" title="Visit the OH-6 helipad">OH-6</button>
-        <button type="button" data-aircraft="airliner" title="Visit the Bendy Small Airliner at the practice runway">Bendy Small Airliner</button>
+      <fieldset id="aircraft-picker" aria-label="Visit an aircraft" style="display:flex;gap:7px;border:0;padding:0;margin-top:8px;pointer-events:auto">
+        <button type="button" data-aircraft="p51d" title="Visit the P-51D">P-51 Mustang</button>
+        <button type="button" data-aircraft="oh6" title="Visit the OH-6">OH-6</button>
+        <button type="button" data-aircraft="airliner" title="Visit the Bendy Small Airliner">Bendy Small Airliner</button>
       </fieldset>
       <label style="display:block;pointer-events:auto;margin:8px 0">Aircraft catalog <select id="aircraft-catalog" aria-label="Choose an aircraft"><option value="">Choose aircraft…</option></select></label>
       <fieldset aria-label="Drive Bendy transit" style="display:flex;gap:7px;border:0;padding:0;pointer-events:auto">

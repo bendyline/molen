@@ -106,7 +106,7 @@ mangrove, deadwood, shrub, thicket, forb, vine, mat, and fallen-wood silhouettes
 parks, orchards, and wetlands. Regional refinements keep American cacti out of Old World wild
 desert profiles and avoid applying Australian eucalyptus profiles to New Zealand.
 
-Each of the 78 plant forms has a base, spreading, and slender preset, available in
+Each of the 88 plant forms has a base, spreading, and slender preset, available in
 every applicable habitat and crop rule. Optional `shapeSeed` varies branch/frond arrangements,
 crown contours and stem profiles independently of the placement seed. Dimensions, crown height,
 trunk lean and restrained foliage tones also vary; these are visual forms, not additional taxa.
@@ -149,7 +149,11 @@ is their interchangeable fallback and its `weight` still controls species propor
 selection uses an independent random stream, keeping positions, density, crop rows and ordinary
 quality thinning intact. A tile reserves a base form for each retained species before admitting
 extra variants into spare model slots. Unretained forms use that base instead of disappearing;
-Economy and distant views therefore show fewer forms without increasing draw limits. Variant
+Economy and distant views therefore show fewer forms without increasing draw limits. A species
+past the tile's model budget likewise takes its rule's most common retained species, so a tight
+budget simplifies a mixed stand rather than thinning it; a rule with no retained species, such
+as a lone crop row, still drops out. Weights therefore also decide what a tight budget shows:
+it keeps a tile's most numerous species, and minor ones appear only where it has room. Variant
 recipes must be suitable for the same habitat and placement-scale bounds as their parent.
 
 Mapped trees preserve source `species`, `genus`, `leafType`, `height`, and `crownDiameter` when

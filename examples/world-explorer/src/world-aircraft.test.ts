@@ -4,6 +4,7 @@ import { AircraftInput, AircraftState } from '@bendyline/molen-kernel/aircraft';
 import { Transform } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
+import type { AirportStart } from './airport-start';
 import { ENTITY_TYPES } from './test-content';
 import { aircraftBlocks, WorldAircraft } from './world-aircraft';
 
@@ -23,7 +24,9 @@ function controls(keys: string[] = []) {
 
 async function setup(
   loadModel: (id: string) => Promise<THREE.Object3D> = async () => new THREE.Group(),
-  terrainHeight: () => number = () => 0,
+  terrainHeight: () => number | undefined = () => 0,
+  airfield: AirportStart | 'practice' = 'practice',
+  canPlace?: () => boolean,
 ) {
   const root = new THREE.Group();
   let flight: WorldAircraft;
@@ -41,12 +44,74 @@ async function setup(
     [10000, 50, 20000],
     loadModel,
     ENTITY_TYPES,
+    undefined,
+    airfield,
+    canPlace,
   );
   flight.sync();
   await new Promise((resolve) => setTimeout(resolve, 0));
   return { root, vehicles, flight };
 }
 describe('world aircraft', () => {
+  it('uses real runway height, heading and rotated boarding points without a practice island', async () => {
+    let height: number | undefined;
+    let terrainReady = false;
+    const start: AirportStart = { label: 'Airport', position: [100, 200], yaw: Math.PI / 2 };
+    const { flight, vehicles } = await setup(
+      async () => new THREE.Group(),
+      () => height,
+      start,
+      () => terrainReady,
+    );
+    await flight.request('p51d');
+    expect(flight.ready).toBe(false);
+    expect(flight.has('p51d')).toBe(false);
+    height = 17;
+    flight.sync();
+    expect(flight.ready).toBe(false);
+    expect(flight.has('p51d')).toBe(false);
+    terrainReady = true;
+    flight.sync();
+    await flight.request('p51d');
+    expect(flight.center).toEqual([100, 200]);
+    expect(flight.spawnPosition('p51d')).toEqual([100, 17, 200]);
+    expect(flight.groundHeight(100, 200)).toBe(17);
+    expect(flight.object.getObjectByName('practice-airfield')).toBeUndefined();
+    const transform = vehicles.world.get('aircraft-p51d', Transform);
+    expect(transform?.rot).toEqual([0, Math.sin(Math.PI / 4), 0, Math.cos(Math.PI / 4)]);
+    expect(flight.enter(flight.visitPosition('p51d'))).toBe(true);
+    expect(flight.state?.yaw).toBeCloseTo(Math.PI / 2);
+    vehicles.world.patch('aircraft-p51d', AircraftState, { crashed: true });
+    flight.key('KeyR');
+    expect(flight.state?.yaw).toBeCloseTo(Math.PI / 2);
+    expect(flight.state?.crashed).toBe(false);
+    height = 19;
+    flight.render();
+    expect(vehicles.world.get('aircraft-p51d', Transform)?.pos[1]).toBe(19);
+    flight.dispose();
+    vehicles.dispose();
+  });
+
+  it('keeps only the selected airport aircraft on the runway', async () => {
+    const { flight, vehicles } = await setup(
+      async () => new THREE.Group(),
+      () => 12,
+      {
+        label: 'Airport',
+        position: [100, 200],
+        yaw: 0.7,
+      },
+    );
+    expect(vehicles.world.query({ name: 'aircraft' }).count()).toBe(0);
+    for (const kind of ['p51d', 'oh6', 'airliner', 'f_16b']) {
+      await flight.request(kind);
+      expect(flight.has(kind)).toBe(true);
+      expect(vehicles.world.query({ name: 'aircraft' }).count()).toBe(1);
+      expect(flight.spawnPosition(kind)).toEqual([100, 12, 200]);
+    }
+    flight.dispose();
+    vehicles.dispose();
+  });
   it('settles apron aircraft onto refined ground and hides other cockpits until approached', async () => {
     let height = 12;
     const type = 'molen.entities.aircraft.cessna_172s';
@@ -339,6 +404,77 @@ describe('world aircraft', () => {
     flight.dispose();
     vehicles.dispose();
     expect(root.children).toHaveLength(0);
+  });
+  it('ejects in flight and leaves the aircraft flying on hands-off', async () => {
+    const { vehicles, flight } = await setup();
+    flight.enter(flight.visitPosition('p51d'));
+    expect(flight.bailOut()).toBeUndefined();
+    flight.key('KeyI');
+    const pos = vehicles.world.get('aircraft-p51d', Transform)?.pos;
+    if (!pos) throw new Error('Aircraft transform disappeared');
+    vehicles.world.patch('aircraft-p51d', Transform, {
+      pos: [pos[0], 400, pos[2]],
+      rot: [0, 0, 0, 1],
+    });
+    vehicles.world.patch('aircraft-p51d', AircraftState, {
+      grounded: false,
+      velocity: [0, 0, 90],
+      gearPosition: 0,
+    });
+    flight.input(1 / 60, controls(['KeyW', 'ShiftLeft']));
+    expect(vehicles.exit()).toBeUndefined();
+    // Leaving for another mode never fires the seat.
+    expect(flight.bailOut(false)).toBeUndefined();
+    expect(flight.mountedKind).toBe('p51d');
+    const leaving = flight.bailOut();
+    if (!leaving || !('ejection' in leaving)) throw new Error('Expected an ejection');
+    expect(leaving.ejection.velocity).toEqual([0, 0, 90]);
+    expect(leaving.ejection.position[1]).toBeGreaterThan(400);
+    expect(flight.mountedKind).toBeUndefined();
+    const input = vehicles.world.get('aircraft-p51d', AircraftInput);
+    expect(input?.engine).toBe(true);
+    expect(input?.power).toBeGreaterThan(0);
+    expect([input?.pitch, input?.roll, input?.yaw]).toEqual([0, 0, 0]);
+    for (let i = 0; i < 60; i++) {
+      flight.input(1 / 60, controls());
+      vehicles.world.step();
+    }
+    expect(vehicles.world.get('aircraft-p51d', Transform)?.pos[2]).toBeGreaterThan(pos[2] + 60);
+    expect(flight.state).toBeUndefined();
+    flight.dispose();
+    vehicles.dispose();
+  });
+  it('ejects from a wreck still moving and climbs out of one at rest, however it lies', async () => {
+    const { vehicles, flight } = await setup();
+    flight.enter(flight.visitPosition('p51d'));
+    flight.key('KeyI');
+    // Upside down, engine still running, sliding on down the runway: the seat fires.
+    vehicles.world.patch('aircraft-p51d', Transform, { rot: [0, 0, 1, 0] });
+    vehicles.world.patch('aircraft-p51d', AircraftState, {
+      crashed: true,
+      grounded: true,
+      rpm: 0.8,
+      velocity: [0, 0, 30],
+    });
+    expect(vehicles.exit()).toBeUndefined();
+    expect(flight.status()).toContain('R recover · E eject');
+    // Come to rest on a roof, far above the terrain: climbed out of, not ejected from.
+    vehicles.world.patch('aircraft-p51d', AircraftState, {
+      grounded: false,
+      altitudeAGL: 40,
+      velocity: [0, 0, 1],
+    });
+    expect(vehicles.exit()).toBeUndefined();
+    expect(flight.status()).toContain('R recover · E climb out');
+    const leaving = flight.bailOut();
+    if (!leaving || !('wreck' in leaving)) throw new Error('Expected to climb out');
+    const pos = vehicles.world.get('aircraft-p51d', Transform)?.pos ?? [0, 0, 0];
+    expect(Math.hypot(leaving.wreck[0] - pos[0], leaving.wreck[2] - pos[2])).toBeLessThan(5);
+    expect(leaving.wreck[1]).toBe(pos[1]);
+    expect(flight.mountedKind).toBeUndefined();
+    expect(vehicles.world.get('aircraft-p51d', AircraftInput)?.engine).toBe(false);
+    flight.dispose();
+    vehicles.dispose();
   });
   it('recovers only after an impact and respects missing terrain before spawning', async () => {
     const { vehicles, flight } = await setup();

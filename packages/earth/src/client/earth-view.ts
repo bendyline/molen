@@ -104,6 +104,7 @@ import {
 import { EarthAircraft, type EarthFlightStatus } from './aircraft';
 import { EarthAirfields, type EarthPlace } from './airfields';
 import { EarthAirportPopulation } from './airport-population';
+import { createAirportTerrainGrading } from './airport-terrain';
 import { withEarthAirports } from './airports';
 import {
   ambientContentFromTypes,
@@ -1311,6 +1312,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ...(regionalGroundColor !== undefined ? { surfaceColor: regionalGroundColor } : {}),
             frame,
             ...budget,
+            ...(content?.airports
+              ? { transformHeightfield: createAirportTerrainGrading(content.airports) }
+              : {}),
             ...(elevationWorker !== undefined ? { elevationWorker } : {}),
             admission: renderer.admission,
             prepareObject: (object, prepareSignal, parent) =>
@@ -2730,6 +2734,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         () => {
           if (live()) renderer.setShadowQuality(shadowQuality());
         },
+        () => {
+          if (live()) renderer.setCloudQuality(earthPerformanceTier(level).clouds);
+        },
       ];
       tierSteps.length = 0;
       if (staged) tierSteps.push(...steps);
@@ -3018,6 +3025,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       );
       // Auto hold: a car at rest with no throttle stays put, even parked on a slope.
       const holding = frameInput.move.forward === 0 && Math.abs(vehicles.speed) < 0.6;
+      if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
       vehicles.update(dt, {
         throttle: frameInput.move.forward,
         steering: frameInput.move.right,
@@ -3060,6 +3068,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       if ((pilot?.recover ?? 0) > 0 && !aircraft.recover())
         emit('message', { text: 'Recover (R) works after an impact' });
       aircraft.input(dt, {
+        ...(frameInput.actuators ? { actuators: frameInput.actuators } : {}),
         pitch: -frameInput.move.forward,
         roll: frameInput.move.right,
         yaw: pilot?.yaw ?? 0,
@@ -3337,6 +3346,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               !current.vehicles.isBoat(current.vehicles.mountedId ?? '')) ||
             (mode === 'fly' && current?.aircraft?.view === 'cockpit'),
           ...(audioTerrainSample ? { terrain: audioTerrainSample } : {}),
+          surfaceAt: (x, z) => current?.audioTerrain.sample(x, z).surface,
           ...(skyUtc !== undefined
             ? { solarHour: (((skyUtc / 3600000 + audioLocation.longitude / 15) % 24) + 24) % 24 }
             : {}),

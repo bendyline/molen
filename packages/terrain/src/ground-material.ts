@@ -458,7 +458,9 @@ export function createTerrainGroundMaterial(
   };
   const material = new THREE.MeshStandardMaterial(parameters(options));
   material.name = 'terrain-ground';
-  material.onBeforeCompile = (shader): void => {
+  material.onBeforeCompile = (shader, renderer): void => {
+    // Renderer-wide hooks (a Molen renderer's cloud shadows) live on the prototype.
+    THREE.Material.prototype.onBeforeCompile.call(material, shader, renderer);
     Object.assign(shader.uniforms, {
       terrainGroundOrigin: state.origin,
       terrainGroundStrength: state.strength,
@@ -1124,7 +1126,9 @@ export function createTerrainPavementMaterial(
   };
   const material = new THREE.MeshStandardMaterial(pavementParameters(options));
   material.name = 'terrain-pavement';
-  material.onBeforeCompile = (shader): void => {
+  material.onBeforeCompile = (shader, renderer): void => {
+    // Renderer-wide hooks (a Molen renderer's cloud shadows) live on the prototype.
+    THREE.Material.prototype.onBeforeCompile.call(material, shader, renderer);
     Object.assign(shader.uniforms, {
       terrainGroundOrigin: state.origin,
       terrainGroundStrength: state.strength,

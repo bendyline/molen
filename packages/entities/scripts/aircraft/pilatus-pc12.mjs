@@ -19,6 +19,121 @@ import {
   wing,
 } from './mesh-kit.mjs';
 
+/** A tyre with rounded shoulders on a dished rim with a domed hub cap, the axle along X through
+ * `at`: radius r, width w. It replaces flat cylinder-and-disc wheels. */
+function wheel(d, at, r, w, tyre, rim, cap = rim) {
+  const lathe = (points, segments) =>
+    new T.LatheGeometry(
+      points.map(([x, y]) => new T.Vector2(x, y)),
+      segments,
+    ).rotateZ(Math.PI / 2);
+  d.add(
+    lathe(
+      // Listed from the -Y bead round to the +Y bead so the lathe faces point outward.
+      [
+        [r * 0.64, -w * 0.5],
+        [r * 0.88, -w * 0.5],
+        [r * 0.97, -w * 0.4],
+        [r, -w * 0.2],
+        [r, w * 0.2],
+        [r * 0.97, w * 0.4],
+        [r * 0.88, w * 0.5],
+        [r * 0.64, w * 0.5],
+      ],
+      20,
+    ),
+    tyre,
+    at,
+  );
+  for (const side of [-1, 1]) {
+    const mirror = (points) => (side > 0 ? points : points.map(([x, y]) => [x, -y]).reverse());
+    d.add(
+      lathe(
+        mirror([
+          [r * 0.64, w * 0.5],
+          [r * 0.6, w * 0.34],
+          [r * 0.3, w * 0.34],
+          [r * 0.22, w * 0.44],
+        ]),
+        16,
+      ),
+      rim,
+      at,
+    );
+    d.add(
+      lathe(
+        mirror(
+          Array.from({ length: 5 }, (_, k) => {
+            const a = (k * Math.PI) / 8;
+            return [r * 0.22 * Math.cos(a), w * 0.44 + r * 0.09 * Math.sin(a)];
+          }),
+        ),
+        12,
+      ),
+      cap,
+      at,
+    );
+  }
+}
+/** A rounded ogive spinner of base radius r and length l, along +Z from `at`. */
+function spinner(d, at, r, l, material) {
+  d.add(
+    new T.LatheGeometry(
+      Array.from({ length: 10 }, (_, k) => {
+        const t = k / 9;
+        return new T.Vector2(r * Math.pow(1 - t * t, 0.75), t * l);
+      }),
+      28,
+    ).rotateX(Math.PI / 2),
+    material,
+    at,
+  );
+}
+/** Front and back z of a side-view outline [[z, y], ...] at height y (0 width outside it). */
+function chordAt(outline, y) {
+  const zs = [];
+  for (let n = 0; n < outline.length; n++) {
+    const [za, ya] = outline[n],
+      [zb, yb] = outline[(n + 1) % outline.length];
+    if ((ya - y) * (yb - y) <= 0 && ya !== yb) zs.push(za + ((zb - za) * (y - ya)) / (yb - ya));
+  }
+  return zs.length ? [Math.max(...zs), Math.min(...zs)] : [0, 0];
+}
+/** Horizontal ribs [y, front z, back z] of a side-view outline, at every vertex height. */
+function outlineRibs(outline) {
+  const ys = [...new Set(outline.map(([, y]) => y))].sort((a, b) => a - b),
+    low = ys[0] + 0.004,
+    high = ys.at(-1) - 0.004;
+  return [low, ...ys.filter((y) => y > low && y < high), high].map((y) => [
+    y,
+    ...chordAt(outline, y),
+  ]);
+}
+/** A symmetric fin or rudder lofted through ribs [y, front z, back z, half thickness at 30 %
+ * chord, front-face half width, back-face half width] and closed at both ends: a tapered
+ * section instead of a constant-thickness slab. */
+function foil(d, ribs, material) {
+  const rings = ribs.map(([y, front, back, half, lead, trail]) => {
+    const c = front - back,
+      right = [
+        [lead, front],
+        [half, front - c * 0.3],
+        [trail + (half - trail) * 0.45, front - c * 0.75],
+        [trail, back],
+      ];
+    return [...right, ...[...right].reverse().map(([x, z]) => [-x, z])].map(([x, z]) => [x, y, z]);
+  });
+  for (let i = 0; i < rings.length - 1; i++)
+    for (let j = 0; j < 8; j++) {
+      const q = [rings[i][j], rings[i + 1][j], rings[i + 1][(j + 1) % 8], rings[i][(j + 1) % 8]],
+        mid = (k) => q.reduce((sum, p) => sum + p[k], 0) / 4,
+        axis = (ribs[i][1] + ribs[i][2] + ribs[i + 1][1] + ribs[i + 1][2]) / 4;
+      quad(d, ...q, material, [mid(0), 0, mid(2) - axis]);
+    }
+  sheet(d, rings[0], material, [0, -1, 0]);
+  sheet(d, rings.at(-1), material, [0, 1, 0]);
+}
+
 export const pc12Frame = () => ({
   heli: false,
   fighter: false,
@@ -46,6 +161,15 @@ export function buildPC12(s) {
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.14,
+    }),
+    // Tinted passenger windows: every NGX photo shows them as dark rounded rectangles.
+    tinted = mat('PC12-cabin-glass', '#24313a', {
+      transparent: true,
+      opacity: 0.6,
+      depthWrite: false,
+      side: T.DoubleSide,
+      metalness: 0.35,
+      roughness: 0.1,
     });
   const d = detailKit(root, 'PC12-shell'),
     bindings = [],
@@ -69,15 +193,28 @@ export function buildPC12(s) {
     [-7.65, 0.09, 2.14, 2.27],
     [-8.05, 0.012, 2.2, 2.23],
   ];
-  const rings = stations.map(([z, w, b, t]) => {
-    const h = t - b;
+  // From the windshield header aft the upper section is an egg-shaped arch (NGX front view):
+  // the window band (points 2-3) leans in about 16 degrees and the crown rounds over it; the
+  // cowl and windshield-base rings keep their measured sections.
+  const rings = stations.map(([z, w, b, t], i) => {
+    const h = t - b,
+      upper =
+        i < 3
+          ? [
+              [w * 0.58, t - h * 0.025],
+              [w * 0.9, t - h * 0.115],
+              [w, t - h * 0.28],
+            ]
+          : [
+              [w * 0.46, t - h * 0.03],
+              [w * 0.76, t - h * 0.13],
+              [w * 0.98, b + h * 0.52],
+            ];
     return {
       z,
       points: [
         [0, t],
-        [w * 0.58, t - h * 0.025],
-        [w * 0.9, t - h * 0.115],
-        [w, t - h * 0.28],
+        ...upper,
         [w, b + h * 0.25],
         [w * 0.86, b + h * 0.06],
         [w * 0.5, b],
@@ -85,20 +222,55 @@ export function buildPC12(s) {
         [-w * 0.5, b],
         [-w * 0.86, b + h * 0.06],
         [-w, b + h * 0.25],
-        [-w, t - h * 0.28],
-        [-w * 0.9, t - h * 0.115],
-        [-w * 0.58, t - h * 0.025],
+        ...upper.reverse().map(([x, y]) => [-x, y]),
       ],
     };
   });
   const p = (i, j) => [...rings[i].points[j], rings[i].z];
   loft(d, rings, paint, {
+    caps: false,
     skip: (i, j) =>
+      i < 2 ||
       (i === 2 && [0, 1, 2, 11, 12, 13].includes(j)) ||
-      (i >= 3 && i <= 8 && [1, 2, 3, 10, 11, 12].includes(j)) ||
+      (i >= 3 && i <= 8 && [2, 11].includes(j)) ||
       (i === 2 && [3, 10].includes(j)) ||
       (i >= 1 && i < 11 && [4, 9].includes(j)),
   });
+  // Rounded engine cowl: 28-point sections blend from the cabin section at the windshield
+  // base (shared exactly with ring 2) towards an ellipse at the spinner bulkhead.
+  const noseRings = [0.75, 0.5, 0].map((k, i) => {
+    const [z, w, b, t] = stations[i],
+      c = (t + b) / 2,
+      h = (t - b) / 2;
+    return {
+      z,
+      points: rings[i].points
+        .flatMap((q, j, a) => {
+          const n = a[(j + 1) % a.length];
+          return [q, [(q[0] + n[0]) / 2, (q[1] + n[1]) / 2]];
+        })
+        .map(([x, y]) => {
+          const a = Math.atan2((y - c) / h, x / w);
+          return [x * (1 - k) + w * Math.cos(a) * k, y * (1 - k) + (c + h * Math.sin(a)) * k];
+        }),
+    };
+  });
+  // The lower livery band (cabin faces 4 and 9) continues forward onto the cowl.
+  const band = (i, j) => i === 1 && [8, 9, 18, 19].includes(j);
+  loft(d, noseRings, paint, { caps: false, skip: band });
+  loft(d, noseRings, blue, { caps: false, skip: (i, j) => !band(i, j) });
+  sheet(
+    d,
+    noseRings[0].points.map((q) => [...q, noseRings[0].z]),
+    paint,
+    [0, 0, 1],
+  );
+  sheet(
+    d,
+    rings.at(-1).points.map((q) => [...q, rings.at(-1).z]),
+    paint,
+    [0, 0, -1],
+  );
   for (const j of [0, 1, 12, 13])
     quad(d, p(2, j), p(3, j), p(3, (j + 1) % 14), p(2, (j + 1) % 14), glass, [0, 1, 1]);
   for (const j of [3, 10])
@@ -120,74 +292,128 @@ export function buildPC12(s) {
   for (const i of [2, 3])
     outline(d, [p(i, 12), p(i, 13), p(i, 0), p(i, 1), p(i, 2)], 0.018, dark, false);
   d.rod(p(2, 0), p(3, 0), 0.016, dark);
-  const sample = (z, n) => {
-    for (let i = 0; i < stations.length - 1; i++)
-      if (z <= stations[i][0] && z >= stations[i + 1][0]) {
-        const t = (stations[i][0] - z) / (stations[i][0] - stations[i + 1][0]);
-        return stations[i][n] * (1 - t) + stations[i + 1][n] * t;
-      }
-    return stations.at(-1)[n];
+  // Skin half width at a station and height, so windows, doors and trim follow the curved side.
+  const ringAt = (z) => {
+    let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+    if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+    const a = rings[i].points,
+      b = rings[i + 1].points,
+      u = (z - rings[i].z) / (rings[i + 1].z - rings[i].z);
+    return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
   };
-  for (const side of [-1, 1]) {
-    const at = (z, y) => [side * (sample(z, 1) + 0.001), y, z];
-    const passenger = [];
-    // Five NGX rectangles on starboard; the port airstair replaces the forwardmost window.
-    for (const z of side === 1 ? [0.67, 0.075, -0.69, -1.68] : [1.34, 0.67, 0.075, -0.69, -1.68]) {
-      const w = 0.29,
-        h = 0.39,
-        r = 0.055,
-        y = 2.27;
-      passenger.push(
-        [
-          [z - w / 2 + r, y + h / 2],
-          [z + w / 2 - r, y + h / 2],
-          [z + w / 2, y + h / 2 - r],
-          [z + w / 2, y - h / 2 + r],
-          [z + w / 2 - r, y - h / 2],
-          [z - w / 2 + r, y - h / 2],
-          [z - w / 2, y - h / 2 + r],
-          [z - w / 2, y + h / 2 - r],
-        ].map((q) => at(...q)),
-      );
+  // Profile parameter v of height y: right-side point k plus the fraction towards point k + 1.
+  const toV = (z, y) => {
+    const q = ringAt(z);
+    for (let k = 0; k < 7; k++)
+      if (y <= q[k][1] && y >= q[k + 1][1]) return k + (y - q[k][1]) / (q[k + 1][1] - q[k][1] || 1);
+    return y > q[0][1] ? 0 : 7;
+  };
+  const onBand = (side, z, v) => {
+    const q = ringAt(z),
+      k = Math.min(6, Math.floor(v)),
+      f = v - k;
+    return [
+      side * (q[k][0] + (q[k + 1][0] - q[k][0]) * f),
+      q[k][1] + (q[k + 1][1] - q[k][1]) * f,
+      z,
+    ];
+  };
+  const halfWidth = (z, y) => onBand(1, z, toV(z, y))[0];
+  // The leaning window band (points 2-3, header ring to the tail cone) around convex (z, v)
+  // apertures, by vertical decomposition: every sub-column between window corners and stations
+  // leaves quads bounded by the band edges or window edges, all on the loft's own facet.
+  const windowBand = (side, windows) => {
+    const edges = windows.flatMap((w) => w.map((a, n) => [a, w[(n + 1) % w.length]]));
+    for (let i = 3; i <= 8; i++) {
+      const z0 = rings[i + 1].z,
+        z1 = rings[i].z,
+        cuts = [z0, z1];
+      for (const [[sa]] of edges) if (sa > z0 && sa < z1) cuts.push(sa);
+      cuts.sort((a, b) => a - b);
+      for (let c = 0; c < cuts.length - 1; c++) {
+        const sa = cuts[c],
+          sb = cuts[c + 1],
+          sm = (sa + sb) / 2;
+        if (sb - sa < 1e-6) continue;
+        const spans = [];
+        for (const w of windows) {
+          const lines = w
+            .map((a, n) => [a, w[(n + 1) % w.length]])
+            .filter(([[s0], [s1]]) => (s0 - sm) * (s1 - sm) < 0)
+            .map(
+              ([[s0, v0], [s1, v1]]) =>
+                (s) =>
+                  v0 + ((v1 - v0) * (s - s0)) / (s1 - s0),
+            );
+          if (lines.length === 2)
+            spans.push(lines[0](sm) < lines[1](sm) ? lines : [lines[1], lines[0]]);
+        }
+        spans.sort((a, b) => a[0](sm) - b[0](sm));
+        let low = () => 2;
+        for (const [f, g] of [...spans, [() => 3, () => 3]]) {
+          if (f(sm) > low(sm) + 1e-9)
+            quad(
+              d,
+              onBand(side, sa, low(sa)),
+              onBand(side, sb, low(sb)),
+              onBand(side, sb, f(sb)),
+              onBand(side, sa, f(sa)),
+              paint,
+              [side, 0, 0],
+            );
+          low = g;
+        }
+      }
     }
-    const pilot = [
-      [2.38, 2.63],
-      [2.28, 2.68],
-      [2.04, 2.64],
+  };
+  // A (z, v) aperture on the skin, split where it crosses stations.
+  const aperture = (side, w) =>
+    w.flatMap(([s0, v0], n) => {
+      const [s1, v1] = w[(n + 1) % w.length],
+        ts = [0];
+      for (const r of rings) if ((s0 - r.z) * (s1 - r.z) < 0) ts.push((r.z - s0) / (s1 - s0));
+      return ts
+        .sort((a, b) => a - b)
+        .map((t) => onBand(side, s0 + (s1 - s0) * t, v0 + (v1 - v0) * t));
+    });
+  // NGX cabin windows: rounded rectangles with large corner radii (AERO 2025 door photo), at the
+  // EI-NGX side-photo stations; the starboard over-wing exit frames the second window (HB-FJL).
+  // The pilot window stays under the crown bend.
+  const rounded = (z, y, w, h, r) =>
+    [
+      [1, 1],
+      [-1, 1],
+      [-1, -1],
+      [1, -1],
+    ].flatMap(([sz, sy], c) =>
+      [0, 1, 2, 3].map((k) => {
+        const a = ((c + k / 3) * Math.PI) / 2;
+        return [z + sz * (w / 2 - r) + r * Math.cos(a), y + sy * (h / 2 - r) + r * Math.sin(a)];
+      }),
+    );
+  for (const side of [-1, 1]) {
+    const at = (z, y) => [side * (halfWidth(z, y) + 0.001), y, z];
+    // Five NGX rectangles on starboard; the port airstair replaces the forwardmost window.
+    const windows = (
+      side === 1 ? [0.77, 0.175, -0.59, -1.58] : [1.44, 0.77, 0.175, -0.59, -1.58]
+    ).map((z) => rounded(z, 2.27, 0.3, 0.39, 0.105));
+    windows.unshift([
+      [2.38, 2.56],
+      [2.28, 2.6],
+      [2.04, 2.58],
       [1.98, 2.26],
       [2.16, 2.18],
       [2.38, 2.23],
-    ].map((q) => at(...q));
-    const holes = [pilot, ...passenger];
-    const edge = [];
-    const upper = (i) => [side * stations[i][1], stations[i][3] - 0.12, stations[i][0]];
-    for (let i = 3; i <= 9; i++) edge.push(upper(i));
-    for (let i = 9; i >= 3; i--) edge.push(p(i, side === 1 ? 4 : 10));
-    sheet(d, edge, paint, [side, 0, 0], holes);
-    for (let i = 3; i < 9; i++)
-      quad(
-        d,
-        p(i, side === 1 ? 1 : 13),
-        p(i + 1, side === 1 ? 1 : 13),
-        upper(i + 1),
-        upper(i),
-        paint,
-        [side, 1, 0],
-      );
-    // Close the shoulder where the tall window band rejoins the original loft section.
-    for (const i of [3, 9])
-      sheet(
-        d,
-        [p(i, side === 1 ? 1 : 13), p(i, side === 1 ? 2 : 12), p(i, side === 1 ? 3 : 11), upper(i)],
-        paint,
-        [0, 0, i === 3 ? 1 : -1],
-      );
-    for (const h of holes) {
-      sheet(d, h, glass, [side, 0, 0]);
+    ]);
+    const apertures = windows.map((w) => w.map(([z, y]) => [z, toV(z, y)]));
+    windowBand(side, apertures);
+    for (const [n, w] of apertures.entries()) {
+      const h = aperture(side, w);
+      sheet(d, h, n ? tinted : glass, [side, 0, 0]);
       outline(d, h, 0.012, dark);
       outline(
         d,
-        h.map((v) => [v[0] + side * 0.003, v[1], v[2]]),
+        w.map(([z, v]) => onBand(side, z, v)).map((q) => [q[0] + side * 0.004, q[1], q[2]]),
         0.006,
         metal,
       );
@@ -199,14 +425,22 @@ export function buildPC12(s) {
             [1.33, 1.65, 0.61, 1.35],
             [-1.96, 1.94, 1.35, 1.32],
           ]
-        : [[-0.22, 2.2, 0.49, 0.68]];
+        : [[0.77, 2.2, 0.49, 0.68]];
     for (const [z, y, w, h] of doors) {
-      const edge = [
+      const corners = [
         [z - w / 2, y - h / 2],
         [z + w / 2, y - h / 2],
         [z + w / 2, y + h / 2],
         [z - w / 2, y + h / 2],
-      ].map((q) => at(...q));
+      ];
+      // Seams are subdivided so they stay on the curved upper skin.
+      const edge = corners.flatMap(([za, ya], n) => {
+        const [zb, yb] = corners[(n + 1) % 4],
+          steps = Math.max(1, Math.ceil(Math.abs(yb - ya) / 0.06));
+        return Array.from({ length: steps }, (_, k) =>
+          at(za + ((zb - za) * k) / steps, ya + ((yb - ya) * k) / steps),
+        );
+      });
       outline(d, edge, 0.0025, dark);
       d.rod(at(z - 0.08, y - 0.2), at(z + 0.08, y - 0.2), 0.012, metal);
       for (const v of [-0.28, 0.28]) d.box([0.025, 0.023, 0.1], at(z + v, y + h / 2), metal);
@@ -219,7 +453,7 @@ export function buildPC12(s) {
         d.add(new T.SphereGeometry(0.0023, 5, 3), metal, at(z, y));
     }
     // Lower blue livery, terminating below the glazed aperture band.
-    for (let i = 1; i < 11; i++)
+    for (let i = 2; i < 11; i++)
       quad(
         d,
         p(i, side === 1 ? 4 : 10),
@@ -237,22 +471,19 @@ export function buildPC12(s) {
   for (const i of [1, 2, 4, 8, 9, 10, 11])
     outline(
       d,
-      rings[i].points.map((q) => [...q, rings[i].z]),
+      (i < 2 ? noseRings : rings)[i].points.map((q) => [...q, rings[i].z]),
       0.0017,
       metal,
     );
-  ellipsoid(d, [0, 1.34, 5.15], [0.24, 0.1, 0.17], dark, 20);
-  outline(
-    d,
-    [
-      [-0.25, 1.34, 5.14],
-      [0, 1.24, 5.26],
-      [0.25, 1.34, 5.14],
-    ],
-    0.014,
-    metal,
-    false,
-  );
+  // Chin intake under the spinner: a white scoop fairing with a dark crescent mouth and a rolled
+  // lip (EJ-VAIS head-on and N49GX front 3/4 photos); it was a dark egg.
+  ellipsoid(d, [0, 1.36, 5.1], [0.25, 0.11, 0.17], paint, 20);
+  const mouth = Array.from({ length: 24 }, (_, i) => {
+    const a = (i * Math.PI) / 12;
+    return [Math.cos(a) * 0.2, 1.37 + Math.sin(a) * (a < Math.PI ? 0.05 : 0.07), 5.29];
+  });
+  sheet(d, mouth, dark, [0, 0, 1]);
+  outline(d, mouth, 0.016, metal);
   // Low wing: forward edge nearly unswept, tapered trailing edge, upturned swept tips.
   for (const side of [-1, 1]) {
     const full = [
@@ -260,7 +491,7 @@ export function buildPC12(s) {
       [2.265, 1.25, 0.83, -1.1, 0.14],
       [5.75, 1.55, 0.65, -0.72, 0.1],
       [7.55, 1.71, 0.57, -0.55, 0.07],
-      [7.86, 1.75, 0.54, -0.53, 0.045],
+      [7.7, 1.728, 0.555, -0.54, 0.055],
     ];
     wing(
       d,
@@ -310,12 +541,14 @@ export function buildPC12(s) {
     wing(
       d,
       [
-        [side * 7.86, 1.75, 0.54, -0.53, 0.045],
-        [side * 8.02, 1.84, 0.32, -0.62, 0.032],
-        [side * 8.155, 2.07, -0.2, -0.76, 0.014],
+        [side * 7.7, 1.728, 0.555, -0.54, 0.055],
+        [side * 7.94, 1.83, 0.4, -0.62, 0.034],
+        [side * 8.155, 1.99, 0.0, -0.76, 0.016],
       ],
       paint,
     );
+    // Canted NGX winglet (front photo: 0.45 m out, 0.26 m up) springing from a round fairing.
+    ellipsoid(d, [side * 7.7, 1.732, 0.12], [0.07, 0.07, 0.48], paint, 14);
     for (const x of [1.5, 3.5, 5.3]) {
       ellipsoid(d, [side * x, 1.06 + (x - 0.7) * 0.088, -0.7], [0.065, 0.11, 0.35], paint, 12);
       d.rod(
@@ -337,7 +570,7 @@ export function buildPC12(s) {
     }
     for (const x of [6.2, 7.3])
       d.rod([side * x, 1.63, -0.64], [side * x, 1.63, -0.83], 0.002, dark);
-    ellipsoid(d, [side * 8.05, 1.9, -0.5], [0.045, 0.035, 0.075], side === 1 ? d.red : d.green, 10);
+    ellipsoid(d, [side * 7.7, 1.732, 0.58], [0.04, 0.04, 0.05], side === 1 ? d.red : d.green, 10);
     ellipsoid(d, [side * 1.54, 1.02, -0.45], [0.09, 0.045, 0.035], d.light, 12);
     // Swept T-tail with real elevator separation.
     wing(
@@ -378,18 +611,6 @@ export function buildPC12(s) {
     sheet(
       d,
       [
-        [side * 0.1, 2.64, -3.5],
-        [side * 0.065, 3.34, -6.12],
-        [side * 0.05, 4.21, -7.05],
-        [side * 0.035, 4.21, -8.25],
-        [side * 0.09, 2.05, -7.28],
-      ],
-      paint,
-      [side, 0, 0],
-    );
-    sheet(
-      d,
-      [
         [side * 0.22, 1.55, -4.25],
         [side * 0.13, 1.81, -6.8],
         [side * 0.32, 1.43, -6.5],
@@ -398,20 +619,50 @@ export function buildPC12(s) {
       [side, 0, 0],
     );
   }
+  // Fin and rudder are tapered sections (10 % of the combined chord, at most 0.2 m thick at the
+  // dorsal root), not open double sheets; the fixed fin ends at the rudder hinge.
+  const fin = [
+      [-3.5, 2.64],
+      [-6.12, 3.34],
+      [-7.05, 4.21],
+      [-8.0, 4.21],
+      [-7.3, 2.1],
+      [-7.28, 2.05],
+    ],
+    rudderOutline = [
+      [0, 0],
+      [-0.7, 2.11],
+      [-0.95, 2.11],
+      [-0.22, 0.05],
+    ],
+    chordOf = (outline, y) => {
+      const [front, back] = chordAt(outline, y);
+      return front - back;
+    },
+    finHalf = (y) =>
+      Math.min(0.1, Math.max(0.03, 0.05 * (chordOf(fin, y) + chordOf(rudderOutline, y - 2.1))));
+  foil(
+    d,
+    outlineRibs(fin).map(([y, f, b]) => [
+      y,
+      f,
+      b,
+      finHalf(y),
+      finHalf(y) * 0.35,
+      finHalf(y) * 0.55,
+    ]),
+    paint,
+  );
   const rudder = group(root, 'PC12-rudder', [0, 2.1, -7.3]),
     rd = detailKit(rudder, rudder.name);
-  for (const side of [-1, 1])
-    sheet(
-      rd,
-      [
-        [side * 0.035, 0, 0],
-        [side * 0.02, 2.11, -0.7],
-        [side * 0.02, 2.11, -0.95],
-        [side * 0.035, 0.05, -0.22],
-      ],
-      paint,
-      [side, 0, 0],
-    );
+  foil(
+    rd,
+    outlineRibs(rudderOutline).map(([y, f, b]) => {
+      const h = finHalf(y + 2.1);
+      return [y, f, b, h * 0.5, h * 0.55, 0.003];
+    }),
+    paint,
+  );
   rd.finish();
   bindings.push({
     node: rudder.name,
@@ -440,7 +691,7 @@ export function buildPC12(s) {
   // 105-inch five-blade scimitar Hartzell, unlike the older four-blade drawing.
   const prop = group(root, 'PC12-propeller', [0, 1.69, 5.29]),
     pd = detailKit(prop, prop.name);
-  pd.add(new T.ConeGeometry(0.26, 0.56, 28).rotateX(Math.PI / 2), metal, [0, 0, 0.28]);
+  spinner(pd, [0, 0, 0], 0.26, 0.56, metal);
   for (let i = 0; i < 5; i++) {
     const g = group(prop, `PC12-blade-${i}`);
     g.rotation.z = (i * Math.PI * 2) / 5;
@@ -478,19 +729,7 @@ export function buildPC12(s) {
     dd.rod([0, 0, 0], [0, -h + 0.18, 0.1], 0.043, metal);
     dd.rod([0, -h + 0.18, 0.1], [0, -h, 0], 0.035, metal);
     dd.rod([0, -0.1, 0.2], [0, -h + 0.13, -0.12], 0.018, dark);
-    dd.add(new T.CylinderGeometry(r, r, 0.19, 28).rotateZ(Math.PI / 2), rubber, [0, -h, 0]);
-    for (const sign of [-1, 1]) {
-      dd.add(new T.CircleGeometry(r * 0.61, 20).rotateY((sign * Math.PI) / 2), paint, [
-        sign * 0.097,
-        -h,
-        0,
-      ]);
-      dd.add(new T.CircleGeometry(0.065, 12).rotateY((sign * Math.PI) / 2), metal, [
-        sign * 0.1,
-        -h,
-        0,
-      ]);
-    }
+    wheel(dd, [0, -h, 0], r, 0.19, rubber, paint, metal);
     if (i) dd.box([0.018, 0.53, 0.22], [Math.sign(x) * 0.07, -0.22, 0.015], paint);
     else dd.box([0.16, 0.36, 0.018], [0, -0.24, 0.13], paint);
     dd.finish();

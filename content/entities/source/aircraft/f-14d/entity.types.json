@@ -74,7 +74,20 @@
               ]
             ],
             "visual": {
-              "rotors": [],
+              "rotors": [
+                {
+                  "node": "engine-1-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                },
+                {
+                  "node": "engine-2-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-2"
+                }
+              ],
               "gearNodes": [],
               "flaps": [],
               "ailerons": [],
@@ -239,6 +252,88 @@
                     "axis": "z",
                     "scale": -1.35,
                     "offset": 1.35
+                  },
+                  {
+                    "node": "canopy-opening",
+                    "source": "canopy",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.85
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.12,
+                        0
+                      ],
+                      [
+                        0.45,
+                        6
+                      ],
+                      [
+                        1,
+                        20
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "arresting-hook",
+                    "source": "tailHook",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.7
+                  },
+                  {
+                    "node": "speed-brake-1--1--1",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.95
+                  },
+                  {
+                    "node": "speed-brake-1--1-1",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.95
+                  },
+                  {
+                    "node": "speed-brake-1-1-0",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.95
                   }
                 ],
                 "derived": {
@@ -356,6 +451,34 @@
                     "component": "aircraftState",
                     "path": [
                       "gearPosition"
+                    ]
+                  },
+                  "canopy": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "canopy"
+                    ]
+                  },
+                  "eject": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "eject"
+                    ]
+                  },
+                  "tailHook": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "tailHook"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -7833,7 +7956,8 @@
                 "rudderBlanking": 0.97,
                 "pitchBlanking": 0.98,
                 "aileronReversal": 0.9
-              }
+              },
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
@@ -7892,7 +8016,22 @@
                 "afterburnerThrust": 123660.56090533998,
                 "afterburnerDetent": 0.85
               }
-            ]
+            ],
+            "actuators": {
+              "canopy": {
+                "seconds": 3
+              },
+              "eject": {
+                "seconds": 1.2,
+                "mode": "latch"
+              },
+              "tailHook": {
+                "seconds": 2.5
+              },
+              "speedBrake": {
+                "seconds": 1.6
+              }
+            }
           }
         },
         "aircraftInput": {
@@ -7927,7 +8066,13 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {
+            "canopy": 0,
+            "eject": 0,
+            "tailHook": 0,
+            "speedBrake": 0
+          }
         },
         "mountable": {
           "seats": [
@@ -8053,6 +8198,34 @@
               "component": "aircraftInput",
               "path": [
                 "power"
+              ]
+            },
+            "canopy": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "canopy"
+              ]
+            },
+            "eject": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "eject"
+              ]
+            },
+            "tailHook": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "tailHook"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -15535,6 +15708,88 @@
               "axis": "z",
               "scale": -1.35,
               "offset": 1.35
+            },
+            {
+              "node": "canopy-opening",
+              "source": "canopy",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.85
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.12,
+                  0
+                ],
+                [
+                  0.45,
+                  6
+                ],
+                [
+                  1,
+                  20
+                ]
+              ]
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "arresting-hook",
+              "source": "tailHook",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.7
+            },
+            {
+              "node": "speed-brake-1--1--1",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.95
+            },
+            {
+              "node": "speed-brake-1--1-1",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.95
+            },
+            {
+              "node": "speed-brake-1-1-0",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.95
             }
           ]
         }

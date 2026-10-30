@@ -12,6 +12,7 @@ import {
   finishAircraftCockpit,
   writeCockpitTextures,
 } from './aircraft/cockpit-surfaces.mjs';
+import { completeAircraftArticulation } from './aircraft-articulation.mjs';
 import { buildAircraft } from './aircraft-geometry.mjs';
 import { tuneAircraftPerformance } from './aircraft-performance.mjs';
 
@@ -202,6 +203,7 @@ for (const s of aircraft) {
       };
   }
   tuneAircraftPerformance(s.id, spec);
+  completeAircraftArticulation(model, spec, s, modelSignals);
   completeCockpitControls(model, spec, f);
   finishAircraftCockpit(model, spec, s.slug);
   const bytes = embedCockpitTextures(
@@ -256,7 +258,11 @@ for (const s of aircraft) {
     grounded: true,
     crashed: false,
     waitingForTerrain: false,
-    ...(spec.model === 'airplane' ? { gearPosition: 1, flapPosition: 0 } : {}),
+    gearPosition: 1,
+    ...(spec.model === 'airplane' ? { flapPosition: 0 } : {}),
+    actuators: Object.fromEntries(
+      Object.entries(spec.actuators ?? {}).map(([name, actuator]) => [name, actuator.initial ?? 0]),
+    ),
     ...(spec.poweredLift ? { thrustVectorPosition: s.category === 'tiltrotor' ? 1 : 0 } : {}),
   };
   const seats = [{ id: 'driver', role: 'driver', position: f.eye }];

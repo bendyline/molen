@@ -65,6 +65,11 @@ export function createAircraftVisual(
       ? undefined
       : createModelSignalVisual(model, spec.visual.animation);
   const moving = new Map<string, THREE.Object3D[]>();
+  const articulatedGear = new Set(
+    (spec.visual.animation?.bindings ?? [])
+      .filter((binding) => binding.property === 'rotation' || binding.property === 'position')
+      .map((binding) => binding.node),
+  );
   model.traverse((o) => {
     o.userData.vehicleGeometry = true;
     if (o instanceof THREE.Mesh) {
@@ -111,6 +116,9 @@ export function createAircraftVisual(
         );
       }
       for (const name of spec.visual.gearNodes) {
+        // Authored hinges carry the gear into its well. Keep exposed stowed wheels visible
+        // (e.g. 737 mains); the legacy hide/show fallback is only for unrigged models.
+        if (articulatedGear.has(name)) continue;
         for (const node of moving.get(name) ?? []) node.visible = gear > 0;
       }
       for (const binding of spec.visual.flaps) {
@@ -195,6 +203,7 @@ export function createAircraftVisual(
         engine: Number(input.engine),
         brake: Number(input.brake),
         grounded: Number(state.grounded),
+        ...state.actuators,
         ...engineSignals,
         ...signals,
       };

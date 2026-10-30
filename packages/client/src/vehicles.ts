@@ -1,6 +1,13 @@
-import type { LiveryData, VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
+import type {
+  GlassData,
+  GlassStateData,
+  LiveryData,
+  VehicleData,
+  VehiclePlacement,
+} from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { createGlassVisual, type GlassVisual } from './glass';
 import { applyLivery } from './livery';
 import { createModelSignalVisual, type ModelSignalVisual } from './model-signals';
 import {
@@ -20,11 +27,13 @@ export interface VehicleVisual {
   interior?: VehicleInteriorVisual;
   /** The visual's exterior `animation` bindings, posed from the same signals as the interior. */
   animation?: ModelSignalVisual;
+  glass?: GlassVisual;
   update(
     steer: number,
     wheelAngle: number,
     signals?: VehicleInteriorSignals,
     timeSeconds?: number,
+    glassState?: GlassStateData,
   ): void;
   dispose(): void;
 }
@@ -60,6 +69,7 @@ export function createVehicleVisual(
     spec?: { length: number; cycle?: unknown };
   },
   livery?: LiveryData,
+  glassData?: GlassData,
 ): VehicleVisual {
   const interior =
     vehicle.visual.interior === undefined
@@ -126,6 +136,7 @@ export function createVehicleVisual(
     steeringWheel = nodes.get(vehicle.visual.steeringWheelNode)?.[0];
 
   let appearance = livery === undefined ? undefined : applyLivery(model, livery);
+  const glass = glassData === undefined ? undefined : createGlassVisual(model, glassData);
   return {
     setLivery(data) {
       appearance?.dispose();
@@ -134,7 +145,8 @@ export function createVehicleVisual(
     object: model,
     interior,
     animation,
-    update(steer, angle, signals, timeSeconds) {
+    glass,
+    update(steer, angle, signals, timeSeconds, glassState) {
       const roll = signals?.bodyRoll ?? 0;
       const pitch = signals?.bodyPitch ?? 0;
       const lean = Number.isFinite(roll) && Number.isFinite(pitch) && (roll !== 0 || pitch !== 0);
@@ -158,8 +170,10 @@ export function createVehicleVisual(
       const telemetry = { steering: steer, wheelAngle: angle, ...signals };
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
+      glass?.update(glassState, timeSeconds ?? 0);
     },
     dispose() {
+      glass?.dispose();
       appearance?.dispose();
       const geometries = new Set<THREE.BufferGeometry>();
       const materials = new Set<THREE.Material>();

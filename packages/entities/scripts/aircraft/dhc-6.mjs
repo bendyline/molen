@@ -18,6 +18,149 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+
+/** A tyre with rounded shoulders on a dished rim with a domed hub cap, the axle along X through
+ * `at`: radius r, width w. It replaces flat cylinder-and-disc wheels. */
+function wheel(d, at, r, w, tyre, rim, cap = rim) {
+  const lathe = (points, segments) =>
+    new T.LatheGeometry(
+      points.map(([x, y]) => new T.Vector2(x, y)),
+      segments,
+    ).rotateZ(Math.PI / 2);
+  d.add(
+    lathe(
+      // Listed from the -Y bead round to the +Y bead so the lathe faces point outward.
+      [
+        [r * 0.64, -w * 0.5],
+        [r * 0.88, -w * 0.5],
+        [r * 0.97, -w * 0.4],
+        [r, -w * 0.2],
+        [r, w * 0.2],
+        [r * 0.97, w * 0.4],
+        [r * 0.88, w * 0.5],
+        [r * 0.64, w * 0.5],
+      ],
+      20,
+    ),
+    tyre,
+    at,
+  );
+  for (const side of [-1, 1]) {
+    const mirror = (points) => (side > 0 ? points : points.map(([x, y]) => [x, -y]).reverse());
+    d.add(
+      lathe(
+        mirror([
+          [r * 0.64, w * 0.5],
+          [r * 0.6, w * 0.34],
+          [r * 0.3, w * 0.34],
+          [r * 0.22, w * 0.44],
+        ]),
+        16,
+      ),
+      rim,
+      at,
+    );
+    d.add(
+      lathe(
+        mirror(
+          Array.from({ length: 5 }, (_, k) => {
+            const a = (k * Math.PI) / 8;
+            return [r * 0.22 * Math.cos(a), w * 0.44 + r * 0.09 * Math.sin(a)];
+          }),
+        ),
+        12,
+      ),
+      cap,
+      at,
+    );
+  }
+}
+/** A rounded ogive spinner of base radius r and length l, along +Z from `at`. */
+function spinner(d, at, r, l, material) {
+  d.add(
+    new T.LatheGeometry(
+      Array.from({ length: 10 }, (_, k) => {
+        const t = k / 9;
+        return new T.Vector2(r * Math.pow(1 - t * t, 0.75), t * l);
+      }),
+      28,
+    ).rotateX(Math.PI / 2),
+    material,
+    at,
+  );
+}
+/** A faired leg from a to b: an elliptical section `thick` across and `chord` fore and aft,
+ * tapering to `taper` of its size at b. */
+function fairedLeg(d, a, b, thick, chord, taper, material) {
+  const from = new T.Vector3(...a),
+    v = new T.Vector3(...b).sub(from),
+    geometry = new T.CylinderGeometry(taper, 1, v.length(), 16, 1).scale(thick, 1, chord),
+    mesh = d.add(geometry, material, from.clone().addScaledVector(v, 0.5).toArray());
+  // Keep the chord fore and aft: yaw the leg into the plane of the segment, then tilt it.
+  const sideways = new T.Vector3(v.x, v.y, 0).normalize(),
+    roll = new T.Quaternion().setFromUnitVectors(new T.Vector3(0, 1, 0), sideways),
+    pitch = new T.Quaternion().setFromUnitVectors(sideways, v.clone().normalize());
+  mesh.quaternion.copy(pitch.multiply(roll));
+  return mesh;
+}
+/** Front and back z of a side-view outline [[z, y], ...] at height y (0 width outside it). */
+function chordAt(outline, y) {
+  const zs = [];
+  for (let n = 0; n < outline.length; n++) {
+    const [za, ya] = outline[n],
+      [zb, yb] = outline[(n + 1) % outline.length];
+    if ((ya - y) * (yb - y) <= 0 && ya !== yb) zs.push(za + ((zb - za) * (y - ya)) / (yb - ya));
+  }
+  return zs.length ? [Math.max(...zs), Math.min(...zs)] : [0, 0];
+}
+/** Horizontal ribs [y, front z, back z] of a side-view outline, at every vertex height. */
+function outlineRibs(outline) {
+  const ys = [...new Set(outline.map(([, y]) => y))].sort((a, b) => a - b),
+    low = ys[0] + 0.004,
+    high = ys.at(-1) - 0.004;
+  return [low, ...ys.filter((y) => y > low && y < high), high].map((y) => [
+    y,
+    ...chordAt(outline, y),
+  ]);
+}
+/** Half width of a foil rib at z, for details laid on its surface. */
+function foilX([, front, back, half, lead, trail], z) {
+  const u = (front - z) / (front - back),
+    xs = [
+      [0, lead],
+      [0.3, half],
+      [0.75, trail + (half - trail) * 0.45],
+      [1, trail],
+    ];
+  for (let k = 0; k < 3; k++)
+    if (u <= xs[k + 1][0])
+      return xs[k][1] + ((xs[k + 1][1] - xs[k][1]) * (u - xs[k][0])) / (xs[k + 1][0] - xs[k][0]);
+  return trail;
+}
+/** A symmetric fin or rudder lofted through ribs [y, front z, back z, half thickness at 30 %
+ * chord, front-face half width, back-face half width] and closed at both ends: a tapered
+ * section instead of a constant-thickness slab. */
+function foil(d, ribs, material) {
+  const rings = ribs.map(([y, front, back, half, lead, trail]) => {
+    const c = front - back,
+      right = [
+        [lead, front],
+        [half, front - c * 0.3],
+        [trail + (half - trail) * 0.45, front - c * 0.75],
+        [trail, back],
+      ];
+    return [...right, ...[...right].reverse().map(([x, z]) => [-x, z])].map(([x, z]) => [x, y, z]);
+  });
+  for (let i = 0; i < rings.length - 1; i++)
+    for (let j = 0; j < 8; j++) {
+      const q = [rings[i][j], rings[i + 1][j], rings[i + 1][(j + 1) % 8], rings[i][(j + 1) % 8]],
+        mid = (k) => q.reduce((sum, p) => sum + p[k], 0) / 4,
+        axis = (ribs[i][1] + ribs[i][2] + ribs[i + 1][1] + ribs[i + 1][2]) / 4;
+      quad(d, ...q, material, [mid(0), 0, mid(2) - axis]);
+    }
+  sheet(d, rings[0], material, [0, -1, 0]);
+  sheet(d, rings.at(-1), material, [0, 1, 0]);
+}
 export const twinOtterFrame = () => ({
   heli: false,
   fighter: false,
@@ -51,6 +194,15 @@ export function buildTwinOtter(s) {
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.12,
+    }),
+    // Tinted passenger windows: the photos show them as dark panes with thin seals.
+    tinted = mat('TwinOtter-cabin-glass', '#28333a', {
+      transparent: true,
+      opacity: 0.6,
+      depthWrite: false,
+      side: T.DoubleSide,
+      metalness: 0.35,
+      roughness: 0.1,
     });
   const d = detailKit(root, 'TwinOtter-shell'),
     bindings = [],
@@ -62,9 +214,11 @@ export function buildTwinOtter(s) {
   // Side roof/belly samples and independent plan widths; the large rectangular cabin
   // is not an ellipse. The forward roof panels are replaced by real window apertures.
   const samples = [
-    [270, 0.015, 1290, 1278],
-    [285, 0.24, 1298, 1267],
-    [320, 0.53, 1305, 1255],
+    // Series 400 nose: the tip sits 0.12 m further forward and 0.08 m higher than the UV-18A
+    // drawing trace (Hevilift P2-KSY side photo; restores the published 15.77 m length).
+    [265, 0.015, 1287, 1274],
+    [281, 0.34, 1297, 1265],
+    [318, 0.61, 1305, 1254],
     [355, 0.76, 1310, 1246],
     [378, 0.88, 1313, 1228],
     [410, 0.915, 1314, 1223],
@@ -75,7 +229,8 @@ export function buildTwinOtter(s) {
     [722, 0.62, 1294, 1234],
     [783, 0.42, 1284, 1239],
     [898, 0.12, 1267, 1250],
-    [925, 0.014, 1261, 1259],
+    // Tail cone ends under the rudder; the rudder trailing edge sets the overall length.
+    [906, 0.02, 1262, 1258],
   ];
   const stations = samples.map(([u, w, b, t]) => [z(u), w, y(b), y(t)]);
   const rings = stations.map(([zz, w, b, t]) => ({
@@ -99,29 +254,66 @@ export function buildTwinOtter(s) {
   }));
   // Scale corner radii down at the thin nose/tail tips.
   rings.forEach((r, i) => {
-    const [zz, w, b, t] = stations[i];
+    const [_zz, _w, b, t] = stations[i];
     if (t - b < 0.6) r.points = r.points.map(([x, yy]) => [x, Math.max(b, Math.min(t, yy))]);
   });
   const p = (i, j) => [...rings[i].points[j], rings[i].z];
   loft(d, rings, paint, {
     skip: (i, j) =>
+      i < 3 ||
       (i === 3 && [0, 1, 2, 11, 12, 13].includes(j)) ||
       (i >= 4 && i <= 9 && [2, 3, 10, 11].includes(j)),
   });
+  // Rounded bullet nose: 28-point sections blend from the cabin's corner-radiused box at the
+  // windshield base (shared exactly with ring 3) towards an ellipse at the tip.
+  const noseRings = [1, 0.9, 0.6, 0].map((k, i) => {
+    const [zz, w, b, t] = stations[i],
+      c = (t + b) / 2,
+      h = (t - b) / 2;
+    return {
+      z: zz,
+      points: rings[i].points
+        .flatMap((q, j, a) => {
+          const n = a[(j + 1) % a.length];
+          return [q, [(q[0] + n[0]) / 2, (q[1] + n[1]) / 2]];
+        })
+        .map(([x, yy]) => {
+          const a = Math.atan2((yy - c) / h, x / w);
+          return [x * (1 - k) + w * Math.cos(a) * k, yy * (1 - k) + (c + h * Math.sin(a)) * k];
+        }),
+    };
+  });
+  loft(d, noseRings, paint, { caps: false });
+  const noseX = (zz, yy) => {
+    const i = Math.max(0, noseRings.findIndex((r, n) => n > 0 && zz >= r.z) - 1),
+      a = noseRings[i],
+      b = noseRings[i + 1],
+      f = (a.z - zz) / (a.z - b.z),
+      ring = a.points.map((q, j) => [
+        q[0] * (1 - f) + b.points[j][0] * f,
+        q[1] * (1 - f) + b.points[j][1] * f,
+      ]);
+    for (let j = 0; j < 14; j++) {
+      const [x0, y0] = ring[j],
+        [x1, y1] = ring[j + 1];
+      if ((yy - y0) * (yy - y1) <= 0 && y0 !== y1) return x0 + ((x1 - x0) * (yy - y0)) / (y1 - y0);
+    }
+    return sample(zz, 1);
+  };
   for (const j of [0, 1, 2, 11, 12, 13])
     quad(d, p(3, j), p(4, j), p(4, (j + 1) % 14), p(3, (j + 1) % 14), glass, [0, 1, 1]);
-  for (const j of [0, 3, 11]) d.rod(p(3, j), p(4, j), 0.017, dark);
+  for (const j of [0, 3, 11]) d.rod(p(3, j), p(4, j), 0.012, dark);
   outline(
     d,
     [p(3, 3), p(3, 2), p(3, 1), p(3, 0), p(3, 13), p(3, 12), p(3, 11)],
-    0.018,
+    0.013,
     paint,
     false,
   );
   outline(
     d,
     [p(4, 3), p(4, 2), p(4, 1), p(4, 0), p(4, 13), p(4, 12), p(4, 11)],
-    0.018,
+    0.013,
     paint,
     false,
   );
@@ -134,7 +326,12 @@ export function buildTwinOtter(s) {
     return stations.at(-1)[k];
   };
   for (const side of [-1, 1]) {
-    const pt = (zz, yy, off = 0) => [side * (sample(zz, 1) + off), yy, zz];
+    const pt = (zz, yy, off = 0) => [
+      // Details on the curved (ruled, triangulated) nose sit a little proud of the skin.
+      side * ((zz > stations[3][0] ? noseX(zz, yy) + 0.012 : sample(zz, 1)) + off),
+      yy,
+      zz,
+    ];
     const holes = [];
     const cockpit = [
       [380, 1248],
@@ -177,9 +374,9 @@ export function buildTwinOtter(s) {
       [side, 0, 0],
       holes,
     );
-    for (const hole of holes) {
-      sheet(d, hole, glass, [side, 0, 0]);
-      outline(d, hole, 0.008, dark);
+    for (const [n, hole] of holes.entries()) {
+      sheet(d, hole, n ? tinted : glass, [side, 0, 0]);
+      outline(d, hole, 0.005, dark);
     }
     // Cockpit door, asymmetric cargo/service doors, original stencil labels and seams.
     for (const points of [
@@ -247,8 +444,8 @@ export function buildTwinOtter(s) {
   }
   // Wing, double-slot flaps, ailerons and 3-degree dihedral. Black de-icing leading edges.
   const wy = (x) => 2.82 + Math.tan((3 * Math.PI) / 180) * Math.max(0, x - 0.915),
-    le = (x) => 2.62,
-    te = (x) => 0.63;
+    le = (_x) => 2.62,
+    te = (_x) => 0.63;
   for (const side of [-1, 1]) {
     wing(
       d,
@@ -305,10 +502,9 @@ export function buildTwinOtter(s) {
         ]);
       }
     const a = new T.Vector3(side * 0.88, 1.1, 1.1),
-      b = new T.Vector3(side * 4.1, wy(4.1) - 0.08, 1.52),
-      v = b.clone().sub(a),
-      strut = d.box([0.09, v.length(), 0.27], a.clone().addScaledVector(v, 0.5).toArray(), paint);
-    strut.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), v.normalize());
+      b = new T.Vector3(side * 4.1, wy(4.1) - 0.08, 1.52);
+    // Streamlined lift strut (elliptical section, chord fore and aft), not a square box.
+    fairedLeg(d, a.toArray(), b.toArray(), 0.045, 0.135, 1, paint);
     d.rod([side * 3, 2.1, 1.38], [side * 3, wy(3) - 0.05, 1.38], 0.019, metal);
     ellipsoid(
       d,
@@ -354,47 +550,67 @@ export function buildTwinOtter(s) {
     [-7.7, 5.82],
     [-7.15, 2.02],
   ];
-  const finPart = (dd, pts, m) => {
-    for (const side of [-1, 1])
-      sheet(
-        dd,
-        pts.map(([zz, yy]) => [side * 0.065, yy, zz]),
-        m,
-        [side, 0, 0],
-      );
-    for (let i = 0; i < pts.length; i++) {
-      const a = pts[i],
-        b = pts[(i + 1) % pts.length];
-      quad(
-        dd,
-        [-0.065, a[1], a[0]],
-        [-0.065, b[1], b[0]],
-        [0.065, b[1], b[0]],
-        [0.065, a[1], a[0]],
-        m,
-        [0, 1, 0],
-      );
-    }
-  };
-  finPart(
-    d,
-    fin.map(([zz, yy], i) => (i === 4 ? [zz + 0.37, yy] : i === 5 ? [zz + 0.47, yy] : [zz, yy])),
-    paint,
-  );
-  const rud = group(root, 'TwinOtter-rudder', [0, 2.02, -6.68]);
-  rud.rotation.x = -Math.atan2(0.65, 3.8);
-  const moving = group(rud, 'TwinOtter-rudder-moving'),
-    rd = detailKit(moving, moving.name);
-  finPart(
-    rd,
-    [
+  // Fin and rudder are tapered sections (10 % of the combined chord, at most 0.15 m thick), not
+  // constant-thickness slabs; the rudder hinge leans back with the fin.
+  const fixedFin = fin.map(([zz, yy], i) =>
+      i === 4 ? [zz + 0.37, yy] : i === 5 ? [zz + 0.47, yy] : [zz, yy],
+    ),
+    rudderOutline = [
       [0, 0],
       [0, 3.86],
       [-0.39, 3.86],
       [-0.47, 0],
     ],
+    span = (outline, yy) => {
+      const [front, back] = chordAt(outline, yy);
+      return front - back;
+    },
+    lean = Math.atan2(0.65, 3.8),
+    finHalf = (yy) =>
+      Math.min(
+        0.075,
+        Math.max(
+          0.014,
+          0.05 * (span(fixedFin, yy) + span(rudderOutline, (yy - 2.02) / Math.cos(lean))),
+        ),
+      ),
+    rudderRib = (yy) => {
+      const h = finHalf(2.02 + yy * Math.cos(lean));
+      return [yy, ...chordAt(rudderOutline, yy), h * 0.5, h * 0.55, 0.003];
+    };
+  foil(
+    d,
+    outlineRibs(fixedFin).map(([yy, f, b]) => [
+      yy,
+      f,
+      b,
+      finHalf(yy),
+      finHalf(yy) * 0.35,
+      finHalf(yy) * 0.55,
+    ]),
+    paint,
+  );
+  const rud = group(root, 'TwinOtter-rudder', [0, 2.02, -6.68]);
+  rud.rotation.x = -lean;
+  const moving = group(rud, 'TwinOtter-rudder-moving'),
+    rd = detailKit(moving, moving.name);
+  foil(
+    rd,
+    outlineRibs(rudderOutline).map(([yy]) => rudderRib(yy)),
     accent,
   );
+  // Rib stitching on the rudder surface (it was fixed to the fin, floating beside the rudder).
+  for (const side of [-1, 1])
+    for (let yy = 0.3; yy < 3.7; yy += 0.21) {
+      const rib = rudderRib(yy);
+      outline(
+        rd,
+        [-0.05, -0.12, -0.3, -0.34].map((zz) => [side * (foilX(rib, zz) + 0.002), yy, zz]),
+        0.002,
+        metal,
+        false,
+      );
+    }
   rd.finish();
   bindings.push({
     node: moving.name,
@@ -403,14 +619,6 @@ export function buildTwinOtter(s) {
     axis: 'y',
     scale: 0.4,
   });
-  for (const side of [-1, 1])
-    for (let yy = 2.3; yy < 5.7; yy += 0.21)
-      d.rod(
-        [side * 0.068, yy, -6.73 - (yy - 2) * 0.17],
-        [side * 0.068, yy, -7.0 - (yy - 2) * 0.17],
-        0.002,
-        metal,
-      );
   // Nacelles are low-slung PT6 cowls, three blades, 2.59 m diameter, 1.52 m clearance.
   for (const [i, side] of [1, -1].entries()) {
     const x = side * 2.815,
@@ -433,7 +641,42 @@ export function buildTwinOtter(s) {
       }),
     }));
     loft(nd, ns, paint);
-    ellipsoid(nd, [0, -0.32, 0.04], [0.205, 0.19, 0.025], dark, 20);
+    // PT6 inlet under the spinner: a lipped round mouth set into the nacelle nose, not a dark
+    // lens on its face.
+    const mouth = Array.from({ length: 20 }, (_, j) => {
+      const a = (j * Math.PI) / 10;
+      return [Math.cos(a) * 0.16, -0.33 + Math.sin(a) * 0.12, 0.1];
+    });
+    sheet(
+      nd,
+      mouth.map(([mx, my, mz]) => [mx * 0.85, -0.33 + (my + 0.33) * 0.85, mz - 0.05]),
+      dark,
+      [0, 0, 1],
+    );
+    for (let j = 0; j < 20; j++) {
+      const a = mouth[j],
+        b = mouth[(j + 1) % 20],
+        inner = (q) => [q[0] * 0.85, -0.33 + (q[1] + 0.33) * 0.85, q[2] - 0.05];
+      quad(nd, a, b, inner(b), inner(a), dark, [-a[0], -a[1] - 0.33, 0]);
+    }
+    outline(nd, mouth, 0.02, paint);
+    // The inlet duct fairs back into the nacelle's lower lip.
+    loft(
+      nd,
+      [
+        [0.1, 1.08, 1.1],
+        [-0.15, 1.2, 1.35],
+        [-0.45, 1.3, 1.6],
+      ].map(([z, sx, sy]) => ({
+        z,
+        points: Array.from({ length: 20 }, (_, j) => {
+          const a = (j * Math.PI) / 10;
+          return [Math.cos(a) * 0.16 * sx, -0.33 + Math.sin(a) * 0.12 * sy];
+        }),
+      })),
+      paint,
+      { caps: false },
+    );
     for (const r of ns.slice(1, -1))
       outline(
         nd,
@@ -452,7 +695,7 @@ export function buildTwinOtter(s) {
     nd.finish();
     const prop = group(eg, `TwinOtter-propeller-${i}`, [0, 0, 0.05]),
       pd = detailKit(prop, prop.name);
-    pd.add(new T.ConeGeometry(0.22, 0.48, 24).rotateX(Math.PI / 2), metal, [0, 0, 0.24]);
+    spinner(pd, [0, 0, 0], 0.22, 0.48, metal);
     for (let j = 0; j < 3; j++) {
       const blade = group(prop, `TwinOtter-blade-${i}-${j}`);
       blade.rotation.z = (j * Math.PI * 2) / 3;
@@ -494,18 +737,13 @@ export function buildTwinOtter(s) {
       gd.rod([0.14, 0.94, zz - 0.12], [0.14, r, zz], 0.027, metal);
       gd.rod([-0.14, 0.94, zz - 0.12], [-0.14, r, zz], 0.027, metal);
     }
-    gd.add(new T.CylinderGeometry(r, r, 0.21, 32).rotateZ(Math.PI / 2), rubber, [x, r, zz]);
+    wheel(gd, [x, r, zz], r, 0.21, rubber, metal);
     for (const side of [-1, 1]) {
-      gd.add(new T.CircleGeometry(r * 0.52, 24).rotateY((side * Math.PI) / 2), metal, [
-        x + side * 0.108,
-        r,
-        zz,
-      ]);
       for (let j = 0; j < 8; j++)
         ellipsoid(
           gd,
           [
-            x + side * 0.111,
+            x + side * 0.074,
             r + Math.cos((j * Math.PI) / 4) * r * 0.35,
             zz + Math.sin((j * Math.PI) / 4) * r * 0.35,
           ],

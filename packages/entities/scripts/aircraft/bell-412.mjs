@@ -4,6 +4,7 @@
  */
 
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
+import { roundedRegion, skinPatch, waterlines } from './huey.mjs';
 import {
   beveledBox,
   cleanGeometry,
@@ -71,24 +72,42 @@ export function buildBell412(s) {
         );
     }
   };
-  const ring = (w, b, t) => [
-    [0, t],
-    [w * 0.84, t - 0.02],
-    [w, t - 0.15],
-    [w, b + 0.24],
-    [w * 0.84, b + 0.04],
-    [0, b],
-    [-w * 0.84, b + 0.04],
-    [-w, b + 0.24],
-    [-w, t - 0.15],
-    [-w * 0.84, t - 0.02],
-  ];
+  // Flat cabin sides between rounded roof and belly corners (Le Bourget front and side photos).
+  const ring = (w, b, t, rx = w * 0.16, rt = 0.13, rb = 0.2) => {
+    const corner = (cx, cy, ax, ay, from) =>
+      [0, 1, 2, 3].map((k) => {
+        const c = Math.cos(from - (k * Math.PI) / 6),
+          s = Math.sin(from - (k * Math.PI) / 6);
+        return [
+          cx + ax * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
+          cy + ay * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
+        ];
+      });
+    const half = [
+      ...corner(w - rx, t - 0.02 - rt, rx, rt, Math.PI / 2),
+      ...corner(w - rx, b + 0.04 + rb, rx, rb, 0),
+    ];
+    return [[0, t], ...half, [0, b], ...half.toReversed().map(([x, y]) => [-x, y])];
+  };
+  // Half-width of the forward cabin at height y: flat side, then the rounded belly corner.
+  const cabinHalf = (y) => {
+    const q = Math.min(1, Math.max(0, (0.76 - y) / 0.2));
+    return 1.008 + 0.192 * Math.pow(Math.sqrt(1 - Math.pow(q, 2.5)), 0.8);
+  };
   const sections = [
     { z: 1.68, points: ring(1.2, 0.52, 2.26) },
     { z: -1.5, points: ring(1.2, 0.49, 2.25) },
-    { z: -2.65, points: ring(0.58, 0.91, 2.2) },
+    { z: -2.65, points: ring(0.58, 0.91, 2.2, 0.24, 0.3, 0.3) },
   ];
-  loft(d, sections, paint, { caps: false, skip: (i, j) => i === 0 && [2, 7].includes(j) });
+  // The flat sides (ring points 4-5 and 13-14) are the window walls below.
+  loft(d, sections, paint, { caps: false, skip: (i, j) => i === 0 && [4, 13].includes(j) });
+  // Aft bulkhead around the boom root.
+  sheet(
+    d,
+    sections.at(-1).points.map(([x, y]) => [x, y, -2.65]),
+    paint,
+    [0, 0, -1],
+  );
   for (const side of [-1, 1]) {
     const x = side * 1.2,
       wall = [
@@ -97,26 +116,14 @@ export function buildBell412(s) {
         [x, 2.1, -1.5],
         [x, 0.73, -1.5],
       ];
+    // Cabin windows with rounded corners (Le Bourget side photo): z front/back, y bottom/top.
     const holes = [
-      [
-        [1.52, 1.94],
-        [1.19, 1.93],
-        [1.19, 1.34],
-        [1.52, 1.34],
-      ],
-      [
-        [0.93, 1.91],
-        [0.27, 1.89],
-        [0.27, 1.29],
-        [0.93, 1.3],
-      ],
-      [
-        [-0.04, 1.88],
-        [-0.72, 1.86],
-        [-0.72, 1.26],
-        [-0.04, 1.28],
-      ],
-    ].map((a) => a.map(([z, y]) => [x, y, z]));
+      [1.19, 1.52, 1.34, 1.935],
+      [0.27, 0.93, 1.295, 1.9],
+      [-0.72, -0.04, 1.27, 1.87],
+    ].map(([z0, z1, y0, y1]) =>
+      roundedRegion(z0, z1, y0, y1, 0.09, 0.09, 3).map(([z, y]) => [x, y, z]),
+    );
     sheet(d, wall, paint, [side, 0, 0], holes);
     for (const h of holes) {
       glazing(d, h, glass, seam, 0.014, [side, 0, 0]);
@@ -154,78 +161,172 @@ export function buildBell412(s) {
       [side * 0.584, 1.33, -2.65],
     ];
     sheet(d, aft, red, [side, 0, 0]);
-    for (const z of [-1.75, -2.12])
+    // Panel seams on the tapering flank, kept to its flat part between the rounded corners.
+    for (const z of [-1.75, -2.12]) {
+      const u = (-1.5 - z) / 1.15;
       outline(
         d,
         [
-          [side * (1.2 + (z + 1.5) * 0.539), 0.91, z],
-          [side * (1.2 + (z + 1.5) * 0.539), 2.18, z],
+          [side * (1.2 + (z + 1.5) * 0.539), 0.75 + u * 0.52, z],
+          [side * (1.2 + (z + 1.5) * 0.539), 2.08 - u * 0.22, z],
         ],
         0.004,
         seam,
         false,
       );
+    }
   }
-  // Rounded lower nose and actual chin apertures.
+  // Long rounded nose bulb (Commons line drawing profile, Le Bourget front and 3/4 photos): the
+  // painted top runs back to the windscreen base at 1.54 m about 0.25 m ahead of the doors, the
+  // underside rises to about 0.7 m under the tip, and the skin is smooth through the rows, with chin
+  // windows on its lower flanks either side of a painted keel. Rows: height, half-width, reach.
+  // Head-on it is a ball (Le Bourget and XUH-2 front photos): widest at the tip, narrowing
+  // toward the keel and domed across the top, where the windscreen wraps down its sides.
   const rows = [
-      [0.53, 0.64, 3.47],
-      [0.64, 0.92, 3.87],
-      [0.86, 1.07, 4.03],
-      [1.08, 1.1, 3.96],
-      [1.27, 1.04, 3.75],
-      [1.43, 0.93, 3.48],
-    ],
-    angles = [-Math.PI / 2, -1.3, -1.05, -0.78, -0.4, 0, 0.4, 0.78, 1.05, 1.3, Math.PI / 2];
-  const np = (r, a) => [
-    r[1] * Math.sin(a),
-    r[0] - Math.max(0, r[0] - 1.1) * 0.55 * Math.sin(a) * Math.sin(a),
-    2.92 + (r[2] - 2.92) * Math.cos(a),
+    [0.56, 0.81, 3.28],
+    [0.71, 0.98, 3.75],
+    [0.9, 1.08, 3.98],
+    [1.04, 1.12, 4.03],
+    [1.22, 1.07, 3.88],
+    [1.37, 0.99, 3.62],
+    [1.47, 0.94, 3.33],
+    [1.54, 0.93, 3.04],
   ];
-  for (let r = 0; r < rows.length - 1; r++)
-    for (let a = 0; a < angles.length - 1; a++)
-      quad(
-        d,
-        np(rows[r], angles[a]),
-        np(rows[r], angles[a + 1]),
-        np(rows[r + 1], angles[a + 1]),
-        np(rows[r + 1], angles[a]),
-        r >= 1 && r <= 2 && [1, 2, 3, 6, 7, 8].includes(a) ? glass : paint,
-        [Math.sin(angles[a]), 0, 1],
-      );
-  sheet(d, [...angles.map((a) => np(rows[0], a)), [0, 0.52, 2.92]], paint, [0, -1, 0]);
-  for (const side of [-1, 1]) {
-    const h = [
-      np(rows[1], side * 0.4),
-      np(rows[1], side * 1.3),
-      np(rows[2], side * 1.3),
-      np(rows[3], side * 1.3),
-      np(rows[3], side * 0.4),
+  // Rows fall away toward the sides; the top row's side point stays where the corner pane
+  // meets it (1.3 m), the rows below dome more strongly.
+  const drop = (h) => 0.72 - Math.min(1, Math.max(0, (h - 1.37) / 0.17)) * 0.17,
+    np = (r, a) => [
+      r[1] * Math.sin(a),
+      r[0] - Math.max(0, r[0] - 1.1) * drop(r[0]) * Math.sin(a) * Math.sin(a),
+      2.92 + (r[2] - 2.92) * Math.cos(a),
+    ],
+    rowAt = waterlines(rows),
+    skin = (t, a) => np(rowAt(t), a);
+  const rowSteps = Array.from({ length: 29 }, (_, i) => (i * (rows.length - 1)) / 28),
+    angleSteps = Array.from({ length: 25 }, (_, i) => ((i - 12) * Math.PI) / 24);
+  const chin = [-1, 1].map((side) => {
+    const poly = roundedRegion(0.15, 3.3, 0.27, 1.52, 0.55, 0.16);
+    return side > 0 ? poly : poly.map(([t, a]) => [t, -a]).reverse();
+  });
+  const skinNormal = skinPatch(
+    d,
+    skin,
+    rowSteps,
+    angleSteps,
+    paint,
+    chin.map((poly) => ({ poly, material: glass })),
+    [0, 1.0, 3.0],
+  );
+  // Footwell lining 3.5 cm inside the lower nose, open behind the chin windows so they read as
+  // clear glass onto the pedals and the far side of the footwell rather than dark panels.
+  skinPatch(
+    d,
+    (t, a) => {
+      const p = skin(t, a),
+        n = skinNormal(t, a);
+      return p.map((c, k) => c - n[k] * 0.035);
+    },
+    rowSteps,
+    angleSteps,
+    seam,
+    chin.map((poly) => ({ poly, material: null })),
+    [0, 1.0, 3.0],
+    true,
+  );
+  for (const poly of chin)
+    outline(
+      d,
+      poly.map(([t, a]) => {
+        const p = skin(t, a),
+          n = skinNormal(t, a);
+        return p.map((c, k) => c + n[k] * 0.006);
+      }),
+      0.016,
+      paint,
+    );
+  // Behind the bulb the cockpit keeps the cabin's flat side and rounded belly corner; the doors
+  // cover the flat side above 0.76 m.
+  const sideEnds = rowSteps.toReversed().map((t) => [rowAt(t)[1], skin(t, Math.PI / 2)[1]]),
+    low = sideEnds.at(-1),
+    keel = [0.95, 0.75, 0.5, 0.25],
+    contour = (half) => [
+      [0, rows.at(-1)[0]],
+      ...half,
+      [0, 0.52],
+      ...half.toReversed().map(([x, y]) => [-x, y]),
     ];
-    outline(d, h, 0.02, paint);
+  const noseBase = contour([
+      ...sideEnds,
+      ...keel.map((f) => [low[0] * f, 0.52 + (low[1] - 0.52) * f]),
+    ]),
+    cockpitRing = contour([
+      ...sideEnds.map(([, y]) => [cabinHalf(y), y]),
+      ...keel.map((f) => [1.008 * f, 0.52 + 0.04 * f]),
+    ]);
+  loft(
+    d,
+    [
+      { z: 2.92, points: noseBase },
+      { z: 2.8, points: cockpitRing },
+      { z: 1.68, points: cockpitRing },
+    ],
+    paint,
+    {
+      caps: false,
+      skip: (i, j) =>
+        j === 0 ||
+        j === cockpitRing.length - 1 ||
+        (i === 1 && Math.min(cockpitRing[j][1], cockpitRing[j + 1][1]) >= 0.76),
+    },
+  );
+  sheet(d, [...angleSteps.map((a) => skin(0, a)), [0, 0.52, 2.92]], paint, [0, -1, 0]);
+  const top = rows.at(-1),
+    topSide = skin(rows.length - 1, Math.PI / 2);
+  for (const side of [-1, 1]) {
+    // Blown windscreen: each half bulges up to 5 cm out between its frames (Le Bourget front
+    // photo); column u runs from the centre post to the corner, f from base to header.
+    // The outer column ends on the corner pane's front edge at the nose side, leaving no slot.
+    const screen = (u, f) => {
+      const a = np(top, side * Math.asin(Math.min(1, (0.035 + (top[1] - 0.035) * u) / top[1]))),
+        b = [side * (0.035 + 0.96 * u), 2.25 - 0.045 * u * u, 2.56 - 0.26 * u * u],
+        bow = 0.05 * Math.sin(Math.PI * u) * Math.sin(Math.PI * f);
+      return a.map((c, k) => c + (b[k] - c) * f + [side * u * 0.45, 0.55, 0.75][k] * bow);
+    };
     const lo = [],
       hi = [];
     for (let i = 0; i <= 5; i++) {
-      const u = i / 5;
-      lo.push(np(rows[5], side * Math.asin((0.035 + 0.87 * u) / 0.93)));
-      hi.push([side * (0.035 + 0.96 * u), 2.25 - 0.045 * u * u, 2.56 - 0.26 * u * u]);
+      lo.push(screen(i / 5, 0));
+      hi.push(screen(i / 5, 1));
     }
     for (let i = 0; i < 5; i++)
-      quad(d, lo[i], lo[i + 1], hi[i + 1], hi[i], glass, [side * 0.2, 0.4, 1]);
+      for (let k = 0; k < 3; k++)
+        quad(
+          d,
+          screen(i / 5, k / 3),
+          screen((i + 1) / 5, k / 3),
+          screen((i + 1) / 5, (k + 1) / 3),
+          screen(i / 5, (k + 1) / 3),
+          glass,
+          [side * 0.2, 0.4, 1],
+        );
     outline(d, [...lo, ...hi.toReversed()], 0.027, paint);
     const corner = [
-      [side * 0.93, 1.26, 2.92],
+      [side * topSide[0], topSide[1], 2.92],
       [side * 1.18, 1.3, 2.8],
       [side * 1.18, 2.11, 2.25],
       [side * 0.995, 2.205, 2.3],
     ];
     glazing(d, corner, glass, paint, 0.025, [side, 0, 0]);
+    // Door skin on the flat side; its seam runs on down round the belly corner.
     const door = [
-        [side * 1.2, 0.58, 2.8],
+        [side * 1.2, 0.76, 2.8],
         [side * 1.18, 1.3, 2.8],
         [side * 1.18, 2.11, 2.25],
         [side * 1.2, 2.11, 1.68],
-        [side * 1.2, 0.58, 1.68],
+        [side * 1.2, 0.76, 1.68],
       ],
+      belly = (z) => [0.58, 0.64, 0.7, 0.76].map((y) => [side * (cabinHalf(y) + 0.004), y, z]),
+      doorEdge = [...belly(2.8), ...door.slice(1, 4), ...belly(1.68).toReversed()],
       win = [
         [side * 1.195, 1.2, 2.57],
         [side * 1.192, 1.5, 2.57],
@@ -235,26 +336,18 @@ export function buildBell412(s) {
       ];
     sheet(d, door, paint, [side, 0, 0], [win]);
     glazing(d, win, glass, seam, 0.014, [side, 0, 0]);
-    outline(d, door, 0.006, seam);
-    rivets(door);
+    outline(d, doorEdge, 0.006, seam);
+    rivets(doorEdge);
     d.rod([side * 1.22, 1.04, 1.94], [side * 1.22, 1.04, 2.09], 0.015, dark);
-    sheet(
-      d,
-      [
-        [side * 0.93, 1.26, 2.92],
-        [side * 1.18, 1.3, 2.8],
-        [side * 1.2, 0.58, 2.8],
-        np(rows[0], (side * Math.PI) / 2),
-      ],
-      paint,
-      [side, 0, 0],
-    );
+    // The roof quarter meets the cabin's rounded roof corner at z 1.68.
     const roof = [
         [side * 0.035, 2.25, 2.56],
         [side * 0.995, 2.205, 2.3],
         [side * 1.18, 2.11, 2.25],
-        [side * 1.2, 2.11, 1.68],
-        [side * 1.0, 2.24, 1.68],
+        ...sections[0].points
+          .slice(1, 5)
+          .toReversed()
+          .map(([x, y]) => [side * x, y, 1.68]),
         [side * 0.035, 2.26, 1.68],
       ],
       sky = [
@@ -265,25 +358,27 @@ export function buildBell412(s) {
       ];
     sheet(d, roof, paint, [0, 1, 0], [sky]);
     glazing(d, sky, green, paint, 0.02, [0, 1, 0]);
+    // Wiper parked low on the windscreen: (column, fraction from base to header), just outside.
+    const onScreen = (u, f) => screen(u, f).map((c, k) => c + [side * 0.005, 0.01, 0.022][k]);
     outline(
       d,
-      [
-        [side * 0.86, 1.56, 3.08],
-        [side * 0.72, 1.76, 2.91],
-        [side * 0.33, 1.7, 3.13],
-      ],
+      [onScreen(0.92, 0.04), onScreen(0.74, 0.3), onScreen(0.32, 0.22)],
       0.013,
       dark,
       false,
     );
-    d.rod([side * 0.92, 1.39, 3.14], [side * 0.91, 1.39, 3.72], 0.012, metal);
+    // Pitot tube on a short strut from the upper nose flank.
+    const pitot = skin(4.6, side),
+      strut = skinNormal(4.6, side).map((c, k) => pitot[k] + c * 0.07);
+    d.rod(pitot, strut, 0.01, metal);
+    d.rod(strut, [strut[0], strut[1], strut[2] + 0.45], 0.012, metal);
   }
   // Structural centre mullion and roof seam between the two windscreen halves.
   // The two round edge seals alone leave a narrow open slot down the centre.
   quad(
     d,
-    np(rows[5], -Math.asin(0.035 / 0.93)).map((v, i) => (i === 1 ? v - 0.003 : v)),
-    np(rows[5], Math.asin(0.035 / 0.93)).map((v, i) => (i === 1 ? v - 0.003 : v)),
+    np(top, -Math.asin(0.035 / top[1])).map((v, i) => (i === 1 ? v - 0.003 : v)),
+    np(top, Math.asin(0.035 / top[1])).map((v, i) => (i === 1 ? v - 0.003 : v)),
     [0.035, 2.25, 2.56],
     [-0.035, 2.25, 2.56],
     paint,
@@ -298,43 +393,60 @@ export function buildBell412(s) {
     paint,
     [0, 1, 0],
   );
-  // Close the nose aft underside without filling the cockpit volume.
-  sheet(
-    d,
-    [
-      [-1.2, 0.58, 2.8],
-      [1.2, 0.58, 2.8],
-      [1.2, 0.52, 1.68],
-      [-1.2, 0.52, 1.68],
-    ],
-    paint,
-    [0, -1, 0],
-  );
-  const engine = (z, w, b, t) => ({
-    z,
-    points: [
-      [0, t],
-      [w * 0.75, t - 0.025],
-      [w, t - 0.14],
-      [w, b],
-      [-w, b],
-      [-w, t - 0.14],
-      [-w * 0.75, t - 0.025],
-    ],
-  });
+  // Transmission fairing and engine cowling: upright sides under a rounded superelliptic crown.
+  const engine = (z, w, b, t) => {
+    const y = Math.max(b + (t - b) * 0.35, t - 0.2);
+    return {
+      z,
+      points: [
+        [-w, b],
+        ...Array.from({ length: 11 }, (_, k) => {
+          const a = ((k - 5) * Math.PI) / 10,
+            s = Math.sin(a);
+          return [
+            w * Math.sign(s) * Math.pow(Math.abs(s), 2 / 3),
+            y + (t - y) * Math.pow(Math.cos(a), 2 / 3),
+          ];
+        }),
+        [w, b],
+      ],
+    };
+  };
+  // The engine deck rises to about 2.85 m over the PT6T (Le Bourget side photo and line drawing).
   loft(
     d,
     [
       engine(1.85, 0.3, 2.25, 2.44),
-      engine(0.72, 0.69, 2.25, 2.74),
-      engine(-1.55, 0.73, 2.25, 2.74),
-      engine(-2.55, 0.55, 2.2, 2.68),
+      engine(0.72, 0.69, 2.25, 2.76),
+      engine(-1.55, 0.73, 2.25, 2.86),
+      engine(-2.55, 0.55, 2.2, 2.72),
     ],
     paint,
   );
+  // Transmission fairing: a broad rounded hump rising out of the forward fairing to about 3.2 m,
+  // leaving only the swashplate exposed under the hub (Le Bourget side and front photos).
+  const hump = (z, w, b, t) => ({
+    z,
+    points: Array.from({ length: 11 }, (_, k) => {
+      const a = ((k - 5) * Math.PI) / 10,
+        s = Math.sin(a);
+      return [
+        w * Math.sign(s) * Math.pow(Math.abs(s), 2 / 3),
+        b + (t - b) * Math.pow(Math.cos(a), 2 / 3),
+      ];
+    }),
+  });
   loft(
     d,
-    [engine(0.8, 0.3, 2.74, 3.09), engine(-0.9, 0.36, 2.74, 3.04), engine(-1.25, 0.28, 2.73, 2.9)],
+    [
+      hump(1.02, 0.26, 2.62, 2.7),
+      hump(0.8, 0.44, 2.66, 2.98),
+      hump(0.45, 0.53, 2.7, 3.16),
+      hump(-0.1, 0.56, 2.72, 3.21),
+      hump(-0.75, 0.54, 2.74, 3.18),
+      hump(-1.1, 0.45, 2.76, 3.05),
+      hump(-1.32, 0.3, 2.78, 2.9),
+    ],
     paint,
   );
   for (const side of [-1, 1]) {
@@ -363,8 +475,52 @@ export function buildBell412(s) {
       outline(d, q, 0.005, seam);
       rivets(q);
     }
-    d.rod([side * 0.35, 2.53, -2.45], [side * 0.35, 2.54, -2.81], 0.13, metal);
-    d.add(new T.CircleGeometry(0.11, 18).rotateY(Math.PI), dark, [side * 0.35, 2.54, -2.82]);
+    // PT6T twin-pac exhausts: two large oval stacks side by side out of the aft engine deck,
+    // turned up and aft, each about 0.42 by 0.26 m (XUH-2 and Hokkaido Police rear photos).
+    const axis = new T.Vector3(side * 0.05, 0.5, -1).normalize(),
+      across = new T.Vector3(1, 0, 0).addScaledVector(axis, -axis.x).normalize(),
+      upward = new T.Vector3().crossVectors(across, axis).normalize(),
+      base = new T.Vector3(side * 0.225, 2.6, -2.0),
+      outlet = base.clone().addScaledVector(axis, 0.66),
+      oval = (center, scale) =>
+        Array.from({ length: 16 }, (_, k) => {
+          const c = Math.cos((k * Math.PI) / 8),
+            s = Math.sin((k * Math.PI) / 8);
+          return center
+            .clone()
+            .addScaledVector(across, 0.21 * scale * Math.sign(c) * Math.pow(Math.abs(c), 0.7))
+            .addScaledVector(upward, 0.13 * scale * Math.sign(s) * Math.pow(Math.abs(s), 0.7));
+        }),
+      rings = [
+        oval(base, 1),
+        oval(outlet, 1),
+        oval(outlet, 0.8),
+        oval(outlet.clone().addScaledVector(axis, -0.14), 0.8),
+      ];
+    for (let r = 0; r < 3; r++)
+      for (let k = 0; k < 16; k++) {
+        const a = rings[r][k],
+          b = rings[r][(k + 1) % 16],
+          c = rings[r + 1][(k + 1) % 16],
+          e = rings[r + 1][k],
+          middle = a.clone().add(b).multiplyScalar(0.5),
+          radial = middle.sub(r ? outlet : base).projectOnPlane(axis);
+        quad(
+          d,
+          a.toArray(),
+          b.toArray(),
+          c.toArray(),
+          e.toArray(),
+          r === 2 ? dark : paint,
+          (r === 1 ? axis : r === 2 ? radial.negate() : radial).toArray(),
+        );
+      }
+    sheet(
+      d,
+      rings[3].map((p) => p.toArray()),
+      dark,
+      axis.toArray(),
+    );
   }
   const boom = (z, w, y, h) => ({
     z,
@@ -373,20 +529,27 @@ export function buildBell412(s) {
       y + h * Math.cos((i * Math.PI) / 6),
     ]),
   });
+  // EC-KMU profile photo, read at z -2.6, -5.35 and -7.9: the boom (with its driveshaft cover)
+  // is about 1.0 m deep at the root and 0.55 m at z -6.9; its top and keel run as nearly straight
+  // lines to the fin (top 2.05 -> 2.15 m, keel 1.03 -> 1.82 m) rather than arching upward.
+  const boomStations = [
+    [-2.65, 0.58, 1.5375, 0.5075],
+    [-4.5, 0.36, 1.671, 0.414],
+    [-6.9, 0.2, 1.86, 0.28],
+    [-8.6, 0.12, 1.985, 0.165],
+    [-8.88, 0.07, 1.98, 0.1],
+  ];
   loft(
     d,
-    [
-      boom(-2.65, 0.58, 1.36, 0.45),
-      boom(-4.5, 0.34, 1.56, 0.31),
-      boom(-6.9, 0.16, 1.75, 0.18),
-      boom(-8.6, 0.1, 1.86, 0.105),
-      boom(-8.88, 0.06, 1.86, 0.07),
-    ],
+    boomStations.map((q) => boom(...q)),
     paint,
   );
   for (const z of [-2.8, -3.7, -4.7, -5.7, -6.7, -7.6]) {
-    const u = (-z - 2.65) / 6,
-      q = boom(z, 0.58 * (1 - u) + 0.1 * u, 1.36 + 0.5 * u, 0.45 * (1 - u) + 0.105 * u);
+    const k = boomStations.findIndex((q, i) => z <= q[0] && z >= boomStations[i + 1][0]),
+      a = boomStations[k],
+      b = boomStations[k + 1],
+      u = (a[0] - z) / (a[0] - b[0]),
+      q = boom(z, ...[1, 2, 3].map((n) => a[n] * (1 - u) + b[n] * u));
     outline(
       d,
       q.points.map((a) => [...a, z]),
@@ -394,9 +557,10 @@ export function buildBell412(s) {
       seam,
     );
   }
+  // The fin keeps a broad chord up to the tail-rotor gearbox (in-flight side photos).
   const fin = [
     [-0.07, 1.89, -7.45],
-    [-0.07, 3.25, -8.77],
+    [-0.07, 3.25, -8.62],
     [-0.07, 3.27, -9.04],
     [-0.07, 1.73, -8.61],
     [-0.07, 1.6, -8.4],
@@ -531,22 +695,23 @@ function cockpit412(root, m, sections) {
   d = detailKit(panelRoot, '412-panel');
   const tools = panelTools(d),
     xy = (u, v) => [(900 - u) / 1000, 1.73 - v / 1000];
+  // Outer top corners stop just under the wrapped windscreen corners above the long nose.
   const outlinePixels = [
-      [0, 150],
+      [10, 230],
       [240, 65],
       [570, 5],
       [920, 5],
       [1320, 48],
       [1640, 125],
-      [1800, 200],
-      [1800, 570],
-      [0, 540],
+      [1790, 240],
+      [1790, 570],
+      [10, 540],
     ],
     face = outlinePixels.map(([u, v]) => [...xy(u, v), z]);
   const gaugeOpenings = [];
   // The glare shield narrows and falls towards the windscreen. Extruding the
   // full panel rectangle forward pushed its shoulders through both windscreens.
-  const rear = face.map(([x, y]) => [x * 0.76, y - 0.16, z + 0.25]);
+  const rear = face.map(([x, y]) => [x * 0.76, y - 0.22, z + 0.2]);
   sheet(d, rear, m.dark, [0, 0, 1]);
   for (let i = 0; i < face.length; i++) {
     const a = face[i],
