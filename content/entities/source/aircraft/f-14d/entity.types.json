@@ -8031,7 +8031,111 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  2.1,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    2.1,
+                    8.218805
+                  ],
+                  [
+                    0,
+                    2.1,
+                    -8.218805
+                  ],
+                  [
+                    8.991298,
+                    2.1,
+                    0
+                  ],
+                  [
+                    -8.991298,
+                    2.1,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  1.68,
+                  1.83,
+                  -6.01
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "engine-1-turbine"
+                ],
+                "disc": {
+                  "center": [
+                    1.68,
+                    1.83,
+                    -6.01
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.43,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-engine-2-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -1.68,
+                  1.83,
+                  -6.01
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "engine-2-turbine"
+                ],
+                "disc": {
+                  "center": [
+                    -1.68,
+                    1.83,
+                    -6.01
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.43,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-turbine"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

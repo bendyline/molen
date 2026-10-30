@@ -223,6 +223,8 @@ export { vehicleInteriorSchema } from './vehicle-interior';
 export type {
   CycleSpec,
   VehicleBodyStyle,
+  VehicleCollisionPart,
+  VehicleDamageState,
   VehicleData,
   VehicleKind,
   VehiclePlacement,

@@ -198,6 +198,24 @@ export class VehicleDetail {
     return this.active.has(id);
   }
 
+  /**
+   * Pool the models of agents that are gone (call every frame): a car a host takes out of traffic
+   * leaves in the frame its replacement shows, not up to a `select` later as a double.
+   */
+  dropGone(exists: (id: string) => boolean): void {
+    for (const [id, entry] of this.active) if (!exists(id)) this.idleOut(id, entry);
+  }
+
+  private idleOut(id: string, entry: Active): void {
+    entry.visual.object.visible = false;
+    this.active.delete(id);
+    const pool = this.idle.get(entry.type) ?? [];
+    pool.push(entry.visual);
+    this.idle.set(entry.type, pool);
+    const resident = this.resident.get(entry.visual);
+    if (resident) resident.used = ++this.clock;
+  }
+
   get count(): number {
     return this.active.size;
   }
@@ -215,15 +233,7 @@ export class VehicleDetail {
     this.wanted = new Set(wanted.map((c) => c.type));
     for (const [type, controller] of this.loading) if (!this.wanted.has(type)) controller.abort();
     for (const [id, entry] of this.active)
-      if (!keep.has(id) || !exists(id)) {
-        entry.visual.object.visible = false;
-        this.active.delete(id);
-        const pool = this.idle.get(entry.type) ?? [];
-        pool.push(entry.visual);
-        this.idle.set(entry.type, pool);
-        const resident = this.resident.get(entry.visual);
-        if (resident) resident.used = ++this.clock;
-      }
+      if (!keep.has(id) || !exists(id)) this.idleOut(id, entry);
     let started = 0;
     for (const candidate of wanted) {
       if (this.active.has(candidate.id)) continue;

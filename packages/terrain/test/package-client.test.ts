@@ -221,7 +221,6 @@ describe('terrain package elevation adapter', () => {
       [2, 3, 2],
       [1, 1, 1],
       [2, 2, 2],
-      [1, 1, 1],
     ]);
     expect(fallbacks).toEqual([
       [2, 1, 1, 1],

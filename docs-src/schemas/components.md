@@ -5516,13 +5516,13 @@ Required: `kind`, `spec`
                   "rightWing",
                   "tail",
                   "rotor",
+                  "tailRotor",
                   "gear",
                   "engine"
                 ],
                 "description": "Flight role; +X is the left wing. Body sections cannot detach."
               },
               "probes": {
-                "minItems": 1,
                 "maxItems": 64,
                 "type": "array",
                 "items": {
@@ -5539,6 +5539,92 @@ Required: `kind`, `spec`
                 "type": "number",
                 "exclusiveMinimum": 0,
                 "description": "Probe and detached-piece collision radius, meters."
+              },
+              "disc": {
+                "description": "Finite rotor disc replacing sphere probes, including at rest. Blade speed contributes to strike damage.",
+                "type": "object",
+                "properties": {
+                  "center": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Rotor hub in model coordinates, meters."
+                  },
+                  "normal": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Unit rotation axis in model coordinates."
+                  },
+                  "radius": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "description": "Full swept rotor radius, meters."
+                  },
+                  "halfThickness": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "description": "Half the swept blade thickness, meters."
+                  },
+                  "rotor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Node in visual.rotors supplying engine RPM and speed multiplier."
+                  },
+                  "tilt": {
+                    "description": "Powered-lift hinge, in model coordinates at forward thrust.",
+                    "type": "object",
+                    "properties": {
+                      "pivot": {
+                        "minItems": 3,
+                        "maxItems": 3,
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "description": "Powered-lift hinge pivot in model coordinates, meters."
+                      },
+                      "axis": {
+                        "minItems": 3,
+                        "maxItems": 3,
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "description": "Unit powered-lift hinge axis in model coordinates."
+                      },
+                      "angle": {
+                        "type": "number",
+                        "description": "Hinge rotation in radians at full thrustVectorPosition."
+                      }
+                    },
+                    "required": [
+                      "pivot",
+                      "axis",
+                      "angle"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "center",
+                  "normal",
+                  "radius",
+                  "halfThickness",
+                  "rotor"
+                ],
+                "additionalProperties": false
+              },
+              "parent": {
+                "description": "Supporting part id; separation also releases this part.",
+                "type": "string",
+                "minLength": 1
               },
               "center": {
                 "minItems": 3,
@@ -9051,6 +9137,130 @@ Required: `kind`, `color`, `spec`, `visual`
     "spec": {
       "type": "object",
       "properties": {
+        "collisionParts": {
+          "description": "Independent wheels, panels and engines: model-space sphere probes, joint strength in m/s and GLB node ownership.",
+          "maxItems": 64,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+                "description": "Unique part id used by damage and debris state."
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "frontWheel",
+                  "rearWheel",
+                  "panel",
+                  "engine"
+                ],
+                "description": "Wheel axle, exterior panel or drivetrain role."
+              },
+              "hinge": {
+                "description": "Panel hinge driven by the named vehicle actuator.",
+                "type": "object",
+                "properties": {
+                  "pivot": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Hinge pivot in model coordinates, meters."
+                  },
+                  "axis": {
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Unit hinge axis in model coordinates."
+                  },
+                  "angle": {
+                    "type": "number",
+                    "description": "Hinge rotation in radians at full actuator travel."
+                  },
+                  "actuator": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Vehicle actuator id supplying hinge travel."
+                  }
+                },
+                "required": [
+                  "pivot",
+                  "axis",
+                  "angle",
+                  "actuator"
+                ],
+                "additionalProperties": false
+              },
+              "center": {
+                "minItems": 3,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "Debris origin in model coordinates, meters."
+              },
+              "probes": {
+                "minItems": 1,
+                "maxItems": 64,
+                "type": "array",
+                "items": {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "description": "Sphere centers in model coordinates, meters."
+              },
+              "radius": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Probe and debris collision radius, meters."
+              },
+              "massFraction": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1,
+                "description": "Share of the original mass removed on separation."
+              },
+              "breakSpeed": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Normal impact speed that breaks an intact joint, m/s."
+              },
+              "nodes": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Exact GLB node names owned by this part."
+              }
+            },
+            "required": [
+              "id",
+              "role",
+              "center",
+              "probes",
+              "radius",
+              "massFraction",
+              "breakSpeed",
+              "nodes"
+            ],
+            "additionalProperties": false
+          }
+        },
         "actuators": {
           "description": "External actuators setting.",
           "type": "object",
@@ -10049,6 +10259,96 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "damage": {
+      "description": "Persistent joint integrity and separation, keyed by collision part id.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "integrity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "detached": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "integrity",
+          "detached"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "debris": {
+      "description": "Detached parts in world coordinates; expire after 20 simulated seconds without repairing the vehicle.",
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "part": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Collision part id of the separated geometry."
+          },
+          "pos": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Debris origin in world coordinates, meters."
+          },
+          "rot": {
+            "minItems": 4,
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Debris orientation as a quaternion."
+          },
+          "velocity": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "World-space linear velocity, m/s."
+          },
+          "angularVelocity": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Local angular velocity about X, Y and Z, radians/s."
+          },
+          "age": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Elapsed simulation seconds since separation."
+          }
+        },
+        "required": [
+          "part",
+          "pos",
+          "rot",
+          "velocity",
+          "angularVelocity",
+          "age"
+        ],
+        "additionalProperties": false
+      }
+    },
     "actuators": {
       "description": "Current mechanism positions and cycle phases, from zero to one.",
       "type": "object",

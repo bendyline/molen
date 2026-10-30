@@ -1,15 +1,15 @@
-import type { AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
+import type { AircraftCollisionPart, VehicleDamageState } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 
 /** Visual ownership stays with the aircraft, including after pieces leave the airframe. */
 export interface AircraftDamageVisual {
-  update(state: AircraftStateData): void;
+  update(state: VehicleDamageState): void;
   reset(): void;
 }
 
 export function createAircraftDamageVisual(
   model: THREE.Object3D,
-  spec: AircraftSpec,
+  spec: { collisionParts?: Pick<AircraftCollisionPart, 'id' | 'center' | 'nodes' | 'fragments'>[] },
 ): AircraftDamageVisual {
   model.updateWorldMatrix(true, true);
   const modelInverse = new THREE.Matrix4().copy(model.matrixWorld).invert();
@@ -148,6 +148,19 @@ export function createAircraftDamageVisual(
           );
           for (const node of nodes) {
             const clone = node.clone(true);
+            // Independently breakable children own their own debris. Cloning a complete
+            // wing/tail group must not resurrect its already separated propeller/rotor.
+            const others = new Set(
+              sections
+                .filter((section) => section.part.id !== part.id)
+                .flatMap((section) => section.part.nodes),
+            );
+            const remove: THREE.Object3D[] = [];
+            clone.traverse((child) => {
+              if (child !== clone && others.has(child.userData.name ?? child.name))
+                remove.push(child);
+            });
+            for (const child of remove) child.removeFromParent();
             clone.matrixAutoUpdate = false;
             clone.matrix.copy(offset).multiply(local).multiply(node.matrixWorld);
             clone.visible = hidden.get(node) ?? node.visible;

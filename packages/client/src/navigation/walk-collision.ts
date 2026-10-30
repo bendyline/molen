@@ -58,8 +58,10 @@ function requireFinite(value: number, name: string, allowZero: boolean): number 
 /**
  * A small collision neighborhood in metric coordinates, independent of floating-origin shifts.
  * Only visible, resident geometry under `root` participates; evicted tiles and hidden layers
- * disappear on the next scan, and instance transforms are expanded only inside the
- * neighborhood. Large geometries (terrain tiles, building cells) are walked through a per-geometry
+ * disappear on the next scan, including meshes with all render layers disabled unless marked
+ * `userData.walkCollisionOnly` (for example, a smooth staircase proxy). Instance
+ * transforms are expanded only inside the neighborhood. Large geometries (terrain tiles,
+ * building cells) are walked through a per-geometry
  * spatial index, so a rebuild costs the triangles near the subject rather than the whole tile.
  * Meshes opt out with `userData.walkIgnore`, and water materials (`userData.terrainWaterMaterial`)
  * are never solid. Land cover is a solid walking surface: its visible elevation can differ from
@@ -171,7 +173,12 @@ export class WalkCollision {
       for (const child of object.children) visit(child, inspect);
     };
     visit(root, (object) => {
-      if (!(object instanceof THREE.Mesh) || object.userData.walkIgnore === true) return;
+      if (
+        !(object instanceof THREE.Mesh) ||
+        object.userData.walkIgnore === true ||
+        (object.layers.mask === 0 && object.userData.walkCollisionOnly !== true)
+      )
+        return;
       if (this.ignoreVehicles && (object.userData.vehicleIds || object.userData.vehicleGeometry))
         return;
       const materials = Array.isArray(object.material) ? object.material : [object.material];

@@ -1581,21 +1581,23 @@ export function buildAircraft(s) {
         : large
           ? Math.max(0.27, Math.min(0.67, s.width * 0.11))
           : Math.max(0.16, Math.min(0.36, s.height * 0.074));
+      const hingeForward = pg?.hingeForward?.[main] ?? 0;
+      const axleZ = hingeForward ? -hingeForward : 0;
       const top = pg
           ? pg.top[main]
           : s.slug === 'dash-8-q400' && j > 0
             ? 3.05
             : Math.max(r + 0.25, cy - ry * 0.45),
-        g = moving(`gear-${j}`, [x, top, z]),
+        g = moving(`gear-${j}`, [x, top, z + hingeForward]),
         k = detailKit(g, 'gear-fittings');
-      k.rod([0, 0, 0], [0, -top + r, 0], pg ? pg.strut[main] : 0.045, metallic);
-      k.rod([0, 0, -0.25], [0, -top + r, 0], pg ? pg.strut[main] * 0.55 : 0.025, metallic);
+      k.rod([0, 0, 0], [0, -top + r, axleZ], pg ? pg.strut[main] : 0.045, metallic);
+      k.rod([0, 0, -0.25], [0, -top + r, axleZ], pg ? pg.strut[main] * 0.55 : 0.025, metallic);
       const axles =
         s.category === 'cargo' && j > 0 ? (s.slug === 'c-5m' || s.slug === 'an-124' ? 4 : 2) : 1;
       const spread = pg ? pg.spread[main] : 0.43;
       for (let a = 0; a < axles; a++)
         for (const dx of large && spread ? [-r * spread, r * spread] : [0]) {
-          const at = [dx, -top + r, (a - (axles - 1) / 2) * r * 2.1];
+          const at = [dx, -top + r, (a - (axles - 1) / 2) * r * 2.1 - hingeForward];
           k.add(new T.CylinderGeometry(r, r, r * 0.55, 20).rotateZ(pi / 2), rubber, at);
           for (const side of [-1, 1])
             k.add(new T.CircleGeometry(r * 0.5, 14).rotateY((side * pi) / 2), metallic, [
@@ -1606,6 +1608,8 @@ export function buildAircraft(s) {
         }
       k.finish();
       if (s.gear !== 'fixed' && s.gear !== 'taildragger' && (!heli || s.gear === 'retract')) {
+        // Explicit opt-in: a gear-N name alone does not imply a generic hinge.
+        g.userData.fallbackLandingGear = true;
         gearNodes.push(g.name);
         animated.push({
           node: g.name,

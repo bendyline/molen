@@ -8229,7 +8229,111 @@
                 "ratedDensityRatio": 1
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.3,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.3,
+                    3.9100759999999997
+                  ],
+                  [
+                    0,
+                    1.3,
+                    -3.9100759999999997
+                  ],
+                  [
+                    5.304536,
+                    1.3,
+                    0
+                  ],
+                  [
+                    -5.304536,
+                    1.3,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Baron-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  1.85,
+                  1.35,
+                  1.8705
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Baron-propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    1.85,
+                    1.35,
+                    1.8705
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.9779,
+                  "halfThickness": 0.06,
+                  "rotor": "Baron-propeller-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-Baron-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -1.85,
+                  1.35,
+                  1.8705
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Baron-propeller-2"
+                ],
+                "disc": {
+                  "center": [
+                    -1.85,
+                    1.35,
+                    1.8705
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.9779,
+                  "halfThickness": 0.06,
+                  "rotor": "Baron-propeller-2"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

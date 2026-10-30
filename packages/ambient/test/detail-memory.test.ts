@@ -111,4 +111,26 @@ describe('vehicle detail residency', () => {
     expect(detail.cacheStats()).toEqual({ active: 0, idle: 0, bytes: 0, pending: 0 });
     detail.dispose();
   });
+  it('hides a gone agent model in the frame it leaves, not at the next select', async () => {
+    const parent = new THREE.Group();
+    const detail = new VehicleDetail({
+      parent,
+      models: { vehicle: () => data, load: async () => model() },
+    });
+    detail.select([candidate(0), candidate(1)], () => true);
+    await flush();
+    detail.select([candidate(0), candidate(1)], () => true);
+    await flush();
+    expect(detail.has('car0') && detail.has('car1')).toBe(true);
+    detail.dropGone((id) => id !== 'car0');
+    expect(detail.has('car0')).toBe(false);
+    expect(detail.has('car1')).toBe(true);
+    const shown = parent
+      .getObjectsByProperty('name', 'ambient:detail')[0]
+      ?.children.filter((child) => child.visible);
+    expect(shown).toHaveLength(1);
+    // The pooled model serves the next car of its type at once.
+    expect(detail.cacheStats()).toMatchObject({ active: 1, idle: 1 });
+    detail.dispose();
+  });
 });

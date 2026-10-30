@@ -403,10 +403,27 @@ export function buildF16B(s) {
     [1, -1.1811, 0, 0.32385],
     [2, 1.1811, 0, 0.32385],
   ]) {
-    const pivot = [i ? x * 0.48 : 0, i ? 1.12 : 1.33, i ? 0.57 : 4.28],
-      g = group(root, `F16-gear-${i}`, pivot),
-      dd = detailKit(g, g.name),
+    const pivot = [i ? x * 0.48 : 0, i ? 1.12 : 1.33, i ? 0.57 : 4.28];
+    // The splayed main legs must swing aft/up about mirrored canted trunnions.
+    // Rotating them about airframe Z brings the wheels together BELOW the belly.
+    // These hinge angles fit this medium-fi shell; they are not maintenance dimensions.
+    const frame = group(root, `F16-gear-${i}-hinge`, pivot);
+    let swing = 1.45;
+    if (i) {
+      const down = new T.Vector3(x, r, z).sub(new T.Vector3(...pivot));
+      const up = new T.Vector3(Math.sign(x) * 0.32, 1.6, -0.46)
+        .sub(new T.Vector3(...pivot))
+        .normalize()
+        .multiplyScalar(down.length());
+      const axis = new T.Vector3().crossVectors(down, up).normalize();
+      frame.quaternion.setFromUnitVectors(new T.Vector3(1, 0, 0), axis);
+      swing = down.angleTo(up);
+    }
+    const g = group(frame, `F16-gear-${i}`, [0, 0, 0]),
+      parts = group(g, `F16-gear-${i}-parts`, [0, 0, 0]),
+      dd = detailKit(parts, g.name),
       at = (a) => a.map((v, k) => v - pivot[k]);
+    parts.quaternion.copy(frame.quaternion).invert();
     // The nose leg starts at the duct floor, so no strut shows inside the dark inlet mouth.
     const top = i ? pivot : [0, 0.82, 4.17];
     dd.rod(at(top), at([x, r + 0.17, z + 0.08]), 0.045, metal);
@@ -448,9 +465,9 @@ export function buildF16B(s) {
       node: g.name,
       source: 'gear',
       property: 'rotation',
-      axis: i ? 'z' : 'x',
-      offset: i ? -Math.sign(x) * 1.2 : 1.45,
-      scale: i ? Math.sign(x) * 1.2 : -1.45,
+      axis: 'x',
+      offset: swing,
+      scale: -swing,
     });
   }
   // Close-view access panels, panel fasteners, rescue markings and embedded port muzzle opening.

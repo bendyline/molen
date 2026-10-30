@@ -113,6 +113,13 @@ export interface TerrainPyramidTileLayerContext {
   origin: [number, number];
   tileSize: number;
   signal: AbortSignal;
+  /**
+   * How soon the current view needs this tile, lower first, read again each time it is asked
+   * (meters from the camera, ground outside the view after ground in it). A worker queue picks
+   * its next job by it: a fast camera reorders the view while tiles wait their turn, and in
+   * request order a jet's nearest ground queued behind ground it had already passed.
+   */
+  priority?: () => number;
 }
 
 /**
@@ -246,6 +253,10 @@ export interface TerrainPyramidStatsOptions {
 }
 
 export interface TerrainPyramidStream {
+  /**
+   * Call once a frame: advances refinement morphs and carries on ground cuts the last pass left
+   * unfinished, within one cut budget a frame shared with `update`.
+   */
   updateTransitions(nowMs?: number): void;
   /**
    * The root of every tile. Its transform does not update itself each frame (that would dirty
@@ -518,6 +529,13 @@ function distanceToBounds(
 const CUT_BUDGET_MS = 4;
 /** Without stream updates (no frames: a hidden page, a test), the budget renews this often. */
 const CUT_IDLE_WINDOW_MS = 100;
+/**
+ * The budget renews at most this often (a frame at 120 Hz): the stream's update and the frame's
+ * transitions (see updateTransitions) share one budget a frame, whichever renews it first.
+ */
+const CUT_FRAME_MS = 8;
+/** Added to a layer job's priority outside the view: farther than any ground in it. */
+const OUT_OF_VIEW_PRIORITY = 1e9;
 
 const VIEW_GUARD_RADIANS = THREE.MathUtils.degToRad(12);
 
@@ -1270,8 +1288,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ...(view.direction === undefined ? {} : { direction: [...view.direction] }),
     };
     this.usage++;
-    this.cutWindowStart = performance.now();
-    this.cutWindowSpent = 0;
+    this.renewCutWindow(performance.now());
     this.selection = selectTerrainPyramidTiles(this.descriptor, this.view, {
       ...this.budget,
       previousTiles: this.selection.tiles,
@@ -1504,6 +1521,15 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         this.morphing.delete(tile);
         delete tile.morph;
       }
+    }
+    // Hosts update the stream ten times a second while the camera is still, and a cut that
+    // outran one budget waited that long for each next one: ground a descent had just shown
+    // stood uncut over its own water for most of a second (Seattle's waterfront). Unfinished
+    // cuts go on every frame instead, still within one budget a frame.
+    if (this.cutoutsDirty && this.groundCutouts.pending) {
+      this.renewCutWindow(performance.now());
+      this.cutGround();
+      this.refreshDisplayedBytes();
     }
   }
 
@@ -2205,7 +2231,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         }
       }
       // Unvisited ground has no old visual to retain. Show its base surface immediately,
-      // then publish the enabled layers together once they have all settled.
+      // then publish water immediately and other enabled layers together once they settle.
       if (!retained) prepared.add(key);
     }
     // A retained parent suppresses every replacement beneath it until all siblings are ready.
@@ -2268,9 +2294,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   }
 
   /**
-   * Layers (buildings, trees, water) are built for ground in the camera's view and its guard
-   * band. Peripheral ground stays bare until a turn brings it into view: cheap terrain that is
-   * already there, instead of a whole band of detail no one is looking at.
+   * Expensive detail is built for ground in the camera's view and its guard band.
+   * Peripheral terrain also prepares hydrology, so a turn never starts with a dry lakebed.
    */
   private wantsLayers(address: TerrainPyramidTileAddress): boolean {
     const peripheral = (this.budget.peripheralDegrees ?? 0) > 0;
@@ -2283,10 +2308,10 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   }
 
   private layersReady(tile: ResidentTile, allowFailed = false): boolean {
-    // Peripheral ground carries no layers until it is in view: its bare surface is complete.
-    if (!this.wantsLayers(tile.address)) return true;
+    const detail = this.wantsLayers(tile.address);
     for (const layer of this.layerById.values()) {
       if (
+        (detail || layer.category === 'hydrology') &&
         this.layerVisibility.get(layer.id) === true &&
         this.layerEligible(layer, tile.address.level) &&
         !tile.layers.has(layer.id) &&
@@ -2320,7 +2345,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     return false;
   }
 
-  /** Publish enabled layers together, retaining detail during explicit layer toggles. */
+  /** Publish hydrology independently; retain atomic detail and coverage during handoffs. */
   private updateLayerVisibility(): void {
     // Match the surface handoff's losesVisibleLayers rule. A replacement may already carry
     // every layer its predecessor displayed, while a newly eligible layer is still building.
@@ -2381,15 +2406,17 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             continue;
           }
           if (
-            (ready(tile) || inheritedReady.get(key)?.has(layer.id)) &&
+            (layer.category === 'hydrology' ||
+              ready(tile) ||
+              inheritedReady.get(key)?.has(layer.id)) &&
             (tile.layers.has(layer.id) || tile.emptyLayers.has(layer.id))
           ) {
             candidates.add(key);
             continue;
           }
           if (!this.wantsLayers(tile.address)) {
-            // Peripheral ground never gets layers of its own. Detail already shown inside it
-            // may stay, but never a coarser ancestor's, which would cover the view beside it.
+            // Peripheral ground only gets hydrology. Detail already shown inside it may stay,
+            // but never a coarser ancestor's, which would cover the view beside it.
             for (const previousKey of previous) {
               const old = this.resident.get(previousKey);
               if (
@@ -2439,23 +2466,34 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       if (tile.object.visible !== retained) this.cutoutsDirty = true;
       tile.object.visible = retained;
     }
+    this.cutGround();
+    this.refreshDisplayedBytes();
+  }
+
+  private renewCutWindow(now: number): void {
+    if (now - this.cutWindowStart < CUT_FRAME_MS) return;
+    this.cutWindowStart = now;
+    this.cutWindowSpent = 0;
+  }
+
+  /** Bring ground cuts up to date within what is left of the budget. */
+  private cutGround(): void {
     const now = performance.now();
     if (now - this.cutWindowStart >= CUT_IDLE_WINDOW_MS) {
       this.cutWindowStart = now;
       this.cutWindowSpent = 0;
     }
-    // Out of budget, the pass waits: the next frame's update makes one before it renders. A pass
-    // with a sliver left would still cut a whole slice and gather every opening first.
+    // Out of budget, the pass waits for the next frame's (see updateTransitions). A pass with a
+    // sliver left would still cut a whole slice and gather every opening first.
     if (this.cutoutsDirty && this.cutWindowSpent <= CUT_BUDGET_MS - 1) {
       this.cutoutsDirty = false;
       if (this.groundCutouts.update(this.object, CUT_BUDGET_MS - this.cutWindowSpent))
         this.trackCutAllocations(this.groundCutouts.changedMeshes);
-      // The rest follow in later passes (each stream update makes one), a budget at a time; a
-      // pass requested now would only run in this same task.
+      // The rest follow in later frames, a budget at a time; a pass requested now would only
+      // run in this same task.
       if (this.groundCutouts.pending) this.cutoutsDirty = true;
       this.cutWindowSpent += performance.now() - now;
     }
-    this.refreshDisplayedBytes();
   }
 
   /**
@@ -2566,6 +2604,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           origin,
           tileSize,
           signal,
+          priority: () => this.layerPriority(tile.address),
           ...(this.options.admission ? { admission: this.options.admission } : {}),
         });
         if (object !== undefined) {
@@ -2672,7 +2711,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ]),
     ]
       .map((key) => this.resident.get(key))
-      .filter((tile): tile is ResidentTile => tile !== undefined && this.wantsLayers(tile.address))
+      .filter((tile): tile is ResidentTile => tile !== undefined)
       .map((tile) => {
         const bounds = tileBounds(this.descriptor, tile.address);
         const distance =
@@ -2717,11 +2756,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           a.tile.address.z - b.tile.address.z ||
           a.tile.address.x - b.tile.address.x,
       );
-    const jobs = candidates.flatMap(({ tile }) =>
+    const jobs = candidates.flatMap(({ tile, preload, inView }) =>
       [...this.layerById.values()]
         .filter((layer) => {
           const key = `${terrainPyramidTileKey(tile.address)}:${layer.id}`;
           return (
+            (layer.category === 'hydrology' || this.wantsLayers(tile.address)) &&
             this.layerVisibility.get(layer.id) === true &&
             this.layerEligible(layer, tile.address.level) &&
             !tile.layers.has(layer.id) &&
@@ -2733,6 +2773,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         .map((layer) => ({
           tile,
           layer,
+          preload,
+          inView,
           route: this.preparationTargets.has(terrainPyramidTileKey(tile.address)),
           // Finish the layers needed to release an existing parent before starting newly
           // eligible detail. Otherwise a few slow building jobs occupy every slot while
@@ -2749,7 +2791,15 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             }),
         })),
     );
-    jobs.sort((a, b) => Number(b.handoff) - Number(a.handoff));
+    // Fill visible lakes before nearby buildings can occupy every slot. Peripheral water
+    // warms after visible work; speculative route jobs still use their reserved slots below.
+    jobs.sort(
+      (a, b) =>
+        Number(a.preload) - Number(b.preload) ||
+        Number(b.inView) - Number(a.inView) ||
+        Number(b.layer.category === 'hydrology') - Number(a.layer.category === 'hydrology') ||
+        Number(b.handoff) - Number(a.handoff),
+    );
     while (jobs.length > 0 && this.pendingLayers.size < this.budget.maxConcurrentLayerLoads) {
       const preloadIndex = this.reservePreloadSlot(
         this.pendingLayers.values(),
@@ -2760,6 +2810,29 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       const job = jobs.splice(preloadIndex >= 0 ? preloadIndex : 0, 1)[0];
       if (job) this.startLayerLoad(job.tile, job.layer);
     }
+  }
+
+  /**
+   * A layer job's live priority (see TerrainPyramidTileLayerContext.priority), ordered as
+   * startQueuedLayerLoads orders new jobs: ground in view first, then by distance, a family
+   * replacing a detailed parent at its parent's distance so the family finishes together.
+   */
+  private layerPriority(address: TerrainPyramidTileAddress): number {
+    const view = this.view;
+    if (view === undefined) return 0;
+    let bounds = tileBounds(this.descriptor, address);
+    for (let level = address.level - 1; level >= this.descriptor.minLevel; level--) {
+      const parent = terrainPyramidAncestor(address, level);
+      const key = terrainPyramidTileKey(parent);
+      if (!this.displayed.has(key)) continue;
+      let detailed = false;
+      for (const keys of this.displayedLayers.values()) detailed ||= keys.has(key);
+      if (!detailed) continue;
+      bounds = tileBounds(this.descriptor, parent);
+      break;
+    }
+    const distance = distanceToBounds(view.position, bounds, this.descriptor.height);
+    return intersectsHorizontalView(view, bounds, 0) ? distance : OUT_OF_VIEW_PRIORITY + distance;
   }
 
   private replacesDisplayedDescendants(address: TerrainPyramidTileAddress): boolean {

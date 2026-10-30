@@ -5998,7 +5998,77 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.78,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.78,
+                    6.407
+                  ],
+                  [
+                    0,
+                    1.78,
+                    -6.407
+                  ],
+                  [
+                    3.8640000000000003,
+                    1.78,
+                    0
+                  ],
+                  [
+                    -3.8640000000000003,
+                    1.78,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.8,
+                  -6.23
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "engine-1-turbine"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.8,
+                    -6.23
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.34,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

@@ -448,7 +448,7 @@ for (const originalAsset of studies.filter((study) => !selected || selected.incl
           sha256: hash(glb),
         },
       ],
-      generators: [],
+      generators: priorSource?.files.generators ?? [],
       scripts: [],
       textures: [],
       sounds: [],

@@ -1,5 +1,7 @@
-import type * as THREE from 'three';
+import * as THREE from 'three';
+import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 import { describe, expect, it } from 'vitest';
+import { sampleAirportPavement } from '../src/airport-surfaces';
 import { Heightfield } from '../src/heightfield';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
 import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
@@ -104,6 +106,55 @@ describe('airport surfaces', () => {
       ],
     });
     expect(new SurfaceNetwork(tile, 1000, resolveTerrainSurfaceStyle()).roads).toHaveLength(0);
+    disposeTerrainSurfaceObject(group);
+  });
+
+  it('reports the draped pavement height for aircraft standing on it', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push({
+      class: 'runway',
+      width: 60,
+      lines: [
+        [
+          [0.5, 0.1],
+          [0.5, 0.9],
+        ],
+      ],
+    });
+    tile.landcover.push({
+      class: 'apron',
+      polygons: [
+        {
+          outer: [
+            [0.1, 0.4],
+            [0.3, 0.4],
+            [0.3, 0.6],
+            [0.1, 0.6],
+          ],
+        },
+      ],
+    });
+    const root = new THREE.Group();
+    const group = createTerrainSurfaceObject(tile, context());
+    // A tile layer sits at its origin under the stream root, above the terrain at 5 m here.
+    group.position.set(1000, 5, 2000);
+    root.add(group);
+    expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeCloseTo(5.55, 5);
+    expect(sampleAirportPavement(root, 1200, 2500, 5)).toBeCloseTo(5.48, 5);
+    // Off the pavement, above it, or with the tile hidden or evicted there is none to stand on.
+    expect(sampleAirportPavement(root, 1600, 2500, 5)).toBeUndefined();
+    expect(sampleAirportPavement(root, 1500, 2500, 5.6)).toBeUndefined();
+    expect(sampleAirportPavement(new THREE.Group(), 1500, 2500, 5)).toBeUndefined();
+    group.visible = false;
+    expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeUndefined();
+    group.visible = true;
+    // Ground cutouts swap in indexed geometry.
+    const mesh = group.getObjectByName('surfaces:airport-pavement') as THREE.Mesh;
+    mesh.geometry = mergeVertices(mesh.geometry);
+    expect(mesh.geometry.index).not.toBeNull();
+    expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeCloseTo(5.55, 5);
+    root.remove(group);
+    expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeUndefined();
     disposeTerrainSurfaceObject(group);
   });
 });

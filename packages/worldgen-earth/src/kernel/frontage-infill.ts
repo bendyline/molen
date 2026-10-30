@@ -55,7 +55,16 @@ export type InfillStyleAt = (
   use: 'house' | 'commercial',
   identity: string,
 ) => ArchStyleDoc | undefined;
-type Segment = { a: Vec2; b: Vec2; width: number; street: boolean; walkable: boolean; key: string };
+type Segment = {
+  a: Vec2;
+  b: Vec2;
+  width: number;
+  street: boolean;
+  walkable: boolean;
+  key: string;
+  /** Position in key order, for sorting neighborhoods without comparing key strings. */
+  rank: number;
+};
 type Obstacle = { polygon: TerrainSemanticPolygon; use?: 'house' | 'commercial' };
 type Lot = {
   id: string;
@@ -170,7 +179,7 @@ export function inferBuildingFootprints(
         `${Math.round(((p[0] + geom.originX) / scale) * 1000)},${Math.round(((p[1] + geom.originZ) / scale) * 1000)}`;
       const key = `${coord(a)}|${coord(b)}|${width}|${street}`;
       if (all.has(key)) continue;
-      const s = { a, b, width, street, walkable, key };
+      const s = { a, b, width, street, walkable, key, rank: 0 };
       all.set(key, s);
       segments.add(s, [
         Math.min(a[0], b[0]) - width,
@@ -219,9 +228,9 @@ export function inferBuildingFootprints(
     )
       for (const p of cover.polygons) addObstacle(p);
   const lots = new Map<string, Lot>();
-  for (const road of [...all.values()]
-    .filter((r) => r.street)
-    .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))) {
+  const ordered = [...all.values()].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+  for (let i = 0; i < ordered.length; i++) (ordered[i] as Segment).rank = i;
+  for (const road of ordered.filter((r) => r.street)) {
     const dx = road.b[0] - road.a[0],
       dz = road.b[1] - road.a[1],
       length = dmath.hypot(dx, dz),
@@ -305,7 +314,7 @@ export function inferBuildingFootprints(
         const use = commercial ? 'commercial' : 'house';
         const neighborhood = segments
           .query(around(...center, RADIUS))
-          .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+          .sort((a, b) => a.rank - b.rank);
         const observed =
           ((Math.min(RADIUS, center[0]) + Math.min(RADIUS, size - center[0])) *
             (Math.min(RADIUS, center[1]) + Math.min(RADIUS, size - center[1]))) /

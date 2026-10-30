@@ -1441,6 +1441,67 @@ registerComponent('glassState', glassStateSchema, {
 const vehicleSpecSchema = z
   .strictObject(
     describedFields({
+      collisionParts: z
+        .array(
+          z.strictObject({
+            id: z
+              .string()
+              .regex(/^[a-zA-Z][a-zA-Z0-9_-]*$/)
+              .describe('Unique part id used by damage and debris state.'),
+            role: z
+              .enum(['frontWheel', 'rearWheel', 'panel', 'engine'])
+              .describe('Wheel axle, exterior panel or drivetrain role.'),
+            hinge: z
+              .strictObject({
+                pivot: vec3.describe('Hinge pivot in model coordinates, meters.'),
+                axis: vec3
+                  .refine((v) => Math.abs(Math.hypot(...v) - 1) < 1e-5, 'Expected a unit axis.')
+                  .describe('Unit hinge axis in model coordinates.'),
+                angle: num.describe('Hinge rotation in radians at full actuator travel.'),
+                actuator: z.string().min(1).describe('Vehicle actuator id supplying hinge travel.'),
+              })
+              .optional()
+              .describe('Panel hinge driven by the named vehicle actuator.'),
+            center: vec3.describe('Debris origin in model coordinates, meters.'),
+            probes: z
+              .array(vec3)
+              .min(1)
+              .max(64)
+              .describe('Sphere centers in model coordinates, meters.'),
+            radius: num.positive().describe('Probe and debris collision radius, meters.'),
+            massFraction: num
+              .positive()
+              .max(1)
+              .describe('Share of the original mass removed on separation.'),
+            breakSpeed: num
+              .positive()
+              .describe('Normal impact speed that breaks an intact joint, m/s.'),
+            nodes: z
+              .array(z.string().min(1))
+              .min(1)
+              .describe('Exact GLB node names owned by this part.'),
+          }),
+        )
+        .max(64)
+        .superRefine((parts, ctx) => {
+          if (new Set(parts.map((p) => p.id)).size !== parts.length)
+            ctx.addIssue({ code: 'custom', message: 'Collision part ids must be unique.' });
+          const nodes = parts.flatMap((p) => p.nodes);
+          if (new Set(nodes).size !== nodes.length)
+            ctx.addIssue({
+              code: 'custom',
+              message: 'Each node must belong to one collision part.',
+            });
+          if (parts.reduce((sum, p) => sum + p.massFraction, 0) >= 0.8)
+            ctx.addIssue({
+              code: 'custom',
+              message: 'Detachable parts must leave at least 20% of the chassis mass.',
+            });
+        })
+        .optional()
+        .describe(
+          'Independent wheels, panels and engines: model-space sphere probes, joint strength in m/s and GLB node ownership.',
+        ),
       actuators: actuatorSpecsSchema.optional(),
       label: z.string().min(1),
       bodyStyle: vehicleBodyStyleSchema.optional(),
@@ -1747,6 +1808,26 @@ registerComponent(
 registerComponent(
   'vehicleState',
   z.strictObject({
+    damage: z
+      .record(z.string(), z.strictObject({ integrity: num.min(0).max(1), detached: z.boolean() }))
+      .optional()
+      .describe('Persistent joint integrity and separation, keyed by collision part id.'),
+    debris: z
+      .array(
+        z.strictObject({
+          part: z.string().min(1).describe('Collision part id of the separated geometry.'),
+          pos: vec3.describe('Debris origin in world coordinates, meters.'),
+          rot: quat.describe('Debris orientation as a quaternion.'),
+          velocity: vec3.describe('World-space linear velocity, m/s.'),
+          angularVelocity: vec3.describe('Local angular velocity about X, Y and Z, radians/s.'),
+          age: num.nonnegative().describe('Elapsed simulation seconds since separation.'),
+        }),
+      )
+      .max(64)
+      .optional()
+      .describe(
+        'Detached parts in world coordinates; expire after 20 simulated seconds without repairing the vehicle.',
+      ),
     actuators: actuatorPositionsSchema
       .optional()
       .describe('Current mechanism positions and cycle phases, from zero to one.'),
@@ -2318,14 +2399,51 @@ const aircraftSpecSchema = z
               .regex(/^[a-zA-Z][a-zA-Z0-9_-]*$/)
               .describe('Unique section id used by damage and debris state.'),
             role: z
-              .enum(['body', 'leftWing', 'rightWing', 'tail', 'rotor', 'gear', 'engine'])
+              .enum([
+                'body',
+                'leftWing',
+                'rightWing',
+                'tail',
+                'rotor',
+                'tailRotor',
+                'gear',
+                'engine',
+              ])
               .describe('Flight role; +X is the left wing. Body sections cannot detach.'),
-            probes: z
-              .array(vec3)
-              .min(1)
-              .max(64)
-              .describe('Local collision sphere centers, meters.'),
+            probes: z.array(vec3).max(64).describe('Local collision sphere centers, meters.'),
             radius: num.positive().describe('Probe and detached-piece collision radius, meters.'),
+            disc: z
+              .strictObject({
+                center: vec3.describe('Rotor hub in model coordinates, meters.'),
+                normal: vec3
+                  .refine((v) => Math.abs(Math.hypot(...v) - 1) < 1e-5, 'Expected a unit normal.')
+                  .describe('Unit rotation axis in model coordinates.'),
+                radius: num.positive().describe('Full swept rotor radius, meters.'),
+                halfThickness: num.positive().describe('Half the swept blade thickness, meters.'),
+                rotor: z
+                  .string()
+                  .min(1)
+                  .describe('Node in visual.rotors supplying engine RPM and speed multiplier.'),
+                tilt: z
+                  .strictObject({
+                    pivot: vec3.describe('Powered-lift hinge pivot in model coordinates, meters.'),
+                    axis: vec3
+                      .refine((v) => Math.abs(Math.hypot(...v) - 1) < 1e-5, 'Expected a unit axis.')
+                      .describe('Unit powered-lift hinge axis in model coordinates.'),
+                    angle: num.describe('Hinge rotation in radians at full thrustVectorPosition.'),
+                  })
+                  .optional()
+                  .describe('Powered-lift hinge, in model coordinates at forward thrust.'),
+              })
+              .optional()
+              .describe(
+                'Finite rotor disc replacing sphere probes, including at rest. Blade speed contributes to strike damage.',
+              ),
+            parent: z
+              .string()
+              .min(1)
+              .optional()
+              .describe('Supporting part id; separation also releases this part.'),
             center: vec3.describe('Section center in model coordinates, meters.'),
             massFraction: num
               .positive()
@@ -2491,13 +2609,41 @@ const aircraftSpecSchema = z
           message: 'Collision part ids must be unique.',
         });
       partIds.add(part.id);
+      if (!part.disc && part.probes.length === 0)
+        ctx.addIssue({
+          code: 'custom',
+          path: ['collisionParts', index, 'probes'],
+          message: 'A section needs sphere probes or a rotor disc.',
+        });
+      if (part.disc && !value.visual.rotors.some((rotor) => rotor.node === part.disc?.rotor))
+        ctx.addIssue({
+          code: 'custom',
+          path: ['collisionParts', index, 'disc', 'rotor'],
+          message: 'Unknown visual rotor node.',
+        });
+      const ancestors = new Set([part.id]);
+      let parent = part.parent;
+      while (parent !== undefined) {
+        const support = value.collisionParts?.find((candidate) => candidate.id === parent);
+        if (!support || ancestors.has(parent) || part.role === 'body') {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['collisionParts', index, 'parent'],
+            message: 'Part parents must exist, be acyclic, and cannot carry the body.',
+          });
+          break;
+        }
+        ancestors.add(parent);
+        parent = support.parent;
+      }
       if (part.fragments && part.fragments.min.some((v, i) => v >= (part.fragments?.max[i] ?? 0)))
         ctx.addIssue({
           code: 'custom',
           path: ['collisionParts', index, 'fragments'],
           message: 'Fragment bounds must have positive size on every axis.',
         });
-      if (part.breakSpeed !== undefined) detachedMass += part.massFraction;
+      if (part.breakSpeed !== undefined || part.parent !== undefined)
+        detachedMass += part.massFraction;
       if (part.role === 'body' && part.breakSpeed !== undefined)
         ctx.addIssue({
           code: 'custom',

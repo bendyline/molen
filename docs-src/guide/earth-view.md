@@ -59,6 +59,10 @@ worker you omit does its work on the main thread instead.
 Buildings appear with vertex colors while shared material textures bake in the background.
 Completed textures update the existing materials without regenerating buildings. Terrain detail
 refines in small groups, retaining visible detail during camera turns while replacements load.
+With worldgen content, distant tiles retain broad landcover colors and bounded building silhouettes;
+trees and street detail remain nearby. Water appears independently of those slower layers and also
+warms just outside the camera view. Byte-cache prefetch includes distant landcover at every available
+map level, so revisiting an area can reuse that coverage as well as its elevation and water.
 
 Metal and glass use a shared procedural sky/ground reflection environment by default. The viewer
 reuses its filtered texture until lighting changes; camera movement does not regenerate it.
@@ -1094,6 +1098,9 @@ The `molen.earth` content pack supplies a lazy worldwide runway catalog and a de
 Field layout. Both Earth hosts use measured runway endpoints and widths, draw runway numbers,
 thresholds and centre lines, and keep airport pavement visible from flight altitude. Mapped
 taxiways and aprons have airport markings; airside areas do not become car parks or city streets.
+The pavement is drawn about half a metre above the terrain, and aircraft stand on it. A host
+placing its own objects there reads that height with `sampleAirportPavement(root, x, z, ground)`
+from `@bendyline/molen-terrain/client`, which returns undefined off the pavement.
 The airport overlay also supplies mapped hangar/building footprints and suppresses inferred
 vegetation and buildings on the airfield. Aircraft traffic uses the runway approach/departure
 corridors and remains simulated, rather than live aviation tracking.

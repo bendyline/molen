@@ -1812,8 +1812,15 @@ async function main(): Promise<void> {
   }
   const interact = (): void => {
     if (navigation !== 'walk' || parachute.active || (!vehicles.mountedId && !walker.ready)) return;
-    if (vehicles.mountedId) exitVehicle(true);
-    else if (flight.enter(camera.pos) || vehicles.enter(camera.pos)) {
+    if (vehicles.mountedId) {
+      const car = vehicles.mountedId;
+      // Out through the door, which shuts once the walker moves off.
+      if (exitVehicle(true)) vehicles.openDoor(camera.pos, car);
+    } else if (
+      flight.enter(camera.pos) ||
+      // A car takes two presses: the first opens the door beside the walker, the next gets in.
+      (!vehicles.openDoor(camera.pos) && vehicles.enter(camera.pos))
+    ) {
       if (flight.mountedKind) airportPopulation?.claim(flight.mountedKind);
       input.map.reset();
       vehicles.view = 'cockpit';
@@ -1846,7 +1853,7 @@ async function main(): Promise<void> {
     )
       return;
     if (event.code === 'KeyB' && !flight.mountedKind && !vehicles.mountedId) spawnBoat();
-    if (event.code === 'KeyR' && !flight.mountedKind)
+    if (event.code === 'KeyR' && !flight.mountedKind && !vehicles.mountedId)
       viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
     if (
       event.code === 'KeyL' &&
@@ -2065,13 +2072,15 @@ async function main(): Promise<void> {
         }
       } else requestedBoat = undefined;
     }
-    ambient?.sync(
-      now,
-      { position: camera.pos, direction: viewDirection },
-      navigation === 'walk' && vehicles.mountedId === undefined && flight.mountedKind === undefined
+    // Traffic stops for the walker and for cars a driver left standing, a taken traffic car too.
+    ambient?.sync(now, { position: camera.pos, direction: viewDirection }, [
+      ...(navigation === 'walk' &&
+      vehicles.mountedId === undefined &&
+      flight.mountedKind === undefined
         ? [{ x: camera.pos[0], z: camera.pos[2], radius: 0.5 }]
-        : [],
-    );
+        : []),
+      ...vehicles.trafficSolids(),
+    ]);
     // Visiting or spawning a vehicle can change the mode after the frame began.
     const activeProfile = inputProfile();
     if (input.map.activeProfile !== activeProfile) {
@@ -2080,6 +2089,7 @@ async function main(): Promise<void> {
     }
     flight.input(dt, frameInput);
     if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
+    if ((frameInput.recover ?? 0) > 0) vehicles.recover();
     vehicles.update(dt, {
       throttle: frameInput.move.forward,
       steering: frameInput.move.right,
@@ -2501,7 +2511,9 @@ async function main(): Promise<void> {
                 ? `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${vehicles.speed < -0.1 ? 'Reverse' : 'Drive'} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`
                 : vehicles.message ||
                   (nearVehicle
-                    ? `E · Enter ${vehicles.label(nearVehicle)}`
+                    ? vehicles.closedDoor(nearVehicle, camera.pos)
+                      ? `E · Open the ${vehicles.label(nearVehicle)} door`
+                      : `E · Enter ${vehicles.label(nearVehicle)}`
                     : navigation === 'walk'
                       ? !walker.ready
                         ? 'Finding open ground nearby… Switch to Fly to choose another spot.'

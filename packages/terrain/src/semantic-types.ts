@@ -121,7 +121,7 @@ export interface TerrainTransportationFeature extends TerrainStructureIdentity {
    * Ground approaches blend back to terrain without generating bridge slabs.
    * Points use normalized tile coordinates. */
   bridgeConnections?: { point: TerrainSemanticPoint; elevation: number; radius: number }[];
-  /** Bounded, connected approach grading. Points are normalized tile coordinates;
+  /** Sampled bridge deck or bounded, connected approach grading. Points are normalized tile coordinates;
    * elevation is absolute Y and flatness (0..1) suppresses terrain crossfall at the deck. */
   bridgeApproachProfile?: { point: TerrainSemanticPoint; elevation: number; flatness: number }[];
   tunnel?: boolean;

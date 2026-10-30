@@ -1,7 +1,11 @@
 import { FrameAdmissionQueue } from '@bendyline/molen-client';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
-import { setTerrainGroundCutout, TerrainGroundCutoutController } from '../src/ground-cutout';
+import {
+  setTerrainGroundCutout,
+  TerrainGroundCutoutController,
+  terrainGroundSourceGeometry,
+} from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
 import { buildChunkGeometry } from '../src/mesh';
 import {
@@ -980,7 +984,7 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
-  it('keeps peripheral ground bare, then builds its layers when a turn brings it into view', async () => {
+  it('warms peripheral water while deferring buildings until a turn brings them into view', async () => {
     const d = descriptor({ rootSize: 8_192, maxLevel: 6, tileResolution: 9 });
     const turn = (degrees: number) => {
       const r = (degrees * Math.PI) / 180;
@@ -994,6 +998,7 @@ describe('screen-space terrain pyramid', () => {
     };
     const loads = new Map<string, number>();
     const layered = new Set<string>();
+    const watered = new Set<string>();
     const stream = createTerrainPyramidStream(
       d,
       {
@@ -1014,6 +1019,14 @@ describe('screen-space terrain pyramid', () => {
         peripheralDegrees: 60,
         layers: [
           {
+            id: 'water',
+            category: 'hydrology',
+            createTile({ address }) {
+              watered.add(terrainPyramidTileKey(address));
+              return new THREE.Group();
+            },
+          },
+          {
             id: 'human',
             category: 'human-feature',
             createTile({ address }) {
@@ -1029,6 +1042,10 @@ describe('screen-space terrain pyramid', () => {
       const displayed = stream.displayedTiles().map(terrainPyramidTileKey);
       const bare = displayed.filter((key) => !layered.has(key));
       expect(bare.length).toBeGreaterThan(0);
+      for (const key of bare) {
+        expect(watered.has(key)).toBe(true);
+        expect(stream.object.getObjectByName(`layer:water:${key}`)?.visible).toBe(true);
+      }
       expect(stream.isAreaReady(4_096, 4_096, 30)).toBe(true);
       stream.update(turn(70));
       await stream.whenIdle();
@@ -2256,6 +2273,70 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
+  it.each([
+    1, 4,
+  ])('shows water across the view before slow detail with %i layer slots', async (slots) => {
+    const d = descriptor({ minLevel: 1, maxLevel: 1 });
+    const pending: Array<() => void> = [];
+    let hold = true;
+    const waterLoads: string[] = [];
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 8,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: slots,
+        maxResidentTiles: 16,
+        layers: [
+          // Deliberately first: layer declaration order must not starve lake coverage.
+          ...(['classification', 'human-feature'] as const).map((category) => ({
+            id: category,
+            category,
+            async createTile() {
+              if (hold) await new Promise<void>((resolve) => pending.push(resolve));
+              return new THREE.Group();
+            },
+          })),
+          {
+            id: 'water',
+            category: 'hydrology',
+            createTile({ address }) {
+              waterLoads.push(terrainPyramidTileKey(address));
+              return new THREE.Group();
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await vi.waitFor(() => {
+        expect(waterLoads).toHaveLength(4);
+        for (const key of waterLoads)
+          expect(stream.object.getObjectByName(`layer:water:${key}`)?.visible).toBe(true);
+      });
+      expect(stream.isAreaReady(2, 2, 1)).toBe(false);
+      hold = false;
+      for (const finish of pending) finish();
+      await stream.whenIdle();
+      expect(stream.isAreaReady(2, 2, 1)).toBe(true);
+      stream.setLayerVisible('water', false);
+      expect(
+        waterLoads.every((key) => !stream.object.getObjectByName(`layer:water:${key}`)?.visible),
+      ).toBe(true);
+      stream.setLayerVisible('water', true);
+      await stream.whenIdle();
+      expect(waterLoads).toHaveLength(4);
+    } finally {
+      stream.dispose();
+      hold = false;
+      for (const finish of pending) finish();
+    }
+  });
+
   it('remembers empty hydrology tiles so they cannot starve farther water', async () => {
     const d = descriptor({ maxLevel: 1 });
     const loaded: string[] = [];
@@ -2297,6 +2378,73 @@ describe('screen-space terrain pyramid', () => {
       expect(loaded).toHaveLength(4);
     } finally {
       stream.dispose();
+    }
+  });
+
+  it('keeps parent water until all child shorelines are ready without waiting for new buildings', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    const pending = new Map<string, () => void>();
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10000,
+        viewDistance: 100,
+        maxSelectedTiles: 8,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 8,
+        layers: [
+          {
+            id: 'water',
+            category: 'hydrology',
+            async createTile({ address }) {
+              if (address.level === 1)
+                await new Promise<void>((resolve) =>
+                  pending.set(terrainPyramidTileKey(address), resolve),
+                );
+              return new THREE.Group();
+            },
+          },
+          {
+            id: 'buildings',
+            category: 'human-feature',
+            minLevel: 1,
+            createTile: () => new Promise<THREE.Object3D>(() => {}),
+          },
+        ],
+      },
+    );
+    const visibleWater = () => {
+      const names: string[] = [];
+      stream.object.traverseVisible((object) => {
+        if (object.name.startsWith('layer:water:')) names.push(object.name);
+      });
+      return names.sort();
+    };
+    try {
+      await stream.whenIdle();
+      expect(visibleWater()).toEqual(['layer:water:0/0/0']);
+      stream.setBudget({ maxScreenSpaceError: 1 });
+      await vi.waitFor(() => expect(pending.size).toBe(4));
+      const finishes = [...pending.values()];
+      for (const finish of finishes.slice(0, 3)) finish();
+      await vi.waitFor(() => expect(stream.stats().layerObjects).toBe(4));
+      expect(visibleWater()).toEqual(['layer:water:0/0/0']);
+      finishes[3]?.();
+      await vi.waitFor(() =>
+        expect(visibleWater()).toEqual([
+          'layer:water:1/0/0',
+          'layer:water:1/0/1',
+          'layer:water:1/1/0',
+          'layer:water:1/1/1',
+        ]),
+      );
+      expect(stream.isAreaReady(2, 2, 1)).toBe(false);
+    } finally {
+      stream.dispose();
+      for (const finish of pending.values()) finish();
     }
   });
 
@@ -3005,6 +3153,62 @@ describe('budgeted terrain publication', () => {
     expect(priorities.get('terrain-publication')).toBe('urgent');
     expect(prepared).toEqual(['urgent']);
     stream.dispose();
+  });
+
+  it('finishes a cut a pass left unfinished on later frames, without another stream update', async () => {
+    // Hosts update the stream ten times a second while the camera is still: a cut that outran
+    // one budget waited that long for each next slice, and ground a descent had just shown stood
+    // uncut over its own harbor for most of a second (Seattle's waterfront).
+    let now = 0;
+    let tick = 0;
+    const clock = vi.spyOn(performance, 'now').mockImplementation(() => (now += tick));
+    const d = descriptor({ maxLevel: 0 });
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10_000,
+        viewDistance: 100,
+        maxSelectedTiles: 4,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        layers: [
+          {
+            id: 'cutters',
+            category: 'human-feature',
+            createTile() {
+              const group = new THREE.Group();
+              const owner = new THREE.Object3D();
+              setTerrainGroundCutout(owner, [
+                [2, 2],
+                [6, 2],
+                [6, 6],
+              ]);
+              group.add(owner);
+              return group;
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      const surface = stream.object.getObjectByName('surface:0/0/0') as THREE.Mesh;
+      const cut = () => surface.geometry !== terrainGroundSourceGeometry(surface);
+      expect(cut()).toBe(true);
+      stream.setLayerVisible('cutters', false);
+      expect(cut()).toBe(false);
+      // From here every reading of the clock is 5 ms on: each pass cuts one slice.
+      tick = 5;
+      stream.setLayerVisible('cutters', true);
+      expect(cut()).toBe(false);
+      for (let frame = 0; frame < 50 && !cut(); frame++) stream.updateTransitions();
+      expect(cut()).toBe(true);
+    } finally {
+      stream.dispose();
+      clock.mockRestore();
+    }
   });
 
   it('recomputes ground cutouts only when visibility or a surface changes', async () => {

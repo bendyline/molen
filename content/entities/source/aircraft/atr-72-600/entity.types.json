@@ -7516,7 +7516,111 @@
                 "ratedDensityRatio": 0.55
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  2.31,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    2.31,
+                    11.68138
+                  ],
+                  [
+                    0,
+                    2.31,
+                    -11.68138
+                  ],
+                  [
+                    12.443000000000001,
+                    2.31,
+                    0
+                  ],
+                  [
+                    -12.443000000000001,
+                    2.31,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-ATR72-propeller-0",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  4.05,
+                  3.3,
+                  4.5015
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "ATR72-propeller-0"
+                ],
+                "disc": {
+                  "center": [
+                    4.05,
+                    3.3,
+                    4.5015
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.992743,
+                  "halfThickness": 0.06,
+                  "rotor": "ATR72-propeller-0"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-ATR72-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -4.05,
+                  3.3,
+                  4.5015
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "ATR72-propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    -4.05,
+                    3.3,
+                    4.5015
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.992743,
+                  "halfThickness": 0.06,
+                  "rotor": "ATR72-propeller-1"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

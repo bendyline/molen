@@ -917,7 +917,11 @@ export const transportProfiles = {
       main: 0.13,
       track: 4.4,
       r: [0.3, 0.43],
-      top: [1.6, 2.9],
+      // Keep the published axle station/track. A forward trunnion lets the raked
+      // strut swing aft into the broad gear bay instead of the tapered nacelle tip.
+      // Pivot placement is fitted to this shell, not a maintenance-drawing dimension.
+      top: [1.6, 2.6],
+      hingeForward: [0, 0.55],
       strut: [0.06, 0.1],
       spread: [0.7, 0.62],
     },

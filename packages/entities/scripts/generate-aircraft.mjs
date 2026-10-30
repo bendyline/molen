@@ -13,6 +13,7 @@ import {
   writeCockpitTextures,
 } from './aircraft/cockpit-surfaces.mjs';
 import { completeAircraftArticulation } from './aircraft-articulation.mjs';
+import { completeAircraftCollisionParts } from './aircraft-collision-parts.mjs';
 import { buildAircraft } from './aircraft-geometry.mjs';
 import { tuneAircraftPerformance } from './aircraft-performance.mjs';
 
@@ -206,6 +207,7 @@ for (const s of aircraft) {
   completeAircraftArticulation(model, spec, s, modelSignals);
   completeCockpitControls(model, spec, f);
   finishAircraftCockpit(model, spec, s.slug);
+  completeAircraftCollisionParts(model, spec);
   const bytes = embedCockpitTextures(
     Buffer.from(await new GLTFExporter().parseAsync(model, { binary: true, onlyVisible: false })),
   );

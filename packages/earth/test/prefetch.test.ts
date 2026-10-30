@@ -118,8 +118,11 @@ describe('earthPrefetchTargets', () => {
       { role: 'elevation', level: 12, x: 50, y: 100 },
       { role: 'elevation', level: 6, x: 3, y: 4 },
     ]);
-    // Landcover covers its finest three levels only.
-    expect(byRole('landcover')).toEqual([{ role: 'landcover', level: 13, x: 100, y: 200 }]);
+    // Distant tiles need broad land colors too, even below the vegetation detail band.
+    expect(byRole('landcover')).toEqual([
+      { role: 'landcover', level: 13, x: 100, y: 200 },
+      { role: 'landcover', level: 6, x: 3, y: 4 },
+    ]);
     expect(byRole('features')).toHaveLength(2);
     // Building detail: the sixteen z15 tiles under the z13 feature tile.
     const detail = byRole('buildingDetail');

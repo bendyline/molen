@@ -437,13 +437,13 @@ describe('surface styles', () => {
   });
 
   it('pins parked-car placements, which the vehicle type specs drive', () => {
-    // Pins complete placements, including the catalog's body style and generic label metadata.
+    // Pins complete placements, including body style, labels and breakable-part metadata.
     const object = createTerrainSurfaceObject(fixture(), context(), {
       details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES, roadSigns: false },
     });
     const cars = object.userData.vehicles as unknown[];
     const digest = createHash('sha256').update(JSON.stringify(cars)).digest('hex').slice(0, 16);
-    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: '9fcef89308df3984' });
+    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: 'd56f3890d769b766' });
   });
 
   it('draws parked cars from an injected vehicle list', () => {
@@ -456,7 +456,7 @@ describe('surface styles', () => {
     };
     const same = place(fromLibrary).cars;
     const digest = createHash('sha256').update(JSON.stringify(same)).digest('hex').slice(0, 16);
-    expect(digest).toBe('9fcef89308df3984');
+    expect(digest).toBe('d56f3890d769b766');
     const van = fromLibrary.find((vehicle) => vehicle.id === 'molen.entities.vehicle.van');
     expect(van).toBeDefined();
     const vans = place([van as TerrainParkedVehicle]).cars;

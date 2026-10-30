@@ -53,6 +53,7 @@ import type {
   AircraftStateData,
   VehicleSpec,
 } from '@bendyline/molen-schema';
+import { sampleAirportPavement } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 import { OBB } from 'three/addons/math/OBB.js';
 import { Livery, selectLivery } from './liveries';
@@ -258,9 +259,17 @@ export class EarthAircraft {
     this.object.name = 'earth:aircraft';
     this.root.add(this.object);
     installAircraft(this.world, {
-      groundHeight: (x, z, y) => this.sampleHeight(x, z, y),
+      groundHeight: (x, z, y) => this.support(x, z, y),
       contacts: (probes, id) => this.contacts(probes, id),
     });
+  }
+
+  /** Airport pavement is drawn about half a metre above the terrain: aircraft stand on top of it. */
+  private support(x: number, z: number, y?: number): number | undefined {
+    const ground = this.sampleHeight(x, z, y);
+    return ground === undefined
+      ? undefined
+      : (sampleAirportPavement(this.root, x, z, ground) ?? ground);
   }
 
   /** The aircraft the pilot is in, if any. */
@@ -316,8 +325,14 @@ export class EarthAircraft {
         components.livery as import('@bendyline/molen-schema').LiveryData | undefined,
         options.livery,
       );
+    const [x, y, z] = placement.position;
     components.transform = {
-      pos: [...placement.position],
+      // A parked placement on the terrain stands on the airport pavement drawn just above it.
+      pos: [
+        x,
+        placement.airborne !== undefined ? y : (sampleAirportPavement(this.root, x, z, y) ?? y),
+        z,
+      ],
       rot: vehicleRotation(yaw, 0, 0),
     };
     const parkedVector = (components.aircraftInput as AircraftInputData | undefined)?.thrustVector;
@@ -416,7 +431,7 @@ export class EarthAircraft {
     this.controls = { ...IDLE_AIRCRAFT_INPUT };
     if (this.spawned.has(id) && !this.owned.has(id)) this.remove(id);
     if (!t) return undefined;
-    const ground = this.sampleHeight(t.pos[0], t.pos[2]);
+    const ground = this.support(t.pos[0], t.pos[2]);
     return ground === undefined ? undefined : [t.pos[0], ground, t.pos[2]];
   }
 
@@ -609,7 +624,8 @@ export class EarthAircraft {
       // Automatic apron entities follow supporting terrain refinements while parked.
       const apron = id.startsWith('apron:');
       if (apron && state.grounded && !input.engine && Math.hypot(...state.velocity) < 0.01) {
-        const height = this.sampleHeight(t.pos[0], t.pos[2]);
+        // Also lifts it onto the stand's pavement once that streams in.
+        const height = this.support(t.pos[0], t.pos[2]);
         if (height !== undefined && Math.abs(height - t.pos[1]) > 0.01) {
           t = { ...t, pos: [t.pos[0], height, t.pos[2]] };
           this.world.set(id, Transform, t);

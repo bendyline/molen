@@ -105,8 +105,10 @@ and a small rebound. A wingtip strike can turn the aircraft while it keeps movin
 continues to fall, tumble and slide. Terrain is tested at the airframe probes as well as at the
 landing origin, so a banked wing can hit the runway before the wheels or fuselage.
 
-The Mustang has detachable wings, tail surfaces and propeller; the OH-6 has a detachable rotor
-and tail; the small airliner has detachable wings (with their engines) and tail. Strong impacts
+The Mustang has detachable wings, tail surfaces and propeller; the OH-6 has separate main rotor,
+tail rotor and tail sections; the small airliner has detachable wings (with their engines) and
+tail. Every animated rotor, propeller and fan in the aircraft catalog has its own collision disc
+and breakable joint. Strong impacts
 or repeated loaded scrapes consume joint integrity. Separation removes the section's collision
 probes, reduces lift/control authority and can disable its attached engines. An asymmetric wing
 loss produces a rolling moment. Detached geometry retains its own velocity and spin, then falls,
@@ -115,18 +117,35 @@ seconds; the missing section stays missing. **R** repairs the aircraft and clear
 Losing both wings switches the fuselage to ballistic wreck motion, disabling thrust and flight
 controls. Ground and obstacle contact dissipates wreck spin as well as sliding motion, so the
 fuselage settles after impact; airborne wrecks continue to fall and tumble.
-The remaining aircraft use their existing probes with the new contact response; they need
-authored section bindings to display parts breaking away.
+Other aircraft retain their existing airframe probes alongside their independent rotor parts;
+additional wing, tail and gear separation requires authored section bindings.
+
+Rotors collide across their complete swept disc, including its interior and the spaces between
+the old tip probes. The obstacle adapter clips triangles to the disc's thickness and tests the
+radial boundary: geometry above or below a horizontal rotor clears it. Both rotors on tandem
+helicopters and both Osprey proprotors are independent; the latter follow the actual nacelle
+conversion position. Blade speed contributes to joint damage, so hovering beside a post can
+break a spinning rotor even when the hub is stationary. Propeller loss disables its engine;
+tail-rotor loss removes anti-torque authority and produces yaw. These conservative swept
+volumes remain active when stopped, regardless of visible blade phase.
 
 For custom models, `spec.collisionParts` replaces `collisionProbes`. Every section declares a
-unique `id`, a `role` (`body`, `leftWing`, `rightWing`, `tail`, `rotor`, `gear` or `engine`), local
+unique `id`, a `role` (`body`, `leftWing`, `rightWing`, `tail`, `rotor`, `tailRotor`, `gear` or `engine`), local
 probe centers and sphere `radius`, a section `center`, `massFraction`, and GLB `nodes`. Add
 `breakSpeed` in m/s for a breakable joint and `engines` for engines carried by that section.
 Keep a non-detachable `body` and at least 20% of the mass. Optional `fragments` selects triangles
 from shared static detail meshes using a model-space bounding box, so markings follow a wing.
+`disc` replaces a section's sphere probes with a model-space `center`, unit `normal`, `radius`,
+`halfThickness` and `rotor` node from `visual.rotors`. Its optional `tilt` hinge (`pivot`, unit
+`axis`, `angle`) follows `thrustVectorPosition`. A `parent` part id makes a rotor separate when
+its supporting wing or tail breaks, with no duplicate geometry or debris. Detached rotors
+inherit their shaft spin. Terrain uses deterministic samples of the disc interior, rim and
+lowest point; arbitrary height fields are not exact triangle meshes.
+
 These are gameplay approximations with authored joint strengths, not a structural engineering
-or accident-reconstruction model. Pieces use sphere collision proxies; mesh deformation, fire,
-debris-to-debris contacts and impulse transfer into other vehicles are not simulated.
+or accident-reconstruction model. Detached pieces use sphere collision proxies; mesh deformation, fire,
+debris-to-debris contacts and impulse transfer into other vehicles are not simulated. The obstacle
+adapter uses oriented boxes for other cars and body-center spheres for other aircraft.
 
 Hosts provide `AircraftEnvironment.contacts(probes, entity)` with world-space contact points,
 outward normals and penetration depths. `aircraftObstacleContacts` from `client/aircraft`
@@ -261,8 +280,8 @@ Published cruise, maximum and operating speeds are different quantities. Where a
 not specify weight, altitude or throttle, the test condition is explicitly estimated. Some
 aircraft still have engineering-estimate anchors. Passing a fitted anchor establishes internal
 consistency, not independent real-world validation. All polar, lapse and high-alpha coefficients
-remain approximations. Fuel burn, stores, changing mass/CG, detailed engine maps, icing,
-structural failures and certified flight-control laws are not modeled.
+remain approximations. Fuel burn, stores, continuous CG changes, detailed engine maps, icing,
+fatigue, load-induced structural failures and certified flight-control laws are not modeled.
 
 Flight assistance is limited to the pitch axis, so a keyboard can fly it. The stick moves an
 elevator (deflecting at `pitchResponse` per second and springing back four times faster) that
@@ -423,10 +442,11 @@ wind and forward motion give consistent results. Collision sampling is at least 
 of translation per substep. Unknown terrain pauses at the last known position and resumes when
 support is available.
 
-Hosts can supply `groundHeight`, `wind` and `canOccupy(transform, spec, entity)`. The world view
+Hosts can supply `groundHeight`, `wind` and `contacts(probes, entity)` (or the legacy
+`canOccupy(transform, spec, entity)`). The world view
 checks nearby resident geometry, the airfield, cars and other aircraft. Cars and exits also check
 conservative aircraft bounds. Imported collision hulls are
-available for hosts that need a different collision solver. Without `canOccupy`, the kernel only
+available for hosts that need a different collision solver. Without either obstacle callback, the kernel only
 collides with terrain. Do not add a second physics body that also writes the aircraft transform.
 
 This is a game flight model with recognizable polygonal aircraft, not a full aircraft systems

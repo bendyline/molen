@@ -50,6 +50,11 @@ export function appendBridgeStructure(
   road: SurfaceRoad,
   heightAt: (x: number, z: number) => number,
   sampleSpacing = 6,
+  options: {
+    shoulder?: number;
+    covered?: (x: number, z: number) => boolean;
+    supportBlocked?: (x: number, z: number) => boolean;
+  } = {},
 ): void {
   // A sub-metre map/model endpoint discrepancy leaves a connector strip, not an
   // independent bridge. Its road surface still joins the authored deck, but a
@@ -58,7 +63,7 @@ export function appendBridgeStructure(
   const concrete = new THREE.Color('#9b9c94');
   const rail = new THREE.Color('#bfc1b8');
   const thickness = road.kind === 'path' ? 0.45 : 1.1;
-  const width = road.width + 0.8;
+  const width = road.width + 2 * (options.shoulder ?? 0.2) + 0.4;
   const point = (d: number, offset: number, y: number): [number, number, number] => {
     const p = sampleTerrainLine(road.path, d, offset);
     return [p.x, heightAt(p.x, p.z) + y, p.z];
@@ -72,6 +77,8 @@ export function appendBridgeStructure(
     top: number,
     color: THREE.Color,
     cover = true,
+    capStart = d0 === 0,
+    capEnd = d1 === road.path.length,
   ): void => {
     const a = point(d0, offset - w / 2, bottom),
       b = point(d1, offset - w / 2, bottom);
@@ -85,9 +92,9 @@ export function appendBridgeStructure(
       [a, b, c, d],
       [a, e, f, b],
       [d, c, g, h],
-      [a, d, h, e],
-      [b, f, g, c],
     ];
+    if (capStart) faces.push([a, d, h, e]);
+    if (capEnd) faces.push([b, f, g, c]);
     if (cover) faces.push([e, h, g, f]);
     for (const face of faces) builder.face(face, color);
   };
@@ -100,8 +107,42 @@ export function appendBridgeStructure(
       // Asphalt and shoulders are the slab's top. A second interpolated top face
       // can poke through the road where an approach profile curves vertically.
       prism(d, next, 0, width, -thickness, -0.06, concrete, false);
-      for (const sign of [-1, 1])
-        prism(d, next, sign * (width / 2 - 0.2), 0.3, 0, road.kind === 'rail' ? 0.55 : 1.1, rail);
+    }
+  }
+  // Barriers sit outside the paved shoulder and stop where a ramp's pavement opens into
+  // the deck. Short independent samples keep the merge opening close to the actual gore.
+  for (const sign of [-1, 1]) {
+    const offset = sign * (width / 2 - 0.15);
+    const sections: { start: number; end: number; clear: boolean }[] = [];
+    for (let i = 1; i < road.path.distances.length; i++) {
+      const start = road.path.distances[i - 1] as number,
+        end = road.path.distances[i] as number;
+      for (let d = start; d < end; d += 2) {
+        const next = Math.min(end, d + 2);
+        sections.push({
+          start: d,
+          end: next,
+          clear: ![d, (d + next) / 2, next].some((station) => {
+            const p = sampleTerrainLine(road.path, station, offset);
+            return options.covered?.(p.x, p.z);
+          }),
+        });
+      }
+    }
+    for (const [i, section] of sections.entries()) {
+      if (!section.clear) continue;
+      prism(
+        section.start,
+        section.end,
+        offset,
+        0.3,
+        0,
+        road.kind === 'rail' ? 0.55 : 1.1,
+        rail,
+        true,
+        !sections[i - 1]?.clear,
+        !sections[i + 1]?.clear,
+      );
     }
   }
   // Anchor piers to a world-coordinate grid, keeping their phase through clipped tiles.
@@ -117,6 +158,7 @@ export function appendBridgeStructure(
       const t = (v - origin - a[axis]) / (b[axis] - a[axis]);
       const x = a[0] + (b[0] - a[0]) * t,
         z = a[1] + (b[1] - a[1]) * t;
+      if (options.supportBlocked?.(x, z)) continue;
       const y =
         builder.context.heightfield.sampleHeight(
           builder.context.origin[0] + x,
@@ -146,9 +188,10 @@ export function appendBridgeApproachSupport(
   road: SurfaceRoad,
   heightAt: (x: number, z: number) => number,
   sampleSpacing = 2,
+  shoulder = 0,
 ): void {
   const stone = new THREE.Color('#aaa79c');
-  const halfWidth = Math.max(0.3, road.width / 2 - 0.05);
+  const halfWidth = Math.max(0.3, road.width / 2 + shoulder - 0.05);
   const point = (distance: number, offset: number, top: boolean): [number, number, number] => {
     const p = sampleTerrainLine(road.path, distance, offset);
     const ground = builder.context.heightfield.sampleHeight(
@@ -171,14 +214,15 @@ export function appendBridgeApproachSupport(
         C = point(next, halfWidth, true),
         E = point(d, halfWidth, true);
       if (Math.max(A[1] - a[1], B[1] - b[1], C[1] - c[1], E[1] - e[1]) < 0.6) continue;
-      // Pavement supplies the top; all four sides seat below the unchanged terrain.
+      // Pavement supplies the top. Do not duplicate internal end faces at every sample:
+      // opposite coplanar normals made the retaining walls stripe at their seams.
       for (const face of [
         [a, A, B, b],
         [e, c, C, E],
-        [a, e, E, A],
-        [b, B, C, c],
       ])
         builder.face(face, stone);
+      if (d === 0) builder.face([a, e, E, A], stone);
+      if (next === road.path.length) builder.face([b, B, C, c], stone);
     }
   }
 }

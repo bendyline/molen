@@ -11146,7 +11146,111 @@
                 "ratedDensityRatio": 0.61
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.22,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.22,
+                    3.6808
+                  ],
+                  [
+                    0,
+                    1.22,
+                    -3.6808
+                  ],
+                  [
+                    6.2330000000000005,
+                    1.22,
+                    0
+                  ],
+                  [
+                    -6.2330000000000005,
+                    1.22,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-DA42-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  1.68,
+                  1.18,
+                  1.63
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "DA42-propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    1.68,
+                    1.18,
+                    1.63
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.950118,
+                  "halfThickness": 0.06,
+                  "rotor": "DA42-propeller-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-DA42-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -1.68,
+                  1.18,
+                  1.63
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "DA42-propeller-2"
+                ],
+                "disc": {
+                  "center": [
+                    -1.68,
+                    1.18,
+                    1.63
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.950118,
+                  "halfThickness": 0.06,
+                  "rotor": "DA42-propeller-2"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

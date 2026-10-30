@@ -1,11 +1,14 @@
 import {
   type ActuatorInputs,
   type ActuatorPositions,
+  type AircraftCollisionProbe,
+  type AircraftContact,
   type AircraftStateData,
   type BoatStateData,
   boostSpeedMultiplier,
   type JsonObject,
   resolveWeather,
+  type VehicleDamageState,
   type VehicleData,
   type VehicleSpec,
   type WeatherData,
@@ -14,7 +17,16 @@ import { actuatorsSettled, stepActuators } from './actuators';
 
 export { actuatorsSettled, stepActuators } from './actuators';
 
+import { stepPartDebris } from './aircraft-collision';
 import { isBoostMode } from './boost';
+import {
+  resolveVehiclePartContacts,
+  vehiclePartAuthority,
+  vehiclePartProbes,
+} from './vehicle-damage';
+
+export { vehiclePartProbes } from './vehicle-damage';
+
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
 import { applyGlassCrash, type GlassCrashLoad, installGlass } from './glass';
@@ -33,7 +45,7 @@ export interface VehicleInputData extends JsonObject {
   /** Locks the rear wheels so they slide instead of rolling, for handbrake turns. */
   handbrake?: boolean;
 }
-export interface VehicleStateData extends JsonObject {
+export interface VehicleStateData extends VehicleDamageState {
   actuators?: ActuatorPositions;
   /** Kernel-owned: horizontal speeds include the 4× travel boost. */
   boosted?: boolean;
@@ -105,6 +117,17 @@ export function initialVehicleState(yaw = 0): VehicleStateData {
     skid: 0,
   };
 }
+/** Repair a stopped road vehicle in place, restoring part geometry and clearing its debris. */
+export function repairVehicle(world: World, id: string): boolean {
+  const state = world.get(id, VehicleState);
+  if (!state?.damage || !state.grounded || m.hypot(state.speed, state.lateralSpeed ?? 0) > 0.5)
+    return false;
+  const repaired = { ...state };
+  delete repaired.damage;
+  delete repaired.debris;
+  world.set(id, VehicleState, repaired);
+  return true;
+}
 export function vehicleMounts(spec: VehicleSpec): MountableData {
   return {
     seats: [{ id: 'driver', role: 'driver', position: [...spec.driverEye] }],
@@ -118,6 +141,8 @@ export function vehicleMounts(spec: VehicleSpec): MountableData {
 }
 /** Host collision adapter. All positions are absolute metric coordinates. */
 export interface VehicleEnvironment {
+  /** Optional detailed contacts for independent wheels and panels, in world coordinates. */
+  contacts?(probes: readonly AircraftCollisionProbe[], entity: string): readonly AircraftContact[];
   /** Override the world's boost mode (pure step calls default to false). */
   boostMode?: boolean;
   groundHeight(x: number, z: number): number | undefined;
@@ -269,17 +294,24 @@ export function stepVehicle(
           travel > 1
             ? (Math.hypot(state.speed, state.lateralSpeed ?? 0) / previousTravel) * travel * 2
             : 0,
+          env.contacts
+            ? ((Math.hypot(state.speed, state.lateralSpeed ?? 0) / previousTravel) * travel) /
+                (spec.collisionParts ?? []).reduce(
+                  (radius, part) => m.min(radius, part.radius),
+                  0.3,
+                )
+            : 0,
         ),
     ),
   );
   const h = dt / steps;
   const g = 9.81;
-  const weight = spec.mass * g;
+  const baseMass = spec.mass;
   const wheelbase = spec.wheelbase;
   // Center of mass to the front and rear axles.
   const front = wheelbase / 2 - spec.centerOfMass[2];
   const rear = wheelbase / 2 + spec.centerOfMass[2];
-  const inertia = spec.yawInertia ?? (spec.mass * (spec.length ** 2 + spec.width ** 2)) / 12;
+  const baseInertia = spec.yawInertia ?? (baseMass * (spec.length ** 2 + spec.width ** 2)) / 12;
   const friction = (spec.grip / g) * weatherGrip(env.weather);
   const stiffness = spec.corneringStiffness ?? 18;
   const frontDrive = spec.drive === 'rear' ? 0 : spec.drive === 'all' ? 0.4 : 1;
@@ -303,6 +335,19 @@ export function stepVehicle(
   let impact = 0;
   const impacts: GlassCrashLoad[] = [];
   for (let step = 0; step < steps; step++) {
+    const remainingMass = m.max(
+      0.2,
+      1 -
+        (spec.collisionParts ?? []).reduce(
+          (sum, part) => sum + (next.damage?.[part.id]?.detached ? part.massFraction : 0),
+          0,
+        ),
+    );
+    const mass = baseMass * remainingMass;
+    const weight = mass * g;
+    const inertia = baseInertia * remainingMass;
+    const frontHealth = vehiclePartAuthority(spec, next, 'frontWheel');
+    const rearHealth = vehiclePartAuthority(spec, next, 'rearWheel');
     // Lock and steering speed both fade with road speed, as a driver's hands do, and full lock
     // asks for at most half again the cornering the tires can give at this speed.
     const fade = 1 + m.abs(u) / spec.steeringFadeSpeed;
@@ -315,7 +360,7 @@ export function stepVehicle(
       spec.maxSteer / fade,
       m.atan((corneringLimit * wheelbase) / m.max(u * u, 1)),
     );
-    const steering = m.clamp(input.steering, -1, 1) * lock;
+    const steering = m.clamp(input.steering, -1, 1) * lock * frontHealth;
     next.steer = approach(next.steer, steering, (h * spec.steeringRate) / fade);
     const delta = next.steer;
     const opposing = throttle * u < -0.1;
@@ -328,24 +373,24 @@ export function stepVehicle(
     if (next.grounded) {
       // Weight shifts through the springs: the body's dive or squat says how much moved forward.
       const loadAx = pitchPerG > 0 ? (-bodyPitch / pitchPerG) * g : 0;
-      const transfer = (-spec.mass * loadAx * spec.centerOfMass[1]) / wheelbase;
+      const transfer = (-mass * loadAx * spec.centerOfMass[1]) / wheelbase;
       const loadFront = m.max(0.05 * weight, (weight * rear) / wheelbase + transfer);
       const loadRear = m.max(0.05 * weight, (weight * front) / wheelbase - transfer);
       // Side grip; tires grip about 15% harder in a straight line (a friction ellipse).
-      const limitFront = friction * loadFront;
-      const limitRear = friction * loadRear;
+      const limitFront = friction * loadFront * m.max(0.03, frontHealth);
+      const limitRear = friction * loadRear * m.max(0.03, rearHealth);
       const straightFront = LONGITUDINAL_GRIP * limitFront;
       const straightRear = LONGITUDINAL_GRIP * limitRear;
       const drive =
         braking || (throttle > 0 && u >= spec.maxSpeed) || (throttle < 0 && u <= -spec.reverseSpeed)
           ? 0
-          : throttle * spec.engineForce;
+          : throttle * spec.engineForce * vehiclePartAuthority(spec, next, 'engine');
       // Anti-lock brakes stop just short of the tire limit, leaving it some side grip to steer.
-      const brake = braking ? spec.mass * spec.brakeDeceleration : 0;
+      const brake = braking ? mass * spec.brakeDeceleration : 0;
       const brakeFront = m.min(brake * bias, 0.95 * straightFront);
       const brakeRear = m.min(brake * (1 - bias), 0.95 * straightRear);
-      let pushFront = drive * frontDrive;
-      let pushRear = drive * (1 - frontDrive);
+      let pushFront = drive * frontDrive * frontHealth;
+      let pushRear = drive * (1 - frontDrive) * rearHealth;
       // Drive beyond the grip spins the wheels.
       if (m.abs(pushFront) > straightFront) {
         pushFront = m.sign(pushFront) * straightFront;
@@ -389,7 +434,12 @@ export function stepVehicle(
       }
       const frontForward = longFront * m.cos(delta) + frontTire.force * m.sin(delta);
       const frontLeft = -longFront * m.sin(delta) + frontTire.force * m.cos(delta);
-      fx = frontForward + longRear - spec.mass * spec.rollingResistance * m.clamp(u / 0.5, -1, 1);
+      fx =
+        frontForward +
+        longRear -
+        mass *
+          (spec.rollingResistance + (2 - frontHealth - rearHealth) * 1.5) *
+          m.clamp(u / 0.5, -1, 1);
       fy = frontLeft + sideRear;
       moment = front * frontLeft - rear * sideRear;
     }
@@ -402,10 +452,10 @@ export function stepVehicle(
     const airForward = u - (wind ? (wind[0] * sx + wind[2] * cz) / travel : 0);
     const airLeft = v - (wind ? (wind[0] * cz - wind[2] * sx) / travel : 0);
     const air = m.hypot(airForward, airLeft);
-    fx -= spec.mass * spec.aerodynamicResistance * air * airForward;
-    fy -= spec.mass * spec.aerodynamicResistance * side * air * airLeft;
-    const feltForward = fx / spec.mass;
-    const feltLeft = next.grounded ? fy / spec.mass : 0;
+    fx -= mass * spec.aerodynamicResistance * air * airForward;
+    fy -= mass * spec.aerodynamicResistance * side * air * airLeft;
+    const feltForward = fx / mass;
+    const feltLeft = next.grounded ? fy / mass : 0;
     // Gravity along the terrain under the wheels: downhill ahead (nose down) and to the low side.
     const slopeForward = next.grounded ? g * m.sin(next.pitch) : 0;
     const slopeLeft = next.grounded ? -g * m.sin(next.roll) : 0;
@@ -417,7 +467,7 @@ export function stepVehicle(
     // At walking pace the tires simply roll where they point.
     const crawl = m.max(0, 1 - m.hypot(u, v) / 4);
     if (crawl > 0 && next.grounded) {
-      const pull = m.min(1, crawl * 20 * h);
+      const pull = m.min(1, crawl * 20 * h) * m.min(frontHealth, rearHealth);
       r += ((-u * m.tan(delta)) / wheelbase - r) * pull;
       v -= v * pull;
     }
@@ -491,6 +541,34 @@ export function stepVehicle(
     const wasGrounded = next.grounded;
     next.grounded = candidate[1] <= support + spec.supportTolerance;
     if (next.grounded) {
+      if (!wasGrounded && next.vy < -2 && spec.collisionParts) {
+        const landingPose: TransformData = {
+          pos: candidate,
+          rot: vehicleRotation(yaw, pitch, roll),
+        };
+        const probes = vehiclePartProbes(landingPose, spec, next);
+        resolveVehiclePartContacts(
+          landingPose,
+          next,
+          spec,
+          probes
+            .filter((probe) =>
+              spec.collisionParts?.some(
+                (part) =>
+                  part.id === probe.part &&
+                  (part.role === 'frontWheel' || part.role === 'rearWheel'),
+              ),
+            )
+            .map((probe) => ({
+              part: probe.part,
+              point: probe.center,
+              normal: [0, 1, 0],
+              depth: 0,
+            })),
+          { velocity: [fs * u + fc * v, next.vy, fc * u - fs * v], yawRate: r },
+          travel,
+        );
+      }
       if (!wasGrounded && next.vy < 0)
         impacts.push({
           deltaVelocity: [0, -next.vy, 0],
@@ -501,6 +579,35 @@ export function stepVehicle(
         });
       candidate[1] = support;
       next.vy = 0;
+    }
+    if (spec.collisionParts) {
+      stepPartDebris(next, spec.collisionParts, env, id, h);
+      if (env.contacts) {
+        const partPose: TransformData = {
+          pos: candidate,
+          rot: vehicleRotation(yaw, pitch + bodyPitch, roll + bodyRoll),
+        };
+        const motion = {
+          velocity: [fs * u + fc * v, next.vy, fc * u - fs * v] as [number, number, number],
+          yawRate: r,
+        };
+        const contacts = env.contacts(vehiclePartProbes(partPose, spec, next), id);
+        const partImpact = resolveVehiclePartContacts(
+          partPose,
+          next,
+          spec,
+          contacts,
+          motion,
+          travel,
+        );
+        impact = m.max(impact, partImpact);
+        u = motion.velocity[0] * fs + motion.velocity[2] * fc;
+        v = motion.velocity[0] * fc - motion.velocity[2] * fs;
+        r = motion.yawRate;
+        // Overlapping panel probes can leave tiny tangential residuals while a car
+        // presses against a wall. Static friction holds the resting chassis still.
+        if (partImpact > 0 && m.hypot(u, v) < 0.01 && m.abs(r) < 0.01) u = v = r = 0;
+      }
     }
     if (env.canOccupy && !env.canOccupy(candidate, yaw, spec, id)) {
       // Stay at the last free position and answer the hit with an impulse at the corner that
@@ -554,24 +661,56 @@ export function stepVehicle(
         const closing = vx * nx + vz * nz + r * (pz * nx - px * nz);
         if (closing < 0) {
           const restitution = m.clamp((-closing - 1) / 10, 0, 0.3);
-          const j = (-(1 + restitution) * closing) / (1 / spec.mass + (arm * arm) / inertia);
-          vx += (j * nx) / spec.mass;
-          vz += (j * nz) / spec.mass;
+          const j = (-(1 + restitution) * closing) / (1 / mass + (arm * arm) / inertia);
+          vx += (j * nx) / mass;
+          vz += (j * nz) / mass;
           r += (j * arm) / inertia;
           // Scraping along the obstacle.
           const tx = -nz;
           const tz = nx;
           const along = vx * tx + vz * tz;
-          const scrape = m.clamp(-along * spec.mass, -0.3 * j, 0.3 * j);
-          vx += (scrape * tx) / spec.mass;
-          vz += (scrape * tz) / spec.mass;
+          const scrape = m.clamp(-along * mass, -0.3 * j, 0.3 * j);
+          vx += (scrape * tx) / mass;
+          vz += (scrape * tz) / mass;
           impact = m.max(impact, -closing);
+          // A chassis hit also loads the joints immediately beside the contact patch.
+          // The hull already supplied its impulse; do not apply it a second time.
+          if (spec.collisionParts) {
+            const partPose: TransformData = {
+              pos: candidate,
+              rot: vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll),
+            };
+            const point: [number, number, number] = [
+              candidate[0] + spec.centerOfMass[0] * cy + spec.centerOfMass[2] * sy + px,
+              candidate[1] + spec.centerOfMass[1],
+              candidate[2] - spec.centerOfMass[0] * sy + spec.centerOfMass[2] * cy + pz,
+            ];
+            const nearby = vehiclePartProbes(partPose, spec, next).filter(
+              (probe) =>
+                m.hypot(
+                  probe.center[0] - point[0],
+                  probe.center[1] - point[1],
+                  probe.center[2] - point[2],
+                ) <=
+                probe.radius + 0.5,
+            );
+            resolveVehiclePartContacts(
+              partPose,
+              next,
+              spec,
+              nearby.map((probe) => ({ part: probe.part, point, normal: [nx, 0, nz], depth: 0 })),
+              { velocity: [beforeVx, next.vy, beforeVz], yawRate: beforeR },
+              travel,
+              false,
+            );
+          }
         }
-        // Resting contact cancels exactly; drop rounding residue so the car can go dormant.
+        // Static friction cancels the small settling motion from overlapping contact patches.
         u = vx * sy + vz * cy;
         v = vx * cy - vz * sy;
-        if (m.abs(u) < 1e-9) u = 0;
-        if (m.abs(v) < 1e-9) v = 0;
+        if (m.abs(u) < 0.01) u = 0;
+        if (m.abs(v) < 0.01) v = 0;
+        if (u === 0 && v === 0 && m.abs(r) < 0.01) r = 0;
       }
       const dx = (sy * u + cy * v - beforeVx) * travel;
       const dz = (cy * u - sy * v - beforeVz) * travel;
@@ -781,6 +920,7 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
         if (
           dormant.get(state) === vehicle &&
           !driven.has(id) &&
+          !state.debris?.length &&
           actuatorsSettled(
             vehicle.spec.actuators,
             state.actuators,
@@ -793,6 +933,7 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
         // Dormant parked vehicles cost no physics work. Their placement already includes support.
         if (
           !driven.has(id) &&
+          !state.debris?.length &&
           actuatorsSettled(
             vehicle.spec.actuators,
             state.actuators,

@@ -19,6 +19,7 @@
  * --tile=420x280, --cols=4 (views per line), --grid=N (family sheets: N models per line),
  * --out=shots/model-sheets (ignored by Git), --gpu (hardware GPU instead of SwiftShader).
  * --signals=gear:0.4,canopy:1 poses the model's actual runtime signal bindings.
+ * --runtime loads each --ids bundle's imported asset instead of its source GLB.
  * Sheets are local review evidence; see content/ASSET-PACKS.md "Model review images".
  */
 import { createReadStream } from 'node:fs';
@@ -40,6 +41,18 @@ const [tileW, tileH] = (arg('tile') ?? '420x280').split('x').map(Number);
 const views = list('views') ?? ['q3f', 'q3r', 'side', 'front', 'rear', 'top', 'clay', 'far'];
 const out = resolve(repo, arg('out') ?? 'shots/model-sheets');
 const compare = arg('compare') && resolve(arg('compare'));
+const signalValues = arg('signals')
+  ? Object.fromEntries(
+      arg('signals')
+        .split(',')
+        .map((pair) => {
+          const [name, value] = pair.split(':');
+          if (!name || !value || !Number.isFinite(Number(value)))
+            throw new Error(`Invalid --signals entry: ${pair}; expected name:number`);
+          return [name, Number(value)];
+        }),
+    )
+  : undefined;
 
 const exists = (path) =>
   stat(path).then(
@@ -63,6 +76,11 @@ async function bundle(slug) {
         break;
       }
     if (!glb) throw new Error(`${slug}: no generated GLB under models/`);
+    if (process.argv.includes('--runtime')) {
+      const assetPath = resolve(repo, 'content/entities', manifest.files.models[0].output);
+      const asset = JSON.parse(await readFile(assetPath, 'utf8'));
+      glb = resolve(dirname(assetPath), asset.files.main);
+    }
     const dims = recipe.length
       ? {
           length: recipe.length,
@@ -258,19 +276,10 @@ try {
       served.set(key, row.glb);
       return {
         url: key,
-        label: row.label,
+        label: row.label + (signalValues ? ` [${arg('signals')}]` : ''),
         dims: row.dims,
         articulation: row.articulation,
-        signals: arg('signals')
-          ? Object.fromEntries(
-              arg('signals')
-                .split(',')
-                .map((pair) => {
-                  const [name, value] = pair.split(':');
-                  return [name, Number(value)];
-                }),
-            )
-          : undefined,
+        signals: signalValues,
         water: row.category === 'watercraft',
         file: relative(repo, row.glb).replaceAll(sep, '/'),
       };

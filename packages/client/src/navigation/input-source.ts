@@ -192,7 +192,7 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
     orbit: aerial,
     fly: aerial,
     walk: ground,
-    drive: { ...ground, bindings: { ...ground.bindings, ...ACTUATOR_BINDINGS } },
+    drive: { ...ground, bindings: { ...ground.bindings, ...ACTUATOR_BINDINGS, KeyR: A.recover } },
     pilot,
   };
 }
@@ -216,6 +216,8 @@ export interface PilotInput {
 
 /** Everything a navigation controller reads in one frame. */
 export interface NavigationInput {
+  /** Repair presses in the drive profile (R); the host requires a stopped vehicle. */
+  recover?: number;
   /** Edge-triggered model mechanism toggles; unsupported mechanisms are ignored by hosts. */
   actuators?: Record<string, number>;
   /** Movement intent, each -1..1 (forward, right, up). */
@@ -390,6 +392,9 @@ export class NavigationInputSource {
       taps: gestures.taps,
       ...(Object.keys(this.actuatorPresses).length
         ? { actuators: { ...this.actuatorPresses } }
+        : {}),
+      ...(this.profile === 'drive' && this.pilotPresses.recover > 0
+        ? { recover: this.pilotPresses.recover }
         : {}),
       ...(this.profile === 'pilot'
         ? {

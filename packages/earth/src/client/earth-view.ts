@@ -633,7 +633,7 @@ export interface EarthView {
   vehicleStatus(): EarthVehicleStatus | undefined;
   /** Set the mounted aircraft's throttle or collective directly, 0..1 (e.g. an on-screen lever). */
   setThrottle(power: number): void;
-  /** After an impact, put the aircraft back in the air above the crash site (the R key). */
+  /** Recover an impacted aircraft, or repair a stopped road vehicle's parts (the R key). */
   recover(): boolean;
   /** Animate to a view (orbit mode). Long hops re-anchor the metric frame on arrival. */
   flyTo(target: EarthCameraTarget, options?: { durationMs?: number }): void;
@@ -1175,6 +1175,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           try {
             const decoderWorker = semanticDecoderWorker();
             const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
+              // Worldgen bounds distant tiles to land colors and simple building silhouettes.
+              distantCoverage: worldgen !== undefined,
               admission: renderer.admission,
               ...(decoderWorker !== undefined ? { decoderWorker } : {}),
               tunnels: {
@@ -2933,7 +2935,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           jump: frameInput.jump,
         },
         collision,
-        groundHeight,
+        // Inside a bore, the hill above it is not the walker's support. Using the DEM here
+        // makes streamed-ground recovery lift the walker through the tunnel ceiling.
+        (x, z) =>
+          sampleTerrainTunnel(current.stream.object, x, walker.feet.y, z)?.floor ??
+          groundHeight(x, z),
       );
       const eyeY = walker.ready
         ? walker.feet.y + WALK_EYE_HEIGHT
@@ -3014,6 +3020,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       current: EarthStack,
     ): NavigationPose => {
       const vehicles = current.vehicles as EarthVehicles;
+      if ((frameInput.recover ?? 0) > 0 && !vehicles.recover())
+        emit('message', { text: 'Stop the damaged vehicle before repairing (R)' });
       if (frameInput.view > 0) vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
       vehicles.lookYaw = Math.max(
         -1.45,
@@ -3256,10 +3264,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           current.prefetcher?.frame(now, pose.position, pose.direction, steady);
         }
         current.vehicles?.sync(now, pose.position);
-        // Ambient cars stop for the walker and for actors on foot.
+        // Ambient cars stop for the walker, for actors on foot and for cars a driver left standing.
         current.ambient?.sync(now, pose, [
           ...(mode === 'walk' ? [{ x: walker.feet.x, z: walker.feet.z, radius: 0.5 }] : []),
           ...actorDirector.solids(),
+          ...(current.vehicles?.trafficSolids() ?? []),
         ]);
         if (pending !== undefined || (mode !== 'drive' && mode !== 'fly')) {
           current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
@@ -3483,7 +3492,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         stack?.aircraft?.setPower(power);
       },
       recover() {
-        return mode === 'fly' && (stack?.aircraft?.recover() ?? false);
+        return mode === 'drive'
+          ? (stack?.vehicles?.recover() ?? false)
+          : mode === 'fly' && (stack?.aircraft?.recover() ?? false);
       },
       flyTo(target, flyOptions = {}) {
         deferredMode = undefined;

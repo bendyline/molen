@@ -10,6 +10,7 @@ import {
 } from '../../../content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/models/malo-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
+
 const source = resolve('../../content/worldgen/source/places/ud/udt/malo_kalinkin_bridge'),
   sidecar = await runtimeLodFixture(
     resolve('../../content/worldgen/assets/places/ud/udt/malo_kalinkin_bridge/asset.json'),

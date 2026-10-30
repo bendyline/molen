@@ -2,11 +2,11 @@
 import {
   beam,
   beamPath,
+  chamferedRectangle,
   loft,
   normalFor,
   radialRing,
   sphere,
-  chamferedRectangle,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 export const akmensControls = {

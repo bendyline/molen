@@ -32,6 +32,20 @@ it('validates unique collision sections, joint limits and engine ownership', () 
   expect(valid([body, { ...wing, massFraction: 0.9 }])).toBe(false);
   expect(valid([body, { ...wing, radius: 0 }])).toBe(false);
   expect(valid([body, { ...wing, engines: ['absent'] }])).toBe(false);
+  const disc = {
+    center: [0, 1, 0] as [number, number, number],
+    normal: [0, 0, 1] as [number, number, number],
+    radius: 2,
+    halfThickness: 0.06,
+    rotor: 'propeller',
+  };
+  expect(valid([body, { ...wing, probes: [], disc }])).toBe(true);
+  expect(valid([body, { ...wing, probes: [] }])).toBe(false);
+  expect(valid([body, { ...wing, disc: { ...disc, normal: [0, 0, 0] } }])).toBe(false);
+  expect(valid([body, { ...wing, disc: { ...disc, rotor: 'missing' } }])).toBe(false);
+  expect(valid([body, { ...wing, parent: 'wing' }])).toBe(false);
+  expect(valid([body, { ...wing, parent: 'missing' }])).toBe(false);
+  expect(valid([body, { ...wing, parent: 'body' }])).toBe(true);
   expect(
     valid([body, { ...wing, fragments: { nodes: ['detail'], min: [1, 0, 0], max: [0, 1, 1] } }]),
   ).toBe(false);

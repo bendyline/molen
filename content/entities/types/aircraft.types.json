@@ -247,32 +247,6 @@
                     "scale": 0.44
                   },
                   {
-                    "node": "gear--1-leg",
-                    "source": "gear",
-                    "property": "rotation",
-                    "axis": "z",
-                    "keys": [
-                      [0, -1.5707963267948966],
-                      [0.15, -1.5707963267948966],
-                      [0.85, 0],
-                      [1, 0]
-                    ],
-                    "ease": "smooth"
-                  },
-                  {
-                    "node": "gear-1-leg",
-                    "source": "gear",
-                    "property": "rotation",
-                    "axis": "z",
-                    "keys": [
-                      [0, -1.5707963267948966],
-                      [0.15, -1.5707963267948966],
-                      [0.85, 0],
-                      [1, 0]
-                    ],
-                    "ease": "smooth"
-                  },
-                  {
                     "node": "canopy-opening",
                     "source": "canopy",
                     "property": "position",
@@ -496,18 +470,20 @@
               {
                 "id": "propeller",
                 "role": "engine",
-                "center": [0, 2.5762, 3.6882],
+                "center": [0, 2.43, 3.054873],
                 "massFraction": 0.015,
                 "breakSpeed": 8,
                 "nodes": ["propeller"],
-                "probes": [
-                  [-1.4, 2.5762, 3.6882],
-                  [1.4, 2.5762, 3.6882],
-                  [0, 3.9403, 3.3733],
-                  [0, 1.3777, 3.9649]
-                ],
-                "radius": 0.25,
-                "engines": ["main"]
+                "probes": [],
+                "radius": 0.3,
+                "engines": ["main"],
+                "disc": {
+                  "center": [0, 2.43, 3.054873],
+                  "normal": [0, 0.224951, 0.97437],
+                  "radius": 1.70036,
+                  "halfThickness": 0.078156,
+                  "rotor": "propeller"
+                }
               }
             ],
             "actuators": {
@@ -1415,25 +1391,26 @@
               {
                 "id": "main-rotor",
                 "role": "rotor",
-                "center": [0, 2.4, 0.02],
+                "center": [0, 2.3305, 0.02],
                 "massFraction": 0.08,
                 "breakSpeed": 9,
                 "nodes": ["main-rotor"],
-                "probes": [
-                  [0, 2.4, 0.02],
-                  [-3.8, 2.4, 0.02],
-                  [3.8, 2.4, 0.02],
-                  [0, 2.4, 3.82],
-                  [0, 2.4, -3.78]
-                ],
+                "probes": [],
                 "radius": 0.3,
-                "engines": ["main"]
+                "engines": ["main"],
+                "disc": {
+                  "center": [0, 2.3305, 0.02],
+                  "normal": [0, 1, 0],
+                  "radius": 4.025566,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                }
               },
               {
                 "id": "tail",
                 "role": "tail",
                 "center": [0, 1.6, -3.7],
-                "massFraction": 0.07,
+                "massFraction": 0.065,
                 "breakSpeed": 10,
                 "nodes": [
                   "tail-boom",
@@ -1442,11 +1419,29 @@
                   "tail-stabilizer-1",
                   "tail-brace--1",
                   "tail-brace-1",
-                  "tail-rotor",
                   "tail-antenna"
                 ],
                 "probes": [[0, 1.55, -4.7], [-0.8, 1.6, -3.7], [0.8, 1.6, -3.7]],
                 "radius": 0.3
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "parent": "tail",
+                "role": "tailRotor",
+                "center": [0.174, 1.5, -4.48],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [0.174, 1.5, -4.48],
+                  "normal": [1, 0, 0],
+                  "radius": 0.632184,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
               }
             ],
             "actuators": {
@@ -2219,7 +2214,7 @@
                 "id": "left-wing",
                 "role": "leftWing",
                 "center": [8.95, 2.8, -2],
-                "massFraction": 0.16,
+                "massFraction": 0.14,
                 "breakSpeed": 15,
                 "nodes": ["wing-left", "flap-left", "engine-left", "gear-left"],
                 "probes": [
@@ -2239,7 +2234,7 @@
                 "id": "right-wing",
                 "role": "rightWing",
                 "center": [-8.95, 2.8, -2],
-                "massFraction": 0.16,
+                "massFraction": 0.14,
                 "breakSpeed": 15,
                 "nodes": ["wing-right", "flap-right", "engine-right", "gear-right"],
                 "probes": [
@@ -2268,6 +2263,44 @@
                   [4.8, 4.4, -15.600000000000001]
                 ],
                 "radius": 0.3
+              },
+              {
+                "id": "rotor-fan-left",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "parent": "left-wing",
+                "role": "engine",
+                "center": [5.97, 1.92, 7.71],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["fan-left"],
+                "disc": {
+                  "center": [5.97, 1.92, 7.71],
+                  "normal": [0, 0, 1],
+                  "radius": 1.074869,
+                  "halfThickness": 0.06,
+                  "rotor": "fan-left"
+                },
+                "engines": ["left"]
+              },
+              {
+                "id": "rotor-fan-right",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "parent": "right-wing",
+                "role": "engine",
+                "center": [-5.97, 1.92, 7.71],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["fan-right"],
+                "disc": {
+                  "center": [-5.97, 1.92, 7.71],
+                  "normal": [0, 0, 1],
+                  "radius": 1.074869,
+                  "halfThickness": 0.06,
+                  "rotor": "fan-right"
+                },
+                "engines": ["right"]
               }
             ],
             "actuators": {
@@ -3104,7 +3137,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.24, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.24, 7.481999999999999], [0, 1.24, -7.481999999999999]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 4.046692, 0],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 4.046692, 0],
+                  "normal": [0, 1, 0],
+                  "radius": 7.317734,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [0.37, 3.13, -8.88],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [0.37, 3.13, -8.88],
+                  "normal": [1, 0, 0],
+                  "radius": 1.302459,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -3672,7 +3752,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.05, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.05, 5.1428], [0, 1.05, -5.1428]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 2.908804, 0.006894],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 2.908804, 0.006894],
+                  "normal": [0, 0.996195, 0.087156],
+                  "radius": 5.083552,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [0.18, 1.48, -5.86],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [0.18, 1.48, -5.86],
+                  "normal": [1, 0, 0],
+                  "radius": 0.791581,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -4186,7 +4313,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.1, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.1, 5.4223], [0, 1.1, -5.4223]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 3.012626, 0.009854],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 3.012626, 0.009854],
+                  "normal": [0, 0.996195, 0.087156],
+                  "radius": 5.337108,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [0.19, 1.88, -6.65],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [0.19, 1.88, -6.65],
+                  "normal": [1, 0, 0],
+                  "radius": 0.822192,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -4870,7 +5044,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.25, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.25, 7.3659], [0, 1.25, -7.3659]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 3.64245, 0],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 3.64245, 0],
+                  "normal": [0, 1, 0],
+                  "radius": 7.013772,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [0.225, 3.235, -8.88],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [0.225, 3.235, -8.88],
+                  "normal": [1, 0, 0],
+                  "radius": 1.310057,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -5371,7 +5592,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.1, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.1, 5.0138], [0, 1.1, -5.0138]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 3.22738, 0.002058],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 3.22738, 0.002058],
+                  "normal": [0, 0.998488, 0.054972],
+                  "radius": 5.031603,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [0.15, 2.04, -5.85],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [0.15, 2.04, -5.85],
+                  "normal": [1, 0, 0],
+                  "radius": 0.737869,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -5867,7 +6135,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.4, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.4, 5.5642], [0, 1.4, -5.5642]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 3.194217, 0.001195],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 3.194217, 0.001195],
+                  "normal": [0, 0.999391, 0.034899],
+                  "radius": 5.347703,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [-0.2, 1.93, -6.27],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [-0.2, 1.93, -6.27],
+                  "normal": [1, 0, 0],
+                  "radius": 0.933435,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -6404,7 +6719,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.45, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.45, 5.8222], [0, 1.45, -5.8222]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 3.499837, 0],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 3.499837, 0],
+                  "normal": [0, 1, 0],
+                  "radius": 5.401565,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [0, 2.12, -7.02],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [0, 2.12, -7.02],
+                  "normal": [1, 0, 0],
+                  "radius": 0.551113,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -7019,7 +7381,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.3, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.3, 8.4968], [0, 1.3, -8.4968]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 3.356047, -0.003352],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 3.356047, -0.003352],
+                  "normal": [0, 0.99863, 0.052336],
+                  "radius": 8.192873,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [-0.425526, 3.502085, -9.9172],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [-0.425526, 3.502085, -9.9172],
+                  "normal": [0.939693, -0.34202, 0],
+                  "radius": 1.677982,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -7569,7 +7978,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.9, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [[0, 1.9, 12.9602], [0, 1.9, -12.9602]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-rotor-0",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 4.196116, 5.9309],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["rotor-0"],
+                "disc": {
+                  "center": [0, 4.196116, 5.9309],
+                  "normal": [0, 1, 0],
+                  "radius": 9.152745,
+                  "halfThickness": 0.116396,
+                  "rotor": "rotor-0"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-rotor-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 5.266116, -5.9309],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["rotor-1"],
+                "disc": {
+                  "center": [0, 5.266116, -5.9309],
+                  "normal": [0, 1, 0],
+                  "radius": 9.152745,
+                  "halfThickness": 0.116396,
+                  "rotor": "rotor-1"
+                },
+                "engines": ["main"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -8241,7 +8697,54 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.35, 0],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [[0, 1.35, 7.1466], [0, 1.35, -7.1466]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [0, 3.478537, -0.006396],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["main-rotor"],
+                "disc": {
+                  "center": [0, 3.478537, -0.006396],
+                  "normal": [0, 0.997564, 0.069756],
+                  "radius": 6.903832,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": ["main"]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [0.36, 3.63, -8.4],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["tail-rotor"],
+                "disc": {
+                  "center": [0.36, 3.63, -8.4],
+                  "normal": [1, 0, 0],
+                  "radius": 1.35381,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -8984,7 +9487,41 @@
                 "ratedDensityRatio": 1
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.1, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.1, 3.0800039999999997],
+                  [0, 1.1, -3.0800039999999997],
+                  [4.20624, 1.1, 0],
+                  [-4.20624, 1.1, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Cherokee-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.25, 2.36],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Cherokee-propeller"],
+                "disc": {
+                  "center": [0, 1.25, 2.36],
+                  "normal": [0, 0, 1],
+                  "radius": 0.965834,
+                  "halfThickness": 0.06,
+                  "rotor": "Cherokee-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -12540,7 +13077,41 @@
                 "ratedDensityRatio": 1
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.15, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.15, 3.560572],
+                  [0, 1.15, -3.560572],
+                  [5.059172, 1.15, 0],
+                  [-5.059172, 1.15, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Skyhawk-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.25095, 2.276],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Skyhawk-propeller"],
+                "disc": {
+                  "center": [0, 1.25095, 2.276],
+                  "normal": [0, 0, 1],
+                  "radius": 0.965606,
+                  "halfThickness": 0.06,
+                  "rotor": "Skyhawk-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -19580,7 +20151,41 @@
                 "ratedDensityRatio": 0.68
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.9, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.9, 5.4500779999999995],
+                  [0, 1.9, -5.4500779999999995],
+                  [7.3025, 1.9, 0],
+                  [-7.3025, 1.9, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Caravan-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.77, 4.6435],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Caravan-propeller"],
+                "disc": {
+                  "center": [0, 1.77, 4.6435],
+                  "normal": [0, 0, 1],
+                  "radius": 1.295487,
+                  "halfThickness": 0.06,
+                  "rotor": "Caravan-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -26622,7 +27227,41 @@
                 "ratedDensityRatio": 1
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.18, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.18, 3.800856],
+                  [0, 1.18, -3.800856],
+                  [5.0474879999999995, 1.18, 0],
+                  [-5.0474879999999995, 1.18, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Skylane-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.279525, 2.727],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Skylane-propeller"],
+                "disc": {
+                  "center": [0, 1.279525, 2.727],
+                  "normal": [0, 0, 1],
+                  "radius": 1.00391,
+                  "halfThickness": 0.06,
+                  "rotor": "Skylane-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -32618,7 +33257,41 @@
                 "ratedDensityRatio": 1
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.3, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.3, 3.60426],
+                  [0, 1.3, -3.60426],
+                  [4.696968000000001, 1.3, 0],
+                  [-4.696968000000001, 1.3, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Bonanza-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.43, 2.6005],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Bonanza-propeller"],
+                "disc": {
+                  "center": [0, 1.43, 2.6005],
+                  "normal": [0, 0, 1],
+                  "radius": 1.016787,
+                  "halfThickness": 0.06,
+                  "rotor": "Bonanza-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -39619,7 +40292,59 @@
                 "ratedDensityRatio": 1
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.3, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 1.3, 3.9100759999999997],
+                  [0, 1.3, -3.9100759999999997],
+                  [5.304536, 1.3, 0],
+                  [-5.304536, 1.3, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Baron-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [1.85, 1.35, 1.8705],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Baron-propeller-1"],
+                "disc": {
+                  "center": [1.85, 1.35, 1.8705],
+                  "normal": [0, 0, 1],
+                  "radius": 0.9779,
+                  "halfThickness": 0.06,
+                  "rotor": "Baron-propeller-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-Baron-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-1.85, 1.35, 1.8705],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Baron-propeller-2"],
+                "disc": {
+                  "center": [-1.85, 1.35, 1.8705],
+                  "normal": [0, 0, 1],
+                  "radius": 0.9779,
+                  "halfThickness": 0.06,
+                  "rotor": "Baron-propeller-2"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -49061,7 +49786,59 @@
                 "ratedDensityRatio": 0.5
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.78, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 1.78, 6.11632],
+                  [0, 1.78, -6.11632],
+                  [8.120379999999999, 1.78, 0],
+                  [-8.120379999999999, 1.78, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-KingAir-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [2.6162, 1.68, 3.415],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["KingAir-propeller-1"],
+                "disc": {
+                  "center": [2.6162, 1.68, 3.415],
+                  "normal": [0, 0, 1],
+                  "radius": 1.3335,
+                  "halfThickness": 0.06,
+                  "rotor": "KingAir-propeller-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-KingAir-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-2.6162, 1.68, 3.415],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["KingAir-propeller-2"],
+                "disc": {
+                  "center": [-2.6162, 1.68, 3.415],
+                  "normal": [0, 0, 1],
+                  "radius": 1.3335,
+                  "halfThickness": 0.06,
+                  "rotor": "KingAir-propeller-2"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -58898,7 +59675,41 @@
                 "ratedDensityRatio": 0.44
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.35, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.35, 3.407664],
+                  [0, 1.35, -3.407664],
+                  [5.3699664, 1.35, 0],
+                  [-5.3699664, 1.35, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Cirrus-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.2, 2.783],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Cirrus-propeller"],
+                "disc": {
+                  "center": [0, 1.2, 2.783],
+                  "normal": [0, 0, 1],
+                  "radius": 0.990915,
+                  "halfThickness": 0.06,
+                  "rotor": "Cirrus-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -67999,7 +68810,59 @@
                 "ratedDensityRatio": 0.61
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.22, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 1.22, 3.6808],
+                  [0, 1.22, -3.6808],
+                  [6.2330000000000005, 1.22, 0],
+                  [-6.2330000000000005, 1.22, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-DA42-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [1.68, 1.18, 1.63],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["DA42-propeller-1"],
+                "disc": {
+                  "center": [1.68, 1.18, 1.63],
+                  "normal": [0, 0, 1],
+                  "radius": 0.950118,
+                  "halfThickness": 0.06,
+                  "rotor": "DA42-propeller-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-DA42-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-1.68, 1.18, 1.63],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["DA42-propeller-2"],
+                "disc": {
+                  "center": [-1.68, 1.18, 1.63],
+                  "normal": [0, 0, 1],
+                  "radius": 0.950118,
+                  "halfThickness": 0.06,
+                  "rotor": "DA42-propeller-2"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -79288,7 +80151,41 @@
                 "ratedDensityRatio": 0.45
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.94, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.94, 6.192],
+                  [0, 1.94, -6.192],
+                  [7.5026, 1.94, 0],
+                  [-7.5026, 1.94, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-PC12-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.69, 5.286445],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["PC12-propeller"],
+                "disc": {
+                  "center": [0, 1.69, 5.286445],
+                  "normal": [0, 0, 1],
+                  "radius": 1.350617,
+                  "halfThickness": 0.06,
+                  "rotor": "PC12-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -85725,17 +86622,17 @@
                     "node": "F16-gear-1",
                     "source": "gear",
                     "property": "rotation",
-                    "axis": "z",
-                    "offset": 1.2,
-                    "scale": -1.2
+                    "axis": "x",
+                    "offset": 1.5311370854996431,
+                    "scale": -1.5311370854996431
                   },
                   {
                     "node": "F16-gear-2",
                     "source": "gear",
                     "property": "rotation",
-                    "axis": "z",
-                    "offset": -1.2,
-                    "scale": 1.2
+                    "axis": "x",
+                    "offset": 1.5311370854996431,
+                    "scale": -1.5311370854996431
                   },
                   {
                     "node": "canopy-opening",
@@ -88251,7 +89148,41 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.98, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.98, 6.487668],
+                  [0, 1.98, -6.487668],
+                  [4.3464480000000005, 1.98, 0],
+                  [-4.3464480000000005, 1.98, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.86, -5.04],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0, 1.86, -5.04],
+                  "normal": [0, 0, 1],
+                  "radius": 0.33,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -90631,17 +91562,17 @@
               "node": "F16-gear-1",
               "source": "gear",
               "property": "rotation",
-              "axis": "z",
-              "offset": 1.2,
-              "scale": -1.2
+              "axis": "x",
+              "offset": 1.5311370854996431,
+              "scale": -1.5311370854996431
             },
             {
               "node": "F16-gear-2",
               "source": "gear",
               "property": "rotation",
-              "axis": "z",
-              "offset": -1.2,
-              "scale": 1.2
+              "axis": "x",
+              "offset": 1.5311370854996431,
+              "scale": -1.5311370854996431
             },
             {
               "node": "canopy-opening",
@@ -101162,7 +102093,59 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.1, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.1, 8.218805],
+                  [0, 2.1, -8.218805],
+                  [8.991298, 2.1, 0],
+                  [-8.991298, 2.1, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [1.68, 1.83, -6.01],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [1.68, 1.83, -6.01],
+                  "normal": [0, 0, 1],
+                  "radius": 0.43,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-1.68, 1.83, -6.01],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-turbine"],
+                "disc": {
+                  "center": [-1.68, 1.83, -6.01],
+                  "normal": [0, 0, 1],
+                  "radius": 0.43,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-turbine"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -108553,7 +109536,59 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.3, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.3, 8.35533],
+                  [0, 2.3, -8.35533],
+                  [6.00230448, 2.3, 0],
+                  [-6.00230448, 2.3, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0.7, 2.18, -6.26],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0.7, 2.18, -6.26],
+                  "normal": [0, 0, 1],
+                  "radius": 0.43,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-0.7, 2.18, -6.26],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-turbine"],
+                "disc": {
+                  "center": [-0.7, 2.18, -6.26],
+                  "normal": [0, 0, 1],
+                  "radius": 0.43,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-turbine"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -113558,7 +114593,59 @@
               "speedBrake": {
                 "seconds": 2.4
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.05, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.05, 7.339583999999999],
+                  [0, 2.05, -7.339583999999999],
+                  [5.2578000000000005, 2.05, 0],
+                  [-5.2578000000000005, 2.05, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0.58, 1.99, -5.05],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0.58, 1.99, -5.05],
+                  "normal": [0, 0, 1],
+                  "radius": 0.34,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-0.58, 1.99, -5.05],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-turbine"],
+                "disc": {
+                  "center": [-0.58, 1.99, -5.05],
+                  "normal": [0, 0, 1],
+                  "radius": 0.34,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-turbine"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -118451,7 +119538,59 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.04, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.04, 8.13689],
+                  [0, 2.04, -8.13689],
+                  [6.239256, 2.04, 0],
+                  [-6.239256, 2.04, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0.64, 2, -4.22],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0.64, 2, -4.22],
+                  "normal": [0, 0, 1],
+                  "radius": 0.31,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-0.64, 2, -4.22],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-turbine"],
+                "disc": {
+                  "center": [-0.64, 2, -4.22],
+                  "normal": [0, 0, 1],
+                  "radius": 0.31,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-turbine"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -124746,7 +125885,41 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.94, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.94, 6.73681],
+                  [0, 1.94, -6.73681],
+                  [4.90728, 1.94, 0],
+                  [-4.90728, 1.94, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.8, -4.33],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0, 1.8, -4.33],
+                  "normal": [0, 0, 1],
+                  "radius": 0.54,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -131471,7 +132644,54 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.1, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [[0, 2.1, 6.8628], [0, 2.1, -6.8628], [5.037, 2.1, 0], [-5.037, 2.1, 0]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0.52, 1.82, -5.14],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0.52, 1.82, -5.14],
+                  "normal": [0, 0, 1],
+                  "radius": 0.4,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-0.52, 1.82, -5.14],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-turbine"],
+                "disc": {
+                  "center": [-0.52, 1.82, -5.14],
+                  "normal": [0, 0, 1],
+                  "radius": 0.4,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-turbine"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -136941,7 +138161,59 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.95, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 1.95, 6.579000000000001],
+                  [0, 1.95, -6.579000000000001],
+                  [5.014, 1.95, 0],
+                  [-5.014, 1.95, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0.61, 1.92, -5.46],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0.61, 1.92, -5.46],
+                  "normal": [0, 0, 1],
+                  "radius": 0.33,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-0.61, 1.92, -5.46],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-turbine"],
+                "disc": {
+                  "center": [-0.61, 1.92, -5.46],
+                  "normal": [0, 0, 1],
+                  "radius": 0.33,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-turbine"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -142306,7 +143578,41 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.78, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.78, 6.407],
+                  [0, 1.78, -6.407],
+                  [3.8640000000000003, 1.78, 0],
+                  [-3.8640000000000003, 1.78, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.8, -6.23],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0, 1.8, -6.23],
+                  "normal": [0, 0, 1],
+                  "radius": 0.34,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -146601,7 +147907,59 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.13, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.13, 7.4476],
+                  [0, 2.13, -7.4476],
+                  [5.2256, 2.13, 0],
+                  [-5.2256, 2.13, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0.87, 1.62, -5.72],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0.87, 1.62, -5.72],
+                  "normal": [0, 0, 1],
+                  "radius": 0.4,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-0.87, 1.62, -5.72],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-turbine"],
+                "disc": {
+                  "center": [-0.87, 1.62, -5.72],
+                  "normal": [0, 0, 1],
+                  "radius": 0.4,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-turbine"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -154787,7 +156145,95 @@
                 "ratedDensityRatio": 0.56
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.83, 0],
+                "massFraction": 0.92,
+                "nodes": [],
+                "probes": [
+                  [0, 2.83, 12.8097],
+                  [0, 2.83, -12.8097],
+                  [18.5886, 2.83, 0],
+                  [-18.5886, 2.83, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-C130J-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [10.22, 4.085, 6.2725],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C130J-propeller-1"],
+                "disc": {
+                  "center": [10.22, 4.085, 6.2725],
+                  "normal": [0, 0, 1],
+                  "radius": 2.06202,
+                  "halfThickness": 0.06,
+                  "rotor": "C130J-propeller-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-C130J-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [5.15, 3.89, 6.2725],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C130J-propeller-2"],
+                "disc": {
+                  "center": [5.15, 3.89, 6.2725],
+                  "normal": [0, 0, 1],
+                  "radius": 2.06202,
+                  "halfThickness": 0.06,
+                  "rotor": "C130J-propeller-2"
+                },
+                "engines": ["engine-2"]
+              },
+              {
+                "id": "rotor-C130J-propeller-3",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-5.15, 3.89, 6.2725],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C130J-propeller-3"],
+                "disc": {
+                  "center": [-5.15, 3.89, 6.2725],
+                  "normal": [0, 0, 1],
+                  "radius": 2.06202,
+                  "halfThickness": 0.06,
+                  "rotor": "C130J-propeller-3"
+                },
+                "engines": ["engine-3"]
+              },
+              {
+                "id": "rotor-C130J-propeller-4",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-10.22, 4.085, 6.2725],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C130J-propeller-4"],
+                "disc": {
+                  "center": [-10.22, 4.085, 6.2725],
+                  "normal": [0, 0, 1],
+                  "radius": 2.06202,
+                  "halfThickness": 0.06,
+                  "rotor": "C130J-propeller-4"
+                },
+                "engines": ["engine-4"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -165817,7 +167263,95 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 4.03, 0],
+                "massFraction": 0.92,
+                "nodes": [],
+                "probes": [
+                  [0, 4.03, 22.79],
+                  [0, 4.03, -22.79],
+                  [23.805, 4.03, 0],
+                  [-23.805, 4.03, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-C17-engine-fan-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [14.22, 3.73, 11.02],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C17-engine-fan-1"],
+                "disc": {
+                  "center": [14.22, 3.73, 11.02],
+                  "normal": [0, 0, 1],
+                  "radius": 1.1,
+                  "halfThickness": 0.06,
+                  "rotor": "C17-engine-fan-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-C17-engine-fan-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [7.57, 4.13, 15.03],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C17-engine-fan-2"],
+                "disc": {
+                  "center": [7.57, 4.13, 15.03],
+                  "normal": [0, 0, 1],
+                  "radius": 1.1,
+                  "halfThickness": 0.06,
+                  "rotor": "C17-engine-fan-2"
+                },
+                "engines": ["engine-2"]
+              },
+              {
+                "id": "rotor-C17-engine-fan-3",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-7.57, 4.13, 15.03],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C17-engine-fan-3"],
+                "disc": {
+                  "center": [-7.57, 4.13, 15.03],
+                  "normal": [0, 0, 1],
+                  "radius": 1.1,
+                  "halfThickness": 0.06,
+                  "rotor": "C17-engine-fan-3"
+                },
+                "engines": ["engine-3"]
+              },
+              {
+                "id": "rotor-C17-engine-fan-4",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-14.22, 3.73, 11.02],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C17-engine-fan-4"],
+                "disc": {
+                  "center": [-14.22, 3.73, 11.02],
+                  "normal": [0, 0, 1],
+                  "radius": 1.1,
+                  "halfThickness": 0.06,
+                  "rotor": "C17-engine-fan-4"
+                },
+                "engines": ["engine-4"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -174980,7 +176514,95 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 3.65, 0],
+                "massFraction": 0.92,
+                "nodes": [],
+                "probes": [
+                  [0, 3.65, 19.393],
+                  [0, 3.65, -19.393],
+                  [19.504, 3.65, 0],
+                  [-19.504, 3.65, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-A400-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [12.85, 4.58, 9.3985],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["A400-propeller-1"],
+                "disc": {
+                  "center": [12.85, 4.58, 9.3985],
+                  "normal": [0, 0, 1],
+                  "radius": 2.666821,
+                  "halfThickness": 0.0635,
+                  "rotor": "A400-propeller-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-A400-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [6.85, 4.98, 11.0985],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["A400-propeller-2"],
+                "disc": {
+                  "center": [6.85, 4.98, 11.0985],
+                  "normal": [0, 0, 1],
+                  "radius": 2.666821,
+                  "halfThickness": 0.0635,
+                  "rotor": "A400-propeller-2"
+                },
+                "engines": ["engine-2"]
+              },
+              {
+                "id": "rotor-A400-propeller-3",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-6.85, 4.98, 11.0985],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["A400-propeller-3"],
+                "disc": {
+                  "center": [-6.85, 4.98, 11.0985],
+                  "normal": [0, 0, 1],
+                  "radius": 2.666821,
+                  "halfThickness": 0.0635,
+                  "rotor": "A400-propeller-3"
+                },
+                "engines": ["engine-3"]
+              },
+              {
+                "id": "rotor-A400-propeller-4",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-12.85, 4.58, 9.3985],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["A400-propeller-4"],
+                "disc": {
+                  "center": [-12.85, 4.58, 9.3985],
+                  "normal": [0, 0, 1],
+                  "radius": 2.666821,
+                  "halfThickness": 0.0635,
+                  "rotor": "A400-propeller-4"
+                },
+                "engines": ["engine-4"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -183977,7 +185599,95 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 5.6, 0],
+                "massFraction": 0.92,
+                "nodes": [],
+                "probes": [
+                  [0, 5.6, 32.3833],
+                  [0, 5.6, -32.3833],
+                  [31.229400000000002, 5.6, 0],
+                  [-31.229400000000002, 5.6, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-C5-engine-fan-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [18.65, 5.12, 13.15],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C5-engine-fan-1"],
+                "disc": {
+                  "center": [18.65, 5.12, 13.15],
+                  "normal": [0, 0, 1],
+                  "radius": 1.16,
+                  "halfThickness": 0.06,
+                  "rotor": "C5-engine-fan-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-C5-engine-fan-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [11.85, 5.68, 16.85],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C5-engine-fan-2"],
+                "disc": {
+                  "center": [11.85, 5.68, 16.85],
+                  "normal": [0, 0, 1],
+                  "radius": 1.16,
+                  "halfThickness": 0.06,
+                  "rotor": "C5-engine-fan-2"
+                },
+                "engines": ["engine-2"]
+              },
+              {
+                "id": "rotor-C5-engine-fan-3",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-11.85, 5.68, 16.85],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C5-engine-fan-3"],
+                "disc": {
+                  "center": [-11.85, 5.68, 16.85],
+                  "normal": [0, 0, 1],
+                  "radius": 1.16,
+                  "halfThickness": 0.06,
+                  "rotor": "C5-engine-fan-3"
+                },
+                "engines": ["engine-3"]
+              },
+              {
+                "id": "rotor-C5-engine-fan-4",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-18.65, 5.12, 13.15],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["C5-engine-fan-4"],
+                "disc": {
+                  "center": [-18.65, 5.12, 13.15],
+                  "normal": [0, 0, 1],
+                  "radius": 1.16,
+                  "halfThickness": 0.06,
+                  "rotor": "C5-engine-fan-4"
+                },
+                "engines": ["engine-4"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -189804,7 +191514,95 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 6.2, 0],
+                "massFraction": 0.92,
+                "nodes": [],
+                "probes": [
+                  [0, 6.2, 29.712999999999997],
+                  [0, 6.2, -29.712999999999997],
+                  [33.718, 6.2, 0],
+                  [-33.718, 6.2, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-AN124-engine-fan-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [17.688, 4.65, 9.48],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["AN124-engine-fan-1"],
+                "disc": {
+                  "center": [17.688, 4.65, 9.48],
+                  "normal": [0, 0, 1],
+                  "radius": 1.11,
+                  "halfThickness": 0.06,
+                  "rotor": "AN124-engine-fan-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-AN124-engine-fan-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [9.932, 5.25, 13.78],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["AN124-engine-fan-2"],
+                "disc": {
+                  "center": [9.932, 5.25, 13.78],
+                  "normal": [0, 0, 1],
+                  "radius": 1.11,
+                  "halfThickness": 0.06,
+                  "rotor": "AN124-engine-fan-2"
+                },
+                "engines": ["engine-2"]
+              },
+              {
+                "id": "rotor-AN124-engine-fan-3",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-9.932, 5.25, 13.78],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["AN124-engine-fan-3"],
+                "disc": {
+                  "center": [-9.932, 5.25, 13.78],
+                  "normal": [0, 0, 1],
+                  "radius": 1.11,
+                  "halfThickness": 0.06,
+                  "rotor": "AN124-engine-fan-3"
+                },
+                "engines": ["engine-3"]
+              },
+              {
+                "id": "rotor-AN124-engine-fan-4",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-17.688, 4.65, 9.48],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["AN124-engine-fan-4"],
+                "disc": {
+                  "center": [-17.688, 4.65, 9.48],
+                  "normal": [0, 0, 1],
+                  "radius": 1.11,
+                  "halfThickness": 0.06,
+                  "rotor": "AN124-engine-fan-4"
+                },
+                "engines": ["engine-4"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -195554,7 +197352,69 @@
               "yawAuthority": 0.8,
               "damping": 2.2
             },
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.9, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 1.9, 7.5164],
+                  [0, 1.9, -7.5164],
+                  [11.8588, 1.9, 0],
+                  [-11.8588, 1.9, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-MV22-proprotor-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [7.09, 3.97, 2.1],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["MV22-proprotor-1"],
+                "disc": {
+                  "center": [7.09, 3.97, 4.509945],
+                  "normal": [0, 0, 1],
+                  "radius": 5.804468,
+                  "halfThickness": 0.116267,
+                  "rotor": "MV22-proprotor-1",
+                  "tilt": {
+                    "pivot": [7.09, 3.97, 2.1],
+                    "axis": [1, 0, 0],
+                    "angle": -1.5707963267948966
+                  }
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-MV22-proprotor-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-7.09, 3.97, 2.1],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["MV22-proprotor-2"],
+                "disc": {
+                  "center": [-7.09, 3.97, 4.509945],
+                  "normal": [0, 0, 1],
+                  "radius": 5.804468,
+                  "halfThickness": 0.116267,
+                  "rotor": "MV22-proprotor-2",
+                  "tilt": {
+                    "pivot": [-7.09, 3.97, 2.1],
+                    "axis": [1, 0, 0],
+                    "angle": -1.5707963267948966
+                  }
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -202775,7 +204635,41 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.85, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.85, 6.258306],
+                  [0, 1.85, -6.258306],
+                  [4.255, 1.85, 0],
+                  [-4.255, 1.85, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.93, 2.28],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-turbine"],
+                "disc": {
+                  "center": [0, 1.93, 2.28],
+                  "normal": [0, 0, 1],
+                  "radius": 0.94,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -209090,7 +210984,59 @@
                 "ratedDensityRatio": 0.7
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.92, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 1.92, 6.7810999999999995],
+                  [0, 1.92, -6.7810999999999995],
+                  [9.1126, 1.92, 0],
+                  [-9.1126, 1.92, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-TwinOtter-propeller-0",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [2.815, 2.815, 4.137],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["TwinOtter-propeller-0"],
+                "disc": {
+                  "center": [2.815, 2.815, 4.137],
+                  "normal": [0, 0, 1],
+                  "radius": 1.295473,
+                  "halfThickness": 0.06,
+                  "rotor": "TwinOtter-propeller-0"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-TwinOtter-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-2.815, 2.815, 4.137],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["TwinOtter-propeller-1"],
+                "disc": {
+                  "center": [-2.815, 2.815, 4.137],
+                  "normal": [0, 0, 1],
+                  "radius": 1.295473,
+                  "halfThickness": 0.06,
+                  "rotor": "TwinOtter-propeller-1"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -213043,7 +214989,41 @@
                 "ratedDensityRatio": 1
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.7, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [0, 1.7, 3.975608],
+                  [0, 1.7, -3.975608],
+                  [6.729984, 1.7, 0],
+                  [-6.729984, 1.7, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Beaver-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.870385, 4.066102],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Beaver-propeller"],
+                "disc": {
+                  "center": [0, 1.870385, 4.066102],
+                  "normal": [0, 0.163907, 0.986476],
+                  "radius": 1.295241,
+                  "halfThickness": 0.06,
+                  "rotor": "Beaver-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -214503,7 +216483,36 @@
                 "ratedDensityRatio": 0.7
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.3, 0],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [[0, 1.3, 4.687], [0, 1.3, -4.687], [7.3002, 1.3, 0], [-7.3002, 1.3, 0]],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Porter-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [0, 1.997674, 5.082435],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Porter-propeller"],
+                "disc": {
+                  "center": [0, 1.997674, 5.082435],
+                  "normal": [0, 0.187994, 0.98217],
+                  "radius": 1.280244,
+                  "halfThickness": 0.06,
+                  "rotor": "Porter-propeller"
+                },
+                "engines": ["engine-1"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -216361,7 +218370,59 @@
                 "ratedDensityRatio": 0.8
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.95, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 1.95, 4.4763],
+                  [0, 1.95, -4.4763],
+                  [6.683248000000001, 1.95, 0],
+                  [-6.683248000000001, 1.95, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Beech18-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [1.9685, 1.875266, 3.982817],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Beech18-propeller-1"],
+                "disc": {
+                  "center": [1.9685, 1.875266, 3.982817],
+                  "normal": [0, 0.21274, 0.977109],
+                  "radius": 1.295,
+                  "halfThickness": 0.06,
+                  "rotor": "Beech18-propeller-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-Beech18-propeller--1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-1.9685, 1.875266, 3.982817],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Beech18-propeller--1"],
+                "disc": {
+                  "center": [-1.9685, 1.875266, 3.982817],
+                  "normal": [0, 0.21274, 0.977109],
+                  "radius": 1.295,
+                  "halfThickness": 0.06,
+                  "rotor": "Beech18-propeller--1"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -218532,7 +220593,59 @@
                 "ratedDensityRatio": 0.75
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 3.3, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 3.3, 8.448167],
+                  [0, 3.3, -8.448167],
+                  [13.31976, 3.3, 0],
+                  [-13.31976, 3.3, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-DC3-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [2.8194, 2.702693, 6.490283],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["DC3-propeller-1"],
+                "disc": {
+                  "center": [2.8194, 2.702693, 6.490283],
+                  "normal": [0, 0.199368, 0.979925],
+                  "radius": 1.7526,
+                  "halfThickness": 0.06,
+                  "rotor": "DC3-propeller-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-DC3-propeller--1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-2.8194, 2.702693, 6.490283],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["DC3-propeller--1"],
+                "disc": {
+                  "center": [-2.8194, 2.702693, 6.490283],
+                  "normal": [0, 0.199368, 0.979925],
+                  "radius": 1.7526,
+                  "halfThickness": 0.06,
+                  "rotor": "DC3-propeller--1"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -222991,7 +225104,59 @@
                 "ratedDensityRatio": 0.55
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.31, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.31, 11.68138],
+                  [0, 2.31, -11.68138],
+                  [12.443000000000001, 2.31, 0],
+                  [-12.443000000000001, 2.31, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-ATR72-propeller-0",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [4.05, 3.3, 4.5015],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["ATR72-propeller-0"],
+                "disc": {
+                  "center": [4.05, 3.3, 4.5015],
+                  "normal": [0, 0, 1],
+                  "radius": 1.992743,
+                  "halfThickness": 0.06,
+                  "rotor": "ATR72-propeller-0"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-ATR72-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-4.05, 3.3, 4.5015],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["ATR72-propeller-1"],
+                "disc": {
+                  "center": [-4.05, 3.3, 4.5015],
+                  "normal": [0, 0, 1],
+                  "radius": 1.992743,
+                  "halfThickness": 0.06,
+                  "rotor": "ATR72-propeller-1"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -226642,10 +228807,10 @@
                     "node": "gear-1",
                     "source": "gear",
                     "property": "rotation",
-                    "axis": "z",
+                    "axis": "x",
                     "keys": [
-                      [0, -1.5707963267948966],
-                      [0.15, -1.5707963267948966],
+                      [0, 1.5707963267948966],
+                      [0.15, 1.5707963267948966],
                       [0.85, 0],
                       [1, 0]
                     ],
@@ -226663,7 +228828,7 @@
                     "node": "gear-2",
                     "source": "gear",
                     "property": "rotation",
-                    "axis": "z",
+                    "axis": "x",
                     "keys": [
                       [0, 1.5707963267948966],
                       [0.15, 1.5707963267948966],
@@ -226901,7 +229066,59 @@
                 "ratedDensityRatio": 0.55
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.58, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.58, 14.121200000000002],
+                  [0, 2.58, -14.121200000000002],
+                  [13.073200000000002, 2.58, 0],
+                  [-13.073200000000002, 2.58, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [4.4, 3.42, 4.954069],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["propeller-1"],
+                "disc": {
+                  "center": [4.4, 3.42, 4.954069],
+                  "normal": [0, 0, 1],
+                  "radius": 2.056138,
+                  "halfThickness": 0.06,
+                  "rotor": "propeller-1"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-4.4, 3.42, 4.954069],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["propeller-2"],
+                "disc": {
+                  "center": [-4.4, 3.42, 4.954069],
+                  "normal": [0, 0, 1],
+                  "radius": 2.056138,
+                  "halfThickness": 0.06,
+                  "rotor": "propeller-2"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -227606,7 +229823,59 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.97, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.97, 13.622399999999999],
+                  [0, 2.97, -13.622399999999999],
+                  [13.179, 2.97, 0],
+                  [-13.179, 2.97, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [3.92, 1.35, 5.21],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-fan"],
+                "disc": {
+                  "center": [3.92, 1.35, 5.21],
+                  "normal": [0, 0, 1],
+                  "radius": 0.628043,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-fan"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-3.92, 1.35, 5.21],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-fan"],
+                "disc": {
+                  "center": [-3.92, 1.35, 5.21],
+                  "normal": [0, 0, 1],
+                  "radius": 0.628043,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-fan"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -228333,7 +230602,59 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 3.56, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 3.56, 16.641000000000002],
+                  [0, 3.56, -16.641000000000002],
+                  [16.146, 3.56, 0],
+                  [-16.146, 3.56, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [5.55, 1.72, 7.1],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-fan"],
+                "disc": {
+                  "center": [5.55, 1.72, 7.1],
+                  "normal": [0, 0, 1],
+                  "radius": 0.857815,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-fan"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-5.55, 1.72, 7.1],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-fan"],
+                "disc": {
+                  "center": [-5.55, 1.72, 7.1],
+                  "normal": [0, 0, 1],
+                  "radius": 0.857815,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-fan"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -229044,7 +231365,59 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 3.3, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 3.3, 16.972099999999998],
+                  [0, 3.3, -16.972099999999998],
+                  [16.468, 3.3, 0],
+                  [-16.468, 3.3, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [4.84, 1.45, 5.985],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-fan"],
+                "disc": {
+                  "center": [4.84, 1.45, 5.985],
+                  "normal": [0, 0, 1],
+                  "radius": 0.804201,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-fan"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-4.84, 1.45, 5.985],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-fan"],
+                "disc": {
+                  "center": [-4.84, 1.45, 5.985],
+                  "normal": [0, 0, 1],
+                  "radius": 0.804201,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-fan"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -229771,7 +232144,59 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 3.85, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 3.85, 16.1551],
+                  [0, 3.85, -16.1551],
+                  [16.468, 3.85, 0],
+                  [-16.468, 3.85, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [5.75, 1.85, 7.75],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-fan"],
+                "disc": {
+                  "center": [5.75, 1.85, 7.75],
+                  "normal": [0, 0, 1],
+                  "radius": 0.957383,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-fan"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-5.75, 1.85, 7.75],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-fan"],
+                "disc": {
+                  "center": [-5.75, 1.85, 7.75],
+                  "normal": [0, 0, 1],
+                  "radius": 0.957383,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-fan"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -230498,7 +232923,59 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.63, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.63, 13.0763],
+                  [0, 2.63, -13.0763],
+                  [13.9656, 2.63, 0],
+                  [-13.9656, 2.63, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [2.04, 3.42, -3.275],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-fan"],
+                "disc": {
+                  "center": [2.04, 3.42, -3.275],
+                  "normal": [0, 0, 1],
+                  "radius": 0.761015,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-fan"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-2.04, 3.42, -3.275],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-fan"],
+                "disc": {
+                  "center": [-2.04, 3.42, -3.275],
+                  "normal": [0, 0, 1],
+                  "radius": 0.761015,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-fan"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -231201,7 +233678,59 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 1.63, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 1.63, 6.9918000000000005],
+                  [0, 1.63, -6.9918000000000005],
+                  [7.125400000000001, 1.63, 0],
+                  [-7.125400000000001, 1.63, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [1.32, 2.02, -1.12],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-1-fan"],
+                "disc": {
+                  "center": [1.32, 2.02, -1.12],
+                  "normal": [0, 0, 1],
+                  "radius": 0.368409,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-fan"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-engine-2-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-1.32, 2.02, -1.12],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["engine-2-fan"],
+                "disc": {
+                  "center": [-1.32, 2.02, -1.12],
+                  "normal": [0, 0, 1],
+                  "radius": 0.368409,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-fan"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
           }
         },
         "aircraftInput": {

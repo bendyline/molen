@@ -4,8 +4,9 @@ import { resolve } from 'node:path';
 import { Raycaster, Vector3 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { expect, it } from 'vitest';
-import { landmarkLodRecipeHash } from '../scripts/source-runtime-lods.mjs';
 import { bernabeuGroundOutline as outline } from '../../worldgen/scripts/bernabeu-model.mjs';
+import { landmarkLodRecipeHash } from '../scripts/source-runtime-lods.mjs';
+
 const source = resolve('../../content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium'),
   runtime = resolve('../../content/worldgen/assets/places/ez/ezj/santiago_bernabeu_stadium'),
   digest = (b) => createHash('sha256').update(b).digest('hex');

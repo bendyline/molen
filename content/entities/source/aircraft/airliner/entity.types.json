@@ -476,7 +476,7 @@
                   2.8,
                   -2
                 ],
-                "massFraction": 0.16,
+                "massFraction": 0.14,
                 "breakSpeed": 15,
                 "nodes": [
                   "wing-left",
@@ -539,7 +539,7 @@
                   2.8,
                   -2
                 ],
-                "massFraction": 0.16,
+                "massFraction": 0.14,
                 "breakSpeed": 15,
                 "nodes": [
                   "wing-right",
@@ -627,6 +627,76 @@
                   ]
                 ],
                 "radius": 0.3
+              },
+              {
+                "id": "rotor-fan-left",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "parent": "left-wing",
+                "role": "engine",
+                "center": [
+                  5.97,
+                  1.92,
+                  7.71
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "fan-left"
+                ],
+                "disc": {
+                  "center": [
+                    5.97,
+                    1.92,
+                    7.71
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.074869,
+                  "halfThickness": 0.06,
+                  "rotor": "fan-left"
+                },
+                "engines": [
+                  "left"
+                ]
+              },
+              {
+                "id": "rotor-fan-right",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "parent": "right-wing",
+                "role": "engine",
+                "center": [
+                  -5.97,
+                  1.92,
+                  7.71
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "fan-right"
+                ],
+                "disc": {
+                  "center": [
+                    -5.97,
+                    1.92,
+                    7.71
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.074869,
+                  "halfThickness": 0.06,
+                  "rotor": "fan-right"
+                },
+                "engines": [
+                  "right"
+                ]
               }
             ],
             "actuators": {

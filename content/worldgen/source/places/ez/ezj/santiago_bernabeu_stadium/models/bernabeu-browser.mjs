@@ -1,9 +1,10 @@
 /** Browser geometry derived from the retained individual Bernabeu recipe; master is unchanged. */
-import { bernabeuGroundOutline as outline } from '../../../../../../../../packages/worldgen/scripts/bernabeu-model.mjs';
+
 import {
   beam,
   normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { bernabeuGroundOutline as outline } from '../../../../../../../../packages/worldgen/scripts/bernabeu-model.mjs';
 import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 export const bernabeuBrowserSurfaces = {
   far: { slot: 'foundation', localRef: 'palette:#ffffff', roughness: 0.8 },

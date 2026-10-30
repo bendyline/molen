@@ -321,6 +321,61 @@ describe('worldgen worker protocol', () => {
     expect(() => createWorldgenWorkerPool([], { pack, atlas, metersPerUnit: 1 })).toThrow();
   });
 
+  it('posts the waiting tile the view needs soonest when a worker frees', async () => {
+    // A worker that only records tiles: each settles when the test answers it.
+    const posted: Array<{ id: number; geom: { x: number } }> = [];
+    let answer: ((event: { data: unknown }) => void) | undefined;
+    const worker: WorkerLike = {
+      postMessage: (message) => {
+        const generate = message as { kind: string; id: number; geom: { x: number } };
+        if (generate.kind === 'generate') posted.push(generate);
+      },
+      addEventListener: (_type, listener) => {
+        answer = listener;
+      },
+    };
+    const finish = async (index: number): Promise<void> => {
+      answer?.({ data: { kind: 'result', id: posted[index]?.id, cancelled: true } });
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    };
+    const pool = createWorldgenWorkerPool([worker], { pack, atlas, metersPerUnit: 1 });
+    const urgency = [5, 1, 30, 20, 10];
+    const abandoned = new AbortController();
+    const tiles = urgency.map((_, x) =>
+      pool.generate(
+        {
+          tile: tile(),
+          geom: { ...geom, x },
+          ground,
+          resolution: 9,
+          priority: () => urgency[x] as number,
+        },
+        x === 4 ? abandoned.signal : new AbortController().signal,
+      ),
+    );
+    // Two posted at once, in request order; the rest wait on the main thread.
+    expect(posted.map((message) => message.geom.x)).toEqual([0, 1]);
+    // A waiting tile left behind settles at once and is never posted.
+    abandoned.abort();
+    expect(await tiles[4]).toBeUndefined();
+    // Ranked when the worker frees: the view turned, and tile 2 is now the nearest.
+    urgency[2] = 2;
+    await finish(0);
+    expect(posted.map((message) => message.geom.x)).toEqual([0, 1, 2]);
+    await finish(1);
+    await finish(2);
+    await finish(3);
+    expect(posted.map((message) => message.geom.x)).toEqual([0, 1, 2, 3]);
+    expect(await Promise.all(tiles)).toEqual([
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+    ]);
+    pool.dispose();
+  });
+
   it('cancels between steps and reports an unconfigured worker', async () => {
     const port: WorldgenWorkerResult[] = [];
     const handler = createWorldgenWorkerHandler({

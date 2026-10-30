@@ -404,8 +404,9 @@ export class EarthAmbient implements SemanticTileObserver {
   }
 
   /**
-   * Every frame: hand the kernel the next queued tile part. A few times a second: drop hidden
-   * tiles, queue one newly displayed tile's parts (nearest first) and move the observer.
+   * Every frame: set the solids traffic yields to and hand the kernel the next queued tile part.
+   * A few times a second: drop hidden tiles, queue one newly displayed tile's parts (nearest
+   * first) and move the observer.
    */
   sync(
     now: number,
@@ -416,6 +417,9 @@ export class EarthAmbient implements SemanticTileObserver {
     solids: readonly { x: number; z: number; radius: number }[] = [],
   ): void {
     if (this.disposed) return;
+    // Solids apply from the next tick: a car a walker takes out of traffic holds the cars queued
+    // behind it at once, not up to a full sync later.
+    this.handle.setSolids(solids);
     // Every call (every frame) hands the kernel the next queued part, if any (see `feed`); a
     // full sync does so once it has dropped hidden tiles and queued a new one.
     if (now - this.lastSync < 200) {
@@ -518,7 +522,6 @@ export class EarthAmbient implements SemanticTileObserver {
       pos: observer.position,
       ...(flat > 1e-6 ? { forward: [dx / flat, dz / flat] as const } : {}),
     });
-    this.handle.setSolids(solids);
   }
 
   /** Step a private world (a shared world is stepped by its owner). */

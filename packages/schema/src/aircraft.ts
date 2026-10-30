@@ -7,11 +7,13 @@ import type { VehicleInteriorSpec } from './vehicle-interior';
 export type AircraftKind = string;
 export type FlightModel = 'airplane' | 'helicopter';
 
-/** World-space sphere for an attached section or detached piece. */
+/** World-space sphere, or a finite rotor disc when `disc` is present. */
 export interface AircraftCollisionProbe {
   part: string;
   center: [number, number, number];
   radius: number;
+  /** Radius is radial, not a bounding sphere. Normal is unit length in world space. */
+  disc?: { normal: [number, number, number]; halfThickness: number; angularSpeed: number };
 }
 /** Normal points out of the obstacle. Point and depth are in world meters. */
 export interface AircraftContact {
@@ -268,10 +270,23 @@ export interface AircraftVisualSpec extends JsonObject {
 /** A rigid airframe section; +X is the aircraft's left side. */
 export interface AircraftCollisionPart extends JsonObject {
   id: string;
-  role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'gear' | 'engine';
+  role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'tailRotor' | 'gear' | 'engine';
   /** Collision sphere centers in model coordinates, meters. */
   probes: [number, number, number][];
   radius: number;
+  /** Finite swept rotor volume, replacing this section's sphere probes. Active even at rest. */
+  disc?: {
+    center: [number, number, number];
+    normal: [number, number, number];
+    radius: number;
+    halfThickness: number;
+    /** Node in visual.rotors, supplying the engine and signed speed multiplier. */
+    rotor: string;
+    /** Rotate the disc about this model-space hinge with thrustVectorPosition (0..1). */
+    tilt?: { pivot: [number, number, number]; axis: [number, number, number]; angle: number };
+  };
+  /** Supporting section. Its separation also releases this part, once, with its own debris. */
+  parent?: string;
   /** Center of the detached section in model coordinates. */
   center: [number, number, number];
   /** Fraction of the original aircraft mass carried away on separation. */

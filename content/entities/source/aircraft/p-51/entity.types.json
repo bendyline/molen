@@ -438,56 +438,6 @@
                     "scale": 0.44
                   },
                   {
-                    "node": "gear--1-leg",
-                    "source": "gear",
-                    "property": "rotation",
-                    "axis": "z",
-                    "keys": [
-                      [
-                        0,
-                        -1.5707963267948966
-                      ],
-                      [
-                        0.15,
-                        -1.5707963267948966
-                      ],
-                      [
-                        0.85,
-                        0
-                      ],
-                      [
-                        1,
-                        0
-                      ]
-                    ],
-                    "ease": "smooth"
-                  },
-                  {
-                    "node": "gear-1-leg",
-                    "source": "gear",
-                    "property": "rotation",
-                    "axis": "z",
-                    "keys": [
-                      [
-                        0,
-                        -1.5707963267948966
-                      ],
-                      [
-                        0.15,
-                        -1.5707963267948966
-                      ],
-                      [
-                        0.85,
-                        0
-                      ],
-                      [
-                        1,
-                        0
-                      ]
-                    ],
-                    "ease": "smooth"
-                  },
-                  {
                     "node": "canopy-opening",
                     "source": "canopy",
                     "property": "position",
@@ -904,40 +854,34 @@
                 "role": "engine",
                 "center": [
                   0,
-                  2.5762,
-                  3.6882
+                  2.43,
+                  3.054873
                 ],
                 "massFraction": 0.015,
                 "breakSpeed": 8,
                 "nodes": [
                   "propeller"
                 ],
-                "probes": [
-                  [
-                    -1.4,
-                    2.5762,
-                    3.6882
-                  ],
-                  [
-                    1.4,
-                    2.5762,
-                    3.6882
-                  ],
-                  [
-                    0,
-                    3.9403,
-                    3.3733
-                  ],
-                  [
-                    0,
-                    1.3777,
-                    3.9649
-                  ]
-                ],
-                "radius": 0.25,
+                "probes": [],
+                "radius": 0.3,
                 "engines": [
                   "main"
-                ]
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    2.43,
+                    3.054873
+                  ],
+                  "normal": [
+                    0,
+                    0.224951,
+                    0.97437
+                  ],
+                  "radius": 1.70036,
+                  "halfThickness": 0.078156,
+                  "rotor": "propeller"
+                }
               }
             ],
             "actuators": {

@@ -2,35 +2,60 @@ import { dmath } from '@bendyline/molen-kernel/determinism';
 import { pointInPolygon, type TerrainSemanticPolygon } from '@bendyline/molen-terrain/kernel';
 import type { Vec2 } from '@bendyline/molen-worldgen/kernel';
 export type Bounds = [number, number, number, number];
+/** Cell key stride: rows stay far below it for any tile infill accepts. */
+const CELL_COLUMN = 0x100000;
+/**
+ * Values in 100 m cells. A query lists each value once, in the order its cells are visited (by
+ * column, then row) and added. Cells are numbers and values ids: a lot's 240 m neighborhood
+ * visits up to 36 cells, and string keys with a Set per query were a tenth of a town tile's work.
+ */
 export class InfillBins<T> {
-  private readonly cells = new Map<string, T[]>();
+  private readonly cells = new Map<number, number[]>();
+  private readonly values: T[] = [];
+  private readonly ids = new Map<T, number>();
+  /** The query that last listed each value. */
+  private readonly listed: number[] = [];
+  private queries = 0;
   constructor(private readonly extent: number) {}
   add(value: T, bounds: Bounds): void {
-    this.visit(bounds, (key) => {
-      const cell = this.cells.get(key) ?? [];
-      cell.push(value);
-      this.cells.set(key, cell);
-    });
+    let id = this.ids.get(value);
+    if (id === undefined) {
+      id = this.values.length;
+      this.ids.set(value, id);
+      this.values.push(value);
+      this.listed.push(0);
+    }
+    const [x0, x1, z0, z1] = this.range(bounds);
+    for (let x = x0; x <= x1; x++)
+      for (let z = z0; z <= z1; z++) {
+        const cell = this.cells.get(x * CELL_COLUMN + z);
+        if (cell === undefined) this.cells.set(x * CELL_COLUMN + z, [id]);
+        else cell.push(id);
+      }
   }
   query(bounds: Bounds): T[] {
-    const values = new Set<T>();
-    this.visit(bounds, (key) => {
-      for (const value of this.cells.get(key) ?? []) values.add(value);
-    });
-    return [...values];
+    const query = ++this.queries;
+    const values: T[] = [];
+    const [x0, x1, z0, z1] = this.range(bounds);
+    for (let x = x0; x <= x1; x++)
+      for (let z = z0; z <= z1; z++) {
+        const cell = this.cells.get(x * CELL_COLUMN + z);
+        if (cell === undefined) continue;
+        for (const id of cell) {
+          if (this.listed[id] === query) continue;
+          this.listed[id] = query;
+          values.push(this.values[id] as T);
+        }
+      }
+    return values;
   }
-  private visit(bounds: Bounds, fn: (key: string) => void): void {
-    for (
-      let x = Math.floor(Math.max(-300, bounds[0]) / 100);
-      x <= Math.floor(Math.min(this.extent + 300, bounds[2]) / 100);
-      x++
-    )
-      for (
-        let z = Math.floor(Math.max(-300, bounds[1]) / 100);
-        z <= Math.floor(Math.min(this.extent + 300, bounds[3]) / 100);
-        z++
-      )
-        fn(`${x}:${z}`);
+  private range(bounds: Bounds): [number, number, number, number] {
+    return [
+      Math.floor(Math.max(-300, bounds[0]) / 100),
+      Math.floor(Math.min(this.extent + 300, bounds[2]) / 100),
+      Math.floor(Math.max(-300, bounds[1]) / 100),
+      Math.floor(Math.min(this.extent + 300, bounds[3]) / 100),
+    ];
   }
 }
 export function around(x: number, z: number, r: number): Bounds {

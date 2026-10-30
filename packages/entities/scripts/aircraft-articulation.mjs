@@ -40,6 +40,52 @@ function movingParent(node, name) {
   return holder;
 }
 
+// gearNodes can name visibility-only leaves below an authored trunnion (the P-51),
+// not just the hinge itself. Never add another retraction to those descendants.
+function gearDrivenAncestor(node, animation) {
+  const usesGear = (source, seen = new Set()) => {
+    if (seen.has(source)) return false;
+    seen.add(source);
+    if (['gear', 'gearPosition'].includes(source)) return true;
+    const path = animation.sources?.[source]?.path;
+    if (path === 'gearPosition' || path?.at(-1) === 'gearPosition') return true;
+    const expression = animation.derived?.[source];
+    if (typeof expression === 'string') return usesGear(expression, seen);
+    return (expression?.args ?? []).some((arg) => typeof arg === 'string' && usesGear(arg, seen));
+  };
+  for (let parent = node.parent; parent; parent = parent.parent)
+    if (
+      animation.bindings.some(
+        (b) =>
+          b.node === parent.name &&
+          ['rotation', 'position'].includes(b.property) &&
+          usesGear(b.source),
+      )
+    )
+      return true;
+  return false;
+}
+
+// Repair definitions emitted by the old fallback pass. Match only its generated
+// quarter-turn curve; an aircraft's deliberately authored multi-link rig stays intact.
+function fallbackGearRotation(binding) {
+  const keys = binding.keys;
+  return (
+    binding.source === 'gear' &&
+    binding.property === 'rotation' &&
+    binding.ease === 'smooth' &&
+    keys?.length === 4 &&
+    keys[0][0] === 0 &&
+    Math.abs(keys[0][1]) === Math.PI / 2 &&
+    keys[1][0] === 0.15 &&
+    keys[1][1] === keys[0][1] &&
+    keys[2][0] === 0.85 &&
+    keys[2][1] === 0 &&
+    keys[3][0] === 1 &&
+    keys[3][1] === 0
+  );
+}
+
 export function completeAircraftArticulation(root, spec, profile = {}, modelSignals) {
   const slug = profile.slug ?? root.name;
   const visual = spec.visual;
@@ -82,17 +128,23 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
   for (const name of visual.gearNodes) {
     const node = root.getObjectByName(name);
     if (!node) continue;
+    if (gearDrivenAncestor(node, animation)) {
+      for (let i = bindings.length - 1; i >= 0; i--)
+        if (bindings[i].node === name && fallbackGearRotation(bindings[i])) bindings.splice(i, 1);
+      continue;
+    }
     const existing = bindings.find((b) => b.node === name && b.property === 'rotation');
-    if (existing && !/^gear-\d$/.test(name)) continue;
+    if (existing && !node.userData.fallbackLandingGear) continue;
     if (existing) bindings.splice(bindings.indexOf(existing), 1);
     const nose = /nose/.test(name) || name === 'gear-0';
+    const aft = slug === 'dash-8-q400' && !nose;
     const side = Math.sign(node.position.x) || 1;
-    const angle = nose ? -Math.PI / 2 : (-side * Math.PI) / 2;
+    const angle = nose ? -Math.PI / 2 : aft ? Math.PI / 2 : (-side * Math.PI) / 2;
     additions.push({
       node: name,
       source: 'gear',
       property: 'rotation',
-      axis: nose ? 'x' : 'z',
+      axis: nose || aft ? 'x' : 'z',
       keys: [
         [0, angle],
         [0.15, angle],

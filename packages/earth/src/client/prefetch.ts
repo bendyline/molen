@@ -186,7 +186,7 @@ export function extrapolateTrack(
 
 /**
  * The archive reads the stream's layers would make for these selected tiles: elevation at the
- * tile (or the finest level the archive has), landcover over its finest three levels, features
+ * tile (or the finest level the archive has), landcover at every available level, features
  * (water spans every level) at the tile or its finest-level ancestor, and the building-detail
  * level's tiles under a feature tile within `maxDepth` of it. Deduplicated, in input order.
  */
@@ -209,10 +209,7 @@ export function earthPrefetchTargets(
   for (const tile of tiles) {
     push('elevation', at(tile, archives.elevation.maxLevel));
     const landcover = archives.landcover;
-    if (
-      landcover !== undefined &&
-      tile.level >= Math.max(landcover.minLevel, landcover.maxLevel - 2)
-    )
+    if (landcover !== undefined && tile.level >= landcover.minLevel)
       push('landcover', at(tile, landcover.maxLevel));
     const features = archives.features;
     if (features !== undefined && tile.level >= features.minLevel) {

@@ -133,12 +133,39 @@ car it hits stays put. Terrain gaps pause motion; abrupt steps and slopes above 
 the car. Cockpit views use the full chassis quaternion; chase views shorten at obstructions.
 
 This is a grounded driving model. It does not implement airborne rotation, rollovers, crash
-deformation or damage, pushing other cars, per-surface friction (grass and gravel grip like the
+deformation, pushing other cars, per-surface friction (grass and gravel grip like the
 road), passenger animation, multiplayer ownership, or disk persistence. Background traffic is a
 separate package: [ambient life](ambient-life.md) moves NPC cars along lanes without this solver,
 and they stop for a car someone is driving. Without collision hooks, the reusable kernel solver
 supplies terrain driving only. Do not attach a second physics body to the same vehicle; the
 vehicle solver owns its transform.
+
+### Breakable parts
+
+The ground-vehicle catalog (cars, buses, cycles and rail vehicles) binds independent wheels and
+exterior panels to `spec.collisionParts`.
+Hard contact reduces the struck part's joint integrity; a broken joint releases its named GLB
+geometry as debris with its own velocity, spin, gravity and collisions. Other parts stay attached.
+Lost wheels reduce grip and drive force on their axle; front-wheel loss also reduces steering.
+Hard landings can break wheel joints. This remains a grounded chassis approximation: the body
+does not roll over or simulate individual suspension collapse after losing a wheel.
+
+Each part declares `id`, `role` (`frontWheel`, `rearWheel`, `panel` or `engine`), model-space
+`center`, sphere `probes` and `radius`, `massFraction`, `breakSpeed` in m/s, and exact GLB `nodes`.
+An optional `hinge` has a `pivot`, unit `axis`, full-travel `angle` and `actuator` name; it moves
+door, hood and trunk probes with the panel. Joint strengths are gameplay tuning. Hosts supply
+`VehicleEnvironment.contacts(probes, entity)` for detailed obstacles alongside `canOccupy` for
+the chassis. Chassis impacts also load nearby joints using the inferred contact point, even
+with only `canOccupy`. `vehicleObstacleContacts` from `client/vehicles` adapts resident triangle geometry
+and nearby vehicles. Detailed contacts additionally detect parts extending beyond the chassis.
+
+`vehicleState.damage` and `debris` survive keyframes. Debris expires after 20 simulation seconds;
+the part stays missing. Pass the state as the sixth argument to `VehicleVisual.update` to apply
+damage after animation; Earth view and World Explorer do this automatically. Press **R** once
+stopped to repair parts in place. Hosts can call `EarthVehicles.recover()`, `EarthView.recover()`
+in drive mode, or `repairVehicle(world, id)` from `kernel/vehicles`. Glass has its own fracture
+state and is not repaired by this operation. Other vehicles remain static collision targets;
+debris-to-debris collisions and damage transfer into the struck vehicle are not simulated.
 
 All durable simulation state and mount relationships live in ECS components and survive keyframes
 and replay. Install the same systems/environment when restoring. Host streaming and render resources
@@ -154,6 +181,21 @@ ground (under open sky, never a roof or deck), `board(id)` without walking to th
 `release()` to step out at once. A standing spawned car settles onto finer terrain as it streams
 in. The entity's `vehicle.color`, when set, paints the model's `paintMaterial`; without one the
 authored paint stays.
+
+A host can make boarding two presses, as the world explorer does: `openDoor(eye)` opens the shut
+front door (`doorFrontLeft` or `doorFrontRight`) on the walker's side of the nearest car in reach
+and returns false when there is none, so the next press falls through to `enter(eye)`.
+`closedDoor(id, eye)` names that door for a prompt. The door shuts behind the driver, or once
+nobody is within reach; calling `openDoor(eye, id)` after `exit()` swings it open as the driver
+steps out.
+
+A stopped [ambient traffic](ambient-life.md#taking-a-stopped-car) car (slower than 0.5 m/s) is a
+car in reach too, in `mountEarthView` and for these methods: `openDoor` or `enter` takes it out
+of traffic, and a drivable car of its type and paint stands at its pose, after which the doors,
+seats and exits work as for any parked car. `trafficSolids()` lists circles around the cars a
+driver has left standing, for `EarthAmbient.sync`, so traffic queued behind one keeps its gap
+until it drives off. A taken car nobody drove away rejoins traffic once its model unloads 65 m
+away; one driven elsewhere stays parked. Moving traffic is never boardable.
 
 Parked cars become simulation entities only within 300 m of the observer passed to `sync`, to
 approach, board and collide with; farther ones that nobody moved are reclaimed and stay part of

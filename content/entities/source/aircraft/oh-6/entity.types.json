@@ -799,7 +799,7 @@
                 "role": "rotor",
                 "center": [
                   0,
-                  2.4,
+                  2.3305,
                   0.02
                 ],
                 "massFraction": 0.08,
@@ -807,37 +807,26 @@
                 "nodes": [
                   "main-rotor"
                 ],
-                "probes": [
-                  [
-                    0,
-                    2.4,
-                    0.02
-                  ],
-                  [
-                    -3.8,
-                    2.4,
-                    0.02
-                  ],
-                  [
-                    3.8,
-                    2.4,
-                    0.02
-                  ],
-                  [
-                    0,
-                    2.4,
-                    3.82
-                  ],
-                  [
-                    0,
-                    2.4,
-                    -3.78
-                  ]
-                ],
+                "probes": [],
                 "radius": 0.3,
                 "engines": [
                   "main"
-                ]
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    2.3305,
+                    0.02
+                  ],
+                  "normal": [
+                    0,
+                    1,
+                    0
+                  ],
+                  "radius": 4.025566,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                }
               },
               {
                 "id": "tail",
@@ -847,7 +836,7 @@
                   1.6,
                   -3.7
                 ],
-                "massFraction": 0.07,
+                "massFraction": 0.065,
                 "breakSpeed": 10,
                 "nodes": [
                   "tail-boom",
@@ -856,7 +845,6 @@
                   "tail-stabilizer-1",
                   "tail-brace--1",
                   "tail-brace-1",
-                  "tail-rotor",
                   "tail-antenna"
                 ],
                 "probes": [
@@ -877,6 +865,39 @@
                   ]
                 ],
                 "radius": 0.3
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "parent": "tail",
+                "role": "tailRotor",
+                "center": [
+                  0.174,
+                  1.5,
+                  -4.48
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "tail-rotor"
+                ],
+                "disc": {
+                  "center": [
+                    0.174,
+                    1.5,
+                    -4.48
+                  ],
+                  "normal": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "radius": 0.632184,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
               }
             ],
             "actuators": {

@@ -1554,7 +1554,111 @@
                 "ratedDensityRatio": 0.75
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  3.3,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    3.3,
+                    8.448167
+                  ],
+                  [
+                    0,
+                    3.3,
+                    -8.448167
+                  ],
+                  [
+                    13.31976,
+                    3.3,
+                    0
+                  ],
+                  [
+                    -13.31976,
+                    3.3,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-DC3-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  2.8194,
+                  2.702693,
+                  6.490283
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "DC3-propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    2.8194,
+                    2.702693,
+                    6.490283
+                  ],
+                  "normal": [
+                    0,
+                    0.199368,
+                    0.979925
+                  ],
+                  "radius": 1.7526,
+                  "halfThickness": 0.06,
+                  "rotor": "DC3-propeller-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-DC3-propeller--1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -2.8194,
+                  2.702693,
+                  6.490283
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "DC3-propeller--1"
+                ],
+                "disc": {
+                  "center": [
+                    -2.8194,
+                    2.702693,
+                    6.490283
+                  ],
+                  "normal": [
+                    0,
+                    0.199368,
+                    0.979925
+                  ],
+                  "radius": 1.7526,
+                  "halfThickness": 0.06,
+                  "rotor": "DC3-propeller--1"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

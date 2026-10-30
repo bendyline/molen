@@ -10,6 +10,7 @@ import {
 } from '../../../content/worldgen/source/places/ud/ud1/akmens_tilts/models/akmens-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
+
 const source = resolve('../../content/worldgen/source/places/ud/ud1/akmens_tilts'),
   sidecar = await runtimeLodFixture(
     resolve('../../content/worldgen/assets/places/ud/ud1/akmens_tilts/asset.json'),

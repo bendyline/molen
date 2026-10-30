@@ -1,3 +1,4 @@
+export { sampleAirportPavement } from './airport-surfaces';
 export {
   markTerrainGroundSurface,
   markTerrainPavementSurface,

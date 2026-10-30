@@ -346,7 +346,10 @@ export function stepAircraft(
     (speed, piece) => m.max(speed, m.hypot(...piece.velocity)),
     m.hypot(...s.velocity) * travelScale,
   );
-  const radius = (spec.collisionParts ?? []).reduce((size, part) => m.min(size, part.radius), 0.3);
+  const radius = (spec.collisionParts ?? []).reduce(
+    (size, part) => m.min(size, part.disc?.halfThickness ?? part.radius),
+    0.3,
+  );
   const angularTravel =
     (m.hypot(s.pitchRate, s.rollRate, s.yawRate ?? 0) * m.max(spec.span, spec.length)) / 2;
   const collisionRate = env.contacts || s.debris?.length ? (speed + angularTravel) / radius : speed;
@@ -405,6 +408,12 @@ export function stepAircraft(
       const e = bank[engine.id];
       const control = controls[index];
       if (!e || !control) continue;
+      if (
+        spec.collisionParts?.some(
+          (part) => part.engines?.includes(engine.id) && s.damage?.[part.id]?.detached,
+        )
+      )
+        e.failed = true;
       const combustion = aircraftMixtureEfficiency(engine, atmosphere, control.mixture);
       const running =
         control.enabled &&
@@ -861,7 +870,8 @@ export function stepAircraft(
       s.airspeed = m.hypot(air[0] ?? 0, air[1] ?? 0, air[2] ?? 0);
       s.mach = s.airspeed / atmosphere.speedOfSound;
       s.equivalentAirspeed = s.airspeed * m.sqrt(density / 1.225);
-      const authority = s.rpm * s.rpm;
+      const rotorAuthority = aircraftSectionAuthority(spec, s, 'rotor');
+      const authority = s.rpm * s.rpm * rotorAuthority;
       // Rotor disc response with light attitude damping: cyclic commands a tilt, not velocity.
       s.pitchRate +=
         (input.pitch * helicopter.cyclicTilt - s.pitch) *
@@ -886,7 +896,8 @@ export function stepAircraft(
       }
       s.pitch = m.clamp(s.pitch + s.pitchRate * h, -helicopter.maxTilt, helicopter.maxTilt);
       s.roll = m.clamp(s.roll + s.rollRate * h, -helicopter.maxTilt, helicopter.maxTilt);
-      const tailAuthority = aircraftSectionAuthority(spec, s, 'tail');
+      const tailAuthority =
+        aircraftSectionAuthority(spec, s, 'tail') * aircraftSectionAuthority(spec, s, 'tailRotor');
       s.yaw -= input.yaw * authority * h * helicopter.yawRate * tailAuthority;
       if (tailAuthority < 1) {
         s.yawRate = ((s.yawRate ?? 0) + h * authority * (1 - tailAuthority) * 1.5) / (1 + h * 0.1);
@@ -1000,6 +1011,7 @@ export function stepAircraft(
           lift = lo;
         }
       }
+      lift *= rotorAuthority;
       if ((s.actuators?.eject ?? 0) > 0.08) lift = 0;
       const force = [0, -weight, 0];
       for (let i = 0; i < 3; i++)

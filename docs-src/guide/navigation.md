@@ -92,10 +92,18 @@ tree entirely. Queries reach at most `radius - rebuildDistance` from the subject
 `verticalRadius` unset for a walker, whose placement ray scans the whole column.
 
 Meshes opt out with `userData.walkIgnore = true`; world-generation ground cover does, so walkers
-pass through ferns and moss. Water materials and landcover overlays are never solid. An aircraft can
-pass `instanceBounds: true`, which collides with each instance of an instanced mesh as its bounding
-box rather than its triangles. A missing terrain tile pauses movement until it arrives, rather than
-dropping the walker.
+pass through ferns and moss. Meshes with all render layers disabled are skipped unless marked
+`userData.walkCollisionOnly = true`, as with the smooth ramps beneath visible stair steps.
+Water materials are never solid. Visible landcover provides walking support, including when it
+replaces the bare terrain.
+An aircraft can pass `instanceBounds: true`, which collides with each instance of an instanced mesh
+as its bounding box rather than its triangles. A missing terrain tile pauses movement until it
+arrives, rather than dropping the walker.
+
+For tunnels, the `sampleHeight` callback passed to `walker.update` must return the bore floor
+when the walker's feet are inside it, and the terrain height otherwise. Earth view does this
+automatically. Returning the hill above a tunnel triggers streamed-ground recovery and lifts
+the walker out of the bore. Initial placement still uses the surface height to land above ground.
 
 ## Follow
 

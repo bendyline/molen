@@ -3,8 +3,9 @@ import type { FontLibrary } from '@bendyline/molen-materials/text';
 import type { VehiclePlacement } from '@bendyline/molen-schema';
 /** Off-thread road topology, parking inference, terrain draping and fixture placement. */
 import * as THREE from 'three';
+import { AIRPORT_PAVEMENT_MESH, tagAirportPavement } from './airport-surfaces';
 import { Heightfield } from './heightfield';
-import type { TerrainLandcoverWorker } from './landcover-worker';
+import { type TerrainLandcoverWorker, takeMostUrgent } from './landcover-worker';
 import { TERRAIN_PAVEMENT } from './linear-features';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import type { TerrainRouteShieldLibrary } from './route-shields';
@@ -229,13 +230,19 @@ export function createTerrainSurfaceWorkerBridge(
   const pump = (): void => {
     if (active || disposed || failure) return;
     while (queue.length) {
-      const job = queue.shift() as Job;
+      const job = takeMostUrgent(queue, (queued) => queued.context.priority) as Job;
       if (job.context.signal.aborted) {
         job.cleanup();
         job.resolve(undefined);
         continue;
       }
-      const { heightfield, signal: _signal, admission: _admission, ...context } = job.context;
+      const {
+        heightfield,
+        signal: _signal,
+        admission: _admission,
+        priority: _priority,
+        ...context
+      } = job.context;
       const { fonts, routeShields, ...options } = job.options;
       const request: Request = {
         id: job.id,
@@ -338,6 +345,7 @@ export function createTerrainSurfaceWorkerBridge(
       mesh.name = data.name;
       mesh.castShadow = data.castShadow;
       mesh.receiveShadow = true;
+      if (data.name === AIRPORT_PAVEMENT_MESH) tagAirportPavement(mesh);
       group.add(mesh);
     }
     if (result.vehicles?.length)

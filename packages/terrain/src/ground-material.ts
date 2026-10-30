@@ -1053,8 +1053,10 @@ const PAVEMENT_GLSL = /* glsl */ `
     // or a dirt track) the ground shows through a ragged margin and dirt collects inside it.
     // Loose surfaces break up in clumps; cast paving keeps its formed edge, and only grass
     // blades creep over it. The margin shrinks away as its noise falls below a pixel, leaving
-    // the band's own antialiased edge.
-    float soft = vSurfaceDetail.w * (1.0 - isRoad);
+    // the band's own antialiased edge. The edge mask is a whole number, rounded before its bits
+    // are read: interpolation hands some pixels 2 as 1.9999999 (NVIDIA does), where mod(soft, 2)
+    // is nearly 2 rather than 0, and a sidewalk's lawn side discarded half its pixels as ground.
+    float soft = floor(vSurfaceDetail.w + 0.5) * (1.0 - isRoad);
     float edge = min(mix(64.0, across, mod(soft, 2.0)), mix(64.0, width - across, step(1.5, soft)));
     float coarse = 1.0 - smoothstep(0.25, 0.6, footprint / 0.8);
     float fine = 1.0 - smoothstep(0.25, 0.6, footprint / 0.2);
@@ -1159,7 +1161,7 @@ export function createTerrainPavementMaterial(
        diffuseColor.rgb *= terrainPavement.rgb;`,
     );
   };
-  material.customProgramCacheKey = (): string => 'terrain-pavement@29';
+  material.customProgramCacheKey = (): string => 'terrain-pavement@30';
   states.set(material, state);
   return material;
 }
@@ -1464,8 +1466,9 @@ export async function createTerrainPavementMaterialAsync(
     // or a dirt track) the ground shows through a ragged margin and dirt collects inside it.
     // Loose surfaces break up in clumps; cast paving keeps its formed edge, and only grass
     // blades creep over it. The margin shrinks away as its noise falls below a pixel, leaving
-    // the band's own antialiased edge.
-    const soft = lane.mul(isRoad.oneMinus());
+    // the band's own antialiased edge. The edge mask is rounded before its bits are read (see
+    // the GLSL above).
+    const soft = lane.add(0.5).floor().mul(isRoad.oneMinus());
     const edge = min(
       mix(64, across, soft.mod(2)),
       mix(64, width.sub(across), step(1.5, soft)),

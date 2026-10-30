@@ -117,3 +117,49 @@ the source-input key automatically; it no longer accepts the historical `--updat
 
 Detailed local logs are in `.artifacts/animation-*`. Final poses were inspected in
 `shots/animation-final-review/`, alongside the earlier full aircraft sheet and ejection views.
+
+## Landing-gear regression review, 2026-10-29
+
+The P-51 regression was a double transform: `visual.gearNodes` selects its leg meshes for
+visibility, while their parents already rotate about canted trunnions. The shared fallback
+mistook those leaves for hinges and added a second, identical Z rotation to both sides.
+The fallback now checks gear-driven ancestors, removes its old duplicate curves on repeat
+generation, and upgrades generic hinges only when the builder explicitly marks them.
+Authored secondary linkages and aircraft-specific door sequences are preserved.
+
+Two additional defects were corrected during the fleet review:
+
+- **Dash 8-400:** main gear now folds aft instead of inward. The axle stations and track stay
+  unchanged; a raked strut/forward trunnion keeps the retracted wheels in the broad nacelle bay
+  rather than penetrating its tapered tail. Main-aft/nose-forward folding and enclosing doors
+  are documented in De Havilland's publicly accessible
+  [DHC-8 Series 400 Aircraft Recovery Manual, section 01-00-00 page 4](https://dehavillandportal.com/assets/public-documents/D8400-ARM.pdf#page=40).
+  This manufacturer publication is copyrighted, not public domain; no text or artwork is copied.
+  Pivot coordinates and the simplified door geometry remain model-fit approximations.
+- **F-16B:** the previous Z hinges swung its splayed main wheels together below the belly.
+  Mirrored canted hinges now lift them aft into the fuselage, with clearance between the tyres.
+  The extended axle positions are unchanged. The hinge angles are fitted to this model's shell;
+  this is a geometric correction, not a claim to reproduce the real multi-link mechanism.
+
+All 53 aircraft were inspected from front/side at gear positions 0, 0.5 and 1. The three
+corrected aircraft were also inspected through their imported runtime GLBs at 0, 0.35 and 1.
+The remaining fleet review checks visible regressions, not maintenance-level fidelity;
+single-link rigs still simplify brace folding and door clearances (including F-14/F-15).
+Fixed gear and the intentionally exposed wheels on the DC-3/Beech 18 remain exceptions.
+
+Validation: 130 tests pass across landing gear, animation coverage, aircraft expansion and
+transport fit. The landing-gear suite checks actual source/imported wheel geometry, 21 P-51
+positions, symmetry, fixed hinge locations, door endpoints, F-16 belly clearance, Dash 8 bay
+clearance, and repeated mid-stroke reversals across the fleet. All 176 source/runtime models
+pass the animation/hash audit. Repeating the P-51, F-16 and Dash 8 generators reproduced their
+GLB hashes; the other six generic-gear models also reproduced after regeneration.
+
+Local evidence: `shots/gear-fleet-{up,half,down}/`, `shots/gear-runtime-{0,0.35,1}/`,
+`.artifacts/gear-validation.log` and `.artifacts/gear-reproducibility.json`. For example:
+
+```sh
+node packages/entities/scripts/model-sheet.mjs --ids=p-51,dash-8-q400,f-16b --runtime --signals=gear:0.35,gearPosition:0.35 --views=front,side,q3f --out=shots/gear-review --gpu
+```
+
+The review tool labels signal values on each sheet and rejects invalid numeric poses, so an
+unexpanded shell variable cannot silently produce a misleading bind-pose capture.

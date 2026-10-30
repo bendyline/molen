@@ -13122,7 +13122,111 @@
                 "ratedDensityRatio": 0.5
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.78,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.78,
+                    6.11632
+                  ],
+                  [
+                    0,
+                    1.78,
+                    -6.11632
+                  ],
+                  [
+                    8.120379999999999,
+                    1.78,
+                    0
+                  ],
+                  [
+                    -8.120379999999999,
+                    1.78,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-KingAir-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  2.6162,
+                  1.68,
+                  3.415
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "KingAir-propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    2.6162,
+                    1.68,
+                    3.415
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.3335,
+                  "halfThickness": 0.06,
+                  "rotor": "KingAir-propeller-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-KingAir-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -2.6162,
+                  1.68,
+                  3.415
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "KingAir-propeller-2"
+                ],
+                "disc": {
+                  "center": [
+                    -2.6162,
+                    1.68,
+                    3.415
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.3335,
+                  "halfThickness": 0.06,
+                  "rotor": "KingAir-propeller-2"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

@@ -114,8 +114,11 @@ signal lenses, markings and parked cars past their draw distance (`updateDetail`
 [surface rendering](surface-rendering.md)) and street props below 1.5 px (`vanishPixels`, see
 [worldgen](worldgen.md)); at High over a town that cut a fifth of the draws. A visibility pass makes
 its first ground cut whatever it costs, but only 4 ms more (`TerrainGroundCutoutController.update`'s
-budget); the rest keep their current cut until the next stream update, so tiles arriving together
-no longer hold one frame for every cut they need.
+budget); the rest keep their current cut until the next frame, so tiles arriving together
+no longer hold one frame for every cut they need. `stream.updateTransitions(nowMs)` carries those
+cuts on every frame, sharing one 4 ms budget a frame with `stream.update`: hosts update the stream
+ten times a second while the camera is still, and at one budget an update, ground that a descent
+had just shown stood uncut over its own harbor for most of a second.
 
 Earth hosts admit more while frames have time to spare: `createEarthAdmissionGovernor(backend)`
 smooths each frame's main-thread work and, through `earthAdmission`, switches the queue to 8 MiB
@@ -220,9 +223,14 @@ and meshing still run for every tile the stream loads. Long-horizon byte prefetc
 The Earth view also prepares nearby future tiles through the normal construction and GPU queues,
 so aircraft can arrive over already prepared terrain and layers even without persistent caching.
 
-A generation worker runs one tile at a time, in the order requested (the stream asks for what the
-view needs most first); interleaved, every tile in flight finished late, the nearest with the
-rest. It yields to its event loop every 8 ms of work, through a message channel, so a
+A generation worker runs one tile at a time; interleaved, every tile in flight finished late, the
+nearest with the rest. Which tile runs next is decided when a worker frees, not when the tile was
+requested: the worldgen pool keeps waiting tiles on the main thread (two posted per worker), and
+the land cover and road surface queues pick their next job the same way, by each layer context's
+`priority()` (meters from the camera, ground in view first). Posted in request order, a jet's
+nearest ground waited a second or more behind ground it had already passed. Layer adapters that
+pass work to their own workers can read `context.priority` the same way.
+It yields to its event loop every 8 ms of work, through a message channel, so a
 `cancel` message gets through. It used to yield after every step with a zero `setTimeout`, which a
 browser holds for at least 4 ms once timers nest: a dense tile took a second of wall time for a
 fifth of a second of work. Streaming generators also pass `hashOutput: false`: the SHA-256 over
@@ -339,7 +347,7 @@ cut. An aircraft's center can pass behind its cockpit camera at a tile boundary;
 indefinitely for already cached ground to become visible before moving again.
 
 `morphMilliseconds` enables refinement height morphs for bare surfaces; call
-`stream.updateTransitions(nowMs)` in the frame loop. Vertices start on the actual parent
+`stream.updateTransitions(nowMs)` in the frame loop (it also carries on unfinished ground cuts). Vertices start on the actual parent
 triangles and finish at their exact target positions with fixed horizontal coordinates. Grounded
 semantic layers use coverage-preserving atomic replacement and hysteresis instead. Enabling
 one finishes any surface morph before layer publication. Coarsening does not height-morph.

@@ -42,15 +42,45 @@ export function aircraftCollisionProbes(
   spec: AircraftSpec,
   state?: AircraftStateData,
 ): AircraftCollisionProbe[] {
-  return aircraftCollisionParts(spec).flatMap((part) =>
-    state?.damage?.[part.id]?.detached
-      ? []
-      : part.probes.map((local) => ({
+  return aircraftCollisionParts(spec).flatMap((part): AircraftCollisionProbe[] => {
+    if (state?.damage?.[part.id]?.detached) return [];
+    if (part.disc) {
+      const disc = part.disc;
+      let center = disc.center,
+        normal = disc.normal;
+      if (disc.tilt) {
+        const rotation = quatFromAxisAngle(
+          disc.tilt.axis,
+          disc.tilt.angle * (state?.thrustVectorPosition ?? 0),
+        );
+        center = add(disc.tilt.pivot, quatRotateVec3(rotation, sub(center, disc.tilt.pivot)));
+        normal = quatRotateVec3(rotation, normal);
+      }
+      const binding = spec.visual.rotors.find((rotor) => rotor.node === disc.rotor);
+      const engineId = binding?.engine ?? spec.engines?.[0]?.id ?? 'main';
+      const engine = spec.engines?.find((engine) => engine.id === engineId) ?? spec.engine;
+      return [
+        {
           part: part.id,
-          center: add(t.pos, quatRotateVec3(t.rot, local)),
-          radius: part.radius,
-        })),
-  );
+          center: add(t.pos, quatRotateVec3(t.rot, center)),
+          radius: disc.radius,
+          disc: {
+            normal: quatRotateVec3(t.rot, normal),
+            halfThickness: disc.halfThickness,
+            angularSpeed:
+              (state?.engines?.[engineId]?.rpm ?? state?.rpm ?? 0) *
+              (engine?.rotorAngularSpeed ?? 0) *
+              (binding?.multiplier ?? 1),
+          },
+        },
+      ];
+    }
+    return part.probes.map((local) => ({
+      part: part.id,
+      center: add(t.pos, quatRotateVec3(t.rot, local)),
+      radius: part.radius,
+    }));
+  });
 }
 export function aircraftSectionAuthority(
   spec: AircraftSpec,
@@ -127,16 +157,15 @@ function contactsFor(
 ): AircraftContact[] | undefined {
   const contacts: AircraftContact[] = [];
   for (const probe of probes) {
-    const ground = env.groundHeight(probe.center[0], probe.center[2], probe.center[1]);
-    if (ground === undefined || !Number.isFinite(ground)) return undefined;
-    const depth = ground + probe.radius - probe.center[1];
-    if (depth > 0)
-      contacts.push({
-        part: probe.part,
-        point: [probe.center[0], probe.center[1] - probe.radius, probe.center[2]],
-        normal: [0, 1, 0],
-        depth,
-      });
+    let deepest: AircraftContact | undefined;
+    for (const point of terrainPoints(probe)) {
+      const ground = env.groundHeight(point[0], point[2], point[1]);
+      if (ground === undefined || !Number.isFinite(ground)) return undefined;
+      const depth = ground - point[1];
+      if (depth > 0 && (!deepest || depth > deepest.depth))
+        deepest = { part: probe.part, point, normal: [0, 1, 0], depth };
+    }
+    if (deepest) contacts.push(deepest);
   }
   contacts.push(...(env.contacts?.(probes, id) ?? []));
   // Host iteration order cannot decide which joint breaks first.
@@ -161,6 +190,30 @@ function contactsFor(
     });
 }
 
+/** Height fields expose samples, not triangles: cover the interior, rim and exact low point. */
+function terrainPoints(probe: AircraftCollisionProbe): Vec3[] {
+  if (!probe.disc) return [add(probe.center, [0, -probe.radius, 0])];
+  const { normal, halfThickness } = probe.disc;
+  const down: Vec3 = [0, -1, 0];
+  const projection = sub(down, scale(normal, dot(down, normal)));
+  const length = m.hypot(...projection);
+  const u = length > 1e-8 ? scale(projection, 1 / length) : ([1, 0, 0] as Vec3);
+  const v = cross(normal, u);
+  const base = add(probe.center, scale(normal, normal[1] >= 0 ? -halfThickness : halfThickness));
+  const points = [base];
+  for (const fraction of [0.5, 1])
+    for (let i = 0; i < 16; i++) {
+      const angle = (i * m.TAU) / 16;
+      points.push(
+        add(
+          base,
+          scale(add(scale(u, m.cos(angle)), scale(v, m.sin(angle))), probe.radius * fraction),
+        ),
+      );
+    }
+  return points;
+}
+
 /** Resolve contact impulses about the center of mass, with friction and finite joint strength. */
 export function resolveAircraftContacts(
   t: TransformData,
@@ -170,7 +223,8 @@ export function resolveAircraftContacts(
   id: string,
   travelScale = 1,
 ): boolean {
-  const contacts = contactsFor(aircraftCollisionProbes(t, spec, state), env, id);
+  const probes = aircraftCollisionProbes(t, spec, state);
+  const contacts = contactsFor(probes, env, id);
   if (!contacts) return false;
   const parts = aircraftCollisionParts(spec);
   const com = add(t.pos, quatRotateVec3(t.rot, spec.centerOfMass));
@@ -193,9 +247,21 @@ export function resolveAircraftContacts(
     const tangent = sub(pointVelocity, scale(contact.normal, dot(pointVelocity, contact.normal)));
     const slide = m.hypot(...tangent);
     // A runway scrape also loads the joint in shear; airborne tangential speed alone does not.
-    const impactSpeed = m.sqrt(incoming ** 2 + 0.35 * incoming * slide);
+    const rotor = probes.find((probe) => probe.part === part.id && probe.disc);
+    // A rotating blade can strike a post while the hub is stationary. The swept-volume
+    // proxy conservatively uses blade speed at the contact radius, independent of phase.
+    // Shaft energy damages the joint; it must not become a fictitious chassis impulse.
+    const bladeSpeed =
+      rotor?.disc && contact.depth > 0
+        ? m.abs(rotor.disc.angularSpeed) *
+          m.min(
+            rotor.radius,
+            m.max(rotor.radius * 0.25, m.hypot(...sub(contact.point, rotor.center))),
+          )
+        : 0;
+    const impactSpeed = m.sqrt(incoming ** 2 + 0.35 * incoming * slide + bladeSpeed ** 2);
     let detached = false;
-    if (incoming > 0.5 && impactSpeed > 2 && !damaged.has(part.id)) {
+    if ((incoming > 0.5 || bladeSpeed > 0.5) && impactSpeed > 2 && !damaged.has(part.id)) {
       damaged.add(part.id);
       const strength = part.breakSpeed ?? spec.hardLandingSpeed * 4;
       const integrity = m.max(
@@ -206,37 +272,57 @@ export function resolveAircraftContacts(
       state.damage = { ...state.damage, [part.id]: { integrity, detached } };
       state.crashed = true;
       if (detached) {
-        const center = add(t.pos, quatRotateVec3(t.rot, part.center));
-        const velocity = add(
-          state.velocity,
-          quatRotateVec3(t.rot, cross(omega(state), sub(part.center, spec.centerOfMass))),
-        );
-        const piece: AircraftDebris = {
-          part: part.id,
-          pos: center,
-          rot: [...t.rot],
-          velocity: scale(add(velocity, scale(contact.normal, incoming * 0.8)), travelScale),
-          angularVelocity: [...omega(state)],
-          age: 0,
-        };
-        const kick = cross(sub(contact.point, center), scale(contact.normal, incoming));
-        piece.angularVelocity = add(
-          piece.angularVelocity,
-          scale(
-            quatRotateVec3(inv, kick),
-            0.15 / m.max(0.5, m.hypot(...sub(part.center, spec.centerOfMass))),
-          ),
-        );
-        state.debris = [...(state.debris ?? []), piece];
-        if (state.engines) {
-          state.engines = Object.fromEntries(
-            Object.entries(state.engines).map(([key, engine]) => [
-              key,
-              part.engines?.includes(key)
-                ? { ...engine, failed: true, thrust: 0, shaftPower: 0, afterburner: 0 }
-                : engine,
-            ]),
+        const released = [part];
+        // Resolve by dependency, not authored order. Each smaller part retains its own
+        // geometry and mass, including when its support breaks in the same contact.
+        for (let i = 0; i < released.length; i++)
+          for (const child of parts)
+            if (
+              child.parent === released[i]?.id &&
+              !state.damage?.[child.id]?.detached &&
+              !released.includes(child)
+            )
+              released.push(child);
+        for (const section of released) {
+          state.damage = { ...state.damage, [section.id]: { integrity: 0, detached: true } };
+          const center = add(t.pos, quatRotateVec3(t.rot, section.center));
+          const velocity = add(
+            state.velocity,
+            quatRotateVec3(t.rot, cross(omega(state), sub(section.center, spec.centerOfMass))),
           );
+          const piece: AircraftDebris = {
+            part: section.id,
+            pos: center,
+            rot: [...t.rot],
+            velocity: scale(add(velocity, scale(contact.normal, incoming * 0.8)), travelScale),
+            angularVelocity: [...omega(state)],
+            age: 0,
+          };
+          const spin = probes.find((probe) => probe.part === section.id)?.disc;
+          if (spin)
+            piece.angularVelocity = add(
+              piece.angularVelocity,
+              quatRotateVec3(inv, scale(spin.normal, spin.angularSpeed)),
+            );
+          const kick = cross(sub(contact.point, center), scale(contact.normal, incoming));
+          piece.angularVelocity = add(
+            piece.angularVelocity,
+            scale(
+              quatRotateVec3(inv, kick),
+              0.15 / m.max(0.5, m.hypot(...sub(section.center, spec.centerOfMass))),
+            ),
+          );
+          state.debris = [...(state.debris ?? []), piece];
+          if (state.engines) {
+            state.engines = Object.fromEntries(
+              Object.entries(state.engines).map(([key, engine]) => [
+                key,
+                section.engines?.includes(key)
+                  ? { ...engine, failed: true, thrust: 0, shaftPower: 0, afterburner: 0 }
+                  : engine,
+              ]),
+            );
+          }
         }
       }
     }
@@ -309,11 +395,22 @@ export function stepAircraftDebris(
   id: string,
   h: number,
 ): void {
+  stepPartDebris(state, aircraftCollisionParts(spec), env, id, h);
+}
+
+/** Shared ballistic debris integrator for aircraft and grounded vehicles. */
+export function stepPartDebris(
+  state: { debris?: AircraftDebris[] },
+  parts: readonly Pick<AircraftCollisionPart, 'id' | 'radius'>[],
+  env: AircraftContactEnvironment,
+  id: string,
+  h: number,
+): void {
   if (!state.debris?.length) return;
   const pieces: AircraftDebris[] = [];
   for (const old of state.debris) {
     if (old.age + h >= 20) continue;
-    const part = aircraftCollisionParts(spec).find((p) => p.id === old.part);
+    const part = parts.find((p) => p.id === old.part);
     if (!part) continue;
     const velocity = scale(
       add(old.velocity, [0, -9.81 * h, 0]),

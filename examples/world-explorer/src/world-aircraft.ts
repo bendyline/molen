@@ -31,6 +31,7 @@ import type {
   ComponentMap,
   VehicleSpec,
 } from '@bendyline/molen-schema';
+import { sampleAirportPavement } from '@bendyline/molen-terrain/client';
 import * as THREE from 'three';
 import { OBB } from 'three/addons/math/OBB.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -237,7 +238,7 @@ export class WorldAircraft {
     z: number,
     heading: number,
   ): Promise<boolean> {
-    const height = this.terrainHeight(x, z);
+    const height = this.support(x, z);
     if (height === undefined || this.disposed) return false;
     if (this.apron.has(kind)) return true;
     const yaw = Math.PI - heading;
@@ -259,7 +260,7 @@ export class WorldAircraft {
         return false;
       }
       const components = this.types.components(type);
-      placement.position[1] = this.terrainHeight(x, z) ?? placement.position[1];
+      placement.position[1] = this.support(x, z) ?? placement.position[1];
       components.transform = {
         pos: [...placement.position],
         rot: [0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2)],
@@ -409,13 +410,20 @@ export class WorldAircraft {
       z - this.center[1] < 3600
     )
       return this.elevation;
-    return this.terrainHeight(x, z, y);
+    return this.support(x, z, y);
+  }
+  /** Airport pavement is drawn about half a metre above the terrain: aircraft stand on top of it. */
+  private support(x: number, z: number, y?: number): number | undefined {
+    const ground = this.terrainHeight(x, z, y);
+    return ground === undefined
+      ? undefined
+      : (sampleAirportPavement(this.root, x, z, ground) ?? ground);
   }
   spawnPosition(kind: AircraftChoice): [number, number, number] {
     const apron = this.apron.get(kind);
     if (apron) return [...apron.position];
     if (this.airfield !== 'practice')
-      return [this.center[0], this.terrainHeight(...this.center) ?? 0, this.center[1]];
+      return [this.center[0], this.support(...this.center) ?? 0, this.center[1]];
     if (!KINDS.includes(kind)) return [this.center[0], this.elevation ?? 0, this.center[1] - 600];
     return [
       this.center[0] + (kind === 'p51d' ? -25 : kind === 'oh6' ? 23 : 0),
@@ -682,7 +690,8 @@ export class WorldAircraft {
         !input.engine &&
         Math.hypot(...s.velocity) < 0.01
       ) {
-        const height = this.terrainHeight(t.pos[0], t.pos[2]);
+        // Also lifts it onto the stand's pavement once that streams in.
+        const height = this.support(t.pos[0], t.pos[2]);
         if (height !== undefined && Math.abs(height - t.pos[1]) > 0.01) {
           t = { ...t, pos: [t.pos[0], height, t.pos[2]] };
           this.world.set(`aircraft-${kind}`, Transform, t);

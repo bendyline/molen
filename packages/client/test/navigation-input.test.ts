@@ -266,6 +266,10 @@ describe('navigation input source', () => {
   it('reads flight controls only in the pilot profile, with edge-triggered switches', () => {
     const surface = new FakeSurface();
     const source = new NavigationInputSource({ element: surface, profile: 'drive' });
+    surface.emit('keydown', { code: 'KeyR' });
+    expect(source.read(0).recover).toBe(1);
+    expect(source.read(0).recover).toBeUndefined();
+    surface.emit('keyup', { code: 'KeyR' });
     surface.emit('keydown', { code: 'KeyG' });
     expect(source.read(0).pilot).toBeUndefined();
     surface.emit('keyup', { code: 'KeyG' });

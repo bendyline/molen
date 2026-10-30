@@ -1523,7 +1523,111 @@
                 "ratedDensityRatio": 0.8
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.95,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.95,
+                    4.4763
+                  ],
+                  [
+                    0,
+                    1.95,
+                    -4.4763
+                  ],
+                  [
+                    6.683248000000001,
+                    1.95,
+                    0
+                  ],
+                  [
+                    -6.683248000000001,
+                    1.95,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Beech18-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  1.9685,
+                  1.875266,
+                  3.982817
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Beech18-propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    1.9685,
+                    1.875266,
+                    3.982817
+                  ],
+                  "normal": [
+                    0,
+                    0.21274,
+                    0.977109
+                  ],
+                  "radius": 1.295,
+                  "halfThickness": 0.06,
+                  "rotor": "Beech18-propeller-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-Beech18-propeller--1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -1.9685,
+                  1.875266,
+                  3.982817
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Beech18-propeller--1"
+                ],
+                "disc": {
+                  "center": [
+                    -1.9685,
+                    1.875266,
+                    3.982817
+                  ],
+                  "normal": [
+                    0,
+                    0.21274,
+                    0.977109
+                  ],
+                  "radius": 1.295,
+                  "halfThickness": 0.06,
+                  "rotor": "Beech18-propeller--1"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

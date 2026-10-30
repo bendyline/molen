@@ -20,9 +20,16 @@ const plants = Object.values(
 );
 
 describe('regional procedural plants', () => {
+  it('covers every catalog preset and its declared seasonal variants', () => {
+    expect(new Set(catalog.plants.map((p) => p.id)).size).toBe(catalog.plants.length);
+    const expectedIds = catalog.plants.flatMap((p) =>
+      p.phenology === undefined
+        ? [p.id]
+        : [p.id, `${p.id}.spring`, `${p.id}.autumn`, `${p.id}.winter`],
+    );
+    expect(plants.map((p) => p.id).sort()).toEqual(expectedIds.sort());
+  });
   it('varies branching and fronds in every family without changing bounds, density or topology', () => {
-    expect(catalog.plants).toHaveLength(267);
-    expect(plants).toHaveLength(357);
     const families = new Map(catalog.plants.map((p) => [p.family, p]));
     expect(families.size).toBe(19);
     for (const p of families.values()) {
@@ -98,7 +105,7 @@ describe('regional procedural plants', () => {
       expect(counts[0]).toBeGreaterThan(counts[1] as number);
       if ((counts[1] as number) > 0) expect(counts[1]).toBeGreaterThan(counts[2] as number);
     }
-  }, 30_000); // Checks every vertex of 354 presets at three detail levels; exceeds 5 s on CI.
+  }, 30_000); // Checks every preset's vertices at three detail levels; exceeds 5 s on CI.
 
   it('caches and releases distinct procedural LODs without requesting a GLB', async () => {
     const p = plants.find((entry) => entry.family === 'palm');

@@ -7,6 +7,7 @@ import { expect, it } from 'vitest';
 import { plakaControls as C } from '../../../content/worldgen/source/places/sr/srn/plaka_bridge/models/plaka-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
+
 const source = resolve('../../content/worldgen/source/places/sr/srn/plaka_bridge');
 const sidecar = await runtimeLodFixture(
   resolve('../../content/worldgen/assets/places/sr/srn/plaka_bridge/asset.json'),

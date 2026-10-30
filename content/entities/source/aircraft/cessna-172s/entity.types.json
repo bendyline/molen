@@ -6182,7 +6182,77 @@
                 "ratedDensityRatio": 1
               }
             ],
-            "actuators": {}
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.15,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.15,
+                    3.560572
+                  ],
+                  [
+                    0,
+                    1.15,
+                    -3.560572
+                  ],
+                  [
+                    5.059172,
+                    1.15,
+                    0
+                  ],
+                  [
+                    -5.059172,
+                    1.15,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Skyhawk-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.25095,
+                  2.276
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Skyhawk-propeller"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.25095,
+                    2.276
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.965606,
+                  "halfThickness": 0.06,
+                  "rotor": "Skyhawk-propeller"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

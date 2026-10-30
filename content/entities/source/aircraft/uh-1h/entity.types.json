@@ -821,7 +821,99 @@
                 "seconds": 1.2,
                 "mode": "latch"
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.24,
+                  0
+                ],
+                "massFraction": 0.975,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.24,
+                    7.481999999999999
+                  ],
+                  [
+                    0,
+                    1.24,
+                    -7.481999999999999
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-main-rotor",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "rotor",
+                "center": [
+                  0,
+                  4.046692,
+                  0
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "main-rotor"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    4.046692,
+                    0
+                  ],
+                  "normal": [
+                    0,
+                    1,
+                    0
+                  ],
+                  "radius": 7.317734,
+                  "halfThickness": 0.06,
+                  "rotor": "main-rotor"
+                },
+                "engines": [
+                  "main"
+                ]
+              },
+              {
+                "id": "rotor-tail-rotor",
+                "massFraction": 0.005,
+                "breakSpeed": 5,
+                "role": "tailRotor",
+                "center": [
+                  0.37,
+                  3.13,
+                  -8.88
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "tail-rotor"
+                ],
+                "disc": {
+                  "center": [
+                    0.37,
+                    3.13,
+                    -8.88
+                  ],
+                  "normal": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "radius": 1.302459,
+                  "halfThickness": 0.06,
+                  "rotor": "tail-rotor"
+                },
+                "engines": []
+              }
+            ]
           }
         },
         "aircraftInput": {

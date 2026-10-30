@@ -134,17 +134,17 @@
                     "node": "F16-gear-1",
                     "source": "gear",
                     "property": "rotation",
-                    "axis": "z",
-                    "offset": 1.2,
-                    "scale": -1.2
+                    "axis": "x",
+                    "offset": 1.5311370854996431,
+                    "scale": -1.5311370854996431
                   },
                   {
                     "node": "F16-gear-2",
                     "source": "gear",
                     "property": "rotation",
-                    "axis": "z",
-                    "offset": -1.2,
-                    "scale": 1.2
+                    "axis": "x",
+                    "offset": 1.5311370854996431,
+                    "scale": -1.5311370854996431
                   },
                   {
                     "node": "canopy-opening",
@@ -5458,7 +5458,77 @@
               "speedBrake": {
                 "seconds": 1.6
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.98,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.98,
+                    6.487668
+                  ],
+                  [
+                    0,
+                    1.98,
+                    -6.487668
+                  ],
+                  [
+                    4.3464480000000005,
+                    1.98,
+                    0
+                  ],
+                  [
+                    -4.3464480000000005,
+                    1.98,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.86,
+                  -5.04
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "engine-1-turbine"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.86,
+                    -5.04
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.33,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -10624,17 +10694,17 @@
               "node": "F16-gear-1",
               "source": "gear",
               "property": "rotation",
-              "axis": "z",
-              "offset": 1.2,
-              "scale": -1.2
+              "axis": "x",
+              "offset": 1.5311370854996431,
+              "scale": -1.5311370854996431
             },
             {
               "node": "F16-gear-2",
               "source": "gear",
               "property": "rotation",
-              "axis": "z",
-              "offset": -1.2,
-              "scale": 1.2
+              "axis": "x",
+              "offset": 1.5311370854996431,
+              "scale": -1.5311370854996431
             },
             {
               "node": "canopy-opening",

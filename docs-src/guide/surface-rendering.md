@@ -252,9 +252,15 @@ await surfaces.setOptions({
 The decoder preserves road `subclass`, `service`, `link` (including Protomaps `is_link`), `surface`, `lanes`, `oneway`, `layer`, `bridge`, `tunnel`
 and explicit `width`. Properties absent from the source use class-based defaults. Tunnel roads are
 excluded from the ground painter; Earth views add separate underground bores as described below.
-Bridges and differing layers do not form surface junctions. Bridge ribbons retain the
-existing approximate terrain-relative elevation; this renderer does not build engineered bridge
-decks. Crossing paint, inferred sidewalks, signal placement and parking occupancy are decorative,
+Bridges and differing layers do not form surface junctions. Tagged bridges receive inferred
+decks, slabs, barriers and supports. Motorway spans retain clearance through their ends;
+connected approaches ease back to terrain over the surrounding road fragments, with retaining
+sides below raised pavement. Curved profiles follow distance along the mapped road. Barriers
+sit outside paved shoulders and open at merges where the adjoining carriageway is at the same
+height; edge paint also clears these openings. Traffic uses the same grading samples.
+Surveyed deck heights and authored bridge connections take precedence. Inferred grades depend
+on the available tile geometry and terrain, so they are not surveyed engineering profiles.
+Crossing paint, inferred sidewalks, signal placement and parking occupancy are decorative,
 not surveyed traffic-control or navigation data. [Ambient life](ambient-life.md) builds its own lane graph
 from the same features for NPC traffic. Earth view and world explorer match signal heads to
 that graph, displaying the same phase that controls approaching cars. Without a matching

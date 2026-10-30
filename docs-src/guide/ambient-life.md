@@ -341,7 +341,8 @@ The quality tier caps the numbers:
 | Ultra | 320 | 120 | 2 | 4 | 16 | 1000 m |
 
 Ambient cars share the view's vehicle world, so the car you drive stops against them and traffic
-waits for you, and for the view's [actors](earth-view.md#actors-companions-and-npcs) on foot. They
+waits for you, for the view's [actors](earth-view.md#actors-companions-and-npcs) on foot and for
+cars a driver left standing. They
 follow the rendered ground and bridge decks, and they rebuild when the view re-anchors after a long
 trip.
 
@@ -366,6 +367,16 @@ where it stands with the same body. The agent leaves ambient life for good: it s
 no longer counts or removes it, and the actors draw it from then on, looking at the viewer and
 interactable unless the spec says otherwise. `adopt` returns undefined when the pedestrian has
 already gone. It is one-way; an actor never returns to the pool.
+
+### Taking a stopped car
+
+A walker can take over a traffic car that has stopped (slower than 0.5 m/s), such as one waiting
+for them at the kerb. `EarthVehicles` counts it as a car in reach: `openDoor` and `enter` take it
+out of traffic and stand a drivable car of the same type and paint at its pose, and the agent
+leaves in the frame that car's model shows. Pass `vehicles.trafficSolids()` to `ambient.sync`
+with your other solids, so the cars queued behind it keep their gap until it drives off. A taken
+car nobody drove away rejoins traffic where it stopped once its model unloads (65 m away); one
+driven elsewhere stays parked there. Moving traffic is never boardable.
 
 ## NPC content and `ambientRole`
 
@@ -489,7 +500,9 @@ most one tile every 200 ms. In the engine repository,
   counts follow the width when OSM does not give them.
 - Aircraft fly straight lines. They do not taxi, circle or land beyond the approach.
 - Pedestrians keep to their lane and follow the walker ahead. They do not step around each other.
-- Agents do not open doors, board, or park. A parked car in the Earth view is a separate entity.
+- Agents do not open doors, board, or park. A walker can take a stopped car out of traffic (see
+  [Taking a stopped car](#taking-a-stopped-car)); a parked car in the Earth view is a separate
+  entity.
 - A promoted pedestrian keeps its body but nothing of its walk: it stands until its actor
   behaviour moves it, and it never rejoins ambient life.
 

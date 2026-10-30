@@ -1,8 +1,8 @@
 /** Original Green's Bridge: five main elliptical barrels, two eastern culverts and the asymmetric modern north walk. */
 import {
+  beam,
   loft,
   normalFor,
-  beam,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { box } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 export const greensControls = {

@@ -560,7 +560,111 @@
               "speedBrake": {
                 "seconds": 2
               }
-            }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  3.56,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    3.56,
+                    16.641000000000002
+                  ],
+                  [
+                    0,
+                    3.56,
+                    -16.641000000000002
+                  ],
+                  [
+                    16.146,
+                    3.56,
+                    0
+                  ],
+                  [
+                    -16.146,
+                    3.56,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  5.55,
+                  1.72,
+                  7.1
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "engine-1-fan"
+                ],
+                "disc": {
+                  "center": [
+                    5.55,
+                    1.72,
+                    7.1
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.857815,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-fan"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-engine-2-fan",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -5.55,
+                  1.72,
+                  7.1
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "engine-2-fan"
+                ],
+                "disc": {
+                  "center": [
+                    -5.55,
+                    1.72,
+                    7.1
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.857815,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-2-fan"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {

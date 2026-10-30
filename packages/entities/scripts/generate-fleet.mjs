@@ -9,6 +9,7 @@ import { boxTruckModel } from './box-truck-geometry.mjs';
 import { fleetModel } from './fleet-geometry.mjs';
 import { roadVehicleModel } from './road-vehicle-geometry.mjs';
 import { recreationalVehicleModel } from './rv-geometry.mjs';
+import { completeVehicleCollisionParts } from './vehicle-collision-parts.mjs';
 import { addCarDetail } from './vehicle-detail.mjs';
 
 globalThis.FileReader = class {
@@ -89,6 +90,7 @@ for (const category of ['vehicles', 'cycles', 'watercraft']) {
         components.vehicle.spec.actuators = node.userData.molenActuators;
         components.vehicle.visual.animation = node.userData.molenAnimation;
       });
+    if (components.vehicle) completeVehicleCollisionParts(model, components.vehicle);
     const bytes = Buffer.from(
       await new GLTFExporter().parseAsync(model, { binary: true, onlyVisible: false }),
     );
@@ -103,7 +105,7 @@ for (const category of ['vehicles', 'cycles', 'watercraft']) {
       if (!previous?.equals(bytes) || hash(bytes) !== pin)
         throw new Error(`Stale fleet model: ${path}`);
     } else {
-      if (components.vehicle?.spec.actuators)
+      if (components.vehicle)
         await writeAtomic(
           resolve(directory, 'entity.types.json'),
           `${JSON.stringify(definition, null, 2)}\n`,
