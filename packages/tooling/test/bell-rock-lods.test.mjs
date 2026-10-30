@@ -59,6 +59,7 @@ it('retains the full tower, attached landing and SSE solar bay at every level', 
   }
 });
 
+// Four forced LOD builds take nearly 20 seconds on CI; allow headroom for shared-runner load.
 it('reconstructs four budgeted derivatives while preserving the detailed master bytes', async () => {
   const source = resolve(
     '../../content/worldgen/source/places/gf/gfn/bell_rock_lighthouse/models/source.glb',
@@ -92,4 +93,4 @@ it('reconstructs four budgeted derivatives while preserving the detailed master 
           12,
         );
   }
-}, 20000);
+}, 60000);

@@ -457,14 +457,25 @@ describe('model-owned ground openings', () => {
     ]);
     const sources = [first.geometry, second.geometry];
     const controller = new TerrainGroundCutoutController();
-    expect(controller.update(root, 0)).toBe(true);
-    expect(controller.pending).toBe(true);
-    expect([first.geometry !== sources[0], second.geometry !== sources[1]]).toEqual([true, false]);
-    expect(controller.update(root, 0)).toBe(true);
-    expect(controller.pending).toBe(false);
-    expect(second.geometry).not.toBe(sources[1]);
-    expect(controller.update(root, 0)).toBe(false);
-    controller.dispose();
+    // A scheduler pause can exceed the cut's 1 ms slice even for this tiny fixture. Advance a
+    // deterministic clock so this tests deferral between cuts, independently of machine load.
+    let now = 0;
+    const clock = vi.spyOn(performance, 'now').mockImplementation(() => (now += 0.01));
+    try {
+      expect(controller.update(root, 0)).toBe(true);
+      expect(controller.pending).toBe(true);
+      expect([first.geometry !== sources[0], second.geometry !== sources[1]]).toEqual([
+        true,
+        false,
+      ]);
+      expect(controller.update(root, 0)).toBe(true);
+      expect(controller.pending).toBe(false);
+      expect(second.geometry).not.toBe(sources[1]);
+      expect(controller.update(root, 0)).toBe(false);
+    } finally {
+      clock.mockRestore();
+      controller.dispose();
+    }
   });
   it('keeps a cut through floating-origin rebases', () => {
     const world = new THREE.Group(),

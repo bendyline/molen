@@ -85,20 +85,37 @@ describe('weather profiles in the explorer', () => {
         const initial = await page.screenshot({ path: join(out, `${backend}-sunny.png`) });
         for (const profile of ['partly-cloudy', 'overcast', 'rain', 'storm', 'snow', 'fog']) {
           await page.locator('#weather-profile').selectOption(profile);
-          await page.waitForFunction((expected) => {
-            const status = document.querySelector<HTMLElement>('#weather-status');
-            const w = JSON.parse(status?.dataset.weather ?? '{}');
-            const effects = JSON.parse(status?.dataset.effects ?? '{}');
-            // The volumetric layer, plus cirrus where the profile has them.
-            const layers = (w.clouds?.cirrus ?? 0) > 0 ? 2 : 1;
-            return (
-              effects.cloudLayers === layers &&
-              (expected === 'rain' || expected === 'snow' || expected === 'storm'
-                ? effects.particles > 0 &&
-                  w.precipitation?.kind === (expected === 'snow' ? 'snow' : 'rain')
-                : effects.particles === 0)
-            );
-          }, profile);
+          const precipitation =
+            profile === 'snow'
+              ? 'snow'
+              : profile === 'rain' || profile === 'storm'
+                ? 'rain'
+                : 'none';
+          // The first cloudy profile builds noise in 3 ms slices across rendered frames. On
+          // CI's software renderer that can exceed Playwright's default 30-second wait.
+          await expect
+            .poll(
+              () =>
+                page.locator('#weather-status').evaluate((status) => {
+                  const w = JSON.parse((status as HTMLElement).dataset.weather ?? '{}');
+                  const effects = JSON.parse((status as HTMLElement).dataset.effects ?? '{}');
+                  return {
+                    cloudLayers: effects.cloudLayers,
+                    precipitation: w.precipitation?.kind,
+                    hasParticles: effects.particles > 0,
+                  };
+                }),
+              {
+                timeout: 180_000,
+                message: `${backend}: ${profile} weather effects should be ready`,
+              },
+            )
+            .toEqual({
+              // The volumetric layer, plus cirrus in partly-cloudy and storm profiles.
+              cloudLayers: profile === 'partly-cloudy' || profile === 'storm' ? 2 : 1,
+              precipitation,
+              hasParticles: precipitation !== 'none',
+            });
           const shot = await page.screenshot({ path: join(out, `${backend}-${profile}.png`) });
           expect(difference(initial, shot), profile).toBeGreaterThan(2);
           expect(await page.locator('#location').textContent()).toBe(camera);

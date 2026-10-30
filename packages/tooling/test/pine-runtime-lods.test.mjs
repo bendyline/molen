@@ -143,6 +143,7 @@ it('keeps the whole asymmetric parcel and290m crown and exposes three revolving 
     }
   }
 }, 20000);
+// Four forced LOD builds take nearly 20 seconds on CI; allow headroom for shared-runner load.
 it('rebuilds pinned four-level bytes within download/triangle/draw budgets without repeated GPU streams', async () => {
   const after = await buildModelLandmarkLods(`${runtime}/asset.json`, { force: true });
   expect(after.levels[0].bytes + after.levels[1].bytes).toBeLessThan(3000000);
@@ -166,4 +167,4 @@ it('rebuilds pinned four-level bytes within download/triangle/draw budgets witho
       expect(g.bufferViews[na.bufferView].byteStride ?? 12).toBe(12);
     }
   }
-}, 20000);
+}, 60000);
