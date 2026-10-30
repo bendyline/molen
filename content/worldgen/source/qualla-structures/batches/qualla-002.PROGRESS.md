@@ -1,8 +1,10 @@
 # Qualla compat — local 300 — completion progress
 
-**250 / 300 accepted completions;121 currently pass strict readiness.** Goal paused after completing Galle Face Hotel at the user’s request. 50 accepted batch entries remain unfinished. Previously accepted models are retained.
+**Goal paused at user request after Kaptai Dam: 273/300 accepted; 27 remain. Next: Fort Prinzenstein.**
 
-121 models retain their technical validation; 249 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
+**143 / 300 completed.** 274 models started; 26 not started.
+
+143 models retain their technical validation; 251 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
 
 Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.
 
@@ -45,7 +47,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 33 | [Azuchi Castle](https://qualla.com/azuchi-castle/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
 | 34 | [Hibiya Open-Air Concert Hall](https://qualla.com/hibiya-open-air-concert-hall/) | Complete | All required evidence current |
 | 35 | [Angkor Wat](https://qualla.com/angkor-wat/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
-| 36 | [Brunei Energy Hub](https://qualla.com/brunei-energy-hub/) | Not started | source-model-missing |
+| 36 | [Brunei Energy Hub](https://qualla.com/brunei-energy-hub/) | Complete | All required evidence current |
 | 37 | [Macau Tower](https://qualla.com/macau-tower/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
 | 38 | [Zhanqiao Pier](https://qualla.com/zhanqiao-pier/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
 | 39 | [Acropolis of Athens](https://qualla.com/acropolis-of-athens/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
@@ -54,7 +56,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 42 | [Cardiff Bay Barrage](https://qualla.com/cardiff-bay-barrage/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
 | 43 | [Athens Stock Exchange](https://qualla.com/athens-stock-exchange/) | Not started | source-model-missing |
 | 44 | [Bruichladdich distillery](https://qualla.com/bruichladdich-distillery/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
-| 45 | [Andenes Lighthouse](https://qualla.com/andenes-lighthouse/) | Not started | source-model-missing |
+| 45 | [Andenes Lighthouse](https://qualla.com/andenes-lighthouse/) | Complete | All required evidence current |
 | 46 | [Alan Turing Memorial](https://qualla.com/alan-turing-memorial/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
 | 47 | [Berlin Observatory](https://qualla.com/berlin-observatory/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; current-asset-render-identity-unverified; public-domain-fidelity-review-missing-or-unbound |
 | 48 | [Ahmed Bey Palace](https://qualla.com/ahmed-bey-palace/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; current-asset-render-identity-unverified; public-domain-fidelity-review-missing-or-unbound |
@@ -84,7 +86,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 72 | [Queen's Hotel, Townsville](https://qualla.com/queen-s-hotel-townsville/) | Complete | All required evidence current |
 | 73 | [The Old Windmill, Brisbane](https://qualla.com/the-old-windmill-brisbane/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
 | 74 | [Matiu / Somes Island Lighthouse](https://qualla.com/matiu-somes-island-lighthouse/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; current-asset-render-identity-unverified; public-domain-fidelity-review-missing-or-unbound |
-| 75 | [Allan Cunningham Monument](https://qualla.com/allan-cunningham-monument/) | Not started | source-model-missing |
+| 75 | [Allan Cunningham Monument](https://qualla.com/allan-cunningham-monument/) | Complete | All required evidence current |
 | 76 | [Sir Thomas Brisbane Planetarium](https://qualla.com/sir-thomas-brisbane-planetarium/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
 | 77 | [Robert Towns Monument, Castle Hill](https://qualla.com/castle-hill-townsville/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; current-asset-render-identity-unverified; public-domain-fidelity-review-missing-or-unbound |
 | 78 | [Cremorne Theatre](https://qualla.com/cremorne-theatre/) | In review | medium-fi-fidelity-review-missing-or-unbound; current-asset-render-identity-unverified |
@@ -113,12 +115,12 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 101 | [Daulatabad Fort](https://qualla.com/daulatabad-fort/) | Complete | All required evidence current |
 | 102 | [Fondukistan monastery](https://qualla.com/fondukistan-monastery/) | Not started | source-model-missing |
 | 103 | [Quaid-e-Azam House](https://qualla.com/quaid-e-azam-house/) | Complete | All required evidence current |
-| 104 | [Salang Tunnel](https://qualla.com/salang-tunnel/) | Complete | All required evidence current |
+| 104 | [Salang Tunnel](https://qualla.com/salang-tunnel/) | In review | reference-review-stale-or-missing; public-domain-qualla-imagery-unverified; public-domain-imagery-inventory-unverified; public-domain-fidelity-review-missing-or-unbound |
 | 105 | [Black Pyramid](https://qualla.com/black-pyramid/) | Complete | All required evidence current |
 | 106 | [Khaju Bridge](https://qualla.com/khaju-bridge/) | Complete | All required evidence current |
-| 107 | [Edward J. Roye Building](https://qualla.com/edward-j-roye-building/) | Not started | source-model-missing |
+| 107 | [Edward J. Roye Building](https://qualla.com/edward-j-roye-building/) | Complete | All required evidence current |
 | 108 | [Kariba Dam](https://qualla.com/kariba-dam/) | Complete | All required evidence current |
-| 109 | [Ducor Hotel](https://qualla.com/ducor-hotel/) | Not started | source-model-missing |
+| 109 | [Ducor Hotel](https://qualla.com/ducor-hotel/) | Complete | All required evidence current |
 | 110 | [Orlando Power Station](https://qualla.com/orlando-power-station/) | Complete | All required evidence current |
 | 111 | [Tomb of Kha and Merit](https://qualla.com/tomb-of-kha-and-merit/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 112 | [Fort Prinzenstein](https://qualla.com/fort-prinzenstein/) | Not started | source-model-missing |
@@ -131,7 +133,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 119 | [Hotel Nutibara](https://qualla.com/hotel-nutibara/) | Complete | All required evidence current |
 | 120 | [Statue of Father Cícero](https://qualla.com/statue-of-father-cicero/) | Complete | All required evidence current |
 | 121 | [Miraflores Palace](https://qualla.com/miraflores-palace/) | Complete | All required evidence current |
-| 122 | [Arena da Amazônia](https://qualla.com/arena-da-amazonia/) | Not started | source-model-missing |
+| 122 | [Arena da Amazônia](https://qualla.com/arena-da-amazonia/) | Other device | structure-catalog-other-device |
 | 123 | [Cartagena Cathedral, Colombia](https://qualla.com/cartagena-cathedral-colombia/) | Not started | source-model-missing |
 | 124 | [Paleontological Museum, Villa de Leyva](https://qualla.com/villa-de-leyva/) | Complete | All required evidence current |
 | 125 | [Tate's Cairn](https://qualla.com/tate-s-cairn/) | Not started | source-model-missing |
@@ -139,10 +141,10 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 127 | [General Post Office, Hong Kong](https://qualla.com/general-post-office-hong-kong/) | Complete | All required evidence current |
 | 128 | [Shihmen Dam](https://qualla.com/shihmen-dam/) | Complete | All required evidence current |
 | 129 | [Exchange Square, Hong Kong](https://qualla.com/hong-kong-stock-exchange/) | Complete | All required evidence current |
-| 130 | [Mihama Nuclear Power Plant](https://qualla.com/mihama-nuclear-power-plant/) | Not started | source-model-missing |
+| 130 | [Mihama Nuclear Power Plant](https://qualla.com/mihama-nuclear-power-plant/) | Complete | All required evidence current |
 | 131 | [Kaohsiung Lighthouse](https://qualla.com/kaohsiung-lighthouse/) | Complete | All required evidence current |
 | 132 | [Datong Mass Grave Memorial](https://qualla.com/datong-mass-grave-memorial/) | Not started | source-model-missing |
-| 133 | [Qingdao Observatory](https://qualla.com/qingdao-observatory/) | Not started | source-model-missing |
+| 133 | [Qingdao Observatory](https://qualla.com/qingdao-observatory/) | Complete | All required evidence current |
 | 134 | [Chihaya Castle](https://qualla.com/chihaya-castle/) | Not started | source-model-missing |
 | 135 | [Hong Kong Stadium](https://qualla.com/hong-kong-stadium/) | Complete | All required evidence current |
 | 136 | [Atsuta Shrine](https://qualla.com/atsuta-shrine/) | Complete | All required evidence current |
@@ -152,8 +154,8 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 140 | [Acropolis of Rhodes](https://qualla.com/acropolis-of-rhodes/) | Complete | All required evidence current |
 | 141 | [Alcántara Bridge](https://qualla.com/alcantara-bridge/) | Complete | All required evidence current |
 | 142 | [Bremen City Hall](https://qualla.com/bremen-city-hall/) | Complete | All required evidence current |
-| 143 | [Eschbach Dam](https://qualla.com/eschbach-dam/) | Not started | source-model-missing |
-| 144 | [Bristol Hotel, Odesa](https://qualla.com/bristol-hotel-odesa/) | Not started | source-model-missing |
+| 143 | [Eschbach Dam](https://qualla.com/eschbach-dam/) | Complete | All required evidence current |
+| 144 | [Bristol Hotel, Odesa](https://qualla.com/bristol-hotel-odesa/) | Complete | All required evidence current |
 | 145 | [Cromford Mill](https://qualla.com/cromford-mill/) | Complete | All required evidence current |
 | 146 | [Cromer Lighthouse](https://qualla.com/cromer-lighthouse/) | Complete | All required evidence current |
 | 147 | [Berlin-Hohenschönhausen Memorial](https://qualla.com/berlin-hohenschonhausen-memorial/) | Complete | All required evidence current |
@@ -180,7 +182,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 168 | [San Jose Electric Light Tower](https://qualla.com/san-jose-electric-light-tower/) | Complete | All required evidence current |
 | 169 | [Colman Dock](https://qualla.com/colman-dock/) | Complete | All required evidence current |
 | 170 | [Grafton Bridge](https://qualla.com/grafton-bridge/) | Complete | All required evidence current |
-| 171 | [Brisbane Festival Hall](https://qualla.com/brisbane-festival-hall/) | Not started | source-model-missing |
+| 171 | [Brisbane Festival Hall](https://qualla.com/brisbane-festival-hall/) | Complete | All required evidence current |
 | 172 | [Copeton Dam](https://qualla.com/copeton-dam/) | Complete | All required evidence current |
 | 173 | [Hotel Corones](https://qualla.com/hotel-corones/) | Complete | All required evidence current |
 | 174 | [Cascades Female Factory](https://qualla.com/cascades-female-factory/) | Complete | All required evidence current |
@@ -194,7 +196,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 182 | [Puente Colgante de Santa Fe](https://qualla.com/puente-colgante-de-santa-fe/) | Complete | All required evidence current |
 | 183 | [Kavanagh Building](https://qualla.com/kavanagh-building/) | Complete | All required evidence current |
 | 184 | [Eden Hotel](https://qualla.com/eden-hotel/) | Complete | All required evidence current |
-| 185 | [Atacama Cosmology Telescope](https://qualla.com/atacama-cosmology-telescope/) | Not started | source-model-missing |
+| 185 | [Atacama Cosmology Telescope](https://qualla.com/atacama-cosmology-telescope/) | Complete | All required evidence current |
 | 186 | [Latin America Memorial](https://qualla.com/latin-america-memorial/) | Complete | All required evidence current |
 | 187 | [Las Campanas Observatory](https://qualla.com/las-campanas-observatory/) | Complete | All required evidence current |
 | 188 | [La Moneda Palace](https://qualla.com/la-moneda-palace/) | Complete | All required evidence current |
@@ -203,7 +205,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 191 | [Villa Grimaldi](https://qualla.com/villa-grimaldi/) | Complete | All required evidence current |
 | 192 | [Godavari Arch Bridge](https://qualla.com/godavari-arch-bridge/) | Complete | All required evidence current |
 | 193 | [Frere Hall](https://qualla.com/frere-hall/) | Complete | All required evidence current |
-| 194 | [Kaptai Dam](https://qualla.com/kaptai-dam/) | Not started | source-model-missing |
+| 194 | [Kaptai Dam](https://qualla.com/kaptai-dam/) | Complete | All required evidence current |
 | 195 | [Gawhar Shad Mausoleum](https://qualla.com/gawhar-shad-mausoleum/) | Complete | All required evidence current |
 | 196 | [Mubarak Mandi Palace](https://qualla.com/mubarak-mandi-palace/) | Not started | source-model-missing |
 | 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | Other device | structure-catalog-other-device |
@@ -232,7 +234,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 220 | [Tomioka Silk Mill](https://qualla.com/tomioka-silk-mill/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 221 | [Maniguin Island Lighthouse](https://qualla.com/maniguin-island-lighthouse/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 222 | [Democracy Monument](https://qualla.com/democracy-monument/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
-| 223 | [The Tea Planter's Telescope](https://qualla.com/bosscha-observatory/) | Not started | source-model-missing |
+| 223 | [The Tea Planter's Telescope](https://qualla.com/bosscha-observatory/) | Complete | All required evidence current |
 | 224 | [Dalat Palace Hotel](https://qualla.com/dalat-palace-hotel/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 225 | [Kwai Tsing Theatre](https://qualla.com/kwai-tsing-theatre/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 226 | [Bái Đính Temple](https://qualla.com/bai-inh-temple/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
@@ -242,7 +244,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 230 | [Cairn Gorm](https://qualla.com/cairn-gorm/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 231 | [Aqueduct of Valens](https://qualla.com/aqueduct-of-valens/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 232 | [Brussels Town Hall](https://qualla.com/brussels-town-hall/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
-| 233 | [Sorpe Dam](https://qualla.com/sorpe-dam/) | Not started | source-model-missing |
+| 233 | [Sorpe Dam](https://qualla.com/sorpe-dam/) | Complete | All required evidence current |
 | 234 | [Gran Hotel (Palma)](https://qualla.com/gran-hotel-palma/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 235 | [Derby Silk Mill](https://qualla.com/derby-silk-mill/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 236 | [Happisburgh Lighthouse](https://qualla.com/happisburgh-lighthouse/) | Complete | All required evidence current |
@@ -271,42 +273,42 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 259 | [Bethlehem Steel Administration Building](https://qualla.com/pier-70-san-francisco/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 260 | [Victoria Bridge, Brisbane](https://qualla.com/victoria-bridge-brisbane/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 261 | [Trial Bay Gaol](https://qualla.com/trial-bay-gaol/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
-| 262 | [Serpentine Dam (Western Australia)](https://qualla.com/serpentine-dam-western-australia/) | Not started | source-model-missing |
+| 262 | [Serpentine Dam (Western Australia)](https://qualla.com/serpentine-dam-western-australia/) | Complete | All required evidence current |
 | 263 | [Birdsville Hotel](https://qualla.com/birdsville-hotel/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 264 | [CSR Refinery, New Farm](https://qualla.com/csr-refinery-new-farm/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 265 | [Canterbury Earthquake National Memorial](https://qualla.com/canterbury-earthquake-national-memorial/) | Complete | All required evidence current |
 | 266 | [Murchison Radio-astronomy Observatory](https://qualla.com/murchison-radio-astronomy-observatory/) | Not started | source-model-missing |
 | 267 | [Larnach Castle](https://qualla.com/larnach-castle/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
-| 268 | [Theatre Royal, Hobart](https://qualla.com/theatre-royal-hobart/) | Not started | source-model-missing |
+| 268 | [Theatre Royal, Hobart](https://qualla.com/theatre-royal-hobart/) | Complete | All required evidence current |
 | 269 | [Cathedral Square, Christchurch](https://qualla.com/cathedral-square-christchurch/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 270 | [Jimbour Homestead](https://qualla.com/jimbour-homestead/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 271 | [Qantas Hangar, Longreach](https://qualla.com/qantas-hangar-longreach/) | Complete | All required evidence current |
 | 272 | [Puente de la Mujer](https://qualla.com/puente-de-la-mujer/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 273 | [Caseros Prison](https://qualla.com/caseros-prison/) | Complete | All required evidence current |
-| 274 | [Hotel de Inmigrantes](https://qualla.com/hotel-de-inmigrantes/) | Not started | source-model-missing |
+| 274 | [Hotel de Inmigrantes](https://qualla.com/hotel-de-inmigrantes/) | Complete | All required evidence current |
 | 275 | [Giant Magellan Telescope](https://qualla.com/giant-magellan-telescope/) | Not started | source-model-missing |
 | 276 | [National Flag Memorial](https://qualla.com/national-flag-memorial-argentina/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 277 | [Pierre Auger Observatory](https://qualla.com/pierre-auger-observatory/) | Not started | source-model-missing |
 | 278 | [National Congress Palace](https://qualla.com/national-congress-palace/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 279 | [Municipal Theatre of Santiago](https://qualla.com/municipal-theatre-of-santiago/) | Complete | All required evidence current |
 | 280 | [Cathedral of Córdoba, Argentina](https://qualla.com/cathedral-of-cordoba-argentina/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
-| 281 | [Independence Memorial Hall](https://qualla.com/independence-memorial-hall/) | Not started | source-model-missing |
+| 281 | [Independence Memorial Hall](https://qualla.com/independence-memorial-hall/) | Complete | All required evidence current |
 | 282 | [Sardar Sarovar Dam](https://qualla.com/sardar-sarovar-dam/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 283 | [Kashmiri Gate, Delhi](https://qualla.com/kashmiri-gate-delhi/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 284 | [Sher Garhi Palace](https://qualla.com/sher-garhi-palace/) | Complete | All required evidence current |
 | 285 | [Gurdwara Sis Ganj Sahib](https://qualla.com/gurdwara-sis-ganj-sahib/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 286 | [The Great Pyramid](https://qualla.com/great-pyramid/) | Complete | All required evidence current |
-| 287 | [Maputo–Katembe Bridge](https://qualla.com/maputo-katembe-bridge/) | Not started | source-model-missing |
+| 287 | [Maputo–Katembe Bridge](https://qualla.com/maputo-katembe-bridge/) | Complete | All required evidence current |
 | 288 | [Plasco Building](https://qualla.com/plasco-building/) | Not started | source-model-missing |
 | 289 | [Marib Dam](https://qualla.com/marib-dam/) | Complete | All required evidence current |
-| 290 | [Acropole Hotel](https://qualla.com/acropole-hotel/) | Not started | source-model-missing |
-| 291 | [Bujagali Hydroelectric Power Station](https://qualla.com/bujagali-hydroelectric-power-station/) | Not started | source-model-missing |
+| 290 | [Acropole Hotel](https://qualla.com/acropole-hotel/) | Complete | All required evidence current |
+| 291 | [Bujagali Hydroelectric Power Station](https://qualla.com/bujagali-hydroelectric-power-station/) | Complete | All required evidence current |
 | 292 | [Tomb of Yuya and Thuya](https://qualla.com/tomb-of-yuya-and-thuya/) | Complete | All required evidence current |
 | 293 | [Buffavento Castle](https://qualla.com/buffavento-castle/) | Complete | All required evidence current |
 | 294 | [Ahmad Shahi Pavilion](https://qualla.com/ahmad-shahi-pavilion/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
 | 295 | [Mortuary Temple of Hatshepsut](https://qualla.com/mortuary-temple-of-hatshepsut/) | In review | review-inputs-stale-or-missing; visual-review-missing-or-unbound; shared-surface-review-missing-or-unbound; medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound; public-domain-fidelity-review-missing-or-unbound |
-| 296 | [Dr Xuma House](https://qualla.com/dr-xuma-house/) | Not started | source-model-missing |
-| 297 | [Markar Clock Tower](https://qualla.com/markar-clock-tower/) | Not started | source-model-missing |
+| 296 | [Dr Xuma House](https://qualla.com/dr-xuma-house/) | Complete | All required evidence current |
+| 297 | [Markar Clock Tower](https://qualla.com/markar-clock-tower/) | Complete | All required evidence current |
 | 298 | [Litoral Penitentiary](https://qualla.com/litoral-penitentiary/) | Not started | source-model-missing |
 | 299 | [Fort Orange (Dutch Brazil)](https://qualla.com/fort-orange-dutch-brazil/) | Complete | All required evidence current |
 | 300 | [Quito Metropolitan Cathedral](https://qualla.com/quito-metropolitan-cathedral/) | Complete | All required evidence current |

@@ -1,0 +1,64 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hotel_de_inmigrantes",
+  "kind": "static-structure",
+  "title": "Hotel de Inmigrantes, Buenos Aires (circa1915)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hotel_de_inmigrantes",
+        "output": "assets/places/69/69y/hotel_de_inmigrantes/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7678399bbe818617c62e67883bf1b8dd833aa44bf4648c26bf7f18c3391a2067"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-structural-facts.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/carpenter-original-91739070.tif",
+      "reference-rights/carpenter-commons-native.json",
+      "reference-rights/carpenter-loc-native.json",
+      "reference-rights/carpenter-current-collection.json",
+      "reference-rights/loc-current-rights.csv",
+      "native-map/complete-hotel-building.json",
+      "native-map/hotel-context.json",
+      "native-map/story-identity-displaced-coordinate.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-11070-19743.png",
+      "terrain-sources/terrarium-15-11071-19743.png",
+      "import-report.json",
+      "geometry-review.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,531 @@
+{
+  "planId": "mihama_nuclear_power_plant",
+  "id": "mihama_nuclear_power_plant",
+  "assetId": "molen.worldgen.structure.mihama_nuclear_power_plant",
+  "title": "Mihama nuclear power plant — whole three-unit mapped layout",
+  "wikidataId": "Q384685",
+  "category": "industrial",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.9616,
+    "latitude": 35.7036
+  },
+  "size": [
+    656.840087890625,
+    63.200000047683716,
+    659.1470947265625
+  ],
+  "actualBounds": {
+    "min": [
+      -246.7918701171875,
+      -1.2000000476837158,
+      -318.64129638671875
+    ],
+    "max": [
+      410.0482177734375,
+      62,
+      340.50579833984375
+    ]
+  },
+  "visualBrief": "Whole geographically contiguous Mihama nuclear generating facility in approximate2026mapped layout, including all three native identified units and all71actual mapped building/tank footprints within the industrial facility. Southern connected Units1/2 complex, northern Unit3 reactor/turbine complex, common service/control building, intrinsic process/service ranges and tanks are retained. No extrusion of the255control industrialproperty boundary, ocean, natural rocky peninsula, nearby village, offsite pylons/roads or unrelated structures. Exact currentnative plan supplies complete layout; clear earlyDOEimages supply Units1/2 exterior/roof/containment/casing family. Northern Unit3, unphotographed auxiliary sections, current cladding continuity, all numeric heights/census/grade are architectural estimates and must remain explicit. No claim all71 current exteriors or current decommissioning condition were photographed.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2026-10-29",
+    "validFrom": "2026-10-29",
+    "validUntil": "2027-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HD.15.043_(11840035676).jpg",
+    "https://commons.wikimedia.org/wiki/File:HD.15.044_(11839615763).jpg",
+    "https://commons.wikimedia.org/wiki/File:HD.15.045_(11839616463).jpg"
+  ],
+  "stories": [
+    {
+      "id": "mihama-nuclear-power-plant-wp",
+      "url": "https://qualla.com/mihama-nuclear-power-plant/"
+    }
+  ],
+  "referenceInputHash": "284c47b252ff47e649b230701b326d8f8a21f9f31011dc7a87f25c40ca13de66",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 4,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "cladding": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.72,
+        "metallic": 0.32
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#344b50",
+        "roughness": 0.36,
+        "metallic": 0.1,
+        "alphaMode": "OPAQUE"
+      },
+      "door": {
+        "slot": "door",
+        "localRef": "palette:#686f6b",
+        "roughness": 0.87,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#344b50",
+            "roughness": 0.36,
+            "metallic": 0.1,
+            "alphaMode": "OPAQUE"
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#686f6b",
+            "roughness": 0.87,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#344b50",
+            "roughness": 0.36,
+            "metallic": 0.1,
+            "alphaMode": "OPAQUE"
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#686f6b",
+            "roughness": 0.87,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#344b50",
+            "roughness": 0.36,
+            "metallic": 0.1,
+            "alphaMode": "OPAQUE"
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#686f6b",
+            "roughness": 0.87,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_panel",
+    "metal_corrugated",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 6000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Entire original71building/tank/567control facilityframe and three real unitpositions fixed first, then independent original1024m129squarefield/16641heights/fourrawzoom15tiles at4m centralyarddatum frozen before all floor/roof/mainsections. Main connectedUnits1/2 floor0/eave18, southern barrelroof+9.5m and two nativefitted19.58mradius shields48/51m high with recessedcontainmentdomes; northernUnit3 actual round28control footprint/nativefitted19.58mradius, estimated4mfloor/58mshield and actual18controlturbineblock24m high. Commonrange16.2m and allremainingactualmappedservice/tank rings, one-time exterior-neighborhood sourcegrade estimates. Sourcephotographs establish earlyUnit1/2 architecture only; northernUnit3/auxiliary/currentfinish sections are boundedclass estimates, not a photographed current survey. Coarsefield includes buildings/coastalwater relief; no survey-grade foundation claim or later field/frame/floor/roof/section refit.",
+    "anchor": [
+      135.9616,
+      35.7036
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.9616,
+        35.7036
+      ],
+      "modelHeight": 0,
+      "basis": "Native central exterioryard gap between mainplant blocks, selected before independent field and all numericsections. Coarse hostdatum, no surveyed original sitegrade or terrainflattening."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/318194036",
+      "way/318194039",
+      "way/318194043",
+      "way/318194095",
+      "way/318194103",
+      "way/1028402836",
+      "way/1028402837",
+      "way/1028402850",
+      "way/1028402851",
+      "way/1028402852",
+      "way/1028402853",
+      "way/1028402854",
+      "way/1028402866",
+      "way/1028402869",
+      "way/1028402871",
+      "way/1094778326",
+      "way/1094778327",
+      "way/1094778328",
+      "way/1094778343",
+      "way/1094778344",
+      "way/1094778345",
+      "way/1094778346",
+      "way/1094778347",
+      "way/1094778350",
+      "way/1094778351",
+      "way/1094778352",
+      "way/1094778353",
+      "way/318194033",
+      "way/318194040",
+      "way/318194070",
+      "way/1028402833",
+      "way/1028402838",
+      "way/1028402839",
+      "way/1028402842",
+      "way/1028402843",
+      "way/1028402844",
+      "way/1028402845",
+      "way/1028402846",
+      "way/1028402849",
+      "way/1094778323",
+      "way/1094778324",
+      "way/1094778325",
+      "way/1094778348",
+      "way/1094778349",
+      "way/318194037",
+      "way/1028402847",
+      "way/1028402848",
+      "way/1028402857",
+      "way/1028402858",
+      "way/1028402859",
+      "way/1028402860",
+      "way/1028402861",
+      "way/1028402862",
+      "way/1028402863",
+      "way/1028402864",
+      "way/1028402865",
+      "way/1028402870",
+      "way/1094778329",
+      "way/1094778330",
+      "way/1094778331",
+      "way/1094778332",
+      "way/1094778333",
+      "way/1094778334",
+      "way/1094778335",
+      "way/1094778336",
+      "way/1094778337",
+      "way/1094778338",
+      "way/1094778339",
+      "way/1094778340",
+      "way/1094778341",
+      "way/1094778342"
+    ],
+    "source": "https://www.openstreetmap.org/way/605420905",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d3b8d724e6024a3869f7645301c07c762f54d979b8ebf16b4a0e2fe65fc060dd",
+    "notes": "Whole geographically contiguous Mihama nuclear generating facility in approximate2026mapped layout, including all three native identified units and all71actual mapped building/tank footprints within the industrial facility. Southern connected Units1/2 complex, northern Unit3 reactor/turbine complex, common service/control building, intrinsic process/service ranges and tanks are retained. No extrusion of the255control industrialproperty boundary, ocean, natural rocky peninsula, nearby village, offsite pylons/roads or unrelated structures. Exact currentnative plan supplies complete layout; clear earlyDOEimages supply Units1/2 exterior/roof/containment/casing family. Northern Unit3, unphotographed auxiliary sections, current cladding continuity, all numeric heights/census/grade are architectural estimates and must remain explicit. No claim all71 current exteriors or current decommissioning condition were photographed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole geographically contiguous Mihama nuclear generating facility in approximate2026mapped layout, including all three native identified units and all71actual mapped building/tank footprints within the industrial facility. Southern connected Units1/2 complex, northern Unit3 reactor/turbine complex, common service/control building, intrinsic process/service ranges and tanks are retained. No extrusion of the255control industrialproperty boundary, ocean, natural rocky peninsula, nearby village, offsite pylons/roads or unrelated structures. Exact currentnative plan supplies complete layout; clear earlyDOEimages supply Units1/2 exterior/roof/containment/casing family. Northern Unit3, unphotographed auxiliary sections, current cladding continuity, all numeric heights/census/grade are architectural estimates and must remain explicit. No claim all71 current exteriors or current decommissioning condition were photographed.",
+    "DOE photographs are exact cleared original early1970s/undated Units1/2 views. Actual native2026 footprint data and primary reactor identity/capacity/commissioning text establish whole three-unit scope. All architectural heights, northernUnit3 unphotographed sections, servicebuilding roles, roof subdivisions/finish/window census and current-phase detail continuity remain estimates. No one-unit snapshot completion credit.",
+    "Native overlapping buildingrings nearUnit3 can describe parts of one connected complex; preserve originalrings as provenance and resolve roof profiles in geometry without duplicating the plantparcel or changing field/frame. No interiors, reactor machinery, operating simulation, decommissioning equipment or site-security details reconstructed.",
+    "Independent original full sourcefield must be fixed before floors/roofs/mainsections and preserved unchanged. Coarse DEM can include buildings/canopy and coastalwater artifacts; grades/foundation contacts are approximate, not surveyed.",
+    "All71 nativefootprints retained at close/street/district. Skyline may omit tiny tanks/huts and simplify minor outlines, while retaining allthree distinct shield/dome silhouettes, both mainunitcomplexes/commonrange and majorservice volumes. No repeated one-unit proxy for entireplant.",
+    "Original independent field spans absolute-453.9774..61.7139m at4m yarddatum. Deep coastalnegative values and canopy/buildingrelief remain unchanged. Mainplantfloors0/4m and auxiliarygrades are fixed approximations selected after fieldacquisition, not a surveyed bathymetry/foundation model. Shorecliffs can intersect lowshells; no masking, fillplane, cutout or source refit.",
+    "Nativecircle fits locate actualthree reactor-shield forms, radius about19.58m. Heights48/51/58m, recessed metaldomes/courses/windows/rooftop details, currentNorthernUnit3 section and auxiliaryfunctions/roof types are explicit architectural estimates. Publishedphotos do not prove currentUnit3 or all71exterior finishes.",
+    "DOElocal043/044/045 full originals establish cylindrical concrete shields/recessed hemisphericaltops, flat processroofs/barrelvault turbinehall, metalcladding/ribbonwindows and lower concreteoffice facade. Exactdates/currentcontinuity are unknown. No declaration that current decommissioning equipment, currentpaint or exactwindowcensus was photographed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Architectural imagery solely exact Qualla-published DOE043/044/045 originals with explicit nativePD-USGov-DOE/officialENERGY.GOV source/reviewedUnitedStatesGovernmentWork grants. All selectedoriginals individually inspected and originalbytes/nativeSHA1bound; no protected modern photographs/planpixels or source metadata changes. Exact whole three-unit facility native605420905/Q384685/71building-tank rings underODbL with primaryNRA/KEPCO reactor identity/status facts asTEXT. UnphotographedUnit3/currentauxiliary sections, all heights/roof/census/finish/grade are explicit architectural estimates. All three actualunits and complete sitebuilding/tank layout retained; parcel/ocean/naturalcliffs notextruded. Original fullfield/frame/mainparameters fixed before geometry.",
+  "qaLodCameras": [
+    {
+      "name": "whole-mihama-campus-skyline",
+      "position": [
+        680,
+        260,
+        -440
+      ],
+      "lookAt": [
+        60,
+        18,
+        25
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-mihama-campus-district",
+      "position": [
+        680,
+        260,
+        -440
+      ],
+      "lookAt": [
+        60,
+        18,
+        25
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-mihama-campus-street",
+      "position": [
+        680,
+        260,
+        -440
+      ],
+      "lookAt": [
+        60,
+        18,
+        25
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-mihama-campus-closeup",
+      "position": [
+        680,
+        260,
+        -440
+      ],
+      "lookAt": [
+        60,
+        18,
+        25
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-three-unit-facility-and-all-intrinsic-native-buildings",
+      "position": [
+        680,
+        260,
+        -440
+      ],
+      "lookAt": [
+        60,
+        18,
+        25
+      ]
+    },
+    {
+      "name": "southern-units-1-and-2-shields-domes-process-facades-and-barrel-roof",
+      "position": [
+        300,
+        100,
+        390
+      ],
+      "lookAt": [
+        100,
+        28,
+        150
+      ]
+    },
+    {
+      "name": "northern-unit-3-native-round-shield-and-turbine-complex",
+      "position": [
+        -330,
+        115,
+        -195
+      ],
+      "lookAt": [
+        -135,
+        28,
+        -30
+      ]
+    },
+    {
+      "name": "rear-main-complex-domes-and-separate-service-range",
+      "position": [
+        -40,
+        120,
+        40
+      ],
+      "lookAt": [
+        120,
+        25,
+        160
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 35856,
+    "vertices": 107568,
+    "materials": 5,
+    "bytes": 4430708,
+    "sha256": "sha256:1f5e61856bfef29d8a0f78a4206c551ddedc6c0ee4ce7682ef4afbd90f39ef57"
+  }
+}

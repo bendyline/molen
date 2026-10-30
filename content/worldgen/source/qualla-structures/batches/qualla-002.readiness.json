@@ -1,16 +1,17 @@
 {
   "format": "molen/structure-readiness@1",
   "title": "Qualla compat — next 300 geographically distributed structures — verified completion ledger",
-  "policy": "A source or import is not completion. Ready requires current image references, exact source/runtime/LOD bytes, inspected portable/shared/context captures, photographic fidelity and terrain/placement evidence. structure catalog work is excluded. Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.",
+  "policy": "A source or import is not completion. Ready requires verified references or a separately supported primary-factual reconstruction, exact source/runtime/LOD bytes, inspected portable/shared/context captures, fidelity appropriate to the declared method, and terrain/placement evidence. Structure catalog work is excluded. Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.",
   "counts": {
     "target": 300,
-    "ready": 121,
-    "started": 251,
+    "ready": 143,
+    "started": 274,
     "pilotsReady": 0,
-    "reservedForOtherDevice": 1,
-    "technicallyValidated": 121,
-    "publicDomainImageryVerified": 249,
-    "publicDomainFidelityReviewed": 188
+    "reservedForOtherDevice": 2,
+    "technicallyValidated": 143,
+    "publicDomainImageryVerified": 251,
+    "publicDomainFidelityReviewed": 190,
+    "primaryFactsReconstructionsVerified": 20
   },
   "candidates": [
     {
@@ -3979,20 +3980,35 @@
       "candidateId": "brunei_energy_hub",
       "backlogTargetId": "QS-3dce76cbead0",
       "title": "Brunei Energy Hub",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.brunei_energy_hub",
+      "sourcePath": "content/worldgen/source/places/w8/w8c/brunei_energy_hub",
       "order": 36,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "brunei-energy-hub",
+        "placementHash": "sha256:9681372804a54732779c7a0735a5315f5ef4c09d5cd721e4fd9af575938ec250",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:78a9a2b849d4838c8578a11f90466e2f6f9d8ec20cdecc51083ca5565818be52",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:5cd396ebae7b002d07c48c1bdcc0e4879ca922073fe51a0bc6aa8678e325e5b8",
+        "notes": "Whole native four-control/two-storey waterfront customs building, separately bound institutionalQ115946015identity and renovation-designer flatbox/louvres/signage/replica facts. User-owned Qualla passage description requires a true full-depth opening. Original native94.43m outline retained, not rounded wharf dimensions; heights/divisions/bay census/fittings/finish/grade explicit estimates. All imagery unused; original designerURL404 and cached-text provenance disclosed. No surveyed/photographic/current replacement claim."
       }
     },
     {
@@ -5075,20 +5091,35 @@
       "candidateId": "andenes_lighthouse",
       "backlogTargetId": "QS-7e6d271f106a",
       "title": "Andenes Lighthouse",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.andenes_lighthouse",
+      "sourcePath": "content/worldgen/source/places/uk/uk7/andenes_lighthouse",
       "order": 45,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "andenes-lighthouse",
+        "placementHash": "sha256:7103b55b5bdf9a3922f5ef8214a231ca0db967e4ab2c32c62624a3642efe4e1a",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:0d7f7641ee5e2615c0b4fd1f09bc5a5bdf524e1768fd58fb8c3c4160460c7a20",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:e17dc6a141cee4e6cba091ec8691a07280fcfc7c38713c62c33dd50560953a46",
+        "notes": "Exact native tower/outer-building outlines, owner height/materials/two galleries/lantern/conical roof verified. Vertical divisions, taper, entry/window bearings, minor fittings and finishes remain explicit estimates. No photographic comparison or image approval claimed."
       }
     },
     {
@@ -8382,20 +8413,35 @@
       "candidateId": "allan_cunningham_monument",
       "backlogTargetId": "QS-d4e36a8713c1",
       "title": "Allan Cunningham Monument",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.allan_cunningham_monument",
+      "sourcePath": "content/worldgen/source/places/r7/r7h/allan_cunningham_monument",
       "order": 75,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "allan-cunningham-monument",
+        "placementHash": "sha256:452aad66920a0a0dd7655364986fe62a120523f4f66407615b241ef5eefb6519",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:6f887ba33b46f8f11d5f9cfe4373f3249cef4c5b7f929f25eaee1e1028597de1",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:7782ab6eec2e5aa75170cc098a0205cf019b5a7bd7c6ba7d8843361399632e2f",
+        "notes": "Exact primary dimensions and construction description, full simple physical scope and native identity verified. Fine divisions, stone pattern, plaque sizes and enclosure dimensions remain estimates. No photographic fidelity or image license approval claimed."
       }
     },
     {
@@ -11583,8 +11629,13 @@
       "sourcePath": "content/worldgen/source/places/tw/tw3/salang_tunnel",
       "order": 104,
       "pilot": false,
-      "readiness": "ready",
-      "blockers": [],
+      "readiness": "needs-review",
+      "blockers": [
+        "reference-review-stale-or-missing",
+        "public-domain-qualla-imagery-unverified",
+        "public-domain-imagery-inventory-unverified",
+        "public-domain-fidelity-review-missing-or-unbound"
+      ],
       "geographic": {
         "activePlacement": "salang-tunnel",
         "placementHash": "sha256:e6f4c9813377729c55140f1cd250af65930e5aa73f733e50cb7d6e2d80685e67",
@@ -11595,16 +11646,17 @@
         "hashBoundReviewPassed": true
       },
       "inputHash": "sha256:2c15579409d396de19bb46bad03c13fa55219de12dca7e969ccc9d6ceb1d0657",
-      "technicalReadiness": "ready",
+      "technicalReadiness": "needs-review",
       "currentRenderIdentityVerified": true,
       "imagery": {
         "policy": "qualla-public-domain-imagery@1",
-        "status": "passed",
+        "status": "needs-replacement",
         "references": [],
-        "selection": "verified-public-domain-originals-after-qualla-first-search",
         "inventory": {
-          "status": "passed",
-          "blockers": [],
+          "status": "needs-review",
+          "blockers": [
+            "supplemental-public-domain-source-unverified"
+          ],
           "qualla": {
             "policy": "qualla-public-domain-imagery@1",
             "status": "needs-replacement",
@@ -11614,30 +11666,38 @@
             {
               "path": "references/army-148040-published.jpg",
               "sourceUrl": "https://www.dvidshub.net/image/148040/salang-tunnel-hindu-kush-mountain-range",
-              "blockers": [],
-              "eligible": true
+              "blockers": [
+                "supplemental-rights-snapshot-unbound"
+              ],
+              "eligible": false
             },
             {
               "path": "references/army-148041-published.jpg",
               "sourceUrl": "https://www.dvidshub.net/image/148041/salang-tunnel-hindu-kush-mountain-range",
-              "blockers": [],
-              "eligible": true
+              "blockers": [
+                "supplemental-rights-snapshot-unbound"
+              ],
+              "eligible": false
             },
             {
               "path": "references/army-384432-published.jpg",
               "sourceUrl": "https://www.dvidshub.net/image/384432/snow-never-melts-push-through-salang-pass",
-              "blockers": [],
-              "eligible": true
+              "blockers": [
+                "supplemental-rights-snapshot-unbound"
+              ],
+              "eligible": false
             },
             {
               "path": "references/army-384435-published.jpg",
               "sourceUrl": "https://www.dvidshub.net/image/384435/snow-never-melts-push-through-salang-pass",
-              "blockers": [],
-              "eligible": true
+              "blockers": [
+                "supplemental-rights-snapshot-unbound"
+              ],
+              "eligible": false
             }
           ]
         },
-        "fidelityReviewPassed": true
+        "fidelityReviewPassed": false
       }
     },
     {
@@ -11812,20 +11872,35 @@
       "candidateId": "edward_j_roye_building",
       "backlogTargetId": "QS-11a1b82e11ec",
       "title": "Edward J. Roye Building",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.edward_j_roye_building",
+      "sourcePath": "content/worldgen/source/places/ec/ec0/edward_j_roye_building",
       "order": 107,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "edward-j-roye-building",
+        "placementHash": "sha256:1e700492c48683c85a1a2ffd2ae5d918205a8c74ab3d3dcbd121ec8662b39c79",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:6365a09bb7f93d4334b54837f9f7cf110d72f2e141c8c5d56bc53d6b96618fb1",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:c61917c1d8c9e7587119a238bfe0cf8b529866610ffbae13dab6ffec8a9088d4",
+        "notes": "Whole early2012Roye building, all attached podium/auditorium/tiered-plinth levels, centralfive-floor tower/realexposedopenings/fullroof/twoserviceboxes. Original primary researcher preface eightfloors and explicitly transmitted same-author construction passage; source conflict and lack of original chapter bytes disclosed. Original numeric wholeway142061466 independently bound originalHTTP200name/altname/Q1292649tags and publishedpoint. Exactcomponentplans/height/census/finish/grade estimates,5mheight/10mcomponent uncertainty. All photographs/sketches/figures/artworks unused; no one-tower/neighbor proxy, photographic/survey/current replacement claim."
       }
     },
     {
@@ -11879,20 +11954,35 @@
       "candidateId": "ducor_hotel",
       "backlogTargetId": "QS-e723ab23e11b",
       "title": "Ducor Hotel",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.ducor_hotel",
+      "sourcePath": "content/worldgen/source/places/ec/ec0/ducor_hotel",
       "order": 109,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "ducor-hotel",
+        "placementHash": "sha256:e14a117bbf7749977ecdd70f050793d8525e6bfff830b967648ca755dfed4d4d",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:83853dec55f9b6cbd8d9ec4d3476b7326983c7976818abb0d0778620753f51a9",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:c0d58e4c24e90fd93d582b074660003b1ba32649a86b3abda9f545934420fd72",
+        "notes": "Whole2016Ducor concrete ruin, all concave wings/eight complete floorplates/full roof/restaurant and open balcony/window shell. Two primary first-hand written accounts, dated2016text and disclosed403/direct text transmission; original quantized z15wholehotel polygon/paired namedPOI/Q1263572 bound. Correct actual hotel anchor chosen before field, story coordinate untouched. Equal26m-height envelope/column/parapet/census/balcony/finish/grade estimated with4mheight/5mcomponentuncertainty. Every image unused; separate reservoir/pool/outbuildings excluded, no sample-wing/photographic/survey/current replacement claim."
       }
     },
     {
@@ -12907,10 +12997,11 @@
       "sourcePath": null,
       "order": 122,
       "pilot": false,
-      "readiness": "not-started",
+      "readiness": "reserved-other-device",
       "blockers": [
-        "source-model-missing"
+        "structure-catalog-other-device"
       ],
+      "reservedCandidateIds": [],
       "geographic": {
         "activePlacement": null
       },
@@ -13418,20 +13509,203 @@
       "candidateId": "mihama_nuclear_power_plant",
       "backlogTargetId": "QS-a7b0fbc3b608",
       "title": "Mihama Nuclear Power Plant",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.mihama_nuclear_power_plant",
+      "sourcePath": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant",
       "order": 130,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "mihama-nuclear-power-plant",
+        "placementHash": "sha256:ac7ca90e192b13e623c83f59a5dea5210aeff88e80edba186f08c5345ef63511",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:3f28b8be3a217ef07f3201f73792c3e07f084a7a47c2e69eca5d2d6c9749898b",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [
+          {
+            "path": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/hd-15-043-11840035676.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:HD.15.043_(11840035676).jpg",
+            "license": "Public domain",
+            "artist": "ENERGY.GOV",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release"
+            ],
+            "primaryRights": {
+              "eligible": true,
+              "basis": "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release",
+              "path": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant/reference-rights/doe-architecture-native.json",
+              "sha256": "913557eccb958a3feb9e6e90221fbe646b372c6df0b3cb0e5b8c5723c62d5f04",
+              "nativeSha1": "4586c88b49ad86e7fe1706e236de68705352d5be",
+              "revision": 810522843
+            },
+            "publishedIn": [
+              {
+                "storyId": "mihama-nuclear-power-plant-wp",
+                "articlePath": "_c/art/x/n/2/e/mihama-nuclear-power-plant-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/metadata.json",
+            "sha256": "46511c1d24fe0a8bb2035f17feddd60270bd20592f8dea99be06429e5693312a"
+          },
+          {
+            "path": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/hd-15-044-11839615763.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:HD.15.044_(11839615763).jpg",
+            "license": "Public domain",
+            "artist": "ENERGY.GOV",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release"
+            ],
+            "primaryRights": {
+              "eligible": true,
+              "basis": "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release",
+              "path": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant/reference-rights/doe-architecture-native.json",
+              "sha256": "913557eccb958a3feb9e6e90221fbe646b372c6df0b3cb0e5b8c5723c62d5f04",
+              "nativeSha1": "2a040fde48496ad6c62be6131f23fc4f2bbad6b9",
+              "revision": 963801336
+            },
+            "publishedIn": [
+              {
+                "storyId": "mihama-nuclear-power-plant-wp",
+                "articlePath": "_c/art/x/n/2/e/mihama-nuclear-power-plant-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/metadata.json",
+            "sha256": "6d81074ee4a8edf7f5c2644e4967588ac2d6561d4311aab0d1f1c5f9259dd133"
+          },
+          {
+            "path": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/hd-15-045-11839616463.jpg",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:HD.15.045_(11839616463).jpg",
+            "license": "Public domain",
+            "artist": "ENERGY.GOV",
+            "eligible": true,
+            "blockers": [],
+            "publicDomainBasis": [
+              "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release"
+            ],
+            "primaryRights": {
+              "eligible": true,
+              "basis": "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release",
+              "path": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant/reference-rights/doe-architecture-native.json",
+              "sha256": "913557eccb958a3feb9e6e90221fbe646b372c6df0b3cb0e5b8c5723c62d5f04",
+              "nativeSha1": "2ebecb46387759025a68a463adc41b8f9551bd37",
+              "revision": 915805923
+            },
+            "publishedIn": [
+              {
+                "storyId": "mihama-nuclear-power-plant-wp",
+                "articlePath": "_c/art/x/n/2/e/mihama-nuclear-power-plant-wp.json"
+              }
+            ],
+            "originalMetadata": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/metadata.json",
+            "sha256": "15100022e2f9b3de00943c39036b095aa34fb90c462f8ec1519e3a3f34ecb5ad"
+          }
+        ],
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "passed",
+            "references": [
+              {
+                "path": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/hd-15-043-11840035676.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:HD.15.043_(11840035676).jpg",
+                "license": "Public domain",
+                "artist": "ENERGY.GOV",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release"
+                ],
+                "primaryRights": {
+                  "eligible": true,
+                  "basis": "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release",
+                  "path": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant/reference-rights/doe-architecture-native.json",
+                  "sha256": "913557eccb958a3feb9e6e90221fbe646b372c6df0b3cb0e5b8c5723c62d5f04",
+                  "nativeSha1": "4586c88b49ad86e7fe1706e236de68705352d5be",
+                  "revision": 810522843
+                },
+                "publishedIn": [
+                  {
+                    "storyId": "mihama-nuclear-power-plant-wp",
+                    "articlePath": "_c/art/x/n/2/e/mihama-nuclear-power-plant-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/metadata.json",
+                "sha256": "46511c1d24fe0a8bb2035f17feddd60270bd20592f8dea99be06429e5693312a"
+              },
+              {
+                "path": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/hd-15-044-11839615763.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:HD.15.044_(11839615763).jpg",
+                "license": "Public domain",
+                "artist": "ENERGY.GOV",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release"
+                ],
+                "primaryRights": {
+                  "eligible": true,
+                  "basis": "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release",
+                  "path": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant/reference-rights/doe-architecture-native.json",
+                  "sha256": "913557eccb958a3feb9e6e90221fbe646b372c6df0b3cb0e5b8c5723c62d5f04",
+                  "nativeSha1": "2a040fde48496ad6c62be6131f23fc4f2bbad6b9",
+                  "revision": 963801336
+                },
+                "publishedIn": [
+                  {
+                    "storyId": "mihama-nuclear-power-plant-wp",
+                    "articlePath": "_c/art/x/n/2/e/mihama-nuclear-power-plant-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/metadata.json",
+                "sha256": "6d81074ee4a8edf7f5c2644e4967588ac2d6561d4311aab0d1f1c5f9259dd133"
+              },
+              {
+                "path": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/hd-15-045-11839616463.jpg",
+                "sourceUrl": "https://commons.wikimedia.org/wiki/File:HD.15.045_(11839616463).jpg",
+                "license": "Public domain",
+                "artist": "ENERGY.GOV",
+                "eligible": true,
+                "blockers": [],
+                "publicDomainBasis": [
+                  "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release"
+                ],
+                "primaryRights": {
+                  "eligible": true,
+                  "basis": "Exact native DOE photograph; pinned primary PD-USGov-DOE record and reviewed ENERGY.GOV United States Government Work release",
+                  "path": "content/worldgen/source/places/xn/xn2/mihama_nuclear_power_plant/reference-rights/doe-architecture-native.json",
+                  "sha256": "913557eccb958a3feb9e6e90221fbe646b372c6df0b3cb0e5b8c5723c62d5f04",
+                  "nativeSha1": "2ebecb46387759025a68a463adc41b8f9551bd37",
+                  "revision": 915805923
+                },
+                "publishedIn": [
+                  {
+                    "storyId": "mihama-nuclear-power-plant-wp",
+                    "articlePath": "_c/art/x/n/2/e/mihama-nuclear-power-plant-wp.json"
+                  }
+                ],
+                "originalMetadata": "_m/x/n/2/e/mihama-nuclear-power-plant-wp/metadata.json",
+                "sha256": "15100022e2f9b3de00943c39036b095aa34fb90c462f8ec1519e3a3f34ecb5ad"
+              }
+            ]
+          },
+          "additional": []
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -13517,20 +13791,35 @@
       "candidateId": "qingdao_observatory",
       "backlogTargetId": "QS-62edba9947b1",
       "title": "Qingdao Observatory",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.qingdao_observatory",
+      "sourcePath": "content/worldgen/source/places/ww/wwm/qingdao_observatory",
       "order": 133,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "qingdao-observatory",
+        "placementHash": "sha256:aa97c5de0a10d2f141cda0169b9bec54bb3f50cd559ec34ddb7c2c62236494c5",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:59bc40d5c818ce7a76800554686b6a48454e57393eb950021bc4cff340c8e3d2",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:63e53fec2ee6a774e7e22a25aebaaa2167cc280792e98f6da6e70f3c100a607a",
+        "notes": "Entire original three-storey ImperialObservatoryoffice/alltiledroofslopes/basementexterior and intrinsic21.6mgranitecrenellatedtower. Municipalwrittenconstructionfacts; cachedparagraph provenance and directfailure disclosed, no originalHTMLclaim. Wholeoriginalz15numericfourcontrolway535717632 footprint/pairednamedPOI and independentQ24833163bound, not a native-node survey. Towercornerplan/registration/sections/roof/detail/finish/grade explicitboundedestimates. Reportedaltitude never sets height or terrain; independentastronomydome/directorhouse/campus excluded. Allimagery unused, no photographic/survey/current replacement claim."
       }
     },
     {
@@ -14216,40 +14505,82 @@
       "candidateId": "eschbach_dam",
       "backlogTargetId": "QS-2899e2c7af03",
       "title": "Eschbach Dam",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.eschbach_dam",
+      "sourcePath": "content/worldgen/source/places/u1/u1j/eschbach_dam",
       "order": 143,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "eschbach-dam",
+        "placementHash": "sha256:a78cc04fcb6716e378e85ebaa673c9c3f77e46fcd51bea4c97ca6fa2bdce6a5e",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:fcffae7541e2389a531aaff6052f26b5f64758a64da282d5ab260f01419ffd19",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/prometheus-1891-original.pdf",
+              "sourceUrl": "https://sbc.org.pl/dlibra/publication/702126/edition/661023/prometheus-1890-1891-jg-2-71",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
       "candidateId": "bristol_hotel_odesa",
       "backlogTargetId": "QS-1d5e9615a47c",
       "title": "Bristol Hotel, Odesa",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.bristol_hotel_odesa",
+      "sourcePath": "content/worldgen/source/places/u8/u8m/bristol_hotel_odesa",
       "order": 144,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "bristol-hotel-odesa",
+        "placementHash": "sha256:8a69a6b7bc8bbc03ddafc09af390cb381585f8fd8986cb3ff131ee7f46bf976c",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:92bb4e70b1773c043b24b2299a1097d78c6441b3ec9507b01b9535da5f767845",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:19b5d9ce4150a801f20ccee6513185f661df3e9d292cbe5abc23dd5545d7caad",
+        "notes": "Whole2014restoredBristolhotel, streetL/courtyardaccommodation/hallannex/allroofs and genuineopeninnercourtyard. Primarypublishedrestorerfirstpersonwholecourtyard/fouraddedfloor/copper/restoredmoulding facts; ownerfourthmansardfloor/skylights/balconies/reopening and ownQuallawrittenwhitecolumns/statues/BaroqueRenaissance/2025damagephase. Originalnumericz15outer+hole andsame-IDnamedPOI/Q4096565bound. Exactwing-role/height/roof/census/ornament/finish/grade estimates explicit,10mcomponentregistrationuncertainty. No sourceimages/plans/artwork/domeinference, adjacentbuilding/facadeproxy, surveyed/photographic/currentreplacement claim."
       }
     },
     {
@@ -17814,20 +18145,35 @@
       "candidateId": "brisbane_festival_hall",
       "backlogTargetId": "QS-406617e81159",
       "title": "Brisbane Festival Hall",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.brisbane_festival_hall",
+      "sourcePath": "content/worldgen/source/places/r7/r7h/brisbane_festival_hall",
       "order": 171,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "brisbane-festival-hall",
+        "placementHash": "sha256:0712b1356d668a0bc111aba43402a38b0d8883ed640d0eb2a1f2892f46973744",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:8351e77eb135910759b45bb4b8385d14a935952b15a9a61a4b92ae954a83a3ed",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:1f1c4171e835b4362219c60a88934883cb443163677c8a2bb3c9c8e9083b6aa5",
+        "notes": "Whole2002historicalFestivalHall multipurpose hall/allfoyers/podium/centralraisedauditoriumroof/bothsideseatingroofvolumes. Original primaryICOMOSassessment and originaldesigner oral-history built-shape statement. IndependentQ4968565point and original six numericCharlotte/Albert controls are context only, actual historicoutline absent, no modernTower substitution. Entire60x57mplan and exact sections/roofprofiles/details/finish/grade are declared estimates with20percentplan/10mcomponent/3mheight uncertainty. Every image/drawing/audio/video unused; no facade-only/predecessor/neighbor proxy or photographic/survey/current replacement claim."
       }
     },
     {
@@ -19382,20 +19728,35 @@
       "candidateId": "atacama_cosmology_telescope",
       "backlogTargetId": "QS-001441417f11",
       "title": "Atacama Cosmology Telescope",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.atacama_cosmology_telescope",
+      "sourcePath": "content/worldgen/source/places/67/67z/atacama_cosmology_telescope",
       "order": 185,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "atacama-cosmology-telescope",
+        "placementHash": "sha256:4ee3a4b40247eafa317bfdd19da735af4bf9c7c0ef1fbd8d4d8be8f273d3c3e6",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:496d390cf834e9c60760fc87126ec6c56e7f1f48169831b61cc56a8d2d1cdeba",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:02dfe67a11100205305a4c7eac21fb4e031f1e4cc5e43f606551d0c4172455ae",
+        "notes": "Whole original eight-control ACT enclosure and complete12m Gregorian instrument/13m outer screen/inner moving screen/receiver cabin bound to primary instrument and optical-design facts, including exact Table2conic parameters. Native screen-edge interpretation, vertical profiles, assembly/bearing/pose, supports and finishes explicitly estimated; no source figures/photos or optical/survey/photographic fidelity claimed."
       }
     },
     {
@@ -20103,20 +20464,35 @@
       "candidateId": "kaptai_dam",
       "backlogTargetId": "QS-8f81c9e4b951",
       "title": "Kaptai Dam",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.kaptai_dam",
+      "sourcePath": "content/worldgen/source/places/w5/w5c/kaptai_dam",
       "order": 194,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "kaptai-dam",
+        "placementHash": "sha256:31f24a23a8759cf5e0176fe50438a278126952bd4998fc45131a6b83044a4a30",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:034a901523656f492a0df9e43ee181fb992bedb74b92c91d94ef85a8f1ce3757",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:bd90f36a127cb718d863373f1c22eba99b33f54f9fc49e107c522aa8503426bf",
+        "notes": "Whole earthfill45.7mdam/7.6mcrown/original666.66mcrestroad, complete227mleftbankspillway/all16radialgates and entirewesternfive-unit230MWpowerhouse/intake/penstockexteriors. PrimaryoriginalADBwrittenfacts and explicitcachedCUET/JICA/fieldresearch transmission; no protectedimagery. Original22dam/16road/7spillwaycontrols bound. Preciseroles/toes/slope/plantplan/roof/chute/gateheight/finish/grade estimates, powerhouse25percentplan/50mregistrationuncertainty. No bareembankment/oneunit/solarfarm/neighborproxy, proposedextension or currentworld/survey claim."
       }
     },
     {
@@ -22794,23 +23170,38 @@
       }
     },
     {
-      "candidateId": "the_tea_planter_s_telescope",
+      "candidateId": "bosscha_zeiss_dome",
       "backlogTargetId": "QS-0a2f389bfbb7",
       "title": "The Tea Planter's Telescope",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.bosscha_zeiss_dome",
+      "sourcePath": "content/worldgen/source/places/qq/qqu/bosscha_zeiss_dome",
       "order": 223,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "bosscha-zeiss-dome",
+        "placementHash": "sha256:87754d951a67c5b7faa6d68e1bf2c79e0ef4b499cd9605f53fab867edbdb9e1f",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:346b1fd75bd0d5dd8f1febbbaf67aca662edc9930d7f569ceae31a437de1901a",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:39c50c476e633853b7bc1efcc366a1dd14f31a832ec2c56ad2f2c3ebafb41eb0",
+        "notes": "Whole native circular main building and owner14.5m/2mmsteel Zeiss dome verified. Full building/base retained; wall height, dome profile, shutter/entry/window geometry and finishes are explicit estimates. Other separate campus buildings excluded, no campus proxy or photographic approval claimed."
       }
     },
     {
@@ -23901,20 +24292,35 @@
       "candidateId": "sorpe_dam",
       "backlogTargetId": "QS-12da7027657b",
       "title": "Sorpe Dam",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.sorpe_dam",
+      "sourcePath": "content/worldgen/source/places/u1/u1j/sorpe_dam",
       "order": 233,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "sorpe-dam",
+        "placementHash": "sha256:f165556319fcfefb3ed145c15303efb506694a8d641b85d7bcd6e55833aefd3c",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:47fc4a828355ca39203d1b3c6d8831d2563f978ff86f04ef6c4a7fa6485f9b1c",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:c62346f26a9b4162503cd4ad52ae37db20be2eebd7bd354ff29c298b1fef535c",
+        "notes": "Whole original native main dam/crown/connected cascade bound to primary owner height, width, crest and37-basin/66m drop/3–7m width facts. Submerged/abutment sections, absolute grades, basin divisions, fittings and finishes remain explicit estimates. No photographic fidelity or image approval claimed."
       }
     },
     {
@@ -27405,20 +27811,35 @@
       "candidateId": "serpentine_dam_western_australia",
       "backlogTargetId": "QS-3f27e2c66b2d",
       "title": "Serpentine Dam (Western Australia)",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.serpentine_dam_western_australia",
+      "sourcePath": "content/worldgen/source/places/qd/qd4/serpentine_dam_western_australia",
       "order": 262,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "serpentine-dam-western-australia",
+        "placementHash": "sha256:fe76c380c68926d7f10a9a6af2cd41901c879ddaf2ceb4148e600935c0f806df",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:7dae0ee9a6d2d9c974dcc5fe8dd82300a8d6bb0e34c462c8107615449ff09d1d",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:7e4d86326426094144fc87d67e32f565fe15c3f52c2470875fb3c581bbe38139",
+        "notes": "Exact whole23control main dam/fivecontrol crest/tencontrol enlarged canal/twocontrol conduit; primary government55m/424m/1961 and heritage post2001demolition/enlargement facts. Tower presence documented; inferred registration/form/sections, channel/abutment/floors/finish/grade explicitly estimated. Original field unchanged; no imagery, survey or current replacement claim."
       }
     },
     {
@@ -27853,20 +28274,35 @@
       "candidateId": "theatre_royal_hobart",
       "backlogTargetId": "QS-ec21f74f630a",
       "title": "Theatre Royal, Hobart",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.theatre_royal_hobart",
+      "sourcePath": "content/worldgen/source/places/r2/r22/theatre_royal_hobart",
       "order": 268,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "theatre-royal-hobart",
+        "placementHash": "sha256:25ef3436eceb18adb655d0764bf72e6aa740a0bc48c9342bff9ad2c8bd143e09",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:d79c5b747a4615addb0128488bc2871746ab950089f025842f7844e1b7aa50d7",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:003e751cde6ef619165a9fb238be2170f8342f136d71f2ffbcfbc8d58e22653f",
+        "notes": "Whole original namedTheatreRoyalway188586180 numeric four-control footprint bound to original20261029z15MVT and matching namedPOI/independentQ3523488. Stateheritage12110written two-storey rusticatedsandstone/stuccobrick/Tuscanportico/archedentry/pediment/frieze/parapet and rearstageflytower>18m facts. Whole theatre and allroof/stage volumes retained; genericmap8mheight not maximumflytower survey. Exact sections/roof/flyplan/details/finish/grade estimated. No reportimages/maps/drawings, neighboringHedberg/Hotel/campus proxy, photographic/survey/current replacement claim."
       }
     },
     {
@@ -28441,20 +28877,47 @@
       "candidateId": "hotel_de_inmigrantes",
       "backlogTargetId": "QS-1ee2cc421120",
       "title": "Hotel de Inmigrantes",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.hotel_de_inmigrantes",
+      "sourcePath": "content/worldgen/source/places/69/69y/hotel_de_inmigrantes",
       "order": 274,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "hotel-de-inmigrantes",
+        "placementHash": "sha256:77e7c479f7f56439dddb75e54f2b9d4c369d207c8f401f993dbeb5ceb0b358c4",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:08548e6b67ea768fb787adbdfe34fa4aed6e99b652f99f00be9c2c431fb4e61c",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "policy": "qualla-public-domain-imagery@1",
+        "status": "passed",
+        "references": [],
+        "selection": "verified-public-domain-originals-after-qualla-first-search",
+        "inventory": {
+          "status": "passed",
+          "blockers": [],
+          "qualla": {
+            "policy": "qualla-public-domain-imagery@1",
+            "status": "needs-replacement",
+            "references": []
+          },
+          "additional": [
+            {
+              "path": "references/carpenter-original-91739070.tif",
+              "sourceUrl": "https://www.loc.gov/item/91739070/",
+              "eligible": true,
+              "blockers": []
+            }
+          ]
+        },
+        "fidelityReviewPassed": true
       }
     },
     {
@@ -28860,20 +29323,35 @@
       "candidateId": "independence_memorial_hall",
       "backlogTargetId": "QS-5cc03e31e55c",
       "title": "Independence Memorial Hall",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.independence_memorial_hall",
+      "sourcePath": "content/worldgen/source/places/tc/tc0/independence_memorial_hall",
       "order": 281,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "independence-memorial-hall",
+        "placementHash": "sha256:b5e074e0c19fbe811ed331a16e6c95cdcb8b83deb311d6d4284db5c19421aab0",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:249c9ca1fcc2b418b25be4efefa0ebe6cc3612e0b620b91e5e20f3b33fbe6bbd",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:593b9147dd54a04f9e31ff22f8ee5199f072b6480c38d6b2f6cc8fde2dc2a101",
+        "notes": "Complete native memorial-hall plan and official/designer-derived construction description bound, including48reported pillars/fourcorner towers/28frieze panels/three tiers and concrete Kandyan roof. Vertical sections, grid setout, carvings, symbolic lion census and finish estimated. Historical account transmission explicit; no original1953page or photographic approval claimed."
       }
     },
     {
@@ -29304,20 +29782,35 @@
       "candidateId": "maputo_katembe_bridge",
       "backlogTargetId": "QS-3665f51972d8",
       "title": "Maputo–Katembe Bridge",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.maputo_katembe_bridge",
+      "sourcePath": "content/worldgen/source/places/ke/ker/maputo_katembe_bridge",
       "order": 287,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "maputo-katembe-bridge",
+        "placementHash": "sha256:62227499b49db5771cbeba83c4eee9f9b428285c30eb65838305ff419588c5ab",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:117a1d5602034850cff649bcb12cebc15b9793dfa5fc729a903dd15731b6d17e",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:7bfc9a38895abc3a395214dc9f0eb15c03a14feb465b7e37feff109a83756f65",
+        "notes": "Whole native bridge/approach layout and published span/tower/deck metrics verified. Portal sections, cable sag/hanger census, piers, finish and grades remain explicit estimates; no photographic or survey approval claimed."
       }
     },
     {
@@ -29430,40 +29923,70 @@
       "candidateId": "acropole_hotel",
       "backlogTargetId": "QS-1f7fe47f7ca5",
       "title": "Acropole Hotel",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.acropole_hotel",
+      "sourcePath": "content/worldgen/source/places/sd/sdz/acropole_hotel",
       "order": 290,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "acropole-hotel",
+        "placementHash": "sha256:29117ec3d7505943c669b1e5cef8a0d6ef6bc45b05bb090d3023d432f96f6a5b",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:53011bc709280c627071f4be7a9e1dcf5c88752d19a4139df7a1a93f0f071c90",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:bf1cbaf834a863391fe567398627780bac484ab0529f8d5e6955a25ce7fa58c9",
+        "notes": "Whole2020post1988AcropoleHotelKhartoum, three storeys/all facades/full roof/complete street patios/blue wooden shutters. Primary first-hand reporter written three-floor/clay/shutter/patio/warphase facts plus dated2012researcher room-balcony testimony, both actual originalHTMLhashes bound. Actual original numerical four-control wholehotel/paired namedPOI/Q4676414, quantized not node survey. Precise heights/flat roof/patio/mainwall/component registration/census/finish/grade explicitly estimated with2mheight/5mregistration uncertainty. All imagery unused, no opposite oldhotel/neighbor proxy or photographic/survey/current replacement claim."
       }
     },
     {
       "candidateId": "bujagali_hydroelectric_power_station",
       "backlogTargetId": "QS-1cbd8c21f235",
       "title": "Bujagali Hydroelectric Power Station",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.bujagali_hydroelectric_power_station",
+      "sourcePath": "content/worldgen/source/places/s8/s8p/bujagali_hydroelectric_power_station",
       "order": 291,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "bujagali-hydroelectric-power-station",
+        "placementHash": "sha256:d64ed6da1432819aa559cad51d3c602e80e33e0216501aeff3f5708b05225ddc",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:f020dd46ca1427b80ee22ca66e2e080852a3d5d7283dac78b432526c764c492a",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:09f5d20a0652c110d79e9e7d250ecd9e0d83d277b8c40797e2a32f3e83b0f0b8",
+        "notes": "Entire original49control dam/11control connected crest/fourcontrol narrow integral plant/twocontrolweir bind whole composite physical scope. Primary construction accounts specify30m composite dam/three earthfill sections/open-air five-unit powerhouse/intake/two radial andoneflap gate/main and siphon spillways. Native upperworks/plant edge roles, functional sections, slopes/floors/census/finish/grades explicitly estimated; original provider field preserved, no generic shed/photographic/survey fidelity claim."
       }
     },
     {
@@ -29767,40 +30290,70 @@
       "candidateId": "dr_xuma_house",
       "backlogTargetId": "QS-40013ee50a3d",
       "title": "Dr Xuma House",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.dr_xuma_house",
+      "sourcePath": "content/worldgen/source/places/ke/ke7/dr_xuma_house",
       "order": 296,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "dr-xuma-house",
+        "placementHash": "sha256:07978340bbfb372b78d052c58a80760b8b73018b25317c7a6c01bae49fa1b177",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:196eab4fd737a8f627e1512067492cda4b300842e9bd1932b73bab66920d74f8",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:96bb0c11828f84d48df0b9412b09a6d60d4dc5343084ad6f9564c4db5869124f",
+        "notes": "Complete original1935Empilweni single-storey residence/consulting-wing dwelling with completeLroof, curvedbays, plain-column arch, brick/plaster and full bracketed canopy. Official tourism construction facts plus explicitly transmitted FloBird1991 architecture; original1991report not retrieved. Published housepoint and real adjacent street axes only, no native house footprint. Wholeplan/sections/roofprofile/detail/finish/grade estimated with20percent plan uncertainty; no detached2015centre/campus proxy, imagery, survey or photographic claim."
       }
     },
     {
       "candidateId": "markar_clock_tower",
       "backlogTargetId": "QS-8c6e982cee60",
       "title": "Markar Clock Tower",
-      "asset": null,
-      "sourcePath": null,
+      "asset": "molen.worldgen.structure.markar_clock_tower",
+      "sourcePath": "content/worldgen/source/places/tj/tjw/markar_clock_tower",
       "order": 297,
       "pilot": false,
-      "readiness": "not-started",
-      "blockers": [
-        "source-model-missing"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "geographic": {
-        "activePlacement": null
+        "activePlacement": "markar-clock-tower",
+        "placementHash": "sha256:3f6a4d793709f2059aab101960a9c82c9fc4037503f2c2186ac1a59aac0bee3a",
+        "verified": true
       },
       "fidelityQa": {
         "target": "medium-fi",
-        "hashBoundReviewPassed": false
+        "hashBoundReviewPassed": true
+      },
+      "inputHash": "sha256:cb88c68d9b0f3368313237b92dc2f12bde605b6ec1aec0188bca71cf55b36edf",
+      "technicalReadiness": "ready",
+      "currentRenderIdentityVerified": true,
+      "imagery": {
+        "status": "not-used",
+        "selection": "primary-facts-only",
+        "fidelityReviewPassed": false
+      },
+      "primaryFactsReconstruction": {
+        "status": "passed",
+        "method": "primary-facts-only",
+        "imageryUsed": false,
+        "evidenceHash": "sha256:18c20b96dbe4b01c8d8f165a99f6befce5972b6c90a87380b7a26a1c02e7d666",
+        "notes": "Whole original namedQ5902355clock tower. Historian’s own republished interview reports18m height; cultural complex describes square plan, fourclockfaces and plain slopedroof. Location point only, no surveyed footprint. Widths, vertical divisions, roof/dial/inscription/fittings/azimuth/finish/grade explicitly estimated; no source imagery, photographic appearance or surveyed/current replacement approval."
       }
     },
     {

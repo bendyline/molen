@@ -1,0 +1,67 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "maputo-katembe-engineering-2019",
+  "model": "maputo_katembe_bridge",
+  "structureId": "QS-3665f51972d8",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "authority",
+      "url": "https://www.mofcom.gov.cn/newarticle/beltandroad/mz/enindex.shtml",
+      "path": "reference-rights/mofcom-primary-facts.txt",
+      "sha256": "sha256:a9e00295579e59cfce46729a244694a548c507b9b0b2b197632d2d82deee806a",
+      "retrieval": "web-open-extracted-cache-excerpt",
+      "retrievedOn": "2026-10-29",
+      "use": "factual-text-only",
+      "note": "Actual primary text excerpts, not fabricated full-page bytes. No source photos/diagrams downloaded, viewed or adopted. Engineering source is the author abstract indexed by TRID/BASt."
+    },
+    {
+      "key": "engineering",
+      "url": "https://trid.trb.org/View/1590697",
+      "path": "reference-rights/engineering-abstract-facts.txt",
+      "sha256": "sha256:070b7ec4fb73a93b9aa31d828f7f8d3e5c681bed817a5bc86bad6abdc2984ff0",
+      "retrieval": "web-open-extracted-cache-excerpt",
+      "retrievedOn": "2026-10-29",
+      "use": "factual-text-only",
+      "note": "Actual primary text excerpts, not fabricated full-page bytes. No source photos/diagrams downloaded, viewed or adopted. Engineering source is the author abstract indexed by TRID/BASt."
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/bridge-and-approach-roads.json",
+    "sha256": "sha256:1823833aa639a6d8407a6f5b8531e7c05a1e43cefba3d1fdc94555e871158ee5",
+    "wikidata": "Q19275941",
+    "actualWays": [
+      378386159,
+      529725302,
+      638819906,
+      643276204,
+      643276231,
+      764038469,
+      1309091556
+    ]
+  },
+  "quallaFirst": {
+    "families": 26,
+    "inventoryHash": "sha256:7837da390ce66da5f1d265a5913c043c98edc1edb92cd4735d6233daeec23191",
+    "questionableImageryAdopted": false
+  },
+  "measuredControls": {
+    "mainSpan": 680,
+    "towerHeight": 141.2,
+    "deckWidth": 25.6,
+    "deckDepth": 3,
+    "navigationClearance": 60
+  },
+  "estimates": [
+    "Primary engineering dimensions:680m main span,141.2m tower height,60m navigation clearance,25.6m steel deck width and3m box depth. Primary authority describes concreteT-beam/box-girder approaches. Exact pylon leg/crossbeam shape, cable sag/diameter/hanger census, anchorblock sections, lane/railing details, colors and grades are explicit architectural/engineering estimates; no photographs or diagrams were used.",
+    "All133original native road controls/seven actual elevated ways retained as provenance. Paired carriageways become one shared physical deck where coincident, with separate elevated northern links. Native named-road centerline is about3.24km including mapped approach geometry; published3.01km main/approach engineering figure uses a different boundary. No map stretching to force a published total. No measured outer deck outline or exact pier census claimed.",
+    "Four-kilometre independent original field is unchanged, with25rawtiles and16641heights. The outermost northern ramp reaches64.44m beyond the finite review-grid edge; its grade is sampled from the same already acquired original rawtile bytes. No extension, reacquisition, masking, cutout, height fill or source refit. Wide review views can show the finite ground-fixture edge.",
+    "Piers/tower feet use the original provider ground once, with approximate vertical datum. Navigation clearance is interpreted against approximate mean-sea-level source datum; no survey accuracy or current-world automatic replacement claim. Broad natural bay, shore terrain, city buildings and ground-level connecting highways are not modeled."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-10-29",
+    "notes": "Whole measured-span/tower/deck suspension bridge with actual complete native curved elevated approaches. Primary engineering descriptions establish material and system; remaining section/finish/support/cable/grade estimates declared. No photographic-fidelity, exact outer-outline or surveyed-grade claim."
+  }
+}

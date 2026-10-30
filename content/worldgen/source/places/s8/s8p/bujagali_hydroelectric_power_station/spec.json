@@ -1,0 +1,426 @@
+{
+  "planId": "bujagali_hydroelectric_power_station",
+  "id": "bujagali_hydroelectric_power_station",
+  "assetId": "molen.worldgen.structure.bujagali_hydroelectric_power_station",
+  "title": "Bujagali Dam and Powerhouse — Victoria Nile",
+  "wikidataId": "Q4986717",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 33.139190400000004,
+    "latitude": 0.49843885
+  },
+  "size": [
+    918.76416015625,
+    39.80000114440918,
+    226.32655334472656
+  ],
+  "actualBounds": {
+    "min": [
+      -447.0699768066406,
+      -22.450000762939453,
+      -79.54591369628906
+    ],
+    "max": [
+      471.6941833496094,
+      17.350000381469727,
+      146.7806396484375
+    ]
+  },
+  "visualBrief": "Whole physical Bujagali dam and integral open-air powerhouse/intake: complete original49control main dam boundary, full connected11control/~899m crest route, five-unit169x39m named plant envelope, main gated spillway/weir and emergency siphon spillway. Primary construction designers/engineer/contractor describe30m clay-core rockfill and concrete gravity sections, three rockfill sections, two radial/one flap main gates, emergency spillway, five Kaplan units, integral intake and explicitly open-air powerhouse inside dam body. No generic roofed industrial shed or bare embankment proxy. Exact native outer body/route and narrow plant envelope retained; the latter is taggedpower=plant, not a surveyed architectural footprint, so its precise role/internal divisions and all floor/vertical/slope/bay/finish/grade details are explicitly estimated. Whole intrinsic dam/intake/powerhouse/spillways included. Detached substation, transmission lines, wider industrial site/buildings, river/reservoir, former falls and interiors excluded as separate objects. No imagery used or photographic fidelity claimed.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2019-07-26",
+    "validFrom": "2019-07-26",
+    "validUntil": "2020-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "bujagali-hydroelectric-power-station-wp",
+      "url": "https://qualla.com/bujagali-hydroelectric-power-station/"
+    }
+  ],
+  "referenceInputHash": "sha256:649e77ff58189684420bd3728c5f8d427bd5e29bdd113cc3a3c4f609a5d041a0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s8/s8p/bujagali_hydroelectric_power_station/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/s8/s8p/bujagali_hydroelectric_power_station/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "crown": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.25
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.3
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_basalt_raw",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 10000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original full native dam/crest/plant/weir frame and2048m source field frozen first. Nominal30m composite sections/three earthfill intervals/full open-air five-unit powerhouse/intake/main2radial+1flap gate and emergency siphon spillway fixed before authoring. Crest7.55m local, slopes, floors/functional partitions/vertical details and grade explicitly estimated; original field/frame/floors/main sections immutable during render review.",
+    "anchor": [
+      33.139190400000004,
+      0.49843885
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        33.139190400000004,
+        0.49843885
+      ],
+      "modelHeight": 0,
+      "basis": "Midpoint of original full crest-route endpoints fixed before independent field and any floor/main sections/geometry. Provider-relative datum, not surveyed crest/concrete foundation or reservoir stage."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/9845511",
+      "way/377974430",
+      "way/747872646",
+      "way/747872647",
+      "way/747872648",
+      "way/747872649",
+      "way/747872650",
+      "way/707955129"
+    ],
+    "source": "https://www.openstreetmap.org/relation/9845511",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ce165941400b8f5aaf96969fe360b7fd06de5bd862385b5f0dedd61ed5e3c730",
+    "notes": "Whole physical Bujagali dam and integral open-air powerhouse/intake: complete original49control main dam boundary, full connected11control/~899m crest route, five-unit169x39m named plant envelope, main gated spillway/weir and emergency siphon spillway. Primary construction designers/engineer/contractor describe30m clay-core rockfill and concrete gravity sections, three rockfill sections, two radial/one flap main gates, emergency spillway, five Kaplan units, integral intake and explicitly open-air powerhouse inside dam body. No generic roofed industrial shed or bare embankment proxy. Exact native outer body/route and narrow plant envelope retained; the latter is taggedpower=plant, not a surveyed architectural footprint, so its precise role/internal divisions and all floor/vertical/slope/bay/finish/grade details are explicitly estimated. Whole intrinsic dam/intake/powerhouse/spillways included. Detached substation, transmission lines, wider industrial site/buildings, river/reservoir, former falls and interiors excluded as separate objects. No imagery used or photographic fidelity claimed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole physical Bujagali dam and integral open-air powerhouse/intake: complete original49control main dam boundary, full connected11control/~899m crest route, five-unit169x39m named plant envelope, main gated spillway/weir and emergency siphon spillway. Primary construction designers/engineer/contractor describe30m clay-core rockfill and concrete gravity sections, three rockfill sections, two radial/one flap main gates, emergency spillway, five Kaplan units, integral intake and explicitly open-air powerhouse inside dam body. No generic roofed industrial shed or bare embankment proxy. Exact native outer body/route and narrow plant envelope retained; the latter is taggedpower=plant, not a surveyed architectural footprint, so its precise role/internal divisions and all floor/vertical/slope/bay/finish/grade details are explicitly estimated. Whole intrinsic dam/intake/powerhouse/spillways included. Detached substation, transmission lines, wider industrial site/buildings, river/reservoir, former falls and interiors excluded as separate objects. No imagery used or photographic fidelity claimed.",
+    "Primary construction-designer text explicitly identifies an open-air powerhouse inside the dam body, five Kaplan units,30m clay-core rockfill dam and approximately560m earthfill crest. Engineer confirms30m concrete/rockfill, main spillway with two radial/oneflap gate, emergency spillway and about22m gross head. Builder reports overall900m dam, three clay-core rockfill sections and siphon spillway. Native full crest measures about899m; original paths are not stretched to the rounded project length.",
+    "All49native dam-body boundary controls,11connected crest controls, four narrow169x39m plant controls and twoweir controls fixed as original plan evidence. The native waterway=dam polygon does not certify a surveyed toe or crown edge; its edge role remains uncertain. The model uses exact crest route and whole mapped plant as the main horizontal controls, with estimated three earthfill functional intervals,10m crown,2.2H:1V side slopes, gravity-block edge interpretation and gate/emergency partitions. Native body ring is retained for plan/context, not falsely certified as a measured30m-deep toe footprint.",
+    "CrestY7.55m above original1107.9509m provider anchor is an explicit elevation estimate, not a surveyed absolute1115.5m level. Nominal30m dam height and22m gross-head proxy place an estimated lower working floor. Powerhouse floor, submerged foundation, wall/rail/crane heights, five open unit bays, turbine/closure covers, intake partitions, two stored wheel gates, main3gate sections,80m emergency-siphon housing/fourcells and all detailed finish are estimates. No source engineering drawing traced; designer L19m spillway statement is not treated as a certified individual opening width.",
+    "Full combined physical dam/intake/open-air powerhouse and both spillways retained. Three rockfill sections run along the exact original crest; native plan functional cut positions are estimates. Open-air powerhouse has complete unit trench/basement exterior, integral intake, service zone and a supported crane/gantry; no invented enclosing shed roof. Scientific/internal turbine operation, detached substation/switchyard/transmission lines/buildings and surrounding river/reservoir/former falls excluded as separate objects.",
+    "Original independent2048m/16641height source field and nine raw tiles frozen before all floor/main sections. Original source includes a severe low river/DEM artifact near495.56m against the1107.95m anchor and coarse crest/plant offsets. The field is preserved with no mask/flatten/cutout/reacquisition or visual refit. Terrain can obscure parts of lower works; provider grade/vertical registration unverified. Approximate dated2019placement only, no surveyed ground contact or automatic current-world replacement.",
+    "All photographs/figures/drawings unused. Qualla-first clear PDpre-dam falls/CC0rafting sources do not show the plant. Direct primary construction text facts used; no imagery license, photographic fidelity or precise2019configuration/2026condition certification claimed.",
+    "Gates use an estimated raised static equipment pose so the full panel/hoist forms are readable; no operating state or hydrological flow is certified. Original upstream and downstream chute floor heights and all frozen dam/foundation/crest/powerhouse parameters remain unchanged. Closed crest deck and local support piers are structural details. Emergency outlet alignment is estimated, including a buried conduit segment through the embankment."
+  ],
+  "sourceLicense": "Original procedural whole composite dam/open-air powerhouse/spillways under repository license. Exact native full crest/dam/plant/weir data under ODbL; primary construction text facts only. No source photo/plan/figure pixels, borrowed meshes or textures used; Qualla searched first, all imagery unused/unrepaired. Functional partitions/edge roles/vertical sections/grade/finish are explicit estimates. Original provider field and severe distant DEM artifact preserved. No photographic/survey or current-world replacement certification.",
+  "qaLodCameras": [
+    {
+      "name": "whole-bujagali-skyline",
+      "position": [
+        710,
+        500,
+        790
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-bujagali-district",
+      "position": [
+        710,
+        500,
+        790
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-bujagali-street",
+      "position": [
+        710,
+        500,
+        790
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-bujagali-closeup",
+      "position": [
+        710,
+        500,
+        790
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-composite-dam-and-full-native-crest",
+      "position": [
+        710,
+        500,
+        790
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "complete-open-air-five-unit-powerhouse-intake-and-crane",
+      "position": [
+        -164.18897093090249,
+        135,
+        166.3928224007974
+      ],
+      "lookAt": [
+        -224.18897093090249,
+        -4,
+        21.3928224007974
+      ]
+    },
+    {
+      "name": "whole-main-three-gate-spillway-and-chutes",
+      "position": [
+        166.97283731858596,
+        75,
+        -62.99882014072864
+      ],
+      "lookAt": [
+        66.97283731858597,
+        -2,
+        72.00117985927136
+      ]
+    },
+    {
+      "name": "emergency-siphon-and-eastern-rockfill-sections",
+      "position": [
+        429.9337184165199,
+        95,
+        -97.73169019731569
+      ],
+      "lookAt": [
+        284.9337184165199,
+        -2,
+        57.268309802684314
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5538,
+    "vertices": 16614,
+    "materials": 5,
+    "bytes": 824696,
+    "sha256": "sha256:0bba5fbf5b74c4b8028dcd1f820ba88669e17c106887a7291aa8551d989991c3"
+  }
+}

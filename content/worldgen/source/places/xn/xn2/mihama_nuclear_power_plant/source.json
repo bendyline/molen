@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mihama_nuclear_power_plant",
+  "kind": "static-structure",
+  "title": "Mihama nuclear power plant — whole three-unit mapped layout",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mihama_nuclear_power_plant",
+        "output": "assets/places/xn/xn2/mihama_nuclear_power_plant/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:1f5e61856bfef29d8a0f78a4206c551ddedc6c0ee4ce7682ef4afbd90f39ef57"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-structural-facts.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "reference-rights/doe-architecture-native.json",
+      "reference-rights/doe-original-primary.html",
+      "native-map/complete-original-campus.json",
+      "native-map/whole-native-buildings.json",
+      "native-map/plant-identity.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-28759-12900.png",
+      "terrain-sources/terrarium-15-28759-12901.png",
+      "terrain-sources/terrarium-15-28760-12900.png",
+      "terrain-sources/terrarium-15-28760-12901.png",
+      "import-report.json",
+      "geometry-review.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json"
+    ]
+  }
+}

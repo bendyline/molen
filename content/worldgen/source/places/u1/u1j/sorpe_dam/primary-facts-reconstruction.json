@@ -1,0 +1,57 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "sorpe-owner-engineering-and-cascade-2022",
+  "model": "sorpe_dam",
+  "structureId": "QS-12da7027657b",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "technical",
+      "url": "https://ruhrverband.de/flussgebiet/talsperren/sorpetalsperre/technische-daten-sorpetalsperre",
+      "path": "reference-rights/owner-technical-table.txt",
+      "retrieval": "actual-cached-web-open-text",
+      "sha256": "sha256:cc43434b41cb4dda5a346cda89d7cb5ca7bf49901596686d912789922624cf7c",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-10-29"
+    },
+    {
+      "key": "cascade",
+      "url": "https://ruhrverband.de/fileadmin/noindex/Gesch%C3%A4ftsbericht_2022.pdf",
+      "path": "reference-rights/owner-cascade-description.txt",
+      "retrieval": "actual-cached-web-search-pdf-text-original-url-now404",
+      "sha256": "sha256:3ec59249a950f0bfbd9bf7eebf6ed619fed9559d69ca73488960f6dea8b89747",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-10-29"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/dam-crest-and-cascade.json",
+    "sha256": "sha256:4c7437b1253c730d33aa12ddf34bcf7dbd609ce95311098a4c3fe591e71410ef",
+    "ways": [
+      25819413,
+      316663481,
+      316663483,
+      323041180,
+      121161717,
+      323041181
+    ],
+    "wikidata": "Q32744446"
+  },
+  "quallaFirst": {
+    "families": 39,
+    "inventoryHash": "sha256:fee3405cb1c2425e66ee8d7e0d100be937cb6d2a9a649e5a9a70879cf5b5efa5",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Primary owner technical table gives69m above deepest core foundation,60m above valley,307m greatest foot width,700m crest/10m crestwidth and rockfill/concrete-core/clay construction. Original crest path is696.81m; native controls preserved without stretching to approximate700m. Original dam polygon maps exposed land-side area; underwater upstream outline and changing abutment sections are estimated, not native measurements.",
+    "Owner2022annual-report cached search extraction specifies37masonry stepped basins,66m drop, approximately350m curved length,6–18m basin lengths and3–7m channel widths. Exact step census retained with declared division, wall-height and fitting estimates. Original open mapped channel356m retained; published approximate length not forced. Short buried intake link recorded, internal tunnel profile not shown.",
+    "Approximate285m crest absolute level is a visualization estimate, informed by local nature-park published285mNN and owner283.03mNHN reservoir level; source-provider, NN andNHN datum relation is not certified. Terrain has large canopy/coarse-DEM offsets along the thin crest. Original field stays unchanged even where it buries model surfaces. No terrain fitting/masks/cutouts/re-acquisition or surveyed ground-contact claim.",
+    "Full physical dam and connected spillway retained. Detached powerhouse/service buildings, distant foredam and reservoir/forest landscape are separate structures excluded. Surface finish, submerged profile, minor fittings, basin partition lengths, abutment taper and section variation are explicitly estimated; no photographs/figures/drawings used and no photographic fidelity claimed."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-10-29",
+    "notes": "Full native dam/crest/connected cascade specified by independent owner numeric dimensions and construction/cascade census. Explicit submerged/abutment/grade/fitting/finish estimates, no photo/figure/drawing used or photographic approval."
+  }
+}

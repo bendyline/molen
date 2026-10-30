@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ducor_hotel",
+  "kind": "static-structure",
+  "title": "Ducor Hotel — complete historical concrete ruin",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ducor_hotel",
+        "output": "assets/places/ec/ec0/ducor_hotel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5cf2ca1afb81db46c1201a5b57276109c40ffaeae4acf6f68c19c0c2c9bad267"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-hotel-footprint.json",
+      "native-map/original-map-tile.mvt",
+      "native-map/published-hotel-identity.json",
+      "reference-rights/eyewitness-fuad.txt",
+      "reference-rights/eyewitness-mccready.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-15399-15807.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json"
+    ]
+  }
+}

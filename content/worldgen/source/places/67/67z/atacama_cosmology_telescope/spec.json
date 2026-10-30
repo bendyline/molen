@@ -1,0 +1,383 @@
+{
+  "planId": "atacama_cosmology_telescope",
+  "id": "atacama_cosmology_telescope",
+  "assetId": "molen.worldgen.structure.atacama_cosmology_telescope",
+  "title": "Atacama Cosmology Telescope — Cerro Toco",
+  "wikidataId": "Q753067",
+  "category": "observatory",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -67.787786775,
+    "latitude": -22.958548587499997
+  },
+  "size": [
+    46.099666595458984,
+    18.647064685821533,
+    36.56118965148926
+  ],
+  "actualBounds": {
+    "min": [
+      -21.2028865814209,
+      -5.212064266204834,
+      -16.38138771057129
+    ],
+    "max": [
+      24.896780014038086,
+      13.4350004196167,
+      20.17980194091797
+    ]
+  },
+  "visualBrief": "Whole Atacama Cosmology Telescope instrument and its enclosing stationary ground screen: original eight-control ACT envelope, complete13m outer screen enclosure with no roof, full12m off-axis Gregorian telescope/mount,6m primary plus0.5m guard ring,2m secondary, connecting co-moving inner ground-screen sides, climate-controlled receiver cabin and integral service access. Primary instrument publication specifies heights/mirror sizes/71and11optical panels, and designer paper Table2/Equation1 specifies off-axis conic mirror shapes. Native envelope is exact horizontal context, its role as upper screen edge and all wall taper/profile, mount/cabin/support dimensions/bearings/panel arrangement/finish and static50.5degree pose are explicit reconstruction estimates. Optics and surrounding screen remain complete; not a generic dish or single facade. Nearby Simons/POLARBEAR, detached service containers, generators, fuel tank, landuse parcel, scientific sky maps and interiors are separate excluded objects. No imagery used or photographic fidelity/optical accuracy claimed.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2011-01-01",
+    "validFrom": "2011-01-01",
+    "validUntil": "2012-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "atacama-cosmology-telescope-wp",
+      "url": "https://qualla.com/atacama-cosmology-telescope/"
+    }
+  ],
+  "referenceInputHash": "sha256:6a4e31e6fbcc0aab777849cdfd39cd4f68b6855dab58ecc6aa6529ba3681da2b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/67/67z/atacama_cosmology_telescope/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/67/67z/atacama_cosmology_telescope/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.25,
+    "surfaces": {
+      "screen": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.28
+      },
+      "mirror": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.24,
+        "metallic": 0.72
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.35
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "screen": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.28
+          },
+          "mirror": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.24,
+            "metallic": 0.72
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "screen": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.28
+          },
+          "mirror": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.24,
+            "metallic": 0.72
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "screen": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.28
+          },
+          "mirror": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.24,
+            "metallic": 0.72
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original native eight-control ACT enclosure and independent source field fixed before floor/sections. Exact primary conic numerical optics and12/13m heights/3.3m cabinwidth bound the full instrument/two screens. Internal pose/registration, screen profile, mount/cabin/support sections/fittings/finish estimated; original field/frame/floor/sections immutable during review.",
+    "anchor": [
+      -67.787786775,
+      -22.958548587499997
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -67.787786775,
+        -22.958548587499997
+      ],
+      "modelHeight": 0,
+      "basis": "Original eight-control enclosure centroid fixed before independent source elevation field and main sections; provider-relative approximate base datum, not surveyed optical or foundation altitude."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/88742220"
+    ],
+    "source": "https://www.openstreetmap.org/way/88742220",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c2a223f20590bb6bcfa0ad65cd4a3e6009f3ca4bb8f3cc7a784548cc6c3acc17",
+    "notes": "Whole Atacama Cosmology Telescope instrument and its enclosing stationary ground screen: original eight-control ACT envelope, complete13m outer screen enclosure with no roof, full12m off-axis Gregorian telescope/mount,6m primary plus0.5m guard ring,2m secondary, connecting co-moving inner ground-screen sides, climate-controlled receiver cabin and integral service access. Primary instrument publication specifies heights/mirror sizes/71and11optical panels, and designer paper Table2/Equation1 specifies off-axis conic mirror shapes. Native envelope is exact horizontal context, its role as upper screen edge and all wall taper/profile, mount/cabin/support dimensions/bearings/panel arrangement/finish and static50.5degree pose are explicit reconstruction estimates. Optics and surrounding screen remain complete; not a generic dish or single facade. Nearby Simons/POLARBEAR, detached service containers, generators, fuel tank, landuse parcel, scientific sky maps and interiors are separate excluded objects. No imagery used or photographic fidelity/optical accuracy claimed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole Atacama Cosmology Telescope instrument and its enclosing stationary ground screen: original eight-control ACT envelope, complete13m outer screen enclosure with no roof, full12m off-axis Gregorian telescope/mount,6m primary plus0.5m guard ring,2m secondary, connecting co-moving inner ground-screen sides, climate-controlled receiver cabin and integral service access. Primary instrument publication specifies heights/mirror sizes/71and11optical panels, and designer paper Table2/Equation1 specifies off-axis conic mirror shapes. Native envelope is exact horizontal context, its role as upper screen edge and all wall taper/profile, mount/cabin/support dimensions/bearings/panel arrangement/finish and static50.5degree pose are explicit reconstruction estimates. Optics and surrounding screen remain complete; not a generic dish or single facade. Nearby Simons/POLARBEAR, detached service containers, generators, fuel tank, landuse parcel, scientific sky maps and interiors are separate excluded objects. No imagery used or photographic fidelity/optical accuracy claimed.",
+    "Instrument publication Table1 gives12m telescope,13m ground screen,6m primary and2m secondary/71and11panels; its text gives receiver-cabin width3.3m. Designer Table2/Equation1 gives both off-axis ellipsoidal mirror patches; these numerical conic surfaces are modeled directly, with tessellation and unspecified panel seams estimated. Guard-ring width0.5m is textual. Neither source figure/drawing nor any photographic pixels are used. No optical metrology or instrument operability claimed.",
+    "Original exact eight-control native enclosure is interpreted as the upper stationary-screen envelope. Whether each mapped edge coincides with the screen itself versus access enclosure is not surveyed. Lower wall taper, edge roles, screen-panel profiles/bearings, base/access details, structural member count, rotating mount geometry and receiver height/depth are bounded estimates. Full screen and full telescope with connecting inner side baffles/cabin remain present, not a generic dish or isolated facade.",
+    "Native ring and original128m/16641height field fixed before this floor and main sections. Provider-relative floor0.35m, upper screen13.35m, bottom edge control samples follow original source field; panel bottom inset grade samples remain approximate. Full telescope12m height fixes optical assembly translation without rescaling its six-metre mirror. Nominal50.5degree observing pose is a static illustrative reconstruction; internal bearing/installation centre are estimates. Published5190m altitude and rounded coordinates are not used to vertically refit the original provider field.",
+    "Receiver width3.3m is reported; cabin5m depth/2.65m height, foundation/pad/mount/supports, lower enclosure taper, service access, guard ring profile, shield shapes and silver/white paint/age are estimates. Exact panel boundaries, optical finish, cables, actuators, original text/artwork and figure graphics not copied. Detached service containers/generators/fuel tank, wider landuse parcel and nearby Simons Array/POLARBEAR excluded as separate objects.",
+    "Approximate historical2011preview from primary design/instrument facts, no exact2011configuration or current2026condition proof. Original coarse DEM relief/contact uncertainty explicit, no field/frame/floor/main-section refit, mask, flattening, cutout or re-acquisition. No photographic fidelity or automatic current-world replacement."
+  ],
+  "sourceLicense": "Original procedural full instrument/enclosure geometry under repository license; exact native eight-control ACT enclosure under ODbL. Primary numerical/descriptive instrument and optical-design facts only. No source figures, drawings, photos, texture pixels or borrowed meshes; NASA hosting does not imply public-domain source figures. Qualla first, every image unused/unrepaired. Pose, vertical screen profile/assembly/support/cabin/finish estimates explicit, no photographic/survey/metrological fidelity.",
+  "qaLodCameras": [
+    {
+      "name": "whole-act-skyline",
+      "position": [
+        47,
+        37,
+        49
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-act-district",
+      "position": [
+        47,
+        37,
+        49
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-act-street",
+      "position": [
+        47,
+        37,
+        49
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-act-closeup",
+      "position": [
+        47,
+        37,
+        49
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-enclosure-and-complete-gregorian-instrument",
+      "position": [
+        47,
+        37,
+        49
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "whole-open-screen-and-both-mirrors-from-above",
+      "position": [
+        18,
+        39,
+        23
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "off-axis-mirrors-inner-screens-receiver-and-mount",
+      "position": [
+        8,
+        13,
+        13
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "whole-rear-ground-screen-and-native-eight-control-envelope",
+      "position": [
+        -43,
+        33,
+        -48
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19200,
+    "vertices": 57600,
+    "materials": 4,
+    "bytes": 2372404,
+    "sha256": "sha256:4f544e8ee30c06b962f457022af928ecec09a1940aff5c95fc4ad7818f7263ea"
+  }
+}

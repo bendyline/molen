@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.edward_j_roye_building",
+  "kind": "static-structure",
+  "title": "Edward J. Roye Building — whole tower and tiered podium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.edward_j_roye_building",
+        "output": "assets/places/ec/ec0/edward_j_roye_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3a8437491e2ee215a048490174acb658d2d3000966e7f5adb4fb69865484b88d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-whole-building.json",
+      "native-map/original-map-tile.mvt",
+      "native-map/published-building-identity.json",
+      "native-map/original-identity-tags-response.json",
+      "reference-rights/hoffman-original-preface.txt",
+      "reference-rights/hoffman-transmitted-construction.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-15400-15807.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.qingdao_observatory",
+  "kind": "static-structure",
+  "title": "Qingdao Imperial Observatory — original office and tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.qingdao_observatory",
+        "output": "assets/places/ww/wwm/qingdao_observatory/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:dcfee6dc9ea7f6644bbd4249fa034a367b323d394c56af496465380f58c4c6c5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-office-footprint.json",
+      "native-map/original-map-tile.mvt",
+      "native-map/published-observatory-identity.json",
+      "reference-rights/official-municipal-construction.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-27335-12859.png",
+      "terrain-sources/terrarium-15-27336-12859.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json"
+    ]
+  }
+}

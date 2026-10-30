@@ -9,6 +9,11 @@ export function structureCatalogEntries(candidates, collections) {
 }
 
 export function structureCatalogMatches(structure, entries, modelIdentity) {
+  const wikidataIds = new Set(
+    [structure.wikidataId, structure.wikidata, structure.mappedIdentity?.wikidataId].filter(
+      (id) => typeof id === 'string' && /^Q\d+$/.test(id),
+    ),
+  );
   const identities = new Set(
     [
       modelIdentity,
@@ -16,6 +21,7 @@ export function structureCatalogMatches(structure, entries, modelIdentity) {
     ].filter(Boolean),
   );
   return entries.filter((entry) => {
+    if (wikidataIds.has(entry.wikidataId)) return true;
     if (identities.has(entry.id) || (entry.assetId && identities.has(entry.assetId))) return true;
     // Also catch an exact-name addition to the list since the last full story scan.
     if (normalize(entry.title) !== normalize(structure.name) || !structure.coordinate) return false;
