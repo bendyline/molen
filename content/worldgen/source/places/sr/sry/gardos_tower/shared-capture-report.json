@@ -5,10 +5,11 @@
   "sourceHash": "sha256:4774ac5b48150ea0f71b6a2d615af1a0498ac2bc9763e810fd1427c4c65fd302",
   "runtimeHash": "sha256:ef5e14c43c8f59e9e995cbc19ceba6f7b97e80759d43e7653bcacb2b84508a20",
   "reviewGroundY": 0,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
   "footprintEvidenceHash": "sha256:cc823d2f981fd50c36c1a2501457065c25b04c8e9c51e53f50fc047b237e3be1",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
   "placementHash": "sha256:6032dfd9053eece50e23af098fcd9e341969a7118bbda40e9073eaf6b2276bee",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
@@ -25,40 +26,42 @@
     },
     "matgraph:molen.worldgen.material.window_grid": {
       "path": "materials/window_grid.matgraph.json",
-      "hash": "sha256:be487d8aaf9268a0dd9682d3dd86bfb960e24a92a2dc288c117610c335aa3b85"
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:da963d6d23f315c9c33d505cf0ec8459229dfeff886289b5cba1b33e19051dbd",
+      "hash": "sha256:1b580c74436ef340b858e04454e250d6a29998145c2174d05b47249ff06930f6",
       "camera": {
         "name": "angle-0",
-        "angle": 0.6,
-        "position": [
-          47.638602521285584,
-          43.49966987895965,
-          70.07471739481107
-        ],
-        "lookAt": [
-          -0.5335931777954102,
-          17.90531700849533,
-          -0.33838582038879395
-        ]
+        "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.gardos_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "gardos.tower",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 5,
         "triangles": 4011,
         "bounds": {
+          "min": [
+            -6.0858306884765625,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018646240234375,
+            36.61463928222656,
+            5.473320007324219
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -6.085831642150879,
             -0.8040052652359009,
@@ -72,24 +75,43 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "10861c35-3ca4-4457-85e9-744ab80b27d1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9285d291-934c-48b5-aa03-574613143511",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "6af8ad66-3bea-4a03-949a-4677c8b64f91",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "4d3c5081-7bdc-4d46-a67c-9b2a3c8f00a2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "74e80097-fba6-4ab8-8680-b259b2a0ee12",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e0b90b5e-f4bb-4a16-9261-eca83f0f1f98",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.gardos_tower"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          20.408926495786588,
+          44.84774113934894,
+          20.410548332213413,
+          44.84889098291261
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "gardos.tower",
+            "coordinate": [
+              20.409737414,
+              44.848316064
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "gardos.tower"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.stone_sandstone_raw": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
         "draws": 6,
         "renderedTriangles": 4013
@@ -97,34 +119,36 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:9bbd06fed8bcdaa36288cf2d24f10f8773408d5ddcc85756f152a770ce9d5dd2",
+      "hash": "sha256:5c38f077891d81f5ac771dbecd2dd30ae1bc7a5e4a85c4d75173015735f19edc",
       "camera": {
         "name": "angle-1",
-        "angle": 2.1707963267948966,
-        "position": [
-          69.87951003740446,
-          43.49966987895965,
-          -48.51058151946979
-        ],
-        "lookAt": [
-          -0.5335931777954102,
-          17.90531700849533,
-          -0.33838582038879395
-        ]
+        "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.gardos_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "gardos.tower",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 5,
         "triangles": 4011,
         "bounds": {
+          "min": [
+            -6.0858306884765625,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018646240234375,
+            36.61463928222656,
+            5.473320007324219
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -6.085831642150879,
             -0.8040052652359009,
@@ -138,24 +162,43 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "10861c35-3ca4-4457-85e9-744ab80b27d1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9285d291-934c-48b5-aa03-574613143511",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "6af8ad66-3bea-4a03-949a-4677c8b64f91",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "4d3c5081-7bdc-4d46-a67c-9b2a3c8f00a2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "74e80097-fba6-4ab8-8680-b259b2a0ee12",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e0b90b5e-f4bb-4a16-9261-eca83f0f1f98",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.gardos_tower"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          20.408926495786588,
+          44.84774113934894,
+          20.410548332213413,
+          44.84889098291261
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "gardos.tower",
+            "coordinate": [
+              20.409737414,
+              44.848316064
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "gardos.tower"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.stone_sandstone_raw": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
         "draws": 6,
         "renderedTriangles": 4013
@@ -163,34 +206,36 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:fb013142bc2a3306aba8ec3f5c36b506b0ceb7db6ce5f75a93a7c9b2717096d7",
+      "hash": "sha256:6a4b0a71b05c32ee910a82346dc2714bde29f43c405b26e28605c98e0fccbaed",
       "camera": {
         "name": "angle-2",
-        "angle": 3.741592653589793,
-        "position": [
-          -48.705788876876404,
-          43.49966987895965,
-          -70.75148903558866
-        ],
-        "lookAt": [
-          -0.5335931777954102,
-          17.90531700849533,
-          -0.33838582038879395
-        ]
+        "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.gardos_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "gardos.tower",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 5,
         "triangles": 4011,
         "bounds": {
+          "min": [
+            -6.0858306884765625,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018646240234375,
+            36.61463928222656,
+            5.473320007324219
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -6.085831642150879,
             -0.8040052652359009,
@@ -204,24 +249,43 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "10861c35-3ca4-4457-85e9-744ab80b27d1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9285d291-934c-48b5-aa03-574613143511",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "6af8ad66-3bea-4a03-949a-4677c8b64f91",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "4d3c5081-7bdc-4d46-a67c-9b2a3c8f00a2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "74e80097-fba6-4ab8-8680-b259b2a0ee12",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e0b90b5e-f4bb-4a16-9261-eca83f0f1f98",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.gardos_tower"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          20.408926495786588,
+          44.84774113934894,
+          20.410548332213413,
+          44.84889098291261
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "gardos.tower",
+            "coordinate": [
+              20.409737414,
+              44.848316064
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "gardos.tower"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.stone_sandstone_raw": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
         "draws": 6,
         "renderedTriangles": 4013
@@ -229,34 +293,36 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:c7a875b629a20a8be6af81300f8fbf4201e74b2683c955f548e0287071c3531e",
+      "hash": "sha256:5dd62d52d6620bcfc354a74e43a265b7e9133c6dad19c2f1d3209ead7e4e4c43",
       "camera": {
         "name": "angle-3",
-        "angle": 5.312388980384689,
-        "position": [
-          -70.9466963929953,
-          43.49966987895965,
-          47.83380987869216
-        ],
-        "lookAt": [
-          -0.5335931777954102,
-          17.90531700849533,
-          -0.33838582038879395
-        ]
+        "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.gardos_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "gardos.tower",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 5,
         "triangles": 4011,
         "bounds": {
+          "min": [
+            -6.0858306884765625,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018646240234375,
+            36.61463928222656,
+            5.473320007324219
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -6.085831642150879,
             -0.8040052652359009,
@@ -270,24 +336,43 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "10861c35-3ca4-4457-85e9-744ab80b27d1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9285d291-934c-48b5-aa03-574613143511",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "6af8ad66-3bea-4a03-949a-4677c8b64f91",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "4d3c5081-7bdc-4d46-a67c-9b2a3c8f00a2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "74e80097-fba6-4ab8-8680-b259b2a0ee12",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e0b90b5e-f4bb-4a16-9261-eca83f0f1f98",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.gardos_tower"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          20.408926495786588,
+          44.84774113934894,
+          20.410548332213413,
+          44.84889098291261
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "gardos.tower",
+            "coordinate": [
+              20.409737414,
+              44.848316064
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "gardos.tower"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.stone_sandstone_raw": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
         "draws": 6,
         "renderedTriangles": 4013
@@ -295,7 +380,7 @@
     },
     {
       "path": "shots/shared/front-entry-loggia-and-two-capped-turrets.png",
-      "hash": "sha256:a52494786952a00ff52afbf2b2e3e19f5a4b420174ac899b8e70c360eb90fea7",
+      "hash": "sha256:03084e4cdf712517bfdf936318d3ef99cad8e211d5bbca3bc7ad8e0f9d6ae09e",
       "camera": {
         "name": "front-entry-loggia-and-two-capped-turrets",
         "position": [
@@ -312,17 +397,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.gardos_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "gardos.tower",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 5,
         "triangles": 4011,
         "bounds": {
+          "min": [
+            -6.0858306884765625,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018646240234375,
+            36.61463928222656,
+            5.473320007324219
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -6.085831642150879,
             -0.8040052652359009,
@@ -336,24 +433,43 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "10861c35-3ca4-4457-85e9-744ab80b27d1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9285d291-934c-48b5-aa03-574613143511",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "6af8ad66-3bea-4a03-949a-4677c8b64f91",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "4d3c5081-7bdc-4d46-a67c-9b2a3c8f00a2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "74e80097-fba6-4ab8-8680-b259b2a0ee12",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e0b90b5e-f4bb-4a16-9261-eca83f0f1f98",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.gardos_tower"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          20.408926495786588,
+          44.84774113934894,
+          20.410548332213413,
+          44.84889098291261
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "gardos.tower",
+            "coordinate": [
+              20.409737414,
+              44.848316064
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "gardos.tower"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.stone_sandstone_raw": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
         "draws": 6,
         "renderedTriangles": 4013
@@ -361,7 +477,7 @@
     },
     {
       "path": "shots/shared/curved-gallery-columns-open-spaces-and-closed-shaft.png",
-      "hash": "sha256:a8a27be5773db0dd1eae4c5062ee8281b1c7e23516f2466e388366b7a7d992b7",
+      "hash": "sha256:9c1300ce60176f551f2b8cfa9e5763ec7d6d2ee21d342096cc53c15584f55060",
       "camera": {
         "name": "curved-gallery-columns-open-spaces-and-closed-shaft",
         "position": [
@@ -378,17 +494,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.gardos_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "gardos.tower",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 5,
         "triangles": 4011,
         "bounds": {
+          "min": [
+            -6.0858306884765625,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018646240234375,
+            36.61463928222656,
+            5.473320007324219
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -6.085831642150879,
             -0.8040052652359009,
@@ -402,24 +530,43 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "10861c35-3ca4-4457-85e9-744ab80b27d1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9285d291-934c-48b5-aa03-574613143511",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "6af8ad66-3bea-4a03-949a-4677c8b64f91",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "4d3c5081-7bdc-4d46-a67c-9b2a3c8f00a2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "74e80097-fba6-4ab8-8680-b259b2a0ee12",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e0b90b5e-f4bb-4a16-9261-eca83f0f1f98",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.gardos_tower"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          20.408926495786588,
+          44.84774113934894,
+          20.410548332213413,
+          44.84889098291261
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "gardos.tower",
+            "coordinate": [
+              20.409737414,
+              44.848316064
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "gardos.tower"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.stone_sandstone_raw": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
         "draws": 6,
         "renderedTriangles": 4013
@@ -427,7 +574,7 @@
     },
     {
       "path": "shots/shared/arched-upper-glazing-cornice-steep-roof-and-finial.png",
-      "hash": "sha256:1fee687703fdf11735dc0bfce256af1f7981ad4a361d39703b3064f170a844e1",
+      "hash": "sha256:8b13bb89bd61258cd660f92ca11da98d823fb26a686f6dae2a759f8703de6f3e",
       "camera": {
         "name": "arched-upper-glazing-cornice-steep-roof-and-finial",
         "position": [
@@ -444,17 +591,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.gardos_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "gardos.tower",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 5,
         "triangles": 4011,
         "bounds": {
+          "min": [
+            -6.0858306884765625,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018646240234375,
+            36.61463928222656,
+            5.473320007324219
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -6.085831642150879,
             -0.8040052652359009,
@@ -468,26 +627,132 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "10861c35-3ca4-4457-85e9-744ab80b27d1",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "9285d291-934c-48b5-aa03-574613143511",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "6af8ad66-3bea-4a03-949a-4677c8b64f91",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "4d3c5081-7bdc-4d46-a67c-9b2a3c8f00a2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "74e80097-fba6-4ab8-8680-b259b2a0ee12",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e0b90b5e-f4bb-4a16-9261-eca83f0f1f98",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.gardos_tower"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          20.408926495786588,
+          44.84774113934894,
+          20.410548332213413,
+          44.84889098291261
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "gardos.tower",
+            "coordinate": [
+              20.409737414,
+              44.848316064
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "gardos.tower"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
         "surfaceReads": {
-          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.stone_sandstone_raw": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
         },
         "draws": 6,
+        "renderedTriangles": 4013
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:1173cd484c57c6b339475ef7fe4d5cf70f937371ce12a01eca3839d90d558830",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.gardos_tower",
+        "mode": "geographic-flat-terrain",
+        "placementId": "gardos.tower",
+        "position": [
+          -64,
+          0,
+          -64
+        ],
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 4011,
+        "bounds": {
+          "min": [
+            -6.0858306884765625,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018646240234375,
+            36.61463928222656,
+            5.473320007324219
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -6.085831642150879,
+            -0.8040052652359009,
+            -6.150093078613281
+          ],
+          "max": [
+            5.018645286560059,
+            36.61463928222656,
+            5.473321437835693
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "74e80097-fba6-4ab8-8680-b259b2a0ee12",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "e0b90b5e-f4bb-4a16-9261-eca83f0f1f98",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
+        },
+        "loads": [
+          "molen.worldgen.structure.gardos_tower"
+        ],
+        "selectionBounds": [
+          20.408926495786588,
+          44.84774113934894,
+          20.410548332213413,
+          44.84889098291261
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "gardos.tower",
+            "coordinate": [
+              20.409737414,
+              44.848316064
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "gardos.tower"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1
+        },
+        "draws": 7,
         "renderedTriangles": 4013
       }
     }

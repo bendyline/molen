@@ -1,0 +1,340 @@
+{
+  "id": "seher_cehaja_bridge",
+  "title": "Šeher-Ćehaja Bridge",
+  "wikidataId": "Q13091077",
+  "referenceCoordinate": {
+    "longitude": 18.4340432,
+    "latitude": 43.8586956
+  },
+  "module": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/models/seher-model.mjs",
+  "generator": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/models/generate-seher.mjs",
+  "builder": "buildSeherLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.94
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94
+    },
+    "paving": {
+      "slot": "roof",
+      "graph": "stone_granite",
+      "roughness": 0.96
+    }
+  },
+  "exportLabel": "Molen original Seher Cehaja Bridge",
+  "expectedDraftMasterHash": "sha256:2ad20b86875126e36a00ed0d26d4d81076f72af478f1e13fc7375a2f2f6ea5da",
+  "visualBrief": "Complete four-arch Ottoman stone crossing over the Miljacka: gently crowned narrow paved deck, warm coursed spandrels, pale radial arch stones, three projecting pale cutwaters with grey tapered caps, and solid pale jointed parapets. All browser tiers retain the full crossing.",
+  "nativeAxes": "+X south-southeast toward Alifakovac; -X north-northwest toward City Hall; +Z west-southwest/downstream; -Z east-northeast/upstream.",
+  "sourceFacts": {
+    "identity": "Cached exact-QID way189835884 and current named PMTiles road35184561924716 establish the crossing and signed geographic frame.",
+    "mappedLengthMeters": 40.772,
+    "currentPmtilesAxisLengthMeters": 40.84267,
+    "photoReconstruction": {
+      "halfLength": 20.386,
+      "halfWidth": 2.35,
+      "deckEnd": 3.75,
+      "crown": 0.58,
+      "parapetHeight": 0.88,
+      "parapetThickness": 0.32,
+      "pierXs": [
+        -9.7,
+        0,
+        9.7
+      ],
+      "pierWidth": 1.7,
+      "springY": 0.5,
+      "archThickness": 0.42,
+      "spans": [
+        [
+          -18.9,
+          -10.55,
+          2.62
+        ],
+        [
+          -8.85,
+          -0.85,
+          2.93
+        ],
+        [
+          0.85,
+          8.85,
+          2.93
+        ],
+        [
+          10.55,
+          18.9,
+          2.62
+        ]
+      ]
+    }
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sarajevo_%E2%80%93_%C5%A0eher-%C4%86ehaja_Bridge.jpg",
+      "author": "Julian Nyča",
+      "observedDate": "2012-08-27",
+      "license": "CC-BY-SA-3.0",
+      "use": "Inspected downstream whole side: four visible arch openings, three pale projecting pier noses with grey caps, warm coursed masonry, radial pale voussoirs and jointed pale solid parapets. No photograph pixels or downloaded mesh used."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sarajevo_%C5%A0eher%C4%87ehaja-bridge.jpg",
+      "author": "Unverified; supporting local comparison only",
+      "license": "Unverified; not redistributed",
+      "use": "Inspected closer downstream nose, barrel and parapet appearance. No photo reproduction or texture in source/runtime; identity/proportions rely on attributed primary photo plus map."
+    }
+  ],
+  "limitations": [
+    "Original continuous exterior reconstruction from ordinary photos and PMTiles. The40.772m exact-QID cached crossing axis matches current named PMTiles line35184561924716 within0.09m across its endpoints; this establishes placement, not a surveyed structural length.",
+    "Width4.70m, elliptical arch heights,1.70m piers, paving joints and cutwater sections are explicit photo-based reconstruction controls. Four visible arches and three projecting piers are complete; a historically buried fifth arch, interiors, separate river weir, retaining quays, buildings, graffiti and temporary boards are not modeled.",
+    "The native water plane and coarse terrain come from the ordinary viewer PMTiles/Mapzen pipeline. Their vertical fit and automatically graded footpath connections are approximate visualization, not a surveyed channel datum or navigable accessibility grade. Short0.95m tapering paving wings join the narrower oblique path mouths.",
+    "Skyline has six arch segments, coarse nose facets and continuous parapets; district has twelve and coarse parapet joints; street restores twenty-four and barrel/paving joints; closeup has forty. The detailed source has sixty-four segments and denser barrel joints. All levels retain complete four-span geometry, all three noses, pale parapets and continuous paving.",
+    "Shared256px limestone/limestone-raw/granite graphs only; portable GLBs contain no embedded image. Physical laptop/phone timing is unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "whole-four-arches",
+      "position": [
+        34,
+        14,
+        40
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "four-open-barrels",
+      "position": [
+        0,
+        5,
+        32
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 70
+    },
+    {
+      "name": "stone-cutwater-and-voussoirs",
+      "position": [
+        -6,
+        3.1,
+        8
+      ],
+      "lookAt": [
+        0,
+        1.7,
+        2.5
+      ],
+      "fov": 63
+    },
+    {
+      "name": "paving-and-pale-parapets",
+      "position": [
+        -24,
+        6,
+        1.2
+      ],
+      "lookAt": [
+        1,
+        4,
+        0
+      ],
+      "fov": 62
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/models/seher-model.mjs",
+    "export": "buildSeherSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "paving": {
+        "slot": "roof",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 0.27,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSeherDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "street": {
+        "export": "buildSeherStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.035
+      },
+      "closeup": {
+        "export": "buildSeherCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.014
+      }
+    }
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+    "groundY": 0
+  },
+  "appearance": {
+    "identity": "Four open elliptical stone arches, three projecting cutwaters, gentle deck crown, warm masonry and pale solid parapets.",
+    "master": "Original source-local64-segment arch/barrel model retained separately from the four browser tiers."
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-whole-four-arches",
+      "position": [
+        34,
+        14,
+        40
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-four-open-barrels",
+      "position": [
+        0,
+        5,
+        32
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 70,
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-stone-cutwater-and-voussoirs",
+      "position": [
+        -6,
+        3.1,
+        8
+      ],
+      "lookAt": [
+        0,
+        1.7,
+        2.5
+      ],
+      "fov": 63,
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-paving-and-pale-parapets",
+      "position": [
+        -24,
+        6,
+        1.2
+      ],
+      "lookAt": [
+        1,
+        4,
+        0
+      ],
+      "fov": 62,
+      "reviewLod": "closeup"
+    }
+  ],
+  "sourceDefinitions": []
+}

@@ -1,0 +1,219 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "status": "generation-controls; current acceptance belongs to qa.json",
+  "originMeters": 0.9201589226722717,
+  "gridFrame": "east-south meters",
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "distribution": "local",
+      "sourceUrl": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "attribution": "© OpenStreetMap contributors",
+      "extractHash": "sha256:52d57c545cf72de4ab4445d725d2ca19eb3dcb53f0e5758d88f0577f07e9116e"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": -1000,
+        "max": 9000
+      },
+      "observedHeightRange": [
+        -1.49609375,
+        26.484375
+      ],
+      "attribution": "Mapzen Terrain Tiles; United States 3DEP, GMTED2010, SRTM, ETOPO1 and other national elevation data courtesy of the U.S. Geological Survey and the sources listed in joerd",
+      "extractHash": "sha256:0f7d51f1c594c9676270df034d4301973ea6d71f3e1dbcb86671a1fe9791a449"
+    }
+  },
+  "groundCutout": {
+    "outline": [
+      [
+        -77.3,
+        -30
+      ],
+      [
+        -76.4,
+        -12
+      ],
+      [
+        -75.5,
+        12
+      ],
+      [
+        -80.3,
+        30
+      ],
+      [
+        -75.01018539414112,
+        30
+      ],
+      [
+        -68.08128915547164,
+        12
+      ],
+      [
+        -66.18346915470916,
+        -12
+      ],
+      [
+        -66.12987556734714,
+        -30
+      ]
+    ],
+    "outlines": [
+      [
+        [
+          -77.3,
+          -30
+        ],
+        [
+          -76.4,
+          -12
+        ],
+        [
+          -75.5,
+          12
+        ],
+        [
+          -80.3,
+          30
+        ],
+        [
+          -75.01018539414112,
+          30
+        ],
+        [
+          -68.08128915547164,
+          12
+        ],
+        [
+          -66.18346915470916,
+          -12
+        ],
+        [
+          -66.12987556734714,
+          -30
+        ]
+      ],
+      [
+        [
+          53.88581144764652,
+          -30
+        ],
+        [
+          57.338796894981776,
+          -12
+        ],
+        [
+          61.08563361297543,
+          12
+        ],
+        [
+          58.39249356850474,
+          30
+        ],
+        [
+          80.19999999999999,
+          30
+        ],
+        [
+          79.1,
+          12
+        ],
+        [
+          78.1,
+          -12
+        ],
+        [
+          78.1,
+          -30
+        ]
+      ]
+    ],
+    "minHeight": 1.15,
+    "preservePaving": true,
+    "pavingOutlines": [
+      [
+        [
+          -77.3,
+          -30
+        ],
+        [
+          -76.4,
+          -12
+        ],
+        [
+          -75.5,
+          12
+        ],
+        [
+          -80.3,
+          30
+        ],
+        [
+          -75.01018539414112,
+          30
+        ],
+        [
+          -68.08128915547164,
+          12
+        ],
+        [
+          -66.18346915470916,
+          -12
+        ],
+        [
+          -66.12987556734714,
+          -30
+        ]
+      ],
+      [
+        [
+          53.88581144764652,
+          -30
+        ],
+        [
+          57.338796894981776,
+          -12
+        ],
+        [
+          61.08563361297543,
+          12
+        ],
+        [
+          58.39249356850474,
+          30
+        ],
+        [
+          80.19999999999999,
+          30
+        ],
+        [
+          79.1,
+          12
+        ],
+        [
+          78.1,
+          -12
+        ],
+        [
+          78.1,
+          -30
+        ]
+      ]
+    ],
+    "basis": "Ordinary west-bank photographs show the riverwalk below the first iron arch. Current PMTiles paths and water boundaries bound source-authored quay aprons,ramps and landward retaining faces. Vertical grades and the waterward apron width are approximate; rawDEM,water,outside ground and unrelated roads remain."
+  },
+  "limitations": [
+    "Original static medium-fi reconstruction from ordinary pictures and current PMTiles. Exact-QID footprint is165.001m by16.319m, distinct from the149m catalog length; these records are not conflated. Pier stations, unequal reconstructed bank spans, skew, iron sections, circle radii, lamps and all vertical profiles are visualization controls, not engineering measurements.",
+    "Three open iron spans, hollow graduated circular spandrels, stone cutwaters and pier caps, complete crowned roadway, both raised sidewalks, railings, three-light lamps, solid western abutment and eastern masonry passage are modeled. Close-up tier aggregates internal circles while preserving exterior ones; detailed master retains all seven ribs and their circles.",
+    "Current mapped lower quay routes and water boundaries bound two source-authored paving aprons, transition ramps and landward retaining faces. Coarse native ground would otherwise block the passages. The bounded ground/paving cutout retains raw DEM, water, outside terrain and unrelated map records. Quay floor, steep outer transitions and retaining heights are approximate, not a surveyed reconstruction or accessibility claim.",
+    "Adjacent chapel, restaurant, historic riverside buildings, stairways, street furniture and other unique structures remain outside this bridge asset. Generic neighboring buildings and coarse bank grades remain visible. Lower-quay safety railings and temporary street details are simplified/omitted.",
+    "Four existing shared256px graphs: painted metal, raw limestone, concrete and granite paving, with metric UVs and linear vertex tints; a fifth local marking material. No private or embedded images. Concrete grain approximates roadway. Physical laptop/phone timing remains unmeasured."
+  ]
+}

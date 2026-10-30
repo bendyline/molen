@@ -46,3 +46,10 @@ Commands: targeted generate-additional-landmarks/import-structure-models/generat
 [Francesco Bini (Sailko) — 2023-11-07](https://commons.wikimedia.org/wiki/File:Muscat,_moschea_del_sultano_qaboos,_esterno_01.jpg). CC-BY-SA-4.0; viewed only. Inspected complete 960×587 exterior. Pale coursed stone prayer hall, sparse tall pointed windows, larger recessed pointed entrance fields, simple crenellated parapet, warm dome under cream diagonal lattice, tall stepped pale minaret with narrow dark pointed slits and projecting tier bands. Large free-standing pointed courtyard portal visible. Crowds, inscriptions, fine carving and paving ornament not copied.
 
 [Francesco Bini (Sailko) — 2023-11-06](https://commons.wikimedia.org/wiki/File:Muscat,_moschea_del_sultano_qaboos,_cortile_03_cupola.jpg). CC-BY-SA-4.0; viewed only. Inspected complete 960×640 dome through a pointed courtyard arch. Cream diagonal diamond lattice with vertical ribs stands above warm brown/gold inner dome. Pale stepped parapet has rounded upper merlons; small gold finial/crescent. The model uses coarse original diamond ribbons and simplified merlons; fine carved borders and exact lattice art/crescent are omitted.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.
+
+Current output triangles: 972 / 2322 / 10308 / 23518. Current skyline+district bytes: 333928. Source master: 26946 triangles. These current pinned outputs take precedence over any historical counts above.

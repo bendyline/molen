@@ -1,0 +1,137 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "status": "generation-controls; final acceptance belongs to qa.json",
+  "originMeters": 257.3589782714844,
+  "detailTile": {
+    "address": {
+      "level": 17,
+      "x": 73192,
+      "y": 49876
+    },
+    "size": 236.05657005461086,
+    "sourceMaxLevel": 15,
+    "overzoom": 2,
+    "projection": "normal Mercator world meters",
+    "basis": "Public overzoomTerrainSemanticTile clips normal PMTiles semantics into the actual level17 tile. Heights interpolate the retained standard Mapzen PMTiles grid; no new DEM."
+  },
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "distribution": "local",
+      "sourceUrl": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "attribution": "© OpenStreetMap contributors",
+      "extractHash": "sha256:7124b836e88a945ad30f6be0fe570de9e3d2bcbe86823c4e5eb03ed0508f56db"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": -1000,
+        "max": 9000
+      },
+      "observedHeightRange": [
+        214.53515625,
+        1184.98828125
+      ],
+      "attribution": "Mapzen Terrain Tiles; United States 3DEP, GMTED2010, SRTM, ETOPO1 and other national elevation data courtesy of the U.S. Geological Survey and the sources listed in joerd",
+      "extractHash": "sha256:db8635de4f7917d1b76636024f4116e65702dac4634711426f83f5a2df3afaaa"
+    }
+  },
+  "groundCutout": {
+    "outline": [
+      [
+        -35.7,
+        -6
+      ],
+      [
+        -29.1,
+        -6
+      ],
+      [
+        -29.1,
+        6
+      ],
+      [
+        -35.7,
+        6
+      ]
+    ],
+    "outlines": [
+      [
+        [
+          -35.7,
+          -6
+        ],
+        [
+          -29.1,
+          -6
+        ],
+        [
+          -29.1,
+          6
+        ],
+        [
+          -35.7,
+          6
+        ]
+      ],
+      [
+        [
+          -24.1,
+          -6
+        ],
+        [
+          16.1,
+          -6
+        ],
+        [
+          16.1,
+          6
+        ],
+        [
+          -24.1,
+          6
+        ]
+      ],
+      [
+        [
+          25.8,
+          -6
+        ],
+        [
+          33,
+          -6
+        ],
+        [
+          33,
+          6
+        ],
+        [
+          25.8,
+          6
+        ]
+      ]
+    ],
+    "minHeight": 0.75,
+    "preservePaving": true,
+    "basis": "Bounded mapped bridge-arch corridors expose the reconstructed main vault and two relief openings in coarse terrain. Raw Mapzen samples,water and ground outside these narrow masks remain intact; dry bank floors and retaining transitions are approximate."
+  },
+  "bounds": [
+    21.029586248029307,
+    39.46037335149289,
+    21.03051305197069,
+    39.46075024850711
+  ],
+  "limitations": [
+    "Original present-day medium-fi reconstruction from three ordinary exterior pictures and current standard PMTiles. The mapped envelope is76.881m by4.285m. The main vault,bank relief dimensions and member sections are photo/map approximations,not engineering measurements. The modeled walking seams extend0.3m beyond each mapped bridge end.",
+    "One tall main vault with crown offset toward the western bank,two smaller true bank relief openings,exposed barrel soffits,two radial voussoir bands,solid sloping stone parapets and coping,continuous humpback walking deck,masonry joints and small iron tie plates are modeled. Temporary scaffolding,festival flags,people and debris from past collapse/restoration are excluded.",
+    "Detailed master retains128 main-arch segments,40 per relief,dense individual coursing,barrel strip joints,coping seams and walking bands. Browser close-up uses64/20 arch segments and coarser courses; street/district aggregate masonry. Skyline retains all three open vaults,solid parapets and the full humpback profile.",
+    "Four existing shared256px graphs: stone_limestone,stone_limestone_raw,stone_granite and metal_painted,with metric UV repeats and linear vertex tints. Local mortar tint; no private or embedded images. Repeated courses and shared stone textures approximate the irregular pale masonry seen in pictures.",
+    "Native verification uses actual detail tile17/73192/49876 clipped with the public normal semantic overzoom path. Its viewer water datum is257.3589782714844m from the retained standard PMTiles/Mapzen samples,not surveyed sea level. West/end heights11.44m and5.8m above that datum approximate the coarse mapped approach fit. Water datums at coarser levels differ and are not verified here.",
+    "Three bounded arch corridors clear only rendered ground above0.75m model-local height,preserving rawDEM,water,paving and outside ground. All three local portal lines clear rendered ground. The coarse west-bank slope can obscure the small western relief from distant views; hard terrace edges and generated path-support sidewalls remain visible. Exact rock faces,river banks,customs house,vegetation and surrounding trails are outside this bridge asset. No accessibility or physical-device performance claim."
+  ]
+}

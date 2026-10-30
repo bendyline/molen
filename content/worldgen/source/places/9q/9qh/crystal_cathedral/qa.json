@@ -38,8 +38,29 @@
       "shots/shared/roof-and-signed-whole-plan.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected11 current shared/geographic frames. Four existing cached256-square commercial window-grid,polished stainless steel,painted metal and plain concrete graphs serve five merged groups;skyline is one draw. Actual viewer window-slot material uses its existing untinted glass variant;skyline glazing uses the canonical graph mean and portable fallback uses blue-gray linear color. Metric UVs and flat architectural normals;gold-toned small accents use local geometric PBR. No embedded images,unique facade maps or baked reflections. Each graph reads once;unload disposes geometry and leaves zero live model geometries. Fixed capture-helper telemetry to recognize the existing :glass material-name variant under its canonical shared reference;current capture asserts the actual texture UUID is present. Details show shared pane grid,primary frame geometry,recessed doors,open blade structure and small pavilion. Signed top placement matches both separate controls. Flat geographic ground does not verify standard DEM/plaza thresholds;detail cameras intentionally crop other sections.",
-    "captureReportHash": "sha256:0fc977c122bdee9ca14ec6971db21e5acbd850b7c7831bbb67053ecfe04a36c5"
+    "notes": "Inspected11 current shared/geographic frames. Four existing cached256-square commercial window-grid,polished stainless steel,painted metal and plain concrete graphs serve five merged groups;skyline is one draw. Actual viewer window-slot material uses its existing untinted glass variant;skyline glazing uses the canonical graph mean and portable fallback uses blue-gray linear color. Metric UVs and flat architectural normals;gold-toned small accents use local geometric PBR. No embedded images,unique facade maps or baked reflections. Each graph reads once;unload disposes geometry and leaves zero live model geometries. Fixed capture-helper telemetry to recognize the existing :glass material-name variant under its canonical shared reference;current capture asserts the actual texture UUID is present. Details show shared pane grid,primary frame geometry,recessed doors,open blade structure and small pavilion. Signed top placement matches both separate controls. Flat geographic ground does not verify standard DEM/plaza thresholds;detail cameras intentionally crop other sections. Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.",
+    "captureReportHash": "sha256:da895a57e4f69a792158e632528bde490bb6193a02a2083091a060d52c52f4ab",
+    "inputHash": "sha256:feab22ca729405aa58e940093048c4830ee3c34473b81fd85538e848b80b14da",
+    "reviewedOn": "2026-10-29",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.metal_stainless_polished": {
+        "path": "materials/metal_stainless_polished.matgraph.json",
+        "hash": "sha256:b727e8101b2ad53f7c6615c992a674691a248d0ee802f1be49060870a4c87974"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
@@ -234,5 +255,95 @@
     "framesVerified": 49,
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "sharedMaterialRefresh": {
+    "date": "2026-10-29",
+    "inputHash": "sha256:feab22ca729405aa58e940093048c4830ee3c34473b81fd85538e848b80b14da",
+    "sourceAndRuntimePreserved": true,
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/models/source.glb",
+        "hash": "sha256:2aa1548f65441586177b2bea9cdf9ec7117f254b081458c7390fe0a9449ca89c"
+      },
+      {
+        "path": "content/worldgen/assets/places/9q/9qh/crystal_cathedral/model.glb",
+        "hash": "sha256:545c96a78746d1192dffb675be72a8b3ea0966d219a1f35658a6b0e0ad05e6b0"
+      },
+      {
+        "path": "content/worldgen/assets/places/9q/9qh/crystal_cathedral/model.skyline.glb",
+        "hash": "sha256:af54ba996877075dc87fe5567f66823b559a04a96d88e89a17ae3bf829f92e99"
+      },
+      {
+        "path": "content/worldgen/assets/places/9q/9qh/crystal_cathedral/model.district.glb",
+        "hash": "sha256:3035df28ca823f6f24b7680a18445e0f2a12f8838908bf9e26fd4a55cf34d1fa"
+      },
+      {
+        "path": "content/worldgen/assets/places/9q/9qh/crystal_cathedral/model.street.glb",
+        "hash": "sha256:a1cfda4bd937d5bc71d7cbda19b9fc0510af4b84b58c5b8500216354517cdf19"
+      },
+      {
+        "path": "content/worldgen/assets/places/9q/9qh/crystal_cathedral/model.closeup.glb",
+        "hash": "sha256:34df4b6a1b7f354a0afcc22bdd2e908955943c317d11768b90693de79d3e5573"
+      }
+    ],
+    "retainedReports": [
+      {
+        "name": "capture-report",
+        "frames": 11,
+        "hash": "sha256:36a2c5aac28d21b00f59671d1f7f0ecdf4548c713ca37edff169f15edb3e1047"
+      },
+      {
+        "name": "medium-fi-report",
+        "frames": 27,
+        "hash": "sha256:5ac840583ea807fdbb31d4a7c4b6b6df24752e1cb06e47ddb00a41151f74945f"
+      }
+    ],
+    "newInspectedFrames": [
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/angle-0.png",
+        "hash": "sha256:d156a06d0b5471a8616782c269f91f8e8f79eda1990cf82fe47c5e6e76777526"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/angle-1.png",
+        "hash": "sha256:53fa5e4200fb5c47969c714ed176ae120d940a45962fbb1a40b6ab55bfb5bc98"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/angle-2.png",
+        "hash": "sha256:3666cdfe3c8683dcef2a41f99a8a1558e9233d20d62a17b296e25e5407381652"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/angle-3.png",
+        "hash": "sha256:fd27d08e2851f877dbd363ba5a8344321a8e6a0d210a767987fce9608065bfd9"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/folded-glass-shell-and-northwest-spire.png",
+        "hash": "sha256:74969990d666126e225be4cb81f7adb4f40b10738b30b6599db581df325cd85f"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/mapped-notch-entry-and-glazing-grid.png",
+        "hash": "sha256:0519e6985330852f0941d2cfbb19451aced532e9b7bfa116c70438e966e4bd91"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/opposite-wing-valley-and-pale-canopy.png",
+        "hash": "sha256:76f80f1ce48e52032464292d50622d5c59e1b892fdd2d3c5abcbe4315aaf2464"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/open-steel-spire-and-base-pavilion.png",
+        "hash": "sha256:13ce62d2de9dd12d0880a78838283d21942547598f122bc199585b100a0c40f9"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/staggered-steel-crown-and-bell-rows.png",
+        "hash": "sha256:c2517175f1a5d6f52931be647209b93e1de2309d65ada8419e03d7f9db7dcef6"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/roof-and-signed-whole-plan.png",
+        "hash": "sha256:cadea3eae5de66d448593945e62f6187eac59fd965133b7fe28ee9bfa13b7098"
+      },
+      {
+        "path": "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/placement.png",
+        "hash": "sha256:ea7214ad938f0d771ddfd1d4ffc5f096e5ade082757ac2a7692d4328784ea6c6"
+      }
+    ],
+    "notes": "Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope."
   }
 }

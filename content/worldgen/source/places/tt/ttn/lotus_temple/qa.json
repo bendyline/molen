@@ -38,8 +38,29 @@
       "shots/shared/shell-ridges-and-crown.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all11 current shared-material views. Four common256² graphs supply marble, sandstone, limestone and storefront glazing; metric UVs and linear tints. Water uses an explicit teal/reflection constant. Five material draws nearby, no embedded images or unique atlas. Every shared graph loads once, and eviction disposes all model geometry. The flat shared fixture usesY-10 ground and reveals below-grade basin/foundation geometry; its visible cutout voids do not establish terrain contact. Actual fit uses the separate unchanged standard DEM.",
-    "captureReportHash": "sha256:a6365e71be130bdc1488991e83b4873eff8a66f9181990c4d88506cb07db0985"
+    "notes": "Inspected all11 current shared-material views. Four common256² graphs supply marble, sandstone, limestone and storefront glazing; metric UVs and linear tints. Water uses an explicit teal/reflection constant. Five material draws nearby, no embedded images or unique atlas. Every shared graph loads once, and eviction disposes all model geometry. The flat shared fixture usesY-10 ground and reveals below-grade basin/foundation geometry; its visible cutout voids do not establish terrain contact. Actual fit uses the separate unchanged standard DEM. Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.",
+    "captureReportHash": "sha256:f37de8863113f34cf9776b9f7fe5cd01466ae1c77781fcec3215faecc7320e61",
+    "inputHash": "sha256:f605a92d5fd32ab398ed927c4afdabbebfb8aff832964634953e12411b5b253c",
+    "reviewedOn": "2026-10-29",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_marble": {
+        "path": "materials/stone_marble.matgraph.json",
+        "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
@@ -615,5 +636,95 @@
       "placementHash": "sha256:f19c3e30d466aadff4624e883c0e7e3fb25d2909ec75b87df00443c2b92a695a",
       "proof": "Removed only unsupported empty holes and redundant water outline equal to outlines[0]. Canonical placement is otherwise exactly equal. Selected source masters rebuilt byte-identically; all six GLBs, camera/material/scene metadata and every retained image hash unchanged. Prior reviews carried forward; no new visual approval."
     }
+  },
+  "sharedMaterialRefresh": {
+    "date": "2026-10-29",
+    "inputHash": "sha256:f605a92d5fd32ab398ed927c4afdabbebfb8aff832964634953e12411b5b253c",
+    "sourceAndRuntimePreserved": true,
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/models/source.glb",
+        "hash": "sha256:4f1bdf5f1dafbecc8b441163f455fb140215cc674c45b7c9c631526161ceb31b"
+      },
+      {
+        "path": "content/worldgen/assets/places/tt/ttn/lotus_temple/model.glb",
+        "hash": "sha256:1ee518a0b56455294125490de5177065f05a39f1cac28cd1bf4c892d54a402c2"
+      },
+      {
+        "path": "content/worldgen/assets/places/tt/ttn/lotus_temple/model.skyline.glb",
+        "hash": "sha256:f3d91745610f000ba7f8bfd53ae606d78ca69cc3b4d5d563863b19f7779ec940"
+      },
+      {
+        "path": "content/worldgen/assets/places/tt/ttn/lotus_temple/model.district.glb",
+        "hash": "sha256:fd37c8c6accecf5b115106d5da0af6d567e0204604c02e61507441455aa6c6f7"
+      },
+      {
+        "path": "content/worldgen/assets/places/tt/ttn/lotus_temple/model.street.glb",
+        "hash": "sha256:0c061143c201587cca4ff49f26d5fe00b8416176078967d0b0b31103dd02ef61"
+      },
+      {
+        "path": "content/worldgen/assets/places/tt/ttn/lotus_temple/model.closeup.glb",
+        "hash": "sha256:7054c90f941833b407a917e38203f5e0e48516ac69421c652447d70597d20b5d"
+      }
+    ],
+    "retainedReports": [
+      {
+        "name": "capture-report",
+        "frames": 11,
+        "hash": "sha256:8f2d903cc3917b8d090f8757593708a9413abdd078cb6d088f0df1aac51755d2"
+      },
+      {
+        "name": "medium-fi-report",
+        "frames": 27,
+        "hash": "sha256:59a7058f7631031d2c15e672c1382c31da7f8f1638b663f6540da0e6abc6175e"
+      }
+    ],
+    "newInspectedFrames": [
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/angle-0.png",
+        "hash": "sha256:6291fa6fa5ba08389c1080820c75fdbf58599bbfe4ec8ff89a1d141af792f79b"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/angle-1.png",
+        "hash": "sha256:3dd2d84103ada6fd921c1f32e2332b67a56f3f9f8605d010e7630de7c3696608"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/angle-2.png",
+        "hash": "sha256:79574430e47cbcaa1da278bfe358c50d048b520a3cbe4b58df0ab4c17d5e541a"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/angle-3.png",
+        "hash": "sha256:c104539bb910ac57cf435985226e76c9e0fa890f3427415acce4649367099b0f"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/front-petals-and-main-stair.png",
+        "hash": "sha256:d28a5858209eacd2685786602d9be0798d7474d479a192873a256e666dbedbda"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/three-shell-families.png",
+        "hash": "sha256:f7b7a6311732a3096fdbc28dd537cf6949ecf30bd58d82cc88912952ee582617"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/porch-open-arches.png",
+        "hash": "sha256:bb7b66b7af700088ca41a29846bfc4ede8d1298878e257b34e9fb0e9e52d11c5"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/raised-base-and-bands.png",
+        "hash": "sha256:f7172ed8005ed85ac206627b7d8f29fe16fdbbde22ffa4a9b11ecdfbf56e05e9"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/nine-pools-and-plan.png",
+        "hash": "sha256:a0d583d8d2e003827e4437749f423ace0dd6d662e038a7f7e37d5f399faaaffd"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/shell-ridges-and-crown.png",
+        "hash": "sha256:b33c0d94dd9c512f76e019718822f29411e5e112fbd313d8e38597f08925c4e0"
+      },
+      {
+        "path": "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/placement.png",
+        "hash": "sha256:830f86f787426cf3bae18b4f5859599640c58a382fddbba125f99b6e50ecbc70"
+      }
+    ],
+    "notes": "Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope."
   }
 }

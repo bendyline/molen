@@ -2,7 +2,7 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 729 authored assets, 729 imported assets and 701 active geographic asset previews.
+There are 736 authored assets, 736 imported assets and 708 active geographic asset previews.
 There are 0 reviewed reusable map-category models; they have rule-based instances rather than a unique landmark anchor.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
@@ -11,14 +11,14 @@ approvals retain their original scope and are not automatically medium-fi approv
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 669 |
-| Runtime GLBs imported | 669 |
-| Portable visual reviews passed | 628 |
-| Shared-material reviews passed | 551 |
-| Active geographic previews | 649 |
-| Declared fidelity reviews passed | 617 |
-| Complete | 541 |
-| Source models still to author | 331 |
+| Source GLBs authored | 676 |
+| Runtime GLBs imported | 676 |
+| Portable visual reviews passed | 642 |
+| Shared-material reviews passed | 576 |
+| Active geographic previews | 656 |
+| Declared fidelity reviews passed | 631 |
+| Complete | 566 |
+| Source models still to author | 324 |
 
 ## Authored models
 
@@ -47,7 +47,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | dyavolski_most | [Dyavolski most](../places/sx/sx3/dyavolski_most/README.md) | 519774 | Passed | Passed | Passed | Passed | Yes |
 | red_bridge_yerevan | [Red Bridge](../places/sz/szp/red_bridge_yerevan/README.md) | 746998 | Passed | Passed | Passed | Passed | Yes |
 | skopje_aqueduct | [Skopje Aqueduct](../places/sr/srr/skopje_aqueduct/README.md) | 17040 | Passed | Passed | Passed | Passed | Yes |
-| pont_de_l_archeveche | [Pont de l'Archevêché](../places/u0/u09/pont_de_l_archeveche/README.md) | 432736 | Pending | Pending | Pending | Pending | Pending |
+| pont_de_l_archeveche | [Pont de l'Archevêché](../places/u0/u09/pont_de_l_archeveche/README.md) | 432736 | Passed | Passed | Passed | Passed | Yes |
 | mahatma_gandhi_setu | [Mahatma Gandhi Setu](../places/tu/tus/mahatma_gandhi_setu/README.md) | 63836 | Passed | Passed | Passed | Passed | Yes |
 | sanjo_ohashi_bridge | [Sanjō Ōhashi Bridge](../places/xn/xn0/sanjo_ohashi_bridge/README.md) | 716504 | Passed | Passed | Passed | Passed | Yes |
 | dragon_river_bridge | [Dragon River Bridge](../places/w6/w6u/dragon_river_bridge/README.md) | 54172 | Passed | Passed | Passed | Passed | Yes |
@@ -56,7 +56,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | yi_sun_sin_bridge | [Yi Sun-sin Bridge](../places/wy/wy4/yi_sun_sin_bridge/README.md) | 51996 | Passed | Passed | Passed | Passed | Yes |
 | pont_aval | [Pont Aval](../places/u0/u09/pont_aval/README.md) | 248848 | Passed | Passed | Passed | Passed | Yes |
 | blue_bridge | [Blue Bridge](../places/ud/udt/blue_bridge/README.md) | 24230 | Passed | Passed | Passed | Passed | Yes |
-| pont_de_tolbiac | [pont de Tolbiac](../places/u0/u09/pont_de_tolbiac/README.md) | 794646 | Pending | Pending | Pending | Pending | Pending |
+| pont_de_tolbiac | [pont de Tolbiac](../places/u0/u09/pont_de_tolbiac/README.md) | 794646 | Passed | Passed | Passed | Passed | Yes |
 | poniatowski_bridge | [Poniatowski Bridge](../places/u3/u3q/poniatowski_bridge/README.md) | 63380 | Passed | Passed | Passed | Passed | Yes |
 | pivnichnyi_bridge | [Pivnichnyi Bridge](../places/u8/u8v/pivnichnyi_bridge/README.md) | 1775760 | Passed | Passed | Passed | Passed | Yes |
 | pont_del_diable | [Pont del Diable](../places/sp/sp3/pont_del_diable/README.md) | 54116 | Passed | Passed | Passed | Passed | Yes |
@@ -84,9 +84,16 @@ for exact blockers, identity issues and all 1,000 candidates.
 | han_river_bridge | [Han River Bridge](../places/w6/w6u/han_river_bridge/README.md) | 58236 | Passed | Passed | Passed | Passed | Yes |
 | spean_thma | [Spean Thma](../places/w6/w63/spean_thma/README.md) | 63652 | Pending | Passed | Pending | Pending | Pending |
 | kuradisild | [Kuradisild](../places/ud/ud6/kuradisild/README.md) | 7784 | Passed | Passed | Passed | Passed | Yes |
+| seher_cehaja_bridge | [Šeher-Ćehaja Bridge](../places/sr/srv/seher_cehaja_bridge/README.md) | 15626 | Passed | Passed | Passed | Passed | Yes |
+| hercilio_luz_bridge | [Hercilio Luz Bridge](../places/6g/6gj/hercilio_luz_bridge/README.md) | 246688 | Passed | Passed | Passed | Passed | Yes |
+| akmens_tilts | [Akmens tilts](../places/ud/ud1/akmens_tilts/README.md) | 214156 | Passed | Passed | Passed | Passed | Yes |
 | kokushkin_bridge | [Kokushkin Bridge](../places/ud/udt/kokushkin_bridge/README.md) | 40512 | Passed | Passed | Pending | Pending | Pending |
 | pont_du_garigliano | [Pont du Garigliano](../places/u0/u09/pont_du_garigliano/README.md) | 51836 | Passed | Passed | Passed | Passed | Yes |
-| willis_tower | [Willis Tower](../places/dp/dp3/willis_tower/README.md) | 726110 | Pending | Pending | Pending | Pending | Pending |
+| isabel_ii_bridge | [Isabel II Bridge](../places/ey/eye/isabel_ii_bridge/README.md) | 127296 | Passed | Passed | Passed | Passed | Yes |
+| plaka_bridge | [Plaka Bridge](../places/sr/srn/plaka_bridge/README.md) | 69888 | Passed | Passed | Passed | Passed | Yes |
+| greens_bridge | [Green's Bridge](../places/gc/gc6/greens_bridge/README.md) | 44676 | Passed | Passed | Passed | Passed | Yes |
+| malo_kalinkin_bridge | [Malo-Kalinkin Bridge](../places/ud/udt/malo_kalinkin_bridge/README.md) | 70932 | Passed | Passed | Passed | Passed | Yes |
+| willis_tower | [Willis Tower](../places/dp/dp3/willis_tower/README.md) | 726110 | Passed | Passed | Passed | Passed | Yes |
 | mode_gakuen_cocoon_tower | [Mode Gakuen Cocoon Tower](../places/xn/xn7/mode_gakuen_cocoon_tower/README.md) | 59070 | Passed | Passed | Passed | Passed | Yes |
 | mirante_do_vale | [Mirante do Vale](../places/6g/6gy/mirante_do_vale/README.md) | 21172 | Passed | Passed | Passed | Passed | Yes |
 | abeno_harukas | [Abeno Harukas](../places/xn/xn0/abeno_harukas/README.md) | 22049 | Passed | Passed | Passed | Passed | Yes |
@@ -320,7 +327,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | sao_paulo_cathedral | [São Paulo Cathedral](../places/6g/6gy/sao_paulo_cathedral/README.md) | 15915 | Passed | Passed | Passed | Passed | Yes |
 | serbian_orthodox_cathedral_in_sarajevo | [Serbian Orthodox Cathedral in Sarajevo](../places/sr/srv/serbian_orthodox_cathedral_in_sarajevo/README.md) | 41753 | Passed | Passed | Passed | Passed | Yes |
 | archcathedral_basilica_of_st_peter_and_st_paul | [Archcathedral Basilica of St. Peter and St. Paul](../places/u3/u3k/archcathedral_basilica_of_st_peter_and_st_paul/README.md) | 24318 | Passed | Passed | Passed | Passed | Yes |
-| crystal_cathedral | [Crystal Cathedral](../places/9q/9qh/crystal_cathedral/README.md) | 7960 | Passed | Pending | Passed | Passed | Pending |
+| crystal_cathedral | [Crystal Cathedral](../places/9q/9qh/crystal_cathedral/README.md) | 7960 | Passed | Passed | Passed | Passed | Yes |
 | samtavisi_cathedral | [Samtavisi Cathedral](../places/sz/szr/samtavisi_cathedral/README.md) | 8326 | Passed | Passed | Passed | Passed | Yes |
 | cathedral_of_christ_the_saviour | [Cathedral of Christ the Saviour](../places/sr/sru/cathedral_of_christ_the_saviour/README.md) | 37632 | Passed | Passed | Passed | Passed | Yes |
 | havana_cathedral | [Havana Cathedral](../places/dh/dhj/havana_cathedral/README.md) | 18283 | Passed | Passed | Passed | Passed | Yes |
@@ -388,15 +395,15 @@ for exact blockers, identity issues and all 1,000 candidates.
 | al_askari_shrine | [Al-Askari Shrine](../places/sy/syp/al_askari_shrine/README.md) | 9445 | Passed | Passed | Passed | Passed | Yes |
 | akhmad_kadyrov_mosque | [Akhmad Kadyrov Mosque](../places/tp/tp8/akhmad_kadyrov_mosque/README.md) | 28066 | Passed | Passed | Passed | Passed | Yes |
 | fatih_istanbul_mosque | [Fatih Istanbul Mosque](../places/sx/sxk/fatih_istanbul_mosque/README.md) | 20736 | Passed | Passed | Passed | Passed | Yes |
-| baitul_mukarram_national_mosque | [Baitul Mukarram National Mosque](../places/wh/wh0/baitul_mukarram_national_mosque/README.md) | 9676 | Passed | Pending | Passed | Passed | Pending |
+| baitul_mukarram_national_mosque | [Baitul Mukarram National Mosque](../places/wh/wh0/baitul_mukarram_national_mosque/README.md) | 9676 | Passed | Passed | Passed | Passed | Yes |
 | moscow_cathedral_mosque | [Moscow Cathedral Mosque](../places/uc/ucf/moscow_cathedral_mosque/README.md) | 30742 | Passed | Passed | Passed | Passed | Yes |
 | sheikh_lotfollah_mosque | [Sheikh Lotfollah Mosque](../places/tj/tju/sheikh_lotfollah_mosque/README.md) | 5171 | Passed | Passed | Passed | Passed | Yes |
 | little_hagia_sophia | [Little Hagia Sophia](../places/sx/sxk/little_hagia_sophia/README.md) | 6373 | Passed | Passed | Passed | Passed | Yes |
-| national_mosque_of_malaysia | [National Mosque of Malaysia](../places/w2/w28/national_mosque_of_malaysia/README.md) | 9087 | Passed | Pending | Passed | Passed | Pending |
+| national_mosque_of_malaysia | [National Mosque of Malaysia](../places/w2/w28/national_mosque_of_malaysia/README.md) | 9087 | Passed | Passed | Passed | Passed | Yes |
 | masjid_al_qiblatain | [Masjid al-Qiblatain](../places/su/suk/masjid_al_qiblatain/README.md) | 14874 | Passed | Passed | Passed | Passed | Yes |
-| mosque_of_amr_ibn_al_as | [Mosque of Amr ibn al-As](../places/st/stq/mosque_of_amr_ibn_al_as/README.md) | 23357 | Passed | Pending | Passed | Passed | Pending |
+| mosque_of_amr_ibn_al_as | [Mosque of Amr ibn al-As](../places/st/stq/mosque_of_amr_ibn_al_as/README.md) | 23357 | Passed | Passed | Passed | Passed | Yes |
 | imam_husayn_mausoleum | [Imam Husayn Mausoleum](../places/sv/svz/imam_husayn_mausoleum/README.md) | 50808 | Passed | Passed | Passed | Passed | Yes |
-| sultan_qaboos_grand_mosque | [Sultan Qaboos Grand Mosque](../places/tk/tk1/sultan_qaboos_grand_mosque/README.md) | 26946 | Passed | Pending | Passed | Passed | Pending |
+| sultan_qaboos_grand_mosque | [Sultan Qaboos Grand Mosque](../places/tk/tk1/sultan_qaboos_grand_mosque/README.md) | 26946 | Passed | Passed | Passed | Passed | Yes |
 | goharshad_mosque | [Goharshad Mosque](../places/tq/tq6/goharshad_mosque/README.md) | 11924 | Passed | Passed | Passed | Passed | Yes |
 | muhammad_ali_mosque | [Muhammad Ali Mosque](../places/st/stq/muhammad_ali_mosque/README.md) | 29190 | Passed | Passed | Passed | Passed | Yes |
 | blue_mosque_tabriz | [Blue Mosque](../places/tn/tnb/blue_mosque_tabriz/README.md) | 2463 | Passed | Passed | Passed | Passed | Yes |
@@ -417,12 +424,12 @@ for exact blockers, identity issues and all 1,000 candidates.
 | bayezid_ii_mosque | [Bayezid II Mosque](../places/sx/sxk/bayezid_ii_mosque/README.md) | 21031 | Passed | Passed | Passed | Passed | Yes |
 | bursa_grand_mosque | [Bursa Grand Mosque](../places/sx/sxh/bursa_grand_mosque/README.md) | 26642 | Passed | Passed | Passed | Passed | Yes |
 | gazi_husrev_beg_mosque | [Gazi Husrev-beg Mosque](../places/sr/srv/gazi_husrev_beg_mosque/README.md) | 8278 | Passed | Passed | Passed | Passed | Yes |
-| abuja_national_mosque | [Abuja National Mosque](../places/s1/s1t/abuja_national_mosque/README.md) | 4962 | Passed | Pending | Passed | Passed | Pending |
+| abuja_national_mosque | [Abuja National Mosque](../places/s1/s1t/abuja_national_mosque/README.md) | 4962 | Passed | Passed | Passed | Passed | Yes |
 | ajanta_caves | [Ajanta Caves](../places/te/tet/ajanta_caves/README.md) | 12826 | Passed | Passed | Passed | Passed | Yes |
 | temple_of_heaven | [Temple of Heaven](../places/wx/wx4/temple_of_heaven/README.md) | 53681 | Passed | Passed | Passed | Passed | Yes |
 | karnak_temple_complex | [Karnak Temple Complex](../places/ss/ssx/karnak_temple_complex/README.md) | 64074 | Passed | Passed | Passed | Passed | Yes |
 | luxor_temple | [Luxor Temple](../places/ss/ssx/luxor_temple/README.md) | 38363 | Passed | Passed | Passed | Passed | Yes |
-| lotus_temple | [Lotus Temple](../places/tt/ttn/lotus_temple/README.md) | 36395 | Passed | Pending | Passed | Passed | Pending |
+| lotus_temple | [Lotus Temple](../places/tt/ttn/lotus_temple/README.md) | 36395 | Passed | Passed | Passed | Passed | Yes |
 | pyramid_of_the_sun | [Pyramid of the Sun](../places/9g/9g9/pyramid_of_the_sun/README.md) | 2216 | Passed | Passed | Passed | Passed | Yes |
 | ggantija | [Ġgantija](../places/sq/sq6/ggantija/README.md) | 29249 | Passed | Passed | Passed | Passed | Yes |
 | temple_of_edfu | [Temple of Edfu](../places/ss/ssr/temple_of_edfu/README.md) | 14019 | Passed | Passed | Passed | Passed | Yes |
@@ -434,7 +441,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | temple_of_vesta_rome | [Temple of Vesta](../places/sr/sr2/temple_of_vesta_rome/README.md) | 5486 | Passed | Passed | Passed | Passed | Yes |
 | akshardham | [Akshardham](../places/tt/ttn/akshardham/README.md) | 48097 | Passed | Passed | Passed | Passed | Yes |
 | temple_of_saturn | [Temple of Saturn](../places/sr/sr2/temple_of_saturn/README.md) | 10869 | Passed | Passed | Passed | Passed | Yes |
-| temple_of_antoninus_and_faustina | [Temple of Antoninus and Faustina](../places/sr/sr2/temple_of_antoninus_and_faustina/README.md) | 12412 | Passed | Pending | Passed | Passed | Pending |
+| temple_of_antoninus_and_faustina | [Temple of Antoninus and Faustina](../places/sr/sr2/temple_of_antoninus_and_faustina/README.md) | 12412 | Passed | Passed | Passed | Passed | Yes |
 | temple_of_bel | [Temple of Bel](../places/sy/sy5/temple_of_bel/README.md) | 10734 | Passed | Passed | Passed | Passed | Yes |
 | temple_of_portunus | [Temple of Portunus](../places/sr/sr2/temple_of_portunus/README.md) | 26740 | Passed | Passed | Passed | Passed | Yes |
 | temple_of_jupiter_optimus_maximus | [Temple of Jupiter Optimus Maximus](../places/sr/sr2/temple_of_jupiter_optimus_maximus/README.md) | 9156 | Pending | Pending | Pending | Pending | Pending |
@@ -558,8 +565,8 @@ for exact blockers, identity issues and all 1,000 candidates.
 | st_urban_tower | [St. Urban Tower](../places/u2/u2x/st_urban_tower/README.md) | 6670 | Passed | Passed | Passed | Passed | Yes |
 | towers_of_silence_in_yazd | [Towers of Silence in Yazd](collections.json) (2/2 members complete) | 6792 | Passed | Passed | Passed | Passed | Yes |
 | mouse_tower | [Mouse Tower](../places/u0/u0v/mouse_tower/README.md) | 2580 | Passed | Passed | Passed | Passed | Yes |
-| el_faro_towers | [El Faro Towers](../places/69/69y/el_faro_towers/README.md) | 36068 | Passed | Pending | Passed | Passed | Pending |
-| gardos_tower | [Gardoš Tower](../places/sr/sry/gardos_tower/README.md) | 4011 | Passed | Pending | Passed | Passed | Pending |
+| el_faro_towers | [El Faro Towers](../places/69/69y/el_faro_towers/README.md) | 36068 | Passed | Passed | Passed | Passed | Yes |
+| gardos_tower | [Gardoš Tower](../places/sr/sry/gardos_tower/README.md) | 4011 | Passed | Passed | Passed | Passed | Yes |
 | emley_moor_transmitting_station | [Emley Moor transmitting station](../places/gc/gcw/emley_moor_transmitting_station/README.md) | 271260 | Passed | Passed | Passed | Passed | Yes |
 | tower_of_hercules | [Tower of Hercules](../places/ez/ezd/tower_of_hercules/README.md) | 13060 | Passed | Passed | Passed | Passed | Yes |
 | maidens_tower | [Maiden's Tower](../places/sx/sxk/maidens_tower/README.md) | 18588 | Passed | Passed | Passed | Passed | Yes |
@@ -601,13 +608,13 @@ for exact blockers, identity issues and all 1,000 candidates.
 | ristna_lighthouse | [Ristna Lighthouse](../places/u6/u6r/ristna_lighthouse/README.md) | 65288 | Passed | Passed | Passed | Passed | Yes |
 | pilsum_lighthouse | [Pilsum Lighthouse](../places/u1/u1t/pilsum_lighthouse/README.md) | 67386 | Passed | Passed | Passed | Passed | Yes |
 | klaipeda_lighthouse | [Klaipėda Lighthouse](../places/u3/u3z/klaipeda_lighthouse/README.md) | 57618 | Passed | Passed | Passed | Passed | Yes |
-| kolobrzeg_lighthouse | [Kołobrzeg Lighthouse](../places/u3/u3e/kolobrzeg_lighthouse/README.md) | 83106 | Pending | Pending | Pending | Pending | Pending |
-| skagen_lighthouse | [Skagen Lighthouse](../places/u4/u4r/skagen_lighthouse/README.md) | 188924 | Pending | Pending | Pending | Pending | Pending |
-| kullen_lighthouse | [Kullen lighthouse](../places/u6/u60/kullen_lighthouse/README.md) | 102956 | Pending | Pending | Pending | Pending | Pending |
-| lizard_lighthouse | [Lizard Lighthouse](../places/gb/gbu/lizard_lighthouse/README.md) | 118842 | Pending | Pending | Pending | Pending | Pending |
+| kolobrzeg_lighthouse | [Kołobrzeg Lighthouse](../places/u3/u3e/kolobrzeg_lighthouse/README.md) | 83334 | Passed | Passed | Passed | Passed | Yes |
+| skagen_lighthouse | [Skagen Lighthouse](../places/u4/u4r/skagen_lighthouse/README.md) | 189144 | Passed | Passed | Passed | Passed | Yes |
+| kullen_lighthouse | [Kullen lighthouse](../places/u6/u60/kullen_lighthouse/README.md) | 104896 | Passed | Passed | Passed | Passed | Yes |
+| lizard_lighthouse | [Lizard Lighthouse](../places/gb/gbu/lizard_lighthouse/README.md) | 118842 | Passed | Passed | Passed | Passed | Yes |
 | roter_sand | [Roter Sand](../places/u1/u1t/roter_sand/README.md) | 212672 | Passed | Passed | Passed | Passed | Yes |
 | maracana | [Maracanã Stadium](../places/75/75c/maracana/README.md) | 645600 | Pending | Pending | Pending | Pending | Pending |
-| santiago_bernabeu_stadium | [Bernabéu](../places/ez/ezj/santiago_bernabeu_stadium/README.md) | 1111994 | Passed | Pending | Passed | Passed | Pending |
+| santiago_bernabeu_stadium | [Bernabéu](../places/ez/ezj/santiago_bernabeu_stadium/README.md) | 1111994 | Passed | Passed | Passed | Passed | Yes |
 | allianz_arena | [Allianz Arena](../places/u2/u28/allianz_arena/README.md) | 1227182 | Passed | Passed | Passed | Passed | Yes |
 | wembley_stadium | [Wembley Stadium](../places/gc/gcp/wembley_stadium/README.md) | 832058 | Passed | Passed | Passed | Passed | Yes |
 | stade_de_france | [Stade de France](../places/u0/u09/stade_de_france/README.md) | 833058 | Passed | Passed | Passed | Passed | Yes |

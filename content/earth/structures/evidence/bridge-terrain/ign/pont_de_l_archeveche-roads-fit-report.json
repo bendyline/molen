@@ -2,9 +2,12 @@
   "format": "molen/bridge-terrain-fit-review@1",
   "candidateId": "pont_de_l_archeveche",
   "status": "awaiting-human-image-review",
-  "terrainEvidenceHash": "sha256:31e3c7235aea7e6a887fd89f7e5aa77fee3936517b7f6ad94dee0d010bd156bf",
-  "fixtureHash": "sha256:826e8a9ecd10e305eca499947a4c5b3b3b3328cc193e88a0292a5396d3e1dec6",
-  "roadEvidenceHash": "sha256:b7fa64d2d61a67288d6ad1e829fe020b83c79bbf8790b85cfd97538eeecd9d17",
+  "inputHash": "sha256:cb42aa60b846a87d78ac4e46a57d8ca1246557e10c88bd0b63d3e125e24a49d6",
+  "sourceHash": "sha256:1f9964ba99a151ce709af9b30662190c0adac758190d8231fdc8c7ba7ca785d5",
+  "runtimeHash": "sha256:79382cd0af9d12e567ad355f75e7a1460ff1718eff9a4a57c228934091e0152b",
+  "terrainEvidenceHash": "sha256:ba0c19f1fea1a9a55a794d238d8e6b115d965ab708676a822c6a952990891525",
+  "fixtureHash": "sha256:7d35ad9823aa55262294352e695c2192ee1688bd69c3f610c022e229a7e52cc5",
+  "roadEvidenceHash": "sha256:9fde68df60f6c319e11e1248d68c2b02903244f6ff89a6d7d25d57f2db9998d8",
   "placementHash": "sha256:1b25174d3378dede30b1732f280a23dc0c057af80f6e122c9ae5cea24cd4de0b",
   "state": {
     "placement": {
@@ -190,7 +193,7 @@
         ]
       },
       "path": "shots/pont_de_l_archeveche-roads/bank-oblique.png",
-      "hash": "sha256:39f872c16a392097d6e06177f731119a744f505d0a16ea5a806b3e4fb3b14026"
+      "hash": "sha256:e2f1d5980656fb6a2c930e36723936f2467d92dbd4402d6881eaad1d6fe7911e"
     },
     {
       "name": "side-elevation",
@@ -223,7 +226,7 @@
         ]
       },
       "path": "shots/pont_de_l_archeveche-roads/side-elevation.png",
-      "hash": "sha256:fab48b560663d6c0a06e8a60fbd98e4c756e5c23a36c906685f4a073bc031d83"
+      "hash": "sha256:4149a6bdbaa17aa5f8d28e968aad39bdd3510d1af568c06bd888b64f83783a1b"
     },
     {
       "name": "reverse-bank",
@@ -256,7 +259,7 @@
         ]
       },
       "path": "shots/pont_de_l_archeveche-roads/reverse-bank.png",
-      "hash": "sha256:ee241374f4042fc544de7ca30cfd27a4ef8c2dfd6730a0b8c47ed091b1390ef9"
+      "hash": "sha256:4b43fb389c7b2734914607dad4d068637cdc081e656f24093411f06688359d11"
     },
     {
       "name": "plan",
@@ -289,7 +292,7 @@
         ]
       },
       "path": "shots/pont_de_l_archeveche-roads/plan.png",
-      "hash": "sha256:e75df286163112618d8ec9ffbd6cf94782b80927fff36d88d16b9218452c653d"
+      "hash": "sha256:0d01d1455f0aa4c13a58cfcd415ee14837802ee4c826c67ccf488a8d7ca2ec18"
     }
   ],
   "eviction": {
@@ -298,5 +301,12 @@
   "notes": [
     "Terrain is unmodified original source elevation. Surface gaps are observations; this report does not approve geographical fit.",
     "Ray probes use the authored centerline, including the mapped Mes bridge bend. Null model hits are preserved rather than extrapolated."
-  ]
+  ],
+  "indexOnlyRebind": {
+    "beforeInputHash": "sha256:2014cf81c59af81aaa2a229824352cdfd99cf2d0f2f783c7166b90c73c398f16",
+    "addedRecipes": [
+      "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/models/archeveche-browser.mjs"
+    ],
+    "proof": "Model outputs and image bytes unchanged. Cached terrain samples and road evidence unchanged; only source-input metadata was rebound."
+  }
 }

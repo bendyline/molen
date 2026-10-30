@@ -50,3 +50,10 @@ Input: sha256:e3d11bba60a6da89daba00c99a7a1a9a1b2da7921dbb2444254e4d76dd6c33a7
 https://commons.wikimedia.org/wiki/File:Temple_of_Antoninus_and_Faustina_(Roma).jpg — ThePhotografer; CC BY-SA4.0; viewed only. No pixels shipped.
 
 https://commons.wikimedia.org/wiki/File:San_Lorenzo_in_Miranda_from_West,_Roman_Forum.jpg — Julian Lupyan; CC0; viewed only. No pixels shipped.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.
+
+Current output triangles: 535 / 2674 / 6110 / 12412. Current skyline+district bytes: 317136. Source master: 12412 triangles. These current pinned outputs take precedence over any historical counts above.

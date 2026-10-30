@@ -48,3 +48,10 @@ Input: sha256:e84574743dcf537281819d632c8ebd1a740eb13679738bfe1e76799b55236caa
 https://commons.wikimedia.org/wiki/File:Gardo%C5%A1_Tower.JPG — Nina Tomašević; CC-BY-SA-3.0. Viewed only; no pixels copied.
 
 https://commons.wikimedia.org/wiki/File:Gardos_tower_Janos_Hunyadi.jpg — Ivan Aleksic; CC-BY-2.0. Viewed only; no pixels copied.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected8 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.
+
+Current output triangles: 905 / 3141 / 4011 / 4011. Current skyline+district bytes: 377788. Source master: 4011 triangles. These current pinned outputs take precedence over any historical counts above.

@@ -1,0 +1,1178 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.seher_cehaja_bridge",
+  "reviewedOn": "2026-10-29",
+  "inputHash": "sha256:419e3236f31cce2324807e5807bea047c8f484cf6e88a375915d5ccbcb6c9bb1",
+  "sourceHash": "sha256:2ad20b86875126e36a00ed0d26d4d81076f72af478f1e13fc7375a2f2f6ea5da",
+  "runtimeHash": "sha256:9f56d601404c785c29c7941d0d596a272fd78e6dd40a6e68169d5329613a9265",
+  "captureReportHash": "sha256:a42238cdffef23d0df3a0c652701e97cf7ad005c8f804044cbc5725d30cc0818",
+  "visualReview": {
+    "status": "passed",
+    "inputHash": "sha256:419e3236f31cce2324807e5807bea047c8f484cf6e88a375915d5ccbcb6c9bb1",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/whole-four-arches.png",
+      "shots/four-open-barrels.png",
+      "shots/stone-cutwater-and-voussoirs.png",
+      "shots/paving-and-pale-parapets.png"
+    ],
+    "captureReportHash": "sha256:a42238cdffef23d0df3a0c652701e97cf7ad005c8f804044cbc5725d30cc0818",
+    "notes": "Inspected65 current frames:9 portable,8 shared-material local-stage,25 medium-fi context/LOD and23 native views. Four clear arch barrels, all three downstream rounded and upstream pointed cutwaters/caps, continuous warm spandrels, radial pale voussoirs, crowned paving and solid pale parapets are complete. Focused rays exposed and corrected missing upstream noses during this same authoring pass; dedicated upstream master/closeup views confirm the correction. Short tapering mouth wings close the narrower oblique path joins."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inputHash": "sha256:419e3236f31cce2324807e5807bea047c8f484cf6e88a375915d5ccbcb6c9bb1",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/whole-four-arches.png",
+      "shots/shared/four-open-barrels.png",
+      "shots/shared/stone-cutwater-and-voussoirs.png",
+      "shots/shared/paving-and-pale-parapets.png"
+    ],
+    "captureReportHash": "sha256:c77c329d65f2c002156d652ac94458de2bba36e9f5df8e51839abfb767f978b5",
+    "notes": "Three existing256px graphs: coursed stone_limestone on unmodeled wall courses, continuous stone_limestone_raw on modeled arch/pier/parapet details, stone_granite on paving. Metric UVs and linear sRGB-derived vertex colors; no private/embedded image. Each graph loads once per model library and all model/support geometries dispose. Local-source/shared/context stages useY0; the separate native fixture exercises actual absolute placement and water.",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:419e3236f31cce2324807e5807bea047c8f484cf6e88a375915d5ccbcb6c9bb1",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-four-arches.png",
+      "medium-fi/four-open-barrels.png",
+      "medium-fi/stone-cutwater-and-voussoirs.png",
+      "medium-fi/paving-and-pale-parapets.png",
+      "medium-fi/skyline-whole-four-arches.png",
+      "medium-fi/district-four-open-barrels.png",
+      "medium-fi/street-stone-cutwater-and-voussoirs.png",
+      "medium-fi/closeup-paving-and-pale-parapets.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:bee7e670316601c587eb33ac3cd36052a82ccc5db5afb305affbe6c2da2f0aa4",
+    "notes": "Detailed source 15626 triangles,1877608 bytes. Browser triangles 816 / 2328 / 5082 / 9362, bytes 64604 / 175656 / 394580 / 718936, draws 1 / 3 / 3 / 3. Initial skyline+district 240260bytes. Levels meet1000/4000/16000/64000 targets and use separate GPU position/normal streams. Coarse curves and joints aggregate with distance; no physical device timing claim.",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:1c0c8d34a1c370c524d8c602ffd382e0cec0c8a9452c1e1c2d797c5dec2c8b5b",
+    "mapFrameHash": "sha256:2cf319c15cd000e55919239f73a0d20c2e7df33301edde733e45499e632d7874",
+    "notes": "Exact-QID cached way189835884 and current named PMTiles crossing35184561924716 agree within0.09m. Retained anchor[18.43405085,43.85875635], heading-1.346660665598: +X south-southeast/Alifakovac, -X north-northwest/City Hall, +Z downstream/west-southwest.40.772m is the mapped centerline length. Width4.70m and vertical sections are photo reconstruction; geographic origin547.4136352539062m follows this standard native water plane, not a surveyed bridge datum. At every loaded native tier, six mapped path-mouth samples meet actual bridge paving within 0.034212m; all six end-width samples retain model support. Original67 building records,89 independent road records, raw road inputs, DEM, displayed ground and water remain. Only the named bridge record is removed on successful load (92to91 roads); both directly connected paths are clipped/graded. Failed loading retains all92 roads. Unload releases all model/support geometries and retains ground/water. No ground/building cutouts or model distortion. Coarse bank grading, automatic retaining faces and reconstructed approach slopes remain visible approximations; surrounding City Hall and houses are generic map context."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete scoped four-arch static exterior and approximate native placement; no current or historic unseen fifth arch claim. Detailed source 15626 triangles,1877608 bytes. Browser triangles 816 / 2328 / 5082 / 9362, bytes 64604 / 175656 / 394580 / 718936, draws 1 / 3 / 3 / 3. Initial skyline+district 240260bytes. Levels meet1000/4000/16000/64000 targets and use separate GPU position/normal streams. Coarse curves and joints aggregate with distance; no physical device timing claim."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/models/source.glb",
+        "hash": "sha256:2ad20b86875126e36a00ed0d26d4d81076f72af478f1e13fc7375a2f2f6ea5da",
+        "bytes": 1877608,
+        "triangles": 15626,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -21.336000442504883,
+          -0.6499999761581421,
+          -3.7049999237060547
+        ],
+        "max": [
+          21.336000442504883,
+          5.269999980926514,
+          3.450000047683716
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sr/srv/seher_cehaja_bridge/model.glb",
+        "hash": "sha256:9f56d601404c785c29c7941d0d596a272fd78e6dd40a6e68169d5329613a9265",
+        "bytes": 1877248,
+        "triangles": 15626,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -21.336000442504883,
+          -0.6499999761581421,
+          -3.7049999237060547
+        ],
+        "max": [
+          21.336000442504883,
+          5.269999980926514,
+          3.450000047683716
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sr/srv/seher_cehaja_bridge/model.skyline.glb",
+        "hash": "sha256:37d663a4d440923168b6fedb6037b6eb79fad24764f996fd4d5cf98f807cd306",
+        "bytes": 64604,
+        "triangles": 816,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -21.336000442504883,
+          -0.6499999761581421,
+          -3.7049999237060547
+        ],
+        "max": [
+          21.336000442504883,
+          5.269999980926514,
+          3.450000047683716
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sr/srv/seher_cehaja_bridge/model.district.glb",
+        "hash": "sha256:8154cd0dbb43a649c955b90e71aca385f6f49b3d08e7a0cbc399dcb154aab62d",
+        "bytes": 175656,
+        "triangles": 2328,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -21.336000442504883,
+          -0.6499999761581421,
+          -3.7049999237060547
+        ],
+        "max": [
+          21.336000442504883,
+          5.269999980926514,
+          3.4000775814056396
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sr/srv/seher_cehaja_bridge/model.street.glb",
+        "hash": "sha256:b619ced17c0ceaa8f31a342097c4e1a68d6f98c9dd5ae2971ab16c2ff5538b7a",
+        "bytes": 394580,
+        "triangles": 5082,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -21.336000442504883,
+          -0.6499999761581421,
+          -3.7049999237060547
+        ],
+        "max": [
+          21.336000442504883,
+          5.269999980926514,
+          3.450000047683716
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sr/srv/seher_cehaja_bridge/model.closeup.glb",
+        "hash": "sha256:b1df7a030229e3f0263dc0bbb6ec627024bf439fb174ddbae49f3e493c9698e6",
+        "bytes": 718936,
+        "triangles": 9362,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -21.336000442504883,
+          -0.6499999761581421,
+          -3.7049999237060547
+        ],
+        "max": [
+          21.336000442504883,
+          5.269999980926514,
+          3.450000047683716
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "checks": [
+      {
+        "check": "six-clean-Khronos-GLBs",
+        "passed": true
+      },
+      {
+        "check": "two-focused-tests-and318-actual-geometry-rays",
+        "passed": true,
+        "notes": "Every source/runtime/tier:4open barrels,4solid spandrels,6projecting pier noses,33paving/parapet and6landing probes. Separate deterministic-LOD/shared-graphs/GPU-stream test passes."
+      },
+      {
+        "check": "scene-and30-ticks",
+        "passed": true,
+        "notes": "Valid scene;30ticks,0events; sha256:d83281fe47be8facf4041074999c73a6513c60f4f837eafef1ea60c09cd6c36c"
+      }
+    ]
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:e8c4fd699a77d6874d7d42f96c4a8a730df938d850b4d0b7507d645d0b6d84a2",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:37d663a4d440923168b6fedb6037b6eb79fad24764f996fd4d5cf98f807cd306",
+        "bytes": 64604,
+        "gzipBytes": 13476,
+        "triangles": 816,
+        "cpuBytes": 63180,
+        "gpuBytes": 63180,
+        "errorMeters": 0.27,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:8154cd0dbb43a649c955b90e71aca385f6f49b3d08e7a0cbc399dcb154aab62d",
+        "bytes": 175656,
+        "gzipBytes": 35509,
+        "triangles": 2328,
+        "cpuBytes": 171720,
+        "gpuBytes": 171720,
+        "errorMeters": 0.1,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:b619ced17c0ceaa8f31a342097c4e1a68d6f98c9dd5ae2971ab16c2ff5538b7a",
+        "bytes": 394580,
+        "gzipBytes": 80554,
+        "triangles": 5082,
+        "cpuBytes": 390636,
+        "gpuBytes": 390636,
+        "errorMeters": 0.035,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:b1df7a030229e3f0263dc0bbb6ec627024bf439fb174ddbae49f3e493c9698e6",
+        "bytes": 718936,
+        "gzipBytes": 144808,
+        "triangles": 9362,
+        "cpuBytes": 714972,
+        "gpuBytes": 714972,
+        "errorMeters": 0.014,
+        "drawCalls": 3
+      }
+    ],
+    "initialBytes": 240260,
+    "notes": "Detailed source 15626 triangles,1877608 bytes. Browser triangles 816 / 2328 / 5082 / 9362, bytes 64604 / 175656 / 394580 / 718936, draws 1 / 3 / 3 / 3. Initial skyline+district 240260bytes. Levels meet1000/4000/16000/64000 targets and use separate GPU position/normal streams. Coarse curves and joints aggregate with distance; no physical device timing claim."
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:419e3236f31cce2324807e5807bea047c8f484cf6e88a375915d5ccbcb6c9bb1",
+    "visualFit": {
+      "status": "passed",
+      "basis": "At every loaded native tier, six mapped path-mouth samples meet actual bridge paving within 0.034212m; all six end-width samples retain model support. Original67 building records,89 independent road records, raw road inputs, DEM, displayed ground and water remain. Only the named bridge record is removed on successful load (92to91 roads); both directly connected paths are clipped/graded. Failed loading retains all92 roads. Unload releases all model/support geometries and retains ground/water. No ground/building cutouts or model distortion. Coarse bank grading, automatic retaining faces and reconstructed approach slopes remain visible approximations; surrounding City Hall and houses are generic map context."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:419e3236f31cce2324807e5807bea047c8f484cf6e88a375915d5ccbcb6c9bb1",
+      "reviewedOn": "2026-10-29",
+      "method": "Inspected65 current frames:9 portable,8 shared-material local-stage,25 medium-fi context/LOD and23 native views. Four clear arch barrels, all three downstream rounded and upstream pointed cutwaters/caps, continuous warm spandrels, radial pale voussoirs, crowned paving and solid pale parapets are complete. Focused rays exposed and corrected missing upstream noses during this same authoring pass; dedicated upstream master/closeup views confirm the correction. Short tapering mouth wings close the narrower oblique path joins.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/scene-preview.png",
+          "hash": "sha256:006eec3b3c2179a065de500380c7a7a26d6ec1ff97ca81c7ba7fe644d5ef463c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/turntable/angle_0.png",
+          "hash": "sha256:ac9f8d2d3c8396d51d4a9f1b7b0259534fe19c46a24d5a2988fd593271db3d1b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/turntable/angle_1.png",
+          "hash": "sha256:973c50bdc126cfae217d05f1cf51461f4aae979d0a4d8c27432a7515001fa595"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/turntable/angle_2.png",
+          "hash": "sha256:32b743f2e67a282d8afadf6f37aec46e4f5d4d3c041bf5de535c87454409aee9"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/turntable/angle_3.png",
+          "hash": "sha256:f35262a32206bf6ea4f796fa99152076c4cec520d355778ab45dd75d3d45fb67"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/whole-four-arches.png",
+          "hash": "sha256:006eec3b3c2179a065de500380c7a7a26d6ec1ff97ca81c7ba7fe644d5ef463c"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/four-open-barrels.png",
+          "hash": "sha256:93b88171a7aae4013103463a218c393c92fb3b5a290377f0faecad88122d89e2"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/stone-cutwater-and-voussoirs.png",
+          "hash": "sha256:bc847dcd52b8b47bfcd9d0c97dba8a4e4e65bd0145f285ea27e51d4aa0c685ab"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/paving-and-pale-parapets.png",
+          "hash": "sha256:a2396854e057e46c3cfe6a82cf7d784bd25b45b6f374509dfddaa4b6e0a3b7ef"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-0.png",
+          "hash": "sha256:0cba1cfba1bc15a5acdcfe990121fb61de5a6150b3d0aedfa714d6887eab30a5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-1.png",
+          "hash": "sha256:76b995f579ac8fcee3141014e5e5182a9efbc5585da8c00a0f5899b9947367b3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-2.png",
+          "hash": "sha256:1c9f574fe242f3a01d0953d6db6b83707af7cf89129b6125e38191bdfc0ca942"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-3.png",
+          "hash": "sha256:d3c641b7e322bebedee0ef0315953aafaa58db9540778d63f2240d19347d48f8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/whole-four-arches.png",
+          "hash": "sha256:a64c57e8442ff85856bd91673bb7c96602e256930476b3e06b007d3ddbb06fcb"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/four-open-barrels.png",
+          "hash": "sha256:0168aa6e72bf515d86c8a6ee8e4fb5274eaee48d928ed11c684c037ba2306b04"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/stone-cutwater-and-voussoirs.png",
+          "hash": "sha256:a31d991f7fd026bc91baa141975e130df44ecfd591cdf19fdfb170c2e9a380ae"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/paving-and-pale-parapets.png",
+          "hash": "sha256:b29c57aed78f0b1a3333e6e4adc758cdbc1ee696797a27e904df7418703afd98"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/street-noon-economy.png",
+          "hash": "sha256:2c21f6b32d4dd3f7704999cf56a42539282debc4ce25338c7e851c98af583ff8"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/street-noon-high.png",
+          "hash": "sha256:8705dfdb5e6fd4e79a1f0026cfdffc3f0acb0b3212a2bf560279e10aaa8252e3"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/street-late-economy.png",
+          "hash": "sha256:e7f8e542d27d7ac4ca4e0d70868227e1299343ee6862b6840c63438baa475ce1"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/street-late-high.png",
+          "hash": "sha256:20e525f40d4fef721c655bb2c45634c57cf4c5bc1b2aa0cb0494ed48947a75b9"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/block-noon-economy.png",
+          "hash": "sha256:b45af21d40ed788dc4ab9cd789fec598c12c6d53a17272f3dc8e8f05149e7784"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/block-noon-high.png",
+          "hash": "sha256:c2fc9a95f354fd358c5682ffc89be35a99d6ee8ea4dd81f392bce10f8a52bc30"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/block-late-economy.png",
+          "hash": "sha256:aca061de5a892dcf6db6a95b99bc3ba25427d0216f93b42ddc53c558e0b61eac"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/block-late-high.png",
+          "hash": "sha256:b300171f39bf486ee0abdd9ee56f82c15209292ae3de2caf7599eb333d5a2f11"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:be2571f6ba1608696aeffb3ba5917aa87c8f5b7d95c15817b8b455e1e84dec4e"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:b5cd072590303c6529d8b8dea4e7622bbbe49b728b02da71b78ac256e454c5ee"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:7173d1b22b1f6655063d3d650513f1a0bc269085365806277e427293c7086f5d"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/skyline-late-high.png",
+          "hash": "sha256:05afc1fbdaf8ec4d0898610dbb89de68c9cf7a042c485e95821d87a81d63514b"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/silhouette.png",
+          "hash": "sha256:3a81c53da96b2afe7aa65f99b0682071127d4cb8a6d0fd6b84d514eef918ad67"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/whole-four-arches.png",
+          "hash": "sha256:b395b214a02de9f25abe992d0579ab02b9a1e7a2dc035818dd43bb2199f73784"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/four-open-barrels.png",
+          "hash": "sha256:68dfa37b51c783cb463bb70e64b7c6bbadb5280d267db858ccd5cd2c585c3fef"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/stone-cutwater-and-voussoirs.png",
+          "hash": "sha256:758f441bdc9d8a88c4bd57e08e30dff51a0c89ebc04123e63585e70ddd1c1364"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/paving-and-pale-parapets.png",
+          "hash": "sha256:be7fb92d9137fe5cc532cf9f1dc08654b258cf71da5766ed580776f39e314871"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/skyline-whole-four-arches.png",
+          "hash": "sha256:052336f036183d025dd72a86f5bb085014a48b77d42cc7bb87463c157b84dab7"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/district-four-open-barrels.png",
+          "hash": "sha256:b437326404199f0fb0dc6071c734f27115355b23dab7b1ac9f064e9d6fd39c51"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/street-stone-cutwater-and-voussoirs.png",
+          "hash": "sha256:f22ee0ae7e966f446a501be75f5227abff78a3647bb9a9d1639de2e17453c207"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/closeup-paving-and-pale-parapets.png",
+          "hash": "sha256:be7fb92d9137fe5cc532cf9f1dc08654b258cf71da5766ed580776f39e314871"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/transition-skyline.png",
+          "hash": "sha256:48e4a6d066c660039c72fd76b878680a645daba3df5a7b952a4b0a301f6bcbf5"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/transition-district.png",
+          "hash": "sha256:c2fc9a95f354fd358c5682ffc89be35a99d6ee8ea4dd81f392bce10f8a52bc30"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/transition-street.png",
+          "hash": "sha256:79cbbbd8ea664e218f0a01bef5733b0b7e498a95a49fa4e7f953729a13cca543"
+        },
+        {
+          "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/medium-fi/transition-closeup.png",
+          "hash": "sha256:d5b8951d06850f6a9eccfd6438ed99e4707ef50203bf98193902448138f7dca2"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-master-whole-four-arches.png",
+          "hash": "sha256:2eeb7001d90244b5fad20d6e539c9086e9e160131a7b628b9a800ed8b95ae5fa"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-master-four-open-barrels.png",
+          "hash": "sha256:dc83977207deb186f57feb37ed758a1770d61ebc35464e4efaa436dc86456f84"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-master-stone-cutwater-and-voussoirs.png",
+          "hash": "sha256:e95863dceb5425e89bfaae1d7d85bc6b33e10d268ad0d227e42c0c26d1a477a4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-master-paving-and-pale-parapets.png",
+          "hash": "sha256:1f902d339138836875a50574f33f9ded8546d65c635ddb469e5bdd69df2451a1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-master-north-landing.png",
+          "hash": "sha256:5ffe12529700e0cac0493b746c1eee60e99260ebb1426317979fb3521f77ec63"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-master-south-landing.png",
+          "hash": "sha256:908ca11250f4118adfd06e68fd96eabb4ecca2569bb0dd361045d9485f3da481"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-master-district-context.png",
+          "hash": "sha256:4503ed5325c2ef2d16f00a5531dee6a54182a4bfefbedc8ebcfada7b78c9f189"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:865da203bd176db7e73861a3271c255e26aac2aba87684fef063c8696502a7e9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:6e5a48cae9ecc68d0614fbe139fd91169f715a18d2ae58aa3861b68f39d9ee33"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-street-whole-four-arches.png",
+          "hash": "sha256:b03974c08bb51a6f878f44d2f188f77eb1cde84684308220f08c9c0bd8618538"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-street-four-open-barrels.png",
+          "hash": "sha256:1bd5c78bd4840313adf99f1aaa54c89ced5faa00ebe7a38d5a0acaece5b07ffb"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-street-stone-cutwater-and-voussoirs.png",
+          "hash": "sha256:5afa05a55a0721d50b6a7124428dd6d5b849a119d967bfe03e730ebc2bf17a9b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-street-paving-and-pale-parapets.png",
+          "hash": "sha256:b0a984efc3a69299a3975915d3e1ec00cfbbc5e35b22d01606a6b9c66af0db70"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-closeup-whole-four-arches.png",
+          "hash": "sha256:a275372d0a3212a72fd654c5b63fb18d706857f4ffeb1ca39be1ee572a3e0a41"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-closeup-four-open-barrels.png",
+          "hash": "sha256:0122c7b853d64f8bc7331abbfbe2a93a8cd3f07291d1ff70be6b2b1a195c5d92"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-closeup-stone-cutwater-and-voussoirs.png",
+          "hash": "sha256:018708494a30ec976c1651f1ac85308fbb90042f581cee42264b3f582114d056"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-closeup-paving-and-pale-parapets.png",
+          "hash": "sha256:92ea9a43ce23afdb14c06c1926aeb32e835e2d1cd2319c4642330562f81cf3f7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-closeup-north-landing.png",
+          "hash": "sha256:3c7be0161ac0f14ad740ec9fb2658ffc6e19251e6bf5849e6dfbc2eef4413506"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-closeup-south-landing.png",
+          "hash": "sha256:3e83a80506aeec45a84f8d80bc79c1a871e3867e45639afa856f0badb66945ff"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:50881708354e3b5b1dbea02804f212832db12371bf2463b43cb7bfa1a897422e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/final-failure-whole-four-arches.png",
+          "hash": "sha256:7cc1678e1f68625704af2868e140698ffad2f7ae1d2382b5ccb5d22b91648077"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/upstream-master-upstream-pointed-cutwater.png",
+          "hash": "sha256:d77056418576c92cf7d4272e86e9ffecef625c9945dc31b8f2a71293558929ed"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\seher-review/native/shots/upstream-closeup-upstream-pointed-cutwater.png",
+          "hash": "sha256:a09a07f0c8f9c42c031ba58d5f837af7fe8291e85d524c42ad7ee701126070a0"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "At every loaded native tier, six mapped path-mouth samples meet actual bridge paving within 0.034212m; all six end-width samples retain model support. Original67 building records,89 independent road records, raw road inputs, DEM, displayed ground and water remain. Only the named bridge record is removed on successful load (92to91 roads); both directly connected paths are clipped/graded. Failed loading retains all92 roads. Unload releases all model/support geometries and retains ground/water. No ground/building cutouts or model distortion. Coarse bank grading, automatic retaining faces and reconstructed approach slopes remain visible approximations; surrounding City Hall and houses are generic map context."
+    },
+    "nativeReport": {
+      "path": ".artifacts/seher-review/native/final-report.json",
+      "hash": "sha256:61b271d8a778e3f55bf063e00954372d75a0717c0bab23bf5d2892a9834434f6",
+      "additional": {
+        "path": ".artifacts/seher-review/native/upstream-report.json",
+        "hash": "sha256:7ecd13e16d68fbdc03962c1c74d672fc16759fff3476d46ddc25d4b65183eb37"
+      }
+    },
+    "reports": [
+      {
+        "level": "master",
+        "buildings": 67,
+        "roads": 91,
+        "independentRoads": 89,
+        "mappedJoins": [
+          {
+            "id": "35184382735460/path/-2008/96",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.08223785424434,
+              0.9624667806152469
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.162304
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1623040286738,
+            "modelHeight": 551.1807549761998
+          },
+          {
+            "id": "35184382735460/path/-2054/12",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.53801131302293,
+              0.11755817356179724
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.16184
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1618401620938,
+            "modelHeight": 551.1545137474923
+          },
+          {
+            "id": "35184382735460/path/-2099/-73",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.993784771801522,
+              -0.7273504334916525
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.161376,
+              549.453596
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.161376295514,
+            "modelHeight": 551.1271641153808
+          },
+          {
+            "id": "35184382735460/path/2068/-85",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.67935509335235,
+              -0.8511075440628011
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156993
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1569926662394,
+            "modelHeight": 551.1460323333604
+          },
+          {
+            "id": "35184382735460/path/2055/10",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.549074880216434,
+              0.10001130553763665
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.15692
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.156919979888,
+            "modelHeight": 551.1538500541556
+          },
+          {
+            "id": "35184382735460/path/2042/105",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.41879466708052,
+              1.0511301551380745
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156847
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1568472935364,
+            "modelHeight": 551.1616677749505
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "buildings": 67,
+        "roads": 91,
+        "independentRoads": 89,
+        "mappedJoins": [
+          {
+            "id": "35184382735460/path/-2008/96",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.08223785424434,
+              0.9624667806152469
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.162304
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1623040286738,
+            "modelHeight": 551.1765988761554
+          },
+          {
+            "id": "35184382735460/path/-2054/12",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.53801131302293,
+              0.11755817356179724
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.16184
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1618401620938,
+            "modelHeight": 551.1545137474923
+          },
+          {
+            "id": "35184382735460/path/-2099/-73",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.993784771801522,
+              -0.7273504334916525
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.161376,
+              549.453596
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.161376295514,
+            "modelHeight": 551.1271641153808
+          },
+          {
+            "id": "35184382735460/path/2068/-85",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.67935509335235,
+              -0.8511075440628011
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156993
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1569926662394,
+            "modelHeight": 551.1460323333604
+          },
+          {
+            "id": "35184382735460/path/2055/10",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.549074880216434,
+              0.10001130553763665
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.15692
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.156919979888,
+            "modelHeight": 551.1538500541556
+          },
+          {
+            "id": "35184382735460/path/2042/105",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.41879466708052,
+              1.0511301551380745
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156847
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1568472935364,
+            "modelHeight": 551.1616677749505
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "buildings": 67,
+        "roads": 91,
+        "independentRoads": 89,
+        "mappedJoins": [
+          {
+            "id": "35184382735460/path/-2008/96",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.08223785424434,
+              0.9624667806152469
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.162304
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1623040286738,
+            "modelHeight": 551.1800602960298
+          },
+          {
+            "id": "35184382735460/path/-2054/12",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.53801131302293,
+              0.11755817356179724
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.16184
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1618401620938,
+            "modelHeight": 551.1545137474923
+          },
+          {
+            "id": "35184382735460/path/-2099/-73",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.993784771801522,
+              -0.7273504334916525
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.161376,
+              549.453596
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.161376295514,
+            "modelHeight": 551.1271641153808
+          },
+          {
+            "id": "35184382735460/path/2068/-85",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.67935509335235,
+              -0.8511075440628011
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156993
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1569926662394,
+            "modelHeight": 551.1460323333604
+          },
+          {
+            "id": "35184382735460/path/2055/10",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.549074880216434,
+              0.10001130553763665
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.15692
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.156919979888,
+            "modelHeight": 551.1538500541556
+          },
+          {
+            "id": "35184382735460/path/2042/105",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.41879466708052,
+              1.0511301551380745
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156847
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1568472935364,
+            "modelHeight": 551.1616677749505
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "buildings": 67,
+        "roads": 91,
+        "independentRoads": 89,
+        "mappedJoins": [
+          {
+            "id": "35184382735460/path/-2008/96",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.08223785424434,
+              0.9624667806152469
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.162304
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1623040286738,
+            "modelHeight": 551.1804968419997
+          },
+          {
+            "id": "35184382735460/path/-2054/12",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.53801131302293,
+              0.11755817356179724
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.16184
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1618401620938,
+            "modelHeight": 551.1545137474923
+          },
+          {
+            "id": "35184382735460/path/-2099/-73",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.993784771801522,
+              -0.7273504334916525
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.161376,
+              549.453596
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.161376295514,
+            "modelHeight": 551.1271641153808
+          },
+          {
+            "id": "35184382735460/path/2068/-85",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.67935509335235,
+              -0.8511075440628011
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156993
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1569926662394,
+            "modelHeight": 551.1460323333604
+          },
+          {
+            "id": "35184382735460/path/2055/10",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.549074880216434,
+              0.10001130553763665
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.15692
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.156919979888,
+            "modelHeight": 551.1538500541556
+          },
+          {
+            "id": "35184382735460/path/2042/105",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.41879466708052,
+              1.0511301551380745
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156847
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1568472935364,
+            "modelHeight": 551.1616677749505
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "buildings": 67,
+        "roads": 91,
+        "independentRoads": 89,
+        "mappedJoins": [
+          {
+            "id": "35184382735460/path/-2008/96",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.08223785424434,
+              0.9624667806152469
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.162304
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1623040286738,
+            "modelHeight": 551.1806928754213
+          },
+          {
+            "id": "35184382735460/path/-2054/12",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.53801131302293,
+              0.11755817356179724
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.16184
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1618401620938,
+            "modelHeight": 551.1545137474923
+          },
+          {
+            "id": "35184382735460/path/-2099/-73",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              -20.993784771801522,
+              -0.7273504334916525
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.161376,
+              549.453596
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.161376295514,
+            "modelHeight": 551.1271641153808
+          },
+          {
+            "id": "35184382735460/path/2068/-85",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.67935509335235,
+              -0.8511075440628011
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156993
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1569926662394,
+            "modelHeight": 551.1460323333604
+          },
+          {
+            "id": "35184382735460/path/2055/10",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.549074880216434,
+              0.10001130553763665
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.15692
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.156919979888,
+            "modelHeight": 551.1538500541556
+          },
+          {
+            "id": "35184382735460/path/2042/105",
+            "kind": "path",
+            "width": 2.4,
+            "point": [
+              20.41879466708052,
+              1.0511301551380745
+            ],
+            "joinElevation": 551.1636352539062,
+            "roadPavingHeights": [
+              551.156847
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 551.1568472935364,
+            "modelHeight": 551.1616677749505
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "buildings": 67,
+        "roads": 92,
+        "independentRoads": 89,
+        "mappedJoins": [],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Original continuous exterior reconstruction from ordinary photos and PMTiles. The40.772m exact-QID cached crossing axis matches current named PMTiles line35184561924716 within0.09m across its endpoints; this establishes placement, not a surveyed structural length.",
+    "Width4.70m, elliptical arch heights,1.70m piers, paving joints and cutwater sections are explicit photo-based reconstruction controls. Four visible arches and three projecting piers are complete; a historically buried fifth arch, interiors, separate river weir, retaining quays, buildings, graffiti and temporary boards are not modeled.",
+    "The native water plane and coarse terrain come from the ordinary viewer PMTiles/Mapzen pipeline. Their vertical fit and automatically graded footpath connections are approximate visualization, not a surveyed channel datum or navigable accessibility grade. Short0.95m tapering paving wings join the narrower oblique path mouths.",
+    "Skyline has six arch segments, coarse nose facets and continuous parapets; district has twelve and coarse parapet joints; street restores twenty-four and barrel/paving joints; closeup has forty. The detailed source has sixty-four segments and denser barrel joints. All levels retain complete four-span geometry, all three noses, pale parapets and continuous paving.",
+    "Shared256px limestone/limestone-raw/granite graphs only; portable GLBs contain no embedded image. Physical laptop/phone timing is unmeasured.",
+    "Upstream pointed-nose profile is a plausible reconstruction; inspected ordinary references establish the downstream rounded noses, not a survey of the opposite pier face. Native sidewalk/road grades, parapet/paving sections and low-frequency stone courses are approximate. Generic neighboring context is not approved as unique landmark geometry. Native-fit.json and integration-review.json retain pre-review generation controls; current acceptance and hash-bound captures are in qa.json and placement-report.json."
+  ]
+}

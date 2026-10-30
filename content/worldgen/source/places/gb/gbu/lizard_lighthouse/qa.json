@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.lizard_lighthouse",
-  "inputHash": "sha256:fc395c169587eaa00fd28fa9d2c9027178ab2a21ad6efe96f44feb44f659aadd",
-  "captureReportHash": "sha256:be7c20ed697ac70d2fbf2ddf01e11aa9262003566fe9335a1504ef118ce67b2c",
+  "inputHash": "sha256:3061804b01fafe4782c93c9926d448fe92a458891b1f4a9ba656d844e6936d7d",
+  "captureReportHash": "sha256:88241538c66dc8f181fd0ced23e2c139c9839664fe34f87f2913113652819303",
   "visualReview": {
     "status": "passed",
     "scope": "Detailed exterior and portable materials.",
@@ -19,14 +19,15 @@
       "shots/near-west-tower.png",
       "shots/far-ensemble.png"
     ],
-    "notes": "All eleven current portable and eleven shared frames inspected after roof winding and fog-signal bay window corrections. Active/eastern and inactive/western towers, hooded openings, diamond-bar lantern, keeper range, six black chimneys, rear outshuts, corridor and engine room remain coherent."
+    "notes": "All49 current portable, shared-material and medium-fi images inspected. Both white octagonal towers remain at their68m mapped separation, with the diamond lantern, visible optic and vane only on the eastern tower. The whole keeper range, two projecting gable bays, six black keeper chimneys, seven individual rear outshuts, rear wing, covered center corridor, engine house with its two stacks, semicircular bay/foghorn and finite site walls survive every tier. Open courtyards remain open. Window hoods and green sills retain the station identity. Current retained photographs control the silhouette and visible details.",
+    "captureReportHash": "sha256:88241538c66dc8f181fd0ced23e2c139c9839664fe34f87f2913113652819303"
   },
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:bce91d831eafc16a02a3c7e911b9e086fd65691c59a2f3ba00b3b8e667fb2c08",
-    "fixtureHash": "sha256:30a01c038a2fc391e1d7ec2c992fc210adc9fcf8831e2d419cf8aa0531f1e6cf",
-    "inputHash": "sha256:fc395c169587eaa00fd28fa9d2c9027178ab2a21ad6efe96f44feb44f659aadd",
+    "captureReportHash": "sha256:a46ea1868723eb42ce547ed99fe04df6ce02188388faab35f28d31d0252cdd62",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "inputHash": "sha256:3061804b01fafe4782c93c9926d448fe92a458891b1f4a9ba656d844e6936d7d",
     "materialGraphs": {
       "matgraph:molen.worldgen.material.plaster_lime": {
         "path": "materials/plaster_lime.matgraph.json",
@@ -58,17 +59,268 @@
       "shots/shared/far-ensemble.png",
       "shots/shared/placement.png"
     ],
-    "notes": "White mineral walls, shared slate and metal surfaces preserve scale. Window hoods and green sills are readable; lantern glazing exposes its optic. Geographic and unload assertions pass."
+    "notes": "All variants reuse four existing256px material graphs: plaster_lime, slate, metal_painted and wood_plain. Dark/clear glass are local fallback materials; no private or embedded bitmap images. Near variants have six material batches and six draws. Shared captures verify current graph hashes, approximate mapped plan overlay and model-geometry unload/disposal. Slate patterns and light plaster remain coherent beside the English terrace context. The detailed source and imported master remain byte-identical."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:6f9f6b810e6d8966fbadff563306d228ed43f11179c2684bf145ca146593d339",
-    "notes": "Exact east/west tower, range, engine and service-wing OSM parts fix station center/axis and the active eastern lantern. North-up footprint review shows the two towers and connecting buildings align at their actual68m separation. Terrain uses ordinary station grade;70m focal elevation is not structural height."
+    "notes": "Retain exact eastern and western tower, keeper-range, engine-house and service-part OSM controls, including ways65369068,814270620,814270621,846164579 and846164580. Anchor[-5.20211360017,49.96020745193], heading0.162rad: native+X east/slightly north along the keeper range; +Z south toward the engine house/coast. The western tower offset[-67.95,0,2.82]m fixes signed orientation and68.01m separation. North-up mapped footprint overlay inspected; no180degree ambiguity or centroid-only tower bearing. Published19m structure height remains distinct from70m focal elevation. Ordinary station-grade Y0 is retained; actual native coastal slope/cliff contact and independent site buildings remain unverified."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Latest medium-fi standard applied without modifying the118,842-triangle detailed source or imported master. Current complete authored browser levels use934/3894/14556/42322triangles and1/6/6/6draws, below all ceilings. The old skyline had24.53m reducer error and omitted parts; the new skyline is a complete authored station. Photograph-proportioned small windows, roof ridges, fittings and vane/optic shape remain reconstructions rather than surveyed/scanned or optically functional hardware."
+  },
+  "reviewedOn": "2026-10-29",
+  "sourceHash": "sha256:d8c3314032a88038fbccf6d88d9a512da937cec80299fb0c17efe12805828f9f",
+  "runtimeHash": "sha256:fb54cac849dca2b9a7e2d0dbe536f4a33f532df011e2e73b9b874395f3b9b243",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ae2babec103621a0a733702b667290d4d6862572b78994fd96e031d038c303cf",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-active-lantern.png",
+      "medium-fi/near-east-tower.png",
+      "medium-fi/near-keeper-range.png",
+      "medium-fi/near-engine-foghorn.png",
+      "medium-fi/near-west-tower.png",
+      "medium-fi/far-ensemble.png",
+      "medium-fi/skyline-complete-twin-tower-station-and-engine-room.png",
+      "medium-fi/district-active-lantern-diamonds-and-keeper-range.png",
+      "medium-fi/street-engine-house-rounded-bay-and-open-foghorn.png",
+      "medium-fi/closeup-active-optic-diamond-bars-and-gallery.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All27 medium-fi images inspected: Economy/High street, block and skyline under noon/late lighting; untextured silhouette; six retained close/whole-station cameras; four matched transitions; and dedicated skyline ensemble, district diamond lantern, street engine/foghorn and closeup optic/gallery views. Skyline preserves all building masses with aggregated repeated windows and chimney pots, opaque lantern and coarse diamond/guard identity. District retains all declared window positions as flat cards with hoods/green sills, coarse diamond bars, visible optic and horn. Street restores true facade recesses and deeper joinery; closeup restores rounded finials and finer curves. Small rail rosettes, prism rings, roof seams and hardware aggregate explicitly. No whole building disappears between tiers."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "Trinity House current photographs,19m active height, and Historic England description constrain the ensemble and its distinctive details. Fine lens section and small service-wing roof/joinery dimensions remain photographic reconstruction. Coastal cliff, detached hostel and temporary outdoor equipment are separate map context."
+    "notes": "Trinity House current photographs,19m active height, and Historic England description constrain the ensemble and its distinctive details. Fine lens section and small service-wing roof/joinery dimensions remain photographic reconstruction. Coastal cliff, detached hostel and temporary outdoor equipment are separate map context.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gb/gbu/lizard_lighthouse/models/source.glb",
+        "hash": "sha256:d8c3314032a88038fbccf6d88d9a512da937cec80299fb0c17efe12805828f9f",
+        "bytes": 11170592,
+        "triangles": 118842,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -72.08999633789062,
+          0,
+          -15.664999961853027
+        ],
+        "max": [
+          7.079999923706055,
+          19,
+          42.70000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gb/gbu/lizard_lighthouse/model.glb",
+        "hash": "sha256:fb54cac849dca2b9a7e2d0dbe536f4a33f532df011e2e73b9b874395f3b9b243",
+        "bytes": 11170092,
+        "triangles": 118842,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -72.08999633789062,
+          0,
+          -15.664999961853027
+        ],
+        "max": [
+          7.079999923706055,
+          19,
+          42.70000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/gb/gbu/lizard_lighthouse/model.skyline.glb",
+        "hash": "sha256:8f070e3d6e0e836c94e691663440376bc328bbc81f4b0c1eb911cdf3431f113c",
+        "bytes": 73432,
+        "triangles": 934,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -72,
+          0,
+          -15.630000114440918
+        ],
+        "max": [
+          7,
+          19,
+          42.650001525878906
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/gb/gbu/lizard_lighthouse/model.district.glb",
+        "hash": "sha256:84a6e2751a76bfb9503c8c53ff6884092bbfbcd854cab371c41cd905979036bd",
+        "bytes": 304676,
+        "triangles": 3894,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -72.08999633789062,
+          0,
+          -15.630000114440918
+        ],
+        "max": [
+          7.079999923706055,
+          19,
+          42.70000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/gb/gbu/lizard_lighthouse/model.street.glb",
+        "hash": "sha256:ef2a56eec329048cdb9471e8d317745aff7e9d8c88c2d67f6197f59a567d0104",
+        "bytes": 1101576,
+        "triangles": 14556,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -72.08999633789062,
+          0,
+          -15.664999961853027
+        ],
+        "max": [
+          7.079999923706055,
+          19,
+          42.70000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/gb/gbu/lizard_lighthouse/model.closeup.glb",
+        "hash": "sha256:380d644a7e54127190605831543b8b6c36dbc7c80866e5fb72fea170de3f2252",
+        "bytes": 3172700,
+        "triangles": 42322,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -72.08999633789062,
+          0,
+          -15.664999961853027
+        ],
+        "max": [
+          7.079999923706055,
+          19,
+          42.70000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-29",
+    "notes": "Six current Khronos glTF Validator results have zero errors, warnings or embedded images. Two focused tests pass in3.89sec: full19m height; both tower positions; both projecting gable bays; all seven rear outshuts, rear wing, covered corridor and engine roof; open yards; six keeper and two engine stacks; gallery support; lantern absent from the western tower; visible diamond crossing, large optic and recessed horn mouth. Copied-fixture regeneration reproduces every registered derivative byte and asserts actual four-level budgets, four graph refs and separate12byte position/normal streams. Source generation/import reproduction and strict medium-fi budget audit pass with no findings. Scene validation and30ticks pass with zero events, state hash sha256:0c6fd262b192fd4cf0a030c4b3077e6851dcf6237b7af0bfca12a91fd18df6f5."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:08ad271c70d76942290bd76badbd5aeb352b89c53093b432be220d3aba8cc8f6",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:8f070e3d6e0e836c94e691663440376bc328bbc81f4b0c1eb911cdf3431f113c",
+        "bytes": 73432,
+        "gzipBytes": 13239,
+        "triangles": 934,
+        "cpuBytes": 72060,
+        "gpuBytes": 72060,
+        "errorMeters": 0.9,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:84a6e2751a76bfb9503c8c53ff6884092bbfbcd854cab371c41cd905979036bd",
+        "bytes": 304676,
+        "gzipBytes": 57198,
+        "triangles": 3894,
+        "cpuBytes": 297396,
+        "gpuBytes": 297396,
+        "errorMeters": 0.4,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:ef2a56eec329048cdb9471e8d317745aff7e9d8c88c2d67f6197f59a567d0104",
+        "bytes": 1101576,
+        "gzipBytes": 213037,
+        "triangles": 14556,
+        "cpuBytes": 1094256,
+        "gpuBytes": 1094256,
+        "errorMeters": 0.18,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:380d644a7e54127190605831543b8b6c36dbc7c80866e5fb72fea170de3f2252",
+        "bytes": 3172700,
+        "gzipBytes": 585011,
+        "triangles": 42322,
+        "cpuBytes": 3165360,
+        "gpuBytes": 3165360,
+        "errorMeters": 0.08,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 378108,
+    "notes": "Skyline/district/street/closeup geometry use73,432/304,676/1,101,576/3,172,700bytes. Initial skyline+district totals378,108bytes, below phone/laptop targets; four shared texture graphs reuse the common library. Detailed source sha256:d8c3314032a88038fbccf6d88d9a512da937cec80299fb0c17efe12805828f9f and imported master sha256:fb54cac849dca2b9a7e2d0dbe536f4a33f532df011e2e73b9b874395f3b9b243 remain exact. Physical laptop/phone frame and memory timing remains unmeasured."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:3061804b01fafe4782c93c9926d448fe92a458891b1f4a9ba656d844e6936d7d",
+    "sourceHash": "sha256:d8c3314032a88038fbccf6d88d9a512da937cec80299fb0c17efe12805828f9f",
+    "runtimeHash": "sha256:fb54cac849dca2b9a7e2d0dbe536f4a33f532df011e2e73b9b874395f3b9b243",
+    "framesInspected": 49,
+    "note": "One continuous targeted source/material/LOD/retained-picture/map/render pass. Both detailed masters were saved locally and compared by SHA256 after generation. Authored lower levels simplify repeated windows, finials, curves and optic rings rather than reduce away station buildings. A focused ray check exposed an edge-on coarse diamond ribbon; its width now lies on the cylindrical tangent plane and the complete geometry tests pass. No bespoke source research, terrain download, full source build, engine CI, dependency audit, Git operation or upload was needed. Production remains active following the owner resume."
+  },
+  "limitations": [
+    "The complete station exterior and retained approximate mapped plan are reviewed. Native coastal slope/cliff fit, independent hostel/exterior masts, surveyed small fittings, interior navigation, optical function and physical-device timings remain unverified. Skyline aggregates pots/windows and omits tiny hardware/optic interior; district cards replace recess depth; near finials, guard rosettes, diamond paths and prism rings remain explicit viewing-scale simplifications."
+  ],
+  "masterPreservationReview": {
+    "status": "passed",
+    "sourceHash": "sha256:d8c3314032a88038fbccf6d88d9a512da937cec80299fb0c17efe12805828f9f",
+    "runtimeHash": "sha256:fb54cac849dca2b9a7e2d0dbe536f4a33f532df011e2e73b9b874395f3b9b243",
+    "sourceTriangles": 118842,
+    "method": "Exact SHA256 comparison of both current detailed masters with saved originals; no master triangle changes."
   }
 }

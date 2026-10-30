@@ -1,13 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.santiago_bernabeu_stadium",
-  "inputHash": "sha256:af3bb6ce4b471fe81c0b971eec1809e9f24574574872c53e55f4d650514e5c07",
-  "captureReportHash": "sha256:128d05d12d56383c475a202893ca18b6b153dfab74ca6bf8d768459a937db2a2",
+  "reviewedOn": "2026-10-29",
+  "inputHash": "sha256:382454e7f9950ba67c8d99da056ff002cfdebabc46c122aea9b4f12b07687c94",
+  "sourceHash": "sha256:919bbed8d4912b405a5b52658a71bf4fc8dc3ca85826e76f3ef9c2ecd2880bf3",
+  "runtimeHash": "sha256:8ac313bb2191740e73a1dc487aaa2bb203f133cfd87ab85c1410ac43e9979f0c",
+  "captureReportHash": "sha256:e83d62f33b4d52d2bc7b8cdebcde84f070691802f8b69185eb76fb1bb77e75a0",
   "visualReview": {
     "status": "passed",
-    "scope": "Detailed current exterior and open-roof bowl.",
+    "inputHash": "sha256:382454e7f9950ba67c8d99da056ff002cfdebabc46c122aea9b4f12b07687c94",
+    "captureReportHash": "sha256:e83d62f33b4d52d2bc7b8cdebcde84f070691802f8b69185eb76fb1bb77e75a0",
     "inspectedFrames": [
-      "preview.png",
+      "shots/scene-preview.png",
       "shots/turntable/angle_0.png",
       "shots/turntable/angle_1.png",
       "shots/turntable/angle_2.png",
@@ -19,32 +23,12 @@
       "shots/near-roof-truss.png",
       "shots/far-open-roof.png"
     ],
-    "notes": "All11portable and final11shared frames inspected, plus full-resolution louvres, four tiers and north-up placement. Portable preview intentionally has no ground; negative pitch grade is preserved. Roof aperture, asymmetric bowing, physically separated steel louvres, entry glazing, skywalk, trusses and blue chair tiers are coherent. Portable stainless is darker without the environment; actual shared sky-PMREM gives the expected silver finish."
+    "notes": "Inspected68 current frames:11 portable and11 shared-material views of the preserved detailed master,27 final Earth/context/LOD views and19 actual Molen runtime-cutout views. The independently authored four browser tiers retain the asymmetric east bulge,silver bowed horizontal skin,open fixed roof,skywalk slit,four blue seating tiers and the depressed marked pitch. District groups louvres and seating slopes;street has24 louvre bands and21 grouped tread levels;closeup has60 louvre bands,all82 seating rows,44 radial V support units,selected return folds,goal frames and simplified western VIP boxes. Individual chairs,most louvre returns,minor roof joints,entry bays and concealed circulation details remain in the detailed master. The skyline now uses the same shared stainless finish as nearby tiers,preventing a bright palette-only material change. Angular corners,coarse louvre spacing and dense-line aliasing remain visible when distance tiers are forced close."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:a8167eafe7fe3a09074b0f961ec4026c19886d7e6d2e80dd86792196b9b9db2c",
-    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
-    "inputHash": "sha256:af3bb6ce4b471fe81c0b971eec1809e9f24574574872c53e55f4d650514e5c07",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.metal_stainless": {
-        "path": "materials/metal_stainless.matgraph.json",
-        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
-      },
-      "matgraph:molen.worldgen.material.membrane": {
-        "path": "materials/membrane.matgraph.json",
-        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      }
-    },
+    "inputHash": "sha256:382454e7f9950ba67c8d99da056ff002cfdebabc46c122aea9b4f12b07687c94",
+    "captureReportHash": "sha256:33f48aa771adc84ec710163eda3c0ff01c925db5252aa551b547604e969cc6b9",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -58,17 +42,1171 @@
       "shots/shared/far-open-roof.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Actual shared stainless, concrete, painted steel and roof membrane preserve metric texture scale and geometry. Final geographic capture exercises the actual terrain cutter: pitch visible atY-9.2; cutout ray miss, hide/show and unload restoration pass. No duplicate local textures."
+    "notes": "Four existing shared256px metal_stainless,metal_painted,concrete_plain and membrane graphs,metric UVs and linear vertex colors. Blue seating,turf and dark glass are local PBR factors. No private or embedded images. Skyline has two draws:shared steel plus a merged local palette;all nearby tiers have seven. Used graphs read once in each fixture and geometry disposes on unloading. Reflective steel inherits the engine sky/ground colors;the warm/brown reflection in the Earth rig is not a brown paint texture.",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_stainless": {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:382454e7f9950ba67c8d99da056ff002cfdebabc46c122aea9b4f12b07687c94",
+    "captureReportHash": "sha256:e86c49b8f8005a5f40b2435b3925e71a4b5fcca9f30e9a83ebebb8d61360c9e9",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-steel-louvres.png",
+      "medium-fi/near-west-entrance.png",
+      "medium-fi/near-roof-skywalk.png",
+      "medium-fi/near-four-tiers.png",
+      "medium-fi/near-roof-truss.png",
+      "medium-fi/far-open-roof.png",
+      "medium-fi/whole-bernabeu-skyline.png",
+      "medium-fi/whole-bernabeu-district.png",
+      "medium-fi/whole-bernabeu-street.png",
+      "medium-fi/whole-bernabeu-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected68 current frames:11 portable and11 shared-material views of the preserved detailed master,27 final Earth/context/LOD views and19 actual Molen runtime-cutout views. The independently authored four browser tiers retain the asymmetric east bulge,silver bowed horizontal skin,open fixed roof,skywalk slit,four blue seating tiers and the depressed marked pitch. District groups louvres and seating slopes;street has24 louvre bands and21 grouped tread levels;closeup has60 louvre bands,all82 seating rows,44 radial V support units,selected return folds,goal frames and simplified western VIP boxes. Individual chairs,most louvre returns,minor roof joints,entry bays and concealed circulation details remain in the detailed master. The skyline now uses the same shared stainless finish as nearby tiers,preventing a bright palette-only material change. Angular corners,coarse louvre spacing and dense-line aliasing remain visible when distance tiers are forced close. Detailed source master preserved byte-for-byte:1,111,994triangles /101492824bytes. Browser triangles 976 / 3672 / 14528 / 62816,bytes 67940 / 272812 / 936804 / 3843140,draws 2 / 7 / 7 / 7. Initial skyline+district 340752bytes;closeup 3843140bytes. Every tier meets its1000/4000/16000/64000triangle ceiling and eight-draw maximum. Separate POSITION/NORMAL streams prevent duplicate GPU uploads. Error settings8/4/2/1m are conservative authoring estimates,not certified whole-mesh distance measurements. No laptop/phone or downtown timing claim.",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:84104923b1687f697227468efaa0973a50bf90880f6eb9dfaf2c9e22f21d7016",
-    "notes": "Exact mapped pitch controls origin/axis, current85-point exterior fixes eastern bulge. North-up frame aligns footprint and cutout with mapped envelope. Authored street ring covers the cut boundary atY0 while the field remains below. Correct west museum face and southern pitch axis retained; grade comes from the architect section rather than a geodetic survey."
+    "notes": "Exact mapped pitch controls origin/axis, current85-point exterior fixes eastern bulge. North-up frame aligns footprint and cutout with mapped envelope. Authored street ring covers the cut boundary atY0 while the field remains below. Correct west museum face and southern pitch axis retained; grade comes from the architect section rather than a geodetic survey. Retained anchor[-3.688354759398062,40.45305269079727] and heading-0.07332041354862007 are unchanged. Native+Z south/slightly west and+X east/slightly south. The same85-point closed outer outline supplies every browser model's street-grade concourse and the existing cutout. These are retained OSM/architect-derived controls,no new bespoke research or current PMTiles/DEM survey. The actual Molen renderer was checked on the retained mapped outline with a synthetic flat street datumY0. All five loaded outputs replace the selected stadium building while preserving four independent building records,four roads,raw height samples and outside-ground heights within1e-6m. The pitch remains visible nearY-9.184 after removal of the covering terrain. All84 inset boundary samples find the modeled concourse atY0.01. Hiding restores ground at the pitch;showing clears it again. Failed model loading retains all five generic building records and four roads;unloading restores original ground geometry and leaves zero live model/support geometries. This is a real engine cutout/transform/lifecycle check,not validation of Madrid terrain heights or current nearby buildings. Exact surveyed grade,accessibility and physical-device timing remain unverified."
   },
   "fidelityReview": {
-    "target": "maximum",
     "status": "passed",
-    "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "Current architect photography, floor/terrace plans and scaled section plus engineer dimensions govern the distinctive stainless envelope, skywalk, aperture and structural roof. Louvre fabrication section, static folded textile stacks and seat distribution are reconstructed. Changing advertisements, exact ticket counts and enclosed maintenance machinery are outside this exterior asset; these are not required for the modeled architectural identity."
-  }
+    "target": "medium-fi",
+    "notes": "Inspected68 current frames:11 portable and11 shared-material views of the preserved detailed master,27 final Earth/context/LOD views and19 actual Molen runtime-cutout views. The independently authored four browser tiers retain the asymmetric east bulge,silver bowed horizontal skin,open fixed roof,skywalk slit,four blue seating tiers and the depressed marked pitch. District groups louvres and seating slopes;street has24 louvre bands and21 grouped tread levels;closeup has60 louvre bands,all82 seating rows,44 radial V support units,selected return folds,goal frames and simplified western VIP boxes. Individual chairs,most louvre returns,minor roof joints,entry bays and concealed circulation details remain in the detailed master. The skyline now uses the same shared stainless finish as nearby tiers,preventing a bright palette-only material change. Angular corners,coarse louvre spacing and dense-line aliasing remain visible when distance tiers are forced close. Detailed source master preserved byte-for-byte:1,111,994triangles /101492824bytes. Browser triangles 976 / 3672 / 14528 / 62816,bytes 67940 / 272812 / 936804 / 3843140,draws 2 / 7 / 7 / 7. Initial skyline+district 340752bytes;closeup 3843140bytes. Every tier meets its1000/4000/16000/64000triangle ceiling and eight-draw maximum. Separate POSITION/NORMAL streams prevent duplicate GPU uploads. Error settings8/4/2/1m are conservative authoring estimates,not certified whole-mesh distance measurements. No laptop/phone or downtown timing claim."
+  },
+  "retainedDetailedMasterReview": {
+    "sourceHash": "sha256:919bbed8d4912b405a5b52658a71bf4fc8dc3ca85826e76f3ef9c2ecd2880bf3",
+    "runtimeHash": "sha256:8ac313bb2191740e73a1dc487aaa2bb203f133cfd87ab85c1410ac43e9979f0c",
+    "unchanged": true,
+    "originalMaximumFidelityReview": {
+      "target": "maximum",
+      "status": "passed",
+      "scope": "Detailed published exterior in Molen shared material style.",
+      "notes": "Current architect photography, floor/terrace plans and scaled section plus engineer dimensions govern the distinctive stainless envelope, skywalk, aperture and structural roof. Louvre fabrication section, static folded textile stacks and seat distribution are reconstructed. Changing advertisements, exact ticket counts and enclosed maintenance machinery are outside this exterior asset; these are not required for the modeled architectural identity."
+    },
+    "notes": "Original maximum-fidelity scope retained verbatim;new browser review does not overwrite its meaning."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/models/source.glb",
+        "hash": "sha256:919bbed8d4912b405a5b52658a71bf4fc8dc3ca85826e76f3ef9c2ecd2880bf3",
+        "bytes": 101492824,
+        "triangles": 1111994,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -108.0693359375,
+          -9.199999809265137,
+          -111.03162384033203
+        ],
+        "max": [
+          134.27525329589844,
+          56.81999969482422,
+          109.53993225097656
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/ez/ezj/santiago_bernabeu_stadium/model.glb",
+        "hash": "sha256:8ac313bb2191740e73a1dc487aaa2bb203f133cfd87ab85c1410ac43e9979f0c",
+        "bytes": 101492152,
+        "triangles": 1111994,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -108.0693359375,
+          -9.199999809265137,
+          -111.03162384033203
+        ],
+        "max": [
+          134.27525329589844,
+          56.81999969482422,
+          109.53993225097656
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/ez/ezj/santiago_bernabeu_stadium/model.skyline.glb",
+        "hash": "sha256:1be1e9b5d93ee8b04642de488768062c02161462d192de987580b6a987449a1a",
+        "bytes": 67940,
+        "triangles": 976,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -108.0739974975586,
+          -9.199999809265137,
+          -111.03399658203125
+        ],
+        "max": [
+          134.39590454101562,
+          55.56606674194336,
+          109.54389953613281
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/ez/ezj/santiago_bernabeu_stadium/model.district.glb",
+        "hash": "sha256:3e976507c484c101c4dfc33257460cedae06375619a064b175c49d43e3b8166a",
+        "bytes": 272812,
+        "triangles": 3672,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -108.0739974975586,
+          -9.199999809265137,
+          -111.03399658203125
+        ],
+        "max": [
+          134.39590454101562,
+          56.81999969482422,
+          109.54389953613281
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/ez/ezj/santiago_bernabeu_stadium/model.street.glb",
+        "hash": "sha256:4519970b56fc4abe7c2e27574897f34612b75ec9940d2dc5ad59a63f3ec1ec47",
+        "bytes": 936804,
+        "triangles": 14528,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -108.0739974975586,
+          -10.373332977294922,
+          -111.03399658203125
+        ],
+        "max": [
+          134.39590454101562,
+          56.81999969482422,
+          109.54389953613281
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/ez/ezj/santiago_bernabeu_stadium/model.closeup.glb",
+        "hash": "sha256:c9b0e2b86d8c0230d2271888bfc178cc8ac3ad1241929c10247bff6305de3f89",
+        "bytes": 3843140,
+        "triangles": 62816,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -108.0739974975586,
+          -9.199999809265137,
+          -111.03399658203125
+        ],
+        "max": [
+          134.39590454101562,
+          56.81999969482422,
+          109.54389953613281
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "checks": [
+      {
+        "check": "six-clean-current-Khronos-GLBs",
+        "passed": true
+      },
+      {
+        "check": "three-focused-open-roof-four-tier-depressed-pitch-asymmetric-shell-mapped-concourse-budget-and-GPU-layout-tests",
+        "passed": true
+      },
+      {
+        "check": "scene-validation-and30-tick-simulation",
+        "passed": true,
+        "notes": "tick: 30\nhash: sha256:901c49567e0544ea5f08518712e7c71318548fd8f710f47dec2c91e2a183a292\nevents: 0"
+      }
+    ]
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:28f01bd67f4610bfe591834e15255338a4e00de36595a0c4dafb7ab9256da629",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:1be1e9b5d93ee8b04642de488768062c02161462d192de987580b6a987449a1a",
+        "bytes": 67940,
+        "gzipBytes": 24404,
+        "triangles": 976,
+        "cpuBytes": 65328,
+        "gpuBytes": 65328,
+        "errorMeters": 8,
+        "drawCalls": 2
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:3e976507c484c101c4dfc33257460cedae06375619a064b175c49d43e3b8166a",
+        "bytes": 272812,
+        "gzipBytes": 87758,
+        "triangles": 3672,
+        "cpuBytes": 264528,
+        "gpuBytes": 264528,
+        "errorMeters": 4,
+        "drawCalls": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:4519970b56fc4abe7c2e27574897f34612b75ec9940d2dc5ad59a63f3ec1ec47",
+        "bytes": 936804,
+        "gzipBytes": 302065,
+        "triangles": 14528,
+        "cpuBytes": 928488,
+        "gpuBytes": 928488,
+        "errorMeters": 2,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:c9b0e2b86d8c0230d2271888bfc178cc8ac3ad1241929c10247bff6305de3f89",
+        "bytes": 3843140,
+        "gzipBytes": 1301701,
+        "triangles": 62816,
+        "cpuBytes": 3834768,
+        "gpuBytes": 3834768,
+        "errorMeters": 1,
+        "drawCalls": 7
+      }
+    ],
+    "initialBytes": 340752,
+    "notes": "Detailed source master preserved byte-for-byte:1,111,994triangles /101492824bytes. Browser triangles 976 / 3672 / 14528 / 62816,bytes 67940 / 272812 / 936804 / 3843140,draws 2 / 7 / 7 / 7. Initial skyline+district 340752bytes;closeup 3843140bytes. Every tier meets its1000/4000/16000/64000triangle ceiling and eight-draw maximum. Separate POSITION/NORMAL streams prevent duplicate GPU uploads. Error settings8/4/2/1m are conservative authoring estimates,not certified whole-mesh distance measurements. No laptop/phone or downtown timing claim."
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:382454e7f9950ba67c8d99da056ff002cfdebabc46c122aea9b4f12b07687c94",
+    "visualFit": {
+      "status": "passed",
+      "basis": "The actual Molen renderer was checked on the retained mapped outline with a synthetic flat street datumY0. All five loaded outputs replace the selected stadium building while preserving four independent building records,four roads,raw height samples and outside-ground heights within1e-6m. The pitch remains visible nearY-9.184 after removal of the covering terrain. All84 inset boundary samples find the modeled concourse atY0.01. Hiding restores ground at the pitch;showing clears it again. Failed model loading retains all five generic building records and four roads;unloading restores original ground geometry and leaves zero live model/support geometries. This is a real engine cutout/transform/lifecycle check,not validation of Madrid terrain heights or current nearby buildings. Exact surveyed grade,accessibility and physical-device timing remain unverified."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:382454e7f9950ba67c8d99da056ff002cfdebabc46c122aea9b4f12b07687c94",
+      "reviewedOn": "2026-10-29",
+      "method": "Inspected68 current frames:11 portable and11 shared-material views of the preserved detailed master,27 final Earth/context/LOD views and19 actual Molen runtime-cutout views. The independently authored four browser tiers retain the asymmetric east bulge,silver bowed horizontal skin,open fixed roof,skywalk slit,four blue seating tiers and the depressed marked pitch. District groups louvres and seating slopes;street has24 louvre bands and21 grouped tread levels;closeup has60 louvre bands,all82 seating rows,44 radial V support units,selected return folds,goal frames and simplified western VIP boxes. Individual chairs,most louvre returns,minor roof joints,entry bays and concealed circulation details remain in the detailed master. The skyline now uses the same shared stainless finish as nearby tiers,preventing a bright palette-only material change. Angular corners,coarse louvre spacing and dense-line aliasing remain visible when distance tiers are forced close.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/scene-preview.png",
+          "hash": "sha256:85a809dd6ee867cb57db86b72618bb65557f3ddadf2fb570d8e34020a0a019ed"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_0.png",
+          "hash": "sha256:609898befbe9bd5e05f1c6d92d4097ff922c9ea9a6b426e025a6022c7f964029"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_1.png",
+          "hash": "sha256:8241bdabd36314901cc1fe4154a3100d726c42e0702c3b5054b88fba2a075abf"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_2.png",
+          "hash": "sha256:e1565dc5e10aeb47e614b6dea26ae0a18465a2043181acf832b8ba561500bccb"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_3.png",
+          "hash": "sha256:14edebb24446019debd1c634980fcbf1ce71ed3ff0937a978706d6e5f416216b"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/near-steel-louvres.png",
+          "hash": "sha256:e6a93a67abdab6f8660561eccd1616f67dba1b8213779257760aceb2184e0930"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/near-west-entrance.png",
+          "hash": "sha256:6b70bff8f0bc062661611f0360f18ddc06e8e0880b50e08db2c5e70bd3645fa3"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/near-roof-skywalk.png",
+          "hash": "sha256:d1e7e3e4c090b7ad4784a1c6babdf1732144c6b72a37e8d892480a9e7bc874ed"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/near-four-tiers.png",
+          "hash": "sha256:97460dc8934af4c99c850e57c479aac43fc2bdaec5171d5b0ccf4e1d6dd0fed7"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/near-roof-truss.png",
+          "hash": "sha256:78d689df4894652d277f7ece8ef0a0e3ac67d377364e5da295bd052745eccdb1"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/far-open-roof.png",
+          "hash": "sha256:339aef5434780ab7789d344e277506a9b408b3e5efc90e456c4bd9d2ce6abe72"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-0.png",
+          "hash": "sha256:910efacf97c06b78b7fb9143ca359c414670213ef3d7f9cf7259b38247db2f4a"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-1.png",
+          "hash": "sha256:f46158b28b1a2529604ac444252a8974c2c14e3543a79d482904140280fb30e2"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-2.png",
+          "hash": "sha256:874146ac1449520841a0da4537db09e0e4b917f84498fd9409d6eb87fc1c03a4"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-3.png",
+          "hash": "sha256:93f27f6313d3028c53cf36ae43033f99674e66047ada7178f0925a15648dba23"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/near-steel-louvres.png",
+          "hash": "sha256:67f3f9cd40190d525320352c00842fb1ebc371efd1f08f251d82e78c4572bcaa"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/near-west-entrance.png",
+          "hash": "sha256:259d02fcc079d4bf77e21b55efe38d65d78a7b39eea452baea2b555a360cf232"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/near-roof-skywalk.png",
+          "hash": "sha256:72816aa40f2807dad4f4a5a3ca24e623bbb19eacbf99f1bab41ebabfc3563289"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/near-four-tiers.png",
+          "hash": "sha256:2867ce05ae500769a457a5ffb55767b14838a630b8318c7b3cdfa9a85a839fb5"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/near-roof-truss.png",
+          "hash": "sha256:4ef7023b88a0fab25f332672d29947a24d7f7b12c4d62d65edfd5f9d2e761bdf"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/far-open-roof.png",
+          "hash": "sha256:bcff9045cb40b2e45c77d3ed9aace08ea5a7e5a7c5ae89e6e824f27ee6a768a9"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/placement.png",
+          "hash": "sha256:7fa51d2345fb7fef77ba66d3a38e66cc6e8e39af683dc31cfa3d97bc05106afc"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/street-noon-economy.png",
+          "hash": "sha256:aa6d5d058151f5fd7ad7b24192a6ea37ea23696ce7561aa3af1d5b52eccbcddb"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/street-noon-high.png",
+          "hash": "sha256:ea261c103e5e52123d8666f5fdaeb5a4981ad13f646f62baf61d16a5fb2b3f05"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/street-late-economy.png",
+          "hash": "sha256:379db71946fddcbeaa40bfd3157110ed8beb5b8f5d6cb204bb29983fa1f2ced0"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/street-late-high.png",
+          "hash": "sha256:074dcdc7b283da928c3d63eb64563a26fd0267f9e68f4f3461a58e84dccbb364"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/block-noon-economy.png",
+          "hash": "sha256:6182f9c9b5801e79ab421c3fe6cec560379f5e2bd46c09344f0ebb1cee772a11"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/block-noon-high.png",
+          "hash": "sha256:88d0eb6c0aad5c73524ad01bb475f8e419c60423f89b2df4bbe6538bc3d38753"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/block-late-economy.png",
+          "hash": "sha256:fe4889380944d4e9ad5103cfea2165f3c505c9d10160e3d166568c6a0ce30e06"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/block-late-high.png",
+          "hash": "sha256:e4b58a96f2e34c3a899a62a24adef663d5c224aa75df1cb165eeaf8f94a8ed90"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:b20770d3ba791447b55640fa99d4ba6f3181751ea444991acb95b8e28d20d8b2"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:4a7dfbe886744b68003cf1c8351e2c85df3c44f1b630545ca59ac90926cde481"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:61038f0ccd88cc0a2b1332b74bfd087196db0173797f1a089a5812e30f64118f"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/skyline-late-high.png",
+          "hash": "sha256:b2b9cd7a23c2cecead45dcf3ce7aeb379719e345caf5cd82e1747689dd5dd17b"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/silhouette.png",
+          "hash": "sha256:49b92bb5eb74df1ccff7e8e9389f39b3677cfd1033da00da5c053fffd22706b5"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/near-steel-louvres.png",
+          "hash": "sha256:d924a413ee6e59b965c25f3490adb87d3d7de172e1d873dbbf0d6a4ee134f812"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/near-west-entrance.png",
+          "hash": "sha256:11baf1bc2d6045a498d38c14db2564cbf6daed21b74b0fe3782ec012946019c4"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/near-roof-skywalk.png",
+          "hash": "sha256:736b58b91475a88f4b48651e829967112733ecded88de3478f1430346f70a022"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/near-four-tiers.png",
+          "hash": "sha256:e656d888e76dc9eee3c431a2bcb06636703b1f89752b920623584a4b086fe5dc"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/near-roof-truss.png",
+          "hash": "sha256:f7ab8871594bf84ad01835cdae12b22e49b9f408b04ba1b6169b9aeebb2968ec"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/far-open-roof.png",
+          "hash": "sha256:1fa57f2a387686fca4b02ea8099b73e8fa7e78a54f0516e3c56b636e2429836b"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/whole-bernabeu-skyline.png",
+          "hash": "sha256:be552c62b498ef810a37eeaee9e360466fcbebb6343c7433e70e3f01830d8e3e"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/whole-bernabeu-district.png",
+          "hash": "sha256:1c54ea7f637c4837b9ae8da837c692683e02e273a4a8ab829051e672529734a0"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/whole-bernabeu-street.png",
+          "hash": "sha256:d6711d221aaaece1b7879d22dd3bf8348ee7feb6512a1ccbb0206896f2c755a5"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/whole-bernabeu-closeup.png",
+          "hash": "sha256:dc0e706d08e4699bbb22f077eee2570ab5a078473abdeda8ae4e8b240e89dc66"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/transition-skyline.png",
+          "hash": "sha256:8337fe861423d2ee18301d3500fb27772c7bd5c78a1e801cddb39c8ef31b0a6e"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/transition-district.png",
+          "hash": "sha256:88d0eb6c0aad5c73524ad01bb475f8e419c60423f89b2df4bbe6538bc3d38753"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/transition-street.png",
+          "hash": "sha256:66e5db3591c5803e0b0667e67ba558765a597b33728841ccbd5481fa14bf041c"
+        },
+        {
+          "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/medium-fi/transition-closeup.png",
+          "hash": "sha256:43776be20dec75342d451b0ebf3a50440f601221e29f6ca5d430fb3ea3245b49"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-master-whole-asymmetric-open-roof.png",
+          "hash": "sha256:25442882bc7c37fbd4973087a97cabffafb1c550824f6ecd16fe2985c4177f11"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-master-silver-louvres-and-entry.png",
+          "hash": "sha256:2be4017d26cebe3161d08509b59cfaaffe3c7ff85cd1dec904728dc348450c85"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-master-four-tier-bowl-and-pitch.png",
+          "hash": "sha256:dce9b87d8525c5e710ca66bd57b637cfe2633d9541a7dcc8142ff18ec4665405"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-master-roof-and-open-skywalk-slit.png",
+          "hash": "sha256:f511808e8b1522cac18c2a3b193f13b3437fec7c016a2d9fd7b83eefcb59ebd9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-master-mapped-roof-opening-and-concourse.png",
+          "hash": "sha256:fd65cf918438edade45f7801438f8a76318204c0df7574732e88dc234a74ce28"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-master-district-context.png",
+          "hash": "sha256:1833d4b61fe075071cc9493daf70edc2aad1b452ca0ef6d0b6ba51f6e99b3370"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-skyline-skyline-context.png",
+          "hash": "sha256:13c610b6b079282bd8084ed28a7f81500843682ffc9f2dcc8afd3999bbed134c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-district-district-context.png",
+          "hash": "sha256:a330627eee5c4bacc1843030dba548b41feca02b4064911c529fffe8e84062b0"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-street-whole-asymmetric-open-roof.png",
+          "hash": "sha256:12e1089805dec726b513a401ff6e13259f520abbf01acc98e195bcb56efbecf4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-street-silver-louvres-and-entry.png",
+          "hash": "sha256:7bb31269ee9c813f15f605079a80d83f37ed69d9a56db52d40ea25b69531beab"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-street-four-tier-bowl-and-pitch.png",
+          "hash": "sha256:4b2878a8a0671cbffbb851e8a8df426bddd4dc6d99d949058f7b99722ede9268"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-street-roof-and-open-skywalk-slit.png",
+          "hash": "sha256:d81dcb5c82b8c1bbe74f90834def2b7563bf1269071a8a36cded43c93ac29d0b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-closeup-whole-asymmetric-open-roof.png",
+          "hash": "sha256:f6a460180132d87a1aab1a5913ab1bd25986ebaaea6734bc8564cdefc263d99b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-closeup-silver-louvres-and-entry.png",
+          "hash": "sha256:d9488b5cffed54504c1acfa2c5359ed2da6eb86621bca57d2d9d53f88779aa9b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-closeup-four-tier-bowl-and-pitch.png",
+          "hash": "sha256:66965f353a26a4cfe09fddffaa9865f469a4d41a9d147a834b2de07cc682f1a1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-closeup-roof-and-open-skywalk-slit.png",
+          "hash": "sha256:4d9d724312818ba7b2da55a73add0122f5ec64b2ccce9fe4dac992af7c45f2ae"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-closeup-mapped-roof-opening-and-concourse.png",
+          "hash": "sha256:40b79168620042c2ebe0bd670793af86aff31698d4afc41af50bb23180ec5880"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-closeup-district-context.png",
+          "hash": "sha256:bd57defcfd3f2b04fc5b75d5cf9adaac0dd073ac4fa9cf3b69e4e4da95714f0e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\bernabeu-lod-review/native/shots/accepted-failure-whole-asymmetric-open-roof.png",
+          "hash": "sha256:cdf877d0de95dc9edac9cd00fbc7b23f8dcbb64b41e03b56547f633b5550aed2"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "The actual Molen renderer was checked on the retained mapped outline with a synthetic flat street datumY0. All five loaded outputs replace the selected stadium building while preserving four independent building records,four roads,raw height samples and outside-ground heights within1e-6m. The pitch remains visible nearY-9.184 after removal of the covering terrain. All84 inset boundary samples find the modeled concourse atY0.01. Hiding restores ground at the pitch;showing clears it again. Failed model loading retains all five generic building records and four roads;unloading restores original ground geometry and leaves zero live model/support geometries. This is a real engine cutout/transform/lifecycle check,not validation of Madrid terrain heights or current nearby buildings. Exact surveyed grade,accessibility and physical-device timing remain unverified."
+    },
+    "nativeReport": {
+      "path": ".artifacts/bernabeu-lod-review/native/accepted-report.json",
+      "hash": "sha256:85405c83fdbfc01d7d7dc593a6833b403850626e4c126391d3ec99a59de86abf"
+    },
+    "reports": [
+      {
+        "level": "master",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "outsideGroundSamples": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "groundAtPitch": null,
+        "modelAtPitch": -9.17300033569336,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "outsideGroundSamples": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "groundAtPitch": null,
+        "modelAtPitch": -9.17399978637718,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482527,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "outsideGroundSamples": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "groundAtPitch": null,
+        "modelAtPitch": -9.17399978637718,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482527,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "outsideGroundSamples": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "groundAtPitch": null,
+        "modelAtPitch": -9.17399978637718,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482527,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "outsideGroundSamples": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "groundAtPitch": null,
+        "modelAtPitch": -9.17399978637718,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482527,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "remainingBuildings": 5,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "outsideGroundSamples": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "groundAtPitch": 0,
+        "modelAtPitch": null,
+        "streetEdgeSamples": [],
+        "hideShow": null,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Static match-day open-roof exterior; underground grass-storage mechanics and private rooms are not visible architecture. Folded roof membrane sections and small louvre support members are reconstructed from public roof photos. Individual ticket-seat counts and advertising/video content are not reproduced. Primary scaled section sets approximate grade relationships; no geodetic survey is claimed. Exterior wall height/bowing and facade section are photo reconstructions constrained by the mapped footprint and published overall dimensions.",
+    "Detailed1,111,994-triangle source master and imported design-time master remain byte-identical to the retained maximum-fidelity exterior. Four separately authored medium-fi browser levels preserve the asymmetric mapped envelope,complete open roof,street-grade concourse and depressed field;they deliberately aggregate individual louvre returns,seats,concourse bays,small roof joints and concealed circulation structures.",
+    "Skyline uses32 perimeter samples,two broad shell bands and four sloping seating bands. District uses48 samples,eight separated louvre bands,coarse V units and tier fascias. Street uses80 samples,24 louvre bands and21 grouped tread levels. Closeup uses112 samples,60 louvre bands,all82 seating rows,44 radial support units,selected return folds,goal frames and simplified western VIP boxes. Browser tiers contain no reproduced signage,video or private machinery.",
+    "The full retained85-point outer outline supplies the street-grade concourse/cutout atY0;pitch remainsY-9.2 with its turf slab/markings. Source/map axis and approximate architect-derived grade remain retained controls,not a new geodetic or current PMTiles/DEM survey. Synthetic medium-fi stage lies below the pitch to reveal the complete geometry; actual Molen cutout/lifecycle checks use a flat street datum and are not terrain-data validation.",
+    "Four existing shared256px stainless,painted-metal,concrete and membrane graphs;palette-only turf,blue seating and dark glass. No private or embedded images. Angular corners,coarse louvre spacing,stepped-seat aggregation and static tier changes are intentional. Error bounds are conservative authoring estimates,not certified whole-mesh Hausdorff distances. Physical laptop/phone and downtown timing remain unmeasured.",
+    "Skyline keeps the same shared stainless graph as nearer levels to preserve its reflective finish,plus one merged palette group for the other surfaces:two draws rather than a bright untextured replacement. Standard context cameras use scale3 to remain outside this243m-wide stadium.",
+    "Current medium-fi/browser acceptance is separate from the retained original maximum-fidelity source-master review. Portable/shared images were captured and inspected in this same pass;an explicit unchanged-master rebinding records the subsequent skyline-only finish and context-camera change,without claiming a new master render."
+  ]
 }

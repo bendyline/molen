@@ -1,0 +1,54 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hercilio_luz_bridge",
+  "kind": "static-structure",
+  "title": "Hercílio Luz Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json",
+      "models/bridge-lines.json",
+      "models/footing-controls.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hercilio_luz_bridge",
+        "output": "assets/places/6g/6gj/hercilio_luz_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:606e1f6d458b2f5e597de1e4712e593b2ab8dc8fae59917d4c10093451f205a3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-hercilio.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/hercilio-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

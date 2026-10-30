@@ -46,3 +46,10 @@ Input: sha256:1b8f948ccc1eeb0d1e3b5586d933169676760bd9f75601e98921199944216f59
 ## References
 
 - https://commons.wikimedia.org/wiki/File:Lotus_temple_daytime.jpg
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.
+
+Current output triangles: 980 / 3629 / 8321 / 17153. Current skyline+district bytes: 458020. Source master: 36395 triangles. These current pinned outputs take precedence over any historical counts above.

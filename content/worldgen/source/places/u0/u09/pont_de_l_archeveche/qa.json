@@ -1,12 +1,16 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.pont_de_l_archeveche",
-  "inputHash": "sha256:8d65fbba3a9118c5df25ff097d1f7f91b339b1e51b5a33a4ba636c17763675a9",
-  "captureReportHash": "sha256:2fa6a651d88cc90ace5a727a0e21256bc59265a518403c57a3b75a95a70ab109",
+  "reviewedOn": "2026-10-29",
+  "inputHash": "sha256:cb42aa60b846a87d78ac4e46a57d8ca1246557e10c88bd0b63d3e125e24a49d6",
+  "sourceHash": "sha256:1f9964ba99a151ce709af9b30662190c0adac758190d8231fdc8c7ba7ca785d5",
+  "runtimeHash": "sha256:79382cd0af9d12e567ad355f75e7a1460ff1718eff9a4a57c228934091e0152b",
+  "captureReportHash": "sha256:ab0df24f9079f6749c311ec0e2a573da996cea13b41671c199aa95448a6573f0",
   "visualReview": {
     "status": "passed",
+    "inputHash": "sha256:cb42aa60b846a87d78ac4e46a57d8ca1246557e10c88bd0b63d3e125e24a49d6",
     "inspectedFrames": [
-      "preview.png",
+      "shots/scene-preview.png",
       "shots/turntable/angle_0.png",
       "shots/turntable/angle_1.png",
       "shots/turntable/angle_2.png",
@@ -20,11 +24,12 @@
       "shots/cobbled-deck.png",
       "shots/flared-mainland.png"
     ],
-    "notes": "All 13 current portable frames inspected: three shallow vaults, radial ashlar, coursed soffits, rounded piers and mooring rings, flared mainland abutment, fan-course cobbles, transparent X-frame rails and ornamental lanterns. Original 1864 engineering pages were inspected and used to correct the middle span to17.1m and pier thickness to2.3m."
+    "captureReportHash": "sha256:ab0df24f9079f6749c311ec0e2a573da996cea13b41671c199aa95448a6573f0",
+    "notes": "Inspected74 current frames:13 portable,12 shared-material stage,29 medium-fi/context/tier frames and20 cached-terrain/road views. The original432736triangle master remains exact. All tiers retain three shallow open circular vaults,rounded projecting cutwaters,continuous crowned road,both raised sidewalks and wide asymmetric mainland flare. Close/street retain crossed transparent rail frames,modeled arch rings/soffit divisions,mooring rings and both mapped ornamental lamps. Detailed master retains individual coursing,fan sett courses,glazing hardware and direction-specific signs; browser tiers aggregate these details,including the small blue reverse navigation panel."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:98eb957b5669758b95fc2b82f7c83c8cf9a4bc3019366a3898a90fabb4cf3901",
+    "inputHash": "sha256:cb42aa60b846a87d78ac4e46a57d8ca1246557e10c88bd0b63d3e125e24a49d6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -39,26 +44,662 @@
       "shots/shared/cobbled-deck.png",
       "shots/shared/flared-mainland.png"
     ],
-    "notes": "All 12 current shared-surface frames inspected at full resolution. Raw limestone courses, curved soffit joints, fan-course granite setts, painted iron and transparent glazing remain coherent with metric shared materials. Updated extent uses the asset review fixture; actual bank placement is independently rendered in the eight terrain frames bound below. Loading and resource unload pass."
+    "captureReportHash": "sha256:c4df858418af28d5c3c39d26b15e4ee15ca8019418022a0900584d1086190b87",
+    "notes": "Three existing shared256px graphs: raw limestone,painted metal and granite paving. Local transparent glazing and navigation/stripe colors; no embedded/private images. Browser tiers use shared granite grain and broad staggered sett variation instead of thousands of separate fan-course blocks. Master geometry/materials are unchanged; each shared graph resolves once and resource unload passes.",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:cb42aa60b846a87d78ac4e46a57d8ca1246557e10c88bd0b63d3e125e24a49d6",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/upstream-three-arches.png",
+      "medium-fi/downstream-vaults.png",
+      "medium-fi/rounded-cutwater.png",
+      "medium-fi/ashlar-and-soffit.png",
+      "medium-fi/glazed-parapet.png",
+      "medium-fi/ornamental-lantern.png",
+      "medium-fi/cobbled-deck.png",
+      "medium-fi/flared-mainland.png",
+      "medium-fi/skyline-upstream-three-arches.png",
+      "medium-fi/district-downstream-vaults.png",
+      "medium-fi/street-rounded-cutwater.png",
+      "medium-fi/closeup-ashlar-and-soffit.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:a9902f36444af64d5b16df3734b9b51a30c1fce5498a6b99c580e45f56b13a4b",
+    "notes": "Master 432736triangles/36496176bytes retained exactly. Browser triangles 632 / 2772 / 12988 / 29294,bytes 51012 / 229480 / 1083492 / 2449996,draws 1 / 5 / 5 / 5. Initial skyline+district 280492bytes. All tiers meet1000/4000/16000/64000triangles,at most5draws,separate GPU position/normal streams. Physical laptop/phone timing remains unmeasured.",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:1b25174d3378dede30b1732f280a23dc0c057af80f6e122c9ae5cea24cd4de0b",
-    "notes": "Directed exact bridge footprint, north-island end and southern approach flare reviewed in eight current production terrain frames, including independently mapped road plans through the procedural renderer. The 26.96 m NGF-IGN69 origin preserves the independent terrain water reference. Northern upper-bank road samples at native X 40–44 m are 34.58–34.60 m versus modeled endpoint approximately 34.60 m; the southern road meets the 34.1–34.4 m plateau with a roughly 0.4 m local residual. The old X 33.1 m ray hits a smoothed quay face at 31.97 m, so its 2.62 m clearance is retained rather than mistaken for an upper-road mismatch. Loaded-model polygon replacement removes covered bridge road fragments, connects both approaches and preserves the lower quay road. BD TOPO road widths remain narrower than the authored deck; independent source Z has stated 1.5 m accuracy and is not used to flatten the model or terrain. Hosts must supply compatible NGF-IGN69 heights or an explicit datum conversion. Submerged footing depth is a reconstruction, not bathymetry.",
+    "mapFrameHash": "sha256:d07f5752ea0bc144417ad35282c2f6955ac9e725c98684ceebcd77bf4124d406",
+    "notes": "Retained exact-QID way78329745,anchor[2.351548575,48.851511875],heading1.164505939862457. +X north-northeast toward Île de la Cité,+Z east-southeast/upstream; southern abutment flare stays at negativeX. Production placement and26.96m NGF-IGN69 origin are unchanged. This existing host-datum contract requires compatible heights or an explicit conversion; generic global Mapzen datum equivalence is not claimed. Fresh master/all-four-tier views reuse the exact cached terrain samples and18 retained independent mapped road context IDs without new downloads or terrain fitting. The lower quay road remains beneath the flared mainland end; source/model bounds,deck surface and grade remain aligned across tiers. Near-island X33m lies on the smoothed quay face,with a retained~2.62m ray gap; the upper road plateau at X40–44m remains the separate original fit evidence. Mainland residual~0.4m remains. These existing host-terrain limitations are carried forward,not erased by the tier refresh. All model geometry unloads. This scoped cached-terrain fixture does not claim a new current global PMTiles/water/building-preservation measurement.",
     "terrainReports": [
       {
-        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-fit-report.json",
-        "hash": "sha256:c09e5ce4936d03a8f1b6d058f592046bb881b6c6455c55b9283909f9e4d1bb05"
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-fit-report.json",
+        "hash": "sha256:2054b667259ae81649dd69cd6eb516ad6a5f97ae8fb1b505b9fda82d03c94a1d"
       },
       {
-        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-fit-report.json",
-        "hash": "sha256:e9f62488a2a2481d772eda05a82978ed104b285434dfd2cbb89630548f64c79e"
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-skyline-fit-report.json",
+        "hash": "sha256:89892b40186d041ebeddfade224b7e84cfd26a60c069b54568ba82ddc89aa33b"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-district-fit-report.json",
+        "hash": "sha256:a4a588ce277466490eaacd6b79ba17f348b8e4f2094953084c3cc4a01adfefe2"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-street-fit-report.json",
+        "hash": "sha256:d9a9aa5c7c1b536598bf88b74739358f927965e51a678f7a6937f2f70ce49767"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-closeup-fit-report.json",
+        "hash": "sha256:1802c9d5e580e9eaebd2016b2bd9ecc32b574b11f2de1f1d9c37b8ec269dd240"
       }
     ]
   },
   "fidelityReview": {
-    "target": "maximum",
+    "target": "medium-fi",
     "status": "passed",
-    "notes": "436,496-triangle exterior reconstructed from inspected current 2021/2019 photographs, AFGC engineering description, Paris2026 confirmation of transparent replacement railings, and visually inspected Annales des Ponts et Chaussees1864 pages174–175. Published spans, rises, width and pier thickness are encoded explicitly. Individual stone courses/soffit blocks, curved sett courses, glazing fasteners, rail cross-bracing, fluted ornamental lantern bases and navigation signs are modeled. Fine coursing/member sizes remain photo reconstruction; temporary furnishings omitted. Terrain fit is a separate pending review."
-  }
+    "notes": "Inspected74 current frames:13 portable,12 shared-material stage,29 medium-fi/context/tier frames and20 cached-terrain/road views. The original432736triangle master remains exact. All tiers retain three shallow open circular vaults,rounded projecting cutwaters,continuous crowned road,both raised sidewalks and wide asymmetric mainland flare. Close/street retain crossed transparent rail frames,modeled arch rings/soffit divisions,mooring rings and both mapped ornamental lamps. Detailed master retains individual coursing,fan sett courses,glazing hardware and direction-specific signs; browser tiers aggregate these details,including the small blue reverse navigation panel. Master 432736triangles/36496176bytes retained exactly. Browser triangles 632 / 2772 / 12988 / 29294,bytes 51012 / 229480 / 1083492 / 2449996,draws 1 / 5 / 5 / 5. Initial skyline+district 280492bytes. All tiers meet1000/4000/16000/64000triangles,at most5draws,separate GPU position/normal streams. Physical laptop/phone timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/models/source.glb",
+        "hash": "sha256:1f9964ba99a151ce709af9b30662190c0adac758190d8231fdc8c7ba7ca785d5",
+        "bytes": 36496176,
+        "triangles": 432736,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -34.29999923706055,
+          0,
+          -16.119998931884766
+        ],
+        "max": [
+          34.5,
+          13.186834335327148,
+          16.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_l_archeveche/model.glb",
+        "hash": "sha256:79382cd0af9d12e567ad355f75e7a1460ff1718eff9a4a57c228934091e0152b",
+        "bytes": 36495664,
+        "triangles": 432736,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -34.29999923706055,
+          0,
+          -16.119998931884766
+        ],
+        "max": [
+          34.5,
+          13.186834335327148,
+          16.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_l_archeveche/model.skyline.glb",
+        "hash": "sha256:70e22c845db322f85beae831796045172f843f1029f0632284a75006a7bd7b44",
+        "bytes": 51012,
+        "triangles": 632,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -34.29999923706055,
+          0,
+          -16.1200008392334
+        ],
+        "max": [
+          34.47999954223633,
+          7.980198383331299,
+          16.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_l_archeveche/model.district.glb",
+        "hash": "sha256:b6f8bfa7d65321957c05111440fd4decbef88b3d40c143ce0c531049738c005d",
+        "bytes": 229480,
+        "triangles": 2772,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -34.29999923706055,
+          0,
+          -16.1200008392334
+        ],
+        "max": [
+          34.47999954223633,
+          13.186834335327148,
+          16.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_l_archeveche/model.street.glb",
+        "hash": "sha256:394d2d3e689d8679a2cb8b3c36f18f6968d6392ae62fd2a0713b65934f2b7597",
+        "bytes": 1083492,
+        "triangles": 12988,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -34.29999923706055,
+          0,
+          -16.1200008392334
+        ],
+        "max": [
+          34.47999954223633,
+          13.186834335327148,
+          16.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_l_archeveche/model.closeup.glb",
+        "hash": "sha256:6474c398f1c50d1bf98bf5aba310889403d8e64c026e27beb8919c38b857b6d0",
+        "bytes": 2449996,
+        "triangles": 29294,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -34.29999923706055,
+          0,
+          -16.1200008392334
+        ],
+        "max": [
+          34.47999954223633,
+          13.186834335327148,
+          16.850000381469727
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "checks": [
+      {
+        "check": "six-clean-Khronos-GLBs",
+        "passed": true
+      },
+      {
+        "check": "two-focused-vault-flare-deck-master-preservation-and-deterministic-LOD-tests",
+        "passed": true
+      },
+      {
+        "check": "scene-and30-ticks",
+        "passed": true,
+        "notes": "Valid scene,30ticks,0events; sha256:5c6323466ad9b3fe810937382362b7b8ccaa694cd385197ef53c06f396d8f783"
+      }
+    ]
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:bbf83df97672608655550c2bf4bc8906c3212a4d13f65201d63acf2c88f2e232",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:70e22c845db322f85beae831796045172f843f1029f0632284a75006a7bd7b44",
+        "bytes": 51012,
+        "gzipBytes": 11870,
+        "triangles": 632,
+        "cpuBytes": 49584,
+        "gpuBytes": 49584,
+        "errorMeters": 0.12,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:b6f8bfa7d65321957c05111440fd4decbef88b3d40c143ce0c531049738c005d",
+        "bytes": 229480,
+        "gzipBytes": 46350,
+        "triangles": 2772,
+        "cpuBytes": 223344,
+        "gpuBytes": 223344,
+        "errorMeters": 0.06,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:394d2d3e689d8679a2cb8b3c36f18f6968d6392ae62fd2a0713b65934f2b7597",
+        "bytes": 1083492,
+        "gzipBytes": 232640,
+        "triangles": 12988,
+        "cpuBytes": 1077324,
+        "gpuBytes": 1077324,
+        "errorMeters": 0.025,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:6474c398f1c50d1bf98bf5aba310889403d8e64c026e27beb8919c38b857b6d0",
+        "bytes": 2449996,
+        "gzipBytes": 502529,
+        "triangles": 29294,
+        "cpuBytes": 2443800,
+        "gpuBytes": 2443800,
+        "errorMeters": 0.012,
+        "drawCalls": 5
+      }
+    ],
+    "initialBytes": 280492,
+    "notes": "Master 432736triangles/36496176bytes retained exactly. Browser triangles 632 / 2772 / 12988 / 29294,bytes 51012 / 229480 / 1083492 / 2449996,draws 1 / 5 / 5 / 5. Initial skyline+district 280492bytes. All tiers meet1000/4000/16000/64000triangles,at most5draws,separate GPU position/normal streams. Physical laptop/phone timing remains unmeasured."
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:cb42aa60b846a87d78ac4e46a57d8ca1246557e10c88bd0b63d3e125e24a49d6",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Retained exact-QID way78329745,anchor[2.351548575,48.851511875],heading1.164505939862457. +X north-northeast toward Île de la Cité,+Z east-southeast/upstream; southern abutment flare stays at negativeX. Production placement and26.96m NGF-IGN69 origin are unchanged. This existing host-datum contract requires compatible heights or an explicit conversion; generic global Mapzen datum equivalence is not claimed. Fresh master/all-four-tier views reuse the exact cached terrain samples and18 retained independent mapped road context IDs without new downloads or terrain fitting. The lower quay road remains beneath the flared mainland end; source/model bounds,deck surface and grade remain aligned across tiers. Near-island X33m lies on the smoothed quay face,with a retained~2.62m ray gap; the upper road plateau at X40–44m remains the separate original fit evidence. Mainland residual~0.4m remains. These existing host-terrain limitations are carried forward,not erased by the tier refresh. All model geometry unloads. This scoped cached-terrain fixture does not claim a new current global PMTiles/water/building-preservation measurement."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:cb42aa60b846a87d78ac4e46a57d8ca1246557e10c88bd0b63d3e125e24a49d6",
+      "reviewedOn": "2026-10-29",
+      "method": "Inspected74 current frames:13 portable,12 shared-material stage,29 medium-fi/context/tier frames and20 cached-terrain/road views. The original432736triangle master remains exact. All tiers retain three shallow open circular vaults,rounded projecting cutwaters,continuous crowned road,both raised sidewalks and wide asymmetric mainland flare. Close/street retain crossed transparent rail frames,modeled arch rings/soffit divisions,mooring rings and both mapped ornamental lamps. Detailed master retains individual coursing,fan sett courses,glazing hardware and direction-specific signs; browser tiers aggregate these details,including the small blue reverse navigation panel.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/scene-preview.png",
+          "hash": "sha256:52b7ff1ecc56793ac30aa8b866f56448d7a2c6ff88a49dfef87880859218b469"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/turntable/angle_0.png",
+          "hash": "sha256:ae7de291feb9d103be1874bd897a6c704d18f66d18bbdfa1af89d2d682cc9245"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/turntable/angle_1.png",
+          "hash": "sha256:28b036fea07a72eee2dd2d3f6e8f5c9d4d7975e3eb46509f8e758f567bb4a4f1"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/turntable/angle_2.png",
+          "hash": "sha256:d5b56590ba9a9a93739931ba4bb6bbb9eb4267b14a6d6f66def87347623334a7"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/turntable/angle_3.png",
+          "hash": "sha256:821ca69a51bb3c4fda973cbd1a33b4519d2668e023f9a7c6721356c88f6a9c1c"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/upstream-three-arches.png",
+          "hash": "sha256:4e51cf1ee59d432fb9a6b36000d2950dad5b35be98098ba3632c1fedc7a2059f"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/downstream-vaults.png",
+          "hash": "sha256:ac8f308bbebc03633856954538ba248a892f734ee2ce9289a0a800ce1534bac3"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/rounded-cutwater.png",
+          "hash": "sha256:7d4429ee526937925d79d3384f53f9183523da82d3b67202c1acc67e1943a597"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/ashlar-and-soffit.png",
+          "hash": "sha256:95d98444208be28ad9422bce2cd6640a69751648118827005272e8f4b7ec9edd"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/glazed-parapet.png",
+          "hash": "sha256:293e11580c5a6e9286c3d34af774bf3160076f2778c1bfb72eecc6aaef89ab2d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/ornamental-lantern.png",
+          "hash": "sha256:783e5f1d796882f9ab5a76b1f5dce97c750486fa7c12f531d0e2355fb20e0908"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/cobbled-deck.png",
+          "hash": "sha256:7d91a175b0fde4f48b032b8dfa48182753b5e98708fd5fb3aa3eaa4ee715ad27"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/flared-mainland.png",
+          "hash": "sha256:95be9978536a77b80f32edd68efb3843ccaab68e169703240c5a26bdf43bc28c"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-0.png",
+          "hash": "sha256:515c4c5558d39f12bea1be4b8f73d979b8c5646946edf691adef0ff90317648a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-1.png",
+          "hash": "sha256:6db6036e8d16e31c624d1cf48980232966902a4c5a52a9e5358ba5826d492379"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-2.png",
+          "hash": "sha256:cf1edae266946e2b09399ce9baabc3fcd0652acdde98739c96ac86a6f329775e"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-3.png",
+          "hash": "sha256:aea55a90e3823f588ea20b965835c62e149b6ad00487639797ab209f2161b489"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/upstream-three-arches.png",
+          "hash": "sha256:afa6fd9ae82e3f8c0a66bfa7fabd4b712dc448f15fb90641a9dc74845040c2f9"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/downstream-vaults.png",
+          "hash": "sha256:e6bf4121353b7daaf4ba255ac6428e5bf518f633dc22b5f5bbdc2df2c8d11ff9"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/rounded-cutwater.png",
+          "hash": "sha256:b0fc93edf816961a5d7a58fb8fb0061c83806844e4af95fca84e6f44015bf67d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/ashlar-and-soffit.png",
+          "hash": "sha256:6e8a3041bf16452ef668d4dc260c2839ce90d29c80b239ee4a27ff86502efa8d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/glazed-parapet.png",
+          "hash": "sha256:1fd9c2af7fdbb3b180022b590a8e146f8dae05152256f95337bb9a4d7f4281d3"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/ornamental-lantern.png",
+          "hash": "sha256:384ab6ede2898d6f51c083e7ed1332d2ef8581037d468b5271313207e3bc849d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/cobbled-deck.png",
+          "hash": "sha256:e4878f542f79a55938f9dbffe3baf6e6caeaef9d371e72fbac6a3a8fa6df68ab"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/flared-mainland.png",
+          "hash": "sha256:54a0346cfd49a3e8f75caa30cdf0ef754be6c1aeffa0aa912a01bfe9682422a5"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/street-noon-economy.png",
+          "hash": "sha256:89114af8779081d6ac8f1c6ef27c5796eced25be25d72f30cc76bfd50eebc944"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/street-noon-high.png",
+          "hash": "sha256:f39a589926be801e7bb23649f5e93cd2f501e8edde7a5d437fca10d22c34f94a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/street-late-economy.png",
+          "hash": "sha256:c0551f9597b7a95f0e09b290dd2df95a26633710d2a0be2c882936761b31dc50"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/street-late-high.png",
+          "hash": "sha256:9f22f2997be8fcda44d701f335da465a2878c721d92914363178e1021e50b338"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/block-noon-economy.png",
+          "hash": "sha256:c63c923ae0b53337c097d35705d43748b50dee4a0f09cabcd1a21a19f684f1f5"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/block-noon-high.png",
+          "hash": "sha256:3f493e94bf5c449a7835abe1184b94b5fb36d94223a253cb672878e20a31ec09"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/block-late-economy.png",
+          "hash": "sha256:79f9d2a76199edb9573ed2ab8398ba377ad16c9f0cae81a363aa75651e4967ab"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/block-late-high.png",
+          "hash": "sha256:270175257c527cfacb372e46c547d8a10103a307fe52b24c895b3b10b070154d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:2d8cd7fad3ee62f444107b60404cdb528af36c9c44fee238c9923fd5eb4666be"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:a0d28158a10f32e5309b830452f8fb5b2225a482424685159f0dee53dfad61f5"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:8913dc28505e656291d93134722017841a3e5b23154d12ea4172d1c04be0f8cc"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/skyline-late-high.png",
+          "hash": "sha256:28a26ccdf6f73e2512c035666e86bb7310490e00a4884298834431c003754df7"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/silhouette.png",
+          "hash": "sha256:4749c3210541c24f5567f8e899908e09c54a12a17c1a5116a2c0dfe38585f346"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/upstream-three-arches.png",
+          "hash": "sha256:e92ae82e9ad84733bf0638fb47927d31d29ce6f8ddfd0ce5afb56fbdd354a6e8"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/downstream-vaults.png",
+          "hash": "sha256:a60cf0b08128ad174820f5c9e6de4f5480461d8a62d180b2c14fd67670ced6bd"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/rounded-cutwater.png",
+          "hash": "sha256:b37f65823a608ca89f5cbef6778c2272037e839961866cfed76a4625477ccda2"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/ashlar-and-soffit.png",
+          "hash": "sha256:9926f684f4d248e1ef72068e48e2c9e176c874b612a9ead40da308a6082ba361"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/glazed-parapet.png",
+          "hash": "sha256:1fc36646f66f95bc2c6dc253c23bd2111354c8789232dd45a3f3565c28000edd"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/ornamental-lantern.png",
+          "hash": "sha256:6732c952227b9ab4effdaddc291ce610831c9323e54b113a6acedb55074d1803"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/cobbled-deck.png",
+          "hash": "sha256:cb3ebd915d7c053d45156c4108f71dd0d4584ba4a9908cd5fc8ccd95ef70b9c3"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/flared-mainland.png",
+          "hash": "sha256:0dbd9b1cc87454bb1bef5c80ab3cee93a9f32d7de5cb22766922de091406516b"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/skyline-upstream-three-arches.png",
+          "hash": "sha256:c6e90bef175f252b4a8ab3e479787f177137cff6299c708cef78006c607ccfe6"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/district-downstream-vaults.png",
+          "hash": "sha256:dea38c6ee62931982255fd911da689a7383a786341ab73c2f44f4223e5ed46b9"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/street-rounded-cutwater.png",
+          "hash": "sha256:3833bb0d6fbd36ad93894cf31e826d00df34a8038f57324cd1544d64e72451db"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/closeup-ashlar-and-soffit.png",
+          "hash": "sha256:9926f684f4d248e1ef72068e48e2c9e176c874b612a9ead40da308a6082ba361"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/transition-skyline.png",
+          "hash": "sha256:6931b3d971d4547112a7b4805397042d1f7fac9b475fcf5087c277cea9e862dc"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/transition-district.png",
+          "hash": "sha256:3f493e94bf5c449a7835abe1184b94b5fb36d94223a253cb672878e20a31ec09"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/transition-street.png",
+          "hash": "sha256:8e58396e88aca134a074e147e2eaa30696a51937250164704c4e82318d34bd3a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/medium-fi/transition-closeup.png",
+          "hash": "sha256:987997a37a82681b9fa326274a3f19ad5bbefd53b5cd6e4739e0600b335d08d1"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads/bank-oblique.png",
+          "hash": "sha256:e2f1d5980656fb6a2c930e36723936f2467d92dbd4402d6881eaad1d6fe7911e"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads/side-elevation.png",
+          "hash": "sha256:4149a6bdbaa17aa5f8d28e968aad39bdd3510d1af568c06bd888b64f83783a1b"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads/reverse-bank.png",
+          "hash": "sha256:4b43fb389c7b2734914607dad4d068637cdc081e656f24093411f06688359d11"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads/plan.png",
+          "hash": "sha256:0d01d1455f0aa4c13a58cfcd415ee14837802ee4c826c67ccf488a8d7ca2ec18"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-skyline/bank-oblique.png",
+          "hash": "sha256:f7984ff02247cd8f1344c62053dcca4bf0722487daa0a62ea48302179d10ceb7"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-skyline/side-elevation.png",
+          "hash": "sha256:0aea1f44805de61de1280a8bb6414994b3bba556569a5647d0f3230d0d1221ea"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-skyline/reverse-bank.png",
+          "hash": "sha256:89e0e6f3ba8b2bb55b04ad6cdf9eea5f30831622d31572b92e120adc7f466376"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-skyline/plan.png",
+          "hash": "sha256:be3940b033e9d8e5768db1bee521b3d25e76807f16fdc8f2470176b95ca2c5c5"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-district/bank-oblique.png",
+          "hash": "sha256:5631925d3417ecbdab286670907e707af7770e4e907509de36ee244dcd357fea"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-district/side-elevation.png",
+          "hash": "sha256:5fe74665526d9c125d33ef2f138e87d97684dc73a944b16574eef0bd02f5d3bb"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-district/reverse-bank.png",
+          "hash": "sha256:3bfb15e69a658cd4e0dc07c66aba9659088a8a9e4e7cb9e126ab38bfae8d8fdc"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-district/plan.png",
+          "hash": "sha256:30b090c66520917503a49dba72b166699589157db619d5200c6f8d6f18314fc9"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-street/bank-oblique.png",
+          "hash": "sha256:ecbfea16881eafcd751d1132e636249e53aa4f41bf253488ca4a90823a1b90fe"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-street/side-elevation.png",
+          "hash": "sha256:5a29fc6c39897fcea79f6d6c903be1983217f8047be4f3e6fd2c5d12a280079d"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-street/reverse-bank.png",
+          "hash": "sha256:23639ab56c9d0dc747e6b02ddb5d5d1da64f62347c9f26f396ab0d979c539dc8"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-street/plan.png",
+          "hash": "sha256:ca3e4a01762b4f0ba8d04b148139b0b33f469e80acedd2d0100b4d083a0966bb"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-closeup/bank-oblique.png",
+          "hash": "sha256:7b42fc758992c684f21f01333063e30d3c2b3d1f9577a2b6eb3ba384d9def660"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-closeup/side-elevation.png",
+          "hash": "sha256:638530dd773d88ac4d8fd375f31beaabcbc33a84bad8b8601c65562cee681d22"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-closeup/reverse-bank.png",
+          "hash": "sha256:38fbc43dd85c20abcd0c6b7e430f89e9377c197317fe4434e067555c78833561"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_l_archeveche-roads-closeup/plan.png",
+          "hash": "sha256:6ad7c74733f9225fbb66fbd94ca09d436db5f345274688af6d10d60ad95d2f92"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "Fresh master/all-four-tier views reuse the exact cached terrain samples and18 retained independent mapped road context IDs without new downloads or terrain fitting. The lower quay road remains beneath the flared mainland end; source/model bounds,deck surface and grade remain aligned across tiers. Near-island X33m lies on the smoothed quay face,with a retained~2.62m ray gap; the upper road plateau at X40–44m remains the separate original fit evidence. Mainland residual~0.4m remains. These existing host-terrain limitations are carried forward,not erased by the tier refresh. All model geometry unloads. This scoped cached-terrain fixture does not claim a new current global PMTiles/water/building-preservation measurement."
+    },
+    "reports": [
+      {
+        "level": "master",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-fit-report.json",
+        "hash": "sha256:2054b667259ae81649dd69cd6eb516ad6a5f97ae8fb1b505b9fda82d03c94a1d",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-skyline-fit-report.json",
+        "hash": "sha256:89892b40186d041ebeddfade224b7e84cfd26a60c069b54568ba82ddc89aa33b",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-district-fit-report.json",
+        "hash": "sha256:a4a588ce277466490eaacd6b79ba17f348b8e4f2094953084c3cc4a01adfefe2",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-street-fit-report.json",
+        "hash": "sha256:d9a9aa5c7c1b536598bf88b74739358f927965e51a678f7a6937f2f70ce49767",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_l_archeveche-roads-closeup-fit-report.json",
+        "hash": "sha256:1802c9d5e580e9eaebd2016b2bd9ecc32b574b11f2de1f1d9c37b8ec269dd240",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Current permanent bridge geometry; temporary street works and movable furnishings are omitted.",
+    "Arch ring thickness, coursing and lantern member dimensions are original photo reconstruction, not a scan.",
+    "The declared NGF-IGN69 origin and bank joins use independent IGN terrain and road evidence. Submerged foundation depth remains reconstructed; water elevation is not bathymetry.",
+    "The separate public clock and island streetlight stand beyond this model footprint and are not duplicated within it.",
+    "Original detailed master is preserved. Browser tiers aggregate individual coursing/fan paving,transparent fasteners,lantern profiles and navigation signs; shared granite grain approximates small cobbles. Ground placement retains its existing NGF-IGN69 host-datum requirement. No new bespoke terrain research or device timing claim.",
+    "Current source recipe index adds already-inspected local modules to the input binding. .artifacts/model-handoff/recipe-index-rebind.json proves unchanged source/runtime/image bytes for that metadata-only transition. Existing absolute datum and terrain fit limits remain; no new survey,engineering or device performance claim."
+  ]
 }

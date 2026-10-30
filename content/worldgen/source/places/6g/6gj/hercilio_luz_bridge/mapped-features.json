@@ -1,0 +1,36 @@
+{
+  "format": "molen/structure-mapped-features@1",
+  "id": "hercilio_luz_bridge",
+  "roadId": 35185059777736,
+  "pathIds": [
+    35185131690790,
+    35185131690791
+  ],
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "distribution": "local",
+      "sourceUrl": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "attribution": "© OpenStreetMap contributors",
+      "extractHash": "sha256:9a65bfe975a58cb909b56131f1e600769ab5a5e4a871acb33d4769a541e1241c"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": -1000,
+        "max": 9000
+      },
+      "observedHeightRange": [
+        -10955.390625,
+        335
+      ],
+      "attribution": "Mapzen Terrain Tiles; United States 3DEP, GMTED2010, SRTM, ETOPO1 and other national elevation data courtesy of the U.S. Geological Survey and the sources listed in joerd",
+      "extractHash": "sha256:7b594c637c43ae2da2b539c4dfc3a3e8896102ad761bd5ad0625794a29250409"
+    }
+  }
+}

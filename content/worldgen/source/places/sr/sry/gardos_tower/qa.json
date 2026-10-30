@@ -29,10 +29,32 @@
       "shots/shared/angle-3.png",
       "shots/shared/front-entry-loggia-and-two-capped-turrets.png",
       "shots/shared/curved-gallery-columns-open-spaces-and-closed-shaft.png",
-      "shots/shared/arched-upper-glazing-cornice-steep-roof-and-finial.png"
+      "shots/shared/arched-upper-glazing-cornice-steep-roof-and-finial.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Four existing256-square brick/stone_sandstone_raw/metal_painted/window_grid graphs and zero embedded images. Canonical material bindings read each graph once in the actual shared loader and release all model geometry on unload. Brick and stone use shared low-frequency textures; painted metal approximates the dark weathered roof/ironwork/closed door finish, while windows use the common untinted blue grid. Five near-level draws and one skyline draw, separate POSITION/NORMAL GPU streams and equal CPU/GPU geometry byte accounting. No unique per-building texture atlas.",
-    "captureReportHash": "sha256:dbe896a87693638e8bbf4adf5f808621f2bdc8ffda6e35b57178523fcfa1fa2d"
+    "notes": "Four existing256-square brick/stone_sandstone_raw/metal_painted/window_grid graphs and zero embedded images. Canonical material bindings read each graph once in the actual shared loader and release all model geometry on unload. Brick and stone use shared low-frequency textures; painted metal approximates the dark weathered roof/ironwork/closed door finish, while windows use the common untinted blue grid. Five near-level draws and one skyline draw, separate POSITION/NORMAL GPU streams and equal CPU/GPU geometry byte accounting. No unique per-building texture atlas. Material-only refresh2026-10-29: actually inspected8 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.",
+    "captureReportHash": "sha256:36db1f4ec163498f629a4741b54b70161a572c288c4c69c079f3f5ef7e876a05",
+    "inputHash": "sha256:e84574743dcf537281819d632c8ebd1a740eb13679738bfe1e76799b55236caa",
+    "reviewedOn": "2026-10-29",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone_raw": {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
@@ -574,5 +596,83 @@
     "Retained Wikidata height36m has no qualifying dimension or reference URL. Native PMTiles has no qualified height. Visualization uses base/gallery floor10.6..11.2m, columned gallery to17.7m, smaller turret caps23..24.8m/finials25.4m, upper shaft30m/head30.4m, steep roof35.4m and main finial36m. Floor, aperture/corbel/pier/rail/roof condition and hidden reverse inventory are picture-led estimates; no measured floor count or conservation survey is claimed.",
     "Retain original6m standard Mapzen ground, native paths/roads/water and all independent fortress/neighborhood buildings. Replace only the tower shell. Bounded buried feet follow the retained tower outline; the gallery is supported by its base/columns, with no whole-hill mesh, broad terrain platform, flattening or ground/water cutout. Coarse DEM contact/nearby ruin and bank heights are not surveyed foundation/flood measurements.",
     "Two ordinary front/opposite photographs inspected. Retained exact-QID outline anchors the connected base, gallery, two turrets and main shaft;36m overall height is unqualified. Fine elevations/roof profile/window inventory and20degree/2m facing remain explicit estimates. No copied heraldry, photo atlas, snow, furnished interior, separate fortress ruins or whole-hill terrain model."
-  ]
+  ],
+  "sharedMaterialRefresh": {
+    "date": "2026-10-29",
+    "inputHash": "sha256:e84574743dcf537281819d632c8ebd1a740eb13679738bfe1e76799b55236caa",
+    "sourceAndRuntimePreserved": true,
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/models/source.glb",
+        "hash": "sha256:4774ac5b48150ea0f71b6a2d615af1a0498ac2bc9763e810fd1427c4c65fd302"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sry/gardos_tower/model.glb",
+        "hash": "sha256:ef5e14c43c8f59e9e995cbc19ceba6f7b97e80759d43e7653bcacb2b84508a20"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sry/gardos_tower/model.skyline.glb",
+        "hash": "sha256:6d7752f73a5f50fb95c222ef8f95acc625180d0854e0fd409579f034c085cbaf"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sry/gardos_tower/model.district.glb",
+        "hash": "sha256:e654fe85df75e234c0086c8aef2dc02eca512c6b61cac9983747e9233c23048c"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sry/gardos_tower/model.street.glb",
+        "hash": "sha256:f0845230c017922f1be0faea7be9d641b621093be86a859e21c4105c344da612"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sry/gardos_tower/model.closeup.glb",
+        "hash": "sha256:f0845230c017922f1be0faea7be9d641b621093be86a859e21c4105c344da612"
+      }
+    ],
+    "retainedReports": [
+      {
+        "name": "capture-report",
+        "frames": 8,
+        "hash": "sha256:f20cf41ee21730fbb0fff6333605f951a79901a9d4d4369f1bc2d91060ede638"
+      },
+      {
+        "name": "medium-fi-report",
+        "frames": 24,
+        "hash": "sha256:394bf2ece184d70b2277c363ce05c99b71e6fa93678e824fba9577ced0c827e6"
+      }
+    ],
+    "newInspectedFrames": [
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/angle-0.png",
+        "hash": "sha256:1b580c74436ef340b858e04454e250d6a29998145c2174d05b47249ff06930f6"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/angle-1.png",
+        "hash": "sha256:5c38f077891d81f5ac771dbecd2dd30ae1bc7a5e4a85c4d75173015735f19edc"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/angle-2.png",
+        "hash": "sha256:6a4b0a71b05c32ee910a82346dc2714bde29f43c405b26e28605c98e0fccbaed"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/angle-3.png",
+        "hash": "sha256:5dd62d52d6620bcfc354a74e43a265b7e9133c6dad19c2f1d3209ead7e4e4c43"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/front-entry-loggia-and-two-capped-turrets.png",
+        "hash": "sha256:03084e4cdf712517bfdf936318d3ef99cad8e211d5bbca3bc7ad8e0f9d6ae09e"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/curved-gallery-columns-open-spaces-and-closed-shaft.png",
+        "hash": "sha256:9c1300ce60176f551f2b8cfa9e5763ec7d6d2ee21d342096cc53c15584f55060"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/arched-upper-glazing-cornice-steep-roof-and-finial.png",
+        "hash": "sha256:8b13bb89bd61258cd660f92ca11da98d823fb26a686f6dae2a759f8703de6f3e"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/placement.png",
+        "hash": "sha256:1173cd484c57c6b339475ef7fe4d5cf70f937371ce12a01eca3839d90d558830"
+      }
+    ],
+    "notes": "Material-only refresh2026-10-29: actually inspected8 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope."
+  }
 }

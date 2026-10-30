@@ -29,10 +29,32 @@
       "shots/shared/angle-3.png",
       "shots/shared/two-angled-shafts-and-three-bridges.png",
       "shots/shared/glazed-upper-storeys-high-connection-and-louvered-crowns.png",
-      "shots/shared/recessed-window-grid-and-bounded-entry.png"
+      "shots/shared/recessed-window-grid-and-bounded-entry.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Four existing256-square concrete_plain/window_grid/metal_painted/membrane graphs; all canonical material refs, no embedded images or per-building atlas. Actual shared-loader reads each graph once and disposes model geometry on unload. Window slot retains the shared blue glass without a vertex tint; source-only portable frames show the bare material factors while runtime/shared/medium-fi views show the real graph bindings. Four near-level draws, separate POSITION/NORMAL GPU streams and equal CPU/GPU geometry byte accounting.",
-    "captureReportHash": "sha256:8a1f3c6c6efff508f957cfa3264970c01bfd50c8a97c018f9383d8caf46f0dda"
+    "notes": "Four existing256-square concrete_plain/window_grid/metal_painted/membrane graphs; all canonical material refs, no embedded images or per-building atlas. Actual shared-loader reads each graph once and disposes model geometry on unload. Window slot retains the shared blue glass without a vertex tint; source-only portable frames show the bare material factors while runtime/shared/medium-fi views show the real graph bindings. Four near-level draws, separate POSITION/NORMAL GPU streams and equal CPU/GPU geometry byte accounting. Material-only refresh2026-10-29: actually inspected8 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.",
+    "captureReportHash": "sha256:dff7d763e081604e5563b3d0a1e3e6fdddfb6822418dd67338868bcdc0ee01cf",
+    "inputHash": "sha256:e16854184cf58c094ce705aca81adca64256e076b5c0da801280b9d0a8746be9",
+    "reviewedOn": "2026-10-29",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
@@ -582,5 +604,83 @@
     "Both native shafts are160m; the mapped upper connector spans147..153m. Native height provenance is unqualified, not a survey. Picture-led main concrete elevation128m, upper glazing155m, louvered crowns160m, fine windows/floor pitch3.1m and two lower links at79..81.4m/112..114.4m are visualization estimates. Lower connector inventory/heights and hidden reverse facade details remain explicitly approximate; no surveyed floor count or interior circulation is claimed.",
     "Retain original6m standard Mapzen ground/native roads/water and every independent surrounding building. Replace only the two native El Faro shafts and their mapped high connector. Own bounded buried feet meet coarse grade with separate tower floor datums; narrow entry canopies stay attached to their own shafts. No whole-block podium, broad slab, flattening or ground/water cutout. Native terrain/water levels are not surveyed foundation/flood measurements.",
     "Two ordinary front/reverse pictures were inspected. PMTiles160m/147..153m values have unqualified height provenance; lower bridge levels, floor rhythm, crowns and hidden reverse details are visualization estimates. Live OSM tags were rate limited. No exact-tag or surveyed height claim, copied photo atlas, neighboring tower or whole-block podium."
-  ]
+  ],
+  "sharedMaterialRefresh": {
+    "date": "2026-10-29",
+    "inputHash": "sha256:e16854184cf58c094ce705aca81adca64256e076b5c0da801280b9d0a8746be9",
+    "sourceAndRuntimePreserved": true,
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/models/source.glb",
+        "hash": "sha256:a8c06f3c6044c723560fc2bed60439a18b4ddf12c4fd7bbb74f493756070553b"
+      },
+      {
+        "path": "content/worldgen/assets/places/69/69y/el_faro_towers/model.glb",
+        "hash": "sha256:74311e5dda3674564f4e6b46e4241d00b0fe66131a679ff36bab9da20516d59e"
+      },
+      {
+        "path": "content/worldgen/assets/places/69/69y/el_faro_towers/model.skyline.glb",
+        "hash": "sha256:8ee9f36d3b8f401f8a35ea1377efd9f921e02064573a5c17dd30fab42f0da992"
+      },
+      {
+        "path": "content/worldgen/assets/places/69/69y/el_faro_towers/model.district.glb",
+        "hash": "sha256:df9518e88149de914e2b4caab80d1ed616adf349d32886e055c39fd2c7dbaf65"
+      },
+      {
+        "path": "content/worldgen/assets/places/69/69y/el_faro_towers/model.street.glb",
+        "hash": "sha256:06e7d9a7b8868187c40febffc8a91512e399d83eeaaf44490adba63f6b8876c6"
+      },
+      {
+        "path": "content/worldgen/assets/places/69/69y/el_faro_towers/model.closeup.glb",
+        "hash": "sha256:04cc498e33ce876effc08cc8865b0a04df3568dc3c9a399397451ec66a328da5"
+      }
+    ],
+    "retainedReports": [
+      {
+        "name": "capture-report",
+        "frames": 8,
+        "hash": "sha256:ec68aab3f09a24dd8e645a47af6469a7f3f7e2d41ab91673b15e33ea21756f44"
+      },
+      {
+        "name": "medium-fi-report",
+        "frames": 24,
+        "hash": "sha256:8f2197975c8e6fe6950d227947d72cc2df171f48f65400cad2268957dafb05cf"
+      }
+    ],
+    "newInspectedFrames": [
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-0.png",
+        "hash": "sha256:30d4240fb7503d23c05e2b560707fe2492ee81d38eb9d710b106a7bd99fb514c"
+      },
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-1.png",
+        "hash": "sha256:af51cbda922e44c10f1878e15fbdfd4601d66324ee9f4b56d290149d1c026a56"
+      },
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-2.png",
+        "hash": "sha256:a12dba86d084a2b26b157dd9733b9d4cfdf2c1eeca4a2f202e829f6028da86be"
+      },
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-3.png",
+        "hash": "sha256:30a67d189b175938f2f866d7633143df56cdcbc3b897013a3b19546ff5dadbcf"
+      },
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/two-angled-shafts-and-three-bridges.png",
+        "hash": "sha256:da636ca6c7581503ed02b5cba074f4d1f6158cf2c6b1245a45c094c7e8de8b58"
+      },
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/glazed-upper-storeys-high-connection-and-louvered-crowns.png",
+        "hash": "sha256:4c6e9fb1d7b4e956bcdc12bfa350cbe23418d9e8fd6f58549c1c85452d78221a"
+      },
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/recessed-window-grid-and-bounded-entry.png",
+        "hash": "sha256:19810cc1979e890f8e8126df95715cd1e5c9bcc1daa34b06ebaecdcc85b050b1"
+      },
+      {
+        "path": "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/placement.png",
+        "hash": "sha256:cd11e33cd5d4d6e06385e8085621221f0336dddaf3ee2362361b4e8b887d615c"
+      }
+    ],
+    "notes": "Material-only refresh2026-10-29: actually inspected8 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope."
+  }
 }

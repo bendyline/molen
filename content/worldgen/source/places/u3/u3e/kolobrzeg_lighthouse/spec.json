@@ -40,9 +40,10 @@
     "notes": "Exact-QID lighthouse circle and central fort redoubt share the model origin. Explicit main-entry node4426764796 fixes native+Z toward south-southeast; booth and canopy follow the operator entry photograph. Ground datum is the surrounding fort terrace, not the lower quay. Wider fort retaining walls and the river remain map/site context."
   },
   "limitations": [
-    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
-    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
-    "Published26m total and mapped diameters constrain a component reconstruction. Brick course tint, minor restored masonry, service lights and relief linework use shared Molen material style; the maritime memorial is original simplified raised geometry, not a scan. Outer fort landscape terraces, market stalls and detached harbor buildings are not duplicated. Navigational lens performance and historic light bearings are not simulated."
+    "Published26m height, mapped redoubt/tower diameters and explicit main-entry node constrain the retained model. Intermediate heights, colonnade, relief and booth dimensions are photo reconstructions, not surveyed controls.",
+    "Terrain-contact datum is the surrounding fort terrace atY0, not the lower quay. Outer retaining walls, landscape terraces, market stalls and detached harbor structures remain site/map context. Native local grading and physical-device timings remain unverified.",
+    "Detailed masters remain intact. Skyline uses opaque glazing, window/port cards and aggregate arcade/guards, with a slightly broadened coarse coping. District coarsens curves, columns, thin frames and internal stair/optic fittings, and omits tiny date text. Street and closeup restore progressively finer original relief, dates and selected seams. No optical/navigation performance or scan-accurate memorial claim.",
+    "The visible spiral stair support and last two treads correct disconnected decorative geometry using a plausible structural reconstruction. This does not establish a surveyed interior or a navigable staircase."
   ],
   "previewCamera": {
     "position": [
@@ -133,6 +134,239 @@
   "assetId": "molen.worldgen.structure.kolobrzeg_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "26m brick lighthouse on the broad circular Fort Ujscie redoubt: recessed gunports and entry, buttresses, three rows of narrow arched shaft windows, blind arcade and date/anchor relief, white open eight-pillar colonnade around glazed spiral stair, two galleries and a partly enclosed pointed lantern.",
+    "master": "Preserve detailed exterior geometry. Add the missing continuous helical stair support and two finishing treads; keep the previous detailed masters locally for exact comparison.",
+    "browser": "Four complete source-local skyline/district/street/closeup levels. Skyline retains the full fort and buttresses, main arched entry/canopy/attached booth, window rhythm, blind-arcade rhythm, open eight-column colonnade, two guarded galleries and26m cap. Near levels restore true openings,32arcade moldings, compact visible optic, glazed spiral access stair, roof seams, dates and simplified original maritime relief. Six existing256px graphs are shared; granite copings merge into the limestone batch with retained tint. All near levels include the corrected16tread stair and continuous support; the district uses a simple two-sided stringer web."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kolobrzeg-lighthouse-model.mjs",
+    "export": "buildSupportedKolobrzeg"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u3e/kolobrzeg_lighthouse/models/kolobrzeg-lods.mjs",
+    "export": "kolobrzegSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "kolobrzegDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.8
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-watch-room-and-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.16,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "kolobrzegStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.8
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-watch-room-and-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.16,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "kolobrzegCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.8
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.9
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-watch-room-and-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.16,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-full-fort-open-colonnade-and-cap",
+      "position": [
+        35,
+        22,
+        40
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-true-fort-entry-and-gunports",
+      "position": [
+        12,
+        6.2,
+        18
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        5.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-eight-pillars-and-glazed-spiral",
+      "position": [
+        9,
+        22,
+        11
+      ],
+      "lookAt": [
+        0,
+        20.9,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
   "actualBounds": {
     "min": [
       -8.579999923706055,
@@ -146,11 +380,11 @@
     ]
   },
   "mesh": {
-    "triangles": 83106,
-    "vertices": 177602,
+    "triangles": 83334,
+    "vertices": 178262,
     "materials": 9,
-    "bytes": 7395940,
-    "sha256": "sha256:ce86f58e1423e99276fc4aed9b2eb1185807e6ea86d36fbb8cc78c217513da63"
+    "bytes": 7422436,
+    "sha256": "sha256:c823f9372dbfed61c53f9e7047703c0f76525c4b7730d6aa875e76cee3fd39d3"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

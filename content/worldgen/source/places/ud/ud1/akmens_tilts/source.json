@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.akmens_tilts",
+  "kind": "static-structure",
+  "title": "Akmens Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.akmens_tilts",
+        "output": "assets/places/ud/ud1/akmens_tilts/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4174dd4eee0cbfef851a50a703a7f5b07746b3dbf4600caf1ded25635a397cf5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-akmens.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/akmens-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}
