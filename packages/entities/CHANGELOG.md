@@ -1,3 +1,19 @@
+## @bendyline/molen-entities [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.12...@bendyline/molen-entities@0.0.13) (2026-10-31)
+
+### Bug Fixes
+
+* Asset improvements ([b37a40a](https://github.com/bendyline/molen/commit/b37a40ad5eb1b763056c3e8782bfb12b52ae03d8))
+* Model updates ([a0a873c](https://github.com/bendyline/molen/commit/a0a873c8362968b20ed262ecc1e33976919cd821))
+* Update content offsets ([aae1276](https://github.com/bendyline/molen/commit/aae127659a4e9a9c985d1fb01caebba0ce1a4477))
+* Vehicle updates ([9c06a10](https://github.com/bendyline/molen/commit/9c06a100c2c0abc243904e2baaf64baf255081b7))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.10
+* **@bendyline/molen-schema:** upgraded to 0.0.10
+* **@bendyline/molen-pack:** upgraded to 0.0.11
+
 ## @bendyline/molen-entities [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.11...@bendyline/molen-entities@0.0.12) (2026-10-29)
 
 ### Bug Fixes

@@ -1,3 +1,18 @@
+## @bendyline/molen-ambient [0.0.14](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.13...@bendyline/molen-ambient@0.0.14) (2026-10-31)
+
+### Bug Fixes
+
+* Update content offsets ([aae1276](https://github.com/bendyline/molen/commit/aae127659a4e9a9c985d1fb01caebba0ce1a4477))
+
+
+### Dependencies
+
+* **@bendyline/molen-figures:** upgraded to 0.0.12
+* **@bendyline/molen-kernel:** upgraded to 0.0.10
+* **@bendyline/molen-schema:** upgraded to 0.0.10
+* **@bendyline/molen-terrain:** upgraded to 0.0.14
+* **@bendyline/molen-client:** upgraded to 0.0.12
+
 ## @bendyline/molen-ambient [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.12...@bendyline/molen-ambient@0.0.13) (2026-10-29)
 
 ### Bug Fixes

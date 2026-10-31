@@ -1,3 +1,13 @@
+## @bendyline/molen-dioramas [0.0.5](https://github.com/bendyline/molen/compare/@bendyline/molen-dioramas@0.0.4...@bendyline/molen-dioramas@0.0.5) (2026-10-31)
+
+
+### Dependencies
+
+* **@bendyline/molen-figures:** upgraded to 0.0.12
+* **@bendyline/molen-kernel:** upgraded to 0.0.10
+* **@bendyline/molen-schema:** upgraded to 0.0.10
+* **@bendyline/molen-client:** upgraded to 0.0.12
+
 ## @bendyline/molen-dioramas [0.0.4](https://github.com/bendyline/molen/compare/@bendyline/molen-dioramas@0.0.3...@bendyline/molen-dioramas@0.0.4) (2026-10-29)
 
 
