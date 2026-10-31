@@ -31,6 +31,8 @@ export class KernelHost {
   private listeningWithEventTarget = false;
   /** The last tick failure already reported as `tick-failed`, so it is not reported twice. */
   private lastTickFault: Error | undefined;
+  private active = true;
+  private wantsRunning = false;
 
   constructor(
     private readonly world: World,
@@ -51,6 +53,7 @@ export class KernelHost {
       // A throwing tick used to kill the loop in silence: no further timer, no state change and
       // no message at all. The scheduler pauses and the page is told which tick died and why.
       onError: (error, tick) => {
+        this.wantsRunning = false;
         this.lastTickFault = error;
         this.post({ type: 'diag', code: 'tick-failed', detail: `tick ${tick}: ${error.message}` });
       },
@@ -60,7 +63,7 @@ export class KernelHost {
     this.post({ type: 'keyframe', keyframe: takeKeyframe(this.world), events: [] });
     this.lastDeltaTick = this.world.tick;
     this.post({ type: 'ready', tick: this.world.tick, tickRate: this.world.tickRate });
-    if (opts.startPaused !== true) this.scheduler.start();
+    if (opts.startPaused !== true) this.start();
   }
 
   /**
@@ -70,9 +73,12 @@ export class KernelHost {
    */
   start(): void {
     this.scheduler.start();
+    if (!this.active) this.scheduler.pause();
+    this.wantsRunning = true;
   }
 
   pause(): void {
+    this.wantsRunning = false;
     this.scheduler.pause();
   }
 
@@ -141,10 +147,15 @@ export class KernelHost {
       try {
         switch (c.action) {
           case 'pause':
-            this.scheduler.pause();
+            this.pause();
             break;
           case 'resume':
-            this.scheduler.start();
+            this.start();
+            break;
+          case 'set-active':
+            this.active = c.active;
+            if (!this.active) this.scheduler.pause();
+            else if (this.wantsRunning) this.scheduler.start();
             break;
           case 'step':
             this.scheduler.step(c.ticks ?? 1);
@@ -216,6 +227,8 @@ function isControl(value: unknown): value is ControlAction {
       );
     case 'set-rate':
       return typeof value.hz === 'number' && Number.isFinite(value.hz);
+    case 'set-active':
+      return typeof value.active === 'boolean';
     default:
       return false;
   }

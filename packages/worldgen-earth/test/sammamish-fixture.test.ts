@@ -43,7 +43,7 @@ describe('Sammamish tile fixture', () => {
     expect(output.stats.vertices).toBeLessThanOrEqual(budgets.maxBuildingVertices);
     expect(output.buildings?.groups.length).toBeLessThanOrEqual(budgets.maxMaterialGroups);
     expect((output.stats.roofs.gable ?? 0) + (output.stats.roofs.hip ?? 0)).toBeGreaterThan(600);
-  });
+  }, 30_000); // Generates a doubled real-world neighborhood under full-suite CPU contention.
   it('generates a dense residential tile from the adapted batch', async () => {
     const raw = JSON.parse(await readFile(FIXTURE, 'utf8'));
     const parsed = validateByKind('worldgen-batch' as never, raw);

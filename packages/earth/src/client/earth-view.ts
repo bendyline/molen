@@ -2,7 +2,7 @@ import type { BoatEnvironment } from '@bendyline/molen-kernel/boats';
 import type { LiveryData, LiveryVariant, WaterSettings } from '@bendyline/molen-schema';
 import { selectLivery } from './liveries';
 import { EarthNightLighting } from './night-lighting';
-import { EARTH_WATER_CONDITIONS } from './water';
+import { EARTH_WATER_CONDITIONS, EarthWater } from './water';
 // mountEarthView: one call that turns a canvas into an explorable real-world 3D view. It composes
 // the viewer, the streamed terrain pyramid (in a metric frame at the viewed latitude), semantic
 // layers with worldgen buildings, street surfaces and parked cars, orbit/walk/drive/fly
@@ -16,6 +16,7 @@ import {
   createViewer,
   type EnvironmentData,
   type MolenClient,
+  observePageActivity,
   type RendererBackendPreference,
 } from '@bendyline/molen-client';
 import { bindAircraftCockpitPointer } from '@bendyline/molen-client/aircraft';
@@ -302,6 +303,8 @@ export interface EarthInteractionSettings {
 }
 
 export interface EarthViewOptions {
+  /** Pause simulation, rendering, audio and prefetch on blur/hidden (default true). */
+  pauseWhenInactive?: boolean;
   /** Start with 4× travel speed for people and vehicles (default false). T toggles it. */
   boostMode?: boolean;
   /** Explicit archival landmark date (YYYY-MM-DD), independent of sky time. Remount to change it. */
@@ -446,6 +449,8 @@ export interface EarthWalkerPose {
   /** Horizontal speed, m/s. */
   speed: number;
   grounded: boolean;
+  /** Floating at the water surface; walk controls remain active. */
+  swimming: boolean;
 }
 
 /** On-foot control beyond `setMode('walk')`. */
@@ -454,7 +459,7 @@ export interface EarthWalker {
   place(at: EarthPlace): void;
   /** The walker's pose, or undefined when not walking. */
   pose(): EarthWalkerPose | undefined;
-  /** Standing on streamed ground (false while the walk start is still loading). */
+  /** Placed on streamed ground or water (false while the walk start is still loading). */
   readonly ready: boolean;
   /**
    * Give the viewer a body: a figure descriptor, or `{ type }` naming an entity type with a
@@ -791,6 +796,7 @@ interface EarthStack {
   surface: TerrainSurfaceRenderer;
   worldgen: EarthWorldgen | undefined;
   vehicles: EarthVehicles | undefined;
+  walkWater: EarthWater | undefined;
   aircraft: EarthAircraft | undefined;
   ambient: EarthAmbient | undefined;
   wildlife: EarthWildlife | undefined;
@@ -945,8 +951,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     );
     // Shadows on once before anything is built: lit shaders are then built for them, and a tier
     // without shadows parks the map instead of rebuilding every shader in view mid-flight.
+    // WebGPU keeps its first allocation, so reserve High even when starting in a lower tier.
     if (shadowsOn) {
-      renderer.setShadowQuality('medium');
+      renderer.setShadowQuality('high');
       renderer.setShadowQuality('off');
     }
     const fog = createEarthFog(renderer.backend, options.style?.fog);
@@ -1494,6 +1501,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           surface,
           worldgen,
           vehicles,
+          walkWater: vehicles
+            ? undefined
+            : new EarthWater(stream.object, (x, z) => stream.sampleSurfaceHeight(x, z)),
           aircraft,
           ambient,
           wildlife,
@@ -1589,6 +1599,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     // Navigation state.
     let mode: EarthViewMode = 'orbit';
     const walker = new WalkController();
+    walker.sampleWaterHeight = (x, z) => {
+      const current = stack;
+      if (!current) return undefined;
+      if (sampleTerrainTunnel(current.stream.object, x, walker.feet.y, z)) return null;
+      const water = options.waterAt
+        ? options.waterAt(x, z)
+        : current.vehicles
+          ? current.vehicles.boatEnvironment.waterAt(x, z)
+          : current.walkWater?.sample(x, z);
+      return water == null ? water : water.height;
+    };
     walker.boostMode = boostMode;
     const setBoostMode = (enabled: boolean): void => {
       if (boostMode === enabled) return;
@@ -1979,6 +2000,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           walker.velocity.set(0, 0, 0);
           walker.ready = true;
           walker.grounded = true;
+          walker.swimming = false;
           walker.waitingForTerrain = false;
           look.yaw = yaw;
           look.pitch = 0;
@@ -2445,6 +2467,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           heading: compass(look.yaw + Math.PI / 2),
           speed: Math.hypot(walker.velocity.x, walker.velocity.z),
           grounded: walker.grounded,
+          swimming: walker.swimming,
         };
       },
       get ready() {
@@ -2804,6 +2827,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           if (disposed) next.dispose();
           else {
             stack = next;
+            stack.prefetcher?.setPaused(paused);
             stackGeneration++;
             actorDirector.attach(actorStack(next));
             emit('terrainchange', {
@@ -2855,6 +2879,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
 
     // The frame loop.
     let paused = false;
+    let manuallyPaused = false;
+    let inactive = false;
     let frames = 0;
     let last = performance.now();
     let streamTime = -Infinity;
@@ -2912,6 +2938,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       );
       look.yaw = turned.yaw;
       look.pitch = turned.pitch;
+      current.walkWater?.sync();
       collision.update(current.stream.object, walker.feet.x, walker.feet.z);
       // Land once ground-level detail around the landing spot is on screen, not the whole view.
       // Placement must see everything that has streamed in there, not a tree up to 200 ms old.
@@ -3111,6 +3138,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           if (disposed) started?.dispose();
           else if (started !== undefined) {
             audio = started;
+            audio.layer.setSuspended(paused);
             emit('audioready', {});
           }
         })
@@ -3136,10 +3164,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         current.position,
         current.direction,
         groundHeight(x, z) ?? y,
+        Math.hypot(current.lookAt[0] - x, current.lookAt[1] - y, current.lookAt[2] - z),
       );
     };
 
     const frame = (now: number): void => {
+      if (disposed || paused) return;
       frameHandle = requestAnimationFrame(frame);
       const frameMs = now - last;
       const dt = Math.min(0.1, Math.max(0, frameMs / 1000));
@@ -3416,12 +3446,29 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     };
     frameHandle = requestAnimationFrame(frame);
     disposers.push(() => cancelAnimationFrame(frameHandle));
-    const onVisibility = (): void => {
+    const updatePaused = (): void => {
+      const next = manuallyPaused || inactive;
+      if (next === paused || disposed) return;
+      paused = next;
+      audio?.layer.setSuspended(paused);
+      stack?.prefetcher?.setPaused(paused);
+      renderer.admission.setPaused(paused);
       controller.sample(0, { active: false });
-      last = performance.now();
+      if (paused) {
+        cancelAnimationFrame(frameHandle);
+        input.map.reset();
+      } else {
+        last = performance.now();
+        frameHandle = requestAnimationFrame(frame);
+      }
     };
-    document.addEventListener('visibilitychange', onVisibility);
-    disposers.push(() => document.removeEventListener('visibilitychange', onVisibility));
+    if (options.pauseWhenInactive !== false)
+      disposers.push(
+        observePageActivity((active) => {
+          inactive = !active;
+          updatePaused();
+        }),
+      );
 
     /** Queue geographic points with the current stack's prefetcher (nothing without one). */
     const prefetchPoints = (
@@ -3614,18 +3661,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         stack?.wildlife?.setEnabled(enabled);
       },
       setPaused(next) {
-        if (next === paused || disposed) return;
-        paused = next;
-        audio?.layer.setSuspended(paused);
-        stack?.prefetcher?.setPaused(paused);
-        if (paused) {
-          cancelAnimationFrame(frameHandle);
-          input.map.reset();
-          controller.sample(0, { active: false });
-        } else {
-          last = performance.now();
-          frameHandle = requestAnimationFrame(frame);
-        }
+        manuallyPaused = next;
+        updatePaused();
       },
       dispose: disposeAll,
     };

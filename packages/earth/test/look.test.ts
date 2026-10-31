@@ -68,8 +68,13 @@ describe('the shared Earth look', () => {
     expect(airborne.center).toEqual([1_000, 100, 0]);
     expect(earthShadowFocus('fly', [0, 50, 0], [1, 0, 0], 0).radius).toBe(200);
     // Near the ground it is tighter (and sharper) than a walker's.
-    expect(earthShadowFocus('fly', [0, 102, 0], [1, 0, 0], 100).radius).toBe(52);
-    expect(earthShadowFocus('fly', [0, 10, 0], [1, 0, 0], 0).radius).toBe(68);
+    expect(earthShadowFocus('fly', [0, 102, 0], [1, 0, 0], 100).radius).toBe(26);
+    expect(earthShadowFocus('fly', [0, 10, 0], [1, 0, 0], 0).radius).toBe(40);
+    // A large aircraft's chase camera sits more than 100 m behind it even on the runway.
+    // Tightening small-aircraft coverage must not leave that subject outside the shadow map.
+    const large = earthShadowFocus('fly', [0, 6, 0], [1, 0, 0], 0, 110);
+    expect(large.radius).toBe(110);
+    expect(Math.abs(110 - large.center[0]) + 50).toBeLessThan(large.radius);
     expect(earthShadowFocus('fly', [0, 9_000, 0], [1, 0, 0], 0).radius).toBe(5_000);
   });
 });

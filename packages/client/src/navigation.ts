@@ -64,6 +64,7 @@ export {
 export { WalkCollision, type WalkCollisionOptions } from './navigation/walk-collision';
 export {
   RUN_SPEED,
+  SWIM_SPEED,
   WALK_EYE_HEIGHT,
   WALK_PLACEMENT_RADIUS,
   WALK_SPEED,

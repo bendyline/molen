@@ -166,6 +166,17 @@ renderer, and on a software rasterizer it will lose.
 
 ## Manual frame loop
 
+Automatic clients pause the kernel and stop rendering when the browser window loses focus or
+the tab becomes hidden. Queued GPU preparation waits too. Focus resumes playback without
+catching up the time spent away; an explicit pause or a `startPaused` loading screen stays paused.
+GPU resources remain allocated for a quick return — this frees rendering capacity, not VRAM.
+Pass `pauseWhenInactive: false` to keep a live client running in the background.
+
+Manual frame loops and snapshot captures remain host-controlled by default. A manual live client
+can opt into worker suspension with `pauseWhenInactive: true`; its host still owns render calls.
+Custom loops can use `observePageActivity(callback)` to observe initial activity and subsequent
+window focus/blur and page visibility changes; its return value removes the listeners.
+
 Pass `frameLoop: 'manual'` to drive rendering yourself (machinima camera tracks, custom timing):
 
 ```ts

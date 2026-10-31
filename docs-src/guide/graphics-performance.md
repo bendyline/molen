@@ -80,6 +80,16 @@ marked `'background'` prepares only in budget normal jobs leave: World Explorer'
 aircraft load with the world that way, as in the normal lane their ~200 jobs held terrain and
 buildings back by most of a minute on a software renderer.
 
+Continuous urgent traffic shares service with normal work: after two urgent jobs, a normal job
+waiting at least 50 ms gets a turn, including when each urgent job consumes a whole frame.
+Normal jobs may provide `order: () => number` (lower first), read at dispatch so a moving camera
+can reprioritize queued work. After three ordered jobs, the FIFO head gets a turn; shared decodes
+and unrelated scene work continue to progress. These rules stay within the same frame budgets.
+Terrain layer contexts scope this live order through generation and assembly; their GPU preparation
+uses `userData.admissionOrder`, and publication keeps the same order. Only immediate replacement
+siblings inherit a parent's priority; a distant ancestor must not give a whole city's leaves the
+same priority.
+
 Main-thread work that runs as a tile's sources resolve is admitted too, because several tiles
 arriving together stacked it into one late frame: decoding vector tiles (the package semantic
 layers' `admission` option), a worldgen request's own preparation, prop batches, surface results

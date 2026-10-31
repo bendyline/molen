@@ -103,11 +103,18 @@ parts taller than `EARTH_SHADOW_CASTER_HEIGHT` (3.5 m) cast: shrubs, brambles an
 out of the shadow pass, where their shadows would mostly fall inside the canopy's.
 
 In flight the shadow footprint widens with height above the local ground: its half-width is
-four times that height, capped at 5 km. Below 24 m the half-width is 48 m plus twice the height,
+four times that height, capped at 5 km. Below 8 m the half-width is 24 m plus the height,
 preserving aircraft and contact-shadow detail on the runway. The renderer rounds coverage up
 to a stable size (and holds it through small changes). This pushes
 the shadow boundary farther into the distance in aerial views, trading some shadow sharpness
 for coverage at the same map resolution. Walking and driving keep their tighter footprints.
+
+Earth viewers reserve a 4096-pixel sun map before preparing materials. WebGPU retains that
+allocation across quality changes, so High really uses 4096 pixels even after starting at a
+lower tier; WebGL can resize it with the tier. A chase camera 10 m above ground covers an
+80 m square, giving roughly 2 cm shadow texels on High for wings, propellers and landing gear.
+Chase views also reserve at least the camera-to-aircraft distance as their half-width, keeping
+large airliners and their shadows inside the tighter runway footprint.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
@@ -188,8 +195,8 @@ geographic (`viewer`, poses, places) is stable across re-anchors.
 ```ts
 view.setMode('walk', { at: { latitude, longitude, heading } }); // start here, facing heading
 view.walker.place({ latitude, longitude });                       // teleport (enters walk mode if needed)
-view.walker.pose();   // { latitude, longitude, altitude, heading, speed, grounded } | undefined
-view.walker.ready;    // standing on streamed ground
+view.walker.pose();   // { latitude, longitude, altitude, heading, speed, grounded, swimming } | undefined
+view.walker.ready;    // placed on streamed ground or water
 ```
 
 A place inside the current frame drops the walker at once (it lands when the ground there has
@@ -197,6 +204,12 @@ streamed, as a walk start always does). A place more than about a degree of lati
 another terrain region with `terrainSource`, re-anchors first: the mode is `walk` immediately, the
 orbit camera holds over the destination while the frame rebuilds, and the walker lands when it is
 done.
+
+Walking into deep water automatically starts surface swimming; reaching shallow ground returns
+to walking. The same movement controls apply, with Shift swimming faster. The camera stays above
+the water, and `view.walker.pose()?.swimming` reports the transition without changing the `walk`
+navigation mode. Water coverage comes from rendered water surfaces or the `waterAt` option,
+including lakes above sea level.
 
 ```ts
 view.walker.setAvatar({ figure: { preset: 'human.adult', height: 1.7, palette: { top: '#2f5a3b' } } });
@@ -1027,7 +1040,11 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   is still warm when the view pans back.
 - `stats().worldgen` counts styled building generation since the current terrain stream started
   (with content packs): tiles generated, buildings drawn as geometry, and instanced stand-ins.
-- `setPaused(true)` stops rendering while the view is hidden, and `dispose()` releases the GPU
+- Window blur and hidden tabs automatically pause simulation, rendering, queued GPU preparation,
+  audio and prefetching. Returning to a visible, focused page resumes without simulation catch-up.
+  `setPaused(true)` keeps the view paused even after focus returns; `setPaused(false)` releases
+  that manual pause. Pass `pauseWhenInactive: false` for a host that manages activity itself.
+  Resources stay loaded for quick resume; GPU memory is retained. `dispose()` releases the GPU
   context, workers and listeners. Mounting is abortable through `signal`.
 
 ## Sound

@@ -98,12 +98,13 @@ beforeEach(() => {
   clock = 0;
   viewerState.disposed = 0;
   viewerState.frames = 0;
-  vi.stubGlobal('window', { devicePixelRatio: 1 });
-  vi.stubGlobal('document', {
-    hidden: false,
-    addEventListener: () => {},
-    removeEventListener: () => {},
-  });
+  vi.stubGlobal('window', Object.assign(new EventTarget(), { devicePixelRatio: 1 }));
+  vi.stubGlobal(
+    'document',
+    Object.assign(new EventTarget(), {
+      hidden: false,
+    }),
+  );
   vi.stubGlobal('requestAnimationFrame', (callback: (time: number) => void) => {
     const handle = nextHandle++;
     callbacks.set(handle, callback);
@@ -321,6 +322,38 @@ describe('mountEarthView', () => {
     expect(view.setMode('orbit')).toBe(true);
     expect(modes).toEqual(['walk', 'orbit']);
     view.dispose();
+  });
+
+  it('swims in supplied water without vehicle content and returns to walking on dry ground', async () => {
+    let wet = true;
+    const view = await mountEarthView({
+      canvas: fakeCanvas() as unknown as HTMLCanvasElement,
+      terrain: earth,
+      archives: { elevation: archive },
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000, pitch: 0.6 },
+      style: { sky: false },
+      waterAt: () => (wet ? { height: 104 } : null),
+    });
+    try {
+      await pump(10);
+      expect(view.setMode('walk')).toBe(true);
+      await pump(30);
+      expect(view.walker.ready).toBe(true);
+      expect(view.walker.pose()?.swimming).toBe(true);
+      expect(view.walker.pose()?.grounded).toBe(false);
+      expect(view.getCamera().altitude).toBeCloseTo(104.45);
+      expect(view.input.map.activeProfile).toBe('walk');
+      view.input.map.setVirtual('test', 'nav-forward', 1);
+      await pump(10);
+      expect(view.walker.pose()?.speed).toBeCloseTo(1.2);
+      wet = false;
+      await pump(90);
+      expect(view.walker.pose()?.swimming).toBe(false);
+      expect(view.walker.pose()?.grounded).toBe(true);
+      expect(view.getCamera().altitude).toBeCloseTo(101.7, 0);
+    } finally {
+      view.dispose();
+    }
   });
 
   it('flies an aircraft out of the view, and adds a car on request', async () => {
@@ -610,6 +643,38 @@ describe('mountEarthView', () => {
     await pump(3);
     expect(viewerState.frames).toBe(afterDispose);
     expect(canvas.listenerCount()).toBe(0);
+  });
+
+  it('pauses simulation and rendering on blur/hidden, preserving a manual pause', async () => {
+    const { view } = await mount();
+    const onFrame = vi.fn();
+    view.on('frame', onFrame);
+    await pump(3);
+    window.dispatchEvent(new Event('blur'));
+    const frames = viewerState.frames;
+    const simFrames = onFrame.mock.calls.length;
+    expect(simFrames).toBeGreaterThan(0);
+    await pump(10);
+    expect(viewerState.frames).toBe(frames);
+    expect(onFrame).toHaveBeenCalledTimes(simFrames);
+    Object.assign(document, { hidden: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+    window.dispatchEvent(new Event('focus'));
+    await pump(2);
+    expect(viewerState.frames).toBe(frames);
+    view.setPaused(true);
+    Object.assign(document, { hidden: false });
+    document.dispatchEvent(new Event('visibilitychange'));
+    await pump(2);
+    expect(viewerState.frames).toBe(frames);
+    view.setPaused(false);
+    await pump(2);
+    expect(viewerState.frames).toBe(frames + 2);
+    view.dispose();
+    window.dispatchEvent(new Event('blur'));
+    window.dispatchEvent(new Event('focus'));
+    await pump(2);
+    expect(viewerState.frames).toBe(frames + 2);
   });
 });
 

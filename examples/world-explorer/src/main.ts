@@ -4,6 +4,7 @@ import {
   createIndexedDbMaterialStore,
   createViewer,
   type MolenClient,
+  observePageActivity,
 } from '@bendyline/molen-client';
 import { bindAircraftCockpitPointer } from '@bendyline/molen-client/aircraft';
 import {
@@ -1343,8 +1344,10 @@ async function main(): Promise<void> {
   let appliedShadowQuality: 'off' | 'medium' | 'high' | undefined;
   // Shadows on once, now that the sky's sun exists: lit shaders are then built for them from the
   // start, and a tier without shadows parks the map instead of rebuilding every shader in view.
+  // Reserve High before any warm-up can allocate the map: WebGPU must retain that allocation,
+  // so starting at Medium left even the High/Ultra settings sampling a 2048 map forever.
   if (shadowsWanted) {
-    viewer.renderer.setShadowQuality('medium');
+    viewer.renderer.setShadowQuality('high');
     viewer.renderer.setShadowQuality('off');
     appliedShadowQuality = 'off';
   }
@@ -1511,6 +1514,11 @@ async function main(): Promise<void> {
     obstacles: (box, except) =>
       aircraftBlocks(vehicles.world, box, except) || (ambient?.blocks(box, except) ?? false),
   });
+  walker.sampleWaterHeight = (x, z) => {
+    if (sampleTerrainTunnel(stream.object, x, walker.feet.y, z)) return null;
+    const water = vehicles.boatEnvironment.waterAt(x, z);
+    return water == null ? water : water.height;
+  };
   let requestedBoat = params.get('boat') ?? undefined;
   let boatAttemptAt = 0;
   let boatSearchStarted = 0;
@@ -1640,10 +1648,13 @@ async function main(): Promise<void> {
   void startExplorerAudio(new URL('./', location.href), vehicles.world, viewer.renderer, params)
     .then((started) => {
       audio = started;
+      audio?.layer.setSuspended(document.hidden || !document.hasFocus());
     })
     .catch((error: unknown) => console.warn('audio unavailable', error));
   const walkHelp =
     'WASD walk · Shift run · Space jump · E board vehicle · click to look · Esc release mouse';
+  const swimHelp =
+    'WASD swim · Shift swim faster · Return to shore to walk · E board vehicle · click to look · Esc release mouse';
   const boatHelp =
     'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · E dockside exit · V view';
   const standAt = (feet: readonly [number, number, number]): void => {
@@ -1651,6 +1662,7 @@ async function main(): Promise<void> {
     walker.velocity.set(0, 0, 0);
     walker.ready = true;
     walker.grounded = true;
+    walker.swimming = false;
     walker.waitingForTerrain = false;
     camera.pos = [feet[0], feet[1] + WALK_EYE_HEIGHT, feet[2]];
     camera.pitch = 0;
@@ -1899,7 +1911,10 @@ async function main(): Promise<void> {
   canvas.addEventListener('webglcontextlost', () => {
     lastGpuMs = undefined;
   });
-  document.addEventListener('visibilitychange', () => {
+  let pageActive = true;
+  let frameHandle = 0;
+  let frameDisposed = false;
+  const resetFrameTiming = (): void => {
     qualityController.sample(0, { active: false });
     lastGpuMs = undefined;
     previousCpuMs = 0;
@@ -1907,8 +1922,10 @@ async function main(): Promise<void> {
     frameCount = 0;
     frameMax = 0;
     lastTime = performance.now();
-  });
+  };
   function frame(now: number): void {
+    frameHandle = 0;
+    if (!pageActive || frameDisposed) return;
     const firstFrame = startupTimings['first-frame'] === undefined;
     if (firstFrame) startupStage('frame-start');
     pyramidEarth?.stream.updateTransitions(now);
@@ -2014,6 +2031,7 @@ async function main(): Promise<void> {
       walker.velocity.set(0, 0, 0);
       walker.ready = true;
       walker.grounded = true;
+      walker.swimming = false;
       visitingAircraft = undefined;
     }
     if (visitingTransit && flight.ready) {
@@ -2166,6 +2184,8 @@ async function main(): Promise<void> {
         camera.pos[1] = walker.feet.y + WALK_EYE_HEIGHT;
         camera.pos[2] = walker.feet.z;
       }
+      const onFootHelp = walker.swimming ? swimHelp : walkHelp;
+      if (help.textContent !== onFootHelp) help.textContent = onFootHelp;
     } else {
       move(forward, speed * frameInput.move.forward);
       move(right, speed * frameInput.move.right);
@@ -2364,6 +2384,9 @@ async function main(): Promise<void> {
       viewer.renderer.setShadowQuality(shadowQuality);
       appliedShadowQuality = shadowQuality;
     }
+    // Aircraft also occupy Mounted.vehicle. Resolve them before the shared vehicle field
+    // so a close aircraft view doesn't stretch its shadow map over the driving radius.
+    const shadowMode = flight.mountedKind ? 'fly' : vehicles.mountedId ? 'drive' : navigation;
     if (shadowQuality !== 'off' && aerialOrtho > 0) {
       // The orthophoto frame is centered under the camera; cover exactly it.
       viewer.renderer.setShadowFocus({
@@ -2373,14 +2396,17 @@ async function main(): Promise<void> {
     } else if (shadowQuality !== 'off') {
       viewer.renderer.setShadowFocus(
         earthShadowFocus(
-          navigation === 'walk' && !flight.mountedKind
-            ? 'walk'
-            : vehicles.mountedId
-              ? 'drive'
-              : 'fly',
+          shadowMode,
           camera.pos,
           viewDirection,
           sampleHeight(camera.pos[0], camera.pos[2]) ?? 0,
+          flightCamera
+            ? Math.hypot(
+                flightCamera.lookAt[0] - camera.pos[0],
+                flightCamera.lookAt[1] - camera.pos[1],
+                flightCamera.lookAt[2] - camera.pos[2],
+              )
+            : 0,
         ),
       );
     }
@@ -2519,7 +2545,9 @@ async function main(): Promise<void> {
                         ? 'Finding open ground nearby… Switch to Fly to choose another spot.'
                         : walker.waitingForTerrain
                           ? 'Waiting for terrain…'
-                          : `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`
+                          : walker.swimming
+                            ? 'Swimming · Return to shore to walk'
+                            : `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`
                       : 'Fly mode · Explore from above')));
       if (navigationStatus.textContent !== navigationText)
         navigationStatus.textContent = navigationText;
@@ -2535,6 +2563,13 @@ async function main(): Promise<void> {
       );
       navigationStatus.dataset.speed = (flight.state?.airspeed ?? vehicles.speed).toFixed(3);
       navigationStatus.dataset.aircraft = flight.mountedKind ?? '';
+      // Report the applied sun projection for browser regressions, not just the UI quality label.
+      const sunShadow = viewer.renderer.sky?.sunLight.shadow;
+      navigationStatus.dataset.shadowMode = shadowMode;
+      navigationStatus.dataset.shadowSpan = sunShadow
+        ? (sunShadow.camera.right - sunShadow.camera.left).toFixed(2)
+        : '0';
+      navigationStatus.dataset.shadowMap = String(sunShadow?.map?.width ?? 0);
       navigationStatus.dataset.apronAircraft = String(flight.apronCount);
       navigationStatus.dataset.apronLoading = String(flight.apronPending);
       navigationStatus.dataset.agl = (flight.state?.altitudeAGL ?? 0).toFixed(2);
@@ -2571,9 +2606,11 @@ async function main(): Promise<void> {
               ? 'placing'
               : walker.waitingForTerrain
                 ? 'waiting'
-                : walker.grounded
-                  ? 'grounded'
-                  : 'airborne';
+                : walker.swimming
+                  ? 'swimming'
+                  : walker.grounded
+                    ? 'grounded'
+                    : 'airborne';
       navigationStatus.dataset.x = camera.pos[0].toFixed(3);
       navigationStatus.dataset.y = camera.pos[1].toFixed(3);
       navigationStatus.dataset.z = camera.pos[2].toFixed(3);
@@ -2679,9 +2716,24 @@ async function main(): Promise<void> {
     // A larger streaming budget only while frames have time to spare (see earthAdmission).
     const admission = admissionGovernor.sample(previousCpuMs, frameMs);
     if (admission !== undefined) viewer.renderer.admission.setLimits(admission);
-    requestAnimationFrame(frame);
+    frameHandle = requestAnimationFrame(frame);
   }
-  requestAnimationFrame(frame);
+  const removeActivity = observePageActivity((active) => {
+    pageActive = active;
+    cancelAnimationFrame(frameHandle);
+    frameHandle = 0;
+    viewer.renderer.admission.setPaused(!active);
+    audio?.layer.setSuspended(!active);
+    input.map.reset();
+    resetFrameTiming();
+    if (active && !frameDisposed && !deviceLost) frameHandle = requestAnimationFrame(frame);
+  });
+  window.addEventListener('pagehide', (event) => {
+    if (event.persisted) return;
+    frameDisposed = true;
+    removeActivity();
+    cancelAnimationFrame(frameHandle);
+  });
 }
 
 const hud = document.getElementById('hud') as HTMLElement;

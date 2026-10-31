@@ -943,6 +943,9 @@ describe('renderer backend selection', () => {
         (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
       ) as THREE.DirectionalLight;
     renderer.setShadowQuality('high');
+    // Simulate the first render allocating its depth target. Merely choosing a quality must
+    // not freeze an unallocated map at a lower warm-up resolution.
+    light.shadow.map = new THREE.WebGLRenderTarget(4096, 4096);
     const map = light.shadow.map;
     expect(light.castShadow).toBe(true);
     expect(light.shadow.mapSize.x).toBe(4096);
@@ -956,6 +959,25 @@ describe('renderer backend selection', () => {
     expect(light.shadow.autoUpdate).toBe(true);
     expect(light.shadow.mapSize.x).toBe(4096);
     expect(light.shadow.map).toBe(map);
+    renderer.dispose();
+  });
+
+  it('honors High after a WebGPU Medium warm-up before a shadow map has been allocated', async () => {
+    const renderer = await Renderer.create({ backend: 'webgpu' });
+    applyEnvironment(renderer, { sun: { direction: [0, 1, 1] } });
+    const light = renderer.scene
+      .getObjectByName('$environment')
+      ?.children.find(
+        (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
+      ) as THREE.DirectionalLight;
+    renderer.setShadowQuality('medium');
+    renderer.setShadowQuality('off');
+    expect(light.shadow.map).toBeNull();
+    expect(light.shadow.needsUpdate).toBe(true);
+    renderer.setShadowQuality('high');
+    expect(light.shadow.mapSize.x).toBe(4096);
+    expect(light.shadow.intensity).toBe(1);
+    expect(light.shadow.autoUpdate).toBe(true);
     renderer.dispose();
   });
 

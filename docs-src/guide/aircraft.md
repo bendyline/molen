@@ -197,6 +197,13 @@ ownership of a loaded GLB and animates the nodes named by `spec.visual` from air
 exterior moving parts as [model-signal bindings](vehicle-interiors.md#exterior-animation), with
 keyframed curves so one gear position can sequence doors and legs.
 
+Exposed airplane propellers fade from individual blades into a translucent, soft-edged disk
+between 20 and 60 rad/s (about 190–570 RPM). The disk follows actual shaft speed, including
+independent engines and spool-down, so blades cannot appear frozen at normal operating RPM.
+Its size and radial colors come from the blade geometry and materials; separate central hubs stay solid.
+This render-only effect needs no model changes and works with WebGL and WebGPU. Helicopter
+rotors and enclosed jet fans retain their existing animation.
+
 For powered lift, declare `spec.poweredLift` with positive `transitTime`, `controlFadeSpeed`,
 `pitchAuthority`, `rollAuthority`, `yawAuthority` and `damping`, and mark the participating
 forward-facing engine installations `vectored: true`. `aircraftInput.thrustVector` is 0–1;

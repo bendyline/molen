@@ -15,6 +15,7 @@ import type { Intersection, Object3D } from 'three';
 import { AssetCache, type AssetProvider, createUrlAssetProvider } from './assets';
 import { type ClientError, createClientCore, localCommand, type Unsubscribe } from './client-core';
 import { InputMap, type InputMapOptions } from './input';
+import { observePageActivity } from './page-activity';
 import { applyInputRules, applySceneCamera } from './scene-bindings';
 import { SceneMirror } from './sync';
 import {
@@ -48,6 +49,8 @@ export interface ClientOptions extends RendererOptions {
   /** Optional caller-owned worker pool for procedural textures. */
   materialBaker?: MaterialBaker;
   frameLoop?: 'auto' | 'manual';
+  /** Pause the worker and automatic rendering on blur/hidden. Default true for automatic loops. */
+  pauseWhenInactive?: boolean;
   /** Declarative camera; follow targets use the same interpolation as rendered entities. */
   sceneCamera?: SceneCamera;
   interpolationDelayTicks?: number;
@@ -205,6 +208,7 @@ function createClientWithRenderer(
   );
   for (const kind of opts.kinds ?? []) backend.registerKind(kind);
   let disposeCore: Unsubscribe | undefined;
+  let removeActivity: Unsubscribe | undefined;
   let raf: number | undefined;
   try {
     const core = createClientCore({
@@ -243,12 +247,16 @@ function createClientWithRenderer(
     }
 
     let disposed = false;
+    let inactive = false;
+    let activityKnown = false;
+    let stopped = false;
+    let requestFrame = (): void => {};
     if (opts.frameLoop !== 'manual') {
       let consecutiveFailures = 0;
       const loop = (): void => {
         raf = undefined;
         // A frame that was already in flight when dispose() ran has nothing to draw into.
-        if (disposed) return;
+        if (disposed || inactive || stopped) return;
         let stop = false;
         try {
           renderFrame();
@@ -260,6 +268,7 @@ function createClientWithRenderer(
           stop =
             renderer.deviceLost !== undefined ||
             consecutiveFailures >= MAX_CONSECUTIVE_FRAME_FAILURES;
+          stopped = stop;
           core.reportError({
             source: 'frame',
             message: stop
@@ -270,13 +279,34 @@ function createClientWithRenderer(
         } finally {
           // One bad frame must not kill the loop: schedule the next frame even after a throw,
           // or the page silently freezes on its last pose with nothing reported.
-          if (!stop && !disposed && renderer.deviceLost === undefined) {
-            raf = requestAnimationFrame(loop);
-          }
+          if (!stop) requestFrame();
         }
       };
-      raf = requestAnimationFrame(loop);
+      requestFrame = () => {
+        if (
+          raf === undefined &&
+          !disposed &&
+          !inactive &&
+          !stopped &&
+          renderer.deviceLost === undefined
+        )
+          raf = requestAnimationFrame(loop);
+      };
     }
+    if (opts.pauseWhenInactive ?? opts.frameLoop !== 'manual') {
+      removeActivity = observePageActivity((active) => {
+        if (activityKnown && inactive === !active) return;
+        activityKnown = true;
+        inactive = !active;
+        core.control({ action: 'set-active', active });
+        renderer.admission.setPaused(inactive);
+        if (inactive) {
+          if (raf !== undefined) cancelAnimationFrame(raf);
+          raf = undefined;
+        } else requestFrame();
+      });
+    }
+    requestFrame();
 
     // The host posts its boot keyframe from its own constructor, and a dedicated Worker drops
     // `message` events dispatched before a listener exists — any macrotask between `new Worker()`
@@ -313,6 +343,7 @@ function createClientWithRenderer(
       dispose: () => {
         if (disposed) return;
         disposed = true;
+        removeActivity?.();
         if (raf !== undefined) cancelAnimationFrame(raf);
         core.dispose();
         backend.dispose();
@@ -321,6 +352,7 @@ function createClientWithRenderer(
       },
     };
   } catch (error) {
+    removeActivity?.();
     if (raf !== undefined) cancelAnimationFrame(raf);
     disposeCore?.();
     backend.dispose();
@@ -543,19 +575,17 @@ function mountClient(opts: MountExperienceOptions, client: MolenClient): Mounted
       input = new InputMap({ ...scene.input, ...(target ? { target } : {}) });
       const map = input;
       disposers.push(() => map.dispose());
-      if (typeof document !== 'undefined') {
+      if (opts.pauseWhenInactive ?? opts.frameLoop !== 'manual') {
         let resume: Unsubscribe | undefined;
-        const visibility = (): void => {
-          if (document.hidden) resume ??= map.suspend();
+        const removeActivity = observePageActivity((active) => {
+          if (!active) resume ??= map.suspend();
           else {
             resume?.();
             resume = undefined;
           }
-        };
-        document.addEventListener('visibilitychange', visibility);
-        visibility();
+        });
         disposers.push(() => {
-          document.removeEventListener('visibilitychange', visibility);
+          removeActivity();
           resume?.();
         });
       }

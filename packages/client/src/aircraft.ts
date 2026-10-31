@@ -7,6 +7,7 @@ import type {
 import * as THREE from 'three';
 import { type AircraftCockpit, createAircraftCockpit } from './aircraft-controls';
 import { createAircraftDamageVisual } from './aircraft-damage';
+import { createAircraftPropellers } from './aircraft-propellers';
 
 export * from './aircraft-cockpit-pointer';
 export * from './aircraft-collision';
@@ -93,12 +94,15 @@ export function createAircraftVisual(
     });
   const cabinRange = Math.max(60, 3 * Math.max(spec.length, spec.span));
   const damage = createAircraftDamageVisual(model, spec);
+  let propellers = createAircraftPropellers(model, spec);
   let cabinShown = true;
   return {
     setLivery(data) {
+      propellers.dispose();
       appearance?.dispose();
       damage.reset();
       appearance = data === undefined ? undefined : applyLivery(model, data);
+      propellers = createAircraftPropellers(model, spec);
     },
     object: model,
     cockpit,
@@ -229,6 +233,7 @@ export function createAircraftVisual(
       });
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
+      propellers.update(state);
       damage.update(state);
     },
     updateView(camera) {
@@ -243,6 +248,7 @@ export function createAircraftVisual(
     },
     dispose() {
       damage.reset();
+      propellers.dispose();
       appearance?.dispose();
       const geometries = new Set<THREE.BufferGeometry>(),
         materials = new Set<THREE.Material>();

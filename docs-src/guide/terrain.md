@@ -351,9 +351,18 @@ For moving cameras, `stream.update(view, futureViews)` accepts optional predicte
 in time first. It prepares a bounded set of future leaves, semantic layers and GPU resources in
 the hidden resident cache without changing the current selection. Omit the second argument to
 stop prediction. Both the Earth view and World Explorer use `createEarthTilePreloader` from
-`@bendyline/molen-earth/client` to predict 4, 8 and 12 seconds of fast travel, capped at 4 km.
+`@bendyline/molen-earth/client` to predict 2, 4, 8 and 12 seconds of fast travel, capped at 4 km.
 Its `views(nowMs, view, steady)` takes positions already in the Earth adapter's metric world frame;
 pass `steady: false` during scripted camera animations and call `reset()` when changing frames.
+
+Semantic preparation shares its request window across enabled layers, retaining capacity for
+the next arriving tile's other layers even when one source stalls. Earth applies the same
+12-height / 24-layer preparation window to manual and automatic quality; bounded worker pools
+and frame admission govern the work itself. Visual quality and selection budgets remain separate.
+Layer priority follows the camera and predicted flight path through worker, assembly, GPU
+preparation and publication queues, ahead of surrounding detail.
+Repeated physics height probes cache the covering fields per finest-level cell; arriving tiles,
+visibility changes and eviction invalidate that lookup without caching or quantizing heights.
 
 The selector measures projected source-sample spacing, adapts its error/range to the selected-tile
 budget, requests ancestors before descendants, and retains a displayed parent until all selected

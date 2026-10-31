@@ -332,11 +332,12 @@ export class Renderer {
     const enabled = quality !== 'off';
     let parked = false;
     for (const light of this.sunLights()) {
-      if (this.backend === 'webgpu' && this.shadowLights.has(light)) {
+      if (this.backend === 'webgpu' && this.shadowLights.has(light) && light.shadow.map !== null) {
         // three r184's WebGPU shadow node does not survive being switched off and on, resized or
         // retyped: render objects cached for the earlier state keep sampling its disposed depth
         // texture, every submit fails and the frame stops updating. Once a map exists it keeps
-        // its size and type; 'off' stops redrawing it and fades it out.
+        // its size and type; 'off' stops redrawing it and fades it out. Before allocation a host
+        // may still choose its final resolution (e.g. Medium warm-up followed by High).
         light.shadow.autoUpdate = enabled;
         light.shadow.intensity = enabled ? 1 : 0;
         continue;
@@ -357,6 +358,10 @@ export class Renderer {
       light.castShadow = true;
       light.shadow.autoUpdate = true;
       light.shadow.intensity = 1;
+      // Initialize a new target once even if the host parks it before shader preparation.
+      // In three r184 WebGPU, sampling an undrawn target during warm-up leaves receivers
+      // unshadowed after re-enabling it. Keep the first update pending while parked.
+      if (light.shadow.map === null) light.shadow.needsUpdate = true;
       const size = SHADOW_MAP_SIZE[quality];
       if (light.shadow.mapSize.x !== size) {
         light.shadow.mapSize.set(size, size);
@@ -820,6 +825,7 @@ export class Renderer {
    *
    * `root.userData.admissionPriority` admits the root's own work as `'urgent'` (ahead of normal
    * work) or `'background'` (only in budget normal work leaves: content nobody waits on yet).
+   * `root.userData.admissionOrder` supplies live normal-lane order (lower first).
    */
   async prepareObject(
     root: THREE.Object3D,
@@ -833,6 +839,8 @@ export class Renderer {
     // The terrain stream marks its ground this way: see AdmissionOptions.priority.
     const priority = root.userData.admissionPriority;
     const foreground = createLane(priority === 'background', priority === 'urgent');
+    if (typeof root.userData.admissionOrder === 'function')
+      foreground.order = root.userData.admissionOrder;
     const background = createLane(true);
     const state = this.programState();
     const interest: WarmupInterest | 'pinned' =
@@ -1114,6 +1122,7 @@ export class Renderer {
       ...options,
       signal: controller.signal,
       priority: lane.background ? 'background' : lane.urgent ? 'urgent' : 'normal',
+      ...(lane.order ? { order: lane.order } : {}),
     });
     const warmup: Warmup = {
       promise,
@@ -1786,6 +1795,7 @@ class WarmupInterest {
 }
 
 interface PreparationLane {
+  order?: () => number;
   /** Background work runs after normal admission work; only a root marked background awaits it. */
   readonly background: boolean;
   /** Admitted ahead of normal work (AdmissionOptions.priority 'urgent'). */

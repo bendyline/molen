@@ -62,6 +62,20 @@ it('moves the explorer from a connected joystick and suspends it while remapping
         { timeout: 10_000 },
       )
       .toBeGreaterThan(2);
+    // A visible window can lose focus without browser rAF throttling. The held joystick must
+    // stop advancing the view until focus returns.
+    await page.evaluate(() => window.dispatchEvent(new Event('blur')));
+    const unfocused = await position();
+    await page.waitForTimeout(650);
+    expect(await position()).toEqual(unfocused);
+    await page.evaluate(() => window.dispatchEvent(new Event('focus')));
+    await expect
+      .poll(
+        async () =>
+          Math.hypot(...(await position()).map((value, index) => value - (unfocused[index] ?? 0))),
+        { timeout: 10_000 },
+      )
+      .toBeGreaterThan(2);
     await page.getByRole('button', { name: 'Controllers (1)', exact: true }).click();
     await page.getByLabel('Profile', { exact: true }).selectOption('fly');
     // Keep holding the stick: opening the editor must stop navigation immediately.
