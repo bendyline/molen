@@ -77,4 +77,4 @@ it('reproduces all four browser levels with the exact repaired source and shared
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3000000,
   );
-}, 10000);
+});
