@@ -112,23 +112,29 @@ it('reproduces the original master and preserves four independent map rings and 
 it('retains complete facade envelopes, all street balconies, keyholes, crown tiers, striped dome and414m tip', async () => {
   const master = decode(await readFile(source + '/models/source.glb')).triangles,
     asset = await read(runtime + '/asset.json');
+  // These 240 reference rays scan the 699,554-triangle master. Reuse their exact hits
+  // for every LOD instead of repeating the same expensive intersection work four times.
+  const probes = [];
+  for (const y of [31.95, 73.05, 132.85, 232.25, 287.45, 310.15, 341.55, 354.25, 368.35, 384.5])
+    for (let k = 0; k < 24; k++) {
+      const t = ((k + 0.17) * Math.PI * 2) / 24,
+        o = [70 * Math.cos(t), y, 70 * Math.sin(t)],
+        v = [-Math.cos(t), 0, -Math.sin(t)],
+        target = nearest(master, o, v);
+      expect(Number.isFinite(target), 'master coverage ' + y + '/' + k).toBe(true);
+      probes.push({ y, k, o, v, target });
+    }
   for (const l of asset.runtimeLods.levels) {
     const d = decode(await readFile(runtime + '/' + l.file)),
       ts = d.triangles,
       allowance = { skyline: 2, district: 1.2, street: 0.6, closeup: 0.1 }[l.name];
-    for (const y of [31.95, 73.05, 132.85, 232.25, 287.45, 310.15, 341.55, 354.25, 368.35, 384.5])
-      for (let k = 0; k < 24; k++) {
-        const t = ((k + 0.17) * Math.PI * 2) / 24,
-          o = [70 * Math.cos(t), y, 70 * Math.sin(t)],
-          v = [-Math.cos(t), 0, -Math.sin(t)],
-          target = nearest(master, o, v),
-          actual = nearest(ts, o, v);
-        expect(Number.isFinite(target)).toBe(true);
-        expect(Number.isFinite(actual), l.name + ' coverage ' + y + '/' + k).toBe(true);
-        expect(Math.abs(actual - target), l.name + ' envelope ' + y + '/' + k).toBeLessThan(
-          allowance,
-        );
-      }
+    for (const { y, k, o, v, target } of probes) {
+      const actual = nearest(ts, o, v);
+      expect(Number.isFinite(actual), l.name + ' coverage ' + y + '/' + k).toBe(true);
+      expect(Math.abs(actual - target), l.name + ' envelope ' + y + '/' + k).toBeLessThan(
+        allowance,
+      );
+    }
     expect(ts.flat().reduce((hi, p) => Math.max(hi, p[1]), 0)).toBeCloseTo(414, 3);
     if (l.name === 'street' || l.name === 'closeup') {
       const pitch = (290 - 27.75) / 74;

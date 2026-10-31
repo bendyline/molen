@@ -54,6 +54,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - id: key
         run: echo "release=$(node scripts/asset-packs.mjs key)" >> "$GITHUB_OUTPUT"
+      # This job restores archives directly instead of using fetch-assets.
+      - uses: ./.github/actions/prepare-asset-runner
       - uses: actions/cache/restore@v4
         with:
           path: .artifacts/asset-packs/
@@ -123,11 +125,6 @@ jobs:
     runs-on: ubuntu-24.04
     needs: check
     steps:
-      # Store-only content packs (below) take about 8 GB instead of 2 GB, next to the GLBs.
-      - name: Free disk space
-        run: |
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
-          df -h /
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4

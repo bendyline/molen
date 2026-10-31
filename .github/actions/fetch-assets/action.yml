@@ -10,6 +10,8 @@ outputs:
 runs:
   using: composite
   steps:
+    # Run before cache extraction, not just before GLB hydration: either can fill the disk.
+    - uses: ./.github/actions/prepare-asset-runner
     - id: key
       shell: bash
       run: echo "release=$(node scripts/asset-packs.mjs key)" >> "$GITHUB_OUTPUT"
