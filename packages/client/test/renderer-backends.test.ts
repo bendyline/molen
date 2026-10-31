@@ -29,6 +29,8 @@ vi.mock('../src/three/webgpu-ambient-occlusion', () => ({
   createWebGpuAmbientOcclusion: factories.occlusion,
 }));
 
+const gl = { COLOR_BUFFER_BIT: 0x4000, colorMask: vi.fn(), clear: vi.fn() };
+
 function fakeDriver() {
   return {
     setPixelRatio: vi.fn(),
@@ -45,6 +47,13 @@ function fakeDriver() {
     autoClear: true,
     getRenderTarget: vi.fn(() => null),
     setRenderTarget: vi.fn(),
+    getContext: vi.fn(() => gl),
+    state: {
+      buffers: {
+        color: { setMask: vi.fn(), setClear: vi.fn() },
+        depth: { getReversed: vi.fn(() => false) },
+      },
+    },
     setRenderObjectFunction: vi.fn(),
     backend: { updateBinding: vi.fn() },
     _nodes: { needsRefresh: vi.fn() },
@@ -778,7 +787,17 @@ describe('renderer backend selection', () => {
     renderer.render();
     // Rebased: the focus 100 m east of the origin is 100 m east of the scene origin.
     expect(light.target.position.x).toBeCloseTo(100, 0);
-    expect(light.shadow.camera.right).toBe(300);
+    expect(light.shadow.camera.right).toBe(320);
+    light.shadow.updateMatrices(light);
+    const projected = new THREE.Vector3(101, 0, 0).applyMatrix4(light.shadow.matrix);
+    // A different local origin must not change where an absolute point lands in the shadow map.
+    renderer.setWorldOrigin([10_123.45, 10, -23.4]);
+    renderer.render();
+    light.shadow.updateMatrices(light);
+    const rebased = new THREE.Vector3(10_101 - 10_123.45, -10, 23.4).applyMatrix4(
+      light.shadow.matrix,
+    );
+    expect(rebased.distanceTo(projected)).toBeLessThan(1e-9);
     expect(() => renderer.setShadowFocus({ center: [0, 0, 0], radius: 0 })).toThrow(RangeError);
     // Off again parks the map instead: every lit program keeps the shadow inputs it was built
     // with, so a quality tier change does not rebuild them all in the next frame.
@@ -829,6 +848,29 @@ describe('renderer backend selection', () => {
     renderer.setAmbientOcclusion(false);
     renderer.dispose();
     expect(() => renderer.setAmbientOcclusion(true)).toThrow(/disposed/);
+  });
+
+  it('leaves a WebGL frame opaque where alpha to coverage wrote partial alpha', () => {
+    gl.colorMask.mockClear();
+    gl.clear.mockClear();
+    const renderer = new Renderer();
+    renderer.render();
+    // The canvas's alpha alone is cleared to 1, after the scene, and every channel writes again.
+    expect(webgl.state.buffers.color.setClear).toHaveBeenCalledWith(0, 0, 0, 1, false);
+    expect(gl.colorMask.mock.calls).toEqual([
+      [false, false, false, true],
+      [true, true, true, true],
+    ]);
+    expect(gl.clear).toHaveBeenCalledWith(gl.COLOR_BUFFER_BIT);
+    expect(gl.clear.mock.invocationCallOrder[0]).toBeGreaterThan(
+      webgl.render.mock.invocationCallOrder.at(-1) ?? Infinity,
+    );
+    // Not into a host's render target.
+    gl.clear.mockClear();
+    webgl.getRenderTarget.mockReturnValue(new THREE.WebGLRenderTarget(1, 1) as never);
+    renderer.render();
+    expect(gl.clear).not.toHaveBeenCalled();
+    renderer.dispose();
   });
 
   it('prepares a material a mesh swaps to itself once it asks, ahead of queued work', async () => {
@@ -901,6 +943,9 @@ describe('renderer backend selection', () => {
         (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
       ) as THREE.DirectionalLight;
     renderer.setShadowQuality('high');
+    // Simulate the first render allocating its depth target. Merely choosing a quality must
+    // not freeze an unallocated map at a lower warm-up resolution.
+    light.shadow.map = new THREE.WebGLRenderTarget(4096, 4096);
     const map = light.shadow.map;
     expect(light.castShadow).toBe(true);
     expect(light.shadow.mapSize.x).toBe(4096);
@@ -914,6 +959,25 @@ describe('renderer backend selection', () => {
     expect(light.shadow.autoUpdate).toBe(true);
     expect(light.shadow.mapSize.x).toBe(4096);
     expect(light.shadow.map).toBe(map);
+    renderer.dispose();
+  });
+
+  it('honors High after a WebGPU Medium warm-up before a shadow map has been allocated', async () => {
+    const renderer = await Renderer.create({ backend: 'webgpu' });
+    applyEnvironment(renderer, { sun: { direction: [0, 1, 1] } });
+    const light = renderer.scene
+      .getObjectByName('$environment')
+      ?.children.find(
+        (child): child is THREE.DirectionalLight => child instanceof THREE.DirectionalLight,
+      ) as THREE.DirectionalLight;
+    renderer.setShadowQuality('medium');
+    renderer.setShadowQuality('off');
+    expect(light.shadow.map).toBeNull();
+    expect(light.shadow.needsUpdate).toBe(true);
+    renderer.setShadowQuality('high');
+    expect(light.shadow.mapSize.x).toBe(4096);
+    expect(light.shadow.intensity).toBe(1);
+    expect(light.shadow.autoUpdate).toBe(true);
     renderer.dispose();
   });
 

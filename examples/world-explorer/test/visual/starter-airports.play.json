@@ -1,0 +1,153 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "real-starter-airports",
+  "path": "/?region=seattle-bellevue-sammamish&aircraft=p51d&mode=human&quality=economy&backend=webgl&ambient=0&airportTraffic=0&weather=sunny&sky=daylight&nostyles=1&warmup=0&shadows=0",
+  "viewport": [1280, 800],
+  "probes": [
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    },
+    {
+      "name": "location",
+      "selector": "#location"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "Board P-51D",
+      "stableMs": 300,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "seattle-bellevue-sammamish-runway",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=\"p51d\"]",
+      "timeoutMs": 30000
+    },
+    {
+      "type": "screenshot",
+      "name": "boeing-field-cockpit",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "navigate",
+      "path": "/?region=sydney&aircraft=p51d&mode=human&quality=economy&backend=webgl&ambient=0&airportTraffic=0&weather=sunny&sky=daylight&nostyles=1&warmup=0&shadows=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "Board P-51D",
+      "stableMs": 300,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "sydney-runway",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=\"p51d\"]",
+      "timeoutMs": 30000
+    },
+    {
+      "type": "navigate",
+      "path": "/?region=kyoto&aircraft=p51d&mode=human&quality=economy&backend=webgl&ambient=0&airportTraffic=0&weather=sunny&sky=daylight&nostyles=1&warmup=0&shadows=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "Board P-51D",
+      "stableMs": 300,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "kyoto-runway",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=\"p51d\"]",
+      "timeoutMs": 30000
+    },
+    {
+      "type": "navigate",
+      "path": "/?region=yuma&aircraft=p51d&mode=human&quality=economy&backend=webgl&ambient=0&airportTraffic=0&weather=sunny&sky=daylight&nostyles=1&warmup=0&shadows=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "Board P-51D",
+      "stableMs": 300,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "yuma-runway",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=\"p51d\"]",
+      "timeoutMs": 30000
+    },
+    {
+      "type": "navigate",
+      "path": "/?region=new-delhi&aircraft=p51d&mode=human&quality=economy&backend=webgl&ambient=0&airportTraffic=0&weather=sunny&sky=daylight&nostyles=1&warmup=0&shadows=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status",
+      "text": "Board P-51D",
+      "stableMs": 300,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "new-delhi-runway",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-aircraft=\"p51d\"]",
+      "timeoutMs": 30000
+    }
+  ]
+}

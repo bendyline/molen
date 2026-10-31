@@ -15,7 +15,7 @@ export interface BridgeDeckOptions {
   groundApproach?: boolean;
   /** Authored deck endpoints in the path's frame, blended in over `radius`. */
   connections?: readonly { point: TerrainSemanticPoint; elevation: number; radius: number }[];
-  /** Absolute along-path grading samples, shared by painted surfaces and traffic graphs. */
+  /** Absolute along-path deck/approach samples, shared by painted surfaces and traffic graphs. */
   approachProfile?: readonly { point: TerrainSemanticPoint; elevation: number; flatness: number }[];
 }
 
@@ -38,9 +38,6 @@ export function bridgeDeckHeightFn(
   const endClearance = options.connects[1] ? options.approachLift : clearance;
   const start = groundAt(...a) + startClearance,
     end = groundAt(...b) + endClearance;
-  const dx = b[0] - a[0],
-    dz = b[1] - a[1],
-    length2 = dx * dx + dz * dz || 1;
   const candidates = options.connections ?? [];
   // Each clipped fragment must use its own nearest deck endpoint. Short landmarks can
   // have overlapping hint radii; applying both in sequence would overwrite the west join
@@ -68,14 +65,13 @@ export function bridgeDeckHeightFn(
   };
   // Keep the whole profile when a tile/traffic edge clips its rendered path. Otherwise
   // dropping the nearest sample outside the clip would change the boundary elevation.
-  const samples = options.groundApproach ? (options.approachProfile ?? []) : [];
+  const samples = options.approachProfile ?? [];
+  const points = samples.length ? samples.map((sample) => sample.point) : path.points;
   const distances = [0];
-  for (let i = 1; i < samples.length; i++) {
-    const a = samples[i - 1] as (typeof samples)[number],
-      b = samples[i] as (typeof samples)[number];
-    distances.push(
-      (distances[i - 1] ?? 0) + Math.hypot(b.point[0] - a.point[0], b.point[1] - a.point[1]),
-    );
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1] as TerrainSemanticPoint,
+      b = points[i] as TerrainSemanticPoint;
+    distances.push((distances[i - 1] ?? 0) + Math.hypot(b[0] - a[0], b[1] - a[1]));
   }
   // A bent path's cross-sections must use its local segment, not its endpoint chord.
   const project = (x: number, z: number) => {
@@ -83,9 +79,9 @@ export function bridgeDeckHeightFn(
       station = 0,
       px = x,
       pz = z;
-    for (let i = 1; i < samples.length; i++) {
-      const p = (samples[i - 1] as (typeof samples)[number]).point;
-      const q = (samples[i] as (typeof samples)[number]).point;
+    for (let i = 1; i < points.length; i++) {
+      const p = points[i - 1] as TerrainSemanticPoint;
+      const q = points[i] as TerrainSemanticPoint;
       const vx = q[0] - p[0],
         vz = q[1] - p[1],
         length2 = vx * vx + vz * vz;
@@ -106,8 +102,8 @@ export function bridgeDeckHeightFn(
   };
   const profile = samples.map((sample, i) => ({ ...sample, station: distances[i] ?? 0 }));
   return (x, z) => {
+    const p = project(x, z);
     if (profile.length) {
-      const p = project(x, z);
       let low = 0,
         high = profile.length - 1;
       while (low + 1 < high) {
@@ -126,7 +122,7 @@ export function bridgeDeckHeightFn(
         (groundAt(x, z) - groundAt(...p.point)) * (1 - flatness)
       );
     }
-    const t = Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length2));
+    const t = p.station / (path.length || 1);
     // Keeps the slab above terrain at crests without sagging into the river/valley.
     const lift = Math.min(
       clearance,
@@ -135,7 +131,7 @@ export function bridgeDeckHeightFn(
     );
     let height = options.groundApproach
       ? groundAt(x, z) + options.approachLift
-      : Math.max(start + (end - start) * t, groundAt(a[0] + dx * t, a[1] + dz * t) + lift);
+      : Math.max(start + (end - start) * t, groundAt(...p.point) + lift);
     for (const connection of connections) {
       // A deck endpoint covers its entire width, then fades into the inferred approach.
       const distance = Math.hypot(x - connection.point[0], z - connection.point[1]);
@@ -150,7 +146,7 @@ export function bridgeDeckHeightFn(
       const weight = options.groundApproach
         ? 1 -
           smooth(
-            Math.hypot(a[0] + dx * t - connection.point[0], a[1] + dz * t - connection.point[1]) /
+            Math.hypot(p.point[0] - connection.point[0], p.point[1] - connection.point[1]) /
               connection.radius,
           )
         : (1 - blend * blend * (3 - 2 * blend)) *

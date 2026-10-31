@@ -46,3 +46,8 @@ Commands: targeted generate-additional-landmarks/import-structure-models/generat
 [Ifteebd10 — 2022-08-02](https://commons.wikimedia.org/wiki/File:Baitul_mukarram_front.jpg). CC-BY-SA-4.0; viewed only. Inspected complete 960×720 night courtyard view. Tall flat-topped cubic prayer hall with three dark horizontal bands near the roof; projecting triple-pointed-arch entrance with taller middle arch; lower wings have repetitive tall narrow openings. This image supports shape; nighttime colored lights are not baked into the palette or textures. Fine lit calligraphy and people omitted.
 
 [T. Galib — 2018-09-24](https://commons.wikimedia.org/wiki/File:Baitul_Mukarram_(5).jpg). CC-BY-SA-4.0; viewed only. Inspected complete 960×720 daylight courtyard view toward the east gate. Long pale pointed arcades, central tall flat-roof portal with a broad pointed through arch, lower side portals and single octagonal minaret on a tiered square base to the gate’s right. The shaft rises to a projecting octagonal open-looking lantern and small pale domed cap. Roof edges have simple repeated parapet details. Exact lattice, staining, signs, fixtures and surrounding city are not copied.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.

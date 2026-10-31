@@ -17,6 +17,7 @@ import {
   wing,
 } from './mesh-kit.mjs';
 
+const HUEY_CABIN_WIDEN = 1.14;
 export function hueyFrame() {
   return {
     heli: true,
@@ -71,26 +72,42 @@ export function buildHuey(s) {
         );
     }
   };
-  // Main cabin: flat door sides, chamfered belly/roof, no generic elliptical pod.
-  const cabinRing = (w, bottom, top) => [
-    [0, top],
-    [w * 0.8, top - 0.025],
-    [w, top - 0.25],
-    [w, 1.06],
-    [w * 0.79, bottom + 0.07],
-    [0, bottom],
-    [-w * 0.79, bottom + 0.07],
-    [-w, 1.06],
-    [-w, top - 0.25],
-    [-w * 0.8, top - 0.025],
-  ];
+  // Main cabin: flat door sides between rounded roof and belly corners (JGSDF front and
+  // Evergreen rear photos), no generic elliptical pod. The aft rings close round into the boom.
+  const cabinRing = (w, bottom, top, side = 1.06, rx = w * 0.2, rt = 0.25) => {
+    const corner = (cx, cy, ax, ay, from) =>
+      [0, 1, 2, 3].map((k) => {
+        const c = Math.cos(from - (k * Math.PI) / 6),
+          s = Math.sin(from - (k * Math.PI) / 6);
+        return [
+          cx + ax * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
+          cy + ay * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
+        ];
+      });
+    const half = [
+      ...corner(w - rx, top - rt, rx, rt - 0.025, Math.PI / 2),
+      ...corner(w - rx, side, rx, side - bottom, 0),
+    ];
+    return [[0, top], ...half, [0, bottom], ...half.toReversed().map(([x, y]) => [-x, y])];
+  };
   const sections = [
     { z: 1.45, points: cabinRing(1.05, 0.66, 2.68) },
     { z: -1.65, points: cabinRing(1.05, 0.67, 2.68) },
-    { z: -2.35, points: cabinRing(0.88, 0.76, 2.35) },
-    { z: -2.7, points: cabinRing(0.57, 1.2, 2.14) },
+    // Behind the doors the aft fuselage swells round into the belly and roof as it tapers to
+    // the boom (Evergreen rear photo), rather than continuing the flat door sides.
+    { z: -2.0, points: cabinRing(0.99, 0.69, 2.56, 1.25, 0.34, 0.4) },
+    { z: -2.35, points: cabinRing(0.88, 0.76, 2.35, 1.5, 0.48, 0.58) },
+    { z: -2.7, points: cabinRing(0.57, 1.2, 2.14, 1.55, 0.3, 0.4) },
   ];
-  loft(d, sections, paint, { caps: false, skip: (i, j) => i === 0 && (j === 2 || j === 7) });
+  // The flat sides (ring points 4-5 and 13-14) are the window walls below.
+  loft(d, sections, paint, { caps: false, skip: (i, j) => i === 0 && (j === 4 || j === 13) });
+  // Aft bulkhead around the boom root (the boom is smaller than the aft fuselage end).
+  sheet(
+    d,
+    sections.at(-1).points.map(([x, y]) => [x, y, -2.7]),
+    paint,
+    [0, 0, -1],
+  );
   // Side sheets have actual holes for two sliding-door windows.
   for (const side of [-1, 1]) {
     const x = side * 1.05;
@@ -100,12 +117,10 @@ export function buildHuey(s) {
       [x, 2.43, -1.65],
       [x, 1.06, -1.65],
     ];
-    const windows = [0.62, -0.67].map((z) => [
-      [x, 1.58, z + 0.43],
-      [x, 2.23, z + 0.43],
-      [x, 2.23, z - 0.43],
-      [x, 1.58, z - 0.43],
-    ]);
+    // Sliding-door windows with rounded corners (JGSDF 41659 side photos).
+    const windows = [0.62, -0.67].map((z) =>
+      roundedRegion(z - 0.43, z + 0.43, 1.58, 2.23, 0.08, 0.08, 3).map(([u, y]) => [x, y, u]),
+    );
     sheet(d, wall, paint, [side, 0, 0], windows);
     for (const window of windows) {
       glazing(d, window, glass, seam, 0.017, [side, 0, 0]);
@@ -127,85 +142,107 @@ export function buildHuey(s) {
     d.rod([x + 0.025 * side, 1.4, 1.02], [x + 0.025 * side, 1.4, 0.84], 0.015, metal);
     d.rod([x + 0.025 * side, 1.4, -1.3], [x + 0.025 * side, 1.4, -1.12], 0.015, metal);
   }
-  // Rounded nose and broad curved chin windows, fitted to the front and side references.
-  // Rows: height, half-width, forward extent. Glazing follows authored pane boundaries.
+  // Rounded nose bulb and broad curved chin windows, fitted to the TM side/front views and the
+  // JGSDF 41659/41702 and Korean Navy photos: tip about 1.1 m above the ground, windscreen base
+  // about 1.6 m on the centre line, chin windows from the keel strip round to the side panels.
+  // Rows: height, half-width, forward extent; the skin runs smoothly through them.
   const noseRows = [
-    [0.69, 0.65, 3.06],
-    [0.8, 0.88, 3.35],
-    [1.0, 1.02, 3.53],
-    [1.2, 1.05, 3.57251],
-    [1.4, 1.02, 3.48],
-    [1.6, 0.96, 3.35],
-    [1.73, 0.91, 3.23],
+    [0.7, 0.62, 2.92],
+    [0.86, 0.81, 3.14],
+    [1.0, 0.92, 3.36],
+    [1.16, 0.98, 3.49],
+    [1.3, 1.03, 3.555],
+    [1.4, 1.05, 3.57251],
+    [1.55, 1.02, 3.53],
+    [1.7, 0.98, 3.43],
+    [1.82, 0.94, 3.29],
+    [1.91, 0.91, 3.12],
   ];
-  const angles = [-Math.PI / 2, -1.3, -1.05, -0.75, -0.4, 0, 0.4, 0.75, 1.05, 1.3, Math.PI / 2];
-  const nosePoint = (row, a) => [
-    row[1] * Math.sin(a),
-    row[0] - Math.max(0, row[0] - 1.4) * (0.28 / 0.33) * Math.sin(a) * Math.sin(a),
-    2.88 + (row[2] - 2.88) * Math.cos(a),
-  ];
-  for (let r = 0; r < noseRows.length - 1; r++)
-    for (let a = 0; a < angles.length - 1; a++) {
-      const pane = r >= 1 && r <= 3 && ((a >= 1 && a <= 3) || (a >= 6 && a <= 8));
-      quad(
-        d,
-        nosePoint(noseRows[r], angles[a]),
-        nosePoint(noseRows[r], angles[a + 1]),
-        nosePoint(noseRows[r + 1], angles[a + 1]),
-        nosePoint(noseRows[r + 1], angles[a]),
-        pane ? glass : paint,
-        [Math.sin((angles[a] + angles[a + 1]) / 2), 0, 1],
-      );
-    }
-  for (const side of [-1, 1]) {
-    const pane = [
-      ...noseRows.slice(1, 5).map((row) => nosePoint(row, side * 0.4)),
-      ...angles.slice(7, 10).map((a) => nosePoint(noseRows[4], a * side)),
-      ...noseRows
-        .slice(1, 4)
-        .reverse()
-        .map((row) => nosePoint(row, side * 1.3)),
-      ...angles
-        .slice(6, 9)
-        .reverse()
-        .map((a) => nosePoint(noseRows[1], a * side)),
-    ];
-    outline(d, pane, 0.022, paint);
-  }
+  const noseAt = waterlines(noseRows),
+    nosePoint = (row, a) => [
+      row[1] * Math.sin(a),
+      row[0] - Math.max(0, row[0] - 1.4) * 0.9 * Math.sin(a) * Math.sin(a),
+      2.88 + (row[2] - 2.88) * Math.cos(a),
+    ],
+    noseSkin = (t, a) => nosePoint(noseAt(t), a);
+  const rowSteps = Array.from({ length: 28 }, (_, i) => (i * (noseRows.length - 1)) / 27),
+    angleSteps = Array.from({ length: 25 }, (_, i) => ((i - 12) * Math.PI) / 24);
+  // Chin windows: rounded panes either side of the keel strip, wrapping back to the side panels.
+  const chin = [-1, 1].map((side) => {
+    const poly = roundedRegion(0.75, 4.75, 0.22, 1.5, 0.45, 0.13);
+    return side > 0 ? poly : poly.map(([t, a]) => [t, -a]).reverse();
+  });
+  const skinNormal = skinPatch(
+    d,
+    noseSkin,
+    rowSteps,
+    angleSteps,
+    paint,
+    chin.map((poly) => ({ poly, material: glass })),
+    [0, 1.25, 2.6],
+  );
+  // Footwell lining 3.5 cm inside the nose, facing the cabin and open behind the chin windows:
+  // through the clear chin glass the pedals and the dark far side of the footwell show, instead
+  // of a dark panel or the lit inside of the far skin.
+  skinPatch(
+    d,
+    (t, a) => {
+      const p = noseSkin(t, a),
+        n = skinNormal(t, a);
+      return p.map((c, k) => c - n[k] * 0.035);
+    },
+    rowSteps,
+    angleSteps,
+    seam,
+    chin.map((poly) => ({ poly, material: null })),
+    [0, 1.25, 2.6],
+    true,
+  );
+  for (const poly of chin)
+    outline(
+      d,
+      poly.map(([t, a]) => {
+        const p = noseSkin(t, a),
+          n = skinNormal(t, a);
+        return p.map((c, k) => c + n[k] * 0.006);
+      }),
+      0.016,
+      paint,
+    );
+  // Behind the bulb the lower cabin keeps the main ring's flat side and rounded belly corner.
+  const cabinHalf = (y) => {
+    const q = Math.min(1, Math.max(0, (1.06 - y) / 0.4));
+    return 0.84 + 0.21 * Math.pow(Math.sqrt(1 - Math.pow(q, 2.5)), 0.8);
+  };
   const noseContour = [
-    [0, 1.73],
-    ...noseRows.toReversed().map((row) => [row[1], nosePoint(row, Math.PI / 2)[1]]),
+    [0, noseRows.at(-1)[0]],
+    ...rowSteps.toReversed().map((t) => [noseAt(t)[1], noseSkin(t, Math.PI / 2)[1]]),
     [0, 0.66],
-    ...noseRows.map((row) => [-row[1], nosePoint(row, Math.PI / 2)[1]]),
+    ...rowSteps.map((t) => [-noseAt(t)[1], noseSkin(t, Math.PI / 2)[1]]),
   ];
   loft(
     d,
     [
       { z: 2.88, points: noseContour },
-      {
-        z: 2.3,
-        points: noseContour.map(([x, y]) => [Math.sign(x) * Math.min(1.05, Math.abs(x) * 1.1), y]),
-      },
-      {
-        z: 1.45,
-        points: noseContour.map(([x, y]) => [Math.sign(x) * Math.min(1.05, Math.abs(x) * 1.1), y]),
-      },
+      { z: 2.3, points: noseContour.map(([x, y]) => [Math.sign(x) * cabinHalf(y), y]) },
+      { z: 1.45, points: noseContour.map(([x, y]) => [Math.sign(x) * cabinHalf(y), y]) },
     ],
     paint,
     { caps: false, skip: (_i, j) => j === 0 || j === noseContour.length - 1 },
   );
-  sheet(d, [...angles.map((a) => nosePoint(noseRows[0], a)), [0, 0.66, 2.88]], paint, [0, -1, 0]);
+  sheet(d, [...angleSteps.map((a) => noseSkin(0, a)), [0, 0.66, 2.88]], paint, [0, -1, 0]);
+  const top = noseRows.at(-1);
   for (const side of [-1, 1]) {
     // Windscreen and corner pane, individually located rather than cut from an oval shell.
     const lower = [],
       upper = [];
-    for (let i = 0; i <= 4; i++) {
-      const u = i / 4,
-        x = 0.035 + 0.875 * u;
-      lower.push(nosePoint(noseRows.at(-1), side * Math.asin(x / 0.91)));
+    for (let i = 0; i <= 6; i++) {
+      const u = i / 6,
+        x = 0.035 + (top[1] - 0.035) * u;
+      lower.push(nosePoint(top, side * Math.asin(x / top[1])));
       upper.push([side * (0.035 + 0.785 * u), 2.63 - 0.06 * u * u, 2.54 - 0.27 * u * u]);
     }
-    for (let i = 0; i < 4; i++)
+    for (let i = 0; i < 6; i++)
       quad(d, lower[i], lower[i + 1], upper[i + 1], upper[i], glass, [side * 0.25, 0.35, 1]);
     const front = [...lower, ...upper.toReversed()];
     outline(d, front, 0.032, paint);
@@ -218,11 +255,11 @@ export function buildHuey(s) {
     ];
     glazing(d, corner, glass, paint, 0.025, [side, 0.2, 0.3]);
     const door = [
-      [side * 1.05, 0.76, 2.52],
+      [side * cabinHalf(0.76), 0.76, 2.52],
       [side * 1.05, 1.55, 2.52],
       [side * 1.02, 2.43, 2.05],
       [side * 1.05, 2.43, 1.45],
-      [side * 1.05, 0.76, 1.45],
+      [side * cabinHalf(0.76), 0.76, 1.45],
     ];
     // Flat door uses a slightly inset window; the lower skin stays opaque.
     const win = [
@@ -256,8 +293,10 @@ export function buildHuey(s) {
       d,
       [
         [side * 1.02, 2.43, 2.05],
-        [side * 1.05, 2.43, 1.45],
-        [side * 0.84, 2.655, 1.45],
+        ...sections[0].points
+          .slice(1, 5)
+          .toReversed()
+          .map(([x, y]) => [side * x, y, 1.45]),
       ],
       paint,
       [side, 0.5, 0],
@@ -266,20 +305,32 @@ export function buildHuey(s) {
     d.rod([side * 0.7, 2.5, 2.31], [side * 0.48, 2.37, 2.52], 0.012, seam);
     d.rod([side * 0.25, 2.37, 2.6], [side * 0.71, 2.34, 2.43], 0.013, rubber);
   }
-  d.rod([0, 1.72, 3.23], [0, 2.63, 2.54], 0.033, paint);
+  d.rod([0, top[0] - 0.01, top[2]], [0, 2.63, 2.54], 0.033, paint);
   // Engine/transmission cowling above the cabin, with a raised forward fairing and aft exhaust.
-  const cowl = (z, w, low, high) => ({
-    z,
-    points: [
-      [0, high],
-      [w * 0.76, high - 0.035],
-      [w, low + 0.15],
-      [w, low],
-      [-w, low],
-      [-w, low + 0.15],
-      [-w * 0.76, high - 0.035],
-    ],
-  });
+  // Authored at final width: the cabin widening below is divided back out of the cowling.
+  // Upright sides under a rounded crown (rear and rear 3/4 photos), not a chamfered box.
+  const cowl = (z, w0, low, high, w = w0 / HUEY_CABIN_WIDEN) => {
+    const shoulder = Math.min(low + 0.15, (low + high) / 2),
+      crown = Array.from({ length: 5 }, (_, k) => {
+        const a = (k * Math.PI) / 8;
+        return [
+          w * Math.pow(Math.sin(a), 2 / 2.5),
+          shoulder + (high - shoulder) * Math.pow(Math.cos(a), 2 / 2.5),
+        ];
+      });
+    return {
+      z,
+      points: [
+        ...crown,
+        [w, low],
+        [-w, low],
+        ...crown
+          .slice(1)
+          .reverse()
+          .map(([x, y]) => [-x, y]),
+      ],
+    };
+  };
   loft(
     d,
     [
@@ -293,31 +344,39 @@ export function buildHuey(s) {
   );
   for (const side of [-1, 1])
     for (let i = 0; i < 9; i++)
-      d.box([0.015, 0.1, 0.026], [side * 0.604, 2.91, -0.5 - i * 0.065], seam);
+      d.box([0.015, 0.1, 0.026], [(side * 0.604) / HUEY_CABIN_WIDEN, 2.91, -0.5 - i * 0.065], seam);
   d.add(
-    new T.CylinderGeometry(0.245, 0.28, 0.42, 24, true).rotateX(Math.PI / 2),
+    new T.CylinderGeometry(0.245, 0.28, 0.42, 24, true)
+      .rotateX(Math.PI / 2)
+      .scale(1 / HUEY_CABIN_WIDEN, 1, 1),
     metal,
     [0, 2.74, -2.28],
   );
-  d.add(new T.CircleGeometry(0.237, 24).rotateY(Math.PI), rubber, [0, 2.74, -2.5]);
+  d.add(
+    new T.CircleGeometry(0.237, 24).rotateY(Math.PI).scale(1 / HUEY_CABIN_WIDEN, 1, 1),
+    rubber,
+    [0, 2.74, -2.5],
+  );
   // Cabin datum: ground to roof is approximately 2.39 m in the dimensioned side view.
   // Keep the rotor and tail datums independent; cabin coordinates above use a local origin.
   d.finish();
+  // TM fig 2-2 front/plan views: the cabin is nearly as wide as the 8 ft 6.6 in skid gear
+  // (about 2.4 m over the doors), so the authored 2.1 m shell is widened about the centre line.
+  for (const mesh of d.root.children) if (mesh.isMesh) mesh.geometry.scale(HUEY_CABIN_WIDEN, 1, 1);
   d.root.position.y = -0.29;
   d = detailKit(root, 'huey-running-structure');
   // Tapered tail boom; its section and raised tail-fin junction are structurally distinct.
+  // Rounded-square section (Evergreen UH-1H rear photo), smooth rather than an octagon.
   const boom = (z, w, cy, h) => ({
     z,
-    points: [
-      [0, cy + h],
-      [w * 0.72, cy + h * 0.72],
-      [w, cy],
-      [w * 0.72, cy - h * 0.72],
-      [0, cy - h],
-      [-w * 0.72, cy - h * 0.72],
-      [-w, cy],
-      [-w * 0.72, cy + h * 0.72],
-    ],
+    points: Array.from({ length: 16 }, (_, i) => {
+      const s = Math.sin((i * Math.PI) / 8),
+        c = Math.cos((i * Math.PI) / 8);
+      return [
+        w * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
+        cy + h * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
+      ];
+    }),
   });
   loft(
     d,
@@ -366,14 +425,17 @@ export function buildHuey(s) {
       metal,
       false,
     );
+    // Cross tubes run under the belly and bow round and down onto the skids (JGSDF front photos).
     for (const z of [1.6, -0.62])
       outline(
         d,
         [
-          [side * 0.61, 0.39, z],
-          [side * 0.83, 0.47, z],
-          [side * 1.1, 0.43, z],
-          [side * 1.23802, 0.14, z],
+          [side * 0.55, 0.36, z],
+          [side * 0.82, 0.355, z],
+          [side * 0.99, 0.325, z],
+          [side * 1.1, 0.27, z],
+          [side * 1.18, 0.195, z],
+          [side * 1.225, 0.12, z],
         ],
         0.047,
         metal,
@@ -427,7 +489,13 @@ export function buildHuey(s) {
   d.rod([0.24, 2.39, 1.88], [0.24, 2.6, 2.04], 0.015, metal);
   d.rod([0, 2.82, -1.16], [0, 3.21, -1.46], 0.012, seam);
   for (const side of [-1, 1])
-    ellipsoid(d, [side * 1.075, 1.46, 1.27], [0.035, 0.048, 0.075], side < 0 ? d.green : d.red, 12);
+    ellipsoid(
+      d,
+      [side * 1.075 * HUEY_CABIN_WIDEN, 1.46, 1.27],
+      [0.035, 0.048, 0.075],
+      side < 0 ? d.green : d.red,
+      12,
+    );
   for (const z of [-3.1, -4.8, -6.55]) {
     const section =
       z === -3.1
@@ -855,4 +923,174 @@ function addHueyCockpit(root) {
     for (const x of [-0.2, -0.08]) d.rod([x, 2.54, z], [x, 2.51, z + 0.012], 0.005, d.metal);
   d.finish();
   return { nodes: ['cockpit'], bindings };
+}
+
+/** Monotone cubic through samples at row index 0..n-1: smooth between rows, no overshoot. */
+function monotoneRows(ys) {
+  const n = ys.length,
+    s = ys.slice(1).map((y, i) => y - ys[i]),
+    m = ys.map((_, i) =>
+      i === 0 ? s[0] : i === n - 1 ? s[n - 2] : s[i - 1] * s[i] <= 0 ? 0 : (s[i - 1] + s[i]) / 2,
+    );
+  for (let i = 0; i < n - 1; i++) {
+    if (s[i] === 0) {
+      m[i] = m[i + 1] = 0;
+      continue;
+    }
+    const a = m[i] / s[i],
+      b = m[i + 1] / s[i],
+      q = a * a + b * b;
+    if (q > 9) {
+      m[i] = (3 / Math.sqrt(q)) * a * s[i];
+      m[i + 1] = (3 / Math.sqrt(q)) * b * s[i];
+    }
+  }
+  return (t) => {
+    const i = Math.min(n - 2, Math.max(0, Math.floor(t))),
+      u = Math.min(1, Math.max(0, t - i)),
+      u2 = u * u,
+      u3 = u2 * u;
+    return (
+      (2 * u3 - 3 * u2 + 1) * ys[i] +
+      (u3 - 2 * u2 + u) * m[i] +
+      (3 * u2 - 2 * u3) * ys[i + 1] +
+      (u3 - u2) * m[i + 1]
+    );
+  };
+}
+
+/** Nose waterlines [height, half-width, forward extent] read at a fractional row index. */
+export function waterlines(rows) {
+  const columns = [0, 1, 2].map((k) => monotoneRows(rows.map((r) => r[k])));
+  return (t) => columns.map((f) => f(t));
+}
+
+/** Convex rounded rectangle in a patch's (u, v) parameters, corner radii `ru`, `rv`. */
+export function roundedRegion(u0, u1, v0, v1, ru, rv, steps = 4) {
+  const corners = [
+    [u1 - ru, v1 - rv, 0],
+    [u0 + ru, v1 - rv, 1],
+    [u0 + ru, v0 + rv, 2],
+    [u1 - ru, v0 + rv, 3],
+  ];
+  return corners.flatMap(([u, v, k]) =>
+    Array.from({ length: steps + 1 }, (_, i) => {
+      const a = ((k + i / steps) * Math.PI) / 2;
+      return [u + ru * Math.cos(a), v + rv * Math.sin(a)];
+    }),
+  );
+}
+
+/** Keep the part of a convex (u, v) polygon left of a -> b (right of it when `keepLeft` is false). */
+function clipHalf(poly, a, b, keepLeft = true) {
+  const side = (p) =>
+    ((b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0])) * (keepLeft ? 1 : -1);
+  const result = [];
+  for (let i = 0; i < poly.length; i++) {
+    const p = poly[i],
+      q = poly[(i + 1) % poly.length],
+      sp = side(p),
+      sq = side(q);
+    if (sp >= 0) result.push(p);
+    if (sp >= 0 !== sq >= 0) {
+      const t = sp / (sp - sq);
+      result.push([p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t]);
+    }
+  }
+  return result;
+}
+const area2 = (poly) =>
+  poly.reduce((sum, p, i) => {
+    const q = poly[(i + 1) % poly.length];
+    return sum + p[0] * q[1] - q[0] * p[1];
+  }, 0);
+
+/**
+ * Smooth skin over a parametric patch `point(u, v)` between the ascending `us` and `vs`
+ * samples. Each convex region ({ poly: counter-clockwise (u, v) points, material }) takes the
+ * exact part of every cell it covers; the rest is `body`. Normals come from the surface itself
+ * (oriented away from `inside`), so a rounded nose shades round instead of as flat panels.
+ * A region with a null material stays open; `inward` turns the faces toward `inside` (linings).
+ * Returns the surface normal function for seals that follow the skin.
+ */
+export function skinPatch(d, point, us, vs, body, regions, inside, inward = false) {
+  const [u0, u1, v0, v1] = [us[0], us.at(-1), vs[0], vs.at(-1)];
+  const normal = (u, v) => {
+    const e = 1e-4,
+      a = point(Math.max(u - e, u0), v),
+      b = point(Math.min(u + e, u1), v),
+      c = point(u, Math.max(v - e, v0)),
+      f = point(u, Math.min(v + e, v1)),
+      p = point(u, v),
+      n = new T.Vector3(b[0] - a[0], b[1] - a[1], b[2] - a[2]).cross(
+        new T.Vector3(f[0] - c[0], f[1] - c[1], f[2] - c[2]),
+      );
+    if (n.lengthSq() < 1e-18) n.set(p[0] - inside[0], p[1] - inside[1], p[2] - inside[2]);
+    n.normalize();
+    if (n.x * (p[0] - inside[0]) + n.y * (p[1] - inside[1]) + n.z * (p[2] - inside[2]) < 0)
+      n.negate();
+    return n.toArray();
+  };
+  const out = new Map(),
+    facing = (u, v) => normal(u, v).map((c) => (inward ? -c : c));
+  const emit = (poly, material) => {
+    if (!material || Math.abs(area2(poly)) < 1e-12) return;
+    const data = out.get(material) ?? { position: [], normal: [] };
+    out.set(material, data);
+    for (let k = 1; k < poly.length - 1; k++) {
+      let tri = [poly[0], poly[k], poly[k + 1]];
+      const p = tri.map((q) => point(...q)),
+        face = new T.Vector3(...p[1])
+          .sub(new T.Vector3(...p[0]))
+          .cross(new T.Vector3(...p[2]).sub(new T.Vector3(...p[0]))),
+        n = facing(
+          (tri[0][0] + tri[1][0] + tri[2][0]) / 3,
+          (tri[0][1] + tri[1][1] + tri[2][1]) / 3,
+        );
+      if (face.dot(new T.Vector3(...n)) < 0) tri = [tri[0], tri[2], tri[1]];
+      for (const q of tri) {
+        data.position.push(...point(...q));
+        data.normal.push(...facing(...q));
+      }
+    }
+  };
+  for (let i = 0; i < us.length - 1; i++)
+    for (let j = 0; j < vs.length - 1; j++) {
+      let pieces = [
+        [
+          [us[i], vs[j]],
+          [us[i + 1], vs[j]],
+          [us[i + 1], vs[j + 1]],
+          [us[i], vs[j + 1]],
+        ],
+      ];
+      for (const { poly, material } of regions) {
+        const next = [];
+        for (const piece of pieces) {
+          let inside = piece,
+            rest = piece;
+          for (let k = 0; k < poly.length && inside.length > 2; k++)
+            inside = clipHalf(inside, poly[k], poly[(k + 1) % poly.length]);
+          if (inside.length < 3 || Math.abs(area2(inside)) < 1e-12) {
+            next.push(piece);
+            continue;
+          }
+          emit(inside, material);
+          for (let k = 0; k < poly.length && rest.length > 2; k++) {
+            const outside = clipHalf(rest, poly[k], poly[(k + 1) % poly.length], false);
+            if (outside.length > 2 && Math.abs(area2(outside)) > 1e-12) next.push(outside);
+            rest = clipHalf(rest, poly[k], poly[(k + 1) % poly.length]);
+          }
+        }
+        pieces = next;
+      }
+      for (const piece of pieces) emit(piece, body);
+    }
+  for (const [material, data] of out) {
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute('position', new T.Float32BufferAttribute(data.position, 3));
+    geometry.setAttribute('normal', new T.Float32BufferAttribute(data.normal, 3));
+    d.add(geometry, material);
+  }
+  return normal;
 }

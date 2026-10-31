@@ -88,7 +88,10 @@ it.each([
     expect(
       controls.some((c) => c.action === 'gear'),
       slug,
-    ).toBe(spec.model === 'airplane' && !spec.airplane?.fixedGear);
+    ).toBe(
+      (spec.model === 'airplane' && !spec.airplane?.fixedGear) ||
+        spec.helicopter?.fixedGear === false,
+    );
     visual.update(components.aircraftState, components.aircraftInput, 0);
     expect(visual.interior?.missingNodes, slug).toEqual([]);
     const authored = controls.filter((control) =>

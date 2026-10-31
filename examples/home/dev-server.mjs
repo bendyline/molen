@@ -2,6 +2,7 @@ import { createServer as createHttpServer } from 'node:http';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer as createViteServer } from 'vite';
+import { finishViteRequest, publicArchiveRanges } from './dev-http.mjs';
 import { proxyQualla, QUALLA_PREFIX } from './qualla-proxy.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -47,10 +48,7 @@ const httpServer = createHttpServer((request, response) => {
     return;
   }
 
-  vite.middlewares(request, response, () => {
-    response.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
-    response.end('Example not found.');
-  });
+  vite.middlewares(request, response, (error) => finishViteRequest(response, error));
 });
 // Each Vite application owns an HMR upgrade listener on the shared HTTP server.
 httpServer.setMaxListeners(exampleNames.length + 5);
@@ -62,6 +60,14 @@ async function addViteServer(name, root, base, configFile = false) {
     configFile,
     appType: 'spa',
     clearScreen: false,
+    plugins: [
+      {
+        name: 'molen-public-archive-ranges',
+        configureServer(server) {
+          server.middlewares.use(publicArchiveRanges(server.config.publicDir, server.config.base));
+        },
+      },
+    ],
     server: {
       middlewareMode: true,
       hmr: { server: httpServer, path: '__vite_hmr' },

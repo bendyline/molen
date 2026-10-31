@@ -18,6 +18,8 @@
  * Options: --views=q3f,q3r,side,front,rear,top,clay,far,claySide (default all but claySide),
  * --tile=420x280, --cols=4 (views per line), --grid=N (family sheets: N models per line),
  * --out=shots/model-sheets (ignored by Git), --gpu (hardware GPU instead of SwiftShader).
+ * --signals=gear:0.4,canopy:1 poses the model's actual runtime signal bindings.
+ * --runtime loads each --ids bundle's imported asset instead of its source GLB.
  * Sheets are local review evidence; see content/ASSET-PACKS.md "Model review images".
  */
 import { createReadStream } from 'node:fs';
@@ -39,6 +41,18 @@ const [tileW, tileH] = (arg('tile') ?? '420x280').split('x').map(Number);
 const views = list('views') ?? ['q3f', 'q3r', 'side', 'front', 'rear', 'top', 'clay', 'far'];
 const out = resolve(repo, arg('out') ?? 'shots/model-sheets');
 const compare = arg('compare') && resolve(arg('compare'));
+const signalValues = arg('signals')
+  ? Object.fromEntries(
+      arg('signals')
+        .split(',')
+        .map((pair) => {
+          const [name, value] = pair.split(':');
+          if (!name || !value || !Number.isFinite(Number(value)))
+            throw new Error(`Invalid --signals entry: ${pair}; expected name:number`);
+          return [name, Number(value)];
+        }),
+    )
+  : undefined;
 
 const exists = (path) =>
   stat(path).then(
@@ -62,6 +76,11 @@ async function bundle(slug) {
         break;
       }
     if (!glb) throw new Error(`${slug}: no generated GLB under models/`);
+    if (process.argv.includes('--runtime')) {
+      const assetPath = resolve(repo, 'content/entities', manifest.files.models[0].output);
+      const asset = JSON.parse(await readFile(assetPath, 'utf8'));
+      glb = resolve(dirname(assetPath), asset.files.main);
+    }
     const dims = recipe.length
       ? {
           length: recipe.length,
@@ -71,7 +90,32 @@ async function bundle(slug) {
           wheelRadius: recipe.wheelRadius,
         }
       : undefined;
-    return { slug, category, label: manifest.title ?? slug, glb, dims };
+    const definition = JSON.parse(await readFile(resolve(directory, 'entity.types.json'), 'utf8'));
+    const components = Object.values(definition.types)[0].components;
+    const visual = components.aircraft?.spec.visual ?? components.vehicle?.visual;
+    const articulation = visual
+      ? {
+          ...visual.animation,
+          bindings: [
+            ...(visual.flaps ?? []).map((b) => ({
+              node: b.node,
+              source: 'flaps',
+              property: 'rotation',
+              axis: b.axis,
+              scale: b.multiplier,
+            })),
+            ...(visual.ailerons ?? []).map((b) => ({
+              node: b.node,
+              source: 'rollInput',
+              property: 'rotation',
+              axis: b.axis,
+              scale: b.multiplier,
+            })),
+            ...(visual.animation?.bindings ?? []),
+          ],
+        }
+      : undefined;
+    return { slug, category, label: manifest.title ?? slug, glb, dims, articulation };
   }
   throw new Error(`No source bundle named ${slug}`);
 }
@@ -176,8 +220,22 @@ const MIME = {
   '.glb': 'model/gltf-binary',
 };
 const served = new Map();
+const esbuild = await import(pathToFileURL(require.resolve('esbuild')).href);
+const signalBundle = await esbuild.build({
+  entryPoints: [resolve(repo, 'packages/client/src/model-signals.ts')],
+  bundle: true,
+  write: false,
+  format: 'esm',
+  platform: 'browser',
+  external: ['three'],
+});
+const signalModules = new Map([['/signals/model-signals.js', signalBundle.outputFiles[0].text]]);
 const server = createServer(async (request, response) => {
   const url = decodeURIComponent(new URL(request.url, 'http://x').pathname);
+  if (signalModules.has(url)) {
+    response.writeHead(200, { 'content-type': 'text/javascript' }).end(signalModules.get(url));
+    return;
+  }
   let path;
   if (url === '/') path = resolve(here, 'model-sheet.html');
   else if (url.startsWith('/three/')) path = resolve(threeRoot, url.slice(7));
@@ -218,8 +276,10 @@ try {
       served.set(key, row.glb);
       return {
         url: key,
-        label: row.label,
+        label: row.label + (signalValues ? ` [${arg('signals')}]` : ''),
         dims: row.dims,
+        articulation: row.articulation,
+        signals: signalValues,
         water: row.category === 'watercraft',
         file: relative(repo, row.glb).replaceAll(sep, '/'),
       };

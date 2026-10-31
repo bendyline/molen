@@ -1,4 +1,4 @@
-import { WalkCollision } from '@bendyline/molen-client/navigation';
+import { WalkCollision, WalkController } from '@bendyline/molen-client/navigation';
 import * as THREE from 'three';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import { describe, expect, it, vi } from 'vitest';
@@ -84,6 +84,70 @@ function ground() {
 }
 
 describe('mapped tunnels', () => {
+  it.each([
+    false,
+    true,
+  ])('walks through a hill and out both portals (covered terrain=%s)', (covered) => {
+    const root = new THREE.Group(),
+      surface = ground();
+    root.add(surface, createTerrainTunnelObject(tile(), context()));
+    // The above-ground road meets each portal at the same pavement lift as the bore.
+    for (const x of [5, 195]) {
+      const road = new THREE.Mesh(new THREE.PlaneGeometry(10, 12).rotateX(-Math.PI / 2));
+      road.position.set(x, 10.32, 100);
+      root.add(road);
+    }
+    if (covered) {
+      // Full landcover replaces the DEM visually. Only the cover receives portal cuts;
+      // the hidden original grid must not remain an invisible collision wall.
+      surface.layers.disableAll();
+      const cover = ground();
+      cover.name = 'semantic:landcover';
+      root.add(cover);
+    }
+    const cuts = new TerrainGroundCutoutController();
+    cuts.update(root);
+    const collision = new WalkCollision(),
+      walker = new WalkController();
+    const surfaceHeight = (x: number): number => 10 + Math.max(0, 1 - Math.abs(x - 100) / 50) * 70;
+    const supportHeight = (x: number, z: number): number =>
+      sampleTerrainTunnel(root, x, walker.feet.y, z)?.floor ?? surfaceHeight(x);
+    walker.reset(5, 100);
+    collision.update(root, walker.feet.x, walker.feet.z);
+    expect(walker.place(collision, surfaceHeight)).toBe(true);
+    const move = (target: number, forward: number): void => {
+      for (let frame = 0; frame < 3200 && (target - walker.feet.x) * forward > 0; frame++) {
+        collision.update(root, walker.feet.x, walker.feet.z);
+        walker.update(
+          1 / 60,
+          { forward, right: 0, yaw: 0, sprint: true, jump: false },
+          collision,
+          supportHeight,
+        );
+        expect(walker.feet.y).toBeGreaterThan(9.9);
+        expect(walker.feet.y).toBeLessThan(10.5);
+        expect(walker.waitingForTerrain).toBe(false);
+      }
+      expect(walker.feet.x).toBeCloseTo(target, 0);
+    };
+    move(195, 1);
+    move(5, -1);
+    // Above-ground placement must still land on the hill, not in the bore below it.
+    walker.reset(100, 100);
+    collision.update(root, walker.feet.x, walker.feet.z);
+    expect(walker.place(collision, surfaceHeight)).toBe(true);
+    expect(walker.feet.y).toBeCloseTo(80.02);
+    walker.update(
+      1 / 60,
+      { forward: 0, right: 0, yaw: 0, sprint: false, jump: false },
+      collision,
+      supportHeight,
+    );
+    expect(walker.feet.y).toBeCloseTo(80, 1);
+    collision.clear();
+    cuts.dispose();
+  });
+
   it('opens portals through slope triangles while retaining the hill and solid lining', () => {
     const ctx = context(),
       root = new THREE.Group(),

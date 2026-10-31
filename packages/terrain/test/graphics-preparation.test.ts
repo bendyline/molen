@@ -33,6 +33,49 @@ function ports(): [ElevationWorkerLike, ElevationWorkerLike] {
 }
 
 describe('terrain graphics preparation', () => {
+  it('filters spikes before worker meshing and sampling, and forwards the raw-data opt-out', async () => {
+    const descriptor: TerrainPyramidDescriptor = {
+      name: 'spike',
+      origin: [0, 0],
+      rootSize: 160,
+      minLevel: 0,
+      maxLevel: 0,
+      tileResolution: 17,
+      height: { min: 0, max: 2000 },
+      layers: [],
+      skirts: false,
+    };
+    const pkg = {
+      tileMatrix: { scheme: 'xyz' },
+      coordinateSpace: { kind: 'geospatial' },
+    } as TerrainPackageDescriptor;
+    const data = new Float32Array(17 * 17).fill(0.05);
+    data[8 * 17 + 8] = 0.75;
+    const png = encodePng16({ width: 17, height: 17, data });
+    const archive = { getZxy: async () => ({ data: png.slice().buffer }) };
+    for (const filterElevation of [true, false]) {
+      const [host, worker] = ports();
+      installTerrainElevationWorker(worker);
+      const source = createTerrainElevationWorkerSource(host, pkg, descriptor, archive, {
+        filterElevation,
+      });
+      const prepared = await source.loadPrepared?.(
+        { level: 0, x: 0, z: 0 },
+        new AbortController().signal,
+        17,
+      );
+      expect(prepared?.heightfield.sampleHeight(80, 80)).toBeCloseTo(
+        filterElevation ? 100 : 1500,
+        0,
+      );
+      expect(prepared?.geometry.positions[(8 * 17 + 8) * 3 + 1]).toBeCloseTo(
+        filterElevation ? 100 : 1500,
+        0,
+      );
+      source.dispose?.();
+    }
+  });
+
   it('worker decoding, ancestor resampling and meshes match direct results through actual transfers', async () => {
     const descriptor: TerrainPyramidDescriptor = {
       name: 'worker',

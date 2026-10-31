@@ -28,6 +28,8 @@ export interface ElevationStageTiming {
   milliseconds: number;
 }
 export interface ElevationWorkerOptions {
+  /** Defaults on for geospatial packages; false preserves raw DEM samples. */
+  filterElevation?: boolean;
   onTiming?: (timing: ElevationStageTiming) => void;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
   ownsWorker?: boolean;
@@ -53,6 +55,7 @@ type Request =
       pkg: TerrainPackageDescriptor;
       descriptor: TerrainPyramidDescriptor;
       parentFallback: boolean;
+      filterElevation?: boolean;
     }
   | { kind: 'prepare'; id: number; address: TerrainPyramidTileAddress; resolution: number }
   | { kind: 'cancel'; id: number }
@@ -88,6 +91,9 @@ export function installTerrainElevationWorker(port: ElevationWorkerLike): void {
     if (request.kind === 'configure') {
       descriptor = request.descriptor;
       source = createTerrainPackagePyramidHeightSource(request.pkg, descriptor, archive, {
+        ...(request.filterElevation !== undefined
+          ? { filterElevation: request.filterElevation }
+          : {}),
         parentFallback: request.parentFallback,
         onParentFallback: (event) => send({ kind: 'fallback', event }),
         onTiming: (timing) => send({ kind: 'timing', timing }),
@@ -202,6 +208,7 @@ export function createTerrainElevationWorkerSource(
     pkg,
     descriptor,
     parentFallback: options.parentFallback !== false,
+    ...(options.filterElevation !== undefined ? { filterElevation: options.filterElevation } : {}),
   } satisfies Request);
   const loadPrepared: NonNullable<TerrainPyramidHeightSource['loadPrepared']> = async (
     address,

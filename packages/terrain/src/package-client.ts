@@ -10,6 +10,7 @@
 import { PMTiles, TileType } from 'pmtiles';
 import { createTerrainArchiveSetArchive } from './archive-set-client';
 import type { TerrainDescriptor } from './descriptor-types';
+import { createElevationTileDecoder } from './elevation-filter';
 import {
   createTerrainElevationWorkerSource,
   type ElevationStageTiming,
@@ -28,7 +29,6 @@ import type {
   TerrainSemanticTileDecoder,
   TerrainTileArchive,
 } from './package-types';
-import { decodePng16, type Gray16 } from './png16';
 import {
   createTerrainPyramidStream,
   type TerrainPyramidHeightSource,
@@ -48,14 +48,11 @@ import {
   type TerrainStream,
   type TerrainStreamOptions,
 } from './stream';
-import {
-  heightfieldSubtileFromGray16,
-  heightfieldSubtileFromPng,
-  heightfieldTileFromPng,
-  type TerrainTileAddress,
-} from './tile';
+import { heightfieldSubtileFromGray16, type TerrainTileAddress } from './tile';
 
 export interface OpenTerrainPackageOptions {
+  /** Remove isolated extreme DEM samples before resampling; defaults on for geospatial packages. */
+  filterElevation?: boolean;
   /** Fixed PMTiles detail level used by this stream instance. */
   level: number;
   /** Base URL of terrain-package.json, or its containing directory. */
@@ -80,6 +77,8 @@ export interface OpenTerrainPackageElevation {
 }
 
 export interface TerrainPackageStreamOptions extends TerrainStreamOptions {
+  /** Defaults on for geospatial packages; false preserves raw DEM samples. */
+  filterElevation?: boolean;
   level: number;
   baseUrl?: string | URL;
   archive?: TerrainTileArchive;
@@ -95,6 +94,8 @@ export interface TerrainPackageStream extends OpenTerrainPackageElevation {
 }
 
 export interface OpenTerrainPackagePyramidOptions {
+  /** Remove isolated extreme DEM samples before resampling; defaults on for geospatial packages. */
+  filterElevation?: boolean;
   /** Worker runs decoded-grid caching, resampling and meshing; host retains archive I/O. */
   elevationWorker?: ElevationWorkerLike;
   onElevationTiming?: (timing: ElevationStageTiming) => void;
@@ -137,6 +138,8 @@ export interface TerrainParentFallbackEvent {
 }
 
 export interface TerrainPackageHeightSourceOptions {
+  /** Defaults on for geospatial packages; false preserves raw DEM samples. */
+  filterElevation?: boolean;
   minLevel?: number;
   maxAvailableLevel?: number;
   parentFallback?: boolean;
@@ -144,9 +147,11 @@ export interface TerrainPackageHeightSourceOptions {
 }
 
 export interface TerrainPackagePyramidHeightSourceOptions {
+  /** Defaults on for geospatial packages; false preserves raw DEM samples. */
+  filterElevation?: boolean;
   onTiming?: (timing: ElevationStageTiming) => void;
   parentFallback?: boolean;
-  /** Bounded LRU of decoded archive tiles shared by exact and descendant fallback requests. */
+  /** LRU capacity for raw and corrected tiles, shared by exact and ancestor fallback requests. */
   maxDecodedArchiveTiles?: number;
   onParentFallback?: (event: TerrainParentFallbackEvent) => void;
 }
@@ -826,6 +831,14 @@ export function createTerrainPackageHeightSource(
     throw new Error(`terrain package available max level must be between ${minLevel} and ${level}`);
   }
   const fallback = options.parentFallback ?? true;
+  const loadDecoded = createElevationTileDecoder({
+    archive,
+    scheme: pkg.tileMatrix.scheme,
+    heightRange: descriptor.height.max - descriptor.height.min,
+    tileSize: (resolvedLevel) => descriptor.chunkSize * 2 ** (level - resolvedLevel),
+    filter: options.filterElevation ?? pkg.coordinateSpace?.kind === 'geospatial',
+    maxTiles: 64,
+  });
   return {
     async load(address: TerrainTileAddress, signal: AbortSignal) {
       const firstLevel = fallback ? maxAvailableLevel : level;
@@ -836,17 +849,21 @@ export function createTerrainPackageHeightSource(
           x: Math.floor(address.x / subdivision),
           z: Math.floor(address.z / subdivision),
         };
-        const count = 2 ** resolvedLevel;
-        const archiveY =
-          pkg.tileMatrix.scheme === 'tms' ? count - 1 - resolvedAddress.z : resolvedAddress.z;
-        const tile = await archive.getZxy(resolvedLevel, resolvedAddress.x, archiveY, signal);
-        if (tile === undefined) {
+        const grid = await loadDecoded(resolvedLevel, resolvedAddress.x, resolvedAddress.z);
+        if (grid === undefined) {
           if (!fallback) return undefined;
           continue;
         }
         if (signal.aborted) return undefined;
         if (resolvedLevel === level) {
-          return heightfieldTileFromPng(descriptor, address, new Uint8Array(tile.data));
+          return new Heightfield(grid.data, grid.width, grid.height, {
+            origin: [
+              descriptor.origin[0] + address.x * descriptor.chunkSize,
+              descriptor.origin[1] + address.z * descriptor.chunkSize,
+            ],
+            worldSize: [descriptor.chunkSize, descriptor.chunkSize],
+            height: descriptor.height,
+          });
         }
         options.onParentFallback?.({
           requestedLevel: level,
@@ -854,16 +871,10 @@ export function createTerrainPackageHeightSource(
           requestedAddress: { ...address },
           resolvedAddress,
         });
-        return heightfieldSubtileFromPng(
-          descriptor,
-          address,
-          new Uint8Array(tile.data),
-          subdivision,
-          {
-            x: address.x - resolvedAddress.x * subdivision,
-            z: address.z - resolvedAddress.z * subdivision,
-          },
-        );
+        return heightfieldSubtileFromGray16(descriptor, address, grid, subdivision, {
+          x: address.x - resolvedAddress.x * subdivision,
+          z: address.z - resolvedAddress.z * subdivision,
+        });
       }
       return undefined;
     },
@@ -909,47 +920,15 @@ export function createTerrainPackagePyramidHeightSource(
   if (!Number.isSafeInteger(maxDecodedArchiveTiles) || maxDecodedArchiveTiles < 1) {
     throw new Error('terrain package decoded archive cache size must be a positive safe integer');
   }
-  const decoded = new Map<string, Gray16>();
-  const knownMissing = new Map<string, true>();
-  const pendingDecoded = new Map<string, Promise<Gray16 | undefined>>();
-  const loadDecoded = (level: number, x: number, archiveY: number): Promise<Gray16 | undefined> => {
-    const key = `${level}/${x}/${archiveY}`;
-    if (knownMissing.has(key)) {
-      knownMissing.delete(key);
-      knownMissing.set(key, true);
-      return Promise.resolve(undefined);
-    }
-    const cached = decoded.get(key);
-    if (cached !== undefined) {
-      decoded.delete(key);
-      decoded.set(key, cached);
-      return Promise.resolve(cached);
-    }
-    const existing = pendingDecoded.get(key);
-    if (existing !== undefined) return existing;
-    const request = archive
-      .getZxy(level, x, archiveY)
-      .then((tile) => {
-        if (tile === undefined) {
-          knownMissing.set(key, true);
-          while (knownMissing.size > maxDecodedArchiveTiles * 8) {
-            knownMissing.delete(knownMissing.keys().next().value as string);
-          }
-          return undefined;
-        }
-        const begin = performance.now();
-        const grid = decodePng16(new Uint8Array(tile.data));
-        options.onTiming?.({ stage: 'decode', milliseconds: performance.now() - begin });
-        decoded.set(key, grid);
-        while (decoded.size > maxDecodedArchiveTiles) {
-          decoded.delete(decoded.keys().next().value as string);
-        }
-        return grid;
-      })
-      .finally(() => pendingDecoded.delete(key));
-    pendingDecoded.set(key, request);
-    return request;
-  };
+  const loadDecoded = createElevationTileDecoder({
+    archive,
+    scheme: pkg.tileMatrix.scheme,
+    heightRange: descriptor.height.max - descriptor.height.min,
+    tileSize: (level) => terrainPyramidTileSize(descriptor, level),
+    filter: options.filterElevation ?? pkg.coordinateSpace?.kind === 'geospatial',
+    maxTiles: maxDecodedArchiveTiles,
+    onDecode: (milliseconds) => options.onTiming?.({ stage: 'decode', milliseconds }),
+  });
   return {
     async load(address: TerrainPyramidTileAddress, signal: AbortSignal) {
       if (address.level < descriptor.minLevel || address.level > descriptor.maxLevel) {
@@ -968,10 +947,7 @@ export function createTerrainPackagePyramidHeightSource(
           x: Math.floor(address.x / subdivision),
           z: Math.floor(address.z / subdivision),
         };
-        const count = 2 ** resolvedLevel;
-        const archiveY =
-          pkg.tileMatrix.scheme === 'tms' ? count - 1 - resolvedAddress.z : resolvedAddress.z;
-        const grid = await loadDecoded(resolvedLevel, resolvedAddress.x, archiveY);
+        const grid = await loadDecoded(resolvedLevel, resolvedAddress.x, resolvedAddress.z);
         if (grid === undefined) {
           if (!fallback) return undefined;
           continue;
@@ -1044,6 +1020,7 @@ export async function openTerrainPackageElevation(
     maxAvailableLevel = Math.min(options.level, header.maxZoom);
   }
   const source = createTerrainPackageHeightSource(pkg, descriptor, archive, options.level, {
+    ...(options.filterElevation !== undefined ? { filterElevation: options.filterElevation } : {}),
     minLevel: minAvailableLevel,
     maxAvailableLevel,
     parentFallback,
@@ -1087,11 +1064,17 @@ export async function openTerrainPackagePyramid(
   });
   const source = options.elevationWorker
     ? createTerrainElevationWorkerSource(options.elevationWorker, pkg, descriptor, archive, {
+        ...(options.filterElevation !== undefined
+          ? { filterElevation: options.filterElevation }
+          : {}),
         ...(options.onElevationTiming ? { onTiming: options.onElevationTiming } : {}),
         ...(options.onParentFallback ? { onParentFallback: options.onParentFallback } : {}),
         ...(options.parentFallback !== undefined ? { parentFallback: options.parentFallback } : {}),
       })
     : createTerrainPackagePyramidHeightSource(pkg, descriptor, archive, {
+        ...(options.filterElevation !== undefined
+          ? { filterElevation: options.filterElevation }
+          : {}),
         ...(options.onElevationTiming ? { onTiming: options.onElevationTiming } : {}),
         ...(options.parentFallback !== undefined ? { parentFallback: options.parentFallback } : {}),
         ...(options.onParentFallback !== undefined
@@ -1108,6 +1091,7 @@ export async function createTerrainPackageStream(
 ): Promise<TerrainPackageStream> {
   const {
     level,
+    filterElevation,
     baseUrl,
     archive,
     transport,
@@ -1118,6 +1102,7 @@ export async function createTerrainPackageStream(
   } = options;
   const opened = await openTerrainPackageElevation(pkg, {
     level,
+    ...(filterElevation !== undefined ? { filterElevation } : {}),
     ...(frame !== undefined ? { frame } : {}),
     ...(baseUrl !== undefined ? { baseUrl } : {}),
     ...(archive !== undefined ? { archive } : {}),
@@ -1138,6 +1123,7 @@ export async function createTerrainPackagePyramidStream(
 ): Promise<TerrainPackagePyramidStream> {
   const {
     baseUrl,
+    filterElevation,
     archive,
     transport,
     parentFallback,
@@ -1148,6 +1134,7 @@ export async function createTerrainPackagePyramidStream(
     ...streamOptions
   } = options;
   const opened = await openTerrainPackagePyramid(pkg, {
+    ...(filterElevation !== undefined ? { filterElevation } : {}),
     ...(frame !== undefined ? { frame } : {}),
     ...(elevationWorker ? { elevationWorker } : {}),
     ...(onElevationTiming ? { onElevationTiming } : {}),

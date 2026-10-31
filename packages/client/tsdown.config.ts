@@ -6,6 +6,7 @@ export default defineConfig({
     'src/camera-track.ts',
     'src/vite.ts',
     'src/vehicles.ts',
+    'src/glass.ts',
     'src/aircraft.ts',
     'src/navigation.ts',
     'src/markers.ts',

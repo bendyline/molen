@@ -1,6 +1,7 @@
 import './pack';
 import './source-bundle';
 
+export * from './actuators';
 export * from './aircraft';
 export type {
   AssetBounds,
@@ -88,6 +89,17 @@ export {
 } from './components';
 export type { SchemaKind, SchemaKindMap, ValidateOptions } from './formats';
 export { detectKind, validate, validateByKind } from './formats';
+export type {
+  GlassData,
+  GlassImpact,
+  GlassImpactEvent,
+  GlassMaterial,
+  GlassRelease,
+  GlassStateData,
+  GlassSurfaceSpec,
+  GlassSurfaceState,
+} from './glass';
+export { glassImpactSchema, glassSchema, glassStateSchema, glassSurfaceSchema } from './glass';
 export type { GamepadAxisBinding, GamepadButtonBinding, InputDevice, InputProfile } from './input';
 export { inputProfileIssues, inputProfileSchema } from './input';
 export type {
@@ -211,12 +223,14 @@ export { vehicleInteriorSchema } from './vehicle-interior';
 export type {
   CycleSpec,
   VehicleBodyStyle,
+  VehicleCollisionPart,
+  VehicleDamageState,
   VehicleData,
   VehicleKind,
   VehiclePlacement,
   VehicleSpec,
   VehicleVisualSpec,
 } from './vehicles';
-export type { ResolvedWeather, WeatherData, WeatherProfile } from './weather';
+export type { CloudType, ResolvedWeather, WeatherData, WeatherProfile } from './weather';
 export { resolveWeather, weatherProfile, weatherSchema } from './weather';
 export { nearest, nearestWithDistance } from './zod-issues';

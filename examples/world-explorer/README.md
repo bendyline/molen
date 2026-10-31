@@ -47,9 +47,12 @@ to explore different lunar phases. `?date=2024-03-25T05:00:00Z` opens a reproduc
 `?sky=daylight` retains the old fixed daylight rig for terrain image comparisons.
 
 The Weather dropdown combines independent cloud, precipitation and visibility settings in
-Fair, Sunny, Partly cloudy, Overcast, Rain, Snow and Fog profiles. It opens on Fair: sunny
-conditions with scattered fair-weather cumulus; `?weather=sunny` gives a clear sky. Expand Weather details to mix
-those variables and change temperature, pressure or wind. These conditions also drive the
+Fair, Sunny, Partly cloudy, Overcast, Rain, Thunderstorms, Snow and Fog profiles. It opens on
+Fair: sunny conditions with scattered fair-weather cumulus; `?weather=sunny` gives a clear sky.
+Clouds are volumes you can fly over, under and into: cumulus, stratocumulus, stratus or towering
+cumulonimbus, with optional high cirrus. At High graphics quality they also cast shadows on the
+ground. Expand Weather details to mix those variables (cloud type, cover, depth, cirrus) and
+change temperature, pressure or wind. These conditions also drive the
 aircraft simulation's wind and air density. Use `?weather=rain` to open a preset; `?freeze=1`
 freezes cloud/particle motion. See [weather and atmosphere](https://molen.dev/guide/weather).
 
@@ -107,8 +110,8 @@ models or repackages them. Production `build` still runs `scripts/build-content-
 build the repository's `content/` directories into `public/packs/`. The page opens the entities, style,
 earth and sky packs in parallel: small packs arrive in one request each, and car and aircraft
 models are range-read from the entities pack only when one is shown.
-In real geography, the practice runway and parked aircraft appear only after choosing an aircraft
-from the controls, so they do not cover a mapped city while exploring landmarks.
+In real geography, choosing an aircraft places it on the starter airport’s existing runway once
+nearby ground and pavement are ready. The synthetic demo retains its practice runway and lineup.
 
 Run the repeatable browser navigation review (ten frames plus HUD probes and browser/network
 diagnostics) after building `@bendyline/molen-tooling`:
@@ -138,6 +141,14 @@ ancestor-derived fallback between them. Vectors continue through zoom 15 for ind
 footprints and unrounded heights; zoom-15 terrain reuses the zoom-14 DEM. Residential land use
 and mapped parts guide building massing, with low pitched and taller flat residential roofs. Bare, land-classification, and human-feature modes
 therefore share actual coordinates without exposing a hard regional edge at flyover altitude.
+
+Starter regions open at real airports: Boeing Field for Seattle–Bellevue–Sammamish, Sydney
+Kingsford Smith, Osaka Itami within the wider Kyoto area, Yuma International, and Indira Gandhi
+International for New Delhi. Aircraft selection places one aircraft on the mapped runway,
+aligned for takeoff at terrain height. The raised practice airfield belongs only to the
+synthetic fixture. Seattle's detail window extends south to 47.49° N, covering Boeing Field
+and its surrounding neighborhoods. Itami lies outside Kyoto's city detail window; its airport
+geometry uses the airport catalog over the package's wider elevation coverage.
 
 Pass `?synthetic=1` to use the deterministic in-memory fixture instead. That path keeps adaptive
 coverage and semantic-layer transitions testable without network-derived data; its trees, roads,
@@ -265,3 +276,19 @@ previews; a failed preview leaves its named card and detail controls available.
 Press B near mapped water (or use `?boat=1`) to launch a speedboat. W/S thrust, A/D helm,
 Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, E dockside exit.
 `?boat=molen.entities.watercraft.tugboat` selects another boat type from the content pack.
+
+In an aircraft, V switches between the cockpit and chase cameras and F5 opens the flyby view: a
+camera fixed beside the flight path a few seconds ahead turns to follow the aircraft as it goes
+by, then moves ahead again on the other side of the path. V or F5 returns to the previous view;
+Ctrl+F5 still reloads the page. A compact corner panel in chase and flyby views shows live
+miniatures of the aircraft’s authored airspeed and altitude instruments, including their
+original faces, units and needle or digital display behavior. It hides in the cockpit, on
+exit/ejection and with `?hud=0`. Aircraft without live speed or altitude instrument bindings
+leave that instrument out; the panel stays hidden when neither is defined.
+
+E leaves an aircraft once it is stopped and shut down. In flight, E ejects: the seat fires clear,
+the aircraft flies on hands-off until it lands or crashes, and a steerable canopy opens. Under it,
+A/D steer, W flies at full glide, S brakes, Space flares before touchdown and V switches between
+the chase view and the pilot's own; walking resumes where it lands, on the ground, a roof or water.
+After a crash, E climbs out beside the wreck once it has come to rest, or ejects while it is still
+moving; R recovers the aircraft instead.

@@ -25,6 +25,8 @@ export function carveLegacyCabin(root, s) {
   const eye = s.driverEye;
   const floor = Math.max(s.wheelRadius * 0.4 + 0.035, eye[1] - 0.96);
   const min = [-s.width * 0.4, floor, eye[2] - 0.72];
+  // Only the solid lower body needs hollowing. Extending this cut to eye height also
+  // sliced through the sloping pillars, leaving exposed cut edges above the door cards.
   const max = [s.width * 0.4, eye[1] + 0.1, eye[2] + 0.64];
   const planes = min.flatMap((v, axis) => [
     [axis, 1, -v],
@@ -72,6 +74,10 @@ export function carveLegacyCabin(root, s) {
   };
   for (let i = 0; i < geometry.attributes.position.count; i += 3) {
     let remaining = [read(i), read(i + 1), read(i + 2)];
+    if (remaining.some((v) => v.world[1] > s.height * 0.78)) {
+      emit(remaining);
+      continue;
+    }
     for (const plane of planes) {
       emit(clip(remaining, plane, false));
       remaining = clip(remaining, plane, true);
@@ -84,9 +90,26 @@ export function carveLegacyCabin(root, s) {
   result.normalizeNormals();
   geometry.dispose();
   body.geometry = result;
+  // The masters contain exterior faces only. Give their roof and pillars a matching
+  // inward surface instead of letting back-face culling reveal the sky through them.
+  const lining = result.clone();
+  const indices = [];
+  for (let i = 0; i < lining.attributes.position.count; i += 3) indices.push(i, i + 2, i + 1);
+  lining.setIndex(indices);
+  lining.computeVertexNormals();
+  const inner = new T.Mesh(lining, material('legacy-body-lining', '#737a77'));
+  inner.name = 'legacy-body-lining';
+  inner.position.copy(body.position);
+  inner.quaternion.copy(body.quaternion);
+  inner.scale.copy(body.scale);
+  body.parent.add(inner);
 }
 
 /** Small physical controls share a material batch. Graphics deliberately contain no fake live values. */
+export function aircraftPanelTools(d, palette = {}) {
+  return panelTools(d, { ...palette, flushGauges: true });
+}
+
 export function panelTools(d, palette = {}) {
   const dark = palette.black ?? d.dark,
     metal = palette.chrome ?? d.metal;
@@ -106,29 +129,43 @@ export function panelTools(d, palette = {}) {
     }
   };
   const gauge = (x, y, z, radius, face = dark, pointer = true) => {
+    const flush = palette.flushGauges;
+    // Instrument cans sit behind the panel; only a narrow mounting lip is exposed.
+    const front = flush ? z + 0.005 : z;
     d.add(
-      new T.CylinderGeometry(radius * 1.1, radius * 1.1, 0.018, 24).rotateX(Math.PI / 2),
-      metal,
-      [x, y, z + 0.005],
+      new T.CylinderGeometry(
+        radius * (flush ? 1.035 : 1.1),
+        radius * (flush ? 1.035 : 1.1),
+        flush ? 0.009 : 0.018,
+        32,
+      ).rotateX(Math.PI / 2),
+      flush ? dark : metal,
+      [x, y, z + (flush ? 0.0035 : 0.005)],
     );
-    d.add(new T.CircleGeometry(radius, 24).rotateY(Math.PI), face, [x, y, z - 0.006]);
+    if (flush)
+      d.add(new T.RingGeometry(radius, radius * 1.035, 32).rotateY(Math.PI), metal, [
+        x,
+        y,
+        z - 0.0012,
+      ]);
+    d.add(new T.CircleGeometry(radius, 32).rotateY(Math.PI), face, [x, y, front - 0.006]);
     for (let i = 0; i < 13; i++) {
       const a = Math.PI * (-0.25 + (i * 1.5) / 12);
       d.rod(
-        [x + Math.cos(a) * radius * 0.77, y + Math.sin(a) * radius * 0.77, z - 0.008],
-        [x + Math.cos(a) * radius * 0.91, y + Math.sin(a) * radius * 0.91, z - 0.008],
+        [x + Math.cos(a) * radius * 0.77, y + Math.sin(a) * radius * 0.77, front - 0.008],
+        [x + Math.cos(a) * radius * 0.91, y + Math.sin(a) * radius * 0.91, front - 0.008],
         radius * 0.022,
         face === dark ? ink : dark,
       );
     }
     if (pointer)
       d.rod(
-        [x, y, z - 0.012],
-        [x + radius * 0.5, y - radius * 0.5, z - 0.012],
+        [x, y, front - 0.012],
+        [x + radius * 0.5, y - radius * 0.5, front - 0.012],
         radius * 0.026,
         red,
       );
-    d.box([radius * 0.65, radius * 0.18, 0.003], [x, y - radius * 0.42, z - 0.01], screen);
+    d.box([radius * 0.65, radius * 0.18, 0.003], [x, y - radius * 0.42, front - 0.01], screen);
   };
   const display = (x, y, z, width, height, kind = 'map', bezel = dark) => {
     d.box([width + 0.016, height + 0.016, 0.023], [x, y, z + 0.01], bezel);
@@ -222,19 +259,36 @@ export function addRoadDashboard(root, s, frame, makeKit) {
   const { eye, width: W, dashY: y, dashZ, seatY, clearance = 0.1 } = frame;
   const d = frame.cabin ?? makeKit(root, 'cabin');
   const ownKit = !frame.cabin;
-  const trim = material('cabin-trim', p.trim, 0.08, 0.72);
+  const trim = material(
+    'cabin-trim',
+    p.slug === 'chevrolet-ssr-2005' ? (s.color ?? p.trim) : p.trim,
+    0.08,
+    0.72,
+  );
   const a = panelTools(d, frame),
     { dark, metal, ink } = a;
   const z = dashZ - 0.182,
     dx = eye[0];
   d.root.userData.interiorProfile = { layout, signature: p.signature, reference: p.reference };
+  const ssr = p.slug === 'chevrolet-ssr-2005';
+  const strada = p.slug === 'fiat-strada-2024';
+  const kwid = p.slug === 'renault-kwid-2024';
+  const dmax = p.slug === 'isuzu-d-max-2024';
+  const transit = p.slug === 'ford-transit-2021';
+  const acuraTL = p.slug === 'acura-tl-2013';
+  const element = p.slug === 'honda-element-2008';
   const round =
-    /chevrolet-(colorado|equinox|trax)/.test(p.slug) ||
-    layout === 'wuling' ||
-    inSet(
-      layout,
-      'mini-r56 mini-r60 tt fiat smart miata brz z34 solstice sprinter camper-van rugged-radio wrangler jimny fj retro-triple soul yaris',
-    );
+    !ssr &&
+    (element ||
+      strada ||
+      kwid ||
+      layout === 'scion-center' ||
+      /chevrolet-(colorado|equinox|trax)/.test(p.slug) ||
+      layout === 'wuling' ||
+      inSet(
+        layout,
+        'mini-r56 mini-r60 tt fiat smart miata brz z34 solstice sprinter camper-van wrangler jimny fj retro-triple soul yaris alfa gt',
+      ));
   const high = inSet(layout, 'prius peugeot kei-high staria scion-center leaf');
   const centerOnly = inSet(layout, 'tesla-highland tesla-y');
   const white = inSet(layout, 'mini-r56 mini-r60 fiat');
@@ -243,17 +297,19 @@ export function addRoadDashboard(root, s, frame, makeKit) {
     'gm-wide gm-linked ford-wide f150 mustang triple-screen genesis hummer-ev hyundai-bridge kia-bridge lucid rivian ioniq byd alphard toyota-wide toyota-truck wrangler',
   );
   const portrait = inSet(layout, 'ram ford-portrait clio subaru');
-  const radio = inSet(
-    layout,
-    'retro-triple rugged-radio fiat gt solstice brz saab scion-center smart volvo hiace e-series economy worktruck',
-  );
+  const radio =
+    element ||
+    inSet(
+      layout,
+      'retro-triple rugged-radio fiat gt solstice brz saab scion-center smart volvo hiace e-series economy worktruck fj',
+    );
   const floating = inSet(layout, 'i3 ioniq rivian byd byd-wave casper wuling bendy-ev');
   const digital =
     centerOnly ||
     floating ||
-    wide ||
-    inSet(layout, 'tt prius peugeot kei-high staria leaf volt corvette coach-digital');
-  const cy = high ? eye[1] - 0.155 : Math.max(y + 0.055, eye[1] - 0.235);
+    (wide && layout !== 'wrangler') ||
+    inSet(layout, 'tt prius peugeot kei-high staria leaf volt corvette coach-digital supra');
+  const cy = high ? eye[1] - 0.205 : Math.max(y + 0.055, eye[1] - 0.235);
   // A stepped shell gives the fascia depth; the rear edge stays below the driver's sightline.
   d.box(
     [W * 0.85, 0.14, frame.shallowDash ? 0.12 : 0.32],
@@ -286,37 +342,82 @@ export function addRoadDashboard(root, s, frame, makeKit) {
       metal,
     );
   d.rod([-W * 0.39, y - 0.012, z - 0.008], [W * 0.39, y - 0.012, z - 0.008], 0.0015, ink);
-  if (centerOnly || layout === 'lucid') {
+  if (centerOnly || inSet(layout, 'lucid rivian')) {
     a.vent(0, y + 0.018, z - 0.01, 'slot', W * 0.73);
   } else if (layout === 'honda-mesh') {
-    d.box([W * 0.76, 0.062, 0.016], [0, y + 0.006, z - 0.005], dark);
-    // Open diamond lattice, merged once rather than a separate mesh per opening.
-    for (let i = 0; i < 55; i++) {
-      const x = -W * 0.37 + (i * W * 0.74) / 54;
-      d.rod([x - 0.012, y - 0.02, z - 0.016], [x + 0.012, y + 0.032, z - 0.016], 0.0015, metal);
-      d.rod([x + 0.012, y - 0.02, z - 0.016], [x - 0.012, y + 0.032, z - 0.016], 0.0015, metal);
+    // The reference grille is a fine, recessed band; it stops at the instrument binnacle.
+    for (let i = 0; i < 96; i++) {
+      const x = -W * 0.38 + (i * W * 0.76) / 95;
+      if (Math.abs(x - dx) < 0.18) continue;
+      for (const row of [-1, 0, 1]) {
+        const gy = y - 0.025 + row * 0.009;
+        for (const angle of [-Math.PI / 4, Math.PI / 4])
+          d.add(new T.PlaneGeometry(0.0013, 0.0113).rotateZ(angle).rotateY(Math.PI), metal, [
+            x,
+            gy,
+            z - 0.016,
+          ]);
+      }
     }
     for (const x of [-W * 0.32, -0.1, 0.1, W * 0.32])
       d.box([0.025, 0.012, 0.018], [x, y + 0.005, z - 0.028], dark);
   } else {
-    for (const x of [-W * 0.365, W * 0.365])
+    for (const x of [-W, W].map((v) => v * (layout === 'gt' ? 0.425 : 0.365)))
       a.vent(
         x,
         y + 0.018,
         z - 0.01,
-        round ? 'round' : portrait || layout === 'f150' ? 'vertical' : 'rect',
-        round ? 0.105 : 0.12,
+        round
+          ? 'round'
+          : ssr || transit || inSet(layout, 'ram ford-portrait f150 bronco cts jaguar')
+            ? 'vertical'
+            : 'rect',
+        ssr ? 0.065 : round ? 0.105 : 0.12,
       );
     if (layout === 'tt') {
       for (const x of [-0.16, 0, 0.16]) {
         a.vent(x, y + 0.07, z - 0.02, 'round', 0.12);
         a.knob(x, y + 0.07, z - 0.04, 0.018);
       }
-    } else if (inSet(layout, 'acura-dual jaguar')) {
+    } else if (inSet(layout, 'mini-r56 mini-r60')) {
+      for (const x of [-0.19, 0.19]) a.vent(x, y + 0.105, z - 0.025, 'round', 0.095);
+    } else if (layout === 'gt') {
+      // The GT's gauge bank spans the driver and center fascia; its third round vent
+      // sits just beyond the large speedometer, not across the auxiliary instruments.
+      a.vent(dx - 0.79, cy, z - 0.025, 'round', 0.105);
+    } else if (layout === 'miata') {
+      // The ND has one round center vent beside a narrow rectangular passenger vent.
+      a.vent(0.11, y - 0.07, z - 0.025, 'round', 0.105);
+      a.vent(-0.14, y - 0.07, z - 0.025, 'rect', 0.16);
+    } else if (
+      strada ||
+      dmax ||
+      transit ||
+      ssr ||
+      inSet(layout, 'acura-dual bronco cts fiat volt z34 luxury-clock')
+    ) {
       for (const x of [-0.2, 0.2]) a.vent(x, y + 0.06, z - 0.025, 'vertical', 0.06);
+    } else if (acuraTL) {
+      for (const x of [-0.075, 0.075]) a.vent(x, y - 0.075, z - 0.025, 'rect', 0.105);
     } else if (!portrait) {
       for (const x of [-0.135, 0.135])
-        a.vent(x, y - 0.07, z - 0.025, round ? 'round' : 'rect', 0.105);
+        a.vent(
+          x,
+          inSet(layout, 'jaguar jeep-luxury porsche hilux lincoln')
+            ? y + 0.13
+            : radio || layout === 'golf'
+              ? y + 0.085
+              : y - 0.07,
+          z - 0.025,
+          round &&
+            !element &&
+            !kwid &&
+            !/chevrolet-(colorado|equinox|trax)/.test(p.slug) &&
+            !inSet(layout, 'wrangler soul smart brz jimny fj')
+            ? 'round'
+            : 'rect',
+          0.105,
+        );
     } else {
       for (const x of [-0.17, 0.17]) a.vent(x, y + 0.005, z - 0.025, 'vertical', 0.065);
     }
@@ -348,6 +449,9 @@ export function addRoadDashboard(root, s, frame, makeKit) {
     needle(0, y + 0.11, z - 0.04, 0.112);
     a.gauge(dx, cy, z - 0.005, 0.067, ink);
     a.display(0, y - 0.015, z - 0.03, 0.12, 0.033, 'radio');
+    d.box([0.25, 0.21, 0.04], [0, y - 0.12, z + 0.028], trim);
+    for (const x of [-0.075, 0, 0.075]) a.knob(x, y - 0.105, z - 0.035, 0.023);
+    a.buttons(0, y - 0.055, z - 0.032, 5, 0.034);
     for (let i = -2; i <= 2; i++) {
       a.knob(i * 0.04, y - 0.18, z - 0.016, 0.008);
       d.rod([i * 0.04, y - 0.18, z - 0.024], [i * 0.04, y - 0.192, z - 0.045], 0.003, metal);
@@ -361,6 +465,23 @@ export function addRoadDashboard(root, s, frame, makeKit) {
     ])
       a.gauge(x, cy, z - 0.005, radius, dark, x !== 0.02);
     needle(0.02, cy, z - 0.02, 0.055);
+  } else if (layout === 'gt') {
+    d.box([0.9, 0.15, 0.09], [dx - 0.3, cy + 0.015, z + 0.045], dark);
+    // Seven instruments in one bank: small auxiliary, large tachometer, four
+    // auxiliaries, and the large speedometer at the passenger end.
+    const bank = [
+      [0.05, 0.035],
+      [-0.06, 0.06],
+      [-0.18, 0.035],
+      [-0.29, 0.035],
+      [-0.4, 0.035],
+      [-0.51, 0.035],
+      [-0.64, 0.06],
+    ];
+    for (const [offset, radius] of bank) {
+      a.gauge(dx + offset, cy, z - 0.006, radius, dark, offset !== -0.64);
+      if (offset === -0.64) needle(dx + offset, cy, z - 0.023, radius);
+    }
   } else if (!centerOnly) {
     if (!floating)
       d.box([layout === 'porsche' ? 0.37 : 0.3, 0.11, 0.09], [dx, cy + 0.022, z + 0.045], dark);
@@ -376,39 +497,47 @@ export function addRoadDashboard(root, s, frame, makeKit) {
         layout === 'ioniq' ? ink : dark,
       );
       if (layout === 'leaf') a.display(dx, cy + 0.065, z + 0.07, 0.2, 0.04, 'driver');
+      if (layout === 'supra') a.gauge(dx, cy, z - 0.016, 0.055, dark);
     } else {
-      const count = inSet(layout, 'fiat smart')
-        ? 1
-        : layout === 'porsche'
-          ? 5
-          : inSet(layout, 'gt miata brz retro-triple z34')
-            ? 3
-            : 2;
+      const count =
+        kwid || inSet(layout, 'fiat smart')
+          ? 1
+          : layout === 'porsche'
+            ? 5
+            : element || acuraTL || inSet(layout, 'miata mazda brz retro-triple z34 saab fj')
+              ? 3
+              : 2;
       const radius = count === 1 ? 0.083 : count === 5 ? 0.041 : count === 3 ? 0.043 : 0.053;
       for (let i = 0; i < count; i++) {
         const gx = dx + (i - (count - 1) / 2) * (count === 5 ? 0.063 : 0.105);
         const gy = cy - Math.abs(i - (count - 1) / 2) * (count === 5 ? 0.014 : 0);
-        a.gauge(gx, gy, z - 0.006, radius, white ? ink : dark, i !== 0);
+        a.gauge(
+          gx,
+          gy,
+          z - 0.006,
+          layout === 'fj' ? (i === 1 ? 0.062 : 0.043) : radius,
+          white ? ink : dark,
+          i !== 0,
+        );
         if (i === 0) needle(gx, gy, z - 0.023, radius);
       }
       if (layout === 'fiat') d.ring(0.054, 0.002, [dx, cy, z - 0.016], metal);
+      if (kwid) a.display(dx - 0.07, cy - 0.015, z - 0.022, 0.095, 0.045, 'driver');
+      if (layout === 'solstice') a.gauge(dx, cy + 0.045, z - 0.008, 0.023);
     }
   }
-  if (inSet(layout, 'z34 fj gt smart')) {
-    const n = layout === 'gt' ? 4 : layout === 'smart' ? 2 : 3;
-    const auxY = layout === 'gt' ? cy : Math.min(eye[1] - 0.13, y + 0.18);
-    if (layout === 'gt') d.box([0.72, 0.115, 0.08], [dx / 2, auxY + 0.015, z + 0.047], trim);
+  if (inSet(layout, 'z34 fj smart')) {
+    const n = layout === 'smart' ? 2 : 3;
+    const auxY = Math.min(eye[1] - 0.13, y + 0.18);
     for (let i = 0; i < n; i++) {
       const auxX = (i - (n - 1) / 2) * 0.1;
-      if (layout !== 'gt') {
-        d.add(new T.CylinderGeometry(0.043, 0.043, 0.055, 20).rotateX(Math.PI / 2), dark, [
-          auxX,
-          auxY,
-          z + 0.08,
-        ]);
-        d.rod([auxX, y + 0.06, z + 0.08], [auxX, auxY - 0.025, z + 0.08], 0.012, dark);
-      }
-      a.gauge(auxX, auxY, layout === 'gt' ? z - 0.006 : z + 0.05, 0.035);
+      d.add(new T.CylinderGeometry(0.043, 0.043, 0.055, 20).rotateX(Math.PI / 2), dark, [
+        auxX,
+        auxY,
+        z + 0.08,
+      ]);
+      d.rod([auxX, y + 0.06, z + 0.08], [auxX, auxY - 0.025, z + 0.08], 0.012, dark);
+      a.gauge(auxX, auxY, z + 0.05, 0.035);
     }
   }
   let sy = Math.min(eye[1] - 0.14, y + 0.13);
@@ -433,13 +562,39 @@ export function addRoadDashboard(root, s, frame, makeKit) {
     radio ||
     inSet(
       layout,
-      'alfa acura-old cts muscle luxury-clock corvette jeep-luxury lincoln golf polo hiace transit-van sprinter camper-van honda-van truck-tablet hilux rav4',
+      'alfa acura-old cts muscle luxury-clock corvette jeep-luxury lincoln golf polo hiace transit-van sprinter camper-van honda-van truck-tablet hilux bronco z34 leaf porsche jaguar staria',
     );
-  if (embedded) sy = y + 0.015;
+  if (embedded || strada) sy = y + 0.015;
+  if (acuraTL) sy = y + 0.11;
+  if (layout === 'z34') {
+    sw = 0.25;
+    sh = 0.125;
+  }
+  if (inSet(layout, 'mustang gm-linked gm-wide ford-wide hyundai-bridge kia-bridge ioniq')) sy = cy;
   if (radio) {
     sw = 0.19;
     sh = 0.05;
     sy = y - 0.03;
+    if (layout === 'solstice') sy = y - 0.15;
+  }
+  // Screens, switches and vents belong to one molded center stack, not isolated boxes.
+  if (
+    !centerOnly &&
+    !inSet(layout, 'tt mini-r56 mini-r60 ioniq i3 byd-wave casper wuling rivian')
+  ) {
+    const top =
+      embedded || radio
+        ? Math.max(
+            y + (inSet(layout, 'jaguar jeep-luxury porsche hilux') ? 0.17 : 0.07),
+            sy + sh / 2 + 0.018,
+          )
+        : y + 0.045;
+    const bottom = y - 0.235;
+    d.box(
+      [Math.max(0.285, sw + 0.035), top - bottom, 0.035],
+      [0, (top + bottom) / 2, z + 0.028],
+      trim,
+    );
   }
   if (inSet(layout, 'mini-r56 mini-r60 tt')) {
     // All infotainment is already accounted for above.
@@ -452,23 +607,39 @@ export function addRoadDashboard(root, s, frame, makeKit) {
     a.display(0, y - 0.09, z - 0.035, 0.235, 0.105, 'climate');
   } else {
     if (layout === 'volt') d.box([0.31, 0.33, 0.05], [0, y - 0.03, z + 0.01], ink);
-    if (inSet(layout, 'mustang gm-linked hyundai-bridge kia-bridge'))
-      d.box([dx + sw * 0.53, 0.15, 0.035], [dx / 2 - 0.02, cy, z + 0.006], dark);
+    if (inSet(layout, 'mustang gm-linked gm-wide ford-wide hyundai-bridge kia-bridge ioniq')) {
+      const left = Math.min(-sw / 2 - 0.018, dx - 0.15);
+      const right = Math.max(sw / 2 + 0.018, dx + 0.15);
+      d.box(
+        [right - left, 0.165, 0.035],
+        [(left + right) / 2, (cy + sy) / 2, z + 0.029],
+        layout === 'ioniq' ? ink : dark,
+      );
+    }
     a.display(0, sy, z - 0.023, sw, sh, radio ? 'radio' : 'map', layout === 'ioniq' ? ink : dark);
     if (inSet(layout, 'lucid genesis coach-mixed'))
       a.display(0, y - 0.16, z - 0.09, 0.19, layout === 'lucid' ? 0.15 : 0.07, 'climate');
     if (layout === 'triple-screen') a.display(-W * 0.235, sy, z - 0.02, 0.3, 0.135, 'media');
     if (layout === 'coach-digital') a.display(-0.36, y - 0.04, z - 0.03, 0.22, 0.13, 'camera');
   }
-  if (!centerOnly && !inSet(layout, 'tt mini-r56 mini-r60 lucid')) {
-    const ky = portrait ? y - 0.18 : y - 0.15;
-    for (const kx of [-0.09, 0.09]) a.knob(kx, ky, z - 0.033, 0.018);
-    a.buttons(0, ky, z - 0.035, 3, 0.024);
+  if (!centerOnly && !inSet(layout, 'tt mini-r56 mini-r60 lucid rivian')) {
+    const ky = layout === 'solstice' ? y - 0.035 : portrait ? y - 0.18 : y - 0.15;
+    const threeKnobs =
+      element ||
+      strada ||
+      dmax ||
+      kwid ||
+      layout === 'scion-center' ||
+      inSet(layout, 'solstice saab honda-suv honda-mesh miata brz wuling fj jimny golf clio');
+    for (const kx of threeKnobs ? [-0.09, 0, 0.09] : [-0.09, 0.09])
+      a.knob(kx, ky, z - 0.033, 0.018);
+    if (!threeKnobs) a.buttons(0, ky, z - 0.035, 3, 0.024);
     if (inSet(layout, 'acura-old cts saab volvo')) {
-      for (let i = 0; i < 3; i++) a.buttons(0, y - 0.07 - i * 0.025, z - 0.034, 4, 0.028);
+      for (let i = 0; i < 3; i++)
+        a.buttons(0, y - (acuraTL ? 0.11 : 0.07) - i * 0.025, z - 0.034, 4, 0.028);
     } else a.buttons(0, ky - 0.029, z - 0.02, inSet(layout, 'duster peugeot') ? 7 : 5);
   }
-  if (inSet(layout, 'luxury-clock lincoln'))
+  if (layout === 'luxury-clock')
     a.gauge(0, Math.min(y + 0.18, eye[1] - 0.12), z + 0.01, 0.025, ink);
   if (inSet(layout, 'bronco defender jimny fj hummer-ev')) {
     d.rod([-W * 0.34, y - 0.14, z - 0.04], [-W * 0.16, y - 0.14, z - 0.04], 0.019, metal);
@@ -515,8 +686,11 @@ export function addRoadDashboard(root, s, frame, makeKit) {
     for (let i = 0; i < 4; i++)
       d.box([0.043, 0.012, 0.027], [-0.04, gy - 0.025, gz + i * 0.038], i === 0 ? metal : dark);
   } else if (p.selector === 'rotary' || p.selector === 'puck') {
-    d.add(new T.CylinderGeometry(0.031, 0.034, 0.03, 16), metal, [0, gy, gz]);
-    d.add(new T.CircleGeometry(0.025, 16).rotateX(-Math.PI / 2), dark, [0, gy + 0.016, gz]);
+    if (layout === 'ram') a.knob(dx * 0.46, y - 0.13, z - 0.04, 0.031);
+    else {
+      d.add(new T.CylinderGeometry(0.031, 0.034, 0.03, 16), metal, [0, gy, gz]);
+      d.add(new T.CircleGeometry(0.025, 16).rotateX(-Math.PI / 2), dark, [0, gy + 0.016, gz]);
+    }
   }
   if (inSet(layout, 'mazda miata supra genesis alfa'))
     d.add(new T.CylinderGeometry(0.027, 0.03, 0.017, 16), metal, [
@@ -528,20 +702,28 @@ export function addRoadDashboard(root, s, frame, makeKit) {
   // Door cards are below the glass and behind the instrument plane; no slab crosses the eye.
   for (const side of [-1, 1]) {
     const x = side * W * 0.425;
-    d.box([0.035, 0.26, 0.66], [x, seatY + 0.24, eye[2] - 0.03], dark);
-    d.box([0.048, 0.07, 0.4], [x - side * 0.025, seatY + 0.26, eye[2] + 0.01], trim);
+    const top = Math.min(seatY + 0.43, frame.doorTop ?? Infinity);
+    const cardY = top - 0.13;
+    const frontZ = dashZ + 0.15;
+    const rearZ = eye[2] - 0.37;
+    d.box(
+      [0.035, top - floorY, frontZ - rearZ],
+      [x, (top + floorY) / 2, (frontZ + rearZ) / 2],
+      dark,
+    );
+    d.box([0.048, 0.07, 0.4], [x - side * 0.025, cardY - 0.04, eye[2] + 0.01], trim);
     d.rod(
-      [x - side * 0.03, seatY + 0.39, eye[2] + 0.09],
-      [x - side * 0.03, seatY + 0.39, eye[2] + 0.2],
+      [x - side * 0.03, top - 0.04, eye[2] + 0.09],
+      [x - side * 0.03, top - 0.04, eye[2] + 0.2],
       0.008,
       metal,
     );
     for (let i = 0; i < 4; i++)
-      d.box([0.018, 0.008, 0.024], [x - side * 0.045, seatY + 0.3, eye[2] + i * 0.032], dark);
+      d.box([0.018, 0.008, 0.024], [x - side * 0.045, cardY, eye[2] + i * 0.032], dark);
     for (let i = -2; i <= 2; i++)
       d.rod(
-        [x - side * 0.022, seatY + 0.14 + i * 0.014, eye[2] + 0.08],
-        [x - side * 0.022, seatY + 0.14 + i * 0.014, eye[2] + 0.22],
+        [x - side * 0.022, cardY - 0.16 + i * 0.014, eye[2] + 0.08],
+        [x - side * 0.022, cardY - 0.16 + i * 0.014, eye[2] + 0.22],
         0.002,
         metal,
       );
@@ -631,6 +813,14 @@ export function addMarineDashboard(root, s, makeKit) {
     small ? '#b4beb6' : sail ? '#a6a99d' : tug ? '#60716e' : fishing ? '#667567' : '#637376',
   );
   d.box([width, sail ? 0.5 : 0.25, 0.38], [x, sail ? y - 0.22 : y - 0.09, z], console);
+  const floorY = s.helmFloor ?? s.freeboard;
+  const plinthTop = y - (sail ? 0.47 : 0.215);
+  if (plinthTop > floorY)
+    d.box(
+      [width * (sail ? 0.8 : 0.92), plinthTop - floorY, 0.3],
+      [x, (plinthTop + floorY) / 2, z + 0.025],
+      console,
+    );
   const panelZ = z - 0.197;
   if (sail) {
     // Pedestal compass, small chartplotter and stainless grab loop.
@@ -693,6 +883,12 @@ export function addMarineDashboard(root, s, makeKit) {
     }
   }
   const controls = tug || large ? 2 : 1;
+  // Throttle quadrants attach to the console through a return shelf.
+  d.box(
+    [sail ? 0.16 : width * 0.27, 0.055, 0.42],
+    [x - (sail ? 0.26 : width * 0.35), y - 0.16, ez + 0.38],
+    console,
+  );
   for (let i = 0; i < controls; i++) {
     const tx = x - (sail ? 0.26 : width * 0.32) - i * 0.08;
     d.box([0.06, 0.09, 0.19], [tx, y - 0.1, ez + 0.23], d.dark);
@@ -701,6 +897,13 @@ export function addMarineDashboard(root, s, makeKit) {
   }
   d.text(sail ? 'HELM' : tug ? 'THRUST' : 'BENDY', [x, y - 0.16, panelZ - 0.008], 0.022, Math.PI);
   if (!sail) {
+    const seatBottom = ey - 0.71;
+    if (seatBottom > floorY)
+      d.add(new T.CylinderGeometry(0.045, 0.075, seatBottom - floorY, 12), d.metal, [
+        x,
+        (seatBottom + floorY) / 2,
+        ez - 0.05,
+      ]);
     d.box([0.54, 0.1, 0.48], [x, ey - 0.66, ez - 0.05], small ? d.ivory : console);
     d.box([0.54, 0.38, 0.08], [x, ey - 0.43, ez - 0.27], small ? d.ivory : console);
     for (const side of [-1, 1])
@@ -711,6 +914,7 @@ export function addMarineDashboard(root, s, makeKit) {
         d.metal,
       );
   }
+  d.rod([x, y - (sail ? 0.03 : 0), ez + 0.3], [x, y - (sail ? 0.03 : 0), z], 0.025, d.metal);
   d.finish();
   const wheel = new T.Group();
   wheel.name = 'helm-wheel';

@@ -7,6 +7,7 @@ import * as THREE from 'three';
 
 const Agent = componentHandle('ambientAgent');
 const MAX_CARS = 512;
+const MAX_BEAM_CARS = 4;
 
 export interface EarthNightLightingOptions {
   /** Parent in absolute simulation coordinates, normally the terrain stream object. */
@@ -38,7 +39,7 @@ interface Car {
 }
 
 /**
- * Sixteen street lights and four car beams keep shader/light counts constant as tiles stream.
+ * Sixteen street lights and four pairs of car beams bound lighting cost as tiles stream.
  * Unused slots have zero intensity; none casts an extra shadow map. Daylight hides the whole rig,
  * since zero-intensity lights still cost every lit fragment; the first dusk compiles its variant.
  */
@@ -72,8 +73,8 @@ export class EarthNightLighting {
       this.streets.push(light);
       this.object.add(light);
     }
-    for (let i = 0; i < 4; i++) {
-      const light = new THREE.SpotLight('#fff1dc', 0, 65, Math.PI / 5, 0.55, 2);
+    for (let i = 0; i < MAX_BEAM_CARS * 2; i++) {
+      const light = new THREE.SpotLight('#fff1dc', 0, 55, Math.PI / 3, 1, 2);
       light.name = 'earth:headlight-beam';
       this.beams.push(light);
       this.object.add(light, light.target);
@@ -201,20 +202,15 @@ export class EarthNightLighting {
             i * 2 + sideIndex,
             this.matrix.compose(this.point, this.rotation, this.scale),
           );
+          const beam = this.beams[i * 2 + sideIndex];
+          if (mesh === this.front && beam && car.distance < 400) {
+            // The lens and beam share an origin, including chassis pitch and floating origins.
+            // A broad, feathered low beam lights the near road without a detached white hotspot.
+            beam.position.copy(this.point).add(this.lensOrigin);
+            beam.target.position.set(0, -6, 18).applyQuaternion(this.rotation).add(beam.position);
+            beam.intensity = 35 * night;
+          }
         }
-      }
-      const beam = this.beams[i];
-      if (beam && car.distance < 400) {
-        // One broad beam represents the pair; a slight downward aim lights pavement and walls.
-        beam.position
-          .set(0, height, car.length / 2 + 0.2)
-          .applyQuaternion(this.rotation)
-          .add(this.carPosition(car.position));
-        beam.target.position
-          .set(0, height - 1.7, car.length / 2 + 24)
-          .applyQuaternion(this.rotation)
-          .add(this.carPosition(car.position));
-        beam.intensity = 1100 * night;
       }
     }
     for (const mesh of [this.front, this.rear]) {

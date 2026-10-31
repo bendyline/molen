@@ -2,7 +2,7 @@
  * Main wheel axle datum, +Z nose, +X pilot left. Composite shell and true window apertures.
  * POH 13772-007 three-view/cabin plan and 2020 factory cockpit photograph.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { addG1000Readouts } from './g1000-panel.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
@@ -52,90 +52,94 @@ export function buildCirrus(s) {
     bindings = [],
     flaps = [],
     ailerons = [];
+  // [z, half width, belly, crown, belt, shoulder, shoulder half width]. The cabin is an oval
+  // bubble: full lower sides up to the belt (widest), side glass leaning in above it under a
+  // round crown (G6/G7 front and 3/4 photos). The cowl and tail cone are rounded ovals.
   const stations = [
-    [2.86, 0.37, 0.94, 1.47],
-    [2.45, 0.51, 0.75, 1.5],
-    [1.95, 0.59, 0.65, 1.52],
-    [1.3, 0.65, 0.63, 1.81],
-    [0.65, 0.68, 0.63, 2.05],
-    [-0.2, 0.68, 0.65, 2.04],
-    [-1, 0.63, 0.68, 1.92],
-    [-1.8, 0.43, 0.77, 1.75],
+    // Long tapered cowl: round lip behind a long spinner, chin sweeping up to the lip and the
+    // windscreen sill well aft of the nose (EC-ONS telephoto profile).
+    // The lip is broad in plan: the two round inlets sit at its outer corners (front photo).
+    [2.76, 0.46, 1.04, 1.42, 1.22, 1.35, 0.36],
+    [2.45, 0.56, 0.82, 1.5, 1.17, 1.41, 0.46],
+    [1.6, 0.62, 0.7, 1.57, 1.18, 1.45, 0.52],
+    [1.3, 0.65, 0.65, 1.81, 1.3, 1.65, 0.62],
+    [0.65, 0.68, 0.63, 2.05, 1.45, 1.94, 0.54],
+    [-0.2, 0.68, 0.65, 2.04, 1.45, 1.93, 0.54],
+    [-1, 0.63, 0.68, 1.92, 1.43, 1.76, 0.49],
+    [-1.8, 0.43, 0.77, 1.75, 1.3, 1.58, 0.32],
     [-2.7, 0.2, 0.92, 1.62],
     [-3.6, 0.065, 1.04, 1.55],
     [-4.1, 0.04, 1.12, 1.35],
     [-4.38, 0.012, 1.22, 1.27],
   ];
-  const rings = stations.map(([z, w, b, t]) => {
-    const h = t - b,
-      a = Math.min(0.025, h * 0.08),
-      bb = Math.min(0.075, h * 0.18),
-      c = Math.min(0.09, h * 0.28);
-    return {
-      z,
-      points: [
-        [0, t],
-        [w * 0.55, t - a],
-        [w * 0.85, t - bb],
-        [w, t - c],
-        [w, b + c],
-        [w * 0.7, b],
-        [w * 0.35, b - 0.02],
-        [0, b - 0.025],
-        [-w * 0.35, b - 0.02],
-        [-w * 0.7, b],
-        [-w, b + c],
-        [-w, t - c],
-        [-w * 0.85, t - bb],
-        [-w * 0.55, t - a],
-      ],
-    };
-  });
+  // Points: 0 crown, 1-3 roof arc, 4 shoulder, 5 belt, 6-9 lower side, 10 keel, then mirrored.
+  const rings = stations.map(
+    ([z, w, b, t, belt = b + (t - b) * 0.5, shoulder = b + (t - b) * 0.8, ws = w * 0.74]) => {
+      const right = [
+        ...[1, 2, 3].map((k) => [
+          ws * Math.pow(Math.sin((k * Math.PI) / 8), 2 / 2.4),
+          shoulder + (t - shoulder) * Math.pow(Math.cos((k * Math.PI) / 8), 2 / 2.4),
+        ]),
+        [ws, shoulder],
+        [w, belt],
+        [w * 0.99, b + (belt - b) * 0.5],
+        [w * 0.94, b + (belt - b) * 0.12],
+        [w * 0.76, b + (belt - b) * 0.015],
+        [w * 0.4, b - 0.018],
+      ];
+      return {
+        z,
+        points: [[0, t], ...right, [0, b - 0.025], ...right.reverse().map(([x, y]) => [-x, y])],
+      };
+    },
+  );
   const p = (i, j) => [...rings[i].points[j], rings[i].z];
+  const roof = [16, 17, 18, 19, 0, 1, 2, 3];
   loft(d, rings, paint, {
     skip: (i, j) =>
-      ([2, 3].includes(i) && [0, 1, 2, 11, 12, 13].includes(j)) ||
-      ([3, 4, 5, 6].includes(i) && [3, 10].includes(j)),
+      ([2, 3].includes(i) && roof.includes(j)) || ([3, 4, 5].includes(i) && [4, 15].includes(j)),
   });
   for (const i of [2, 3])
-    for (const j of [0, 1, 2, 11, 12, 13])
-      quad(d, p(i, j), p(i + 1, j), p(i + 1, (j + 1) % 14), p(i, (j + 1) % 14), glass, [0, 1, 1]);
+    for (const j of roof)
+      quad(d, p(i, j), p(i + 1, j), p(i + 1, (j + 1) % 20), p(i, (j + 1) % 20), glass, [0, 1, 1]);
   outline(
     d,
     [
-      p(2, 11),
-      p(3, 11),
-      p(4, 11),
-      p(4, 12),
-      p(4, 13),
-      p(4, 0),
-      p(4, 1),
-      p(4, 2),
-      p(4, 3),
-      p(3, 3),
-      p(2, 3),
-      p(2, 2),
-      p(2, 1),
-      p(2, 0),
-      p(2, 13),
-      p(2, 12),
+      p(2, 16),
+      p(3, 16),
+      ...[...roof, 4].map((j) => p(4, j)),
+      p(3, 4),
+      ...[...roof.slice(1), 4].reverse().map((j) => p(2, j)),
     ],
     0.012,
     paint,
   );
-  const width = (z) => {
-    let i = stations.findIndex(
-      (a, n) => n < stations.length - 1 && z <= a[0] && z >= stations[n + 1][0],
-    );
-    if (i < 0) i = z > stations[0][0] ? 0 : stations.length - 2;
-    const a = stations[i],
-      b = stations[i + 1],
-      t = (z - a[0]) / (b[0] - a[0]);
-    return a[1] + (b[1] - a[1]) * t;
+  // Skin half width at a station and height, so windows, doors and trim follow the curved side.
+  const ringAt = (z) => {
+    let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+    if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+    const a = rings[i].points,
+      b = rings[i + 1].points,
+      u = (z - rings[i].z) / (rings[i + 1].z - rings[i].z);
+    return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+  };
+  const halfWidth = (z, y) => {
+    const q = ringAt(z);
+    for (let j = 0; j < 10; j++)
+      if (y <= q[j][1] && y >= q[j + 1][1])
+        return q[j][0] + ((q[j + 1][0] - q[j][0]) * (y - q[j][1])) / (q[j + 1][1] - q[j][1] || 1);
+    return q[5][0];
+  };
+  const crownAt = (z, x) => {
+    const q = ringAt(z);
+    for (let j = 0; j < 4; j++)
+      if (x >= q[j][0] && x <= q[j + 1][0])
+        return q[j][1] + ((q[j + 1][1] - q[j][1]) * (x - q[j][0])) / (q[j + 1][0] - q[j][0] || 1);
+    return q[4][1];
   };
   for (const side of [-1, 1]) {
-    const j = side > 0 ? 3 : 10,
-      point = (z, y) => [side * width(z), y, z];
+    const j = side > 0 ? 4 : 15,
+      point = (z, y) => [side * halfWidth(z, y), y, z];
     for (const [start, end, coords] of [
       [
         3,
@@ -153,7 +157,7 @@ export function buildCirrus(s) {
       ],
       [
         5,
-        7,
+        6,
         [
           [-0.29, 1.85],
           [-0.46, 1.83],
@@ -174,10 +178,20 @@ export function buildCirrus(s) {
       sheet(d, hole, glass, [side, 0, 0]);
       outline(d, hole, 0.007, dark);
     }
+    // Seams are subdivided in side view and lifted off the skin so they follow the curved side.
+    const trace = (points) =>
+      points.flatMap((a, n) => {
+        const b = points[(n + 1) % points.length];
+        return [0, 0.25, 0.5, 0.75].map((t) => {
+          const z = a[0] + (b[0] - a[0]) * t,
+            y = a[1] + (b[1] - a[1]) * t;
+          return [side * (halfWidth(z, y) + 0.003), y, z];
+        });
+      });
     // Doors, service hatches and cowling fasteners; no fictitious metal skin rivet grid.
     outline(
       d,
-      [
+      trace([
         [0.72, 1.99],
         [-0.16, 1.97],
         [-0.27, 1.12],
@@ -185,21 +199,24 @@ export function buildCirrus(s) {
         [0.88, 1.05],
         [1.04, 1.12],
         [1.27, 1.56],
-      ].map((q) => point(...q)),
+      ]),
       0.0023,
       metal,
     );
     d.box([0.018, 0.03, 0.12], point(-0.05, 1.16), metal);
-    for (const z of [0.71, 0.45]) d.box([0.035, 0.015, 0.055], [side * 0.59, 2.025, z], metal);
+    for (const z of [0.71, 0.45])
+      d.box([0.035, 0.015, 0.055], [side * (halfWidth(z, 1.99) + 0.004), 1.99, z], metal);
     if (side > 0) {
-      const bag = [
-        [-1.52, 1.4],
-        [-1.52, 0.94],
-        [-1.62, 0.91],
-        [-1.98, 0.94],
-        [-2.03, 1.35],
-        [-1.93, 1.42],
-      ].map(([z, y]) => point(z + 0.5, y));
+      const bag = trace(
+        [
+          [-1.52, 1.4],
+          [-1.52, 0.94],
+          [-1.62, 0.91],
+          [-1.98, 0.94],
+          [-2.03, 1.35],
+          [-1.93, 1.42],
+        ].map(([z, y]) => [z + 0.5, y]),
+      );
       outline(d, bag, 0.002, metal);
       d.box([0.02, 0.022, 0.08], point(-1.18, 1.35), dark);
     }
@@ -207,13 +224,15 @@ export function buildCirrus(s) {
       const a = stations[i],
         b = stations[i + 1],
         ya = a[2] + Math.min(0.27, (a[3] - a[2]) * 0.45),
-        yb = b[2] + Math.min(0.27, (b[3] - b[2]) * 0.45);
+        yb = b[2] + Math.min(0.27, (b[3] - b[2]) * 0.45),
+        ta = ya + Math.min(0.045, (a[3] - a[2]) * 0.1),
+        tb = yb + Math.min(0.045, (b[3] - b[2]) * 0.1);
       quad(
         d,
-        [side * (a[1] + 0.002), ya, a[0]],
-        [side * (b[1] + 0.002), yb, b[0]],
-        [side * (b[1] + 0.002), yb + Math.min(0.045, (b[3] - b[2]) * 0.1), b[0]],
-        [side * (a[1] + 0.002), ya + Math.min(0.045, (a[3] - a[2]) * 0.1), a[0]],
+        [side * (halfWidth(a[0], ya) + 0.002), ya, a[0]],
+        [side * (halfWidth(b[0], yb) + 0.002), yb, b[0]],
+        [side * (halfWidth(b[0], tb) + 0.002), tb, b[0]],
+        [side * (halfWidth(a[0], ta) + 0.002), ta, a[0]],
         accent,
         [side, 0, 0],
       );
@@ -226,10 +245,12 @@ export function buildCirrus(s) {
         metal,
       );
     for (let z = 2; z < 2.8; z += 0.12)
-      d.add(new T.SphereGeometry(0.003, 6, 4), metal, [side * width(z), 1.14, z]);
-    ellipsoid(d, [side * 0.235, 1.27, 2.866], [0.128, 0.073, 0.012], dark, 16);
+      d.add(new T.SphereGeometry(0.003, 6, 4), metal, [side * halfWidth(z, 1.14), 1.14, z]);
+    // Round induction inlets either side of the spinner, with a rolled lip.
+    d.ring(0.088, 0.022, [side * 0.29, 1.215, 2.775], paint);
+    d.add(new T.CircleGeometry(0.085, 20), dark, [side * 0.29, 1.215, 2.768]);
     d.rod([side * 0.3, 0.7, 1.76], [side * 0.34, 0.57, 1.62], 0.024, metal);
-    d.box([0.16, 0.012, 0.29], [side * 0.35, 0.65, 1.55], accent);
+    d.box([0.16, 0.012, 0.29], [side * 0.35, 0.69, 1.55], accent);
     // The G6 retains the characteristic outboard cuff in its discontinuous leading edge.
     const y = (x) => 0.72 + x * 0.052,
       le = (x) => (x < 3.3 ? 0.87 - x * 0.018 : 0.9 - (x - 3.3) * 0.05),
@@ -397,10 +418,8 @@ export function buildCirrus(s) {
   outline(
     d,
     [
-      [-0.2, 1.84, -1.42],
-      [-0.18, 1.79, -1.72],
-      [0.18, 1.79, -1.72],
-      [0.2, 1.84, -1.42],
+      ...[-0.2, -0.1, 0, 0.1, 0.2].map((x) => [x, crownAt(-1.42, Math.abs(x)) + 0.004, -1.42]),
+      ...[0.18, 0.09, 0, -0.09, -0.18].map((x) => [x, crownAt(-1.72, Math.abs(x)) + 0.004, -1.72]),
     ],
     0.0025,
     metal,
@@ -409,10 +428,10 @@ export function buildCirrus(s) {
   d.rod([0, 1.83, -1.45], [0, 2.03, -1.58], 0.007, paint);
   d.rod([1.56, 0.76, 0.6], [1.56, 0.43, 0.6], 0.009, metal);
   d.rod([1.56, 0.43, 0.6], [1.56, 0.43, 0.8], 0.009, metal);
-  const engine = group(root, 'engine-1', [0, 1.2, 2.86]),
+  const engine = group(root, 'engine-1', [0, 1.2, 2.8]),
     prop = group(engine, 'Cirrus-propeller'),
     pd = detailKit(prop, prop.name);
-  pd.add(new T.ConeGeometry(0.155, 0.38, 24).rotateX(Math.PI / 2), metal, [0, 0, 0.19]);
+  pd.add(new T.ConeGeometry(0.165, 0.44, 24).rotateX(Math.PI / 2), metal, [0, 0, 0.22]);
   for (let i = 0; i < 3; i++) {
     const g = group(prop, `Cirrus-prop-blade-${i}`);
     g.rotation.z = Math.PI / 2 + (i * 2 * Math.PI) / 3;
@@ -507,12 +526,12 @@ export function buildCirrus(s) {
     );
   }
   d.finish();
-  const interior = cockpit(root, { paint, accent, metal, dark });
+  const interior = cockpit(root, { paint, accent, metal, dark, halfWidth });
   cleanGeometry(root);
   return {
     root,
     frame: cirrusFrame(),
-    enginePoints: [{ id: 'engine-1', position: [0, 1.2, 2.86] }],
+    enginePoints: [{ id: 'engine-1', position: [0, 1.2, 2.8] }],
     visual: {
       rotors: [{ node: prop.name, axis: 'z', multiplier: 1, engine: 'engine-1' }],
       gearNodes: [],
@@ -587,7 +606,7 @@ function cockpit(root, m) {
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    quad(d, a, b, [b[0] * 0.9, 1.55, 1.55], [a[0] * 0.9, 1.55, 1.55], m.dark, [0, 1, 0]);
+    quad(d, a, b, [b[0] * 0.85, 1.5, 1.5], [a[0] * 0.85, 1.5, 1.5], m.dark, [0, 1, 0]);
   }
   for (const [n, [x, y]] of centers.entries()) {
     sheet(
@@ -880,9 +899,9 @@ function cockpit(root, m) {
   for (const [n, x, zz, w] of [
     [0, 0.31, 0.28, 0.48],
     [1, -0.31, 0.28, 0.48],
-    [2, 0.36, -0.73, 0.41],
+    [2, 0.345, -0.73, 0.4],
     [3, 0, -0.73, 0.29],
-    [4, -0.36, -0.73, 0.41],
+    [4, -0.345, -0.73, 0.4],
   ]) {
     const sg = group(cabin, `Cirrus-seat-${n}`, [x, 0.95, zz]),
       sd = detailKit(sg, sg.name);
@@ -900,12 +919,18 @@ function cockpit(root, m) {
   d.box([0.98, 0.03, 0.55], [0, 0.83, -1.45], m.accent);
   sheet(
     d,
-    [
-      [-0.47, 0.84, -1.74],
-      [0.47, 0.84, -1.74],
-      [0.44, 1.64, -1.74],
-      [-0.44, 1.64, -1.74],
-    ],
+    [0.84, 1.64].flatMap((y, n) => {
+      const x = m.halfWidth(-1.74, y) - 0.015;
+      return n
+        ? [
+            [x, y, -1.74],
+            [-x, y, -1.74],
+          ]
+        : [
+            [-x, y, -1.74],
+            [x, y, -1.74],
+          ];
+    }),
     leather,
     [0, 0, 1],
   );

@@ -1,6 +1,8 @@
 import { getSchema, validateByKind } from '@bendyline/molen-schema';
 import { webMercatorScaleAtLatitude, wgs84ToWebMercator } from '@bendyline/molen-terrain/kernel';
+import { pointInRing } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
+import { projectWgs84 } from '../src/kernel/projection';
 import { createRegionResolver, regionScatterId, regionStyleRules } from '../src/kernel/region';
 import { REGION_ATLAS_EXAMPLE } from '../src/kernel/region-atlas-schema';
 import { loadDefaultAtlas, loadDefaultPack } from './helpers/pack';
@@ -87,6 +89,60 @@ describe('region atlas', () => {
         .intersecting([paris[0] - 10, paris[1] - 10, paris[0] + 10, paris[1] + 10])
         .map((region) => region.id),
     ).toEqual(['library.france']);
+  });
+
+  it('answers for long outlines exactly as an even-odd walk of every edge', () => {
+    // Jagged outlines long enough to be banded, one inside the other's reach.
+    const outline = (count: number, radius: number, lon: number, lat: number) =>
+      Array.from({ length: count }, (_, i): [number, number] => {
+        const angle = (i / count) * 2 * Math.PI;
+        const r = radius * (1 + 0.35 * Math.sin(i * 7.3) * Math.cos(i * 1.7));
+        return [lon + r * Math.cos(angle), lat + r * 0.7 * Math.sin(angle)];
+      });
+    const rings = [outline(500, 0.2, -122.3, 47.6), outline(90, 0.03, -122.1, 47.55)];
+    const { bbox: _bbox, ...base } = atlas.regions[0] as (typeof atlas.regions)[number];
+    const jagged = createRegionResolver(
+      {
+        ...atlas,
+        fallbackDistanceMeters: 0,
+        regions: [{ ...base, id: 'jagged', polygons: rings }],
+      },
+      { metersPerUnit },
+    );
+    const projected = rings.map((ring) =>
+      ring.map(([lon, lat]): [number, number] => {
+        const [x, z] = projectWgs84(lon, lat);
+        return [x * metersPerUnit, z * metersPerUnit];
+      }),
+    );
+    const xs = projected.flat().map(([x]) => x);
+    const zs = projected.flat().map(([, z]) => z);
+    const [minX, maxX, minZ, maxZ] = [
+      Math.min(...xs),
+      Math.max(...xs),
+      Math.min(...zs),
+      Math.max(...zs),
+    ];
+    let state = 7;
+    const next = (): number => {
+      state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+      return state / 2 ** 32;
+    };
+    // Random points, and points level with every vertex, where an edge's ends meet the test.
+    const points: [number, number][] = [
+      ...Array.from({ length: 4000 }, (): [number, number] => [
+        minX + (maxX - minX) * next(),
+        minZ + (maxZ - minZ) * next(),
+      ]),
+      ...projected.flat().map(([, z]): [number, number] => [minX + (maxX - minX) * next(), z]),
+    ];
+    let inside = 0;
+    for (const [x, z] of points) {
+      const expected = projected.some((ring) => pointInRing([x, z], ring));
+      if (expected) inside++;
+      expect(jagged.resolve(x, z)?.id, `${x},${z}`).toBe(expected ? 'jagged' : undefined);
+    }
+    expect(inside).toBeGreaterThan(points.length / 4);
   });
 
   it.each([

@@ -44,7 +44,7 @@
             ],
             "pilotEye": [
               0.4,
-              2.65,
+              2.5,
               1.65
             ],
             "hardLandingSpeed": 4,
@@ -9330,6 +9330,77 @@
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.68
               }
+            ],
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.9,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.9,
+                    5.4500779999999995
+                  ],
+                  [
+                    0,
+                    1.9,
+                    -5.4500779999999995
+                  ],
+                  [
+                    7.3025,
+                    1.9,
+                    0
+                  ],
+                  [
+                    -7.3025,
+                    1.9,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Caravan-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.77,
+                  4.6435
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Caravan-propeller"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.77,
+                    4.6435
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.295487,
+                  "halfThickness": 0.06,
+                  "rotor": "Caravan-propeller"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              }
             ]
           }
         },
@@ -9365,7 +9436,8 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {}
         },
         "mountable": {
           "seats": [
@@ -9374,7 +9446,7 @@
               "role": "driver",
               "position": [
                 0.4,
-                2.65,
+                2.5,
                 1.65
               ]
             },
@@ -9383,7 +9455,7 @@
               "role": "passenger",
               "position": [
                 -0.4,
-                2.65,
+                2.5,
                 1.65
               ]
             }

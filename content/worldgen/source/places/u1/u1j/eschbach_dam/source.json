@@ -1,0 +1,63 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.eschbach_dam",
+  "kind": "static-structure",
+  "title": "Eschbach Dam, Remscheid (original design circa1892)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.eschbach_dam",
+        "output": "assets/places/u1/u1j/eschbach_dam/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6a3b2d05cdf1296502241295c3d39432085b0dba959fd309a63d99a2ea340b67"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-structural-facts.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "imagery-evidence.json",
+      "references/prometheus-1891-original.pdf",
+      "reference-rights/prometheus-library-native.html",
+      "native-map/complete-dam-context.json",
+      "native-map/dam-identity.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-17041-10946.png",
+      "terrain-sources/terrarium-15-17041-10947.png",
+      "terrain-sources/terrarium-15-17042-10946.png",
+      "terrain-sources/terrarium-15-17042-10947.png",
+      "import-report.json",
+      "geometry-review.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

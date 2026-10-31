@@ -74,7 +74,14 @@
               ]
             ],
             "visual": {
-              "rotors": [],
+              "rotors": [
+                {
+                  "node": "engine-1-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                }
+              ],
               "gearNodes": [],
               "flaps": [],
               "ailerons": [],
@@ -127,17 +134,99 @@
                     "node": "F16-gear-1",
                     "source": "gear",
                     "property": "rotation",
-                    "axis": "z",
-                    "offset": 1.2,
-                    "scale": -1.2
+                    "axis": "x",
+                    "offset": 1.5311370854996431,
+                    "scale": -1.5311370854996431
                   },
                   {
                     "node": "F16-gear-2",
                     "source": "gear",
                     "property": "rotation",
-                    "axis": "z",
-                    "offset": -1.2,
-                    "scale": 1.2
+                    "axis": "x",
+                    "offset": 1.5311370854996431,
+                    "scale": -1.5311370854996431
+                  },
+                  {
+                    "node": "canopy-opening",
+                    "source": "canopy",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.85
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.12,
+                        0
+                      ],
+                      [
+                        0.45,
+                        6
+                      ],
+                      [
+                        1,
+                        20
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-jettison",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "speed-brake--1--1-0",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.95
+                  },
+                  {
+                    "node": "speed-brake--1-1-0",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.95
+                  },
+                  {
+                    "node": "speed-brake-1--1-0",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.95
+                  },
+                  {
+                    "node": "speed-brake-1-1-0",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.95
                   }
                 ],
                 "derived": {
@@ -227,6 +316,27 @@
                     "component": "aircraftState",
                     "path": [
                       "gearPosition"
+                    ]
+                  },
+                  "canopy": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "canopy"
+                    ]
+                  },
+                  "eject": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "eject"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -5304,7 +5414,8 @@
               "maxMach": 2,
               "maxEquivalentAirspeed": 408.3507442383324,
               "gearLimitSpeed": 130,
-              "flapLimitSpeed": 125
+              "flapLimitSpeed": 125,
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
@@ -5334,6 +5445,88 @@
                 "ramRise": 0.2,
                 "afterburnerThrust": 106000,
                 "afterburnerDetent": 0.85
+              }
+            ],
+            "actuators": {
+              "canopy": {
+                "seconds": 3
+              },
+              "eject": {
+                "seconds": 1.2,
+                "mode": "latch"
+              },
+              "speedBrake": {
+                "seconds": 1.6
+              }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.98,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.98,
+                    6.487668
+                  ],
+                  [
+                    0,
+                    1.98,
+                    -6.487668
+                  ],
+                  [
+                    4.3464480000000005,
+                    1.98,
+                    0
+                  ],
+                  [
+                    -4.3464480000000005,
+                    1.98,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.86,
+                  -5.04
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "engine-1-turbine"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.86,
+                    -5.04
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.33,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": [
+                  "engine-1"
+                ]
               }
             ]
           }
@@ -5370,7 +5563,12 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {
+            "canopy": 0,
+            "eject": 0,
+            "speedBrake": 0
+          }
         },
         "mountable": {
           "seats": [
@@ -5496,6 +5694,27 @@
               "component": "aircraftState",
               "path": [
                 "flapPosition"
+              ]
+            },
+            "canopy": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "canopy"
+              ]
+            },
+            "eject": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "eject"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -10475,17 +10694,99 @@
               "node": "F16-gear-1",
               "source": "gear",
               "property": "rotation",
-              "axis": "z",
-              "offset": 1.2,
-              "scale": -1.2
+              "axis": "x",
+              "offset": 1.5311370854996431,
+              "scale": -1.5311370854996431
             },
             {
               "node": "F16-gear-2",
               "source": "gear",
               "property": "rotation",
-              "axis": "z",
-              "offset": -1.2,
-              "scale": 1.2
+              "axis": "x",
+              "offset": 1.5311370854996431,
+              "scale": -1.5311370854996431
+            },
+            {
+              "node": "canopy-opening",
+              "source": "canopy",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.85
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.12,
+                  0
+                ],
+                [
+                  0.45,
+                  6
+                ],
+                [
+                  1,
+                  20
+                ]
+              ]
+            },
+            {
+              "node": "canopy-jettison",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "speed-brake--1--1-0",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.95
+            },
+            {
+              "node": "speed-brake--1-1-0",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.95
+            },
+            {
+              "node": "speed-brake-1--1-0",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.95
+            },
+            {
+              "node": "speed-brake-1-1-0",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.95
             }
           ]
         }

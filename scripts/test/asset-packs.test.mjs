@@ -182,6 +182,39 @@ test('restores a cached source build into a fresh checkout before its release is
   await checkAssets({ root: fresh, log: quiet });
 });
 
+for (const missingRuntime of [false, true]) {
+  test(`restores same-size stale GLBs despite a cached install record (${missingRuntime ? 'missing runtime' : 'all files present'})`, async () => {
+    const source = 'examples/lantern-dungeon/asset-src/item/longsword/models/source.glb';
+    const runtime = 'examples/lantern-dungeon/public/assets/lantern/item/longsword/model.glb';
+    const bytes = Buffer.from('built geometry');
+    const published = await publishedFixture([
+      [source, bytes],
+      [runtime, bytes],
+    ]);
+    const fresh = await fixture();
+    // Actions caches the archives and installed.json together, but the next checkout can
+    // already contain different GLBs with the same sizes as the builder's outputs.
+    await cp(
+      join(published.source, '.artifacts/asset-packs'),
+      join(fresh, '.artifacts/asset-packs'),
+      { recursive: true },
+    );
+    await asset(fresh, source, Buffer.alloc(bytes.length, 1));
+    if (!missingRuntime) await asset(fresh, runtime, bytes);
+    await fetchAssets({
+      root: fresh,
+      offline: true,
+      fetchImpl: () => {
+        throw new Error('Restoration must use the cached archives');
+      },
+      log: quiet,
+    });
+    assert.deepEqual(await readFile(join(fresh, source)), bytes);
+    assert.deepEqual(await readFile(join(fresh, runtime)), bytes);
+    await checkAssets({ root: fresh, log: quiet });
+  });
+}
+
 test('reports an unpublished bundle distinctly so callers can build from source', async () => {
   const root = await fixture();
   await asset(root, 'assets/test/model.glb');

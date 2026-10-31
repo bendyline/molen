@@ -103,9 +103,10 @@ pnpm assets:fetch     # download the bundle named by asset inputs, or build from
 pnpm build
 ```
 
-`pnpm assets:fetch` checks every archive and every restored file against the committed lock. It
-skips files that already match. It replaces a GLB it installed earlier, but refuses to overwrite
-one you built yourself unless you pass `--force`. `--offline` uses only the local cache in
+`pnpm assets:fetch` checks archives, restored files and existing GLBs against the bundle's
+SHA-256 hashes. A cached installation record and matching file size do not prove that a
+checkout holds the expected bytes. Matching files are reused; missing or changed bundle files
+are restored. `--force` restores even matching files. `--offline` uses only the local cache in
 `.artifacts/asset-packs/`, and `--prefix content/worldgen/assets/places/c2/` restores part of the
 tree. `pnpm all` and `pnpm dev` fetch automatically.
 

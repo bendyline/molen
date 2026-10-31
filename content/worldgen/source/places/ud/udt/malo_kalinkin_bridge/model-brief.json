@@ -1,0 +1,381 @@
+{
+  "id": "malo_kalinkin_bridge",
+  "title": "Malo-Kalinkin Bridge",
+  "wikidataId": "Q2627718",
+  "referenceCoordinate": {
+    "longitude": 30.28123615,
+    "latitude": 59.91672875
+  },
+  "module": "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/models/malo-model.mjs",
+  "generator": "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/models/generate-malo.mjs",
+  "builder": "buildMaloLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.92
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.64
+    },
+    "road": {
+      "slot": "roof",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.93
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.45
+    },
+    "gold": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.5
+    }
+  },
+  "exportLabel": "Molen original Malo-Kalinkin Bridge",
+  "expectedDraftMasterHash": "sha256:d9d8f2caa97a2fd7a9d3ecf271dd48f3ff585b992c1d53bc946b78df2f20252c",
+  "visualBrief": "Skew three-span green iron girder bridge on granite piers with cylindrical ends; four tapering obelisks carry outboard oval lanterns and gold-colored finials. Ornate circles and paired scrolling iron rods line both sidewalks beside the complete road and tram deck.",
+  "nativeAxes": "+X east/southeast; -X west/northwest; +Z south/southwest toward Fontanka mouth; -Z north/northeast along Griboyedov Canal.",
+  "sourceFacts": {
+    "identity": [
+      "relation/5489299"
+    ],
+    "mappedFootprint": {
+      "length": 25.622,
+      "width": 16.201
+    },
+    "reconstructionControls": {
+      "west": -11.7,
+      "east": 11.8,
+      "halfWidth": 8.1,
+      "roadHalfWidth": 5.85,
+      "skew": -0.138,
+      "piers": [
+        -4.35,
+        4.35
+      ],
+      "deckEnds": [
+        3.55,
+        3.62
+      ],
+      "crown": 0.12
+    }
+  },
+  "references": [
+    {
+      "url": "https://opeterburge.ru/bridges/malo-kalinkin-most.html",
+      "imageUrl": "https://opeterburge.ru/images/photo_gallery/bridges/malo-kalinkin-most/4malo-kalinkin-most.jpg",
+      "license": "Unverified; private inspection only, not redistributed",
+      "use": "Ordinary overview establishes three open spans,rounded granite supports,four obelisks,hanging oval lamps,green scalloped fascia and road/tram deck."
+    },
+    {
+      "url": "https://structurae.net/en/structures/malo-kalinkin-most",
+      "imageUrl": "https://files.structurae.net/files/photos/2510/sankt_petersburg_malo_kalinkin_most_a.jpg",
+      "license": "Unverified; private inspection only, not redistributed",
+      "use": "Ordinary near view establishes curved obelisk base,granite drums,gold finial,outboard oval lamp and repeating circle/scroll ironwork. No photo pixels used."
+    }
+  ],
+  "limitations": [
+    "Original static medium-fi reconstruction from two ordinary exterior pictures and current standard PMTiles. The exact mapped envelope is25.622m by16.201m; underlying road/sidewalk runs are about23.5m long with a skew of approximately-0.138m per transverse meter. Envelope width/length and reconstructed member dimensions are not surveyed dimensions.",
+    "Three open spans with shallow scalloped green girder fascia, two granite-faced transverse piers with round drum ends, four tapering obelisks on curved bases, outboard hanging oval lanterns and gold-colored finials, continuous roadway, raised sidewalks, two tram tracks and ornate iron railings are modeled. Pier positions, batter, vertical profiles, hanging fixture dimensions and repeating scroll/circle motifs are photo/map approximations.",
+    "Detailed master retains eight girders, denser scallops, wrought railing circles and paired scrolling rods, masonry course joints, lantern ribs and rivet-like fasteners. Browser close-up has six girders and coarser circles/scrolls. Street/district merge motifs and lantern profiles; skyline keeps three open spans,round pier ends and four obelisk silhouettes.",
+    "Four existing shared256px graphs: stone_granite,metal_painted,concrete_plain and stone_limestone_raw, metric UV repeats and linear vertex tints. Local opaque lantern glass and gold-colored finials. No private or embedded images. Shared textures approximate stone blocks/painted iron/road rather than exact surface wear. Lanterns are static daylight geometry.",
+    "Native origin follows the standard viewer water plane from PMTiles/Mapzen, not surveyed sea level. Coarse water fragments can have stepped elevations and raw shore ground is approximate. Connected road/rail approaches use generated supports with steep sidewalls. Exact canal embankments, nearby historic buildings, road signs and the surrounding street/catenary network are outside the bridge asset. No physical laptop/phone timing claim."
+  ],
+  "cameras": [
+    {
+      "name": "three-spans-and-obelisk-lamps",
+      "position": [
+        25,
+        13,
+        33
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 66
+    },
+    {
+      "name": "scalloped-girder-and-granite-drum",
+      "position": [
+        2.6,
+        3,
+        15
+      ],
+      "lookAt": [
+        4.35,
+        2.7,
+        7.4
+      ],
+      "fov": 65
+    },
+    {
+      "name": "obelisk-oval-lantern-and-ironwork",
+      "position": [
+        -1,
+        7.8,
+        11
+      ],
+      "lookAt": [
+        3.25,
+        6.1,
+        8
+      ],
+      "fov": 60
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/models/malo-model.mjs",
+    "export": "buildMaloSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.92
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64
+      },
+      "road": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45
+      },
+      "gold": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.5
+      }
+    },
+    "errorMeters": 0.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMaloDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "street": {
+        "export": "buildMaloStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.08
+      },
+      "closeup": {
+        "export": "buildMaloCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.035
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.baltic_warehouse",
+    "scale": 1
+  },
+  "appearance": {
+    "identity": "Green three-span skew girder bridge with round granite pier ends and four obelisk lanterns."
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-three-spans-and-obelisk-lamps",
+      "position": [
+        25,
+        13,
+        33
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 66,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-scalloped-girder-and-granite-drum",
+      "position": [
+        2.6,
+        3,
+        15
+      ],
+      "lookAt": [
+        4.35,
+        2.7,
+        7.4
+      ],
+      "fov": 65,
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-obelisk-oval-lantern-and-ironwork",
+      "position": [
+        -1,
+        7.8,
+        11
+      ],
+      "lookAt": [
+        3.25,
+        6.1,
+        8
+      ],
+      "fov": 60,
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-obelisk-oval-lantern-and-ironwork",
+      "position": [
+        -1,
+        7.8,
+        11
+      ],
+      "lookAt": [
+        3.25,
+        6.1,
+        8
+      ],
+      "fov": 60,
+      "reviewLod": "closeup"
+    }
+  ]
+}

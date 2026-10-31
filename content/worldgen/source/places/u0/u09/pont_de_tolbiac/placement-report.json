@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.pont_de_tolbiac",
-  "inputHash": "sha256:d5e8867ebb3be41ad2b869bd1408c73f15503d2c6e15d08cf1270ce17cdfe5cf",
+  "inputHash": "sha256:12ad8a06a39bc6ef9fe3a2cf4df954766aefde716ac49b5ce47888c310934926",
   "placementHash": "sha256:7648cf0285e7c29371e5780a07a120a79f9e2a3b12c80470089a21a3a8290900",
   "entry": {
     "id": "pont.de.tolbiac",
@@ -705,5 +705,43 @@
     "source": "https://www.openstreetmap.org/way/183626421",
     "note": "Directed deck centerline from four mapped cutwaters; origin fitted to official IGN RGE ALTI upper road plateaus 35.4/35.6 m, cross-checked against BD TOPO 3D road axes. Model reference water 28.5 m differs from sampled RGE water 28.05 m; river level is not a fixed structural datum. The exact curved deck/wing polygon removes only covered, successfully loaded bridge-road fragments. Connector stations at native X +/-99.25 m approximate the asymmetric road ends -101.9/+96.6 m by 2.65 m, inside the full-width blending radius; the resulting native profile difference is below 5 cm. Endpoint heights retain the actual authored road elevations. Host terrain must use NGF-IGN69 or explicitly convert heights. Current terrain captures remain required. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "status": "passed",
+  "reviewedOn": "2026-10-29",
+  "basis": "Retained exact-QID way183626421,anchor[2.381000162446853,48.83290412880705],heading0.695619343418. +X northeast toward Bercy,+Z southeast/upstream. Production placement and27.4m NGF-IGN69 origin are unchanged. Five retained clear spans29/32/35/32/29m and map-fitted piers form a172.6m vault chain,distinct from the published168m nominal length. Approximate200.17m overall wing extents and all reconstructed details retain their existing source limits. Compatible host heights or explicit datum conversion remain required; global Mapzen equivalence is not claimed.",
+  "fit": "Fresh master/all-four-tier views reuse exact cached terrain samples and15 retained independent mapped road context IDs,with no new downloads or terrain fitting. Curved bank wings and model-covered road replacement remain at the original signed footprint. The lower quay roads remain beneath the outer arches. Native road endpoint rays retain~0.62m and~0.41m residuals across abrupt3m-grid bank edges; tier differences stay within2cm. Existing independent upper-road plateau samples35.4/35.6m remain separate from these edge-ray observations. The model normal-water reference28.50m and cached RGE water28.05m represent different states; no invented conversion or bathymetry. All model geometry unloads. This scoped cached-terrain fixture does not claim a fresh current global PMTiles/water/building-preservation measurement.",
+  "terrainReports": [
+    {
+      "level": "master",
+      "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-fit-report.json",
+      "hash": "sha256:94dcaa196a7aebaf6d0b6a0deaf8872873a13533cea925f1ed0c1d05050b5f40"
+    },
+    {
+      "level": "skyline",
+      "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-skyline-fit-report.json",
+      "hash": "sha256:6bb5e6a3da838796093ed5cb6684272d369ccac584fa691b57f43c4e453406fa"
+    },
+    {
+      "level": "district",
+      "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-district-fit-report.json",
+      "hash": "sha256:00f1813e0ed8a431c91aebba05f857ef11a55d526ace8fcbafd98fde685e547d"
+    },
+    {
+      "level": "street",
+      "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-street-fit-report.json",
+      "hash": "sha256:5b10144dcc8f8888d84bccc1cec6be37778db667ef0c17673f4a4617f3119e7f"
+    },
+    {
+      "level": "closeup",
+      "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-closeup-fit-report.json",
+      "hash": "sha256:8608b2bd10a731456ee559ab4235f3d1ba5caef37064f996bb88dc9562ec21e3"
+    }
+  ],
+  "limitations": [
+    "Nominal168m length conflicts with the mapped pier spacing and published clear spans; retain both rather than hiding the discrepancy.",
+    "Quay stairways outside the recorded bridge footprint are not part of this asset. Exact current street-sign positions and memorial panel dimensions are reconstructed from photographs, not surveyed.",
+    "Current terrain-fit captures must approve the IGN-supported vertical placement; river surface height varies.",
+    "Detailed source/master are retained exactly. Browser close-up retains capsule openings and plaque backing but aggregates the memorial inscriptions,Gentilis glyphs,tiny fasteners,drain grilles and small carved details into their source masters. Street/district tiers merge repeated holes and dentils; skyline preserves the five-vault/cutwater/curved-wing silhouette with aggregated parapet caps.",
+    "Runtime tiers reuse existing limestone,weathered limestone,painted-metal and concrete graphs. Shared concrete grain approximates roadway/sidewalk paving. Original master material assignments remain unchanged. Physical laptop/phone timing and a new global PMTiles datum comparison remain unmeasured.",
+    "Original detailed master and production placement stay exact. New source-local distance recipe and manifest are registered before current captures. Existing datum/terrain limits remain; no new survey,engineering or device performance claim."
+  ]
 }

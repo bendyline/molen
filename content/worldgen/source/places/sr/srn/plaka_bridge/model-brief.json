@@ -1,0 +1,410 @@
+{
+  "id": "plaka_bridge",
+  "title": "Plaka Bridge",
+  "wikidataId": "Q18926506",
+  "referenceCoordinate": {
+    "longitude": 21.03004965,
+    "latitude": 39.4605618
+  },
+  "module": "content/worldgen/source/places/sr/srn/plaka_bridge/models/plaka-model.mjs",
+  "generator": "content/worldgen/source/places/sr/srn/plaka_bridge/models/generate-plaka.mjs",
+  "builder": "buildPlakaLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.95
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94
+    },
+    "walk": {
+      "slot": "roof",
+      "graph": "stone_granite",
+      "roughness": 0.95
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76
+    },
+    "joint": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 1
+    }
+  },
+  "exportLabel": "Molen original Plaka Bridge",
+  "expectedDraftMasterHash": "sha256:fe1dd806736c1323e7aafb87525479b766cbe54d49a296348146e5ce3eef96f8",
+  "visualBrief": "Present-day pale-stone humpback bridge with one tall offset main vault,two true smaller bank relief vaults,double radial voussoir rings,exposed soffits,solid sloping parapets and coping,continuous cobbled walking deck and small iron tie plates.",
+  "nativeAxes": "+X northeast toward eastern bank;-X southwest toward western bank;+Z southeast;-Z northwest.",
+  "sourceFacts": {
+    "identity": [
+      "way/758796818"
+    ],
+    "mappedFootprint": {
+      "length": 76.881,
+      "width": 4.285
+    },
+    "reconstructionControls": {
+      "west": -38.44,
+      "east": 38.44,
+      "halfWidth": 2.1425,
+      "walkHalfWidth": 1.65,
+      "deckEnds": [
+        11.44,
+        5.8
+      ],
+      "main": {
+        "c": -4,
+        "rx": 20,
+        "rise": 18.1,
+        "spring": 0.3
+      },
+      "reliefs": [
+        {
+          "c": -32.4,
+          "rx": 3.1,
+          "rise": 3.4,
+          "spring": 1.1
+        },
+        {
+          "c": 29.4,
+          "rx": 3.4,
+          "rise": 3.8,
+          "spring": 1.1
+        }
+      ],
+      "archRings": [
+        0.58,
+        1.15
+      ],
+      "parapet": 0.86
+    }
+  },
+  "references": [
+    {
+      "url": "https://www.ethnos.gr/greece/article/90252/gefyrithsplakasentyposiakaapokalypthriakaiprothdokimasiaaposeismo",
+      "imageUrl": "https://cdn.ethnos.gr/resources/images/d87d2f5a-86b8-4cfc-bdf2-107f3f46045f.jpg",
+      "use": "Reconstructed main vault,double radial bands,exposed soffit,pale stone courses and solid parapets. Temporary restoration scaffolding excluded.",
+      "license": "Unverified; private inspection only,not redistributed or used as textures."
+    },
+    {
+      "url": "https://typos-i.gr/article/gefyri-ths-plakas-agiasmos-ston-foyskwmeno-arax8o",
+      "imageUrl": "https://typos-i.gr/storage/app/media/ekklisia-giortes/theofaneia-plaka-2026-2.jpg",
+      "use": "Current2026 intact humpback bridge,solid sloping parapets and bank relief. People,flags and umbrellas excluded.",
+      "license": "Unverified; private inspection only,not redistributed or used as textures."
+    },
+    {
+      "url": "https://www.protothema.gr/greece/article/1325836/tzoumerka-gia-proti-fora-meta-apo-8-hronia-agiasmos-ton-udaton-sto-gefuri-tis-plakas/",
+      "imageUrl": "https://i1.prth.gr/images/1168x656/2/jpg/files/2023-01-06/tzoymerka-4.jpg",
+      "use": "Whole reconstructed bridge confirms two smaller bank reliefs,offset main crown and asymmetric approaches.",
+      "license": "Unverified; private inspection only,not redistributed or used as textures."
+    }
+  ],
+  "limitations": [
+    "Original present-day medium-fi reconstruction from three ordinary exterior pictures and current standard PMTiles. The mapped envelope is76.881m by4.285m. The main vault,bank relief dimensions and member sections are photo/map approximations,not engineering measurements. The modeled walking seams extend0.3m beyond each mapped bridge end.",
+    "One tall main vault with crown offset toward the western bank,two smaller true bank relief openings,exposed barrel soffits,two radial voussoir bands,solid sloping stone parapets and coping,continuous humpback walking deck,masonry joints and small iron tie plates are modeled. Temporary scaffolding,festival flags,people and debris from past collapse/restoration are excluded.",
+    "Detailed master retains128 main-arch segments,40 per relief,dense individual coursing,barrel strip joints,coping seams and walking bands. Browser close-up uses64/20 arch segments and coarser courses; street/district aggregate masonry. Skyline retains all three open vaults,solid parapets and the full humpback profile.",
+    "Four existing shared256px graphs: stone_limestone,stone_limestone_raw,stone_granite and metal_painted,with metric UV repeats and linear vertex tints. Local mortar tint; no private or embedded images. Repeated courses and shared stone textures approximate the irregular pale masonry seen in pictures.",
+    "Native verification uses actual detail tile17/73192/49876 clipped with the public normal semantic overzoom path. Its viewer water datum is257.3589782714844m from the retained standard PMTiles/Mapzen samples,not surveyed sea level. West/end heights11.44m and5.8m above that datum approximate the coarse mapped approach fit. Water datums at coarser levels differ and are not verified here.",
+    "Three bounded arch corridors clear only rendered ground above0.75m model-local height,preserving rawDEM,water,paving and outside ground. All three local portal lines clear rendered ground. The coarse west-bank slope can obscure the small western relief from distant views; hard terrace edges and generated path-support sidewalls remain visible. Exact rock faces,river banks,customs house,vegetation and surrounding trails are outside this bridge asset. No accessibility or physical-device performance claim."
+  ],
+  "cameras": [
+    {
+      "name": "high-main-arch-and-two-reliefs",
+      "position": [
+        14,
+        23,
+        78
+      ],
+      "lookAt": [
+        -3,
+        9,
+        0
+      ],
+      "fov": 65
+    },
+    {
+      "name": "double-voussoir-ring-and-soffit",
+      "position": [
+        -7,
+        16,
+        12
+      ],
+      "lookAt": [
+        -4,
+        17.6,
+        1.9
+      ],
+      "fov": 65
+    },
+    {
+      "name": "eastern-relief-and-stone-parapet",
+      "position": [
+        33,
+        9,
+        16
+      ],
+      "lookAt": [
+        29.4,
+        5,
+        0
+      ],
+      "fov": 64
+    },
+    {
+      "name": "walkway-and-humpback-parapets",
+      "position": [
+        -14,
+        20,
+        1
+      ],
+      "lookAt": [
+        14,
+        17,
+        0
+      ],
+      "fov": 66
+    },
+    {
+      "name": "western-relief-local-bank-passage",
+      "position": [
+        -32.4,
+        3.2,
+        5.4
+      ],
+      "lookAt": [
+        -32.4,
+        2.6,
+        -1
+      ],
+      "fov": 68
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srn/plaka_bridge/models/plaka-model.mjs",
+    "export": "buildPlakaSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "walk": {
+        "slot": "roof",
+        "graph": "stone_granite",
+        "roughness": 0.95
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76
+      },
+      "joint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPlakaDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "walk": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "street": {
+        "export": "buildPlakaStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "walk": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.12
+      },
+      "closeup": {
+        "export": "buildPlakaCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "walk": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          },
+          "joint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": -0.9,
+    "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+    "scale": 1
+  },
+  "appearance": {
+    "identity": "Pale humpback stone bridge with offset main arch and two bank reliefs."
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-whole-three-vault-bridge",
+      "position": [
+        14,
+        23,
+        78
+      ],
+      "lookAt": [
+        -3,
+        9,
+        0
+      ],
+      "fov": 65,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-whole-three-vault-bridge",
+      "position": [
+        14,
+        23,
+        78
+      ],
+      "lookAt": [
+        -3,
+        9,
+        0
+      ],
+      "fov": 65,
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-whole-three-vault-bridge",
+      "position": [
+        14,
+        23,
+        78
+      ],
+      "lookAt": [
+        -3,
+        9,
+        0
+      ],
+      "fov": 65,
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-whole-three-vault-bridge",
+      "position": [
+        14,
+        23,
+        78
+      ],
+      "lookAt": [
+        -3,
+        9,
+        0
+      ],
+      "fov": 65,
+      "reviewLod": "closeup"
+    }
+  ]
+}

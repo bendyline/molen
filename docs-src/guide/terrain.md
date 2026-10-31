@@ -351,9 +351,18 @@ For moving cameras, `stream.update(view, futureViews)` accepts optional predicte
 in time first. It prepares a bounded set of future leaves, semantic layers and GPU resources in
 the hidden resident cache without changing the current selection. Omit the second argument to
 stop prediction. Both the Earth view and World Explorer use `createEarthTilePreloader` from
-`@bendyline/molen-earth/client` to predict 4, 8 and 12 seconds of fast travel, capped at 4 km.
+`@bendyline/molen-earth/client` to predict 2, 4, 8 and 12 seconds of fast travel, capped at 4 km.
 Its `views(nowMs, view, steady)` takes positions already in the Earth adapter's metric world frame;
 pass `steady: false` during scripted camera animations and call `reset()` when changing frames.
+
+Semantic preparation shares its request window across enabled layers, retaining capacity for
+the next arriving tile's other layers even when one source stalls. Earth applies the same
+12-height / 24-layer preparation window to manual and automatic quality; bounded worker pools
+and frame admission govern the work itself. Visual quality and selection budgets remain separate.
+Layer priority follows the camera and predicted flight path through worker, assembly, GPU
+preparation and publication queues, ahead of surrounding detail.
+Repeated physics height probes cache the covering fields per finest-level cell; arriving tiles,
+visibility changes and eviction invalidate that lookup without caching or quantizing heights.
 
 The selector measures projected source-sample spacing, adapts its error/range to the selected-tile
 budget, requests ancestors before descendants, and retains a displayed parent until all selected
@@ -367,9 +376,10 @@ screen-space error, displayed-level range, and leaf fallback count. Quality pres
 error, view-distance, concurrency, selection, and residency budgets. Include `direction` and
 `aspect` in each view update to reject tiles safely outside a guarded horizontal camera cone while
 retaining direction-independent coarse coverage to the configured distance. `peripheralDegrees`
-widens that cone for ground only: tiles up to that many degrees past it stay selected at reduced
-detail (`peripheralDetail`, default 0.4, weighs their error) as bare terrain, without layers, so
-turning the camera reveals ground that is already there; layers build once the tile is in view. In-flight surface
+widens that cone: tiles up to that many degrees past it stay selected at reduced
+detail (`peripheralDetail`, default 0.4, weighs their error), with hydrology prepared too, so
+turning the camera reveals ground and mapped water that are already there. Buildings and vegetation
+build once the tile is in view. In-flight surface
 requests finish into a bounded warm cache instead of being restarted on every small camera turn;
 hidden cached tiles are evicted only when capacity is needed. Sparse descendants also share a
 bounded decoded-ancestor cache, avoiding repeated PNG decode/resample work while panning.
@@ -383,6 +393,9 @@ water and road surfaces are marked) and water with `userData.shadowReceiver = fa
 adaptive tiles. Its optional inclusive `minLevel`/`maxLevel` bounds keep expensive decoration off
 coarse fallback and horizon tiles. Layer objects become visible only with their selected surface,
 remain cached briefly across LOD transitions, and are disposed with their resident height tile.
+Hydrology is queued ahead of other visible layer work and appears as soon as it is prepared,
+without waiting for buildings or vegetation. Refinement still retains parent water until its
+replacement family is ready, avoiding gaps or overlapping parent/child shorelines.
 A layer object that drapes its whole tile with opaque ground (landcover over a full-tile
 background, as the regional worldgen classification layer builds) can set
 `userData[TERRAIN_COVERS_GROUND] = true`. While it is displayed, the stream stops drawing that
@@ -429,7 +442,8 @@ stay on the heap meanwhile.
 
 Mapped lake polygons also clear coarse elevation and landcover beneath their water surface,
 preserving polygon holes as islands. Small bank faces close the difference between the rendered
-ground triangles and the water level; clipped tile edges do not become artificial banks. These
+ground triangles and the water level over the tile's own ground: clipped tile edges, and the
+buffer that decoded and overzoomed areas carry past them, do not become artificial banks. These
 openings follow hydrology tile residency, independently of landmark loading, and restore the
 original ground on hide/unload. Roads and bridge surfaces retain their geometry. Source height
 samples remain available for anchoring and physics. Ground clipping keeps shared grid vertices
@@ -502,6 +516,19 @@ The package elevation pyramid may be sparse. `createTerrainPackagePyramidHeightS
 nearest declared ancestor when an exact tile is absent, then crops and resamples that ancestor into
 the requested tile bounds. This supports broad coarse coverage plus a small regional detail window
 without a hard distance cutoff. Set `parentFallback: false` when exact-level coverage is required.
+
+Geospatial package loaders automatically reject isolated extreme elevation samples before
+resampling or meshing, including in the elevation worker. A sample must sit above or below its
+entire surrounding ring by more than 100 m, twice the native sample spacing, and twice the ring's
+height range. Only those outliers are replaced with the ring median; ordinary slopes, ridges and
+cliffs retain their samples. This conservative check removes narrow DEM spikes and pits without
+blurring the whole terrain. It is not a general repair for broad corrupt regions or missing data.
+Suspicious border samples read neighbouring archive tiles so shared edges receive the same result;
+incomplete surrounding coverage is left unchanged. Meshes, ground queries and ancestor fallback
+all use the corrected samples. Local authored packages keep their original heights by default.
+Pass `filterElevation: false` to the package opening, stream or height-source options to inspect
+the original DEM, or `true` to enable the same filter for a local package. Archive files are never
+rewritten.
 
 Adaptive quality budgets include `maxSurfaceTileResolution` (33 economy, 65 balanced, 129 high).
 This limits render geometry without reducing the decoded heightfield used for sampling, feature

@@ -17,6 +17,33 @@ const parts: NonNullable<AircraftSpec['collisionParts']> = [
   },
 ];
 const spec = { collisionParts: parts } as AircraftSpec;
+
+it('separates a nested rotor once, including when its supporting wing detaches later', () => {
+  const model = new THREE.Group(),
+    wing = new THREE.Group();
+  wing.name = 'wing';
+  model.add(wing);
+  const rotor = new THREE.Mesh(new THREE.BoxGeometry(0.1, 2, 0.1), new THREE.MeshBasicMaterial());
+  rotor.name = 'rotor';
+  wing.add(rotor);
+  const visual = createAircraftDamageVisual(model, {
+    collisionParts: [...parts, { ...parts[0]!, id: 'rotor', nodes: ['rotor'], center: [0, 1, 0] }],
+  });
+  const state = damaged();
+  state.damage = { rotor: { integrity: 0, detached: true } };
+  state.debris = [{ ...state.debris![0]!, part: 'rotor' }];
+  visual.update(state);
+  const rotorPiece = model.getObjectByName('debris:rotor');
+  expect(rotorPiece?.getObjectByName('rotor')).toBeDefined();
+  state.damage.wing = { integrity: 0, detached: true };
+  state.debris.push({ ...state.debris[0]!, part: 'wing' });
+  visual.update(state);
+  expect(model.getObjectByName('debris:wing')?.getObjectByName('rotor')).toBeUndefined();
+  expect(model.getObjectByName('debris:rotor')).toBe(rotorPiece);
+  visual.update({});
+  expect(rotor.visible).toBe(true);
+  expect(wing.visible).toBe(true);
+});
 const damaged = (): AircraftStateData =>
   ({
     damage: { wing: { integrity: 0, detached: true } },

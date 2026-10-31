@@ -5,6 +5,8 @@ export interface WorldRegion {
   label: string;
   longitude: number;
   latitude: number;
+  /** Catalog airport/runway used for aircraft selection; coordinates locate its geographic cell. */
+  airport: { id: string; runway: string };
   /** West, south, east, north; street detail and wider coarse elevation coverage. */
   detailBounds: [number, number, number, number];
   coverageBounds: [number, number, number, number];
@@ -20,9 +22,11 @@ export interface WorldRegion {
 export const DEFAULT_WORLD_REGION: WorldRegion = {
   id: 'seattle-bellevue-sammamish',
   label: 'Seattle, Bellevue, and Sammamish, Washington',
-  longitude: -122.0356,
-  latitude: 47.6163,
-  detailBounds: [-122.46, 47.55, -121.95, 47.7],
+  longitude: -122.310997,
+  latitude: 47.540501,
+  airport: { id: 'KBFI', runway: '14R/32L' },
+  // Include Boeing Field and the neighborhoods south of its runway start.
+  detailBounds: [-122.46, 47.49, -121.95, 47.7],
   coverageBounds: [-123.15, 46.95, -120.9, 48.3],
   // Puget Sound and Lake Washington read near-black navy in summer NAIP imagery.
   water: '#071f2b',
@@ -34,8 +38,9 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
   {
     id: 'sydney',
     label: 'Sydney, Australia',
-    longitude: 151.2093,
-    latitude: -33.8688,
+    longitude: 151.171997,
+    latitude: -33.929401,
+    airport: { id: 'YSSY', runway: '16R/34L' },
     detailBounds: [151.04, -33.99, 151.31, -33.77],
     coverageBounds: [150.3, -34.5, 151.8, -33.2],
     // Port Jackson's harbour water is a dark green-teal in NSW imagery.
@@ -44,16 +49,19 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
   {
     id: 'kyoto',
     label: 'Kyoto, Japan',
-    longitude: 135.7681,
-    latitude: 35.0116,
+    // Itami is inside the wider Kyoto package, southwest of the city detail window.
+    longitude: 135.429001,
+    latitude: 34.791302,
+    airport: { id: 'RJOO', runway: '14R/32L' },
     detailBounds: [135.66, 34.88, 135.88, 35.09],
     coverageBounds: [135.15, 34.5, 136.4, 35.7],
   },
   {
     id: 'yuma',
     label: 'Yuma, Arizona',
-    longitude: -114.6244,
-    latitude: 32.7253,
+    longitude: -114.628998,
+    latitude: 32.636799,
+    airport: { id: 'KNYL', runway: '03L/21R' },
     detailBounds: [-114.78, 32.57, -114.47, 32.81],
     coverageBounds: [-115.4, 32.1, -113.8, 33.5],
     // The Colorado and its canals run dark olive-green under algae and silt.
@@ -62,8 +70,9 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
   {
     id: 'new-delhi',
     label: 'New Delhi, India',
-    longitude: 77.209,
-    latitude: 28.6139,
+    longitude: 77.084801,
+    latitude: 28.5672,
+    airport: { id: 'VIDP', runway: '10/28' },
     detailBounds: [77.08, 28.49, 77.34, 28.75],
     coverageBounds: [76.4, 27.9, 78, 29.4],
     // Dust settles on Delhi's roads and footpaths: Sentinel-2 reads them warm grey-brown.

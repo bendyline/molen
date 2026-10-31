@@ -1,0 +1,38 @@
+#flight-instruments {
+  position: fixed;
+  right: 14px;
+  bottom: 70px;
+  width: calc(var(--instrument-count, 2) * 124px);
+  max-width: calc(100vw - 28px);
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 10px;
+  background: rgb(12 24 35 / 90%);
+  box-shadow: 0 4px 18px rgb(0 0 0 / 20%);
+  color: #deedf6;
+  pointer-events: none;
+  user-select: none;
+}
+
+#flight-instruments[hidden] {
+  display: none;
+}
+#flight-instruments canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--instrument-count, 2);
+}
+.flight-instruments-title {
+  overflow: hidden;
+  padding: 7px 10px;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  #flight-instruments {
+    top: 68px;
+    bottom: auto;
+    width: calc(var(--instrument-count, 2) * 108px);
+  }
+}

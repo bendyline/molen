@@ -2,12 +2,13 @@
  * Tandem hub spacing, 60-foot rotors and ramp/sponson contours are authored here.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,
   cleanGeometry,
   detailKit,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -26,10 +27,10 @@ export const ch47Frame = () => ({
   ry: 1.25,
   cabinZ: 6.12,
   cabinWidth: 2.25,
-  eye: [-0.57, 2.63, 6.12],
+  eye: [-0.57, 2.3, 6.02],
   panelZ: 6.72,
   floor: 1.15,
-  mainRotorPosition: [0, 4.03, 5.9309],
+  mainRotorPosition: [0, 4.43, 5.9309],
 });
 export function buildCH47(s) {
   const root = new T.Group();
@@ -44,13 +45,24 @@ export function buildCH47(s) {
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.18,
+    }),
+    // Eyebrow and chin panes read dark tinted in the photos.
+    tint = mat('CH47-tinted-glass', '#2f464e', {
+      transparent: true,
+      opacity: 0.55,
+      depthWrite: false,
+      side: T.DoubleSide,
+      roughness: 0.15,
     });
   const d = detailKit(root, 'CH47-shell');
+  // The nose is a broad rounded bulb in plan and head-on views (not a wedge): two
+  // superelliptic rings and a dome close it to the tip at 7.62 m.
   const measured = [
-    [7.62, 0.14, 1.34, 1.65],
-    [7.45, 0.56, 1.1, 1.98],
+    [7.45, 0.6, 1.07, 1.92],
+    [7.28, 0.82, 0.94, 2.06],
     [7.12, 0.88, 0.9, 2.15],
-    [6.72, 1.04, 0.78, 2.25],
+    // Glare shield top about 2.1 m (Dubai and Fort Campbell head-on photos).
+    [6.72, 1.04, 0.78, 2.12],
     [6.06, 1.18, 0.72, 3.04],
     [5.35, 1.27, 0.7, 3.24],
     [3.8, 1.27, 0.68, 3.25],
@@ -59,69 +71,154 @@ export function buildCH47(s) {
     [-7.25, 0.93, 1.51, 3.24],
     [-7.8486, 0.6, 2.25, 2.94],
   ];
-  const ring = ([z, w, b, t]) => ({
+  // Head-on (front photo, 3-view) the Chinook is a rounded box: large-radius roof shoulders and
+  // belly corners over flat window sides, and a broad nose bulb. Rounded, smooth-shaded
+  // sections keep the flat side between fixed indices (see `section`) for the window sheets.
+  const ring = ([z, w, b, t], i) => ({
     z,
-    points: [
-      [0, t],
-      [w * 0.65, t - 0.07],
-      [w, t - 0.34],
-      [w, b + 0.49],
-      [w * 0.66, b],
-      [0, b - 0.05],
-      [-w * 0.66, b],
-      [-w, b + 0.49],
-      [-w, t - 0.34],
-      [-w * 0.65, t - 0.07],
-    ],
+    points:
+      i < 2
+        ? section(w, b, t, (t - b) * 0.52, (t - b) * 0.46, 3.2, 2.8)
+        : section(
+            w,
+            b - 0.05,
+            t,
+            Math.min(0.34, (t - b) * 0.42),
+            Math.min(0.54, (t - b) * 0.55),
+            3.5,
+          ),
   });
   const rings = measured.map(ring),
-    p = (i, j) => [...rings[i].points[j], rings[i].z];
-  loft(d, rings, paint, {
-    skip: (i, j) =>
-      (i === 3 && [0, 1, 8, 9].includes(j)) ||
-      ([2, 3, 4, 5, 6].includes(i) && [2, 7].includes(j)) ||
-      (i === 4 && [0, 9].includes(j)) ||
-      (i === 2 && [3, 6].includes(j)),
-  });
-  // Three forward panes; the central pane is broader than the narrow structural posts.
-  for (const j of [0, 1, 8, 9])
-    quad(d, p(3, j), p(4, j), p(4, (j + 1) % 10), p(3, (j + 1) % 10), glass, [0, 1, 1]);
-  const front = [
-    p(3, 8),
-    p(4, 8),
-    p(4, 9),
-    p(4, 0),
-    p(4, 1),
-    p(4, 2),
-    p(3, 2),
-    p(3, 1),
-    p(3, 0),
-    p(3, 9),
-  ];
+    n = rings[0].points.length,
+    p = (i, j) => [...rings[i].points[(j + n) % n], rings[i].z],
+    // Ring segment j (point j to j + 1) by its place on either half: 0 next to the crown,
+    // SIDE_TOP the flat side, SIDE_TOP + 5 next to the keel.
+    half = (j) => (j < n / 2 ? j : n - 1 - j),
+    windscreen = (j) => half(j) < SIDE_TOP,
+    // Corner eyebrow windows above the side panes, chin windows in the lower nose corners and
+    // the dark glare shield ahead of the windscreen (front photo).
+    eyebrow = (j) => half(j) >= 2 && half(j) < SIDE_TOP,
+    chin = (j) => half(j) > SIDE_TOP && half(j) < SIDE_TOP + 5,
+    shield = (j) => half(j) < 4;
+  const skip = (i, j) =>
+    (i === 3 && windscreen(j)) ||
+    ([2, 3, 4, 5, 6].includes(i) && half(j) === SIDE_TOP) ||
+    (i === 4 && eyebrow(j)) ||
+    ((i === 1 || i === 2) && (chin(j) || shield(j)));
+  loft(d, rings, paint, { skip });
+  noseDome(d, rings[0].points, 7.45, 7.625, 1.47, paint, 0.3);
+  const lining = mat('CH47-cockpit-lining', '#666e69', { side: T.DoubleSide });
+  const inset = (q) => [q[0] * 0.987, 1.8 + (q[1] - 1.8) * 0.987, q[2]];
+  loft(
+    d,
+    rings
+      .slice(0, 7)
+      .map((r) => ({ z: r.z, points: r.points.map((q) => inset([...q, r.z]).slice(0, 2)) })),
+    lining,
+    { skip, caps: false },
+  );
+  // Forward panes wrapping into the roof shoulders. Head-on (Dubai and Fort Campbell photos) the
+  // windscreen ends about 0.4 m below the cockpit roof: above it a painted band under the pylon
+  // and curved eyebrow panes over the outer panes, running on over the shoulders.
+  const mix = (a, b, u) => a.map((v, k) => v + (b[k] - v) * u),
+    TOP = 0.58,
+    top = (j) => mix(p(3, j), p(4, j), TOP),
+    // Share of the crown segment (x 0 to about 0.6 m) left painted between the eyebrows.
+    BAND = 0.55;
+  for (let j = -SIDE_TOP; j < SIDE_TOP; j++) {
+    quad(d, p(3, j), top(j), top(j + 1), p(3, j + 1), glass, [0, 1, 1]);
+    if (half((j + n) % n) > 0) {
+      quad(d, top(j), p(4, j), p(4, j + 1), top(j + 1), tint, [0, 1, 1]);
+      continue;
+    }
+    // Crown segment: painted next to the centreline, eyebrow glass outboard.
+    const u = j < 0 ? 1 - BAND : BAND;
+    for (const [u0, u1] of [
+      [0, u],
+      [u, 1],
+    ])
+      quad(
+        d,
+        mix(top(j), top(j + 1), u0),
+        mix(p(4, j), p(4, j + 1), u0),
+        mix(p(4, j), p(4, j + 1), u1),
+        mix(top(j), top(j + 1), u1),
+        j < 0 === u0 < u ? tint : paint,
+        [0, 1, 1],
+      );
+  }
+  const upper = Array.from({ length: 2 * SIDE_TOP + 1 }, (_, k) => k - SIDE_TOP),
+    front = [...upper.map((j) => top(j)), ...[...upper].reverse().map((j) => p(3, j))];
   outline(d, front, 0.021, paint);
+  // Rings 1-3: matt glare shield ahead of the panes and glazed chin corners, framed.
+  for (let j = 0; j < n; j++) {
+    for (const i of [1, 2]) {
+      if (shield(j)) quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), trim, [0, 1, 1]);
+      if (chin(j)) quad(d, p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1), tint, [0, -1, 1]);
+    }
+    // The eyebrows run on over the shoulders into the ring 4-5 bay, painted behind.
+    if (eyebrow(j)) {
+      const a = p(4, j),
+        b = p(5, j),
+        c = p(5, j + 1),
+        e = p(4, j + 1);
+      for (const [u0, u1, m] of [
+        [0, 0.5, tint],
+        [0.5, 1, paint],
+      ])
+        quad(d, mix(a, b, u0), mix(a, b, u1), mix(e, c, u1), mix(e, c, u0), m, [0, 1, 0]);
+    }
+  }
   for (const side of [-1, 1]) {
-    const a = [side * 0.35, 2.24, 6.72],
-      b = [side * 0.39, 3.025, 6.06];
-    d.rod(a, b, 0.034, paint);
-    d.rod([side * 0.66, 2.24, 6.72], [side * 0.57, 2.72, 6.31], 0.012, trim);
+    const s = (k) => side * k,
+      inner = (row) => mix(row(0), row(s(1)), BAND),
+      brow = [
+        inner(top),
+        inner((j) => p(4, j)),
+        p(4, s(1)),
+        p(4, s(2)),
+        ...[2, 3, 4, 5].map((k) => mix(p(4, s(k)), p(5, s(k)), 0.5)),
+        p(4, s(5)),
+        ...[5, 4, 3, 2, 1].map((k) => top(s(k))),
+      ];
+    outline(d, brow, 0.016, trim);
+    const chinEdge = [6, 7, 8, 9, 10].map(s);
+    outline(
+      d,
+      [
+        ...chinEdge.map((j) => p(1, j)),
+        p(2, s(10)),
+        ...[...chinEdge].reverse().map((j) => p(3, j)),
+        p(2, s(6)),
+      ],
+      0.014,
+      trim,
+    );
   }
-  for (const j of [0, 9]) {
-    const a = p(4, j),
-      b = p(5, j),
-      c = p(5, (j + 1) % 10),
-      e = p(4, (j + 1) % 10),
-      q = (u, v) =>
-        a.map((_, k) => (a[k] * (1 - u) + b[k] * u) * (1 - v) + (e[k] * (1 - u) + c[k] * u) * v),
-      h = [
-        [0.13, 0.23],
-        [0.87, 0.23],
-        [0.87, 0.88],
-        [0.13, 0.88],
-      ].map(([u, v]) => q(u, v));
-    sheet(d, [a, b, c, e], paint, [0, 1, 0], [h]);
-    sheet(d, h, glass, [0, 1, 0]);
-    outline(d, h, 0.015, trim);
-  }
+  // Posts on the skin: a narrow centre pane (posts at about 0.22 of the half width) and broad
+  // outer panes reaching the shoulders (Dubai head-on photo).
+  const onArc = (row, side, f) => {
+    const arc = Array.from({ length: SIDE_TOP + 1 }, (_, k) => row(side * k)),
+      x = f * Math.abs(arc.at(-1)[0]);
+    const k = Math.max(
+      0,
+      arc.findIndex((q, i) => i && Math.abs(q[0]) >= x),
+    );
+    const a = arc[Math.max(0, k - 1)],
+      b = arc[k];
+    return mix(a, b, (x - Math.abs(a[0])) / (Math.abs(b[0]) - Math.abs(a[0]) || 1));
+  };
+  for (const side of [-1, 1])
+    for (const [f, r] of [
+      [0.22, 0.03],
+      [0.82, 0.024],
+    ])
+      d.rod(
+        onArc((j) => p(3, j), side, f),
+        onArc(top, side, f),
+        r,
+        paint,
+      );
   const sx = (z, side) => {
     const i = measured.findIndex(
       (a, i) => i < measured.length - 1 && z <= a[0] && z >= measured[i + 1][0],
@@ -134,19 +231,19 @@ export function buildCH47(s) {
   };
   for (const side of [-1, 1]) {
     const q = (z, y) => [sx(z, side), y, z],
-      j = side > 0 ? 2 : 8,
-      k = side > 0 ? 3 : 7;
+      j = side * SIDE_TOP,
+      k = side * (SIDE_TOP + 1);
     const windows = [
       [
         [7.03, 1.73],
-        [6.76, 2.08],
-        [6.68, 2.08],
+        [6.76, 1.85],
+        [6.68, 1.9],
         [6.68, 1.34],
         [6.88, 1.35],
       ],
       [
-        [6.6, 2.19],
-        [6.02, 2.82],
+        [6.6, 2.04],
+        [6.02, 2.69],
         [5.55, 2.84],
         [5.55, 2.02],
         [6.6, 1.99],
@@ -154,8 +251,8 @@ export function buildCH47(s) {
       [
         [6.6, 1.9],
         [5.55, 1.9],
-        [5.55, 1.13],
-        [6.24, 1.15],
+        [5.55, 1.25],
+        [6.24, 1.28],
         [6.6, 1.4],
       ],
       [
@@ -171,40 +268,51 @@ export function buildCH47(s) {
           q(z + Math.cos((i * Math.PI) / 12) * 0.255, 2.13 + Math.sin((i * Math.PI) / 12) * 0.255),
         ),
       );
-    sheet(
-      d,
-      [
-        p(2, j),
-        p(3, j),
-        p(4, j),
-        p(5, j),
-        p(6, j),
-        p(7, j),
-        p(7, k),
-        p(6, k),
-        p(5, k),
-        p(4, k),
-        p(3, k),
-        p(2, k),
-      ],
-      paint,
-      [side, 0, 0],
-      windows,
-    );
+    // Clip openings into each planar side section. A single nonplanar polygon
+    // with holes extending beyond its contour produced disconnected triangles.
+    const clip = (points, dist) => {
+      const out = [];
+      for (let i = 0; i < points.length; i++) {
+        const a = points[i],
+          b = points[(i + 1) % points.length],
+          da = dist(a),
+          db = dist(b);
+        if (da >= -1e-9) out.push(a);
+        if (da < 0 !== db < 0) out.push(a.map((v, k) => v + ((b[k] - v) * da) / (da - db)));
+      }
+      return out;
+    };
+    for (let station = 2; station < 7; station++) {
+      let pieces = [[p(station, j), p(station + 1, j), p(station + 1, k), p(station, k)]];
+      for (const hole of windows) {
+        const area = hole.reduce((sum, a, i) => {
+            const b = hole[(i + 1) % hole.length];
+            return sum + a[2] * b[1] - b[2] * a[1];
+          }, 0),
+          next = [];
+        for (const cell of pieces) {
+          let inside = cell;
+          for (let i = 0; i < hole.length && inside.length; i++) {
+            const a = hole[i],
+              b = hole[(i + 1) % hole.length];
+            const dist = (q) =>
+              Math.sign(area) * ((b[2] - a[2]) * (q[1] - a[1]) - (b[1] - a[1]) * (q[2] - a[2]));
+            const out = clip(inside, (q) => -dist(q));
+            if (out.length >= 3) next.push(out);
+            inside = clip(inside, dist);
+          }
+          if (inside.length >= 3) sheet(d, inside, glass, [side, 0, 0]);
+        }
+        pieces = next;
+      }
+      for (const cell of pieces) {
+        sheet(d, cell, paint, [side, 0, 0]);
+        if (station < 6) sheet(d, cell.map(inset), lining, [-side, 0, 0]);
+      }
+    }
     for (const h of windows) {
-      sheet(d, h, glass, [side, 0, 0]);
       outline(d, h, 0.018, trim);
     }
-    // Lower chin panels look down beside the nose rather than being opaque decals.
-    const a = p(2, side > 0 ? 3 : 7),
-      b = p(3, side > 0 ? 3 : 7),
-      c = p(3, side > 0 ? 4 : 6),
-      e = p(2, side > 0 ? 4 : 6),
-      cen = [a, b, c, e].reduce((v, p) => v.map((n, k) => n + p[k] / 4), [0, 0, 0]),
-      h = [a, b, c, e].map((p) => p.map((n, k) => cen[k] + (n - cen[k]) * 0.78));
-    sheet(d, [a, b, c, e], paint, [side, -1, 1], [h]);
-    sheet(d, h, glass, [side, -1, 1]);
-    outline(d, h, 0.013, trim);
     for (const zz of [5.48, 4.75]) d.rod(q(zz, 1.17), q(zz, 2.92), 0.004, trim);
     outline(
       d,
@@ -226,33 +334,39 @@ export function buildCH47(s) {
     // Integral long lower fuel sponsons, tapering into the nose and rear ramp.
     const sp = group(root, `CH47-sponson-${side}`),
       sd = detailKit(sp, 'sponson');
+    // Full superelliptic pods reaching up to the window sills behind the forward door (front
+    // and right-side photos), so the lower fuselage reads broad head-on; ahead of that they
+    // taper into a low fairing under the door sill. Stations: z, reach, bottom, top.
     const stations = [
-      [5.24, 0.14, 1.28],
-      [4.45, 0.42, 1.14],
-      [3.5, 0.57, 1.07],
-      [-4.6, 0.57, 1.07],
-      [-5.7, 0.48, 1.23],
-      [-6.7, 0.15, 1.67],
+      [5.24, 0.12, 0.74, 1.04],
+      [4.45, 0.38, 0.64, 1.08],
+      [3.55, 0.54, 0.59, 1.2],
+      [3.1, 0.57, 0.59, 1.63],
+      [-4.6, 0.57, 0.59, 1.63],
+      [-5.7, 0.48, 0.75, 1.79],
+      [-6.7, 0.15, 1.19, 2.23],
     ];
+    const pod = (r, bottom, top) => {
+      const low = Math.min(0.48, (top - bottom) / 2),
+        y = bottom + low;
+      return Array.from({ length: 20 }, (_, i) => {
+        const s = Math.sin((i * Math.PI) / 10),
+          c = Math.cos((i * Math.PI) / 10);
+        return [
+          side * 1.28 + Math.sign(s) * Math.pow(Math.abs(s), 2 / 2.6) * r,
+          y + Math.sign(c) * Math.pow(Math.abs(c), 2 / 2.6) * (c > 0 ? top - y : low),
+        ];
+      });
+    };
     loft(
       sd,
-      stations.map(([z, r, y]) => ({
-        z,
-        points: Array.from({ length: 20 }, (_, i) => [
-          side * 1.28 + Math.sin((i * Math.PI) / 10) * r,
-          y + Math.cos((i * Math.PI) / 10) * 0.48,
-        ]),
-      })),
+      stations.map(([z, r, bottom, top]) => ({ z, points: pod(r, bottom, top) })),
       paint,
     );
-    for (const z of [3.4, 1.35, -0.7, -2.75, -4.5])
+    for (const z of [2.9, 1.35, -0.7, -2.75, -4.5])
       outline(
         sd,
-        Array.from({ length: 20 }, (_, i) => [
-          side * 1.28 + Math.sin((i * Math.PI) / 10) * 0.575,
-          1.07 + Math.cos((i * Math.PI) / 10) * 0.485,
-          z,
-        ]),
+        pod(0.575, 0.585, 1.635).map((q) => [...q, z]),
         0.003,
         trim,
       );
@@ -291,42 +405,52 @@ export function buildCH47(s) {
   );
   for (const side of [-1, 1])
     d.rod([side * 0.79, 1.31, -6.85], [side * 0.59, 2.15, -7.76], 0.022, metal);
+  // Pylons: flat upright sides under a large-radius crown (aft pylon close-up and rear photos).
   const pylon = (z, w, b, t) => ({
     z,
     points: [
-      [0, t],
-      [w * 0.72, t - 0.07],
-      [w, t - 0.27],
-      [w, b],
       [-w, b],
-      [-w, t - 0.27],
-      [-w * 0.72, t - 0.07],
+      ...Array.from({ length: 11 }, (_, k) => {
+        const a = ((k - 5) * Math.PI) / 10,
+          s = Math.sin(a),
+          y = t - Math.min(0.4, (t - b) * 0.75);
+        return [
+          w * Math.sign(s) * Math.pow(Math.abs(s), 2 / 3.4),
+          y + (t - y) * Math.pow(Math.cos(a), 2 / 3.4),
+        ];
+      }),
+      [w, b],
     ],
   });
   loft(
     d,
     [
-      pylon(6.55, 0.34, 2.92, 3.22),
-      pylon(6.25, 0.66, 3.04, 3.64),
-      pylon(5.68, 0.69, 3.15, 3.66),
-      pylon(4.6, 0.61, 3.2, 3.44),
-      pylon(4.28, 0.51, 3.2, 3.28),
+      // Head-on photo (fleet reference exterior-1): pylon crest about 4.0 m, hub 4.4 m, about
+      // 1.0 m wide (0.27 of the pod span in the photo and the 3-view). Its front face rises
+      // from the cockpit roof behind the windscreen header (right-side photo); no overhang.
+      pylon(6.12, 0.3, 2.95, 3.45),
+      pylon(6.0, 0.46, 3.0, 3.86),
+      pylon(5.85, 0.52, 3.06, 4.0),
+      pylon(5.0, 0.48, 3.2, 3.88),
+      pylon(4.4, 0.39, 3.2, 3.42),
+      pylon(4.15, 0.3, 3.2, 3.27),
     ],
     paint,
   );
   loft(
     d,
     [
+      // Published height 5.68 m to the top of the aft head puts the hub near 5.5 m.
       pylon(-4.0, 0.48, 3.17, 3.35),
-      pylon(-4.72, 0.7, 3.19, 4.8),
-      pylon(-5.76, 0.73, 3.16, 4.97),
-      pylon(-6.72, 0.65, 3.05, 4.91),
-      pylon(-7.45, 0.43, 2.87, 4.45),
+      pylon(-4.72, 0.7, 3.19, 4.95),
+      pylon(-5.76, 0.73, 3.16, 5.17),
+      pylon(-6.72, 0.65, 3.05, 5.1),
+      pylon(-7.45, 0.43, 2.87, 4.6),
     ],
     paint,
   );
   for (const side of [-1, 1]) {
-    d.box([0.015, 0.25, 0.36], [side * 0.69, 3.43, 5.59], trim);
+    d.box([0.015, 0.25, 0.36], [side * 0.505, 3.43, 5.45], trim);
     for (const z of [-5.0, -6.0, -7.0])
       for (let i = 0; i < 10; i++)
         d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [
@@ -379,8 +503,8 @@ export function buildCH47(s) {
   }
   // Intermeshing counter-rotating three-bladed heads at published longitudinal spacing.
   for (const [i, z, y] of [
-    [0, 5.9309, 4.03],
-    [1, -5.9309, 5.24],
+    [0, 5.9309, 4.43],
+    [1, -5.9309, 5.5],
   ]) {
     const mast = group(root, `CH47-mast-${i}`, [0, y, z]),
       md = detailKit(mast, 'mast');
@@ -414,7 +538,7 @@ export function buildCH47(s) {
     rd.finish();
   }
   d.finish();
-  const interior = cockpit(root, { paint, trim, metal });
+  const interior = cockpit(root, { paint, trim, metal }, rings);
   cleanGeometry(root);
   return {
     root,
@@ -445,7 +569,7 @@ function wheel(d, p, r, w, rubber, metal, paint) {
     d.ring(r * 0.38, 0.012, [p[0] + s * w * 0.57, p[1], p[2]], metal, 'x');
   }
 }
-function cockpit(root, m) {
+function cockpit(root, m, rings) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'CH47-cockpit'),
     bindings = [],
@@ -455,7 +579,8 @@ function cockpit(root, m) {
     z = 6.72,
     k = 0.1524 / 104,
     px = (u) => (887 - u) * k,
-    py = (v) => 2.04 - (v - 800) * k,
+    // Panel and coaming sit under the 2.1 m glare shield, about 0.4 m below the pilot's eye.
+    py = (v) => 1.91 - (v - 800) * k,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz],
     pt = panelTools(d);
   // Central MFD scale uses Collins' 6x8-inch active display; outer banks retain photo perspective.
@@ -500,7 +625,16 @@ function cockpit(root, m) {
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    quad(d, a, b, [b[0], b[1] - 0.12, z + 0.38], [a[0], a[1] - 0.12, z + 0.38], m.trim, [0, 1, 0]);
+    // The coaming narrows forward with the nose bulb so it stays inside the skin.
+    quad(
+      d,
+      a,
+      b,
+      [b[0] * 0.88, b[1] - 0.12, z + 0.38],
+      [a[0] * 0.88, a[1] - 0.12, z + 0.38],
+      m.trim,
+      [0, 1, 0],
+    );
   }
   outline(d, brow, 0.022, m.trim, false);
   for (const [u, v, kind] of [
@@ -564,14 +698,15 @@ function cockpit(root, m) {
     d.box([0.15, 0.027, 0.024], at(885, v, -0.023), m.trim);
     for (let i = 0; i < 7; i++)
       d.box([0.01, 0.004, 0.004], at(839 + i * 16, v - 8, -0.04), i % 2 ? d.amber : d.ivory);
-    d.text('ENG ' + (v === 781 ? '1' : '2'), at(887, v, -0.042), 0.007, Math.PI, d.ivory);
+    d.text(`ENG ${v === 781 ? '1' : '2'}`, at(887, v, -0.042), 0.007, Math.PI, d.ivory);
   }
   // Two CDU keypads descend into a broad inclined pedestal, matching the Army photo.
-  const pg = group(cabin, 'CH47-pedestal', [0, 1.72, 6.67]);
+  const pg = group(cabin, 'CH47-pedestal', [0, 1.59, 6.67]);
   pg.rotation.x = -0.64;
   const pd = detailKit(pg, 'pedestal'),
     pp = panelTools(pd);
-  beveledBox(pd, [0.57, 0.95, 0.18], [0, -0.44, 0.04], m.trim, 0.015);
+  // Shortened so its lower end stays inside the nose belly below the lowered panel.
+  beveledBox(pd, [0.57, 0.82, 0.18], [0, -0.375, 0.04], m.trim, 0.015);
   for (const x of [-0.16, 0.16]) {
     pd.box([0.19, 0.12, 0.012], [x, -0.19, -0.063], pd.dark);
     for (let row = 0; row < 5; row++)
@@ -596,17 +731,20 @@ function cockpit(root, m) {
   }
   for (let row = 0; row < 3; row++)
     for (const x of [-0.19, -0.06, 0.06, 0.19]) {
-      pp.knob(x, -0.61 - row * 0.09, -0.065, 0.013);
+      pp.knob(x, -0.61 - row * 0.08, -0.065, 0.013);
       pd.text(
         ['COM', 'NAV', 'ADF'][row],
-        [x, -0.59 - row * 0.09, -0.072],
+        [x, -0.59 - row * 0.08, -0.072],
         0.007,
         Math.PI,
         pd.ivory,
       );
     }
   pd.finish();
-  d.box([2.22, 0.05, 11.3], [0, 1.13, 0.85], m.trim);
+  // The cockpit deck is a step above the cargo floor, which sits level with the door sills
+  // (about 1.0 m in the right-side photos); the deck's deep aft face closes the step.
+  fittedFloor(d, rings, m.trim, { y: 1.155, front: 7.1, back: 5.0, width: 2.22, thickness: 0.2 });
+  fittedFloor(d, rings, m.trim, { y: 0.98, front: 5.0, back: -4.8, width: 2.22, thickness: 0.05 });
   const addSeat = (parent, x, y, z, armored = false) => {
     const sd = detailKit(parent, 'CH47-seat');
     beveledBox(sd, [0.5, 0.13, 0.5], [x, y, z], seat);
@@ -682,13 +820,13 @@ function cockpit(root, m) {
     outline(
       d,
       [
-        [-1.12, 1.2, z],
+        [-1.12, 1.03, z],
         [-1.12, 2.7, z],
         [-0.8, 3.02, z],
         [0, 3.12, z],
         [0.8, 3.02, z],
         [1.12, 2.7, z],
-        [1.12, 1.2, z],
+        [1.12, 1.03, z],
       ],
       0.025,
       face,
@@ -697,28 +835,71 @@ function cockpit(root, m) {
     for (const side of [-1, 1]) {
       const g = group(cabin, `CH47-troop-seat-${side}-${z}`, [side * 0.95, 0, z]);
       g.rotation.y = (side * Math.PI) / 2;
-      addSeat(g, 0, 1.48, 0);
+      addSeat(g, 0, 1.305, 0);
     }
   }
-  const og = group(cabin, 'CH47-overhead', [0, 3.02, 5.96]),
+  // Overhead console ends at the windscreen header instead of poking through the glazing.
+  const og = group(cabin, 'CH47-overhead', [0, 2.96, 5.45]),
     od = detailKit(og, 'overhead');
-  od.box([0.69, 0.065, 1.47], [0, 0, 0], m.trim);
+  od.box([0.69, 0.065, 1.1], [0, 0, 0], m.trim);
   for (let r = 0; r < 9; r++)
     for (const x of [-0.24, -0.08, 0.08, 0.24]) {
-      od.box([0.13, 0.009, 0.12], [x, -0.038, -0.61 + r * 0.15], face);
-      for (const z of [-0.025, 0.025])
+      od.box([0.13, 0.009, 0.1], [x, -0.038, -0.46 + r * 0.112], face);
+      for (const z of [-0.022, 0.022])
         od.rod(
-          [x, -0.045, -0.61 + r * 0.15 + z],
-          [x, -0.078, -0.6 + r * 0.15 + z],
+          [x, -0.045, -0.46 + r * 0.112 + z],
+          [x, -0.078, -0.45 + r * 0.112 + z],
           0.004,
           r === 3 ? od.red : m.metal,
         );
     }
   for (const x of [-0.15, 0.15]) {
-    od.box([0.1, 0.035, 0.15], [x, -0.058, 0.43], m.trim);
-    od.rod([x, -0.07, 0.43], [x, -0.12, 0.47], 0.01, m.metal);
+    od.box([0.1, 0.035, 0.15], [x, -0.058, 0.36], m.trim);
+    od.rod([x, -0.07, 0.36], [x, -0.12, 0.4], 0.01, m.metal);
   }
   od.finish();
   d.finish();
   return { nodes: ['cockpit'], bindings };
+}
+
+/** Index of the +X side's upper corner in `section` rings (its mirror is ring length - 5). */
+const SIDE_TOP = 5;
+/** 22-point fuselage section in the template's point order (top, +X side, keel): superelliptic
+ * roof shoulders `upper` tall and belly corners `lower` tall (exponents n, m) joined by a flat,
+ * upright side from index SIDE_TOP to SIDE_TOP + 1, so window sheets stay planar. */
+function section(w, b, t, upper, lower, n = 4, m = 3) {
+  const steps = [18, 36, 54, 72, 90].map((a) => (a * Math.PI) / 180),
+    top = steps.map((a) => [
+      w * Math.pow(Math.sin(a), 2 / n),
+      t - upper + upper * Math.pow(Math.cos(a), 2 / n),
+    ]),
+    bottom = [...steps]
+      .reverse()
+      .map((a) => [
+        w * Math.pow(Math.sin(a), 2 / m),
+        b + lower - lower * Math.pow(Math.cos(a), 2 / m),
+      ]),
+    half = [...top, ...bottom];
+  return [[0, t], ...half, [0, b], ...half.reverse().map(([x, y]) => [-x, y])];
+}
+
+/** Nose dome from a fuselage ring at z0 to a rounded tip at z1: quarter-ellipse in plan,
+ * blended toward a straight taper in profile by `wedge` (0 = elliptical, 1 = conical). */
+function noseDome(d, ring, z0, z1, tipY, material, wedge = 0) {
+  const points = ring.flatMap((q, i) => {
+    const n = ring[(i + 1) % ring.length];
+    return [q, [(q[0] + n[0]) / 2, (q[1] + n[1]) / 2]];
+  });
+  loft(
+    d,
+    [0, 0.35, 0.62, 0.82, 0.94, 0.99].map((u) => {
+      const s = Math.sqrt(1 - u * u),
+        sy = s * (1 - wedge) + (1 - u) * wedge;
+      return {
+        z: z0 + (z1 - z0) * u,
+        points: points.map(([x, y]) => [x * s, tipY + (y - tipY) * sy]),
+      };
+    }),
+    material,
+  );
 }

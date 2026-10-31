@@ -64,7 +64,8 @@ metadata; arbitrary tagged model lamps currently emit without creating a point l
 Active traffic and the driven car get white headlights and red tail lights, including when
 stopped at a signal. Lenses follow vehicle dimensions and the full chassis rotation, through
 proxy/model changes and floating-origin shifts. Braking brightens the rear lenses. Four nearby
-cars also receive forward, downward-aimed spotlights, with the driven car taking priority.
+cars also receive a pair of forward, downward-aimed spotlights, with the driven car taking priority.
+Each beam starts at its headlight lens and softly lights the road immediately ahead of the car.
 Their beams illuminate pavement, walls and vehicles ahead. Parked, unoccupied cars keep their
 lamps off and receive light from their surroundings. Hidden/despawned traffic loses its lights.
 

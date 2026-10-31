@@ -108,6 +108,57 @@ it('publishes individual shaft RPM without confusing normalized RPM with revolut
   visual.dispose();
 });
 
+it('poses rigged gear and mechanisms from their positions without hiding exposed stowed wheels', () => {
+  const model = new THREE.Group();
+  const gear = new THREE.Group();
+  const canopy = new THREE.Group();
+  gear.name = 'gear';
+  canopy.name = 'canopy';
+  model.add(gear, canopy);
+  const spec: AircraftSpec = {
+    ...SPEC,
+    visual: {
+      ...SPEC.visual,
+      rotors: [],
+      interior: undefined,
+      gearNodes: ['gear'],
+      animation: {
+        bindings: [
+          {
+            node: 'gear',
+            source: 'gear',
+            property: 'rotation',
+            axis: 'z',
+            scale: -1.5,
+            offset: 1.5,
+          },
+          { node: 'canopy', source: 'canopy', property: 'position', axis: 'z', scale: -1 },
+        ],
+      },
+    },
+  };
+  const visual = createAircraftVisual(model, spec);
+  const input = {
+    power: 0,
+    pitch: 0,
+    roll: 0,
+    yaw: 0,
+    engine: false,
+    gear: false,
+    flaps: false,
+    brake: false,
+    actuators: { canopy: 0 },
+  };
+  visual.update({ gearPosition: 0.3, actuators: { canopy: 0.4 } } as AircraftStateData, input, 0);
+  expect(gear.rotation.z).toBeCloseTo(1.05);
+  expect(canopy.position.z).toBeCloseTo(-0.4);
+  visual.update({ gearPosition: 0, actuators: { canopy: 0.2 } } as AircraftStateData, input, 0);
+  expect(gear.visible).toBe(true);
+  expect(gear.rotation.z).toBeCloseTo(1.5);
+  expect(canopy.position.z).toBeCloseTo(-0.2);
+  visual.dispose();
+});
+
 it('retains bank in the cockpit quaternion and shortens obstructed chase views', () => {
   const transform = {
     pos: [100000, 200, 300000] as [number, number, number],

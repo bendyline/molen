@@ -47,9 +47,10 @@
     "notes": "Origin is the mapped active eastern-tower polygon centroid. Native+X runs along the long keeper range east/slightly north; native+Z faces the southern engine room and coast. Exact tower and engine-house parts remove the180degree ambiguity. The western tower is offset[-67.95,0,2.82]m; the source uses ordinary common station-grade contact and does not mistake70m focal elevation for model height."
   },
   "limitations": [
-    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
-    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
-    "The current exterior is reconstructed from operator photographs and heritage description. Service-wing roof ridges, small joinery and chimney pots are photograph-based dimensions. Fine lens prisms and weather-vane contours are original geometric approximations. Garden walls use the published station layout rather than cadastral wall surveys; detached hostel, coastal terrain and temporary furniture remain map context."
+    "Published19m active tower height is distinct from70m focal elevation. Retain exact mapped eastern/western tower centers,68.01m separation,60.53m keeper range and28.54x9.98m engine house. Small fittings, heights and roof/joinery details remain original photograph-proportioned reconstruction controls.",
+    "The native origin is the active eastern tower base at ordinary station grade, with western tower offset[-67.95,0,2.82]m. The retained north-up overlay establishes approximate plan orientation and fit; native cliff/site slope, ground clearances and independent coastal buildings remain unverified.",
+    "Skyline aggregates repeated glazing, pots and guard decoration and uses opaque lantern glazing with coarse diamond identity; the optic interior and tiny antennas are omitted. District uses complete window-position cards rather than true recesses, simple hoods/sills, pot cards and flat guards. Street restores recesses with fewer optic rings and no tiny finial balls. Closeup keeps coarser round finials, diamond paths and lens rings than the master.",
+    "Shared256px materials provide coherent visual scale rather than literal historic stucco/slate scans. Fine prism physics, navigational accuracy, interior access, surveyed garden walls and physical laptop/phone performance remain unverified. Detached hostel, cliffs, external masts and temporary furniture remain map context."
   ],
   "previewCamera": {
     "position": [
@@ -153,6 +154,222 @@
   "assetId": "molen.worldgen.structure.lizard_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "appearance": {
+    "identity": "Twin white octagonal towers separated by68m, with only the eastern tower carrying its diamond lantern, optic and weather vane; long two-storey keeper range, projecting gable bays, six tall black keeper chimneys, seven rear outshuts and rear wing, covered center passage, engine house and rounded foghorn bay.",
+    "master": "Preserve the detailed source and imported master byte-for-byte. Native hill/cliff grading stays separate.",
+    "browser": "Four complete source-local levels retain all joined station masses, both octagonal towers, only the eastern active lantern, all eight black chimney stacks including the two engine stacks, rear outshuts, passage, engine/foghorn silhouette and finite site walls. Four existing shared256px graphs supply plaster, slate, painted metal and wood; local dark/clear glazing stays separate. Skyline aggregates repeated windows and chimney pots, omits tiny hardware, optic interior and wall buttresses. District retains every window position as a flat card, hood/green-sill rhythm, diamond glazing, optic and horn, with flat guards and pot cards. Street restores actual facade recesses and deeper hoods, with simpler finials/curves and optic rings. Closeup adds rounded finials, finer diamond paths, curves and joinery; micro rosettes/dome seams aggregate."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gb/gbu/lizard_lighthouse/models/lizard-lods.mjs",
+    "export": "lizardSkyline",
+    "errorMeters": 0.9,
+    "authoredLevels": {
+      "district": {
+        "export": "lizardDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.82
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "lizardStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.82
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "lizardCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.82
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-twin-tower-station-and-engine-room",
+      "position": [
+        57,
+        38,
+        80
+      ],
+      "lookAt": [
+        -30,
+        7,
+        12
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-active-lantern-diamonds-and-keeper-range",
+      "position": [
+        17,
+        19,
+        25
+      ],
+      "lookAt": [
+        -5,
+        11,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-engine-house-rounded-bay-and-open-foghorn",
+      "position": [
+        -19,
+        11,
+        49
+      ],
+      "lookAt": [
+        -33,
+        5.3,
+        31
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-active-optic-diamond-bars-and-gallery",
+      "position": [
+        7,
+        17.4,
+        8
+      ],
+      "lookAt": [
+        0,
+        15.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "actualBounds": {
     "min": [
       -72.08999633789062,

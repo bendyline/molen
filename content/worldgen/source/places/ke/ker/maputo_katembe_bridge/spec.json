@@ -1,0 +1,435 @@
+{
+  "planId": "maputo_katembe_bridge",
+  "id": "maputo_katembe_bridge",
+  "assetId": "molen.worldgen.structure.maputo_katembe_bridge",
+  "title": "Maputo–Katembe Bridge",
+  "wikidataId": "Q19275941",
+  "category": "bridge",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 32.55733322843708,
+    "latitude": -25.973005555556
+  },
+  "size": [
+    849.7425537109375,
+    144.88479804992676,
+    3591.5994873046875
+  ],
+  "actualBounds": {
+    "min": [
+      -455.9946594238281,
+      -23.124399185180664,
+      -2117.6767578125
+    ],
+    "max": [
+      393.7478942871094,
+      121.7603988647461,
+      1473.9227294921875
+    ]
+  },
+  "visualBrief": "Whole Maputo–Katembe suspension bridge and its intrinsic elevated approach viaducts/ramps: complete native named north/south road paths and connected elevated northern links; main suspended steel box deck, both concrete portal pylons, paired main cables/suspenders, approach concrete girders/piers, anchor blocks, barriers and four-lane road surface. All seven native elevated road records retained as plan provenance; paired carriageways resolve into the shared physical deck where coincident. Ground-level connecting highways, separate servicebridge37063620, port buildings, tollcampus, ferry terminals, natural shore/water and unrelated city structures excluded. Reconstruction uses published engineering dimensions and exact native road layout, with explicitly estimated small sections, color, supports, cable sag/hanger census and grades; no source photographs/figures used or photographic fidelity claimed.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2026-10-29",
+    "validFrom": "2026-10-29",
+    "validUntil": "2027-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "maputo-katembe-bridge-wp",
+      "url": "https://qualla.com/maputo-katembe-bridge/"
+    }
+  ],
+  "referenceInputHash": "sha256:af8d4202e688cf33219e1e99d579662af742b7146a56673163ac68345e3e963e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ke/ker/maputo_katembe_bridge/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ke/ker/maputo_katembe_bridge/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 30,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.35
+      },
+      "road": {
+        "slot": "roof",
+        "localRef": "palette:#535658",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#d6d5c8",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 8,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#535658",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#d6d5c8",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#535658",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#d6d5c8",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "roof",
+            "localRef": "palette:#535658",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#d6d5c8",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_boardformed",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 14000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Primary metric dimensions and native whole bridge/approach layout. All vertical sections/grades chosen once only after original field acquisition; minor sections and unsurveyed heights explicitly estimated. No imagery used.",
+    "anchor": [
+      32.55733322843708,
+      -25.973005555556
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        32.55799579696922,
+        -25.95965606106435
+      ],
+      "modelHeight": 0,
+      "basis": "Original northern native bridge-road terminal5145363355 chosen before source-field acquisition and all floor/main-section/model choices. Provider-relative host datum; no surveyed waterline or road grade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/378386159",
+      "way/529725302",
+      "way/638819906",
+      "way/643276204",
+      "way/643276231",
+      "way/764038469",
+      "way/1309091556"
+    ],
+    "source": "https://www.openstreetmap.org/way/378386159",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6b598215fef190e80ee5ac0f72bc0e4ce6ccf9f5215c37b75421131f8ddfe188",
+    "notes": "Whole Maputo–Katembe suspension bridge and its intrinsic elevated approach viaducts/ramps: complete native named north/south road paths and connected elevated northern links; main suspended steel box deck, both concrete portal pylons, paired main cables/suspenders, approach concrete girders/piers, anchor blocks, barriers and four-lane road surface. All seven native elevated road records retained as plan provenance; paired carriageways resolve into the shared physical deck where coincident. Ground-level connecting highways, separate servicebridge37063620, port buildings, tollcampus, ferry terminals, natural shore/water and unrelated city structures excluded. Reconstruction uses published engineering dimensions and exact native road layout, with explicitly estimated small sections, color, supports, cable sag/hanger census and grades; no source photographs/figures used or photographic fidelity claimed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole Maputo–Katembe suspension bridge and its intrinsic elevated approach viaducts/ramps: complete native named north/south road paths and connected elevated northern links; main suspended steel box deck, both concrete portal pylons, paired main cables/suspenders, approach concrete girders/piers, anchor blocks, barriers and four-lane road surface. All seven native elevated road records retained as plan provenance; paired carriageways resolve into the shared physical deck where coincident. Ground-level connecting highways, separate servicebridge37063620, port buildings, tollcampus, ferry terminals, natural shore/water and unrelated city structures excluded. Reconstruction uses published engineering dimensions and exact native road layout, with explicitly estimated small sections, color, supports, cable sag/hanger census and grades; no source photographs/figures used or photographic fidelity claimed.",
+    "Primary engineering dimensions:680m main span,141.2m tower height,60m navigation clearance,25.6m steel deck width and3m box depth. Primary authority describes concreteT-beam/box-girder approaches. Exact pylon leg/crossbeam shape, cable sag/diameter/hanger census, anchorblock sections, lane/railing details, colors and grades are explicit architectural/engineering estimates; no photographs or diagrams were used.",
+    "All133original native road controls/seven actual elevated ways retained as provenance. Paired carriageways become one shared physical deck where coincident, with separate elevated northern links. Native named-road centerline is about3.24km including mapped approach geometry; published3.01km main/approach engineering figure uses a different boundary. No map stretching to force a published total. No measured outer deck outline or exact pier census claimed.",
+    "Four-kilometre independent original field is unchanged, with25rawtiles and16641heights. The outermost northern ramp reaches64.44m beyond the finite review-grid edge; its grade is sampled from the same already acquired original rawtile bytes. No extension, reacquisition, masking, cutout, height fill or source refit. Wide review views can show the finite ground-fixture edge.",
+    "Piers/tower feet use the original provider ground once, with approximate vertical datum. Navigation clearance is interpreted against approximate mean-sea-level source datum; no survey accuracy or current-world automatic replacement claim. Broad natural bay, shore terrain, city buildings and ground-level connecting highways are not modeled."
+  ],
+  "sourceLicense": "Original authored procedural model under repository license. No source photographs, satellite pixels, figures, traced artwork or photo textures used; Qualla corpus searched first. Native original bridge/approach road geometry under ODbL. Published primary engineering dimensional/construction facts supply major controls, used as facts without copying source prose into model surfaces. Cable sag/hanger count/portal sections/piers/finishes/grade and finite-field-boundary details are explicit estimates; no photographic, pylon section survey or exact current-world replacement claim. Complete named crossing and intrinsic elevated approaches retained; no reduced main-span-only completion credit.",
+  "qaLodCameras": [
+    {
+      "name": "whole-maputo-crossing-skyline",
+      "position": [
+        2250,
+        1050,
+        2100
+      ],
+      "lookAt": [
+        0,
+        45,
+        -300
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-maputo-crossing-district",
+      "position": [
+        2250,
+        1050,
+        2100
+      ],
+      "lookAt": [
+        0,
+        45,
+        -300
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-maputo-crossing-street",
+      "position": [
+        2250,
+        1050,
+        2100
+      ],
+      "lookAt": [
+        0,
+        45,
+        -300
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-maputo-crossing-closeup",
+      "position": [
+        2250,
+        1050,
+        2100
+      ],
+      "lookAt": [
+        0,
+        45,
+        -300
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-bridge-and-all-elevated-approaches",
+      "position": [
+        2250,
+        1050,
+        2100
+      ],
+      "lookAt": [
+        0,
+        45,
+        -300
+      ]
+    },
+    {
+      "name": "main-suspension-span-both-towers-and-cables",
+      "position": [
+        750,
+        360,
+        700
+      ],
+      "lookAt": [
+        0,
+        85,
+        0
+      ]
+    },
+    {
+      "name": "northern-curved-approaches-and-viaducts",
+      "position": [
+        -750,
+        460,
+        -1900
+      ],
+      "lookAt": [
+        20,
+        35,
+        -1350
+      ]
+    },
+    {
+      "name": "southern-complete-approach-piers-and-deck",
+      "position": [
+        900,
+        280,
+        1400
+      ],
+      "lookAt": [
+        -180,
+        20,
+        1050
+      ]
+    },
+    {
+      "name": "roadway-box-deck-and-suspender-details",
+      "position": [
+        -12.962129903066135,
+        42.1958,
+        57.55246487864525
+      ],
+      "lookAt": [
+        59.905896171926315,
+        43.1958,
+        -192.0273430087281
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 32440,
+    "vertices": 97320,
+    "materials": 5,
+    "bytes": 3987256,
+    "sha256": "sha256:a24d2e4a934eb3aa95aabc9cf641031ddd0fbbec3f76fddd8302baefac557cbe"
+  }
+}

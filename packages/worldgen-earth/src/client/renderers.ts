@@ -431,6 +431,7 @@ export function createWorldgenSemanticRenderers(
       features: { ...features, interiors: interiors !== undefined && features.buildings },
       tierOffset: preset === 'economy' ? 1 : 0,
       ...(options.compact === true ? { keep: COMPACT_SCATTER_KEEP } : {}),
+      ...(context.priority !== undefined ? { priority: context.priority } : {}),
     };
     // The request's own main-thread work (its cache key, ground grid and the message to a worker)
     // is admitted like the rest: run as tiles' sources resolved, several stacked into one frame.
@@ -1461,6 +1462,16 @@ export function createWorldgenSemanticRenderers(
         ...meshOptions,
         ...(useSurfaceWorker ? { renderLandcoverSurface: false } : {}),
       });
+      // Coarse canopy and fields remain in the classification colors. Do not multiply
+      // plant batches when extending this layer to the full semantic coverage radius.
+      // Plants do not depend on the land cover mesh: they generate beside it in their own
+      // worker rather than queueing after it, which held a jet's trees back by seconds.
+      const scatter =
+        models === undefined || context.address.level < context.pyramid.maxLevel - 2
+          ? undefined
+          : generate(tile, context, { buildings: false, scatter: true });
+      // Settled even when the land cover fails and nothing awaits the plants.
+      scatter?.catch(() => {});
       try {
         if (useSurfaceWorker) {
           const mesh = await options.landcoverGenerator?.generate(
@@ -1485,16 +1496,13 @@ export function createWorldgenSemanticRenderers(
         surface.getObjectByName('semantic:landcover') !== undefined &&
         meshOptions.renderLandcover !== false;
       if (coversGround) surface.userData[TERRAIN_COVERS_GROUND] = true;
-      // Coarse canopy and fields remain in the classification colors. Do not multiply
-      // plant batches when extending this layer to the full semantic coverage radius.
-      if (models === undefined || context.address.level < context.pyramid.maxLevel - 2)
-        return surface;
+      if (scatter === undefined) return surface;
       const group = new THREE.Group();
       group.name = `worldgen-scatter:${context.address.level}/${context.address.x}/${context.address.z}`;
       if (coversGround) group.userData[TERRAIN_COVERS_GROUND] = true;
       group.add(surface);
       try {
-        const generated = await generate(tile, context, { buildings: false, scatter: true });
+        const generated = await scatter;
         if (generated !== undefined) {
           for (const object of await instancedProps(
             generated.output.placements,

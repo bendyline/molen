@@ -44,7 +44,7 @@
             ],
             "pilotEye": [
               0.28,
-              1.81,
+              1.69,
               0.5
             ],
             "hardLandingSpeed": 4,
@@ -6197,6 +6197,77 @@
                 "densityExponent": 1,
                 "ratedDensityRatio": 1
               }
+            ],
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.18,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.18,
+                    3.800856
+                  ],
+                  [
+                    0,
+                    1.18,
+                    -3.800856
+                  ],
+                  [
+                    5.0474879999999995,
+                    1.18,
+                    0
+                  ],
+                  [
+                    -5.0474879999999995,
+                    1.18,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Skylane-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.279525,
+                  2.727
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Skylane-propeller"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.279525,
+                    2.727
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.00391,
+                  "halfThickness": 0.06,
+                  "rotor": "Skylane-propeller"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              }
             ]
           }
         },
@@ -6232,7 +6303,8 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {}
         },
         "mountable": {
           "seats": [
@@ -6241,7 +6313,7 @@
               "role": "driver",
               "position": [
                 0.28,
-                1.81,
+                1.69,
                 0.5
               ]
             },
@@ -6250,7 +6322,7 @@
               "role": "passenger",
               "position": [
                 -0.28,
-                1.81,
+                1.69,
                 0.5
               ]
             }

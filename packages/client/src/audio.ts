@@ -48,6 +48,7 @@ export type {
   DirectorInput,
   VoiceCommand,
   VoiceSpatial,
+  VoiceTone,
 } from './audio/types';
 export { attachAutoplayUnlock, type Unlockable } from './audio/unlock';
 export { WebAudioBackend, type WebAudioBackendOptions } from './audio/web-audio-backend';

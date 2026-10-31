@@ -239,6 +239,36 @@ describe('scatter sampling', () => {
     expect(limited[0]?.modelRef).toBe('builtin:tree.conifer');
   });
 
+  it('fills an evicted species from its own rule and drops rules with nothing kept', () => {
+    const mixed = request([0, 0, 300, 300], {
+      polygons: [
+        { label: 'forest', ring: rect(0, 0, 150, 300) },
+        { label: 'grass', ring: rect(150, 0, 300, 300) },
+      ],
+    });
+    const run = (maxPropModels: number) =>
+      samplePlacements({
+        request: mixed,
+        doc,
+        pack: identity,
+        ground: FLAT_GROUND,
+        budget: { ...budget, maxPropModels },
+        tier: 0,
+      });
+    const where = (sets: PlacementSet[], forest: boolean) =>
+      positions(sets)
+        .map((key) => key.slice(key.lastIndexOf(':') + 1))
+        .filter((key) => Number(key.split(',')[0]) < 150 === forest)
+        .sort();
+    const full = run(8);
+    const capped = run(1);
+    expect(capped.map((set) => set.modelRef)).toEqual(['builtin:tree.conifer']);
+    // Every deciduous place in the forest stays planted, as the dominant conifer.
+    expect(where(capped, true)).toEqual(where(full, true));
+    expect(where(full, false).length).toBeGreaterThan(0);
+    expect(where(capped, false)).toEqual([]);
+  });
+
   it('caps the whole batch uniformly across rules and disables scatter at zero', () => {
     const mixed = request([0, 0, 300, 300], {
       polygons: [

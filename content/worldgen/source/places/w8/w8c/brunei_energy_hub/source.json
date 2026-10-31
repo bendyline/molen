@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.brunei_energy_hub",
+  "kind": "static-structure",
+  "title": "Brunei Energy Hub — former Royal Customs House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.brunei_energy_hub",
+        "output": "assets/places/w8/w8c/brunei_energy_hub/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:65db23288c072451bc0c33ab156d50b5e3e673f9e39b64d2a1cce9e6dd6f02ac"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/whole-customs-building.json",
+      "native-map/named-museum-identity.json",
+      "reference-rights/designer-construction.txt",
+      "reference-rights/founding-partner-identity.txt",
+      "reference-rights/qualla-passage-description.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-26846-15938.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

@@ -20,6 +20,7 @@ import {
   publicDomainReviewMatches,
   verifiedSupplementalSelection,
 } from './imagery-policy.mjs';
+import { inspectPrimaryFactsReconstruction } from './primary-facts-reconstruction.mjs';
 import { structureCatalogEntries, structureCatalogMatches } from './work-ownership.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -118,8 +119,27 @@ export async function inspectLocalModel(
   if (!matches) row.blockers.push('review-inputs-stale-or-missing');
   const refs = read(path.join(dir, 'reference-images.json'));
   const imageryEvidence = read(path.join(dir, 'imagery-evidence.json'));
+  const factual =
+    refs?.method === 'primary-facts-only'
+      ? inspectPrimaryFactsReconstruction({
+          dir,
+          entry,
+          references: refs,
+          currentReferences,
+          qualla,
+          structures: fs
+            .readFileSync(
+              path.join(repository, 'content/worldgen/source/qualla-structures/structures.jsonl'),
+              'utf8',
+            )
+            .trim()
+            .split('\n')
+            .map(JSON.parse)
+            .filter((s) => s.id === entry.structureId),
+        })
+      : undefined;
   const inventory =
-    imageryPolicy?.id === PUBLIC_DOMAIN_POLICY
+    imageryPolicy?.id === PUBLIC_DOMAIN_POLICY && !factual
       ? inspectImageryInventory({
           dir,
           qualla,
@@ -136,7 +156,7 @@ export async function inspectLocalModel(
       JSON.stringify(currentReferences?.externalReferences);
   if (
     refs?.review?.state !== 'accepted' ||
-    (!refs.references?.length && !supplementalSelection) ||
+    (!refs.references?.length && !supplementalSelection && factual?.status !== 'passed') ||
     refs.inputHash !== currentReferences?.inputHash ||
     currentReferences?.review?.state !== 'accepted'
   )
@@ -236,31 +256,49 @@ export async function inspectLocalModel(
     row.currentRenderIdentityVerified = !!medium && mediumDocument?.captureVersion === 2;
     if (!row.currentRenderIdentityVerified)
       row.blockers.push('current-asset-render-identity-unverified');
-    row.imagery = inspectImageryPolicy({
-      qualla,
-      references: refs?.references,
-      stories: refs?.stories,
-      conflicts: refs?.metadataConflicts,
-    });
-    if (supplementalSelection)
+    if (factual) {
       row.imagery = {
-        ...row.imagery,
-        status: 'passed',
-        selection: 'verified-public-domain-originals-after-qualla-first-search',
+        status: 'not-used',
+        selection: 'primary-facts-only',
+        fidelityReviewPassed: false,
       };
-    if (row.imagery.status !== 'passed')
-      row.blockers.push('public-domain-qualla-imagery-unverified');
-    row.imagery.inventory = inventory;
-    if (row.imagery.inventory.status !== 'passed')
-      row.blockers.push('public-domain-imagery-inventory-unverified');
-    const inventoryBytes = bytes(path.join(dir, 'imagery-evidence.json'));
-    row.imagery.fidelityReviewPassed =
-      row.imagery.inventory.status === 'passed' &&
-      !!inventoryBytes &&
-      matchesEvidenceText(inventoryBytes, qa?.imageryReview?.imageryEvidenceHash) &&
-      publicDomainReviewMatches(qa?.imageryReview, refs, inputHash);
-    if (!row.imagery.fidelityReviewPassed)
-      row.blockers.push('public-domain-fidelity-review-missing-or-unbound');
+      row.primaryFactsReconstruction = factual;
+      if (
+        factual.status !== 'passed' ||
+        qa?.primaryFactsReview?.status !== 'passed' ||
+        qa.primaryFactsReview.inputHash !== inputHash ||
+        qa.primaryFactsReview.evidenceHash !== factual.evidenceHash ||
+        qa?.imageryReview?.status !== 'not-used' ||
+        qa.imageryReview.imageryUsed !== false
+      )
+        row.blockers.push('primary-facts-reconstruction-missing-or-unbound');
+    } else {
+      row.imagery = inspectImageryPolicy({
+        qualla,
+        references: refs?.references,
+        stories: refs?.stories,
+        conflicts: refs?.metadataConflicts,
+      });
+      if (supplementalSelection)
+        row.imagery = {
+          ...row.imagery,
+          status: 'passed',
+          selection: 'verified-public-domain-originals-after-qualla-first-search',
+        };
+      if (row.imagery.status !== 'passed')
+        row.blockers.push('public-domain-qualla-imagery-unverified');
+      row.imagery.inventory = inventory;
+      if (row.imagery.inventory.status !== 'passed')
+        row.blockers.push('public-domain-imagery-inventory-unverified');
+      const inventoryBytes = bytes(path.join(dir, 'imagery-evidence.json'));
+      row.imagery.fidelityReviewPassed =
+        row.imagery.inventory.status === 'passed' &&
+        !!inventoryBytes &&
+        matchesEvidenceText(inventoryBytes, qa?.imageryReview?.imageryEvidenceHash) &&
+        publicDomainReviewMatches(qa?.imageryReview, refs, inputHash);
+      if (!row.imagery.fidelityReviewPassed)
+        row.blockers.push('public-domain-fidelity-review-missing-or-unbound');
+    }
   }
   row.readiness = row.blockers.length ? 'needs-review' : 'ready';
   row.geographic = {
@@ -345,6 +383,9 @@ export async function buildProgress({
           technicallyValidated: rows.filter((r) => r.technicalReadiness === 'ready').length,
           publicDomainImageryVerified: rows.filter((r) => r.imagery?.status === 'passed').length,
           publicDomainFidelityReviewed: rows.filter((r) => r.imagery?.fidelityReviewPassed).length,
+          primaryFactsReconstructionsVerified: rows.filter(
+            (r) => r.readiness === 'ready' && r.primaryFactsReconstruction?.status === 'passed',
+          ).length,
         }
       : {}),
   };
@@ -352,7 +393,7 @@ export async function buildProgress({
     format: 'molen/structure-readiness@1',
     title: `${batch.title ?? 'Qualla compat'} — verified completion ledger`,
     policy:
-      'A source or import is not completion. Ready requires current image references, exact source/runtime/LOD bytes, inspected portable/shared/context captures, photographic fidelity and terrain/placement evidence. structure catalog work is excluded.' +
+      'A source or import is not completion. Ready requires verified references or a separately supported primary-factual reconstruction, exact source/runtime/LOD bytes, inspected portable/shared/context captures, fidelity appropriate to the declared method, and terrain/placement evidence. Structure catalog work is excluded.' +
       (batch.policy?.imagery?.id === PUBLIC_DOMAIN_POLICY
         ? ' Imagery must be public domain, match published Qualla media and original attribution, and have current bytes. Conflicting or incomplete records are excluded.'
         : ''),

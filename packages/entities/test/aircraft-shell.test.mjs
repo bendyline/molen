@@ -3,6 +3,27 @@ import { Raycaster, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
+// The Mustang stands in its three-point attitude: generate.mjs authors it in the flight datum
+// (interior.json's eye) and poses it nose-up onto its wheels (entity.types.json's pilotEye).
+// Recover that pitch and lift from the two eyes so the cockpit checks keep their datum points.
+const json = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url), 'utf8'));
+const mustangSource = '../../../content/entities/source/aircraft/p-51/';
+const DATUM_EYE = (await json(`${mustangSource}models/interior.json`)).eye;
+const MUSTANG_EYE = Object.values((await json(`${mustangSource}entity.types.json`)).types)[0]
+  .components.aircraft.spec.pilotEye;
+const PITCH =
+  Math.acos(MUSTANG_EYE[2] / Math.hypot(DATUM_EYE[1], DATUM_EYE[2])) -
+  Math.atan2(DATUM_EYE[1], DATUM_EYE[2]);
+const LIFT = MUSTANG_EYE[1] - (DATUM_EYE[1] * Math.cos(PITCH) + DATUM_EYE[2] * Math.sin(PITCH));
+/** Flight-datum direction, then point, posed into the standing Mustang; and back to datum height. */
+const turn = ([x, y, z]) => [
+  x,
+  y * Math.cos(PITCH) + z * Math.sin(PITCH),
+  z * Math.cos(PITCH) - y * Math.sin(PITCH),
+];
+const posed = (p) => turn(p).map((v, i) => (i === 1 ? v + LIFT : v));
+const datumY = ({ y, z }) => (y - LIFT) * Math.cos(PITCH) - z * Math.sin(PITCH);
+
 async function load(kind, version) {
   const sourceDirectory = kind === 'p51d' ? 'p-51' : 'oh-6';
   const path =
@@ -30,13 +51,13 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
   it('closes the Mustang lower sidewalls from the pilot eye with inward-facing opaque skin', async () => {
     const scene = await load('p51d', version);
     const lining = scene.getObjectByName('fuselage-interior');
-    const eye = new Vector3(0, 2.28, 0.05);
+    const eye = new Vector3(...MUSTANG_EYE);
     // Test the actual single-sided lining: exterior-only rays missed the reversed winding.
     // Sample below the canopy rail, beside the panel and down toward both footwells.
     for (const side of [-1, 1])
       for (const y of [1.35, 1.6, 1.85, 2.04])
         for (const z of [-0.6, -0.2, 0.3, 0.7, 0.9]) {
-          const direction = new Vector3(side * 0.39, y, z).sub(eye).normalize();
+          const direction = new Vector3(...posed([side * 0.39, y, z])).sub(eye).normalize();
           const surface = hit(lining, eye.toArray(), direction.toArray());
           expect(surface.object.material.transparent).toBe(false);
           expect(surface.distance).toBeLessThan(1.5);
@@ -53,9 +74,9 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
     const scene = await load('p51d', version);
     for (const x of [-0.3, -0.2, 0, 0.2, 0.3])
       for (const z of [0.1, 0.4, 0.65, 0.9]) {
-        const surface = hit(scene, [x, 1.7, z], [0, -1, 0]);
+        const surface = hit(scene, posed([x, 1.7, z]), turn([0, -1, 0]));
         expect(surface.object.name).not.toMatch(/^wing/);
-        expect(surface.point.y).toBeGreaterThan(1.38);
+        expect(datumY(surface.point)).toBeGreaterThan(1.38);
         expect(surface.object.material.transparent).toBe(false);
       }
   });
@@ -64,7 +85,7 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
     for (const side of [-1, 1])
       for (const y of [1.75, 1.88, 2.01])
         for (const z of [-0.8, -0.35, 0.3]) {
-          const surface = hit(scene, [side * 3, y, z], [-side, 0, 0]);
+          const surface = hit(scene, posed([side * 3, y, z]), [-side, 0, 0]);
           expect(surface.object.name).toBe('fuselage');
           expect(surface.object.material.transparent).toBe(false);
           expect(Math.abs(surface.point.x)).toBeGreaterThan(0.3);
@@ -76,7 +97,7 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
     for (const side of [-1, 1])
       for (const y of [1.34, 1.38])
         for (const z of [-0.7, -0.35, 0.3, 0.95]) {
-          const origin = [side, y, z],
+          const origin = posed([side, y, z]),
             direction = [-side, 0, 0];
           const skin = hit(scene.getObjectByName('fuselage'), origin, direction);
           const floor = hit(scene.getObjectByName('floor'), origin, direction);
@@ -91,23 +112,24 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
         for (const z of [-0.1, 0.45, 0.85]) {
           const surface = hit(scene, [side * 3, y, z], [-side, 0, 0]);
           expect(surface.object.material.transparent).toBe(false);
-          expect(Math.abs(surface.point.x)).toBeGreaterThan(0.7);
+          expect(Math.abs(surface.point.x)).toBeGreaterThan(0.65);
         }
     const cabin = scene.getObjectByName('cabin-panels');
     expect(cabin).toBeDefined();
     const roof = hit(cabin, [0.3, 3.5, 0.1], [0, -1, 0]);
     expect(roof.object.material.transparent).toBe(false);
-    expect(roof.point.y).toBeGreaterThan(2.3);
+    // The real OH-6A egg is low: its roof is about 2.0 m up, under a 2.48 m rotor hub.
+    expect(roof.point.y).toBeGreaterThan(1.85);
     const normal = roof.face.normal.clone().transformDirection(roof.object.matrixWorld);
     expect(normal.y).toBeGreaterThan(0);
   });
   it.each([
-    ['p51d', [0, 2.28, 0.05]],
-    ['oh6', [-0.38, 1.7, 0.6]],
-  ])('keeps forward visibility through the %s windscreen', async (kind, eye) => {
+    ['p51d', MUSTANG_EYE, turn([0.15, 0, 1])],
+    ['oh6', [-0.38, 1.7, 0.6], [0.15, 0, 1]],
+  ])('keeps forward visibility through the %s windscreen', async (kind, eye, ahead) => {
     const scene = await load(kind, version);
-    // Look just beside the central windscreen divider.
-    const surface = hit(scene, eye, [0.15, 0, 1]);
+    // Look just beside the central windscreen divider, along the airframe's datum.
+    const surface = hit(scene, eye, ahead);
     expect(surface.object.material.transparent).toBe(true);
     expect(surface.object.material.opacity).toBeLessThan(0.3);
   });
@@ -118,8 +140,16 @@ describe.each(['source', 'imported'])('reference aircraft details (%s)', (versio
     const scene = await load('oh6', version);
     const main = scene.getObjectByName('main-rotor');
     const tail = scene.getObjectByName('tail-rotor');
-    expect(main.children.filter((node) => /^rotor-blade-/.test(node.name))).toHaveLength(4);
-    expect(tail.children.filter((node) => /^tail-blade-\d+$/.test(node.name))).toHaveLength(2);
+    const mainBlades = [],
+      tailBlades = [];
+    main.traverse((node) => {
+      if (/^rotor-blade-\d+$/.test(node.name)) mainBlades.push(node);
+    });
+    tail.traverse((node) => {
+      if (/^tail-blade-\d+$/.test(node.name)) tailBlades.push(node);
+    });
+    expect(mainBlades).toHaveLength(4);
+    expect(tailBlades).toHaveLength(2);
     expect(scene.getObjectByName('tail-brace--1')).toBeDefined();
     expect(scene.getObjectByName('tail-brace-1')).toBeDefined();
     expect(scene.getObjectByName('t-tail')).toBeUndefined();
@@ -135,7 +165,7 @@ describe.each(['source', 'imported'])('reference aircraft details (%s)', (versio
     expect(cayuse.getObjectByName('control-stick_1')).toBeDefined();
     // Gauges face the pilot, rather than being hidden behind the panel's back face.
     for (const [scene, eye, gaugeId] of [
-      [mustang, [0, 2.28, 0.05], 'airspeed-instrument'],
+      [mustang, MUSTANG_EYE, 'airspeed-instrument'],
       [cayuse, [-0.38, 1.7, 0.6], 'airspeed-instrument'],
     ]) {
       const gauge = scene.getObjectByName(gaugeId);

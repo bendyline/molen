@@ -55,8 +55,10 @@ content retain their original behavior.
 World Explorer builds an entity archive for distribution and a versioned directory manifest for
 browser use. The index points to `molen-pack.json`, so even a static server without HTTP Range
 downloads only requested GLBs. Opening the catalog fetches no GLBs; distant traffic and parking
-use instanced proxies. Explicit player selection may load any vehicle. Node pack hosting also
-accepts a hosted directory index. Content hashes identify shared files in the Earth byte cache.
+use lightweight proxies with shaped hoods, sloped windows, painted roofs and visible wheels.
+The shared car silhouette uses 148 triangles and one material, with no model download.
+Explicit player selection may load any vehicle. Node pack hosting also accepts a hosted directory
+index. Content hashes identify shared files in the Earth byte cache.
 
 Directory reads share transfers. Cancelling one reader preserves another reader's request; when
 the last reader cancels, queued or active work is aborted. Failed/aborted reads can retry. The
@@ -73,8 +75,11 @@ residency budget rather than a process-wide memory ceiling.
 
 Configure `idleVehicleModels`, `vehicleModelBytes`, and `vehicleLoads` on `EarthAmbientSettings`
 or `AmbientRenderBudget`. Zero idle retention is supported. Parking independently loads at most
-eight nearby detailed cars with two background requests. Driven cars retain simulation state but
-release their model outside the near set. The mounted car and explicitly host-owned cars are
+eight nearby detailed cars with two background requests. Both parking and traffic request full
+car models within 45 metres and retain selected models out to 65 metres, subject to their count
+and residency budgets. This hysteresis prevents repeated swaps at the approach threshold.
+Driven cars retain simulation state but release their model outside the near set. The mounted car
+and explicitly host-owned cars are
 exceptions, owned until removal. Aircraft keep their existing budget.
 
 ## Coverage and authoring

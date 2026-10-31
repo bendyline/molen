@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.kullen_lighthouse",
-  "inputHash": "sha256:dfd78cd2a0c773b24fb75d1036daa9b0ea5d569e4f21c746640e0f1b4dc53769",
-  "captureReportHash": "sha256:a0b009a6621eaa3b00381366013a56d0747307f6030009e2b31b41eaee90676e",
+  "inputHash": "sha256:fc04e131fda29fae214fa260ce756cf4e2d65ec94f484b728d727fcb1bc638bf",
+  "captureReportHash": "sha256:4b05620734c30046eab43b99ad6747b9739635ee6e636c2192b4cc01a5cd80ac",
   "visualReview": {
     "status": "passed",
     "scope": "Detailed exterior and portable materials.",
@@ -18,14 +18,15 @@
       "shots/near-service-house.png",
       "shots/far-ensemble.png"
     ],
-    "notes": "All ten final portable and ten shared frames inspected, including full-resolution optic. Corrected house/porch roof surfaces face outward; granite watchroom window arc, scuppers, carved porch column, fenestration and connected triple optic are visible."
+    "notes": "All 46 final portable, shared-material and medium-fi frames inspected. The complete 15m granite tower retains five broad recessed seaward watchroom windows, two smaller lower openings, molded scupper parapet, white ventilated drum, clear lantern, three radial Fresnel optic panels, black dome and weather cups. The attached low hipped-roof house, thirteen facade openings, timber entrance door, carved porch column and four steps remain in every tier. Added plausible support beneath the upper guard, weather mast, optic panels and porch joints, including actual ground contact. Final browser images retain volumetric drain spouts and sparse visible optic rings; no detached flat spout fragments remain.",
+    "captureReportHash": "sha256:4b05620734c30046eab43b99ad6747b9739635ee6e636c2192b4cc01a5cd80ac"
   },
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:8e6541d5604fa92ecdd6b8dc954cb4ff9c93cbbd0e9bdf9682a4dce19abb6e1e",
-    "fixtureHash": "sha256:30a01c038a2fc391e1d7ec2c992fc210adc9fcf8831e2d419cf8aa0531f1e6cf",
-    "inputHash": "sha256:dfd78cd2a0c773b24fb75d1036daa9b0ea5d569e4f21c746640e0f1b4dc53769",
+    "captureReportHash": "sha256:d6d694349027536c170402927f4341872156e88b68acde6548ea0aa17d583e6a",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "inputHash": "sha256:fc04e131fda29fae214fa260ce756cf4e2d65ec94f484b728d727fcb1bc638bf",
     "materialGraphs": {
       "matgraph:molen.worldgen.material.plaster_lime": {
         "path": "materials/plaster_lime.matgraph.json",
@@ -68,17 +69,285 @@
       "shots/shared/far-ensemble.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Metric granite joints, shared tiled roof and painted metal retain coherent scale and silhouette. Clear lantern glazing exposes three framed annular optics. Geographic/unload assertions pass."
+    "notes": "The detailed master retains seven existing shared 256px material graphs. Browser district, street and closeup reuse six: plaster_lime, stone_ashlar, tile_ceramic, metal_painted, stone_granite and wood_plain, plus local dark and clear glazing. The small concrete tint merges into the granite batch for eight near draws. All six graph bindings, actual budgets, zero embedded images and separate 12byte position/normal GPU streams are asserted in the focused tests. Current shared captures bind graph hashes, fixture and geographic overlay, and model-geometry unload/disposal passes. Shared mineral/tile patterns establish Molen style rather than literal historic stone-by-stone texture."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:cd759698b344df9719c52bd6b8fbeea07eb0706068e180885d00a65a0114e087",
-    "notes": "Exact tower and attached house/porch OSM parts fix center and facade quadrant; north-up overlay aligns the ensemble. Ordinary station terrain contact uses tower-baseY=0; focal elevation78.5m is not model height."
+    "notes": "Retain exact-QID Q1518751 tower way1197717521, attached-house way1483946313 and porch way1483946315. Anchor [12.451522111,56.301025985], heading -0.123rad: native +X east/slightly south, +Z into the attached house south/slightly west, seaward watchroom -Z, columned porch northeast. The current north-up map overlay was inspected without rescaling the ensemble or guessing circular-tower bearing. Published 15m structure height including weather instrumentation remains distinct from 78.5m focal elevation. Local Y0 is authored site grade. Actual native hillside/ground clearances remain unverified. Detached downhill fog-signal/lookout structure, keeper homes and landscape remain separate context."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Current medium-fi standard applied. Exact indexed-triangle multiset comparison preserves all 102,956 original source triangle positions, colors, metric UVs, materials and multiplicity. Only 128 sloped-capital faces receive smoothly averaged endpoint normals where the new support collar joins; all other original normals remain exact. Added 1,940 plausible support triangles give a 104,896-triangle reproducible detailed master. Four complete browser levels meet 974/3992/14416/37624 triangles and 1/8/8/8 draws. Hardware supports, carving, optical section and small dimensions are original photo-proportioned reconstructions; no scanned stone, engineering survey or working navigation-optic claim."
+  },
+  "reviewedOn": "2026-10-29",
+  "sourceHash": "sha256:ac2fad4c072a157924cde402329f736cd67348d6d744188dce4f938a0771f739",
+  "runtimeHash": "sha256:3b88c06f1c5cb9e62f7f59c53d5c4296bc04a0d662928f3edc8acb4a4c859df2",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:f6bda607398f52ea5e0b8926572277aa3d93cc501138548fd1e08d93242fb251",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-watchroom.png",
+      "medium-fi/near-optic.png",
+      "medium-fi/near-carved-porch.png",
+      "medium-fi/near-service-house.png",
+      "medium-fi/far-ensemble.png",
+      "medium-fi/skyline-complete-tower-service-house-and-porch.png",
+      "medium-fi/district-five-watchroom-windows-and-porch.png",
+      "medium-fi/street-three-panel-optic-and-supported-upper-guard.png",
+      "medium-fi/closeup-grounded-porch-carved-column-and-roof-bed.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All 26 final medium-fi frames inspected: street, block and skyline at noon/late light and Economy/High; untextured silhouette; close watchroom, optic, porch and service-house views; full ensemble; four matched transitions; and four explicit tier cameras. Tower, house and porch masses remain complete. Skyline keeps five recessed watchroom windows, opaque lantern, simplified guard, scuppers and weather cups. District retains real tower and house recesses with flat frame strips, coarse curves, reduced ladder/carving and one optic ring per panel. Street restores deeper joinery and six rings; closeup restores finer curves/carving and twelve rings. The 18-ring detailed optic remains in the source. Synthetic neighboring cottages and flat ground are style/scale context, not native hill placement evidence."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "Authority height and authority-linked lighthouse society credited close photographs constrain the15m tower, watchroom, triple optic, carved porch and attached stone house. Lens section dimensions and small trim are photographic reconstructions. Detached downhill cottages/foghouse and the rock landscape remain surrounding map context."
+    "notes": "Authority height and authority-linked lighthouse society credited close photographs constrain the15m tower, watchroom, triple optic, carved porch and attached stone house. Lens section dimensions and small trim are photographic reconstructions. Detached downhill cottages/foghouse and the rock landscape remain surrounding map context.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u6/u60/kullen_lighthouse/models/source.glb",
+        "hash": "sha256:ac2fad4c072a157924cde402329f736cd67348d6d744188dce4f938a0771f739",
+        "bytes": 11002920,
+        "triangles": 104896,
+        "materials": 9,
+        "images": 0,
+        "min": [
+          -3.630000114440918,
+          0,
+          -3.630000114440918
+        ],
+        "max": [
+          15.680000305175781,
+          15,
+          10.5600004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u6/u60/kullen_lighthouse/model.glb",
+        "hash": "sha256:3b88c06f1c5cb9e62f7f59c53d5c4296bc04a0d662928f3edc8acb4a4c859df2",
+        "bytes": 11002208,
+        "triangles": 104896,
+        "materials": 9,
+        "images": 0,
+        "min": [
+          -3.630000114440918,
+          0,
+          -3.630000114440918
+        ],
+        "max": [
+          15.680000305175781,
+          15,
+          10.5600004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u6/u60/kullen_lighthouse/model.skyline.glb",
+        "hash": "sha256:6818afa995301d02b7d18be19a473a8b6943ad6072b83f369011f0e082c7ffd5",
+        "bytes": 76580,
+        "triangles": 974,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -3.630000114440918,
+          0,
+          -3.630000114440918
+        ],
+        "max": [
+          15.680000305175781,
+          15,
+          10.5600004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u6/u60/kullen_lighthouse/model.district.glb",
+        "hash": "sha256:cc332bb530798eb3a19e5ff439075412ada102adccd419724fbb1a0e37222521",
+        "bytes": 303312,
+        "triangles": 3992,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -3.630000114440918,
+          0,
+          -3.630000114440918
+        ],
+        "max": [
+          15.680000305175781,
+          15,
+          10.5600004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u6/u60/kullen_lighthouse/model.street.glb",
+        "hash": "sha256:3669a51d91d94e5245cf5bb7b0ac4b1abd757072a2887a8946043587aa1306be",
+        "bytes": 1087272,
+        "triangles": 14416,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -3.630000114440918,
+          0,
+          -3.630000114440918
+        ],
+        "max": [
+          15.680000305175781,
+          15,
+          10.5600004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u6/u60/kullen_lighthouse/model.closeup.glb",
+        "hash": "sha256:e9e82ebb1c500f95ec1493d9ca36b97553eedc50f1d4b175121066179cb697c6",
+        "bytes": 2858972,
+        "triangles": 37624,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -3.630000114440918,
+          0,
+          -3.630000114440918
+        ],
+        "max": [
+          15.680000305175781,
+          15,
+          10.5600004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-29",
+    "notes": "Six current Khronos glTF Validator results have zero errors, warnings or embedded images. Two focused tests pass in 3.73sec: every level retains 15m height, both complete roofs, grounded porch/first step, capital-to-lintel contact, all five actual watchroom recesses, eight volumetric scuppers and the upper platform under its guard. Near levels retain both lower tower recesses and all three optic panels with visible Fresnel rings, support bars and pedestal spokes. Copied-fixture regeneration reproduces every registered derivative byte and checks six shared graphs, four budgets and separate GPU streams. Selected source/import reproduction checks and strict budget audit pass; the audit notes the preserved nine-material detailed master, while all browser variants meet their eight-draw limit. Scene validation and 30 ticks pass with zero events; state hash sha256:2245f7afa536e7d6e20292e83b2fdf961da7989ea7746b93a5765dae9b1d3ac2."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:b53fc66dc51e10354027bf8fd66d527144809e292142c23e294ff7495922303e",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:6818afa995301d02b7d18be19a473a8b6943ad6072b83f369011f0e082c7ffd5",
+        "bytes": 76580,
+        "gzipBytes": 14556,
+        "triangles": 974,
+        "cpuBytes": 75180,
+        "gpuBytes": 75180,
+        "errorMeters": 0.7,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:cc332bb530798eb3a19e5ff439075412ada102adccd419724fbb1a0e37222521",
+        "bytes": 303312,
+        "gzipBytes": 57972,
+        "triangles": 3992,
+        "cpuBytes": 293700,
+        "gpuBytes": 293700,
+        "errorMeters": 0.4,
+        "drawCalls": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:3669a51d91d94e5245cf5bb7b0ac4b1abd757072a2887a8946043587aa1306be",
+        "bytes": 1087272,
+        "gzipBytes": 203072,
+        "triangles": 14416,
+        "cpuBytes": 1077612,
+        "gpuBytes": 1077612,
+        "errorMeters": 0.16,
+        "drawCalls": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:e9e82ebb1c500f95ec1493d9ca36b97553eedc50f1d4b175121066179cb697c6",
+        "bytes": 2858972,
+        "gzipBytes": 618640,
+        "triangles": 37624,
+        "cpuBytes": 2849280,
+        "gpuBytes": 2849280,
+        "errorMeters": 0.08,
+        "drawCalls": 8
+      }
+    ],
+    "initialBytes": 379892,
+    "notes": "Skyline/district/street/closeup geometry use 76,580/303,312/1,087,272/2,858,972 bytes. Initial skyline plus district totals 379,892 bytes, below phone and laptop targets. All four levels stay below the 1k/4k/16k/64k triangle ceilings; no embedded or model-private texture images. Current source master sha256:ac2fad4c072a157924cde402329f736cd67348d6d744188dce4f938a0771f739; imported master sha256:3b88c06f1c5cb9e62f7f59c53d5c4296bc04a0d662928f3edc8acb4a4c859df2. Shared graph textures reuse the common library. Physical laptop/phone timing and native hillside grading remain unmeasured."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:fc04e131fda29fae214fa260ce756cf4e2d65ec94f484b728d727fcb1bc638bf",
+    "sourceHash": "sha256:ac2fad4c072a157924cde402329f736cd67348d6d744188dce4f938a0771f739",
+    "runtimeHash": "sha256:3b88c06f1c5cb9e62f7f59c53d5c4296bc04a0d662928f3edc8acb4a4c859df2",
+    "framesInspected": 46,
+    "note": "One continuous targeted source, material, geometry, retained-photo, map and render pass. The detailed recipe stays intact behind an additive source-local support adapter, with original masters saved locally and a concise exact-geometry/normal-change proof. Current renders exposed flat district scuppers and optically empty browser lenses; both were fixed within the budgets before final captures and review. Reference photographs were already retained ordinary pictures. No bespoke research, terrain download, full source rebuild, engine CI, dependency audit, Git mutation or upload was part of this pass. Production pauses at the owner request after this building."
+  },
+  "limitations": [
+    "The complete scoped exterior and retained approximate mapped plan are reviewed. Actual native hill contact, independent downhill/keeper structures, surveyed fittings, physical-device performance and navigational optics remain unverified. District drain bodies retain volume; skyline extends their coarse bodies to the simplified dark mouth. One/six/twelve browser Fresnel rings aggregate the detailed master rings, and smaller ladder/carving/trim details reduce with distance."
+  ],
+  "geometryCorrectionsReview": {
+    "status": "passed",
+    "date": "2026-10-29",
+    "oldSourceHash": "sha256:6a8b11d2ba6d2371aef7baa433e8fd553c0a3a13de18111b651fbd96007da702",
+    "currentSourceHash": "sha256:ac2fad4c072a157924cde402329f736cd67348d6d744188dce4f938a0771f739",
+    "originalTriangles": 102956,
+    "addedTriangles": 1940,
+    "allOriginalGeometryColorsUvsAndMaterialsExact": true,
+    "originalTrianglesWithExactNormals": 102828,
+    "capitalJointNormalCorrections": 128,
+    "normalCorrectionBounds": {
+      "min": [
+        5.769999980926514,
+        2.7799999713897705,
+        -1.149999976158142
+      ],
+      "max": [
+        6.53000020980835,
+        2.940000057220459,
+        -0.38999998569488525
+      ]
+    },
+    "comparison": "Multiset comparison of every indexed triangle retains original positions, vertex colors, metric UV values, material and multiplicity.128 original sloped-capital faces receive smoothly averaged endpoint normals at the new collar joint; all other original normals are exact.1,940 support triangles are added.",
+    "scope": "Plausible connected gallery, weather mast, optic mounting and porch support; original detailed geometry retained. Independent native hill fit remains unverified."
   }
 }

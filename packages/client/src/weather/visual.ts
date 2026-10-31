@@ -7,6 +7,17 @@ import {
 } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import type { SkyFrame } from '../sky/visual';
+import type { CloudShadowUniforms } from './cloud-shadows';
+import {
+  type CloudQuality,
+  CloudTextures,
+  CloudUniforms,
+  cloudDeckGeometry,
+  cloudQualitySettings,
+  cloudShellGeometry,
+  createWebGlCloudMaterial,
+} from './clouds';
+import { CIRRUS_SIZE, cloudNoise } from './noise';
 
 const clamp = (x: number): number => Math.max(0, Math.min(1, x));
 const wrap = (x: number, size: number): number => ((x % size) + size) % size;
@@ -19,36 +30,57 @@ function hash(x: number, y: number, seed: number): number {
   h = Math.imul(h ^ (h >>> 13), 1274126177);
   return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
 }
-function noise(x: number, y: number, period: number, seed: number): number {
-  const ix = Math.floor(x),
-    iy = Math.floor(y);
-  const fx = smooth(0, 1, x - ix),
-    fy = smooth(0, 1, y - iy);
-  const a = hash(wrap(ix, period), wrap(iy, period), seed);
-  const b = hash(wrap(ix + 1, period), wrap(iy, period), seed);
-  const c = hash(wrap(ix, period), wrap(iy + 1, period), seed);
-  const d = hash(wrap(ix + 1, period), wrap(iy + 1, period), seed);
-  return (a + (b - a) * fx) * (1 - fy) + (c + (d - c) * fx) * fy;
+
+const PARTICLE_LIMIT = 1400;
+/** Visibility below which murk veils the sky as well as the ground, meters. */
+const VEIL_VISIBILITY = 20000;
+/** Depth of the hazy air a view looking straight up crosses, meters. */
+const HAZE_DEPTH = 1500;
+
+export interface WeatherVisualOptions {
+  /** Cloud textures to draw with. A renderer passes its own; by default the visual makes some. */
+  textures?: CloudTextures;
+  /** The cloud deck's material for the renderer's backend; the WebGL material by default. */
+  createCloudMaterial?: (uniforms: CloudUniforms, textures: CloudTextures) => THREE.Material;
+  /** Per-pixel cloud work; default 'medium'. See `setCloudQuality`. */
+  quality?: CloudQuality;
+  /**
+   * Milliseconds of cloud noise generation per `update` until it is complete (default 3); the
+   * clouds appear once it is. Infinity builds it all in the first update. Built once per page.
+   */
+  noiseBudgetMs?: number;
+  /**
+   * The renderer's backend, which decides how the sky veil matches its fog (three fogs WebGL
+   * materials after tone mapping, WebGPU's before). Default 'webgl'.
+   */
+  backend?: 'webgl' | 'webgpu';
 }
 
-/** Cloud texture texels per side: about 47 m each at the explorer's 24 km cloud scale. */
-const CLOUD_RESOLUTION = 512;
-const PARTICLE_LIMIT = 1400;
-
 /**
- * Lightweight layered clouds and local precipitation with standard materials on both graphics
- * backends. Patterns are seeded and sampled at absolute simulation time, not integrated frames.
- * Cloud layers use absolute world altitudes; particles are visual and do not accumulate or collide.
+ * Volumetric clouds, a high cirrus layer and local precipitation on both graphics backends.
+ * Patterns are seeded and sampled at absolute simulation time, not integrated frames. Cloud
+ * layers use absolute world altitudes; particles are visual and do not accumulate or collide.
  */
 export class WeatherVisual {
   readonly object: THREE.Group = new THREE.Group();
   readonly fog: THREE.Fog = new THREE.Fog('#c1c9cd', 0, 50000);
   private state: ResolvedWeather;
-  private cloudNoise: Float32Array | undefined;
-  private cloudTexture: THREE.DataTexture | undefined;
-  private readonly cloudLayers: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>[] = [];
-  private cloudKey = '';
-  private noiseSeed: number | undefined;
+  private readonly textures: CloudTextures;
+  private readonly ownsTextures: boolean;
+  private readonly createCloudMaterial: WeatherVisualOptions['createCloudMaterial'];
+  private readonly noiseBudgetMs: number;
+  private readonly uniforms = new CloudUniforms();
+  private quality: CloudQuality;
+  private cloudMaterial: THREE.Material | undefined;
+  private deck: THREE.Mesh | undefined;
+  private shells: THREE.Mesh | undefined;
+  private deckReady = false;
+  private cirrus: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial> | undefined;
+  private cirrusCoverage: number | undefined;
+  private readonly backend: 'webgl' | 'webgpu';
+  /** Murk over the sky in poor visibility; see updateVeil. */
+  private veil: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial> | undefined;
+  private veilVisibility: number | undefined;
   private particles: THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial> | undefined;
   private particleTexture: THREE.DataTexture | undefined;
   private readonly cameraPosition = new THREE.Vector3();
@@ -57,9 +89,15 @@ export class WeatherVisual {
   private readonly color = new THREE.Color();
   private disposed = false;
 
-  constructor(data: WeatherData) {
+  constructor(data: WeatherData, options: WeatherVisualOptions = {}) {
     this.state = resolveWeather(weatherSchema.parse(data));
     this.object.name = 'molen:weather';
+    this.ownsTextures = options.textures === undefined;
+    this.textures = options.textures ?? new CloudTextures(cloudNoise());
+    this.createCloudMaterial = options.createCloudMaterial;
+    this.quality = options.quality ?? 'medium';
+    this.noiseBudgetMs = options.noiseBudgetMs ?? 3;
+    this.backend = options.backend ?? 'webgl';
   }
 
   /** Resolved copy; editing it does not change the visual. */
@@ -77,9 +115,38 @@ export class WeatherVisual {
     return this.state.clouds.coverage * this.state.clouds.density;
   }
 
+  /** Per-pixel cloud work. Uniform-driven: changing it rebuilds nothing. */
+  setCloudQuality(quality: CloudQuality): void {
+    this.quality = quality;
+  }
+
+  get cloudQuality(): CloudQuality {
+    return this.quality;
+  }
+
+  /**
+   * Whether lit surfaces get spatial cloud shadows this frame: from 'high' quality, once the
+   * clouds have appeared. While they do, direct light needs no uniform cloud dimming.
+   */
+  get shadowsActive(): boolean {
+    return cloudQualitySettings(this.quality).shadows && this.deckVisible() && this.deckReady;
+  }
+
+  /** Write this frame's cloud shadow into a renderer's lit-shader uniforms. */
+  writeShadows(uniforms: CloudShadowUniforms, active: boolean = this.shadowsActive): void {
+    const u = this.uniforms;
+    uniforms.molenCloudShadow.value.set(active ? 1 : 0, u.slab.x, u.slab.y, 0);
+    uniforms.molenCloudField.value.copy(u.field);
+    uniforms.molenCloudMix.value.copy(u.mix);
+    uniforms.molenCloudFit.value.set(u.erode.z, u.shadowDepth, 0.35, u.relief.x);
+  }
+
+  /** Cloud layers drawn (the volumetric layer and cirrus) and precipitation particles. */
   get stats(): { cloudLayers: number; particles: number } {
     return {
-      cloudLayers: this.cloudLayers.filter((layer) => layer.visible).length,
+      cloudLayers:
+        Number(this.deck?.visible === true || this.shells?.visible === true) +
+        Number(this.cirrus?.visible === true),
       particles: this.particles?.visible ? this.particles.geometry.drawRange.count / 6 : 0,
     };
   }
@@ -93,13 +160,26 @@ export class WeatherVisual {
     this.right.setFromMatrixColumn(camera.matrixWorld, 0).normalize();
     this.up.setFromMatrixColumn(camera.matrixWorld, 1).normalize();
     const daylight = sky?.daylight ?? 1;
-    this.updateClouds(seconds, camera, origin, daylight, sky?.sunDirection ?? [0.3, 0.8, 0.2]);
+    this.updateClouds(seconds, camera, origin, daylight, sky);
     this.updateParticles(seconds, origin, daylight);
     this.object.updateMatrixWorld(true);
   }
 
-  /** Combine weather visibility with an authored/streaming fog limit without mutating it. */
+  /**
+   * Combine weather visibility with an authored/streaming fog limit without mutating it. The
+   * clouds are fogged with the result (see CloudUniforms.setFog).
+   */
   fogFor(base: THREE.Fog | THREE.FogExp2 | null, sky?: SkyFrame): THREE.Fog | THREE.FogExp2 {
+    const fog = this.limitFog(base, sky);
+    this.veil?.material.color.copy(fog.color);
+    this.uniforms.setFog(fog, 1 - smooth(0.5, 0.9, this.cloudAttenuation));
+    return fog;
+  }
+
+  private limitFog(
+    base: THREE.Fog | THREE.FogExp2 | null,
+    sky: SkyFrame | undefined,
+  ): THREE.Fog | THREE.FogExp2 {
     const visibility = this.state.visibility;
     // Clear weather must preserve the authored clear foreground as well as the far limit.
     // Only bring the fade closer when weather actually reduces the scene's visibility.
@@ -111,48 +191,34 @@ export class WeatherVisual {
     this.fog.near = Math.min(this.fog.near, this.fog.far * 0.1);
     if (base) this.fog.color.copy(base.color);
     else this.fog.color.set('#0b1220').lerp(this.color.set('#c1c9cd'), sky?.daylight ?? 1);
+    // Under a closed deck the murk is grey, not the clear sky's blue.
+    const overcast = smooth(0.5, 0.9, this.cloudAttenuation);
+    if (overcast > 0) {
+      const { r, g, b } = this.fog.color;
+      const grey = (r * 0.2126 + g * 0.7152 + b * 0.0722) * 0.85;
+      this.fog.color.lerp(this.color.setRGB(grey, grey, grey), overcast * 0.8);
+    }
     return this.fog;
   }
 
-  private buildClouds(): void {
-    const texture = new THREE.DataTexture(
-      new Uint8Array(CLOUD_RESOLUTION ** 2 * 4),
-      CLOUD_RESOLUTION,
-      CLOUD_RESOLUTION,
-    );
-    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-    texture.magFilter = THREE.LinearFilter;
-    texture.minFilter = THREE.LinearMipmapLinearFilter;
-    // The deck is seen at grazing angles toward the horizon; without anisotropic filtering its
-    // mips smear clouds into streaks along the view.
-    texture.anisotropy = 16;
-    texture.generateMipmaps = true;
-    texture.colorSpace = THREE.LinearSRGBColorSpace;
-    this.cloudTexture = texture;
-    for (let i = 0; i < 2; i++) {
-      const geometry = new THREE.PlaneGeometry(1, 1, 24, 24);
-      geometry.rotateX(-Math.PI / 2);
-      const positions = geometry.getAttribute('position');
-      const colors = new Float32Array(positions.count * 4);
-      for (let j = 0; j < positions.count; j++) {
-        const r = Math.max(Math.abs(positions.getX(j)), Math.abs(positions.getZ(j))) * 2;
-        colors.set([1, 1, 1, 1 - smooth(0.6, 1, r)], j * 4);
-      }
-      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 4));
-      const map = i === 0 ? texture : texture.clone();
-      const material = new THREE.MeshBasicMaterial({
-        map,
-        vertexColors: true,
-        transparent: true,
-        side: THREE.DoubleSide,
-        depthWrite: false,
-        fog: false,
-      });
-      const layer = new THREE.Mesh(geometry, material);
-      layer.name = `molen:cloud-layer-${i}`;
-      layer.frustumCulled = false;
-      this.cloudLayers.push(layer);
-      this.object.add(layer);
+  private deckVisible(): boolean {
+    const { coverage, density } = this.state.clouds;
+    return coverage > 0 && density > 0;
+  }
+
+  private buildDeck(): void {
+    const material =
+      this.createCloudMaterial?.(this.uniforms, this.textures) ??
+      createWebGlCloudMaterial(this.uniforms, this.textures);
+    this.cloudMaterial = material;
+    this.deck = new THREE.Mesh(cloudDeckGeometry(), material);
+    this.deck.name = 'molen:cloud-deck';
+    this.shells = new THREE.Mesh(cloudShellGeometry(), material);
+    this.shells.name = 'molen:cloud-shells';
+    for (const mesh of [this.deck, this.shells]) {
+      mesh.frustumCulled = false;
+      mesh.visible = false;
+      this.object.add(mesh);
     }
   }
 
@@ -161,95 +227,174 @@ export class WeatherVisual {
     camera: THREE.Camera,
     origin: Vec3,
     daylight: number,
-    sun: Vec3,
+    sky: SkyFrame | undefined,
   ): void {
-    const { clouds, seed, atmosphere } = this.state;
-    const visible = clouds.coverage > 0 && clouds.density > 0;
-    if (visible && !this.cloudTexture) this.buildClouds();
-    for (const layer of this.cloudLayers) layer.visible = visible;
-    if (!visible) return;
-    if (seed !== this.noiseSeed) {
-      this.noiseSeed = seed;
-      this.cloudKey = '';
-      this.cloudNoise = new Float32Array(CLOUD_RESOLUTION ** 2);
-      for (let y = 0; y < CLOUD_RESOLUTION; y++)
-        for (let x = 0; x < CLOUD_RESOLUTION; x++) {
-          let value = 0,
-            weight = 0;
-          // Five octaves, the finest about four texels across: one more, a texel or two across,
-          // left a grain that streaked the clear sky wherever it hovered near the threshold.
-          for (let octave = 0; octave < 5; octave++) {
-            const frequency = 8 * 2 ** octave,
-              amplitude = 0.52 ** octave;
-            value +=
-              noise(
-                (x / CLOUD_RESOLUTION) * frequency,
-                (y / CLOUD_RESOLUTION) * frequency,
-                frequency,
-                seed + octave,
-              ) * amplitude;
-            weight += amplitude;
-          }
-          this.cloudNoise[y * CLOUD_RESOLUTION + x] = value / weight;
-        }
-    }
-    const key = `${clouds.coverage},${clouds.density},${sun.map((v) => Math.round(v * 20)).join(',')}`;
-    if (key !== this.cloudKey && this.cloudTexture && this.cloudNoise) {
-      this.cloudKey = key;
-      const pixels = this.cloudTexture.image.data as Uint8Array;
-      const field = this.cloudNoise;
-      const threshold = 0.78 - clouds.coverage * 0.62;
-      for (let y = 0; y < CLOUD_RESOLUTION; y++)
-        for (let x = 0; x < CLOUD_RESOLUTION; x++) {
-          const i = y * CLOUD_RESOLUTION + x,
-            n = field[i] ?? 0;
-          const dx = (field[y * CLOUD_RESOLUTION + ((x + 1) % CLOUD_RESOLUTION)] ?? n) - n;
-          const dz = (field[((y + 1) % CLOUD_RESOLUTION) * CLOUD_RESOLUTION + x] ?? n) - n;
-          const rim = 1 - smooth(threshold, threshold + 0.25, n);
-          const shade = clamp(
-            0.56 + rim * 0.3 + (dx * sun[0] + dz * sun[2]) * 4 - clouds.density * 0.15,
-          );
-          // An edge band soft enough that margins feather out without speckling the clear sky.
-          const alpha =
-            smooth(threshold - 0.075, threshold + 0.075, n) * (1 - Math.exp(-clouds.density * 6));
-          pixels.set([shade * 255, shade * 255, shade * 255, alpha * 255], i * 4);
-        }
-      for (const layer of this.cloudLayers)
-        if (layer.material.map) layer.material.map.needsUpdate = true;
-    }
+    const { clouds } = this.state;
+    const deck = this.deckVisible();
+    const wanted = [
+      ...(deck ? (['weather', 'shape', 'detail'] as const) : []),
+      ...(clouds.cirrus > 0 ? (['cirrus'] as const) : []),
+    ];
+    if (wanted.length > 0) this.textures.noise.build(wanted, this.noiseBudgetMs);
+    this.deckReady = this.textures.sync();
     const far =
       camera instanceof THREE.PerspectiveCamera || camera instanceof THREE.OrthographicCamera
         ? camera.far
         : 50000;
-    const size = Math.max(2000, Math.min(160000, far * 1.4));
-    const absoluteX = this.cameraPosition.x + origin[0],
-      absoluteZ = this.cameraPosition.z + origin[2];
-    this.color.set('#101829').lerp(new THREE.Color('#e4e9ee'), daylight);
-    const sunset = (1 - smooth(0, 0.3, Math.abs(sun[1]))) * smooth(-0.15, 0.05, sun[1]);
-    this.color.lerp(new THREE.Color('#f6b88d'), sunset * 0.55);
-    this.color.multiplyScalar(1 + daylight * 1.8);
-    for (const [i, layer] of this.cloudLayers.entries()) {
-      layer.position.set(
+    this.uniforms.update(this.state, seconds, origin, far, this.quality, sky);
+    if (deck && this.deckReady && !this.deck) this.buildDeck();
+    if (this.deck && this.shells) {
+      const shown = deck && this.deckReady;
+      const altitude = this.cameraPosition.y + origin[1];
+      const top = clouds.baseAltitude + clouds.thickness;
+      // Inside the layer every view ray starts in cloud: draw the shells around the camera.
+      const inside = altitude > clouds.baseAltitude && altitude < top;
+      this.deck.visible = shown && !inside;
+      this.shells.visible = shown && inside;
+      const slab = this.uniforms.slab;
+      this.deck.position.set(
         this.cameraPosition.x,
-        clouds.baseAltitude + i * clouds.thickness - origin[1],
+        altitude <= clouds.baseAltitude ? slab.x : slab.y,
         this.cameraPosition.z,
       );
-      layer.scale.set(size, 1, size);
-      layer.material.color.copy(this.color);
-      const map = layer.material.map as THREE.Texture;
-      const scale = clouds.scale * (1 + i * 0.35);
-      map.repeat.set(size / scale, size / scale);
-      map.offset.set(
-        wrap(
-          (absoluteX - atmosphere.windVelocity[0] * seconds) / scale - size / scale / 2 + i * 0.31,
-          1,
-        ),
-        wrap(
-          -(absoluteZ - atmosphere.windVelocity[2] * seconds) / scale - size / scale / 2 + i * 0.47,
-          1,
-        ),
-      );
+      this.deck.scale.set(2 * slab.w, 1, 2 * slab.w);
+      this.shells.position.copy(this.cameraPosition);
     }
+    this.updateCirrus(seconds, origin, far, daylight, sky?.sunDirection ?? [0.3, 0.8, 0.2]);
+    this.updateVeil(far);
+  }
+
+  /**
+   * In fog, rain or snow the murk hides the sky too, not only the ground: a camera-centred
+   * dome in the fog color, behind everything nearer, opaque toward the horizon and thinner
+   * overhead, where a view crosses less hazy air. Clouds draw over it, and a fully hazed cloud
+   * shows it. Absent in clear air (visibility from 20 km).
+   */
+  private updateVeil(far: number): void {
+    const visibility = this.state.visibility;
+    const shown = visibility < VEIL_VISIBILITY;
+    if (this.veil) this.veil.visible = shown;
+    if (!shown) return;
+    if (!this.veil) {
+      const geometry = new THREE.SphereGeometry(1, 32, 16);
+      geometry.setAttribute(
+        'color',
+        new THREE.BufferAttribute(new Float32Array(geometry.getAttribute('position').count * 4), 4),
+      );
+      this.veil = new THREE.Mesh(
+        geometry,
+        new THREE.MeshBasicMaterial({
+          vertexColors: true,
+          transparent: true,
+          depthWrite: false,
+          side: THREE.BackSide,
+          fog: false,
+          // WebGPU fogs before tone mapping, so a fogged surface is tone mapped; WebGL after.
+          toneMapped: this.backend === 'webgpu',
+        }),
+      );
+      this.veil.name = 'molen:visibility-veil';
+      // Behind every other transparent weather surface, though it is centred on the camera.
+      this.veil.renderOrder = -1;
+      this.veil.frustumCulled = false;
+      this.object.add(this.veil);
+    }
+    if (visibility !== this.veilVisibility) {
+      this.veilVisibility = visibility;
+      const positions = this.veil.geometry.getAttribute('position');
+      const colors = this.veil.geometry.getAttribute('color');
+      const strength = smooth(VEIL_VISIBILITY, VEIL_VISIBILITY * 0.4, visibility);
+      for (let i = 0; i < positions.count; i++) {
+        const path = HAZE_DEPTH / Math.max(Math.abs(positions.getY(i)), 0.03);
+        colors.setXYZW(i, 1, 1, 1, (1 - Math.exp((-3 * path) / visibility)) * strength);
+      }
+      colors.needsUpdate = true;
+    }
+    // Beyond twice the visibility everything is fully fogged anyway.
+    this.veil.scale.setScalar(Math.min(far * 0.9, Math.max(1500, visibility * 2)));
+    this.veil.position.copy(this.cameraPosition);
+  }
+
+  /**
+   * Cirrus are thin ice streaks combed out by the jet stream, so this layer is a flat sheet: a
+   * stretched texture turned to lie along the wind, at the cirrus altitude.
+   */
+  private updateCirrus(
+    seconds: number,
+    origin: Vec3,
+    far: number,
+    daylight: number,
+    sun: Vec3,
+  ): void {
+    const { clouds, atmosphere } = this.state;
+    const ready = clouds.cirrus > 0 && this.textures.noise.has('cirrus');
+    if (this.cirrus) this.cirrus.visible = ready;
+    if (!ready) return;
+    if (!this.cirrus) {
+      const geometry = new THREE.PlaneGeometry(1, 1, 16, 16);
+      geometry.rotateX(-Math.PI / 2);
+      const positions = geometry.getAttribute('position');
+      const colors = new Float32Array(positions.count * 4);
+      for (let j = 0; j < positions.count; j++) {
+        const r = Math.max(Math.abs(positions.getX(j)), Math.abs(positions.getZ(j))) * 2;
+        colors.set([1, 1, 1, 1 - smooth(0.55, 1, r)], j * 4);
+      }
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 4));
+      this.cirrus = new THREE.Mesh(
+        geometry,
+        new THREE.MeshBasicMaterial({
+          map: this.textures.cirrus,
+          vertexColors: true,
+          transparent: true,
+          side: THREE.DoubleSide,
+          depthWrite: false,
+        }),
+      );
+      this.cirrus.name = 'molen:cirrus';
+      this.cirrus.frustumCulled = false;
+      this.object.add(this.cirrus);
+    }
+    if (clouds.cirrus !== this.cirrusCoverage) {
+      this.cirrusCoverage = clouds.cirrus;
+      const noise = this.textures.noise.cirrus;
+      const pixels = this.textures.cirrus.image.data as Uint8Array;
+      const threshold = 1 - clouds.cirrus;
+      for (let i = 0; i < CIRRUS_SIZE ** 2; i++) {
+        const alpha = smooth(threshold - 0.1, threshold + 0.35, (noise[i] ?? 0) / 255);
+        pixels[i * 4] = pixels[i * 4 + 1] = pixels[i * 4 + 2] = 255;
+        pixels[i * 4 + 3] = Math.round(alpha * 200);
+      }
+      this.textures.cirrus.needsUpdate = true;
+    }
+    const layer = this.cirrus;
+    const size = Math.max(2000, Math.min(160000, far * 1.4));
+    const wind = atmosphere.windVelocity;
+    const angle = Math.hypot(wind[0], wind[2]) > 0.01 ? Math.atan2(-wind[2], wind[0]) : 0;
+    layer.rotation.y = angle;
+    layer.position.set(
+      this.cameraPosition.x,
+      clouds.cirrusAltitude - origin[1],
+      this.cameraPosition.z,
+    );
+    layer.scale.set(size, 1, size);
+    // Turned by `angle`, the plane's U axis runs along (cos, 0, -sin) and V along (-sin, 0, -cos).
+    const cos = Math.cos(angle),
+      sin = Math.sin(angle);
+    // Cirrus ride the jet stream, faster than the surface wind.
+    const ax = this.cameraPosition.x + origin[0] - wind[0] * 2.5 * seconds;
+    const az = this.cameraPosition.z + origin[2] - wind[2] * 2.5 * seconds;
+    const scale = clouds.scale * 1.6;
+    const map = layer.material.map as THREE.Texture;
+    map.repeat.set(size / scale, size / scale);
+    map.offset.set(
+      wrap((ax * cos - az * sin) / scale - size / scale / 2, 1),
+      wrap((-ax * sin - az * cos) / scale - size / scale / 2, 1),
+    );
+    this.color.set('#101829').lerp(new THREE.Color('#eef2f6'), daylight);
+    const sunset = (1 - smooth(0, 0.3, Math.abs(sun[1]))) * smooth(-0.2, 0.05, sun[1]);
+    this.color.lerp(new THREE.Color('#ffb48f'), sunset * 0.7);
+    this.color.multiplyScalar(1 + daylight * 1.6);
+    layer.material.color.copy(this.color);
   }
 
   private buildParticles(): void {
@@ -354,11 +499,14 @@ export class WeatherVisual {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
-    for (const layer of this.cloudLayers) {
-      layer.geometry.dispose();
-      layer.material.map?.dispose();
-      layer.material.dispose();
-    }
+    this.deck?.geometry.dispose();
+    this.shells?.geometry.dispose();
+    this.cloudMaterial?.dispose();
+    this.cirrus?.geometry.dispose();
+    this.cirrus?.material.dispose();
+    this.veil?.geometry.dispose();
+    this.veil?.material.dispose();
+    if (this.ownsTextures) this.textures.dispose();
     this.particles?.geometry.dispose();
     this.particles?.material.dispose();
     this.particleTexture?.dispose();

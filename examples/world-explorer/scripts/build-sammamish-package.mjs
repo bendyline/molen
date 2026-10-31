@@ -13,9 +13,9 @@ const defaultOutputDirectory = resolve(
   exampleDirectory,
   'public/terrain/seattle-bellevue-sammamish',
 );
-const defaultDetailBounds = [-122.46, 47.55, -121.95, 47.7];
+const defaultDetailBounds = [-122.46, 47.49, -121.95, 47.7];
 const defaultCoverageBounds = [-123.15, 46.95, -120.9, 48.3];
-const defaultVectorUrl = 'https://build.protomaps.com/20260925.pmtiles';
+const defaultVectorUrl = 'https://build.protomaps.com/20261023.pmtiles';
 const defaultElevationTemplate =
   'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png';
 // The viewer draws a separate sea/lake surface. This fixture encodes the visible land surface,
@@ -264,11 +264,11 @@ if (overviewMaxLevel < minLevel || overviewMaxLevel >= elevationMaxLevel) {
 const vectorUrl = argument('--vector-url', defaultVectorUrl);
 const elevationTemplate = argument('--elevation-template', defaultElevationTemplate);
 const packageName = argument('--name', 'Seattle, Bellevue, and Sammamish, Washington');
-const packageVersion = argument('--version', '2026-09-25');
+const packageVersion = argument('--version', '2026-10-23');
 const vectorRelease = argument('--vector-release', `${packageVersion} daily archive`);
 const elevationRelease = argument(
   '--elevation-release',
-  'AWS open-data snapshot accessed 2026-08-30',
+  'AWS open-data snapshot accessed 2026-10-29',
 );
 const extraElevationAttribution = JSON.parse(argument('--extra-elevation-attribution', '[]'));
 const elevationCredit = [

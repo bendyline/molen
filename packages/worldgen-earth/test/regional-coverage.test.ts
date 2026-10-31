@@ -40,6 +40,30 @@ describe('shipped global ecological coverage', () => {
     expect(home?.populations.some((p) => p.model.includes('cedar'))).toBe(true);
     expect(park?.populations.some((p) => p.model.includes('maple'))).toBe(true);
   });
+  it('keeps Pacific Northwest stands mostly evergreen, with Douglas-fir only in its range', () => {
+    const scatterAt = (lon: number, lat: number) => {
+      const ecoregion = geography.at(lon, lat);
+      if (ecoregion === undefined) throw new Error(`No geography at ${lon}, ${lat}`);
+      return library.select({ ecoregion }).scatter;
+    };
+    const sammamish = scatterAt(-122.036, 47.61);
+    for (const id of ['forest', 'park', 'home_canopy', 'residential_trees', 'open_trees']) {
+      const rule = sammamish?.rules.find((entry) => entry.id === id);
+      if (rule === undefined) throw new Error(`Missing Sammamish rule ${id}`);
+      const total = rule.populations.reduce((sum, p) => sum + p.weight, 0);
+      const deciduous = rule.populations
+        .filter((p) => library.plants[p.model]?.phenology !== undefined)
+        .reduce((sum, p) => sum + p.weight, 0);
+      // October colour is an accent among the conifers, not a third of the canopy.
+      expect(deciduous / total, id).toBeLessThanOrEqual(0.2);
+      expect(rule.populations[0]?.model, id).toBe('molen.ecology.plant.douglas_fir');
+    }
+    const ketchikan = scatterAt(-131.64, 55.34);
+    const models = ketchikan?.rules.flatMap((rule) => rule.populations.map((p) => p.model)) ?? [];
+    expect(models).toContain('molen.ecology.plant.sitka_spruce');
+    expect(models.some((model) => /douglas_fir|maple/.test(model))).toBe(false);
+  });
+
   it('changes deciduous appearance without moving or resizing the generated plants', () => {
     const [x, z] = projectWgs84(8.4, 48.9);
     const run = (month: number) => {

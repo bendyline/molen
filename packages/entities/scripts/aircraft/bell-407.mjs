@@ -3,12 +3,13 @@
  * This is its own seven-seat shell, glazing, rotor head, stabilizer and glass panel.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,
   cleanGeometry,
   detailKit,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -18,6 +19,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { cabinShell } from './robinson-r44.mjs';
 export const bell407Frame = () => ({
   heli: true,
   fighter: false,
@@ -27,7 +29,8 @@ export const bell407Frame = () => ({
   ry: 0.7,
   cabinZ: 1.16,
   cabinWidth: 1.42,
-  eye: [-0.36, 1.68, 1.14],
+  // Seated eye about 0.73 m above the cushion and 0.22 m under the roof, inside the door glass.
+  eye: [-0.36, 1.55, 1.14],
   panelZ: 1.78,
   floor: 0.48,
   mainRotorPosition: [0, 2.9, 0],
@@ -48,188 +51,185 @@ export function buildBell407(s) {
     }),
     gold = mat('407-stripe', '#b5a16b');
   const d = detailKit(root, '407-airframe');
-  const measured = [
-    [3.28, 0.045, 0.67, 0.84],
-    [3.06, 0.36, 0.47, 1.03],
-    [2.65, 0.65, 0.43, 1.15],
-    [1.65, 0.735, 0.4, 1.76],
-    [0.55, 0.75, 0.41, 1.78],
-    [-0.7, 0.75, 0.41, 1.73],
-    [-1.9, 0.6, 0.58, 1.78],
-    [-2.9, 0.22, 1.37, 1.86],
+  // Side profile keeps the fitted stations. In plan the Commons 407 orthographic nose is a half
+  // ellipse about 1 m long (0.59 of the cabin width 0.18 m behind the tip, 0.79 at 0.36 m,
+  // read from the outline's pixel rows). Head-on (407GX front 3/4 photos) the
+  // cabin is a rounded box whose door glazing leans in to roof shoulders about 0.3 m round, and
+  // the bullet nose blends into a deep compound windscreen, so all glazing and paint are
+  // regions of that curved skin rather than holes in flat side sheets.
+  const shell = cabinShell(
+    [
+      // z, half width, keel, crown, widest at, superellipse exponent above / below it
+      [3.1, 0.44, 0.615, 0.985, 0.76, 2.4, 2.5],
+      [2.92, 0.59, 0.5, 1.07, 0.76, 2.7, 2.9],
+      [2.65, 0.695, 0.43, 1.15, 0.78, 3.1, 3.6],
+      [2.15, 0.73, 0.41, 1.5, 0.8, 3.8, 4.2],
+      [1.65, 0.735, 0.4, 1.76, 0.82, 4, 4.5],
+      [0.55, 0.75, 0.41, 1.78, 0.84, 4, 4.5],
+      [-0.7, 0.75, 0.41, 1.73, 0.86, 4, 4.2],
+      [-1.9, 0.6, 0.58, 1.78, 1.02, 3.4, 3.2],
+      [-2.9, 0.22, 1.37, 1.86, 1.615, 2.6, 2.6],
+    ],
+    [3.285, 0.755, 0.55],
+  );
+  const zs = shell.samples(0.25);
+  // Deep compound windscreen from the nose cap up to the roof, wrapping back to the door posts.
+  const screenSide = (side) =>
+    [
+      [2.72, 1.1],
+      [2.32, 1.0],
+      [2.09, 0.99],
+      [1.68, 1.64],
+    ].map(([z, y]) => [z, shell.vAt(z, y, side)]);
+  const screen = [...screenSide(-1), ...screenSide(1).reverse()];
+  // Lower observation windows wrap under the nose either side of an opaque keel.
+  const chin = [-1, 1].map((side) =>
+    shell.region([
+      [2.45, 0.8, side],
+      [2.92, 0.75, side],
+      [3.16, 0.69, side],
+      [3.14, side * 0.486],
+      [2.45, side * 0.486],
+    ]),
+  );
+  const doors = [
+    [
+      [1.7, 1.65],
+      [0.97, 1.65],
+      [1.13, 0.64],
+      [2.2, 0.67],
+      [2.04, 1.0],
+    ],
+    [
+      [0.93, 1.65],
+      [0.33, 1.64],
+      [0.46, 0.63],
+      [1.07, 0.62],
+    ],
+    [
+      [0.3, 1.64],
+      [-0.69, 1.6],
+      [-0.56, 0.62],
+      [0.42, 0.62],
+    ],
   ];
-  const sections = measured.map(([z, w, b, t]) => {
-    const upper = t - Math.min(0.14, (t - b) * 0.22),
-      lower = b + Math.min(0.16, (t - b) * 0.22);
-    return {
-      z,
-      points: [
-        [0, t],
-        [w * 0.78, t - 0.015],
-        [w, upper],
-        [w, lower],
-        [w * 0.73, b],
-        [-w * 0.73, b],
-        [-w, lower],
-        [-w, upper],
-        [-w * 0.78, t - 0.015],
-      ],
-    };
-  });
-  const p = (i, j) => [...sections[i].points[j], sections[i].z];
-  loft(d, sections, white, {
-    skip: (i, j) =>
-      (i === 1 && [2, 3, 5, 6].includes(j)) ||
-      (i === 2 && [0, 1, 7, 8].includes(j)) ||
-      ([2, 3, 4, 5].includes(i) && [2, 6].includes(j)),
-  });
-  // Compound windshield curves up to the roof; lower observation panes remain real openings.
-  const wind = (j, u) => {
-    const a = p(2, j),
-      b = p(3, j);
-    return [
-      a[0] * (1 - u) + b[0] * u,
-      a[1] * (1 - u) + b[1] * u + 0.1 * Math.sin(u * Math.PI),
-      a[2] * (1 - u) + b[2] * u,
-    ];
-  };
-  for (const j of [0, 1, 7, 8])
-    for (let k = 0; k < 4; k++)
-      quad(
-        d,
-        wind(j, k / 4),
-        wind(j, (k + 1) / 4),
-        wind((j + 1) % 9, (k + 1) / 4),
-        wind((j + 1) % 9, k / 4),
-        glass,
-        [0, 1, 1],
-      );
-  for (const i of [2, 3])
-    outline(d, [p(i, 7), p(i, 8), p(i, 0), p(i, 1), p(i, 2)], 0.017, red, false);
-  for (const j of [0, 2, 7])
-    outline(
-      d,
-      [0, 0.25, 0.5, 0.75, 1].map((u) => wind(j, u)),
-      0.017,
-      red,
-      false,
-    );
-  for (const j of [2, 3, 5, 6]) {
-    const pane = [p(1, j), p(2, j), p(2, j + 1), p(1, j + 1)];
-    sheet(d, pane, glass, [j < 4 ? 1 : -1, -1, 0]);
-    outline(d, pane, 0.013, trim);
-  }
-  for (const side of [-1, 1]) {
-    const sx = (z) => {
-      const i = measured.findIndex(
-        (q, i) => i < measured.length - 1 && z <= q[0] && z >= measured[i + 1][0],
-      );
-      if (i < 0) return side * 0.75;
-      const a = measured[i],
-        b = measured[i + 1],
-        u = (a[0] - z) / (a[0] - b[0]);
-      return side * (a[1] * (1 - u) + b[1] * u);
-    };
-    const q = (z, y) => [sx(z), y, z],
-      j = side > 0 ? 2 : 7,
-      k = side > 0 ? 3 : 6;
-    const contours = [
+  const windows = [-1, 1].flatMap((side) =>
+    [
+      // Window tops run up close to the door tops (407 orthographic).
       [
-        [1.57, 1.56],
-        [1.06, 1.55],
+        [1.57, 1.61],
+        [1.06, 1.6],
         [1.18, 0.98],
-        [2.0, 1.03],
+        [1.96, 1.03],
       ],
       [
-        [0.91, 1.57],
-        [0.43, 1.56],
+        [0.91, 1.61],
+        [0.43, 1.6],
         [0.53, 1.01],
         [1.04, 1.01],
       ],
       [
-        [0.28, 1.54],
-        [-0.58, 1.5],
+        [0.28, 1.58],
+        [-0.58, 1.54],
         [-0.46, 0.95],
         [0.43, 1.0],
       ],
+    ].map((a) => shell.region(a.map(([z, y]) => [z, y, side]))),
+  );
+  // Wine-red flanks from the gold beltline up to the roof shoulders, cream roof and belly; one
+  // strip per skin bay so each piece stays convex.
+  const flankZ = zs.filter((z) => z >= -1.9 && z <= 2.65),
+    flank = (z, side) => [
+      [z, 0.835, side],
+      [z, shell.size(z)[2] - 0.14, side],
     ];
-    const holes = contours.map((a) => a.map(([z, y]) => q(z, y)));
-    sheet(
-      d,
-      [p(2, j), p(3, j), p(4, j), p(5, j), p(6, j), p(6, k), p(5, k), p(4, k), p(3, k), p(2, k)],
-      red,
-      [side, 0, 0],
-      holes,
-    );
-    for (const hole of holes) {
-      sheet(d, hole, glass, [side, 0, 0]);
-      outline(d, hole, 0.015, trim);
-    }
-    for (const door of [
+  const flanks = [-1, 1].flatMap((side) =>
+    flankZ.slice(1).map((z, i) => shell.region([...flank(flankZ[i], side), ...flank(z, side)])),
+  );
+  shell.build(
+    d,
+    white,
+    [
+      { poly: shell.region(screen), material: glass },
+      ...[...chin, ...windows].map((poly) => ({ poly, material: glass })),
+      ...flanks.map((poly) => ({ poly, material: red })),
+    ],
+    zs,
+    28,
+  );
+  shell.strip(d, screen, 0.03, red, false);
+  for (const poly of chin) shell.strip(d, poly, 0.024, trim, false);
+  for (const poly of windows) shell.strip(d, poly, 0.028, trim);
+  outline(
+    d,
+    shell.trace(
       [
-        [1.7, 1.65],
-        [0.97, 1.65],
-        [1.13, 0.64],
-        [2.2, 0.67],
+        [1.68, 0],
+        [2.72, 0],
       ],
-      [
-        [0.93, 1.65],
-        [0.33, 1.64],
-        [0.46, 0.63],
-        [1.07, 0.62],
-      ],
-      [
-        [0.3, 1.64],
-        [-0.69, 1.6],
-        [-0.56, 0.62],
-        [0.42, 0.62],
-      ],
-    ])
-      outline(
-        d,
-        door.map(([z, y]) => q(z, y)),
-        0.0045,
-        trim,
-      );
+      false,
+      0.012,
+    ),
+    0.017,
+    red,
+    false,
+  );
+  for (const side of [-1, 1]) {
+    const q = (z, y, lift = 0) => shell.point(z, y, side, lift);
+    for (const door of doors)
+      shell.strip(d, shell.region(door.map(([z, y]) => [z, y, side])), 0.009, trim, false);
     for (const z of [1.22, 0.55, -0.4]) {
-      d.rod([sx(z) * 1.01, 0.87, z - 0.05], [sx(z) * 1.01, 0.87, z + 0.05], 0.012, metal);
-      for (const y of [0.76, 1.4]) d.box([0.026, 0.045, 0.055], [sx(z) * 1.01, y, z + 0.42], metal);
+      d.rod(q(z - 0.05, 0.87, 0.008), q(z + 0.05, 0.87, 0.008), 0.012, metal);
+      for (const y of [0.76, 1.4]) d.box([0.026, 0.045, 0.055], q(z + 0.42, y, 0.008), metal);
     }
-    // The lower cream band and gold beltline follow the side stations.
-    for (let i = 2; i < 6; i++) {
-      const a = p(i, k),
-        b = p(i + 1, k),
-        wa = a[0] * 1.004,
-        wb = b[0] * 1.004;
-      quad(d, [wa, a[1], a[2]], [wb, b[1], b[2]], [wb, 0.82, b[2]], [wa, 0.82, a[2]], white, [
-        side,
-        0,
-        0,
-      ]);
-      d.rod([wa, 0.827, a[2]], [wb, 0.827, b[2]], 0.006, gold);
-    }
-    const hatch = [
-      [side * 0.72, 0.7, -0.91],
-      [side * 0.62, 0.8, -1.74],
-      [side * 0.62, 1.3, -1.74],
-      [side * 0.72, 1.22, -0.91],
-    ];
-    outline(d, hatch, 0.005, trim);
-    d.rod([side * 0.725, 0.92, -1.0], [side * 0.725, 0.92, -1.1], 0.013, metal);
-    d.text('407 GX', [side * 0.756, 0.88, -0.15], 0.065, (side * Math.PI) / 2, gold);
+    // Gold beltline along the top of the cream lower band.
+    shell.strip(
+      d,
+      flankZ.map((z) => [z, shell.vAt(z, 0.83, side)]),
+      0.012,
+      gold,
+      false,
+      false,
+    );
+    shell.strip(
+      d,
+      shell.region(
+        [
+          [-0.91, 0.7],
+          [-1.74, 0.8],
+          [-1.74, 1.3],
+          [-0.91, 1.22],
+        ].map(([z, y]) => [z, y, side]),
+      ),
+      0.009,
+      trim,
+      false,
+    );
+    d.rod(q(-1.0, 0.92, 0.008), q(-1.1, 0.92, 0.008), 0.013, metal);
+    d.text('407 GX', q(-0.15, 0.88, 0.004), 0.065, (side * Math.PI) / 2, gold);
   }
+  // Doghouse feet sink into the rounded roof so the fairing never floats above the skin.
+  // Its crown is a rounded hump (407GX front photos), not a chamfered box.
   const engine = (z, w, b, t) => {
-    const shoulder = Math.max(b + (t - b) * 0.4, t - 0.12);
+    const shoulder = Math.max(b + (t - b) * 0.3, t - 0.2),
+      foot = Math.min(b, shell.at(z, shell.vAtX(z, w))[1] - 0.02),
+      crown = Array.from({ length: 5 }, (_, k) => {
+        const a = (k * Math.PI) / 8;
+        return [
+          w * Math.pow(Math.sin(a), 2 / 2.6),
+          shoulder + (t - shoulder) * Math.pow(Math.cos(a), 2 / 2.6),
+        ];
+      });
     return {
       z,
       points: [
-        [0, t],
-        [w * 0.7, t - Math.min(0.015, (t - b) * 0.2)],
-        [w, shoulder],
-        [w, b],
-        [-w, b],
-        [-w, shoulder],
-        [-w * 0.7, t - Math.min(0.015, (t - b) * 0.2)],
+        ...crown,
+        [w, foot],
+        [-w, foot],
+        ...crown
+          .slice(1)
+          .reverse()
+          .map(([x, y]) => [-x, y]),
       ],
     };
   };
@@ -251,7 +251,7 @@ export function buildBell407(s) {
     d.rod([side * 0.25, 2.19, -0.82], [side * 0.25, 2.4, -0.92], 0.07, metal);
     d.add(new T.CircleGeometry(0.056, 16).rotateX(-Math.PI / 2), trim, [side * 0.25, 2.44, -0.92]);
     for (let i = 0; i < 29; i++)
-      d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [side * 0.754, 0.89, 1.6 - i * 0.078]);
+      d.add(new T.SphereGeometry(0.0035, 5, 3), metal, shell.point(1.6 - i * 0.078, 0.89, side));
   }
   const boom = (z, w, y, h) => ({
     z,
@@ -390,7 +390,11 @@ export function buildBell407(s) {
   }
   td.finish();
   d.finish();
-  const interior = add407Cockpit(root, { red, white, trim, metal });
+  const interior = add407Cockpit(root, { red, white, trim, metal }, shell, [
+    shell.region(screen),
+    ...chin,
+    ...windows,
+  ]);
   cleanGeometry(root);
   return {
     root,
@@ -410,7 +414,7 @@ export function buildBell407(s) {
   };
 }
 
-function add407Cockpit(root, m) {
+function add407Cockpit(root, m, shell, apertures) {
   const cabin = group(root, 'cockpit'),
     panel = mat('407-panel', '#c0bdb0'),
     seat = mat('407-upholstery', '#b3a58b', { roughness: 0.92 }),
@@ -419,14 +423,30 @@ function add407Cockpit(root, m) {
   const d = detailKit(cabin, '407-cockpit'),
     tools = panelTools(d),
     z = 1.78;
-  d.box([1.3, 0.035, 2.2], [0, 0.48, 0.55], m.trim);
-  d.box([1.14, 0.035, 1.02], [0, 0.64, -1.06], m.trim);
+  // Dark cabin trim 3 cm inside the skin, open at every window, so the glazing reads dark.
+  shell.build(
+    d,
+    m.trim,
+    apertures.map((poly) => ({ poly, material: null })),
+    shell.samples(0.45).filter((z) => z > -1.8),
+    12,
+    0.03,
+  );
+  // Cabin deck and raised aft passenger deck trimmed to the rounded lower corners of the shell.
+  const rings = [-1.7, -1.3, -0.9, -0.5, -0.1, 0.3, 0.7, 1.1, 1.5, 1.9].map((z) => ({
+    z,
+    points: Array.from({ length: 32 }, (_, j) => shell.at(z, -0.5 + j / 32).slice(0, 2)),
+  }));
+  fittedFloor(d, rings, m.trim, { y: 0.4975, front: 1.65, back: -0.55, width: 1.3 });
+  fittedFloor(d, rings, m.trim, { y: 0.6575, front: -0.55, back: -1.57, width: 1.14 });
   const face = [
     [-0.59, 1.5, z],
     [-0.24, 1.5, z],
-    [-0.13, 1.63, z],
-    [0.34, 1.63, z],
-    [0.54, 1.53, z],
+    // The standby hood rises about 0.13 m above the displays (GX cockpit photo), under the
+    // pilot's level sightline.
+    [-0.13, 1.51, z],
+    [0.34, 1.51, z],
+    [0.54, 1.48, z],
     [0.61, 1.42, z],
     [0.61, 0.9, z],
     [0.18, 0.9, z],
@@ -435,16 +455,13 @@ function add407Cockpit(root, m) {
     [-0.59, 1.04, z],
   ];
   sheet(d, face, panel, [0, 0, -1]);
-  sheet(
-    d,
-    face.map(([x, y]) => [x, y, z + 0.16]),
-    m.trim,
-    [0, 0, 1],
-  );
+  // The housing narrows and drops toward the nose so its shoulders stay under the windscreen,
+  // which curves in toward the roof.
+  const ahead = face.map(([x, y]) => [x * 0.88, 0.9 + (y - 0.9) * 0.88, z + 0.16]);
+  sheet(d, ahead, m.trim, [0, 0, 1]);
   for (let i = 0; i < face.length; i++) {
-    const a = face[i],
-      b = face[(i + 1) % face.length];
-    quad(d, a, b, [b[0], b[1], z + 0.16], [a[0], a[1], z + 0.16], m.trim, [0, 1, 0]);
+    const j = (i + 1) % face.length;
+    quad(d, face[i], face[j], ahead[j], ahead[i], m.trim, [0, 1, 0]);
   }
   outline(d, face.slice(0, 6), 0.024, m.trim, false);
   // Two GX displays: navigation on the left, pilot flight display on the right.
@@ -485,10 +502,10 @@ function add407Cockpit(root, m) {
     [0.13, 'airspeed'],
     [-0.046, 'altitude'],
   ]) {
-    tools.gauge(x, 1.52, z - 0.012, 0.066);
-    const n = group(cabin, `407-standby-${source}`, [x, 1.52, z - 0.028]),
+    tools.gauge(x, 1.435, z - 0.012, 0.05);
+    const n = group(cabin, `407-standby-${source}`, [x, 1.435, z - 0.028]),
       nd = detailKit(n, '407-standby');
-    nd.rod([0, -0.012, 0], [0, 0.05, 0], 0.002, nd.ivory);
+    nd.rod([0, -0.01, 0], [0, 0.038, 0], 0.002, nd.ivory);
     nd.finish();
     bindings.push({
       node: n.name,
@@ -606,7 +623,8 @@ function add407Cockpit(root, m) {
       });
     }
   }
-  for (const x of [-0.46, 0, 0.46]) addSeat(x, 0.9, -1.18);
+  // Rear bench seats close up so their backs clear the rounded aft roof shoulders.
+  for (const x of [-0.41, 0, 0.41]) addSeat(x, 0.9, -1.18);
   d.box([0.21, 0.035, 0.55], [0, 1.73, 0.67], m.trim);
   for (let i = 0; i < 8; i++)
     d.rod([0, 1.7, 0.44 + i * 0.055], [0, 1.67, 0.45 + i * 0.055], 0.004, m.metal);

@@ -34,10 +34,10 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | --- | --- |
 | E | Board, or exit after landing, stopping and engine shutdown |
 | I | Start/stop engine; allow the propeller or rotor to spool |
-| Shift / Ctrl | Increase/decrease throttle or helicopter collective; fighter afterburners engage above 85% throttle |
+| = / − | Increase/decrease throttle or helicopter collective; fighter afterburners engage above 85% throttle |
 | W / S | Nose down / nose up |
 | A / D | Bank left / right; helicopter cyclic |
-| Q / Z | Left / right rudder or anti-torque pedals; ground steering in the Mustang |
+| Z / C | Left / right rudder or anti-torque pedals; ground steering in the Mustang |
 | Space | Wheel brakes |
 | G | Retract/extend airplane gear while airborne |
 | F | Toggle airplane flaps |
@@ -48,7 +48,7 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 
 Mustang: start the engine, set flaps, hold the brake while raising throttle, then release the brake.
 The propeller swings the nose left as the tail gets light, and a crosswind turns it into the wind:
-hold a little right rudder (Z), or rudder away from the wind, to keep the runway centerline.
+hold a little right rudder (C), or rudder away from the wind, to keep the runway centerline.
 Rotate around 85–100 knots and release the pitch key once the nose is about 10 degrees up; the
 airplane keeps the attitude it lifted off at. At climb power the propeller's torque rolls it
 slowly left, so tap right bank (D) as needed. Retract gear and flaps after climbing. Reduce
@@ -79,7 +79,7 @@ markings are decorative, while live flight readings come from the HUD. Board at 
 entry point. Its larger footprint needs substantially more runway and clearance.
 
 Osprey and Harrier: use J to select vertical thrust (the parked Osprey starts there), allow the nacelles/nozzles to
-reach 90°, start the engine and increase power smoothly. W/S, A/D and Q/Z provide powered pitch,
+reach 90°, start the engine and increase power smoothly. W/S, A/D and Z/C provide powered pitch,
 roll and yaw control in a hover. Transition toward forward thrust gradually while gaining airspeed;
 the nacelles take 12 seconds for full travel and Harrier nozzles take 3. These are simplified
 powered-lift dynamics, with finite travel, vertical thrust, engine-dependent hover authority and
@@ -105,25 +105,47 @@ and a small rebound. A wingtip strike can turn the aircraft while it keeps movin
 continues to fall, tumble and slide. Terrain is tested at the airframe probes as well as at the
 landing origin, so a banked wing can hit the runway before the wheels or fuselage.
 
-The Mustang has detachable wings, tail surfaces and propeller; the OH-6 has a detachable rotor
-and tail; the small airliner has detachable wings (with their engines) and tail. Strong impacts
+The Mustang has detachable wings, tail surfaces and propeller; the OH-6 has separate main rotor,
+tail rotor and tail sections; the small airliner has detachable wings (with their engines) and
+tail. Every animated rotor, propeller and fan in the aircraft catalog has its own collision disc
+and breakable joint. Strong impacts
 or repeated loaded scrapes consume joint integrity. Separation removes the section's collision
 probes, reduces lift/control authority and can disable its attached engines. An asymmetric wing
 loss produces a rolling moment. Detached geometry retains its own velocity and spin, then falls,
 bounces and slows against terrain and resident obstacles. Debris expires after 20 simulation
 seconds; the missing section stays missing. **R** repairs the aircraft and clears debris.
-The remaining aircraft use their existing probes with the new contact response; they need
-authored section bindings to display parts breaking away.
+Losing both wings switches the fuselage to ballistic wreck motion, disabling thrust and flight
+controls. Ground and obstacle contact dissipates wreck spin as well as sliding motion, so the
+fuselage settles after impact; airborne wrecks continue to fall and tumble.
+Other aircraft retain their existing airframe probes alongside their independent rotor parts;
+additional wing, tail and gear separation requires authored section bindings.
+
+Rotors collide across their complete swept disc, including its interior and the spaces between
+the old tip probes. The obstacle adapter clips triangles to the disc's thickness and tests the
+radial boundary: geometry above or below a horizontal rotor clears it. Both rotors on tandem
+helicopters and both Osprey proprotors are independent; the latter follow the actual nacelle
+conversion position. Blade speed contributes to joint damage, so hovering beside a post can
+break a spinning rotor even when the hub is stationary. Propeller loss disables its engine;
+tail-rotor loss removes anti-torque authority and produces yaw. These conservative swept
+volumes remain active when stopped, regardless of visible blade phase.
 
 For custom models, `spec.collisionParts` replaces `collisionProbes`. Every section declares a
-unique `id`, a `role` (`body`, `leftWing`, `rightWing`, `tail`, `rotor`, `gear` or `engine`), local
+unique `id`, a `role` (`body`, `leftWing`, `rightWing`, `tail`, `rotor`, `tailRotor`, `gear` or `engine`), local
 probe centers and sphere `radius`, a section `center`, `massFraction`, and GLB `nodes`. Add
 `breakSpeed` in m/s for a breakable joint and `engines` for engines carried by that section.
 Keep a non-detachable `body` and at least 20% of the mass. Optional `fragments` selects triangles
 from shared static detail meshes using a model-space bounding box, so markings follow a wing.
+`disc` replaces a section's sphere probes with a model-space `center`, unit `normal`, `radius`,
+`halfThickness` and `rotor` node from `visual.rotors`. Its optional `tilt` hinge (`pivot`, unit
+`axis`, `angle`) follows `thrustVectorPosition`. A `parent` part id makes a rotor separate when
+its supporting wing or tail breaks, with no duplicate geometry or debris. Detached rotors
+inherit their shaft spin. Terrain uses deterministic samples of the disc interior, rim and
+lowest point; arbitrary height fields are not exact triangle meshes.
+
 These are gameplay approximations with authored joint strengths, not a structural engineering
-or accident-reconstruction model. Pieces use sphere collision proxies; mesh deformation, fire,
-debris-to-debris contacts and impulse transfer into other vehicles are not simulated.
+or accident-reconstruction model. Detached pieces use sphere collision proxies; mesh deformation, fire,
+debris-to-debris contacts and impulse transfer into other vehicles are not simulated. The obstacle
+adapter uses oriented boxes for other cars and body-center spheres for other aircraft.
 
 Hosts provide `AircraftEnvironment.contacts(probes, entity)` with world-space contact points,
 outward normals and penetration depths. `aircraftObstacleContacts` from `client/aircraft`
@@ -174,6 +196,13 @@ ownership of a loaded GLB and animates the nodes named by `spec.visual` from air
 `aircraftState.gearPosition` and `flapPosition` as they travel. `spec.visual.animation` adds
 exterior moving parts as [model-signal bindings](vehicle-interiors.md#exterior-animation), with
 keyframed curves so one gear position can sequence doors and legs.
+
+Exposed airplane propellers fade from individual blades into a translucent, soft-edged disk
+between 20 and 60 rad/s (about 190–570 RPM). The disk follows actual shaft speed, including
+independent engines and spool-down, so blades cannot appear frozen at normal operating RPM.
+Its size and radial colors come from the blade geometry and materials; separate central hubs stay solid.
+This render-only effect needs no model changes and works with WebGL and WebGPU. Helicopter
+rotors and enclosed jet fans retain their existing animation.
 
 For powered lift, declare `spec.poweredLift` with positive `transitTime`, `controlFadeSpeed`,
 `pitchAuthority`, `rollAuthority`, `yawAuthority` and `damping`, and mark the participating
@@ -258,8 +287,8 @@ Published cruise, maximum and operating speeds are different quantities. Where a
 not specify weight, altitude or throttle, the test condition is explicitly estimated. Some
 aircraft still have engineering-estimate anchors. Passing a fitted anchor establishes internal
 consistency, not independent real-world validation. All polar, lapse and high-alpha coefficients
-remain approximations. Fuel burn, stores, changing mass/CG, detailed engine maps, icing,
-structural failures and certified flight-control laws are not modeled.
+remain approximations. Fuel burn, stores, continuous CG changes, detailed engine maps, icing,
+fatigue, load-induced structural failures and certified flight-control laws are not modeled.
 
 Flight assistance is limited to the pitch axis, so a keyboard can fly it. The stick moves an
 elevator (deflecting at `pitchResponse` per second and springing back four times faster) that
@@ -420,10 +449,11 @@ wind and forward motion give consistent results. Collision sampling is at least 
 of translation per substep. Unknown terrain pauses at the last known position and resumes when
 support is available.
 
-Hosts can supply `groundHeight`, `wind` and `canOccupy(transform, spec, entity)`. The world view
+Hosts can supply `groundHeight`, `wind` and `contacts(probes, entity)` (or the legacy
+`canOccupy(transform, spec, entity)`). The world view
 checks nearby resident geometry, the airfield, cars and other aircraft. Cars and exits also check
 conservative aircraft bounds. Imported collision hulls are
-available for hosts that need a different collision solver. Without `canOccupy`, the kernel only
+available for hosts that need a different collision solver. Without either obstacle callback, the kernel only
 collides with terrain. Do not add a second physics body that also writes the aircraft transform.
 
 This is a game flight model with recognizable polygonal aircraft, not a full aircraft systems
@@ -446,7 +476,7 @@ master switches, individual engine switches and throttles for airplanes with nam
 parking brakes, and applicable gear, flap and nozzle controls. Supplemental labeled modules fill
 gaps in the original models; their layout approximates the aircraft rather than reproducing every
 real switch. The Cessna 172's existing master rocker and flap selector are directly operable.
-Moving common power (including Shift/Ctrl or the modeled **PWR ALL** handle)
+Moving common power (including =/− or the modeled **PWR ALL** handle)
 synchronizes all throttle levers while preserving individual engine cutoffs, mixtures and propeller settings. A throttle indicates
 commanded power; shaft RPM follows the simulation's spool response. Retractable airplane gear is
 locked on the ground. Helicopters retain the existing shared engine/gearbox model and collective.
@@ -538,3 +568,11 @@ hold is a harness feature, not a player control or a certified performance chart
 `packages/kernel/test/aircraft-engines.test.ts` covers symmetric two/four-engine layouts,
 mirrored engine failures, counter-rudder, thrust moment arms, independent switches/spool,
 explicit repair, terrain rollback, exit safety, keyframe restoration and 30/60/120 Hz consistency.
+
+Exterior mechanisms use the snapshot-owned [graduated actuator system](vehicle-interiors.md#graduated-mechanisms).
+Canopies, hooks and speed brakes accept fractional targets through `aircraftInput.actuators`;
+`aircraftState.actuators` holds actual travel. Ordinary mechanisms reverse immediately from
+their current position. Speed-brake drag follows deployment. Retractable helicopter gear
+uses `helicopter.fixedGear: false` and `gearTransitTime`; skids remain fixed by default.
+The supplied aircraft expose only fitted equipment. Helicopter blade release is a gameplay
+escape effect, triggered by the latched `eject` actuator, and removes rotor lift after release.

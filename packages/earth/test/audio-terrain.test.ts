@@ -30,6 +30,41 @@ const context = (x = 0): TerrainPyramidTileLayerContext => ({
 });
 
 describe('mapped World audio context', () => {
+  it('localizes crossing audio to signals, including asynchronously rendered junctions', () => {
+    const terrain = new EarthAudioTerrain(),
+      root = new THREE.Group(),
+      object = new THREE.Group();
+    root.add(object);
+    const tile = empty();
+    tile.transportation = [
+      {
+        class: 'residential',
+        lines: [
+          [
+            [0, 0.5],
+            [1, 0.5],
+          ],
+        ],
+      },
+    ];
+    terrain.observer.added(object, tile, context());
+    expect(terrain.sample(50, 50).streetDistance).toBe(0);
+    expect(terrain.sample(50, 50).intersectionDistance).toBe(Infinity);
+    const surface = new THREE.Group();
+    surface.userData.trafficSignalHeads = [{ junction: [50, 50], radius: 8, direction: [1, 0] }];
+    object.add(surface);
+    expect(terrain.sample(70, 50).intersectionDistance).toBe(12);
+    surface.visible = false;
+    expect(terrain.sample(70, 50).intersectionDistance).toBe(Infinity);
+    tile.pois = [
+      { class: 'traffic_signals', point: [0.5, 0.5] },
+      { class: 'traffic_signals', point: [0.7, 0.5], layer: 1, bridge: true },
+    ];
+    terrain.observer.added(object, tile, context());
+    expect(terrain.sample(70, 50).intersectionDistance).toBeCloseTo(20);
+    terrain.observer.removed(object);
+    expect(terrain.sample(50, 50).intersectionDistance).toBe(Infinity);
+  });
   it('finds a shore across tile boundaries, ignores lakes and artificial water tile seams', () => {
     const terrain = new EarthAudioTerrain(),
       root = new THREE.Group(),

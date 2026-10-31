@@ -63,6 +63,7 @@ try {
         });
       const frames = {};
       let probes;
+      let beamProbes;
       for (const [name, altitude, enabled, far, spill = true, beams = true, close = false] of [
         ['day', 30, true, false],
         ['day-off', 30, false, false],
@@ -71,6 +72,7 @@ try {
         ['beam-off', -20, true, false, true, false],
         ['night', -20, true, false],
         ['dawn', 30, true, false],
+        ['car-beam-off', -20, true, false, true, false, true],
         ['car-night', -20, true, false, true, true, true],
         ['far-night', -20, true, true],
       ]) {
@@ -79,6 +81,7 @@ try {
           [altitude, enabled, far, spill, beams, close],
         );
         if (name === 'night') probes = state.probes;
+        if (name === 'car-night') beamProbes = state.beamProbes;
         assert.equal(state.backend, backend);
         assert(state.lamps > 4);
         const bytes = await page.screenshot({
@@ -106,6 +109,19 @@ try {
         assert(gain > 3, `Real light reaches wall/car receiver: ${gain}`);
       }
       assert(brighter > 500, `Visible window and pavement light coverage: ${brighter}`);
+      // The lit road must extend from just ahead of the bumper, not start at a detached hotspot.
+      for (const [x, y] of beamProbes) {
+        const pixel = (Math.round(y) * 960 + Math.round(x)) * 4;
+        const rgb = frames['car-night'].slice(pixel, pixel + 3);
+        const gain =
+          rgb.reduce((sum, value, i) => sum + value - frames['car-beam-off'][pixel + i], 0) / 3;
+        console.log(JSON.stringify({ backend, worker, nearBeam: [x, y], gain, rgb: [...rgb] }));
+        assert(gain > 3, `Headlights illuminate continuously from the bumper: ${gain}`);
+        assert(
+          Math.min(...rgb) < 245,
+          'Headlight footprint retains road detail instead of clipping white',
+        );
+      }
       const repeated = await page.screenshot();
       assert(
         PNG.sync.read(repeated).data.equals(frames['far-night']),

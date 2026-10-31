@@ -1,0 +1,444 @@
+{
+  "id": "isabel_ii_bridge",
+  "title": "Isabel II Bridge",
+  "wikidataId": "Q1862973",
+  "referenceCoordinate": {
+    "longitude": -6.002374237,
+    "latitude": 37.386329617
+  },
+  "module": "content/worldgen/source/places/ey/eye/isabel_ii_bridge/models/isabel-model.mjs",
+  "generator": "content/worldgen/source/places/ey/eye/isabel_ii_bridge/models/generate-isabel.mjs",
+  "builder": "buildIsabelLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.62
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94
+    },
+    "road": {
+      "slot": "roof",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.92
+    },
+    "mark": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 1
+    }
+  },
+  "exportLabel": "Molen original Isabel II Bridge",
+  "expectedDraftMasterHash": "sha256:2031467a44ec03e3c9ffe10db8698b61915f411ca0c8a1dda9f775f426895f1d",
+  "visualBrief": "Three iron arches with hollow graduated circular spandrels, skew limestone piers and cutwaters, complete crowned roadway and raised sidewalks, slender iron rails, three-light lamps, solid western abutment/open iron-arch riverwalk and an eastern masonry bank passage.",
+  "nativeAxes": "+X northeast/old Seville; -X southwest/Triana; +Z southeast/downstream toward Torre del Oro; -Z northwest/upstream.",
+  "sourceFacts": {
+    "identity": "Exact-QID way236420470, current PMTiles main road35184400206486 and distinct cycleway/sidewalk records.",
+    "mappedFootprint": {
+      "length": 165.001,
+      "width": 16.319
+    },
+    "reconstructionControls": {
+      "west": -82.5,
+      "east": 82.5,
+      "halfWidth": 8.16,
+      "roadHalfWidth": 4.7,
+      "deckEnds": [
+        10.35,
+        10.45
+      ],
+      "crown": 0.25,
+      "springY": 2.85,
+      "archRise": 6.68,
+      "archThickness": 0.35,
+      "piers": [
+        -27.97,
+        18.63
+      ],
+      "spans": [
+        [
+          -77.3,
+          -29.47
+        ],
+        [
+          -26.47,
+          17.13
+        ],
+        [
+          20.13,
+          63.65
+        ]
+      ],
+      "eastPassage": [
+        70,
+        78.1,
+        3.8
+      ],
+      "pierSkew": -0.1675
+    }
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Puente_de_Isabel_II_(Triana)._Sevilla..JPG",
+      "author": "Roberto Chamoso G",
+      "license": "CC BY-SA 3.0 es",
+      "observedDate": "2011-08-12 16:32:15",
+      "use": "Ordinary exterior photograph: three iron arches, circular spandrels, skew stone piers, railings and lamps; daytime side view also establishes eastern masonry passage. No photograph pixels used."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Puente_de_Isabel_II_(Triana)._Sevilla._(2).JPG",
+      "author": "Roberto Chamoso G",
+      "license": "CC BY-SA 3.0 es",
+      "observedDate": "2011-08-13 01:09:26",
+      "use": "Ordinary exterior photograph: three iron arches, circular spandrels, skew stone piers, railings and lamps; daytime side view also establishes eastern masonry passage. No photograph pixels used."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sevilla_-_Puente_de_Isabel_II_-_20070519-04.jpg",
+      "author": "Taken by the uploader, w:es:Usuario:Barcex",
+      "license": "CC BY-SA 3.0",
+      "observedDate": "2007-05-19",
+      "use": "Ordinary exterior photograph: three iron arches, circular spandrels, skew stone piers, railings and lamps; daytime side view also establishes eastern masonry passage. No photograph pixels used."
+    },
+    {
+      "url": "https://www.europapress.es/esandalucia/sevilla/noticia-junta-aprueba-patrimonio-proyecto-rehabilitacion-paseo-senora-sevilla-20230310141807.html",
+      "imageUrl": "https://img.europapress.es/fotoweb/fotonoticia_20230310141807_1200.jpg",
+      "observedDate": "2023-03-10",
+      "license": "Unverified; private reference inspection only, not redistributed",
+      "use": "Western lower quay passes beneath the iron arch, with solid bank abutment and open waterward edge. No inferred masonry tunnel."
+    },
+    {
+      "url": "https://fr.andalucia.org/listing/paseo-nuestra-se%C3%B1ora-de-la-o/24117104/",
+      "imageUrl": "https://spaindmsmedia.newmindmedia.com/wsimgs/3BCC90754D9C3194A27F13CD8DBF51CDF63AFCF9.jpg",
+      "license": "Unverified; private reference inspection only, not redistributed",
+      "use": "Opposite ordinary western riverwalk view corroborates bank abutment and open iron-arch passage."
+    }
+  ],
+  "limitations": [
+    "Original static medium-fi reconstruction from ordinary pictures and current PMTiles. Exact-QID footprint is165.001m by16.319m, distinct from the149m catalog length; these records are not conflated. Pier stations, unequal reconstructed bank spans, skew, iron sections, circle radii, lamps and all vertical profiles are visualization controls, not engineering measurements.",
+    "Three open iron spans, hollow graduated circular spandrels, stone cutwaters and pier caps, complete crowned roadway, both raised sidewalks, railings, three-light lamps, solid western abutment and eastern masonry passage are modeled. Close-up tier aggregates internal circles while preserving exterior ones; detailed master retains all seven ribs and their circles.",
+    "Current mapped lower quay routes and water boundaries bound two source-authored paving aprons, transition ramps and landward retaining faces. Coarse native ground would otherwise block the passages. The bounded ground/paving cutout retains raw DEM, water, outside terrain and unrelated map records. Quay floor, steep outer transitions and retaining heights are approximate, not a surveyed reconstruction or accessibility claim.",
+    "Adjacent chapel, restaurant, historic riverside buildings, stairways, street furniture and other unique structures remain outside this bridge asset. Generic neighboring buildings and coarse bank grades remain visible. Lower-quay safety railings and temporary street details are simplified/omitted.",
+    "Four existing shared256px graphs: painted metal, raw limestone, concrete and granite paving, with metric UVs and linear vertex tints; a fifth local marking material. No private or embedded images. Concrete grain approximates roadway. Physical laptop/phone timing remains unmeasured."
+  ],
+  "cameras": [
+    {
+      "name": "three-iron-spans",
+      "position": [
+        65,
+        25,
+        115
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 67
+    },
+    {
+      "name": "downstream-three-arches",
+      "position": [
+        0,
+        11,
+        130
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 68
+    },
+    {
+      "name": "circular-spandrels-and-skew-pier",
+      "position": [
+        5,
+        7,
+        24
+      ],
+      "lookAt": [
+        -18,
+        7,
+        7.4
+      ],
+      "fov": 65
+    },
+    {
+      "name": "road-sidewalks-and-three-light-lamps",
+      "position": [
+        -76,
+        12.4,
+        6
+      ],
+      "lookAt": [
+        52,
+        11.5,
+        6
+      ],
+      "fov": 65
+    },
+    {
+      "name": "east-bank-passage",
+      "position": [
+        74.8,
+        4.8,
+        20
+      ],
+      "lookAt": [
+        74.5,
+        2.8,
+        0
+      ],
+      "fov": 64
+    },
+    {
+      "name": "west-open-iron-arch-riverwalk",
+      "position": [
+        -75.6,
+        5.9,
+        20
+      ],
+      "lookAt": [
+        -74.5,
+        2.9,
+        0
+      ],
+      "fov": 65
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ey/eye/isabel_ii_bridge/models/isabel-model.mjs",
+    "export": "buildIsabelSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      },
+      "road": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.92
+      },
+      "mark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIsabelDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.25
+      },
+      "street": {
+        "export": "buildIsabelStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.09
+      },
+      "closeup": {
+        "export": "buildIsabelCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.045
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.apartments",
+    "scale": 1
+  },
+  "appearance": {
+    "identity": "Three iron arches with hollow circles and skew stone piers; asymmetrical bank abutments.",
+    "master": "Seven72-segment arch ribs per span; all graduated spandrel circles preserved in detailed source."
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-three-iron-spans",
+      "position": [
+        65,
+        25,
+        115
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 67,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-downstream-three-arches",
+      "position": [
+        0,
+        11,
+        130
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-circular-spandrels-and-skew-pier",
+      "position": [
+        5,
+        7,
+        24
+      ],
+      "lookAt": [
+        -18,
+        7,
+        7.4
+      ],
+      "fov": 65,
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-road-sidewalks-and-three-light-lamps",
+      "position": [
+        -76,
+        12.4,
+        6
+      ],
+      "lookAt": [
+        52,
+        11.5,
+        6
+      ],
+      "fov": 65,
+      "reviewLod": "closeup"
+    }
+  ],
+  "sourceDefinitions": [
+    "models/bank-controls.json"
+  ]
+}

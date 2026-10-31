@@ -8,6 +8,11 @@
 type MolenAircraftData = {
   kind: string;
   spec: {
+    actuators?: Record<string, {
+        seconds: number;
+        initial?: number;
+        mode?: 'position' | 'cycle' | 'latch';
+      }>;
     label: string;
     genericLabel?: string;
     model: 'airplane' | 'helicopter';
@@ -126,6 +131,7 @@ type MolenAircraftData = {
       profileDrag: number;
       inducedDrag: number;
       gearDrag: number;
+      speedBrakeDrag?: number;
       flapDrag: number;
       fixedGear?: boolean;
       gearTransitTime?: number;
@@ -140,6 +146,8 @@ type MolenAircraftData = {
       groundTrackRate: number;
     };
     helicopter?: {
+      fixedGear?: boolean;
+      gearTransitTime?: number;
       rotorPosition: [number, number, number];
       rotorRadius: number;
       powerLimitedRotor?: boolean;
@@ -178,9 +186,22 @@ type MolenAircraftData = {
     collisionProbes: [number, number, number][];
     collisionParts?: {
       id: string;
-      role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'gear' | 'engine';
+      role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'tailRotor' | 'gear' | 'engine';
       probes: [number, number, number][];
       radius: number;
+      disc?: {
+        center: [number, number, number];
+        normal: [number, number, number];
+        radius: number;
+        halfThickness: number;
+        rotor: string;
+        tilt?: {
+          pivot: [number, number, number];
+          axis: [number, number, number];
+          angle: number;
+        };
+      };
+      parent?: string;
       center: [number, number, number];
       massFraction: number;
       breakSpeed?: number;
@@ -277,6 +298,7 @@ type MolenAircraftData = {
 };
 /** Pilot flight controls. Power is retained when input keys are released. */
 type MolenAircraftInputData = {
+  actuators?: Record<string, number | boolean>;
   mixture?: number;
   propeller?: number;
   power: number;
@@ -297,6 +319,7 @@ type MolenAircraftInputData = {
 };
 /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
 type MolenAircraftStateData = {
+  actuators?: Record<string, number>;
   damage?: Record<string, {
       integrity: number;
       detached: boolean;
@@ -937,6 +960,42 @@ type MolenFsmData = {
     to: string;
   }[];
 };
+/** Breakable glass surfaces with metric geometry, material fracture and independent frame/interlayer retention. */
+type MolenGlassData = {
+  surfaces: {
+    id: string;
+    material: 'laminated' | 'tempered' | 'annealed';
+    center: [number, number, number];
+    rotation: [number, number, number, number];
+    size: [number, number];
+    thickness: number;
+    density?: number;
+    strength?: number;
+    fractureEnergy?: number;
+    retentionForce?: number;
+    retentionEnergy?: number;
+    nodes?: string[];
+  }[];
+  crashPulseSeconds?: number;
+};
+/** Persistent glass fracture, retention and release state. Missing panes are intact; remove the component to repair. */
+type MolenGlassStateData = {
+  surfaces: Record<string, {
+      fracture: 'intact' | 'cracked' | 'shattered';
+      retained: boolean;
+      damage: number;
+      retentionDamage: number;
+      peakStress: number;
+      point: [number, number];
+      release?: {
+        time: number;
+        position: [number, number, number];
+        rotation: [number, number, number, number];
+        velocity: [number, number, number];
+        fragmentSpeed?: number;
+      };
+    }>;
+};
 /** Common gameplay hit-points component. */
 type MolenHealthData = {
   hp: number;
@@ -1189,6 +1248,27 @@ type MolenVehicleData = {
   kind: string;
   color: string;
   spec: {
+    collisionParts?: {
+      id: string;
+      role: 'frontWheel' | 'rearWheel' | 'panel' | 'engine';
+      hinge?: {
+        pivot: [number, number, number];
+        axis: [number, number, number];
+        angle: number;
+        actuator: string;
+      };
+      center: [number, number, number];
+      probes: [number, number, number][];
+      radius: number;
+      massFraction: number;
+      breakSpeed: number;
+      nodes: string[];
+    }[];
+    actuators?: Record<string, {
+        seconds: number;
+        initial?: number;
+        mode?: 'position' | 'cycle' | 'latch';
+      }>;
     label: string;
     bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'bicycle' | 'motorcycle' | 'scooter';
     genericLabel?: string;
@@ -1297,6 +1377,7 @@ type MolenVehicleData = {
 };
 /** Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake. */
 type MolenVehicleInputData = {
+  actuators?: Record<string, number | boolean>;
   throttle: number;
   steering: number;
   brake: boolean;
@@ -1304,6 +1385,19 @@ type MolenVehicleInputData = {
 };
 /** Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. */
 type MolenVehicleStateData = {
+  damage?: Record<string, {
+      integrity: number;
+      detached: boolean;
+    }>;
+  debris?: {
+    part: string;
+    pos: [number, number, number];
+    rot: [number, number, number, number];
+    velocity: [number, number, number];
+    angularVelocity: [number, number, number];
+    age: number;
+  }[];
+  actuators?: Record<string, number>;
   boosted?: boolean;
   speed: number;
   steer: number;
@@ -1357,6 +1451,9 @@ type MolenWeatherData = {
     baseAltitude?: number;
     thickness?: number;
     scale?: number;
+    type?: 'cumulus' | 'stratocumulus' | 'stratus' | 'cumulonimbus';
+    cirrus?: number;
+    cirrusAltitude?: number;
   };
   precipitation?: {
     kind?: 'none' | 'rain' | 'snow';
@@ -1446,6 +1543,10 @@ interface MolenComponentData {
   'force': MolenForceData;
   /** Minimal event-driven state machine: transitions fire on world events targeting the entity. */
   'fsm': MolenFsmData;
+  /** Breakable glass surfaces with metric geometry, material fracture and independent frame/interlayer retention. */
+  'glass': MolenGlassData;
+  /** Persistent glass fracture, retention and release state. Missing panes are intact; remove the component to repair. */
+  'glassState': MolenGlassStateData;
   /** Common gameplay hit-points component. */
   'health': MolenHealthData;
   /** One-shot impulse/torque; consumed the tick it is applied. */

@@ -7,6 +7,8 @@ loudness-normalized and re-encoded as MP3 by `tools/build.mjs`.
 
 | Source | Author | Site | Sounds |
 | --- | --- | --- | --- |
+| [servomotor.wav](https://freesound.org/people/vacuumfan7072/sounds/264592/) | vacuumfan7072 | freesound | `aircraft.gear.motor` |
+| [Servo motor](https://freesound.org/people/Burningmonkey/sounds/322021/) | Burningmonkey | freesound | `aircraft.flaps.motor` |
 | [Impact Sounds](https://kenney.nl/assets/impact-sounds) | Kenney | kenney | `footstep.carpet`, `footstep.concrete`, `footstep.grass`, `footstep.snow`, `footstep.wood`, `impact.bell`, `impact.glass`, `impact.metal.heavy`, `impact.metal.light`, `impact.punch`, `impact.soft`, `impact.wood.heavy` |
 | [Interface Sounds](https://kenney.nl/assets/interface-sounds) | Kenney | kenney | `ui.back`, `ui.click`, `ui.close`, `ui.confirm`, `ui.error`, `ui.open`, `ui.select`, `ui.toggle` |
 | [RPG Audio](https://kenney.nl/assets/rpg-audio) | Kenney | kenney | `foley.coins`, `foley.creak`, `foley.door.close`, `foley.door.open`, `foley.latch`, `footstep.stone`, `weapon.chop`, `weapon.draw`, `weapon.slash` |
@@ -135,3 +137,6 @@ loudness-normalized and re-encoded as MP3 by `tools/build.mjs`.
 | [Footstep_Metal_Crouch_5.wav](https://freesound.org/people/GiocoSound/sounds/421151/) | GiocoSound | freesound | `footstep.metal` |
 | [footstep_metal.ogg](https://freesound.org/people/raceynovel/sounds/398554/) | raceynovel | freesound | `footstep.metal` |
 | [Different steps on wood, stone, leaves, gravel and mud](https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud) | TinyWorlds | opengameart | `footstep.gravel`, `footstep.leaves`, `footstep.mud` |
+| [screeching tyres / tires](https://freesound.org/people/johnnydekk/sounds/614627/) | johnnydekk | freesound | `aircraft.touchdown.tire` |
+| [Windshield wipers, slow #2](https://bigsoundbank.com/windshield-wipers-slow-2-s3111.html) | Joseph SARDIN & Axeline T. | bigsoundbank | `vehicle.wiper.sweep` |
+| [Sliding Doors](https://freesound.org/people/SwagMuffinPlus/sounds/176146/) | SwagMuffinPlus | freesound | `vehicle.door.slide` |

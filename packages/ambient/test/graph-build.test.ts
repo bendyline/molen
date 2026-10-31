@@ -1,3 +1,8 @@
+import {
+  bridgeDeckHeightFn,
+  gradeHighwayBridges,
+  terrainLinePath,
+} from '@bendyline/molen-terrain/kernel';
 import { describe, expect, it } from 'vitest';
 import {
   laneSample,
@@ -9,6 +14,54 @@ import {
 import { gridDocument, streetFeature } from './helpers';
 
 describe('transport graph', () => {
+  it.each([
+    false,
+    true,
+  ])('matches inferred flyover pavement through splits and tile parts (%s)', (parts) => {
+    const net = new TransportNetwork();
+    const features = [
+      streetFeature([0, 0.5], [0.45, 0.5], { class: 'highway', name: 'approach' }),
+      streetFeature([0.45, 0.5], [0.55, 0.5], {
+        class: 'highway',
+        name: 'deck',
+        bridge: true,
+        layer: 1,
+      }),
+      streetFeature([0.55, 0.5], [1, 0.5], { class: 'highway', name: 'exit' }),
+    ];
+    const graded = gradeHighwayBridges(features, 400, () => 0);
+    const expected = new Map(
+      graded.map((f) => [
+        f.name,
+        bridgeDeckHeightFn(terrainLinePath(f.lines[0] ?? [], 400), () => 0, {
+          clearance: 6,
+          approachLift: 0.32,
+          connects: [false, false],
+          approachProfile: f.bridgeApproachProfile?.map((p) => ({
+            ...p,
+            point: [p.point[0] * 400, p.point[1] * 400],
+          })),
+        }),
+      ]),
+    );
+    for (let i = 0; i < (parts ? 2 : 1); i++)
+      net.registerTile({
+        key: `highway:${i}`,
+        origin: [1000, 2000],
+        tileSize: 400,
+        features,
+        heightAt: () => 0,
+        ...(parts ? { bounds: [1000 + i * 200, 2000, 1200 + i * 200, 2400] as const } : {}),
+      });
+    expect([...net.edgeList()].length).toBeGreaterThanOrEqual(3);
+    for (const edge of net.edgeList())
+      for (const [i, p] of edge.path.points.entries()) {
+        expect(edge.ys[i]).toBeCloseTo(
+          expected.get(edge.name)?.(p[0] - 1000, p[1] - 2000) ?? NaN,
+          5,
+        );
+      }
+  });
   it('shares complete airport runways across streamed tiles without creating car lanes', () => {
     const net = new TransportNetwork();
     for (const [key, originZ] of [

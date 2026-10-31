@@ -1476,11 +1476,11 @@
               "liftSlope": 4.8,
               "postStallLift": 0.2,
               "postStallDecay": 3.8,
-              "profileDrag": 0.027499205108896696,
+              "profileDrag": 0.0314992051088967,
               "inducedDrag": 0.04245496377765899,
-              "gearDrag": 0.004,
+              "gearDrag": 0.025,
               "flapDrag": 0.075,
-              "gearTransitTime": 0,
+              "gearTransitTime": 8,
               "flapTransitTime": 4,
               "stallDrag": 1.1,
               "propellerEfficiency": 0.85,
@@ -1495,8 +1495,8 @@
               "waveDrag": 0.22,
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 111.11999999999999,
-              "flapLimitSpeed": 55.559999999999995,
-              "fixedGear": true
+              "gearLimitSpeed": 60.19,
+              "flapLimitSpeed": 55.559999999999995
             },
             "engines": [
               {
@@ -1553,6 +1553,111 @@
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.75
               }
+            ],
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  3.3,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    3.3,
+                    8.448167
+                  ],
+                  [
+                    0,
+                    3.3,
+                    -8.448167
+                  ],
+                  [
+                    13.31976,
+                    3.3,
+                    0
+                  ],
+                  [
+                    -13.31976,
+                    3.3,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-DC3-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  2.8194,
+                  2.702693,
+                  6.490283
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "DC3-propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    2.8194,
+                    2.702693,
+                    6.490283
+                  ],
+                  "normal": [
+                    0,
+                    0.199368,
+                    0.979925
+                  ],
+                  "radius": 1.7526,
+                  "halfThickness": 0.06,
+                  "rotor": "DC3-propeller-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-DC3-propeller--1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -2.8194,
+                  2.702693,
+                  6.490283
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "DC3-propeller--1"
+                ],
+                "disc": {
+                  "center": [
+                    -2.8194,
+                    2.702693,
+                    6.490283
+                  ],
+                  "normal": [
+                    0,
+                    0.199368,
+                    0.979925
+                  ],
+                  "radius": 1.7526,
+                  "halfThickness": 0.06,
+                  "rotor": "DC3-propeller--1"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
             ]
           }
         },
@@ -1588,7 +1693,8 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {}
         },
         "mountable": {
           "seats": [

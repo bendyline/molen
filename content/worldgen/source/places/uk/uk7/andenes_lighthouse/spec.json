@@ -1,0 +1,418 @@
+{
+  "planId": "andenes_lighthouse",
+  "id": "andenes_lighthouse",
+  "assetId": "molen.worldgen.structure.andenes_lighthouse",
+  "title": "Andenes Lighthouse — Andøya",
+  "wikidataId": "Q4753689",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 16.1159125,
+    "latitude": 69.32400499473684
+  },
+  "size": [
+    9.1698579788208,
+    40.20000000298023,
+    9.183857917785645
+  ],
+  "actualBounds": {
+    "min": [
+      -4.351064205169678,
+      -0.20000000298023224,
+      -4.631481170654297
+    ],
+    "max": [
+      4.818793773651123,
+      40,
+      4.552376747131348
+    ]
+  },
+  "visualBrief": "Whole named Andenes lighthouse tower exterior: original mapped outer base and tower part, full40m cast-iron tower, two exterior galleries on iron consoles and railings, lantern with second-order lens, conical metal roof, concrete foundation/entry steps, teak door and cast-iron windows. Nearby separately owned keeper houses, sheds, detached machinehouse and harbour are separate structures, excluded. Native outlines supply horizontal control; their foundation/tower role and all upper section divisions, taper, fitting positions and finishes are explicitly estimated from primary construction facts. No imagery used or photographic fidelity claimed.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2025-11-18",
+    "validFrom": "2025-11-18",
+    "validUntil": "2026-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "andenes-lighthouse-wp",
+      "url": "https://qualla.com/andenes-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "sha256:8b36e760fffd202512b067cee868ae0fd6d500e592db4f8900e67144788fdc39",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/uk/uk7/andenes_lighthouse/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/uk/uk7/andenes_lighthouse/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.18,
+    "surfaces": {
+      "iron": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.23
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#527d83",
+        "roughness": 0.2,
+        "metallic": 0.08
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.79,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#343b3b",
+        "roughness": 0.65,
+        "metallic": 0.3
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "iron": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.23
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#527d83",
+            "roughness": 0.2,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#343b3b",
+            "roughness": 0.65,
+            "metallic": 0.3
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "iron": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.23
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#527d83",
+            "roughness": 0.2,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#343b3b",
+            "roughness": 0.65,
+            "metallic": 0.3
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "iron": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.23
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#527d83",
+            "roughness": 0.2,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#343b3b",
+            "roughness": 0.65,
+            "metallic": 0.3
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "concrete_plain",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 3000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original independent ground frozen first. Floor0 at native centroid contact;40m owner height fixed. Native19-point shaft/base rings preserved. Upper taper, two gallery levels, lantern/roof/door/windows/steps are bounded declared estimates; no photographic measurements.",
+    "anchor": [
+      16.1159125,
+      69.32400499473684
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        16.1159125,
+        69.32400499473684
+      ],
+      "modelHeight": 0,
+      "basis": "Native mapped tower-part centroid selected before independent field acquisition and all floors/sections/geometry. Provider-relative ground, not surveyed foundation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/37865155",
+      "way/1026009624"
+    ],
+    "source": "https://www.openstreetmap.org/way/37865155",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ca20920d09a0a6a4c0674a4d2b1fa805ff1108aa8a5599905210d5e31195bffb",
+    "notes": "Whole named Andenes lighthouse tower exterior: original mapped outer base and tower part, full40m cast-iron tower, two exterior galleries on iron consoles and railings, lantern with second-order lens, conical metal roof, concrete foundation/entry steps, teak door and cast-iron windows. Nearby separately owned keeper houses, sheds, detached machinehouse and harbour are separate structures, excluded. Native outlines supply horizontal control; their foundation/tower role and all upper section divisions, taper, fitting positions and finishes are explicitly estimated from primary construction facts. No imagery used or photographic fidelity claimed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole named Andenes lighthouse tower exterior: original mapped outer base and tower part, full40m cast-iron tower, two exterior galleries on iron consoles and railings, lantern with second-order lens, conical metal roof, concrete foundation/entry steps, teak door and cast-iron windows. Nearby separately owned keeper houses, sheds, detached machinehouse and harbour are separate structures, excluded. Native outlines supply horizontal control; their foundation/tower role and all upper section divisions, taper, fitting positions and finishes are explicitly estimated from primary construction facts. No imagery used or photographic fidelity claimed.",
+    "Primary owner record gives40m height, red brick-lined cast-iron construction, two galleries one storey apart, iron consoles/railings, second-order lantern, conical metal roof, concrete foundation/steps, teak door and iron window frames. No photograph/figure/drawing was viewed or adopted. No photographic fidelity is claimed.",
+    "Original two19-control nested native outlines retained in one fixed geographic frame. Whole-building envelope is interpreted as foundation and smaller tower part as shaft base; vertical roles and taper are bounded estimates, not surveyed profiles. Entire named tower exterior included; no keeper-house or detached machinehouse substituted.",
+    "Tower taper, gallery/lantern/roof vertical divisions, railing/post/console census, iron panel joints, window count/bearings, door/step position, lens detail and all surface finishes are explicit reconstruction estimates. Lens represented as simple optical form with no navigational light simulation or exact optics.",
+    "Original independent128m/16641height source field frozen before floor/main section choices. Provider heights may include coarse coastal relief, buildings, water and void artifacts. No masks, flattening, cutouts, re-acquisition or visual terrain refit; no exact ground-contact certification.",
+    "Dated2025-11-18 approximate representation follows native mapping and owner construction text; not an automatic current-world replacement or current condition certification."
+  ],
+  "sourceLicense": "Original procedural geometry under repository license. Exact native outlines under ODbL; primary owner construction facts used as facts. No source prose, photographs, maps, drawings, textures or borrowed meshes incorporated. Qualla searched first, all imagery unused. Upper sections, fittings and finishes are explicitly estimated; no photographic-fidelity or surveyed-ground-contact claim.",
+  "qaLodCameras": [
+    {
+      "name": "whole-andenes-skyline",
+      "position": [
+        43,
+        26,
+        55
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-andenes-district",
+      "position": [
+        43,
+        26,
+        55
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-andenes-street",
+      "position": [
+        43,
+        26,
+        55
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-andenes-closeup",
+      "position": [
+        43,
+        26,
+        55
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-forty-metre-lighthouse-and-base",
+      "position": [
+        43,
+        26,
+        55
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "both-galleries-lantern-and-conical-roof",
+      "position": [
+        13,
+        37,
+        17
+      ],
+      "lookAt": [
+        0,
+        35.3,
+        0
+      ]
+    },
+    {
+      "name": "rear-whole-native-tower",
+      "position": [
+        -45,
+        25,
+        -55
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "teak-entry-native-foundation-and-iron-panels",
+      "position": [
+        9,
+        5,
+        -13
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15614,
+    "vertices": 46842,
+    "materials": 5,
+    "bytes": 1962260,
+    "sha256": "sha256:73c9eaa78fbe4278c74f7a4aa177c8cccb73145a8c52a5c4599386221a2505ea"
+  }
+}

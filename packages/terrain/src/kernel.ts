@@ -54,6 +54,7 @@ export {
   worldToWgs84,
 } from './geospatial';
 export { Heightfield, type HeightfieldCollider, type HeightfieldOptions } from './heightfield';
+export { gradeHighwayBridges } from './highway-grading';
 export {
   joinTerrainLines,
   lineSegmentIndex,

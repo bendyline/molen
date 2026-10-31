@@ -45,6 +45,18 @@ import { buildPorter, porterFrame } from './aircraft/pc-6.mjs';
 import { buildPC12, pc12Frame } from './aircraft/pilatus-pc12.mjs';
 import { buildRafaleC, rafaleFrame } from './aircraft/rafale-c.mjs';
 import { buildR44, r44Frame } from './aircraft/robinson-r44.mjs';
+import {
+  transportBelly,
+  transportCabinBacking,
+  transportCell,
+  transportFrame,
+  transportNacelle,
+  transportPoint,
+  transportPylon,
+  transportSection,
+  transportWindowFrames,
+  transportWinglet,
+} from './aircraft/transport-profiles.mjs';
 import { buildTyphoon, typhoonFrame } from './aircraft/typhoon.mjs';
 import { buildUH60, uh60Frame } from './aircraft/uh-60.mjs';
 import { addAircraftCockpit } from './aircraft-interiors.mjs';
@@ -55,6 +67,8 @@ const pi = Math.PI;
 const material = (name, color, metalness = 0.15, roughness = 0.55, extra = {}) =>
   new T.MeshStandardMaterial({ name, color, metalness, roughness, flatShading: true, ...extra });
 export function aircraftFrame(s) {
+  const transport = transportFrame(s);
+  if (transport) return transport;
   if (s.slug === 'atr-72-600') return atr72Frame();
   if (s.slug === 'dc-3') return dc3Frame();
   if (s.slug === 'beech-18') return beech18Frame();
@@ -115,14 +129,14 @@ export function aircraftFrame(s) {
     : fighter
       ? s.length * 0.19
       : large || s.category === 'tiltrotor'
-        ? s.length * 0.35
+        ? s.length * 0.5 - Math.max(2.5, Math.min(4.1, radius * 2.3))
         : s.length * 0.12;
   const eyeY = heli
     ? cy + ry * (s.shape === 'tandem' ? 0.4 : 0.65)
     : fighter
       ? cy + ry + 0.29
       : large
-        ? cy + ry * 0.7
+        ? cy + ry * 0.55
         : cy + ry * 0.77;
   const cabinWidth = fighter ? 0.77 : Math.min(s.width * (heli ? 0.7 : 0.77), large ? 2.7 : 1.7);
   const eyeX = fighter ? 0 : Math.min(0.57, cabinWidth * 0.27) * (heli ? -1 : 1);
@@ -138,7 +152,7 @@ export function aircraftFrame(s) {
     cabinWidth,
     eye,
     panelZ: cabinZ + 0.67,
-    floor: eyeY - 1.02,
+    floor: eyeY - (large ? Math.min(1.25, ry * 1.38) : 1.02),
   };
 }
 
@@ -160,12 +174,12 @@ function foil(
   sweep,
   side,
   paint,
-  { dihedral = 0, thickness = 0.11, start = 0, end = 1 } = {},
+  { dihedral = 0, thickness = 0.11, start = 0, end = 1, rows = 10 } = {},
 ) {
   const points = [],
     indices = [],
     nx = 10,
-    ny = 10;
+    ny = rows;
   for (let face = 0; face < 2; face++)
     for (let j = 0; j <= ny; j++) {
       const t = j / ny,
@@ -306,24 +320,30 @@ export function buildAircraft(s) {
     accent = material('airframe-accent', s.accent ?? '#52616b');
   const trim = material('panel-seam', '#515d61', 0.2, 0.6),
     rubber = material('tire-rubber', '#25292b', 0, 0.9);
-  const glass = material('canopy-glass', '#a6c9cf', 0.05, 0.18, {
+  // Transport glazing is a darker slate, so flight-deck panes read as dark windows from
+  // outside (as in daylight photographs) rather than pale film over a lit interior.
+  const glass = material('canopy-glass', f.profile ? '#3f5259' : '#a6c9cf', 0.05, 0.18, {
     transparent: true,
-    opacity: 0.23,
+    opacity: f.profile ? 0.36 : 0.23,
     depthWrite: false,
     side: T.DoubleSide,
   });
   const metallic = material('hot-section-metal', '#747b7b', 0.7, 0.4),
     black = material('intake-shadow', '#283137', 0.1, 0.8);
   const { heli, fighter, large, cy, ry, radius } = f,
-    L = s.length;
+    L = s.length,
+    profile = f.profile;
   paint.side = T.DoubleSide;
-  const wingY = heli
-    ? cy
-    : s.shape.startsWith('high') || s.category === 'tiltrotor'
-      ? cy + ry * 0.92
-      : cy - ry * 0.52;
-  const wingZ = s.wingZ ?? (fighter ? -L * 0.03 : large ? -L * 0.015 : -L * 0.04);
-  const wingSpan = s.category === 'tiltrotor' ? 14 : (s.span - s.width) / 2;
+  const wingY =
+    profile?.wing.y ??
+    (heli
+      ? cy
+      : s.shape.startsWith('high') || s.category === 'tiltrotor'
+        ? cy + ry * 0.92
+        : cy - ry * 0.52);
+  const wingZ =
+    profile?.wing.z ?? s.wingZ ?? (fighter ? -L * 0.03 : large ? -L * 0.015 : -L * 0.04);
+  const wingSpan = profile?.wing.span ?? (s.category === 'tiltrotor' ? 14 : (s.span - s.width) / 2);
   const bodyL = heli ? (s.body ?? L * 0.55) : L;
   // Longitudinal stations capture pointed radomes, blunt transports, cowlings and tapered tails.
   let stations = fighter
@@ -352,10 +372,10 @@ export function buildAircraft(s) {
             [-0.35, 0.68, 0.76],
             [-0.23, 0.98, 0.98],
             [0.2, 1, 1],
-            [0.35, 0.94, 0.75],
-            [0.4, 0.82, 0.5],
-            [0.43, 0.67, 0.4],
-            [0.48, 0.33, 0.17],
+            [0.38, 0.98, 1],
+            [0.42, 0.91, 0.91],
+            [0.455, 0.72, 0.65],
+            [0.48, 0.43, 0.32],
             [0.5, 0.02, 0.03],
           ]
         : [
@@ -406,6 +426,7 @@ export function buildAircraft(s) {
   const square =
     (heli && ['huey', 'tandem', 'blackhawk'].includes(s.shape)) || s.category === 'tiltrotor';
   const at = (z, a, offset = 0) => {
+    if (profile) return transportPoint(s, profile, z, a, offset);
     const [w, h] = ring(z / bodyL),
       sn = Math.sin(a),
       cs = Math.cos(a);
@@ -417,13 +438,68 @@ export function buildAircraft(s) {
   };
   const shell = [],
     glazing = [],
-    n = 48,
+    lining = [],
+    n = profile ? 64 : 48,
     nz = 80;
   const push = (arr, a, b, c) => arr.push(...a, ...b, ...c);
-  for (let iz = 0; iz < nz; iz++)
+  const polygon = (arr, points) => {
+    for (let i = 1; i < points.length - 1; i++) push(arr, points[0], points[i], points[i + 1]);
+  };
+  const clip = (points, distance) => {
+    const result = [];
+    for (let i = 0; i < points.length; i++) {
+      const a = points[i],
+        b = points[(i + 1) % points.length];
+      const da = distance(a),
+        db = distance(b);
+      if (da >= 0) result.push(a);
+      if (da < 0 !== db < 0) result.push(a.map((v, k) => v + ((b[k] - v) * da) / (da - db)));
+    }
+    return result;
+  };
+  const windowPlanes = [
+    (p) => p[2] - (f.cabinZ - 0.7),
+    (p) => bodyL * 0.485 - p[2],
+    (p) => p[1] - (f.eye[1] - 0.32),
+    (p) => f.eye[1] + Math.min(0.42, ry * 0.25) - p[1],
+  ];
+  const cabinWindowCount =
+    profile?.cabin.count ??
+    {
+      'a220-300': 38,
+      'airbus-a320neo': 39,
+      'boeing-737-800': 41,
+      'dash-8-q400': 27,
+      'embraer-e175': 23,
+      'citation-cj4': 6,
+      'gulfstream-g650er': 8,
+    }[s.slug];
+  const cabinWindows = Array.from({ length: cabinWindowCount ?? 0 }, (_, i) => {
+    const front = profile ? L / 2 - profile.cabin.front : f.cabinZ - 1.65,
+      back = profile ? L / 2 - profile.cabin.back : -L * (s.category === 'business' ? 0.18 : 0.27);
+    return front + ((back - front) * i) / (cabinWindowCount - 1);
+  });
+  const windowHalfWidth =
+    profile?.cabin.halfWidth ??
+    (s.slug === 'gulfstream-g650er' ? 0.36 : s.category === 'business' ? 0.26 : 0.18);
+  // Subdivide at aperture limits so a coarse skin cell cannot swallow the next window.
+  const zCuts = [
+    ...new Set([
+      ...Array.from({ length: nz + 1 }, (_, i) => bodyL * (-0.5 + i / nz)),
+      ...cabinWindows.flatMap((z) => [z - windowHalfWidth, z + windowHalfWidth]),
+      ...(profile
+        ? [
+            ...profile.nose.map((q) => L / 2 - q[0]),
+            ...profile.windows.flatMap((pane) => pane.map((q) => L / 2 - q[1])),
+            ...Array.from({ length: 51 }, (_, i) => L / 2 - i * 0.13),
+          ]
+        : []),
+    ]),
+  ].sort((a, b) => a - b);
+  for (let iz = 0; iz < zCuts.length - 1; iz++)
     for (let ia = 0; ia < n; ia++) {
-      const z0 = bodyL * (-0.5 + iz / nz),
-        z1 = bodyL * (-0.5 + (iz + 1) / nz),
+      const z0 = zCuts[iz],
+        z1 = zCuts[iz + 1],
         a0 = (ia * 2 * pi) / n,
         a1 = ((ia + 1) * 2 * pi) / n;
       const z = (z0 + z1) / 2,
@@ -442,11 +518,14 @@ export function buildAircraft(s) {
               : heli
                 ? 0.46
                 : large || s.category === 'tiltrotor'
-                  ? 0.4
+                  ? 0.455
                   : 0.3) &&
         at(z, a)[1] > f.eye[1] - (heli ? 0.72 : 0.42) &&
-        (s.shape === 'robinson' || localY < 0.86 || z > f.cabinZ - 0.2);
+        (large
+          ? at(z, a)[1] < f.eye[1] + 0.4
+          : s.shape === 'robinson' || localY < 0.86 || z > f.cabinZ - 0.2);
       const passenger =
+        !cabinWindowCount &&
         !heli &&
         !fighter &&
         large &&
@@ -462,6 +541,112 @@ export function buildAircraft(s) {
         B = at(z1, a0),
         C = at(z1, a1),
         D = at(z0, a1);
+      const windowZ = cabinWindows.find((center) => Math.abs(z - center) < windowHalfWidth);
+      if (windowZ !== undefined && Math.abs(Math.sin(a)) > 0.8) {
+        const halfHeight =
+          profile?.cabin.halfHeight ??
+          Math.min(ry * 0.23, s.slug === 'gulfstream-g650er' ? 0.26 : 0.23);
+        const centerY = profile?.cabin.y ?? cy + ry * 0.22;
+        let pane = [A, B, C, D];
+        // Convex oval cuts share every boundary vertex with the surrounding skin.
+        // This retains each type's window rhythm instead of a grid-cell stencil.
+        for (let edge = 0; edge < 16; edge++) {
+          const angle = ((edge + 0.5) * 2 * pi) / 16;
+          const rounding = profile?.cabin.rounding;
+          // Rounded rectangles preserve the upright cabin windows of the Citation
+          // and transports; the G650 retains its broad oval signature.
+          const support = rounding
+            ? (windowHalfWidth - rounding) * Math.abs(Math.cos(angle)) +
+              (halfHeight - rounding) * Math.abs(Math.sin(angle)) +
+              rounding
+            : 1;
+          const plane = (p) =>
+            rounding
+              ? support - (p[2] - windowZ) * Math.cos(angle) - (p[1] - centerY) * Math.sin(angle)
+              : Math.cos(pi / 16) -
+                ((p[2] - windowZ) / windowHalfWidth) * Math.cos(angle) -
+                ((p[1] - centerY) / halfHeight) * Math.sin(angle);
+          polygon(
+            shell,
+            clip(pane, (p) => -plane(p)),
+          );
+          pane = clip(pane, plane);
+          if (!pane.length) break;
+        }
+        polygon(glazing, pane);
+        continue;
+      }
+      if (profile) {
+        transportCell(
+          s,
+          profile,
+          [
+            [z0, a0],
+            [z1, a0],
+            [z1, a1],
+            [z0, a1],
+          ],
+          (kind, points) => {
+            polygon(kind === 'glass' ? glazing : shell, points);
+            if (kind === 'skin' && z > f.cabinZ - 2.1 && z < L / 2 - 0.5)
+              polygon(
+                lining,
+                points
+                  .map((q) => {
+                    // A fixed 3 cm inset: a 0.8 % scale left the lining a few millimetres
+                    // under the small nose sections, where it fought the skin at range.
+                    const sec = transportSection(s, profile, q[2]),
+                      center = (sec[2] + sec[3]) / 2,
+                      k = Math.max(0.85, 1 - 0.03 / Math.hypot(q[0], q[1] - center));
+                    return [q[0] * k, center + (q[1] - center) * k, q[2]];
+                  })
+                  .reverse(),
+              );
+          },
+        );
+        continue;
+      }
+      if (large && !passenger) {
+        // Clip skin and glazing against identical planes instead of classifying
+        // whole cells. Shared cut vertices prevent stair-step holes and frames.
+        let pane = [A, B, C, D];
+        for (const plane of windowPlanes) {
+          const opaque = clip(pane, (p) => -plane(p));
+          polygon(shell, opaque);
+          if (z > f.cabinZ - 1.65 && z < f.panelZ + 2.8)
+            polygon(
+              lining,
+              opaque.map((p) => [p[0] * 0.988, cy + (p[1] - cy) * 0.988, p[2]]).reverse(),
+            );
+          pane = clip(pane, plane);
+          if (!pane.length) break;
+        }
+        polygon(glazing, pane);
+        for (let i = 0; i < pane.length; i++) {
+          const a = pane[i],
+            b = pane[(i + 1) % pane.length];
+          if (windowPlanes.some((plane) => Math.abs(plane(a)) < 1e-6 && Math.abs(plane(b)) < 1e-6))
+            d.rod(a, b, 0.023, trim);
+        }
+        for (const plane of [
+          (p) => p[0],
+          (p) => p[2] - (f.cabinZ - 0.3),
+          (p) => p[2] - (f.cabinZ + 0.15),
+        ]) {
+          const edge = [];
+          for (let i = 0; i < pane.length; i++) {
+            const a = pane[i],
+              b = pane[(i + 1) % pane.length],
+              da = plane(a),
+              db = plane(b);
+            if (Math.abs(da) < 1e-6) edge.push(a);
+            if (da * db < 0) edge.push(a.map((v, k) => v + ((b[k] - v) * da) / (da - db)));
+          }
+          if (edge.length >= 2 && edge[0].some((v, k) => Math.abs(v - edge[1][k]) > 1e-6))
+            d.rod(edge[0], edge[1], 0.032, trim);
+        }
+        continue;
+      }
       push(array, A, B, C);
       push(array, A, C, D);
     }
@@ -470,18 +655,54 @@ export function buildAircraft(s) {
       const z = side * bodyL * 0.5,
         a = at(z, (i * 2 * pi) / n),
         b = at(z, ((i + 1) * 2 * pi) / n),
-        center = [0, cy, z];
+        center = [0, profile ? (at(z, 0)[1] + at(z, pi)[1]) / 2 : cy, z];
       if (side > 0) push(shell, center, b, a);
       else push(shell, center, a, b);
     }
   for (const [verts, mat, name] of [
     [shell, paint, 'hollow-fuselage-skin'],
     [glazing, glass, 'canopy-glazing'],
+    [
+      lining,
+      material(
+        'flight-deck-shell-lining',
+        s.layout === 'boeing-six' ? '#887c6b' : '#777f81',
+        0.02,
+        0.9,
+        { side: T.DoubleSide },
+      ),
+      'fitted-flight-deck-lining',
+    ],
   ]) {
     const g = new T.BufferGeometry();
     g.setAttribute('position', new T.Float32BufferAttribute(verts, 3));
     const m = d.add(smoothSurface(g), mat);
     m.name = name;
+  }
+  if (profile) {
+    transportWindowFrames(d, s, profile, trim);
+    if (cabinWindows.length)
+      transportCabinBacking(
+        d,
+        s,
+        profile,
+        cabinWindows[0] + windowHalfWidth + 0.2,
+        cabinWindows.at(-1) - windowHalfWidth - 0.2,
+        profile.cabin.y ?? cy + ry * 0.22,
+        profile.cabin.halfHeight,
+        black,
+      );
+    if (profile.belly) transportBelly(d, s, profile, paint);
+    // APU exhaust: a small dark outlet in the tail-cone end cap (about 0.35 m across on a
+    // narrow-body), not a disc filling the whole cap.
+    const [, w, b, t] = transportSection(s, profile, -bodyL / 2),
+      outlet = Math.min(w * 0.6, ((t - b) / 2) * 0.6, radius * 0.09);
+    if (outlet > 0.04)
+      d.add(new T.CircleGeometry(outlet, 16).rotateY(pi), black, [
+        0,
+        (b + t) / 2,
+        -bodyL / 2 - 0.006,
+      ]);
   }
   // Structural circumferential seams; rivets are placed on these skin joints, not a blanket grid.
   const seamZ = heli
@@ -509,7 +730,7 @@ export function buildAircraft(s) {
     }
   // Windshield frames follow the shell and leave the forward eye ray clear.
   if (!fighter) {
-    for (let i = -11; i < 11; i++)
+    for (let i = -11; !large && i < 11; i++)
       d.rod(
         at(f.cabinZ - 0.7, (i * pi) / 24, 0.014),
         at(f.cabinZ - 0.7, ((i + 1) * pi) / 24, 0.014),
@@ -518,20 +739,43 @@ export function buildAircraft(s) {
       );
     const windshieldZ = f.panelZ + 0.32,
       topZ = f.cabinZ + 0.08;
-    for (const side of [-1, 0, 1]) {
+    for (const side of large ? [] : [-1, 0, 1]) {
       const x = side * f.cabinWidth * 0.49;
       d.rod([x, f.eye[1] - 0.32, windshieldZ], [x * 0.92, f.eye[1] + 0.28, topZ], 0.018, accent);
     }
-    d.rod(
-      [-f.cabinWidth * 0.49, f.eye[1] - 0.32, windshieldZ],
-      [f.cabinWidth * 0.49, f.eye[1] - 0.32, windshieldZ],
-      0.018,
-      accent,
-    );
+    if (!large)
+      d.rod(
+        [-f.cabinWidth * 0.49, f.eye[1] - 0.32, windshieldZ],
+        [f.cabinWidth * 0.49, f.eye[1] - 0.32, windshieldZ],
+        0.018,
+        accent,
+      );
     // Door outlines, hinges, latches and boarding grips near the operating station.
     for (const side of [-1, 1]) {
       const x = side * radius * 0.94,
         z = f.cabinZ - 0.85;
+      if (profile) {
+        const center = L / 2 - (profile.cabin.door ?? profile.cabin.front - 1.15),
+          low = cy - ry * 0.56,
+          high = cy + ry * 0.48;
+        const surface = (zz, y) => {
+          const [, w, b, t] = transportSection(s, profile, zz),
+            v = (y - (b + t) / 2) / ((t - b) / 2);
+          return [side * (w * Math.sqrt(Math.max(0, 1 - v * v)) + 0.008), y, zz];
+        };
+        for (const edge of [-1, 1])
+          for (let y = low; y < high; y += 0.08)
+            d.rod(
+              surface(center + edge * 0.39, y),
+              surface(center + edge * 0.39, Math.min(high, y + 0.08)),
+              0.006,
+              trim,
+            );
+        for (const y of [low, high])
+          d.rod(surface(center - 0.39, y), surface(center + 0.39, y), 0.006, trim);
+        d.rod(surface(center - 0.1, cy), surface(center + 0.14, cy), 0.012, metallic);
+        continue;
+      }
       d.rod([x, cy - ry * 0.65, z - 0.42], [x, cy + ry * 0.35, z - 0.42], 0.012, trim);
       d.rod([x, cy - ry * 0.65, z + 0.42], [x, cy + ry * 0.35, z + 0.42], 0.012, trim);
       d.rod([x, cy - ry * 0.65, z - 0.42], [x, cy - ry * 0.65, z + 0.42], 0.012, trim);
@@ -574,30 +818,70 @@ export function buildAircraft(s) {
   const moving = (name, pos) => group(root, name, pos);
   const wing = (side) => {
     const x = side * radius * 0.75,
-      span = s.category === 'tiltrotor' ? 6 - radius * 0.75 : wingSpan;
+      span = profile
+        ? s.span / 2 - radius * 0.75 - (profile.winglet?.out ?? 0)
+        : s.category === 'tiltrotor'
+          ? 6 - radius * 0.75
+          : wingSpan;
     const g = moving(`wing-${side > 0 ? 'left' : 'right'}`, [x, wingY, wingZ]),
       w = detailKit(g, 'wing-detail');
-    const chord = s.chord ?? (large ? L * 0.19 : 1.65),
-      tip = s.tipChord ?? chord * 0.62,
-      sweep = s.sweep ?? 0.25;
-    foil(w, [0, 0, 0], span, chord, tip, sweep, side, paint, {
-      dihedral: s.wingAnhedral ?? (fighter ? 0.015 : 0.04),
-      thickness: fighter ? 0.06 : 0.1,
-    });
+    const chord = profile?.wing.root ?? s.chord ?? (large ? L * 0.19 : 1.65),
+      tip = profile?.wing.tip ?? s.tipChord ?? chord * 0.62,
+      sweep = profile?.wing.sweep ?? s.sweep ?? 0.25;
+    // Transport wings carry an unswept inboard trailing edge (Yehudi) out to the kink:
+    // [fraction of the exposed span, chord there]. The leading edge stays straight.
+    const kink = profile?.wing.kink;
+    const chordAt = (t) =>
+      kink
+        ? t < kink[0]
+          ? chord + ((kink[1] - chord) * t) / kink[0]
+          : kink[1] + ((tip - kink[1]) * (t - kink[0])) / (1 - kink[0])
+        : chord + (tip - chord) * t;
+    if (kink) {
+      const dihedral = profile.wing.dihedral,
+        thickness = profile.wing.thickness ?? 0.1;
+      foil(w, [0, 0, 0], span * kink[0], chord, kink[1], sweep * kink[0], side, paint, {
+        dihedral,
+        thickness,
+      });
+      foil(
+        w,
+        [
+          side * span * kink[0],
+          dihedral * span * kink[0],
+          chord * 0.5 - sweep * kink[0] - kink[1] * 0.5,
+        ],
+        span * (1 - kink[0]),
+        kink[1],
+        tip,
+        sweep * (1 - kink[0]),
+        side,
+        paint,
+        { dihedral, thickness },
+      );
+    } else
+      foil(w, [0, 0, 0], span, chord, tip, sweep, side, paint, {
+        dihedral: profile?.wing.dihedral ?? s.wingAnhedral ?? (fighter ? 0.015 : 0.04),
+        thickness: fighter ? 0.06 : 0.1,
+      });
     for (const ratio of [0.22, 0.54, 0.82]) {
       const xx = side * span * ratio,
         zz = chord * 0.5 - sweep * ratio,
-        c = chord + (tip - chord) * ratio;
+        c = chordAt(ratio);
       w.rod(
-        [xx, 0.04 + span * ratio * (s.wingAnhedral ?? 0.04), zz - 0.18],
-        [xx, 0.04 + span * ratio * (s.wingAnhedral ?? 0.04), zz - c + 0.1],
+        [xx, 0.04 + span * ratio * (profile?.wing.dihedral ?? s.wingAnhedral ?? 0.04), zz - 0.18],
+        [
+          xx,
+          0.04 + span * ratio * (profile?.wing.dihedral ?? s.wingAnhedral ?? 0.04),
+          zz - c + 0.1,
+        ],
         0.005,
         trim,
       );
       for (let k = 0; k < 12; k++)
         w.add(new T.OctahedronGeometry(0.008), metallic, [
           xx + 0.035,
-          0.055 + span * ratio * (s.wingAnhedral ?? 0.04),
+          0.055 + span * ratio * (profile?.wing.dihedral ?? s.wingAnhedral ?? 0.04),
           zz - 0.2 - (k * (c - 0.4)) / 12,
         ]);
     }
@@ -606,11 +890,11 @@ export function buildAircraft(s) {
       ['aileron', 0.77, 0.22, 0.3],
     ]) {
       const xx = side * span * center,
-        c = chord + (tip - chord) * center,
+        c = chordAt(center),
         zz = chord * 0.5 - sweep * center - c * 0.82;
       const control = group(g, `${name}-${side > 0 ? 'left' : 'right'}`, [
         xx,
-        span * center * (s.wingAnhedral ?? 0.04),
+        span * center * (profile?.wing.dihedral ?? s.wingAnhedral ?? 0.04),
         zz,
       ]);
       const k = detailKit(control, `${name}-surface`);
@@ -622,7 +906,34 @@ export function buildAircraft(s) {
         multiplier: name === 'flap' ? -factor : side * factor,
       });
     }
-    if (s.winglets) {
+    // Flap-track fairings: slim canoes hung under the rear spar, running from about 60 %
+    // chord to well behind the trailing edge. `wing.tracks` lists their span fractions.
+    for (const ratio of profile?.wing.tracks ?? []) {
+      const c = chordAt(ratio),
+        size = profile.wing.trackSize ?? 1,
+        trailing = chord * 0.5 - sweep * ratio - c;
+      ellipsoid(
+        w,
+        [
+          side * span * ratio,
+          span * ratio * profile.wing.dihedral - c * 0.035 - 0.08 * size,
+          trailing - c * 0.06,
+        ],
+        [(0.05 + c * 0.022) * size, (0.06 + c * 0.04) * size, c * 0.42],
+        paint,
+        10,
+      );
+    }
+    if (profile?.winglet) {
+      transportWinglet(
+        w,
+        [side * span, span * profile.wing.dihedral, chord * 0.5 - sweep],
+        side,
+        profile.winglet,
+        // Winglets carry the livery accent, as the generic fins below do.
+        accent,
+      );
+    } else if (s.winglets) {
       fin(
         w,
         [side * span, span * 0.04, chord * 0.5 - sweep - tip * 0.6],
@@ -636,7 +947,7 @@ export function buildAircraft(s) {
     }
     w.add(new T.SphereGeometry(0.055, 8, 6), side > 0 ? w.red : w.green, [
       side * span,
-      span * (s.wingAnhedral ?? 0.04),
+      span * (profile?.wing.dihedral ?? s.wingAnhedral ?? 0.04),
       chord * 0.5 - sweep - tip * 0.3,
     ]);
     w.finish();
@@ -666,17 +977,18 @@ export function buildAircraft(s) {
   }
   // Tail surfaces, canards and leading-edge root extensions have independent planforms.
   if (!heli) {
-    const tailZ = -L * 0.38,
-      tailH = Math.max(0.7, s.height - cy),
-      tailY = cy + (s.tail === 't' ? tailH * 0.88 : ry * 0.28);
+    const tailZ = profile?.tail.z ?? -L * 0.38,
+      tailH = profile?.tail.height ?? Math.max(0.7, s.height - cy),
+      tailY = profile?.tail.hY ?? cy + (s.tail === 't' ? tailH * 0.88 : ry * 0.28);
     for (const side of [-1, 1]) {
       const name = `pitch-surface-${side}`,
-        span = s.span * (s.canard ? 0.17 : fighter ? 0.22 : 0.19),
-        chord = L * (s.canard ? 0.12 : 0.15),
-        tip = L * (s.canard ? 0.035 : 0.05),
-        sweep = L * 0.07;
+        span = profile?.tail.span ?? s.span * (s.canard ? 0.17 : fighter ? 0.22 : 0.19),
+        chord = profile?.tail.hRoot ?? L * (s.canard ? 0.12 : 0.15),
+        tip = profile?.tail.hTip ?? L * (s.canard ? 0.035 : 0.05),
+        sweep = profile?.tail.hSweep ?? L * 0.07;
       const y = s.canard ? cy + ry * 0.55 : tailY,
-        z = s.canard ? L * 0.18 : tailZ;
+        z = s.canard ? L * 0.18 : (profile?.tail.hZ ?? tailZ),
+        hDihedral = profile?.tail.hDihedral ?? 0;
       const hinge = moving(name, [
           s.canard ? side * radius * 0.7 : 0,
           y,
@@ -685,7 +997,11 @@ export function buildAircraft(s) {
         k = detailKit(hinge, 'pitch-surface');
       if (fighter) foil(k, [0, 0, 0], span, chord, tip, sweep, side, paint, { thickness: 0.06 });
       else {
-        foil(d, [0, y, z], span, chord, tip, sweep, side, paint, { thickness: 0.07, end: 0.72 });
+        foil(d, [0, y, z], span, chord, tip, sweep, side, paint, {
+          thickness: 0.07,
+          end: 0.72,
+          dihedral: hDihedral,
+        });
         foil(
           k,
           [0, 0, -chord * 0.14],
@@ -695,7 +1011,7 @@ export function buildAircraft(s) {
           sweep + 0.72 * (tip - chord),
           side,
           paint,
-          { thickness: 0.07 },
+          { thickness: 0.07, dihedral: hDihedral },
         );
       }
       k.finish();
@@ -712,11 +1028,15 @@ export function buildAircraft(s) {
       const name = `rudder-${side}`;
       fin(
         d,
-        [side * (fighter ? s.width * 0.58 : s.span * 0.16), cy + ry * (side ? 0.3 : 0.25), tailZ],
-        tailH * (side ? 0.82 : 0.91),
-        L * 0.19,
-        L * 0.07,
-        L * (side ? 0.1 : 0.08),
+        [
+          side * (fighter ? s.width * 0.58 : s.span * 0.16),
+          profile?.tail.base ?? cy + ry * (side ? 0.3 : 0.25),
+          tailZ,
+        ],
+        profile ? tailH : tailH * (side ? 0.82 : 0.91),
+        profile?.tail.root ?? L * 0.19,
+        profile?.tail.tip ?? L * 0.07,
+        profile?.tail.sweep ?? L * (side ? 0.1 : large ? 0.14 : 0.08),
         paint,
         side * (fighter ? 0.19 : 0),
         name,
@@ -728,6 +1048,11 @@ export function buildAircraft(s) {
         axis: 'y',
         scale: -0.3,
       });
+    }
+    if (profile?.tail.dorsal) {
+      // Dorsal fillet: [root-chord centre z, height, root chord, tip chord, leading-edge run].
+      const [z, height, root, tip, sweep] = profile.tail.dorsal;
+      fin(d, [0, profile.tail.base, z], height, root, tip, sweep, paint);
     }
     if (s.lerx || s.chines)
       for (const side of [-1, 1])
@@ -747,17 +1072,42 @@ export function buildAircraft(s) {
     const g = group(parent, name),
       k = detailKit(g, `${name}-blade-meshes`);
     const hub = axis === 'y' ? 0.17 : axis === 'x' ? 0.075 : Math.min(0.42, r * 0.13);
-    ellipsoid(k, [0, 0, 0], [hub, hub, axis === 'y' ? 0.12 : hub * 1.5], metallic, 16);
+    // A measured turboprop spinner [radius, half-length] is the black bullet over the cowl nose.
+    const spinner = axis === 'z' ? profile?.engine.spinner : undefined;
+    if (spinner) ellipsoid(k, [0, 0, 0], [spinner[0], spinner[0], spinner[1]], black, 20);
+    else ellipsoid(k, [0, 0, 0], [hub, hub, axis === 'y' ? 0.12 : hub * 1.5], metallic, 16);
     for (let i = 0; i < blades; i++) {
       const b = group(k.root, `blade-${i}`);
       b.rotation.z = (i * 2 * pi) / blades;
       const q = detailKit(b, 'blade');
       q.root.rotation.x = pi * 0.4;
       const chord = axis === 'y' ? Math.min(0.38, r * 0.055) : r * 0.14;
-      foil(q, [r * 0.08, 0, 0], r * 0.92, chord, chord * 0.65, r * 0.015, 1, black, {
-        thickness: 0.1,
-      });
-      q.box([r * 0.07, 0.012, chord * 0.66], [r * 0.96, 0, -r * 0.015], k.ivory);
+      // A measured blade planform [radius, chord, leading edge] (fractions of the radius)
+      // gives the broad, tapered composite blade with a rounded, swept-back tip.
+      const planform = axis === 'z' ? profile?.engine.blade : undefined;
+      if (planform) {
+        for (let j = 0; j < planform.length - 1; j++) {
+          const [ra, ca, la] = planform[j],
+            [rb, cb, lb] = planform[j + 1];
+          const at = [r * ra, 0, r * (la - ca / 2)];
+          foil(q, at, r * (rb - ra), r * ca, r * cb, r * (la - lb), 1, black, {
+            thickness: 0.1,
+            rows: 3,
+          });
+        }
+        // Painted tip band at 95 % radius, sized to the local chord.
+        const [ra, ca, la] = planform.at(-2),
+          [rb, cb, lb] = planform.at(-1),
+          t = (0.95 - ra) / (rb - ra),
+          c = ca + (cb - ca) * t,
+          le = la + (lb - la) * t;
+        q.box([r * 0.05, 0.012, r * c * 0.9], [r * 0.95, 0, r * (le - c / 2)], k.ivory);
+      } else {
+        foil(q, [r * 0.08, 0, 0], r * 0.92, chord, chord * 0.65, r * 0.015, 1, black, {
+          thickness: 0.1,
+        });
+        q.box([r * 0.07, 0.012, chord * 0.66], [r * 0.96, 0, -r * 0.015], k.ivory);
+      }
       q.finish();
     }
     if (axis === 'y') k.root.rotation.x = -pi / 2;
@@ -833,8 +1183,9 @@ export function buildAircraft(s) {
     for (let i = 0; i < count; i++) {
       const side = i % 2 === 0 ? 1 : -1,
         pair = Math.floor(i / 2);
-      const x =
-        count === 1
+      const x = profile
+        ? side * profile.engine.x
+        : count === 1
           ? 0
           : side *
             (fighter
@@ -844,67 +1195,157 @@ export function buildAircraft(s) {
                 : s.shape === 'rear-jet'
                   ? radius + 0.65
                   : s.span * (pair === 0 ? 0.2 : 0.34));
-      const z = fighter
-        ? -L * 0.27
-        : s.category === 'tiltrotor'
-          ? 0
-          : s.shape === 'rear-jet'
-            ? -L * 0.3
-            : count === 1
-              ? L * 0.43
-              : wingZ + 0.5;
-      const y = fighter
-        ? cy
-        : s.category === 'tiltrotor'
-          ? wingY
-          : s.shape === 'rear-jet'
-            ? cy + ry * 0.25
-            : count === 1
-              ? cy
-              : wingY - (props ? 0.05 : Math.max(0.55, s.width * 0.43));
+      const z =
+        profile?.engine.z ??
+        (fighter
+          ? -L * 0.27
+          : s.category === 'tiltrotor'
+            ? 0
+            : s.shape === 'rear-jet'
+              ? -L * 0.3
+              : count === 1
+                ? L * 0.43
+                : wingZ + 0.5);
+      const y =
+        profile?.engine.y ??
+        (fighter
+          ? cy
+          : s.category === 'tiltrotor'
+            ? wingY
+            : s.shape === 'rear-jet'
+              ? cy + ry * 0.25
+              : count === 1
+                ? cy
+                : wingY - (props ? 0.05 : Math.max(0.55, s.width * 0.43)));
       const engName = `engine-${i + 1}`,
         engine = moving(engName, [x, y, z]);
       enginePoints.push({ id: engName, position: [x, y, z] });
       if (s.category === 'vtol') continue; // Harrier exhaust is the four side nozzles, never a tailpipe.
       const k = detailKit(engine, `${engName}-skin`),
-        er = fighter
-          ? radius * 0.45
-          : s.category === 'tiltrotor'
-            ? 0.64
-            : props
-              ? Math.min(0.66, s.width * 0.32)
-              : Math.min(1.65, s.width * 0.4),
-        el = fighter ? L * 0.21 : props ? Math.max(1.1, L * 0.12) : Math.max(1.4, L * 0.1);
+        er =
+          profile?.engine.radius ??
+          (fighter
+            ? radius * 0.45
+            : s.category === 'tiltrotor'
+              ? 0.64
+              : props
+                ? Math.min(0.66, s.width * 0.32)
+                : Math.min(1.65, s.width * 0.4)),
+        el =
+          profile?.engine.length ??
+          (fighter ? L * 0.21 : props ? Math.max(1.1, L * 0.12) : Math.max(1.4, L * 0.1));
       const pistonCowl = props && count === 1 && s.shape !== 'high-radial';
+      const turbofan = profile && !props,
+        // Mixed-flow business-jet engines exhaust through one long nozzle with a recessed
+        // plug, not a separate fan annulus and protruding core cowl.
+        mixed = turbofan && profile.engine.mixed,
+        // Fan-cowl outline [axial fraction, radius fraction], rear to front: the inlet
+        // highlight sits inside the maximum diameter, which lies a third of the way back.
+        cowl = profile?.engine.lathe ?? [
+          [-0.5, 0.74],
+          [-0.36, 0.84],
+          [-0.15, 0.95],
+          [0.1, 1],
+          [0.3, 1],
+          [0.42, 0.97],
+          [0.47, 0.92],
+          [0.5, 0.87],
+        ],
+        lip = turbofan ? cowl.at(-1)[1] : 1;
+      const exhaustRadius = turbofan ? cowl[0][1] : 0.86;
       if (pistonCowl) {
         ellipsoid(k, [0, 0, 0], [er, er * 0.64, el * 0.66], paint);
         for (const side of [-1, 1])
           ellipsoid(k, [side * er * 0.58, 0, el * 0.49], [er * 0.22, er * 0.16, 0.04], black, 16);
+      } else if (profile?.engine.section) {
+        transportNacelle(k, profile.engine.section, paint, 24, profile.engine.exponent);
+        // Dark chin-intake mouth under the spinner: [y, half-width, half-height, z].
+        const intake = profile.engine.intake;
+        if (intake) ellipsoid(k, [0, intake[0], intake[3]], [intake[1], intake[2], 0.1], black, 16);
+        // Exhaust stub on the outboard cowl side, angled aft and outward: [offset, y, z, r].
+        const stub = profile.engine.exhaust;
+        if (stub) {
+          const out = Math.sign(x) || 1,
+            [ox, oy, oz, sr] = stub;
+          const pipe = k.add(
+            new T.CylinderGeometry(sr, sr * 1.15, 0.55, 16, 1, true).rotateX(pi / 2),
+            metallic,
+            [out * ox, oy, oz],
+          );
+          pipe.rotation.y = -out * 0.45;
+          const mouth = k.add(new T.CircleGeometry(sr * 1.1, 16).rotateY(pi), black, [
+            out * (ox + 0.12),
+            oy,
+            oz - 0.25,
+          ]);
+          mouth.rotation.y = -out * 0.45;
+        }
       } else {
-        const nacelle = new T.CylinderGeometry(er, er * 0.86, el, 24, 1, true).rotateX(pi / 2);
+        const nacelle = turbofan
+          ? new T.LatheGeometry(
+              // The cowl rolls over a thick rounded lip into the intake duct.
+              [
+                ...cowl,
+                [0.503, lip - 0.035],
+                [0.496, lip - 0.07],
+                [0.475, lip - 0.085],
+                [0.4, lip - 0.09],
+              ].map(([z, r]) => new T.Vector2(er * r, el * z)),
+              40,
+            ).rotateX(pi / 2)
+          : new T.CylinderGeometry(er, er * 0.86, el, 24, 1, true).rotateX(pi / 2);
         k.add(nacelle, paint);
-        k.ring(er, 0.045, [0, 0, el / 2], metallic);
-        k.ring(er * 0.86, 0.035, [0, 0, -el / 2], metallic);
+        if (turbofan)
+          k.ring(er * (lip - 0.035), Math.max(0.03, er * 0.03), [0, 0, el * 0.5], metallic);
+        else k.ring(er * lip, 0.045, [0, 0, el / 2], metallic);
+        k.ring(er * exhaustRadius, mixed ? 0.025 : 0.035, [0, 0, -el / 2], metallic);
         // Match the nacelle's front ring and recessed fan exactly. A torus lip
         // alone leaves an annular hole, especially on the larger jet engines.
-        const duct = new T.CylinderGeometry(er, er * 0.94, 0.07, 24, 1, true).rotateX(pi / 2);
+        const duct = new T.CylinderGeometry(er * lip, er * lip * 0.94, 0.07, 24, 1, true).rotateX(
+          pi / 2,
+        );
         const indices = duct.index.array;
         for (let j = 0; j < indices.length; j += 3)
           [indices[j + 1], indices[j + 2]] = [indices[j + 2], indices[j + 1]];
         duct.computeVertexNormals();
         k.add(duct, metallic, [0, 0, el / 2 - 0.035]);
-        k.add(new T.CircleGeometry(er * 0.94, 24), black, [0, 0, el / 2 - 0.07]);
+        k.add(new T.CircleGeometry(er * lip * 0.94, 24), black, [0, 0, el / 2 - 0.07]);
+        if (turbofan && !mixed) {
+          // Core cowl, core nozzle and plug project behind the shorter fan cowl.
+          const core = profile.engine.core ?? 0.3;
+          k.add(
+            new T.LatheGeometry(
+              [
+                [-1.02, 0.015],
+                [-0.86, 0.17],
+                [-0.72, 0.28],
+                [-0.72, 0.36],
+                [-0.42, 0.45],
+                [0, 0.53],
+                [0.25, 0.58],
+              ].map(([z, r]) => new T.Vector2(er * r, -el / 2 + el * core * z)),
+              24,
+            ).rotateX(pi / 2),
+            metallic,
+          );
+        }
       }
       if (props) {
-        if (!pistonCowl)
+        if (!pistonCowl && !profile?.engine.section)
           k.add(new T.CircleGeometry(er * 0.86, 24).rotateY(pi), paint, [0, 0, -el / 2]);
         const r =
           s.category === 'tiltrotor'
             ? s.rotorDiameter / 2
-            : s.propBlades >= 6
-              ? Math.min(2.7, s.span * 0.069)
-              : Math.min(1.65, s.span * 0.1);
-        const p = group(engine, `${engName}-spinner`, [0, 0, el / 2 + 0.12]);
+            : profile?.engine.propRadius
+              ? profile.engine.propRadius
+              : s.propBlades >= 6
+                ? Math.min(2.7, s.span * 0.069)
+                : Math.min(1.65, s.span * 0.1);
+        const p = group(engine, `${engName}-spinner`, [
+          0,
+          0,
+          profile?.engine.prop ?? el / 2 + 0.12,
+        ]);
         propeller(
           p,
           `propeller-${i + 1}`,
@@ -914,34 +1355,136 @@ export function buildAircraft(s) {
           engName,
         );
       } else {
-        // Inlet guide vanes and nested exhaust rings remain visible close to the aircraft.
+        // Separate rotating fan from the fixed nacelle and its inlet lip.
+        const fan = group(engine, `${engName}-fan`, [0, 0, el / 2 - 0.05]);
+        const fanKit = detailKit(fan, `${engName}-fan-skin`);
         for (let b = 0; b < 12; b++) {
           const a = (b * pi) / 6;
-          k.rod(
-            [0, 0, el / 2 - 0.05],
-            [Math.cos(a) * er * 0.88, Math.sin(a) * er * 0.88, el / 2 - 0.05],
+          fanKit.rod(
+            [0, 0, 0],
+            [Math.cos(a) * er * lip * 0.88, Math.sin(a) * er * lip * 0.88, 0],
             er * 0.025,
             metallic,
           );
         }
-        const exhaust = new T.CylinderGeometry(er * 0.86, er * 0.79, 0.15, 24, 1, true).rotateX(
-          pi / 2,
+        // Shallow spinner dome at the hub, so the fan face does not read as a spoked wheel.
+        fanKit.add(
+          new T.SphereGeometry(er * 0.2, 16, 6, 0, 2 * pi, 0, pi / 2)
+            .rotateX(pi / 2)
+            .scale(1, 1, 0.3),
+          metallic,
         );
-        k.add(exhaust, metallic, [0, 0, -el / 2 - 0.075]);
-        k.add(new T.CircleGeometry(er * 0.79, 24).rotateY(pi), black, [0, 0, -el / 2 - 0.15]);
-        for (let b = 0; b < 16; b++) {
-          const a = (b * pi) / 8;
-          k.rod(
-            [Math.cos(a) * er * 0.86, Math.sin(a) * er * 0.86, -el / 2],
-            [Math.cos(a) * er * 0.79, Math.sin(a) * er * 0.79, -el / 2 - 0.15],
-            0.025,
-            metallic,
-          );
+        fanKit.finish();
+        rotors.push({ node: fan.name, axis: 'z', multiplier: 1, engine: engName });
+        if (mixed) {
+          // Inward-facing nozzle wall, a dark throat recessed inside the cowl and the
+          // mixer tail cone reaching just past the exit.
+          const wall = new T.CylinderGeometry(
+            er * exhaustRadius * 0.97,
+            er * exhaustRadius * 0.97,
+            0.32,
+            24,
+            1,
+            true,
+          ).rotateX(pi / 2);
+          const indices = wall.index.array;
+          for (let j = 0; j < indices.length; j += 3)
+            [indices[j + 1], indices[j + 2]] = [indices[j + 2], indices[j + 1]];
+          wall.computeVertexNormals();
+          k.add(wall, metallic, [0, 0, -el / 2 + 0.16]);
+          k.add(new T.CircleGeometry(er * exhaustRadius * 0.97, 24).rotateY(pi), black, [
+            0,
+            0,
+            -el / 2 + 0.3,
+          ]);
+          const plug = er * 0.42;
+          k.add(new T.ConeGeometry(er * 0.3, plug, 20).rotateX(-pi / 2), metallic, [
+            0,
+            0,
+            -el / 2 + 0.3 - plug / 2,
+          ]);
+        } else {
+          const exhaust = new T.CylinderGeometry(
+            er * exhaustRadius,
+            er * (exhaustRadius - 0.07),
+            0.15,
+            24,
+            1,
+            true,
+          ).rotateX(pi / 2);
+          k.add(exhaust, metallic, [0, 0, -el / 2 - 0.075]);
+          k.add(new T.CircleGeometry(er * (exhaustRadius - 0.07), 24).rotateY(pi), black, [
+            0,
+            0,
+            -el / 2 - 0.15,
+          ]);
+          for (let b = 0; b < 16; b++) {
+            const a = (b * pi) / 8;
+            k.rod(
+              [Math.cos(a) * er * exhaustRadius, Math.sin(a) * er * exhaustRadius, -el / 2],
+              [
+                Math.cos(a) * er * (exhaustRadius - 0.07),
+                Math.sin(a) * er * (exhaustRadius - 0.07),
+                -el / 2 - 0.15,
+              ],
+              0.025,
+              metallic,
+            );
+          }
         }
       }
-      if (!fighter && count > 1 && s.category !== 'tiltrotor')
-        k.box([0.18, Math.abs(wingY - y), el * 0.6], [0, (wingY - y) / 2, 0], paint);
+      if (profile && s.shape === 'rear-jet') {
+        // A rear engine is carried horizontally from the fuselage on a thin swept stub
+        // with a rounded leading edge and sharp trailing edge, not a square block.
+        // Spans from inside the cowl wall (clear of the nozzle) to the fuselage side.
+        const inner = side * radius * 0.78 - x,
+          wall = Math.sign(inner) * er * 0.75;
+        const [pf, pb, ph] = profile.engine.pylon ?? [el * 0.31 - 0.1, -el * 0.31 - 0.1, 0.15];
+        const c = pf - pb;
+        transportPylon(
+          k,
+          [
+            [pf, 0],
+            [pf - c * 0.08, ph * 0.42],
+            [pf - c * 0.3, ph / 2],
+            [pb + c * 0.3, ph * 0.42],
+            [pb, 0.01],
+            [pb, -0.01],
+            [pb + c * 0.3, -ph * 0.42],
+            [pf - c * 0.3, -ph / 2],
+            [pf - c * 0.08, -ph * 0.42],
+          ],
+          Math.abs(inner - wall) / 2,
+          paint,
+          [(inner + wall) / 2, -0.08, 0],
+        );
+      } else if (profile?.engine.pylon) {
+        // Measured side outline [z, y] in engine coordinates, rising from the nacelle
+        // crown to the wing's lower surface (y is relative to the engine axis).
+        transportPylon(k, profile.engine.pylon, profile.engine.pylonWidth ?? 0.2, paint);
+      } else if (!fighter && count > 1 && s.category !== 'tiltrotor') {
+        const mountY =
+          wingY + (profile ? Math.abs(x - side * radius * 0.75) * profile.wing.dihedral : 0);
+        k.box([0.18, Math.abs(mountY - y), el * 0.6], [0, (mountY - y) / 2, -0.1], paint);
+      }
       k.finish();
+      if (profile?.engine.flatten) {
+        // Flat-bottomed inlet and cowl (737 "hamster pouch"): a keel at `flatten` x radius
+        // below the axis with a soft knee, not a uniformly squashed egg.
+        const keel = profile.engine.flatten * er,
+          knee = 0.15;
+        k.root.traverse((mesh) => {
+          if (!mesh.isMesh) return;
+          const position = mesh.geometry.getAttribute('position');
+          for (let v = 0; v < position.count; v++) {
+            const u = -position.getY(v) / keel;
+            if (u <= 1 - knee) continue;
+            const flat = u >= 1 + knee ? 1 : u - (u - 1 + knee) ** 2 / (4 * knee);
+            position.setY(v, -flat * keel);
+          }
+          mesh.geometry.computeVertexNormals();
+        });
+      }
       if (s.category === 'tiltrotor') {
         engine.rotation.x = -pi / 2;
         animated.push({
@@ -1016,6 +1559,12 @@ export function buildAircraft(s) {
           [radius * (large ? 1.05 : 1.3), -L * 0.08],
           [-radius * (large ? 1.05 : 1.3), -L * 0.08],
         ];
+    // Transport gear stations from type data: nose and main axle positions and track.
+    const pg = profile?.gear;
+    if (pg)
+      points.splice(0, points.length, [0, pg.nose], [pg.track, pg.main], [-pg.track, pg.main]);
+    else if (s.slug === 'dash-8-q400')
+      points.splice(0, points.length, [0, 12.2], [4.63, -2.0], [-4.63, -2.0]);
     if (s.shape === 'tandem')
       points.splice(
         0,
@@ -1026,19 +1575,29 @@ export function buildAircraft(s) {
         ]),
       );
     for (const [j, [x, z]] of points.entries()) {
-      const r = large
-        ? Math.max(0.27, Math.min(0.67, s.width * 0.11))
-        : Math.max(0.16, Math.min(0.36, s.height * 0.074));
-      const top = Math.max(r + 0.25, cy - ry * 0.45),
-        g = moving(`gear-${j}`, [x, top, z]),
+      const main = j > 0 ? 1 : 0;
+      const r = pg
+        ? pg.r[main]
+        : large
+          ? Math.max(0.27, Math.min(0.67, s.width * 0.11))
+          : Math.max(0.16, Math.min(0.36, s.height * 0.074));
+      const hingeForward = pg?.hingeForward?.[main] ?? 0;
+      const axleZ = hingeForward ? -hingeForward : 0;
+      const top = pg
+          ? pg.top[main]
+          : s.slug === 'dash-8-q400' && j > 0
+            ? 3.05
+            : Math.max(r + 0.25, cy - ry * 0.45),
+        g = moving(`gear-${j}`, [x, top, z + hingeForward]),
         k = detailKit(g, 'gear-fittings');
-      k.rod([0, 0, 0], [0, -top + r, 0], 0.045, metallic);
-      k.rod([0, 0, -0.25], [0, -top + r, 0], 0.025, metallic);
+      k.rod([0, 0, 0], [0, -top + r, axleZ], pg ? pg.strut[main] : 0.045, metallic);
+      k.rod([0, 0, -0.25], [0, -top + r, axleZ], pg ? pg.strut[main] * 0.55 : 0.025, metallic);
       const axles =
         s.category === 'cargo' && j > 0 ? (s.slug === 'c-5m' || s.slug === 'an-124' ? 4 : 2) : 1;
+      const spread = pg ? pg.spread[main] : 0.43;
       for (let a = 0; a < axles; a++)
-        for (const dx of large ? [-r * 0.43, r * 0.43] : [0]) {
-          const at = [dx, -top + r, (a - (axles - 1) / 2) * r * 2.1];
+        for (const dx of large && spread ? [-r * spread, r * spread] : [0]) {
+          const at = [dx, -top + r, (a - (axles - 1) / 2) * r * 2.1 - hingeForward];
           k.add(new T.CylinderGeometry(r, r, r * 0.55, 20).rotateZ(pi / 2), rubber, at);
           for (const side of [-1, 1])
             k.add(new T.CircleGeometry(r * 0.5, 14).rotateY((side * pi) / 2), metallic, [
@@ -1049,6 +1608,8 @@ export function buildAircraft(s) {
         }
       k.finish();
       if (s.gear !== 'fixed' && s.gear !== 'taildragger' && (!heli || s.gear === 'retract')) {
+        // Explicit opt-in: a gear-N name alone does not imply a generic hinge.
+        g.userData.fallbackLandingGear = true;
         gearNodes.push(g.name);
         animated.push({
           node: g.name,

@@ -1,0 +1,52 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.malo_kalinkin_bridge",
+  "kind": "static-structure",
+  "title": "Malo-Kalinkin Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.malo_kalinkin_bridge",
+        "output": "assets/places/ud/udt/malo_kalinkin_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d9d8f2caa97a2fd7a9d3ecf271dd48f3ff585b992c1d53bc946b78df2f20252c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "source-build",
+        "path": "models/generate-malo.mjs"
+      },
+      {
+        "id": "bridge-model",
+        "path": "models/malo-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "integration-review.json",
+      "mapped-features.json",
+      "native-fit.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "placement-report.json",
+      "medium-fi-report.json",
+      "site-preview.png"
+    ]
+  }
+}

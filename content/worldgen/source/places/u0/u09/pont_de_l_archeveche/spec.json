@@ -170,13 +170,269 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Three shallow open circular limestone vaults, rounded piers, flared mainland approach, crossed transparent railings and two mapped ornamental lamps.",
+    "master": "The detailed432736triangle master is preserved byte-for-byte. Four independent authored browser tiers aggregate stone blocks,fan setts,iron/glass frames and lamp profiles."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.regional.continental.apartments",
+    "scale": 1
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/models/archeveche-browser.mjs",
+    "export": "buildArchevecheSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.35
+      },
+      "paving": {
+        "slot": "roof",
+        "graph": "stone_granite",
+        "roughness": 0.9
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.17,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.32
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true
+      },
+      "mark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      }
+    },
+    "errorMeters": 0.12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildArchevecheDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.17,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.32
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        },
+        "errorMeters": 0.06
+      },
+      "street": {
+        "export": "buildArchevecheStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.17,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.32
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        },
+        "errorMeters": 0.025
+      },
+      "closeup": {
+        "export": "buildArchevecheCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.17,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.32
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          }
+        },
+        "errorMeters": 0.012
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-upstream-three-arches",
+      "position": [
+        7,
+        8,
+        68
+      ],
+      "lookAt": [
+        7,
+        4.7,
+        0
+      ],
+      "fov": 57,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-downstream-vaults",
+      "position": [
+        12,
+        8,
+        -65
+      ],
+      "lookAt": [
+        9,
+        4.5,
+        0
+      ],
+      "fov": 56,
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-rounded-cutwater",
+      "position": [
+        24,
+        4.1,
+        15
+      ],
+      "lookAt": [
+        17.75,
+        2.8,
+        4.8
+      ],
+      "fov": 49,
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-ashlar-and-soffit",
+      "position": [
+        7,
+        1.7,
+        10
+      ],
+      "lookAt": [
+        7,
+        6.4,
+        0
+      ],
+      "fov": 62,
+      "reviewLod": "closeup"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
     "Current permanent bridge geometry; temporary street works and movable furnishings are omitted.",
     "Arch ring thickness, coursing and lantern member dimensions are original photo reconstruction, not a scan.",
     "The declared NGF-IGN69 origin and bank joins use independent IGN terrain and road evidence. Submerged foundation depth remains reconstructed; water elevation is not bathymetry.",
-    "The separate public clock and island streetlight stand beyond this model footprint and are not duplicated within it."
+    "The separate public clock and island streetlight stand beyond this model footprint and are not duplicated within it.",
+    "Original detailed master is preserved. Browser tiers aggregate individual coursing/fan paving,transparent fasteners,lantern profiles and navigation signs; shared granite grain approximates small cobbles. Ground placement retains its existing NGF-IGN69 host-datum requirement. No new bespoke terrain research or device timing claim."
   ],
   "qaCameras": [
     {

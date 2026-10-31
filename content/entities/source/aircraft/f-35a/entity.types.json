@@ -74,7 +74,14 @@
               ]
             ],
             "visual": {
-              "rotors": [],
+              "rotors": [
+                {
+                  "node": "engine-1-turbine",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                }
+              ],
               "gearNodes": [],
               "flaps": [],
               "ailerons": [],
@@ -89,7 +96,7 @@
                   },
                   {
                     "node": "F35-flaperon--1",
-                    "source": "flaperonRight",
+                    "source": "brakeMix0",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 1
@@ -103,7 +110,7 @@
                   },
                   {
                     "node": "F35-rudder--1",
-                    "source": "yawInput",
+                    "source": "brakeMix1",
                     "property": "rotation",
                     "axis": "y",
                     "scale": 0.35
@@ -117,7 +124,7 @@
                   },
                   {
                     "node": "F35-flaperon-1",
-                    "source": "flaperonLeft",
+                    "source": "brakeMix2",
                     "property": "rotation",
                     "axis": "x",
                     "scale": 1
@@ -131,7 +138,7 @@
                   },
                   {
                     "node": "F35-rudder-1",
-                    "source": "yawInput",
+                    "source": "brakeMix3",
                     "property": "rotation",
                     "axis": "y",
                     "scale": 0.35
@@ -201,6 +208,345 @@
                     "source": "gearExposed",
                     "property": "visible",
                     "scale": 1
+                  },
+                  {
+                    "node": "canopy-opening",
+                    "source": "canopy",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.85
+                  },
+                  {
+                    "node": "canopy-fragment--1--1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        -8
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment--1--1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        12
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment--1--1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        -6
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment--1--1",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment--1-1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        -8
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment--1-1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        12
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment--1-1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        6
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment--1-1",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment-1--1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        8
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment-1--1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        12
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment-1--1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        -6
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment-1--1",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment-1-1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        8
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment-1-1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "y",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        12
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment-1-1",
+                    "source": "eject",
+                    "property": "position",
+                    "axis": "z",
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.08,
+                        0
+                      ],
+                      [
+                        1,
+                        6
+                      ]
+                    ]
+                  },
+                  {
+                    "node": "canopy-fragment-1-1",
+                    "source": "eject",
+                    "property": "visible",
+                    "keys": [
+                      [
+                        0,
+                        1
+                      ],
+                      [
+                        0.85,
+                        1
+                      ],
+                      [
+                        0.86,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ]
                   }
                 ],
                 "derived": {
@@ -266,6 +612,101 @@
                       "gear",
                       0.02
                     ]
+                  },
+                  "brakePosition": {
+                    "op": "coalesce",
+                    "args": [
+                      "speedBrake",
+                      0
+                    ]
+                  },
+                  "brakeMix0Deflection": {
+                    "op": "multiply",
+                    "args": [
+                      "brakePosition",
+                      0.35
+                    ]
+                  },
+                  "brakeMix0Sum": {
+                    "op": "add",
+                    "args": [
+                      "flaperonRight",
+                      "brakeMix0Deflection"
+                    ]
+                  },
+                  "brakeMix0": {
+                    "op": "clamp",
+                    "args": [
+                      "brakeMix0Sum",
+                      -1,
+                      1
+                    ]
+                  },
+                  "brakeMix1Deflection": {
+                    "op": "multiply",
+                    "args": [
+                      "brakePosition",
+                      -0.35
+                    ]
+                  },
+                  "brakeMix1Sum": {
+                    "op": "add",
+                    "args": [
+                      "yawInput",
+                      "brakeMix1Deflection"
+                    ]
+                  },
+                  "brakeMix1": {
+                    "op": "clamp",
+                    "args": [
+                      "brakeMix1Sum",
+                      -1,
+                      1
+                    ]
+                  },
+                  "brakeMix2Deflection": {
+                    "op": "multiply",
+                    "args": [
+                      "brakePosition",
+                      0.35
+                    ]
+                  },
+                  "brakeMix2Sum": {
+                    "op": "add",
+                    "args": [
+                      "flaperonLeft",
+                      "brakeMix2Deflection"
+                    ]
+                  },
+                  "brakeMix2": {
+                    "op": "clamp",
+                    "args": [
+                      "brakeMix2Sum",
+                      -1,
+                      1
+                    ]
+                  },
+                  "brakeMix3Deflection": {
+                    "op": "multiply",
+                    "args": [
+                      "brakePosition",
+                      -0.35
+                    ]
+                  },
+                  "brakeMix3Sum": {
+                    "op": "add",
+                    "args": [
+                      "yawInput",
+                      "brakeMix3Deflection"
+                    ]
+                  },
+                  "brakeMix3": {
+                    "op": "clamp",
+                    "args": [
+                      "brakeMix3Sum",
+                      -1,
+                      1
+                    ]
                   }
                 },
                 "sources": {
@@ -297,6 +738,27 @@
                     "component": "aircraftState",
                     "path": [
                       "gearPosition"
+                    ]
+                  },
+                  "canopy": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "canopy"
+                    ]
+                  },
+                  "eject": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "eject"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -5978,7 +6440,8 @@
               "maxMach": 1.6,
               "maxEquivalentAirspeed": 360.7098240771937,
               "gearLimitSpeed": 130,
-              "flapLimitSpeed": 125
+              "flapLimitSpeed": 125,
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
@@ -6008,6 +6471,88 @@
                 "ramRise": 0.2,
                 "afterburnerThrust": 191000,
                 "afterburnerDetent": 0.85
+              }
+            ],
+            "actuators": {
+              "canopy": {
+                "seconds": 3
+              },
+              "eject": {
+                "seconds": 1.2,
+                "mode": "latch"
+              },
+              "speedBrake": {
+                "seconds": 1.6
+              }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.94,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.94,
+                    6.73681
+                  ],
+                  [
+                    0,
+                    1.94,
+                    -6.73681
+                  ],
+                  [
+                    4.90728,
+                    1.94,
+                    0
+                  ],
+                  [
+                    -4.90728,
+                    1.94,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-engine-1-turbine",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.8,
+                  -4.33
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "engine-1-turbine"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.8,
+                    -4.33
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.54,
+                  "halfThickness": 0.06,
+                  "rotor": "engine-1-turbine"
+                },
+                "engines": [
+                  "engine-1"
+                ]
               }
             ]
           }
@@ -6044,7 +6589,12 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {
+            "canopy": 0,
+            "eject": 0,
+            "speedBrake": 0
+          }
         },
         "mountable": {
           "seats": [
@@ -6161,6 +6711,27 @@
               "component": "aircraftInput",
               "path": [
                 "power"
+              ]
+            },
+            "canopy": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "canopy"
+              ]
+            },
+            "eject": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "eject"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -6823,6 +7394,101 @@
               "args": [
                 "flapDeflection",
                 "aileronDeflection"
+              ]
+            },
+            "brakePosition": {
+              "op": "coalesce",
+              "args": [
+                "speedBrake",
+                0
+              ]
+            },
+            "brakeMix0Deflection": {
+              "op": "multiply",
+              "args": [
+                "brakePosition",
+                0.35
+              ]
+            },
+            "brakeMix0Sum": {
+              "op": "add",
+              "args": [
+                "flaperonRight",
+                "brakeMix0Deflection"
+              ]
+            },
+            "brakeMix0": {
+              "op": "clamp",
+              "args": [
+                "brakeMix0Sum",
+                -1,
+                1
+              ]
+            },
+            "brakeMix1Deflection": {
+              "op": "multiply",
+              "args": [
+                "brakePosition",
+                -0.35
+              ]
+            },
+            "brakeMix1Sum": {
+              "op": "add",
+              "args": [
+                "yawInput",
+                "brakeMix1Deflection"
+              ]
+            },
+            "brakeMix1": {
+              "op": "clamp",
+              "args": [
+                "brakeMix1Sum",
+                -1,
+                1
+              ]
+            },
+            "brakeMix2Deflection": {
+              "op": "multiply",
+              "args": [
+                "brakePosition",
+                0.35
+              ]
+            },
+            "brakeMix2Sum": {
+              "op": "add",
+              "args": [
+                "flaperonLeft",
+                "brakeMix2Deflection"
+              ]
+            },
+            "brakeMix2": {
+              "op": "clamp",
+              "args": [
+                "brakeMix2Sum",
+                -1,
+                1
+              ]
+            },
+            "brakeMix3Deflection": {
+              "op": "multiply",
+              "args": [
+                "brakePosition",
+                -0.35
+              ]
+            },
+            "brakeMix3Sum": {
+              "op": "add",
+              "args": [
+                "yawInput",
+                "brakeMix3Deflection"
+              ]
+            },
+            "brakeMix3": {
+              "op": "clamp",
+              "args": [
+                "brakeMix3Sum",
+                -1,
+                1
               ]
             }
           },
@@ -11706,7 +12372,7 @@
             },
             {
               "node": "F35-flaperon--1",
-              "source": "flaperonRight",
+              "source": "brakeMix0",
               "property": "rotation",
               "axis": "x",
               "scale": 1
@@ -11720,7 +12386,7 @@
             },
             {
               "node": "F35-rudder--1",
-              "source": "yawInput",
+              "source": "brakeMix1",
               "property": "rotation",
               "axis": "y",
               "scale": 0.35
@@ -11734,7 +12400,7 @@
             },
             {
               "node": "F35-flaperon-1",
-              "source": "flaperonLeft",
+              "source": "brakeMix2",
               "property": "rotation",
               "axis": "x",
               "scale": 1
@@ -11748,7 +12414,7 @@
             },
             {
               "node": "F35-rudder-1",
-              "source": "yawInput",
+              "source": "brakeMix3",
               "property": "rotation",
               "axis": "y",
               "scale": 0.35
@@ -11818,6 +12484,345 @@
               "source": "gearExposed",
               "property": "visible",
               "scale": 1
+            },
+            {
+              "node": "canopy-opening",
+              "source": "canopy",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.85
+            },
+            {
+              "node": "canopy-fragment--1--1",
+              "source": "eject",
+              "property": "position",
+              "axis": "x",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  -8
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment--1--1",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  12
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment--1--1",
+              "source": "eject",
+              "property": "position",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  -6
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment--1--1",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment--1-1",
+              "source": "eject",
+              "property": "position",
+              "axis": "x",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  -8
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment--1-1",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  12
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment--1-1",
+              "source": "eject",
+              "property": "position",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  6
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment--1-1",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment-1--1",
+              "source": "eject",
+              "property": "position",
+              "axis": "x",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  8
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment-1--1",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  12
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment-1--1",
+              "source": "eject",
+              "property": "position",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  -6
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment-1--1",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment-1-1",
+              "source": "eject",
+              "property": "position",
+              "axis": "x",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  8
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment-1-1",
+              "source": "eject",
+              "property": "position",
+              "axis": "y",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  12
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment-1-1",
+              "source": "eject",
+              "property": "position",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.08,
+                  0
+                ],
+                [
+                  1,
+                  6
+                ]
+              ]
+            },
+            {
+              "node": "canopy-fragment-1-1",
+              "source": "eject",
+              "property": "visible",
+              "keys": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0.85,
+                  1
+                ],
+                [
+                  0.86,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
             }
           ]
         }

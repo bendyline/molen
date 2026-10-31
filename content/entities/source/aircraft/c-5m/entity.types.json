@@ -256,6 +256,20 @@
                     "property": "visible",
                     "scale": 1,
                     "missing": "hide"
+                  },
+                  {
+                    "node": "speed-brake--1",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.9
+                  },
+                  {
+                    "node": "speed-brake-1",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.9
                   }
                 ],
                 "derived": {
@@ -296,6 +310,13 @@
                     "component": "aircraftState",
                     "path": [
                       "gearPosition"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -10529,7 +10550,8 @@
               "maxMach": 0.82,
               "maxEquivalentAirspeed": 175,
               "gearLimitSpeed": 130,
-              "flapLimitSpeed": 115
+              "flapLimitSpeed": 115,
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
@@ -10636,6 +10658,183 @@
                 "highAltitudeExponent": 1.2,
                 "ramRise": 0.15
               }
+            ],
+            "actuators": {
+              "speedBrake": {
+                "seconds": 2
+              }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  5.6,
+                  0
+                ],
+                "massFraction": 0.92,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    5.6,
+                    32.3833
+                  ],
+                  [
+                    0,
+                    5.6,
+                    -32.3833
+                  ],
+                  [
+                    31.229400000000002,
+                    5.6,
+                    0
+                  ],
+                  [
+                    -31.229400000000002,
+                    5.6,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-C5-engine-fan-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  18.65,
+                  5.12,
+                  13.15
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "C5-engine-fan-1"
+                ],
+                "disc": {
+                  "center": [
+                    18.65,
+                    5.12,
+                    13.15
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.16,
+                  "halfThickness": 0.06,
+                  "rotor": "C5-engine-fan-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-C5-engine-fan-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  11.85,
+                  5.68,
+                  16.85
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "C5-engine-fan-2"
+                ],
+                "disc": {
+                  "center": [
+                    11.85,
+                    5.68,
+                    16.85
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.16,
+                  "halfThickness": 0.06,
+                  "rotor": "C5-engine-fan-2"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              },
+              {
+                "id": "rotor-C5-engine-fan-3",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -11.85,
+                  5.68,
+                  16.85
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "C5-engine-fan-3"
+                ],
+                "disc": {
+                  "center": [
+                    -11.85,
+                    5.68,
+                    16.85
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.16,
+                  "halfThickness": 0.06,
+                  "rotor": "C5-engine-fan-3"
+                },
+                "engines": [
+                  "engine-3"
+                ]
+              },
+              {
+                "id": "rotor-C5-engine-fan-4",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -18.65,
+                  5.12,
+                  13.15
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "C5-engine-fan-4"
+                ],
+                "disc": {
+                  "center": [
+                    -18.65,
+                    5.12,
+                    13.15
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.16,
+                  "halfThickness": 0.06,
+                  "rotor": "C5-engine-fan-4"
+                },
+                "engines": [
+                  "engine-4"
+                ]
+              }
             ]
           }
         },
@@ -10671,7 +10870,10 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {
+            "speedBrake": 0
+          }
         },
         "mountable": {
           "seats": [
@@ -10823,6 +11025,13 @@
                 "engines",
                 "engine-4",
                 "rpm"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -21036,6 +21245,20 @@
               "property": "visible",
               "scale": 1,
               "missing": "hide"
+            },
+            {
+              "node": "speed-brake--1",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.9
+            },
+            {
+              "node": "speed-brake-1",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.9
             }
           ]
         }

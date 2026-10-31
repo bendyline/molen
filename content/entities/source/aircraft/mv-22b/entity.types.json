@@ -44,8 +44,8 @@
             ],
             "pilotEye": [
               0.62,
-              2.65,
-              5.85
+              2.4,
+              5.65
             ],
             "hardLandingSpeed": 4,
             "hardLandingRoll": 0.2,
@@ -10193,7 +10193,138 @@
               "rollAuthority": 1.5,
               "yawAuthority": 0.8,
               "damping": 2.2
-            }
+            },
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.9,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.9,
+                    7.5164
+                  ],
+                  [
+                    0,
+                    1.9,
+                    -7.5164
+                  ],
+                  [
+                    11.8588,
+                    1.9,
+                    0
+                  ],
+                  [
+                    -11.8588,
+                    1.9,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-MV22-proprotor-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  7.09,
+                  3.97,
+                  2.1
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "MV22-proprotor-1"
+                ],
+                "disc": {
+                  "center": [
+                    7.09,
+                    3.97,
+                    4.509945
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 5.804468,
+                  "halfThickness": 0.116267,
+                  "rotor": "MV22-proprotor-1",
+                  "tilt": {
+                    "pivot": [
+                      7.09,
+                      3.97,
+                      2.1
+                    ],
+                    "axis": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "angle": -1.5707963267948966
+                  }
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-MV22-proprotor-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -7.09,
+                  3.97,
+                  2.1
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "MV22-proprotor-2"
+                ],
+                "disc": {
+                  "center": [
+                    -7.09,
+                    3.97,
+                    4.509945
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 5.804468,
+                  "halfThickness": 0.116267,
+                  "rotor": "MV22-proprotor-2",
+                  "tilt": {
+                    "pivot": [
+                      -7.09,
+                      3.97,
+                      2.1
+                    ],
+                    "axis": [
+                      1,
+                      0,
+                      0
+                    ],
+                    "angle": -1.5707963267948966
+                  }
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              }
+            ]
           }
         },
         "aircraftInput": {
@@ -10230,6 +10361,7 @@
           "waitingForTerrain": false,
           "gearPosition": 1,
           "flapPosition": 0,
+          "actuators": {},
           "thrustVectorPosition": 1
         },
         "mountable": {
@@ -10239,8 +10371,8 @@
               "role": "driver",
               "position": [
                 0.62,
-                2.65,
-                5.85
+                2.4,
+                5.65
               ]
             },
             {
@@ -10248,8 +10380,8 @@
               "role": "passenger",
               "position": [
                 -0.62,
-                2.65,
-                5.85
+                2.4,
+                5.65
               ]
             }
           ],

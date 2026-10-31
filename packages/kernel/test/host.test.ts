@@ -111,6 +111,49 @@ class ManualClock implements SchedulerClock {
 }
 
 describe('KernelHost protocol', () => {
+  it('suspends without time debt, preserving explicit pause and resume while inactive', () => {
+    const clock = new ManualClock();
+    const link = new MockLink();
+    const world = counterWorld();
+    const host = new KernelHost(world, link, { clock });
+    clock.advance(100);
+    const tick = world.tick;
+    expect(tick).toBeGreaterThan(0);
+    link.send({ type: 'control', control: { action: 'set-active', active: false } });
+    clock.advance(60_000);
+    expect(world.tick).toBe(tick);
+    link.send({ type: 'control', control: { action: 'set-active', active: true } });
+    clock.advance(34);
+    expect(world.tick).toBe(tick + 1);
+    link.send({ type: 'control', control: { action: 'set-active', active: false } });
+    host.pause();
+    link.send({ type: 'control', control: { action: 'set-active', active: true } });
+    clock.advance(100);
+    expect(world.tick).toBe(tick + 1);
+    link.send({ type: 'control', control: { action: 'set-active', active: false } });
+    host.start();
+    clock.advance(100);
+    expect(world.tick).toBe(tick + 1);
+    link.send({ type: 'control', control: { action: 'set-active', active: true } });
+    clock.advance(34);
+    expect(world.tick).toBe(tick + 2);
+    host.dispose();
+  });
+
+  it('keeps a startPaused worker paused across activity changes and permits explicit steps', () => {
+    const clock = new ManualClock();
+    const link = new MockLink();
+    const world = counterWorld();
+    const host = new KernelHost(world, link, { clock, startPaused: true });
+    link.send({ type: 'control', control: { action: 'set-active', active: false } });
+    link.send({ type: 'control', control: { action: 'step', ticks: 2 } });
+    link.send({ type: 'control', control: { action: 'set-active', active: true } });
+    clock.advance(1000);
+    expect(world.tick).toBe(2);
+    link.sendUnknown({ type: 'control', control: { action: 'set-active', active: 'yes' } });
+    expect(link.ofType('diag').at(-1)?.code).toBe('protocol-error');
+    host.dispose();
+  });
   it('posts an initial keyframe and ready even when the scheduler starts paused', () => {
     const link = new MockLink();
     new KernelHost(counterWorld(), link, { startPaused: true });

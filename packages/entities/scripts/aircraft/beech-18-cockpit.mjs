@@ -1,7 +1,7 @@
 /** N522B panel and controls, Smithsonian NASM2016-03584 (Dane Penland, CC0).
  * Panel width checked against Beech Detail Specification 131: 45.75 inches.
  * Photograph is a perspective reference, not a surveyed orthographic drawing. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import { beveledBox, detailKit, ellipsoid, group, mat, outline, sheet, T } from './mesh-kit.mjs';
 export function beech18Cockpit(root, m) {

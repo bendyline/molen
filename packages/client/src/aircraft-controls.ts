@@ -2,6 +2,11 @@ import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyl
 import * as THREE from 'three';
 
 export type AircraftControlAction =
+  | 'speedBrake'
+  | 'tailHook'
+  | 'canopy'
+  | 'wipers'
+  | 'headlights'
   | 'power'
   | 'mixture'
   | 'propeller'
@@ -143,7 +148,18 @@ export function createAircraftCockpit(model: THREE.Object3D, spec: AircraftSpec)
   if (engines.length > 1)
     for (const [index, engine] of engines.entries())
       add('engine', `Engine ${index + 1}`, [], engine.id);
-  if (spec.model === 'airplane' && !spec.airplane?.fixedGear)
+  for (const [action, label] of [
+    ['speedBrake', 'Speed brake'],
+    ['tailHook', 'Tail hook'],
+    ['canopy', 'Canopy'],
+    ['wipers', 'Wipers'],
+    ['headlights', 'Lights'],
+  ] as const)
+    if (spec.actuators?.[action]) add(action, label, []);
+  if (
+    (spec.model === 'airplane' && !spec.airplane?.fixedGear) ||
+    spec.helicopter?.fixedGear === false
+  )
     add('gear', 'Landing gear', [
       ...bound('gear', /handle|lever|selector/i),
       ...bound('gearPosition', /handle|lever|selector/i),
@@ -231,6 +247,8 @@ export function aircraftControlValue(
   input: AircraftInputData,
   control: AircraftCockpitControl,
 ): number {
+  if (['speedBrake', 'tailHook', 'canopy', 'wipers', 'headlights'].includes(control.action))
+    return Number(input.actuators?.[control.action] ?? 0);
   if (control.action === 'stick') return input.roll;
   if (control.action === 'power')
     return control.engine ? (input.engines?.[control.engine]?.power ?? input.power) : input.power;
@@ -264,6 +282,10 @@ export function applyAircraftControl(
   if (control.engine && !bank.some((engine) => engine.id === control.engine)) return input;
   const clamp = (v: number, low = 0): number => Math.max(low, Math.min(1, v));
   const next = { ...input };
+  if (['speedBrake', 'tailHook', 'canopy', 'wipers', 'headlights'].includes(control.action))
+    return spec.actuators?.[control.action]
+      ? { ...next, actuators: { ...input.actuators, [control.action]: clamp(value) } }
+      : input;
   switch (control.action) {
     case 'stick':
       next.roll = clamp(value, -1);
@@ -325,7 +347,13 @@ export function applyAircraftControl(
       else next.engine = value > 0;
       break;
     case 'gear':
-      if (spec.model !== 'airplane' || spec.airplane?.fixedGear || !state || state.grounded)
+      if (
+        (spec.model === 'airplane'
+          ? spec.airplane?.fixedGear
+          : spec.helicopter?.fixedGear !== false) ||
+        !state ||
+        state.grounded
+      )
         return input;
       next.gear = value > 0;
       break;

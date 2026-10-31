@@ -38,8 +38,37 @@
       "shots/shared/mapped-complete-plan.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 11 shared-material views. Six common 256-square graphs provide marble, weathered limestone, long-format brick, ceramic roof tile, window grid and cast bronze through metric UVs and linear tints. Each graph is read once across the model; eviction releases geometry. Six near draws and one skyline draw. No embedded images, unique atlas or copied photograph. The shared marble approximates cipollino, brick and roof colors remain approximate, and the window-grid graph is a generic glazing treatment. Dark shared body-stone backs provide contrast behind the recessed dedication. Flat-stage views expose some buried retaining depth; terrain contact was inspected separately on the original standard DEM.",
-    "captureReportHash": "sha256:f8ddb69d53eaa9e31a95c303839e71cbd5a3e78c732ad002c3ca5c25cde762be"
+    "notes": "Inspected all 11 shared-material views. Six common 256-square graphs provide marble, weathered limestone, long-format brick, ceramic roof tile, window grid and cast bronze through metric UVs and linear tints. Each graph is read once across the model; eviction releases geometry. Six near draws and one skyline draw. No embedded images, unique atlas or copied photograph. The shared marble approximates cipollino, brick and roof colors remain approximate, and the window-grid graph is a generic glazing treatment. Dark shared body-stone backs provide contrast behind the recessed dedication. Flat-stage views expose some buried retaining depth; terrain contact was inspected separately on the original standard DEM. Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.",
+    "captureReportHash": "sha256:5adb74c6b0abefa034289a0deedeadc5315c7267d7735458cfac9e87226f6801",
+    "inputHash": "sha256:65150fb417e8ffe1b7f9043f7f55e6b0be49c6ba4809662d9f30b47ea3294b56",
+    "reviewedOn": "2026-10-29",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick_longformat": {
+        "path": "materials/brick_longformat.matgraph.json",
+        "hash": "sha256:4fdf393d228a5d543b82290a8f382b2cbfd7a67279bc504e4e526d59ed2335a8"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_weathered": {
+        "path": "materials/stone_limestone_weathered.matgraph.json",
+        "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      },
+      "matgraph:molen.worldgen.material.tile_ceramic": {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      "matgraph:molen.worldgen.material.metal_bronze_cast": {
+        "path": "materials/metal_bronze_cast.matgraph.json",
+        "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+      },
+      "matgraph:molen.worldgen.material.stone_marble": {
+        "path": "materials/stone_marble.matgraph.json",
+        "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
@@ -678,5 +707,95 @@
       "inputHash": "sha256:65150fb417e8ffe1b7f9043f7f55e6b0be49c6ba4809662d9f30b47ea3294b56",
       "proof": "TypeScript parser/printer equality of all non-import statements; same import bindings and explicit side-effect import order. Rebuilt selected source/runtime/fourLOD GLBs retain exact bytes. Source/view/camera/material metadata preserved. Existing reviews retained; no new visual approval added."
     }
+  },
+  "sharedMaterialRefresh": {
+    "date": "2026-10-29",
+    "inputHash": "sha256:65150fb417e8ffe1b7f9043f7f55e6b0be49c6ba4809662d9f30b47ea3294b56",
+    "sourceAndRuntimePreserved": true,
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/models/source.glb",
+        "hash": "sha256:6fd94a02c8f07e200f22baf8b7bf288e2f9b5a5bedd71a5c873751745ca9bd2a"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sr2/temple_of_antoninus_and_faustina/model.glb",
+        "hash": "sha256:5dd3af5079222ff47fe3351d6ba5f406df9d4b08f2b1ddeeb9edccfba275bba8"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sr2/temple_of_antoninus_and_faustina/model.skyline.glb",
+        "hash": "sha256:aa09cc1ebadc9299c4ce8f9fabeca65ddd4ce8f78f476127e16e5dd5d304d5bc"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sr2/temple_of_antoninus_and_faustina/model.district.glb",
+        "hash": "sha256:4d505e2474758cc1ac17438ea68bde904bc36ec9d8b8cea749d8c59d4c5fe96a"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sr2/temple_of_antoninus_and_faustina/model.street.glb",
+        "hash": "sha256:3c2b29381fbd4bf01fd89c1721e9ac9ca3461becc0072e77c0317ec9b58b1496"
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/sr2/temple_of_antoninus_and_faustina/model.closeup.glb",
+        "hash": "sha256:d546179f8e816c59b25b272e4dda385f2c9ff71dbf3f2bb0498fff8b09aa9d2d"
+      }
+    ],
+    "retainedReports": [
+      {
+        "name": "capture-report",
+        "frames": 11,
+        "hash": "sha256:834c6850af6ca72bd42ab0e9717e17279b87ca990b969f86cb8f3ef2982975ae"
+      },
+      {
+        "name": "medium-fi-report",
+        "frames": 27,
+        "hash": "sha256:a6f0a5c928f4895d96f6e901e8c08dd45b8e6207f5e2ae851c23c1be0b565d82"
+      }
+    ],
+    "newInspectedFrames": [
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/angle-0.png",
+        "hash": "sha256:1174f76b2372017946758316e484b2b12812b7ccdbfb3472f94a398e005d19b3"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/angle-1.png",
+        "hash": "sha256:eeb603155b2993746762a64ceec3e36e78c719754f1a0501bf735e0655bbf6f1"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/angle-2.png",
+        "hash": "sha256:57db472b96963ee73a85b10f01cb42e326ae4ebde6af41a5849f4568cf3a6dfe"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/angle-3.png",
+        "hash": "sha256:64e7c7581e71a687e8ca38e8142cb8f78ff662807fecdffaf3a094576094c9db"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/southwest-temple-and-church.png",
+        "hash": "sha256:3e1725b73af815aaaefdf3d6577a30bc7766a24f0e2546c646d126204eb38844"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/corinthian-and-dedication.png",
+        "hash": "sha256:94806ba19d75513369b5a8b91cc0de1b0974ffc92240c2473d7bfc89b4fc511c"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/raised-doorway.png",
+        "hash": "sha256:3f928009e927105291102d64b6d28f516494ecdf6043565178dacb2901566311"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/west-buttresses-and-roof.png",
+        "hash": "sha256:519d5ebb1d056c9273a0865f5589c931af62239a4d179a34c854a909be560ca0"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/split-pediment-and-cross.png",
+        "hash": "sha256:96a5b8db06b27a8301507c560536c702a3203da24877cf43f63c8324ec488559"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/mapped-complete-plan.png",
+        "hash": "sha256:f646c9fef66a9530bddec84b18dc129eff976e51bc7f76d2e7ff77cb0c2500cb"
+      },
+      {
+        "path": "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/placement.png",
+        "hash": "sha256:f82c16499d23fba2ed33c070c48711c95f663fac320c46a0d13e1d19229a1d73"
+      }
+    ],
+    "notes": "Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope."
   }
 }

@@ -54,6 +54,71 @@ function vertices(object: THREE.Object3D, name: string) {
   return mesh.geometry.getAttribute('position');
 }
 describe('automatic bridge structures', () => {
+  it('keeps inferred piers out of the lower carriageway', () => {
+    const tile = fixture();
+    tile.transportation.push({
+      class: 'highway',
+      width: 12,
+      lines: [
+        [
+          [0.64, 0],
+          [0.64, 1],
+        ],
+      ],
+    });
+    const object = createTerrainSurfaceObject(tile, context());
+    const p = vertices(object, 'surfaces:bridges');
+    const low = Array.from({ length: p.count }, (_, i) => i).filter((i) => p.getY(i) < 8);
+    expect(low.length).toBeGreaterThan(0);
+    expect(low.some((i) => Math.abs(p.getX(i) - 128) < 8)).toBe(false);
+    disposeTerrainSurfaceObject(object);
+  });
+  it('opens barriers into a same-height ramp while retaining them above an underpass', () => {
+    const tile = fixture();
+    tile.transportation[0] = {
+      ...(tile.transportation[0] as TerrainTransportationFeature),
+      deckElevation: 11,
+    };
+    tile.transportation.push({
+      class: 'highway',
+      subclass: 'motorway_link',
+      bridge: true,
+      width: 6,
+      deckElevation: 11,
+      lines: [
+        [
+          [0.5, 0.5],
+          [0.8, 0.6],
+          [1, 0.8],
+        ],
+      ],
+    });
+    const object = createTerrainSurfaceObject(tile, context());
+    const p = vertices(object, 'surfaces:bridges');
+    // The south barrier of the main deck is at z=108.05; the ramp crosses it near x=124.
+    const barrier = Array.from({ length: p.count }, (_, i) => i).filter(
+      (i) => Math.abs(p.getZ(i) - 108.05) < 0.16 && p.getY(i) > 11.5,
+    );
+    expect(barrier.length).toBeGreaterThan(0);
+    expect(barrier.some((i) => p.getX(i) > 118 && p.getX(i) < 130)).toBe(false);
+    disposeTerrainSurfaceObject(object);
+    tile.transportation[1] = {
+      ...(tile.transportation[1] as TerrainTransportationFeature),
+      deckElevation: 5.32,
+    };
+    const underpass = createTerrainSurfaceObject(tile, context());
+    const q = vertices(underpass, 'surfaces:bridges');
+    expect(
+      Array.from({ length: q.count }, (_, i) => i).some(
+        (i) =>
+          Math.abs(q.getZ(i) - 108.05) < 0.16 &&
+          q.getY(i) > 11.5 &&
+          q.getX(i) > 118 &&
+          q.getX(i) < 130,
+      ),
+    ).toBe(true);
+    disposeTerrainSurfaceObject(underpass);
+  });
   it('keeps ferry routes available to transport consumers without painting a road over water', () => {
     const tile = fixture(false);
     tile.transportation[0] = {

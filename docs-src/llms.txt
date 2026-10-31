@@ -38,7 +38,7 @@ downloads them into a project and pins them in project.json.
 - [WebGPU and WebGL](guide/rendering-backends.md): the `backend` option ('auto' | 'webgl' | 'webgpu') on the asynchronous client factories, legacy WebGL fallback, compatible materials, and world-explorer comparisons.
 - [Earth and authored skies](guide/sky.md): day/night cycles, geographic Sun/Moon positions and lunar phases, catalog stars, simulation clocks, custom-world palettes, and the sky observatory.
 - [Night lighting](guide/night-lighting.md): deterministic occupied windows, streetlamp emission and pavement pools, dusk activation, and light metadata for authored models.
-- [Weather and physical atmosphere](guide/weather.md): independent clouds, precipitation and visibility; profiles, temperature/pressure/wind for simulation and aircraft physics; cloud/rain/snow rendering.
+- [Weather and physical atmosphere](guide/weather.md): independent clouds (cumulus, stratocumulus, stratus, cumulonimbus, cirrus), precipitation and visibility; profiles, temperature/pressure/wind for simulation and aircraft physics; volumetric cloud, cloud-shadow, rain and snow rendering and cloud quality.
 - [Sound and music](guide/audio.md): sound banks, `audioEnvironment`/`audioSource`/`audioZone` rules driven by weather, sky, listener and entity signals, `molen.audio.*` in scripts, `molen audio plan` to hear a scene headlessly, and the CC0 `molen.sounds` pack.
 - [Graphics performance](guide/graphics-performance.md): sparse transforms, static instancing, worker preparation, staged uploads, animation/light policy and terrain transitions.
 - [Terrain and world explorer](guide/terrain.md): fixed-grid and screen-space pyramid streaming,
@@ -60,6 +60,7 @@ downloads them into a project and pins them in project.json.
 - [Logical source bundles](guide/source-bundles.md): one copyable folder per entity, structure, vehicle, prop, or other authored thing, with all definitions and source files listed in `source.json`.
 - [Components](schemas/components.md): the component vocabulary `molen validate` checks against.
 - [Mountable vehicles](guide/vehicles.md): stable parking entities, driver seats, deterministic vehicle physics, safe exits, and cockpit/chase views.
+- [Glass surfaces](guide/glass.md): physics-driven fracture, laminated windshield retention, tempered granules, independent frame failure, persistent state and render bindings.
 - [Boost mode](guide/boost-mode.md): optional 4× travel for people, vehicles and ambient life; Earth T toggle, host API and snapshot-safe kernel setting.
 - [Boats and water](guide/boats.md): powered hulls, helm controls, passengers, boarding points, swells, currents and Earth-view water coverage.
 - [Aircraft](guide/aircraft.md): P-51D and OH-6 assets, flight physics, cockpit instruments, practice airfield and controls.

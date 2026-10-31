@@ -79,6 +79,13 @@ export interface VoiceSpatial {
   model: 'linear' | 'inverse' | 'exponential';
 }
 
+/** Optional rotor timbre and loading envelope; evaluated at audio rate by the backend. */
+export interface VoiceTone {
+  lowpassHz: number;
+  pulseHz: number;
+  pulseDepth: number;
+}
+
 /** The director's output: a diff the backend applies. */
 export type VoiceCommand =
   | {
@@ -95,6 +102,7 @@ export type VoiceCommand =
       bus: string;
       spatial?: VoiceSpatial;
       fadeInS?: number;
+      tone?: VoiceTone;
     }
   | {
       op: 'set';
@@ -103,6 +111,7 @@ export type VoiceCommand =
       pitch?: number;
       position?: AudioVec3;
       rampS?: number;
+      tone?: VoiceTone;
     }
   | { op: 'stop'; voice: string; fadeS?: number }
   | { op: 'listener'; position: AudioVec3; forward: AudioVec3; up: AudioVec3 }

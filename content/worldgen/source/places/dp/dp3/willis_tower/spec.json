@@ -50,7 +50,11 @@
     "Five west-facing balconies follow the operator2024 factsheet and Clark2022 construction record, replacing the original2009 four-box arrangement. Their even spacing across the75-foot west tube is reconstructed; published10-foot width/height and4.3-foot projection are retained.",
     "Mapped setbacks use200/260/355m before the published442.1m roof. Intermediate floor levels are reconstructed piecewise and include the published103rd-floor observation height. Current commercial signs and interior exhibits are omitted.",
     "The podium outline/heights and mast centers use detailed OSM building parts. Novum publishes the85×75-foot skylight; its curved rise, roof plantings, seats and storefront subdivisions are photo-fitted reconstructions rather than construction-survey detail.",
-    "Broad floors and setbacks follow published tube termination levels. Individual floor elevations, facade mullion profiles and roof machinery are exterior reconstructions; no private construction drawings or interior spaces are included."
+    "Broad floors and setbacks follow published tube termination levels. Individual floor elevations, facade mullion profiles and roof machinery are exterior reconstructions; no private construction drawings or interior spaces are included.",
+    "Published75-foot tube widths and source442.1m roof /527.3m tips stay exact. Intermediate levels and balcony spacing remain the existing piecewise/photo-proportioned reconstruction; no new survey or retail/interior claim. The two highest tubes remain west/center and five ledges remain on native-X west.",
+    "All eleven current podium polygons and twelve canopy footprints use retained attributed OSM parts. Redundant polygon vertices coalesce with1m skyline,0.35m district and0.05m street tolerances; closeup keeps the complete original polygon vertices. Native street/pavement slope and party-wall clearances remain unverified.",
+    "Skyline aggregates facade bays, roof plant, antenna lattice and glass ledges; district aggregates eight-storey/five-bay window groups and minor guards/canopy borders; street restores three-storey/ten-bay rhythm and coarse lattice. Closeup restores every storey, ten bays, projecting piers and coarser genuine louvers. Fine mullion lips, seat slats, collars, greenery and roof-guard posts remain explicit reductions.",
+    "Existing shared painted-metal/concrete/timber graphs supply texture memory reuse; no per-model bitmap textures or embedded images. Bronze/transparent glazing are local material colors. Optical reflections, surveyed skylight curvature, exact planting and physical laptop/phone performance remain unverified."
   ],
   "qaCameras": [
     {
@@ -135,6 +139,225 @@
   "assetId": "molen.worldgen.structure.willis_tower",
   "category": "skyscraper",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Nine75-foot bundled bronze-and-black tubes with opposite50/66-floor corners,90-floor steps and paired109-floor west/center tubes,442.1m roof and two527.3m broadcast masts; five west-facing Skydeck balconies; current eleven-part Catalog podium with southern curved hill skylight, canopies and planted roof terraces.",
+    "master": "Preserve the726,110-triangle detailed source and imported master byte-for-byte. Browser levels share exported canonical tube dimensions/heights, OSM parts and signed local frame with the master.",
+    "browser": "Four complete authored levels retain every tube termination, both primary masts and ancillary aerials, five west ledges, all eleven mapped podium parts, the curved skylight and twelve canopy footprints. Three existing256px graphs provide painted metal, concrete and wood; bronze glazing and clear ledges remain local, and roof planting retains a local green material. Skyline uses bronze fields and aggregated structural rhythm, mechanical bands and coarse masts. District aggregates windows across8-floor/five-bay groups, guards/planting and canopy borders; street uses three-floor/ten-bay glazing, true ledges and coarse open mast lattice. Closeup restores every storey and ten-bay rhythm, projecting piers, louver blades, roof machinery, lattice braces, storefronts and denser skylight/planting. Original fine facade/mast hardware remains in the master. Aggregated window colors preserve the source ratio of bronze glass to dark spandrels so distant tiers do not brighten as storeys merge."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.generic.commercial"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dp/dp3/willis_tower/models/willis-lods.mjs",
+    "export": "willisSkyline",
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "willisDistrict",
+        "errorMeters": 1.6,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "clear_glass": {
+            "localRef": "palette:#feffff",
+            "slot": "window",
+            "name": "clear-skydeck-glass",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.26
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "foliage": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "willisStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "clear_glass": {
+            "localRef": "palette:#feffff",
+            "slot": "window",
+            "name": "clear-skydeck-glass",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.26
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "foliage": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "willisCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "clear_glass": {
+            "localRef": "palette:#feffff",
+            "slot": "window",
+            "name": "clear-skydeck-glass",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.26
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "foliage": {
+            "localRef": "palette:#ffffff",
+            "slot": "roof",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-all-nine-tubes-and-twin-masts",
+      "position": [
+        650,
+        335,
+        930
+      ],
+      "lookAt": [
+        0,
+        260,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-complete-catalog-podium-and-curved-skylight",
+      "position": [
+        110,
+        85,
+        160
+      ],
+      "lookAt": [
+        -3,
+        15,
+        35
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-five-west-skydeck-ledges",
+      "position": [
+        -80,
+        416,
+        35
+      ],
+      "lookAt": [
+        -34.4,
+        413.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-bronze-window-bays-and-mechanical-louvers",
+      "position": [
+        80,
+        132,
+        58
+      ],
+      "lookAt": [
+        22,
+        127,
+        11
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "actualBounds": {
     "min": [
       -53.10441207885742,
@@ -146,6 +369,13 @@
       527.2999877929688,
       77.73805236816406
     ]
+  },
+  "mesh": {
+    "triangles": 726110,
+    "vertices": 1448770,
+    "materials": 6,
+    "bytes": 60872588,
+    "sha256": "sha256:3f6c601de738c8c322671aeb2afb08f8c9c5cfdfaf2943c7c11da65da4d3cafe"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

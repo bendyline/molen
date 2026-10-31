@@ -1,7 +1,7 @@
 /** Late F/A-18C, clean configuration. NATOPS dimensions and FO-5 cockpit.
  * Main axle datum; +Z forward, +X pilot left. See reference-review.json.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -48,11 +48,13 @@ export function buildFA18C(s) {
   const d = detailKit(root, 'FA18-airframe'),
     bindings = [];
   // Radome and cabin shell taper independently from the aft paired engines.
+  // The radome is a full ogive whose tip sits about 0.35 m above the flat keel (NASA three-view
+  // and photographs), not a spike drooping along the chin line.
   const sections = [
-    [10.9, 0.008, 1.5, 1.53],
-    [10.45, 0.16, 1.43, 1.76],
-    [9.8, 0.31, 1.36, 2.02],
-    [9.15, 0.43, 1.34, 2.25],
+    [10.9, 0.05, 1.63, 1.69],
+    [10.45, 0.22, 1.45, 1.9],
+    [9.8, 0.345, 1.375, 2.1],
+    [9.15, 0.44, 1.34, 2.27],
     [8.5, 0.47, 1.34, 2.45],
     [7.75, 0.49, 1.34, 2.58],
     [6.6, 0.55, 1.35, 2.63],
@@ -81,13 +83,14 @@ export function buildFA18C(s) {
       0.0025,
       dark,
     );
+  // The bubble crown stands about 3.3 m up (NASA three-view); sills stay on the shoulder rails.
   const canopy = [
     [7.7, 0.025, 2.56, 2.58],
-    [7.05, 0.3, 2.59, 2.86],
-    [6.5, 0.42, 2.62, 3.15],
-    [6.2, 0.44, 2.64, 3.2004],
-    [5.45, 0.44, 2.7, 3.17],
-    [4.5, 0.35, 2.78, 3.08],
+    [7.05, 0.3, 2.59, 2.9],
+    [6.5, 0.42, 2.62, 3.24],
+    [6.2, 0.44, 2.64, 3.3],
+    [5.45, 0.44, 2.7, 3.27],
+    [4.5, 0.35, 2.78, 3.15],
     [3.9, 0.025, 2.87, 2.9],
   ];
   const cr = canopy.map(([z, w, b, t]) => ({
@@ -149,20 +152,40 @@ export function buildFA18C(s) {
       [1.2, 2.35, 3.75, 0.58, 2.61],
       [1.39, 2.29, 2.3, 0.59, 2.61],
     ];
+    // The underside is a wedge that drops to the fuselage side, so the LEX reads as the thick
+    // shadowed shelf seen from the ground, not a blade. [lower root x, drop below the root].
+    const under = [
+      [0.42, 0.08],
+      [0.47, 0.2],
+      [0.53, 0.3],
+      [0.59, 0.32],
+      [0.62, 0.3],
+    ];
+    const lexEdge = (q) => [side * q[0], q[1], q[2]],
+      lexEdgeLow = (q) => [side * q[0], q[1] - 0.03, q[2]],
+      lexRoot = (q) => [side * q[3], q[4], q[2]],
+      lexRootLow = (q, i) => [side * under[i][0], q[4] - under[i][1], q[2]];
     for (let i = 0; i < lex.length - 1; i++) {
       const a = lex[i],
         b = lex[i + 1];
-      for (const lower of [false, true])
-        quad(
-          d,
-          [side * a[0], a[1] - (lower ? 0.018 : 0), a[2]],
-          [side * b[0], b[1] - (lower ? 0.018 : 0), b[2]],
-          [side * b[3], b[4] - (lower ? 0.018 : 0), b[2]],
-          [side * a[3], a[4] - (lower ? 0.018 : 0), a[2]],
-          upper,
-          [0, lower ? -1 : 1, 0],
-        );
+      quad(d, lexEdge(a), lexEdge(b), lexRoot(b), lexRoot(a), upper, [0, 1, 0]);
+      quad(d, lexEdgeLow(a), lexEdgeLow(b), lexRootLow(b, i + 1), lexRootLow(a, i), paint, [
+        side,
+        -1,
+        0,
+      ]);
+      quad(d, lexEdge(a), lexEdge(b), lexEdgeLow(b), lexEdgeLow(a), paint, [side, 0, 0]);
     }
+    for (const [i, normal] of [
+      [0, 1],
+      [lex.length - 1, -1],
+    ])
+      sheet(
+        d,
+        [lexEdge(lex[i]), lexRoot(lex[i]), lexRootLow(lex[i], i), lexEdgeLow(lex[i])],
+        paint,
+        [0, 0, normal],
+      );
     quad(
       d,
       [side * 0.6, 2.6, 2.3],
@@ -193,18 +216,24 @@ export function buildFA18C(s) {
     );
     const ng = group(root, `FA18-engine-${side}`, [side * 0.58, 0, 0]),
       nd = detailKit(ng, ng.name);
+    // Inlets and trunks are rounded rectangles (superellipse exponent e) that relax to the
+    // round engine bays; head-on each mouth is a tall rounded box beside the radome.
     const nr = [
-      [2.08, 0.55, 1.16, 2.29],
-      [1.2, 0.63, 1.1, 2.39],
-      [-0.7, 0.64, 1.12, 2.5],
-      [-2.5, 0.6, 1.23, 2.54],
-      [-4.95, 0.5, 1.49, 2.49],
-    ].map(([z, w, b, t]) => ({
+      [2.08, 0.68, 1.16, 2.29, 0.55],
+      [1.2, 0.7, 1.1, 2.39, 0.6],
+      [-0.7, 0.64, 1.12, 2.5, 0.85],
+      [-2.5, 0.6, 1.23, 2.54, 1],
+      [-4.95, 0.5, 1.49, 2.49, 1],
+    ].map(([z, w, b, t, e]) => ({
       z,
-      points: Array.from({ length: 24 }, (_, j) => [
-        Math.sin((j * Math.PI) / 12) * w,
-        (b + t) / 2 + (Math.cos((j * Math.PI) / 12) * (t - b)) / 2,
-      ]),
+      points: Array.from({ length: 24 }, (_, j) => {
+        const s = Math.sin((j * Math.PI) / 12),
+          c = Math.cos((j * Math.PI) / 12);
+        return [
+          Math.sign(s) * Math.pow(Math.abs(s), e) * w,
+          (b + t) / 2 + (Math.sign(c) * Math.pow(Math.abs(c), e) * (t - b)) / 2,
+        ];
+      }),
     }));
     loft(nd, nr, paint, { caps: false });
     const lip = nr[0].points.map(([x, y]) => [x, y, 2.08 + 0.1 * (y - 1.7)]),
@@ -310,7 +339,9 @@ export function buildFA18C(s) {
     // Empty launch rail is part of the clean wing outline, not a missile.
     d.box([0.13, 0.1, 1.75], [side * 5.65, 2.0, -0.73], paint);
     d.box([0.04, 0.045, 1.5], [side * 5.7, 1.94, -0.73], metal);
-    const tg = group(root, `FA18-stabilator-${side}`, [side * 1.05, 2.08, -3.8]),
+    // Stabilators hang at the bottom of the tail booms, just below the nozzle centreline
+    // (NASA Dryden three-view: 1.88m above ground against 1.96m for the nozzle axis).
+    const tg = group(root, `FA18-stabilator-${side}`, [side * 1.05, 1.9, -3.8]),
       td = detailKit(tg, tg.name);
     wing(
       td,
@@ -391,12 +422,13 @@ export function buildFA18C(s) {
       );
     // Exterior operator identifiers are supplied by the selected livery.
     fd.finish();
-    // Retractable main gear: wide trailing arm and one wheel per side.
+    // Retractable main gear: wide trailing arm and one wheel per side. The splayed oleo and
+    // arm are as stout as in head-on photographs, not wire struts.
     const gg = group(root, `FA18-gear-${side}`, [side * 0.66, 1.35, 0.22]),
       gd = detailKit(gg, gg.name);
-    gd.rod([0, 0, 0], [side * 0.35, -0.68, -0.05], 0.055, metal);
-    gd.rod([side * 0.35, -0.68, -0.05], [side * 0.82, -0.96, -0.22], 0.065, paint);
-    gd.rod([0, -0.1, 0.48], [side * 0.4, -0.68, -0.05], 0.035, metal);
+    gd.rod([0, 0, 0], [side * 0.35, -0.68, -0.05], 0.085, metal);
+    gd.rod([side * 0.35, -0.68, -0.05], [side * 0.82, -0.96, -0.22], 0.09, paint);
+    gd.rod([0, -0.1, 0.48], [side * 0.4, -0.68, -0.05], 0.048, metal);
     gd.add(new T.CylinderGeometry(0.39, 0.39, 0.23, 24).rotateZ(Math.PI / 2), dark, [
       side * 0.82,
       -0.96,
@@ -480,8 +512,11 @@ export function buildFA18C(s) {
     offset: 0.75,
   });
   bindings.push({ node: ng.name, source: 'gearExposed', property: 'visible', scale: 1 });
-  d.rod([0, 1.43, -3.0], [0, 1.2, -5.2], 0.029, metal);
-  d.rod([0, 1.2, -5.2], [0, 1.25, -5.43], 0.045, metal);
+  const hook = group(root, 'arresting-hook', [0, 1.43, -3]);
+  const hd = detailKit(hook, 'hook-skin');
+  hd.rod([0, 0, 0], [0, -0.23, -2.2], 0.029, metal);
+  hd.rod([0, -0.23, -2.2], [0, -0.18, -2.43], 0.045, metal);
+  hd.finish();
   // Speed-brake outline, spine antennae, access seams and selected maintenance marks.
   outline(
     d,
@@ -508,7 +543,7 @@ export function buildFA18C(s) {
     );
   for (const side of [-1, 1]) {
     d.text('RESCUE', [side * 0.505, 2.23, 7.55], 0.09, (side * Math.PI) / 2, dark);
-    d.text('DANGER', [side * 0.96, 1.66, 2.2], 0.095, (side * Math.PI) / 2, dark);
+    d.text('DANGER', [side * 1.29, 1.66, 1.7], 0.095, (side * Math.PI) / 2, dark);
     for (let i = 0; i < canopy.length - 1; i++)
       for (let j = 0; j < 5; j++) {
         const a = canopy[i],

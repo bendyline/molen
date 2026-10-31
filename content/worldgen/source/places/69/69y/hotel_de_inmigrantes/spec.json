@@ -1,0 +1,472 @@
+{
+  "planId": "hotel_de_inmigrantes",
+  "id": "hotel_de_inmigrantes",
+  "assetId": "molen.worldgen.structure.hotel_de_inmigrantes",
+  "title": "Hotel de Inmigrantes, Buenos Aires (circa1915)",
+  "wikidataId": "Q9005010",
+  "category": "hotel",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.36807545,
+    "latitude": -34.5926331
+  },
+  "size": [
+    71.58646392822266,
+    25.52000081539154,
+    107.41182708740234
+  ],
+  "actualBounds": {
+    "min": [
+      -35.70159149169922,
+      -1.399999976158142,
+      -53.66667556762695
+    ],
+    "max": [
+      35.88487243652344,
+      24.1200008392334,
+      53.74515151977539
+    ]
+  },
+  "visualBrief": "Whole surviving1911 Hotel de Inmigrantes main building in approximate circa1915 form: complete native six-control four-storey hotel/dining/dormitory structure, both long facades, end walls, concealed four-sided metal roof, parapet, central clock crown, original large ground openings and upper dormitory windows. Exclude former1880Rotonda hotel and detached immigration administration/customs/hospital/embarkation buildings, gardens, later museum exhibits, statues/people/signage and the whole historical property parcel. No facade-only model.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1915-01-01",
+    "validFrom": "1911-01-26",
+    "validUntil": "1923-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/91739070/"
+  ],
+  "stories": [
+    {
+      "id": "hotel-de-inmigrantes-wp",
+      "url": "https://qualla.com/hotel-de-inmigrantes/"
+    }
+  ],
+  "referenceInputHash": "a209bfa88fc7d84cd079751a55243f9815a1190c5c269337431333304a9f8c25",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/69/69y/hotel_de_inmigrantes/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/69/69y/hotel_de_inmigrantes/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.72,
+        "metallic": 0.32
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#344b4f",
+        "roughness": 0.32,
+        "metallic": 0.08,
+        "alphaMode": "OPAQUE"
+      },
+      "dial": {
+        "slot": "trim",
+        "localRef": "palette:#e9e4d7",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "hand": {
+        "slot": "trim",
+        "localRef": "palette:#313838",
+        "roughness": 0.83,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#344b4f",
+            "roughness": 0.32,
+            "metallic": 0.08,
+            "alphaMode": "OPAQUE"
+          },
+          "dial": {
+            "slot": "trim",
+            "localRef": "palette:#e9e4d7",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "hand": {
+            "slot": "trim",
+            "localRef": "palette:#313838",
+            "roughness": 0.83,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#344b4f",
+            "roughness": 0.32,
+            "metallic": 0.08,
+            "alphaMode": "OPAQUE"
+          },
+          "dial": {
+            "slot": "trim",
+            "localRef": "palette:#e9e4d7",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "hand": {
+            "slot": "trim",
+            "localRef": "palette:#313838",
+            "roughness": 0.83,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#344b4f",
+            "roughness": 0.32,
+            "metallic": 0.08,
+            "alphaMode": "OPAQUE"
+          },
+          "dial": {
+            "slot": "trim",
+            "localRef": "palette:#e9e4d7",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "hand": {
+            "slot": "trim",
+            "localRef": "palette:#313838",
+            "roughness": 0.83,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "wood_plain",
+    "metal_corrugated"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 2500,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole six-control native hotel frame and independent512m129square/16641height/two-original-tile field at9.3903m southwest-garden datum frozen before all numeric floors/roof/main sections. Four physical floors from primary decree and original photo, floorYs1/6.1/11.2/16.3, eave21.4/hiproof21.5+2/parapet22/crown24.12m, foundation-1.4m; all heights and detail metrics explicitly estimated, not native6levels tag. Original field/frame/floors/roof/main sections remain fixed.",
+    "anchor": [
+      -58.36807545,
+      -34.5926331
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.36835916992971,
+        -34.5927588635645
+      ],
+      "modelHeight": 0,
+      "basis": "Native southwest garden point outside complete hotel footprint, chosen before independent field/floors/roof/main sections; no flattening or foundation survey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/34609151"
+    ],
+    "source": "https://www.openstreetmap.org/way/34609151",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c4001a1f5c0157809ba321202c31b563fc0f62cf9aae1ae2025ba0ede80cb373",
+    "notes": "Whole surviving1911 Hotel de Inmigrantes main building in approximate circa1915 form: complete native six-control four-storey hotel/dining/dormitory structure, both long facades, end walls, concealed four-sided metal roof, parapet, central clock crown, original large ground openings and upper dormitory windows. Exclude former1880Rotonda hotel and detached immigration administration/customs/hospital/embarkation buildings, gardens, later museum exhibits, statues/people/signage and the whole historical property parcel. No facade-only model."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole surviving1911 Hotel de Inmigrantes main building in approximate circa1915 form: complete native six-control four-storey hotel/dining/dormitory structure, both long facades, end walls, concealed four-sided metal roof, parapet, central clock crown, original large ground openings and upper dormitory windows. Exclude former1880Rotonda hotel and detached immigration administration/customs/hospital/embarkation buildings, gardens, later museum exhibits, statues/people/signage and the whole historical property parcel. No facade-only model.",
+    "Only exact native expired Carpenter original used as imagery; historical facade visible, rear/roof/dimensions/finish and exact date are bounded estimates.",
+    "Primary1990heritage decree describes four floors, reinforced concrete beam/slab/column rhythm, hipped metal roof and raised central crown. Native building:levels=6 conflicts with primary and actual photo four floors and is not adopted.",
+    "Exact mainhotel building at native[-58.368...,-34.592...] differs from old story/Wikidata marker; article/reference content unchanged, actual native outline used for approximate historical placement.",
+    "Choose independent original terrain before all numeric floors/roof/main sections and preserve thereafter. No hidden-photo/measured-grade gate; no full property parcel/neighbor proxy.",
+    "Circa1915 represents the entire completed1911mainhotel physical building, not exact photograph date or current2026museum. Primary decree describes fourfloors and four-sidedmetal roof. All native6outercontrols retained; detached administrative/hospital/customs/embarkation/garden pavilions and property grounds excluded.",
+    "Floor/eave/roof/crown/stair heights, hidden roof shape/ridge, rear/end fenestration,27long/5endbay census, frames/pilasters/cornices and grade are bounded reconstruction estimates. Front central clock crown and tall/arched sash window type derive from exact original; no requirement for an independent photo of every rear bay.",
+    "Only monochrome original, so warm offwhiteplaster/lightpainted timber frames/grey metal roof/dark opaque glazing and limestone plinth are declared finish approximations, not calibrated colour or phototextures. Clock face uses simple geometric dial/hands, no signage/art/statue/people/garden model.",
+    "Coarse original urban coastal field range-1.5828..22m at9.3903m datum may locally obscure lowerhotel; historical grade/shoreline/registration not surveyed or ground-contact certified. Never flatten/mask/move the field or refit floors/roof after renders.",
+    "Four authoredLODs retain all four floors/full native footprint/complete hipped roof/parapet/clockcrown, with reduced windows/trim/tessellation at distance. No separate finalization/review of prior accepted models."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Sole imagery exact native LOC91739070/cph.3c04096 Carpenter original TIFF4096x3268/13,387,660bytes/SHA1791af51ecf291cab8af64a35470c94d28ca56f98, explicit native PD-Carpenter/PD-old-auto-expired death1924 plus LOC item/current collection unrestricted statement. Qualla18families screened first; predecessor/uncertain reproduction/GoogleArts/attribution photos unused. Primary1990heritage decree architectural TEXT supports four floors, rhythmic concrete frame and hipped metal roof. Exact six-control physical hotel OSMway34609151/Q9005010 underODbL; displaced story marker not placement. Historical phase/date/grade/roof/heights/hidden details/bay census/finish estimates documented. No facade photographs/textures/art/people/garden/neighbor/property proxy; original field and main parameters fixed first.",
+  "qaLodCameras": [
+    {
+      "name": "whole-immigrant-hotel-skyline",
+      "position": [
+        -190.66312248209874,
+        70,
+        -42.101944436999744
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-immigrant-hotel-district",
+      "position": [
+        -190.66312248209874,
+        70,
+        -42.101944436999744
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-immigrant-hotel-street",
+      "position": [
+        -190.66312248209874,
+        70,
+        -42.101944436999744
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-immigrant-hotel-closeup",
+      "position": [
+        -190.66312248209874,
+        70,
+        -42.101944436999744
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-four-storey-hotel-clock-crown-and-roof",
+      "position": [
+        -190.66312248209874,
+        70,
+        -42.101944436999744
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "central-clock-crown-arched-upper-windows-and-original-entry",
+      "position": [
+        -59.14149572584151,
+        16,
+        24.965646062344746
+      ],
+      "lookAt": [
+        -10.658269826184323,
+        15,
+        5.51373596686029
+      ]
+    },
+    {
+      "name": "whole-rear-end-walls-and-four-sided-roof",
+      "position": [
+        150.38694221096063,
+        60,
+        40.41989129670171
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10555,
+    "vertices": 31665,
+    "materials": 7,
+    "bytes": 1430224,
+    "sha256": "sha256:7678399bbe818617c62e67883bf1b8dd833aa44bf4648c26bf7f18c3391a2067"
+  }
+}

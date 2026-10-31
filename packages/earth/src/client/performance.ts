@@ -1,3 +1,4 @@
+import type { CloudQuality } from '@bendyline/molen-client';
 import type { TerrainPyramidBudget, TerrainQualityPreset } from '@bendyline/molen-terrain/client';
 import type { EarthAmbientBudget } from './ambient';
 
@@ -20,6 +21,11 @@ export interface EarthPerformanceTier {
    * levels, where the extra shadow pass costs more than it shows.
    */
   shadows: 'off' | 'medium' | 'high';
+  /**
+   * Cloud ray-marching work (`renderer.setCloudQuality`): low at the two lowest levels, medium
+   * through Balanced, then high and ultra, which also cast cloud shadows on the ground.
+   */
+  clouds: CloudQuality;
 }
 const MIB = 1024 * 1024;
 const SPECS = [
@@ -166,10 +172,14 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       posesPerFrame: ambient[8],
     },
     shadows: index >= 3 ? 'high' : index === 2 ? 'medium' : 'off',
+    clouds: index >= 5 ? 'ultra' : index === 4 ? 'high' : index >= 2 ? 'medium' : 'low',
   };
 }
 
-/** Keep recently visible ground and the approaching route warm across render-quality changes. */
+/** Keep recently visible ground and the approaching route warm across render-quality changes.
+ * Earth uses bounded worker pools and frame admission downstream; its request window covers
+ * fetch, decode, generation and upload. Manual quality needs the same preparation capacity as
+ * automatic quality, or slow stages occupy the window while other workers sit idle. */
 export function earthTerrainCacheBudget(
   budget: TerrainPyramidBudget,
   memoryBytes: number,
@@ -178,6 +188,8 @@ export function earthTerrainCacheBudget(
     throw new RangeError('Terrain memory budget must be finite and positive');
   return {
     ...budget,
+    maxConcurrentLoads: Math.max(12, budget.maxConcurrentLoads),
+    maxConcurrentLayerLoads: Math.max(24, budget.maxConcurrentLayerLoads),
     maxResidentBytes: Math.max(budget.maxResidentBytes ?? 0, memoryBytes),
     maxResidentTiles: Math.max(
       budget.maxResidentTiles,

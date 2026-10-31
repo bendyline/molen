@@ -30,3 +30,4 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 - Arch ring thickness, coursing and lantern member dimensions are original photo reconstruction, not a scan.
 - The declared NGF-IGN69 origin and bank joins use independent IGN terrain and road evidence. Submerged foundation depth remains reconstructed; water elevation is not bathymetry.
 - The separate public clock and island streetlight stand beyond this model footprint and are not duplicated within it.
+- Original detailed master is preserved. Browser tiers aggregate individual coursing/fan paving,transparent fasteners,lantern profiles and navigation signs; shared granite grain approximates small cobbles. Ground placement retains its existing NGF-IGN69 host-datum requirement. No new bespoke terrain research or device timing claim.

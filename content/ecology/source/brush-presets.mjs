@@ -137,6 +137,24 @@ export function brushPlants(plant) {
       '#789f55',
       { crownBase: 0.2, stemRadius: 0.06 },
     ),
+    // Pacific coastal understory: glossy dark salal thickets, sword fern and shade-grown conifer
+    // regeneration, darker than the generic temperate brush.
+    plant('salal', 'Evergreen salal thicket', 'thicket', 'round', 1.4, 3.2, '#34502f', {
+      stemRadius: 0.03,
+    }),
+    plant('sword_fern', 'Evergreen sword fern colony', 'fern', 'feather', 1, 2.8, '#3d6236', {
+      patch: true,
+    }),
+    plant(
+      'conifer_sapling',
+      'Small shade-grown coastal conifer',
+      'conifer',
+      'columnar',
+      3,
+      1.8,
+      '#284a3b',
+      { crownBase: 0.08, stemRadius: 0.045 },
+    ),
     plant(
       'liana_canopy',
       'Humid canopy with supported trunk climbers',
@@ -185,6 +203,19 @@ export function brushComposition(name, surface) {
       floor: [['needle_litter', 3], 'moss_mat', 'fallen_log'],
       herbs: ['alpine_grass'],
       density: 400,
+    };
+  if (name === 'pacific_coastal' || name === 'pacific_hypermaritime')
+    return {
+      // Salal under salmonberry and blackberry tangles. Vine maple's range ends in southern
+      // British Columbia; on the north coast, hemlock seedlings take its place.
+      shrubs: [
+        ['salal', 4],
+        'bramble',
+        name === 'pacific_coastal' ? 'vine_maple' : 'conifer_sapling',
+      ],
+      floor: [['needle_litter', 3], ['moss_mat', 2], 'fallen_log'],
+      herbs: [['sword_fern', 4], 'broadleaf_herbs'],
+      density: 1000,
     };
   if (dry)
     return {

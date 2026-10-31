@@ -7,6 +7,7 @@ import type {
 import * as THREE from 'three';
 import { type AircraftCockpit, createAircraftCockpit } from './aircraft-controls';
 import { createAircraftDamageVisual } from './aircraft-damage';
+import { createAircraftPropellers } from './aircraft-propellers';
 
 export * from './aircraft-cockpit-pointer';
 export * from './aircraft-collision';
@@ -65,6 +66,11 @@ export function createAircraftVisual(
       ? undefined
       : createModelSignalVisual(model, spec.visual.animation);
   const moving = new Map<string, THREE.Object3D[]>();
+  const articulatedGear = new Set(
+    (spec.visual.animation?.bindings ?? [])
+      .filter((binding) => binding.property === 'rotation' || binding.property === 'position')
+      .map((binding) => binding.node),
+  );
   model.traverse((o) => {
     o.userData.vehicleGeometry = true;
     if (o instanceof THREE.Mesh) {
@@ -88,12 +94,15 @@ export function createAircraftVisual(
     });
   const cabinRange = Math.max(60, 3 * Math.max(spec.length, spec.span));
   const damage = createAircraftDamageVisual(model, spec);
+  let propellers = createAircraftPropellers(model, spec);
   let cabinShown = true;
   return {
     setLivery(data) {
+      propellers.dispose();
       appearance?.dispose();
       damage.reset();
       appearance = data === undefined ? undefined : applyLivery(model, data);
+      propellers = createAircraftPropellers(model, spec);
     },
     object: model,
     cockpit,
@@ -111,6 +120,9 @@ export function createAircraftVisual(
         );
       }
       for (const name of spec.visual.gearNodes) {
+        // Authored hinges carry the gear into its well. Keep exposed stowed wheels visible
+        // (e.g. 737 mains); the legacy hide/show fallback is only for unrigged models.
+        if (articulatedGear.has(name)) continue;
         for (const node of moving.get(name) ?? []) node.visible = gear > 0;
       }
       for (const binding of spec.visual.flaps) {
@@ -195,6 +207,7 @@ export function createAircraftVisual(
         engine: Number(input.engine),
         brake: Number(input.brake),
         grounded: Number(state.grounded),
+        ...state.actuators,
         ...engineSignals,
         ...signals,
       };
@@ -220,6 +233,7 @@ export function createAircraftVisual(
       });
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
+      propellers.update(state);
       damage.update(state);
     },
     updateView(camera) {
@@ -234,6 +248,7 @@ export function createAircraftVisual(
     },
     dispose() {
       damage.reset();
+      propellers.dispose();
       appearance?.dispose();
       const geometries = new Set<THREE.BufferGeometry>(),
         materials = new Set<THREE.Material>();

@@ -11,6 +11,7 @@
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import {
   bridgeDeckHeightFn,
+  gradeHighwayBridges,
   PATH_SURFACE_LIFT,
   ROAD_SURFACE_LIFT,
   type TerrainLinePath,
@@ -129,6 +130,15 @@ export class TransportNetwork implements GraphStore {
   readonly grid: LaneGrid = new LaneGrid();
   private readonly tunnels: 'hidden' | 'skip';
   private readonly ground: (x: number, z: number) => number;
+  private readonly gradedTiles = new WeakMap<
+    readonly TerrainTransportationFeature[],
+    {
+      origin: readonly [number, number];
+      size: number;
+      ground: (x: number, z: number) => number;
+      features: readonly TerrainTransportationFeature[];
+    }
+  >();
   private classes: ReadonlySet<TransportClass>;
   private readonly nodes = new Map<string, TransportNode>();
   private readonly edges = new Map<string, TransportEdge>();
@@ -280,7 +290,27 @@ export class TransportNetwork implements GraphStore {
   /** Build and add one map tile (replacing a previous registration under the same key). */
   registerTile(input: AmbientTileInput): void {
     if (this.tiles.has(input.key)) this.unregisterTile(input.key);
-    const { drafts, runways } = featureDrafts(input, { tunnels: this.tunnels });
+    const ground = input.heightAt ?? this.ground;
+    let graded = this.gradedTiles.get(input.features);
+    if (
+      !graded ||
+      graded.size !== input.tileSize ||
+      graded.ground !== ground ||
+      graded.origin[0] !== input.origin[0] ||
+      graded.origin[1] !== input.origin[1]
+    ) {
+      graded = {
+        origin: [...input.origin],
+        size: input.tileSize,
+        ground,
+        features: gradeHighwayBridges(input.features, input.tileSize, (x, z) =>
+          ground(input.origin[0] + x, input.origin[1] + z),
+        ),
+      };
+      this.gradedTiles.set(input.features, graded);
+    }
+    const features = graded.features;
+    const { drafts, runways } = featureDrafts({ ...input, features }, { tunnels: this.tunnels });
     for (const draft of drafts) draft.drivingSide = input.drivingSide ?? this.traffic;
     const pois = tilePois(input.pois, input.origin, input.tileSize, input.bounds);
     const rect: [number, number, number, number] = input.bounds

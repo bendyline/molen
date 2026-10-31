@@ -133,6 +133,26 @@ export function installTerrainLandcoverWorker(
   });
 }
 
+/**
+ * Remove and return the queued job the view needs soonest (lowest `priority`, the first queued
+ * among equals): a worker's next job is chosen when it starts, not when it was requested.
+ */
+export function takeMostUrgent<T>(
+  queue: T[],
+  priorityOf: (job: T) => (() => number) | undefined,
+): T | undefined {
+  let best = 0;
+  let bestPriority = Number.POSITIVE_INFINITY;
+  for (let i = 0; i < queue.length; i++) {
+    const priority = priorityOf(queue[i] as T)?.() ?? 0;
+    if (priority < bestPriority) {
+      best = i;
+      bestPriority = priority;
+    }
+  }
+  return queue.splice(best, 1)[0];
+}
+
 /** One active job per worker; aborted queued jobs never perform expensive draping. */
 export function createTerrainLandcoverWorkerBridge(
   worker: TerrainLandcoverWorker,
@@ -143,6 +163,7 @@ export function createTerrainLandcoverWorkerBridge(
     resolve: (value: THREE.Object3D | undefined) => void;
     reject: (error: Error) => void;
     options: TerrainSemanticMeshOptions;
+    priority: (() => number) | undefined;
     cleanup: () => void;
   }
   const queue: Job[] = [];
@@ -154,7 +175,7 @@ export function createTerrainLandcoverWorkerBridge(
   const pump = (): void => {
     if (active || disposed) return;
     while (queue.length) {
-      const job = queue.shift() as Job;
+      const job = takeMostUrgent(queue, (queued) => queued.priority) as Job;
       if (job.signal.aborted) {
         job.cleanup();
         job.resolve(undefined);
@@ -210,7 +231,7 @@ export function createTerrainLandcoverWorkerBridge(
   return {
     generate(tile, context, options) {
       if (disposed || context.signal.aborted) return Promise.resolve(undefined);
-      const { heightfield, signal, admission: _admission, ...rest } = context;
+      const { heightfield, signal, admission: _admission, priority, ...rest } = context;
       const packet = terrainSemanticTilePacket(tile);
       const request: Request = {
         id: nextId++,
@@ -257,6 +278,7 @@ export function createTerrainLandcoverWorkerBridge(
           request,
           signal,
           options,
+          priority,
           resolve,
           reject,
           cleanup: () => signal.removeEventListener('abort', abort),

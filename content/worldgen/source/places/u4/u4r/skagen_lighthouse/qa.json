@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.skagen_lighthouse",
-  "inputHash": "sha256:e23097365ab1ab7865513a4a83c32ad2210ea4c8c292bd4c6ccf1f327af9bcf6",
-  "captureReportHash": "sha256:784945288533afe8305fb73362f2c909e6be5517ffcc69389858ab5b1e74d17a",
+  "inputHash": "sha256:45e9e650a02e596f04d2d3ce381a8505abf30a4d1203d82f1012848c2bae293c",
+  "captureReportHash": "sha256:b2e83aaf2158c3c062e1cae00a3896b3e35c68ad86fdd1cc6acde815e0011b0a",
   "visualReview": {
     "status": "passed",
     "scope": "Detailed exterior and portable materials.",
@@ -18,12 +18,13 @@
       "shots/near-entrance-corridor.png",
       "shots/far-ensemble.png"
     ],
-    "notes": "All ten portable and ten shared frames inspected, plus full-size lantern. Tapered tower, iron hoops, arched windows, granite base, original crown/monogram/date, diamond-framed lantern and optic, metal roof seams and four mapped attached/courtyard building volumes remain connected and coherent."
+    "notes": "All46 final portable/shared/medium-fi images inspected. The20 detailed master/shared images remain byte-identical to the previously inspected frames after the browser-only roof-material edit. The complete46m tapered clinker tower, granite foot,16staggered narrow windows, iron hoops, crown/FRVII/1858 badge, molded gallery, diamond lantern/large supported optic and bell cap remain. Main two-storey keeper house, glazed entrance connector, both gabled wings and rear courtyard wall survive every tier. Both side links now have real1.4m arch openings and connected jambs; a dedicated courtyard view covers them. Current restored white walls, green frames and metal roofs follow the retained restored facade photo; older yellow/slate views control proportions only.",
+    "captureReportHash": "sha256:b2e83aaf2158c3c062e1cae00a3896b3e35c68ad86fdd1cc6acde815e0011b0a"
   },
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:b210223874fc652f76908c91b0104549822eca72bc86c59c82dd81b7b1b6797c",
+    "captureReportHash": "sha256:75cf6ffc2c130ce5ecabaf0210e74302e178e2be55fbc6a1056aebfccbd27754",
     "fixtureHash": "sha256:30a01c038a2fc391e1d7ec2c992fc210adc9fcf8831e2d419cf8aa0531f1e6cf",
     "inputHash": "sha256:e23097365ab1ab7865513a4a83c32ad2210ea4c8c292bd4c6ccf1f327af9bcf6",
     "materialGraphs": {
@@ -64,17 +65,313 @@
       "shots/shared/far-ensemble.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All shared-material frames inspected. Brick courses use physical repeats; mineral, painted metal and clear glass preserve their authored tint and geometry. Material sharing and unload assertions passed."
+    "notes": "The detailed master retains its existing six shared256px graph bindings. Browser levels reuse brick, plaster_lime, stone_granite, wood_plain, metal_painted and metal_standing_seam, plus local dark/clear glazing; molded stone tint merges into the granite batch. All three near variants have all six graph refs and eight draws, asserted in the focused reconstruction test. Roof pans use explicit slope-correct metric UVs with0.50m shared seams. Removing subpixel rib tubes resolves roof shimmer and saves6360closeup triangles; the detailed master retains its original0.45m seam geometry. Shared capture graph hashes, fixture, placement overlay and unload/disposal assertions pass; final medium-fi views exercise the browser roof graph."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:9ed22e33bd034a0100554462a27a8ac4767fd5577074a86130e90467a52f8e34",
-    "notes": "The exact mapped tower and three keeper-building footprints resolve the northeast connector axis and courtyard quadrant. North-up overlay confirms the ensemble extends northeast from the tower without recentering on its total mesh bounds."
+    "notes": "Retained exact-QID tower way288783225 at [10.630184735,57.735496379], main house way484406023 and wings211634779/211634781. Heading2.0471309816rad retains native+Z toward the mapped connector/keeper house northeast; +X follows the long facade northwest and the badge is on exposed -Z southwest. Published46m height and mapped7.49m tower base,20.94x10.94m keeper house and8.22x11.14m wings constrain the joined plan. North-up overlay inspected; no rescaling or circular-bearing guess. The two arched side links are photo-proportioned and their symmetry is reconstructed, not surveyed. Host terrain-contactY0 is retained; native dune/site grading, paths, detached structures and actual terrain clearances remain unverified."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Latest medium-fi standard applied. All188900unrelated original detailed source faces retain exact indexed positions, normals, colors, metric UVs and materials; only24triangles of the old two solid link blocks are replaced by244passage triangles. The reproducible corrected master contains189144triangles; previous source/imported masters are retained locally. Four complete browser levels meet848/3958/15322/54948triangles and1/8/8/8draws. Shared256px materials replace costly microgeometry without changing the detailed master exterior. Small arch sizes, badge/optic dimensions and lens behavior remain reconstruction limits; no engineering/navigation or scanned-monogram claim."
+  },
+  "reviewedOn": "2026-10-29",
+  "sourceHash": "sha256:e296f5b3324f202c9c4a74ee477d58239adc6b2d52e073762cd39318b1aa88ea",
+  "runtimeHash": "sha256:bebd4d6b10ebbc9266ee05a9e1d768d3332da5233b26d3a6a901e7e95d1c1cc8",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ca06a47b2ae1bfdf1ab07024530839de2f11848cd5e316d692c5316edcde7d56",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-crown-monogram.png",
+      "medium-fi/near-keeper-house.png",
+      "medium-fi/near-lantern.png",
+      "medium-fi/near-entrance-corridor.png",
+      "medium-fi/far-ensemble.png",
+      "medium-fi/skyline-whole-tower-keeper-house-and-courtyard.png",
+      "medium-fi/district-joined-house-connector-and-two-wings.png",
+      "medium-fi/street-three-diamond-tiers-and-supported-optic.png",
+      "medium-fi/closeup-both-arched-courtyard-passages.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All26 final medium-fi frames actually inspected: street/block/skyline at noon and late lighting, Economy and High, untextured silhouette, close badge/keeper-house/lantern/connector/whole-ensemble views, four matched transitions, level-specific whole ensemble/house/diamond-glazing views and both courtyard passages. No building mass or courtyard opening disappears. Skyline has the full ensemble with coarse taper/bell/diamond silhouette, opaque glazing and flush window cards. District retains house openings with aggregated heads and flush faceted-tower windows, one full-height diamond tier, coarse guards and the large optic. Street restores true tower recesses, three diamond tiers and selected monogram/hoop detail; closeup adds finer joinery/curves. Shared roof seams stay stable with distance; the original micro-ribs/base grooves remain in the master. Synthetic houses and flat terrain establish context only, not native dune grading."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "Owner restoration photographs control exposed clinker, granite, white restored keeper-building walls, green frames, standing-seam roofs, diamond glazing and crown/date detail. Component dimensions below the published46m height are reconstructed from photographs and mapped footprints. Exterior scope is complete in the shared style; detached landscape and seasonal furniture remain map context."
+    "notes": "Owner restoration photographs control exposed clinker, granite, white restored keeper-building walls, green frames, standing-seam roofs, diamond glazing and crown/date detail. Component dimensions below the published46m height are reconstructed from photographs and mapped footprints. Exterior scope is complete in the shared style; detached landscape and seasonal furniture remain map context.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u4/u4r/skagen_lighthouse/models/source.glb",
+        "hash": "sha256:e296f5b3324f202c9c4a74ee477d58239adc6b2d52e073762cd39318b1aa88ea",
+        "bytes": 15600252,
+        "triangles": 189144,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -21.37649917602539,
+          0,
+          -4.150000095367432
+        ],
+        "max": [
+          21.24650001525879,
+          46,
+          34.311092376708984
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u4/u4r/skagen_lighthouse/model.glb",
+        "hash": "sha256:bebd4d6b10ebbc9266ee05a9e1d768d3332da5233b26d3a6a901e7e95d1c1cc8",
+        "bytes": 15599612,
+        "triangles": 189144,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -21.37649917602539,
+          0,
+          -4.150000095367432
+        ],
+        "max": [
+          21.24650001525879,
+          46,
+          34.311092376708984
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u4/u4r/skagen_lighthouse/model.skyline.glb",
+        "hash": "sha256:45204bfcd054ca6fedb017d333f191d75a0ff23af6b0ecbdc161850e9cc846dd",
+        "bytes": 66248,
+        "triangles": 848,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -21.3700008392334,
+          0,
+          -3.8341000080108643
+        ],
+        "max": [
+          21.239999771118164,
+          46,
+          34.099998474121094
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u4/u4r/skagen_lighthouse/model.district.glb",
+        "hash": "sha256:ca9c0775dbde199bb7123d2726fda8546579d10538ac46f4fa042ca5192a747a",
+        "bytes": 309940,
+        "triangles": 3958,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -21.3700008392334,
+          0,
+          -4.150000095367432
+        ],
+        "max": [
+          21.239999771118164,
+          46,
+          34.099998474121094
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u4/u4r/skagen_lighthouse/model.street.glb",
+        "hash": "sha256:f661dedb127a416a506a81716c832f119e5af6f07a420b99b1002ce44a99caf2",
+        "bytes": 1147064,
+        "triangles": 15322,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -21.3700008392334,
+          0,
+          -4.150000095367432
+        ],
+        "max": [
+          21.239999771118164,
+          46,
+          34.311092376708984
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u4/u4r/skagen_lighthouse/model.closeup.glb",
+        "hash": "sha256:f044ff9b9636b23a0522d319689598ae69b34b0fc34b7a79701745c11c2875e0",
+        "bytes": 4138412,
+        "triangles": 54948,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -21.3700008392334,
+          0,
+          -4.150000095367432
+        ],
+        "max": [
+          21.239999771118164,
+          46,
+          34.309608459472656
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-29",
+    "notes": "Six current Khronos glTF Validator results have zero errors, warnings or embedded images. Two focused tests pass in4.91sec: all levels retain46m bounds, all four joined roof volumes, open courtyard and both real side passages with shoulders/spandrels/jamb connections, all16tower-window locations and gallery support at actual guard positions. Near levels retain the supported pedestal, large visible optic and appropriate one/three diamond crossings. Copied-fixture source reconstruction reproduces every registered derivative byte and checks actual budgets, six shared graphs, roof-slot binding and separate12byte GPU attribute uploads. Selected source generation/import checks and strict budget audit pass. Scene validation and30tick headless simulation pass with zero events; state hash sha256:20ca69e130e63088ec56c126a9c1378474498fb9497703269a203d5ee77641d3."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:7c86183cf7704ed0f9c14ff45cac02a3158cc2422933d78d245ce84fc11e4386",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:45204bfcd054ca6fedb017d333f191d75a0ff23af6b0ecbdc161850e9cc846dd",
+        "bytes": 66248,
+        "gzipBytes": 11548,
+        "triangles": 848,
+        "cpuBytes": 64848,
+        "gpuBytes": 64848,
+        "errorMeters": 0.7,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:ca9c0775dbde199bb7123d2726fda8546579d10538ac46f4fa042ca5192a747a",
+        "bytes": 309940,
+        "gzipBytes": 46105,
+        "triangles": 3958,
+        "cpuBytes": 300300,
+        "gpuBytes": 300300,
+        "errorMeters": 0.4,
+        "drawCalls": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:f661dedb127a416a506a81716c832f119e5af6f07a420b99b1002ce44a99caf2",
+        "bytes": 1147064,
+        "gzipBytes": 198140,
+        "triangles": 15322,
+        "cpuBytes": 1137408,
+        "gpuBytes": 1137408,
+        "errorMeters": 0.16,
+        "drawCalls": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:f044ff9b9636b23a0522d319689598ae69b34b0fc34b7a79701745c11c2875e0",
+        "bytes": 4138412,
+        "gzipBytes": 731453,
+        "triangles": 54948,
+        "cpuBytes": 4128720,
+        "gpuBytes": 4128720,
+        "errorMeters": 0.08,
+        "drawCalls": 8
+      }
+    ],
+    "initialBytes": 376188,
+    "notes": "Skyline/district/street/closeup use66248/309940/1147064/4138412bytes, initial skyline+district376188bytes, and1/8/8/8draws. Every level is complete, below the1k/4k/16k/64k triangle ceilings, with separate position/normal/color streams and no embedded images. Current source master sha256:e296f5b3324f202c9c4a74ee477d58239adc6b2d52e073762cd39318b1aa88ea; imported master sha256:bebd4d6b10ebbc9266ee05a9e1d768d3332da5233b26d3a6a901e7e95d1c1cc8. Shared graphs are reused across structures. Physical laptop/phone timing and native site grading remain unmeasured."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:45e9e650a02e596f04d2d3ce381a8505abf30a4d1203d82f1012848c2bae293c",
+    "sourceHash": "sha256:e296f5b3324f202c9c4a74ee477d58239adc6b2d52e073762cd39318b1aa88ea",
+    "runtimeHash": "sha256:bebd4d6b10ebbc9266ee05a9e1d768d3332da5233b26d3a6a901e7e95d1c1cc8",
+    "framesInspected": 46,
+    "note": "One continuous targeted source/material/geometry/picture/map review. The restored facade photo exposed the old solid courtyard-link approximation; that defect was corrected in this pass and exact per-triangle comparison isolates the change. Current browser renders then exposed seam shimmer, resolved using the existing shared standing-seam graph and slope-correct UVs. All20 detailed portable/shared PNG hashes remain identical after that browser-only change, and all26 final medium-fi frames were inspected. A transient Windows file lock interrupted the first spec write; the saved baseline and exact emitted hash were checked before safely retrying generation. No artist edit was overwritten. No bespoke research, terrain download, full source rebuild, engine CI, dependency audit, Git mutation or upload in this targeted pass."
+  },
+  "limitations": [
+    "The full joined exterior and retained approximate mapped plan are reviewed. Native dune grading and real ground clearances, interior navigation, surveyed link symmetry/dimensions, optical performance and physical-device timings remain unverified. Browser roof pan spacing is the shared0.50m approximation; the master retains0.45m modeled ribs. District tower windows/house heads, diamond tier count, small lettering/hoop/guard detail and closeup micro-seams aggregate explicitly with distance."
+  ],
+  "geometryCorrectionsReview": {
+    "date": "2026-10-28",
+    "oldSourceHash": "sha256:827e39ed72e4985f0f7b3fcba92decaca2b8dc47b6cdd8e5faa5cae0f8e32609",
+    "currentSourceHash": "sha256:e296f5b3324f202c9c4a74ee477d58239adc6b2d52e073762cd39318b1aa88ea",
+    "oldTriangles": 188924,
+    "currentTriangles": 189144,
+    "unchangedTriangles": 188900,
+    "removedOldLinkTriangles": 24,
+    "addedPassageTriangles": 244,
+    "allUnrelatedGeometryExact": true,
+    "comparison": "Actual indexed positions/normals/colors/metric UVs/materials: exactly24triangles of the two old narrow solid link blocks replaced by244passage triangles. All188900other original faces remain exact. Previous detailed source/imported masters retained locally.",
+    "status": "passed",
+    "reviewedOn": "2026-10-29",
+    "currentRuntimeHash": "sha256:bebd4d6b10ebbc9266ee05a9e1d768d3332da5233b26d3a6a901e7e95d1c1cc8",
+    "notes": "Only the two old narrow link blocks replaced by complete arched passages joined into the house/wing walls. Actual ray probes and current close courtyard render pass; all unrelated original faces remain exact."
+  },
+  "runtimeSurfaceGraphReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-29",
+    "graphs": {
+      "brick": {
+        "path": "content/worldgen/materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f",
+        "hashEncoding": "molen evidence text (LF-normalized)"
+      },
+      "plaster_lime": {
+        "path": "content/worldgen/materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b",
+        "hashEncoding": "molen evidence text (LF-normalized)"
+      },
+      "stone_granite": {
+        "path": "content/worldgen/materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3",
+        "hashEncoding": "molen evidence text (LF-normalized)"
+      },
+      "wood_plain": {
+        "path": "content/worldgen/materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2",
+        "hashEncoding": "molen evidence text (LF-normalized)"
+      },
+      "metal_painted": {
+        "path": "content/worldgen/materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56",
+        "hashEncoding": "molen evidence text (LF-normalized)"
+      },
+      "metal_standing_seam": {
+        "path": "content/worldgen/materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d",
+        "hashEncoding": "molen evidence text (LF-normalized)"
+      }
+    },
+    "notes": "All six current graph bindings asserted in all near GLBs; slope-aligned shared roof pans actually inspected in the final26medium-fi frames. Graphs remain shared256px library entries; no new per-model texture."
   }
 }

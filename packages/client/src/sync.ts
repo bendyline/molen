@@ -2,6 +2,8 @@ import type {
   ComponentMap,
   Delta,
   EntityId,
+  GlassData,
+  GlassStateData,
   JsonObject,
   Keyframe,
   LiveryData,
@@ -53,6 +55,7 @@ export interface SceneBackend {
   setTransform(id: EntityId, transform: InterpTransform): void;
   setModelSignals?(id: EntityId, spec: ModelSignalSpec | undefined, signals: ModelSignals): void;
   setLivery?(id: EntityId, data: LiveryData | undefined): void;
+  setGlass?(id: EntityId, data: GlassData | undefined, state: GlassStateData | undefined): void;
   /** Optional light surface (per-entity `light` components). */
   createLight?(id: EntityId, light: LightData): void;
   updateLight?(id: EntityId, light: LightData): void;
@@ -92,6 +95,7 @@ function readTransform(components: ComponentMap): InterpTransform | undefined {
 
 function readRenderable(components: ComponentMap): Renderable | undefined {
   const r = components.renderable as Renderable | undefined;
+  if (r === undefined && components.glass !== undefined) return { kind: 'glass', ref: 'glass' };
   if (r?.kind === undefined || r.ref === undefined) return undefined;
   return r;
 }
@@ -211,6 +215,11 @@ export class SceneMirror {
       this.bound.set(id, key);
     }
     backend.setLivery?.(id, comps?.livery as LiveryData | undefined);
+    backend.setGlass?.(
+      id,
+      comps?.glass as GlassData | undefined,
+      comps?.glassState as GlassStateData | undefined,
+    );
     if (backend.setModelSignals) {
       const spec = comps?.['model.signals'] as ModelSignalSpec | undefined;
       backend.setModelSignals(

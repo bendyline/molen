@@ -33,10 +33,12 @@ export function buildTyphoon(s) {
   const root = new T.Group();
   root.name = s.slug;
   const paint = mat('Typhoon-gray', '#959fa4', { side: T.DoubleSide }),
-    radome = mat('Typhoon-radome', '#6b777c'),
+    // Service radomes are painted close to the airframe grey, not a dark cone.
+    radome = mat('Typhoon-radome', '#87939a'),
     seal = mat('Typhoon-seal', '#343b3e'),
     metal = mat('Typhoon-alloy', '#a4a9a9', { metalness: 0.7 }),
-    exhaust = mat('Typhoon-exhaust', '#6b6860', { metalness: 0.7, side: T.DoubleSide }),
+    // Bare-metal EJ200 petals read light against the dark throats (nozzle photograph).
+    exhaust = mat('Typhoon-exhaust', '#8d8a83', { metalness: 0.6, side: T.DoubleSide }),
     duct = mat('Typhoon-duct', '#161e22', { side: T.DoubleSide }),
     glass = mat('Typhoon-glass', '#96bbc2', {
       transparent: true,
@@ -114,7 +116,7 @@ export function buildTyphoon(s) {
     outline(
       d,
       cr[i].points.map((p) => [...p, cr[i].z]),
-      i === 2 ? 0.024 : 0.016,
+      i === 2 ? 0.018 : 0.016,
       paint,
       false,
     );
@@ -171,6 +173,26 @@ export function buildTyphoon(s) {
       [-0.31, t - 0.04],
     ],
   }));
+  // The tail closes round over the two close-set nozzles (four-view plan: about +/-1.0 m),
+  // instead of ending as a broad flat hexagon.
+  const nozzleX = 0.52,
+    tailHalf = [
+      [0, 2.36],
+      [0.31, 2.36],
+      [0.6, 2.32],
+      [0.86, 2.2],
+      [1.02, 1.92],
+      [0.96, 1.56],
+      [0.6, 1.3],
+      [0, 1.33],
+    ];
+  aft.at(-1).points = [
+    ...tailHalf,
+    ...tailHalf
+      .slice(1, -1)
+      .reverse()
+      .map(([x, y]) => [-x, y]),
+  ];
   loft(d, aft, paint, { caps: false });
   const sideSkin = (side, y, z) => {
     const i = Math.max(
@@ -189,49 +211,117 @@ export function buildTyphoon(s) {
     return [side * (x + 0.005), y, z];
   };
   // Fill the forebody/engine-shoulder join; the section change must not leave open slivers.
+  // A fan from the forebody ring to the shoulder ring rounds the step instead of one flat facet.
+  const shoulderFore = [fore[7].points[6], fore[7].points[5], fore[7].points[4], [0.43, 2.82]],
+    shoulderAft = [aft[0].points[4], aft[0].points[3], aft[0].points[2], aft[0].points[1]];
   for (const side of [-1, 1])
-    quad(
-      d,
-      [side * 0.64, 2.21, 3.5],
-      [side * 0.99, 2.04, 2.8],
-      [side * 0.48, 2.76, 2.8],
-      [side * 0.43, 2.82, 3.5],
-      paint,
-      [side, 1, 0],
-    );
+    for (let i = 0; i < 3; i++)
+      quad(
+        d,
+        [side * shoulderFore[i][0], shoulderFore[i][1], 3.5],
+        [side * shoulderAft[i][0], shoulderAft[i][1], 2.8],
+        [side * shoulderAft[i + 1][0], shoulderAft[i + 1][1], 2.8],
+        [side * shoulderFore[i + 1][0], shoulderFore[i + 1][1], 3.5],
+        paint,
+        [side, 1, 0],
+      );
+  // Painted tail face with apertures for the nozzle ducts.
   sheet(
     d,
     aft.at(-1).points.map((p) => [...p, -5.25]),
-    duct,
+    paint,
     [0, 0, -1],
+    [-1, 1].map((side) =>
+      Array.from({ length: 20 }, (_, i) => [
+        side * nozzleX + Math.sin((i * Math.PI) / 10) * 0.455,
+        1.82 + Math.cos((i * Math.PI) / 10) * 0.455,
+        -5.25,
+      ]),
+    ),
   );
+  // Chin intake "smile": a raked rim, a broad central splitter, and a painted lower-lip ramp
+  // in front of each dark throat. The throats are lowest beside the splitter and rise toward
+  // the rounded outer corners (head-on photographs and the four-view front elevation).
+  const rimZ = (y) => 3.95 + (y - 0.85) * 0.5;
   for (const side of [-1, 1]) {
-    const mouth = [
-        [side * 0.045, 1.55, 4.18],
-        [side * 0.87, 1.67, 4.32],
-        [side * 0.9, 0.96, 4.02],
-        [side * 0.045, 0.84, 4.05],
+    // Head-on photograph: box about +/-0.91 m wide and 0.76 m deep, a thin central splitter,
+    // dark openings filling most of it.
+    const rimXY = [
+        [0.03, 1.6],
+        [0.45, 1.6],
+        [0.8, 1.57],
+        [0.9, 1.5],
+        [0.93, 1.16],
+        [0.9, 0.93],
+        [0.72, 0.85],
+        [0.4, 0.81],
+        [0.03, 0.79],
       ],
-      rear = mouth.map(([x, y, z]) => [x * 0.91, y + 0.08, z - 0.95]);
-    for (let i = 0; i < 4; i++)
-      quad(d, mouth[i], rear[i], rear[(i + 1) % 4], mouth[(i + 1) % 4], duct, [0, 0, 1]);
+      mouth = rimXY.map(([x, y]) => [side * x, y, rimZ(y)]),
+      throat = [
+        [0.045, 1.55],
+        [0.45, 1.55],
+        [0.81, 1.53],
+        [0.88, 1.46],
+        [0.89, 1.18],
+        [0.85, 0.99],
+        [0.66, 0.92],
+        [0.35, 0.89],
+        [0.045, 0.88],
+      ].map(([x, y]) => [side * x, y, rimZ(y) - 0.06 - ((1.6 - y) / 0.75) * 0.24]),
+      rear = throat.map(([x, y, z]) => [
+        side * 0.46 + (x - side * 0.46) * 0.85,
+        1.28 + (y - 1.28) * 0.85,
+        z - 0.7,
+      ]),
+      // Trunk sections at the wing-root station, on the engine-body ring.
+      back = [
+        [0.045, 1.6],
+        [0.5, 1.78],
+        [0.9, 1.97],
+        [0.99, 2.04],
+        [0.97, 1.55],
+        [0.95, 1.07],
+        [0.75, 0.985],
+        [0.4, 0.92],
+        [0, 0.94],
+      ].map(([x, y]) => [side * x, y, 2.8]);
+    const face = (a, b, c, e, material) => {
+      const normal = new T.Vector3(...b)
+        .sub(new T.Vector3(...a))
+        .cross(new T.Vector3(...e).sub(new T.Vector3(...a)));
+      quad(d, a, b, c, e, material, normal.toArray());
+    };
+    for (let i = 0; i < mouth.length; i++) {
+      const j = (i + 1) % mouth.length;
+      face(mouth[i], mouth[j], throat[j], throat[i], paint);
+      face(throat[i], throat[j], rear[j], rear[i], duct);
+      if (j) face(mouth[i], back[i], back[j], mouth[j], paint);
+    }
     sheet(d, rear, duct, [0, 0, 1]);
-    outline(d, mouth, 0.03, paint);
-    quad(d, mouth[1], [side * 0.99, 2.04, 2.8], [side * 0.95, 1.07, 2.8], mouth[2], paint, [
-      side,
-      0,
-      0,
-    ]);
-    quad(d, mouth[2], [side * 0.95, 1.07, 2.8], [0, 0.94, 2.8], mouth[3], paint, [0, -1, 0]);
-    quad(
-      d,
-      mouth[0],
-      mouth[1],
-      [side * 0.99, 2.04, 2.8],
-      [side * 0.045, 1.6, 2.8],
-      paint,
-      [0, 1, 0],
-    );
+    outline(d, mouth, 0.026, paint);
+    // The splitter's leading edge and the keel between the two trunks.
+    if (side === 1) {
+      quad(
+        d,
+        [-0.03, 1.6, rimZ(1.6)],
+        [0.03, 1.6, rimZ(1.6)],
+        [0.03, 0.79, rimZ(0.79)],
+        [-0.03, 0.79, rimZ(0.79)],
+        paint,
+        [0, 0, 1],
+      );
+      sheet(
+        d,
+        [
+          [-0.03, 0.79, rimZ(0.79)],
+          [0.03, 0.79, rimZ(0.79)],
+          [0, 0.94, 2.8],
+        ],
+        paint,
+        [0, -1, 0],
+      );
+    }
     // Diverter surface and perforated bleed strip remain distinct from the dark aperture.
     quad(
       d,
@@ -242,21 +332,22 @@ export function buildTyphoon(s) {
       paint,
       [0, 1, 0],
     );
-    for (let n = 0; n < 17; n++)
-      d.rod(
-        [side * 0.92, 1.62, 3.25 + n * 0.03],
-        [side * 0.92, 1.72, 3.25 + n * 0.03],
-        0.003,
-        seal,
-      );
+    // Bleed slots ride on the flared trunk side.
+    for (let n = 0; n < 17; n++) {
+      const z = 3.25 + n * 0.03,
+        x = 0.932 + (3.73 - z) * 0.065;
+      d.rod([side * x, 1.62, z], [side * x, 1.72, z], 0.003, seal);
+    }
     // Close-coupled all-moving canard. Positive pitch lowers the trailing edge.
     const cg = group(root, `Typhoon-canard-${side}`, [side * 0.61, 1.95, 5.57]),
       cd = detailKit(cg, cg.name);
     wing(
       cd,
       [
-        [0.54, 1.95, 6.55, 4.97, 0.043],
-        [1.94, 1.95, 5.08, 4.68, 0.014],
+        // A visible root thickness keeps the canard readable edge-on in level 3/4 views.
+        [0.54, 1.95, 6.55, 4.97, 0.062],
+        // About 15 degrees of anhedral (head-on photograph and four-view front elevation).
+        [1.94, 1.6, 5.08, 4.68, 0.018],
       ].map(([x, y, a, b, h]) => [
         side * x - cg.position.x,
         y - cg.position.y,
@@ -368,12 +459,13 @@ export function buildTyphoon(s) {
       );
     }
     // EJ200 round petal exhausts, separate nozzles and dark, recessed throat.
-    const eg = group(root, `Typhoon-exhaust-${side}`, [side * 0.59, 1.82, -5.14]),
+    // Four-view plan: nozzle pair spans about +/-0.85 m at the exit, which lies near z -5.75.
+    const eg = group(root, `Typhoon-exhaust-${side}`, [side * nozzleX, 1.82, -5.14]),
       ed = detailKit(eg, eg.name);
     const rings = [
-      [0, 0.56],
-      [-0.65, 0.5],
-      [-0.78, 0.43],
+      [0, 0.5],
+      [-0.38, 0.47],
+      [-0.62, 0.36],
     ].map(([z, r]) => ({
       z,
       points: Array.from({ length: 28 }, (_, i) => [
@@ -381,7 +473,9 @@ export function buildTyphoon(s) {
         Math.cos((i * Math.PI) / 14) * r,
       ]),
     }));
-    loft(ed, rings, exhaust, { caps: false });
+    // Smooth shroud, then 14 flat double-sided petals that narrow toward the exit, leaving the
+    // dark liner showing in the gaps, with a scalloped trailing edge (nozzle photograph).
+    loft(ed, rings.slice(0, 2), exhaust, { caps: false });
     loft(
       ed,
       rings.map((r) => ({ z: r.z, points: r.points.map(([x, y]) => [x * 0.94, y * 0.94]) })),
@@ -394,17 +488,53 @@ export function buildTyphoon(s) {
       duct,
       [0, 0, -1],
     );
-    for (let n = 0; n < 14; n++) {
-      const a = (n * Math.PI) / 7;
-      ed.rod(
-        [Math.sin(a) * 0.562, Math.cos(a) * 0.562, -0.02],
-        [Math.sin(a) * 0.433, Math.cos(a) * 0.433, -0.78],
-        0.007,
-        metal,
+    const at = (a, r, z) => [Math.sin(a) * r, Math.cos(a) * r, z];
+    for (let k = 0; k < 14; k++) {
+      const a0 = (k * Math.PI) / 7,
+        a1 = ((k + 1) * Math.PI) / 7,
+        am = (a0 + a1) / 2,
+        gap = Math.PI / 70,
+        seamZ = -0.57,
+        root = at(am, 0.47 * Math.cos(Math.PI / 14), -0.38),
+        exit = at(am, 0.36 * Math.cos(Math.PI / 14 - gap), seamZ),
+        u = (-0.62 + 0.38) / (seamZ + 0.38),
+        tip = root.map((v, i) => v + (exit[i] - v) * u);
+      const petal = [
+        at(a0, 0.47, -0.38),
+        at(a1, 0.47, -0.38),
+        at(a1 - gap, 0.36, seamZ),
+        tip,
+        at(a0 + gap, 0.36, seamZ),
+      ];
+      sheet(ed, petal, exhaust, [Math.sin(am), Math.cos(am), 0]);
+      // Sooted inner face, just inside the bare-metal outer face.
+      sheet(
+        ed,
+        petal.map(([x, y, z]) => [x * 0.98, y * 0.98, z]),
+        duct,
+        [-Math.sin(am), -Math.cos(am), 0],
       );
     }
     ed.finish();
   }
+  // Brake-chute housing: a round can between the nozzle tops under the rudder (rear photograph).
+  loft(
+    d,
+    [
+      [-5.2, 0.2],
+      [-5.55, 0.2],
+      [-5.64, 0.16],
+      [-5.7, 0.08],
+      [-5.72, 0.01],
+    ].map(([z, r]) => ({
+      z,
+      points: Array.from({ length: 16 }, (_, i) => [
+        Math.sin((i * Math.PI) / 8) * r,
+        2.2 + Math.cos((i * Math.PI) / 8) * r,
+      ]),
+    })),
+    paint,
+  );
   // Single swept fin with real swept hinge. Height is the independently published RAF dimension.
   const fin = [
     [0, 2.57, -2.67],
@@ -512,21 +642,31 @@ export function buildTyphoon(s) {
   );
   d.add(new T.CircleGeometry(0.078, 12), glass, [0.34, 2.57, 6.985]);
   for (const [name, x, z, r, w, top] of [
-    ['left', 1.17, -0.57, 0.335, 0.22, 1.23],
-    ['right', -1.17, -0.57, 0.335, 0.22, 1.23],
+    // Wide track: the main legs hang from the wing roots outboard of the intake
+    // (four-view front elevation, museum and taxi photographs: about 3.6 m track).
+    ['left', 1.8, -0.57, 0.335, 0.22, 1.42],
+    ['right', -1.8, -0.57, 0.335, 0.22, 1.42],
     ['nose', 0, 3.58, 0.22, 0.15, 1.24],
   ]) {
     const g = group(root, `Typhoon-gear-${name}`, [x, top, z]),
       gd = detailKit(g, g.name);
     gd.rod([0, 0, 0], [0, r - top, 0], 0.043, metal);
     gd.rod([0, -0.1, -0.48], [0, r - top + 0.1, 0], 0.026, metal);
+    if (name !== 'nose') {
+      // Torque-link scissor ahead of the oleo, clear of the tyre.
+      const knee = [0, (r - top) * 0.55, 0.11];
+      gd.rod([0, (r - top) * 0.42, 0], knee, 0.013, metal);
+      gd.rod(knee, [0, (r - top) * 0.66, 0], 0.013, metal);
+    }
     gd.add(new T.CylinderGeometry(r, r, w, 24).rotateZ(Math.PI / 2), seal, [0, r - top, 0]);
     gd.add(new T.CylinderGeometry(r * 0.55, r * 0.55, w + 0.015, 20).rotateZ(Math.PI / 2), metal, [
       0,
       r - top,
       0,
     ]);
-    gd.box([0.025, 0.47, 0.55], [name === 'right' ? -0.17 : 0.17, -0.15, -0.12], paint);
+    // The nose door hangs below the intake trunk instead of standing up inside the duct.
+    if (name === 'nose') gd.box([0.025, 0.3, 0.55], [0.17, -0.5, -0.12], paint);
+    else gd.box([0.025, 0.47, 0.55], [name === 'right' ? -0.17 : 0.17, -0.15, -0.12], paint);
     gd.finish();
     bindings.push(
       {
@@ -553,8 +693,8 @@ export function buildTyphoon(s) {
     root,
     frame: typhoonFrame(),
     enginePoints: [
-      { id: 'engine-1', position: [0.59, 1.82, -5.14] },
-      { id: 'engine-2', position: [-0.59, 1.82, -5.14] },
+      { id: 'engine-1', position: [0.52, 1.82, -5.14] },
+      { id: 'engine-2', position: [-0.52, 1.82, -5.14] },
     ],
     visual: {
       rotors: [],
@@ -830,15 +970,28 @@ function typhoonCockpit(root, m) {
   for (let i = 0; i < 2; i++)
     d.box([0.017, 0.108, 0.01], [-0.365 + i * 0.028, 2.57, z - 0.014], black);
   // Tub, individual console plates, ribbed pedals, Mk16A-style seat and harness.
-  d.box([0.89, 0.05, 1.9], [0, 1.695, 4.68], panel);
-  d.box([0.87, 0.6, 0.05], [0, 2.02, 5.82], panel);
+  // The tub stays inside the forebody and below the sill bridges (no panel edges outside).
+  d.box([0.6, 0.05, 1.9], [0, 1.695, 4.68], panel);
+  sheet(
+    d,
+    [
+      [-0.32, 1.73],
+      [0.32, 1.73],
+      [0.42, 1.9],
+      [0.435, 2.32],
+      [-0.435, 2.32],
+      [-0.42, 1.9],
+    ].map(([x, y]) => [x, y, 5.82]),
+    panel,
+    [0, 0, -1],
+  );
   for (const side of [-1, 1]) {
     quad(
       d,
-      [side * 0.46, 1.72, 3.8],
-      [side * 0.45, 1.72, 5.82],
-      [side * 0.44, 2.5, 5.82],
-      [side * 0.5, 2.74, 3.8],
+      [side * 0.4, 1.72, 3.8],
+      [side * 0.36, 1.72, 5.82],
+      [side * 0.43, 2.36, 5.82],
+      [side * 0.5, 2.5, 3.8],
       panel,
       [-side, 0, 0],
     );

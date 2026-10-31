@@ -1,0 +1,266 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "15m granite tower, five broad seaward watchroom windows, scupper parapet, white ventilated drum, clear lantern with three radial curved optic panels, black dome and weather mast; attached hipped-roof service house and carved-column entrance porch.",
+    "master": "Preserve every original detailed triangle; add only plausible supports under the upper guard, weather mast, optic cheeks and panels, porch column/lintel/roof bed, and porch ground contact.",
+    "browser": "Four complete source-local levels retain the15m tower, watchroom belt, scuppers, lantern/dome/weather cups and attached house/porch. Near levels retain all seven actual tower recesses, thirteen house openings, three visible optic panels, terrace and supported upper gallery. Six shared256px graphs provide the material library. Concrete tint merges into granite for eight near draws. Skyline uses opaque lantern glass, flat house openings and simplified guards; fine lens prisms, carving and ladder geometry aggregate by viewing scale. Scupper bodies keep volume in every tier. Sparse one/six/twelve near optic edge rings retain visible Fresnel identity without the master prism density."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kullen-support-model.mjs",
+    "export": "buildSupportedKullen"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u6/u60/kullen_lighthouse/models/kullen-lods.mjs",
+    "export": "kullenSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "kullenDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.75
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "kullenStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.75
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "kullenCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.75
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-complete-tower-service-house-and-porch",
+      "position": [
+        -22,
+        17,
+        -29
+      ],
+      "lookAt": [
+        4,
+        6,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-five-watchroom-windows-and-porch",
+      "position": [
+        8,
+        9,
+        -14
+      ],
+      "lookAt": [
+        1,
+        5.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-three-panel-optic-and-supported-upper-guard",
+      "position": [
+        5,
+        12,
+        -7
+      ],
+      "lookAt": [
+        0,
+        11.2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-grounded-porch-carved-column-and-roof-bed",
+      "position": [
+        9,
+        3.4,
+        -6
+      ],
+      "lookAt": [
+        4.9,
+        1.8,
+        0.3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Published15m structure height, including weather instrumentation, is distinct from78.5m focal elevation. Retain the exact-QID tower and mapped attached-house/porch footprints. Small fittings, lens construction and carving are original photo-proportioned reconstructions, not surveyed or optically functional hardware.",
+    "Upper gallery support ring, mast extension, optic mounts and porch joints are plausible structural repairs to disconnected source pieces. They preserve all original detailed geometry; no literal mounting-hardware claim.",
+    "LocalY0 is site grade. Native hill terrain contact remains unverified. Detached downhill fog-signal/lookout structure, keeper homes, paths, rocks and landscape are separate map context. Physical laptop/phone timings remain unmeasured.",
+    "Skyline retains five seaward window recesses but omits the two small lower windows and optic interior; house openings become flat cards. District reduces roundness, rail profiles, small ladder/carving, window trims and prism bands. Street restores deeper trim and joinery; closeup restores finer curves. All levels preserve full joined massing.",
+    "The shared ceramic graph replaces individual roof-tile reconstruction. Browser optic edges use one/six/twelve sparse rings per panel, compared with18 in the master. Subpixel dome seams stay only in the master; weather-ladder rungs simplify by tier."
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/kullen-lods.mjs",
+    "models/kullen-supports.mjs"
+  ]
+}

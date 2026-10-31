@@ -154,10 +154,17 @@ export function createAudioLayer(opts: AudioLayerOptions): AudioLayer {
   };
 
   let removeVisibility: (() => void) | undefined;
+  let suspended = false;
+  const applySuspended = (): void =>
+    backend.setSuspended?.(
+      suspended ||
+        (opts.suspendWhenHidden !== false && typeof document !== 'undefined' && document.hidden),
+    );
   if (opts.suspendWhenHidden !== false && typeof document !== 'undefined') {
-    const onVisibility = (): void => backend.setSuspended?.(document.hidden);
+    const onVisibility = applySuspended;
     document.addEventListener('visibilitychange', onVisibility);
     removeVisibility = () => document.removeEventListener('visibilitychange', onVisibility);
+    onVisibility();
   }
 
   return {
@@ -224,7 +231,10 @@ export function createAudioLayer(opts: AudioLayerOptions): AudioLayer {
     setEnvironment: (environment) => director.setEnvironment(environment),
     setBanks: (banks) => director.setBank(mergeSoundbanks(banks)),
     unlock: () => backend.unlock(),
-    setSuspended: (s) => backend.setSuspended?.(s),
+    setSuspended: (s) => {
+      suspended = s;
+      applySuspended();
+    },
     stats: () => ({
       voices: director.voices().length,
       warnings: director.warnings().length,

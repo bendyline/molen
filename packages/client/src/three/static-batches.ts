@@ -1,5 +1,6 @@
 import type { EntityId } from '@bendyline/molen-schema';
 import * as THREE from 'three';
+import { hasShaderHook } from '../weather/cloud-shadows';
 
 export interface StaticBatchOptions {
   cellSize?: number;
@@ -72,7 +73,7 @@ export class StaticMeshBatches {
             (m as THREE.MeshPhysicalMaterial).transmission > 0 ||
             (m as THREE.ShaderMaterial).isShaderMaterial ||
             (m as THREE.Material & { isNodeMaterial?: boolean }).isNodeMaterial ||
-            m.onBeforeCompile !== THREE.Material.prototype.onBeforeCompile,
+            hasShaderHook(m),
         )
       )
         return;

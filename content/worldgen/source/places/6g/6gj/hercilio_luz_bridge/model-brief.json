@@ -1,0 +1,442 @@
+{
+  "id": "hercilio_luz_bridge",
+  "title": "Hercílio Luz Bridge",
+  "wikidataId": "Q1500721",
+  "referenceCoordinate": {
+    "longitude": -48.566111111,
+    "latitude": -27.593888888
+  },
+  "module": "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/models/hercilio-model.mjs",
+  "generator": "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/models/generate-hercilio.mjs",
+  "builder": "buildHercilioLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.64,
+      "metallic": 0.3
+    },
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "grate": {
+      "slot": "roof",
+      "graph": "metal_perforated_square",
+      "roughness": 0.62,
+      "metallic": 0.55
+    },
+    "wood": {
+      "slot": "roof",
+      "graph": "wood_plain",
+      "roughness": 0.9
+    },
+    "mark": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.86
+    }
+  },
+  "sourceDefinitions": [
+    "models/bridge-lines.json",
+    "models/footing-controls.json"
+  ],
+  "exportLabel": "Molen original Hercilio Luz Bridge",
+  "expectedDraftMasterHash": "sha256:606e1f6d458b2f5e597de1e4712e593b2ab8dc8fae59917d4c10093451f205a3",
+  "visualBrief": "Complete curved-plan Hercílio Luz crossing: twin75m steel portals, paired eyebar-chain silhouette integrated into the two-shouldered variable-depth stiffening truss, open approach viaducts, external walking/cycling platforms, closed guard bars, grating roadway and lamps. Detailed source is separate from four medium-fi browser tiers.",
+  "nativeAxes": "+X east-northeast toward Santa Catarina Island; -X west-southwest toward the mainland; -Z north-northwest/Baía Norte cycleway; +Z south-southeast/Baía Sul pedestrian path.",
+  "sourceFacts": {
+    "identity": "Exact-QID bridge footprint way376367899 and current named PMTiles road35185059777736; both exterior paths retained independently.",
+    "catalogLengthMeters": 821,
+    "mappedRoadLengthMeters": 817.1521718577533,
+    "referenceMainSpanMeters": 339,
+    "referenceTowerTopMeters": 75,
+    "reconstructionControls": {
+      "route": [
+        [
+          -406.966366939215,
+          -7.272661324486776
+        ],
+        [
+          -360.23980011518853,
+          4.5388981648383435
+        ],
+        [
+          -346.15187726330504,
+          6.988111661995987
+        ],
+        [
+          -326.39242060903956,
+          8.206524364266286
+        ],
+        [
+          408.2846634155584,
+          -8.172074807347087
+        ]
+      ],
+      "stations": [
+        0,
+        48.19631712828354,
+        62.495555465876215,
+        82.2925415189311,
+        817.1521718577533
+      ],
+      "length": 817.1521718577533,
+      "towers": [
+        225,
+        564
+      ],
+      "mainSpan": 339,
+      "towerTop": 75,
+      "deckMain": 32,
+      "deckEnds": [
+        19.55,
+        20.1
+      ],
+      "halfRoad": 3,
+      "trussZ": 3.25,
+      "halfWidth": 5.75,
+      "anchorStations": [
+        115,
+        674
+      ],
+      "groundDatum": "approximate sea-level meters; current acceptance recorded in qa.json"
+    }
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ponte_Herc%C3%ADlio_Luz_-_Florian%C3%B3polis_-_20220911165825.jpg",
+      "author": "Agnaldo Servo",
+      "observedDate": "2022-09-11",
+      "license": "CC-BY-SA-4.0",
+      "use": "Inspected overall side: paired suspension chains merging into a two-shouldered variable-depth stiffening truss, tall narrow portal towers, short suspenders at the outer main-span bays and approach viaducts. No photo pixels used."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ponte_Herc%C3%ADlio_Luz_-_Passarela_de_pedestres.jpg",
+      "author": "Andrew Richard Smith (ARS)",
+      "observedDate": "2020-06-17",
+      "license": "CC-BY-2.0",
+      "use": "Inspected exterior north-side platform, shared-grey steel, built-up laced verticals, close rail guards, overhead truss and light longitudinal deck guide. The current PMTiles identifies this side as cycleway; surface/purpose can change."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ponte_Herc%C3%ADlio_Luz_-_Florian%C3%B3polis_-_20250524113739.jpg",
+      "author": "Thaismay",
+      "observedDate": "2025-05-24",
+      "license": "CC-BY-SA-4.0",
+      "use": "Inspected current open-grating roadway, double horizontal crash rails, paired amber center studs, side platform railings, lamps and high portal cross braces. No pixel textures or downloaded mesh."
+    }
+  ],
+  "limitations": [
+    "Original continuous medium-fi reconstruction from three ordinary photographs and standard PMTiles/Mapzen. Main span339m and tower top75m are retained reference controls; published821m overall length is distinct from the current817.1521718577533m mapped road path. No engineering survey or current traffic/accessibility certification.",
+    "Current named road35185059777736 and north cycleway35185131690790/south path35185131690791 establish the curved mainland approach and signed plan. Width11.5m, tower stations225/564m along the road, deck grades, chain sag, anchorage positions, pier count and member sections are photo/map reconstruction controls.",
+    "Both75m portal towers, both paired suspension-chain sides, the integrated two-shouldered main truss, complete curved approach viaducts, two side platforms, railings, road guards and current grating appearance are present. Independent quays, buildings, temporary traffic furniture and neighboring modern crossings are separate map context.",
+    "Source preserves237k-class detailed geometry, dense guards, built-up tower/lattice details and chain joints. Browser tiers aggregate main/approach truss bays, support density, curve segments and railings. Near tiers retain genuine closed bars; no fence cards, private texture atlas or embedded images. The shared8.5cm perforated-square graph approximates finer real road grating.",
+    "Footing controls use the ordinary mapped water mask and coarse Mapzen terrain. Sea-level0, reconstructed deck32m and selected bank grades remain approximate. Native visual placement, approach boundaries and independent-input preservation require final current review before activation. Physical-device timings are unmeasured.",
+    "Short1m bridge-mouth paving wings and a north platform transition to its independently mapped mainland cycleway endpoint are reconstructed joins. The existing8cm platform rise is retained; street-edge probes can meet a curb rather than the road center. Native boundary fitting remains a visualization, not an accessibility/engineering grade claim."
+  ],
+  "cameras": [
+    {
+      "name": "whole-curved-crossing",
+      "position": [
+        180,
+        120,
+        -520
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "paired-chains-and-integrated-truss",
+      "position": [
+        -10,
+        46,
+        -240
+      ],
+      "lookAt": [
+        -10,
+        38,
+        0
+      ],
+      "fov": 72
+    },
+    {
+      "name": "tower-cross-bracing",
+      "position": [
+        -235,
+        48,
+        52
+      ],
+      "lookAt": [
+        -183.7204120553888,
+        45,
+        5.025851260501691
+      ],
+      "fov": 64
+    },
+    {
+      "name": "north-walkway-and-chain-joints",
+      "position": [
+        -108.83933908067495,
+        34.18425090517977,
+        -1.1446357669201257
+      ],
+      "lookAt": [
+        131.1010425737185,
+        34.132350669676164,
+        -6.49377135540633
+      ],
+      "fov": 65
+    },
+    {
+      "name": "grating-road-and-open-tower-portal",
+      "position": [
+        -373.0336945632755,
+        23.08666666666667,
+        1.3048526176267945
+      ],
+      "lookAt": [
+        -118.73655869065723,
+        33.93995829359862,
+        3.5771270386200102
+      ],
+      "fov": 70
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/models/hercilio-model.mjs",
+    "export": "buildHercilioSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64,
+        "metallic": 0.3
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "grate": {
+        "slot": "roof",
+        "graph": "metal_perforated_square",
+        "roughness": 0.62,
+        "metallic": 0.55
+      },
+      "wood": {
+        "slot": "roof",
+        "graph": "wood_plain",
+        "roughness": 0.9
+      },
+      "mark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86
+      }
+    },
+    "errorMeters": 16,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHercilioDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "grate": {
+            "slot": "roof",
+            "graph": "metal_perforated_square",
+            "roughness": 0.62,
+            "metallic": 0.55
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          }
+        },
+        "errorMeters": 10
+      },
+      "street": {
+        "export": "buildHercilioStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "grate": {
+            "slot": "roof",
+            "graph": "metal_perforated_square",
+            "roughness": 0.62,
+            "metallic": 0.55
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "closeup": {
+        "export": "buildHercilioCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "grate": {
+            "slot": "roof",
+            "graph": "metal_perforated_square",
+            "roughness": 0.62,
+            "metallic": 0.55
+          },
+          "wood": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.9
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86
+          }
+        },
+        "errorMeters": 0.65
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.apartments",
+    "scale": 3
+  },
+  "appearance": {
+    "identity": "Silver-grey restored steel, twin narrow open portals, doubled chain lines meeting the characteristic shouldered truss and a gently curving mainland approach.",
+    "scope": "Current static architectural exterior;2025 road appearance and2020 platform references, with current mapped path roles. Small fittings/sections remain approximate."
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-whole-curved-crossing",
+      "position": [
+        180,
+        120,
+        -520
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 60,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-paired-chains-and-integrated-truss",
+      "position": [
+        -10,
+        46,
+        -240
+      ],
+      "lookAt": [
+        -10,
+        38,
+        0
+      ],
+      "fov": 72,
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-tower-cross-bracing",
+      "position": [
+        -235,
+        48,
+        52
+      ],
+      "lookAt": [
+        -183.7204120553888,
+        45,
+        5.025851260501691
+      ],
+      "fov": 64,
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-north-walkway-and-chain-joints",
+      "position": [
+        -108.83933908067495,
+        34.18425090517977,
+        -1.1446357669201257
+      ],
+      "lookAt": [
+        131.1010425737185,
+        34.132350669676164,
+        -6.49377135540633
+      ],
+      "fov": 65,
+      "reviewLod": "closeup"
+    }
+  ]
+}

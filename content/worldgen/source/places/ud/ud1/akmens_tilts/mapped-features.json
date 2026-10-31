@@ -1,0 +1,45 @@
+{
+  "format": "molen/structure-mapped-features@1",
+  "id": "akmens_tilts",
+  "exactIdentity": "way/170091344",
+  "mainRoad": 35184377084000,
+  "tram": 35184894933680,
+  "walks": [
+    35184542180190,
+    35184486342890,
+    35184542180180,
+    35185310668336
+  ],
+  "independentRailwayBridge": [
+    35184411177848,
+    35184527739515
+  ],
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "distribution": "local",
+      "sourceUrl": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "attribution": "© OpenStreetMap contributors",
+      "extractHash": "sha256:a0f37f7630e925afdb4d34ea0e590aac32eb69440aed235fd5907889198201ac"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": -1000,
+        "max": 9000
+      },
+      "observedHeightRange": [
+        -136.37890625,
+        24.03125
+      ],
+      "attribution": "Mapzen Terrain Tiles; United States 3DEP, GMTED2010, SRTM, ETOPO1 and other national elevation data courtesy of the U.S. Geological Survey and the sources listed in joerd",
+      "extractHash": "sha256:917572a5d69c2683df1c4e6ce1972a1c52cc4c532e68a7fc6c7bcdb6f27cb775"
+    }
+  },
+  "scope": "Identity/attribution metadata. Separate downstream Railway Bridge and ground-level bank corridors remain independent."
+}

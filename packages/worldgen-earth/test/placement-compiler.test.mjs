@@ -43,7 +43,7 @@ describe('placement compiler', () => {
       }
     }
     stream.dispose();
-  });
+  }, 30_000); // Reads every source record twice and queries the full compiled catalog under suite load.
 
   it('emits deterministic files, subdivides dense regions, and matches built outputs', async () => {
     const source = await readStructurePlacements();

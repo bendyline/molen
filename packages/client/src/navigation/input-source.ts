@@ -68,6 +68,22 @@ export const NAVIGATION_ACTIONS: {
 
 /** The navigation modes with a default input profile. */
 export type NavigationProfileName = 'orbit' | 'fly' | 'walk' | 'drive' | 'pilot';
+const ACTUATOR_KEYS: Readonly<Record<string, string>> = {
+  KeyB: 'speedBrake',
+  KeyH: 'tailHook',
+  KeyO: 'canopy',
+  KeyK: 'wipers',
+  KeyL: 'headlights',
+  Digit1: 'doorFrontLeft',
+  Digit2: 'doorFrontRight',
+  Digit3: 'doorRearLeft',
+  Digit4: 'doorRearRight',
+  Digit5: 'hood',
+  Digit6: 'trunk',
+};
+const ACTUATOR_BINDINGS: Readonly<Record<string, string>> = Object.fromEntries(
+  Object.entries(ACTUATOR_KEYS).map(([key, name]) => [key, `nav-actuator-${name}`]),
+);
 
 const A = NAVIGATION_ACTIONS;
 const MOVE_KEYS: Record<string, string> = {
@@ -98,7 +114,7 @@ const STICKS: NonNullable<InputProfile['axes']> = [
  * Default key/gamepad bindings per navigation mode. Orbit and fly use Q/E for down/up; walk and
  * drive use E to interact (board or leave a vehicle), Space to jump or brake, Shift to sprint
  * or pull the handbrake, and V to switch the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
- * bank, Q/Z work the rudder or pedals, Shift/Ctrl (or +/−, Page Up/Down) set throttle or
+ * bank, Z/C work the rudder or pedals, =/− (or numpad +/−, Page Up/Down) set throttle or
  * collective, I toggles the engine, G the gear, F the flaps, R recovers after an impact, Space
  * brakes, V switches the view and E leaves. T toggles travel boost in walk, drive and pilot.
  * Hosts may replace any profile through
@@ -133,6 +149,7 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
   };
   const pilot: InputProfile = {
     bindings: {
+      ...ACTUATOR_BINDINGS,
       KeyW: A.forward,
       ArrowUp: A.forward,
       KeyS: A.back,
@@ -141,15 +158,11 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
       ArrowLeft: A.left,
       KeyD: A.right,
       ArrowRight: A.right,
-      KeyQ: A.yawLeft,
-      KeyZ: A.yawRight,
-      ShiftLeft: A.throttleUp,
-      ShiftRight: A.throttleUp,
+      KeyZ: A.yawLeft,
+      KeyC: A.yawRight,
       Equal: A.throttleUp,
       NumpadAdd: A.throttleUp,
       PageUp: A.throttleUp,
-      ControlLeft: A.throttleDown,
-      ControlRight: A.throttleDown,
       Minus: A.throttleDown,
       NumpadSubtract: A.throttleDown,
       PageDown: A.throttleDown,
@@ -175,7 +188,13 @@ export function navigationInputProfiles(): Record<NavigationProfileName, InputPr
       { button: 1, action: A.engine },
     ],
   };
-  return { orbit: aerial, fly: aerial, walk: ground, drive: ground, pilot };
+  return {
+    orbit: aerial,
+    fly: aerial,
+    walk: ground,
+    drive: { ...ground, bindings: { ...ground.bindings, ...ACTUATOR_BINDINGS, KeyR: A.recover } },
+    pilot,
+  };
 }
 
 /** Flight controls beyond pitch (`-move.forward`) and roll (`move.right`), in the pilot profile. */
@@ -197,6 +216,10 @@ export interface PilotInput {
 
 /** Everything a navigation controller reads in one frame. */
 export interface NavigationInput {
+  /** Repair presses in the drive profile (R); the host requires a stopped vehicle. */
+  recover?: number;
+  /** Edge-triggered model mechanism toggles; unsupported mechanisms are ignored by hosts. */
+  actuators?: Record<string, number>;
   /** Movement intent, each -1..1 (forward, right, up). */
   move: { forward: number; right: number; up: number };
   /** Look delta in CSS-pixel equivalents (pointer drag plus scaled gamepad stick). */
@@ -270,6 +293,7 @@ export class NavigationInputSource {
   private interactPresses = 0;
   private viewPresses = 0;
   private boostPresses = 0;
+  private actuatorPresses: Record<string, number> = {};
   private profile: NavigationProfileName;
   private readonly pilotPresses = { engine: 0, gear: 0, flaps: 0, vector: 0, recover: 0 };
   private readonly lookSpeed: number;
@@ -288,6 +312,11 @@ export class NavigationInputSource {
     this.lookSpeed = options.gamepadLookSpeed ?? 900;
     this.profile = options.profile ?? 'orbit';
     this.unsubscribe = [
+      ...Object.values(ACTUATOR_KEYS).map((name) =>
+        this.map.onPress(`nav-actuator-${name}`, () => {
+          this.actuatorPresses[name] = (this.actuatorPresses[name] ?? 0) + 1;
+        }),
+      ),
       ...(['engine', 'gear', 'flaps', 'vector', 'recover'] as const).map((name) =>
         this.map.onPress(A[name], () => {
           this.pilotPresses[name]++;
@@ -307,6 +336,7 @@ export class NavigationInputSource {
         this.interactPresses = 0;
         this.viewPresses = 0;
         this.boostPresses = 0;
+        this.actuatorPresses = {};
         this.pilotPresses.engine = 0;
         this.pilotPresses.gear = 0;
         this.pilotPresses.flaps = 0;
@@ -360,6 +390,12 @@ export class NavigationInputSource {
       view: this.viewPresses,
       ...(this.boostPresses > 0 ? { boost: this.boostPresses } : {}),
       taps: gestures.taps,
+      ...(Object.keys(this.actuatorPresses).length
+        ? { actuators: { ...this.actuatorPresses } }
+        : {}),
+      ...(this.profile === 'drive' && this.pilotPresses.recover > 0
+        ? { recover: this.pilotPresses.recover }
+        : {}),
       ...(this.profile === 'pilot'
         ? {
             pilot: {
@@ -379,6 +415,7 @@ export class NavigationInputSource {
     this.pilotPresses.flaps = 0;
     this.pilotPresses.vector = 0;
     this.pilotPresses.recover = 0;
+    this.actuatorPresses = {};
     return input;
   }
 

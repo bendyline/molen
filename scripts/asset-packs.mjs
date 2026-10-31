@@ -561,11 +561,26 @@ export async function fetchAssets({
 } = {}) {
   const current = await assetInputs(root);
   const stamp = await readStamp(root);
+  // installed.json can arrive with cached archives from a different checkout. Verify the
+  // actual bytes before reusing any GLB, including the already-installed shortcut below.
+  const localFiles = new Map();
+  const matchesLocalFile = async (file) => {
+    if (!localFiles.has(file.path)) {
+      const path = await localPath(root, file.path);
+      if ((await maybeStat(path))?.size !== file.size) return false;
+      localFiles.set(file.path, await fileInfo(path));
+    }
+    return same(localFiles.get(file.path), file);
+  };
   if (!force && stamp?.key === current.key && prefix.startsWith(stamp.prefix)) {
     const files = stamp.files.filter((f) => f.path.startsWith(prefix));
     let present = files.length > 0;
-    for (const file of files)
-      if ((await maybeStat(await localPath(root, file.path)))?.size !== file.size) present = false;
+    for (const file of files) {
+      if (!(await matchesLocalFile(file))) {
+        present = false;
+        break;
+      }
+    }
     if (present) {
       log(`Ready: ${files.length} GLBs of ${current.release} (nothing to restore).`);
       return files.length;
@@ -575,18 +590,8 @@ export async function fetchAssets({
   const files = manifest.files.filter((f) => f.path.startsWith(prefix));
   if (!files.length) throw new Error(`No assets match prefix: ${prefix}`);
   const byPath = new Map(manifest.files.map((f) => [f.path, f]));
-  // Files the stamp says this tool placed are trusted by size; anything else is hashed.
-  const placed = new Map((stamp?.files ?? []).map((f) => [f.path, f]));
   const wanted = new Set();
-  for (const file of files) {
-    const stat = await maybeStat(await localPath(root, file.path));
-    if (force || !stat || stat.size !== file.size) wanted.add(file.path);
-    else if (
-      !same(placed.get(file.path), file) &&
-      !same(await fileInfo(join(root, file.path)), file)
-    )
-      wanted.add(file.path);
-  }
+  for (const file of files) if (force || !(await matchesLocalFile(file))) wanted.add(file.path);
   const staging = join(root, OUTPUT, 'staging');
   await mkdir(staging, { recursive: true });
   let restored = 0;

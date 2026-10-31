@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.lizard_lighthouse",
-  "inputHash": "sha256:fc395c169587eaa00fd28fa9d2c9027178ab2a21ad6efe96f44feb44f659aadd",
+  "inputHash": "sha256:3061804b01fafe4782c93c9926d448fe92a458891b1f4a9ba656d844e6936d7d",
   "placementHash": "sha256:6f9f6b810e6d8966fbadff563306d228ed43f11179c2684bf145ca146593d339",
   "entry": {
     "id": "lizard.lighthouse",
@@ -25,5 +25,11 @@
     "source": "https://www.openstreetmap.org/way/814270621",
     "note": "Origin is the mapped active eastern-tower polygon centroid. Native+X runs along the long keeper range east/slightly north; native+Z faces the southern engine room and coast. Exact tower and engine-house parts remove the180degree ambiguity. The western tower is offset[-67.95,0,2.82]m; the source uses ordinary common station-grade contact and does not mistake70m focal elevation for model height. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval.",
+  "reviewRefresh": {
+    "reviewedOn": "2026-10-29",
+    "sourceHash": "sha256:d8c3314032a88038fbccf6d88d9a512da937cec80299fb0c17efe12805828f9f",
+    "runtimeHash": "sha256:fb54cac849dca2b9a7e2d0dbe536f4a33f532df011e2e73b9b874395f3b9b243",
+    "notes": "Retain exact eastern and western tower, keeper-range, engine-house and service-part OSM controls, including ways65369068,814270620,814270621,846164579 and846164580. Anchor[-5.20211360017,49.96020745193], heading0.162rad: native+X east/slightly north along the keeper range; +Z south toward the engine house/coast. The western tower offset[-67.95,0,2.82]m fixes signed orientation and68.01m separation. North-up mapped footprint overlay inspected; no180degree ambiguity or centroid-only tower bearing. Published19m structure height remains distinct from70m focal elevation. Ordinary station-grade Y0 is retained; actual native coastal slope/cliff contact and independent site buildings remain unverified."
+  }
 }

@@ -48,3 +48,8 @@ Commands: generate-additional-landmarks/import-structure-models/generate-landmar
 [Philip Nalangan — 2006-01-03](https://commons.wikimedia.org/wiki/File:Majid_Negara_Kuala_Lumpur_Malaysia.jpg). CC-BY-4.0; viewed only. Supplementary complete 960×719 detail of open geometric concrete star screen and pale broad beams. No full roof or plan control. Original coarse diamond screen rhythm is an approximation; fine screen artwork not copied.
 
 [Pangalau — 2023-03-29](https://commons.wikimedia.org/wiki/File:Masjid_Negara_view_from_Kuala_Lumpur_Tower_2023.jpg). CC-BY-SA-4.0; viewed only. Inspected complete 960×652 elevated complex. Turquoise sixteen-point folded star umbrella roof with pale warm ribs, pale scalloped hall edge, slender minaret to the left and low white roof ranges with repeated shallow square caps. Open courts and columns visible. Detailed positions, heights, roof profiles and current finish remain estimates. Background city, separate roofed buildings and trees not copied.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.

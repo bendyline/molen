@@ -212,6 +212,20 @@
                     "property": "visible",
                     "scale": 1,
                     "missing": "hide"
+                  },
+                  {
+                    "node": "speed-brake--1",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.9
+                  },
+                  {
+                    "node": "speed-brake-1",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.9
                   }
                 ],
                 "derived": {
@@ -252,6 +266,13 @@
                     "component": "aircraftState",
                     "path": [
                       "gearPosition"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -10645,7 +10666,8 @@
               "maxMach": 0.82,
               "maxEquivalentAirspeed": 175,
               "gearLimitSpeed": 130,
-              "flapLimitSpeed": 115
+              "flapLimitSpeed": 115,
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
@@ -10752,6 +10774,183 @@
                 "highAltitudeExponent": 1.2,
                 "ramRise": 0.15
               }
+            ],
+            "actuators": {
+              "speedBrake": {
+                "seconds": 2
+              }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  4.03,
+                  0
+                ],
+                "massFraction": 0.92,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    4.03,
+                    22.79
+                  ],
+                  [
+                    0,
+                    4.03,
+                    -22.79
+                  ],
+                  [
+                    23.805,
+                    4.03,
+                    0
+                  ],
+                  [
+                    -23.805,
+                    4.03,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-C17-engine-fan-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  14.22,
+                  3.73,
+                  11.02
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "C17-engine-fan-1"
+                ],
+                "disc": {
+                  "center": [
+                    14.22,
+                    3.73,
+                    11.02
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.1,
+                  "halfThickness": 0.06,
+                  "rotor": "C17-engine-fan-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-C17-engine-fan-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  7.57,
+                  4.13,
+                  15.03
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "C17-engine-fan-2"
+                ],
+                "disc": {
+                  "center": [
+                    7.57,
+                    4.13,
+                    15.03
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.1,
+                  "halfThickness": 0.06,
+                  "rotor": "C17-engine-fan-2"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              },
+              {
+                "id": "rotor-C17-engine-fan-3",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -7.57,
+                  4.13,
+                  15.03
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "C17-engine-fan-3"
+                ],
+                "disc": {
+                  "center": [
+                    -7.57,
+                    4.13,
+                    15.03
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.1,
+                  "halfThickness": 0.06,
+                  "rotor": "C17-engine-fan-3"
+                },
+                "engines": [
+                  "engine-3"
+                ]
+              },
+              {
+                "id": "rotor-C17-engine-fan-4",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -14.22,
+                  3.73,
+                  11.02
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "C17-engine-fan-4"
+                ],
+                "disc": {
+                  "center": [
+                    -14.22,
+                    3.73,
+                    11.02
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 1.1,
+                  "halfThickness": 0.06,
+                  "rotor": "C17-engine-fan-4"
+                },
+                "engines": [
+                  "engine-4"
+                ]
+              }
             ]
           }
         },
@@ -10787,7 +10986,10 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {
+            "speedBrake": 0
+          }
         },
         "mountable": {
           "seats": [
@@ -10939,6 +11141,13 @@
                 "engines",
                 "engine-4",
                 "rpm"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -21268,6 +21477,20 @@
               "property": "visible",
               "scale": 1,
               "missing": "hide"
+            },
+            {
+              "node": "speed-brake--1",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.9
+            },
+            {
+              "node": "speed-brake-1",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.9
             }
           ]
         }

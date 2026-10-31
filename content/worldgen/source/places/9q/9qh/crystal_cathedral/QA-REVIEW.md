@@ -51,3 +51,8 @@ Commands:targeted generate/import/LOD/register-landmark-previews --ids=crystal_c
 - Skyline preserves folded shell,sharp tips,open spire gaps/staggered crown and small base pavilion.District adds shared pane grid,coarse geometric roof-frame lines,spire connectors and real entrance/pavilion recesses.Street adds finer roof/wall frame lines and simplified inner bell rows.Closeup/master refine frame density,blade seams,connectors and bell profiles.Each level retains open spire geometry.Synthetic cottages are fixtures.
 
 Readiness accepts reviewed exterior/approximate horizontal placement.Exact terrain contact,roof/engineering profiles and source height datum remain unverified.The full1000-candidate goal remains incomplete.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.

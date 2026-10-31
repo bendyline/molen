@@ -1,7 +1,7 @@
 /** F-15C MSIP, clean airframe, 1992 F100-PW-220 configuration.
  * Main-axle datum, +Z forward, +X pilot left. Separate measured SAC and MSIP panels.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -29,6 +29,52 @@ export const f15Frame = () => ({
   panelZ: 7.42,
   floor: 1.98,
 });
+// Polar station sampling shared by the aft engine bays: every aft section is sampled on the same
+// 24 rays (0 at the top, toward +X) from its own centre, so lofts between a rectangular duct, a
+// hull (engine bay + boom shelf) and the round nozzle keep consistent vertex order.
+const polar = Array.from({ length: 24 }, (_, j) => (j * Math.PI) / 12);
+function onPolygon(polygon, cx, cy, a) {
+  const dx = Math.sin(a),
+    dy = Math.cos(a);
+  let best = Infinity;
+  for (let k = 0; k < polygon.length; k++) {
+    const [x0, y0] = polygon[k],
+      [x1, y1] = polygon[(k + 1) % polygon.length];
+    const ex = x1 - x0,
+      ey = y1 - y0,
+      det = ex * dy - ey * dx;
+    if (Math.abs(det) < 1e-12) continue;
+    const t = (ex * (y0 - cy) - ey * (x0 - cx)) / det,
+      u = (dx * (y0 - cy) - dy * (x0 - cx)) / det;
+    if (t > 0 && u >= -1e-9 && u <= 1 + 1e-9) best = Math.min(best, t);
+  }
+  return [cx + dx * best, cy + dy * best];
+}
+function convexHull(points) {
+  const p = [...points].sort((a, b) => a[0] - b[0] || a[1] - b[1]),
+    cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]),
+    lower = [],
+    upper = [];
+  for (const q of p) {
+    while (lower.length >= 2 && cross(lower.at(-2), lower.at(-1), q) <= 0) lower.pop();
+    lower.push(q);
+  }
+  for (const q of [...p].reverse()) {
+    while (upper.length >= 2 && cross(upper.at(-2), upper.at(-1), q) <= 0) upper.pop();
+    upper.push(q);
+  }
+  return [...lower.slice(0, -1), ...upper.slice(0, -1)];
+}
+const superellipse = (cx, cy, a, b, n) =>
+  Array.from({ length: 48 }, (_, j) => {
+    const t = (j * Math.PI) / 24,
+      c = Math.cos(t),
+      s = Math.sin(t);
+    return [
+      cx + a * Math.sign(s) * Math.pow(Math.abs(s), 2 / n),
+      cy + b * Math.sign(c) * Math.pow(Math.abs(c), 2 / n),
+    ];
+  });
 export function buildF15C(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -36,12 +82,12 @@ export function buildF15C(s) {
     upper = mat('F15-upper', '#737f8a', { side: T.DoubleSide }),
     dark = mat('F15-seals', '#24292d'),
     metal = mat('F15-alloy', '#b1b8bb', { metalness: 0.74 }),
-    nozzle = mat('F15-nozzle', '#74736d', { metalness: 0.7, side: T.DoubleSide }),
+    nozzle = mat('F15-nozzle', '#7a7870', { metalness: 0.5, side: T.DoubleSide }),
     lining = mat('F15-exhaust-lining', '#272726', { side: T.DoubleSide }),
     nose = mat('F15-radome', '#8a9297'),
-    glass = mat('F15-glazing', '#9eb7bf', {
+    glass = mat('F15-glazing', '#6d878f', {
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.28,
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.15,
@@ -62,7 +108,7 @@ export function buildF15C(s) {
     [0, 0.89, 1.62, 2.9],
     [-2.5, 0.84, 1.65, 2.85],
     [-4.8, 0.62, 1.8, 2.65],
-    [-6.7, 0.25, 1.97, 2.42],
+    [-6.7, 0.1, 1.98, 2.4],
     [-7.25, 0.05, 2.12, 2.23],
   ];
   const rings = sections.map(([z, w, b, t]) => ({
@@ -81,30 +127,53 @@ export function buildF15C(s) {
       0.003,
       dark,
     );
-  // Single-seat canopy and fixed windscreen; no fuselage roof inside its aperture.
+  // Single-seat canopy and fixed windscreen; no fuselage roof inside its aperture. The bubble
+  // stands proud of the spine (crown about 0.95 m above the sills, 3-view) and its sides are
+  // full (superellipse arch), so it reads wide and bulbous head-on.
   const canopy = [
     [8.45, 0.04, 2.82, 2.85],
-    [8.0, 0.35, 2.86, 3.15],
-    [7.43, 0.5, 2.88, 3.51],
-    [7.12, 0.53, 2.9, 3.6],
-    [6.5, 0.54, 2.91, 3.6576],
-    [5.75, 0.5, 2.92, 3.6],
-    [5.1, 0.35, 2.95, 3.35],
-    [4.55, 0.02, 2.98, 3.0],
+    [8.0, 0.35, 2.86, 3.2],
+    [7.43, 0.5, 2.88, 3.64],
+    [7.12, 0.53, 2.9, 3.77],
+    [6.5, 0.54, 2.91, 3.86],
+    [5.75, 0.5, 2.92, 3.8],
+    [5.1, 0.35, 2.95, 3.52],
+    [4.55, 0.02, 2.98, 3.14],
   ];
   const cr = canopy.map(([z, w, b, t]) => ({
     z,
-    points: Array.from({ length: 17 }, (_, j) => [
-      Math.cos((j * Math.PI) / 16) * w,
-      b + Math.sin((j * Math.PI) / 16) * (t - b),
-    ]),
+    points: Array.from({ length: 17 }, (_, j) => {
+      const c = Math.cos((j * Math.PI) / 16),
+        s = Math.sin((j * Math.PI) / 16);
+      return [Math.sign(c) * Math.pow(Math.abs(c), 0.8) * w, b + Math.pow(s, 0.8) * (t - b)];
+    }),
   }));
+  // The raised canopy tail runs into a short dorsal fairing ahead of the speed brake.
+  loft(
+    d,
+    [
+      [5.0, 0.2, 3.38, 2.85],
+      [4.55, 0.3, 3.22, 2.85],
+      [3.6, 0.42, 3.08, 2.85],
+      [2.5, 0.36, 2.99, 2.85],
+    ].map(([z, w, t, b]) => ({
+      z,
+      points: [
+        ...Array.from({ length: 13 }, (_, k) => {
+          const a = -Math.PI / 2 + (k * Math.PI) / 12;
+          return [Math.sin(a) * w, b + (t - b) * Math.pow(Math.cos(a), 0.8)];
+        }),
+        [0, b - 0.05],
+      ],
+    })),
+    paint,
+  );
   loft(d, cr, glass, { caps: false, skip: (_, j) => j === 16 });
   for (const i of [0, 2, 7])
     outline(
       d,
       cr[i].points.map((q) => [...q, cr[i].z]),
-      i === 2 ? 0.025 : 0.018,
+      i === 2 ? 0.034 : 0.022,
       paint,
       false,
     );
@@ -151,10 +220,10 @@ export function buildF15C(s) {
     const p = cr[2].points[j];
     d.add(new T.SphereGeometry(0.004, 5, 3), metal, [p[0], p[1] + 0.015, 7.43]);
   }
-  const oval = (r, z, cy = 2.18) => ({
+  const oval = (r, z, cy = 2.18, cx = 0) => ({
     z,
     points: Array.from({ length: 24 }, (_, i) => [
-      Math.sin((i * Math.PI) / 12) * r,
+      cx + Math.sin((i * Math.PI) / 12) * r,
       cy + Math.cos((i * Math.PI) / 12) * r,
     ]),
   });
@@ -163,28 +232,89 @@ export function buildF15C(s) {
     const ng = group(root, `F15-engine-${side}`, [side * 1.03, 0, 0]),
       nd = detailKit(ng, ng.name);
     const nr = [
-      [5.95, 0.5, 1.72, 3.0],
-      [4.6, 0.6, 1.45, 2.99],
+      [5.95, 0.5, 1.58, 3.0],
+      [3.35, 0.64, 1.41, 2.96],
       [2.5, 0.67, 1.39, 2.94],
       [0, 0.68, 1.38, 2.89],
       [-2.8, 0.64, 1.48, 2.88],
       [-5.65, 0.58, 1.6, 2.76],
-    ].map(([z, w, b, t]) => ({
+    ].map(([z, w, b, t], i) => ({
       z,
+      // Aft of the inlet the duct tops roll over into rounded shoulders instead of a box edge.
       points: [
         [0, t],
-        [w * 0.82, t],
-        [w, t - 0.14],
+        i < 1 ? [w * 0.82, t] : [w * 0.56, t - 0.02],
+        i < 1 ? [w, t - 0.14] : [w * 0.96, t - 0.2],
         [w, b + 0.13],
         [w * 0.8, b],
         [-w * 0.8, b],
         [-w, b + 0.13],
-        [-w, t - 0.14],
-        [-w * 0.82, t],
+        i < 1 ? [-w, t - 0.14] : [-w * 0.96, t - 0.2],
+        i < 1 ? [-w * 0.82, t] : [-w * 0.56, t - 0.02],
       ],
     }));
-    loft(nd, nr.slice(1), paint, { caps: false });
-    const leading = nr[0].points.map(([x, y]) => [x, y, 5.15 + ((y - 1.72) / 1.28) * 0.8]);
+    loft(nd, nr.slice(1, 4), paint, { caps: false });
+    // Aft of the main gear the ducts turn inboard: the two F100 bays nearly touch (nozzle
+    // centres 0.70 m off the centreline, as photographed from directly behind) and round out
+    // into tubes, while a flat shelf runs outboard to the tail boom that carries fin and
+    // stabilator. Coordinates below are outboard-positive (u) relative to this group.
+    const ex = -side * 0.33,
+      bay = (z, u, cy, a, b, n, shelf) => {
+        const pts = superellipse(side * u, cy, a, b, n);
+        if (shelf)
+          for (const [x, y] of [
+            [u, shelf[1]],
+            [shelf[0], shelf[1] + 0.06],
+            [shelf[0], shelf[2] - 0.06],
+            [u, shelf[2]],
+            [shelf[0] - 0.06, shelf[1]],
+            [shelf[0] - 0.06, shelf[2]],
+          ])
+            pts.push([side * x, y]);
+        const h = convexHull(pts);
+        return { z, points: polar.map((t) => onPolygon(h, side * u, cy, t)) };
+      };
+    const aft = [
+      { z: 0, points: polar.map((t) => onPolygon(nr[3].points, 0, 2.135, t)) },
+      // Rounded engine-bay humps stand above a lower shelf that runs out to the boom.
+      bay(-1.3, -0.08, 2.16, 0.7, 0.76, 2.8),
+      bay(-2.8, -0.2, 2.17, 0.64, 0.68, 2.4, [0.86, 2.02, 2.72]),
+      bay(-4.0, -0.28, 2.17, 0.61, 0.625, 2.3, [0.86, 2.04, 2.7]),
+      bay(-4.9, -0.32, 2.18, 0.59, 0.595, 2.1, [0.78, 2.08, 2.68]),
+      bay(-5.65, -0.33, 2.18, 0.58, 0.58, 2),
+    ];
+    loft(nd, aft, paint, { caps: false });
+    for (const r of [aft[2], aft[4]])
+      outline(
+        nd,
+        r.points.map(([x, y]) => [ex + (x - ex) * 1.004, 2.18 + (y - 2.18) * 1.004, r.z]),
+        0.0035,
+        dark,
+      );
+    // Tail boom under the fin, running past the nozzle to the stabilator trailing edge.
+    const boom = [
+      [-2.6, 0.16, 2.02, 2.84],
+      [-5.2, 0.17, 2.04, 2.82],
+      [-6.6, 0.15, 2.12, 2.78],
+      [-7.35, 0.08, 2.32, 2.6],
+    ].map(([z, w, b, t]) => ({
+      z,
+      // Rounded-box boom section (smooth-shaded superellipse) rather than a slab side.
+      points: Array.from({ length: 16 }, (_, j) => {
+        const a = (j * Math.PI) / 8,
+          s = Math.sin(a),
+          c = Math.cos(a);
+        return [
+          side * 0.7 + w * Math.sign(s) * Math.pow(Math.abs(s), 2 / 3),
+          (b + t) / 2 + ((t - b) / 2) * Math.sign(c) * Math.pow(Math.abs(c), 2 / 3),
+        ];
+      }),
+    }));
+    loft(nd, boom, paint);
+    // The ramp inlet is strongly raked: the side walls sweep back about 30 degrees from the
+    // upper ramp lip under the canopy to the lower cowl lip 2.25 m further aft (3-view, photos);
+    // the mouth spans nearly the full duct depth.
+    const leading = nr[0].points.map(([x, y]) => [x, y, 3.7 + ((y - 1.58) / 1.42) * 2.25]);
     for (let j = 0; j < leading.length; j++) {
       const a = leading[j],
         b = leading[(j + 1) % leading.length];
@@ -201,12 +331,12 @@ export function buildF15C(s) {
     const mouth = [
         [-0.47, 2.99, 5.95],
         [0.47, 2.99, 5.95],
-        [0.5, 2.86, 5.88],
-        [0.5, 1.78, 5.15],
-        [-0.5, 1.78, 5.15],
-        [-0.5, 2.86, 5.88],
+        [0.5, 2.86, 5.72],
+        [0.5, 1.64, 3.8],
+        [-0.5, 1.64, 3.8],
+        [-0.5, 2.86, 5.72],
       ],
-      back = mouth.map(([x, y]) => [x * 0.85, 2.3 + (y - 2.3) * 0.8, 3.55]);
+      back = mouth.map(([x, y]) => [x * 0.85, 2.3 + (y - 2.3) * 0.8, 3.0]);
     for (let j = 0; j < mouth.length; j++) {
       const a = mouth[j],
         b = mouth[(j + 1) % mouth.length];
@@ -216,38 +346,52 @@ export function buildF15C(s) {
     sheet(nd, back, dark, [0, 0, 1]);
     quad(
       nd,
-      [-0.45, 2.94, 5.7],
-      [0.45, 2.94, 5.7],
-      [0.43, 2.7, 4.15],
-      [-0.43, 2.7, 4.15],
+      [-0.45, 2.95, 5.85],
+      [0.45, 2.95, 5.85],
+      [0.43, 2.66, 3.6],
+      [-0.43, 2.66, 3.6],
       upper,
       [0, -1, 0],
     );
-    for (const r of nr.slice(1, -1))
+    for (const r of nr.slice(1, 4))
       outline(
         nd,
         r.points.map(([x, y]) => [x * 1.004, y, r.z]),
         0.0035,
         dark,
       );
-    loft(nd, [oval(0.58, -5.65), oval(0.63, -6.15)], nozzle, { caps: false });
-    nd.add(
-      new T.CylinderGeometry(0.63, 0.56, 0.95, 32, 1, true).rotateX(Math.PI / 2),
-      nozzle,
-      [0, 2.18, -6.625],
-    );
-    nd.add(
-      new T.CylinderGeometry(0.46, 0.52, 0.85, 32, 1, true).rotateX(Math.PI / 2),
-      lining,
-      [0, 2.18, -6.675],
-    );
-    nd.add(new T.CircleGeometry(0.47, 32).rotateY(Math.PI), dark, [0, 2.18, -6.24]);
+    loft(nd, [oval(0.58, -5.65, 2.18, ex), oval(0.62, -6.15, 2.18, ex)], nozzle, { caps: false });
+    // Sixteen flat convergent petals (double-sided), each ending in a shallow point so the
+    // exit rim reads serrated rather than as a smooth cone.
+    for (let j = 0; j < 16; j++) {
+      const a = (j * Math.PI) / 8,
+        h = Math.PI / 16,
+        p = (r, t, z) => [ex + Math.sin(a + t) * r, 2.18 + Math.cos(a + t) * r, z];
+      sheet(
+        nd,
+        [
+          p(0.632, -h, -6.15),
+          p(0.632, h, -6.15),
+          p(0.566, h, -7.04),
+          p(0.566 * Math.cos(h), 0, -7.12),
+          p(0.566, -h, -7.04),
+        ],
+        nozzle,
+        [Math.sin(a), Math.cos(a), -0.07],
+      );
+    }
+    nd.add(new T.CylinderGeometry(0.46, 0.52, 0.85, 32, 1, true).rotateX(Math.PI / 2), lining, [
+      ex,
+      2.18,
+      -6.675,
+    ]);
+    nd.add(new T.CircleGeometry(0.47, 32).rotateY(Math.PI), dark, [ex, 2.18, -6.24]);
     // Exposed actuator rods characteristic of the featherless Eagle exhaust.
     for (let j = 0; j < 16; j++) {
       const a = (j * Math.PI) / 8,
-        p = (r, z) => [Math.sin(a) * r, 2.18 + Math.cos(a) * r, z];
-      nd.rod(p(0.635, -6.14), p(0.57, -7.08), 0.01, metal);
-      nd.rod(p(0.65, -6.18), p(0.61, -6.65), 0.018, nozzle);
+        p = (r, z) => [ex + Math.sin(a) * r, 2.18 + Math.cos(a) * r, z];
+      nd.rod(p(0.625, -6.14), p(0.565, -7.08), 0.01, metal);
+      nd.rod(p(0.64, -6.18), p(0.6, -6.65), 0.018, nozzle);
     }
     nd.finish();
     // Fixed cropped-delta wing, with actual separate inboard flap and outboard aileron.
@@ -325,7 +469,7 @@ export function buildF15C(s) {
       axis: 'x',
       scale: 1,
     });
-    const fg = group(root, `F15-fin-${side}`, [side * 1.65, 2.77, -4.3]),
+    const fg = group(root, `F15-fin-${side}`, [side * 1.73, 2.77, -4.3]),
       fd = detailKit(fg, fg.name);
     const edge = [
       [0, 0, 0.8],
@@ -466,8 +610,8 @@ export function buildF15C(s) {
     root,
     frame: f15Frame(),
     enginePoints: [
-      { id: 'engine-1', position: [1.03, 2.18, -5.5] },
-      { id: 'engine-2', position: [-1.03, 2.18, -5.5] },
+      { id: 'engine-1', position: [0.7, 2.18, -5.5] },
+      { id: 'engine-2', position: [-0.7, 2.18, -5.5] },
     ],
     visual: {
       rotors: [],
@@ -532,17 +676,10 @@ function f15Cockpit(root, m) {
   const k = 0.00225,
     z = 7.42,
     at = (u, v, dz = 0) => [(1071 - u) * k, 2.94 - (v - 365) * k, z + dz];
-  const rect = (u, v, w, h, dz = 0) =>
-      [
-        [-0.5, -0.5],
-        [0.5, -0.5],
-        [0.5, 0.5],
-        [-0.5, 0.5],
-      ].map(([a, b]) => at(u + a * w, v + b * h, dz)),
-    circle = (u, v, r) =>
-      Array.from({ length: 40 }, (_, j) =>
-        at(u + Math.cos((j * Math.PI) / 20) * r, v + Math.sin((j * Math.PI) / 20) * r),
-      );
+  const circle = (u, v, r) =>
+    Array.from({ length: 40 }, (_, j) =>
+      at(u + Math.cos((j * Math.PI) / 20) * r, v + Math.sin((j * Math.PI) / 20) * r),
+    );
   const box = (u, v, w, h, material = black, depth = 0.012) =>
       d.box([w * k, h * k, depth], at(u, v, -0.025 + depth / 2), material),
     text = (t, u, v, h = 6, material = ink, role = 'panel') =>

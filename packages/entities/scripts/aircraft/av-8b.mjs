@@ -1,6 +1,6 @@
 /** AV-8B II Plus, clean configuration. Public NATOPS Fig1-2 sheet2 and FO-1.
  * Original geometry. Dimensioned layout and estimated transverse sections are kept separate. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -83,9 +83,9 @@ export function buildAV8B(s) {
     metal = mat('AV8-alloy', '#a5afb3', { metalness: 0.75 }),
     heat = mat('AV8-heat-shield', '#686d6c', { metalness: 0.6, side: T.DoubleSide }),
     rubber = mat('AV8-tires', '#171b1e'),
-    glass = mat('AV8-glass', '#b5cbd1', {
+    glass = mat('AV8-glass', '#91a9b2', {
       transparent: true,
-      opacity: 0.17,
+      opacity: 0.3,
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.15,
@@ -97,31 +97,106 @@ export function buildAV8B(s) {
   const ppm = 569 / 14.5542,
     sz = (u) => 7.2771 - (u - 144) / ppm,
     sy = (v) => (443 - v) / ppm;
+  // Behind the wing the body droops toward the tail cone: on the 3-view and the side
+  // photographs the fin stands about 2 m above the tail cone, with the 3.55 m height kept.
+  const tailDrop = (z) => {
+    const s = Math.min(1, Math.max(0, (-1.5 - z) / 5.8));
+    return -0.28 * s * s * (3 - 2 * s);
+  };
+  // The APG-65 radome is a blunt, drooped ogive about 0.95m across at its base, its tip level
+  // with the intake centres (head-on and side photographs); the forebody stays about 0.95m
+  // wide back to the intakes (plan view), not a narrow raised wedge.
   const sections = [
-    [144, 0.006, 354, 350],
-    [185, 0.23, 368, 341],
-    [204, 0.32, 372, 337],
-    [235, 0.4, 378, 341],
-    [255, 0.43, 382, 341],
-    [290, 0.47, 387, 332],
+    [144, 0.08, 368, 363],
+    [174, 0.37, 377, 348.5],
+    [204, 0.46, 380, 342],
+    [235, 0.47, 378, 339],
+    [255, 0.48, 382, 339],
+    [290, 0.5, 387, 332],
     [330, 0.6, 394, 327],
     [380, 0.68, 399, 333],
     [450, 0.62, 406, 342],
     [510, 0.5, 407, 349],
     [570, 0.4, 406, 355],
-    [640, 0.3, 416, 363],
-    [680, 0.16, 405, 371],
-    [713, 0.03, 383, 372],
+    // The top line stays level under the fin root back to the tail cone (plan 3-view); it
+    // used to fall away and leave the fin and rudder standing off the boom.
+    [640, 0.3, 416, 359],
+    [680, 0.16, 405, 362.5],
+    [713, 0.03, 381, 368],
   ];
+  // Behind the hot nozzles the body is a rounded tail tube that tapers into the round tail
+  // cone, with a thin ventral fin below it (side, underside and tail photographs), not a tall
+  // flat-sided oval with a hull keel. Raster column -> [upper half-width, lower half-width,
+  // tube bottom y (m) and fin half-width where the ventral fin hangs below the tube]. The
+  // side profile (b, t) is unchanged: b is the fin's lower edge there.
+  const boom = {
+    510: [0.52, 0.46],
+    570: [0.45, 0.36],
+    640: [0.36, 0.3, 1.3, 0.05],
+    680: [0.25, 0.22, 1.52, 0.04],
+    713: [0.15, 0.15],
+  };
+  const boomPoint = ([wu, wl, tube, fin], b, t, j) => {
+    const bottom = tube ?? b,
+      yc = (t + bottom) / 2,
+      hh = (t - bottom) / 2;
+    if (tube && j === 12) return [0, b];
+    if (tube && j === 11) return [fin, bottom + hh * 0.01];
+    const a = (j * Math.PI) / 12,
+      s = (1 - Math.cos(a)) / 2;
+    return [Math.pow(Math.sin(a), 0.75) * (wu + (wl - wu) * s * s), yc + Math.cos(a) * hh];
+  };
   const rings = sections.map(([u, w, b, t]) => ({
     z: sz(u),
-    points: Array.from({ length: 24 }, (_, j) => [
-      Math.sin((j * Math.PI) / 12) * w,
-      sy((b + t) / 2) + (Math.cos((j * Math.PI) / 12) * (b - t)) / ppm / 2,
-    ]),
+    points: Array.from({ length: 24 }, (_, j) => {
+      if (boom[u]) {
+        const [x, y] = boomPoint(boom[u], sy(b), sy(t), j > 12 ? 24 - j : j),
+          keel = boom[u][2] && j === 12;
+        return [j > 12 ? -x : x, y + (keel ? 0 : tailDrop(sz(u)))];
+      }
+      const a = (j * Math.PI) / 12;
+      return [Math.sin(a) * w, sy((b + t) / 2) + (Math.cos(a) * (b - t)) / ppm / 2];
+    }),
   }));
+  // Half-width of the lofted skin at height y and station z, for markings laid on the skin.
+  const skinX = (z, y) => {
+    const i = rings.findIndex((r, k) => k < rings.length - 1 && z <= r.z && z >= rings[k + 1].z),
+      at = (r) => {
+        let x = 0;
+        for (let j = 0; j < 12; j++) {
+          const [x0, y0] = r.points[j],
+            [x1, y1] = r.points[j + 1];
+          if (y0 !== y1 && (y - y0) * (y - y1) <= 0)
+            x = Math.max(x, x0 + ((x1 - x0) * (y - y0)) / (y1 - y0));
+        }
+        return x;
+      },
+      f = (rings[i].z - z) / (rings[i].z - rings[i + 1].z);
+    return at(rings[i]) + (at(rings[i + 1]) - at(rings[i])) * f;
+  };
   loft(d, rings, paint, { skip: (i, j) => i < 2 || (i >= 2 && i < 6 && (j < 5 || j >= 19)) });
-  loft(d, rings.slice(0, 3), mat('AV8-radome', '#a0a6aa'));
+  // Pointed, slightly drooped tangent-ogive radome (Harrier II Plus photographs 05, 09, 12):
+  // the section follows the ogive of the radome's own length and base radius, and its axis
+  // bends down toward the 1.98 m tip, so the top line falls and the chin stays full.
+  const [tip, , base] = rings,
+    centre = (r) => (r.points[0][1] + r.points[12][1]) / 2,
+    tipY = centre(tip),
+    baseY = centre(base),
+    L = tip.z - base.z,
+    R = base.points[6][0],
+    rho = (R * R + L * L) / (2 * R);
+  loft(
+    d,
+    [0, 0.04, 0.1, 0.25, 0.45, 0.7, 1].map((f) => {
+      const g = f ? (Math.sqrt(rho * rho - L * L * (1 - f) * (1 - f)) - (rho - R)) / R : 0.02,
+        y = tipY + (baseY - tipY) * Math.sqrt(f);
+      return {
+        z: tip.z + (base.z - tip.z) * f,
+        points: base.points.map(([x, py]) => [x * g, y + (py - baseY) * g]),
+      };
+    }),
+    mat('AV8-radome', '#a0a6aa'),
+  );
   for (const i of [2, 7, 9, 11])
     outline(
       d,
@@ -129,12 +204,13 @@ export function buildAV8B(s) {
       0.0025,
       dark,
     );
+  // Raised bubble: crown about 0.06 m higher than before (3-view canopy line).
   const canopy = [
-    [5.74, 0.015, 2.7, 2.72],
-    [5.25, 0.26, 2.62, 2.97],
-    [4.46, 0.4, 2.61, 3.24],
-    [3.8, 0.4, 2.78, 3.23],
-    [3.1, 0.29, 2.94, 3.13],
+    [5.74, 0.015, 2.58, 2.6],
+    [5.25, 0.3, 2.6, 2.99],
+    [4.46, 0.46, 2.61, 3.3],
+    [3.8, 0.46, 2.78, 3.29],
+    [3.1, 0.33, 2.94, 3.17],
     [2.6, 0.02, 2.96, 2.98],
   ];
   const cr = canopy.map(([z, w, b, t]) => ({
@@ -149,7 +225,7 @@ export function buildAV8B(s) {
     outline(
       d,
       cr[i].points.map((p) => [...p, cr[i].z]),
-      i === 2 ? 0.021 : 0.014,
+      i === 2 ? 0.03 : 0.016,
       paint,
       false,
     );
@@ -157,7 +233,7 @@ export function buildAV8B(s) {
     outline(
       d,
       cr.map((r) => [...r.points[j], r.z]),
-      0.017,
+      0.022,
       paint,
       false,
     );
@@ -196,19 +272,19 @@ export function buildAV8B(s) {
   // FLIR fairing above the long radar nose; no sensor or targeting behavior.
   const sensor = [
     [0.12, 2.66, 5.73],
-    [0.12, 2.77, 6.33],
-    [-0.12, 2.77, 6.33],
+    [0.12, 2.62, 6.33],
+    [-0.12, 2.62, 6.33],
     [-0.12, 2.66, 5.73],
   ];
   sheet(d, sensor, upper, [0, 1, 0]);
-  d.box([0.22, 0.12, 0.06], [0, 2.71, 6.33], dark);
+  d.box([0.22, 0.12, 0.06], [0, 2.56, 6.33], dark);
   for (const side of [-1, 1])
     quad(
       d,
       [side * 0.12, 2.66, 5.73],
-      [side * 0.12, 2.77, 6.33],
-      [side * 0.12, 2.6, 6.33],
-      [side * 0.12, 2.6, 5.73],
+      [side * 0.12, 2.62, 6.33],
+      [side * 0.12, 2.4, 6.33],
+      [side * 0.12, 2.5, 5.73],
       paint,
       [side, 0, 0],
     );
@@ -216,23 +292,42 @@ export function buildAV8B(s) {
   for (const side of [-1, 1]) {
     const shape = Array.from({ length: 24 }, (_, j) => {
       const a = (j * Math.PI) / 12;
-      return [side * Math.max(0.53, 0.7 + Math.sin(a) * 0.48), 1.93 + Math.cos(a) * 0.78];
+      // Lip height about 1.4m (head-on photograph and side view), width 0.48m outboard.
+      return [side * Math.max(0.53, 0.7 + Math.sin(a) * 0.48), 1.93 + Math.cos(a) * 0.7];
     });
+    // The cowl keeps swelling behind the lip and only then fairs back, so each intake reads
+    // as a round ear rather than a flat-sided box (head-on and 3/4 photographs).
+    const first = d.root.children.length,
+      scarf = (x) => 0.26 * Math.min(1, Math.max(0, (Math.abs(x) - 0.53) / 0.65));
     const outer = [
       { z: 3.7, points: shape },
-      { z: 3.48, points: shape.map(([x, y]) => [x * 1.02, y]) },
+      { z: 3.48, points: shape.map(([x, y]) => [x * 1.025, y]) },
+      { z: 2.7, points: shape.map(([x, y]) => [x * 1.0, 1.92 + (y - 1.93) * 0.95]) },
       { z: 0.9, points: shape.map(([x, y]) => [x * 0.76, 1.85 + (y - 1.93) * 0.7]) },
     ];
     loft(d, outer, paint, { caps: false });
+    // Thick rolled lip around the mouth.
+    outline(
+      d,
+      shape.map(([x, y]) => [x + side * 0.012, y, 3.7]),
+      0.032,
+      paint,
+    );
     const inside = shape.map(([x, y]) => [
       side * 0.7 + (x - side * 0.7) * 0.88,
       1.93 + (y - 1.93) * 0.88,
+    ]);
+    // The duct curves outboard of the fuselage skin toward the fan face, so the mouth reads as
+    // one dark D from the 3/4 views instead of showing the grey body side inside it.
+    const fanFace = inside.map(([x, y]) => [
+      side * 0.8 + (x - side * 0.7) * 0.7,
+      1.93 + (y - 1.93) * 0.85,
     ]);
     loft(
       d,
       [
         { z: 3.702, points: inside },
-        { z: 2.3, points: inside.map(([x, y]) => [x * 0.88, y]) },
+        { z: 2.3, points: fanFace },
       ],
       dark,
       { caps: false },
@@ -247,17 +342,27 @@ export function buildAV8B(s) {
         paint,
         [0, 0, 1],
       );
+    // Scarfed mouth: the outer lip sits about 0.26 m aft of the inner one, so the opening
+    // faces forward and outboard and stays visible from 3/4 views (photographs 09, 12).
+    for (const mesh of d.root.children.slice(first)) {
+      const p = mesh.geometry.getAttribute('position');
+      for (let i = 0; i < p.count; i++) {
+        const z = p.getZ(i);
+        if (z > 2.7) p.setZ(i, z - scarf(p.getX(i)) * Math.min(1, z - 2.7));
+      }
+      p.needsUpdate = true;
+    }
     sheet(
       d,
-      inside.map((p) => [p[0] * 0.88, p[1], 2.3]),
+      fanFace.map((p) => [...p, 2.3]),
       rubber,
       [0, 0, 1],
     );
     for (let j = 0; j < 8; j++) {
       const a = -0.25 + j * 0.42,
         x = side * (0.7 + Math.cos(a) * 0.47),
-        y = 1.93 + Math.sin(a) * 0.76;
-      const g = group(root, `AV8-inlet-door-${side}-${j}`, [x, y, 3.22]),
+        y = 1.93 + Math.sin(a) * 0.68;
+      const g = group(root, `AV8-inlet-door-${side}-${j}`, [x, y, 3.22 - scarf(x) * 0.52]),
         dd = detailKit(g, g.name);
       g.rotation.z = side * (a - Math.PI / 2);
       dd.box([0.15, 0.012, 0.22], [0, 0, 0], dark);
@@ -346,11 +451,12 @@ export function buildAV8B(s) {
       ],
       upper,
     );
+    // The stabilator root rides down with the drooping tail; the hinge follows its stations.
     const tails = [
       [side * 0.22, 2.02, -4.5, -6.24, 0.07],
       [side * 1.96, 1.48, -6.08, -6.72, 0.05],
       [side * 2.123, 1.43, -6.28, -6.76, 0.03],
-    ];
+    ].map(([x, y, a, b, h]) => [x, y + tailDrop(-5.4), a, b, h]);
     hinge(root, `AV8-stabilator-${side}`, tails, paint, bindings, 'pitchInput', side * 0.3);
     // Clean underside lift-improvement strakes, without optional gun pods or stores.
     const strake = [
@@ -361,7 +467,12 @@ export function buildAV8B(s) {
     ];
     sheet(d, strake, paint, [side, 0, 0]);
     outline(d, strake, 0.012, paint);
-    d.text('MARINES', [side * 0.31, 1.76, -5.35], 0.14, (side * Math.PI) / 2, dark);
+    // Lettering lies on the tapering tube: yawed to the local skin and just proud of it.
+    // Kept below the stabilator root, which rides down with the drooping tail.
+    const ly = 1.52,
+      lx = Math.max(skinX(-4.6, ly), skinX(-4.6, ly + 0.11)) + 0.012,
+      taper = (skinX(-4.2, ly + 0.05) - skinX(-5.0, ly + 0.05)) / 0.8;
+    d.text('MARINES', [side * lx, ly, -4.6], 0.14, side * (Math.PI / 2 + Math.atan(taper)), dark);
     d.text('RESCUE', [side * 0.43, 2.3, 4.4], 0.065, (side * Math.PI) / 2, dark);
     for (const z of [4.3, 4.9]) d.box([0.009, 0.03, 0.29], [side * 0.4, 1.91, z], dark);
     d.add(
@@ -372,13 +483,17 @@ export function buildAV8B(s) {
       [side * 4.62, 1.54, -1.7],
     );
   }
-  // Single fin, with finite-thickness surfaces and a separately hinged rudder.
+  // Single fin, with finite-thickness surfaces and a separately hinged rudder. A low dorsal
+  // fillet runs into a leading edge swept about 50 deg (3-view), and the tip stays at 3.55 m
+  // while the root follows the drooping tail, so the fin stands taller above the body.
   const fin = [
-    [0, 2.3, -3.55],
-    [0, 2.43, -4.42],
-    [0, 3.5, -6.39],
+    [0, 2.3 + tailDrop(-3.55), -3.55],
+    [0, 2.31 + tailDrop(-4.85), -4.85],
+    [0, 2.56 + tailDrop(-5.15), -5.15],
+    [0, 3.47, -6.42],
+    [0, 3.55, -6.6],
     [0, 3.55, -6.91],
-    [0, 2.03, -6.57],
+    [0, 2.03 + tailDrop(-6.57), -6.57],
   ];
   for (const side of [-1, 1])
     sheet(
@@ -454,16 +569,19 @@ export function buildAV8B(s) {
       { node: g.name, source: 'gearExposed', property: 'visible', scale: 1, missing: 'hide' },
     );
   }
+  // Rounded tail-cone bullet (pitch/yaw reaction-control housing) closing the boom.
+  ellipsoid(d, [0, 1.75 + tailDrop(-7.2), -7.2], [0.15, 0.17, 0.12], paint, 16);
   // Spine vents and access lines are geometric, not photograph textures.
-  for (let j = 0; j < 7; j++) d.box([0.29, 0.012, 0.035], [0, 2.23, -3.6 - j * 0.07], dark);
+  for (let j = 0; j < 7; j++)
+    d.box([0.29, 0.012, 0.035], [0, 2.23 + tailDrop(-3.8), -3.6 - j * 0.07], dark);
   for (const z of [-0.3, -3.5])
     sheet(
       d,
       [
-        [0, 2.46, z],
-        [0, 2.71, z - 0.04],
-        [0, 2.65, z - 0.22],
-        [0, 2.4, z - 0.28],
+        [0, 2.46 + tailDrop(z), z],
+        [0, 2.71 + tailDrop(z), z - 0.04],
+        [0, 2.65 + tailDrop(z), z - 0.22],
+        [0, 2.4 + tailDrop(z), z - 0.28],
       ],
       upper,
       [1, 0, 0],

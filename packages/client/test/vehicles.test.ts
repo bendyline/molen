@@ -6,6 +6,7 @@ import {
   createVehicleVisual,
   isParkedVehicleHidden,
   setParkedVehicleHidden,
+  vehicleProxyGeometry,
 } from '../src/vehicles';
 
 const SPEC: VehicleSpec = {
@@ -70,6 +71,68 @@ function model(): THREE.Group {
 }
 
 describe('vehicle visuals', () => {
+  it('keeps a lightweight, grounded silhouette with painted roof and sloping glazing', () => {
+    for (const spec of [SPEC, { ...SPEC, height: 2.1, width: 2, length: 5.2 }]) {
+      const geometry = vehicleProxyGeometry(spec);
+      const position = geometry.getAttribute('position');
+      const normal = geometry.getAttribute('normal');
+      const color = geometry.getAttribute('color');
+      expect(position.count / 3).toBeLessThanOrEqual(160);
+      expect(geometry.groups).toHaveLength(0);
+      expect(geometry.boundingBox?.min.y).toBeCloseTo(0);
+      expect(geometry.boundingBox?.max.y).toBeCloseTo(spec.height);
+      let paintedRoof = 0;
+      let slopedGlass = 0;
+      const glass = new THREE.Color('#4d6178');
+      for (let i = 0; i < position.count; i++) {
+        expect(Number.isFinite(position.getX(i) + position.getY(i) + position.getZ(i))).toBe(true);
+        expect(new THREE.Vector3().fromBufferAttribute(normal, i).length()).toBeCloseTo(1);
+        if (position.getY(i) > spec.height * 0.99 && normal.getY(i) > 0.9) {
+          expect(color.getX(i)).toBe(1);
+          expect(color.getY(i)).toBe(1);
+          expect(color.getZ(i)).toBe(1);
+          paintedRoof++;
+        }
+        if (
+          Math.abs(color.getX(i) - glass.r) < 1e-6 &&
+          Math.abs(normal.getZ(i)) > 0.1 &&
+          normal.getY(i) > 0.1
+        )
+          slopedGlass++;
+      }
+      expect(paintedRoof).toBeGreaterThan(0);
+      expect(slopedGlass).toBeGreaterThan(0);
+    }
+  });
+
+  it('caches all wheel dimensions independently and paints the roof with the parked body', () => {
+    const geometry = vehicleProxyGeometry(SPEC);
+    expect(vehicleProxyGeometry({ ...SPEC })).toBe(geometry);
+    expect(vehicleProxyGeometry({ ...SPEC, wheelRadius: 0.4 })).not.toBe(geometry);
+    expect(vehicleProxyGeometry({ ...SPEC, wheelTrack: 1.7 })).not.toBe(geometry);
+    const batch = createParkedVehicleBatch([
+      { id: 'car', kind: DATA.kind, color: '#aa2222', spec: SPEC, position: [0, 0, 0], yaw: 0 },
+    ]);
+    const mesh = batch.children[0] as THREE.Mesh;
+    const position = mesh.geometry.getAttribute('position');
+    const colors = mesh.geometry.getAttribute('color');
+    const templateColors = geometry.getAttribute('color');
+    let roof = 0;
+    for (let i = 0; i < position.count; i++) {
+      if (position.getY(i) > SPEC.height * 0.99) {
+        expect(new THREE.Color().fromBufferAttribute(colors, i).getHexString()).toBe('aa2222');
+        roof++;
+      }
+      if (templateColors.getX(i) !== 1) {
+        expect(colors.getX(i)).toBe(templateColors.getX(i));
+        expect(colors.getY(i)).toBe(templateColors.getY(i));
+        expect(colors.getZ(i)).toBe(templateColors.getZ(i));
+      }
+    }
+    expect(roof).toBeGreaterThan(0);
+    mesh.geometry.dispose();
+  });
+
   it('takes up the body lean as suspension travel so the wheels stay on the road', () => {
     const visual = createVehicleVisual(model(), DATA);
     const bodyRoll = 0.05,

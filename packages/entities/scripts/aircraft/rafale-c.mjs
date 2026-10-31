@@ -72,11 +72,19 @@ export function buildRafaleC(s) {
     [2.5, 0.7, 1.27, 2.66],
     [1.4, 0.81, 1.2, 2.7],
   ];
+  // Forebody chines: from the radome joint the sill line flares outboard toward the canard
+  // roots (head-on and low front photographs), instead of a plain round tube.
+  const chine = (z) => 0.26 * Math.pow(Math.min(Math.max((5.95 - z) / 4.55, 0), 1), 0.8);
+  const flare = [0, 0, 0, 0.25, 0.8, 1, 0.35];
   const fore = foreData.map(([z, w, b, t]) => ({
     z,
     points: Array.from({ length: 24 }, (_, i) => {
-      const a = (i * Math.PI) / 12;
-      return [Math.sin(a) * w, (b + t) / 2 + (Math.cos(a) * (t - b)) / 2];
+      const a = (i * Math.PI) / 12,
+        k = i <= 12 ? i : 24 - i;
+      return [
+        Math.sin(a) * w + Math.sign(Math.sin(a)) * chine(z) * (flare[k] ?? 0),
+        (b + t) / 2 + (Math.cos(a) * (t - b)) / 2,
+      ];
     }),
   }));
   loft(d, fore.slice(0, 4), radome);
@@ -116,7 +124,7 @@ export function buildRafaleC(s) {
     outline(
       d,
       cr[i].points.map((p) => [...p, cr[i].z]),
-      i === 2 ? 0.025 : 0.015,
+      i === 2 ? 0.018 : 0.015,
       paint,
       false,
     );
@@ -151,7 +159,7 @@ export function buildRafaleC(s) {
     [0.45, 1.86, 1.16, 2.66],
     [-1.5, 1.88, 1.16, 2.64],
     [-3.4, 1.73, 1.22, 2.64],
-    [-5.4, 1.26, 1.35, 2.55],
+    [-5.4, 1.16, 1.35, 2.55],
   ].map(([z, w, b, t]) => ({
     z,
     points: [
@@ -205,27 +213,52 @@ export function buildRafaleC(s) {
   };
   // Two separate semi-ventral mouths, with visible duct depth and boundary-layer gaps.
   for (const side of [-1, 1]) {
-    const mouth = Array.from({ length: 20 }, (_, i) => {
-      const a = (i * Math.PI) / 10;
-      return [
-        side * (1.02 + Math.sin(a) * 0.43),
-        1.64 + Math.cos(a) * 0.48,
-        3.13 + Math.cos(a) * 0.12,
-      ];
-    });
-    const throat = mouth.map(([x, y, z]) => [x * 0.98, y + 0.03, z - 0.85]);
-    for (let i = 0; i < mouth.length; i++)
-      quad(d, mouth[i], throat[i], throat[(i + 1) % 20], mouth[(i + 1) % 20], duct, [0, 0, 1]);
+    // Head-on photograph (Rafale M, Volkel 2007) and three-view front elevation: the lips
+    // sit close under the chines, about 0.7 m high, outer lip near +/-1.2 m (inboard of
+    // the main wheels), not a large round scoop outboard of them.
+    // Kidney-shaped mouth: flat top under the chine, full outer side, and an inner edge that
+    // leans outboard toward the narrower bottom (front elevation and head-on photograph).
+    const mouth = [
+      [0.5, 1.98],
+      [0.7, 2.02],
+      [0.92, 2.03],
+      [1.08, 1.98],
+      [1.16, 1.86],
+      [1.18, 1.7],
+      [1.15, 1.53],
+      [1.07, 1.4],
+      [0.95, 1.31],
+      [0.83, 1.29],
+      [0.74, 1.33],
+      [0.66, 1.43],
+      [0.58, 1.58],
+      [0.53, 1.74],
+      [0.5, 1.88],
+    ].map(([x, y]) => [side * x, y, 3.13 + (y - 1.66) * 0.32]);
+    const n = mouth.length,
+      throat = mouth.map(([x, y, z]) => [x * 0.98, y + 0.03, z - 0.85]),
+      // Painted lip band just inside the mouth, so the opening keeps its shape head-on.
+      lip = mouth.map((p, i) => p.map((v, k) => v + (throat[i][k] - v) * 0.06));
+    for (let i = 0; i < n; i++) {
+      const j = (i + 1) % n;
+      quad(d, mouth[i], lip[i], lip[j], mouth[j], paint, [0, 0, 1]);
+      quad(d, lip[i], throat[i], throat[j], lip[j], duct, [0, 0, 1]);
+    }
     sheet(d, throat, duct, [0, 0, 1]);
     outline(d, mouth, 0.025, paint);
-    const outer = mouth.map(([x, y, z]) => [x + side * 0.025, y, z - 0.018]),
+    const outer = mouth.map(([x, y, z]) => {
+        const dx = Math.abs(x) - 0.84,
+          dy = y - 1.66,
+          k = 0.025 / Math.hypot(dx, dy);
+        return [side * (Math.abs(x) + dx * k), y + dy * k, z - 0.018];
+      }),
       rear = outer.map(([x, y]) => [
-        side * (1.02 + (Math.abs(x) - 1.02) * 1.42),
-        1.65 + (y - 1.64) * 1.08,
+        side * (0.84 + (Math.abs(x) - 0.84) * 2.2),
+        1.65 + (y - 1.66) * 1.25,
         1.4,
       ]);
-    for (let i = 0; i < 20; i++)
-      quad(d, outer[i], rear[i], rear[(i + 1) % 20], outer[(i + 1) % 20], paint, [side, 0, 0]);
+    for (let i = 0; i < n; i++)
+      quad(d, outer[i], rear[i], rear[(i + 1) % n], outer[(i + 1) % n], paint, [side, 0, 0]);
     // SPECTRA housing aft of lip: compact teardrop, not a weapons pylon.
     loft(
       d,
@@ -236,7 +269,7 @@ export function buildRafaleC(s) {
       ].map(([z, r]) => ({
         z,
         points: Array.from({ length: 12 }, (_, i) => [
-          side * (1.38 + Math.sin((i * Math.PI) / 6) * r),
+          side * (1.3 + Math.sin((i * Math.PI) / 6) * r),
           1.36 + Math.cos((i * Math.PI) / 6) * r,
         ]),
       })),
@@ -330,8 +363,11 @@ export function buildRafaleC(s) {
     wing(
       cd,
       [
-        [0, 0, 1, -0.55, 0.045],
-        [side * 1.93, 0, -0.5, -1.08, 0.014],
+        // A visible root thickness keeps the canard readable edge-on in level 3/4 views.
+        [0, 0, 1, -0.55, 0.062],
+        // Tip at about +/-2.4 m: head-on photograph and front elevation (canard span to
+        // main-gear track about 1.65).
+        [side * 1.68, 0, -0.31, -1.01, 0.02],
       ],
       paint,
     );
@@ -454,7 +490,8 @@ export function buildRafaleC(s) {
     paint,
   );
   for (const side of [-1, 1]) {
-    const cx = side * 0.69,
+    // Close-set M88 nozzles with a narrow divider (rear photograph, Paris 2009).
+    const cx = side * 0.61,
       cy = 1.92;
     const rings = [
       [-5.4, 0.5],
@@ -467,30 +504,71 @@ export function buildRafaleC(s) {
         cy + Math.cos((i * Math.PI) / 14) * r,
       ]),
     }));
-    loft(d, rings, exhaust, { caps: false });
-    loft(
-      d,
-      [
-        rings.at(-1),
-        {
-          z: -5.45,
-          points: rings.at(-1).points.map(([x, y]) => [cx + (x - cx) * 0.87, cy + (y - cy) * 0.87]),
-        },
-      ],
-      duct,
-      { caps: false },
-    );
+    // Shroud, then 14 flat double-sided petals with a scalloped trailing edge; inside the exit
+    // a lighter divergent-flap ring leads to the dark throat (rear photograph). The end plate
+    // stays at z -5.44.
+    loft(d, rings.slice(0, 2), exhaust, { caps: false });
+    const at = (a, r, z) => [cx + Math.sin(a) * r, cy + Math.cos(a) * r, z];
+    for (let k = 0; k < 14; k++) {
+      const a0 = (k * Math.PI) / 7,
+        a1 = ((k + 1) * Math.PI) / 7,
+        am = (a0 + a1) / 2,
+        c = Math.cos(Math.PI / 14),
+        seamZ = -5.9,
+        root = at(am, 0.45 * c, -5.75),
+        exit = at(am, 0.42 * c, seamZ),
+        u = (-5.94 + 5.75) / (seamZ + 5.75),
+        tip = root.map((v, i) => v + (exit[i] - v) * u);
+      sheet(
+        d,
+        [at(a0, 0.45, -5.75), at(a1, 0.45, -5.75), at(a1, 0.42, seamZ), tip, at(a0, 0.42, seamZ)],
+        exhaust,
+        [Math.sin(am), Math.cos(am), 0],
+      );
+      quad(
+        d,
+        at(a0, 0.405, -5.89),
+        at(a1, 0.405, -5.89),
+        at(a1, 0.37, -5.7),
+        at(a0, 0.37, -5.7),
+        metal,
+        [-Math.sin(am), -Math.cos(am), 0],
+      );
+    }
+    const throat = (z, r) => ({
+      z,
+      points: Array.from({ length: 28 }, (_, i) => at((i * Math.PI) / 14, r, z).slice(0, 2)),
+    });
+    loft(d, [throat(-5.7, 0.37), throat(-5.45, 0.365)], duct, { caps: false });
     d.add(new T.CircleGeometry(0.37, 28).rotateY(Math.PI), duct, [cx, cy, -5.44]);
     for (let j = 0; j < 14; j++)
       outline(
         d,
-        rings.map((r) => [...r.points[j * 2], r.z]),
+        rings.slice(0, 2).map((r) => [...r.points[j * 2], r.z]),
         0.005,
         seal,
         false,
       );
     d.rod([side * 0.9, 2.62, -5.1], [side * 0.9, 2.62, -5.62], 0.07, paint);
   }
+  // Central tail fairing over the nozzle pair and the narrow divider between them (rear photo).
+  loft(
+    d,
+    [
+      [-5.4, 0.14, 2.05, 2.56],
+      [-5.75, 0.12, 2.12, 2.5],
+      [-6.0, 0.07, 2.22, 2.42],
+      [-6.1, 0.01, 2.31, 2.33],
+    ].map(([z, w, b, t]) => ({
+      z,
+      points: Array.from({ length: 12 }, (_, i) => [
+        Math.sin((i * Math.PI) / 6) * w,
+        (b + t) / 2 + (Math.cos((i * Math.PI) / 6) * (t - b)) / 2,
+      ]),
+    })),
+    paint,
+  );
+  beveledBox(d, [0.05, 0.62, 0.46], [0, 1.8, -5.62], paint, 0.015);
   // Fixed starboard refuelling probe and paired passive optical housings ahead of windscreen.
   d.rod([-0.38, 2.45, 5.78], [-0.52, 2.91, 6.12], 0.045, paint);
   d.rod([-0.52, 2.91, 6.12], [-0.52, 2.96, 6.67], 0.035, paint);
@@ -521,8 +599,17 @@ export function buildRafaleC(s) {
   ]) {
     const g = group(root, `Rafale-gear-${name}`, [x, top, z]),
       gd = detailKit(g, g.name);
-    gd.rod([0, 0, -0.12], [0, r - top, 0], 0.04, metal);
-    gd.rod([0, -0.12, -0.42], [0, r - top + 0.14, 0], 0.024, metal);
+    // Main legs rake outboard from bays under the intake fairings (head-on photograph).
+    const inboard = name === 'nose' ? 0 : -Math.sign(x) * 0.27;
+    gd.rod([inboard, 0, -0.12], [0, r - top, 0], 0.04, metal);
+    gd.rod([inboard * 0.9, -0.12, -0.42], [0, r - top + 0.14, 0], 0.024, metal);
+    if (name !== 'nose') {
+      // Torque-link scissor ahead of the oleo, clear of the tyre.
+      const leg = (f) => [inboard * (1 - f), (r - top) * f, -0.12 * (1 - f)],
+        knee = [inboard * 0.55, (r - top) * 0.44, 0.1];
+      gd.rod(leg(0.32), knee, 0.013, metal);
+      gd.rod(knee, leg(0.52), 0.013, metal);
+    }
     const offsets = name === 'nose' ? [-0.1, 0.1] : [0];
     for (const off of offsets) {
       gd.add(new T.CylinderGeometry(r, r, w, 24).rotateZ(Math.PI / 2), seal, [off, r - top, 0]);
@@ -532,7 +619,11 @@ export function buildRafaleC(s) {
         [off, r - top, 0],
       );
     }
-    gd.box([0.025, 0.5, 0.54], [name === 'right' ? -0.18 : 0.18, -0.15, -0.12], paint);
+    gd.box(
+      [0.025, 0.5, 0.54],
+      name === 'nose' ? [0.18, -0.15, -0.12] : [inboard * 0.6, -0.2, -0.12],
+      paint,
+    );
     gd.finish();
     bindings.push(
       {
@@ -559,8 +650,8 @@ export function buildRafaleC(s) {
     root,
     frame: rafaleFrame(),
     enginePoints: [
-      { id: 'engine-1', position: [0.69, 1.92, -5.4] },
-      { id: 'engine-2', position: [-0.69, 1.92, -5.4] },
+      { id: 'engine-1', position: [0.61, 1.92, -5.4] },
+      { id: 'engine-2', position: [-0.61, 1.92, -5.4] },
     ],
     visual: {
       rotors: [],
@@ -817,15 +908,29 @@ function rafaleCockpit(root, m) {
   // A housing below the combiner's rear edge obscures the HLD from the pilot eye.
   beveledBox(ud, [0.27, 0.07, 0.26], [0, -0.025, 0.29], black, 0.01);
   ud.finish();
-  d.box([0.93, 0.04, 1.88], [0, 1.48, 4.07], panel);
-  d.box([0.9, 0.55, 0.04], [0, 1.82, 5.16], panel);
+  // Floor, front bulkhead and side walls stay inside the forebody and below the sill bridges;
+  // full-width boxes used to show through the belly and along the canopy rail.
+  d.box([0.56, 0.04, 1.88], [0, 1.48, 4.07], panel);
+  sheet(
+    d,
+    [
+      [-0.3, 1.55],
+      [0.3, 1.55],
+      [0.42, 1.75],
+      [0.45, 2.09],
+      [-0.45, 2.09],
+      [-0.42, 1.75],
+    ].map(([x, y]) => [x, y, 5.16]),
+    panel,
+    [0, 0, -1],
+  );
   for (const side of [-1, 1]) {
     quad(
       d,
-      [side * 0.47, 1.5, 3.18],
-      [side * 0.47, 1.5, 5.18],
-      [side * 0.46, 2.4, 5.18],
-      [side * 0.49, 2.52, 3.18],
+      [side * 0.42, 1.5, 3.18],
+      [side * 0.3, 1.5, 5.18],
+      [side * 0.42, 2.15, 5.18],
+      [side * 0.52, 2.22, 3.18],
       panel,
       [-side, 0, 0],
     );

@@ -92,10 +92,28 @@ tree entirely. Queries reach at most `radius - rebuildDistance` from the subject
 `verticalRadius` unset for a walker, whose placement ray scans the whole column.
 
 Meshes opt out with `userData.walkIgnore = true`; world-generation ground cover does, so walkers
-pass through ferns and moss. Water materials and landcover overlays are never solid. An aircraft can
-pass `instanceBounds: true`, which collides with each instance of an instanced mesh as its bounding
-box rather than its triangles. A missing terrain tile pauses movement until it arrives, rather than
-dropping the walker.
+pass through ferns and moss. Meshes with all render layers disabled are skipped unless marked
+`userData.walkCollisionOnly = true`, as with the smooth ramps beneath visible stair steps.
+Water materials are never solid. Visible landcover provides walking support, including when it
+replaces the bare terrain.
+
+Set `walker.sampleWaterHeight = (x, z) => ...` to enable automatic surface swimming. Return the
+water height in world meters, `null` on dry land, or `undefined` while water coverage is loading.
+The walker wades on shallow ground, floats with its eyes 45 cm above deep water, and resumes
+walking when its capsule meets the shore. `walker.swimming` reports this state; the walk input
+profile stays active, with Shift swimming faster and jumping available again on land. Solid
+walls and bridges still collide normally. Water also supports initial placement without a
+rendered lake bed. Earth view and world explorer supply this callback from their boat water
+coverage automatically, excluding tunnels beneath water.
+
+An aircraft can pass `instanceBounds: true`, which collides with each instance of an instanced mesh
+as its bounding box rather than its triangles. A missing terrain tile pauses movement until it
+arrives, rather than dropping the walker.
+
+For tunnels, the `sampleHeight` callback passed to `walker.update` must return the bore floor
+when the walker's feet are inside it, and the terrain height otherwise. Earth view does this
+automatically. Returning the hill above a tunnel triggers streamed-ground recovery and lifts
+the walker out of the bore. Initial placement still uses the surface height to land above ground.
 
 ## Follow
 
@@ -120,7 +138,7 @@ Default profiles come from `navigationInputProfiles()`:
 |---|---|---|
 | `orbit`, `fly` | WASD/arrows move, Q/E down/up, Shift sprint | left stick move, right stick look, bumpers up/down |
 | `walk`, `drive` | WASD/arrows move, Space jump/brake, E or F interact, V view, Shift sprint | left stick move, right stick look, A jump, X interact, Y view |
-| `pilot` | W/S or ↑/↓ nose down/up, A/D or ←/→ bank, Q/Z rudder, Shift/Ctrl (or +/−, Page Up/Down) power, I engine, G gear, F flaps, R recover, Space brake, V view, E exit | left stick pitch/bank, right stick look, triggers power, bumpers rudder, A brake, B engine, X exit, Y view |
+| `pilot` | W/S or ↑/↓ nose down/up, A/D or ←/→ bank, Z/C rudder, =/− (or numpad +/−, Page Up/Down) power, I engine, G gear, F flaps, R recover, Space brake, V view, E exit | left stick pitch/bank, right stick look, triggers power, bumpers rudder, A brake, B engine, X exit, Y view |
 
 In the `pilot` profile each `NavigationInput` also carries `pilot`: the held `throttle` and `yaw`
 axes (-1..1) and edge-triggered `engine`, `gear`, `flaps` and `recover` presses. Pitch is

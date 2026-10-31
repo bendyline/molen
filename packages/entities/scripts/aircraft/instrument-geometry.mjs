@@ -117,11 +117,15 @@ export function instrumentGeometry(parent, prefix) {
   function dial(label, at, radius, source, calibration, ticks, caption, options = {}) {
     const frame = group(parent, name(`${label}-face`), at),
       d = detailKit(frame, frame.name);
-    d.add(new T.CylinderGeometry(radius, radius, 0.012, 32).rotateX(Math.PI / 2), black);
-    d.ring(radius * 0.97, radius * 0.045, [0, 0, -0.008], d.metal);
+    d.add(
+      new T.CylinderGeometry(radius, radius, 0.01, 32).rotateX(Math.PI / 2),
+      black,
+      [0, 0, 0.0035],
+    );
+    d.ring(radius * 0.985, radius * 0.018, [0, 0, -0.0015], d.metal);
     const b = pointer(
       label,
-      [at[0], at[1], at[2] - 0.013],
+      [at[0], at[1], at[2] - 0.004],
       radius * 0.76,
       source,
       calibration,
@@ -135,7 +139,7 @@ export function instrumentGeometry(parent, prefix) {
       : ticks;
     for (const value of marks) {
       const a = modelSignalDisplacement(b, value),
-        p = (r) => [-Math.sin(a) * r, Math.cos(a) * r, -0.009];
+        p = (r) => [-Math.sin(a) * r, Math.cos(a) * r, -0.002];
       d.rod(p(radius * (ticks.includes(value) ? 0.8 : 0.85)), p(radius * 0.91), radius * 0.01, ink);
       if (ticks.includes(value))
         d.text(
@@ -152,32 +156,36 @@ export function instrumentGeometry(parent, prefix) {
       for (let value = lo; value < hi; value += 2) {
         const p = (v) => {
           const a = modelSignalDisplacement(b, v);
-          return [-Math.sin(a) * radius * ring, Math.cos(a) * radius * ring, -0.0095];
+          return [-Math.sin(a) * radius * ring, Math.cos(a) * radius * ring, -0.0025];
         };
         d.rod(p(value), p(Math.min(hi, value + 2)), radius * 0.024, material);
       }
     }
     // Reserve the lower perimeter for scale numerals, including long unit captions.
-    d.text(caption, [0, -radius * 0.22, -0.009], radius * 0.13, Math.PI, ink, 'dial');
+    d.text(caption, [0, -radius * 0.22, -0.002], radius * 0.13, Math.PI, ink, 'dial');
     d.finish();
     return { frame, binding: b };
   }
   function altimeter(label, at, radius, source) {
     const face = group(parent, name(label), at),
       d = detailKit(face, face.name);
-    d.add(new T.CylinderGeometry(radius, radius, 0.012, 32).rotateX(Math.PI / 2), black);
-    d.ring(radius * 0.97, radius * 0.045, [0, 0, -0.008], d.metal);
+    d.add(
+      new T.CylinderGeometry(radius, radius, 0.01, 32).rotateX(Math.PI / 2),
+      black,
+      [0, 0, 0.0035],
+    );
+    d.ring(radius * 0.985, radius * 0.018, [0, 0, -0.0015], d.metal);
     for (let i = 0; i < 50; i++) {
       const a = (i * Math.PI) / 25,
-        p = (r) => [-Math.sin(a) * r, Math.cos(a) * r, -0.009];
+        p = (r) => [-Math.sin(a) * r, Math.cos(a) * r, -0.002];
       d.rod(p(radius * (i % 5 ? 0.86 : 0.79)), p(radius * 0.91), radius * 0.01, ink);
       if (i % 5 === 0) d.text(String(i / 5), p(radius * 0.66), radius * 0.18, Math.PI, ink, 'dial');
     }
-    d.text('GEO FT', [0, -radius * 0.4, -0.01], radius * 0.14, Math.PI, ink, 'dial');
+    d.text('GEO FT', [0, -radius * 0.4, -0.003], radius * 0.14, Math.PI, ink, 'dial');
     d.finish();
     const nodes = [];
     [0.79, 0.53, 0.33].forEach((length, i) => {
-      const g = group(face, name(`${label}-${i}`), [0, 0, -0.014 - i * 0.001]),
+      const g = group(face, name(`${label}-${i}`), [0, 0, -0.004 - i * 0.0008]),
         dd = detailKit(g, g.name);
       dd.rod([0, -0.004, 0], [0, radius * length, 0], radius * (i === 1 ? 0.035 : 0.02), ink);
       dd.finish();

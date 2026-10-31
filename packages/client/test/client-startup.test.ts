@@ -5,6 +5,7 @@ import { AssetCache } from '../src/assets';
 import { createClient, createSnapshotViewer } from '../src/client';
 import { ThreeSceneBackend } from '../src/three/backend';
 import { MaterialResolver } from '../src/three/materials';
+import { Renderer } from '../src/three/renderer';
 
 const constructors = vi.hoisted(() => ({ webgl: vi.fn() }));
 vi.mock('three', async (importOriginal) => ({
@@ -132,6 +133,74 @@ describe('async client startup cleanup', () => {
     expect(disposeGeometry).toHaveBeenCalledOnce();
     expect(disposeBackend).toHaveBeenCalledOnce();
     expect(driver.dispose).toHaveBeenCalledOnce();
+  });
+
+  it('stops automatic GPU frames and suspends the worker on blur, then resumes once', async () => {
+    const win = new EventTarget();
+    const doc = Object.assign(new EventTarget(), { hidden: false, defaultView: win });
+    vi.stubGlobal('document', doc);
+    const frames = new Map<number, () => void>();
+    let id = 0;
+    vi.stubGlobal('requestAnimationFrame', (cb: () => void) => {
+      frames.set(++id, cb);
+      return id;
+    });
+    vi.stubGlobal('cancelAnimationFrame', (handle: number) => frames.delete(handle));
+    const render = vi.spyOn(Renderer.prototype, 'render').mockImplementation(() => {});
+    const link = new Link();
+    const client = await createClient(link, { backend: 'webgl' });
+    const stale = [...frames.values()][0];
+    win.dispatchEvent(new Event('blur'));
+    expect(frames.size).toBe(0);
+    stale?.();
+    expect(render).not.toHaveBeenCalled();
+    expect(link.postMessage).toHaveBeenLastCalledWith({
+      type: 'control',
+      control: { action: 'set-active', active: false },
+    });
+    const prepare = vi.fn();
+    const prepared = client.renderer.admission.run(prepare);
+    client.renderer.admission.flush();
+    expect(prepare).not.toHaveBeenCalled();
+    expect(driver.dispose).not.toHaveBeenCalled();
+    win.dispatchEvent(new Event('focus'));
+    win.dispatchEvent(new Event('focus'));
+    expect(link.postMessage).toHaveBeenLastCalledWith({
+      type: 'control',
+      control: { action: 'set-active', active: true },
+    });
+    const due = [...frames.values()];
+    frames.clear();
+    for (const cb of due) cb();
+    await prepared;
+    expect(render).toHaveBeenCalledOnce();
+    expect(prepare).toHaveBeenCalledOnce();
+    expect(frames.size).toBe(1);
+    client.dispose();
+    const count = link.postMessage.mock.calls.length;
+    win.dispatchEvent(new Event('blur'));
+    win.dispatchEvent(new Event('focus'));
+    expect(link.postMessage).toHaveBeenCalledTimes(count);
+    expect(frames.size).toBe(0);
+  });
+
+  it('starts inactive without rendering and leaves manual capture loops alone', async () => {
+    const win = new EventTarget();
+    vi.stubGlobal('document', Object.assign(new EventTarget(), { hidden: true, defaultView: win }));
+    const schedule = vi.fn();
+    vi.stubGlobal('requestAnimationFrame', schedule);
+    const link = new Link();
+    const client = await createClient(link, { backend: 'webgl' });
+    expect(schedule).not.toHaveBeenCalled();
+    expect(link.postMessage).toHaveBeenCalledWith({
+      type: 'control',
+      control: { action: 'set-active', active: false },
+    });
+    client.dispose();
+    link.postMessage.mockClear();
+    const manual = await createClient(link, { backend: 'webgl', frameLoop: 'manual' });
+    expect(link.postMessage).toHaveBeenCalledTimes(1); // request-keyframe only
+    manual.dispose();
   });
 });
 

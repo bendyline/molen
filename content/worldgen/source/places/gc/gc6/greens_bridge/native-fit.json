@@ -1,0 +1,40 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "status": "generation-controls; current acceptance belongs to qa.json",
+  "originMeters": 45.76926803588867,
+  "gridFrame": "east-south meters",
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "distribution": "local",
+      "sourceUrl": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "attribution": "© OpenStreetMap contributors",
+      "extractHash": "sha256:05f0c52646d431855c238e8f35b3072c9a776205de61da8e63a9ed211cdbf5e5"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": -1000,
+        "max": 9000
+      },
+      "observedHeightRange": [
+        41.45703125,
+        91.62109375
+      ],
+      "attribution": "Mapzen Terrain Tiles; United States 3DEP, GMTED2010, SRTM, ETOPO1 and other national elevation data courtesy of the U.S. Geological Survey and the sources listed in joerd",
+      "extractHash": "sha256:d9e03783ff3e101671f097adc9d2a042c9f942f1cb62f781fe053c292ab542dc"
+    }
+  },
+  "limitations": [
+    "Original static medium-fi reconstruction from ordinary pictures and current PMTiles. Exact-QID footprint77.419m includes the eastern extension; named current bridge road covers61.310m of the main crossing, with ground-tagged continuation across the eastern end. These differing records are retained, not conflated.",
+    "Five open main elliptical barrels, four pedimented downstream pier panels and two smaller eastern culverts are complete geometry. Widths, pier centers, arch heights, hidden upstream cutwater profiles, culvert dimensions and deck grades are reconstruction controls, not a survey. Eastern culverts are partly obscured by native ground; no surveyed flood-channel excavation is introduced.",
+    "Modern north deck/railings are asymmetric to the southern historic parapet. Small rail mesh, concrete ledge/corbels and eight-centimetre-style map tolerances are visualization approximations. Temporary flowers, graffiti, signs, lamps, neighboring buildings and independent Saint Francis Bridge/boardwalk are outside this source geometry.",
+    "Native ground/water use ordinary viewer PMTiles and coarse Mapzen only. Water origin and approach grades are approximate; no flood, engineering, traffic or accessibility certification. No bespoke terrain download.",
+    "Four existing256px limestone/limestone-raw/concrete/painted-metal graphs; no embedded/private images. Concrete graph tinted grey approximates asphalt grain; no new global material graph. Physical laptop/phone timings remain unmeasured."
+  ]
+}

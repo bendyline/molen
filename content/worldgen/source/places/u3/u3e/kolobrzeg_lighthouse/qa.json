@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.kolobrzeg_lighthouse",
-  "inputHash": "sha256:09f9bcd1c172973d213da14c44ac2c4944c14b9a6df0bfe7b0b32301a609eb4c",
-  "captureReportHash": "sha256:d1ce91851488f56f1603498808fbd2c4b122504158d363c2353e8236d4214651",
+  "inputHash": "sha256:2f63fce9d75caa69cb17147f11530dba5bd8ad5c2012349bfd15e35647cdc288",
+  "captureReportHash": "sha256:e96caba229addef4140156afa23547a820a52e34e81aab3127d91343202c4eeb",
   "visualReview": {
     "status": "passed",
     "scope": "Detailed exterior and portable materials.",
@@ -18,12 +18,13 @@
       "shots/near-lantern.png",
       "shots/far-silhouette.png"
     ],
-    "notes": "All ten portable and ten shared frames inspected, plus full-size colonnade. Integral circular fort, arched doors/windows, blind arcade, memorial/date relief, columns, glazed spiral stair, galleries and partly enclosed lantern are connected and correctly wound."
+    "notes": "All45 final current portable/shared/medium-fi images actually inspected after the stair correction, plus one independent open-lantern close view. The broad circular fort, real entry arch/canopy and attached gabled booth, gunports, buttresses, three rows of narrow tower windows,32blind arcade moldings, raised dates/anchor relief, open eight-column colonnade, guarded galleries and pointed26m lantern remain connected. Current operator photos support the brick massing and white open top. The historical timber-tower photo was identified as a different earlier structure and was not used as the current silhouette. The visible spiral now has16treads and a continuous helical support reaching both floors. The compact optic is supported and visible through its open glazing side.",
+    "captureReportHash": "sha256:e96caba229addef4140156afa23547a820a52e34e81aab3127d91343202c4eeb"
   },
   "sharedSurfaceReview": {
     "status": "passed",
     "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:8bbb58db059fffdc24a6ed528f3b8b0b8814a4d78e837e13598e5d04f83c3a5c",
+    "captureReportHash": "sha256:49b0697f8e7abff799b50dbd24f66f97269287a89fbdf9724777e0b66628c4e5",
     "fixtureHash": "sha256:30a01c038a2fc391e1d7ec2c992fc210adc9fcf8831e2d419cf8aa0531f1e6cf",
     "inputHash": "sha256:09f9bcd1c172973d213da14c44ac2c4944c14b9a6df0bfe7b0b32301a609eb4c",
     "materialGraphs": {
@@ -68,17 +69,291 @@
       "shots/shared/far-silhouette.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All shared-material frames inspected. Brick courses use physical repeats; mineral, painted metal and clear glass preserve their authored tint and geometry. Material sharing and unload assertions passed."
+    "notes": "Six reused256px brick, plaster_lime, stone_limestone, tile_ceramic, metal_painted and wood_plain graphs bind the browser models; granite coping tint merges into the shared limestone batch. Local dark recess and clear glazing definitions retain portable fallbacks. The detailed master keeps its seven historical graph bindings/nine material batches; every browser level uses at most eight draws. No embedded images. All current shared frames and north-up placement overlay inspected; graph hashes, geographic fixture and unload/disposal assertions pass."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:b20317122fe3d51de59781c4663245a9bd543e1c4c2e837f0b71f2dc0d24f157",
-    "notes": "Exact mapped tower and fort centers plus explicit main-entrance node fix position and facade quadrant. North-up overlay aligns the tower inside the integral fort; the broad fort remains part of the asset rather than shrinking to the tower circle."
+    "notes": "Retained Q11309665 tower way300384923 and fort way294823599 centered at [15.554236107,54.186390113], heading0.5013149261rad. Explicit main-entry node4426764796 fixes native+Z toward south-southeast; the mapped broad fort remains integral to the asset rather than shrinking to the tower circle. Mapped redoubt diameter16.85m and shaft diameter8.32m constrain plan; published26m total remains. North-up overlay inspected. Terrain-contactY0 refers to the surrounding fort terrace, not the lower quay. Exact facade/component dimensions, native terrain clearance and outer retaining-wall/site integration remain outside the retained approximate placement scope."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Detailed published exterior in Molen shared material style.",
+    "notes": "Current medium-fi exterior acceptance follows the latest guide. All original83106 detailed triangles retain exact indexed positions, normals, colors, metric UVs and material assignments;228faces add only the missing helical stair support and two finishing treads. Original source/imported masters are preserved locally for comparison, while current reproducible masters contain83334triangles. Four complete authored browser levels meet998/4000/15994/37674triangle limits with1/8/8/8draws. The9material master finding is explicit; it is not served as the initial browser detail. Physical-device timings remain unmeasured."
+  },
+  "reviewedOn": "2026-10-28",
+  "sourceHash": "sha256:c823f9372dbfed61c53f9e7047703c0f76525c4b7730d6aa875e76cee3fd39d3",
+  "runtimeHash": "sha256:6e8c3079d0fccc86244270e82b0440a2ec6fe0093fe5e7f9b03e4803b80c63bf",
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ef0eef65f7c5a94ec61649a782325af01abff9b5f1b694247737e1a279fb5fdf",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-fort-entry.png",
+      "medium-fi/near-arcade-dates.png",
+      "medium-fi/near-colonnade.png",
+      "medium-fi/near-lantern.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/skyline-full-fort-open-colonnade-and-cap.png",
+      "medium-fi/district-true-fort-entry-and-gunports.png",
+      "medium-fi/street-eight-pillars-and-glazed-spiral.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All25 final context frames inspected at street/block/skyline distances, noon and late lighting, Economy and High, untextured silhouette, four matched transitions and dedicated fort/arcade/colonnade/lantern views. Skyline retains the full redoubt, buttresses, entry and booth, window rhythm, open eight pillars, both galleries and cap. District retains real recesses and full colonnade support; street/closeup restore dates, original simplified maritime relief and selected seams. Coarse curves, rail/port cards, a slightly broadened skyline coping, sparse district guards/coping blocks and omitted tiny district lettering aggregate with distance. Synthetic houses establish scale/context only; native grading remains unverified."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "The operator current exterior photographs constrain the 26m silhouette, integral fort, octagonal colonnade and maritime memorial. Raised emblem curves and small joinery are original reconstructions at useful exterior scale; no scanned-sculpture claim."
+    "notes": "The operator current exterior photographs constrain the 26m silhouette, integral fort, octagonal colonnade and maritime memorial. Raised emblem curves and small joinery are original reconstructions at useful exterior scale; no scanned-sculpture claim.",
+    "reviewBinding": "Historical declared scope only; current acceptance is the freshly inspected medium-fi exterior."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u3/u3e/kolobrzeg_lighthouse/models/source.glb",
+        "hash": "sha256:c823f9372dbfed61c53f9e7047703c0f76525c4b7730d6aa875e76cee3fd39d3",
+        "bytes": 7422436,
+        "triangles": 83334,
+        "materials": 9,
+        "images": 0,
+        "min": [
+          -8.579999923706055,
+          0,
+          -8.579999923706055
+        ],
+        "max": [
+          8.579999923706055,
+          26,
+          9.6850004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u3/u3e/kolobrzeg_lighthouse/model.glb",
+        "hash": "sha256:6e8c3079d0fccc86244270e82b0440a2ec6fe0093fe5e7f9b03e4803b80c63bf",
+        "bytes": 7421724,
+        "triangles": 83334,
+        "materials": 9,
+        "images": 0,
+        "min": [
+          -8.579999923706055,
+          0,
+          -8.579999923706055
+        ],
+        "max": [
+          8.579999923706055,
+          26,
+          9.6850004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u3/u3e/kolobrzeg_lighthouse/model.skyline.glb",
+        "hash": "sha256:82e24de0414333d817d24f3f85b3f4ad7f280b720e0a067ca11383802b2172cd",
+        "bytes": 76868,
+        "triangles": 998,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -8.449999809265137,
+          0,
+          -8.449999809265137
+        ],
+        "max": [
+          8.449999809265137,
+          26,
+          9.65999984741211
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u3/u3e/kolobrzeg_lighthouse/model.district.glb",
+        "hash": "sha256:87fe3c0542197f8388350e2f30c5599069ddc5db1181e90831c3ce0783748e12",
+        "bytes": 292052,
+        "triangles": 4000,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -8.579999923706055,
+          0,
+          -8.579999923706055
+        ],
+        "max": [
+          8.579999923706055,
+          26,
+          9.65999984741211
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u3/u3e/kolobrzeg_lighthouse/model.street.glb",
+        "hash": "sha256:41d0e5184dab23a2af3aea8aa4a07954d4be5913cbbc62bfa5346e06d790b476",
+        "bytes": 1172144,
+        "triangles": 15994,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -8.579999923706055,
+          0,
+          -8.579999923706055
+        ],
+        "max": [
+          8.579999923706055,
+          26,
+          9.6850004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u3/u3e/kolobrzeg_lighthouse/model.closeup.glb",
+        "hash": "sha256:2524ec96187b643b428ffdc53dd2cf5ada00846b02b7637cb987606fe1a3c609",
+        "bytes": 2612468,
+        "triangles": 37674,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -8.579999923706055,
+          0,
+          -8.579999923706055
+        ],
+        "max": [
+          8.579999923706055,
+          26,
+          9.6850004196167
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "refreshedOn": "2026-10-28",
+    "notes": "Six Khronos Validator GLBs have zero errors and warnings. Two focused tests pass in3.71sec: detailed master and all browser levels retain26m bounds, broad fort/shaft, real arched entry, all12shaft windows, eight open columns and supported upper capital/gallery coverage. Near levels retain ten recessed upper gunports, all16visible spiral treads,14between-tread support probes, compact optic and pedestal. Deterministic copied-fixture reconstruction reproduces registered bytes and checks actual budgets, no embedded images and separate12byte GPU attribute streams. Current source generation/import checks, strict budget audit, scene validation and30tick simulation pass with zero events; scene state hash sha256:f741d700ee02545f1219db07b748b4bcf8db6dd06da092ea1253012d7343000f."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:5ea676ecd4916dbac2c502e75d4708d5df6124588e61ab25fb9d6f71a407e2ad",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:82e24de0414333d817d24f3f85b3f4ad7f280b720e0a067ca11383802b2172cd",
+        "bytes": 76868,
+        "gzipBytes": 13420,
+        "triangles": 998,
+        "cpuBytes": 75468,
+        "gpuBytes": 75468,
+        "errorMeters": 0.7,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:87fe3c0542197f8388350e2f30c5599069ddc5db1181e90831c3ce0783748e12",
+        "bytes": 292052,
+        "gzipBytes": 52048,
+        "triangles": 4000,
+        "cpuBytes": 282408,
+        "gpuBytes": 282408,
+        "errorMeters": 0.4,
+        "drawCalls": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:41d0e5184dab23a2af3aea8aa4a07954d4be5913cbbc62bfa5346e06d790b476",
+        "bytes": 1172144,
+        "gzipBytes": 202033,
+        "triangles": 15994,
+        "cpuBytes": 1162464,
+        "gpuBytes": 1162464,
+        "errorMeters": 0.16,
+        "drawCalls": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:2524ec96187b643b428ffdc53dd2cf5ada00846b02b7637cb987606fe1a3c609",
+        "bytes": 2612468,
+        "gzipBytes": 489345,
+        "triangles": 37674,
+        "cpuBytes": 2602764,
+        "gpuBytes": 2602764,
+        "errorMeters": 0.08,
+        "drawCalls": 8
+      }
+    ],
+    "initialBytes": 368920,
+    "notes": "Skyline/district/street/closeup use76868/292052/1172144/2612468bytes and1/8/8/8draws. Initial skyline+district total368920bytes is below phone/laptop targets. Current source master sha256:c823f9372dbfed61c53f9e7047703c0f76525c4b7730d6aa875e76cee3fd39d3 and imported master sha256:6e8c3079d0fccc86244270e82b0440a2ec6fe0093fe5e7f9b03e4803b80c63bf. Every complete browser level uses separate position/normal/color streams and no embedded images. Six shared256px graphs are reused across structures."
+  },
+  "reviewRefresh": {
+    "kind": "fresh-current-model-and-LOD-review",
+    "inputHash": "sha256:2f63fce9d75caa69cb17147f11530dba5bd8ad5c2012349bfd15e35647cdc288",
+    "sourceHash": "sha256:c823f9372dbfed61c53f9e7047703c0f76525c4b7730d6aa875e76cee3fd39d3",
+    "runtimeHash": "sha256:6e8c3079d0fccc86244270e82b0440a2ec6fe0093fe5e7f9b03e4803b80c63bf",
+    "framesInspected": 45,
+    "note": "One continuous targeted authoring and actual current render review, using retained ordinary photos and map work. A visual defect in the original decorative spiral was corrected during the same pass; an exact per-triangle comparison proves every original source face remains unchanged and only228faces were added. Source-local stair helper and browser recipes are inventoried; the existing lighthouse sourceGeometry adapter provides reproducible master generation without changing the shared historical recipe. No bespoke research, terrain download, engine CI, dependency audit, Git mutation or upload."
+  },
+  "limitations": [
+    "The individual lighthouse and integral circular redoubt are reviewed; outer fort retaining walls, wider landscape terraces, market stalls and detached harbor buildings remain map/site context. Interior support and last two treads are plausible original reconstruction, not a surveyed or navigable interior. Native terrain/quay clearance, exact relief dimensions and physical-device timing remain unverified; no scan-accurate memorial, optical bearing or navigation-performance claim."
+  ],
+  "geometryCorrectionsReview": {
+    "date": "2026-10-28",
+    "oldSourceHash": "sha256:ce86f58e1423e99276fc4aed9b2eb1185807e6ea86d36fbb8cc78c217513da63",
+    "currentSourceHash": "sha256:c823f9372dbfed61c53f9e7047703c0f76525c4b7730d6aa875e76cee3fd39d3",
+    "originalTriangles": 83106,
+    "addedTriangles": 228,
+    "allOriginalTrianglesExact": true,
+    "comparison": "Actual indexed positions, normals, colors, metric UVs and material per triangle retain the original83334-228faces, including original stair treads. Only the helical support and two finishing treads are added.",
+    "status": "passed",
+    "currentRuntimeHash": "sha256:6e8c3079d0fccc86244270e82b0440a2ec6fe0093fe5e7f9b03e4803b80c63bf",
+    "notes": "Continuous visible stair stringer and last two treads reach the upper floor; all original faces remain exact. Additional open-lantern close image inspected: supported optic visible through glazing.",
+    "additionalFrame": {
+      "path": ".artifacts/kolobrzeg-refresh/lantern-optic-corrected.png",
+      "hash": "sha256:5b04e9c82fcd6f618b1e1edafb0079145fe2412844f8a52a0ea8cb5a557458fb",
+      "camera": [
+        4,
+        24,
+        -6
+      ],
+      "lookAt": [
+        0,
+        23.8,
+        0
+      ],
+      "size": [
+        1000,
+        700
+      ],
+      "command": "node packages/tooling/dist/cli.mjs shot content/worldgen/source/places/u3/u3e/kolobrzeg_lighthouse/scene.json --project content/worldgen/project.json --camera=4,24,-6 --look=0,23.8,0 --size 1000x700 --out .artifacts/kolobrzeg-refresh/lantern-optic-corrected.png",
+      "stateHash": "sha256:85b05f02124bf57acf5363ac034c0b2b6eb1627af930d51fe3cf826e5f39bfc5"
+    }
   }
 }

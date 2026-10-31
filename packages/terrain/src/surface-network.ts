@@ -206,6 +206,42 @@ export class SurfaceNetwork {
     );
   }
 
+  /** True where another carriageway occupies the same elevation (merge openings and paint). */
+  overlappingPavement(
+    x: number,
+    z: number,
+    road: SurfaceRoad,
+    heightAt: (road: SurfaceRoad, x: number, z: number) => number,
+  ): boolean {
+    const candidates =
+      this.cells.get(`${Math.floor(x / this.cellSize)}/${Math.floor(z / this.cellSize)}`) ?? [];
+    return candidates.some(
+      (s) =>
+        s.road !== road &&
+        s.road.kind !== 'path' &&
+        s.road.kind !== 'rail' &&
+        distanceToSegment(x, z, s) < s.road.width / 2 + 0.15 &&
+        Math.abs(heightAt(s.road, x, z) - heightAt(road, x, z)) < 0.35,
+    );
+  }
+
+  /** Keep inferred supports out of the usable corridor of a lower road. */
+  pavementBelow(
+    x: number,
+    z: number,
+    road: SurfaceRoad,
+    heightAt: (road: SurfaceRoad, x: number, z: number) => number,
+  ): boolean {
+    const candidates =
+      this.cells.get(`${Math.floor(x / this.cellSize)}/${Math.floor(z / this.cellSize)}`) ?? [];
+    return candidates.some(
+      (s) =>
+        s.road !== road &&
+        distanceToSegment(x, z, s) < s.road.width / 2 + 2 &&
+        heightAt(s.road, x, z) < heightAt(road, x, z) - 2,
+    );
+  }
+
   /**
    * Sink each road whose paving overlaps another road's a step or more under it. Every road
    * draws its asphalt, shoulders, sidewalks, curbs and paint at the same heights over the one

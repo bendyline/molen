@@ -801,6 +801,77 @@
                 "densityExponent": 1,
                 "ratedDensityRatio": 1
               }
+            ],
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.1,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.1,
+                    3.0800039999999997
+                  ],
+                  [
+                    0,
+                    1.1,
+                    -3.0800039999999997
+                  ],
+                  [
+                    4.20624,
+                    1.1,
+                    0
+                  ],
+                  [
+                    -4.20624,
+                    1.1,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Cherokee-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.25,
+                  2.36
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Cherokee-propeller"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.25,
+                    2.36
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 0.965834,
+                  "halfThickness": 0.06,
+                  "rotor": "Cherokee-propeller"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              }
             ]
           }
         },
@@ -836,7 +907,8 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {}
         },
         "mountable": {
           "seats": [

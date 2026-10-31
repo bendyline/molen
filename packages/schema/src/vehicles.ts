@@ -1,9 +1,36 @@
+import type { ActuatorSpecs } from './actuators';
+import type { AircraftDebris, AircraftPartDamage } from './aircraft';
 import type { JsonObject } from './json';
 import type { ModelSignalSpec } from './model-signals';
 import type { VehicleInteriorSpec } from './vehicle-interior';
 
 /** Stable external entity/type id for a wheeled vehicle. */
 export type VehicleKind = string;
+
+/** Authored rigid sections for road-vehicle impacts. The chassis remains the support body. */
+export interface VehicleCollisionPart extends JsonObject {
+  id: string;
+  role: 'frontWheel' | 'rearWheel' | 'panel' | 'engine';
+  center: [number, number, number];
+  probes: [number, number, number][];
+  radius: number;
+  massFraction: number;
+  breakSpeed: number;
+  nodes: string[];
+  /** Optional articulated panel hinge, driven by a named actuator. */
+  hinge?: {
+    pivot: [number, number, number];
+    axis: [number, number, number];
+    angle: number;
+    actuator: string;
+  };
+}
+
+/** Persistent section integrity and independently moving debris, shared with aircraft. */
+export interface VehicleDamageState extends JsonObject {
+  damage?: Record<string, AircraftPartDamage>;
+  debris?: AircraftDebris[];
+}
 
 /** Generic body styles, independent of any make or model name. */
 export type VehicleBodyStyle =
@@ -48,6 +75,8 @@ export interface CycleSpec extends JsonObject {
 
 /** Data-driven tuning consumed by the generic wheeled-vehicle solver. */
 export interface VehicleSpec extends JsonObject {
+  collisionParts?: VehicleCollisionPart[];
+  actuators?: ActuatorSpecs;
   label: string;
   /** Generic body style, so a host can classify or relabel the vehicle without its real name. */
   bodyStyle?: VehicleBodyStyle;

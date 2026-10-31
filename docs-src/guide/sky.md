@@ -233,8 +233,8 @@ quantized to about 0.005° and magnitudes to 0.04. The engine repository regener
 No atmospheric refraction, horizon dip, terrain horizon calculation, eclipses, planetary bodies,
 Milky Way texture, lunar libration or photographic lunar map are modeled. The procedural lunar
 surface is illustrative. Sunrise and sunset are geometric approximations; this is an experience
-renderer, not a navigation or observational ephemeris. Layered clouds, precipitation, visibility
-and physical atmospheric state live in the separate [weather component](weather.md).
+renderer, not a navigation or observational ephemeris. Volumetric clouds, precipitation,
+visibility and physical atmospheric state live in the separate [weather component](weather.md).
 Volumetric atmospheric scattering remains future work.
 
 ## Try it

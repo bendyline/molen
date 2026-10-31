@@ -36,32 +36,51 @@ it('moves the explorer from a connected joystick and suspends it while remapping
       });
       Object.assign(window, { joystickTestPad: pad });
     });
-    // Pin local noon: movement is per frame, and the default date is night on UTC CI.
+    // Exercise the real navigation loop with cheap, fixed daylight. Dynamic sky/weather,
+    // ground shaders and shadows can stall browser queries on CI's software renderer.
     await page.goto(
-      `${url}/?synthetic=1&worldgen=0&mode=bare&ambient=0&audio=0&backend=webgl&quality=low&date=2024-03-24T19:00:00Z`,
+      `${url}/?synthetic=1&worldgen=0&mode=bare&ambient=0&audio=0&backend=webgl&quality=low&sky=daylight&ground=flat&shadows=0`,
     );
     const status = page.locator('#navigation-status');
     const position = () =>
-      status.evaluate((node) => [
+      status.evaluate((node): [number, number] => [
         Number((node as HTMLElement).dataset.x),
         Number((node as HTMLElement).dataset.z),
       ]);
-    await expect
-      .poll(async () => (await position()).every(Number.isFinite), { timeout: 60_000 })
-      .toBe(true);
+    // Poll in the browser so a slow frame does not leave a host-side expect.poll callback
+    // waiting on another protocol round trip when its timeout expires.
+    const waitForMovement = (origin: [number, number]) =>
+      page.waitForFunction(
+        ([x, z]) => {
+          const node = document.querySelector<HTMLElement>('#navigation-status');
+          return Math.hypot(Number(node?.dataset.x) - x, Number(node?.dataset.z) - z) > 2;
+        },
+        origin,
+        { timeout: 10_000 },
+      );
+    await page.waitForFunction(
+      () => {
+        const node = document.querySelector<HTMLElement>('#navigation-status');
+        return [Number(node?.dataset.x), Number(node?.dataset.z)].every(Number.isFinite);
+      },
+      undefined,
+      { timeout: 60_000 },
+    );
     await page.locator('canvas#view').focus();
     const before = await position();
     await page.evaluate(() => {
       (window as unknown as { joystickTestPad: { axes: number[] } }).joystickTestPad.axes[1] =
         -0.56;
     });
-    await expect
-      .poll(
-        async () =>
-          Math.hypot(...(await position()).map((value, index) => value - (before[index] ?? 0))),
-        { timeout: 10_000 },
-      )
-      .toBeGreaterThan(2);
+    await waitForMovement(before);
+    // A visible window can lose focus without browser rAF throttling. The held joystick must
+    // stop advancing the view until focus returns.
+    await page.evaluate(() => window.dispatchEvent(new Event('blur')));
+    const unfocused = await position();
+    await page.waitForTimeout(650);
+    expect(await position()).toEqual(unfocused);
+    await page.evaluate(() => window.dispatchEvent(new Event('focus')));
+    await waitForMovement(unfocused);
     await page.getByRole('button', { name: 'Controllers (1)', exact: true }).click();
     await page.getByLabel('Profile', { exact: true }).selectOption('fly');
     // Keep holding the stick: opening the editor must stop navigation immediately.
@@ -73,20 +92,13 @@ it('moves the explorer from a connected joystick and suspends it while remapping
     await page.locator('#view').evaluate(() => new Promise((resolve) => setTimeout(resolve, 650)));
     expect((await position()).map(String)).toEqual(paused?.map((value) => String(Number(value))));
     await page.getByRole('button', { name: 'Done', exact: true }).click();
-    // Resumed streaming can delay browser queries beyond the default 1 s on software renderers.
-    await expect
-      .poll(() => page.locator('#view').evaluate((node) => node === document.activeElement), {
-        timeout: 10_000,
-      })
-      .toBe(true);
+    await page.waitForFunction(
+      () => document.querySelector('#view') === document.activeElement,
+      undefined,
+      { timeout: 10_000 },
+    );
     const resumed = await position();
-    await expect
-      .poll(
-        async () =>
-          Math.hypot(...(await position()).map((value, index) => value - (resumed[index] ?? 0))),
-        { timeout: 10_000 },
-      )
-      .toBeGreaterThan(2);
+    await waitForMovement(resumed);
     expect(errors).toEqual([]);
   } finally {
     await page.close();

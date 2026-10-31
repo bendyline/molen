@@ -20,7 +20,7 @@ Add this entity to a `molen/scene@3` manifest:
         "referenceAltitude": 0,
         "gasConstant": 287.05
       },
-      "clouds": { "coverage": 0.98, "density": 0.95, "baseAltitude": 1600, "thickness": 1200, "scale": 16000 },
+      "clouds": { "type": "stratus", "coverage": 0.98, "density": 0.95, "baseAltitude": 1600, "thickness": 1200, "scale": 16000 },
       "precipitation": { "kind": "rain", "intensity": 0.7 },
       "visibility": 4500,
       "seed": 1
@@ -37,8 +37,8 @@ Weather participates in state hashes, checkpoints and replays.
 
 `WeatherData`, `weatherSchema`, `resolveWeather`, `WeatherProfile` and `weatherProfile` are
 exported by `@bendyline/molen-schema`. The client re-exports the types, resolver and presets.
-`weatherProfile('sunny' | 'partly-cloudy' | 'overcast' | 'rain' | 'snow' | 'fog')` returns fresh
-editable data. `resolveWeather(data)` supplies defaults and copies nested values. Validate
+`weatherProfile('sunny' | 'partly-cloudy' | 'overcast' | 'rain' | 'storm' | 'snow' | 'fog')`
+returns fresh editable data. `resolveWeather(data)` supplies defaults and copies nested values. Validate
 external data with `weatherSchema.parse` before using it in typed code.
 
 | Parameter | Meaning |
@@ -51,8 +51,10 @@ external data with `weatherSchema.parse` before using it in typed code.
 | `atmosphere.windVelocity` | World XYZ velocity in m/s; +X east and -Z north in Earth worlds. A velocity toward a direction, not a meteorological "from" bearing. |
 | `atmosphere.referenceAltitude` | Absolute world Y where temperature/pressure apply, default 0 m. |
 | `atmosphere.gasConstant` | Specific gas constant, default 287.05 J/(kg·K) for dry air; configurable for other worlds. |
-| `clouds.coverage`, `density` | Independent 0–1 coverage and optical density controls. |
-| `clouds.baseAltitude`, `thickness`, `scale` | Absolute base Y, layer separation, and horizontal pattern repeat size in meters. |
+| `clouds.type` | `cumulus` (default): separate fair-weather heaps; `stratocumulus`: a lumpy, closed layer; `stratus`: a flat grey sheet; `cumulonimbus`: towering storm cells with anvil tops (give them a deep layer). |
+| `clouds.coverage`, `density` | Independent 0–1 controls: the share of the sky the layer covers (1 closes it) and its optical density. |
+| `clouds.baseAltitude`, `thickness`, `scale` | Absolute base Y and depth of the layer, and the horizontal pattern repeat size, in meters. |
+| `clouds.cirrus`, `cirrusAltitude` | Coverage 0–1 of a thin, wispy high cirrus layer (default 0) and its absolute Y (default 9000 m). Independent of the main layer. |
 | `precipitation.kind`, `intensity` | Explicit none/rain/snow and 0–1 visual intensity; not calibrated mm/hour. |
 | `visibility` | Approximate visual fade distance in meters, independent of clouds and precipitation. |
 | `wind.referenceHeight` | Height above ground in meters where `windVelocity` applies; default 10. |
@@ -62,6 +64,8 @@ external data with `weatherSchema.parse` before using it in typed code.
 | `wind.terrain` | 0–1 strength of slope flow: lift up windward hillsides, sink and rougher air in the lee; default 0. |
 
 Presets are starting points, not classifications that constrain these independent parameters.
+Partly cloudy is cumulus under some cirrus, overcast a closed stratocumulus deck, rain and snow
+stratus, and storm scattered cumulonimbus 7 km deep with heavy rain.
 Every preset includes a `wind` block: light chop and gusts for sunny skies, rougher air in rain,
 and nearly still, strongly sheared air in fog.
 
@@ -139,30 +143,65 @@ viewer.renderer.setWeatherTimeOverride(undefined); // resume simulation time
 viewer.renderer.setWeather(undefined); // remove weather effects
 ```
 
-Clouds use two wind-advected procedural layers at absolute world altitudes. They occlude
-celestial bodies, tint through dusk/night, and reduce direct lighting. Rain and snow share a
-bounded camera-local particle batch with wind drift. Seed/time sampling is deterministic;
-floating-origin changes preserve world alignment. No simulation random numbers are consumed.
+The cloud layer is a volume, ray-marched between `baseAltitude` and the top of the layer on
+both backends: a weather map decides where clouds stand, a 3D billow noise carves them, and each
+sample is lit by marching toward the sun (or moon), so cumulus have flat grey bases and bright,
+rounded tops, a closed deck is lumpy underneath, and a low sun lights cloud bases from below.
+You can fly over, under and into it; inside a cloud the view whites out. Cirrus are a flat sheet
+of wind-combed streaks at `cirrusAltitude`. Clouds drift with the mean wind, cumulus slowly boil,
+cirrus ride faster, and all of them occlude celestial bodies, tint through dusk and night, take
+the scene's haze (less of it looking up, since haze lies near the ground) and reduce direct
+lighting. Rain and snow share a bounded camera-local particle batch with wind drift. Seed/time
+sampling is deterministic; floating-origin changes preserve world alignment. No simulation
+random numbers are consumed.
 
-Standard materials work on WebGL and WebGPU, with up to two cloud draws and one precipitation
-draw. Textures generate locally when needed; sunny startup generates no cloud noise and
-allocates no particle batch. Animation follows simulation time independently of a sky-time
-preview override, so pauses and captures remain repeatable.
+`viewer.renderer.setCloudQuality('low' | 'medium' | 'high' | 'ultra')` (default `'medium'`) sets
+the work per pixel: ray-march steps and light samples, edge erosion from `'high'`, and from
+`'high'` cloud shadows. Cloud shadows project the cloud field along the sun onto every lit
+surface, terrain, buildings and vehicles alike, and replace the even dimming of direct light that
+cloud cover applies at lower qualities. The quality is uniform-driven, so changing it, even every
+frame, rebuilds no shader. `mountEarthView` sets it from its performance tier: low at the two
+lowest levels, medium up to Balanced, high and ultra above (with cloud shadows). Measured on a
+1280x720 partly cloudy view, clouds cost about 0.5-0.7 ms of GPU time at low and 1.0-1.7 ms at
+medium to ultra on an integrated laptop GPU, and 0.15-0.65 ms on a discrete one; looking out
+from inside a cloud costs about twice that.
+
+The deck is one draw (a camera-centred plane where view rays enter the layer, or nested shells
+around a camera inside it, so nearer geometry hides it through the ordinary depth test), cirrus
+one more and precipitation one. The noise is generated once per page, a few milliseconds per
+frame, and the clouds appear when it is ready (about a second); sunny startup generates no cloud
+noise and allocates no particle batch. Animation follows simulation time independently of a
+sky-time preview override, so pauses and captures remain repeatable.
+
+On WebGL, cloud shadows reach a lit material through three's lighting chunks. A material that
+installs its own `onBeforeCompile` keeps them by calling the prototype's first:
+
+```ts
+material.onBeforeCompile = (shader, renderer) => {
+  THREE.Material.prototype.onBeforeCompile.call(material, shader, renderer);
+  // ...the material's own changes
+};
+```
+
+On WebGPU every node material receives them through the directional lights.
 
 Weather visibility temporarily limits scene fog; a nearer authored terrain fog limit and its
-clear foreground are preserved when weather visibility reaches beyond that limit. Removing
-weather restores the authored fog and lighting. Clouds are layered
-surfaces, not ray-marched 3D volumes: flying through a layer does not simulate condensation.
-Precipitation is a local visual field, including above cloud layers, without roof/terrain
-collision, splash, accumulation or wet-material response.
+clear foreground are preserved when weather visibility reaches beyond that limit. Under a closed
+deck the fog turns grey. Removing weather restores the authored fog and lighting. Clouds are a
+visual volume: flying through one does not simulate icing, turbulence or condensation (wind
+turbulence is the `wind` block's). Precipitation is a local visual field, including above cloud
+layers, without roof/terrain collision, splash, accumulation or wet-material response.
 
 ## World explorer
 
-The Weather dropdown includes Fair, Sunny / clear, Partly cloudy, Overcast, Rain, Snow and Fog.
+The Weather dropdown includes Fair, Sunny / clear, Partly cloudy, Overcast, Rain, Thunderstorms,
+Snow and Fog.
 The explorer opens on Fair, its own preset: Sunny with scattered fair-weather cumulus (30%
 coverage at 45% density, in 24 km cells rather than the default 16 km), so a street-level sky is
-not a bare gradient and the deck breaks into separate clouds instead of streaks at the horizon. Weather details mixes cloud coverage/density/altitude, precipitation, intensity, visibility,
-temperature, pressure and wind, marking the profile Custom. Temperature and pressure controls
+not a bare gradient and the layer breaks into separate clouds toward the horizon. Weather
+details mixes cloud type, coverage, density, base, depth and cirrus, precipitation, intensity,
+visibility, temperature, pressure and wind, marking the profile Custom. Cloud quality follows the
+graphics quality; High casts cloud shadows. Temperature and pressure controls
 refer to sea level, displayed in °C and hPa and stored in kelvin and pascals. The same component
 is installed in the explorer's vehicle/aircraft simulation.
 

@@ -17,7 +17,11 @@ const deciduous = new Set([
   'beech',
   'birch',
   'maple',
+  'bigleaf_maple',
+  'vine_maple',
+  'street_maple',
   'alder',
+  'cottonwood',
   'willow',
   'poplar',
   'larch',
@@ -30,14 +34,21 @@ const taxa = {
   beech: ['fagus'],
   birch: ['betula'],
   maple: ['acer'],
+  bigleaf_maple: ['acer macrophyllum'],
+  vine_maple: ['acer circinatum'],
+  street_maple: ['acer rubrum'],
   alder: ['alnus'],
   willow: ['salix'],
   poplar: ['populus'],
+  cottonwood: ['populus trichocarpa'],
   eucalyptus: ['eucalyptus'],
   southern_beech: ['nothofagus'],
   olive: ['olea europaea'],
   spruce: ['picea'],
+  sitka_spruce: ['picea sitchensis'],
   fir: ['abies'],
+  douglas_fir: ['pseudotsuga menziesii', 'pseudotsuga'],
+  hemlock: ['tsuga heterophylla', 'tsuga'],
   pine: ['pinus'],
   stone_pine: ['pinus pinea'],
   cedar: ['thuja plicata'],
@@ -78,7 +89,14 @@ const AUTUMN = {
   larch: '#c2a744',
   beech: '#ad7b3f',
   oak: '#946a40',
-  alder: '#9fa04f',
+  // Red alder drops its leaves still dull green, browning at most; it never turns gold.
+  alder: '#6e7449',
+  // Pacific Northwest colour is muted: bigleaf maple goes a dusky butterscotch, cottonwood a
+  // soft yellow, vine maple orange in the understory, and only planted red maples turn red.
+  bigleaf_maple: '#8c7c3e',
+  cottonwood: '#9e8f45',
+  vine_maple: '#9a5631',
+  street_maple: '#7b3a2d',
 };
 const plants = [
   plant('oak', 'Spreading temperate oak form', 'broadleaf', 'round', 13, 12, '#688647'),
@@ -110,7 +128,27 @@ const plants = [
     '#2c4630',
     { crownBase: 0.34 },
   ),
-  plant('alder', 'Pacific coastal alder form', 'broadleaf', 'round', 15, 9, '#5f7f5a'),
+  plant('alder', 'Pacific coastal alder form', 'broadleaf', 'round', 15, 9, '#5f7f5a', {
+    // Red alder's smooth bark is pale grey under lichen; it shows once the leaves are down.
+    bark: '#9c988b',
+  }),
+  plant('bigleaf_maple', 'Pacific bigleaf maple form', 'broadleaf', 'round', 20, 13, '#5c7a42', {
+    // Moss-covered limbs: grey-green bark in the wet lowland forest.
+    bark: '#6b6a52',
+    crownBase: 0.36,
+  }),
+  plant('vine_maple', 'Pacific vine maple understory form', 'broadleaf', 'round', 6, 6, '#5b7a43', {
+    crownBase: 0.15,
+    stemRadius: 0.07,
+    lean: 0.12,
+  }),
+  plant('street_maple', 'Planted ornamental maple form', 'broadleaf', 'round', 11, 9, '#5f7d40', {
+    crownBase: 0.3,
+  }),
+  plant('cottonwood', 'Pacific black cottonwood form', 'broadleaf', 'columnar', 30, 11, '#5f7650', {
+    bark: '#7c776a',
+    crownBase: 0.38,
+  }),
   plant(
     'podocarp',
     'Southern evergreen conifer canopy form',
@@ -237,6 +275,20 @@ const plants = [
   plant('pine', 'Temperate pine form', 'conifer', 'round', 18, 7, '#69844e', { crownBase: 0.32 }),
   plant('cedar', 'Pacific coastal conifer form', 'conifer', 'columnar', 29, 9, '#1a3436', {
     crownBase: 0.12,
+  }),
+  // Second-growth Douglas-fir self-prunes: a tall clear trunk under a dark, slightly warmer crown
+  // than redcedar's blue-green; western hemlock is shorter, fuller and a shade lighter.
+  plant('douglas_fir', 'Pacific Douglas-fir form', 'conifer', 'columnar', 32, 9, '#1f3a2e', {
+    bark: '#5e4a3a',
+    crownBase: 0.3,
+  }),
+  plant('hemlock', 'Pacific western hemlock form', 'conifer', 'columnar', 28, 8, '#23423b', {
+    bark: '#6a5444',
+    crownBase: 0.1,
+  }),
+  plant('sitka_spruce', 'Pacific Sitka spruce form', 'conifer', 'columnar', 38, 10, '#29443f', {
+    bark: '#6e6152',
+    crownBase: 0.18,
   }),
   plant('larch', 'Boreal larch form', 'conifer', 'columnar', 16, 5, '#8b9b60'),
   plant('cypress', 'Mediterranean columnar cypress form', 'conifer', 'columnar', 17, 3, '#536f49', {
@@ -999,11 +1051,15 @@ habitat(
   ['dry_grass'],
   { priority: 40, surface: cold, openDensity: 0.3, orchard: [], parkTrees: [] },
 );
+// Puget lowland and Cascade second growth: Douglas-fir over western redcedar and hemlock, with
+// bigleaf maple and red alder in gaps and along streams, so evergreens hold nearly nine crowns in
+// ten. A tile draws only its few most numerous species, so these weights also decide what a tight
+// model budget keeps: three conifers, then whichever broadleaf the tile holds most of.
 habitat(
   'pacific_coastal',
   'Pacific coastal conifer rainforest',
-  { ecoregions: [349, 351, 352, 358, 359, 360, 364, 365] },
-  [['cedar', 5], ['fir', 2], 'alder'],
+  { ecoregions: [349, 351, 352, 358, 359, 364] },
+  [['douglas_fir', 6], ['cedar', 3], ['hemlock', 2], 'bigleaf_maple', 'alder'],
   ['scrub'],
   ['fern'],
   {
@@ -1011,11 +1067,34 @@ habitat(
     surface: wet,
     surfacePalette: pacificCoastal,
     forestDensity: 175,
-    // Eastside yards and greenbelts are mostly Douglas-fir and cedar under a few maples.
-    parkTrees: [['cedar', 3], ['fir', 2], ['alder', 2], 'maple'],
-    homeTrees: [['cedar', 5], ['fir', 4], 'alder', 'maple'],
+    // Eastside yards and greenbelts keep their retained Douglas-fir and cedar; planted maples
+    // are the minority that colours in October.
+    parkTrees: [['douglas_fir', 4], ['cedar', 3], 'hemlock', 'bigleaf_maple', 'street_maple'],
+    homeTrees: [['douglas_fir', 6], ['cedar', 4], 'hemlock', 'street_maple'],
+    riparian: [['alder', 4], ['cottonwood', 2], 'bigleaf_maple', 'cedar'],
     residentialTrees: 80,
     openTrees: 90,
+    crownScale: 1.4,
+  },
+);
+// The hypermaritime north coast (southeast Alaska, Haida Gwaii) lies beyond Douglas-fir and
+// bigleaf maple: western hemlock and Sitka spruce with redcedar, red alder in the clearings.
+habitat(
+  'pacific_hypermaritime',
+  'North Pacific spruce and hemlock rainforest',
+  { ecoregions: [360, 365] },
+  [['hemlock', 5], ['sitka_spruce', 3], ['cedar', 2], 'alder'],
+  ['scrub'],
+  ['fern'],
+  {
+    priority: 40,
+    surface: wet,
+    surfacePalette: pacificCoastal,
+    forestDensity: 175,
+    parkTrees: [['hemlock', 3], ['sitka_spruce', 2], 'alder'],
+    riparian: [['alder', 3], 'sitka_spruce'],
+    residentialTrees: 40,
+    openTrees: 60,
     crownScale: 1.4,
   },
 );

@@ -48,3 +48,10 @@ Input: sha256:e16854184cf58c094ce705aca81adca64256e076b5c0da801280b9d0a8746be9
 https://commons.wikimedia.org/wiki/File:Torres_El_Faro_en_Puerto_Madero.jpg — Dario Alpern; CC-BY-SA-4.0. Viewed only; no pixels copied.
 
 https://commons.wikimedia.org/wiki/File:Reserva_ecol%C3%B3gica_Torres_el_faro_Buenos_Aires.jpg — Roberto Fiadone; CC-BY-SA-3.0. Viewed only; no pixels copied.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected8 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.
+
+Current output triangles: 372 / 2996 / 13028 / 36068. Current skyline+district bytes: 302612. Source master: 36068 triangles. These current pinned outputs take precedence over any historical counts above.

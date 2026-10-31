@@ -4,6 +4,12 @@ const finite = z.number().finite();
 const fraction = finite.min(0).max(1);
 const vector = z.array(finite).length(3) as unknown as z.ZodType<[number, number, number]>;
 
+/**
+ * Cloud genera the renderer draws: separate fair-weather heaps, a lumpy closed layer, a flat
+ * grey sheet, and towering storm cells with anvil tops.
+ */
+export type CloudType = 'cumulus' | 'stratocumulus' | 'stratus' | 'cumulonimbus';
+
 /** Independent atmospheric, cloud and precipitation parameters, in SI units. */
 export type WeatherData = {
   atmosphere?: {
@@ -23,6 +29,9 @@ export type WeatherData = {
     baseAltitude?: number;
     thickness?: number;
     scale?: number;
+    type?: CloudType;
+    cirrus?: number;
+    cirrusAltitude?: number;
   };
   precipitation?: { kind?: 'none' | 'rain' | 'snow'; intensity?: number };
   wind?: {
@@ -93,7 +102,9 @@ export const weatherSchema: z.ZodType<WeatherData> = z.strictObject({
     .strictObject({
       coverage: fraction
         .optional()
-        .describe('Sky coverage 0–1, default 0; controls breaks in the procedural layer.'),
+        .describe(
+          'Sky coverage 0–1, default 0: the share of the sky the layer covers; 1 closes it.',
+        ),
       density: fraction
         .optional()
         .describe('Cloud optical density 0–1, default 0.65; independent of coverage.'),
@@ -103,14 +114,30 @@ export const weatherSchema: z.ZodType<WeatherData> = z.strictObject({
       thickness: finite
         .positive()
         .optional()
-        .describe('Vertical layer thickness in meters, default 600.'),
+        .describe('Depth of the layer from base to top in meters, default 600.'),
       scale: finite
         .positive()
         .optional()
         .describe('Horizontal cloud-pattern repeat size in meters, default 16000.'),
+      type: z
+        .enum(['cumulus', 'stratocumulus', 'stratus', 'cumulonimbus'])
+        .optional()
+        .describe(
+          'Cloud type of the layer, default cumulus: separate heaps; stratocumulus a lumpy closed layer; stratus a flat sheet; cumulonimbus towering storm cells (give them a thick layer).',
+        ),
+      cirrus: fraction
+        .optional()
+        .describe(
+          'Coverage 0–1 of a thin, wispy high cirrus layer, default 0. Independent of the main layer.',
+        ),
+      cirrusAltitude: finite
+        .optional()
+        .describe('Cirrus layer at absolute world Y in meters, default 9000.'),
     })
     .optional()
-    .describe('World-anchored, wind-advected cloud layer. Does not imply precipitation.'),
+    .describe(
+      'World-anchored, wind-advected volumetric cloud layer of one type, plus an optional high cirrus layer. Does not imply precipitation.',
+    ),
   precipitation: z
     .strictObject({
       kind: z
@@ -198,6 +225,9 @@ export function resolveWeather(data: WeatherData = {}): ResolvedWeather {
       baseAltitude: 1800,
       thickness: 600,
       scale: 16000,
+      type: 'cumulus',
+      cirrus: 0,
+      cirrusAltitude: 9000,
       ...data.clouds,
     },
     precipitation: { kind: 'none', intensity: 0, ...data.precipitation },
@@ -206,7 +236,14 @@ export function resolveWeather(data: WeatherData = {}): ResolvedWeather {
   };
 }
 
-export type WeatherProfile = 'sunny' | 'partly-cloudy' | 'overcast' | 'rain' | 'snow' | 'fog';
+export type WeatherProfile =
+  | 'sunny'
+  | 'partly-cloudy'
+  | 'overcast'
+  | 'rain'
+  | 'storm'
+  | 'snow'
+  | 'fog';
 
 /** Presets are starting points, not a mutually exclusive weather model. Returns fresh data. */
 export function weatherProfile(profile: WeatherProfile): WeatherData {
@@ -228,7 +265,7 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         windVelocity: [5, 0, 2],
       },
       wind: { shear: 0.16, turbulence: 0.2, gusts: 0.3, terrain: 0.7 },
-      clouds: { coverage: 0.42, density: 0.65 },
+      clouds: { coverage: 0.42, density: 0.65, type: 'cumulus', cirrus: 0.3 },
     },
     overcast: {
       atmosphere: {
@@ -238,7 +275,13 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         windVelocity: [6, 0, 2],
       },
       wind: { shear: 0.2, turbulence: 0.15, gusts: 0.3, terrain: 0.7 },
-      clouds: { coverage: 1, density: 0.85, baseAltitude: 1600, thickness: 900 },
+      clouds: {
+        coverage: 1,
+        density: 0.85,
+        baseAltitude: 1600,
+        thickness: 900,
+        type: 'stratocumulus',
+      },
       visibility: 12000,
     },
     rain: {
@@ -249,9 +292,35 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         windVelocity: [7, 0, 3],
       },
       wind: { shear: 0.22, turbulence: 0.35, gusts: 0.45, terrain: 0.8 },
-      clouds: { coverage: 0.98, density: 0.95, baseAltitude: 1600, thickness: 1200 },
+      clouds: {
+        coverage: 0.98,
+        density: 0.95,
+        baseAltitude: 1600,
+        thickness: 1200,
+        type: 'stratus',
+      },
       precipitation: { kind: 'rain', intensity: 0.7 },
       visibility: 4500,
+    },
+    storm: {
+      atmosphere: {
+        temperatureK: 297.15,
+        pressurePa: 100500,
+        relativeHumidity: 0.85,
+        windVelocity: [9, 0, 4],
+      },
+      wind: { shear: 0.22, turbulence: 0.55, gusts: 0.6, terrain: 0.8 },
+      clouds: {
+        coverage: 0.55,
+        density: 0.95,
+        baseAltitude: 1200,
+        thickness: 7000,
+        scale: 30000,
+        type: 'cumulonimbus',
+        cirrus: 0.2,
+      },
+      precipitation: { kind: 'rain', intensity: 0.9 },
+      visibility: 9000,
     },
     snow: {
       atmosphere: {
@@ -261,7 +330,13 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         windVelocity: [2, 0, 1],
       },
       wind: { shear: 0.2, turbulence: 0.2, gusts: 0.35, terrain: 0.7 },
-      clouds: { coverage: 0.94, density: 0.8, baseAltitude: 1600, thickness: 1000 },
+      clouds: {
+        coverage: 0.94,
+        density: 0.8,
+        baseAltitude: 1600,
+        thickness: 1000,
+        type: 'stratus',
+      },
       precipitation: { kind: 'snow', intensity: 0.65 },
       visibility: 2500,
     },
@@ -273,7 +348,7 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         windVelocity: [0.3, 0, 0.2],
       },
       wind: { shear: 0.3, turbulence: 0.03, gusts: 0.1, terrain: 0.3 },
-      clouds: { coverage: 0.3 },
+      clouds: { coverage: 0.3, type: 'stratus' },
       visibility: 450,
     },
   };

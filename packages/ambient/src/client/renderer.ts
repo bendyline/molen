@@ -178,6 +178,9 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
       const candidates: DetailCandidate[] = [];
       const boatCandidates: DetailCandidate[] = [];
       const next = { cars: 0, pedestrians: 0, trains: 0, aircraft: 0, boats: 0 };
+      const agentExists = (id: string): boolean => world.has(id, AmbientAgent);
+      detail?.dropGone(agentExists);
+      boatDetail?.dropGone(agentExists);
       for (const [id, a, t] of world.query(AmbientAgent, Transform)) {
         const agent = a as Readonly<AmbientAgentData>;
         if (agent.kind === 'pedestrian') {

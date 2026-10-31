@@ -45,6 +45,69 @@ const wall: AircraftEnvironment = {
 };
 
 describe('aircraft section collisions', () => {
+  it('a spinning rotor breaks on a stationary hub strike; a stopped rotor only receives contact correction', () => {
+    const heli = molenAircraft('molen.entities.aircraft.oh6').spec;
+    const env: AircraftEnvironment = {
+      ...flat,
+      contacts: (probes) =>
+        probes
+          .filter((p) => p.part === 'main-rotor')
+          .map((p) => ({
+            part: p.part,
+            point: [p.center[0] + 2.5, p.center[1], p.center[2] + 2.5],
+            normal: [-1, 0, 0],
+            depth: 0.02,
+          })),
+    };
+    const running = { ...initialAircraftState(), rpm: 1 },
+      stopped = initialAircraftState();
+    resolveAircraftContacts(pose(), running, heli, env, '');
+    resolveAircraftContacts(pose(), stopped, heli, env, '');
+    expect(running.damage?.['main-rotor']?.detached).toBe(true);
+    expect(running.velocity).toEqual([0, 0, 0]);
+    expect(stopped.damage).toBeUndefined();
+    expect(running.damage?.['rotor-tail-rotor']).toBeUndefined();
+  });
+
+  it('a tail strike releases its independent rotor exactly once and removal survives future contacts', () => {
+    const heli = molenAircraft('molen.entities.aircraft.oh6').spec;
+    const state = airborne();
+    const env: AircraftEnvironment = {
+      ...flat,
+      contacts: () => [{ part: 'tail', point: [0, 31.5, -4], normal: [0, 0, -1], depth: 0.1 }],
+    };
+    resolveAircraftContacts(pose(), state, heli, env, '');
+    resolveAircraftContacts(pose(), state, heli, env, '');
+    expect(state.damage?.['rotor-tail-rotor']?.detached).toBe(true);
+    expect(state.debris?.map((p) => p.part).sort()).toEqual(['rotor-tail-rotor', 'tail']);
+    expect(
+      aircraftCollisionProbes(pose(), heli, state).some((p) => p.part === 'rotor-tail-rotor'),
+    ).toBe(false);
+    expect(state.damage?.['main-rotor']).toBeUndefined();
+  });
+
+  it('rotor discs follow powered-lift conversion and the full aircraft attitude', () => {
+    const tilt = molenAircraft('molen.entities.aircraft.mv_22b').spec;
+    const state = initialAircraftState();
+    const forward = aircraftCollisionProbes(pose(), tilt, {
+      ...state,
+      thrustVectorPosition: 0,
+    }).filter((p) => p.disc);
+    const hover = aircraftCollisionProbes(pose(), tilt, {
+      ...state,
+      thrustVectorPosition: 1,
+    }).filter((p) => p.disc);
+    expect(forward).toHaveLength(2);
+    expect(forward[0]?.disc?.normal[2]).toBeCloseTo(1);
+    expect(hover[0]?.disc?.normal[1]).toBeCloseTo(1);
+    expect(hover[0]?.center[1]).toBeGreaterThan(forward[0]!.center[1] + 2);
+    const banked = aircraftCollisionProbes(
+      { ...pose(), rot: vehicleRotation(0, 0, Math.PI / 2) },
+      tilt,
+      { ...state, thrustVectorPosition: 1 },
+    ).filter((p) => p.disc);
+    expect(banked[0]?.disc?.normal[0]).toBeCloseTo(-1);
+  });
   it('detached pieces inherit boosted travel velocity independently of later boost toggles', () => {
     const a = airborne(),
       b = airborne();
@@ -138,6 +201,76 @@ describe('aircraft section collisions', () => {
     );
     expect(damaged.state.rollRate).toBeLessThan(healthy.state.rollRate - 0.1);
     expect(damaged.state.velocity[1]).toBeLessThan(healthy.state.velocity[1]);
+  });
+
+  it('losing both wings makes the fuselage fall ballistically despite throttle and stick input', () => {
+    const state: AircraftStateData = {
+      ...airborne(),
+      velocity: [0, 0, 0],
+      rpm: 1,
+      pitchRate: 0.2,
+      rollRate: 0.5,
+      yawRate: -0.1,
+      crashed: true,
+      damage: {
+        'left-wing': { integrity: 0, detached: true },
+        'right-wing': { integrity: 0, detached: true },
+      },
+    };
+    const transform: TransformData = { pos: [0, 100, 0], rot: vehicleRotation(0, -1.4, 0) };
+    const idle = stepAircraft(transform, state, input, spec, 1, flat);
+    const powered = stepAircraft(
+      transform,
+      state,
+      { ...input, engine: true, power: 1, pitch: 1, roll: 1, yaw: 1 },
+      spec,
+      1,
+      flat,
+    );
+    expect(powered.transform).toEqual(idle.transform);
+    expect(powered.state.velocity).toEqual(idle.state.velocity);
+    expect(powered.state.velocity[1]).toBeLessThan(-9);
+    expect(powered.state.engines?.main?.thrust).toBe(0);
+    expect(powered.state.grounded).toBe(false);
+    // No contact means no contact damping: the falling wreck must still tumble.
+    expect(powered.state.pitchRate).toBe(state.pitchRate);
+    expect(powered.state.rollRate).toBe(state.rollRate);
+    expect(powered.state.yawRate).toBe(state.yawRate);
+  });
+
+  it.each([30, 60, 120])('a tumbling wingless wreck settles on the runway at %i Hz', (hz) => {
+    let result = {
+      transform: { pos: [0, 5, 0], rot: vehicleRotation(0, -1.4, 0.15) } as TransformData,
+      state: {
+        ...airborne(),
+        velocity: [0, -8, 0],
+        pitchRate: 0.1,
+        yawRate: 0.3,
+        rollRate: 2,
+        crashed: true,
+        damage: {
+          body: { integrity: 0, detached: false },
+          'left-wing': { integrity: 0, detached: true },
+          'right-wing': { integrity: 0, detached: true },
+        },
+      } as AircraftStateData,
+    };
+    for (let i = 0; i < 8 * hz; i++) {
+      result = stepAircraft(result.transform, result.state, input, spec, 1 / hz, flat);
+      if (i < 7 * hz) continue;
+      // Check a whole second: a rocking body passes through zero speed at each turning point.
+      expect(Math.hypot(...result.state.velocity)).toBeLessThan(0.1);
+      expect(
+        Math.hypot(result.state.pitchRate, result.state.yawRate ?? 0, result.state.rollRate),
+      ).toBeLessThan(0.08);
+      const clearance = Math.min(
+        ...aircraftCollisionProbes(result.transform, spec, result.state).map(
+          (probe) => probe.center[1] - probe.radius,
+        ),
+      );
+      expect(clearance).toBeGreaterThanOrEqual(-0.000001);
+      expect(clearance).toBeLessThan(0.01);
+    }
   });
 
   it('does not mutate input state, rolls back at terrain gaps, and is invariant to contact order', () => {

@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
@@ -83,14 +84,18 @@ it('keeps all 11884 close-up daylight marks visibly outside the taper, including
   }
 });
 
+// The forced rebuild expands the instanced master to over 1.3 million triangles before
+// authoring the browser levels. Allow the same budget as other full landmark rebuilds.
 it('rebuilds deterministic whole-height browser levels within strict budgets using four shared graphs', async () => {
-  const a = await read(runtime + '/asset.json');
-  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
-  expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
+  const before = await read(runtime + '/asset.json');
+  const after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  expect(after.levels).toEqual(before.runtimeLods.levels);
+  expect(after.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   const refs = new Set();
-  for (const [i, l] of a.runtimeLods.levels.entries()) {
+  for (const [i, l] of after.levels.entries()) {
     const b = await readFile(runtime + '/' + l.file),
       { g } = glb(b);
+    expect('sha256:' + createHash('sha256').update(b).digest('hex')).toBe(l.hash);
     expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
     expect(g.images ?? []).toHaveLength(0);
@@ -112,4 +117,4 @@ it('rebuilds deterministic whole-height browser levels within strict budgets usi
       .map((g) => 'matgraph:molen.worldgen.material.' + g)
       .sort(),
   );
-}, 60_000);
+}, 120_000);

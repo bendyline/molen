@@ -6,9 +6,11 @@ export interface AdmissionOptions {
   /**
    * Background jobs run only in frame budget that no normal job is waiting for. Urgent jobs run
    * before normal ones, in their own order: small work the view is visibly waiting on, such as
-   * terrain ground, which otherwise queued behind every building cell's upload.
+   * terrain ground. Sustained urgent traffic shares service with waiting normal work.
    */
   priority?: 'urgent' | 'normal' | 'background';
+  /** Live order within normal work, lower first. Unordered work still receives regular service. */
+  order?: () => number;
 }
 export interface AdmissionSample {
   label: string;
@@ -46,11 +48,14 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private readonly queuedBackground = new WeakMap<Promise<unknown>, Job>();
   private scheduled = false;
   private disposed = false;
+  private paused = false;
   private readonly clock: () => number;
   private readonly schedule: (callback: () => void) => void;
   private maxMs: number;
   private maxBytes: number;
   private maxJobs: number;
+  private urgentStreak = 0;
+  private orderedStreak = 0;
   /** Recent work time per label (ms, smoothed): what the next job of that kind will likely take. */
   private readonly expected = new Map<string, number>();
   constructor(private readonly options: FrameAdmissionOptions = {}) {
@@ -145,8 +150,13 @@ export class FrameAdmissionQueue implements SceneAdmission {
   get pending(): number {
     return this.jobs.length + this.background.length;
   }
+  /** Hold queued uploads/preparation while the view is inactive; keep resources for resume. */
+  setPaused(paused: boolean): void {
+    this.paused = paused;
+    if (!paused) this.request();
+  }
   private request(): void {
-    if (this.scheduled || this.disposed || this.pending === 0) return;
+    if (this.scheduled || this.disposed || this.paused || this.pending === 0) return;
     this.scheduled = true;
     this.schedule(() => {
       this.scheduled = false;
@@ -155,13 +165,41 @@ export class FrameAdmissionQueue implements SceneAdmission {
   }
   /** One frame's budget. Exposed for hosts with a manual frame loop and deterministic tests. */
   flush(): void {
-    if (this.disposed) return;
+    if (this.disposed || this.paused) return;
     const start = this.clock();
     let bytes = 0,
       count = 0;
     for (;;) {
       const lane = this.jobs.length > 0 ? this.jobs : this.background;
-      const next = lane[0];
+      // A flying camera continuously produces urgent terrain. Strict priority left semantic
+      // decode/publication waiting tens of seconds, even with idle geometry workers. After
+      // two urgent jobs, serve one normal job that has waited at least 50 ms. Keep the streak
+      // across frames: an indivisible terrain job may consume a whole frame's allowance.
+      const waitingNormal =
+        lane === this.jobs && this.urgentStreak >= 2
+          ? lane.findIndex((job) => job.options.priority !== 'urgent')
+          : -1;
+      let index =
+        waitingNormal >= 0 && this.clock() - (lane[waitingNormal] as Job).queued >= 50
+          ? waitingNormal
+          : 0;
+      // Re-read distance/deadline at dispatch, after camera motion. Three ordered jobs may
+      // overtake the FIFO head, then the head gets a turn (shared decodes/assets must progress).
+      if (
+        lane === this.jobs &&
+        lane[index]?.options.priority !== 'urgent' &&
+        this.orderedStreak < 3
+      ) {
+        let best = Number.POSITIVE_INFINITY;
+        for (let i = index; i < lane.length; i++) {
+          const order = lane[i]?.options.order?.() ?? Number.POSITIVE_INFINITY;
+          if (order < best) {
+            best = order;
+            index = i;
+          }
+        }
+      }
+      const next = lane[index];
       if (next === undefined) break;
       const cost = next.options.bytes ?? 0;
       const label = next.options.label ?? 'admission';
@@ -175,13 +213,17 @@ export class FrameAdmissionQueue implements SceneAdmission {
           bytes + cost > this.maxBytes)
       )
         break;
-      lane.shift();
+      lane.splice(index, 1);
       this.forget(next);
       if (next.abort) next.options.signal?.removeEventListener('abort', next.abort);
       if (next.options.signal?.aborted) {
         next.reject(new DOMException('Admission cancelled', 'AbortError'));
         continue;
       }
+      this.urgentStreak = next.options.priority === 'urgent' ? this.urgentStreak + 1 : 0;
+      if (next.options.priority !== 'urgent')
+        this.orderedStreak =
+          next.options.order !== undefined && this.orderedStreak < 3 ? this.orderedStreak + 1 : 0;
       const began = this.clock();
       try {
         next.resolve(next.run());

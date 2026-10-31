@@ -1,7 +1,7 @@
 /** C-5M: explicit Galaxy stations and AMP flight deck, +Z nose.
  * General-arrangement proportions are checked against the cited drawings/photos;
  * the older drawing's TF39 engines are replaced by CF6/F138 nacelles. */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -81,115 +81,168 @@ export function buildC5M(s) {
     bindings = [],
     rotors = [],
     enginePoints = [];
-  // Side drawing nose15, aftmost tail1075; uniform75.31m calibration. Widths from plan view.
+  // Side drawing nose15, aftmost tail1075; uniform75.31m calibration. Plan widths follow the
+  // Commons 3-view: ogival nose and a 7.24m barrel that stays wide past the ramp hinge. The
+  // nose is the broad, blunt visor of the head-on photographs; its upper line follows the side
+  // drawing's fuller crown (6.4m high 1m behind the tip) over the unchanged chin.
   const ppm = 1060 / 75.31,
     sz = (u) => 37.655 - (u - 15) / ppm,
     sy = (v) => (308 - v) / ppm;
   const stations = [
     [15, 0.025, 238, 235],
-    [28, 0.9, 254, 226],
-    [55, 1.65, 266, 207],
-    [80, 2.03, 273, 189],
-    [105, 2.64, 277, 174],
-    [140, 3.18, 282, 171],
-    [200, 3.55, 286, 171],
-    [300, 3.55, 288, 172],
-    [430, 3.55, 289, 174],
-    [580, 3.55, 292, 176],
-    [650, 3.48, 283, 171],
-    [730, 3.25, 268, 167],
-    [800, 2.91, 252, 166],
-    [865, 2.15, 232, 166],
-    [925, 1.33, 214, 173],
-    [972, 0.65, 205, 184],
-    [999, 0.02, 197, 195],
+    [28, 1.75, 254, 220],
+    [55, 2.75, 266, 203],
+    [80, 3.2, 273, 189],
+    [105, 3.45, 277, 174],
+    [140, 3.6, 282, 171],
+    [200, 3.62, 286, 171],
+    [300, 3.62, 288, 172],
+    [430, 3.62, 289, 174],
+    [580, 3.62, 292, 176],
+    [650, 3.62, 283, 171],
+    [730, 3.55, 268, 167],
+    [800, 3.3, 252, 166],
+    [865, 2.75, 232, 166],
+    [925, 1.85, 214, 173],
+    [972, 0.95, 205, 184],
+    [999, 0.05, 197, 195],
   ];
-  const rings = stations.map(([u, w, b, t]) => {
-    const top = sy(t),
-      bottom = sy(b),
-      h = top - bottom;
-    return {
-      z: sz(u),
-      points: [
-        [0, top],
-        [0.48 * w, top - 0.025 * h],
-        [0.82 * w, top - 0.12 * h],
-        [w, top - 0.3 * h],
-        [w, bottom + 0.3 * h],
-        [0.82 * w, bottom + 0.1 * h],
-        [0.48 * w, bottom + 0.02 * h],
-        [0, bottom],
-        [-0.48 * w, bottom + 0.02 * h],
-        [-0.82 * w, bottom + 0.1 * h],
-        [-w, bottom + 0.3 * h],
-        [-w, top - 0.3 * h],
-        [-0.82 * w, top - 0.12 * h],
-        [-0.48 * w, top - 0.025 * h],
+  // Egg-shaped Galaxy section (head-on photographs): widest below mid-height, a rounded crown
+  // and full lower corners; the nose rings are rounder still. Index order is unchanged.
+  const section = (i, w, bottom, top) => {
+    const [crown, belly, k] =
+        i < 5 ? [2.1, 2.5, 0.42] : i < 13 ? [2.6, 3.2, 0.48] : [2.4, 2.6, 0.5],
+      mid = bottom + k * (top - bottom),
+      up = (a) => [
+        w * Math.pow(Math.sin(a), 2 / crown),
+        mid + (top - mid) * Math.pow(Math.cos(a), 2 / crown),
       ],
-    };
-  });
+      down = (a) => [
+        w * Math.pow(Math.sin(a), 2 / belly),
+        mid - (mid - bottom) * Math.pow(Math.cos(a), 2 / belly),
+      ],
+      right = [up(0), up(0.5), up(0.98), up(1.42), down(1.42), down(0.98), down(0.5), down(0)];
+    return [
+      ...right,
+      ...right
+        .slice(1, 7)
+        .map(([x, y]) => [-x, y])
+        .reverse(),
+    ];
+  };
+  const rings = stations.map(([u, w, b, t], i) => ({
+    z: sz(u),
+    points: section(i, w, sy(b), sy(t)),
+  }));
   const p = (i, j) => [...rings[i].points[(j + 14) % 14], rings[i].z],
     lerp = (a, b, t) => a.map((v, k) => v + (b[k] - v) * t);
-  loft(d, rings, paint, {
-    skip: (i, j) => [3, 4].includes(i) && [0, 1, 2, 11, 12, 13].includes(j),
+  // Blunt visor tip: domed rings between the tip and the first station instead of a cone point.
+  const tip = rings[0],
+    first = rings[1],
+    tipY = (tip.points[0][1] + tip.points[7][1]) / 2,
+    firstY = (first.points[0][1] + first.points[7][1]) / 2,
+    dome = [0.02, 0.08, 0.25, 0.52].map((f) => {
+      const s = Math.sqrt(1 - (1 - f) * (1 - f)),
+        y = tipY + (firstY - tipY) * f;
+      return {
+        z: tip.z + (first.z - tip.z) * f,
+        points: first.points.map(([x, yy]) => [x * s, y + (yy - firstY) * s]),
+      };
+    });
+  const glazed = (i, j) =>
+    (i === 3 && [0, 1, 12, 13].includes(j)) || (i === 4 && [1, 12].includes(j));
+  loft(d, [tip, ...dome, ...rings.slice(1)], paint, {
+    skip: (i, j) => glazed(i - dome.length, j),
   });
-  // One narrow center windshield, two main windscreens, two quarter panes and two side panes.
-  // Explicit perimeter stations avoid stretching glazing along the fuselage construction facets.
-  const b = [
-      [0, 8.43, 33.02],
-      [0.3, 8.43, 33.02],
-      [1.38, 8.38, 32.45],
-      [1.94, 8.31, 31.65],
-      [2.47, 8.25, 29.7],
-    ],
-    t = [
-      [0, 9.13, 32.22],
-      [0.28, 9.13, 32.22],
-      [1.3, 9.09, 31.96],
-      [1.83, 9.02, 31.2],
-      [2.35, 8.92, 29.5],
-    ];
-  for (const side of [-1, 1]) {
-    const mirror = (q) => [q[0] * side, q[1], q[2]],
-      bot = b.map(mirror),
-      top = t.map(mirror);
-    // Front lower eyebrow and upper roof patches, each joined to the body shell.
-    const lower = [
-      p(3, 0),
-      p(3, side),
-      p(3, 2 * side),
-      p(3, 3 * side),
-      p(4, 3 * side),
-      p(5, 3 * side),
-      bot[4],
-      bot[3],
-      bot[2],
-      bot[1],
-      bot[0],
-    ];
-    const upper = [
-      top[0],
-      top[1],
-      top[2],
-      top[3],
-      top[4],
-      p(5, 3 * side),
-      p(5, 2 * side),
-      p(5, side),
-      p(5, 0),
-    ];
-    sheet(d, lower, paint, [side * 0.3, 1, 1]);
-    sheet(d, upper, paint, [side * 0.2, 1, 0]);
-    for (let j = 0; j < 4; j++) {
-      const q = [bot[j], bot[j + 1], top[j + 1], top[j]];
-      sheet(d, q, glass, [side * 0.3, 1, 1]);
-      d.rod(q[0], q[1], 0.023, dark);
-      d.rod(q[2], q[3], 0.023, dark);
-      d.rod(q[1], q[2], 0.024, dark);
-      if (j > 0) d.rod(q[3], q[0], 0.024, dark);
+  // Glazing is cut into the skin facets themselves, so it follows the rounded crown: two front
+  // panes either side of a center post, a quarter pane and two side panes on each side. The cut
+  // facet is triangulated in its own (u, v) space with normals blended from the neighbouring
+  // stations, so it keeps the shell's smooth shading instead of reading as a flat pale patch.
+  const normalAt = (i, j) => {
+    const q = p(i, j),
+      mid = (rings[i].points[0][1] + rings[i].points[7][1]) / 2,
+      n = new T.Vector3(...p(i, j + 1))
+        .sub(new T.Vector3(...p(i, j - 1)))
+        .cross(new T.Vector3(...p(Math.max(i - 1, 0), j)).sub(new T.Vector3(...p(i + 1, j))))
+        .normalize();
+    return n.dot(new T.Vector3(q[0], q[1] - mid, 0)) < 0 ? n.negate() : n;
+  };
+  const glaze = (i, j, side, panes) => {
+    const m = (q) => [q[0] * side, q[1], q[2]],
+      a = m(p(i, j)),
+      b = m(p(i + 1, j)),
+      c = m(p(i + 1, j + 1)),
+      e = m(p(i, j + 1)),
+      [na, nb, nc, ne] = [
+        [i, j],
+        [i + 1, j],
+        [i + 1, j + 1],
+        [i, j + 1],
+      ].map(([ii, jj]) => m(normalAt(ii, jj).toArray())),
+      at = (u, v) => lerp(lerp(a, b, v), lerp(e, c, v), u),
+      normal = (u, v) => new T.Vector3(...lerp(lerp(na, nb, v), lerp(ne, nc, v), u)).normalize(),
+      outer = [
+        [0, 0],
+        [0, 1],
+        [1, 1],
+        [1, 0],
+      ],
+      holes = panes.map(([u0, u1, v0, v1]) => [
+        [u0, v0],
+        [u0, v1],
+        [u1, v1],
+        [u1, v0],
+      ]),
+      uv = [outer, ...holes].flat(),
+      index = T.ShapeUtils.triangulateShape(
+        outer.map(([u, v]) => new T.Vector2(u, v)),
+        holes.map((h) => h.map(([u, v]) => new T.Vector2(u, v))),
+      ).flat();
+    for (let k = 0; k < index.length; k += 3) {
+      const [pa, pb, pc] = index.slice(k, k + 3).map((n) => new T.Vector3(...at(...uv[n])));
+      if (
+        pb
+          .sub(pa)
+          .cross(pc.sub(pa))
+          .dot(normal(...uv[index[k]])) < 0
+      )
+        [index[k + 1], index[k + 2]] = [index[k + 2], index[k + 1]];
     }
-    d.rod([side * 0.5, 8.47, 32.95], [side * 0.82, 8.68, 32.62], 0.013, dark);
-    d.rod([side * 0.82, 8.68, 32.62], [side * 1.08, 8.92, 32.16], 0.011, dark);
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute(
+      'position',
+      new T.Float32BufferAttribute(
+        uv.flatMap((q) => at(...q)),
+        3,
+      ),
+    );
+    geometry.setAttribute(
+      'normal',
+      new T.Float32BufferAttribute(
+        uv.flatMap((q) => normal(...q).toArray()),
+        3,
+      ),
+    );
+    geometry.setIndex(index);
+    d.add(geometry, paint);
+    for (const h of holes) {
+      const pane = h.map((q) => at(...q));
+      sheet(d, pane, glass, normal(0.5, 0.5).toArray());
+      outline(d, pane, 0.024, dark);
+    }
+    return at;
+  };
+  for (const side of [-1, 1]) {
+    const front = glaze(3, 0, side, [[0.06, 0.94, 0.1, 0.9]]);
+    glaze(3, 1, side, [[0.06, 0.52, 0.3, 0.92]]);
+    glaze(4, 1, side, [
+      [0.1, 0.5, 0.05, 0.45],
+      [0.1, 0.5, 0.53, 0.92],
+    ]);
+    // Wipers parked on the front panes.
+    const lift = (q) => [q[0], q[1] + 0.02, q[2] + 0.012];
+    d.rod(lift(front(0.3, 0.14)), lift(front(0.55, 0.42)), 0.013, dark);
+    d.rod(lift(front(0.55, 0.42)), lift(front(0.78, 0.7)), 0.011, dark);
   }
   // Main plane with five degrees of anhedral, sweep and rounded outer corners.
   const ws = [
@@ -429,19 +482,21 @@ export function buildC5M(s) {
       d.ring(r, 0.012, [x, cy, z], seam);
     enginePoints.push({ id, position: [x, cy, front - 2.7] });
   }
-  // Long low gear fairings. Four tandem bogies, each two wheels forward/four aft.
+  // Long low gear fairings, rooted in the lower side skin so they read as the broad lower body
+  // of the head-on and fly-over photographs. Four tandem bogies, each two wheels forward/four aft.
   for (const side of [-1, 1]) {
     const sp = [
-      [15, 0.1, 2.1, 0.1],
-      [13.5, 0.65, 1.9, 0.48],
-      [10.5, 0.85, 1.8, 0.65],
-      [3, 0.85, 1.75, 0.72],
-      [-3.3, 0.65, 1.9, 0.5],
-      [-5.6, 0.1, 2.0, 0.1],
+      [16, 0.15, 2.45, 0.15],
+      [14.6, 0.8, 2.3, 0.75],
+      [12, 1.12, 2.22, 0.98],
+      [3, 1.2, 2.2, 1.0],
+      [-3.2, 1.1, 2.25, 0.92],
+      [-5.6, 0.62, 2.4, 0.55],
+      [-6.9, 0.12, 2.55, 0.12],
     ].map(([z, rx, cy, ry]) => ({
       z,
       points: Array.from({ length: 16 }, (_, j) => [
-        side * 3.65 + Math.sin((j * Math.PI) / 8) * rx,
+        side * 3.45 + Math.sin((j * Math.PI) / 8) * rx,
         cy + Math.cos((j * Math.PI) / 8) * ry,
       ]),
     }));
@@ -587,7 +642,19 @@ export function buildC5M(s) {
     );
   ellipsoid(d, [0, 9.8, 12], [0.12, 0.08, 0.16], d.red, 10);
   d.finish();
-  const interior = cockpit(root, { paint, dark, metal, glass });
+  // The flight-deck rear bulkhead follows the crown at its station instead of a square sheet.
+  const bz = 26.95,
+    bi = rings.findIndex((r) => r.z < bz),
+    bt = (rings[bi - 1].z - bz) / (rings[bi - 1].z - rings[bi].z),
+    bring = rings[bi - 1].points.map((q, j) => lerp(q, rings[bi].points[j], bt)),
+    bmid = (bring[0][1] + bring[7][1]) / 2,
+    bulkhead = [11, 12, 13, 0, 1, 2, 3].map((j) => [
+      bring[j][0] * 0.95,
+      Math.max(6.4, bmid + (bring[j][1] - bmid) * 0.97),
+      bz,
+    ]);
+  bulkhead.push([bulkhead.at(-1)[0], 6.4, bz], [bulkhead[0][0], 6.4, bz]);
+  const interior = cockpit(root, { paint, dark, metal, glass, bulkhead });
   cleanGeometry(root);
   return {
     root,
@@ -874,7 +941,7 @@ function cockpit(root, m) {
   ])
     pt.knob(px(u), py(v), z - 0.02, 0.021);
   // High shelf with two radio/autoflight units and four distinctive striped fire-handle plates.
-  d.box([2.17, 0.2, 0.44], [0, 8.57, 31.99], m.dark);
+  d.box([2.17, 0.2, 0.44], [0, 8.53, 31.99], m.dark);
   for (const side of [-1, 1]) {
     d.box([0.46, 0.19, 0.025], [side * 0.84, 8.58, 31.75], face);
     d.box([0.4, 0.055, 0.006], [side * 0.84, 8.62, 31.731], black);
@@ -1065,8 +1132,8 @@ function cockpit(root, m) {
       if (row === 3) ep.knob(x, y - 0.08, -0.08, 0.02);
     }
   ed.finish();
-  sheet(d, rect(0, 8.0, 5.4, 3.2, 26.95), liner, [0, 0, 1], [rect(0.7, 7.55, 0.8, 1.9, 26.95)]);
-  d.box([5.75, 0.06, 35], [0, 2.7, 8], liner);
+  sheet(d, m.bulkhead, liner, [0, 0, 1], [rect(0.7, 7.55, 0.8, 1.9, 26.95)]);
+  d.box([5.75, 0.06, 31], [0, 2.7, 10], liner);
   d.finish();
   for (const b of bindings) b.source = b.source.replace('C5-copilot.', 'C5-pilot.');
   for (const key of Object.keys(derived)) if (key.startsWith('C5-copilot.')) delete derived[key];

@@ -2750,8 +2750,8 @@
     },
     "world.traffic.north-america.690155": {
       "clips": ["audio/world/traffic-north-america-690155.mp3"],
-      "description": "Vancouver.Canada.wav",
-      "tags": ["earth", "earth:category:traffic", "earth:region:north-america"],
+      "description": "Vancouver pedestrian crossing signal and nearby traffic; only near traffic intersections.",
+      "tags": ["earth", "earth:category:crossing", "earth:region:north-america"],
       "loop": true,
       "loopStart": 0.1,
       "loopEnd": 30.1,
@@ -3408,6 +3408,127 @@
         "author": "kvgarlic",
         "title": "SummerNightInsectsJuly182013.mp3",
         "notes": "trimmed from 1s, 2s crossfade loop, loudness -20 LUFS, MP3"
+      }
+    },
+    "aircraft.flaps.motor": {
+      "clips": ["audio/aircraft/flaps-motor.mp3"],
+      "description": "Light electric flap-actuator whine, looped from a generic servo recording; follows actual flap travel.",
+      "tags": ["aircraft", "flaps", "motor", "mechanism"],
+      "loop": true,
+      "loopStart": 0.1,
+      "loopEnd": 0.58,
+      "gain": 0.45,
+      "pitch": [0.95, 0.95],
+      "bus": "sfx",
+      "spatial": {
+        "refDistance": 4,
+        "maxDistance": 45,
+        "rolloff": 1.4
+      },
+      "durationS": 0.68,
+      "hash": "sha256:db00e6cc8514681a76cbfe97c75117fe7e9848cd725ea5f1eb0b44465a8a5d2c",
+      "source": {
+        "license": "CC0-1.0",
+        "site": "freesound",
+        "url": "https://freesound.org/people/Burningmonkey/sounds/322021/",
+        "author": "Burningmonkey",
+        "title": "Servo motor",
+        "notes": "trimmed from 6.02s, 0.04s crossfade loop, 120 Hz high-pass, loudness -22 LUFS, MP3"
+      }
+    },
+    "aircraft.gear.motor": {
+      "clips": ["audio/aircraft/gear-motor.mp3"],
+      "description": "Lower landing-gear actuator motor, looped from a generic servo recording; follows actual gear travel.",
+      "tags": ["aircraft", "landing-gear", "motor", "mechanism"],
+      "loop": true,
+      "loopStart": 0.1,
+      "loopEnd": 0.85,
+      "gain": 0.55,
+      "pitch": [0.7, 0.7],
+      "bus": "sfx",
+      "spatial": {
+        "refDistance": 5,
+        "maxDistance": 55,
+        "rolloff": 1.4
+      },
+      "durationS": 0.95,
+      "hash": "sha256:4cdd9b39583427e4c082be5b55ec1e6d97afa32a6750551001edc744db261184",
+      "source": {
+        "license": "CC0-1.0",
+        "site": "freesound",
+        "url": "https://freesound.org/people/vacuumfan7072/sounds/264592/",
+        "author": "vacuumfan7072",
+        "title": "servomotor.wav",
+        "notes": "trimmed from 0.2s, 0.12s crossfade loop, 80 Hz high-pass, loudness -22 LUFS, MP3"
+      }
+    },
+    "aircraft.touchdown.tire": {
+      "clips": ["audio/aircraft/touchdown-tire.mp3"],
+      "description": "Short rubber tire spin-up chirp on paved touchdown. Rubber-on-tile foley, not an aircraft recording.",
+      "tags": ["aircraft", "touchdown", "tire", "foley"],
+      "gain": 0.7,
+      "pitch": [0.94, 1.06],
+      "bus": "sfx",
+      "spatial": {
+        "refDistance": 8,
+        "maxDistance": 130,
+        "rolloff": 1.2
+      },
+      "durationS": 0.8,
+      "hash": "sha256:a91bb9900d364553d4666bc9873240df8ea8c84a5423b9482af5e0231cedb9eb",
+      "source": {
+        "license": "CC0-1.0",
+        "site": "freesound",
+        "url": "https://freesound.org/people/johnnydekk/sounds/614627/",
+        "author": "johnnydekk",
+        "title": "screeching tyres / tires",
+        "notes": "trimmed from 2.12s, peak-normalized, MP3"
+      }
+    },
+    "vehicle.wiper.sweep": {
+      "clips": ["audio/vehicle/wiper-sweep.mp3"],
+      "description": "One windshield-wiper stroke, triggered by the animated sweep phase.",
+      "tags": ["vehicle", "wiper", "interior"],
+      "gain": 0.25,
+      "pitch": [1, 1],
+      "bus": "sfx",
+      "spatial": {
+        "refDistance": 2,
+        "maxDistance": 16,
+        "rolloff": 1.5
+      },
+      "durationS": 0.5,
+      "hash": "sha256:46ee38a4f696178c6f721fc60a4fecab66ad0f726bea57e27110fecf0660bb3b",
+      "source": {
+        "license": "CC0-1.0",
+        "site": "bigsoundbank",
+        "url": "https://bigsoundbank.com/windshield-wipers-slow-2-s3111.html",
+        "author": "Joseph SARDIN & Axeline T.",
+        "title": "Windshield wipers, slow #2",
+        "notes": "trimmed from 0.54s, peak-normalized, MP3"
+      }
+    },
+    "vehicle.door.slide": {
+      "clips": ["audio/vehicle/door-slide.mp3"],
+      "description": "Sliding door travel foley; the car latch is a separate closing cue.",
+      "tags": ["vehicle", "door", "slide", "foley"],
+      "gain": 0.5,
+      "pitch": [0.94, 1.03],
+      "bus": "sfx",
+      "spatial": {
+        "refDistance": 3,
+        "maxDistance": 30,
+        "rolloff": 1.2
+      },
+      "durationS": 0.91,
+      "hash": "sha256:c07513a9bf192d6d5fbd10cf10fbbab68df55a8efb744f24b125093dc44cb4c3",
+      "source": {
+        "license": "CC0-1.0",
+        "site": "freesound",
+        "url": "https://freesound.org/people/SwagMuffinPlus/sounds/176146/",
+        "author": "SwagMuffinPlus",
+        "title": "Sliding Doors",
+        "notes": "peak-normalized, MP3"
       }
     }
   }

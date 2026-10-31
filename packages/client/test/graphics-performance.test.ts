@@ -86,6 +86,61 @@ describe('sparse graphics work', () => {
     queue.dispose();
   });
 
+  it('serves waiting detail during continuous urgent terrain without exceeding frame limits', async () => {
+    let time = 0;
+    const samples: AdmissionSample[] = [];
+    const queue = new FrameAdmissionQueue({
+      maxJobs: 1,
+      maxBytes: 1,
+      now: () => time,
+      schedule: () => {},
+      onSample: (sample) => samples.push(sample),
+    });
+    const order: string[] = [];
+    const jobs = ['decode', 'build', 'publish'].map((label) =>
+      queue.run(() => order.push(label), { label, bytes: 1 }),
+    );
+    jobs.push(queue.run(() => order.push('background'), { priority: 'background' }));
+    for (let frame = 0; frame < 20; frame++) {
+      time = frame * 16;
+      jobs.push(queue.run(() => order.push('terrain'), { priority: 'urgent', bytes: 1 }));
+      queue.flush();
+      expect(order).toHaveLength(frame + 1);
+    }
+    expect(order.slice(0, 2)).toEqual(['terrain', 'terrain']);
+    expect(order.indexOf('publish')).toBeLessThan(12);
+    expect(order).not.toContain('background');
+    expect(samples.every((sample) => !sample.overBudget)).toBe(true);
+    while (queue.pending) queue.flush();
+    await Promise.all(jobs);
+    expect(order.at(-1)).toBe('background');
+    queue.dispose();
+  });
+
+  it('reorders queued tile work with the camera while shared work keeps a FIFO turn', async () => {
+    const queue = new FrameAdmissionQueue({ maxJobs: 1, schedule: () => {} });
+    let near = 'east';
+    const order: string[] = [];
+    const jobs = [queue.run(() => order.push('shared-decode'))];
+    for (const name of ['east1', 'east2', 'west1', 'west2'])
+      jobs.push(
+        queue.run(() => order.push(name), {
+          order: () => (name.startsWith(near) ? 0 : 1000),
+        }),
+      );
+    queue.flush();
+    expect(order).toEqual(['east1']);
+    near = 'west';
+    queue.flush();
+    queue.flush();
+    queue.flush();
+    expect(order).toEqual(['east1', 'west1', 'west2', 'shared-decode']);
+    queue.flush();
+    await Promise.all(jobs);
+    expect(order.at(-1)).toBe('east2');
+    queue.dispose();
+  });
+
   it('opens a frame with a kind of job that has run past the budget left', () => {
     let clock = 0;
     const queue = new FrameAdmissionQueue({

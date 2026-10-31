@@ -1,13 +1,14 @@
 /** Original DHC-2 Mk.I landplane, PSM 1-2-1 Fig 1-3/1-4/1-10.
  * Dimensions/contours are reference-authored; no photograph textures.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -17,6 +18,135 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+
+/** A tyre with rounded shoulders on a dished rim with a domed hub cap, the axle along X through
+ * `at`: radius r, width w. It replaces flat cylinder-and-disc wheels. */
+function wheel(d, at, r, w, tyre, rim, cap = rim) {
+  const lathe = (points, segments) =>
+    new T.LatheGeometry(
+      points.map(([x, y]) => new T.Vector2(x, y)),
+      segments,
+    ).rotateZ(Math.PI / 2);
+  d.add(
+    lathe(
+      // Listed from the -Y bead round to the +Y bead so the lathe faces point outward.
+      [
+        [r * 0.64, -w * 0.5],
+        [r * 0.88, -w * 0.5],
+        [r * 0.97, -w * 0.4],
+        [r, -w * 0.2],
+        [r, w * 0.2],
+        [r * 0.97, w * 0.4],
+        [r * 0.88, w * 0.5],
+        [r * 0.64, w * 0.5],
+      ],
+      20,
+    ),
+    tyre,
+    at,
+  );
+  for (const side of [-1, 1]) {
+    const mirror = (points) => (side > 0 ? points : points.map(([x, y]) => [x, -y]).reverse());
+    d.add(
+      lathe(
+        mirror([
+          [r * 0.64, w * 0.5],
+          [r * 0.6, w * 0.34],
+          [r * 0.3, w * 0.34],
+          [r * 0.22, w * 0.44],
+        ]),
+        16,
+      ),
+      rim,
+      at,
+    );
+    d.add(
+      lathe(
+        mirror(
+          Array.from({ length: 5 }, (_, k) => {
+            const a = (k * Math.PI) / 8;
+            return [r * 0.22 * Math.cos(a), w * 0.44 + r * 0.09 * Math.sin(a)];
+          }),
+        ),
+        12,
+      ),
+      cap,
+      at,
+    );
+  }
+}
+/** A faired leg from a to b: an elliptical section `thick` across and `chord` fore and aft,
+ * tapering to `taper` of its size at b. */
+function fairedLeg(d, a, b, thick, chord, taper, material) {
+  const from = new T.Vector3(...a),
+    v = new T.Vector3(...b).sub(from),
+    geometry = new T.CylinderGeometry(taper, 1, v.length(), 16, 1).scale(thick, 1, chord),
+    mesh = d.add(geometry, material, from.clone().addScaledVector(v, 0.5).toArray());
+  // Keep the chord fore and aft: yaw the leg into the plane of the segment, then tilt it.
+  const sideways = new T.Vector3(v.x, v.y, 0).normalize(),
+    roll = new T.Quaternion().setFromUnitVectors(new T.Vector3(0, 1, 0), sideways),
+    pitch = new T.Quaternion().setFromUnitVectors(sideways, v.clone().normalize());
+  mesh.quaternion.copy(pitch.multiply(roll));
+  return mesh;
+}
+/** Front and back z of a side-view outline [[z, y], ...] at height y (0 width outside it). */
+function chordAt(outline, y) {
+  const zs = [];
+  for (let n = 0; n < outline.length; n++) {
+    const [za, ya] = outline[n],
+      [zb, yb] = outline[(n + 1) % outline.length];
+    if ((ya - y) * (yb - y) <= 0 && ya !== yb) zs.push(za + ((zb - za) * (y - ya)) / (yb - ya));
+  }
+  return zs.length ? [Math.max(...zs), Math.min(...zs)] : [0, 0];
+}
+/** Horizontal ribs [y, front z, back z] of a side-view outline, at every vertex height. */
+function outlineRibs(outline) {
+  const ys = [...new Set(outline.map(([, y]) => y))].sort((a, b) => a - b),
+    low = ys[0] + 0.004,
+    high = ys.at(-1) - 0.004;
+  return [low, ...ys.filter((y) => y > low && y < high), high].map((y) => [
+    y,
+    ...chordAt(outline, y),
+  ]);
+}
+/** Half width of a foil rib at z, for details laid on its surface. */
+function foilX([, front, back, half, lead, trail], z) {
+  const u = (front - z) / (front - back),
+    xs = [
+      [0, lead],
+      [0.3, half],
+      [0.75, trail + (half - trail) * 0.45],
+      [1, trail],
+    ];
+  for (let k = 0; k < 3; k++)
+    if (u <= xs[k + 1][0])
+      return xs[k][1] + ((xs[k + 1][1] - xs[k][1]) * (u - xs[k][0])) / (xs[k + 1][0] - xs[k][0]);
+  return trail;
+}
+/** A symmetric fin or rudder lofted through ribs [y, front z, back z, half thickness at 30 %
+ * chord, front-face half width, back-face half width] and closed at both ends: a tapered
+ * section instead of a constant-thickness slab. */
+function foil(d, ribs, material) {
+  const rings = ribs.map(([y, front, back, half, lead, trail]) => {
+    const c = front - back,
+      right = [
+        [lead, front],
+        [half, front - c * 0.3],
+        [trail + (half - trail) * 0.45, front - c * 0.75],
+        [trail, back],
+      ];
+    return [...right, ...[...right].reverse().map(([x, z]) => [-x, z])].map(([x, z]) => [x, y, z]);
+  });
+  for (let i = 0; i < rings.length - 1; i++)
+    for (let j = 0; j < 8; j++) {
+      const q = [rings[i][j], rings[i + 1][j], rings[i + 1][(j + 1) % 8], rings[i][(j + 1) % 8]],
+        mid = (k) => q.reduce((sum, p) => sum + p[k], 0) / 4,
+        axis = (ribs[i][1] + ribs[i][2] + ribs[i + 1][1] + ribs[i + 1][2]) / 4;
+      quad(d, ...q, material, [mid(0), 0, mid(2) - axis]);
+    }
+  sheet(d, rings[0], material, [0, -1, 0]);
+  sheet(d, rings.at(-1), material, [0, 1, 0]);
+}
 
 const angle = Math.atan2(54, 325),
   ppm = 444 / 9.2456,
@@ -78,7 +208,17 @@ export function buildBeaver(s) {
     [813, 0.18, 1238, 1191],
     [866, 0.1, 1231, 1210],
     [905, 0.012, 1222, 1219],
-  ].map(([u, w, b, t]) => [zz(u), w, yy(b), yy(t)]);
+  ]
+    .map(([u, w, b, t]) => [zz(u), w, yy(b), yy(t)])
+    .flatMap((s, i, list) => {
+      // Midway stations along the tail cone (Catmull-Rom through the traced ones), so its
+      // taper reads as a smooth curve rather than a few facets. Stations 0-7 are unchanged.
+      if (i < 7 || i >= list.length - 1) return [s];
+      const a = list[i - 1],
+        c = list[i + 1],
+        e = list[i + 2] ?? c;
+      return [s, s.map((v, k) => (-a[k] + 9 * v + 9 * c[k] - e[k]) / 16)];
+    });
   const rings = stations.map(([z, w, b, t]) => {
       const h = t - b;
       return {
@@ -108,9 +248,9 @@ export function buildBeaver(s) {
   });
   for (const j of [0, 1, 12, 13])
     quad(d, p(1, j), p(2, j), p(2, (j + 1) % 14), p(1, (j + 1) % 14), glass, [0, 1, 1]);
-  for (const j of [0, 2, 12]) d.rod(p(1, j), p(2, j), 0.018, dark);
+  for (const j of [0, 2, 12]) d.rod(p(1, j), p(2, j), 0.012, dark);
   for (const i of [1, 2])
-    outline(d, [p(i, 12), p(i, 13), p(i, 0), p(i, 1), p(i, 2)], 0.018, paint, false);
+    outline(d, [p(i, 12), p(i, 13), p(i, 0), p(i, 1), p(i, 2)], 0.013, paint, false);
   const sample = (z, k) => {
     for (let i = 0; i < stations.length - 1; i++)
       if (z <= stations[i][0] && z >= stations[i + 1][0]) {
@@ -127,13 +267,19 @@ export function buildBeaver(s) {
         [569, 1232],
         [541, 1234],
       ].map(([u, v]) => pt(zz(u), yy(v))),
+      // Cabin-door window: vertical front edge, level top, raked rear edge and rounded
+      // corners (U-6A 41707 photo); it was a peaked pentagon.
       h2 = [
-        [586, 1211],
-        [599, 1192],
-        [615, 1192],
-        [631, 1211],
-        [630, 1238],
-        [588, 1238],
+        [588, 1235],
+        [588, 1199],
+        [590, 1194],
+        [595, 1192],
+        [612, 1192],
+        [616, 1194],
+        [630, 1231],
+        [629, 1236],
+        [625, 1238],
+        [591, 1238],
       ].map(([u, v]) => pt(zz(u), yy(v))),
       h3 = Array.from({ length: 20 }, (_, j) =>
         pt(
@@ -155,7 +301,7 @@ export function buildBeaver(s) {
     );
     for (const h of [h1, h2, h3]) {
       sheet(d, h, glass, [side, 0, 0]);
-      outline(d, h, 0.009, dark);
+      outline(d, h, 0.005, dark);
     }
     for (const a of [
       [
@@ -344,10 +490,9 @@ export function buildBeaver(s) {
         ]);
       }
     const a = new T.Vector3(side * 0.72, 1.02, 0.92),
-      b = new T.Vector3(side * 3.0, wy(3) - 0.06, 1.98),
-      v = b.clone().sub(a),
-      strut = d.box([0.07, v.length(), 0.22], a.clone().addScaledVector(v, 0.5).toArray(), accent);
-    strut.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), v.normalize());
+      b = new T.Vector3(side * 3.0, wy(3) - 0.06, 1.98);
+    // Streamlined lift strut (elliptical section, chord fore and aft), not a square box.
+    fairedLeg(d, a.toArray(), b.toArray(), 0.035, 0.11, 1, accent);
     d.rod([side * 1.95, 2.1, 1.6], [side * 1.95, wy(1.95) - 0.03, 1.6], 0.015, metal);
     ellipsoid(d, [side * 7.28, wy(7.28), 1.75], [0.04, 0.04, 0.07], side > 0 ? d.red : d.green, 8);
     wing(
@@ -380,59 +525,84 @@ export function buildBeaver(s) {
       scale: 0.35,
     });
   }
+  // Full de Havilland dorsal fillet and a fin that reaches the horn-balanced rudder; traced
+  // from the USAF L-20A three-view in flight datum (the old fin top sat 0.16 m low). The
+  // rounded top carries its chord further forward, as in the N130WA and 41707 side photos.
   const fin = [
       [-0.8, 2.38],
-      [-1.8, 2.38],
-      [-2.45, 2.52],
-      [-2.8, 2.76],
-      [-3.18, 3.36],
-      [-3.45, 3.65],
-      [-3.58, 3.7],
-      [-3.56, 3.46],
+      [-1.5, 2.4],
+      [-1.95, 2.53],
+      [-2.39, 2.7],
+      [-2.68, 2.86],
+      [-2.95, 3.09],
+      [-3.15, 3.36],
+      [-3.29, 3.6],
+      [-3.56, 3.6],
       [-3.56, 2.1],
     ],
-    solid = (dd, pts, m) => {
-      for (const side of [-1, 1])
-        sheet(
-          dd,
-          pts.map(([z, y]) => [side * 0.045, y, z]),
-          m,
-          [side, 0, 0],
-        );
-      for (let i = 0; i < pts.length; i++) {
-        const a = pts[i],
-          b = pts[(i + 1) % pts.length];
-        quad(
-          dd,
-          [-0.045, a[1], a[0]],
-          [-0.045, b[1], b[0]],
-          [0.045, b[1], b[0]],
-          [0.045, a[1], a[0]],
-          m,
-          [0, 1, 0],
-        );
-      }
+    rudderOutline = [
+      [0, 0],
+      [0, 1.5],
+      [0.26, 1.5],
+      [0.21, 1.61],
+      [0.05, 1.735],
+      [-0.12, 1.79],
+      [-0.29, 1.76],
+      [-0.44, 1.61],
+      [-0.58, 1.36],
+      [-0.69, 1.0],
+      [-0.75, 0.41],
+      [-0.745, 0.17],
+      [-0.73, 0.04],
+    ],
+    span = (outline, y) => {
+      const [front, back] = chordAt(outline, y);
+      return front - back;
+    },
+    // Tapered sections (12 % of the combined chord, at most 0.12 m thick), not slabs; the horn
+    // balance above the fin is a rounded section of its own.
+    finHalf = (y) =>
+      Math.min(0.06, Math.max(0.012, 0.06 * (span(fin, y) + span(rudderOutline, y - 2.1)))),
+    rudderRib = (y) => {
+      const h = finHalf(y + 2.1),
+        [front, back] = chordAt(rudderOutline, y);
+      return y > 1.5
+        ? [y, front, back, h * 0.7, h * 0.25, 0.003]
+        : [y, front, back, h * 0.5, h * 0.55, 0.003];
     };
-  solid(d, fin, paint);
+  foil(
+    d,
+    outlineRibs(fin).map(([y, f, b]) => [
+      y,
+      f,
+      b,
+      finHalf(y),
+      finHalf(y) * 0.35,
+      finHalf(y) * 0.55,
+    ]),
+    paint,
+  );
   const rud = group(airframe, 'Beaver-rudder', [0, 2.1, -3.56]),
     g = group(rud, 'Beaver-rudder-moving'),
     rd = detailKit(g, g.name);
-  solid(
+  foil(
     rd,
-    [
-      [0, 0],
-      [0, 1.36],
-      [0.02, 1.59],
-      [-0.12, 1.58],
-      [-0.22, 1.49],
-      [-0.33, 1.3],
-      [-0.52, 0.76],
-      [-0.73, 0.04],
-    ],
+    [...outlineRibs(rudderOutline).map(([y]) => y), 1.499, 1.501]
+      .sort((a, b) => a - b)
+      .map(rudderRib),
     accent,
   );
-  for (let y = 0.13; y < 1.45; y += 0.12)
-    rd.rod([0.05, y, -0.03], [0.05, y, -(0.71 - 0.39 * y)], 0.002, metal);
+  for (let y = 0.13; y < 1.45; y += 0.12) {
+    const rib = rudderRib(y),
+      end = -(0.71 - 0.39 * y);
+    outline(
+      rd,
+      [-0.03, end * 0.3, end * 0.75, end].map((z) => [foilX(rib, z) + 0.002, y, z]),
+      0.002,
+      metal,
+      false,
+    );
+  }
   rd.finish();
   bindings.push({ node: g.name, source: 'yawInput', property: 'rotation', axis: 'y', scale: 0.42 });
   // Fixed wheel geometry is authored in flight datum, then rigidly posed against the
@@ -442,21 +612,10 @@ export function buildBeaver(s) {
       z = zz(543),
       r = 0.292;
     const gd = detailKit(group(airframe, `Beaver-main-gear-${side}`), 'Beaver-main-gear');
-    gd.rod([side * 0.64, 1.07, z - 0.08], [x, r, z], 0.12, accent);
+    // Faired oleo leg (streamlined, deeper fore and aft than across), not a round tube.
+    fairedLeg(gd, [side * 0.64, 1.07, z - 0.08], [x, r + 0.1, z], 0.065, 0.17, 0.7, accent);
     gd.rod([side * 0.68, 1.08, z - 0.9], [x, r + 0.05, z], 0.045, metal);
-    gd.add(new T.CylinderGeometry(r, r, 0.2, 28).rotateZ(Math.PI / 2), rubber, [x, r, z]);
-    for (const sign of [-1, 1]) {
-      gd.add(new T.CircleGeometry(0.18, 24).rotateY((sign * Math.PI) / 2), metal, [
-        x + sign * 0.102,
-        r,
-        z,
-      ]);
-      gd.add(new T.CircleGeometry(0.07, 18).rotateY((sign * Math.PI) / 2), dark, [
-        x + sign * 0.104,
-        r,
-        z,
-      ]);
-    }
+    wheel(gd, [x, r, z], r, 0.2, rubber, metal, dark);
     gd.finish();
   }
   const tailZ = zz(869),
@@ -465,16 +624,12 @@ export function buildBeaver(s) {
   td.rod([0, yy(1235), tailZ + 0.24], [0, tailY + 0.18, tailZ], 0.038, metal);
   for (const side of [-1, 1])
     td.rod([side * 0.075, tailY + 0.2, tailZ + 0.05], [side * 0.075, tailY, tailZ], 0.019, metal);
-  td.add(new T.CylinderGeometry(0.16, 0.16, 0.12, 24).rotateZ(Math.PI / 2), rubber, [
-    0,
-    tailY,
-    tailZ,
-  ]);
+  wheel(td, [0, tailY, tailZ], 0.16, 0.12, rubber, metal);
   td.finish();
   d.rod([0, 2.93, 2.05], [0, 3.15, 2.02], 0.014, dark);
-  d.rod([0, 3.15, 2.02], [0, 3.65, -3.55], 0.002, dark);
+  d.rod([0, 3.15, 2.02], [0, 3.58, -3.5], 0.002, dark);
   d.finish();
-  const interior = beaverCockpit(airframe, { paint, accent, metal, dark });
+  const interior = beaverCockpit(airframe, { paint, accent, metal, dark }, rings);
   Object.assign(interior.derived, {
     aileronDroop: { op: 'multiply', args: ['flapPosition', -0.18] },
     rollLeft: { op: 'multiply', args: ['rollInput', -0.32] },
@@ -502,7 +657,7 @@ export function buildBeaver(s) {
     },
   };
 }
-function beaverCockpit(root, m) {
+function beaverCockpit(root, m, sections) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'Beaver-cockpit'),
     pt = panelTools(d),
@@ -786,7 +941,7 @@ function beaverCockpit(root, m) {
     scale: 0.45,
   });
   d.add(new T.CylinderGeometry(0.067, 0.067, 0.06, 20), m.accent, [-0.2, 1.14, 2.65]);
-  d.box([1.33, 0.035, 2.95], [0, 1.04, 1.5], m.dark);
+  fittedFloor(d, sections, m.dark, { y: 1.09, front: 3.2, back: 0.025, width: 1.33 });
   for (const side of [-1, 1]) {
     d.box([0.025, 0.3, 1.2], [side * 0.7, 1.4, 2.1], liner);
     d.rod([side * 0.67, 1.68, 2.6], [side * 0.67, 1.68, 2.12], 0.021, m.dark);

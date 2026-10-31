@@ -975,6 +975,77 @@
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.7
               }
+            ],
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  1.3,
+                  0
+                ],
+                "massFraction": 0.98,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    1.3,
+                    4.687
+                  ],
+                  [
+                    0,
+                    1.3,
+                    -4.687
+                  ],
+                  [
+                    7.3002,
+                    1.3,
+                    0
+                  ],
+                  [
+                    -7.3002,
+                    1.3,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Porter-propeller",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  0,
+                  1.997674,
+                  5.082435
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "Porter-propeller"
+                ],
+                "disc": {
+                  "center": [
+                    0,
+                    1.997674,
+                    5.082435
+                  ],
+                  "normal": [
+                    0,
+                    0.187994,
+                    0.98217
+                  ],
+                  "radius": 1.280244,
+                  "halfThickness": 0.06,
+                  "rotor": "Porter-propeller"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              }
             ]
           }
         },
@@ -1010,7 +1081,8 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {}
         },
         "mountable": {
           "seats": [

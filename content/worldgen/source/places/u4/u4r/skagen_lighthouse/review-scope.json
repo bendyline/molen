@@ -1,0 +1,266 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "46m tapered bare-clinker tower on dressed granite, staggered narrow round-headed windows and iron-hoop rhythm, molded stone gallery, diamond-braced clear lantern with visible large optic and bell cap; restored white keeper house, attached entrance connector, two rear wings and closed courtyard wall.",
+    "master": "Retain the detailed tower, houses and all other original geometry. Replace only the two narrow old solid courtyard-link blocks with physically connected arched passages. Save the previous masters locally for exact comparison.",
+    "browser": "Four complete source-local levels retain the whole mapped joined ensemble and46m tower. Skyline retains all masses/roof types/chimneys, all16tower-window positions, coarse hoop rhythm and diamond glazing. District keeps real house/connector/wing recesses, flush faceted-tower window cards, one full-height diamond tier, visible optic and courtyard closure. Street restores true arched tower windows, three diamond tiers,13iron hoops, selected monogram/date detail and deeper frames. Closeup restores finer curves, joinery and seams. Six existing256px material graphs are reused. Every level retains both reconstructed open side passages, joined to the house and wings. House-roof pans use the existing shared256px metal_standing_seam graph with slope-correct metric UVs; subpixel roof rib tubes are removed from browser models. Molded mineral pieces merge into the granite batch with their retained tint, keeping eight draws."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u4/u4r/skagen_lighthouse/models/skagen-lods.mjs",
+    "export": "skagenSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "skagenDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "skagenStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "skagenCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.64
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "localRef": "palette:#efffff",
+            "slot": "window",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          },
+          "roof": {
+            "graph": "metal_standing_seam",
+            "slot": "roof",
+            "roughness": 0.5
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-whole-tower-keeper-house-and-courtyard",
+      "position": [
+        64,
+        36,
+        -62
+      ],
+      "lookAt": [
+        0,
+        20,
+        11
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-joined-house-connector-and-two-wings",
+      "position": [
+        42,
+        27,
+        49
+      ],
+      "lookAt": [
+        0,
+        5,
+        20
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-three-diamond-tiers-and-supported-optic",
+      "position": [
+        9,
+        42.6,
+        -10
+      ],
+      "lookAt": [
+        0,
+        41.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-both-arched-courtyard-passages",
+      "position": [
+        0,
+        8.5,
+        49
+      ],
+      "lookAt": [
+        0,
+        2,
+        22.8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Published46m height and mapped tower/keeper-house/wing footprints retain the existing plan controls. Tier heights, windows, small monogram/optic and roof details are photographic reconstructions rather than surveyed controls.",
+    "Terrain-contactY0 is the authored ground plane across the joined ensemble. Native dune/site grading, exterior paths, groynes, detached viewing structures and seasonal furniture remain site/map context; physical-device timings remain unverified.",
+    "Detailed masters stay intact. Skyline omits tiny lettering and interior optic hardware and uses opaque glazing, flush windows, coarse hoops/guards and simplified bell curves. District aggregates tower-window depth/house arches, diamond tiers, columns/frames, hoop count, roof seams and optic fins. Street restores openings and three diamond tiers, with thin frame/hoop bands aggregated. No navigational optics or scanned monogram claim.",
+    "A restored facade photograph shows an arched side passage. Both side links use reconstructed symmetric1.4m openings; heights, symmetry and wall thickness are photo-proportioned and not surveyed. Original unrelated tower/house geometry is retained.",
+    "Browser roof pans use the shared0.50m standing-seam repeat rather than the detailed master's0.45m modeled rib spacing. Bell-cap micro-seam tubes and fine base grooves aggregate; the master retains them."
+  ],
+  "sourceDocuments": [
+    "review-scope.json",
+    "medium-fi-report.json",
+    "QA-REVIEW.md",
+    "models/skagen-lods.mjs",
+    "models/courtyard-links.mjs"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/skagen-courtyard-model.mjs",
+    "export": "buildSkagenWithPassages"
+  }
+}

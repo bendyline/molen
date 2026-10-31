@@ -1,27 +1,16 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.pont_de_tolbiac",
-  "inputHash": "sha256:d5e8867ebb3be41ad2b869bd1408c73f15503d2c6e15d08cf1270ce17cdfe5cf",
-  "geographicReview": {
-    "status": "passed",
-    "placementHash": "sha256:7648cf0285e7c29371e5780a07a120a79f9e2a3b12c80470089a21a3a8290900",
-    "terrainReports": [
-      {
-        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-fit-report.json",
-        "hash": "sha256:88a133814d51504586196a9c5682524d7dbaa24fa33e289bc52d5970b11755a7"
-      },
-      {
-        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-fit-report.json",
-        "hash": "sha256:8a0d21694341ecdc1ad9c53512c4cec5dfaf60bd46aafd1a5fb86f2afcecfd70"
-      }
-    ],
-    "notes": "Directed five-arch alignment and curved bank wings were reviewed in all four current production terrain frames. With the model origin at 27.40 m NGF-IGN69, road endpoints are approximately 35.45/35.56 m, agreeing with independent upper-bank samples 35.4/35.6 m and the official BD TOPO 3D road within its stated 1.5 m vertical accuracy. Rays 0.5 m inside the modeled ends retain 0.62/0.41 m residuals because the 3 m terrain grid interpolates the sharp quay edge; no terrain fitting or flattening was applied. All five openings remain visible and the banks support the modeled ends. Represented normal water 28.50 m differs from the preserved RGE ALTI water surface 28.05 m by 0.45 m; these are different water/reference states, not a measured datum conversion. Host terrain must use NGF-IGN69 or explicitly convert heights. Underwater footings remain a reconstruction, not a bathymetric survey. Current production captures additionally include the independent BD TOPO bridge and bank-road plans: only bridge-tagged covered fragments disappear, both road approaches meet the modeled ends, and lower quay roads remain visible under the outer arches. The native 166-point wing/deck outline is exact; connector stations approximate asymmetric endpoint locations by 2.65 m with less than 5 cm native profile difference. Rechecked all eight terrain/road frames after the crowned sidewalk repair; its source and report hashes are bound here."
-  },
-  "captureReportHash": "sha256:43734b41c142ae45912689ceb4ae49d46f1619ca2ff803132f9f268c1df9d360",
+  "reviewedOn": "2026-10-29",
+  "inputHash": "sha256:12ad8a06a39bc6ef9fe3a2cf4df954766aefde716ac49b5ce47888c310934926",
+  "sourceHash": "sha256:9dae38078bfe6db4516b242056772ae4ad8a91dc5062379875bdb09fb167d3c3",
+  "runtimeHash": "sha256:42cdd022d45f499bcd672a866a29967ec76b41130e96515c45946983baae9f0e",
+  "captureReportHash": "sha256:f7578feb0d2c3884dd224e4f454220d1d7490cce2814f995ec54b19f9f3e1823",
   "visualReview": {
     "status": "passed",
+    "inputHash": "sha256:12ad8a06a39bc6ef9fe3a2cf4df954766aefde716ac49b5ce47888c310934926",
     "inspectedFrames": [
-      "preview.png",
+      "shots/scene-preview.png",
       "shots/turntable/angle_0.png",
       "shots/turntable/angle_1.png",
       "shots/turntable/angle_2.png",
@@ -42,11 +31,12 @@
       "shots/curved-quay-wall.png",
       "shots/deck-plan.png"
     ],
-    "notes": "All 20 current portable frames inspected, including full-resolution quay wall, soffit, plaques and lettering. Five unequal open vaults, angularly matched soffit backing, radial voussoirs, staggered ashlar curved wings, round cutwaters, dentil cornices, open capsule balustrades, cast lanterns and current lane markings render. Earlier intersecting vault backing, missing quay joints, and the sidewalk surface cutting through the center vault are corrected; sidewalk strips now follow the nonlinear road crown. Fine mortar joints alias at distance."
+    "captureReportHash": "sha256:f7578feb0d2c3884dd224e4f454220d1d7490cce2814f995ec54b19f9f3e1823",
+    "notes": "Inspected95 current frames:20 portable,19 shared-material master stage,36 medium-fi/context/tier frames and20 cached-terrain/road views. The original794646triangle master remains exact. All tiers retain five unequal open vaults,projecting round cutwaters,a continuous crowned road,both raised sidewalks and asymmetric curved bank wings. Close-up retains true rounded capsule balustrade apertures,pilasters,radial arch stones,dentils,all14 ornamental lamps and plaque backing. Street/district aggregate holes,dentils and lamps; skyline retains the five-vault/wing silhouette and parapet caps. The detailed master retains coursed soffits,ashlar,inscriptions,Gentilis lettering,memorial badge,fasteners,drains and grilles; their subpixel detail is deliberately aggregated in browser tiers."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4de3dff6e7827e0b46206f0f53ffc16f331d078189f7d0c361cb2cf6f0270ae3",
+    "inputHash": "sha256:12ad8a06a39bc6ef9fe3a2cf4df954766aefde716ac49b5ce47888c310934926",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -68,11 +58,757 @@
       "shots/shared/curved-quay-wall.png",
       "shots/shared/deck-plan.png"
     ],
-    "notes": "All 19 current shared viewer frames inspected, including full-resolution soffit and center-arch views. The flat surface cutting across the vault is gone. Four shared surface graphs load once each and unload disposes all live model geometry. Limestone variation and carved openings remain legible. Extended approach bounds select standalone asset review; independent production terrain and road placement are reviewed in separate geographic reports."
+    "captureReportHash": "sha256:58f8a1e819d8ce384b8616e0342cc42865ab3fd5fc374ca04e62308d2f4a6691",
+    "notes": "Preserved master uses existing raw/weathered limestone,painted-metal and bronze graphs with local road/glass/marking materials. Browser levels use four existing256px graphs: raw limestone,weathered limestone,painted metal and concrete,plus local glazing and markings. Concrete grain approximates road/sidewalk paving. Metric UVs,component vertex colors,no embedded/private images. Shared graphs resolve once in the inspected asset fixture and model resources unload. No new material graphs or photo textures.",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_weathered": {
+        "path": "materials/stone_limestone_weathered.matgraph.json",
+        "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+      },
+      "matgraph:molen.worldgen.material.metal_bronze_cast": {
+        "path": "materials/metal_bronze_cast.matgraph.json",
+        "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:12ad8a06a39bc6ef9fe3a2cf4df954766aefde716ac49b5ce47888c310934926",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/five-vaults-upstream.png",
+      "medium-fi/five-vaults-downstream.png",
+      "medium-fi/center-arch-voussoirs.png",
+      "medium-fi/coursed-soffit.png",
+      "medium-fi/cutwater-and-pilaster.png",
+      "medium-fi/pier-cap-masonry.png",
+      "medium-fi/capsule-balustrade.png",
+      "medium-fi/dentil-cornice.png",
+      "medium-fi/cast-lantern.png",
+      "medium-fi/current-road.png",
+      "medium-fi/left-bank-approach.png",
+      "medium-fi/memorial-plaques.png",
+      "medium-fi/bridge-name-inscription.png",
+      "medium-fi/curved-quay-wall.png",
+      "medium-fi/deck-plan.png",
+      "medium-fi/skyline-five-vaults.png",
+      "medium-fi/district-five-vaults.png",
+      "medium-fi/street-open-balustrade.png",
+      "medium-fi/closeup-curved-quay.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:48ca3a606997ce82d6a44b991436fc050c2b631290e82b00f057ba26587ffca3",
+    "notes": "Master 794646triangles/70414972bytes retained exactly. Browser triangles 968 / 3996 / 15700 / 63996,bytes 84712 / 342960 / 1287364 / 5044244,draws 1 / 6 / 6 / 6. Initial skyline+district 427672bytes. All tiers meet1000/4000/16000/64000triangles,at most6draws,separate GPU position/normal streams. Physical laptop/phone timing remains unmeasured.",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:7648cf0285e7c29371e5780a07a120a79f9e2a3b12c80470089a21a3a8290900",
+    "mapFrameHash": "sha256:b3e5d02ba10723d8e987773a9d446241259c0cac538d278c9e42541bbb3bc205",
+    "notes": "Retained exact-QID way183626421,anchor[2.381000162446853,48.83290412880705],heading0.695619343418. +X northeast toward Bercy,+Z southeast/upstream. Production placement and27.4m NGF-IGN69 origin are unchanged. Five retained clear spans29/32/35/32/29m and map-fitted piers form a172.6m vault chain,distinct from the published168m nominal length. Approximate200.17m overall wing extents and all reconstructed details retain their existing source limits. Compatible host heights or explicit datum conversion remain required; global Mapzen equivalence is not claimed. Fresh master/all-four-tier views reuse exact cached terrain samples and15 retained independent mapped road context IDs,with no new downloads or terrain fitting. Curved bank wings and model-covered road replacement remain at the original signed footprint. The lower quay roads remain beneath the outer arches. Native road endpoint rays retain~0.62m and~0.41m residuals across abrupt3m-grid bank edges; tier differences stay within2cm. Existing independent upper-road plateau samples35.4/35.6m remain separate from these edge-ray observations. The model normal-water reference28.50m and cached RGE water28.05m represent different states; no invented conversion or bathymetry. All model geometry unloads. This scoped cached-terrain fixture does not claim a fresh current global PMTiles/water/building-preservation measurement.",
+    "terrainReports": [
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-fit-report.json",
+        "hash": "sha256:94dcaa196a7aebaf6d0b6a0deaf8872873a13533cea925f1ed0c1d05050b5f40"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-skyline-fit-report.json",
+        "hash": "sha256:6bb5e6a3da838796093ed5cb6684272d369ccac584fa691b57f43c4e453406fa"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-district-fit-report.json",
+        "hash": "sha256:00f1813e0ed8a431c91aebba05f857ef11a55d526ace8fcbafd98fde685e547d"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-street-fit-report.json",
+        "hash": "sha256:5b10144dcc8f8888d84bccc1cec6be37778db667ef0c17673f4a4617f3119e7f"
+      },
+      {
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-closeup-fit-report.json",
+        "hash": "sha256:8608b2bd10a731456ee559ab4235f3d1ba5caef37064f996bb88dc9562ec21e3"
+      }
+    ]
   },
   "fidelityReview": {
-    "target": "maximum",
+    "target": "medium-fi",
     "status": "passed",
-    "notes": "795,350-triangle individually researched exterior reviewed against current road/railing photographs, 1982 ministry description, Séjourné rise table, mapped cutwaters and aerial, and archival/current memorial photographs. Curved bank wings, staggered masonry, open balustrades, lanterns, drains, readable paired memorials and bridge-name molding are modeled. The published 168 m nominal length conflicts with mapped pier spacings and published clear spans; the model follows those mapped piers and clear spans, producing a 172.6 m vault chain. This is an explicit source discrepancy, not a claim of construction-survey precision. Quay stairs outside the recorded bridge footprint are outside the asset; exact lantern and inscription dimensions remain photograph-based reconstruction."
-  }
+    "notes": "Inspected95 current frames:20 portable,19 shared-material master stage,36 medium-fi/context/tier frames and20 cached-terrain/road views. The original794646triangle master remains exact. All tiers retain five unequal open vaults,projecting round cutwaters,a continuous crowned road,both raised sidewalks and asymmetric curved bank wings. Close-up retains true rounded capsule balustrade apertures,pilasters,radial arch stones,dentils,all14 ornamental lamps and plaque backing. Street/district aggregate holes,dentils and lamps; skyline retains the five-vault/wing silhouette and parapet caps. The detailed master retains coursed soffits,ashlar,inscriptions,Gentilis lettering,memorial badge,fasteners,drains and grilles; their subpixel detail is deliberately aggregated in browser tiers. Master 794646triangles/70414972bytes retained exactly. Browser triangles 968 / 3996 / 15700 / 63996,bytes 84712 / 342960 / 1287364 / 5044244,draws 1 / 6 / 6 / 6. Initial skyline+district 427672bytes. All tiers meet1000/4000/16000/64000triangles,at most6draws,separate GPU position/normal streams. Physical laptop/phone timing remains unmeasured."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/models/source.glb",
+        "hash": "sha256:9dae38078bfe6db4516b242056772ae4ad8a91dc5062379875bdb09fb167d3c3",
+        "bytes": 70414972,
+        "triangles": 794646,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -103.75,
+          0,
+          -19.074918746948242
+        ],
+        "max": [
+          97.45249938964844,
+          15.84000015258789,
+          18.534250259399414
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_tolbiac/model.glb",
+        "hash": "sha256:42cdd022d45f499bcd672a866a29967ec76b41130e96515c45946983baae9f0e",
+        "bytes": 70414396,
+        "triangles": 794646,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -103.75,
+          0,
+          -19.074918746948242
+        ],
+        "max": [
+          97.45249938964844,
+          15.84000015258789,
+          18.534250259399414
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_tolbiac/model.skyline.glb",
+        "hash": "sha256:6dbcce082499e1c296eb8ffa04dc94370137b7ddf4e3aec00e38e0560b1194ff",
+        "bytes": 84712,
+        "triangles": 968,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -103.25885009765625,
+          0,
+          -18.944944381713867
+        ],
+        "max": [
+          97.17174530029297,
+          11.10183334350586,
+          18.404483795166016
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_tolbiac/model.district.glb",
+        "hash": "sha256:d532c5196490605d033f959153af65fc1e1284e218ddcc9380e4f7a936ab746b",
+        "bytes": 342960,
+        "triangles": 3996,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -103.66000366210938,
+          0,
+          -18.969999313354492
+        ],
+        "max": [
+          97.3499984741211,
+          14.08137321472168,
+          18.404483795166016
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_tolbiac/model.street.glb",
+        "hash": "sha256:bad20fbcf6a26c5e27ce1bba54c79e38665a4499e3ac5cd328526bedafcb69df",
+        "bytes": 1287364,
+        "triangles": 15700,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -103.75,
+          0,
+          -19.059999465942383
+        ],
+        "max": [
+          97.44000244140625,
+          15.75,
+          18.404483795166016
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u0/u09/pont_de_tolbiac/model.closeup.glb",
+        "hash": "sha256:9365f2d007c7dace941862c8cd7f8e302fe28cdabeaac29adec9096703c9470d",
+        "bytes": 5044244,
+        "triangles": 63996,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -103.75,
+          0,
+          -19.059999465942383
+        ],
+        "max": [
+          97.44000244140625,
+          15.75,
+          18.404483795166016
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "checks": [
+      {
+        "check": "six-clean-Khronos-GLBs",
+        "passed": true
+      },
+      {
+        "check": "three-focused-vault-balustrade-crown-preservation-and-deterministic-LOD-tests",
+        "passed": true
+      },
+      {
+        "check": "scene-and30-ticks",
+        "passed": true,
+        "notes": "Valid scene,30ticks,0events; sha256:6346b10d80b9d1e6578d5196a0152dc04ef372a18f5d9c70f7bfbd0c83360d10"
+      }
+    ]
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:a808bbabab041b2d03f88cdff1cdb3bf875ab90ba546f509007698df1c4779ed",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:6dbcce082499e1c296eb8ffa04dc94370137b7ddf4e3aec00e38e0560b1194ff",
+        "bytes": 84712,
+        "gzipBytes": 21538,
+        "triangles": 968,
+        "cpuBytes": 83280,
+        "gpuBytes": 83280,
+        "errorMeters": 0.9,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:d532c5196490605d033f959153af65fc1e1284e218ddcc9380e4f7a936ab746b",
+        "bytes": 342960,
+        "gzipBytes": 67389,
+        "triangles": 3996,
+        "cpuBytes": 335592,
+        "gpuBytes": 335592,
+        "errorMeters": 0.45,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:bad20fbcf6a26c5e27ce1bba54c79e38665a4499e3ac5cd328526bedafcb69df",
+        "bytes": 1287364,
+        "gzipBytes": 249109,
+        "triangles": 15700,
+        "cpuBytes": 1279968,
+        "gpuBytes": 1279968,
+        "errorMeters": 0.18,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:9365f2d007c7dace941862c8cd7f8e302fe28cdabeaac29adec9096703c9470d",
+        "bytes": 5044244,
+        "gzipBytes": 969309,
+        "triangles": 63996,
+        "cpuBytes": 5036820,
+        "gpuBytes": 5036820,
+        "errorMeters": 0.09,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 427672,
+    "notes": "Master 794646triangles/70414972bytes retained exactly. Browser triangles 968 / 3996 / 15700 / 63996,bytes 84712 / 342960 / 1287364 / 5044244,draws 1 / 6 / 6 / 6. Initial skyline+district 427672bytes. All tiers meet1000/4000/16000/64000triangles,at most6draws,separate GPU position/normal streams. Physical laptop/phone timing remains unmeasured."
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:12ad8a06a39bc6ef9fe3a2cf4df954766aefde716ac49b5ce47888c310934926",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Retained exact-QID way183626421,anchor[2.381000162446853,48.83290412880705],heading0.695619343418. +X northeast toward Bercy,+Z southeast/upstream. Production placement and27.4m NGF-IGN69 origin are unchanged. Five retained clear spans29/32/35/32/29m and map-fitted piers form a172.6m vault chain,distinct from the published168m nominal length. Approximate200.17m overall wing extents and all reconstructed details retain their existing source limits. Compatible host heights or explicit datum conversion remain required; global Mapzen equivalence is not claimed. Fresh master/all-four-tier views reuse exact cached terrain samples and15 retained independent mapped road context IDs,with no new downloads or terrain fitting. Curved bank wings and model-covered road replacement remain at the original signed footprint. The lower quay roads remain beneath the outer arches. Native road endpoint rays retain~0.62m and~0.41m residuals across abrupt3m-grid bank edges; tier differences stay within2cm. Existing independent upper-road plateau samples35.4/35.6m remain separate from these edge-ray observations. The model normal-water reference28.50m and cached RGE water28.05m represent different states; no invented conversion or bathymetry. All model geometry unloads. This scoped cached-terrain fixture does not claim a fresh current global PMTiles/water/building-preservation measurement."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:12ad8a06a39bc6ef9fe3a2cf4df954766aefde716ac49b5ce47888c310934926",
+      "reviewedOn": "2026-10-29",
+      "method": "Inspected95 current frames:20 portable,19 shared-material master stage,36 medium-fi/context/tier frames and20 cached-terrain/road views. The original794646triangle master remains exact. All tiers retain five unequal open vaults,projecting round cutwaters,a continuous crowned road,both raised sidewalks and asymmetric curved bank wings. Close-up retains true rounded capsule balustrade apertures,pilasters,radial arch stones,dentils,all14 ornamental lamps and plaque backing. Street/district aggregate holes,dentils and lamps; skyline retains the five-vault/wing silhouette and parapet caps. The detailed master retains coursed soffits,ashlar,inscriptions,Gentilis lettering,memorial badge,fasteners,drains and grilles; their subpixel detail is deliberately aggregated in browser tiers.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/scene-preview.png",
+          "hash": "sha256:426ba3c34efb38574a799da7b47a4c68f3760409e31fdbdb892f8728d3c7f5b5"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_0.png",
+          "hash": "sha256:53703888ab7a60ed2b52edb836394ff07bc2d7bfabd93fe0d38f8db15d491712"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_1.png",
+          "hash": "sha256:b07d6edc7d3b16c3725681b96eb5fd3c0e87357b33069cbe85ccdee0cef27629"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_2.png",
+          "hash": "sha256:a64811cab363827677e85f535f778d48612c78df608ac69dfbc411de0f4f67f8"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_3.png",
+          "hash": "sha256:3b679efa13fcab335644478d1dadf10fc632dff08870044f6dee98361cf1efef"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/five-vaults-upstream.png",
+          "hash": "sha256:81173ab588eb8c285b38a96f090785551da413662e712c28d489a684bac742bc"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/five-vaults-downstream.png",
+          "hash": "sha256:33bef6d74b7b267305cbba982d4bd5414e2f34d0b5199ebb79fb52ceb202f420"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/center-arch-voussoirs.png",
+          "hash": "sha256:b3180fc4e394962be921bcaf3f1e25a5701867e166850f12d9aa8dd0e7ea2d0f"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/coursed-soffit.png",
+          "hash": "sha256:fccc713a26adecdefd35d72bb86a5c44cb83a10e877957b63d964e8d4f95d6e9"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/cutwater-and-pilaster.png",
+          "hash": "sha256:36ff2217663642fbf2e4df123d1546e27d184f88d15e89e4ff5453615fb74744"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/pier-cap-masonry.png",
+          "hash": "sha256:8b8c34fff5283fe593593b5bbc9382317ef70632617f3e011e23cea2f39e9e05"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/capsule-balustrade.png",
+          "hash": "sha256:398be4431de64022b7b7a7f23ecc90286b4e4122465a5d26002e43a52bde4a44"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/dentil-cornice.png",
+          "hash": "sha256:026dcc589d9c14ebb7be75acb2afb080469bb893309406f72c8210a070d5e947"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/cast-lantern.png",
+          "hash": "sha256:f719a8f7bf277fa6e48901dde361a98a54edfb0924d298a1ded437114b7c3ca6"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/current-road.png",
+          "hash": "sha256:7cb8788d1fbd81929ebd56d81fbeebc8025245cfaccdd4160b6290d07f4c58aa"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/left-bank-approach.png",
+          "hash": "sha256:122e80599c2d9e940e3429bd199524b53e6d18cfd997c7895e558d85ba4f3f17"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/memorial-plaques.png",
+          "hash": "sha256:c19adeef2666de91e1bddcbcd27e138bb614be8ab43acf6f975aff88aebb6cab"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/bridge-name-inscription.png",
+          "hash": "sha256:ce48b0abb71478565482835b0ced70ef773c83fc2e34e0e883ba7fdfae7f9487"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/curved-quay-wall.png",
+          "hash": "sha256:e6c3d2226b380e1f0846b6ab1490ec2501f7dc79346c1914424a3eea6ad61e78"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/deck-plan.png",
+          "hash": "sha256:ea5525b60f5ac55c6346ae95a642e7d85d7d1dc50060271809bc877979795f47"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-0.png",
+          "hash": "sha256:4a6aaddff77984850db5654369aca6247c463ab09e5d2aba87733f022ac9d286"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-1.png",
+          "hash": "sha256:8c403dd09cb092d94c661d0f63cb6470d59dc884faf473fc2a7f5bb12104cbf4"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-2.png",
+          "hash": "sha256:a31f281311302b4d563cad4376fea1edc495486bf8608cc21905749644b4c573"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-3.png",
+          "hash": "sha256:3fbb1459ad5a214f964e0d611a3d50750566bf483d402f89e8ee381ae80ab3b1"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/five-vaults-upstream.png",
+          "hash": "sha256:3319e84744b9054fa42002a7814ee4b4663faf194ccea548b46299e990bf3092"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/five-vaults-downstream.png",
+          "hash": "sha256:541c0858b1de94f06087e76f8726113c44627bdf8ddb117a4e1f7872091d4a5d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/center-arch-voussoirs.png",
+          "hash": "sha256:4a6317686f1b50aae625dbf2195f171d3922a33f1773eb6bdf8fd4c1961bf96b"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/coursed-soffit.png",
+          "hash": "sha256:e3933551ee55bcc94a8bd219009c94a12c3cd50093cc69ab6ebbcd38bf312a40"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/cutwater-and-pilaster.png",
+          "hash": "sha256:4425395a0cc44269b6c8f56c076a0dd938064929ef04201dc5957bd2f6ffda5d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/pier-cap-masonry.png",
+          "hash": "sha256:d3461bee24abbd1a2b7bf46e9ba89fedc25edd4efe12406c87d49f7410c73f20"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/capsule-balustrade.png",
+          "hash": "sha256:5ab606453b607322c7a25e8f32583b85a5f9e235395c5368e882c0a6da966514"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/dentil-cornice.png",
+          "hash": "sha256:e2bd301d2a6284f076ea9224f341b1416920610b30b778672e197ade62297d7a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/cast-lantern.png",
+          "hash": "sha256:189e0ca6b4113c9b3067dcf1d1debd94063ee93f3dca66367b0e2853e22ca297"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/current-road.png",
+          "hash": "sha256:eda07dd1a5a91ad5cc71f6467add98bca1dba116331300a648aa59b1fb5545e5"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/left-bank-approach.png",
+          "hash": "sha256:a6ea4cbd9510bb78229c04f334ee6882db70067d0986da75c6a9f08579ba2125"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/memorial-plaques.png",
+          "hash": "sha256:5622bfe17545e2b946283cea92b3b141114b47f5f1c86f805d70c50a6ad67b21"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/bridge-name-inscription.png",
+          "hash": "sha256:ccaa6279ea7ebe919e4a592199e8357353880cfad0e001f23d253bfd6657e979"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/curved-quay-wall.png",
+          "hash": "sha256:d5ec073df2df99eacec3b2279676f432f227b94411a96636188330cf5baf777a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/deck-plan.png",
+          "hash": "sha256:595a4841a81d161e639712daaaf80c48c5916c305eeb2f811b1dda427518b128"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/street-noon-economy.png",
+          "hash": "sha256:760f53d89b33545b5d15acbc48d1c6bfdfd702c50f9c7925eef399cea2c1ebf1"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/street-noon-high.png",
+          "hash": "sha256:1dbb725d5673ab286b12b76f3cbc287a4015ac51aeb71592ba2c3bde929b64b6"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/street-late-economy.png",
+          "hash": "sha256:b5b695db0308d103e126233d03740079770c7f85a43adfe6e10528fb7d85b6c5"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/street-late-high.png",
+          "hash": "sha256:e209cacd1dbb35a99ea7b6b2f0508e825ddec23bae7eec1e02ab41b9ec39a265"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/block-noon-economy.png",
+          "hash": "sha256:1dc65705856a34ba96ee32f1c582806cac5486c29521bc1a5e187f1ac4c75c29"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/block-noon-high.png",
+          "hash": "sha256:2218ff861c6c69e92619eaab3d3cecc11b7bfde914c96d4c169e6cdc8055aebe"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/block-late-economy.png",
+          "hash": "sha256:80fb793d84c1449091ea28c37233437fec2746bcdf440bde31c0b13714de42d1"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/block-late-high.png",
+          "hash": "sha256:ee3416b8912b88d4af1627cfb98fa6c472551ac76328486485b9990eacee7b09"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:d6fa747e3650f1c1b203bf218def9618df8df7bee47565f7db912d3fd7627d26"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:90a2d04c39aba8f36be08c9453868302acd9cc484b38575d8b2a0cff7557d0da"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:204e9ce7b53cdfc89230089ef9ba2b9e35d7c0156313461691521ebf743ab31d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/skyline-late-high.png",
+          "hash": "sha256:001469aa3977613e9eb364210c1b5cf0875be1c53c383072818dffffee53e67b"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/silhouette.png",
+          "hash": "sha256:dc788881ea07720a94d64f2b58c6234efe362b3c2c56a61b9d8ec4d33d5c7c20"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/five-vaults-upstream.png",
+          "hash": "sha256:7b92e082734d6a807bcb6952eda031f0cb54faf14aed265111c66521b10ad0f0"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/five-vaults-downstream.png",
+          "hash": "sha256:fce2aa5967f5a94a663a1e177d861e6cb86cb50654d6b4da884646d1a0f9d8f4"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/center-arch-voussoirs.png",
+          "hash": "sha256:8fd7e008822858064aae2a13812db62c3fce598ab2892d059a8efdbe53b3bd0f"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/coursed-soffit.png",
+          "hash": "sha256:93088695484631896f6233d0b961cb55c6048481d42ed7910ed0db98844fe600"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/cutwater-and-pilaster.png",
+          "hash": "sha256:ba36ade43843c19d2e210ecae574f6d80681a6e50698106560e38bc9fa492dc4"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/pier-cap-masonry.png",
+          "hash": "sha256:89107e4e0f5bc1c01bc07d0d3f11678b47d13297249df7fd32da406707067dba"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/capsule-balustrade.png",
+          "hash": "sha256:47369a12168fef082229021eeac729be1a62e790a37c26cdec53859105bdb426"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/dentil-cornice.png",
+          "hash": "sha256:06877635ab4c85e763fc392dc3087fb5a17d86f7a228ade67c7b3edf7fb7a6b3"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/cast-lantern.png",
+          "hash": "sha256:6bca907225eab8ceb1b3752b8337e4b06eb59057c2be5dd86499438109b6ba68"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/current-road.png",
+          "hash": "sha256:54a21bf5ca0f6fb4c635a04deb9992fcc99a11c01111c42a6f95075414057f7b"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/left-bank-approach.png",
+          "hash": "sha256:6182d45b0d06a317ce52de5dcc6029900dbc5172453f5abd5d1e3ecf1ddd81de"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/memorial-plaques.png",
+          "hash": "sha256:b07faa81abf6d6bf1368194cf9e5494cdab27e5e04c7f8b675a8482ebe030af2"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/bridge-name-inscription.png",
+          "hash": "sha256:36a7819b24446df0fb0ac31596090797d77dd971337cd2b9ddec133c196f9517"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/curved-quay-wall.png",
+          "hash": "sha256:4d9006d6b58adc9e469fee84aee70b4d090ee6f27a73fcadf5c7995bdb07b711"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/deck-plan.png",
+          "hash": "sha256:1eafc138e4558b362c766aa93e001eec22961e2391358c1c916802e23b65582a"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/skyline-five-vaults.png",
+          "hash": "sha256:a3424fafa9efcba6eb51848934f95c5695fddb37458ff119afca53cb14e0c12d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/district-five-vaults.png",
+          "hash": "sha256:073adb9b52b98b8c787c5a69d4408e95a541e288175ade0fea3f7d4a80d3e12c"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/street-open-balustrade.png",
+          "hash": "sha256:eb2f7cf5151dc89764c1d45646eef7882cb319bb8f9a363f82399c8421f3ac7d"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/closeup-curved-quay.png",
+          "hash": "sha256:4d9006d6b58adc9e469fee84aee70b4d090ee6f27a73fcadf5c7995bdb07b711"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/transition-skyline.png",
+          "hash": "sha256:8725951d6488c9b0109075303bba9e45fccaea1605eb3beaba5dfe54a3a1b089"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/transition-district.png",
+          "hash": "sha256:2218ff861c6c69e92619eaab3d3cecc11b7bfde914c96d4c169e6cdc8055aebe"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/transition-street.png",
+          "hash": "sha256:35a4fa2d8ab699698a6ea749dfa4b4ca31bb9d85684bf4f09d0da830e29790b4"
+        },
+        {
+          "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/medium-fi/transition-closeup.png",
+          "hash": "sha256:4f0b80256f489131ff6ed44f3344efe76335d27abe9dbb730143ffc1df758df2"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads/bank-oblique.png",
+          "hash": "sha256:79f5c72989d9732dfeafe0177a3e3e9554ebf5b05577e813eb41230791b8b10c"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads/side-elevation.png",
+          "hash": "sha256:24385a87c3e1b496764424bd0bb09ea111b9851e61d03205e3a7f70c99b7b31b"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads/reverse-bank.png",
+          "hash": "sha256:a3d1e54e3785f2e2216129e769837ca0762f067bb7c943b02c81e702dc7195a0"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads/plan.png",
+          "hash": "sha256:1849b1f6542f2782aebb2949af68baa7e97bb66bf6b879821e451ae12214f47b"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-skyline/bank-oblique.png",
+          "hash": "sha256:0f53e91bf052c853e81b1908d429d682f963d1d7bba171df6300bbb40466aff2"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-skyline/side-elevation.png",
+          "hash": "sha256:3a9036f029a1e1a9bf5c8bce3ee617fe00133bf7616037e1e341a7c1bf1c00c6"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-skyline/reverse-bank.png",
+          "hash": "sha256:f140c9290f99f7b6018c15a2931a12da3e4074f9c402d62a548ae168ff38d64d"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-skyline/plan.png",
+          "hash": "sha256:b01e5df163cb7c73ebe451682cfd3db8a4953cd67d16a3e5f1798cbe438fce15"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-district/bank-oblique.png",
+          "hash": "sha256:4a1a425ab32b5c74c1c4682a196a69da3239287fe415150a7bc315f260b319ee"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-district/side-elevation.png",
+          "hash": "sha256:1cf73bae9178a847622a1029283b842e3de45e2c272eb2a7269765dc0c09a55e"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-district/reverse-bank.png",
+          "hash": "sha256:9cbc1e6639a01b5ac36268e17b7dc0007d9461400390c59aff5e61d43d4709b1"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-district/plan.png",
+          "hash": "sha256:506d899d09d31d3638bfc8a04f09eac4392e67caab58ddcecc96c683a0f6d114"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-street/bank-oblique.png",
+          "hash": "sha256:a476436bd3aef0008da54355113ff01fa76a782d12bb9be7bcb82c46a61bdefe"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-street/side-elevation.png",
+          "hash": "sha256:44b8dc6aed378b7914280f24066bd75cfa6179507c299fa7e965558102335dad"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-street/reverse-bank.png",
+          "hash": "sha256:ec502b87881a2460fc2271dba0da0d9a749d943420e4f1f082d9f4bac058505e"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-street/plan.png",
+          "hash": "sha256:5260eecfcf5fe3502580039e7e1df5fc4baf363b4b87fae7e457251776c917d1"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-closeup/bank-oblique.png",
+          "hash": "sha256:d9d66e8f5526ce59a1b6bd011f880c11d6eddc61180038b2a0aaf618708bfda4"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-closeup/side-elevation.png",
+          "hash": "sha256:624dc31b9b92bd5663968af0940e77f4a32356a15ec7f9bac3a3e8fcce1794bf"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-closeup/reverse-bank.png",
+          "hash": "sha256:d42b7d2a955056bfb80f10620b75f8846b4a852942da5247d0aef3dee26adb3e"
+        },
+        {
+          "path": "content/earth/structures/evidence/bridge-terrain/ign/shots/pont_de_tolbiac-roads-closeup/plan.png",
+          "hash": "sha256:44df2a84651aa51fad07436ce4495e64548d41ededfac2b63f2ca4f4e8eab0f7"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "Fresh master/all-four-tier views reuse exact cached terrain samples and15 retained independent mapped road context IDs,with no new downloads or terrain fitting. Curved bank wings and model-covered road replacement remain at the original signed footprint. The lower quay roads remain beneath the outer arches. Native road endpoint rays retain~0.62m and~0.41m residuals across abrupt3m-grid bank edges; tier differences stay within2cm. Existing independent upper-road plateau samples35.4/35.6m remain separate from these edge-ray observations. The model normal-water reference28.50m and cached RGE water28.05m represent different states; no invented conversion or bathymetry. All model geometry unloads. This scoped cached-terrain fixture does not claim a fresh current global PMTiles/water/building-preservation measurement."
+    },
+    "reports": [
+      {
+        "level": "master",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-fit-report.json",
+        "hash": "sha256:94dcaa196a7aebaf6d0b6a0deaf8872873a13533cea925f1ed0c1d05050b5f40",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-skyline-fit-report.json",
+        "hash": "sha256:6bb5e6a3da838796093ed5cb6684272d369ccac584fa691b57f43c4e453406fa",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-district-fit-report.json",
+        "hash": "sha256:00f1813e0ed8a431c91aebba05f857ef11a55d526ace8fcbafd98fde685e547d",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-street-fit-report.json",
+        "hash": "sha256:5b10144dcc8f8888d84bccc1cec6be37778db667ef0c17673f4a4617f3119e7f",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "path": "content/earth/structures/evidence/bridge-terrain/ign/pont_de_tolbiac-roads-closeup-fit-report.json",
+        "hash": "sha256:8608b2bd10a731456ee559ab4235f3d1ba5caef37064f996bb88dc9562ec21e3",
+        "eviction": {
+          "liveModelGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Nominal168m length conflicts with the mapped pier spacing and published clear spans; retain both rather than hiding the discrepancy.",
+    "Quay stairways outside the recorded bridge footprint are not part of this asset. Exact current street-sign positions and memorial panel dimensions are reconstructed from photographs, not surveyed.",
+    "Current terrain-fit captures must approve the IGN-supported vertical placement; river surface height varies.",
+    "Detailed source/master are retained exactly. Browser close-up retains capsule openings and plaque backing but aggregates the memorial inscriptions,Gentilis glyphs,tiny fasteners,drain grilles and small carved details into their source masters. Street/district tiers merge repeated holes and dentils; skyline preserves the five-vault/cutwater/curved-wing silhouette with aggregated parapet caps.",
+    "Runtime tiers reuse existing limestone,weathered limestone,painted-metal and concrete graphs. Shared concrete grain approximates roadway/sidewalk paving. Original master material assignments remain unchanged. Physical laptop/phone timing and a new global PMTiles datum comparison remain unmeasured.",
+    "Original detailed master and production placement stay exact. New source-local distance recipe and manifest are registered before current captures. Existing datum/terrain limits remain; no new survey,engineering or device performance claim."
+  ]
 }

@@ -1,0 +1,1729 @@
+{
+  "date": "2026-10-28",
+  "scope": "Follow-up repairs for eleven named aircraft, plus an individual gauge-mounting review of all 53 aircraft.",
+  "status": "complete",
+  "methodology": "Original deterministic procedural geometry, using manufacturer dimensions and available photographs as visual references. Existing procedural finishes and text atlases retained; no generated bitmap textures or copied photographic textures were added.",
+  "models": [
+    {
+      "slug": "airbus-a320neo",
+      "id": "molen.entities.aircraft.airbus_a320neo",
+      "label": "Airbus A320neo",
+      "baselineHash": "sha256:543a0b8c8cbafac8610acf16042431342cf2e4b55d12ba9e51dc6dba45e22f55",
+      "sourceHash": "sha256:8ba80be039bed993e9c1288eb5f5c74b5b4e0795ff32d04e6ae9bfd0164d2c65",
+      "finalHash": "sha256:a1a8c1dc3aa87a867623ff8bc8749b023ec39cfb2538d8f97093a7a570b7848c",
+      "stats": {
+        "triangles": 78924,
+        "vertices": 71402,
+        "meshes": 71,
+        "primitives": 71,
+        "materials": 28,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 2122480
+      },
+      "changes": [
+        "Rebuilt the nose around six straight-edged windscreen panes, including the distinctive upswept aft side panes. The glazing no longer wraps down across the nose.",
+        "Fitted the inner shell, floor, panel width and overhead to the nose; added a continuous glareshield deck to close the cavity behind the instruments.",
+        "Reduced and repositioned the nacelles and connected their pylons to the wing. Authored swept, tapered, closed sharklets with a curved transition, 2.43 m rise and 0.805 m outward extension.",
+        "Replaced the generic flight-guidance inscription with Airbus FCU control group labels and EFIS panels."
+      ],
+      "comparison": "Airbus airport-planning dimensions and A320neo exterior photographs guided the overall proportions, engine placement and sharklets. A320-family cockpit photographs guided the glazing and FCU arrangement.",
+      "review": {
+        "exterior": "ten overview angles and three nose close-ups inspected",
+        "interior": "operator, cabin, left-lower and right-lower views inspected",
+        "runtime": "Molen cockpit capture and eight turntable angles inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:Frontier Airbus A320neo N362FR BWI MD1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Frontier_Airbus_A320neo_N362FR_BWI_MD1.jpg",
+          "artist": "Acroterion ;",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Frontier Airbus A320neo N435FR BWI MD1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Frontier_Airbus_A320neo_N435FR_BWI_MD1.jpg",
+          "artist": "Acroterion",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:IndiGo Airbus A320neo F-WWDG (to VT-ITI) (28915135713).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:IndiGo_Airbus_A320neo_F-WWDG_(to_VT-ITI)_(28915135713).jpg",
+          "artist": "BriYYZ from Toronto, Canada",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:EasyJet airbus A320 cockpit.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:EasyJet_airbus_A320_cockpit.jpg",
+          "artist": "Exilexi",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Cockpit of Airbus A320-211 Air France (F-GFKH).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cockpit_of_Airbus_A320-211_Air_France_(F-GFKH).jpg",
+          "artist": "Louis from Paris, France",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [
+        {
+          "title": "Airbus A320 aircraft characteristics",
+          "url": "https://aircraft.airbus.com/sites/g/files/jlcbta126/files/2023-02/Airbus-techdata-AC_A320_0322.pdf"
+        }
+      ],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/airbus-a320neo/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/airbus-a320neo/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/airbus-a320neo/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/airbus-a320neo/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/airbus-a320neo/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ]
+    },
+    {
+      "slug": "a220-300",
+      "id": "molen.entities.aircraft.a220_300",
+      "label": "Airbus A220-300",
+      "baselineHash": "sha256:c4b7715a27de5a1b892e6b0455072bc8f395fa13fec1fc67d471991fc1d2d81f",
+      "sourceHash": "sha256:9198fcb6d075998367784212acd46913c3abf4d2cc4bb0456e17f6c2fe6e8490",
+      "finalHash": "sha256:2b0134917f5855c715265b0beeb1825627659b79b1d1552111d8e3155c4b4a94",
+      "stats": {
+        "triangles": 74458,
+        "vertices": 66464,
+        "meshes": 74,
+        "primitives": 74,
+        "materials": 28,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 2016036
+      },
+      "changes": [
+        "Replaced the generic wraparound cockpit opening with a sloping nose and four distinct windscreen panes.",
+        "Fitted the roof, inner walls, floor, panel and glareshield to the new shell; moved obstructed common controls to the center console.",
+        "Adjusted the wing, engine and tail dimensions using a dedicated A220 profile."
+      ],
+      "comparison": "A220-300 exterior and CS300/A220 flight-deck references show four main windscreen panes and a longer, lower nose than the A320.",
+      "review": {
+        "exterior": "ten overview angles and three nose close-ups inspected",
+        "interior": "operator, cabin, left-lower and right-lower views inspected",
+        "runtime": "Molen cockpit capture and eight turntable angles inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:Frankfurt Airport airBaltic Airbus A220-300 YL-ABL (DSC09548).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Frankfurt_Airport_airBaltic_Airbus_A220-300_YL-ABL_(DSC09548).jpg",
+          "artist": "MarcelX42",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Airbus A220-300.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Airbus_A220-300.jpg",
+          "artist": "Romain COUPY",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:SWISS Airbus A220-300 HB-JCI.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:SWISS_Airbus_A220-300_HB-JCI.jpg",
+          "artist": "Malokkii",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:AirBaltic Bombardier CS300 launch event (31581897816).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:AirBaltic_Bombardier_CS300_launch_event_(31581897816).jpg",
+          "artist": "Kārlis Dambrāns from Latvia",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:JetBlue A220 - cockpit.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:JetBlue_A220_-_cockpit.jpg",
+          "artist": "airbus777",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:18-09-02-HEL-RIX RRK8572.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:18-09-02-HEL-RIX_RRK8572.jpg",
+          "artist": "Ralf Roletschek",
+          "license": "GFDL 1.2",
+          "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [
+        {
+          "title": "Airbus A220 airport planning, issue 013",
+          "url": "https://www.aircraft.airbus.com/sites/g/files/jlcbta126/files/2025-12/A220-ACP-Issue013-00-27Nov2025.pdf"
+        }
+      ],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/a220-300/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/a220-300/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/a220-300/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/a220-300/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/a220-300/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ]
+    },
+    {
+      "slug": "airliner",
+      "id": "molen.entities.aircraft.airliner",
+      "label": "Bendy Small Airliner",
+      "baselineHash": "sha256:82692aab4a43a4f7c238f1d8310c9a0a3b428864d81d039a060c52a405540579",
+      "sourceHash": "sha256:e434ddb82a137b947fb7da6f515502b690a48aace27859e9c1a0b20afdf08df0",
+      "finalHash": "sha256:a1df3065eb3c1463e893f3ca16e8be641ccdfacee500cc006a2c2dcc66496136",
+      "stats": {
+        "triangles": 52669,
+        "vertices": 71256,
+        "meshes": 61,
+        "primitives": 61,
+        "materials": 25,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 1986556
+      },
+      "changes": [
+        "Replaced the conical cockpit nose with a rounded airliner profile and six angular panes based on the A320 family.",
+        "Added a matching inner liner and fitted glareshield; retained the fictional Bendy livery and existing airliner controls."
+      ],
+      "comparison": "This is a fictional aircraft. A320-family photography provides a coherent nose and cockpit reference rather than a claim that the complete airframe represents a specific type.",
+      "review": {
+        "exterior": "ten overview angles and three nose close-ups inspected",
+        "interior": "operator, cabin, left-lower and right-lower views inspected",
+        "runtime": "Molen cockpit capture and eight turntable angles inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:Boeing 737-300 Cockpit.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Boeing_737-300_Cockpit.jpg",
+          "artist": "Weatherhistory",
+          "license": "CC0",
+          "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Boeing 737 cockpit during flight.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Boeing_737_cockpit_during_flight.jpg",
+          "artist": "John Christian Fjellestad: flickr",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Boeing 737 cockpit view from cabin.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Boeing_737_cockpit_view_from_cabin.jpg",
+          "artist": "Excounter",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Boeing 737-800 (36707248543).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Boeing_737-800_(36707248543).jpg",
+          "artist": "Hugh Llewelyn from Keynsham, UK",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Boeing 737-800 (37119973280).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Boeing_737-800_(37119973280).jpg",
+          "artist": "Hugh Llewelyn from Keynsham, UK",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Boeing 737-800 (36668315044).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Boeing_737-800_(36668315044).jpg",
+          "artist": "Hugh Llewelyn from Keynsham, UK",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "kind": "exterior"
+        }
+      ],
+      "technicalReferences": [],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/airliner/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/airliner/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/airliner/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/airliner/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/airliner/sheet.png"
+      },
+      "limitations": [
+        "Fictional airframe; Airbus-inspired cockpit, not a type replica."
+      ]
+    },
+    {
+      "slug": "atr-72-600",
+      "id": "molen.entities.aircraft.atr_72_600",
+      "label": "ATR 72-600",
+      "baselineHash": "sha256:9e46670ccca8350361ca67647562a00d5610ee25b7a5889b0528aa48701a60f1",
+      "sourceHash": "sha256:0239396c65e328ba82d7774c245438914912a6287c0a2759778f0bb94bde723f",
+      "finalHash": "sha256:b4bf5d63b8936eaee636282fd21a2e8601192ad1a682f05dca79f9b6503e8265",
+      "stats": {
+        "triangles": 78484,
+        "vertices": 87143,
+        "meshes": 146,
+        "primitives": 146,
+        "materials": 32,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 2600416
+      },
+      "changes": [
+        "Replaced the coarse roof-facet windshield opening with six separately fitted panes and a continuous nose skin.",
+        "Moved and narrowed the instrument panel to fit the nose; fitted its forward glare shield, side shelves and trim.",
+        "Lowered the overhead panel beneath the roof, closed the centreline seam, and adjusted the pilot eye."
+      ],
+      "comparison": "ATR flight-deck references show continuous gray wall trim surrounding the panel and side consoles. The new lining follows that enclosure instead of separate floating slabs.",
+      "review": {
+        "exterior": "10 overview directions, 3 nose comparison views, 8 Molen turntable directions and 4 Molen nose close-ups inspected",
+        "interior": "operator, cabin, both lower sides, and a live Molen cockpit scene inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:ATR ATR-72-600 (ATR-72-212A), Royal Air Maroc Express AN1952510.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:ATR_ATR-72-600_(ATR-72-212A),_Royal_Air_Maroc_Express_AN1952510.jpg",
+          "artist": "Alex Beltyukov - RuSpotters Team",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Brand new 3rd ATR 72-600 aircraft for Air Astra. S2-STF. Cockpit.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Brand_new_3rd_ATR_72-600_aircraft_for_Air_Astra._S2-STF._Cockpit.jpg",
+          "artist": "Blinkerx0",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Power and Condition levers of ATR72.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Power_and_Condition_levers_of_ATR72.jpg",
+          "artist": "Mir ridowan sayeed",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/atr-72-600/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/atr-72-600/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/atr-72-600/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/atr-72-600/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/atr-72-600/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ],
+      "correctionReport": "aircraft-nose-correction-2026-10-28.json"
+    },
+    {
+      "slug": "bell-412ep",
+      "id": "molen.entities.aircraft.bell_412ep",
+      "label": "Bell 412EP",
+      "baselineHash": "sha256:7fa2dbeb40bcc1b94fc4ae84a61f7db1a68ae08573510bcc82b2df47cc218d4a",
+      "sourceHash": "sha256:06e6efa9ccdb77d7559db7297911baafe9937328799e955aad51c429eb03d557",
+      "finalHash": "sha256:3525b4b6a707ba25814287415e4c95767e96664b545275a70a661f9f50aa7e05",
+      "stats": {
+        "triangles": 41349,
+        "vertices": 46813,
+        "meshes": 79,
+        "primitives": 79,
+        "materials": 30,
+        "textures": 10,
+        "animations": 0,
+        "sizeBytes": 1513980
+      },
+      "changes": [
+        "Moved the panel aft, narrowed its mounting face, and tapered its housing beneath the windscreen.",
+        "Filled the centre windscreen/roof strip and raised pedal supports clear of the chin skin.",
+        "Retained the shallow, recessed instrument faces and animated needles."
+      ],
+      "comparison": "Bell 412 panel photography shows instruments mounted in the panel with shallow rims, rather than cylinders projecting toward the pilot.",
+      "review": {
+        "exterior": "10 overview directions, 3 nose comparison views, 8 Molen turntable directions and 4 Molen nose close-ups inspected",
+        "interior": "operator, cabin, both lower sides, and a live Molen cockpit scene inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:Bell 412EP (EC-KMU) INAER.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Bell_412EP_(EC-KMU)_INAER.jpg",
+          "artist": "José A. Montes",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Some Bell 412EP of Philippine Air Force.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Some_Bell_412EP_of_Philippine_Air_Force.jpg",
+          "artist": "Philippine Air Force",
+          "license": "Public domain",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Bell 412EP - N304FD.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Bell_412EP_-_N304FD.jpg",
+          "artist": "Tequask",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Bell 412 INAER EC-IPM cockpit detail (6738332727).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Bell_412_INAER_EC-IPM_cockpit_detail_(6738332727).jpg",
+          "artist": "Curimedia",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Agusta-Bell AB-412 Griffon, Italy - Army JP6942464.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Agusta-Bell_AB-412_Griffon,_Italy_-_Army_JP6942464.jpg",
+          "artist": "Aldo Bidini",
+          "license": "GFDL 1.2",
+          "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Agusta-Bell AB-412 Griffon, Italy - Army JP6943483.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Agusta-Bell_AB-412_Griffon,_Italy_-_Army_JP6943483.jpg",
+          "artist": "Aldo Bidini",
+          "license": "GFDL 1.2",
+          "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/bell-412ep/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/bell-412ep/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/bell-412ep/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/bell-412ep/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/bell-412ep/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ],
+      "correctionReport": "aircraft-nose-correction-2026-10-28.json"
+    },
+    {
+      "slug": "boeing-737-800",
+      "id": "molen.entities.aircraft.boeing_737_800",
+      "label": "Boeing 737-800",
+      "baselineHash": "sha256:d8a24727241eedda78a8046388633e00286a032cc1dd4760ee40877e34cabd42",
+      "sourceHash": "sha256:8b7fa0d225982ce11b4b63838b67a1df0fc200d500a9b7f6fcca4c454a7bc8a4",
+      "finalHash": "sha256:809f20a749bd140ee317c9e9514fd9976ae6cc97bf0fdd9b7b5fe87851e4cd63",
+      "stats": {
+        "triangles": 79596,
+        "vertices": 71760,
+        "meshes": 70,
+        "primitives": 70,
+        "materials": 28,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 2134992
+      },
+      "changes": [
+        "Replaced the peaked front windshield with a nearly level brow and the Boeing six-pane arrangement, including the descending side-window sill.",
+        "Reshaped the radome and roof transition with a rounded tip and smooth longitudinal sections.",
+        "Kept the panel and glare shield inside the revised skin."
+      ],
+      "comparison": "The real 737 does have an autopilot/flight-director Mode Control Panel (MCP) on the glareshield. Its controls and terminology differ from the A320 Flight Control Unit (FCU).",
+      "review": {
+        "exterior": "10 overview directions, 3 nose comparison views, 8 Molen turntable directions and 4 Molen nose close-ups inspected",
+        "interior": "operator, cabin, both lower sides, and a live Molen cockpit scene inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:Southwest Boeing 737-800 N8676A BWI MD1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Southwest_Boeing_737-800_N8676A_BWI_MD1.jpg",
+          "artist": "Acroterion",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:United Boeing 737-800 N78509 BWI MD1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:United_Boeing_737-800_N78509_BWI_MD1.jpg",
+          "artist": "Acroterion",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:United Boeing 737-800 N14242 BWI MD1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:United_Boeing_737-800_N14242_BWI_MD1.jpg",
+          "artist": "Acroterion",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Boeing 737-800 BCF, Paris Air Show 2019, Le Bourget (SIAE1220-HDR).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Boeing_737-800_BCF,_Paris_Air_Show_2019,_Le_Bourget_(SIAE1220-HDR).jpg",
+          "artist": "Matti Blume",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Cockpit window of Qantas Boeing 737 (VH-VYE) taxiing prior to takeoff at SYD.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cockpit_window_of_Qantas_Boeing_737_(VH-VYE)_taxiing_prior_to_takeoff_at_SYD.jpg",
+          "artist": "Benlisquare",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Cockpit of Boeing 737-800, ATA Airlines 1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cockpit_of_Boeing_737-800,_ATA_Airlines_1.jpg",
+          "artist": "Photographer: Nick Bartolotta ( en:User:NickBartolotta )",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [
+        {
+          "title": "Transportation Safety Board: 737 MCP description and photograph",
+          "url": "https://www.tsb.gc.ca/eng/rapports-reports/aviation/2022/a22o0161/a22o0161.html"
+        }
+      ],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/boeing-737-800/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/boeing-737-800/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/boeing-737-800/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/boeing-737-800/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/boeing-737-800/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ],
+      "correctionReport": "aircraft-nose-correction-2026-10-28.json"
+    },
+    {
+      "slug": "ch-47f",
+      "id": "molen.entities.aircraft.ch_47f",
+      "label": "Boeing CH-47F Chinook",
+      "baselineHash": "sha256:96fe4d4dc2b0875940f048dd67f46a77afa491c5910888dd1770dc29bd366151",
+      "sourceHash": "sha256:bfcf454d91ed44d6e0d604928de9ccce6099f553af9265b9e1bd26aa94f90959",
+      "finalHash": "sha256:4a6b4d9efe6aae0aeee61057e5279091edc1de6ef4597e40916f99990749b5c3",
+      "stats": {
+        "triangles": 46063,
+        "vertices": 49935,
+        "meshes": 94,
+        "primitives": 94,
+        "materials": 33,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 1647348
+      },
+      "changes": [
+        "Corrected cockpit side-window vertices that extended outside the wall contour.",
+        "Clipped each window against its actual fuselage section and added matching interior liners, replacing invalid nonplanar cutouts.",
+        "Extended the fitted floor forward to the pedals and checked the repaired panel/window joins from both seats and lower side views."
+      ],
+      "comparison": "Chinook cockpit photographs informed the framed lower windows and continuous surrounding wall. The separate flat seat-armor plates remain intentional cockpit equipment.",
+      "review": {
+        "exterior": "ten overview angles and three nose close-ups inspected",
+        "interior": "operator, cabin, left-lower and right-lower views inspected",
+        "runtime": "Molen cockpit capture and eight turntable angles inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:U.S. Army Boeing CH-47F Chinook 11-08097 FDK MD1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:U.S._Army_Boeing_CH-47F_Chinook_11-08097_FDK_MD1.jpg",
+          "artist": "Acroterion",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Boeing CH-47Fs landing FDK MD1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Boeing_CH-47Fs_landing_FDK_MD1.jpg",
+          "artist": "Acroterion",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Hubschrauber Grossmodell Boeing-Vertol CH 47F CHINOOK-Maßstab 1 zu 9,3.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Hubschrauber_Grossmodell_Boeing-Vertol_CH_47F_CHINOOK-Ma%C3%9Fstab_1_zu_9,3.jpg",
+          "artist": "Cornu1907",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:New CH-47F Chinook - 4th Inf. Div. combat tested, approved in Iraq DVIDS110276.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:New_CH-47F_Chinook_-_4th_Inf._Div._combat_tested,_approved_in_Iraq_DVIDS110276.jpg",
+          "artist": "Spc. Jason Dangel",
+          "license": "Public domain",
+          "kind": "interior"
+        },
+        {
+          "title": "File:New CH-47F simulator 1st of its kind (8653131490).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:New_CH-47F_simulator_1st_of_its_kind_(8653131490).jpg",
+          "artist": "Fort Rucker",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Nose of Boeing-Vertol CH-47D Chinook ‘BN’ (really 83-24104) (51071781877).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Nose_of_Boeing-Vertol_CH-47D_Chinook_%E2%80%98BN%E2%80%99_(really_83-24104)_(51071781877).jpg",
+          "artist": "Alan Wilson from Peterborough, Cambs, UK",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/ch-47f/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/ch-47f/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/ch-47f/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/ch-47f/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/ch-47f/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ]
+    },
+    {
+      "slug": "citation-cj4",
+      "id": "molen.entities.aircraft.citation_cj4",
+      "label": "Cessna Citation CJ4",
+      "baselineHash": "sha256:f431a3a269d5c48203e546067a7831965f85e39497c18e47a5f93dc78824445e",
+      "sourceHash": "sha256:e8d8d3dc10544a5ee2ed1fcd67552fd52fab6e129a8709f15883ba8b103b9ffa",
+      "finalHash": "sha256:22758034b44a103b135b4e52810c460153197123dba1b74a3604d1e825af61bd",
+      "stats": {
+        "triangles": 59728,
+        "vertices": 55442,
+        "meshes": 71,
+        "primitives": 71,
+        "materials": 28,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 1741052
+      },
+      "changes": [
+        "Separated the exterior fuselage cross-section from the narrower cabin-width value used by the old generic airframe.",
+        "Rebuilt the nose and angular cockpit panes; replaced oval passenger windows with upright rounded rectangles.",
+        "Reduced the rear nacelles, tapered their exhaust sections and added horizontal attachment pylons reaching the fuselage.",
+        "Rebalanced the swept wing and T-tail, and fitted the cockpit floor, panel and overhead inside the smaller nose."
+      ],
+      "comparison": "CJ4 Gen2 dimensions and CJ4 exterior photography guided the 16.26 m length, 15.49 m nominal span, small rear engines and upright cabin-window shape. The current Gen3 marketing page was not substituted for this variant.",
+      "review": {
+        "exterior": "ten overview angles and three nose close-ups inspected",
+        "interior": "operator, cabin, left-lower and right-lower views inspected",
+        "runtime": "Molen cockpit capture and eight turntable angles inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:Cessna Citation CJ4 cockpit.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cessna_Citation_CJ4_cockpit.jpg",
+          "artist": "JetRequest.com",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:EBACE 2023, Le Grand-Saconnex (EB237599).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:EBACE_2023,_Le_Grand-Saconnex_(EB237599).jpg",
+          "artist": "Matti Blume",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Cessna Citation CJ4 525C N194ME FDK MD1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cessna_Citation_CJ4_525C_N194ME_FDK_MD1.jpg",
+          "artist": "Acroterion",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Cessna 525C CitationJet CJ4 (N545GH, cn 525C0067) (2-15-2025).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cessna_525C_CitationJet_CJ4_(N545GH,_cn_525C0067)_(2-15-2025).jpg",
+          "artist": "ZLEA",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Cessna 525C CitationJet CJ4 (N482MP, cn 525C0406) (2-15-2025).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cessna_525C_CitationJet_CJ4_(N482MP,_cn_525C0406)_(2-15-2025).jpg",
+          "artist": "ZLEA",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        }
+      ],
+      "technicalReferences": [
+        {
+          "title": "Textron Citation CJ4 Gen2 product card",
+          "url": "https://cessna.txtav.com/-/media/cessna/files/product-cards/citation/citation_cj4_gen2_product_card.ashx"
+        }
+      ],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/citation-cj4/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/citation-cj4/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/citation-cj4/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/citation-cj4/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/citation-cj4/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ]
+    },
+    {
+      "slug": "dash-8-q400",
+      "id": "molen.entities.aircraft.dash_8_q400",
+      "label": "De Havilland Canada Dash 8-400",
+      "baselineHash": "sha256:d5565a03c7bd6f617309eda093f6acd79e8478456d9b893c6c6d791c6b388291",
+      "sourceHash": "sha256:45505bcdde05d9d98bafdf6e278f035e5b2dc9a7d6b6b309e2900ec6ef4d69fc",
+      "finalHash": "sha256:dbceffe435a2872aeb3c7552c7984e2a28badd028b7608b464844b24f77866f4",
+      "stats": {
+        "triangles": 71396,
+        "vertices": 64334,
+        "meshes": 76,
+        "primitives": 76,
+        "materials": 29,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 1963476
+      },
+      "changes": [
+        "Replaced the incorrect six-window layout with four panes, including one broad side window per pilot.",
+        "Revised the sloping nose, rounded tip and windshield brow from the Q400 reference.",
+        "Closed the centreline seam and retained the enclosed cockpit."
+      ],
+      "comparison": "The Dash 8-400 manufacturer dimensions and Q400 photographs show the drooped nose, high wing, nacelle-supported main gear and relatively narrow T-tail.",
+      "review": {
+        "exterior": "10 overview directions, 3 nose comparison views, 8 Molen turntable directions and 4 Molen nose close-ups inspected",
+        "interior": "operator, cabin, both lower sides, and a live Molen cockpit scene inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:Shree Airlines De Havilland Canada Dash 8-400 aircraft - (9N-ANE) Taking off from Tribhuvan International Airport (TIA)-070A2297.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Shree_Airlines_De_Havilland_Canada_Dash_8-400_aircraft_-_(9N-ANE)_Taking_off_from_Tribhuvan_International_Airport_(TIA)-070A2297.jpg",
+          "artist": "Bijay Chaurasia",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Shree Airlines De Havilland Canada Dash 8-400 aircraft - (9N-ANE) Taking off from Tribhuvan International Airport (TIA)-070A2309.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Shree_Airlines_De_Havilland_Canada_Dash_8-400_aircraft_-_(9N-ANE)_Taking_off_from_Tribhuvan_International_Airport_(TIA)-070A2309.jpg",
+          "artist": "Bijay Chaurasia",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Enterprise 2000 and dash 8-400 03.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Enterprise_2000_and_dash_8-400_03.jpg",
+          "artist": "Fabian Roudra Baroi",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:VH-LQK Bombardier Dash 8-Q402 QantasLink (Sunstate Airlines) (11473272705).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:VH-LQK_Bombardier_Dash_8-Q402_QantasLink_(Sunstate_Airlines)_(11473272705).jpg",
+          "artist": "Robert Frola",
+          "license": "GFDL",
+          "licenseUrl": "http://www.gnu.org/copyleft/fdl.html",
+          "kind": "interior"
+        },
+        {
+          "title": "File:VH-LQK Bombardier Dash 8-Q402 QantasLink (Sunstate Airlines) (11473423423).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:VH-LQK_Bombardier_Dash_8-Q402_QantasLink_(Sunstate_Airlines)_(11473423423).jpg",
+          "artist": "Robert Frola",
+          "license": "GFDL",
+          "licenseUrl": "http://www.gnu.org/copyleft/fdl.html",
+          "kind": "interior"
+        },
+        {
+          "title": "File:DHC-8-402Q cockpit.JPG",
+          "url": "https://commons.wikimedia.org/wiki/File:DHC-8-402Q_cockpit.JPG",
+          "artist": "Dtom",
+          "license": "Public domain",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [
+        {
+          "title": "De Havilland Dash 8-400 specification sheet",
+          "url": "https://dehavillandfield.com/wp-content/uploads/2022/08/Dash8_Spec_Sheet_web.pdf"
+        }
+      ],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/dash-8-q400/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/dash-8-q400/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/dash-8-q400/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/dash-8-q400/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/dash-8-q400/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ],
+      "correctionReport": "aircraft-nose-correction-2026-10-28.json"
+    },
+    {
+      "slug": "embraer-e175",
+      "id": "molen.entities.aircraft.embraer_e175",
+      "label": "Embraer E175",
+      "baselineHash": "sha256:5f4e7f1cf575514e4a8201934e0bda276ddfa72bf4d6a29db5e6942ad0c64437",
+      "sourceHash": "sha256:f82b70cae24758dfa1664e2e00b1b7538bad511040eb3579202dbcd93b1d54f7",
+      "finalHash": "sha256:7c212888833c19f93bade59f6957496f1b199813cb3344199692228ca73d0543",
+      "stats": {
+        "triangles": 68460,
+        "vertices": 63553,
+        "meshes": 72,
+        "primitives": 72,
+        "materials": 28,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 1934248
+      },
+      "changes": [
+        "Replaced the generic window pattern with broad front panes and aft-raked trapezoidal side panes.",
+        "Revised the rounded radome and upper nose profile.",
+        "Preserved the fitted cockpit, engines and tail from the previous proportion pass."
+      ],
+      "comparison": "Embraer E175 airport-planning dimensions and E175 photographs guided the nose, compact underwing engines and restrained tail proportions.",
+      "review": {
+        "exterior": "10 overview directions, 3 nose comparison views, 8 Molen turntable directions and 4 Molen nose close-ups inspected",
+        "interior": "operator, cabin, both lower sides, and a live Molen cockpit scene inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:KLM Embraer E175.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:KLM_Embraer_E175.jpg",
+          "artist": "AndrewDawes",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Horizon Air E175 in SeaTac 2023.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Horizon_Air_E175_in_SeaTac_2023.jpg",
+          "artist": "BestOnLifeform",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Embraer E175 from Trip Airlines over Rio de Janeiro.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Embraer_E175_from_Trip_Airlines_over_Rio_de_Janeiro.jpg",
+          "artist": "Bento Mattos",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Cockpits of Embraer 175 (2805998455).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cockpits_of_Embraer_175_(2805998455).jpg",
+          "artist": "Cory W. Watts",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Cockpit of LOT Embraer ERJ-175LR (SP-LIN).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cockpit_of_LOT_Embraer_ERJ-175LR_(SP-LIN).jpg",
+          "artist": "Oleg Belyakov",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [
+        {
+          "title": "Embraer E175 airport planning manual",
+          "url": "https://www.embraercommercialaviation.com/wp-content/uploads/2017/02/APM_E175.pdf"
+        }
+      ],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/embraer-e175/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/embraer-e175/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/embraer-e175/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/embraer-e175/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/embraer-e175/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ],
+      "correctionReport": "aircraft-nose-correction-2026-10-28.json"
+    },
+    {
+      "slug": "gulfstream-g650er",
+      "id": "molen.entities.aircraft.gulfstream_g650er",
+      "label": "Gulfstream G650ER",
+      "baselineHash": "sha256:45247e59571a86d7fb63e170cc9deb777d0ac255abbd8c9a8785e3f6e20a1900",
+      "sourceHash": "sha256:358abb01a76f6b9be4f52ceb76b3a3ef0230e8090a0ee654298290fe1fd34945",
+      "finalHash": "sha256:aa39d2fd08eac3243cdf6e3830eaedada3f397f060c2bc5e0cf76b811a2919ca",
+      "stats": {
+        "triangles": 65094,
+        "vertices": 61833,
+        "meshes": 71,
+        "primitives": 71,
+        "materials": 28,
+        "textures": 11,
+        "animations": 0,
+        "sizeBytes": 1880240
+      },
+      "changes": [
+        "Rebuilt the four-pane glazing with broad forward panes and a clipped, rounded rear outline.",
+        "Revised the nose tip and upper contour to remove the narrow generic cone.",
+        "Fitted the glazing and neighbouring skin together while retaining the cabin oval windows."
+      ],
+      "comparison": "The G650ER product sheet and G650/G650ER photography guided the approximately 30.4 m length and 30.35 m span, broad cabin windows, aft engines and T-tail. The G800 was not used as a replacement reference.",
+      "review": {
+        "exterior": "10 overview directions, 3 nose comparison views, 8 Molen turntable directions and 4 Molen nose close-ups inspected",
+        "interior": "operator, cabin, both lower sides, and a live Molen cockpit scene inspected"
+      },
+      "photographs": [
+        {
+          "title": "File:Gulfstream G650ER - N1895T - Serial 6346 - VGHS.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Gulfstream_G650ER_-_N1895T_-_Serial_6346_-_VGHS.jpg",
+          "artist": "Md Shaifuzzaman Ayon",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Gulfstream G650ER, N400J (49581186447).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Gulfstream_G650ER,_N400J_(49581186447).jpg",
+          "artist": "Anna Zvereva from Tallinn, Estonia",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:HS-KVS Gulfstream G650ER (King Power International) (48307865231).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:HS-KVS_Gulfstream_G650ER_(King_Power_International)_(48307865231).jpg",
+          "artist": "James from Cheltenham, Gloucestershire",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "kind": "exterior"
+        },
+        {
+          "title": "File:Gulfstream G650ER, EBACE 2018, Le Grand-Saconnex (BL7C0735).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Gulfstream_G650ER,_EBACE_2018,_Le_Grand-Saconnex_(BL7C0735).jpg",
+          "artist": "Matti Blume",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Gulfstream G650ER, EBACE 2018, Le Grand-Saconnex (BL7C0736).jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Gulfstream_G650ER,_EBACE_2018,_Le_Grand-Saconnex_(BL7C0736).jpg",
+          "artist": "Matti Blume",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "kind": "interior"
+        },
+        {
+          "title": "File:Cockpit G650 N520GA.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Cockpit_G650_N520GA.jpg",
+          "artist": "Waerfelu",
+          "license": "CC BY 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+          "kind": "interior"
+        }
+      ],
+      "technicalReferences": [
+        {
+          "title": "Gulfstream G650ER product sheet",
+          "url": "https://assets.gulfstream.aero/downloads/22_464552_G650ER_Product_Sheet_PROD_DAM.pdf"
+        }
+      ],
+      "evidence": {
+        "exterior": ".artifacts/aircraft-shape-review-2026-10-28/after/gulfstream-g650er/exterior.png",
+        "nose": ".artifacts/aircraft-shape-review-2026-10-28/after/gulfstream-g650er/nose.png",
+        "interior": ".artifacts/aircraft-shape-review-2026-10-28/after/gulfstream-g650er/interior.png",
+        "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/gulfstream-g650er/cockpit.png",
+        "turntable": ".artifacts/aircraft-shape-review-2026-10-28/turntables/gulfstream-g650er/sheet.png"
+      },
+      "limitations": [
+        "Medium-fidelity procedural approximation; fine contours, fasteners, switch legends and equipment variants remain simplified."
+      ],
+      "correctionReport": "aircraft-nose-correction-2026-10-28.json"
+    }
+  ],
+  "gaugeReview": [
+    {
+      "slug": "a220-300",
+      "id": "molen.entities.aircraft.a220_300",
+      "label": "Airbus A220-300",
+      "sourceHash": "sha256:9198fcb6d075998367784212acd46913c3abf4d2cc4bb0456e17f6c2fe6e8490",
+      "finalHash": "sha256:2b0134917f5855c715265b0beeb1825627659b79b1d1552111d8e3155c4b4a94",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/a220-300/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/a220-300/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/a220-300/cockpit.png"
+    },
+    {
+      "slug": "a400m",
+      "id": "molen.entities.aircraft.a400m",
+      "label": "Airbus A400M Atlas",
+      "sourceHash": "sha256:33bc83f0f18ec8bc73b67918ceaa0929a1caa8442229ad1c08cc6c42a99938fd",
+      "finalHash": "sha256:cb1a76e9a4b230a20e3b3077e3dbb161c494cbae86152b0e0e14e9eba1fdc4d2",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/a400m/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/a400m/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/a400m/cockpit.png"
+    },
+    {
+      "slug": "airbus-a320neo",
+      "id": "molen.entities.aircraft.airbus_a320neo",
+      "label": "Airbus A320neo",
+      "sourceHash": "sha256:8ba80be039bed993e9c1288eb5f5c74b5b4e0795ff32d04e6ae9bfd0164d2c65",
+      "finalHash": "sha256:a1a8c1dc3aa87a867623ff8bc8749b023ec39cfb2538d8f97093a7a570b7848c",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/airbus-a320neo/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/airbus-a320neo/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/airbus-a320neo/cockpit.png"
+    },
+    {
+      "slug": "airbus-h125",
+      "id": "molen.entities.aircraft.airbus_h125",
+      "label": "Airbus H125",
+      "sourceHash": "sha256:de9572d4d975a29c4afce021bc79f2ffb441255672942cb6fce05d6e9d7ef4dd",
+      "finalHash": "sha256:8fd74be2b64b6d8e7d385164e32bc57ff8d0fa13aa2e6999f9d82ac60d242814",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/airbus-h125/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/airbus-h125/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/airbus-h125/cockpit.png"
+    },
+    {
+      "slug": "airbus-h145",
+      "id": "molen.entities.aircraft.airbus_h145",
+      "label": "Airbus H145 D3",
+      "sourceHash": "sha256:6f06466728750434931496e7daa183a7db7a86fb8489660f744f0d4a0603e19c",
+      "finalHash": "sha256:abd92ab9299ee5f395e21748368eab220add53e28d4fd7231ea7ca714c522cb3",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/airbus-h145/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/airbus-h145/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/airbus-h145/cockpit.png"
+    },
+    {
+      "slug": "airliner",
+      "id": "molen.entities.aircraft.airliner",
+      "label": "Bendy Small Airliner",
+      "sourceHash": "sha256:e434ddb82a137b947fb7da6f515502b690a48aace27859e9c1a0b20afdf08df0",
+      "finalHash": "sha256:a1df3065eb3c1463e893f3ca16e8be641ccdfacee500cc006a2c2dcc66496136",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/airliner/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/airliner/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/airliner/cockpit.png"
+    },
+    {
+      "slug": "an-124",
+      "id": "molen.entities.aircraft.an_124",
+      "label": "Antonov An-124-100 Ruslan",
+      "sourceHash": "sha256:dce3f4c10bf885d8913d5ea83bcb80729678024e800ac88df213d3c55a7ad428",
+      "finalHash": "sha256:7770e6590726a3cb066f7e9669b51997fd02a13703d2e6ecbf50c5d26901647b",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/an-124/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/an-124/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/an-124/cockpit.png"
+    },
+    {
+      "slug": "atr-72-600",
+      "id": "molen.entities.aircraft.atr_72_600",
+      "label": "ATR 72-600",
+      "sourceHash": "sha256:0239396c65e328ba82d7774c245438914912a6287c0a2759778f0bb94bde723f",
+      "finalHash": "sha256:b4bf5d63b8936eaee636282fd21a2e8601192ad1a682f05dca79f9b6503e8265",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/atr-72-600/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/atr-72-600/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/atr-72-600/cockpit.png"
+    },
+    {
+      "slug": "av-8b",
+      "id": "molen.entities.aircraft.av_8b",
+      "label": "McDonnell Douglas AV-8B Harrier II Plus",
+      "sourceHash": "sha256:db0340dc80ee1ca9a2247146e879e5bda31f2e273f2ac1df2d31ee250fad1441",
+      "finalHash": "sha256:f888884b14f51c794aead28bf53a321b19f4bcf7015c6e2813aef8959c595909",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/av-8b/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/av-8b/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/av-8b/cockpit.png"
+    },
+    {
+      "slug": "aw139",
+      "id": "molen.entities.aircraft.aw139",
+      "label": "Leonardo AW139",
+      "sourceHash": "sha256:9b8d96ca3c2df449a2c65a4391ddbf3a43b0987e7d7f3371b51c52493c905b6f",
+      "finalHash": "sha256:d97f0698745ac63e0d0fa4d1275b67fd3aaa32a7e9a18b18bc366bf447fff075",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/aw139/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/aw139/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/aw139/cockpit.png"
+    },
+    {
+      "slug": "baron-g58",
+      "id": "molen.entities.aircraft.baron_g58",
+      "label": "Beechcraft Baron G58",
+      "sourceHash": "sha256:a571f2bf30277b99a8ef9036991bde35235febfd102da1f6b4e5c91cfc0a8ea1",
+      "finalHash": "sha256:7f16772757aa9bb4590428c6f384ccfd877db1e86f65d831c98645ce07e2faf8",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/baron-g58/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/baron-g58/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/baron-g58/cockpit.png"
+    },
+    {
+      "slug": "beech-18",
+      "id": "molen.entities.aircraft.beech_18",
+      "label": "Beechcraft Model 18",
+      "sourceHash": "sha256:ee39d73478007042c4d8eddaeee1fdaf9482120c27e61bc25c55eb93efcb4450",
+      "finalHash": "sha256:fc1196325c7ea09e0f5ab4473f4c9ba0eff2fa9af6f702ce696b76582cb2ffde",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/beech-18/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/beech-18/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/beech-18/cockpit.png"
+    },
+    {
+      "slug": "bell-206b",
+      "id": "molen.entities.aircraft.bell_206b",
+      "label": "Bell 206B JetRanger",
+      "sourceHash": "sha256:2a35169b527fef85114d6ad12137829f314748b887a059427ddf16d35d335618",
+      "finalHash": "sha256:630d7b573e0171e2ece778cbb9c94a7863f951adb90ee734a96d991447df4669",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/bell-206b/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/bell-206b/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/bell-206b/cockpit.png"
+    },
+    {
+      "slug": "bell-407",
+      "id": "molen.entities.aircraft.bell_407",
+      "label": "Bell 407GX",
+      "sourceHash": "sha256:7570b625e01a2d92849dfca4e5140b752e2ac03922242943e2e98ed4260c0f3f",
+      "finalHash": "sha256:e4cfea2712d7a0fb47b6019fd48d6dd439900ca6d1b7caea887899ba525d0117",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/bell-407/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/bell-407/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/bell-407/cockpit.png"
+    },
+    {
+      "slug": "bell-412ep",
+      "id": "molen.entities.aircraft.bell_412ep",
+      "label": "Bell 412EP",
+      "sourceHash": "sha256:06e6efa9ccdb77d7559db7297911baafe9937328799e955aad51c429eb03d557",
+      "finalHash": "sha256:3525b4b6a707ba25814287415e4c95767e96664b545275a70a661f9f50aa7e05",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/bell-412ep/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/bell-412ep/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/bell-412ep/cockpit.png"
+    },
+    {
+      "slug": "boeing-737-800",
+      "id": "molen.entities.aircraft.boeing_737_800",
+      "label": "Boeing 737-800",
+      "sourceHash": "sha256:8b7fa0d225982ce11b4b63838b67a1df0fc200d500a9b7f6fcca4c454a7bc8a4",
+      "finalHash": "sha256:809f20a749bd140ee317c9e9514fd9976ae6cc97bf0fdd9b7b5fe87851e4cd63",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/boeing-737-800/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/boeing-737-800/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/boeing-737-800/cockpit.png"
+    },
+    {
+      "slug": "bonanza-g36",
+      "id": "molen.entities.aircraft.bonanza_g36",
+      "label": "Beechcraft Bonanza G36",
+      "sourceHash": "sha256:9f9b1a8bcd3937256951d9ae1b51420d09ed7d2fc217fef1fc7ca7724dd612dc",
+      "finalHash": "sha256:4275d7ff5c8e70d6dda18fbf5cdbf1051447c821f97efb899762885ac706c237",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/bonanza-g36/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/bonanza-g36/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/bonanza-g36/cockpit.png"
+    },
+    {
+      "slug": "c-130j",
+      "id": "molen.entities.aircraft.c_130j",
+      "label": "Lockheed Martin C-130J Super Hercules",
+      "sourceHash": "sha256:34d5573089f98206a0c136a891b108692b9ab4f76796446788e3fc0ccf2f4e31",
+      "finalHash": "sha256:b2730fb3294424aafc89e67c177341e429dc3f572044a13e405c821fd811c311",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/c-130j/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/c-130j/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/c-130j/cockpit.png"
+    },
+    {
+      "slug": "c-17a",
+      "id": "molen.entities.aircraft.c_17a",
+      "label": "Boeing C-17A Globemaster III",
+      "sourceHash": "sha256:f15b78237aa0dbe1af2abf4ca99f76269fb1c31feac44abd0372d3c338b98753",
+      "finalHash": "sha256:e15bacac0d4001aab3c2d6743cf4caadb6988e22132a02de339db259f617a698",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/c-17a/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/c-17a/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/c-17a/cockpit.png"
+    },
+    {
+      "slug": "c-5m",
+      "id": "molen.entities.aircraft.c_5m",
+      "label": "Lockheed Martin C-5M Super Galaxy",
+      "sourceHash": "sha256:8715f9355f7b60dee7f2de0da60a8b5ac124415eb4e465591684cf0a5bfccad1",
+      "finalHash": "sha256:a2e5ebcffb2e103482ad92fabca0f417c7b5e2d2da1e817ef63652864350dfec",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/c-5m/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/c-5m/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/c-5m/cockpit.png"
+    },
+    {
+      "slug": "cessna-172s",
+      "id": "molen.entities.aircraft.cessna_172s",
+      "label": "Cessna 172S Skyhawk",
+      "sourceHash": "sha256:7df0d9d647cfee2c78ff12dceef5becca3e3d94d7cdd0b6902cd74d81a7a3b61",
+      "finalHash": "sha256:3a6916a08cded36f67512d7ba0d7a024293ccc9a00f3ac715df1bad7e55117df",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/cessna-172s/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/cessna-172s/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/cessna-172s/cockpit.png"
+    },
+    {
+      "slug": "cessna-182t",
+      "id": "molen.entities.aircraft.cessna_182t",
+      "label": "Cessna 182T Skylane",
+      "sourceHash": "sha256:368e1ae695e585cb7659e37f26105c36d335b1328aa73b08c865bf90a75a012c",
+      "finalHash": "sha256:f3ff719af3b89de9b8a1ef9ffe7caeca853bb6c1be499f4b68bc94628f0c56a5",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/cessna-182t/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/cessna-182t/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/cessna-182t/cockpit.png"
+    },
+    {
+      "slug": "cessna-208b",
+      "id": "molen.entities.aircraft.cessna_208b",
+      "label": "Cessna 208B Grand Caravan EX",
+      "sourceHash": "sha256:7cbb3f3d603870641f7000754c3d8edef19d910dbd5f786874eefee73b8f19d2",
+      "finalHash": "sha256:4d1f8c59c9a934274796c3589dad32a0671468258e9ec71b494da83a9090c0cf",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/cessna-208b/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/cessna-208b/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/cessna-208b/cockpit.png"
+    },
+    {
+      "slug": "ch-47f",
+      "id": "molen.entities.aircraft.ch_47f",
+      "label": "Boeing CH-47F Chinook",
+      "sourceHash": "sha256:bfcf454d91ed44d6e0d604928de9ccce6099f553af9265b9e1bd26aa94f90959",
+      "finalHash": "sha256:4a6b4d9efe6aae0aeee61057e5279091edc1de6ef4597e40916f99990749b5c3",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/ch-47f/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/ch-47f/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/ch-47f/cockpit.png"
+    },
+    {
+      "slug": "cirrus-sr22t",
+      "id": "molen.entities.aircraft.cirrus_sr22t",
+      "label": "Cirrus SR22T G6",
+      "sourceHash": "sha256:9ea244bc45f6e0d4bc53d6414a2e2c8da1a055a2c2ad1fb27ab3d5e78c572138",
+      "finalHash": "sha256:3ff6634afcd0d10f2ff47dbf0dde9c70ceba156aaabdd4686c2e447e97c1692d",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/cirrus-sr22t/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/cirrus-sr22t/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/cirrus-sr22t/cockpit.png"
+    },
+    {
+      "slug": "citation-cj4",
+      "id": "molen.entities.aircraft.citation_cj4",
+      "label": "Cessna Citation CJ4",
+      "sourceHash": "sha256:e8d8d3dc10544a5ee2ed1fcd67552fd52fab6e129a8709f15883ba8b103b9ffa",
+      "finalHash": "sha256:22758034b44a103b135b4e52810c460153197123dba1b74a3604d1e825af61bd",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/citation-cj4/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/citation-cj4/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/citation-cj4/cockpit.png"
+    },
+    {
+      "slug": "dash-8-q400",
+      "id": "molen.entities.aircraft.dash_8_q400",
+      "label": "De Havilland Canada Dash 8-400",
+      "sourceHash": "sha256:45505bcdde05d9d98bafdf6e278f035e5b2dc9a7d6b6b309e2900ec6ef4d69fc",
+      "finalHash": "sha256:dbceffe435a2872aeb3c7552c7984e2a28badd028b7608b464844b24f77866f4",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/dash-8-q400/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/dash-8-q400/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/dash-8-q400/cockpit.png"
+    },
+    {
+      "slug": "dc-3",
+      "id": "molen.entities.aircraft.dc_3",
+      "label": "Douglas DC-3",
+      "sourceHash": "sha256:d90b8ed5cc38474f6025bbabc01a62617252c53a4f373f0ef984b2d024b7c642",
+      "finalHash": "sha256:80f9cf9cfd853dedbc007efe7bb2587888cb0bc5a83dccce91f022af4728fe7b",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/dc-3/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/dc-3/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/dc-3/cockpit.png"
+    },
+    {
+      "slug": "dhc-2",
+      "id": "molen.entities.aircraft.dhc_2",
+      "label": "De Havilland Canada DHC-2 Beaver",
+      "sourceHash": "sha256:18fb5ed0ffe59abace9ce4b027a000b7f76875a4581c6c3128bfc2b083a8c1ae",
+      "finalHash": "sha256:fe1973f50cd615e1363fbc055747eb6bf7109f36be9015f8f569d74ef347285b",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/dhc-2/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/dhc-2/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/dhc-2/cockpit.png"
+    },
+    {
+      "slug": "dhc-6",
+      "id": "molen.entities.aircraft.dhc_6",
+      "label": "De Havilland Canada DHC-6 Twin Otter 400",
+      "sourceHash": "sha256:65ac163f189be2ca3edd8eb97ec5a6a4a5860a79def88891ae6c3d975ba40979",
+      "finalHash": "sha256:bd72b9a27fda0dfbe64e6d127b746d6af1e3becc4bb875d2e130ca42f8ccacee",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/dhc-6/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/dhc-6/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/dhc-6/cockpit.png"
+    },
+    {
+      "slug": "diamond-da42",
+      "id": "molen.entities.aircraft.diamond_da42",
+      "label": "Diamond DA42-VI",
+      "sourceHash": "sha256:d1f421964622ad3fc36ef38f2e41348d75a368bb9befe37940835347f9ad447d",
+      "finalHash": "sha256:d2ec1d5e0d2781415c8e7aa6516bc18618f282e90cede64fcba4b39a51e36fbf",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/diamond-da42/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/diamond-da42/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/diamond-da42/cockpit.png"
+    },
+    {
+      "slug": "embraer-e175",
+      "id": "molen.entities.aircraft.embraer_e175",
+      "label": "Embraer E175",
+      "sourceHash": "sha256:f82b70cae24758dfa1664e2e00b1b7538bad511040eb3579202dbcd93b1d54f7",
+      "finalHash": "sha256:7c212888833c19f93bade59f6957496f1b199813cb3344199692228ca73d0543",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/embraer-e175/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/embraer-e175/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/embraer-e175/cockpit.png"
+    },
+    {
+      "slug": "f-14d",
+      "id": "molen.entities.aircraft.f_14d",
+      "label": "Grumman F-14D Super Tomcat",
+      "sourceHash": "sha256:a5d0c286d8c12228336d839aa72a6ff3b78ac4caa0072e9ea6cab4ac1f8d79b5",
+      "finalHash": "sha256:0bd2f13243aed8b5350fdc6af67e694b3d7106489465258b9606f08dce039119",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/f-14d/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/f-14d/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/f-14d/cockpit.png"
+    },
+    {
+      "slug": "f-15c",
+      "id": "molen.entities.aircraft.f_15c",
+      "label": "McDonnell Douglas F-15C Eagle",
+      "sourceHash": "sha256:802e5ff53fc33362b1226ac70938c667a9a4b71aa4988cd33985a7739fab01de",
+      "finalHash": "sha256:4ed93ee4e68aed0a8e1d553fa8ff7fd4c792b3ae04a1559e43740b50d7940b63",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/f-15c/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/f-15c/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/f-15c/cockpit.png"
+    },
+    {
+      "slug": "f-16b",
+      "id": "molen.entities.aircraft.f_16b",
+      "label": "General Dynamics F-16B Fighting Falcon",
+      "sourceHash": "sha256:95f32be7557cb7eccba8251ad240a2ffe72d99026f30191d1c02f4fb7a2975c4",
+      "finalHash": "sha256:d5d4a7fea482592c5e2e16bddc6e286ac18f1402c6d3be07e6ad6f26fc25e457",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/f-16b/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/f-16b/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/f-16b/cockpit.png"
+    },
+    {
+      "slug": "f-22a",
+      "id": "molen.entities.aircraft.f_22a",
+      "label": "Lockheed Martin F-22A Raptor",
+      "sourceHash": "sha256:1a54d295478bd55de2f131c2a1dcf11d95c8e406def8b179bfd0a5025c02e94d",
+      "finalHash": "sha256:d64853b46618e28b7cea7be84297e8f2b8b9b1ca8ba3ab17c2c063194f0c1159",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/f-22a/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/f-22a/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/f-22a/cockpit.png"
+    },
+    {
+      "slug": "f-35a",
+      "id": "molen.entities.aircraft.f_35a",
+      "label": "Lockheed Martin F-35A Lightning II",
+      "sourceHash": "sha256:89c935a61df8492ebbd362f36c8ed4745d8721ceb1b7e508b0e752c0eccbe472",
+      "finalHash": "sha256:8de22adaeabcb7b4ec19a1518807a6e1d9a1e85230e36e166d42e0b1e6aa192e",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/f-35a/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/f-35a/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/f-35a/cockpit.png"
+    },
+    {
+      "slug": "fa-18c",
+      "id": "molen.entities.aircraft.fa_18c",
+      "label": "McDonnell Douglas F/A-18C Hornet",
+      "sourceHash": "sha256:c8fb0a82bd82325c6f4595fa949dd6db676b19511b10909342fc47d059f2e36f",
+      "finalHash": "sha256:0f7630e961baeda75b82ebd598219d03fb027ffe7fcb66b6b75055c20d611e19",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/fa-18c/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/fa-18c/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/fa-18c/cockpit.png"
+    },
+    {
+      "slug": "gripen-c",
+      "id": "molen.entities.aircraft.gripen_c",
+      "label": "Saab JAS 39C Gripen",
+      "sourceHash": "sha256:1c2acd687b758a1db7ad4855fe64b697b3105791800e6838e8fa32ecf973c19d",
+      "finalHash": "sha256:196fb0057a6dc3395d6e8e4547531db26da621ff4825a0b168a70b7b02ec1cbd",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/gripen-c/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/gripen-c/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/gripen-c/cockpit.png"
+    },
+    {
+      "slug": "gulfstream-g650er",
+      "id": "molen.entities.aircraft.gulfstream_g650er",
+      "label": "Gulfstream G650ER",
+      "sourceHash": "sha256:358abb01a76f6b9be4f52ceb76b3a3ef0230e8090a0ee654298290fe1fd34945",
+      "finalHash": "sha256:aa39d2fd08eac3243cdf6e3830eaedada3f397f060c2bc5e0cf76b811a2919ca",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/gulfstream-g650er/interior.png",
+      "scope": "full requested review",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/gulfstream-g650er/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/gulfstream-g650er/cockpit.png"
+    },
+    {
+      "slug": "king-air-350i",
+      "id": "molen.entities.aircraft.king_air_350i",
+      "label": "Beechcraft King Air 350i",
+      "sourceHash": "sha256:966a44fd19d73971d9d7ff26c14b11633be14bf75859769f463829ef2a2e2a58",
+      "finalHash": "sha256:9e00ce6ca0c7f32e7ecf64a6019c0075d4f53c26e48d30561d91692a9e595066",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/king-air-350i/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/king-air-350i/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/king-air-350i/cockpit.png"
+    },
+    {
+      "slug": "mig-29a",
+      "id": "molen.entities.aircraft.mig_29a",
+      "label": "Mikoyan MiG-29A",
+      "sourceHash": "sha256:52897da04b513089c64f91890698c163a5a04175c3a97550f0c2aea0490facaa",
+      "finalHash": "sha256:2d0465ade512c2cfc5be1573ba583239b2a5f324d0cc18b8548d43d18f57851e",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/mig-29a/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/mig-29a/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/mig-29a/cockpit.png"
+    },
+    {
+      "slug": "mv-22b",
+      "id": "molen.entities.aircraft.mv_22b",
+      "label": "Bell Boeing MV-22B Osprey",
+      "sourceHash": "sha256:5d4b3a8057f38c5f00265c0883988630de0354f356199c9f25d0751ceae6cb06",
+      "finalHash": "sha256:c7235757a46d0b98cdc17acefea6278d505af28b8c884619d2bd932b9a902941",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/mv-22b/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/mv-22b/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/mv-22b/cockpit.png"
+    },
+    {
+      "slug": "oh-6",
+      "id": "molen.entities.aircraft.oh6",
+      "label": "OH-6",
+      "sourceHash": "sha256:2b447b3ab74e81d27ef642b51a7dac003b946ace8c8ef114a7c9a74bb40781e5",
+      "finalHash": "sha256:a1dd0dac2f7b35443ad2764f400a4825af23827a4521843b0790d9b0bcce1cc5",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/oh-6/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/oh-6/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/oh-6/cockpit.png"
+    },
+    {
+      "slug": "p-51",
+      "id": "molen.entities.aircraft.p51d",
+      "label": "P-51D Mustang",
+      "sourceHash": "sha256:32c47fe50aa36a82c0b3ccc73c04b25e38dfd3d54c2e5518b57429787d65a202",
+      "finalHash": "sha256:d8fa8cd92b6ea9dc3a1c46be1dd1c181f80b369ddf71a681954298eb9784a5b3",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/p-51/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/p-51/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/p-51/cockpit.png"
+    },
+    {
+      "slug": "pa-28-180",
+      "id": "molen.entities.aircraft.pa_28_180",
+      "label": "Piper PA-28-180 Cherokee",
+      "sourceHash": "sha256:ccf37fb0b734ad6e23c180b960d3426c203451501fa74a4f254191248e8cf305",
+      "finalHash": "sha256:928ff6ffb257f214660c15c0c392da9aa1255e17f87d6ca4ebe77d68d1a0d3b5",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/pa-28-180/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/pa-28-180/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/pa-28-180/cockpit.png"
+    },
+    {
+      "slug": "pc-6",
+      "id": "molen.entities.aircraft.pc_6",
+      "label": "Pilatus PC-6/B2-H4 Turbo Porter",
+      "sourceHash": "sha256:436437218ad1826005eb17579d86a495a8a132624ad222aaea958f452d54834e",
+      "finalHash": "sha256:e54b6ff22b1d0bfcd0a95759b8d2c32c4e679e8c194a28d1801373950e287390",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/pc-6/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/pc-6/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/pc-6/cockpit.png"
+    },
+    {
+      "slug": "pilatus-pc12",
+      "id": "molen.entities.aircraft.pilatus_pc12",
+      "label": "Pilatus PC-12 NGX",
+      "sourceHash": "sha256:d3662384cee0519a8c8612be336f2120ee36365b53e859b69fc23ae75d284021",
+      "finalHash": "sha256:16ba6124f721e9129629f1ba46c4747b98d6d8b768188e2b52f58e3124c63bb8",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/pilatus-pc12/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/pilatus-pc12/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/pilatus-pc12/cockpit.png"
+    },
+    {
+      "slug": "rafale-c",
+      "id": "molen.entities.aircraft.rafale_c",
+      "label": "Dassault Rafale C",
+      "sourceHash": "sha256:685821c8685a7a6fd60c3aa8e8397687c2d23e5f5a1d1a781ce98eb983891e6c",
+      "finalHash": "sha256:a2449542e2cb0d260c42354fadda34ce3ff8ee24f5004fe5f4cd68a140304fd6",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/rafale-c/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/rafale-c/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/rafale-c/cockpit.png"
+    },
+    {
+      "slug": "robinson-r44",
+      "id": "molen.entities.aircraft.robinson_r44",
+      "label": "Robinson R44 Raven II",
+      "sourceHash": "sha256:c4e236af872cbca277646a8c14de0ac5be7b03187200601946bbc5a92cd5d895",
+      "finalHash": "sha256:888da6cc2ff58e1a387d73e77d83cedc1c36e0848b2a3e646c72cd40eced4078",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/before/robinson-r44/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/robinson-r44/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/robinson-r44/cockpit.png"
+    },
+    {
+      "slug": "typhoon",
+      "id": "molen.entities.aircraft.typhoon",
+      "label": "Eurofighter Typhoon",
+      "sourceHash": "sha256:76668d6376fc192d774d56cea5bf25df1e03ee61b6d6029e421b61dee80153be",
+      "finalHash": "sha256:a81265869497836a0d9c0a43c0e4b90cc901de3ea382a57c88d9940819d03c8c",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/typhoon/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/typhoon/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/typhoon/cockpit.png"
+    },
+    {
+      "slug": "uh-1h",
+      "id": "molen.entities.aircraft.uh_1h",
+      "label": "Bell UH-1H Huey",
+      "sourceHash": "sha256:5ed38b65a5d7d72ae0760d84f29d32a8cd1d321bf033181678ac8530a835a20e",
+      "finalHash": "sha256:412bdcca282d0b05fcdbb5d2b27af2efe250beb2a2e6d15df18dc12b32facc11",
+      "changed": false,
+      "baselineImage": "../fleet-review-2026-10-28/before/uh-1h/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Inspected; existing shallow instruments or glass displays retained.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/uh-1h/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/uh-1h/cockpit.png"
+    },
+    {
+      "slug": "uh-60m",
+      "id": "molen.entities.aircraft.uh_60m",
+      "label": "Sikorsky UH-60M Black Hawk",
+      "sourceHash": "sha256:55a0ca59f14a606355ac573b9b13b38a23ad889c34a313f581f88db035b55bad",
+      "finalHash": "sha256:e66f76311f3a85bfd9fc1ed96571debb56258d9c4a664a860272759d9dfdcf98",
+      "changed": true,
+      "baselineImage": "../fleet-review-2026-10-28/after/uh-60m/interior.png",
+      "scope": "gauge mounting and cockpit rendering",
+      "result": "Revised model inspected; shallow gauge faces and narrow rims retained where applicable.",
+      "evidence": ".artifacts/aircraft-shape-review-2026-10-28/gauges/uh-60m/interior.png",
+      "runtime": ".artifacts/aircraft-shape-review-2026-10-28/runtime/uh-60m/cockpit.png"
+    }
+  ],
+  "checks": {
+    "targetedTests": {
+      "passed": 59,
+      "files": 8,
+      "command": "node packages/entities/node_modules/vitest/vitest.mjs run test/aircraft-transport-fit.test.mjs test/aircraft-joins.test.mjs test/aircraft-instruments.test.mjs test/aircraft-interactions.test.mjs test/aircraft-atr72.test.mjs test/aircraft-beech18.test.mjs test/aircraft-dc3.test.mjs test/cockpit-lettering.test.mjs --root packages/entities --maxWorkers=1",
+      "environment": "TEMP and TMP set to workspace test-tmp directory",
+      "log": ".artifacts/aircraft-shape-review-2026-10-28/tests.log"
+    },
+    "assetInspection": {
+      "command": "inspectAsset({ref,verify:true,projectPath}) for each aircraft",
+      "verified": 53,
+      "report": ".artifacts/aircraft-shape-review-2026-10-28/verification.json"
+    },
+    "geometry": {
+      "reviewed": 53,
+      "changed": 41,
+      "fullReviews": 11,
+      "views": 355,
+      "errors": 0,
+      "checks": [
+        "Source manifest, source GLB and imported GLB hashes",
+        "Current capture hashes",
+        "Finite attributes and transforms, valid triangle indices",
+        "Embedded texture dimensions and material bindings",
+        "Seven transport lower-cockpit enclosure rays, nacelle clearance, nominal span and glareshield containment",
+        "Closed sharklet skins and end caps",
+        "All supported cockpit controls remain pickable in all 53 source and imported aircraft"
+      ],
+      "report": ".artifacts/aircraft-shape-review-2026-10-28/audit.json"
+    },
+    "sourceCheck": {
+      "command": "node scripts/check-source-bundles.mjs",
+      "result": "passed",
+      "log": ".artifacts/aircraft-shape-review-2026-10-28/source-check.log"
+    },
+    "reproducibility": {
+      "batchCommand": "node scripts/build-assets.mjs --jobs 1",
+      "batchResult": "7615 GLBs built successfully; existing cache reused. Windows mapped-file write failures resolved by atomic manifest replacement in the airliner generator.",
+      "batchLog": ".artifacts/aircraft-shape-review-2026-10-28/batch-build.log",
+      "finalTargeted": "All 41 revised aircraft regenerated from final source with identical source hashes; imported runtime hashes unchanged.",
+      "report": ".artifacts/aircraft-shape-review-2026-10-28/reproducibility.json"
+    },
+    "captures": {
+      "distinctReviewViews": 355,
+      "molenCockpits": 53,
+      "molenTurntableViews": 88,
+      "a320Details": 3
+    }
+  },
+  "limitations": [
+    "The cameras sample the model from fixed directions; this is not a mathematical proof that every possible camera pose is free of intersections.",
+    "The work improves silhouettes, cockpit enclosure and instrument mounting. Avionics remain simplified and unavailable systems keep their existing INOP indications.",
+    "References and full-size captures remain local in ignored .artifacts. This report records sources and current hashes; no assets were published and no Git mutations were performed."
+  ],
+  "correctiveReview": "aircraft-nose-correction-2026-10-28.json"
+}

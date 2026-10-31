@@ -178,6 +178,26 @@ describe('land-cover worker', () => {
     await expect(failed).rejects.toThrow('worker crashed');
     bridge.dispose();
   });
+  it('starts the queued tile the view needs soonest, as ranked when the worker frees', async () => {
+    const { tile, context } = fixture();
+    const thread = worker();
+    const bridge = createTerrainLandcoverWorkerBridge(thread.bridge);
+    const first = bridge.generate(tile, context, {});
+    const urgency: Record<string, number> = { far: 30, near: 10, middle: 20 };
+    const order: string[] = [];
+    const queued = Object.keys(urgency).map((name) =>
+      bridge
+        .generate(tile, { ...context, priority: () => urgency[name] as number }, {})
+        .then(() => order.push(name)),
+    );
+    // The camera turned while they waited: the far tile is now the nearest.
+    urgency.far = 5;
+    for (let i = 0; i < 4; i++) thread.run();
+    await first;
+    await Promise.all(queued);
+    expect(order).toEqual(['far', 'near', 'middle']);
+    bridge.dispose();
+  });
   it('preserves nonzero agricultural attributes through worker transfer', async () => {
     const { tile, context } = fixture();
     const feature = tile.landcover[0];

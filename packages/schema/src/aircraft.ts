@@ -1,3 +1,4 @@
+import type { ActuatorInputs, ActuatorPositions, ActuatorSpecs } from './actuators';
 import type { JsonObject } from './json';
 import type { ModelSignalSpec } from './model-signals';
 import type { VehicleInteriorSpec } from './vehicle-interior';
@@ -6,11 +7,13 @@ import type { VehicleInteriorSpec } from './vehicle-interior';
 export type AircraftKind = string;
 export type FlightModel = 'airplane' | 'helicopter';
 
-/** World-space sphere for an attached section or detached piece. */
+/** World-space sphere, or a finite rotor disc when `disc` is present. */
 export interface AircraftCollisionProbe {
   part: string;
   center: [number, number, number];
   radius: number;
+  /** Radius is radial, not a bounding sphere. Normal is unit length in world space. */
+  disc?: { normal: [number, number, number]; halfThickness: number; angularSpeed: number };
 }
 /** Normal points out of the obstacle. Point and depth are in world meters. */
 export interface AircraftContact {
@@ -176,6 +179,8 @@ export interface AirplanePhysicsSpec extends JsonObject {
   gearDrag: number;
   /** Drag coefficient of the flaps fully down; scales with the flap position. */
   flapDrag: number;
+  /** Additional drag coefficient at full speed-brake actuator extension. */
+  speedBrakeDrag?: number;
   /**
    * Seconds for a full landing-gear cycle, doors included, either way; default 0 (instant). The
    * gear holds still while the wheels carry weight, and only a locked-down gear can land.
@@ -198,6 +203,9 @@ export interface AirplanePhysicsSpec extends JsonObject {
 }
 
 export interface HelicopterPhysicsSpec extends JsonObject {
+  /** Fixed skids/wheels by default; false enables retractable gear. */
+  fixedGear?: boolean;
+  gearTransitTime?: number;
   /** Govern rotor RPM independently of collective and limit lift to available shaft power. */
   powerLimitedRotor?: boolean;
   /** Induced-power efficiency, 0..1; default 0.75. */
@@ -241,7 +249,7 @@ export interface AircraftRotorBinding extends AircraftVisualBinding {
 
 export interface AircraftVisualSpec extends JsonObject {
   rotors: AircraftRotorBinding[];
-  /** Nodes hidden while the gear is fully up. */
+  /** Legacy unrigged gear hides when fully up; position/rotation-bound nodes keep their pose. */
   gearNodes: string[];
   /** Turn by `multiplier` radians at full flap travel, in proportion to the flap position. */
   flaps: AircraftVisualBinding[];
@@ -262,10 +270,23 @@ export interface AircraftVisualSpec extends JsonObject {
 /** A rigid airframe section; +X is the aircraft's left side. */
 export interface AircraftCollisionPart extends JsonObject {
   id: string;
-  role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'gear' | 'engine';
+  role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'tailRotor' | 'gear' | 'engine';
   /** Collision sphere centers in model coordinates, meters. */
   probes: [number, number, number][];
   radius: number;
+  /** Finite swept rotor volume, replacing this section's sphere probes. Active even at rest. */
+  disc?: {
+    center: [number, number, number];
+    normal: [number, number, number];
+    radius: number;
+    halfThickness: number;
+    /** Node in visual.rotors, supplying the engine and signed speed multiplier. */
+    rotor: string;
+    /** Rotate the disc about this model-space hinge with thrustVectorPosition (0..1). */
+    tilt?: { pivot: [number, number, number]; axis: [number, number, number]; angle: number };
+  };
+  /** Supporting section. Its separation also releases this part, once, with its own debris. */
+  parent?: string;
   /** Center of the detached section in model coordinates. */
   center: [number, number, number];
   /** Fraction of the original aircraft mass carried away on separation. */
@@ -298,6 +319,7 @@ export interface AircraftDebris extends JsonObject {
 
 /** Complete data-driven tuning consumed by the generic aircraft solver and client. */
 export interface AircraftSpec extends JsonObject {
+  actuators?: ActuatorSpecs;
   label: string;
   /** Name-free display label such as 'Light helicopter', for hosts that must not show the type name. */
   genericLabel?: string;
@@ -343,6 +365,7 @@ export interface AircraftData extends JsonObject {
   spec: AircraftSpec;
 }
 export interface AircraftInputData extends JsonObject {
+  actuators?: ActuatorInputs;
   /** Common fuel mixture: 0 idle cutoff, 1 full rich (default). Only manually metered pistons. */
   mixture?: number;
   /** Common propeller governor lever: 0 minimum RPM, 1 maximum (default). */
@@ -362,6 +385,7 @@ export interface AircraftInputData extends JsonObject {
   thrustVector?: number;
 }
 export interface AircraftStateData extends JsonObject {
+  actuators?: ActuatorPositions;
   /** Persistent joint damage. Recovery starts with a fresh aircraft state. */
   damage?: Record<string, AircraftPartDamage>;
   /** Detached sections, simulated for 20 seconds; damage remains after debris expires. */
@@ -392,7 +416,7 @@ export interface AircraftStateData extends JsonObject {
   elevator?: number;
   /**
    * Landing-gear position: 0 up and locked, 1 down and locked, between them in transit.
-   * Airplanes only; the solver starts it at the commanded position.
+   * The solver starts it at the commanded position; fixed undercarriages stay down.
    */
   gearPosition?: number;
   /** Flap position as a fraction of full travel, 0..1. Airplanes only; starts as commanded. */

@@ -20,6 +20,70 @@ export interface ProjectedRegion {
   polygonBounds: WorldBounds[];
 }
 
+/**
+ * A ring's edges by the horizontal bands their z range spans. Only an edge spanning a point's z
+ * can flip its even-odd test, so testing a band's edges gives `pointInRing`'s answer. Country
+ * and continent outlines run to thousands of vertices, and every building resolves its region:
+ * walking whole rings was a tenth of a town tile's generation.
+ */
+interface RingBands {
+  minZ: number;
+  bandHeight: number;
+  /** Band b's edges are `edges[offsets[b]]` up to `edges[offsets[b + 1]]`, by end vertex. */
+  offsets: Int32Array;
+  edges: Int32Array;
+}
+
+/** Rings shorter than this walk every edge. */
+const BANDED_RING_EDGES = 64;
+
+function ringBands(ring: readonly Vec2[], bounds: WorldBounds): RingBands | undefined {
+  const count = Math.min(1024, Math.floor(ring.length / 8));
+  const bandHeight = (bounds[3] - bounds[1]) / count;
+  if (ring.length < BANDED_RING_EDGES || !(bandHeight > 0) || !Number.isFinite(bandHeight))
+    return undefined;
+  const band = (z: number): number =>
+    Math.max(0, Math.min(count - 1, Math.floor((z - bounds[1]) / bandHeight)));
+  const span = (index: number): [number, number] => {
+    const a = (ring[index] as Vec2)[1];
+    const b = (ring[(index === 0 ? ring.length : index) - 1] as Vec2)[1];
+    return [band(Math.min(a, b)), band(Math.max(a, b))];
+  };
+  const offsets = new Int32Array(count + 1);
+  for (let index = 0; index < ring.length; index++) {
+    const [from, to] = span(index);
+    for (let b = from; b <= to; b++) (offsets[b + 1] as number)++;
+  }
+  for (let b = 0; b < count; b++)
+    offsets[b + 1] = (offsets[b + 1] as number) + (offsets[b] as number);
+  const edges = new Int32Array(offsets[count] as number);
+  const filled = offsets.slice(0, count);
+  for (let index = 0; index < ring.length; index++) {
+    const [from, to] = span(index);
+    for (let b = from; b <= to; b++) edges[(filled[b] as number)++] = index;
+  }
+  return { minZ: bounds[1], bandHeight, offsets, edges };
+}
+
+function inBandedRing(ring: readonly Vec2[], bands: RingBands, x: number, z: number): boolean {
+  const count = bands.offsets.length - 1;
+  const b = Math.max(0, Math.min(count - 1, Math.floor((z - bands.minZ) / bands.bandHeight)));
+  let inside = false;
+  for (let e = bands.offsets[b] as number; e < (bands.offsets[b + 1] as number); e++) {
+    const index = bands.edges[e] as number;
+    const current = ring[index] as Vec2;
+    const before = ring[(index === 0 ? ring.length : index) - 1] as Vec2;
+    // pointInRing's test, term for term.
+    if (
+      current[1] > z !== before[1] > z &&
+      x < ((before[0] - current[0]) * (z - current[1])) / (before[1] - current[1]) + current[0]
+    ) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}
+
 export interface RegionResolver {
   readonly atlas: RegionAtlasDoc;
   /** Highest-priority region containing a world point (document order breaks ties). */
@@ -103,19 +167,27 @@ export function createRegionResolver(
   options: RegionResolverOptions,
 ): RegionResolver {
   const projected = atlas.regions.map((region) => projectRegion(region, options.metersPerUnit));
+  const bands = projected.map((entry) =>
+    entry.polygons.map((ring, i) => ringBands(ring, entry.polygonBounds[i] as WorldBounds)),
+  );
   const fallback = atlas.fallbackDistanceMeters ?? 0;
   return {
     atlas,
     resolve(x, z) {
       let best: ProjectedRegion | undefined;
-      for (const entry of projected) {
+      for (let r = 0; r < projected.length; r++) {
+        const entry = projected[r] as ProjectedRegion;
         if (!inBounds(entry.bounds, x, z)) continue;
+        const ringIndex = bands[r] as (RingBands | undefined)[];
         if (
           entry.polygons.length > 0 &&
-          !entry.polygons.some(
-            (ring, i) =>
-              inBounds(entry.polygonBounds[i] as WorldBounds, x, z) && pointInRing([x, z], ring),
-          )
+          !entry.polygons.some((ring, i) => {
+            if (!inBounds(entry.polygonBounds[i] as WorldBounds, x, z)) return false;
+            const banded = ringIndex[i];
+            return banded !== undefined
+              ? inBandedRing(ring, banded, x, z)
+              : pointInRing([x, z], ring);
+          })
         ) {
           continue;
         }

@@ -221,6 +221,49 @@ describe('walk physics', () => {
 });
 
 describe('streamed walk collision', () => {
+  it('keeps collision-only proxies solid without render layers until hidden', () => {
+    const { root, walker, collision } = scene();
+    const wall = box(0.1, 10, 40, 2, 5, 0);
+    wall.layers.disableAll();
+    wall.userData.walkCollisionOnly = true;
+    root.add(wall);
+    collision.update(root, 0, 0);
+    advance(walker, collision, 2, { forward: 1 });
+    expect(walker.feet.x).toBeLessThan(1.651);
+    wall.visible = false;
+    collision.update(root, walker.feet.x, walker.feet.z);
+    advance(walker, collision, 1, { forward: 1 });
+    expect(walker.feet.x).toBeGreaterThan(3);
+  });
+
+  it('releases meshes with every render layer disabled and restores them when shown', () => {
+    const { root, walker, collision } = scene();
+    const wall = box(0.1, 10, 40, 2, 5, 0);
+    root.add(wall);
+    collision.update(root, 0, 0);
+    advance(walker, collision, 2, { forward: 1 });
+    expect(walker.feet.x).toBeLessThan(1.651);
+    wall.layers.disableAll();
+    collision.update(root, walker.feet.x, walker.feet.z);
+    advance(walker, collision, 1, { forward: 1 });
+    expect(walker.feet.x).toBeGreaterThan(3);
+    wall.layers.enable(0);
+    collision.update(root, walker.feet.x, walker.feet.z);
+    advance(walker, collision, 2, { forward: -1 });
+    expect(walker.feet.x).toBeGreaterThan(2.349);
+  });
+
+  it('still visits visible children of a mesh with every render layer disabled', () => {
+    const { root, walker, collision } = scene();
+    const hidden = box(1, 1, 1, 0, 0, 0);
+    hidden.layers.disableAll();
+    hidden.add(box(0.1, 10, 40, 2, 5, 0));
+    root.add(hidden);
+    collision.update(root, 0, 0);
+    advance(walker, collision, 2, { forward: 1 });
+    expect(walker.feet.x).toBeLessThan(1.651);
+  });
+
   it('collides with instances and releases hidden or evicted tiles', () => {
     const { root, walker, collision } = scene();
     const tile = new THREE.Group();

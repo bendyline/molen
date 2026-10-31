@@ -1,15 +1,15 @@
 # Current structure round
 
-**Production paused by request. klaipeda_lighthouse complete.** Updated2026-10-28.
+**Production paused after completing santiago_bernabeu_stadium. Beijing is next and has not been started.** Updated2026-10-29.
 
 ## Current status
 
-- **541 of 1,000 candidates ready; 669 original candidate masters; 729 authored/imported assets; 701 active geographic asset previews.** Original candidates and independent collection members have different totals. The full source rebuild retained all 669 original masters. Of 71 stale approvals, 39 were reconciled with exact input/output/image proofs; Grande Arche, Emley Moor, Bell Rock, Palacio Barolo and Lakhta Centre have refreshed changed-output reviews. The other 5 changed-output records remain pending. These counts supersede older incremental counts below.
-- Saved Delal, Bhupen Hazarika, Ponte Umberto I and Ponte Cavour drafts are integrated for their reviewed exterior/placement scope. Status-only reconciliation preserved all 24 GLBs and 236 bound inspected images. All **46 recent review pins / 276 GLBs** are current.
+- **566 of 1,000 candidates ready;676 original candidate masters;736 authored/imported assets;708 active geographic asset previews.** Original candidates and independent collection members have different totals. The last clean source milestone contained672 original masters;later targeted additions passed individual reconstruction checks. Current blockers remain explicit in the readiness ledger.
+- Saved Delal, Bhupen Hazarika, Ponte Umberto I and Ponte Cavour drafts are integrated for their reviewed exterior/placement scope. Status-only reconciliation preserved all 24 GLBs and 236 bound inspected images. All **71 recent review pins / 426 GLBs** are current.
 - Muntplein, Ferreres, Kokushkin and Spean Thma remain disabled incomplete drafts. Yasnaya Polyana has 19/19 declared members reviewed, but the separate woodshed is unresolved. Stari Most's towers and historic quays remain outside its asset scope. Ava has a historical placement, not a present-day intact crossing.
-- Production is paused after completing Klaipėda Lighthouse, as the owner requested. Kołobrzeg Lighthouse is a future queue entry and has not been started. No commands remain running.
+- Owner requested pausing after the current building. Bernabeu is complete for its documented exterior/browser/placement scope. Beijing has received read-only inspection only. Resume production only when the owner requests it.
 
-## Resumed model pass — 2026-10-28
+## Resumed model pass — 2026-10-29
 
 - **40_wall_street**: 62 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 546 / 3716 / 8660 / 15780; initial 355,444 bytes; closeup 1,199,484 bytes. Current source and retained geographic scope are bound to the review.
 - **ristna_lighthouse**: 46 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 998 / 3442 / 14326 / 40234; initial 319,320 bytes; closeup 2,917,400 bytes. Current source and retained geographic scope are bound to the review.
@@ -33,6 +33,31 @@
 - **bierpinsel**: 57 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 988 / 3996 / 15124 / 39568; initial 386,056 bytes; closeup 2,846,488 bytes. Current source and retained geographic scope are bound to the review.
 - **gerbrandy_tower**: 60 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 996 / 3948 / 14978 / 63046; initial 390,640 bytes; closeup 4,608,292 bytes. Current source and retained geographic scope are bound to the review.
 - **klaipeda_lighthouse**: 45 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 1000 / 3734 / 14574 / 30322; initial 341,052 bytes; closeup 2,037,020 bytes. Current source and retained geographic scope are bound to the review.
+- **kolobrzeg_lighthouse**: 45 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 998 / 4000 / 15994 / 37674; initial 368,920 bytes; closeup 2,612,468 bytes. Current source and retained geographic scope are bound to the review.
+- **skagen_lighthouse**: 46 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 848 / 3958 / 15322 / 54948; initial 376,188 bytes; closeup 4,138,412 bytes. Current source and retained geographic scope are bound to the review.
+- **kullen_lighthouse**: 46 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 974 / 3992 / 14416 / 37624; initial 379,892 bytes; closeup 2,858,972 bytes. Current source and retained geographic scope are bound to the review.
+- **lizard_lighthouse**: 49 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 934 / 3894 / 14556 / 42322; initial 378,108 bytes; closeup 3,172,700 bytes. Current source and retained geographic scope are bound to the review.
+- **willis_tower**: 49 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 933 / 3862 / 15151 / 47140; initial 378,680 bytes; closeup 3,559,016 bytes. Current source and retained geographic scope are bound to the review.
+- **seher_cehaja_bridge**: 65 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 816 / 2328 / 5082 / 9362; initial 240,260 bytes; closeup 718,936 bytes. Current source and retained geographic scope are bound to the review.
+- **hercilio_luz_bridge**: 68 current frames inspected; six clean GLBs and 4 focused tests. LOD triangles 986 / 3828 / 15800 / 63776; initial 427,048 bytes; closeup 5,852,232 bytes. Current source and retained geographic scope are bound to the review.
+- **greens_bridge**: 73 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 752 / 3432 / 10656 / 26112; initial 345,688 bytes; closeup 2,186,152 bytes. Current source and retained geographic scope are bound to the review.
+- **isabel_ii_bridge**: 69 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 940 / 3914 / 14824 / 41172; initial 399,536 bytes; closeup 3,528,496 bytes. Current source and retained geographic scope are bound to the review.
+- **pont_de_l_archeveche**: 74 current frames inspected; six clean GLBs and 2 focused tests. LOD triangles 632 / 2772 / 12988 / 29294; initial 280,492 bytes; closeup 2,449,996 bytes. Current source and retained geographic scope are bound to the review.
+- **pont_de_tolbiac**: 95 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 968 / 3996 / 15700 / 63996; initial 427,672 bytes; closeup 5,044,244 bytes. Current source and retained geographic scope are bound to the review.
+- **akmens_tilts**: 66 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 704 / 3968 / 12548 / 60080; initial 409,416 bytes; closeup 5,593,652 bytes. Current source and retained geographic scope are bound to the review.
+- **malo_kalinkin_bridge**: 54 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 580 / 2220 / 7220 / 35140; initial 228,268 bytes; closeup 2,203,472 bytes. Current source and retained geographic scope are bound to the review.
+- **plaka_bridge**: 64 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 496 / 1012 / 2852 / 11136; initial 107,116 bytes; closeup 860,340 bytes. Current source and retained geographic scope are bound to the review.
+- **crystal_cathedral**: 11 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 828 / 1780 / 5024 / 7960; initial 225,096 bytes; closeup 702,128 bytes. Current source and retained geographic scope are bound to the review.
+- **baitul_mukarram_national_mosque**: 11 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 768 / 2462 / 4758 / 8296; initial 264,192 bytes; closeup 578,988 bytes. Current source and retained geographic scope are bound to the review.
+- **national_mosque_of_malaysia**: 11 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 619 / 1839 / 7947 / 9087; initial 251,864 bytes; closeup 882,572 bytes. Current source and retained geographic scope are bound to the review.
+- **mosque_of_amr_ibn_al_as**: 11 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 854 / 3817 / 15648 / 22707; initial 467,340 bytes; closeup 2,251,208 bytes. Current source and retained geographic scope are bound to the review.
+- **sultan_qaboos_grand_mosque**: 11 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 972 / 2322 / 10308 / 23518; initial 333,928 bytes; closeup 2,217,516 bytes. Current source and retained geographic scope are bound to the review.
+- **abuja_national_mosque**: 11 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 704 / 1313 / 3066 / 4426; initial 215,512 bytes; closeup 461,252 bytes. Current source and retained geographic scope are bound to the review.
+- **lotus_temple**: 11 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 980 / 3629 / 8321 / 17153; initial 458,020 bytes; closeup 1,826,396 bytes. Current source and retained geographic scope are bound to the review.
+- **temple_of_antoninus_and_faustina**: 11 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 535 / 2674 / 6110 / 12412; initial 317,136 bytes; closeup 1,225,344 bytes. Current source and retained geographic scope are bound to the review.
+- **el_faro_towers**: 8 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 372 / 2996 / 13028 / 36068; initial 302,612 bytes; closeup 3,371,588 bytes. Current source and retained geographic scope are bound to the review.
+- **gardos_tower**: 8 current frames inspected; six clean GLBs and 0 focused tests. LOD triangles 905 / 3141 / 4011 / 4011; initial 377,788 bytes; closeup 355,812 bytes. Current source and retained geographic scope are bound to the review.
+- **santiago_bernabeu_stadium**: 68 current frames inspected; six clean GLBs and 3 focused tests. LOD triangles 976 / 3672 / 14528 / 62816; initial 340,752 bytes; closeup 3,843,140 bytes. Current source and retained geographic scope are bound to the review.
 
 ## Current completed model pass
 
@@ -46,17 +71,17 @@ The final cached source build verified **7,411 GLBs** as **assets-fb2b8de4471f28
 
 Grande Arche's refresh inspected 25 current medium-fi frames and retained 20 unchanged portable/shared frames with explicit proofs. Six clean GLBs and three tests pass; initial download is 316,164 bytes. Emley Moor's changed source/runtime/closeup were reviewed in 68 fresh frames; six clean GLBs and three tests pass. Its browser levels are 866 / 3,978 / 15,880 / 51,104 triangles; initial download is 369,020 bytes. Existing epoch, approximate bearing and host-terrain limits remain explicit.
 
-## Current explicit structure — Klaipėda complete; production paused
+## Current explicit structure — beijing_national_stadium next
 
-**klaipeda_lighthouse is complete for its current reviewed scope.** [Review](../places/u3/u3z/klaipeda_lighthouse/QA-REVIEW.md). 45 current images inspected; six clean GLBs and 2 focused tests pass. Source/master and four browser-level hashes are bound to the review, with the retained placement scope and explicit limitations.
+**santiago_bernabeu_stadium is complete for its current reviewed scope.** [Review](../places/ez/ezj/santiago_bernabeu_stadium/QA-REVIEW.md). 68 current images inspected; six clean GLBs and 3 focused tests pass. Source/master and four browser-level hashes are bound to the review, with the retained placement scope and explicit limitations.
 
-- Runtime triangles: 1000 / 3734 / 14574 / 30322.
-- Initial skyline+district: 341,052bytes; closeup:2,037,020bytes.
-- All **46 accepted review pins /276 GLBs** are current.
+- Runtime triangles: 976 / 3672 / 14528 / 62816.
+- Initial skyline+district: 340,752bytes; closeup:3,843,140bytes.
+- All **71 accepted review pins /426 GLBs** are current.
 
-The 22 recent model refreshes have **1099 inspected frames,132 clean GLBs and47 focused passing tests**. The latest full source milestone is **7,615 GLBs /assets-c9fe4c6121f21d79**; later targeted derivatives will be included at the next meaningful batch milestone. Do not repeat full generators, engine CI or npm audit per model.
+The 47 recent model refreshes have **2134 inspected frames,282 clean GLBs and85 focused passing tests**. The latest full source milestone is **7,669 GLBs /assets-04d8acc6f7cf3826**; later targeted derivatives will be included at the next meaningful batch milestone. Do not repeat full generators, engine CI or npm audit per model.
 
-**Goal paused by owner request:** 541/1,000 ready,459 unready and331 without source masters. Klaipėda Lighthouse is complete for the scope above; Kołobrzeg Lighthouse has not been started. Resume only on a new owner instruction. Continue using retained ordinary pictures and map work, completing source, shared materials, browser levels, fit and current visual review in one pass. Existing native-fit drafts, unresolved collection members and reusable-category activation remain incomplete. Physical laptop/phone timings remain unmeasured.
+**Goal paused at owner request:**566/1,000 ready;434 remain unready. Bernabeu is complete,with the detailed master preserved and four budgeted browser tiers. Beijing is the next explicit building;no new Beijing geometry or metadata has been edited.
 
 ## Pont du Garigliano — scoped exterior and approximate native placement complete
 
@@ -525,3 +550,15 @@ Two independent source-generated log buildings at ways 167382257 and 167382258. 
 The full 1,000-candidate objective remains active. Reusable category models need explicit map matching and current QA; their reviewed count is zero. Yasnaya's separate woodshed stays open.
 
 Physical laptop/phone measurements remain pending. No dependency audit or full repository suite was run for this bridge pass; prior livery-schema failures remain recorded separately.
+
+## Batch checkpoint —2026-10-29
+
+Current source-input asset checkpoint: **7,693 GLBs /assets-45d7af3e52cc0df6**,including Malo-Kalinkin and Plaka. All1,631 source bundles and1,206 authoring entries pass consistency checks;full readiness --check passes at565 ready. This reuses generated outputs and is not a new clean rebuild. The last clean milestone remains7,669 GLBs /assets-04d8acc6f7cf3826.
+
+This production pass added Plaka and renewed ten material-only reviews with168 newly inspected frames. Seventy accepted model pins/420 GLBs are intact. No dependency audit or engine CI was run.
+
+**Bernabéu browser work is complete.** Its detailed master is unchanged;browser tiers976/3672/14528/62816triangles,initial340752bytes and closeup3843140bytes. All68 current frames,six GLBs and three targeted tests pass. Production is paused at the owner's request.
+
+## Owner-requested pause —2026-10-29
+
+Bernabeu is complete and71 accepted review pins/426 GLBs are intact. No new Beijing authoring has begun. The next meaningful source-input asset checkpoint should include Bernabeu's four changed browser variants;the earlier7,693-GLB/assets-45d7af3e52cc0df6 checkpoint remains historical. Source,metadata and targeted checks for the completed building are saved. No Git operations or uploads were performed.

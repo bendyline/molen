@@ -1,3 +1,4 @@
+import { terrainPyramidBudgetForQuality } from '@bendyline/molen-terrain/client';
 import { describe, expect, it } from 'vitest';
 import {
   createEarthAdmissionGovernor,
@@ -13,6 +14,20 @@ import {
 const MIB = 1024 * 1024;
 
 describe('earth device detail policy', () => {
+  it.each([
+    'economy',
+    'balanced',
+    'high',
+  ] as const)('keeps the full preparation pipeline available at manual %s quality', (quality) => {
+    const rendering = terrainPyramidBudgetForQuality(quality);
+    const streaming = earthTerrainCacheBudget(rendering, 512 * MIB);
+    expect(streaming.maxConcurrentLoads).toBeGreaterThanOrEqual(12);
+    expect(streaming.maxConcurrentLayerLoads).toBeGreaterThanOrEqual(24);
+    expect(streaming.maxSelectedTiles).toBe(rendering.maxSelectedTiles);
+    expect(streaming.maxSurfaceTileResolution).toBe(rendering.maxSurfaceTileResolution);
+    expect(streaming.maxScreenSpaceError).toBe(rendering.maxScreenSpaceError);
+  });
+
   it('admits more streaming work only while frames have time to spare', () => {
     expect(earthAdmission('webgl', true)).toEqual({ maxBytes: 8 * MIB, maxMilliseconds: 4 });
     expect(earthAdmission('webgl', false)).toEqual({ maxBytes: 2 * MIB, maxMilliseconds: 2 });

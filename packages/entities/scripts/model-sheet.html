@@ -23,6 +23,7 @@
     <script type="module">
       import * as T from 'three';
       import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+      import { createModelSignalVisual } from '/signals/model-signals.js';
 
       const renderer = new T.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
       renderer.toneMapping = T.ACESFilmicToneMapping;
@@ -216,6 +217,11 @@
         for (const row of rows) {
           const gltf = await new GLTFLoader().loadAsync(row.url);
           const model = gltf.scene;
+          if (row.signals && row.articulation) {
+            const visual = createModelSignalVisual(model, row.articulation);
+            visual.update({gear:1,gearPosition:1,flaps:0,flapPosition:0,rollInput:0,pitchInput:0,elevator:0,yawInput:0,power:0,rpm:0,canopy:0,eject:0,tailHook:0,speedBrake:0,wipers:0,headlights:0,hood:0,trunk:0,doorFrontLeft:0,doorFrontRight:0,doorRearLeft:0,doorRearRight:0,...row.signals});
+            if (visual.missingNodes.length) throw Error(`Missing articulation nodes: ${visual.missingNodes.join(', ')}`);
+          }
           model.updateMatrixWorld(true);
           const box = new T.Box3().setFromObject(model);
           const size = box.getSize(new T.Vector3());

@@ -48,3 +48,10 @@ Commands: targeted generate-additional-landmarks/import-structure-models/generat
 [Mark Fischer — 2014-02-08](https://commons.wikimedia.org/wiki/File:Main_entrance_to_the_Abuja_National_Mosque.jpg). CC-BY-SA-2.0. Inspected960×638 entrance detail:three brass door groups in a pale warm-stone recess,coarse gold frames and blue-green tile fields. Original simplified color panels and door subdivisions only;no historic calligraphy or exact mosaic artwork is copied. This is not a complete elevation.
 
 [Shiraz Chakera — 2005-09-16](https://commons.wikimedia.org/wiki/File:AbujaNationalMosque.jpg). CC-BY-SA-2.0. Inspected960×718 full exterior. Gold central dome above a banded/windowed support,small golden cupolas,warm inward-battered facades with narrow vertical dark recesses,cusped parapet,and four pale minarets with flared collars and pointed bell-like caps. Third picture was needed because the first is distant and the second only entrance detail. Older condition is not a current measured elevation.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.
+
+Current output triangles: 704 / 1313 / 3066 / 4426. Current skyline+district bytes: 215512. Source master: 4962 triangles. These current pinned outputs take precedence over any historical counts above.

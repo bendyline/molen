@@ -13,6 +13,7 @@ import {
 } from '@bendyline/molen-schema';
 import { installCharacterController } from './character';
 import { installGameplay } from './gameplay';
+import { installGlass } from './glass';
 import { installKinematics } from './kinematics';
 import { installPlatformer } from './platformer';
 import { installSceneScripts } from './scripting';
@@ -60,6 +61,7 @@ export function createWorldFromScene(
     ...(opts?.content !== undefined ? { content: opts.content } : {}),
   });
   if (opts?.gameplay !== false) installGameplay(world);
+  installGlass(world);
   // Same-package physics installs automatically; rapier (a separate WASM package) is wired by
   // tooling/apps via the `physics` hook of buildWorld after `await initRapier()`.
   const physics = manifest.physics;

@@ -13,10 +13,10 @@ describe('world region navigation', () => {
     expect(() => selectedRegion(new URLSearchParams('region=typo'))).toThrow('Unknown region');
   });
 
-  it.each(WORLD_REGIONS)('opens $label inside its detailed coverage', (region) => {
+  it.each(WORLD_REGIONS)('opens $label inside its terrain coverage', (region) => {
     const url = regionUrl(new URL('https://molen.dev/play/world-explorer/'), region);
     expect(selectedRegion(url.searchParams)).toBe(region);
-    const [west, south, east, north] = region.detailBounds;
+    const [west, south, east, north] = region.coverageBounds;
     expect(region.longitude).toBeGreaterThan(west);
     expect(region.longitude).toBeLessThan(east);
     expect(region.latitude).toBeGreaterThan(south);

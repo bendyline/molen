@@ -1,0 +1,463 @@
+{
+  "planId": "dr_xuma_house",
+  "id": "dr_xuma_house",
+  "assetId": "molen.worldgen.structure.dr_xuma_house",
+  "title": "Dr Xuma House — Empilweni",
+  "wikidataId": "Q20981521",
+  "category": "historic-house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 27.983306753030398,
+    "latitude": -26.176090821371073
+  },
+  "size": [
+    25.1200008392334,
+    5.795000076293945,
+    22.47000026702881
+  ],
+  "actualBounds": {
+    "min": [
+      -12.5600004196167,
+      0,
+      -14.470000267028809
+    ],
+    "max": [
+      12.5600004196167,
+      5.795000076293945,
+      8
+    ]
+  },
+  "visualBrief": "Complete original DrABXuma/Empilweni1935house at73TobyStreet, Sophiatown: full single-storey L-shaped residential/consulting-wing building, all exteriorwalls and complete corrugated-tin roof, curved front bay windows, arched entrance/plaincolumns, brick lowerwalls/plastered upperwalls, stoep and full-front bracketed lean-to canopy. Official tourism supplies one-storey/redbrick/tinroof/separate medicalwing/identity facts; architectural details are explicitly reported via the published account citing FloBird1991, not an unretrieved original plan. Exact published house point/Q20981521and original Toby/Edward frontage streets fix approximate site/orientation; no mapped original house footprint exists in saved native data. All plan lengths/widths/wing disposition, wall/roof/canopy/bay sections/census, finish and ground grade are bounded estimates. Separate new2015culturalcentre, detached garages/outbuildings/sitewalls/parking/gardens and interiors excluded; no campus proxy or photographic/survey claim. Every image/video/figure unused.",
+  "nativeAxes": {
+    "x": "along approximate TobyStreet frontage",
+    "y": "up",
+    "z": "out toward TobyStreet"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2013-01-01",
+    "validFrom": "2013-01-01",
+    "validUntil": "2014-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "dr-xuma-house-wp",
+      "url": "https://qualla.com/dr-xuma-house/"
+    }
+  ],
+  "referenceInputHash": "sha256:9cdb4d783a3ecf27fb0a694ef1a74aa7b406ac72d0aa9d94b6c145242f57db52",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ke/ke7/dr_xuma_house/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ke/ke7/dr_xuma_house/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.25,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.32
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "window": {
+        "slot": "window",
+        "graph": "metal_painted",
+        "roughness": 0.5,
+        "metallic": 0.18
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.83,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.5,
+            "metallic": 0.18
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.5,
+            "metallic": 0.18
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.32
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.5,
+            "metallic": 0.18
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "concrete_plain",
+    "metal_painted",
+    "plaster_lime",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 5000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Published exact original-house point/realTobyEdward frontage axes and128m source field fixed first. Primary one-storey/redbrick/tinroof/twowings; transmitted heritage Lplan/curvedbays/arch/columns/fulllean-to canopy. Complete estimated24x18m Lhouse,3.2m wall/2.1m hiprise/floor0.45, bays/canopy/roof/sections fixed before geometry; original frame/field/floor/main parameters not fitted for pictures.",
+    "anchor": [
+      27.983306753030398,
+      -26.176090821371073
+    ],
+    "heading": 1.0382471907994317,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        27.983306753030398,
+        -26.176090821371073
+      ],
+      "modelHeight": 0,
+      "basis": "Exact published original-house storypoint chosen before original independent terrain/floor/sections; provider-relative context datum only. No original-house surveyed foundation or disguised modern-centre footprint."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/23056922",
+      "way/23056909"
+    ],
+    "source": "https://www.openstreetmap.org/way/23056922",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:09d7d472d9e8698fdf171a262d3e3652357882e589bb3cd1db9a6610ad2d068c",
+    "notes": "Complete original DrABXuma/Empilweni1935house at73TobyStreet, Sophiatown: full single-storey L-shaped residential/consulting-wing building, all exteriorwalls and complete corrugated-tin roof, curved front bay windows, arched entrance/plaincolumns, brick lowerwalls/plastered upperwalls, stoep and full-front bracketed lean-to canopy. Official tourism supplies one-storey/redbrick/tinroof/separate medicalwing/identity facts; architectural details are explicitly reported via the published account citing FloBird1991, not an unretrieved original plan. Exact published house point/Q20981521and original Toby/Edward frontage streets fix approximate site/orientation; no mapped original house footprint exists in saved native data. All plan lengths/widths/wing disposition, wall/roof/canopy/bay sections/census, finish and ground grade are bounded estimates. Separate new2015culturalcentre, detached garages/outbuildings/sitewalls/parking/gardens and interiors excluded; no campus proxy or photographic/survey claim. Every image/video/figure unused."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete original DrABXuma/Empilweni1935house at73TobyStreet, Sophiatown: full single-storey L-shaped residential/consulting-wing building, all exteriorwalls and complete corrugated-tin roof, curved front bay windows, arched entrance/plaincolumns, brick lowerwalls/plastered upperwalls, stoep and full-front bracketed lean-to canopy. Official tourism supplies one-storey/redbrick/tinroof/separate medicalwing/identity facts; architectural details are explicitly reported via the published account citing FloBird1991, not an unretrieved original plan. Exact published house point/Q20981521and original Toby/Edward frontage streets fix approximate site/orientation; no mapped original house footprint exists in saved native data. All plan lengths/widths/wing disposition, wall/roof/canopy/bay sections/census, finish and ground grade are bounded estimates. Separate new2015culturalcentre, detached garages/outbuildings/sitewalls/parking/gardens and interiors excluded; no campus proxy or photographic/survey claim. Every image/video/figure unused.",
+    "Official tourism verifies the original1935house is single-storey, red brick with corrugated tin roof and separate residence/medical wing. Published architectural account cites FloBird1991pp2/3 for Lplan, curvedbaywindows, plain-column archedentrance, brick-to-window-level/plasterabove, full-front bracketed lean-to canopy. The1991original report was not retrieved; no original drawing or survey claimed.",
+    "No mapped original-house footprint exists in the saved native source. The complete Lplan is a declared24x18m outer-extent reconstruction with24x8m main body and8x10m rear consultingwing; all lengths/widths/wing disposition/bay placement are estimates, with nominal20percent horizontal uncertainty, not source-measured values. Two original TobyStreet controls and two EdwardRoad controls supply geographic frontage/orientation context only; published house point fixes approximate location. Do not label those streets as the house outline or substitute the2015centre building.",
+    "Estimated floor0.45m provider-relative,3.2m wallheight,2.1m hiproofrise,0.4m eaves,1.05m brick wainscot, full25x3.1m stoep, two curved bays/radius1.7/depth1.3, glazing/sill/cornice/arch/columns/door/ordinary-window census, roof seams/corrugation, canopy profile/bracket census/finish are estimated. Height/roof uncertainties approximately0.5/0.8m. Whole mainroof is an original intersecting-hip reconstruction, not a source-measured1935roofplan. No exact verandah/bay census or current finish certification.",
+    "Full independent historic house: both whole residence/consultingwing masses and complete roofs, all exterior sides, intrinsic frontstoep/curvedbays/archedentrance/full lean-to canopy. Detached garages/outbuildings/2015centre/sitewall/parking/gardens/interiors excluded as separate objects. Medical equipment/room layout not modeled. No facade-only or campus proxy.",
+    "Original independent128m/16641height field with original tile, datum1732.9297m, acquired before all floor/main sections. Preserve original field/frame/floors/roof/sections; no terrain mask/flatten/cutout/reacquisition/refit or picture-driven changes. Provider canopy/house offsets mean geographicground contact and vertical registration remain approximate and unverified. Dated2013historical exterior reconstruction only, no automatic current-world replacement.",
+    "All images/figures/videos unused after Qualla-first10family search. Actual house photographCCBYSA and unrelatedPDAirport excluded; no image rights/media/article repairs. Written facts transmitted explicitly and all geometric estimates declared; no photographic appearance claim."
+  ],
+  "sourceLicense": "Original procedural entire historic Empilweni dwelling under repository license. Official single-storey/brick/tinroof/twowings construction facts and explicitly transmitted FloBird1991 Lplan/bays/arch/canopy description. Original1991report not retrieved; no copied drawing/image/mesh/texture. Exact published housepoint and original native adjacent street axes only; no measured building footprint. Wholeplan dimensions/roof profile/vertical sections/detail/finish/grade are explicit bounded estimates. No detached2015centre or campusproxy, photographic/survey/current-world replacement claim.",
+  "qaLodCameras": [
+    {
+      "name": "whole-empilweni-skyline",
+      "position": [
+        32,
+        22,
+        38
+      ],
+      "lookAt": [
+        0,
+        2,
+        -3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-empilweni-district",
+      "position": [
+        32,
+        22,
+        38
+      ],
+      "lookAt": [
+        0,
+        2,
+        -3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-empilweni-street",
+      "position": [
+        32,
+        22,
+        38
+      ],
+      "lookAt": [
+        0,
+        2,
+        -3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-empilweni-closeup",
+      "position": [
+        32,
+        22,
+        38
+      ],
+      "lookAt": [
+        0,
+        2,
+        -3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-l-house-full-roof-front-bays-and-canopy",
+      "position": [
+        32,
+        22,
+        38
+      ],
+      "lookAt": [
+        0,
+        2,
+        -3
+      ]
+    },
+    {
+      "name": "curved-bays-full-canopy-and-plain-column-arched-entry",
+      "position": [
+        15,
+        5,
+        22
+      ],
+      "lookAt": [
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "whole-rear-residence-and-edwardroad-consulting-wing-roofs",
+      "position": [
+        -28,
+        20,
+        -35
+      ],
+      "lookAt": [
+        0,
+        2,
+        -3
+      ]
+    },
+    {
+      "name": "whole-l-roof-and-all-wing-sections",
+      "position": [
+        28,
+        35,
+        -20
+      ],
+      "lookAt": [
+        0,
+        2,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7152,
+    "vertices": 21456,
+    "materials": 6,
+    "bytes": 1029056,
+    "sha256": "sha256:37408b0c3d177bc512d9dc02bfea7a7c0b0a02e0040a8a13d1e0af4920c75eaa"
+  }
+}

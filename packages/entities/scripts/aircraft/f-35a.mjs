@@ -1,6 +1,7 @@
 /** F-35A clean CTOL airframe. JPO three-view and cockpit references, reviewed separately.
  * +Z forward, +X pilot left. Public display mock-up guides the panel, not production software.
  */
+import { smoothSurface } from '../surface-normals.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -29,6 +30,42 @@ export const f35Frame = () => ({
   panelZ: 6.55,
   floor: 1.72,
 });
+/** Symmetric thin-airfoil slab in a fin's local frame: stations [y, leadingZ, trailingZ, half]. */
+function finSlab(kit, stations, material, blunt = false) {
+  const sections = stations.map(([y, le, te, h]) => {
+    const at = (f) => le + (te - le) * f;
+    return blunt
+      ? [
+          [h, y, le],
+          [h * 0.55, y, at(0.5)],
+          [0, y, te],
+          [-h * 0.55, y, at(0.5)],
+          [-h, y, le],
+        ]
+      : [
+          [0, y, le],
+          [h, y, at(0.3)],
+          [h * 0.45, y, at(0.75)],
+          [0, y, te],
+          [-h * 0.45, y, at(0.75)],
+          [-h, y, at(0.3)],
+        ];
+  });
+  const n = sections[0].length;
+  for (let i = 0; i < sections.length - 1; i++)
+    for (let j = 0; j < n; j++) {
+      const face = [
+        sections[i][j],
+        sections[i + 1][j],
+        sections[i + 1][(j + 1) % n],
+        sections[i][(j + 1) % n],
+      ];
+      const x = face.reduce((sum, p) => sum + p[0], 0);
+      quad(kit, ...face, material, Math.abs(x) > 1e-6 ? [Math.sign(x), 0, 0] : [0, 0, 1]);
+    }
+  sheet(kit, sections[0], material, [0, -1, 0]);
+  sheet(kit, sections.at(-1), material, [0, 1, 0]);
+}
 export function buildF35A(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -36,11 +73,12 @@ export function buildF35A(s) {
     edge = mat('F35-edge', '#9ba0a3', { side: T.DoubleSide }),
     dark = mat('F35-seal', '#282e32'),
     metal = mat('F35-alloy', '#9ca4a6', { metalness: 0.7 }),
-    nozzle = mat('F35-nozzle', '#79786d', { side: T.DoubleSide, metalness: 0.7 }),
+    nozzle = mat('F35-nozzle', '#5f605b', { side: T.DoubleSide, metalness: 0.45 }),
     lining = mat('F35-duct', '#171e23', { side: T.DoubleSide }),
-    glass = mat('F35-canopy', '#b6af86', {
+    // Gold ITO-coated canopy: reads as a smoked bronze bubble in every photograph.
+    glass = mat('F35-canopy', '#86764a', {
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.36,
       depthWrite: false,
       side: T.DoubleSide,
       roughness: 0.15,
@@ -61,10 +99,12 @@ export function buildF35A(s) {
     mount.add(node);
     node.position.set(0, 0, 0);
   };
-  // Narrow chine nose, hollow cockpit aperture, shoulders rising into the single spine.
+  // Chined nose, hollow cockpit aperture, shoulders rising into the single spine. The section
+  // is smooth-shaded with a full, rounded underside below the chine (Komatsu head-on and 3/4
+  // photographs), not a faceted diamond; the tip is a small blunt ogive.
   const fore = [
-    [9.1, 0.008, 1.73, 1.75, 1.74],
-    [8.55, 0.26, 1.45, 1.98, 1.73],
+    [9.1, 0.045, 1.71, 1.77, 1.74],
+    [8.55, 0.28, 1.45, 1.98, 1.73],
     [7.85, 0.46, 1.25, 2.18, 1.74],
     [7.25, 0.56, 1.17, 2.34, 1.78],
     [6.7, 0.61, 1.14, 2.4, 1.8],
@@ -79,15 +119,31 @@ export function buildF35A(s) {
       [w * 0.68, t - 0.06],
       [w * 0.96, c + 0.15],
       [w, c],
-      [w * 0.73, b + 0.06],
+      [w * 0.98, c - (c - b) * 0.42],
+      [w * 0.76, b + (c - b) * 0.1],
       [0, b],
-      [-w * 0.73, b + 0.06],
+      [-w * 0.76, b + (c - b) * 0.1],
+      [-w * 0.98, c - (c - b) * 0.42],
       [-w, c],
       [-w * 0.96, c + 0.15],
       [-w * 0.68, t - 0.06],
     ],
   }));
-  loft(d, fore, paint, { skip: (i, j) => i >= 3 && i < 7 && (j === 0 || j === 9) });
+  // Shaded as one continuous curved skin (shoulder and chine turns are about 55-60 deg, above
+  // the kit's 40 deg crease), with the chine drawn as a fine edge line.
+  const soft = { add: (geometry, material) => d.add(smoothSurface(geometry, 62), material) };
+  loft(soft, fore, paint, {
+    smooth: true,
+    skip: (i, j) => i >= 3 && i < 7 && (j === 0 || j === 11),
+  });
+  for (const k of [3, 9])
+    outline(
+      d,
+      fore.slice(1).map((r) => [r.points[k][0] * 1.004, r.points[k][1], r.z]),
+      0.005,
+      edge,
+      false,
+    );
   const canopy = [
     [7.3, 0.025, 2.33, 2.35],
     [6.9, 0.28, 2.37, 2.73],
@@ -140,7 +196,7 @@ export function buildF35A(s) {
     for (let i = 3; i < 7; i++) {
       const a = fore[i],
         b = fore[i + 1],
-        q = side === 1 ? 1 : 9;
+        q = side === 1 ? 1 : 11;
       quad(
         d,
         [...a.points[q], a.z],
@@ -163,31 +219,49 @@ export function buildF35A(s) {
         ]);
       }
   }
+  // JPO front elevation: the upper body falls from the spine to the chine over the ducts
+  // and bays; the shoulder at 63 % of the half-width sits about 0.36 m below the spine.
+  // The spine itself is a rounded dorsal hump about 1 m across (JPO plan view, Komatsu
+  // photographs), not a flat deck, and the aft ring rounds into the F135 shroud.
+  const shoulderDrop = 0.36;
   const body = [
     [3.7, 1.65, 0.95, 2.87],
-    [1.3, 1.85, 0.89, 2.83],
-    [-0.7, 1.87, 0.84, 2.78],
+    [1.3, 1.85, 0.89, 2.84],
+    [-0.7, 1.87, 0.84, 2.79],
     [-2.6, 1.67, 0.78, 2.72],
     [-3.7, 1.28, 1.0, 2.6],
-    [-4.35, 0.71, 1.15, 2.45],
-  ].map(([z, w, b, t]) => ({
-    z,
-    points: [
-      [0, t],
-      [0.43, t - 0.04],
-      [w * 0.63, t - 0.2],
-      [w, 2.0],
-      [w * 0.82, 1.28],
-      [w * 0.61, b + 0.06],
-      [0, b],
-      [-w * 0.61, b + 0.06],
-      [-w * 0.82, 1.28],
-      [-w, 2.0],
-      [-w * 0.63, t - 0.2],
-      [-0.43, t - 0.04],
-    ],
-  }));
+    [-4.35, 0.74, 1.1, 2.5],
+  ].map(([z, w, b, t], i, all) => {
+    const c = Math.min(0.5, w * 0.5),
+      half = [
+        [0, t],
+        [c * 0.5, t - 0.025],
+        [c, t - 0.1],
+        [w * 0.63, t - shoulderDrop],
+        [w, 2.0],
+        [w * 0.82, 1.28],
+        [w * 0.61, b + 0.06],
+        [0, b],
+      ];
+    // Last ring: a round collar (0.74 x 0.7 m about the nozzle axis) at the same stations.
+    const collar = (j) => {
+      const a = (j * Math.PI) / 7;
+      return [Math.sin(a) * w, 1.8 + Math.cos(a) * (t - 1.8)];
+    };
+    const side = i === all.length - 1 ? half.map((_, j) => collar(j)) : half;
+    return {
+      z,
+      points: [
+        ...side,
+        ...side
+          .slice(1, -1)
+          .reverse()
+          .map(([x, y]) => [-x, y]),
+      ],
+    };
+  });
   loft(d, body, paint, { caps: false });
+  const deck = 2.72;
   sheet(
     d,
     body.at(-1).points.map((p) => [...p, -4.35]),
@@ -196,12 +270,16 @@ export function buildF35A(s) {
   );
   for (const side of [-1, 1]) {
     // Open raked inlet with an inner diverterless compression bump, no splitter plate.
-    quad(
+    // The deck behind the canopy falls away from the dorsal hump toward the inlet ramps.
+    sheet(
       d,
-      [0, 2.78, 4.45],
-      [side * 0.69, 2.78, 4.45],
-      [side * 0.43, 2.83, 3.7],
-      [0, 2.87, 3.7],
+      [
+        [0, 2.78, 4.45],
+        [side * 0.69, deck, 4.45],
+        [side * 0.5, 2.77, 3.7],
+        [side * 0.25, 2.845, 3.7],
+        [0, 2.87, 3.7],
+      ],
       paint,
       [0, 1, 0],
     );
@@ -254,7 +332,7 @@ export function buildF35A(s) {
     quad(
       d,
       [side * 0.61, 2.4, 6.7],
-      [side * 0.69, 2.78, 4.45],
+      [side * 0.69, deck, 4.45],
       [side * 1.46, 2.2, 4.62],
       [side * 0.69, 2.27, 4.95],
       paint,
@@ -273,9 +351,9 @@ export function buildF35A(s) {
     sheet(
       d,
       [
-        [side * 0.69, 2.78, 4.45],
-        [side * 0.43, 2.83, 3.7],
-        [side * 1.0395, 2.67, 3.7],
+        [side * 0.69, deck, 4.45],
+        [side * 0.5, 2.77, 3.7],
+        [side * 1.0395, 2.87 - shoulderDrop, 3.7],
         [side * 1.65, 2.0, 3.7],
         [side * 1.46, 2.2, 4.62],
         [side * 0.69, 2.27, 4.95],
@@ -371,6 +449,31 @@ export function buildF35A(s) {
       axis: 'x',
       scale: 1,
     });
+    // Tail boom fairing beside the nozzle carries the stabilator pivot (Komatsu rear photos);
+    // it grows out of the body side and runs aft past the nozzle exit.
+    loft(
+      d,
+      [
+        [-3.1, 1.08, 0.3, 2.03, 1.68],
+        [-3.9, 0.98, 0.27, 2.01, 1.7],
+        [-4.8, 0.97, 0.22, 1.995, 1.74],
+        [-5.45, 0.97, 0.15, 1.975, 1.8],
+        [-5.75, 0.96, 0.04, 1.94, 1.88],
+      ].map(([z, cx, hw, top, bottom]) => ({
+        z,
+        // Flattened, square-shouldered section rather than a round pipe.
+        points: Array.from({ length: 12 }, (_, j) => {
+          const a = (j * Math.PI) / 6,
+            s = Math.sin(a),
+            c = Math.cos(a);
+          return [
+            side * (cx + Math.sign(s) * Math.pow(Math.abs(s), 0.6) * hw),
+            (top + bottom) / 2 + (Math.sign(c) * Math.pow(Math.abs(c), 0.6) * (top - bottom)) / 2,
+          ];
+        }),
+      })),
+      paint,
+    );
     const tp = [side * 0.9, 1.94, -4.8],
       tail = group(root, `F35-stabilator-${side}`, tp),
       ad = detailKit(tail, tail.name);
@@ -403,18 +506,16 @@ export function buildF35A(s) {
       fg = group(root, `F35-fin-${side}`, [side * 1.42, 2.18, -2.45]);
     fg.rotation.z = (-side * 19 * Math.PI) / 180;
     const fd = detailKit(fg, fg.name);
-    for (const x of [-0.028, 0.028])
-      sheet(
-        fd,
-        [
-          [x, 0, 0],
-          [x, height, -1.93],
-          [x, height, -2.92],
-          [x, 0.12, -1.84],
-        ],
-        paint,
-        [Math.sign(x), 0, 0],
-      );
+    // Airfoil-section fin (about 5 % thick at the root) so it reads edge-on from ahead/behind.
+    finSlab(
+      fd,
+      [
+        [-0.08, 0.07, -1.87, 0.06],
+        [0.12, -0.05, -1.84, 0.058],
+        [height, -1.93, -2.92, 0.018],
+      ],
+      paint,
+    );
     outline(
       fd,
       [
@@ -428,16 +529,14 @@ export function buildF35A(s) {
     );
     const rg = group(fg, `F35-rudder-${side}`, [0, 0.12, -1.84]),
       rd = detailKit(rg, rg.name);
-    sheet(
+    finSlab(
       rd,
       [
-        [0, 0, 0],
-        [0, height - 0.12, -1.08],
-        [0, height - 0.12, -1.52],
-        [0, 0, -0.5],
+        [0, 0, -0.5, 0.025],
+        [height - 0.12, -1.08, -1.52, 0.01],
       ],
       edge,
-      [side, 0, 0],
+      true,
     );
     rd.finish();
     mountHinge(rg, [0, 1, 0], [0, height - 0.12, -1.08]);
@@ -459,10 +558,21 @@ export function buildF35A(s) {
     );
   }
   // Single circular F135 exhaust with faceted petal seams and dark duct; no vectoring.
+  // The body's aft edge meets the shroud in a sawtooth (photographs from behind).
+  outline(
+    d,
+    Array.from({ length: 48 }, (_, j) => {
+      const a = (j * Math.PI) / 24,
+        r = j % 2 ? 0.672 : 0.686;
+      return [Math.cos(a) * r, 1.8 + Math.sin(a) * r, j % 2 ? -4.5 : -4.36];
+    }),
+    0.008,
+    dark,
+  );
   const nr = [
     [-4.32, 0.68],
     [-4.65, 0.665],
-    [-5.02, 0.51],
+    [-5.02, 0.44],
   ].map(([z, r]) => ({
     z,
     points: Array.from({ length: 32 }, (_, j) => [
@@ -493,7 +603,7 @@ export function buildF35A(s) {
       [
         [Math.cos(a) * 0.683, 1.8 + Math.sin(a) * 0.683, -4.32],
         [Math.cos(a) * 0.668, 1.8 + Math.sin(a) * 0.668, -4.65],
-        [Math.cos(a) * 0.513, 1.8 + Math.sin(a) * 0.513, -5.02],
+        [Math.cos(a) * 0.443, 1.8 + Math.sin(a) * 0.443, -5.02],
       ],
       0.007,
       dark,
@@ -534,9 +644,10 @@ export function buildF35A(s) {
     ],
     sensor,
   );
+  // Main legs hang from the fuselage side under the wing root: about 3.7 m track (front photos).
   for (const [name, x, z, r, w, top] of [
-    ['left', 1.28, -0.6, 0.37, 0.25, 1.18],
-    ['right', -1.28, -0.6, 0.37, 0.25, 1.18],
+    ['left', 1.84, -0.6, 0.37, 0.25, 1.94],
+    ['right', -1.84, -0.6, 0.37, 0.25, 1.94],
     ['nose', 0, 5.65, 0.27, 0.18, 1.2],
   ]) {
     const g = group(root, `F35-gear-${name}`, [x, top, z]),
@@ -551,7 +662,7 @@ export function buildF35A(s) {
     ]);
     gd.box(
       [0.025, 0.54, name === 'nose' ? 0.7 : 0.8],
-      [name === 'right' ? -0.2 : 0.2, -0.18, -0.18],
+      [name === 'right' ? -0.2 : 0.2, name === 'nose' ? -0.18 : -0.27, -0.18],
       paint,
     );
     gd.finish();
@@ -576,9 +687,9 @@ export function buildF35A(s) {
       b = body[i + 1],
       t = Math.max(0, Math.min(1, (a.z - z) / (a.z - b.z)));
     const y = (r) => {
-      const pts = r.points.slice(0, 4);
-      let k = pts.findIndex((p, j) => j < 3 && Math.abs(x) >= p[0] && Math.abs(x) <= pts[j + 1][0]);
-      k = k < 0 ? 2 : k;
+      const pts = r.points.slice(0, 5);
+      let k = pts.findIndex((p, j) => j < 4 && Math.abs(x) >= p[0] && Math.abs(x) <= pts[j + 1][0]);
+      k = k < 0 ? 3 : k;
       return (
         pts[k][1] +
         ((pts[k + 1][1] - pts[k][1]) * (Math.abs(x) - pts[k][0])) / (pts[k + 1][0] - pts[k][0])

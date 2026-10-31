@@ -7,6 +7,9 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 let server: PreviewServer, browser: Browser, url: string;
 const out = join(process.cwd(), 'test/golden/__output__/weather');
+// SwiftShader can spend more than 30 seconds rendering/capturing a cloudy frame on CI.
+// Use the same bounded budget for readiness, screenshots and the other browser operations.
+const weatherTimeout = 180_000;
 // CI sets MOLEN_SKIP_WEBGPU=1: its CPU-only runners lose the SwiftShader WebGPU device on this
 // scene, so the WebGPU case skips as if no adapter existed and the WebGL case still runs.
 const skipWebGpu = process.env.MOLEN_SKIP_WEBGPU === '1';
@@ -57,6 +60,7 @@ describe('weather profiles in the explorer', () => {
         viewport: { width: 1100, height: 720 },
         timezoneId: 'America/Los_Angeles',
       });
+      page.setDefaultTimeout(weatherTimeout);
       const errors: string[] = [];
       page.on('pageerror', (error) => errors.push(error.message));
       try {
@@ -79,23 +83,43 @@ describe('weather profiles in the explorer', () => {
         await page.waitForFunction(
           () => !!document.querySelector<HTMLElement>('#weather-status')?.dataset.effects,
           undefined,
-          { timeout: 60000 },
+          { timeout: weatherTimeout },
         );
         const camera = await page.locator('#location').textContent();
         const initial = await page.screenshot({ path: join(out, `${backend}-sunny.png`) });
-        for (const profile of ['partly-cloudy', 'overcast', 'rain', 'snow', 'fog']) {
+        for (const profile of ['partly-cloudy', 'overcast', 'rain', 'storm', 'snow', 'fog']) {
           await page.locator('#weather-profile').selectOption(profile);
-          await page.waitForFunction((expected) => {
-            const status = document.querySelector<HTMLElement>('#weather-status');
-            const w = JSON.parse(status?.dataset.weather ?? '{}');
-            const effects = JSON.parse(status?.dataset.effects ?? '{}');
-            return (
-              effects.cloudLayers === 2 &&
-              (expected === 'rain' || expected === 'snow'
-                ? effects.particles > 0 && w.precipitation?.kind === expected
-                : effects.particles === 0)
-            );
-          }, profile);
+          const precipitation =
+            profile === 'snow'
+              ? 'snow'
+              : profile === 'rain' || profile === 'storm'
+                ? 'rain'
+                : 'none';
+          // The first cloudy profile builds noise in 3 ms slices across rendered frames. On
+          // CI's software renderer that can exceed Playwright's default 30-second wait.
+          await expect
+            .poll(
+              () =>
+                page.locator('#weather-status').evaluate((status) => {
+                  const w = JSON.parse((status as HTMLElement).dataset.weather ?? '{}');
+                  const effects = JSON.parse((status as HTMLElement).dataset.effects ?? '{}');
+                  return {
+                    cloudLayers: effects.cloudLayers,
+                    precipitation: w.precipitation?.kind,
+                    hasParticles: effects.particles > 0,
+                  };
+                }),
+              {
+                timeout: weatherTimeout,
+                message: `${backend}: ${profile} weather effects should be ready`,
+              },
+            )
+            .toEqual({
+              // The volumetric layer, plus cirrus in partly-cloudy and storm profiles.
+              cloudLayers: profile === 'partly-cloudy' || profile === 'storm' ? 2 : 1,
+              precipitation,
+              hasParticles: precipitation !== 'none',
+            });
           const shot = await page.screenshot({ path: join(out, `${backend}-${profile}.png`) });
           expect(difference(initial, shot), profile).toBeGreaterThan(2);
           expect(await page.locator('#location').textContent()).toBe(camera);

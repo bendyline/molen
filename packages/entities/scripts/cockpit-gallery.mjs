@@ -22,14 +22,16 @@ const roster = JSON.parse(
   await readFile(`${root}/source/aircraft-expansion.json`, 'utf8'),
 ).aircraft;
 const featured = {
+  // The Mustang stands in its three-point attitude: these are its flight-datum views posed 13°
+  // nose-up onto its wheels, as generate.mjs poses the airframe.
   'p-51': {
     panel: [
-      [0, 2.05, 0.2],
-      [0, 1.9, 0.8],
+      [0, 2.146, -0.266],
+      [0, 2.134, 0.352],
     ],
     seat: [
-      [0, 2.12, 0.57],
-      [0, 1.77, -0.25],
+      [0, 2.297, 0.078],
+      [0, 1.772, -0.642],
     ],
     note: 'Textured enamel backboard, rounded attitude indicator, canvas seat and woven harness.',
   },
@@ -83,7 +85,9 @@ const joinViews = {
     quadrant: { position: [0.3, 1.65, 0.78], lookAt: [-0.02, 1.25, 0.95], fov: 65 },
   },
   'p-51': {
-    quadrant: { position: [0.1, 1.98, -0.02], lookAt: [0.36, 1.75, 0.22], fov: 65 },
+    quadrant: { position: [0.1, 2.028, -0.465], lookAt: [0.36, 1.858, -0.179], fov: 65 },
+    // interior.json is in the flight datum; this is the standard horizon view, posed.
+    horizon: { position: [0.08, 2.221, 0.062], lookAt: [0.025, 2.252, 0.306], fov: 46 },
   },
 };
 // Review cameras move ahead of seat backs that obscure the shared cabin-ledger views.

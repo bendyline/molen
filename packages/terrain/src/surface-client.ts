@@ -3,6 +3,7 @@ import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
 import type { VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { appendAirportSurfaces } from './airport-surfaces';
+import { gradeHighwayBridges } from './highway-grading';
 import { sampleTerrainLine } from './line-path';
 import {
   appendTerrainLineBand,
@@ -213,7 +214,14 @@ export function createTerrainSurfaceObject(
   };
   group.userData.surfaceStats = stats;
   appendAirportSurfaces(group, tile, context, options, roadMaterial);
-  const network = new SurfaceNetwork(tile, context.tileSize, style);
+  const graded = gradeHighwayBridges(tile.transportation, context.tileSize, (x, z) =>
+    context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z),
+  );
+  const network = new SurfaceNetwork(
+    { ...tile, transportation: [...graded] },
+    context.tileSize,
+    style,
+  );
   if (detailed) {
     network.findJunctions();
     // Before any band is built: mapped footways inside a turning circle are clipped away.
@@ -258,8 +266,27 @@ export function createTerrainSurfaceObject(
       continue;
     const profile = bridgeDeckProfile(road, bridges, groundEnds);
     bridgeProfiles.set(road, profile);
-    if (road.feature.bridge) appendBridgeStructure(bridges, road, profile, detailed ? 6 : 16);
-    else appendBridgeApproachSupport(approachSupports, road, profile, detailed ? 2 : 6);
+  }
+  const heightOnRoad = (road: SurfaceRoad, x: number, z: number): number =>
+    bridgeProfiles.get(road)?.(x, z) ??
+    context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z) + road.elevation;
+  const covered = (road: SurfaceRoad, x: number, z: number): boolean =>
+    network.overlappingPavement(x, z, road, heightOnRoad);
+  for (const [road, profile] of bridgeProfiles) {
+    if (road.feature.bridge)
+      appendBridgeStructure(bridges, road, profile, detailed ? 6 : 16, {
+        shoulder: detailed ? shoulder(road) : 0.3,
+        covered: (x, z) => covered(road, x, z),
+        supportBlocked: (x, z) => network.pavementBelow(x, z, road, heightOnRoad),
+      });
+    else
+      appendBridgeApproachSupport(
+        approachSupports,
+        road,
+        profile,
+        detailed ? 2 : 6,
+        detailed ? shoulder(road) : 0,
+      );
   }
   const bridgeMesh = bridges.mesh('surfaces:bridges', roadMaterial);
   if (bridgeMesh) {
@@ -832,7 +859,7 @@ export function createTerrainSurfaceObject(
             color: style.white,
             elevation: elevation + 0.045,
           },
-          (points) => points.every((p) => !network.occupied(p[0], p[1], 0.1, road)),
+          (points) => points.every((p) => !covered(road, p[0], p[1])),
         );
     }
     if (
@@ -904,7 +931,9 @@ export function createTerrainSurfaceObject(
             elevation: elevation + 0.045,
             surface: TERRAIN_SURFACE_KIND.paint,
           },
-          clearJunction,
+          (points) =>
+            clearJunction(points) &&
+            (road.kind !== 'motorway' || points.every((p) => !covered(road, p[0], p[1]))),
         );
   }
 

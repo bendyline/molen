@@ -39,13 +39,13 @@
             "height": 8.36,
             "centerOfMass": [
               0,
-              2.3482,
+              2.58,
               0
             ],
             "pilotEye": [
-              0.559251,
-              3.2520399999999996,
-              11.494
+              0.5,
+              3.2,
+              12.920000000000002
             ],
             "hardLandingSpeed": 4,
             "hardLandingRoll": 0.2,
@@ -54,22 +54,22 @@
             "collisionProbes": [
               [
                 0,
-                2.3482,
+                2.58,
                 14.121200000000002
               ],
               [
                 0,
-                2.3482,
+                2.58,
                 -14.121200000000002
               ],
               [
                 13.073200000000002,
-                2.3482,
+                2.58,
                 0
               ],
               [
                 -13.073200000000002,
-                2.3482,
+                2.58,
                 0
               ]
             ],
@@ -144,27 +144,154 @@
                     "node": "gear-0",
                     "source": "gear",
                     "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        -1.5707963267948966
+                      ],
+                      [
+                        0.15,
+                        -1.5707963267948966
+                      ],
+                      [
+                        0.85,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ],
+                    "ease": "smooth"
+                  },
+                  {
+                    "node": "gear-0-well-door",
+                    "source": "gear",
+                    "property": "rotation",
                     "axis": "z",
-                    "scale": 1.35,
-                    "offset": -1.35
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.13,
+                        1.45
+                      ],
+                      [
+                        0.87,
+                        1.45
+                      ],
+                      [
+                        1,
+                        1.45
+                      ]
+                    ],
+                    "ease": "smooth"
                   },
                   {
                     "node": "gear-1",
                     "source": "gear",
                     "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        1.5707963267948966
+                      ],
+                      [
+                        0.15,
+                        1.5707963267948966
+                      ],
+                      [
+                        0.85,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ],
+                    "ease": "smooth"
+                  },
+                  {
+                    "node": "gear-1-well-door",
+                    "source": "gear",
+                    "property": "rotation",
                     "axis": "z",
-                    "scale": 1.35,
-                    "offset": -1.35
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.13,
+                        1.45
+                      ],
+                      [
+                        0.87,
+                        1.45
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ],
+                    "ease": "smooth"
                   },
                   {
                     "node": "gear-2",
                     "source": "gear",
                     "property": "rotation",
+                    "axis": "x",
+                    "keys": [
+                      [
+                        0,
+                        1.5707963267948966
+                      ],
+                      [
+                        0.15,
+                        1.5707963267948966
+                      ],
+                      [
+                        0.85,
+                        0
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ],
+                    "ease": "smooth"
+                  },
+                  {
+                    "node": "gear-2-well-door",
+                    "source": "gear",
+                    "property": "rotation",
                     "axis": "z",
-                    "scale": -1.35,
-                    "offset": 1.35
+                    "keys": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0.13,
+                        1.45
+                      ],
+                      [
+                        0.87,
+                        1.45
+                      ],
+                      [
+                        1,
+                        0
+                      ]
+                    ],
+                    "ease": "smooth"
                   }
-                ]
+                ],
+                "sources": {}
               },
               "interior": {
                 "nodes": [
@@ -184,8 +311,8 @@
                     "property": "position",
                     "axis": "y",
                     "scale": -0.09,
-                    "min": -0.056100000000000004,
-                    "max": 0.056100000000000004
+                    "min": -0.06977690878894487,
+                    "max": 0.06977690878894487
                   },
                   {
                     "node": "horizon-4",
@@ -200,8 +327,8 @@
                     "property": "position",
                     "axis": "y",
                     "scale": -0.09,
-                    "min": -0.056100000000000004,
-                    "max": 0.056100000000000004
+                    "min": -0.06977690878894487,
+                    "max": 0.06977690878894487
                   },
                   {
                     "node": "needle-standby-0",
@@ -297,7 +424,7 @@
             "airplane": {
               "wingPosition": [
                 0,
-                2.3482,
+                2.58,
                 0
               ],
               "wingArea": 63.1,
@@ -356,9 +483,9 @@
               {
                 "id": "engine-1",
                 "position": [
-                  5.684000000000001,
-                  3.486104,
-                  0.007399999999999962
+                  4.4,
+                  3.42,
+                  3
                 ],
                 "thrustAxis": [
                   0,
@@ -382,9 +509,9 @@
               {
                 "id": "engine-2",
                 "position": [
-                  -5.684000000000001,
-                  3.486104,
-                  0.007399999999999962
+                  -4.4,
+                  3.42,
+                  3
                 ],
                 "thrustAxis": [
                   0,
@@ -404,6 +531,111 @@
                 "propulsion": "propeller",
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.55
+              }
+            ],
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  2.58,
+                  0
+                ],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    2.58,
+                    14.121200000000002
+                  ],
+                  [
+                    0,
+                    2.58,
+                    -14.121200000000002
+                  ],
+                  [
+                    13.073200000000002,
+                    2.58,
+                    0
+                  ],
+                  [
+                    -13.073200000000002,
+                    2.58,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  4.4,
+                  3.42,
+                  4.954069
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    4.4,
+                    3.42,
+                    4.954069
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 2.056138,
+                  "halfThickness": 0.06,
+                  "rotor": "propeller-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -4.4,
+                  3.42,
+                  4.954069
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "propeller-2"
+                ],
+                "disc": {
+                  "center": [
+                    -4.4,
+                    3.42,
+                    4.954069
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 2.056138,
+                  "halfThickness": 0.06,
+                  "rotor": "propeller-2"
+                },
+                "engines": [
+                  "engine-2"
+                ]
               }
             ]
           }
@@ -440,7 +672,8 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {}
         },
         "mountable": {
           "seats": [
@@ -448,18 +681,18 @@
               "id": "driver",
               "role": "driver",
               "position": [
-                0.559251,
-                3.2520399999999996,
-                11.494
+                0.5,
+                3.2,
+                12.920000000000002
               ]
             },
             {
               "id": "copilot",
               "role": "passenger",
               "position": [
-                -0.559251,
-                3.2520399999999996,
-                11.494
+                -0.5,
+                3.2,
+                12.920000000000002
               ]
             }
           ],
@@ -467,14 +700,14 @@
             [
               2.145,
               0,
-              11.494
+              12.920000000000002
             ]
           ],
           "exits": [
             [
               2.8449999999999998,
               0,
-              11.494
+              12.920000000000002
             ]
           ],
           "reach": 4

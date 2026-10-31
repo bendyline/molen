@@ -1,0 +1,38 @@
+{
+  "format": "molen/structure-mapped-features@1",
+  "id": "plaka_bridge",
+  "exactIdentity": [
+    "way/758796818"
+  ],
+  "bridgeFootway": 35185052559676,
+  "westSteps": 35184485842300,
+  "eastPath": 35184485842310,
+  "independentBankFootway": 35185123973539,
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "distribution": "local",
+      "sourceUrl": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "attribution": "© OpenStreetMap contributors",
+      "extractHash": "sha256:7124b836e88a945ad30f6be0fe570de9e3d2bcbe86823c4e5eb03ed0508f56db"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": -1000,
+        "max": 9000
+      },
+      "observedHeightRange": [
+        214.53515625,
+        1184.98828125
+      ],
+      "attribution": "Mapzen Terrain Tiles; United States 3DEP, GMTED2010, SRTM, ETOPO1 and other national elevation data courtesy of the U.S. Geological Survey and the sources listed in joerd",
+      "extractHash": "sha256:db8635de4f7917d1b76636024f4116e65702dac4634711426f83f5a2df3afaaa"
+    }
+  }
+}

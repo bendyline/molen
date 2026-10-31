@@ -1,7 +1,7 @@
 /** Standard, unstretched C-130J. USAF rescue drawing and Lockheed flight-station layout.
  * Meter geometry, +Y up, +Z nose, +X pilot left. Reference stations remain approximate.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -83,27 +83,51 @@ export function buildC130J(s) {
   // Blunt lower radome, raised flight deck, constant cargo barrel, upswept ramp and tail cone.
   const sections = [
     [14.895, 0.025, 2.18, 2.43],
-    [14.65, 0.48, 1.81, 2.77],
-    [14.05, 0.87, 1.44, 3.04],
-    [13.2, 1.18, 1.12, 3.31],
-    [12.35, 1.48, 0.89, 3.76],
-    [11.35, 1.7, 0.78, 4.7],
-    [10.65, 1.81, 0.76, 4.9],
-    [9.25, 1.89, 0.76, 4.9],
-    [7.4, 1.89, 0.76, 4.9],
-    [4.6, 1.89, 0.76, 4.9],
-    [1.5, 1.89, 0.76, 4.9],
-    [-1.5, 1.89, 0.76, 4.9],
-    [-3.6, 1.88, 0.78, 4.9],
-    [-5.4, 1.82, 0.82, 4.97],
-    [-7.5, 1.48, 1.57, 5.08],
-    [-9.8, 1.02, 2.57, 5.12],
-    [-12.3, 0.52, 3.65, 5.16],
-    [-14.5, 0.15, 4.42, 4.94],
-    [-14.895, 0.025, 4.62, 4.7],
+    [14.65, 0.5, 1.81, 2.7],
+    [14.05, 0.88, 1.44, 2.93],
+    [13.2, 1.22, 1.12, 3.56],
+    [12.35, 1.55, 0.89, 4.27],
+    [11.35, 1.86, 0.78, 4.63],
+    [10.65, 1.98, 0.76, 4.82],
+    [9.25, 2.06, 0.76, 4.86],
+    [7.4, 2.06, 0.76, 4.86],
+    [4.6, 2.06, 0.76, 4.86],
+    [1.5, 2.06, 0.76, 4.86],
+    [-2.2, 2.06, 0.76, 4.86],
+    [-3.6, 2.05, 1.12, 4.87],
+    [-5.4, 2.02, 1.82, 4.93],
+    [-7.5, 1.9, 2.73, 5.04],
+    [-9.8, 1.65, 3.72, 5.1],
+    [-12.3, 1.12, 4.16, 5.1],
+    [-14.5, 0.55, 4.45, 4.88],
+    [-14.895, 0.2, 4.58, 4.72],
   ];
-  const rings = sections.map(([z, w, b, t]) => {
+  // The radome rings (0-3) are round, as the bulbous nose of the head-on photographs; the flight
+  // deck and cargo barrel keep the boxy fitted section. Index order is unchanged.
+  const rings = sections.map(([z, w, b, t], i) => {
     const h = t - b;
+    if (i < 4) {
+      const mid = b + 0.45 * h,
+        up = (a) => [
+          w * Math.pow(Math.sin(a), 2 / 2.1),
+          mid + (t - mid) * Math.pow(Math.cos(a), 2 / 2.1),
+        ],
+        down = (a) => [
+          w * Math.pow(Math.sin(a), 2 / 2.3),
+          mid - (mid - b) * Math.pow(Math.cos(a), 2 / 2.3),
+        ],
+        right = [up(0), up(0.5), up(0.98), up(1.42), down(1.42), down(0.98), down(0.5), down(0)];
+      return {
+        z,
+        points: [
+          ...right,
+          ...right
+            .slice(1, 7)
+            .map(([x, y]) => [-x, y])
+            .reverse(),
+        ],
+      };
+    }
     return {
       z,
       points: [
@@ -124,28 +148,235 @@ export function buildC130J(s) {
       ],
     };
   });
-  const p = (i, j) => [...rings[i].points[j % 14], rings[i].z];
+  const p = (i, j) => [...rings[i].points[(j + 14) % 14], rings[i].z],
+    lerp = (a, b, t) => a.map((v, k) => v + (b[k] - v) * t);
   const windowFace = (i, j) =>
-    (i === 4 && [0, 1, 12, 13].includes(j)) || ([5, 6].includes(i) && [1, 2, 11, 12].includes(j));
-  loft(d, rings, paint, { skip: windowFace });
-  for (let i = 4; i <= 6; i++)
-    for (let j = 0; j < 14; j++)
-      if (windowFace(i, j)) {
-        const pts = [p(i, j), p(i + 1, j), p(i + 1, j + 1), p(i, j + 1)],
-          n = new T.Vector3(...pts[1])
-            .sub(new T.Vector3(...pts[0]))
-            .cross(new T.Vector3(...pts[3]).sub(new T.Vector3(...pts[0])))
-            .toArray();
-        sheet(d, pts, glass, n);
-        outline(d, pts, 0.025, dark);
-      }
+    ([3, 4].includes(i) && [0, 1, 12, 13].includes(j)) ||
+    (i === 3 && [2, 11].includes(j)) ||
+    ([5, 6].includes(i) && [1, 2, 11, 12].includes(j));
+  // Blunt radome tip: domed rings between the tip and the first station instead of a cone point.
+  const tipY = (rings[0].points[0][1] + rings[0].points[7][1]) / 2,
+    firstY = (rings[1].points[0][1] + rings[1].points[7][1]) / 2,
+    dome = [0.02, 0.08, 0.25, 0.52].map((f) => {
+      const s = Math.sqrt(1 - (1 - f) * (1 - f)),
+        y = tipY + (firstY - tipY) * f;
+      return {
+        z: rings[0].z + (rings[1].z - rings[0].z) * f,
+        points: rings[1].points.map(([x, yy]) => [x * s, y + (yy - firstY) * s]),
+      };
+    });
+  loft(d, [rings[0], ...dome, ...rings.slice(1)], paint, {
+    skip: (i, j) => windowFace(i - dome.length, j),
+  });
+  // A glazed patch of the shell (nu x nv facets from station i0, section point j0 on the right)
+  // is triangulated with its grid nodes as Steiner points, so the painted frames and the pane
+  // edges follow the shell and keep its smooth normals.
+  const normalAt = (i, j) => {
+    const q = p(i, j),
+      mid = (rings[i].points[0][1] + rings[i].points[7][1]) / 2,
+      n = new T.Vector3(...p(i, j + 1))
+        .sub(new T.Vector3(...p(i, j - 1)))
+        .cross(new T.Vector3(...p(Math.max(i - 1, 0), j)).sub(new T.Vector3(...p(i + 1, j))))
+        .normalize();
+    return n.dot(new T.Vector3(q[0], q[1] - mid, 0)) < 0 ? n.negate().toArray() : n.toArray();
+  };
+  const glazePatch = (i0, j0, nu, nv, side, panes) => {
+    const m = (q) => [q[0] * side, q[1], q[2]],
+      cell = (U, V) => {
+        const cu = Math.min(Math.floor(U), nu - 1),
+          cv = Math.min(Math.floor(V), nv - 1);
+        return [i0 + cv, j0 + cu, U - cu, V - cv];
+      },
+      blend = (f, U, V) => {
+        const [i, j, fu, fv] = cell(U, V);
+        return lerp(lerp(f(i, j), f(i + 1, j), fv), lerp(f(i, j + 1), f(i + 1, j + 1), fv), fu);
+      },
+      at = (U, V) => m(blend(p, U, V)),
+      normal = (U, V) => new T.Vector3(...m(blend(normalAt, U, V))).normalize(),
+      // Pane edges also get a vertex wherever they cross a station or section line.
+      dense = (poly) =>
+        poly.flatMap((q, k) => {
+          const r = poly[(k + 1) % poly.length],
+            ts = [0, 1 / 3, 2 / 3];
+          for (const [c, n] of [
+            [0, nu],
+            [1, nv],
+          ])
+            for (let g = 1; g < n; g++) {
+              const t = (g - q[c]) / (r[c] - q[c]);
+              if (t > 0.02 && t < 0.98) ts.push(t);
+            }
+          return ts
+            .sort((a, b) => a - b)
+            .filter((t, i, a) => i === 0 || t - a[i - 1] > 0.01)
+            .map((t) => lerp(q, r, t));
+        }),
+      outer = [
+        ...Array.from({ length: 4 * nu }, (_, s) => [s / 4, 0]),
+        ...Array.from({ length: 4 * nv }, (_, s) => [nu, s / 4]),
+        ...Array.from({ length: 4 * nu }, (_, s) => [nu - s / 4, nv]),
+        ...Array.from({ length: 4 * nv }, (_, s) => [0, nv - s / 4]),
+      ],
+      holes = panes.map(dense),
+      clear = ([u, v], gap) =>
+        holes.every((h) => {
+          let inside = false,
+            near = Infinity;
+          for (let k = 0, l = h.length - 1; k < h.length; l = k++) {
+            const [ax, ay] = h[k],
+              [bx, by] = h[l];
+            if (ay > v !== by > v && u < ((bx - ax) * (v - ay)) / (by - ay) + ax) inside = !inside;
+            const t = Math.max(
+              0,
+              Math.min(
+                1,
+                ((u - ax) * (bx - ax) + (v - ay) * (by - ay)) /
+                  ((bx - ax) * (bx - ax) + (by - ay) * (by - ay)),
+              ),
+            );
+            near = Math.min(near, Math.hypot(u - ax - t * (bx - ax), v - ay - t * (by - ay)));
+          }
+          return !inside && near > gap;
+        }),
+      steiner = [];
+    // A coarse interior grid, plus close points along the station and section lines where the
+    // shell bends, so no triangle bridges a bend and sags below the neighbouring skin.
+    for (let s = 1; s < 4 * nu; s++)
+      for (let t = 1; t < 4 * nv; t++)
+        if (s % 4 && t % 4 && clear([s / 4, t / 4], 0.06)) steiner.push([[s / 4, t / 4]]);
+    for (let s = 0; s < 25 * Math.max(nu, nv); s++) {
+      const f = (s + 0.3) / 25;
+      for (let k = 1; k < nv; k++) if (f < nu && clear([f, k], 0.012)) steiner.push([[f, k]]);
+      for (let k = 1; k < nu; k++) if (f < nv && clear([k, f], 0.012)) steiner.push([[k, f]]);
+    }
+    // Triangulate the projected shell positions: grid points along a bent station edge are not
+    // collinear there, so the triangulator keeps them and the patch meets its neighbours.
+    const plane = new T.Vector3();
+    for (let k = 0; k < outer.length; k++)
+      plane.add(
+        new T.Vector3(...at(...outer[k])).cross(
+          new T.Vector3(...at(...outer[(k + 1) % outer.length])),
+        ),
+      );
+    plane.normalize();
+    const ax = new T.Vector3(...at(nu, 0)).sub(new T.Vector3(...at(0, 0))).normalize(),
+      ay = plane.clone().cross(ax).normalize(),
+      uv = [outer, ...holes, ...steiner].flat(),
+      flat = (q) => {
+        const p3 = new T.Vector3(...at(...q));
+        return new T.Vector2(p3.dot(ax), p3.dot(ay));
+      },
+      index = T.ShapeUtils.triangulateShape(
+        outer.map(flat),
+        [...holes, ...steiner].map((h) => h.map(flat)),
+      ).flat();
+    for (let k = 0; k < index.length; k += 3) {
+      const [pa, pb, pc] = index.slice(k, k + 3).map((n) => new T.Vector3(...at(...uv[n])));
+      if (
+        pb
+          .sub(pa)
+          .cross(pc.sub(pa))
+          .dot(normal(...uv[index[k]])) < 0
+      )
+        [index[k + 1], index[k + 2]] = [index[k + 2], index[k + 1]];
+    }
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute(
+      'position',
+      new T.Float32BufferAttribute(
+        uv.flatMap((q) => at(...q)),
+        3,
+      ),
+    );
+    geometry.setAttribute(
+      'normal',
+      new T.Float32BufferAttribute(
+        uv.flatMap((q) => normal(...q).toArray()),
+        3,
+      ),
+    );
+    geometry.setIndex(index);
+    d.add(geometry, paint);
+    for (const h of holes) {
+      const pane = h.map((q) => at(...q)),
+        c = h.reduce((s, q) => [s[0] + q[0] / h.length, s[1] + q[1] / h.length], [0, 0]);
+      sheet(d, pane, glass, normal(...c).toArray());
+      outline(d, pane, 0.025, dark);
+    }
+    return { at, normal };
+  };
+  // Skin point at a height on the side of the fitted shell.
+  const skin = (side, y, z, off = 0.015) => {
+    let i = 0;
+    while (i < rings.length - 2 && z < rings[i + 1].z) i++;
+    const t = (rings[i].z - z) / (rings[i].z - rings[i + 1].z),
+      r = rings[i].points.map((q, j) => lerp(q, rings[i + 1].points[j], t));
+    for (let j = 0; j < 7; j++) {
+      const [x0, y0] = r[j],
+        [x1, y1] = r[j + 1];
+      if (y <= y0 && y >= y1) return [side * (x0 + ((x1 - x0) * (y - y0)) / (y1 - y0) + off), y, z];
+    }
+    return [side * off, y, z];
+  };
   for (const side of [-1, 1]) {
-    d.rod(p(4, side > 0 ? 1 : 13), p(5, side > 0 ? 1 : 13), 0.026, paint);
-    d.rod([side * 0.34, 3.9, 12.12], [side * 0.54, 4.58, 11.43], 0.023, paint);
-    d.rod([side * 0.3, 3.88, 12.11], [side * 0.54, 4.4, 11.51], 0.012, dark);
-    d.rod([side * 0.92, 2.55, 13.94], [side * 1.04, 2.9, 13.5], 0.012, seam);
-    d.rod([side * 0.95, 3.15, 13.07], [side * 1.04, 3.2, 13.78], 0.018, metal);
-    d.rod([side * 1.04, 3.2, 13.78], [side * 1.04, 3.2, 14.05], 0.012, metal);
+    // Two windscreen panes either side of the center post and an angled corner pane, two small
+    // chin windows below, then the sliding side window, a rear side window and eyebrow windows.
+    const front = glazePatch(3, 0, 2, 2, side, [
+      [
+        [0.08, 0.5],
+        [0.08, 1.62],
+        [0.94, 1.62],
+        [0.94, 0.5],
+      ],
+      [
+        [1.07, 0.56],
+        [1.07, 1.62],
+        [1.9, 1.62],
+        [1.9, 0.6],
+      ],
+    ]);
+    glazePatch(3, 2, 1, 1, side, [
+      [
+        [0.12, 0.42],
+        [0.12, 0.86],
+        [0.62, 0.86],
+        [0.62, 0.42],
+      ],
+    ]);
+    glazePatch(5, 1, 2, 2, side, [
+      [
+        [0.62, 0.1],
+        [0.62, 0.9],
+        [1.72, 0.9],
+        [1.72, 0.1],
+      ],
+      [
+        [0.62, 1.08],
+        [0.62, 1.48],
+        [1.72, 1.48],
+        [1.72, 1.08],
+      ],
+      [
+        [0.1, 0.16],
+        [0.1, 0.84],
+        [0.46, 0.84],
+        [0.46, 0.16],
+      ],
+      [
+        [0.1, 1.08],
+        [0.1, 1.42],
+        [0.46, 1.42],
+        [0.46, 1.08],
+      ],
+    ]);
+    const wiper = (u, v) =>
+      new T.Vector3(...front.at(u, v)).addScaledVector(front.normal(u, v), 0.02).toArray();
+    d.rod(wiper(0.2, 0.62), wiper(0.55, 1.15), 0.016, dark);
+    d.rod(wiper(0.55, 1.15), wiper(0.8, 1.5), 0.012, dark);
+    d.rod(skin(side, 2.55, 13.94, 0.01), skin(side, 2.9, 13.5, 0.01), 0.012, seam);
+    const probe = skin(side, 3.2, 13.6, 0.07);
+    d.rod(skin(side, 3.15, 13.07, 0), probe, 0.018, metal);
+    d.rod(probe, [probe[0], probe[1], 14.05], 0.012, metal);
   }
   // Selected seams and fasteners follow the actual faceted shell.
   for (const i of [2, 3, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) {
@@ -165,9 +396,9 @@ export function buildC130J(s) {
   for (const side of [-1, 1]) {
     for (const [zz, h, w, yy] of [
       [9.05, 1.65, 0.75, 1.75],
-      [-4.2, 1.85, 0.9, 1.85],
+      [-2.6, 1.85, 0.9, 1.95],
     ]) {
-      const x = side * 1.895,
+      const x = side * 2.065,
         pts = [
           [x, yy - h / 2, zz - w / 2],
           [x, yy + h / 2, zz - w / 2],
@@ -177,32 +408,37 @@ export function buildC130J(s) {
       outline(d, pts, 0.014, seam);
       d.rod([x + side * 0.015, yy, zz + 0.17], [x + side * 0.015, yy, zz + 0.34], 0.016, metal);
     }
-    for (const zz of [8.9, 7.45, 6.05, -3.9]) {
-      const x = side * 1.895,
+    for (const zz of [8.9, 7.45, 6.05, -2.3]) {
+      const x = side * 2.065,
         y = 2.46;
       d.add(new T.CircleGeometry(0.12, 20).rotateY((side * Math.PI) / 2), dark, [x, y, zz]);
       d.ring(0.128, 0.012, [x, y, zz], metal, 'x');
     }
+    // Main-gear sponsons: tall, flat-sided pods from 0.9 to 2.35m (CC0 3-view front and side).
     const sp = [
-      [5.1, 0.05, 1.7, 0.1],
-      [4.6, 0.27, 1.55, 0.39],
-      [3.6, 0.42, 1.51, 0.54],
-      [0.1, 0.43, 1.53, 0.56],
-      [-1.6, 0.34, 1.54, 0.48],
-      [-2.5, 0.04, 1.6, 0.1],
+      [5.6, 0.06, 1.75, 0.1],
+      [5.0, 0.3, 1.66, 0.52],
+      [3.9, 0.47, 1.63, 0.72],
+      [0.1, 0.48, 1.63, 0.73],
+      [-1.6, 0.4, 1.66, 0.62],
+      [-2.6, 0.05, 1.75, 0.12],
     ].map(([zz, rx, cy, ry]) => ({
       z: zz,
-      points: Array.from({ length: 16 }, (_, j) => [
-        side * 1.95 + Math.sin((j * Math.PI) / 8) * rx,
-        cy + Math.cos((j * Math.PI) / 8) * ry,
-      ]),
+      points: Array.from({ length: 16 }, (_, j) => {
+        const s = Math.sin((j * Math.PI) / 8),
+          c = Math.cos((j * Math.PI) / 8);
+        return [
+          side * 2.07 + Math.sign(s) * Math.pow(Math.abs(s), 0.6) * rx,
+          cy + Math.sign(c) * Math.pow(Math.abs(c), 0.6) * ry,
+        ];
+      }),
     }));
     loft(d, sp, paint);
-    d.box([0.03, 0.3, 0.58], [side * 2.3, 1.68, 3.65], dark);
+    d.box([0.03, 0.3, 0.58], [side * 2.55, 1.68, 3.65], dark);
     for (let j = 0; j < 7; j++)
       d.rod(
-        [side * 2.32, 1.56 + j * 0.035, 3.4],
-        [side * 2.32, 1.56 + j * 0.035, 3.9],
+        [side * 2.57, 1.56 + j * 0.035, 3.4],
+        [side * 2.57, 1.56 + j * 0.035, 3.9],
         0.008,
         metal,
       );
@@ -290,13 +526,13 @@ export function buildC130J(s) {
     );
   }
   const fin = [
-    [0, 4.85, -3.4],
-    [0, 5.25, -8.05],
-    [0, 5.7, -8.8],
-    [0, 11.68, -11.45],
-    [0, 11.84, -11.9],
-    [0, 11.84, -12.84],
-    [0, 4.72, -13.62],
+    [0, 4.86, -2.8],
+    [0, 5.85, -7.85],
+    [0, 6.4, -8.39],
+    [0, 11.6, -11.09],
+    [0, 11.84, -11.4],
+    [0, 11.84, -12.46],
+    [0, 4.72, -12.46],
   ];
   const thick = (p) => (p[1] > 10 ? 0.08 : 0.16);
   for (const side of [-1, 1])
@@ -320,31 +556,28 @@ export function buildC130J(s) {
       n.toArray(),
     );
   }
-  const rg = group(root, 'C130J-rudder', [0, 4.72, -13.62]);
-  rg.quaternion.setFromUnitVectors(
-    new T.Vector3(0, 1, 0),
-    new T.Vector3(0, 7.12, 0.78).normalize(),
-  );
+  // Vertical hinge line; rudder chord tapers from 1.58m at the tail cone to 0.31m at the cap.
+  const rg = group(root, 'C130J-rudder', [0, 4.72, -12.46]);
   const rd = detailKit(rg, rg.name),
-    len = Math.hypot(7.12, 0.78);
+    len = 7.12;
   for (const side of [-1, 1])
     sheet(
       rd,
       [
         [side * 0.08, 0, 0],
         [side * 0.035, len, 0],
-        [side * 0.035, len, -0.6],
-        [side * 0.08, 0.1, -1.22],
+        [side * 0.035, len, -0.31],
+        [side * 0.08, 0.1, -1.58],
       ],
       paint,
       [side, 0, 0],
     );
   quad(
     rd,
-    [-0.08, 0.1, -1.22],
-    [-0.035, len, -0.6],
-    [0.035, len, -0.6],
-    [0.08, 0.1, -1.22],
+    [-0.08, 0.1, -1.58],
+    [-0.035, len, -0.31],
+    [0.035, len, -0.31],
+    [0.08, 0.1, -1.58],
     paint,
     [0, 0, -1],
   );
@@ -360,13 +593,16 @@ export function buildC130J(s) {
   for (const [i, x] of [10.22, 5.15, -5.15, -10.22].entries()) {
     const id = `engine-${i + 1}`,
       cy = Math.abs(x) > 6 ? 4.085 : 3.89;
+    // Narrow, deep AE2100 nacelles (front view of the CC0 3-view: 0.95m wide, 1.6m deep with the
+    // intake below the spinner), staying deep under the wing before tucking up behind mid-chord.
     const nr = [
-      [6.12, 0.43, cy, 0.45],
-      [5.75, 0.54, cy - 0.03, 0.6],
-      [4.9, 0.59, cy - 0.04, 0.68],
-      [3.3, 0.57, cy, 0.62],
-      [1.6, 0.43, cy + 0.18, 0.39],
-      [0.4, 0.22, cy + 0.24, 0.22],
+      [6.12, 0.42, cy - 0.12, 0.58],
+      [5.75, 0.49, cy - 0.15, 0.78],
+      [4.9, 0.5, cy - 0.14, 0.82],
+      [3.3, 0.49, cy - 0.06, 0.78],
+      [2.2, 0.45, cy + 0.06, 0.64],
+      [1.1, 0.34, cy + 0.2, 0.42],
+      [0.3, 0.16, cy + 0.28, 0.18],
     ].map(([z, rx, y, ry]) => ({
       z,
       points: Array.from({ length: 20 }, (_, j) => [
@@ -375,16 +611,20 @@ export function buildC130J(s) {
       ]),
     }));
     loft(d, nr, paint, { caps: false });
-    d.add(new T.CircleGeometry(0.255, 24), dark, [x, cy - 0.48, 5.82]);
-    d.ring(0.27, 0.028, [x, cy - 0.48, 5.84], metal);
-    d.add(new T.CircleGeometry(0.205, 24).rotateY(Math.PI), dark, [x, cy + 0.23, 0.43]);
-    d.ring(0.22, 0.025, [x, cy + 0.23, 0.4], metal);
-    for (const z of [5.6, 4.5, 3.2])
+    d.add(new T.CircleGeometry(0.255, 24), dark, [x, cy - 0.5, 6.0]);
+    d.ring(0.27, 0.028, [x, cy - 0.5, 6.02], metal);
+    d.add(new T.CircleGeometry(0.15, 24).rotateY(Math.PI), dark, [x, cy + 0.28, 0.32]);
+    d.ring(0.16, 0.022, [x, cy + 0.28, 0.3], metal);
+    for (const [z, rx, y, ry] of [
+      [5.6, 0.5, cy - 0.15, 0.8],
+      [4.5, 0.51, cy - 0.13, 0.83],
+      [3.2, 0.5, cy - 0.05, 0.79],
+    ])
       outline(
         d,
         Array.from({ length: 20 }, (_, j) => [
-          x + Math.sin((j * Math.PI) / 10) * 0.55,
-          cy + Math.cos((j * Math.PI) / 10) * 0.6,
+          x + Math.sin((j * Math.PI) / 10) * rx,
+          y + Math.cos((j * Math.PI) / 10) * ry,
           z,
         ]),
         0.009,
@@ -476,19 +716,19 @@ export function buildC130J(s) {
     outline(
       d,
       [
-        [side * 1.53, 0.84, -5.2],
-        [side * 1.46, 1.58, -7.5],
-        [side * 0.98, 2.59, -9.8],
+        [side * 1.62, 1.86, -5.2],
+        [side * 1.52, 2.87, -7.5],
+        [side * 1.32, 3.8, -9.8],
       ],
       0.018,
       seam,
       false,
     );
-  d.rod([-1.53, 0.84, -5.2], [1.53, 0.84, -5.2], 0.02, metal);
+  d.rod([-1.62, 1.72, -5.2], [1.62, 1.72, -5.2], 0.02, metal);
   for (const [z, y] of [
-    [7.5, 4.9],
-    [0.3, 4.9],
-    [-6.1, 5.02],
+    [7.5, 4.86],
+    [0.3, 4.86],
+    [-6.1, 4.97],
   ])
     sheet(
       d,
@@ -500,10 +740,22 @@ export function buildC130J(s) {
       dark,
       [-1, 0, 0],
     );
-  ellipsoid(d, [0, 4.96, 3.9], [0.11, 0.08, 0.14], d.red, 10);
+  ellipsoid(d, [0, 4.92, 3.9], [0.11, 0.08, 0.14], d.red, 10);
   ellipsoid(d, [0, 0.72, 3.9], [0.1, 0.06, 0.12], d.red, 10);
   d.finish();
-  const interior = cockpit(root, { paint, dark, metal, glass });
+  // The flight-station rear bulkhead follows the crown at its station instead of a square sheet.
+  const bz = 8.6,
+    bi = rings.findIndex((r) => r.z < bz),
+    bt = (rings[bi - 1].z - bz) / (rings[bi - 1].z - rings[bi].z),
+    bring = rings[bi - 1].points.map((q, j) => lerp(q, rings[bi].points[j], bt)),
+    bmid = (bring[0][1] + bring[7][1]) / 2,
+    bulkhead = [10, 11, 12, 13, 0, 1, 2, 3, 4].map((j) => [
+      bring[j][0] * 0.95,
+      bmid + (bring[j][1] - bmid) * 0.96,
+      bz,
+    ]);
+  bulkhead.push([1.7, 1.1, bz], [-1.7, 1.1, bz]);
+  const interior = cockpit(root, { paint, dark, metal, glass, bulkhead });
   cleanGeometry(root);
   return {
     root,
@@ -880,7 +1132,7 @@ function cockpit(root, m) {
   });
   td.text('POWER', [0, 0.6, -0.08], 0.014, Math.PI, ink);
   td.finish();
-  const overhead = group(cabin, 'C130J-overhead', [0, 4.67, 10.38]);
+  const overhead = group(cabin, 'C130J-overhead', [0, 4.62, 10.25]);
   overhead.rotation.x = -Math.PI / 2;
   const od = detailKit(overhead, overhead.name),
     op = panelTools(od);
@@ -910,9 +1162,9 @@ function cockpit(root, m) {
   od.finish();
   for (const side of [-1, 1]) {
     const x = side * 0.67;
-    d.box([0.26, 0.12, 0.27], [x, 4.54, 11.26], m.dark);
+    d.box([0.26, 0.12, 0.27], [x, 4.48, 11.26], m.dark);
     for (const dx of [-0.13, 0.13])
-      d.rod([x + dx, 4.51, 11.32], [x + dx, 4.13, 11.7], 0.015, m.dark);
+      d.rod([x + dx, 4.45, 11.32], [x + dx, 4.13, 11.7], 0.015, m.dark);
     sheet(
       d,
       [
@@ -984,21 +1236,10 @@ function cockpit(root, m) {
     d.rod([side * 1.25, 3.65, 10.29], [side * 1.22, 3.38, 10.4], 0.014, m.dark);
   }
   d.box([2.5, 0.07, 2.8], [0, 2.71, 10.2], m.dark);
-  sheet(
-    d,
-    [
-      [-1.7, 1.1, 8.6],
-      [1.7, 1.1, 8.6],
-      [1.7, 4.7, 8.6],
-      [-1.7, 4.7, 8.6],
-    ],
-    liner,
-    [0, 0, 1],
-    [rectangle(0, 2.13, 0.68, 1.9, 8.6)],
-  );
+  sheet(d, m.bulkhead, liner, [0, 0, 1], [rectangle(0, 2.13, 0.68, 1.9, 8.6)]);
   for (let i = 0; i < 4; i++)
     d.box([0.64, 0.08, 0.28], [0, 2.5 - i * 0.35, 8.55 - i * 0.28], m.dark);
-  d.box([2.95, 0.04, 13.5], [0, 1.1, 1.4], liner);
+  d.box([2.95, 0.04, 10.75], [0, 1.1, 2.775], liner);
   d.finish();
   // The two display faces use one telemetry graph, including digit decoding and validity.
   // There is no second simulated AHRS or air-data computer behind the copilot screen.

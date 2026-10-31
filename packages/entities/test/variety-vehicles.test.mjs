@@ -76,7 +76,8 @@ describe('2005–2024 vehicle variety collection', () => {
     expect(eye[2]).toBeLessThan(recipe.form.roofFront * recipe.length);
     expect(eye[1]).toBeLessThan(recipe.height - 0.15);
     expect(eye[1]).toBeGreaterThan(recipe.height * recipe.form.belt);
-    expect(asset.stats.triangles).toBeLessThanOrEqual(26000);
+    // Includes up to 4k triangles for cut panels and switchable lamp lenses.
+    expect(asset.stats.triangles).toBeLessThanOrEqual(30000);
     expect(asset.bounds.aabb.min[1]).toBeGreaterThan(-0.015);
     expect(asset.bounds.aabb.max[1]).toBeLessThan(recipe.height + 0.1);
     const world = new World({ tickRate: 60, seed: slug });

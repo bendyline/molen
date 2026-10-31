@@ -242,7 +242,7 @@ async function main(): Promise<void> {
       walk: 'WASD or arrows to walk · drag to look · Shift to run · Space to jump · E to interact · Esc releases mouse',
       drive:
         'W/S or ↑/↓ accelerate / brake · A/D or ←/→ steer · Space brake · E exit · V change view',
-      fly: 'W/S pitch · A/D bank · Q/Z rudder · Shift/Ctrl power · I engine · G gear · F flaps · E exit · V view',
+      fly: 'W/S pitch · A/D bank · Z/C rudder · =/− power · I engine · G gear · F flaps · E exit · V view',
     }[mode];
     if (mode === 'drive' && view.vehicleStatus()?.kind === 'boat')
       help.textContent =

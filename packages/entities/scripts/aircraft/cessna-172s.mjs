@@ -2,7 +2,7 @@
  * Independent dimensions govern span, length, wheelbase, propeller and display size.
  * The published three-view is schematic: see reference-review.json for residuals.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { finishCockpit } from './cockpit-surfaces.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
@@ -29,7 +29,7 @@ export const cessna172Frame = () => ({
   ry: 0.72,
   cabinZ: 0.3,
   cabinWidth: 1.02,
-  eye: [0.25, 1.73, 0.3],
+  eye: [0.25, 1.62, 0.3],
   panelZ: 1.1,
   floor: 0.61,
 });
@@ -53,109 +53,190 @@ export function buildCessna172(s) {
     bindings = [],
     flaps = [],
     ailerons = [];
+  // [z, half width, belly, crown, belt, shoulder, shoulder half width, belly corner radius]:
+  // rounded boxes, not chamfered octagons. A flat crown rolls into the side glass, which leans
+  // in slightly above the belt (widest); slab lower sides turn under on a radiused belly
+  // corner. The cowl is a round-cornered bowl and the tail cone an egg (172S photographs).
   const sections = [
-    [2.275, 0.38, 0.96, 1.5],
-    [2.14, 0.46, 0.79, 1.56],
-    [1.28, 0.52, 0.57, 1.56],
-    [0.63, 0.53, 0.53, 1.94],
-    [0.36, 0.55, 0.51, 1.99],
-    [-0.33, 0.55, 0.5, 1.94],
-    [-0.96, 0.49, 0.51, 1.68],
-    [-1.51, 0.39, 0.52, 1.35],
-    [-3.87, 0.15, 0.62, 1.35],
-    [-4.45, 0.105, 0.66, 1.31],
-    [-5.1, 0.065, 0.76, 1.08],
+    // Cowl top falls from the windscreen base to a rounded nose bowl; the spinner sits high
+    // on the bowl (VH-FWC side profile), not centred on a tall flat face.
+    [2.275, 0.37, 0.88, 1.41, 1.2, 1.33, 0.34, 0.2],
+    [2.14, 0.46, 0.71, 1.44, 1.15, 1.35, 0.42, 0.28],
+    [1.28, 0.52, 0.55, 1.49, 1.2, 1.36, 0.52, 0.24],
+    // Cabin roof sits in the wing root: door glazing 1.25-1.62 m, root underside about 1.7 m
+    // (VH-FWC photograph and the 172R profile agree once scaled by overall length).
+    [0.63, 0.53, 0.53, 1.82, 1.2, 1.69, 0.51],
+    [0.36, 0.55, 0.51, 1.86, 1.19, 1.73, 0.52],
+    [-0.33, 0.55, 0.5, 1.81, 1.1, 1.68, 0.52],
+    [-0.96, 0.49, 0.51, 1.62, 1, 1.49, 0.465],
+    [-1.51, 0.39, 0.52, 1.3, 0.9, 1.17, 0.37],
+    [-3.87, 0.15, 0.62, 1.27, 0.95, 1.17, 0.12, 0.1],
+    [-4.45, 0.105, 0.66, 1.26, 0.96, 1.17, 0.085, 0.07],
+    [-5.1, 0.065, 0.76, 1.08, 0.92, 1.02, 0.05, 0.045],
   ];
-  const rings = sections.map(([z, w, b, t]) => ({
-    z,
-    points: [
-      [0, t],
-      [w * 0.78, t - 0.025],
-      [w, t - 0.13],
-      [w, b + 0.17],
-      [w * 0.65, b],
-      [0, b - 0.015],
-      [-w * 0.65, b],
-      [-w, b + 0.17],
-      [-w, t - 0.13],
-      [-w * 0.78, t - 0.025],
-    ],
-  }));
+  // Points: 0 crown, 1-2 roof roll, 3 shoulder, 4 belt, 5-8 belly corner, 9 belly, 10 keel,
+  // then mirrored (16 belt, 17 shoulder on the right side).
+  const rings = sections.map(([z, w, b, t, belt, shoulder, ws, rc = 0.13], i) => {
+    // Roof roll: round on the nose bowl and tail cone, tighter where the cabin meets the wing.
+    const n = z < -3 || i < 2 ? 2.7 : 3.6;
+    const right = [
+      ...[1, 2].map((k) => [
+        ws * Math.pow(Math.sin((k * Math.PI) / 6), 2 / n),
+        shoulder + (t - shoulder) * Math.pow(Math.cos((k * Math.PI) / 6), 2 / n),
+      ]),
+      [ws, shoulder],
+      [w, belt],
+      ...[0, 35, 65, 90].map((deg) => [
+        w - rc + rc * Math.cos((deg * Math.PI) / 180),
+        b + rc - rc * Math.sin((deg * Math.PI) / 180),
+      ]),
+      [(w - rc) * 0.5, b - 0.008],
+    ];
+    return {
+      z,
+      points: [[0, t], ...right, [0, b - 0.015], ...right.reverse().map(([x, y]) => [-x, y])],
+    };
+  });
   const p = (i, j) => [...rings[i].points[j], rings[i].z];
+  const roof = [17, 18, 19, 0, 1, 2];
   loft(d, rings, paint, {
     skip: (i, j) =>
-      (i === 2 && [0, 1, 8, 9].includes(j)) ||
-      ([3, 4, 5, 6].includes(i) && [2, 7].includes(j)) ||
-      (i === 6 && [0, 1, 8, 9].includes(j)),
+      (i === 2 && roof.includes(j)) ||
+      ([2, 3, 4, 5, 6].includes(i) && [3, 16].includes(j)) ||
+      (i === 6 && roof.includes(j)),
   });
-  for (const j of [0, 1, 8, 9]) {
-    quad(d, p(2, j), p(3, j), p(3, (j + 1) % 10), p(2, (j + 1) % 10), glass, [0, 1, 1]);
-    quad(d, p(6, j), p(7, j), p(7, (j + 1) % 10), p(6, (j + 1) % 10), glass, [0, 1, -1]);
+  for (const j of roof) {
+    quad(d, p(2, j), p(3, j), p(3, (j + 1) % 20), p(2, (j + 1) % 20), glass, [0, 1, 1]);
+    quad(d, p(6, j), p(7, j), p(7, (j + 1) % 20), p(6, (j + 1) % 20), glass, [0, 1, -1]);
   }
   outline(
     d,
-    [p(2, 8), p(3, 8), p(3, 9), p(3, 0), p(3, 1), p(3, 2), p(2, 2), p(2, 1), p(2, 0), p(2, 9)],
+    [
+      p(2, 17),
+      ...[...roof, 3].map((j) => p(3, j)),
+      ...[...roof.slice(1), 3].reverse().map((j) => p(2, j)),
+    ],
     0.012,
     paint,
   );
   // One-piece windscreen, no invented center mullion. Aft Omni-Vision glazing has a center rib.
   d.rod(p(6, 0), p(7, 0), 0.012, paint);
+  // Skin half width at a station and height: glazing, doors and trim follow the curved side.
+  const ringAt = (z) => {
+    let i = rings.findIndex((r, n) => n < rings.length - 1 && z <= r.z && z >= rings[n + 1].z);
+    if (i < 0) i = z > rings[0].z ? 0 : rings.length - 2;
+    const a = rings[i].points,
+      b = rings[i + 1].points,
+      u = (z - rings[i].z) / (rings[i + 1].z - rings[i].z);
+    return a.map((q, j) => [q[0] + (b[j][0] - q[0]) * u, q[1] + (b[j][1] - q[1]) * u]);
+  };
+  const halfWidth = (z, y) => {
+    const q = ringAt(z);
+    for (let j = 0; j < 10; j++)
+      if (y <= q[j][1] && y >= q[j + 1][1])
+        return q[j][0] + ((q[j + 1][0] - q[j][0]) * (y - q[j][1])) / (q[j + 1][1] - q[j][1] || 1);
+    return q[4][0];
+  };
+  // Window heights keep the measured layout: fractions of the side from 0.13 m below the crown
+  // (v = 0) to 0.17 m above the belly (v = 1).
+  const glazingY = (i, v) => {
+    const [, , b, t] = sections[i];
+    return t - 0.13 + (b + 0.3 - t) * v;
+  };
+  // Round each pane corner with a quadratic fillet of radius r in the side's (z, y) plane.
+  const fillet = (points, r) =>
+    points.flatMap((c, i) => {
+      const toward = (q) => {
+        const l = Math.hypot(q[0] - c[0], q[1] - c[1]),
+          k = Math.min(r, l * 0.4) / l;
+        return [c[0] + (q[0] - c[0]) * k, c[1] + (q[1] - c[1]) * k];
+      };
+      const a = toward(points[(i + points.length - 1) % points.length]),
+        b = toward(points[(i + 1) % points.length]);
+      return [a, [(a[0] + 2 * c[0] + b[0]) / 4, (a[1] + 2 * c[1] + b[1]) / 4], b];
+    });
   for (const side of [-1, 1]) {
-    const j = side > 0 ? 2 : 7;
-    for (const [start, end, upper, lower] of [
-      [3, 5, 0.07, 0.45],
-      [5, 6, 0.12, 0.53],
+    const j = side > 0 ? 3 : 16,
+      skin = (z, y, out = 0) => [side * (halfWidth(z, y) + out), y, z];
+    // Trim polylines given as [z, y], subdivided so they lie on the curved skin.
+    const trace = (points) =>
+      points.flatMap(([z, y], i) => {
+        const [z2, y2] = points[(i + 1) % points.length];
+        return [0, 1, 2, 3, 4, 5].map((k) =>
+          skin(z + ((z2 - z) * k) / 6, y + ((y2 - y) * k) / 6, 0.003),
+        );
+      });
+    // The door window runs forward under the windscreen post to the cowl line.
+    for (const [start, end, upper, lower, shape] of [
+      [
+        2,
+        3,
+        0.07,
+        0.45,
+        [
+          [0.12, 0.06],
+          [0.985, 0.05],
+          [0.985, 0.45],
+          [0.3, 0.21],
+        ],
+      ],
+      [3, 5, 0.05, 0.45],
+      [5, 6, 0.11, 0.53],
       [6, 7, 0.05, 0.45],
     ]) {
-      const a = p(start, j),
-        b = p(end, j),
-        c = p(end, j + 1),
-        e = p(start, j + 1);
-      const q = (u, v) =>
-        a.map((_, n) => (a[n] * (1 - u) + b[n] * u) * (1 - v) + (e[n] * (1 - u) + c[n] * u) * v);
-      const h = [
-        [0.06, upper],
-        [0.94, upper],
-        [0.88, lower],
-        [0.06, lower],
-      ].map(([u, v]) => q(u, side > 0 ? v : 1 - v));
-      sheet(d, [a, b, c, e], paint, [side, 0, 0], [h]);
+      const [za] = sections[start],
+        [zb] = sections[end];
+      const q = (u, v) => [za + (zb - za) * u, glazingY(start, v) * (1 - u) + glazingY(end, v) * u];
+      const h = fillet(
+        (
+          shape ?? [
+            [start === 3 ? 0.015 : 0.06, upper],
+            [0.94, upper],
+            [0.88, lower],
+            [start === 3 ? 0.015 : 0.06, lower],
+          ]
+        ).map(([u, v]) => q(u, v)),
+        0.05,
+      ).map(([z, y]) => skin(z, y));
+      const edge = [];
+      for (let i = start; i <= end; i++) edge.push(p(i, j));
+      for (let i = end; i >= start; i--) edge.push(p(i, j + 1));
+      sheet(d, edge, paint, [side, 0, 0], [h]);
       sheet(d, h, glass, [side, 0, 0]);
       outline(d, h, 0.008, dark);
     }
     outline(
       d,
-      [
-        [side * 0.532, 1.78, 0.61],
-        [side * 0.55, 1.76, -0.3],
-        [side * 0.55, 0.69, -0.3],
-        [side * 0.537, 0.65, 0.55],
-      ],
+      trace([
+        [0.64, 1.68],
+        [-0.3, 1.67],
+        [-0.3, 0.71],
+        [1.05, 0.72],
+        [1.13, 1.4],
+      ]),
       0.003,
       metal,
     );
-    d.box([0.018, 0.027, 0.14], [side * 0.557, 1.23, -0.13], metal);
-    for (const z of [0.34, -0.04]) d.box([0.022, 0.055, 0.03], [side * 0.55, 1.68, z], metal);
+    d.box([0.018, 0.027, 0.14], skin(-0.13, 1.23, 0.007), metal);
+    for (const z of [0.34, -0.04]) d.box([0.022, 0.055, 0.03], skin(z, 1.6, 0.006), metal);
     // Skin seams and rivets follow the cowl joints, cabin belt and tapering rear frames.
     for (let i = 0; i < sections.length - 1; i++) {
       const a = sections[i],
         b = sections[i + 1],
-        yy = (q) => q[2] + 0.25;
-      quad(
-        d,
-        [side * (a[1] + 0.002), yy(a), a[0]],
-        [side * (b[1] + 0.002), yy(b), b[0]],
-        [side * (b[1] + 0.002), yy(b) + 0.07, b[0]],
-        [side * (a[1] + 0.002), yy(a) + 0.07, a[0]],
-        blue,
-        [side, 0, 0],
-      );
-      for (let t = 0; t < 1; t += 0.13 / Math.abs(b[0] - a[0])) {
-        const z = a[0] + (b[0] - a[0]) * t,
-          w = a[1] + (b[1] - a[1]) * t,
-          y = yy(a) + (yy(b) - yy(a)) * t - 0.03;
-        d.add(new T.SphereGeometry(0.0027, 5, 3), metal, [side * (w + 0.003), y, z]);
-      }
+        yy = (q) => q[2] + 0.25,
+        steps = Math.ceil(Math.abs(b[0] - a[0]) / 0.15),
+        at = (k, dy) => {
+          const t = k / steps;
+          return skin(a[0] + (b[0] - a[0]) * t, yy(a) + (yy(b) - yy(a)) * t + dy, 0.002);
+        };
+      for (let k = 0; k < steps; k++)
+        quad(d, at(k, 0), at(k + 1, 0), at(k + 1, 0.07), at(k, 0.07), blue, [side, 0, 0]);
+      for (let t = 0; t < 1; t += 0.13 / Math.abs(b[0] - a[0]))
+        d.add(
+          new T.SphereGeometry(0.0027, 5, 3),
+          metal,
+          skin(a[0] + (b[0] - a[0]) * t, yy(a) + (yy(b) - yy(a)) * t - 0.03, 0.003),
+        );
     }
     for (const i of [1, 2, 8, 9])
       outline(
@@ -167,25 +248,25 @@ export function buildCessna172(s) {
     if (side > 0)
       outline(
         d,
-        [
-          [0.47, 1.18, -1.02],
-          [0.39, 1.18, -1.48],
-          [0.39, 0.61, -1.48],
-          [0.47, 0.61, -1.02],
-        ],
+        trace([
+          [-1.02, 1.18],
+          [-1.48, 1.18],
+          [-1.48, 0.61],
+          [-1.02, 0.61],
+        ]),
         0.003,
         metal,
       );
-    const y = (x) => 1.91 + Math.max(0, Math.abs(x) - 0.55) * 0.0262;
+    const y = (x) => 1.77 + Math.max(0, Math.abs(x) - 0.55) * 0.0262;
     const le = (x) => 0.62 - Math.max(0, Math.abs(x) - 2.55) * 0.045;
     const te = (x) => -1.0 + Math.max(0, Math.abs(x) - 2.55) * 0.13;
     const hinge = (x) => te(x) + (Math.abs(x) < 2.56 ? 0.37 : 0.26);
     wing(
       d,
       [
-        [side * 0.48, y(0.48), le(0.48), hinge(0.48), 0.105],
-        [side * 2.55, y(2.55), le(2.55), hinge(2.55), 0.105],
-        [side * 2.57, y(2.57), le(2.57), hinge(2.57), 0.105],
+        [side * 0.48, y(0.48), le(0.48), hinge(0.48), 0.12],
+        [side * 2.55, y(2.55), le(2.55), hinge(2.55), 0.11],
+        [side * 2.57, y(2.57), le(2.57), hinge(2.57), 0.11],
         [side * 5.3, y(5.3), le(5.3), hinge(5.3), 0.075],
         [side * 5.48, y(5.48), le(5.48) - 0.035, te(5.48) + 0.04, 0.055],
       ],
@@ -224,7 +305,7 @@ export function buildCessna172(s) {
       });
     }
     for (let x = 0.83; x < 5.15; x += 0.36) {
-      const h = x < 2.57 ? 0.105 : 0.105 - (x - 2.57) * 0.011;
+      const h = x < 2.57 ? 0.12 - (x - 0.48) * 0.0048 : 0.11 - (x - 2.57) * 0.0128;
       const upper = (u) =>
         u < 0.25
           ? (h * u) / 0.25
@@ -240,12 +321,13 @@ export function buildCessna172(s) {
     }
     d.add(new T.CylinderGeometry(0.037, 0.037, 0.008, 16), metal, [
       side * 1.1,
-      y(1.1) + 0.102,
+      y(1.1) + 0.117,
       0.27,
     ]);
     // Broad airfoil strut, not a circular pipe; front attachment precedes the doors.
-    const a = new T.Vector3(side * 0.5, 0.66, 0.65),
-      b = new T.Vector3(side * 3.04, y(3.04) - 0.02, 0.48),
+    // Struts lean aft about 20 degrees in side view (fuselage fitting ahead of the spar fitting).
+    const a = new T.Vector3(side * 0.5, 0.66, 0.76),
+      b = new T.Vector3(side * 3.04, y(3.04) - 0.02, 0.46),
       v = b.clone().sub(a);
     const strut = d.box(
       [0.06, v.length(), 0.17],
@@ -298,7 +380,7 @@ export function buildCessna172(s) {
     });
   }
   const fin = [
-    [-3.62, 1.34],
+    [-3.62, 1.28],
     [-3.91, 1.44],
     [-4.93, 2.35],
     [-5.07, 2.38],
@@ -359,18 +441,27 @@ export function buildCessna172(s) {
   d.add(new T.CylinderGeometry(0.028, 0.029, 0.07, 12), d.red, [0, 2.397, -5.02]);
   for (const side of [-1, 1])
     d.rod([side * 0.02, 2.27, -5.14], [side * 0.35, 2.28, -4.83], 0.005, metal);
-  d.rod([0, 1.96, -0.3], [0, 2.26, -0.63], 0.007, paint);
-  d.rod([0, 1.35, -1.77], [0, 1.61, -1.92], 0.006, paint);
-  // Open induction/cooling mouths, spinner, 76-inch fixed-pitch propeller.
+  d.rod([0, 1.83, -0.3], [0, 2.13, -0.63], 0.007, paint);
+  d.rod([0, 1.28, -1.77], [0, 1.54, -1.92], 0.006, paint);
+  // Open induction/cooling mouths: upright rounded inlets with rolled lips either side of the
+  // spinner, a filter mouth in the chin; full spinner, 76-inch fixed-pitch propeller.
   for (const side of [-1, 1]) {
-    ellipsoid(d, [side * 0.19, 1.32, 2.282], [0.13, 0.06, 0.012], dark, 16);
+    d.add(new T.CircleGeometry(0.072, 20).scale(0.8, 1.15, 1), dark, [side * 0.235, 1.235, 2.279]);
+    d.add(new T.TorusGeometry(0.075, 0.016, 5, 20).scale(0.8, 1.15, 1), paint, [
+      side * 0.235,
+      1.235,
+      2.282,
+    ]);
     d.rod([side * 0.28, 0.74, 1.65], [side * 0.28, 0.61, 1.51], 0.023, metal);
   }
-  ellipsoid(d, [0, 1.02, 2.288], [0.09, 0.052, 0.012], dark, 16);
+  ellipsoid(d, [0, 0.97, 2.281], [0.065, 0.032, 0.01], dark, 16);
   const engine = group(root, 'engine-1', [0, 1.25095, 2.285]),
     prop = group(engine, 'Skyhawk-propeller'),
     pd = detailKit(prop, 'propeller');
-  pd.add(new T.ConeGeometry(0.13, 0.3894, 24).rotateX(Math.PI / 2), paint, [0, 0, 0.1947]);
+  const spinner = [0, 0, 0.2, 0.4, 0.6, 0.8, 0.92, 1].map(
+    (s, i) => new T.Vector2(i ? 0.155 * (1 - Math.pow(s, 1.5)) : 0, 0.3894 * s),
+  );
+  pd.add(new T.LatheGeometry(spinner, 24).rotateX(Math.PI / 2), paint);
   for (const side of [-1, 1]) {
     const pts = [
       [side * 0.08, -0.024, 0],
@@ -419,24 +510,24 @@ export function buildCessna172(s) {
         r,
         z,
       ]);
+    // Egg-shaped speed fairings that close over the tire tops; only the tread shows below.
     const pant = [
       [0.35, 0.04, 0.31, 0.37],
-      [0.27, 0.13, 0.25, 0.43],
-      [0.03, 0.16, 0.21, 0.47],
-      [-0.36, 0.115, 0.24, 0.39],
+      [0.27, 0.13, 0.25, 0.46],
+      [0.03, 0.16, 0.21, 0.53],
+      [-0.36, 0.115, 0.24, 0.43],
       [-0.46, 0.025, 0.28, 0.32],
     ].map(([zz, w, b, t]) => ({
       z: z + zz,
-      points: [
-        [x, t],
-        [x + w * 0.7, t - 0.015],
-        [x + w, t - 0.055],
-        [x + w * 0.8, b],
-        [x, b],
-        [x - w * 0.8, b],
-        [x - w, t - 0.055],
-        [x - w * 0.7, t - 0.015],
-      ],
+      points: Array.from({ length: 12 }, (_, i) => {
+        const a = (i * Math.PI) / 6,
+          c = Math.cos(a),
+          s = Math.sin(a);
+        return [
+          x + w * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
+          (b + t) / 2 + ((t - b) / 2) * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
+        ];
+      }),
     }));
     loft(d, pant, paint);
   }
@@ -528,7 +619,7 @@ function cockpit(root, m) {
   const brow = edge.map(([u, v]) => at(u, v));
   outline(d, brow, 0.014, m.dark, false);
   const deckY = (x) =>
-    1.554 - (Math.abs(x) < 0.4 ? Math.abs(x) * 0.0625 : 0.025 + (Math.abs(x) - 0.4) * 0.92);
+    1.45 - (Math.abs(x) < 0.4 ? Math.abs(x) * 0.0625 : 0.025 + (Math.abs(x) - 0.4) * 0.92);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
@@ -793,6 +884,16 @@ function cockpit(root, m) {
       };
     rd.finish();
   }
+  // Parking-brake T-handle under the lower left panel, outboard of the yoke sightline.
+  const parkingBrake = group(cabin, 'Skyhawk-parking-brake', [0.33, 0.97, 1.06]),
+    bd = detailKit(parkingBrake, parkingBrake.name);
+  bd.rod([0, 0, 0.05], [0, 0, -0.022], 0.005, m.metal);
+  bd.box([0.07, 0.016, 0.018], [0, 0, -0.03], black);
+  parkingBrake.userData.aircraftControl = {
+    action: 'brake',
+    motion: { property: 'position', axis: 'z', scale: -0.022 },
+  };
+  bd.finish();
   d.text('172S', at(1130, 190, -0.01), 0.012, Math.PI, ink);
   d.text('NAV III', at(1130, 215, -0.01), 0.008, Math.PI, ink);
   for (const u of [150, 1210]) pt.vent(px(u), py(360), z - 0.008, 'round', 0.045);
@@ -895,7 +996,8 @@ function cockpit(root, m) {
       d.box([0.045, 0.014, 0.036], [x, 0.89, zz + 0.08], m.metal);
     }
   for (const side of [-1, 1]) {
-    d.box([0.025, 0.28, 1.35], [side * 0.515, 0.83, -0.05], seats);
+    // Sidewall trim sits inside the skin where the cabin narrows aft of the doors.
+    d.box([0.025, 0.28, 1.35], [side * 0.497, 0.83, -0.05], seats);
     d.rod([side * 0.49, 1.03, 0.24], [side * 0.49, 1.03, -0.08], 0.016, m.dark);
     for (const j of [-1, 1]) {
       const g = group(cabin, `Skyhawk-pedal-${side}-${j}`, [side * 0.25 + j * 0.075, 0.69, 1.25]),

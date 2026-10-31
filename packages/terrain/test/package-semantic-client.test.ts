@@ -319,6 +319,23 @@ describe('terrain package semantic layer wiring', () => {
     expect(line?.at(-1)?.[0]).toBeGreaterThanOrEqual(1);
   });
 
+  it('extends distant coverage through the available map levels and preserves explicit bounds', async () => {
+    const opened = await createTerrainPackageSemanticLayers(descriptor(), {
+      decoder: { decode: () => createEmptyTerrainSemanticTile() },
+      landcoverArchive: archive,
+      featuresArchive: archive,
+      distantCoverage: true,
+      featuresLayer: { minLevel: 4 },
+    });
+    expect(
+      opened.layers.map(({ category, minLevel, maxLevel }) => ({ category, minLevel, maxLevel })),
+    ).toEqual([
+      { category: 'classification', minLevel: 2, maxLevel: 10 },
+      { category: 'hydrology', minLevel: 2, maxLevel: 10 },
+      { category: 'human-feature', minLevel: 4, maxLevel: 10 },
+    ]);
+  });
+
   it('supports renderer/bound overrides and an entirely bare package', async () => {
     const renderer = { createTile: () => undefined };
     const customized = await createTerrainPackageSemanticLayers(descriptor(), {

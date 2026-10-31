@@ -36,6 +36,7 @@ export function stubCreateViewer(actual: typeof Client) {
       stats: () => ({ drawCalls: 0, triangles: 0 }),
       setStarCatalog: () => {},
       setShadowQuality: () => {},
+      setCloudQuality: () => {},
       setShadowFocus: () => {},
     };
     renderer.scene.add(renderer.worldRoot);

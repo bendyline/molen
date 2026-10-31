@@ -38,8 +38,9 @@ export function createPlayback(options: {
   button.className = 'playback-button';
   options.container.append(button);
   const listeners = new Set<() => void>();
-  let paused =
-    motion.matches || document.hidden || new URLSearchParams(location.search).get('text') === '1';
+  let manuallyPaused = motion.matches || new URLSearchParams(location.search).get('text') === '1';
+  let active = !document.hidden && document.hasFocus();
+  let paused = manuallyPaused;
   let visible = true;
   let disposed = false;
   let handle = 0;
@@ -48,7 +49,7 @@ export function createPlayback(options: {
   let frames = 0;
   let resizeFrame = 0;
   function render(now: number): void {
-    if (!visible || disposed) return;
+    if (!visible || disposed || !active) return;
     if (options.render) options.render(elapsed, now);
     else client.renderFrame(now);
     canvas.dataset.renderFrames = String(++frames);
@@ -66,6 +67,7 @@ export function createPlayback(options: {
     handle = requestAnimationFrame(loop);
   }
   function sync(): void {
+    paused = manuallyPaused || !active;
     cancelAnimationFrame(handle);
     handle = 0;
     input?.setEnabled(!paused);
@@ -80,20 +82,16 @@ export function createPlayback(options: {
     for (const listener of listeners) listener();
   }
   function setPaused(value: boolean): void {
-    if (disposed || value === paused) return;
-    paused = value;
+    if (disposed || value === manuallyPaused) return;
+    manuallyPaused = value;
     sync();
   }
   const toggle = (): void => setPaused(!paused);
   const reduce = (): void => {
     if (motion.matches) setPaused(true);
   };
-  const hide = (): void => {
-    if (document.hidden) setPaused(true);
-  };
   button.addEventListener('click', toggle);
   motion.addEventListener('change', reduce);
-  document.addEventListener('visibilitychange', hide);
   // A mount's ResizeObserver resets the drawing buffer after window.resize. Draw on the
   // following frame so a paused canvas is not cleared after its one still image was drawn.
   const resizeObserver = new ResizeObserver(() => {
@@ -101,6 +99,17 @@ export function createPlayback(options: {
     resizeFrame = requestAnimationFrame(draw);
   });
   resizeObserver.observe(canvas);
+  const setActive = (value: boolean): void => {
+    if (value === active) return;
+    active = value;
+    sync();
+  };
+  const focus = (): void => setActive(!document.hidden);
+  const blur = (): void => setActive(false);
+  const visibility = (): void => setActive(!document.hidden && document.hasFocus());
+  window.addEventListener('focus', focus);
+  window.addEventListener('blur', blur);
+  document.addEventListener('visibilitychange', visibility);
   sync();
   return {
     get paused() {
@@ -124,7 +133,9 @@ export function createPlayback(options: {
       cancelAnimationFrame(handle);
       input?.reset();
       motion.removeEventListener('change', reduce);
-      document.removeEventListener('visibilitychange', hide);
+      window.removeEventListener('focus', focus);
+      window.removeEventListener('blur', blur);
+      document.removeEventListener('visibilitychange', visibility);
       resizeObserver.disconnect();
       cancelAnimationFrame(resizeFrame);
       button.remove();

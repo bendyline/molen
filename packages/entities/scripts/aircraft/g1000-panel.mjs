@@ -2,7 +2,7 @@
  * Coordinates are in the caller's panel frame, facing local -Z. Use a parent
  * transform for an inclined panel. No independent sensors or synthetic systems.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { detailKit, group, sheet } from './mesh-kit.mjs';
 export function addG1000Readouts({
   cabin,

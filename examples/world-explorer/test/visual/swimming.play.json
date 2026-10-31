@@ -1,0 +1,35 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-swimming",
+  "path": "/?quality=economy&lat=47.6200&lon=-122.0900&alt=120&yaw=0&pitch=0&ambient=0&audio=0&nostyles=1&worldgen=0&backend=webgl&date=2024-03-24T19:00:00Z",
+  "viewport": [1280, 720],
+  "probes": [
+    { "name": "navigation", "selector": "#navigation-status" },
+    { "name": "location", "selector": "#location" }
+  ],
+  "actions": [
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-water-height]:not([data-water-height=\"\"])",
+      "timeoutMs": 120000
+    },
+    { "type": "click", "selector": "button[data-navigation=\"walk\"]" },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status[data-state=\"swimming\"]",
+      "stableMs": 1000,
+      "timeoutMs": 120000
+    },
+    { "type": "screenshot", "name": "01-swimming" },
+    { "type": "keys", "keys": ["w", "Shift"], "durationMs": 4000 },
+    {
+      "type": "wait-for-stable",
+      "selector": "#navigation-status[data-state=\"swimming\"]",
+      "stableMs": 1000,
+      "timeoutMs": 30000
+    },
+    { "type": "screenshot", "name": "02-still-afloat" },
+    { "type": "click", "selector": "button[data-navigation=\"fly\"]" },
+    { "type": "wait-for", "selector": "#navigation-status[data-state=\"fly\"]" }
+  ]
+}

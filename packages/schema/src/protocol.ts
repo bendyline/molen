@@ -11,6 +11,8 @@ export interface CommandMessage {
 export type ControlAction =
   | { action: 'pause' }
   | { action: 'resume' }
+  /** Page lifecycle suspension, independent of explicit pause/resume and startPaused. */
+  | { action: 'set-active'; active: boolean }
   | { action: 'step'; ticks?: number }
   | { action: 'request-keyframe' }
   | { action: 'set-rate'; hz: number }; // playback rate of the scheduler, not the sim tickRate

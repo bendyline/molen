@@ -59,6 +59,10 @@ worker you omit does its work on the main thread instead.
 Buildings appear with vertex colors while shared material textures bake in the background.
 Completed textures update the existing materials without regenerating buildings. Terrain detail
 refines in small groups, retaining visible detail during camera turns while replacements load.
+With worldgen content, distant tiles retain broad landcover colors and bounded building silhouettes;
+trees and street detail remain nearby. Water appears independently of those slower layers and also
+warms just outside the camera view. Byte-cache prefetch includes distant landcover at every available
+map level, so revisiting an area can reuse that coverage as well as its elevation and water.
 
 Metal and glass use a shared procedural sky/ground reflection environment by default. The viewer
 reuses its filtered texture until lighting changes; camera movement does not regenerate it.
@@ -91,15 +95,26 @@ neutral olive.
 
 Buildings, trees and landmarks cast sun shadows onto everything around what the camera frames:
 the orbit target (sized to the view), or a little ahead of the walker, car or aircraft. The
-shadow map follows that focus in whole texels, so edges hold still as it moves. Adaptive quality
+shadow map follows that focus in whole texels anchored to world coordinates, including through
+floating-origin rebases. Its coverage changes in small steps with hysteresis, so camera bob and
+minor altitude changes do not resize the texel grid every frame. Adaptive quality
 turns shadows off at its two lowest levels; `shadows: false` turns them off entirely. Only layer
 parts taller than `EARTH_SHADOW_CASTER_HEIGHT` (3.5 m) cast: shrubs, brambles and saplings stay
 out of the shadow pass, where their shadows would mostly fall inside the canopy's.
 
 In flight the shadow footprint widens with height above the local ground: its half-width is
-four times that height, capped at 5 km, with a tighter footprint near the ground. This pushes
+four times that height, capped at 5 km. Below 8 m the half-width is 24 m plus the height,
+preserving aircraft and contact-shadow detail on the runway. The renderer rounds coverage up
+to a stable size (and holds it through small changes). This pushes
 the shadow boundary farther into the distance in aerial views, trading some shadow sharpness
 for coverage at the same map resolution. Walking and driving keep their tighter footprints.
+
+Earth viewers reserve a 4096-pixel sun map before preparing materials. WebGPU retains that
+allocation across quality changes, so High really uses 4096 pixels even after starting at a
+lower tier; WebGL can resize it with the tier. A chase camera 10 m above ground covers an
+80 m square, giving roughly 2 cm shadow texels on High for wings, propellers and landing gear.
+Chase views also reserve at least the camera-to-aircraft distance as their half-width, keeping
+large airliners and their shadows inside the tighter runway footprint.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.
@@ -180,8 +195,8 @@ geographic (`viewer`, poses, places) is stable across re-anchors.
 ```ts
 view.setMode('walk', { at: { latitude, longitude, heading } }); // start here, facing heading
 view.walker.place({ latitude, longitude });                       // teleport (enters walk mode if needed)
-view.walker.pose();   // { latitude, longitude, altitude, heading, speed, grounded } | undefined
-view.walker.ready;    // standing on streamed ground
+view.walker.pose();   // { latitude, longitude, altitude, heading, speed, grounded, swimming } | undefined
+view.walker.ready;    // placed on streamed ground or water
 ```
 
 A place inside the current frame drops the walker at once (it lands when the ground there has
@@ -189,6 +204,12 @@ streamed, as a walk start always does). A place more than about a degree of lati
 another terrain region with `terrainSource`, re-anchors first: the mode is `walk` immediately, the
 orbit camera holds over the destination while the frame rebuilds, and the walker lands when it is
 done.
+
+Walking into deep water automatically starts surface swimming; reaching shallow ground returns
+to walking. The same movement controls apply, with Shift swimming faster. The camera stays above
+the water, and `view.walker.pose()?.swimming` reports the transition without changing the `walk`
+navigation mode. Water coverage comes from rendered water surfaces or the `waterAt` option,
+including lakes above sea level.
 
 ```ts
 view.walker.setAvatar({ figure: { preset: 'human.adult', height: 1.7, palette: { top: '#2f5a3b' } } });
@@ -1019,7 +1040,11 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   is still warm when the view pans back.
 - `stats().worldgen` counts styled building generation since the current terrain stream started
   (with content packs): tiles generated, buildings drawn as geometry, and instanced stand-ins.
-- `setPaused(true)` stops rendering while the view is hidden, and `dispose()` releases the GPU
+- Window blur and hidden tabs automatically pause simulation, rendering, queued GPU preparation,
+  audio and prefetching. Returning to a visible, focused page resumes without simulation catch-up.
+  `setPaused(true)` keeps the view paused even after focus returns; `setPaused(false)` releases
+  that manual pause. Pass `pauseWhenInactive: false` for a host that manages activity itself.
+  Resources stay loaded for quick resume; GPU memory is retained. `dispose()` releases the GPU
   context, workers and listeners. Mounting is abortable through `signal`.
 
 ## Sound
@@ -1078,10 +1103,21 @@ the full contract and current prototype limits.
 
 ## Airport layouts
 
+Airport terrain is graded before terrain meshes, pavement and ground physics consume it. All
+runways of an airport and its mapped aerodrome grounds share a level surface, with shoulders
+and a smooth transition back to surrounding terrain. The height is inferred from fixed terrain
+samples along the runways; it is not surveyed runway elevation or slope data. The reference
+samples are independent of camera detail and tile load order. Hosts composing a pyramid stream
+can pass `transformHeightfield: createAirportTerrainGrading(content.airports)` alongside their
+`withEarthAirports` semantic renderers.
+
 The `molen.earth` content pack supplies a lazy worldwide runway catalog and a detailed Boeing
 Field layout. Both Earth hosts use measured runway endpoints and widths, draw runway numbers,
 thresholds and centre lines, and keep airport pavement visible from flight altitude. Mapped
 taxiways and aprons have airport markings; airside areas do not become car parks or city streets.
+The pavement is drawn about half a metre above the terrain, and aircraft stand on it. A host
+placing its own objects there reads that height with `sampleAirportPavement(root, x, z, ground)`
+from `@bendyline/molen-terrain/client`, which returns undefined off the pavement.
 The airport overlay also supplies mapped hangar/building footprints and suppresses inferred
 vegetation and buildings on the airfield. Aircraft traffic uses the runway approach/departure
 corridors and remains simulated, rather than live aviation tracking.
@@ -1090,8 +1126,9 @@ The runway snapshot covers 10,746 airports with complete endpoint and width reco
 aprons, taxiways and hangars are currently bundled for Boeing Field; elsewhere these depend on
 the map's coverage. Building heights and untagged taxiway widths are interpreted. Runways with
 missing endpoints, closed runways and water runways are omitted. Supplemental airports also
-render when the basemap has no tile (Boeing Field lies south of the bundled Seattle street-detail
-coverage). No airport data is fetched without a supplied pack. Hosts composing their own
+render when the basemap has no tile (Itami lies outside the bundled Kyoto street-detail
+coverage). Seattle's street-detail coverage includes Boeing Field and its surroundings.
+No airport data is fetched without a supplied pack. Hosts composing their own
 terrain renderer can use `withEarthAirports`
 around semantic renderers and observers, passing `content.airports` from `loadEarthContent`.
 
@@ -1101,7 +1138,7 @@ of light aircraft, business aircraft and larger jets. Aircraft are fitted inside
 with clearance from buildings, taxiways, runways, other aircraft and reserved diorama areas.
 The fleet and parking positions are simulated, not live aircraft tracking or exact stand assignments.
 
-Walk to an aircraft's door and press **E** to board, **I** to start, and **Shift/Ctrl** to adjust
+Walk to an aircraft's door and press **E** to board, **I** to start, and **=/−** to adjust
 power. The same aircraft taxis and flies away; its original stand remains empty for the session.
 Land, stop and shut down before exiting. Automatic parking keeps at most twelve unclaimed
 aircraft within 1.8 km; claimed aircraft remain owned vehicles across terrain re-anchors.

@@ -3,6 +3,7 @@ import type {
   TerrainPyramidTileLayerContext,
   TerrainSemanticPolygon,
   TerrainSemanticTile,
+  TerrainTrafficSignal,
 } from '@bendyline/molen-terrain/client';
 import { roadWidth } from '@bendyline/molen-terrain/kernel';
 import type * as THREE from 'three';
@@ -15,7 +16,7 @@ interface Tile {
    * What a sample reads: never a features tile's buildings, and of a tile too coarse to choose
    * the surface underfoot (see sample) only its water.
    */
-  tile: Pick<TerrainSemanticTile, 'water' | 'landcover' | 'transportation'>;
+  tile: Pick<TerrainSemanticTile, 'water' | 'landcover' | 'transportation' | 'pois'>;
   context: TerrainPyramidTileLayerContext;
 }
 export interface EarthAudioTerrainSample {
@@ -23,6 +24,8 @@ export interface EarthAudioTerrainSample {
   coastDistance: number;
   riverDistance: number;
   streetDistance: number;
+  /** Meters to a mapped or rendered traffic signal; absent/Infinity means unknown. */
+  intersectionDistance?: number;
   surface?: string;
   habitat?: string;
 }
@@ -95,7 +98,18 @@ function boundsDistance(x: number, z: number, points: Point[]): number {
 const OCEAN = new Set(['ocean', 'sea']);
 const RIVER_AREAS = new Set(['river', 'stream', 'canal']);
 const RIVER_LINES = new Set(['river', 'stream', 'canal', 'waterway', 'ditch']);
-const NOT_STREETS = new Set(['path', 'footway', 'cycleway', 'steps', 'track', 'rail', 'railway']);
+const NOT_STREETS = new Set([
+  'path',
+  'footway',
+  'cycleway',
+  'steps',
+  'track',
+  'rail',
+  'railway',
+  'aeroway',
+  'runway',
+  'taxiway',
+]);
 function surfaceOf(value: string): string | undefined {
   return (
     {
@@ -146,6 +160,9 @@ export class EarthAudioTerrain {
           water: tile.water,
           landcover: coarse ? [] : tile.landcover,
           transportation: coarse ? [] : tile.transportation,
+          pois: coarse
+            ? []
+            : (tile.pois ?? []).filter((p) => (p.subclass ?? p.class) === 'traffic_signals'),
         },
         context,
       });
@@ -159,6 +176,7 @@ export class EarthAudioTerrain {
       coastDistance: Infinity,
       riverDistance: Infinity,
       streetDistance: Infinity,
+      intersectionDistance: Infinity,
     };
     let surfaceLevel = Infinity,
       roadLevel = Infinity;
@@ -214,6 +232,31 @@ export class EarthAudioTerrain {
       }
       // Fine geometry is needed to choose the surface under a foot.
       if (tileSize > FINE_TILE_SIZE) continue;
+      for (const poi of tile.pois ?? []) {
+        // A tunnel/overpass signal must not become a crossing on the street below.
+        if (poi.tunnel || poi.bridge || (poi.layer ?? 0) !== 0) continue;
+        result.intersectionDistance = Math.min(
+          result.intersectionDistance!,
+          Math.hypot((poi.point[0] - u) * tileSize, (poi.point[1] - v) * tileSize),
+        );
+      }
+      // Surface workers may install inferred signal heads after the tile was observed. Read
+      // their metadata live, only on tiles within audible range; no second junction solver.
+      if (Math.hypot(Math.max(-u, 0, u - 1), Math.max(-v, 0, v - 1)) * tileSize < 80) {
+        const visit = (node: THREE.Object3D): void => {
+          if (!node.visible) return;
+          const heads = node.userData.trafficSignalHeads as TerrainTrafficSignal[] | undefined;
+          for (const head of heads ?? [])
+            result.intersectionDistance = Math.min(
+              result.intersectionDistance!,
+              Math.max(0, Math.hypot(x - head.junction[0], z - head.junction[1]) - head.radius),
+            );
+          // Mesh geometry cannot contain a surface tile; skip the building/model subtrees.
+          for (const child of node.children)
+            if (child.type === 'Group' || child.type === 'Object3D') visit(child);
+        };
+        visit(object);
+      }
       for (const land of tile.landcover)
         if (
           tileSize <= surfaceLevel &&

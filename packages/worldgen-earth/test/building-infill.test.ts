@@ -6,7 +6,7 @@ import {
 import { emptyWorldgenStats, queueBuildings } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
 import { inferBuildingFootprints } from '../src/kernel/building-infill';
-import { corridor, distance, polygonsNear } from '../src/kernel/infill-geometry';
+import { corridor, distance, InfillBins, polygonsNear } from '../src/kernel/infill-geometry';
 import { semanticTileToBatch, type TileGeometry } from '../src/kernel/semantic-adapter';
 import { loadDefaultPack } from './helpers/pack';
 
@@ -512,5 +512,51 @@ describe('seeded building infill', () => {
     expect(
       semanticTileToBatch(tile, geom, { pack, buildingInfill: false }, flat).buildings,
     ).toHaveLength(1);
+  });
+});
+
+describe('infill bins', () => {
+  it('list each value once, in visit order, as a per-query set over string cells did', () => {
+    // The bins' previous form: string cell keys and a Set per query.
+    const cells = new Map<string, number[]>();
+    const visit = (b: [number, number, number, number], fn: (key: string) => void): void => {
+      for (
+        let x = Math.floor(Math.max(-300, b[0]) / 100);
+        x <= Math.floor(Math.min(780, b[2]) / 100);
+        x++
+      )
+        for (
+          let z = Math.floor(Math.max(-300, b[1]) / 100);
+          z <= Math.floor(Math.min(780, b[3]) / 100);
+          z++
+        )
+          fn(`${x}:${z}`);
+    };
+    const bins = new InfillBins<number>(480);
+    let state = 3;
+    const next = (): number => {
+      state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+      return (state / 2 ** 32) * 1400 - 450;
+    };
+    const box = (): [number, number, number, number] => {
+      const x = next(),
+        z = next();
+      return [x, z, x + Math.abs(next()) / 4, z + Math.abs(next()) / 4];
+    };
+    for (let value = 0; value < 400; value++) {
+      // Some values go in twice, as the same value under another box.
+      for (const bounds of value % 7 === 0 ? [box(), box()] : [box()]) {
+        bins.add(value, bounds);
+        visit(bounds, (key) => cells.set(key, [...(cells.get(key) ?? []), value]));
+      }
+    }
+    for (let query = 0; query < 300; query++) {
+      const bounds = query % 50 === 0 ? ([0, 0, Number.NaN, 100] as const) : box();
+      const expected = new Set<number>();
+      visit([...bounds], (key) => {
+        for (const value of cells.get(key) ?? []) expected.add(value);
+      });
+      expect(bins.query([...bounds])).toEqual([...expected]);
+    }
   });
 });

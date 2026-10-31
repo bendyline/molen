@@ -6,7 +6,9 @@ import {
   type VehicleCameraPose,
   type VehicleVisual,
   vehicleCameraPose,
+  vehicleObstacleContacts,
 } from '@bendyline/molen-client/vehicles';
+import { Aircraft } from '@bendyline/molen-kernel/aircraft';
 import {
   Boat,
   type BoatEnvironment,
@@ -18,13 +20,17 @@ import {
   installBoats,
 } from '@bendyline/molen-kernel/boats';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
+import { Glass, GlassState } from '@bendyline/molen-kernel/glass';
 import {
   driveVehicle,
+  IDLE_VEHICLE_INPUT,
   initialVehicleState,
   installVehicles,
   Mountable,
+  type MountableData,
   Mounted,
   mountEntity,
+  repairVehicle,
   unmountEntity,
   Vehicle,
   type VehicleEnvironment,
@@ -40,6 +46,7 @@ import type {
   BoatData,
   BoatSpec,
   BoatStateData,
+  ComponentMap,
   VehicleData,
   VehiclePlacement,
   VehicleSpec,
@@ -58,8 +65,37 @@ const PLAYER = 'world-player';
  * entities, to approach, board and collide with; farther ones are only their tile's merged mesh.
  */
 const PARKED_ENTITY_RADIUS = 300;
+/** Match ambient traffic's street-distance detail, with hysteresis to prevent boundary churn. */
+const PARKED_MODEL_NEAR = 45;
+const PARKED_MODEL_FAR = 65;
 /** Ambient NPCs share this world; they are never parked cars to cull. */
 const AmbientAgent = componentHandle('ambientAgent');
+const Renderable = componentHandle('renderable');
+/**
+ * Traffic slower than this (m/s) has stopped, or is creeping in a queue: a walker can open its
+ * door and take it over. Moving traffic is never boardable.
+ */
+const TRAFFIC_BOARDING_SPEED = 0.5;
+
+/** The part of an ambient agent a stopped car is judged by. */
+interface TrafficCar {
+  kind?: string;
+  type?: string;
+  color?: string;
+  speed?: number;
+  hidden?: boolean;
+}
+
+/**
+ * A traffic car a walker took over: the agent it was (removed once the drivable car's model
+ * shows) and where it stood, to return it to traffic if nobody drove it away.
+ */
+interface Promotion {
+  agent: string;
+  components: ComponentMap;
+  at: readonly number[];
+  shown: boolean;
+}
 
 export interface EarthVehiclesOptions {
   /**
@@ -104,6 +140,8 @@ export interface EarthSpawnOptions {
   /** Paint for the type's `paintMaterial` (CSS color); without it the authored paint stays. */
   color?: string;
   livery?: string;
+  /** @internal The traffic car this one takes over, which is no obstacle to it. */
+  replaces?: string;
 }
 
 export class EarthVehicles {
@@ -139,6 +177,15 @@ export class EarthVehicles {
   private readonly spawned = new Set<string>();
   /** Spawned cars a host owns: they survive `release` and forced exits until removed. */
   private readonly owned = new Set<string>();
+  /** Doors {@link openDoor} opened, by car: shut on boarding or once nobody is within reach. */
+  private readonly openedDoors = new Map<string, string>();
+  /** Drivable cars that stand in for traffic cars, by car id (see {@link promote}). */
+  private readonly promotions = new Map<string, Promotion>();
+  /** Entity library lookups for traffic types: their vehicle and mounts, or null when undrivable. */
+  private readonly trafficTypes = new Map<
+    string,
+    { vehicle: VehicleData; mount: MountableData } | null
+  >();
   private readonly ownsWorld: boolean;
 
   private readonly root: THREE.Object3D;
@@ -165,6 +212,19 @@ export class EarthVehicles {
       this.world.spawnRaw({ transform: { pos: [0, 0, 0], rot: [0, 0, 0, 1] } }, PLAYER);
     this.environment = {
       groundHeight: (x, z) => this.support(x, z),
+      contacts: (probes, id) =>
+        vehicleObstacleContacts(probes, {
+          origin: this.collision.origin,
+          octree: this.collision.octree,
+          cars: [...this.bodies()]
+            .filter(([other]) => other !== id)
+            .map(([, transform, vehicle]) => ({ transform, spec: vehicle.spec })),
+          aircraft: [...this.world.query(Transform, Aircraft)]
+            .filter(([other]) => other !== id)
+            .map(([, transform, aircraft]) =>
+              vehicleLocalPoint(transform, aircraft.spec.centerOfMass),
+            ),
+        }),
       canOccupy: (position, yaw, spec, id) => this.canOccupy(position, yaw, spec, id),
       canExit: (position, _actor, vehicle) => this.canExit(position, vehicle),
     };
@@ -274,11 +334,13 @@ export class EarthVehicles {
             (resident.has(id) || this.retained.has(id)) &&
             id !== this.mountedId &&
             !this.owned.has(id) &&
-            distance < (this.active.has(id) ? 20 : 14),
+            distance < (this.active.has(id) ? PARKED_MODEL_FAR : PARKED_MODEL_NEAR),
         )
         .sort((a, b) => a.distance - b.distance || a.id.localeCompare(b.id))
         .slice(0, 8);
       this.nearby = new Set(candidates.map(({ id }) => id));
+      for (const id of this.openedDoors.keys())
+        if (this.entryDistance(id, observer) > this.reach(id) + 1) this.closeOpenedDoor(id);
       for (const [id, controller] of this.loading)
         if (id !== this.mountedId && !this.owned.has(id) && !this.nearby.has(id))
           controller.abort();
@@ -293,6 +355,8 @@ export class EarthVehicles {
       ) {
         visual.dispose();
         this.active.delete(id);
+        // Out of model range, a taken traffic car left where it stopped goes back to traffic.
+        if (this.standsInTraffic(id)?.shown) this.remove(id);
       }
     }
     for (const [id] of this.world.query(Vehicle).without(AmbientAgent)) {
@@ -351,9 +415,10 @@ export class EarthVehicles {
     yaw: number,
     spec: Pick<VehicleSpec, 'height' | 'width' | 'length'>,
     id: string,
+    except: string = id,
   ): boolean {
     const box = this.vehicleBox(pos, yaw, spec);
-    if (this.intersectsObstacle(box, id)) return false;
+    if (this.intersectsObstacle(box, except)) return false;
     for (const [other, t, v, state] of this.bodies()) {
       if (
         other === id ||
@@ -437,23 +502,200 @@ export class EarthVehicles {
   private intersectsObstacle(box: OBB, except?: string): boolean {
     return this.obstacles?.(box, except) ?? false;
   }
+  /** A traffic car's drivable type: its vehicle and mounts, when the entity library has them. */
+  private trafficParts(id: string): { vehicle: VehicleData; mount: MountableData } | undefined {
+    const type = (this.world.get(id, AmbientAgent) as TrafficCar | undefined)?.type;
+    if (type === undefined) return undefined;
+    let parts = this.trafficTypes.get(type);
+    if (parts === undefined) {
+      const components = this.types.has(type) ? this.types.components(type) : {};
+      const vehicle = components.vehicle as unknown as VehicleData | undefined;
+      const mount = components.mountable as unknown as MountableData | undefined;
+      parts =
+        vehicle !== undefined && mount?.seats.some((seat) => seat.role === 'driver')
+          ? { vehicle, mount }
+          : null;
+      this.trafficTypes.set(type, parts);
+    }
+    return parts ?? undefined;
+  }
+  /** A stopped traffic car a walker can take over (see {@link promote}), with its drivable type. */
+  private boardableTraffic(id: string): { vehicle: VehicleData; mount: MountableData } | undefined {
+    const agent = this.world.get(id, AmbientAgent) as TrafficCar | undefined;
+    if (
+      agent?.kind !== 'car' ||
+      agent.hidden === true ||
+      !((agent.speed ?? 0) < TRAFFIC_BOARDING_SPEED)
+    )
+      return undefined;
+    for (const promotion of this.promotions.values()) if (promotion.agent === id) return undefined;
+    return this.trafficParts(id);
+  }
+  /** How far `position` is from the closer of a body's driver eye and entry points. */
+  private entryDistance(id: string, position: readonly number[]): number {
+    const t = this.world.get(id, Transform),
+      v = this.data(id) ?? this.trafficParts(id)?.vehicle;
+    if (!t || !v) return Infinity;
+    const entries = (this.world.get(id, Mountable) ?? this.trafficParts(id)?.mount)?.entries;
+    return Math.min(
+      ...[v.spec.driverEye, ...(entries ?? [])].map((point) => {
+        const entry = vehicleLocalPoint(t, point);
+        return Math.hypot(
+          entry[0] - (position[0] ?? 0),
+          entry[1] - (position[1] ?? 0),
+          entry[2] - (position[2] ?? 0),
+        );
+      }),
+    );
+  }
+  private reach(id: string): number {
+    return (this.world.get(id, Mountable) ?? this.trafficParts(id)?.mount)?.reach ?? 3;
+  }
+  /**
+   * The car or boat whose seat or door is nearest a walker at `position`, within its reach. A
+   * stopped traffic car counts too: {@link openDoor} and {@link enter} take it over.
+   */
   nearest(position: [number, number, number]): string | undefined {
     let best: string | undefined,
       distance = Infinity;
-    for (const [id, t, v] of this.bodies()) {
-      const mount = this.world.get(id, Mountable);
-      const d = Math.min(
-        ...[v.spec.driverEye, ...(mount?.entries ?? [])].map((point) => {
-          const entry = vehicleLocalPoint(t, point);
-          return Math.hypot(entry[0] - position[0], entry[1] - position[1], entry[2] - position[2]);
-        }),
-      );
-      if (d < distance && d <= (mount?.reach ?? 3)) {
+    const consider = (id: string): void => {
+      const d = this.entryDistance(id, position);
+      if (d < distance && d <= this.reach(id)) {
         best = id;
         distance = d;
       }
-    }
+    };
+    for (const [id] of this.bodies()) consider(id);
+    for (const [id, , t] of this.world.query(AmbientAgent, Transform))
+      if (
+        Math.hypot(t.pos[0] - position[0], t.pos[2] - position[2]) < 10 &&
+        this.boardableTraffic(id)
+      )
+        consider(id);
     return best;
+  }
+  /**
+   * The front door beside a walker at `position` on car `id` while it is shut: the door
+   * {@link openDoor} opens. Undefined for boats, a car without that door, or one already open.
+   */
+  closedDoor(id: string, position: readonly number[]): string | undefined {
+    const t = this.world.get(id, Transform),
+      actuators = (this.world.get(id, Vehicle) ?? this.trafficParts(id)?.vehicle)?.spec.actuators;
+    if (!t || !actuators) return undefined;
+    // Models face +z, so their +x is the left: the walker's side of the car names the door.
+    const side = new THREE.Vector3(
+      (position[0] ?? 0) - t.pos[0],
+      (position[1] ?? 0) - t.pos[1],
+      (position[2] ?? 0) - t.pos[2],
+    ).applyQuaternion(new THREE.Quaternion().fromArray(t.rot).invert()).x;
+    const door = side >= 0 ? 'doorFrontLeft' : 'doorFrontRight';
+    if (!actuators[door] || this.world.get(id, VehicleInput)?.actuators?.[door]) return undefined;
+    return door;
+  }
+  /**
+   * Open the shut front door beside a walker at `position`, on car `id` (default: the nearest in
+   * reach), for a host that boards in two steps: open, then {@link enter}. It shuts again behind
+   * the driver, or once nobody is within reach. False when there is no shut door to open.
+   */
+  openDoor(
+    position: [number, number, number],
+    id: string | undefined = this.nearest(position),
+  ): boolean {
+    this.message = '';
+    if (id === undefined || !this.closedDoor(id, position) || !this.reachable(id, position))
+      return false;
+    const car = this.boardableTraffic(id) ? this.promote(id) : id;
+    const door = car === undefined ? undefined : this.closedDoor(car, position);
+    if (car === undefined || door === undefined) return false;
+    this.setActuator(car, door, true);
+    this.openedDoors.set(car, door);
+    return true;
+  }
+  /**
+   * Take a stopped traffic car out of traffic: a drivable car of its type and paint stands at its
+   * pose. The agent stays, held by that car's {@link trafficSolids}, until the car's model shows
+   * (see `activate`): the street never shows both or neither.
+   */
+  private promote(agentId: string): string | undefined {
+    const agent = this.world.get(agentId, AmbientAgent);
+    const t = this.world.get(agentId, Transform);
+    const { type, color } = (agent ?? {}) as TrafficCar;
+    if (agent === undefined || t === undefined || type === undefined) return undefined;
+    const forward = new THREE.Vector3(0, 0, 1).applyQuaternion(
+      new THREE.Quaternion().fromArray(t.rot),
+    );
+    const id = this.spawn(type, [t.pos[0], t.pos[1], t.pos[2]], Math.atan2(forward.x, forward.z), {
+      ...(color !== undefined ? { color } : {}),
+      replaces: agentId,
+    });
+    if (id === undefined) return undefined;
+    const renderable = this.world.get(agentId, Renderable);
+    this.promotions.set(id, {
+      agent: agentId,
+      components: {
+        ambientAgent: agent,
+        transform: t,
+        ...(renderable !== undefined ? { renderable } : {}),
+      },
+      at: [t.pos[0], t.pos[2]],
+      shown: false,
+    });
+    return id;
+  }
+  /** The drivable car's model shows: the traffic car it stands in for leaves in the same frame. */
+  private showPromoted(id: string): void {
+    const promotion = this.promotions.get(id);
+    if (promotion === undefined || promotion.shown) return;
+    promotion.shown = true;
+    if (this.world.exists(promotion.agent)) this.world.destroy(promotion.agent);
+  }
+  /** A promoted car still standing where it was taken (nobody drove it away). */
+  private standsInTraffic(id: string): Promotion | undefined {
+    const promotion = this.promotions.get(id);
+    const t = this.world.get(id, Transform);
+    return promotion !== undefined &&
+      t !== undefined &&
+      Math.hypot(t.pos[0] - (promotion.at[0] ?? 0), t.pos[2] - (promotion.at[1] ?? 0)) < 0.5
+      ? promotion
+      : undefined;
+  }
+  /**
+   * Circles ambient traffic yields to around the cars a driver has used and left standing (taken
+   * traffic, parked cars driven elsewhere): pass them to `EarthAmbient.sync` with the walker, so
+   * the cars queued behind a car taken out of traffic keep their gap. The mounted car is already
+   * yielded to.
+   */
+  trafficSolids(): { x: number; z: number; radius: number }[] {
+    const solids: { x: number; z: number; radius: number }[] = [];
+    for (const id of this.retained) {
+      const t = this.world.get(id, Transform),
+        spec = this.world.get(id, Vehicle)?.spec;
+      if (id === this.mountedId || t === undefined || spec === undefined) continue;
+      // A row of circles the car's width, nose to tail: one round the whole car would also stop
+      // traffic in the next lane.
+      const radius = spec.width / 2;
+      const count = Math.max(1, Math.ceil(spec.length / spec.width));
+      const along = spec.length / 2 - radius;
+      for (let i = 0; i < count; i++) {
+        const [x, , z] = vehicleLocalPoint(t, [
+          0,
+          0,
+          count === 1 ? 0 : -along + (2 * along * i) / (count - 1),
+        ]);
+        solids.push({ x, z, radius });
+      }
+    }
+    return solids;
+  }
+  private closeOpenedDoor(id: string): void {
+    const door = this.openedDoors.get(id);
+    if (door === undefined) return;
+    this.openedDoors.delete(id);
+    if (this.world.exists(id)) this.setActuator(id, door, false);
+  }
+  private setActuator(id: string, name: string, on: boolean): void {
+    const input = this.world.get(id, VehicleInput) ?? IDLE_VEHICLE_INPUT;
+    this.world.set(id, VehicleInput, { ...input, actuators: { ...input.actuators, [name]: on } });
   }
   /** Drivable car types in the entity library (types with a vehicle and a seat). */
   static typeIds(types: TypeLibrary): string[] {
@@ -508,7 +750,7 @@ export class EarthVehicles {
       position = [position[0], support.sample.height, position[2]];
     }
     this.collision.update(this.root, position[0], position[2], position[1]);
-    if (!this.canOccupy(position, yaw, vehicle.spec, id)) {
+    if (!this.canOccupy(position, yaw, vehicle.spec, id, options.replaces)) {
       this.message = 'No room for a car here';
       return undefined;
     }
@@ -602,6 +844,7 @@ export class EarthVehicles {
     if (!t || !v) return false;
     this.world.patch(PLAYER, Transform, { pos: vehicleLocalPoint(t, v.spec.driverEye) });
     if (!mountEntity(this.world, PLAYER, id)) return false;
+    this.closeOpenedDoor(id);
     this.retained.add(id);
     if (!this.active.has(id)) void this.activate(id, v);
     this.view = 'chase';
@@ -628,6 +871,9 @@ export class EarthVehicles {
   }
   /** Remove a car added with {@link spawn}. */
   remove(id: string): void {
+    const unmoved = this.standsInTraffic(id);
+    const promotion = this.promotions.get(id);
+    this.promotions.delete(id);
     this.loading.get(id)?.abort();
     if (this.world.get(PLAYER, Mounted)?.vehicle === id) this.world.remove(PLAYER, Mounted);
     this.active.get(id)?.dispose();
@@ -636,6 +882,18 @@ export class EarthVehicles {
     this.spawned.delete(id);
     this.owned.delete(id);
     if (this.world.exists(id)) this.world.destroy(id);
+    // A taken traffic car nobody drove away rejoins traffic where it stopped, as the agent it was.
+    if (promotion?.shown && unmoved !== undefined && !this.world.exists(promotion.agent)) {
+      const { ambientAgent, transform } = promotion.components;
+      this.world.spawnRaw(
+        {
+          ...promotion.components,
+          ambientAgent: { ...ambientAgent, speed: 0, state: 'wait', since: this.world.tick },
+          transform: { ...transform, teleport: true },
+        },
+        promotion.agent,
+      );
+    }
   }
   /** World position of the mounted car. */
   get position(): [number, number, number] | undefined {
@@ -653,13 +911,32 @@ export class EarthVehicles {
   }
   enter(position: [number, number, number]): boolean {
     this.message = '';
-    const id = this.nearest(position);
+    const nearest = this.nearest(position);
+    if (!nearest || !this.reachable(nearest, position)) return false;
+    const id = this.boardableTraffic(nearest) ? this.promote(nearest) : nearest;
     if (!id) return false;
-    this.collision.update(this.root, position[0], position[2], position[1]);
     this.world.patch(PLAYER, Transform, { pos: [...position] });
+    if (!mountEntity(this.world, PLAYER, id)) return false;
+    const v = this.data(id);
+    if (!v) return false;
+    this.closeOpenedDoor(id);
+    this.retained.add(id);
+    if (!this.active.has(id)) {
+      void this.activate(id, v);
+    }
+    this.view = 'cockpit';
+    this.lookYaw = 0;
+    this.lookPitch = 0;
+    this.lastSync = -Infinity;
+    this.sync(performance.now());
+    this.render();
+    return true;
+  }
+  /** Reject interaction through a wall, even when a seat is within reach. */
+  private reachable(id: string, position: [number, number, number]): boolean {
+    this.collision.update(this.root, position[0], position[2], position[1]);
     const t = this.world.get(id, Transform);
     if (!t) return false;
-    // Reject interaction through a wall, even when a seat is within reach.
     const a = new THREE.Vector3(
       position[0] - this.collision.origin.x,
       position[1],
@@ -684,19 +961,6 @@ export class EarthVehicles {
       this.message = 'Move closer to the door';
       return false;
     }
-    if (!mountEntity(this.world, PLAYER, id)) return false;
-    const v = this.data(id);
-    if (!v) return false;
-    this.retained.add(id);
-    if (!this.active.has(id)) {
-      void this.activate(id, v);
-    }
-    this.view = 'cockpit';
-    this.lookYaw = 0;
-    this.lookPitch = 0;
-    this.lastSync = -Infinity;
-    this.sync(performance.now());
-    this.render();
     return true;
   }
   private exitEnvironment(actor: string): VehicleEnvironment {
@@ -756,6 +1020,21 @@ export class EarthVehicles {
    * world (a shared world is stepped once per frame by its owner, see {@link step}) and pose the
    * models.
    */
+  toggleActuators(presses: Readonly<Record<string, number>>): void {
+    const id = this.mountedId;
+    const spec = id ? this.world.get(id, Vehicle)?.spec : undefined;
+    if (!id || !spec) return;
+    const input = this.world.get(id, VehicleInput) ?? IDLE_VEHICLE_INPUT;
+    const actuators = { ...input.actuators };
+    for (const [name, count] of Object.entries(presses)) {
+      if (spec.actuators?.[name] && count % 2 === 1) actuators[name] = !actuators[name];
+    }
+    this.world.set(id, VehicleInput, { ...input, actuators });
+  }
+  /** Restore broken parts on the mounted road vehicle once it has stopped. */
+  recover(): boolean {
+    return this.mountedId !== undefined && repairVehicle(this.world, this.mountedId);
+  }
   update(dt: number, input: VehicleInputData): void {
     this.settleSpawned();
     const id = this.mountedId;
@@ -772,7 +1051,11 @@ export class EarthVehicles {
           steering: input.steering,
           anchor: input.handbrake === true,
         });
-      else driveVehicle(this.world, PLAYER, input);
+      else
+        driveVehicle(this.world, PLAYER, {
+          ...input,
+          actuators: { ...this.world.get(id, VehicleInput)?.actuators, ...input.actuators },
+        });
     }
     if (this.ownsWorld) this.step(dt);
     this.render();
@@ -925,6 +1208,8 @@ export class EarthVehicles {
           ),
         },
         this.world.tick / this.world.tickRate,
+        this.world.get(id, GlassState),
+        this.world.get(id, VehicleState),
       );
     }
   }
@@ -950,7 +1235,7 @@ export class EarthVehicles {
     });
   }
   label(id: string): string {
-    const v = this.data(id);
+    const v = this.data(id) ?? this.trafficParts(id)?.vehicle;
     return v ? v.spec.label : 'Vehicle';
   }
   /** The spec's name-free label and body style, present only where the type declares them. */
@@ -973,6 +1258,7 @@ export class EarthVehicles {
         model,
         this.data(id) ?? vehicle,
         this.world.get(id, Livery),
+        this.world.get(id, Glass),
       );
       if (
         this.disposed ||
@@ -985,6 +1271,7 @@ export class EarthVehicles {
       }
       this.object.add(visual.object);
       this.active.set(id, visual);
+      this.showPromoted(id);
       this.lastSync = -Infinity;
       this.sync(performance.now());
       this.render();
@@ -992,6 +1279,8 @@ export class EarthVehicles {
       if (controller.signal.aborted) return;
       this.message = `Vehicle model could not load: ${String(error)}`;
       console.error(this.message);
+      // A taken traffic car stays traffic rather than become an invisible double.
+      if (this.promotions.get(id)?.shown === false && id !== this.mountedId) this.remove(id);
     } finally {
       this.loading.delete(id);
     }

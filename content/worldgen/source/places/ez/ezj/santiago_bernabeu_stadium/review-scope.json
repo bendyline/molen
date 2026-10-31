@@ -1,0 +1,280 @@
+{
+  "fidelityTarget": "medium-fi",
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/models/bernabeu-browser.mjs",
+    "export": "buildBernabeuSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8
+      },
+      "silver": {
+        "slot": "wall",
+        "graph": "metal_stainless",
+        "roughness": 0.33,
+        "metallic": 0.92
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62
+      },
+      "membrane": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.86
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.24,
+        "metallic": 0.14
+      },
+      "plastic": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.68
+      },
+      "turf": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBernabeuDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_stainless",
+            "roughness": 0.33,
+            "metallic": 0.92
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 4
+      },
+      "street": {
+        "export": "buildBernabeuStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_stainless",
+            "roughness": 0.33,
+            "metallic": 0.92
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildBernabeuCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "silver": {
+            "slot": "wall",
+            "graph": "metal_stainless",
+            "roughness": 0.33,
+            "metallic": 0.92
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 1
+      }
+    }
+  },
+  "appearance": {
+    "identity": "Asymmetric silver horizontal-louvre shell with an open rounded-rectangular roof,skywalk slit and four blue seating tiers over a depressed pitch."
+  },
+  "mediumFiContext": {
+    "groundY": -10,
+    "scale": 3,
+    "neighborStyle": "molen.worldgen.regional.mediterranean.apartments"
+  },
+  "qaLodCameras": [
+    {
+      "position": [
+        250,
+        170,
+        290
+      ],
+      "lookAt": [
+        7,
+        22,
+        0
+      ],
+      "fov": 50,
+      "name": "whole-bernabeu-skyline",
+      "reviewLod": "skyline"
+    },
+    {
+      "position": [
+        250,
+        170,
+        290
+      ],
+      "lookAt": [
+        7,
+        22,
+        0
+      ],
+      "fov": 50,
+      "name": "whole-bernabeu-district",
+      "reviewLod": "district"
+    },
+    {
+      "position": [
+        250,
+        170,
+        290
+      ],
+      "lookAt": [
+        7,
+        22,
+        0
+      ],
+      "fov": 50,
+      "name": "whole-bernabeu-street",
+      "reviewLod": "street"
+    },
+    {
+      "position": [
+        250,
+        170,
+        290
+      ],
+      "lookAt": [
+        7,
+        22,
+        0
+      ],
+      "fov": 50,
+      "name": "whole-bernabeu-closeup",
+      "reviewLod": "closeup"
+    }
+  ],
+  "sourceDocuments": [
+    "review-scope.json"
+  ],
+  "limitations": [
+    "Static match-day open-roof exterior; underground grass-storage mechanics and private rooms are not visible architecture. Folded roof membrane sections and small louvre support members are reconstructed from public roof photos. Individual ticket-seat counts and advertising/video content are not reproduced. Primary scaled section sets approximate grade relationships; no geodetic survey is claimed. Exterior wall height/bowing and facade section are photo reconstructions constrained by the mapped footprint and published overall dimensions.",
+    "Detailed1,111,994-triangle source master and imported design-time master remain byte-identical to the retained maximum-fidelity exterior. Four separately authored medium-fi browser levels preserve the asymmetric mapped envelope,complete open roof,street-grade concourse and depressed field;they deliberately aggregate individual louvre returns,seats,concourse bays,small roof joints and concealed circulation structures.",
+    "Skyline uses32 perimeter samples,two broad shell bands and four sloping seating bands. District uses48 samples,eight separated louvre bands,coarse V units and tier fascias. Street uses80 samples,24 louvre bands and21 grouped tread levels. Closeup uses112 samples,60 louvre bands,all82 seating rows,44 radial support units,selected return folds,goal frames and simplified western VIP boxes. Browser tiers contain no reproduced signage,video or private machinery.",
+    "The full retained85-point outer outline supplies the street-grade concourse/cutout atY0;pitch remainsY-9.2 with its turf slab/markings. Source/map axis and approximate architect-derived grade remain retained controls,not a new geodetic or current PMTiles/DEM survey. Synthetic medium-fi stage lies below the pitch to reveal the complete geometry; actual Molen cutout/lifecycle checks use a flat street datum and are not terrain-data validation.",
+    "Four existing shared256px stainless,painted-metal,concrete and membrane graphs;palette-only turf,blue seating and dark glass. No private or embedded images. Angular corners,coarse louvre spacing,stepped-seat aggregation and static tier changes are intentional. Error bounds are conservative authoring estimates,not certified whole-mesh Hausdorff distances. Physical laptop/phone and downtown timing remain unmeasured.",
+    "Skyline keeps the same shared stainless graph as nearer levels to preserve its reflective finish,plus one merged palette group for the other surfaces:two draws rather than a bright untextured replacement. Standard context cameras use scale3 to remain outside this243m-wide stadium."
+  ]
+}

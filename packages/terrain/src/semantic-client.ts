@@ -2,7 +2,7 @@ import type { WaterWave } from '@bendyline/molen-schema';
 /** Format-neutral semantic-tile loading and default three.js mesh adapters. */
 
 import * as THREE from 'three';
-import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
 import { appendAgricultureAttributes } from './agriculture-surface';
 import {
@@ -48,6 +48,7 @@ import type { TerrainSurfaceOptions } from './surface-styles';
 import { tagTerrainObject } from './tagged-objects';
 import { WATER_RIPPLE_LAYERS, WATER_RIPPLES_GLSL, waterRippleTexture } from './water-ripples';
 import { buildTerrainWaterBanks } from './water-shoreline';
+import { weldVertices } from './weld-vertices';
 
 export interface TerrainSemanticTileSource {
   load(
@@ -157,7 +158,9 @@ export function createTerrainWaterMaterial(
   const material = new THREE.MeshPhysicalMaterial(terrainWaterParameters(options));
   material.name = 'terrain-water';
   material.userData.terrainWaterMaterial = true;
-  material.onBeforeCompile = (shader): void => {
+  material.onBeforeCompile = (shader, renderer): void => {
+    // Renderer-wide hooks (a Molen renderer's cloud shadows) live on the prototype.
+    THREE.Material.prototype.onBeforeCompile.call(material, shader, renderer);
     Object.assign(shader.uniforms, {
       terrainWaterTime: state.time,
       terrainWaterWorldOrigin: state.worldOrigin,
@@ -933,7 +936,7 @@ export function createLandcoverMesh(
     mesh.userData.shadowCaster = false;
     // Grid interiors share vertices; retain indexed buffers for broad land-cover footprints.
     const geometry = mesh.geometry;
-    mesh.geometry = mergeVertices(geometry, 0.00001);
+    mesh.geometry = weldVertices(geometry, 0.00001);
     geometry.dispose();
     mesh.renderOrder = 1;
   }

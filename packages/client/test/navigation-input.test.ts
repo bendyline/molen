@@ -266,17 +266,21 @@ describe('navigation input source', () => {
   it('reads flight controls only in the pilot profile, with edge-triggered switches', () => {
     const surface = new FakeSurface();
     const source = new NavigationInputSource({ element: surface, profile: 'drive' });
+    surface.emit('keydown', { code: 'KeyR' });
+    expect(source.read(0).recover).toBe(1);
+    expect(source.read(0).recover).toBeUndefined();
+    surface.emit('keyup', { code: 'KeyR' });
     surface.emit('keydown', { code: 'KeyG' });
     expect(source.read(0).pilot).toBeUndefined();
     surface.emit('keyup', { code: 'KeyG' });
     source.setProfile('pilot');
-    for (const code of ['KeyS', 'KeyD', 'KeyQ', 'ShiftLeft']) surface.emit('keydown', { code });
+    for (const code of ['KeyS', 'KeyD', 'KeyZ', 'Equal']) surface.emit('keydown', { code });
     surface.emit('keydown', { code: 'KeyG' });
     surface.emit('keyup', { code: 'KeyG' });
     surface.emit('keydown', { code: 'KeyI' });
     surface.emit('keydown', { code: 'KeyJ' });
     const frame = source.read(0);
-    // S pulls the nose up (pitch = -forward), D banks right, Q is left rudder.
+    // S pulls the nose up (pitch = -forward), D banks right, Z is left rudder.
     expect(frame.move.forward).toBe(-1);
     expect(frame.move.right).toBe(1);
     expect(frame.pilot).toEqual({
@@ -294,6 +298,25 @@ describe('navigation input source', () => {
     expect(next.pilot?.engine).toBe(0);
     expect(next.pilot?.vector).toBe(0);
     expect(next.pilot?.throttle).toBe(1);
+    source.dispose();
+  });
+  it('emits mechanism toggles once per press only in vehicle profiles', () => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile: 'walk' });
+    surface.emit('keydown', { code: 'KeyL' });
+    expect(source.read(0).actuators).toBeUndefined();
+    source.setProfile('drive');
+    surface.emit('keydown', { code: 'KeyK' });
+    surface.emit('keydown', { code: 'KeyK', repeat: true });
+    surface.emit('keydown', { code: 'Digit1' });
+    expect(source.read(0).actuators).toEqual({ wipers: 1, doorFrontLeft: 1 });
+    expect(source.read(0).actuators).toBeUndefined();
+    source.setProfile('pilot');
+    surface.emit('keydown', { code: 'KeyB' });
+    expect(source.read(0).actuators).toEqual({ speedBrake: 1 });
+    surface.emit('keydown', { code: 'KeyO' });
+    source.map.reset();
+    expect(source.read(0).actuators).toBeUndefined();
     source.dispose();
   });
   it('distinguishes an idle throttle lever from a disconnected or suspended one', () => {

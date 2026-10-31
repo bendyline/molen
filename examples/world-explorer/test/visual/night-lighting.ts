@@ -202,16 +202,19 @@ const api = {
     renderer.scene.background = new THREE.Color(altitude > 2 ? '#a6bfd9' : '#050a14');
     night.setNightFactor(enabled ? factor : 0);
     surfaces.setNightFactor(enabled ? factor : 0);
-    renderer.setCamera(
-      close
-        ? { position: [104, 4, 156], lookAt: [97, 1, 143] }
-        : far
-          ? { position: [250, 240, 300], lookAt: [100, 0, 100] }
-          : { position: [158, 55, 172], lookAt: [90, 4, 87] },
-    );
+    const camera: { position: THREE.Vector3Tuple; lookAt: THREE.Vector3Tuple } = close
+      ? { position: [104, 4, 156], lookAt: [97, 1, 143] }
+      : far
+        ? { position: [250, 240, 300], lookAt: [100, 0, 100] }
+        : { position: [158, 55, 172], lookAt: [90, 4, 87] };
+    renderer.setCamera(camera);
+    const direction = new THREE.Vector3()
+      .fromArray(camera.lookAt)
+      .sub(new THREE.Vector3().fromArray(camera.position))
+      .normalize();
     spill.update({
-      camera: far ? [250, 240, 300] : [158, 55, 172],
-      direction: [-0.58, -0.43, -0.7],
+      camera: camera.position,
+      direction: direction.toArray(),
       factor: enabled && realLights ? factor : 0,
     });
     if (!beams)
@@ -225,12 +228,22 @@ const api = {
     const probes = [
       [70.02, 3, 124],
       [91, 1.9, 128],
-      [97, 0.51, 157],
+      [97, 0.51, 153],
     ].map((p) => {
       const v = new THREE.Vector3(...p).project(renderer.camera);
       return [(v.x + 1) * 480, (1 - v.y) * 350];
     });
-    return { backend: renderer.backend, lamps: surfaces.stats().streetlights, factor, probes };
+    const beamProbes = [0.75, 1.5, 3, 6].map((ahead) => {
+      const v = new THREE.Vector3(97, 0.51, 145 + 4.65 / 2 + ahead).project(renderer.camera);
+      return [(v.x + 1) * 480, (1 - v.y) * 350];
+    });
+    return {
+      backend: renderer.backend,
+      lamps: surfaces.stats().streetlights,
+      factor,
+      probes,
+      beamProbes,
+    };
   },
 };
 (window as unknown as { nightLightingQA: typeof api }).nightLightingQA = api;

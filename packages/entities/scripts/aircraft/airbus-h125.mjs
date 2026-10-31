@@ -2,12 +2,13 @@
  * screen dimensions. Individually authored airframe; no reference-image textures.
  */
 
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { glassDisplay } from './glass-display.mjs';
 import {
   beveledBox,
   cleanGeometry,
   detailKit,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -17,6 +18,7 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+import { cabinShell } from './robinson-r44.mjs';
 export const h125Frame = () => ({
   heli: true,
   fighter: false,
@@ -46,188 +48,160 @@ export function buildH125(s) {
       roughness: 0.18,
     });
   const d = detailKit(root, 'H125-airframe');
-  const measured = [
-    [3.28, 0.035, 1.08, 1.2],
-    [3.1, 0.4, 0.84, 1.3],
-    [2.65, 0.75, 0.68, 1.47],
-    [1.75, 0.9, 0.62, 2.17],
-    [0.65, 0.935, 0.59, 2.22],
-    [-0.7, 0.9, 0.62, 2.16],
-    [-1.65, 0.68, 0.83, 1.89],
-    [-2, 0.43, 1.1, 1.9],
-  ];
-  const sections = measured.map(([z, w, b, t]) => ({
-    z,
-    points: [
-      [0, t],
-      [w * 0.76, t - Math.min(0.04, (t - b) * 0.2)],
-      [w, t - Math.min(0.15, (t - b) * 0.22)],
-      [w, b + Math.min(0.17, (t - b) * 0.22)],
-      [w * 0.73, b],
-      [-w * 0.73, b],
-      [-w, b + Math.min(0.17, (t - b) * 0.22)],
-      [-w, t - Math.min(0.15, (t - b) * 0.22)],
-      [-w * 0.76, t - Math.min(0.04, (t - b) * 0.2)],
+  // Side stations follow the CC0 AS355 profile silhouette (same cabin/boom as the AS350/H125):
+  // a full, high glazed nose (1.69 m at 0.5 m behind the tip), a belly that rises from the
+  // rear doors, and a thick boom whose top stays level at about 2.04 m. Head-on (H125 front
+  // photo) the cabin is a rounded box: roof shoulders about 0.35 m across and 0.45 m tall, sides
+  // widest at the door sills, so the windscreen and door glazing curve with the skin.
+  const shell = cabinShell(
+    [
+      // z, half width, keel, crown, widest at, superellipse exponent above / below it
+      [3.16, 0.55, 0.92, 1.38, 1.22, 2.6, 2.2],
+      [3.0, 0.77, 0.84, 1.52, 1.3, 3, 2.3],
+      [2.78, 0.87, 0.77, 1.7, 1.33, 3.4, 2.8],
+      [1.75, 0.92, 0.635, 2.3, 1.35, 4, 4.2],
+      [0.65, 0.935, 0.63, 2.32, 1.35, 4.2, 4.5],
+      [-0.7, 0.9, 0.7, 2.26, 1.4, 4, 4],
+      [-1.65, 0.62, 1.08, 2.06, 1.55, 3, 3],
+      [-2, 0.44, 1.15, 1.99, 1.57, 2.6, 2.6],
     ],
-  }));
-  const p = (i, j) => [...sections[i].points[j], sections[i].z];
-  loft(d, sections, white, {
-    skip: (i, j) =>
-      (i === 2 && [0, 1, 7, 8].includes(j)) ||
-      (i === 3 && [0, 8].includes(j)) ||
-      ([2, 3, 4].includes(i) && [2, 6].includes(j)) ||
-      (i === 1 && [2, 3, 5, 6].includes(j)),
-  });
-  for (const j of [0, 8]) {
-    const q = (u, v) => {
-      const a = p(3, j),
-        b = p(4, j),
-        c = p(4, (j + 1) % 9),
-        e = p(3, (j + 1) % 9);
-      return a.map(
-        (_, k) => (a[k] * (1 - u) + b[k] * u) * (1 - v) + (e[k] * (1 - u) + c[k] * u) * v,
-      );
+    [3.285, 1.14],
+  );
+  const zs = shell.samples(0.25);
+  // Window and door corners from the AS355 profile (checked on the AS350 B3 left-side photo).
+  const screenSide = (side) =>
+    [
+      [3.02, 1.47, side],
+      [2.7, 1.42, side],
+      [2.28, 1.37, side],
+      [2.0, 2.11, side],
+    ].map(([z, y]) => [z, shell.vAt(z, y, side)]);
+  const screen = [...screenSide(-1), ...screenSide(1).reverse()];
+  const panes = [
+    // Front door upper and lower windows, rear door window, chin window. The door windows run
+    // up to 2.09 m, above the pilot eye (2.03 m), so the side view at eye level is glass.
+    [
+      [1.86, 2.09],
+      [1.57, 2.09],
+      [1.63, 1.39],
+      [2.18, 1.39],
+    ],
+    [
+      [2.24, 1.31],
+      [1.7, 1.31],
+      [1.69, 1.0],
+      [2.35, 0.99],
+    ],
+    [
+      [1.32, 2.09],
+      [0.635, 2.09],
+      [0.67, 1.45],
+      [1.45, 1.43],
+    ],
+    [
+      [2.41, 1.235],
+      [2.95, 1.22],
+      [3.04, 1.0],
+      [2.85, 0.8],
+      [2.59, 0.8],
+    ],
+  ];
+  const doors = [
+    [
+      [2.0, 2.13],
+      [1.5, 2.14],
+      [1.5, 0.82],
+      [2.62, 0.84],
+    ],
+    [
+      [1.47, 2.14],
+      [0.52, 2.12],
+      [0.52, 0.8],
+      [1.47, 0.8],
+    ],
+  ];
+  const windows = [-1, 1].flatMap((side) => [
+    ...panes.map((a) => shell.region(a.map(([z, y]) => [z, y, side]))),
+    // Roof eyebrow window over each front seat.
+    shell.region(
+      [
+        [1.6, 0.15],
+        [1.95, 0.15],
+        [1.95, 0.6],
+        [1.6, 0.62],
+      ].map(([z, x]) => [z, side * shell.vAtX(z, x)]),
+    ),
+  ]);
+  // Blue band along the lower side, one strip per skin bay so each piece stays convex.
+  const bandZ = zs.filter((z) => z >= -1.65 && z <= 2.78),
+    band = (z, side) => {
+      const [, b] = shell.size(z);
+      return [
+        [z, b + 0.13, side],
+        [z, b + 0.22, side],
+      ];
     };
-    const aperture = [
-      [0.15, 0.2],
-      [0.75, 0.2],
-      [0.75, 0.85],
-      [0.15, 0.85],
-    ].map(([u, v]) => q(u, v));
-    sheet(
-      d,
-      [p(3, j), p(4, j), p(4, (j + 1) % 9), p(3, (j + 1) % 9)],
-      white,
-      [0, 1, 0],
-      [aperture],
-    );
-    sheet(d, aperture, glass, [0, 1, 0]);
-    outline(d, aperture, 0.012, trim);
-  }
-  const wind = (j, u) => {
-    const a = p(2, j),
-      b = p(3, j);
-    return [
-      a[0] * (1 - u) + b[0] * u,
-      a[1] * (1 - u) + b[1] * u + 0.06 * Math.sin(u * Math.PI),
-      a[2] * (1 - u) + b[2] * u,
-    ];
-  };
-  for (const j of [0, 1, 7, 8])
-    for (let k = 0; k < 4; k++)
-      quad(
-        d,
-        wind(j, k / 4),
-        wind(j, (k + 1) / 4),
-        wind((j + 1) % 9, (k + 1) / 4),
-        wind((j + 1) % 9, k / 4),
-        glass,
-        [0, 1, 1],
-      );
-  for (const i of [2, 3])
-    outline(d, [p(i, 7), p(i, 8), p(i, 0), p(i, 1), p(i, 2)], 0.015, trim, false);
-  for (const j of [0, 2, 7])
-    outline(
-      d,
-      [0, 0.25, 0.5, 0.75, 1].map((u) => wind(j, u)),
+  const bands = [-1, 1].flatMap((side) =>
+    bandZ.slice(1).map((z, i) => shell.region([...band(bandZ[i], side), ...band(z, side)])),
+  );
+  shell.build(
+    d,
+    white,
+    [
+      { poly: shell.region(screen), material: glass },
+      ...windows.map((poly) => ({ poly, material: glass })),
+      ...bands.map((poly) => ({ poly, material: blue })),
+    ],
+    zs,
+    24,
+  );
+  sheet(
+    d,
+    Array.from({ length: 32 }, (_, j) => shell.at(-2, -0.5 + j / 32)),
+    white,
+    [0, 0, -1],
+  );
+  shell.strip(d, screen, 0.03, trim, false);
+  outline(
+    d,
+    shell.trace(
+      [
+        [2.0, 0],
+        [3.02, 0],
+      ],
+      false,
       0.014,
-      white,
+    ),
+    0.022,
+    white,
+    false,
+  );
+  for (const poly of windows) shell.strip(d, poly, 0.03, trim, false);
+  for (const side of [-1, 1]) {
+    const q = (z, y, lift = 0) => shell.point(z, y, side, lift);
+    for (const door of doors)
+      shell.strip(d, shell.region(door.map(([z, y]) => [z, y, side])), 0.008, trim, false);
+    // Handles at the doors' rear edges, hinges along their front edges.
+    for (const z of [1.56, 0.58]) d.rod(q(z, 1.36, 0.008), q(z + 0.1, 1.36, 0.008), 0.009, metal);
+    for (const y of [1.03, 1.83]) {
+      d.box([0.025, 0.035, 0.06], q(2.0 + ((2.13 - y) / 1.29) * 0.62 - 0.06, y), metal);
+      d.box([0.025, 0.035, 0.06], q(1.42, y), metal);
+    }
+    shell.strip(
+      d,
+      shell.region(
+        [
+          [-0.62, 0.89],
+          [-1.49, 0.98],
+          [-1.49, 1.58],
+          [-0.62, 1.65],
+        ].map(([z, y]) => [z, y, side]),
+      ),
+      0.008,
+      trim,
       false,
     );
-  for (const j of [2, 3, 5, 6]) {
-    const a = [p(1, j), p(2, j), p(2, j + 1), p(1, j + 1)];
-    sheet(d, a, glass, [j < 4 ? 1 : -1, 0, 0]);
-    outline(d, a, 0.012, trim);
-  }
-  const sx = (z, side) => {
-    const i = measured.findIndex((a, i) => i < 7 && z <= a[0] && z >= measured[i + 1][0]);
-    if (i < 0) return side * 0.935;
-    const a = measured[i],
-      b = measured[i + 1],
-      u = (a[0] - z) / (a[0] - b[0]);
-    return side * (a[1] * (1 - u) + b[1] * u);
-  };
-  for (const side of [-1, 1]) {
-    const q = (z, y) => [sx(z, side), y, z],
-      j = side > 0 ? 2 : 7,
-      k = side > 0 ? 3 : 6;
-    const windows = [
-      [
-        [1.68, 1.98],
-        [1.12, 2.0],
-        [1.26, 1.43],
-        [2.0, 1.4],
-      ],
-      [
-        [2.08, 1.29],
-        [1.34, 1.3],
-        [1.42, 1.04],
-        [2.19, 1.03],
-      ],
-      [
-        [0.98, 2.0],
-        [0.3, 1.96],
-        [0.36, 1.46],
-        [1.1, 1.46],
-      ],
-    ].map((a) => a.map(([z, y]) => q(z, y)));
-    sheet(
-      d,
-      [p(2, j), p(3, j), p(4, j), p(5, j), p(5, k), p(4, k), p(3, k), p(2, k)],
-      white,
-      [side, 0, 0],
-      windows,
-    );
-    for (const a of windows) {
-      sheet(d, a, glass, [side, 0, 0]);
-      outline(d, a, 0.016, trim);
-    }
-    for (const a of [
-      [
-        [1.76, 2.09],
-        [1.05, 2.12],
-        [1.18, 0.82],
-        [2.38, 0.87],
-      ],
-      [
-        [1.0, 2.12],
-        [0.22, 2.08],
-        [0.25, 0.82],
-        [1.15, 0.82],
-      ],
-    ])
-      outline(
-        d,
-        a.map(([z, y]) => q(z, y)),
-        0.004,
-        trim,
-      );
-    for (const z of [1.26, 0.4]) {
-      d.rod([sx(z, side) * 1.008, 1.36, z], [sx(z, side) * 1.008, 1.36, z + 0.1], 0.009, metal);
-      for (const y of [1.03, 1.83])
-        d.box([0.025, 0.035, 0.06], [sx(z + 0.4, side), y, z + 0.4], metal);
-    }
-    for (let i = 2; i < 6; i++) {
-      const a = measured[i],
-        b = measured[i + 1];
-      quad(
-        d,
-        [a[1] * side * 1.005, a[2] + 0.13, a[0]],
-        [b[1] * side * 1.005, b[2] + 0.13, b[0]],
-        [b[1] * side * 1.005, b[2] + 0.22, b[0]],
-        [a[1] * side * 1.005, a[2] + 0.22, a[0]],
-        blue,
-        [side, 0, 0],
-      );
-    }
-    const hatch = [
-      [side * 0.89, 0.89, -0.62],
-      [side * 0.72, 0.98, -1.49],
-      [side * 0.72, 1.58, -1.49],
-      [side * 0.89, 1.65, -0.62],
-    ];
-    outline(d, hatch, 0.005, trim);
-    d.rod([side * 0.81, 1.18, -1.1], [side * 0.81, 1.18, -1.22], 0.01, metal);
+    d.rod(q(-1.1, 1.18, 0.008), q(-1.22, 1.18, 0.008), 0.01, metal);
     d.rod([side * 0.95, 0.48, 1.9], [side * 0.95, 0.48, -0.83], 0.035, white);
     for (const z of [0.7, -0.69]) {
       d.rod([side * 0.72, 0.69, z], [side * 0.95, 0.48, z], 0.026, metal);
@@ -246,39 +220,49 @@ export function buildH125(s) {
       false,
     );
     for (let i = 0; i < 17; i++)
-      d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [side * 0.9, 0.94, 1.0 - i * 0.11]);
-    d.text('H125', [side * 0.902, 1.82, -0.55], 0.072, (side * Math.PI) / 2, blue);
+      d.add(new T.SphereGeometry(0.0035, 5, 3), metal, q(1.0 - i * 0.11, 0.94, 0.002));
+    d.text('H125', q(-0.55, 1.82, 0.003), 0.072, (side * Math.PI) / 2, blue);
   }
-  // Boxed Arriel cowling, forward intake and rear exhaust distinct from the cabin.
-  const cowl = (z, w, b, t) => ({
-    z,
-    points: [
-      [0, t],
-      [w * 0.72, t - 0.035],
-      [w, t - 0.11],
-      [w, b],
-      [-w, b],
-      [-w, t - 0.11],
-      [-w * 0.72, t - 0.035],
-    ],
-  });
+  // Rounded Arriel cowling (superelliptic crown over upright sides), forward intake and rear
+  // exhaust distinct from the cabin.
+  const cowl = (z, w, b, t) => {
+    const y = t - (t - b) * 0.6;
+    return {
+      z,
+      points: [
+        [-w, b],
+        ...Array.from({ length: 11 }, (_, k) => {
+          const a = ((k - 5) * Math.PI) / 10,
+            s = Math.sin(a);
+          return [
+            w * Math.sign(s) * Math.pow(Math.abs(s), 2 / 3),
+            y + (t - y) * Math.pow(Math.cos(a), 2 / 3),
+          ];
+        }),
+        [w, b],
+      ],
+    };
+  };
+  // The fairing rises smoothly from the cabin roof (2.5 m at z 1.2) to a 2.77 m crest.
   loft(
     d,
     [
-      cowl(0.9, 0.22, 2.18, 2.3),
-      cowl(0.45, 0.43, 2.19, 2.69),
-      cowl(-1.15, 0.44, 2.07, 2.69),
-      cowl(-1.55, 0.34, 1.93, 2.35),
-      cowl(-1.85, 0.29, 1.85, 2.17),
+      cowl(1.55, 0.26, 2.24, 2.36),
+      cowl(1.15, 0.41, 2.24, 2.54),
+      cowl(0.6, 0.45, 2.2, 2.74),
+      cowl(-0.6, 0.45, 2.1, 2.775),
+      cowl(-1.15, 0.42, 2.0, 2.66),
+      cowl(-1.55, 0.34, 1.93, 2.5),
+      cowl(-1.95, 0.28, 1.85, 2.3),
     ],
     blue,
   );
   for (const side of [-1, 1]) {
     for (let i = 0; i < 5; i++)
-      d.box([0.014, 0.11, 0.06], [side * 0.444, 2.43, -0.2 - i * 0.14], trim);
-    d.rod([side * 0.29, 2.68, -0.1], [side * 0.29, 2.68, -1.03], 0.0025, metal);
+      d.box([0.014, 0.11, 0.06], [side * 0.455, 2.5, -0.2 - i * 0.14], trim);
+    d.rod([side * 0.29, 2.745, -0.1], [side * 0.29, 2.715, -0.9], 0.0025, metal);
   }
-  d.box([0.28, 0.15, 0.035], [0, 2.54, 0.454], trim);
+  d.box([0.28, 0.035, 0.2], [0, 2.655, 0.88], trim).rotation.x = 0.33;
   d.rod([0, 2.23, -1.49], [0, 2.28, -2.05], 0.14, metal);
   d.add(new T.CircleGeometry(0.115, 16).rotateY(Math.PI), trim, [0, 2.28, -2.06]);
   const boom = (z, w, y, h) => ({
@@ -288,21 +272,26 @@ export function buildH125(s) {
       y + Math.cos((i * Math.PI) / 6) * h,
     ]),
   });
+  // Boom stations: level top near 2.04 m, keel rising from 1.13 m to 1.56 m at z -5.3.
+  const boomStations = [
+    [-1.8, 0.42, 1.58, 0.45],
+    [-3.7, 0.31, 1.7, 0.34],
+    [-5.3, 0.21, 1.79, 0.23],
+    [-7.28, 0.05, 1.86, 0.06],
+  ];
   loft(
     d,
-    [
-      boom(-1.8, 0.43, 1.5, 0.4),
-      boom(-3.7, 0.22, 1.57, 0.27),
-      boom(-5.3, 0.11, 1.7, 0.14),
-      boom(-7.28, 0.035, 1.8, 0.035),
-    ],
+    boomStations.map((q) => boom(...q)),
     blue,
   );
   for (const z of [-2.1, -3.1, -4.1, -5.1, -6.1]) {
-    const u = (-z - 1.8) / 5.48;
+    const k = boomStations.findIndex((q, i) => z <= q[0] && z >= boomStations[i + 1][0]),
+      a = boomStations[k],
+      b = boomStations[k + 1],
+      u = (a[0] - z) / (a[0] - b[0]);
     outline(
       d,
-      boom(z, 0.43 - u * 0.395, 1.5 + u * 0.3, 0.4 - u * 0.365).points.map((p) => [...p, z]),
+      boom(z, ...[1, 2, 3].map((n) => a[n] * (1 - u) + b[n] * u)).points.map((p) => [...p, z]),
       0.0025,
       metal,
     );
@@ -342,13 +331,13 @@ export function buildH125(s) {
     wing(
       d,
       [
-        [side * 0.12, 1.5, -4.73, -5.22],
-        [side * 1.265, 1.5, -4.73, -5.22],
+        [side * 0.12, 1.74, -4.73, -5.22],
+        [side * 1.265, 1.74, -4.73, -5.22],
       ],
       white,
       0.04,
     );
-    d.box([0.03, 0.025, 0.05], [side * 1.265, 1.52, -4.75], side < 0 ? d.green : d.red);
+    d.box([0.03, 0.025, 0.05], [side * 1.265, 1.76, -4.75], side < 0 ? d.green : d.red);
   }
   d.rod([0, 2.24, 1.6], [0, 2.82, 1.2], 0.009, trim);
   d.rod([0, 1.55, -3.2], [0, 1.15, -3.55], 0.007, trim);
@@ -385,7 +374,7 @@ export function buildH125(s) {
     dd.finish();
   }
   rd.finish();
-  const tr = group(root, 'tail-rotor', [-0.17, 1.85, -6.27]),
+  const tr = group(root, 'tail-rotor', [-0.17, 1.93, -6.27]),
     td = detailKit(tr, 'H125-tail');
   td.rod([0.15, 0, 0], [-0.07, 0, 0], 0.034, metal);
   for (const side of [-1, 1]) {
@@ -394,7 +383,10 @@ export function buildH125(s) {
   }
   td.finish();
   d.finish();
-  const interior = cockpit(root, { white, blue, trim, metal });
+  const interior = cockpit(root, { white, blue, trim, metal }, shell, [
+    shell.region(screen),
+    ...windows,
+  ]);
   cleanGeometry(root);
   return {
     root,
@@ -413,7 +405,7 @@ export function buildH125(s) {
     },
   };
 }
-function cockpit(root, m) {
+function cockpit(root, m, shell, apertures) {
   const cabin = group(root, 'cockpit'),
     d = detailKit(cabin, 'H125-cockpit'),
     bindings = [],
@@ -561,9 +553,36 @@ function cockpit(root, m) {
   for (let i = 0; i < 9; i++)
     pd.box([0.025, 0.024, 0.01], [-0.128, -0.01 - i * 0.035, -0.04], i === 6 ? pd.red : m.trim);
   pd.finish();
-  d.box([1.62, 0.035, 2.72], [0, 0.7, 0.63], m.trim);
-  d.box([1.55, 0.04, 0.84], [0, 0.9, -0.7], m.trim);
-  const addSeat = (x, y, z) => {
+  // Dark cabin trim 3 cm inside the skin, open at every window, so the glazing reads dark.
+  shell.build(
+    d,
+    face,
+    apertures.map((poly) => ({ poly, material: null })),
+    shell.samples(0.35).filter((z) => z > -1),
+    16,
+    0.03,
+  );
+  // Cabin deck trimmed to the rounded lower corners of the shell.
+  fittedFloor(
+    d,
+    [-0.5, 0, 0.5, 1, 1.5, 2].map((z) => ({
+      z,
+      points: Array.from({ length: 32 }, (_, j) => shell.at(z, -0.5 + j / 32).slice(0, 2)),
+    })),
+    m.trim,
+    { y: 0.7175, front: 1.99, back: -0.45, width: 1.62, thickness: 0.035 },
+  );
+  fittedFloor(
+    d,
+    [-1.3, -1.1, -0.9, -0.7, -0.5, -0.3, -0.1].map((z) => ({
+      z,
+      points: Array.from({ length: 32 }, (_, j) => shell.at(z, -0.5 + j / 32).slice(0, 2)),
+    })),
+    m.trim,
+    { y: 0.92, front: -0.28, back: -1.12, width: 1.55, thickness: 0.04 },
+  );
+  // Seat legs stand on their deck (`floor`) rather than through the rounded belly.
+  const addSeat = (x, y, z, floor) => {
     beveledBox(d, [0.42, 0.1, 0.48], [x, y, z], seat);
     const b = beveledBox(d, [0.43, 0.64, 0.1], [x, y + 0.32, z - 0.23], seat);
     b.rotation.x = -0.1;
@@ -580,13 +599,13 @@ function cockpit(root, m) {
         belt,
         [0, 0, 1],
       );
-      d.rod([x + s * 0.16, y - 0.25, z - 0.16], [x + s * 0.16, y - 0.04, z - 0.16], 0.017, m.metal);
+      d.rod([x + s * 0.16, floor, z - 0.16], [x + s * 0.16, y - 0.04, z - 0.16], 0.017, m.metal);
     }
     d.box([0.06, 0.035, 0.02], [x, y + 0.08, z + 0.17], m.metal);
   };
   for (const side of [-1, 1]) {
     const x = side * 0.42;
-    addSeat(x, 1.02, 1.25);
+    addSeat(x, 1.02, 1.25, 0.7175);
     const cg = group(cabin, `H125-cyclic-${side}`, [x, 0.72, 1.63]),
       cd = detailKit(cg, 'cyclic');
     outline(
@@ -629,7 +648,7 @@ function cockpit(root, m) {
       });
     }
   }
-  for (const x of [-0.63, -0.21, 0.21, 0.63]) addSeat(x, 1.06, -0.65);
+  for (const x of [-0.6, -0.2, 0.2, 0.6]) addSeat(x, 1.06, -0.65, 0.92);
   d.box([0.23, 0.045, 0.58], [0, 2.12, 1.1], m.trim);
   for (let i = 0; i < 6; i++)
     d.rod([0.06, 2.08, 0.9 + i * 0.06], [0.06, 2.04, 0.91 + i * 0.06], 0.005, m.metal);

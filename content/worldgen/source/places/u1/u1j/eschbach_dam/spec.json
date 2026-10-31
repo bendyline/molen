@@ -1,0 +1,450 @@
+{
+  "planId": "eschbach_dam",
+  "id": "eschbach_dam",
+  "assetId": "molen.worldgen.structure.eschbach_dam",
+  "title": "Eschbach Dam, Remscheid (original design circa1892)",
+  "wikidataId": "Q896077",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 7.231446,
+    "latitude": 51.1598
+  },
+  "size": [
+    120.86260986328125,
+    34.70000076293945,
+    100.51921463012695
+  ],
+  "actualBounds": {
+    "min": [
+      -60.573875427246094,
+      -2,
+      -56.245975494384766
+    ],
+    "max": [
+      60.288734436035156,
+      32.70000076293945,
+      44.27323913574219
+    ]
+  },
+  "visualBrief": "Whole Eschbach masonry gravity dam in approximate circa1892 original design appearance: complete native54-control dam wall with curved batter, full crest walkway and parapets, repeated downstream corbel arcade, central octagonal valve pavilion and roof, end turrets, intrinsic20moverflow and stepped spillway connection, and central low-level outlet. Excludes reservoir water/natural shores, remote pumpstation/pipelines/filtergrounds/roads/nearbybuildings. Historic original-design detail and actual initial completion registration are approximate, not a current2026 replacement or an exact as-built survey.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1892-01-01",
+    "validFrom": "1891-01-01",
+    "validUntil": "1923-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://sbc.org.pl/dlibra/publication/702126/edition/661023/prometheus-1890-1891-jg-2-71"
+  ],
+  "stories": [
+    {
+      "id": "eschbach-dam-wp",
+      "url": "https://qualla.com/eschbach-dam/"
+    }
+  ],
+  "referenceInputHash": "fbda1e3182671ff0499269b13fe1188d44c76a1a8b8fb476221b507bdf406e39",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u1j/eschbach_dam/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u1j/eschbach_dam/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.75,
+        "metallic": 0.65
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#334247",
+        "roughness": 0.4,
+        "metallic": 0.05,
+        "alphaMode": "OPAQUE"
+      },
+      "door": {
+        "slot": "door",
+        "localRef": "palette:#393b36",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.75,
+            "metallic": 0.65
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#334247",
+            "roughness": 0.4,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#393b36",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.75,
+            "metallic": 0.65
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#334247",
+            "roughness": 0.4,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#393b36",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.75,
+            "metallic": 0.65
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#334247",
+            "roughness": 0.4,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#393b36",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone_raw",
+    "metal_copper",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 2500,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Complete actual54control north-up native wall and intrinsic spillway/outlet alignment frame, independent original512m129squarefield/16641heights/fourrawzoom15tiles at247.0773m downstream hostdatum fixed before all mainparameters. Mainbody25mhigh/base-2 tocrest23m, originaldesign4mcrest and approximately15mbase, fitted135.17mplanradius vs primarytext125m and nativeasbuiltcurvature difference explicitly approximate. Full54control base retained; height-dependent radialbatter narrows to4mcrest, 1.15mparapet, central octagonalpavilion/roof/finial, endturrets, repeated corbelarches,20mweir/steppedspillway and lowleveloutlet. All elevations hostrelative; coarsecurrentDEM includescrest/water/canopy and is not originalvalley/bathymetry, absolutehistoricdatum notsurveyed. No independentfield/frame/floor/crest/roof/main-section refit after captures.",
+    "anchor": [
+      7.231446,
+      51.1598
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        7.231446,
+        51.15996169601149
+      ],
+      "modelHeight": 0,
+      "basis": "Downstream valley outside central native dam footprint, chosen before independent field and all mainnumeric sections. Coarse originalDEMdatum, no surveyed original foundation or flattening."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/106995946",
+      "way/1501648526",
+      "way/218280283"
+    ],
+    "source": "https://www.openstreetmap.org/way/106995946",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:17428190ebe7d84df615da223bac00147fd5a39021c5b9f299d5d54ab8c3d3b0",
+    "notes": "Whole Eschbach masonry gravity dam in approximate circa1892 original design appearance: complete native54-control dam wall with curved batter, full crest walkway and parapets, repeated downstream corbel arcade, central octagonal valve pavilion and roof, end turrets, intrinsic20moverflow and stepped spillway connection, and central low-level outlet. Excludes reservoir water/natural shores, remote pumpstation/pipelines/filtergrounds/roads/nearbybuildings. Historic original-design detail and actual initial completion registration are approximate, not a current2026 replacement or an exact as-built survey."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole Eschbach masonry gravity dam in approximate circa1892 original design appearance: complete native54-control dam wall with curved batter, full crest walkway and parapets, repeated downstream corbel arcade, central octagonal valve pavilion and roof, end turrets, intrinsic20moverflow and stepped spillway connection, and central low-level outlet. Excludes reservoir water/natural shores, remote pumpstation/pipelines/filtergrounds/roads/nearbybuildings. Historic original-design detail and actual initial completion registration are approximate, not a current2026 replacement or an exact as-built survey.",
+    "Exact original1891drawings show proposed completion appearance, not an independent asbuilt photograph. Crest/tower/roof/ornament/grade/dimensions and historical registration estimated explicitly. Monochrome is not calibrated stone/metal colour.",
+    "Original1911Wegmann engineeringbook gives Remscheid25mheight,4mcrest,15mbase and125mplanradius as text; adjacentFig30isUrft and is not used as Eschbach image.",
+    "Natural reservoir/streambed/terrain and remote works excluded. Intrinsic overflow/cascades/outlet retained with estimated hiddensections and inletconnection.",
+    "Acquire independent original full field before all mainnumeric parameters; never flatten/cutout/refit the field for renders.",
+    "Whole54control native masonrydam base follows actual outline, not reservoir25837029. Upper mainbody uses a fitted135.17mradius/4mcrest from native plan with originaldesign gravitysection; primary1911text125mradius, actualnativeandhistoricalregistration differ. Shape and absolutegrade are bounded estimates, not a survey.",
+    "Historical circa1892originaldesign drawing includes octagonal centralvalvepavilion and pointedroof/finial, endturrets, thin stoneparapets/coping and downstreamcorbelarcade. Finalasbuilt ornament continuity, exactbaycensus/heights/finish are estimates; monochrome stone/roof colours not measured.",
+    "Independent current hostDEM absolute231.3272..283.4193m at247.0773mdatum retained unmasked. Field is too coarse to recover original downstream valley or inundated foundation, so25mstructure is positioned relative to chosen hostdatum; absolutehistoriccrest/reservoir level and foundation contact notcertified. No artificial reservoir/landscape to conceal source mismatch.",
+    "Original20mweir retained with estimated5.6mwide32stepchannel along actualoverflowdrainage. The drawing establishes full intrinsic scope, while hidden inlet connection/stepcount/wallheights/outletportal and underwaterparts are estimated. Remotefiltergrounds,pumpstation,pipelines and unrelatedroads excluded.",
+    "FourLODs retain full wall/crest/pavilion/endturrets/overflow/outlet. True masonrybody sections, closed roof undersides and pavilionrecesses are geometry; no phototexture/people/trees/art/waterplane or remotebuilding proxy."
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Sole imagery exact original1891Prometheus issue71 PDF, primary Silesian Digital Library explicit item-specific publicdomain statement, original title/section/siteplan/proposed Remscheid view personally inspected. Editor credited aseditor; individual illustrator not invented. Qualla40families screened first; questionable postcards and attribution-only modern photographs unused. Original25mgravity-section and full native54control OSMdam106995946/Q896077 plan underODbL, intrinsic spillway/outlet alignments. All historic grade/registration/hidden sections/asbuilt continuity/ornament/finish estimates explicit. No reservoir/remoteworks/landscape/photo textures; source field and all mainparameters fixed before geometry.",
+  "qaLodCameras": [
+    {
+      "name": "whole-eschbach-dam-skyline",
+      "position": [
+        -145,
+        95,
+        -155
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-eschbach-dam-district",
+      "position": [
+        -145,
+        95,
+        -155
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-eschbach-dam-street",
+      "position": [
+        -145,
+        95,
+        -155
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-eschbach-dam-closeup",
+      "position": [
+        -145,
+        95,
+        -155
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-curved-dam-pavilion-spillway-and-outlet",
+      "position": [
+        -145,
+        95,
+        -155
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "corbel-crest-arcade-and-octagonal-valve-pavilion",
+      "position": [
+        -30,
+        34,
+        -17
+      ],
+      "lookAt": [
+        4,
+        24,
+        14
+      ]
+    },
+    {
+      "name": "upstream-batter-pavilion-pier-and-full-crest",
+      "position": [
+        110,
+        80,
+        130
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16906,
+    "vertices": 50718,
+    "materials": 6,
+    "bytes": 2346568,
+    "sha256": "sha256:6a3b2d05cdf1296502241295c3d39432085b0dba959fd309a63d99a2ea340b67"
+  }
+}

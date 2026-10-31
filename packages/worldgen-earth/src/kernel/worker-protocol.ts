@@ -125,8 +125,8 @@ export function createWorldgenWorkerHandler(port: WorldgenWorkerPort): WorldgenW
   let places: PlacesContent | undefined;
   const cancelled = new Set<number>();
   const active = new Set<number>();
-  // One tile at a time, in the order requested (the stream asks for what the view needs most
-  // first). Interleaved, every tile in flight finished late, the nearest with the rest: a jet's
+  // One tile at a time, in the order posted (a pool posts the most urgent waiting tile next).
+  // Interleaved, every tile in flight finished late, the nearest with the rest: a jet's
   // buildings appeared seconds after their ground.
   let queue: Promise<void> = Promise.resolve();
 

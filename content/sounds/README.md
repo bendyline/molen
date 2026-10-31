@@ -1,6 +1,6 @@
 # molen.sounds
 
-The default sound pack: a `molen/soundbank@1` document (`sounds.soundbank.json`) naming 165
+The default sound pack: a `molen/soundbank@1` document (`sounds.soundbank.json`) naming 170
 sounds, and the MP3 clips it points at. Every recording is CC0 1.0, so an app built on it owes no
 attribution; [NOTICE.md](NOTICE.md) still credits each source. See the audio guide
 (`docs-src/guide/audio.md`) for how experiences use it.
@@ -9,7 +9,7 @@ attribution; [NOTICE.md](NOTICE.md) still credits each source. See the audio gui
 | --- | --- |
 | `ambience.*` | rain, thunder, wind, birds (park, forest and eight regional recordings), crickets, river, city traffic, dungeon |
 | `world.*` | 88 regional bird, night insect/frog, daytime cicada, wind, gust, ocean, rain, river and traffic beds |
-| `vehicle.*`, `aircraft.*` | petrol and diesel engine idles, start, stop, accelerate, horn, doors; a Rolls-Royce Merlin (the P-51's engine) and a helicopter hover |
+| `vehicle.*`, `aircraft.*` | petrol and diesel engine idles, start, stop, accelerate, horn, hinged/sliding doors, wiper strokes, paved-touchdown tire chirps; a Rolls-Royce Merlin (the P-51's engine) and a helicopter hover |
 | `footstep.*` | grass, concrete, wood, snow, carpet, stone, gravel, sand, dirt, leaves, mud and metal (43 clips) |
 | `impact.*` | metal heavy/light, wood, soft, punch, glass, bell, explosion |
 | `foley.*`, `weapon.*` | doors, latch, creak, coins; blade draw, slash, chop, laser |
@@ -44,6 +44,19 @@ mapped material, walking falls back to grass or pavement. The decoded-audio cach
 96 MiB of recent clips, allowing active/fading voices to finish before eviction.
 
 ## Pipeline
+
+The Vancouver traffic-light recording keeps its existing ID but uses `earth:category:crossing`.
+It is audible only near mapped/rendered signals; ordinary traffic uses the other road beds.
+Doors and wipers follow actuator motion, and the tire chirp follows paved airplane touchdowns.
+Flap and landing-gear motor loops follow actual travel, including reversals and partial flap
+settings. Fixed gear and instant mechanisms stay silent. The motor clips are generic servo
+recordings by [vacuumfan7072](https://freesound.org/people/vacuumfan7072/sounds/264592/) and
+[Burningmonkey](https://freesound.org/people/Burningmonkey/sounds/322021/), both verified CC0;
+they are foley rather than recordings of specific aircraft hydraulic systems.
+The tire sound is rubber-on-tile foley and the sliding sound is a general door recording, not
+recordings of specific aircraft or vans. Their CC0 source pages, authors, license verification
+dates (2026-10-29), source hashes and exact trims are in `sources.json`; the generated credits
+are in [NOTICE.md](NOTICE.md). The audio guide documents rotor loading and playback rules.
 
 `sources.json` is the source of truth. It lists every origin (site, author, page, download URL,
 license) and every sound (which clips, trims, crossfade loops, bus, gain, spatial defaults).

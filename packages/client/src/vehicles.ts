@@ -1,6 +1,18 @@
-import type { LiveryData, VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
+import type {
+  GlassData,
+  GlassStateData,
+  LiveryData,
+  VehicleCollisionPart,
+  VehicleDamageState,
+  VehicleData,
+  VehiclePlacement,
+} from '@bendyline/molen-schema';
 import * as THREE from 'three';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { createAircraftDamageVisual } from './aircraft-damage';
+
+export { aircraftObstacleContacts as vehicleObstacleContacts } from './aircraft-collision';
+
+import { createGlassVisual, type GlassVisual } from './glass';
 import { applyLivery } from './livery';
 import { createModelSignalVisual, type ModelSignalVisual } from './model-signals';
 import {
@@ -8,11 +20,13 @@ import {
   type VehicleInteriorSignals,
   type VehicleInteriorVisual,
 } from './vehicle-interior';
+import { vehicleProxyGeometry } from './vehicle-proxy';
 
 export type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
 export { vehicleCameraPose } from './vehicle-camera';
 export type { VehicleInteriorSignals, VehicleInteriorVisual } from './vehicle-interior';
 export { createVehicleInteriorVisual } from './vehicle-interior';
+export { type VehicleProxyDimensions, vehicleProxyGeometry } from './vehicle-proxy';
 
 export interface VehicleVisual {
   setLivery(data: LiveryData | undefined): void;
@@ -20,11 +34,14 @@ export interface VehicleVisual {
   interior?: VehicleInteriorVisual;
   /** The visual's exterior `animation` bindings, posed from the same signals as the interior. */
   animation?: ModelSignalVisual;
+  glass?: GlassVisual;
   update(
     steer: number,
     wheelAngle: number,
     signals?: VehicleInteriorSignals,
     timeSeconds?: number,
+    glassState?: GlassStateData,
+    damageState?: VehicleDamageState,
   ): void;
   dispose(): void;
 }
@@ -57,9 +74,10 @@ export function createVehicleVisual(
   model: THREE.Object3D,
   vehicle: Pick<VehicleData, 'visual'> & {
     color?: string;
-    spec?: { length: number; cycle?: unknown };
+    spec?: { length: number; cycle?: unknown; collisionParts?: VehicleCollisionPart[] };
   },
   livery?: LiveryData,
+  glassData?: GlassData,
 ): VehicleVisual {
   const interior =
     vehicle.visual.interior === undefined
@@ -126,15 +144,21 @@ export function createVehicleVisual(
     steeringWheel = nodes.get(vehicle.visual.steeringWheelNode)?.[0];
 
   let appearance = livery === undefined ? undefined : applyLivery(model, livery);
+  const glass = glassData === undefined ? undefined : createGlassVisual(model, glassData);
+  const damage = createAircraftDamageVisual(model, {
+    collisionParts: vehicle.spec?.collisionParts,
+  });
   return {
     setLivery(data) {
       appearance?.dispose();
+      damage.reset();
       appearance = data === undefined ? undefined : applyLivery(model, data);
     },
     object: model,
     interior,
     animation,
-    update(steer, angle, signals, timeSeconds) {
+    glass,
+    update(steer, angle, signals, timeSeconds, glassState, damageState) {
       const roll = signals?.bodyRoll ?? 0;
       const pitch = signals?.bodyPitch ?? 0;
       const lean = Number.isFinite(roll) && Number.isFinite(pitch) && (roll !== 0 || pitch !== 0);
@@ -158,8 +182,12 @@ export function createVehicleVisual(
       const telemetry = { steering: steer, wheelAngle: angle, ...signals };
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
+      glass?.update(glassState, timeSeconds ?? 0);
+      damage.update(damageState ?? {});
     },
     dispose() {
+      damage.reset();
+      glass?.dispose();
       appearance?.dispose();
       const geometries = new Set<THREE.BufferGeometry>();
       const materials = new Set<THREE.Material>();
@@ -184,116 +212,10 @@ const parkedMaterial = new THREE.MeshStandardMaterial({
   roughness: 0.55,
   metalness: 0.12,
 });
-const parkedTemplates = new Map<string, THREE.BufferGeometry>();
 const paints = new Map<string, THREE.Color>();
-
-function coloredBox(
-  x: number,
-  y: number,
-  z: number,
-  width: number,
-  height: number,
-  length: number,
-  color: string,
-): THREE.BufferGeometry {
-  const geometry = new THREE.BoxGeometry(width, height, length).translate(x, y, z).toNonIndexed();
-  geometry.deleteAttribute('uv');
-  const tint = new THREE.Color(color);
-  const colors = new Float32Array(geometry.getAttribute('position').count * 3);
-  for (let i = 0; i < colors.length; i += 3) {
-    colors[i] = tint.r;
-    colors[i + 1] = tint.g;
-    colors[i + 2] = tint.b;
-  }
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-  return geometry;
-}
-
-/** The dimensions a vehicle proxy is built from (a `VehicleSpec` satisfies it). */
-export interface VehicleProxyDimensions {
-  width: number;
-  length: number;
-  height: number;
-  wheelbase: number;
-  wheelTrack: number;
-  wheelRadius: number;
-}
-
-/**
- * The parked-car proxy shape with a white body, for instanced rendering: per-instance paint comes
- * from `instanceColor` (three multiplies vertex colours by it, so glass and tyres stay dark).
- * Cached by dimensions; never dispose the returned geometry.
- */
-export function vehicleProxyGeometry(dimensions: VehicleProxyDimensions): THREE.BufferGeometry {
-  return parkedTemplate(dimensions);
-}
 
 /** The shared vertex-coloured material of parked and proxy vehicles. */
 export const vehicleProxyMaterial: THREE.MeshStandardMaterial = parkedMaterial;
-
-/**
- * Generic dimension-driven proxy used only for large dormant parking batches, its body white:
- * the body is its first `userData.bodyVertices` vertices, painted as a batch bakes it. A template
- * per paint as well was dozens built for a tile's first cars, 7 ms of one frame.
- */
-function parkedTemplate(spec: VehicleProxyDimensions): THREE.BufferGeometry {
-  const key = `${spec.width}:${spec.length}:${spec.height}:${spec.wheelbase}`;
-  const cached = parkedTemplates.get(key);
-  if (cached !== undefined) return cached;
-  const body = coloredBox(
-    0,
-    spec.height * 0.34,
-    0,
-    spec.width,
-    spec.height * 0.48,
-    spec.length,
-    '#ffffff',
-  );
-  const bodyVertices = body.getAttribute('position').count;
-  const parts = [
-    body,
-    coloredBox(
-      0,
-      spec.height * 0.72,
-      -spec.length * 0.06,
-      spec.width * 0.82,
-      spec.height * 0.42,
-      spec.length * 0.52,
-      '#526b78',
-    ),
-  ];
-  for (const x of [-spec.wheelTrack / 2, spec.wheelTrack / 2]) {
-    for (const z of [-spec.wheelbase / 2, spec.wheelbase / 2]) {
-      const wheel = new THREE.CylinderGeometry(
-        spec.wheelRadius,
-        spec.wheelRadius,
-        spec.width * 0.1,
-        8,
-      );
-      wheel.rotateZ(Math.PI / 2);
-      wheel.translate(x, spec.wheelRadius, z);
-      const wheelGeometry = wheel.toNonIndexed();
-      wheelGeometry.deleteAttribute('uv');
-      const charcoal = new THREE.Color('#20242a');
-      const colors = new Float32Array(wheelGeometry.getAttribute('position').count * 3);
-      for (let i = 0; i < colors.length; i += 3) {
-        colors[i] = charcoal.r;
-        colors[i + 1] = charcoal.g;
-        colors[i + 2] = charcoal.b;
-      }
-      wheelGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-      parts.push(wheelGeometry);
-      wheel.dispose();
-    }
-  }
-  const geometry = mergeGeometries(parts) as THREE.BufferGeometry;
-  for (const part of parts) part.dispose();
-  geometry.computeBoundingBox();
-  geometry.computeBoundingSphere();
-  geometry.userData.bodyVertices = bodyVertices;
-  parkedTemplates.set(key, geometry);
-  return geometry;
-}
 
 /**
  * Dormant terrain-owned cars merged into one static mesh per tile. A plain mesh shares its
@@ -308,7 +230,7 @@ export function createParkedVehicleBatch(
   const group = new THREE.Group();
   group.name = 'surface:parked-cars';
   if (placements.length === 0) return group;
-  const templates = placements.map((placement) => parkedTemplate(placement.spec));
+  const templates = placements.map((placement) => vehicleProxyGeometry(placement.spec));
   const vertices = templates.reduce(
     (sum, template) => sum + template.getAttribute('position').count,
     0,

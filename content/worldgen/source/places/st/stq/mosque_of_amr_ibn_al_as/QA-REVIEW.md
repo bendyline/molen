@@ -46,3 +46,8 @@ Commands: targeted generate-additional-landmarks/import-structure-models/generat
 [Sherief1969 — 2019-02-09](https://commons.wikimedia.org/wiki/File:Amr_Ibn_Al_As_Mosque_1.jpg). CC-BY-SA-4.0; viewed only. Inspected complete 960×640 courtyard view. Pale marble court, open pointed arcades on slender pale columns, broad dark roof soffits, triangular/stepped merlons and central octagonal ablution canopy on eight columns. Canopy has brown timber soffit/edge gallery, pale dome and small finial over a low basin. Fine capitals, medallions, inscriptions, tap furniture and exact railing pattern not copied.
 
 [Mohammed Basha — 2014-08-13](https://commons.wikimedia.org/wiki/File:جامع_عمرو_بن_العاص_Mosque_of_Amr_ibn_al-Aas.jpg). CC-BY-SA-3.0; viewed only. Inspected complete 960×640 exterior. Low light-cream facade with repeated round upper arched niches and warm stone arch surrounds, sparse pointed ground entrances, roofline merlons and two slender corner minarets with projecting balcony, tapering upper stage and pale pointed cap. Palms obscure part of the near tower. Fence, street furniture, garden and exact calligraphy/fine ornament remain host content or omitted.
+
+
+## Shared-material refresh —2026-10-29
+
+Material-only refresh2026-10-29: actually inspected11 new shared-material/geographic-flat-terrain frames. Source,imported master,all four runtime levels,scene/map/placement and retained portable/medium-fi evidence remain byte-bound. Current shared graph hashes and read-once/disposal checks are renewed. This does not upgrade the previously documented terrain,architecture or physical-device scope.

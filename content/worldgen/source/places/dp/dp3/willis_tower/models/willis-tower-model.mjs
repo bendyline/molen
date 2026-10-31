@@ -413,6 +413,17 @@ function buildWillis(out) {
   podium(out);
 }
 
+// Browser derivatives share the master's dimensions, mapped parts and signed local frame.
+export {
+  evidence as willisMapEvidence,
+  level as willisFloorHeight,
+  mapPlan as willisMappedPlan,
+  mech as willisMechanicalFloor,
+  towers as willisTubes,
+  transformed as willisLocalFrame,
+  W as willisTubeWidth,
+};
+
 export const willisStudies = [
   {
     id: 'willis_tower',

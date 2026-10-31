@@ -1,0 +1,462 @@
+{
+  "planId": "theatre_royal_hobart",
+  "id": "theatre_royal_hobart",
+  "assetId": "molen.worldgen.structure.theatre_royal_hobart",
+  "title": "Theatre Royal, Hobart",
+  "wikidataId": "Q3523488",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 147.331,
+    "latitude": -42.8796
+  },
+  "size": [
+    15.75226378440857,
+    21.299999713897705,
+    63.43048286437988
+  ],
+  "actualBounds": {
+    "min": [
+      -3.2265279293060303,
+      -2.4000000953674316,
+      -52.741966247558594
+    ],
+    "max": [
+      12.525735855102539,
+      18.899999618530273,
+      10.688516616821289
+    ]
+  },
+  "visualBrief": "Entire historic TheatreRoyalHobart masonry building with fullauditorium/foyers/basement-exterior/mainroof and rear stage/flytower, both full longitudinal walls and VictorianAcademicClassical two-storey CampbellStreet facade/archedTuscanportico/triangularpediment. Exact original z15quantized numeric wholeway188586180 footprint and matching TheatreRoyalPOI, separateQ3523488identity. Stateheritage2024description supplies material/facade/storey/flytower>18m facts. Mapheight8m is generalized context, not a surveyed wholeflytower height. Exact elevations, sectiondivisions/roof profiles/flytower plan/opening census/ornament/text/finish/grade estimated. No adjacentHedberg/Hotel/campus/facade-only proxy, no imagery/interiors or photographic/survey/current replacement claim.",
+  "nativeAxes": {
+    "x": "along CampbellStreet frontage toward southeast",
+    "y": "up",
+    "z": "out toward CampbellStreet"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-12-13",
+    "validFrom": "2024-12-13",
+    "validUntil": "2025-12-13",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "theatre-royal-hobart-wp",
+      "url": "https://qualla.com/theatre-royal-hobart/"
+    }
+  ],
+  "referenceInputHash": "sha256:43abe646d11c6b8e327d7e3a9a9a117b22f1ce98abba7a1fa4113a265fedeb8a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r2/r22/theatre_royal_hobart/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r2/r22/theatre_royal_hobart/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.18
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stucco",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "window": {
+        "slot": "window",
+        "graph": "metal_painted",
+        "roughness": 0.55,
+        "metallic": 0.2
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.18
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stucco",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "brick",
+    "stucco",
+    "metal_painted",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 5000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole original numeric-map theatre outline/anchor/orientation and independentfield fixed first. Primary two-storey classicalfacade/material/portico facts and flytower>18m. All exact wall/floor/roof/flytower-height/plan/divisions/detail/finish/grade estimates chosen beforegeometry, preserved during review.",
+    "anchor": [
+      147.331,
+      -42.8796
+    ],
+    "heading": -0.7039461190139845,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        147.331,
+        -42.8796
+      ],
+      "modelHeight": 0,
+      "basis": "Published theatre storypoint selected before original independent field/sections; provider-relative context datum, not surveyed floor."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184560675012"
+    ],
+    "source": "https://build.protomaps.com/20261029.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5c8c572445d61050bd1cfa4d407afa5fb40f1305e89f44cd4be86ebd70f931fa",
+    "notes": "Entire historic TheatreRoyalHobart masonry building with fullauditorium/foyers/basement-exterior/mainroof and rear stage/flytower, both full longitudinal walls and VictorianAcademicClassical two-storey CampbellStreet facade/archedTuscanportico/triangularpediment. Exact original z15quantized numeric wholeway188586180 footprint and matching TheatreRoyalPOI, separateQ3523488identity. Stateheritage2024description supplies material/facade/storey/flytower>18m facts. Mapheight8m is generalized context, not a surveyed wholeflytower height. Exact elevations, sectiondivisions/roof profiles/flytower plan/opening census/ornament/text/finish/grade estimated. No adjacentHedberg/Hotel/campus/facade-only proxy, no imagery/interiors or photographic/survey/current replacement claim."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Entire historic TheatreRoyalHobart masonry building with fullauditorium/foyers/basement-exterior/mainroof and rear stage/flytower, both full longitudinal walls and VictorianAcademicClassical two-storey CampbellStreet facade/archedTuscanportico/triangularpediment. Exact original z15quantized numeric wholeway188586180 footprint and matching TheatreRoyalPOI, separateQ3523488identity. Stateheritage2024description supplies material/facade/storey/flytower>18m facts. Mapheight8m is generalized context, not a surveyed wholeflytower height. Exact elevations, sectiondivisions/roof profiles/flytower plan/opening census/ornament/text/finish/grade estimated. No adjacentHedberg/Hotel/campus/facade-only proxy, no imagery/interiors or photographic/survey/current replacement claim.",
+    "Exact original z15numeric four-corner whole-theatre footprint retained; source product is quantized/simplified rather than an OSMnode survey. Same-ID namedTheatreRoyalPOI/independentQ3523488 and Stateheritage12110 identify the physical original theatre, not neighboringHedberg/Hotel. Frontage15.21m/length60.52m are numeric-map derived, not surveyed dimensions.",
+    "Primary stateheritage2024page7 establishes two-storey frontage, lower rusticated sandstone, upperstucco/brick, doublepilasters/engagedTuscan columns, frieze/stringcourse, uppercornice/squatpilasterparapet, centralarchedTuscanportico/triangularpediment/giltname; rearstage has a flytower over18m. Only writtenfacts adopted, no reportphotos/plans/maps or protectedpixels.",
+    "Estimated providerrelativefloor0.3m, exposedbasement/plinth2.7mdeep, lowerfrontlevel4.6m/upper3.4m, mainwall8m/roofrise2.8m, gableprofile/ridges/metalfinish, fullwidthrear17.2mflytowerplan and18.6mheight abovefloor, cap/fittings allestimated. Source map8mheight is genericbasecontext, not a surveyed maximum that omits the tallerflytower. Exact floor/roof sections unknown; nominal mainheightuncertainty1.5m/flytower2m.",
+    "Facade threebay disposition, pilaster/column census and proportions, arch/door/window dimensions, cap/entablature/pediment/quoins/ornament profiles, rustication joints, plainnewproceduralletterstrokes/finish/paintcolors/windows/fittings allestimated. Full longitudinalwalls/auditorium/foyers/mainroof/rearflytower/basementexterior retained. Interiors/equipment, independentHedberg/Hotel/sitepaving/neighbors excluded; no facade/campusproxy.",
+    "Original128m/16641height sourcefield/singleoriginaltile acquired before all floor/mainsection choices. Datum13.817m and relativefield-6.87..7.18m include ground/building/canopy uncertainty. Preserve field/frame/floors/mainsections during review; no cutout/flatten/mask/refetch/refit for pictures. Geographicgroundcontact/verticalregistration approximate andunverified. Dated2024historical preview, no current-worldreplacement.",
+    "Qualla first6families/0conflicts; every photo/figure/video/drawing unused, including attribution-onlyfrontages, oldactors/posters and restrictivearchiveexteriors. Writtenstateheritagefacts only, no photographic/survey claim."
+  ],
+  "sourceLicense": "Original procedural entire historic theatre exterior under repository license. Whole original numeric Protomaps/OSM-derived z15footprint/POI, not exact node survey. Stateheritage12110written construction/facade/flytower facts only; no reportphotos/maps/plans or protected pixels. Mainwall/floor/roof/flyplan heights/divisions/ornament/paint/fittings/grade explicit estimates. Plainnewprocedural name strokes, no copied artwork. No adjoiningHedberg/Hotel/campus or facadeproxy, photographic/survey/current replacement claim.",
+  "qaLodCameras": [
+    {
+      "name": "whole-hobart-theatre-skyline",
+      "position": [
+        52,
+        38,
+        55
+      ],
+      "lookAt": [
+        4.64960406825751,
+        7,
+        -18
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hobart-theatre-district",
+      "position": [
+        52,
+        38,
+        55
+      ],
+      "lookAt": [
+        4.64960406825751,
+        7,
+        -18
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hobart-theatre-street",
+      "position": [
+        52,
+        38,
+        55
+      ],
+      "lookAt": [
+        4.64960406825751,
+        7,
+        -18
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hobart-theatre-closeup",
+      "position": [
+        52,
+        38,
+        55
+      ],
+      "lookAt": [
+        4.64960406825751,
+        7,
+        -18
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-historic-theatre-auditorium-roof-and-rear-stage-fly-tower",
+      "position": [
+        52,
+        38,
+        55
+      ],
+      "lookAt": [
+        4.64960406825751,
+        7,
+        -18
+      ]
+    },
+    {
+      "name": "whole-two-storey-classical-frontage-tuscan-portico-and-pediment",
+      "position": [
+        19.64960406825751,
+        8,
+        34
+      ],
+      "lookAt": [
+        4.64960406825751,
+        4.5,
+        7.848516405465114
+      ]
+    },
+    {
+      "name": "entire-rear-fly-tower-and-full-auditorium-sidewall",
+      "position": [
+        -36,
+        30,
+        -76
+      ],
+      "lookAt": [
+        4.64960406825751,
+        7,
+        -18
+      ]
+    },
+    {
+      "name": "complete-original-theatre-roof-and-stage-volumes",
+      "position": [
+        42,
+        58,
+        -30
+      ],
+      "lookAt": [
+        4.64960406825751,
+        7,
+        -18
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3627,
+    "vertices": 10881,
+    "materials": 6,
+    "bytes": 614120,
+    "sha256": "sha256:c1391a9c3c542bbba929bef2bc11ffdbffe863fe632b8dfa01b581357d32f7bc"
+  }
+}

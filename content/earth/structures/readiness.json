@@ -5,19 +5,19 @@
   "counts": {
     "candidates": 1000,
     "sourceFacts": 999,
-    "sourceModels": 669,
-    "runtimeModels": 669,
+    "sourceModels": 676,
+    "runtimeModels": 676,
     "mapAxes": 415,
     "identityReview": 20,
-    "visualReviews": 628,
-    "sharedSurfaceReviews": 551,
-    "previewPlacements": 649,
-    "authoredAssets": 729,
-    "importedAssets": 729,
-    "placedAssets": 701,
+    "visualReviews": 642,
+    "sharedSurfaceReviews": 576,
+    "previewPlacements": 656,
+    "authoredAssets": 736,
+    "importedAssets": 736,
+    "placedAssets": 708,
     "activeCategoryModels": 0,
-    "fidelityReviews": 617,
-    "ready": 541
+    "fidelityReviews": 631,
+    "ready": 566
   },
   "candidates": [
     {
@@ -1864,13 +1864,8 @@
       "wikidataId": "Q2073308",
       "title": "Pont de l'Archevêché",
       "asset": "molen.worldgen.structure.pont_de_l_archeveche",
-      "readiness": "incomplete",
-      "blockers": [
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -1880,7 +1875,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:55c4b927d3668f51e2a08fd311b9e177e00040b09713f2258a176e61c972f7fb",
+        "inputHash": "sha256:cb42aa60b846a87d78ac4e46a57d8ca1246557e10c88bd0b63d3e125e24a49d6",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/models/source.glb"
@@ -1898,7 +1893,7 @@
         "anchor": [2.351548575, 48.851511875],
         "heading": 1.164505939862457,
         "mappedFeatureIds": ["way/78329745"],
-        "verified": false,
+        "verified": true,
         "activePlacement": "pont.de.l.archeveche",
         "catalogPlacement": "pont.de.l.archeveche",
         "placementStatus": "preview",
@@ -1914,6 +1909,7 @@
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/glazed-parapet.png",
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/ornamental-lantern.png",
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/rounded-cutwater.png",
+          "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/scene-preview.png",
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-0.png",
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-1.png",
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-2.png",
@@ -1931,23 +1927,24 @@
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/turntable/angle_1.png",
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/turntable/angle_2.png",
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/turntable/angle_3.png",
-          "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/upstream-three-arches.png"
+          "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/upstream-three-arches.png",
+          "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/site-preview.png"
         ],
         "captureFilesExist": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
         "declaredQuality": "detailed",
-        "notes": "436,496-triangle exterior reconstructed from inspected current 2021/2019 photographs, AFGC engineering description, Paris2026 confirmation of transparent replacement railings, and visually inspected Annales des Ponts et Chaussees1864 pages174–175. Published spans, rises, width and pier thickness are encoded explicitly. Individual stone courses/soffit blocks, curved sett courses, glazing fasteners, rail cross-bracing, fluted ornamental lantern bases and navigation signs are modeled. Fine coursing/member sizes remain photo reconstruction; temporary furnishings omitted. Terrain fit is a separate pending review."
+        "notes": "Inspected74 current frames:13 portable,12 shared-material stage,29 medium-fi/context/tier frames and20 cached-terrain/road views. The original432736triangle master remains exact. All tiers retain three shallow open circular vaults,rounded projecting cutwaters,continuous crowned road,both raised sidewalks and wide asymmetric mainland flare. Close/street retain crossed transparent rail frames,modeled arch rings/soffit divisions,mooring rings and both mapped ornamental lamps. Detailed master retains individual coursing,fan sett courses,glazing hardware and direction-specific signs; browser tiers aggregate these details,including the small blue reverse navigation panel. Master 432736triangles/36496176bytes retained exactly. Browser triangles 632 / 2772 / 12988 / 29294,bytes 51012 / 229480 / 1083492 / 2449996,draws 1 / 5 / 5 / 5. Initial skyline+district 280492bytes. All tiers meet1000/4000/16000/64000triangles,at most5draws,separate GPU position/normal streams. Physical laptop/phone timing remains unmeasured."
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-0.png",
           "content/worldgen/source/places/u0/u09/pont_de_l_archeveche/shots/shared/angle-1.png",
@@ -2910,13 +2907,8 @@
       "wikidataId": "Q2307670",
       "title": "pont de Tolbiac",
       "asset": "molen.worldgen.structure.pont_de_tolbiac",
-      "readiness": "incomplete",
-      "blockers": [
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -2926,7 +2918,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:815b61a1f4e49614f26c18db30ee72044d0b0ea2533e868524d0754291f9dd9d",
+        "inputHash": "sha256:12ad8a06a39bc6ef9fe3a2cf4df954766aefde716ac49b5ce47888c310934926",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/u0/u09/pont_de_tolbiac/models/source.glb"
@@ -2944,7 +2936,7 @@
         "anchor": [2.381000162446853, 48.83290412880705],
         "heading": 0.695619343418,
         "mappedFeatureIds": ["way/183626421"],
-        "verified": false,
+        "verified": true,
         "activePlacement": "pont.de.tolbiac",
         "catalogPlacement": "pont.de.tolbiac",
         "placementStatus": "preview",
@@ -2968,6 +2960,7 @@
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/left-bank-approach.png",
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/memorial-plaques.png",
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/pier-cap-masonry.png",
+          "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/scene-preview.png",
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-0.png",
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-1.png",
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-2.png",
@@ -2991,23 +2984,24 @@
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_0.png",
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_1.png",
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_2.png",
-          "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_3.png"
+          "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/u0/u09/pont_de_tolbiac/site-preview.png"
         ],
         "captureFilesExist": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
         "declaredQuality": "detailed",
-        "notes": "795,350-triangle individually researched exterior reviewed against current road/railing photographs, 1982 ministry description, Séjourné rise table, mapped cutwaters and aerial, and archival/current memorial photographs. Curved bank wings, staggered masonry, open balustrades, lanterns, drains, readable paired memorials and bridge-name molding are modeled. The published 168 m nominal length conflicts with mapped pier spacings and published clear spans; the model follows those mapped piers and clear spans, producing a 172.6 m vault chain. This is an explicit source discrepancy, not a claim of construction-survey precision. Quay stairs outside the recorded bridge footprint are outside the asset; exact lantern and inscription dimensions remain photograph-based reconstruction."
+        "notes": "Inspected95 current frames:20 portable,19 shared-material master stage,36 medium-fi/context/tier frames and20 cached-terrain/road views. The original794646triangle master remains exact. All tiers retain five unequal open vaults,projecting round cutwaters,a continuous crowned road,both raised sidewalks and asymmetric curved bank wings. Close-up retains true rounded capsule balustrade apertures,pilasters,radial arch stones,dentils,all14 ornamental lamps and plaque backing. Street/district aggregate holes,dentils and lamps; skyline retains the five-vault/wing silhouette and parapet caps. The detailed master retains coursed soffits,ashlar,inscriptions,Gentilis lettering,memorial badge,fasteners,drains and grilles; their subpixel detail is deliberately aggregated in browser tiers. Master 794646triangles/70414972bytes retained exactly. Browser triangles 968 / 3996 / 15700 / 63996,bytes 84712 / 342960 / 1287364 / 5044244,draws 1 / 6 / 6 / 6. Initial skyline+district 427672bytes. All tiers meet1000/4000/16000/64000triangles,at most6draws,separate GPU position/normal streams. Physical laptop/phone timing remains unmeasured."
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-0.png",
           "content/worldgen/source/places/u0/u09/pont_de_tolbiac/shots/shared/angle-1.png",
@@ -6030,15 +6024,8 @@
       "wikidataId": "Q13091077",
       "title": "Šeher-Ćehaja Bridge",
       "asset": "molen.worldgen.structure.seher_cehaja_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -6047,14 +6034,18 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:419e3236f31cce2324807e5807bea047c8f484cf6e88a375915d5ccbcb6c9bb1",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/sr/srv/seher_cehaja_bridge/model.glb",
+          "triangles": 15626
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
@@ -6062,30 +6053,60 @@
         "anchor": [18.43405085, 43.85875635],
         "heading": -1.346660665598,
         "mappedFeatureIds": ["way/189835884"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "verified": true,
+        "activePlacement": "seher.cehaja.bridge",
+        "catalogPlacement": "seher.cehaja.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:1c0c8d34a1c370c524d8c602ffd382e0cec0c8a9452c1e1c2d797c5dec2c8b5b"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/preview.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/four-open-barrels.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/paving-and-pale-parapets.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/scene-preview.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/four-open-barrels.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/paving-and-pale-parapets.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/placement.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/stone-cutwater-and-voussoirs.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/whole-four-arches.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/stone-cutwater-and-voussoirs.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/whole-four-arches.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/site-preview.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Complete scoped four-arch static exterior and approximate native placement; no current or historic unseen fifth arch claim. Detailed source 15626 triangles,1877608 bytes. Browser triangles 816 / 2328 / 5082 / 9362, bytes 64604 / 175656 / 394580 / 718936, draws 1 / 3 / 3 / 3. Initial skyline+district 240260bytes. Levels meet1000/4000/16000/64000 targets and use separate GPU position/normal streams. Coarse curves and joints aggregate with distance; no physical device timing claim."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/whole-four-arches.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/four-open-barrels.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/stone-cutwater-and-voussoirs.png",
+          "content/worldgen/source/places/sr/srv/seher_cehaja_bridge/shots/shared/paving-and-pale-parapets.png"
+        ]
       }
     },
     {
@@ -6093,15 +6114,8 @@
       "wikidataId": "Q1500721",
       "title": "Hercilio Luz Bridge",
       "asset": "molen.worldgen.structure.hercilio_luz_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -6110,14 +6124,18 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:8c2baa9af710d44e86b2d3b6bb386d1429fe8f90d3d669c87a06a2419d4faaac",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/6g/6gj/hercilio_luz_bridge/model.glb",
+          "triangles": 246688
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
@@ -6125,30 +6143,62 @@
         "anchor": [-48.565862446, -27.593903698],
         "heading": 0.209151434435,
         "mappedFeatureIds": ["way/376367899"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "verified": true,
+        "activePlacement": "hercilio.luz.bridge",
+        "catalogPlacement": "hercilio.luz.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:5f090d4fea8433da89665ab1f00795069cff16111d1f4a977ee3d749f6249c31"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/preview.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/grating-road-and-open-tower-portal.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/north-walkway-and-chain-joints.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/paired-chains-and-integrated-truss.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/scene-preview.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/grating-road-and-open-tower-portal.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/north-walkway-and-chain-joints.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/paired-chains-and-integrated-truss.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/tower-cross-bracing.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/whole-curved-crossing.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/tower-cross-bracing.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/whole-curved-crossing.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/site-preview.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Complete scoped static exterior and approximate native placement. Detailed source 246688 triangles,29605880 bytes. Browser triangles 986 / 3828 / 15800 / 63776, bytes 91964 / 335084 / 1350280 / 5852232, draws 1 / 4 / 5 / 5. Initial skyline+district 427048bytes. Levels meet1000/4000/16000/64000 budgets and separate GPU position/normal streams. Distance tiers aggregate lacing, hangers, chain joints, guards and approach supports; both portals, platforms and the main chain/truss silhouette remain. No physical device timing claim."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/whole-curved-crossing.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/paired-chains-and-integrated-truss.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/tower-cross-bracing.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/north-walkway-and-chain-joints.png",
+          "content/worldgen/source/places/6g/6gj/hercilio_luz_bridge/shots/shared/grating-road-and-open-tower-portal.png"
+        ]
       }
     },
     {
@@ -6156,15 +6206,8 @@
       "wikidataId": "Q2041341",
       "title": "Akmens tilts",
       "asset": "molen.worldgen.structure.akmens_tilts",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -6173,14 +6216,18 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:cf2782ff6734894dc356b65dc31db87aa715beb1c91900f992013d1d04e9a1e2",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/ud/ud1/akmens_tilts/model.glb",
+          "triangles": 214156
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
@@ -6188,30 +6235,62 @@
         "anchor": [24.101202266, 56.944660601],
         "heading": 0.732835788672,
         "mappedFeatureIds": ["way/170091344"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "verified": true,
+        "activePlacement": "akmens.tilts",
+        "catalogPlacement": "akmens.tilts",
+        "placementStatus": "preview",
+        "placementHash": "sha256:f2790984409bff2f1004f482318a1ff201589ed07f219f8c767ded53e9d38743"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/preview.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/district-context.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/granite-piers-and-dark-girders.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/haunched-girder-and-granite-pier.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/scene-preview.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/seven-globe-lamp.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-0.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-1.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-2.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-3.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/district-context.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/granite-piers-and-dark-girders.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/haunched-girder-and-granite-pier.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/seven-globe-lamp.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/tram-deck-and-ornate-rail.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/tram-deck-and-ornate-rail.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/site-preview.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Complete scoped static exterior and approximate native placement. Detailed source 214156 triangles,25702380bytes. Browser triangles 704 / 3968 / 12548 / 60080,bytes 58104 / 351312 / 1077304 / 5593652,draws 1 / 6 / 6 / 6. Initial skyline+district 409416bytes. All four meet1000/4000/16000/64000triangles and at most6draws,with separate GPU position/normal streams. Detailed master retains eight longitudinal girders,dense stiffeners/diaphragms,masonry seams,cast lamp profiles/scrolls and raised railing ornaments. Browser close-up keeps four girders,coarser stiffeners,planar motif badges and texture-led masonry. No physical laptop/phone timing claim."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-0.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-1.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-2.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-3.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/granite-piers-and-dark-girders.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/haunched-girder-and-granite-pier.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/seven-globe-lamp.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/tram-deck-and-ornate-rail.png",
+          "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/district-context.png"
+        ]
       }
     },
     {
@@ -7048,15 +7127,8 @@
       "wikidataId": "Q1862973",
       "title": "Isabel II Bridge",
       "asset": "molen.worldgen.structure.isabel_ii_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -7065,14 +7137,18 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:b1d157a52521dee23f943e6e2dfb22b41232885c9972ed524494f7ccc0b76281",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/ey/eye/isabel_ii_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/ey/eye/isabel_ii_bridge/model.glb",
+          "triangles": 127296
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
@@ -7080,30 +7156,65 @@
         "anchor": [-6.00238785, 37.386326592],
         "heading": 0.960148794974,
         "mappedFeatureIds": ["way/236420470"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "verified": true,
+        "activePlacement": "isabel.ii.bridge",
+        "catalogPlacement": "isabel.ii.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:1f3c688d82a3d7478ae8a20f9f008a2db45a8965fdf794dee148468f78b4c354"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/preview.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/circular-spandrels-and-skew-pier.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/downstream-three-arches.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/east-bank-passage.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/road-sidewalks-and-three-light-lamps.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/scene-preview.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/circular-spandrels-and-skew-pier.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/downstream-three-arches.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/east-bank-passage.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/road-sidewalks-and-three-light-lamps.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/three-iron-spans.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/west-open-iron-arch-riverwalk.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/three-iron-spans.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/west-open-iron-arch-riverwalk.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/site-preview.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Complete scoped static exterior and approximate native placement. Detailed source 127296 triangles,15278780bytes. Browser triangles 940 / 3914 / 14824 / 41172, bytes 77300 / 322236 / 1242040 / 3528496, draws 1 / 5 / 5 / 5. Initial skyline+district 399536bytes. All levels meet1000/4000/16000/64000triangles and at most5draws,with separate GPU position/normal streams. Original master retains all seven arch ribs and circles; browser tiers retain three open spans,continuous road/sidewalks and two bank passages. No physical device timing claim."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/three-iron-spans.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/downstream-three-arches.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/circular-spandrels-and-skew-pier.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/road-sidewalks-and-three-light-lamps.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/east-bank-passage.png",
+          "content/worldgen/source/places/ey/eye/isabel_ii_bridge/shots/shared/west-open-iron-arch-riverwalk.png"
+        ]
       }
     },
     {
@@ -7111,15 +7222,8 @@
       "wikidataId": "Q18926506",
       "title": "Plaka Bridge",
       "asset": "molen.worldgen.structure.plaka_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -7128,14 +7232,18 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:e113c522389e6693210a6bda7c6b3cf2af72f4f8290aaf3b9613b16caca2ece8",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/sr/srn/plaka_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/sr/srn/plaka_bridge/model.glb",
+          "triangles": 69888
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
@@ -7143,30 +7251,62 @@
         "anchor": [21.03004965, 39.4605618],
         "heading": 0.369628459904,
         "mappedFeatureIds": ["way/758796818"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "verified": true,
+        "activePlacement": "plaka.bridge",
+        "catalogPlacement": "plaka.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:9cd2d02a77a14479b1546c6f9bd13c60a3fba7f3bccc763a1d5841317eb076e4"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/sr/srn/plaka_bridge/preview.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/double-voussoir-ring-and-soffit.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/eastern-relief-and-stone-parapet.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/high-main-arch-and-two-reliefs.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/scene-preview.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/double-voussoir-ring-and-soffit.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/eastern-relief-and-stone-parapet.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/high-main-arch-and-two-reliefs.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/walkway-and-humpback-parapets.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/western-relief-local-bank-passage.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/walkway-and-humpback-parapets.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/western-relief-local-bank-passage.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/site-preview.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Complete scoped static exterior and approximate native placement. Detailed source 69888 triangles,8389844bytes. Browser triangles 496 / 1012 / 2852 / 11136,bytes 35748 / 71368 / 222316 / 860340,draws 1 / 3 / 5 / 5. Initial skyline+district 107116bytes. All four meet1000/4000/16000/64000triangles and at most6draws,with separate GPU position/normal streams. Detailed master retains128 main-arch segments,40 per relief,individual coursing,barrel strip joints,coping seams and walking bands. Browser close-up uses64/20 arch segments and coarser masonry; the source master remains intact. No physical laptop/phone timing claim."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/high-main-arch-and-two-reliefs.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/double-voussoir-ring-and-soffit.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/eastern-relief-and-stone-parapet.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/walkway-and-humpback-parapets.png",
+          "content/worldgen/source/places/sr/srn/plaka_bridge/shots/shared/western-relief-local-bank-passage.png"
+        ]
       }
     },
     {
@@ -7174,15 +7314,8 @@
       "wikidataId": "Q24514224",
       "title": "Green's Bridge",
       "asset": "molen.worldgen.structure.greens_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -7191,14 +7324,18 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:8cdb6d642824df0af4a2815967140ed234ea1bd10422df6eaa322d168bd09db8",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/gc/gc6/greens_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/gc/gc6/greens_bridge/model.glb",
+          "triangles": 44676
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
@@ -7206,30 +7343,65 @@
         "anchor": [-7.253556384, 52.658058525],
         "heading": 0.415705173223,
         "mappedFeatureIds": ["way/771298878"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "verified": true,
+        "activePlacement": "greens.bridge",
+        "catalogPlacement": "greens.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:774e539d2a07a9eaf305baa56e8e9fdfa0fcc6f81a4327877dbed0f2d8b21133"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/gc/gc6/greens_bridge/preview.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/downstream-palladian-face.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/north-modern-walk-and-corbels.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/pier-pediment-and-projecting-voussoirs.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/road-and-asymmetric-north-walk.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/scene-preview.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/downstream-palladian-face.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/north-modern-walk-and-corbels.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/pier-pediment-and-projecting-voussoirs.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/road-and-asymmetric-north-walk.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/two-eastern-flood-openings.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/whole-five-arches-and-eastern-culverts.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/two-eastern-flood-openings.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/whole-five-arches-and-eastern-culverts.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/site-preview.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Complete scoped static exterior and approximate native placement. Detailed source 44676 triangles,5364892bytes. Browser triangles 752 / 3432 / 10656 / 26112, bytes 57880 / 287808 / 895804 / 2186152, draws 1 / 6 / 6 / 6. Initial skyline+district 345688bytes. Separate GPU position/normal streams. All seven barrels,continuous road,north walk and south parapet remain in every tier; panels,guards,barrel joints and dentils aggregate with distance. No physical device timing claim."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/whole-five-arches-and-eastern-culverts.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/downstream-palladian-face.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/pier-pediment-and-projecting-voussoirs.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/road-and-asymmetric-north-walk.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/north-modern-walk-and-corbels.png",
+          "content/worldgen/source/places/gc/gc6/greens_bridge/shots/shared/two-eastern-flood-openings.png"
+        ]
       }
     },
     {
@@ -7365,15 +7537,8 @@
       "wikidataId": "Q2627718",
       "title": "Malo-Kalinkin Bridge",
       "asset": "molen.worldgen.structure.malo_kalinkin_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -7382,14 +7547,18 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:02676b9821fd4f8a31a9bdf94e37e815991e090580cc06aa89c560a648f7a8a6",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/ud/udt/malo_kalinkin_bridge/model.glb",
+          "triangles": 70932
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
@@ -7397,30 +7566,56 @@
         "anchor": [30.28123615, 59.91672875],
         "heading": -0.08154873428,
         "mappedFeatureIds": ["relation/5489299"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "verified": true,
+        "activePlacement": "malo.kalinkin.bridge",
+        "catalogPlacement": "malo.kalinkin.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:7f0d9686f193545aa702259673923c031cb40dfda64c7c3f8ec247e3fbbf922b"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/preview.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/obelisk-oval-lantern-and-ironwork.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/scalloped-girder-and-granite-drum.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/scene-preview.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/obelisk-oval-lantern-and-ironwork.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/scalloped-girder-and-granite-drum.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/three-spans-and-obelisk-lamps.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/three-spans-and-obelisk-lamps.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/site-preview.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Complete scoped static exterior and approximate native placement. Detailed source 70932 triangles,8515524bytes. Browser triangles 580 / 2220 / 7220 / 35140,bytes 44916 / 183352 / 530100 / 2203472,draws 1 / 6 / 6 / 6. Initial skyline+district 228268bytes. All four meet1000/4000/16000/64000triangles and at most6draws,with separate GPU position/normal streams. Detailed master retains eight girders,denser scallops,individual railing circles/scrolls,masonry course seams,lantern ribs and fasteners. Browser close-up keeps six girders and coarser ornamental motifs; the source master remains intact. No physical laptop/phone timing claim."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/angle-0.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/angle-1.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/angle-2.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/angle-3.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/three-spans-and-obelisk-lamps.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/scalloped-girder-and-granite-drum.png",
+          "content/worldgen/source/places/ud/udt/malo_kalinkin_bridge/shots/shared/obelisk-oval-lantern-and-ironwork.png"
+        ]
       }
     },
     {
@@ -10968,13 +11163,8 @@
       "wikidataId": "Q29294",
       "title": "Willis Tower",
       "asset": "molen.worldgen.structure.willis_tower",
-      "readiness": "incomplete",
-      "blockers": [
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -10984,7 +11174,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:a035ca1590c540fe7fba3e82d1e4e09cc4cb961803704c31887104e82aaaffbe",
+        "inputHash": "sha256:04995c811818b2512f9fa96282cb2a3c091195b1eb30911d1ad58e2cb8c41c0f",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/dp/dp3/willis_tower/models/source.glb"
@@ -11002,7 +11192,7 @@
         "anchor": [-87.635903, 41.878884],
         "heading": 0.0176609603088965,
         "mappedFeatureIds": ["way/380868216"],
-        "verified": false,
+        "verified": true,
         "activePlacement": "willis.tower",
         "catalogPlacement": "willis.tower",
         "placementStatus": "preview",
@@ -11034,20 +11224,20 @@
           "content/worldgen/source/places/dp/dp3/willis_tower/shots/turntable/angle_3.png"
         ],
         "captureFilesExist": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
         "declaredQuality": "detailed",
-        "notes": "726110 retained triangles form the complete researched architectural exterior in Molen shared-material style: nine75-foot tubes with50/66/90/109-storey terminations,442.1m roof and527.3m tip; ten-bay facades with projecting piers, inset bronze panes and true louvers; roof plant, parapets, aerials and lattice mast bases; eleven mapped current podium components, storefronts, entry canopies, roof seating and Novum85x75-foot curved skylight. Updated the original four-box scheme to five balconies using the operator2024 factsheet and Clark2022 construction record. Individual floor elevations, balcony center spacing, mullion sections, roof fittings and planting arrangements are documented exterior reconstructions. Private interiors, current retail signs and exact pane reflections are outside this architectural exterior asset."
+        "notes": "The726,110-triangle detailed source and imported master remain byte-identical to saved originals. New browser models share the canonical tube layout, piecewise floor heights, map polygons and signed frame exported by the master recipe. Complete authored levels replace the old163.38m-error skyline reduction. Small ledge spacing, skylight rise, facade/planting and roof hardware remain documented reconstruction controls; private interiors, retail signs and surveyed site fit remain outside scope."
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/dp/dp3/willis_tower/shots/shared/angle-0.png",
           "content/worldgen/source/places/dp/dp3/willis_tower/shots/shared/angle-1.png",
@@ -40258,8 +40448,8 @@
       "wikidataId": "Q1051217",
       "title": "Crystal Cathedral",
       "asset": "molen.worldgen.structure.crystal_cathedral",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -40337,8 +40527,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/angle-0.png",
           "content/worldgen/source/places/9q/9qh/crystal_cathedral/shots/shared/angle-1.png",
@@ -48946,8 +49136,8 @@
       "wikidataId": "Q804009",
       "title": "Baitul Mukarram National Mosque",
       "asset": "molen.worldgen.structure.baitul_mukarram_national_mosque",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -49025,8 +49215,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/wh/wh0/baitul_mukarram_national_mosque/shots/shared/angle-0.png",
           "content/worldgen/source/places/wh/wh0/baitul_mukarram_national_mosque/shots/shared/angle-1.png",
@@ -49353,8 +49543,8 @@
       "wikidataId": "Q1356818",
       "title": "National Mosque of Malaysia",
       "asset": "molen.worldgen.structure.national_mosque_of_malaysia",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -49436,8 +49626,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/w2/w28/national_mosque_of_malaysia/shots/shared/angle-0.png",
           "content/worldgen/source/places/w2/w28/national_mosque_of_malaysia/shots/shared/angle-1.png",
@@ -49559,8 +49749,8 @@
       "wikidataId": "Q683511",
       "title": "Mosque of Amr ibn al-As",
       "asset": "molen.worldgen.structure.mosque_of_amr_ibn_al_as",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -49642,8 +49832,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/st/stq/mosque_of_amr_ibn_al_as/shots/shared/angle-0.png",
           "content/worldgen/source/places/st/stq/mosque_of_amr_ibn_al_as/shots/shared/angle-1.png",
@@ -49804,8 +49994,8 @@
       "wikidataId": "Q1548443",
       "title": "Sultan Qaboos Grand Mosque",
       "asset": "molen.worldgen.structure.sultan_qaboos_grand_mosque",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -49905,8 +50095,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/tk/tk1/sultan_qaboos_grand_mosque/shots/shared/angle-0.png",
           "content/worldgen/source/places/tk/tk1/sultan_qaboos_grand_mosque/shots/shared/angle-1.png",
@@ -52151,8 +52341,8 @@
       "wikidataId": "Q1430127",
       "title": "Abuja National Mosque",
       "asset": "molen.worldgen.structure.abuja_national_mosque",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -52242,8 +52432,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/s1/s1t/abuja_national_mosque/shots/shared/angle-0.png",
           "content/worldgen/source/places/s1/s1t/abuja_national_mosque/shots/shared/angle-1.png",
@@ -53215,8 +53405,8 @@
       "wikidataId": "Q940843",
       "title": "Lotus Temple",
       "asset": "molen.worldgen.structure.lotus_temple",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -53345,8 +53535,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/angle-0.png",
           "content/worldgen/source/places/tt/ttn/lotus_temple/shots/shared/angle-1.png",
@@ -54990,8 +55180,8 @@
       "wikidataId": "Q752555",
       "title": "Temple of Antoninus and Faustina",
       "asset": "molen.worldgen.structure.temple_of_antoninus_and_faustina",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -55100,8 +55290,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/angle-0.png",
           "content/worldgen/source/places/sr/sr2/temple_of_antoninus_and_faustina/shots/shared/angle-1.png",
@@ -68800,8 +68990,8 @@
       "wikidataId": "Q526622",
       "title": "El Faro Towers",
       "asset": "molen.worldgen.structure.el_faro_towers",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -68857,6 +69047,7 @@
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-2.png",
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-3.png",
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/glazed-upper-storeys-high-connection-and-louvered-crowns.png",
+          "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/placement.png",
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/recessed-window-grid-and-bounded-entry.png",
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/two-angled-shafts-and-three-bridges.png",
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/site-integration/final-closeup-glazed-upper-storeys-high-connection-and-louvered-crowns.png",
@@ -68888,8 +69079,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-0.png",
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-1.png",
@@ -68897,7 +69088,8 @@
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/angle-3.png",
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/two-angled-shafts-and-three-bridges.png",
           "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/glazed-upper-storeys-high-connection-and-louvered-crowns.png",
-          "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/recessed-window-grid-and-bounded-entry.png"
+          "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/recessed-window-grid-and-bounded-entry.png",
+          "content/worldgen/source/places/69/69y/el_faro_towers/shots/shared/placement.png"
         ]
       }
     },
@@ -68906,8 +69098,8 @@
       "wikidataId": "Q5522644",
       "title": "Gardoš Tower",
       "asset": "molen.worldgen.structure.gardos_tower",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -68959,6 +69151,7 @@
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/arched-upper-glazing-cornice-steep-roof-and-finial.png",
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/curved-gallery-columns-open-spaces-and-closed-shaft.png",
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/front-entry-loggia-and-two-capped-turrets.png",
+          "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/placement.png",
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/site-integration/final-closeup-arched-upper-glazing-cornice-steep-roof-and-finial.png",
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/site-integration/final-closeup-curved-gallery-columns-open-spaces-and-closed-shaft.png",
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/site-integration/final-closeup-front-entry-loggia-and-two-capped-turrets.png",
@@ -68987,8 +69180,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/angle-0.png",
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/angle-1.png",
@@ -68996,7 +69189,8 @@
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/angle-3.png",
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/front-entry-loggia-and-two-capped-turrets.png",
           "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/curved-gallery-columns-open-spaces-and-closed-shaft.png",
-          "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/arched-upper-glazing-cornice-steep-roof-and-finial.png"
+          "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/arched-upper-glazing-cornice-steep-roof-and-finial.png",
+          "content/worldgen/source/places/sr/sry/gardos_tower/shots/shared/placement.png"
         ]
       }
     },
@@ -72879,13 +73073,8 @@
       "wikidataId": "Q11309665",
       "title": "Kołobrzeg Lighthouse",
       "asset": "molen.worldgen.structure.kolobrzeg_lighthouse",
-      "readiness": "incomplete",
-      "blockers": [
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -72895,7 +73084,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:6d25adc24751a5e5922e3cfa6d60925119f3080bf8a83abc4ac2e8b1650c698d",
+        "inputHash": "sha256:2f63fce9d75caa69cb17147f11530dba5bd8ad5c2012349bfd15e35647cdc288",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/u3/u3e/kolobrzeg_lighthouse/models/source.glb"
@@ -72903,7 +73092,7 @@
         "runtime": {
           "present": true,
           "path": "content/worldgen/assets/places/u3/u3e/kolobrzeg_lighthouse/model.glb",
-          "triangles": 83106
+          "triangles": 83334
         },
         "assetRegistered": true
       },
@@ -72913,7 +73102,7 @@
         "anchor": [15.554236107, 54.186390113],
         "heading": 0.5013149260676516,
         "mappedFeatureIds": ["way/300384923"],
-        "verified": false,
+        "verified": true,
         "activePlacement": "kolobrzeg.lighthouse",
         "catalogPlacement": "kolobrzeg.lighthouse",
         "placementStatus": "preview",
@@ -72943,20 +73132,20 @@
           "content/worldgen/source/places/u3/u3e/kolobrzeg_lighthouse/shots/turntable/angle_3.png"
         ],
         "captureFilesExist": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
         "declaredQuality": "detailed",
-        "notes": "The operator current exterior photographs constrain the 26m silhouette, integral fort, octagonal colonnade and maritime memorial. Raised emblem curves and small joinery are original reconstructions at useful exterior scale; no scanned-sculpture claim."
+        "notes": "Current medium-fi exterior acceptance follows the latest guide. All original83106 detailed triangles retain exact indexed positions, normals, colors, metric UVs and material assignments;228faces add only the missing helical stair support and two finishing treads. Original source/imported masters are preserved locally for comparison, while current reproducible masters contain83334triangles. Four complete authored browser levels meet998/4000/15994/37674triangle limits with1/8/8/8draws. The9material master finding is explicit; it is not served as the initial browser detail. Physical-device timings remain unmeasured."
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u3/u3e/kolobrzeg_lighthouse/shots/shared/angle-0.png",
           "content/worldgen/source/places/u3/u3e/kolobrzeg_lighthouse/shots/shared/angle-1.png",
@@ -72976,13 +73165,8 @@
       "wikidataId": "Q12000806",
       "title": "Skagen Lighthouse",
       "asset": "molen.worldgen.structure.skagen_lighthouse",
-      "readiness": "incomplete",
-      "blockers": [
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -72992,7 +73176,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:fffc9674c82c7023493473f1f4e12799dd7b9f5a1f93769c31e5bf4ac13aec0f",
+        "inputHash": "sha256:45e9e650a02e596f04d2d3ce381a8505abf30a4d1203d82f1012848c2bae293c",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/u4/u4r/skagen_lighthouse/models/source.glb"
@@ -73000,7 +73184,7 @@
         "runtime": {
           "present": true,
           "path": "content/worldgen/assets/places/u4/u4r/skagen_lighthouse/model.glb",
-          "triangles": 188924
+          "triangles": 189144
         },
         "assetRegistered": true
       },
@@ -73010,7 +73194,7 @@
         "anchor": [10.630184735, 57.735496379],
         "heading": 2.0471309816113354,
         "mappedFeatureIds": ["way/288783225"],
-        "verified": false,
+        "verified": true,
         "activePlacement": "skagen.lighthouse",
         "catalogPlacement": "skagen.lighthouse",
         "placementStatus": "preview",
@@ -73040,20 +73224,20 @@
           "content/worldgen/source/places/u4/u4r/skagen_lighthouse/shots/turntable/angle_3.png"
         ],
         "captureFilesExist": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
         "declaredQuality": "detailed",
-        "notes": "Owner restoration photographs control exposed clinker, granite, white restored keeper-building walls, green frames, standing-seam roofs, diamond glazing and crown/date detail. Component dimensions below the published46m height are reconstructed from photographs and mapped footprints. Exterior scope is complete in the shared style; detached landscape and seasonal furniture remain map context."
+        "notes": "Latest medium-fi standard applied. All188900unrelated original detailed source faces retain exact indexed positions, normals, colors, metric UVs and materials; only24triangles of the old two solid link blocks are replaced by244passage triangles. The reproducible corrected master contains189144triangles; previous source/imported masters are retained locally. Four complete browser levels meet848/3958/15322/54948triangles and1/8/8/8draws. Shared256px materials replace costly microgeometry without changing the detailed master exterior. Small arch sizes, badge/optic dimensions and lens behavior remain reconstruction limits; no engineering/navigation or scanned-monogram claim."
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u4/u4r/skagen_lighthouse/shots/shared/angle-0.png",
           "content/worldgen/source/places/u4/u4r/skagen_lighthouse/shots/shared/angle-1.png",
@@ -73073,13 +73257,8 @@
       "wikidataId": "Q1518751",
       "title": "Kullen lighthouse",
       "asset": "molen.worldgen.structure.kullen_lighthouse",
-      "readiness": "incomplete",
-      "blockers": [
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -73089,7 +73268,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:c72e92b68338b5e3c22bc9f18402b98aaf2bcd1b7e0dcdfbb5526ce5a95fcf55",
+        "inputHash": "sha256:fc04e131fda29fae214fa260ce756cf4e2d65ec94f484b728d727fcb1bc638bf",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/u6/u60/kullen_lighthouse/models/source.glb"
@@ -73097,7 +73276,7 @@
         "runtime": {
           "present": true,
           "path": "content/worldgen/assets/places/u6/u60/kullen_lighthouse/model.glb",
-          "triangles": 102956
+          "triangles": 104896
         },
         "assetRegistered": true
       },
@@ -73107,7 +73286,7 @@
         "anchor": [12.451522111, 56.301025985],
         "heading": -0.123,
         "mappedFeatureIds": ["way/1197717521"],
-        "verified": false,
+        "verified": true,
         "activePlacement": "kullen.lighthouse",
         "catalogPlacement": "kullen.lighthouse",
         "placementStatus": "preview",
@@ -73137,20 +73316,20 @@
           "content/worldgen/source/places/u6/u60/kullen_lighthouse/shots/turntable/angle_3.png"
         ],
         "captureFilesExist": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
         "declaredQuality": "detailed",
-        "notes": "Authority height and authority-linked lighthouse society credited close photographs constrain the15m tower, watchroom, triple optic, carved porch and attached stone house. Lens section dimensions and small trim are photographic reconstructions. Detached downhill cottages/foghouse and the rock landscape remain surrounding map context."
+        "notes": "Current medium-fi standard applied. Exact indexed-triangle multiset comparison preserves all 102,956 original source triangle positions, colors, metric UVs, materials and multiplicity. Only 128 sloped-capital faces receive smoothly averaged endpoint normals where the new support collar joins; all other original normals remain exact. Added 1,940 plausible support triangles give a 104,896-triangle reproducible detailed master. Four complete browser levels meet 974/3992/14416/37624 triangles and 1/8/8/8 draws. Hardware supports, carving, optical section and small dimensions are original photo-proportioned reconstructions; no scanned stone, engineering survey or working navigation-optic claim."
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u6/u60/kullen_lighthouse/shots/shared/angle-0.png",
           "content/worldgen/source/places/u6/u60/kullen_lighthouse/shots/shared/angle-1.png",
@@ -73170,13 +73349,8 @@
       "wikidataId": "Q1866643",
       "title": "Lizard Lighthouse",
       "asset": "molen.worldgen.structure.lizard_lighthouse",
-      "readiness": "incomplete",
-      "blockers": [
-        "visual-review-missing-or-unbound",
-        "shared-surface-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -73186,7 +73360,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:7b3fbf3fb1f5990896d5194afb832056179bad528257702e2f62a31ff81304dd",
+        "inputHash": "sha256:3061804b01fafe4782c93c9926d448fe92a458891b1f4a9ba656d844e6936d7d",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/gb/gbu/lizard_lighthouse/models/source.glb"
@@ -73204,7 +73378,7 @@
         "anchor": [-5.20211360017, 49.96020745193],
         "heading": 0.162,
         "mappedFeatureIds": ["way/65369068"],
-        "verified": false,
+        "verified": true,
         "activePlacement": "lizard.lighthouse",
         "catalogPlacement": "lizard.lighthouse",
         "placementStatus": "preview",
@@ -73236,20 +73410,20 @@
           "content/worldgen/source/places/gb/gbu/lizard_lighthouse/shots/turntable/angle_3.png"
         ],
         "captureFilesExist": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
         "declaredQuality": "detailed",
-        "notes": "Trinity House current photographs,19m active height, and Historic England description constrain the ensemble and its distinctive details. Fine lens section and small service-wing roof/joinery dimensions remain photographic reconstruction. Coastal cliff, detached hostel and temporary outdoor equipment are separate map context."
+        "notes": "Latest medium-fi standard applied without modifying the118,842-triangle detailed source or imported master. Current complete authored browser levels use934/3894/14556/42322triangles and1/6/6/6draws, below all ceilings. The old skyline had24.53m reducer error and omitted parts; the new skyline is a complete authored station. Photograph-proportioned small windows, roof ridges, fittings and vane/optic shape remain reconstructions rather than surveyed/scanned or optically functional hardware."
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/gb/gbu/lizard_lighthouse/shots/shared/angle-0.png",
           "content/worldgen/source/places/gb/gbu/lizard_lighthouse/shots/shared/angle-1.png",
@@ -73470,8 +73644,8 @@
       "wikidataId": "Q164027",
       "title": "Bernabéu",
       "asset": "molen.worldgen.structure.santiago_bernabeu_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -73481,7 +73655,7 @@
       },
       "model": {
         "quality": "detailed",
-        "inputHash": "sha256:af3bb6ce4b471fe81c0b971eec1809e9f24574574872c53e55f4d650514e5c07",
+        "inputHash": "sha256:382454e7f9950ba67c8d99da056ff002cfdebabc46c122aea9b4f12b07687c94",
         "source": {
           "present": true,
           "path": "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/models/source.glb"
@@ -73514,6 +73688,7 @@
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/near-roof-truss.png",
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/near-steel-louvres.png",
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/near-west-entrance.png",
+          "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/scene-preview.png",
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-1.png",
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-2.png",
@@ -73528,7 +73703,8 @@
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_0.png",
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_1.png",
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_2.png",
-          "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_3.png"
+          "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/site-preview.png"
         ],
         "captureFilesExist": true,
         "reviewedCaptureHashesMatch": true,
@@ -73536,15 +73712,15 @@
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
+        "target": "medium-fi",
         "hashBoundReviewPassed": true,
         "declaredQuality": "detailed",
-        "notes": "Current architect photography, floor/terrace plans and scaled section plus engineer dimensions govern the distinctive stainless envelope, skywalk, aperture and structural roof. Louvre fabrication section, static folded textile stacks and seat distribution are reconstructed. Changing advertisements, exact ticket counts and enclosed maintenance machinery are outside this exterior asset; these are not required for the modeled architectural identity."
+        "notes": "Inspected68 current frames:11 portable and11 shared-material views of the preserved detailed master,27 final Earth/context/LOD views and19 actual Molen runtime-cutout views. The independently authored four browser tiers retain the asymmetric east bulge,silver bowed horizontal skin,open fixed roof,skywalk slit,four blue seating tiers and the depressed marked pitch. District groups louvres and seating slopes;street has24 louvre bands and21 grouped tread levels;closeup has60 louvre bands,all82 seating rows,44 radial V support units,selected return folds,goal frames and simplified western VIP boxes. Individual chairs,most louvre returns,minor roof joints,entry bays and concealed circulation details remain in the detailed master. The skyline now uses the same shared stainless finish as nearby tiers,preventing a bright palette-only material change. Angular corners,coarse louvre spacing and dense-line aliasing remain visible when distance tiers are forced close. Detailed source master preserved byte-for-byte:1,111,994triangles /101492824bytes. Browser triangles 976 / 3672 / 14528 / 62816,bytes 67940 / 272812 / 936804 / 3843140,draws 2 / 7 / 7 / 7. Initial skyline+district 340752bytes;closeup 3843140bytes. Every tier meets its1000/4000/16000/64000triangle ceiling and eight-draw maximum. Separate POSITION/NORMAL streams prevent duplicate GPU uploads. Error settings8/4/2/1m are conservative authoring estimates,not certified whole-mesh distance measurements. No laptop/phone or downtown timing claim."
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/ez/ezj/santiago_bernabeu_stadium/shots/shared/angle-1.png",

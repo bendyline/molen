@@ -2,6 +2,7 @@
 // possibly-mismatched install. See docs-src/guide/three-surface.md.
 
 export type {
+  CloudType,
   CustomSkyData,
   EarthObserver,
   EarthSkyData,
@@ -64,6 +65,7 @@ export { createIndexedDbMaterialStore } from './material-store';
 export { lerp3, nlerp4 } from './math';
 export type { ModelSignals, ModelSignalVisual } from './model-signals';
 export { createModelSignalVisual, readModelSignals } from './model-signals';
+export { observePageActivity } from './page-activity';
 export type { CameraTarget, InputRuleOptions } from './scene-bindings';
 export { applyInputRules, applySceneCamera, followCameraPose } from './scene-bindings';
 export type { CelestialPosition, EarthSkyState } from './sky/astronomy';
@@ -112,4 +114,6 @@ export {
   SkyReflections,
 } from './three/sky-reflections';
 export type { StaticBatchOptions } from './three/static-batches';
+export type { CloudQuality } from './weather/clouds';
+export type { WeatherVisualOptions } from './weather/visual';
 export { WeatherVisual } from './weather/visual';

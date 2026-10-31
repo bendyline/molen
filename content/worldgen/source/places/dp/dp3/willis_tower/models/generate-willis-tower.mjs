@@ -17,6 +17,7 @@ import {
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { MATERIAL_REPEAT_METERS } from '../../../../../../../../packages/worldgen/scripts/standard-materials.mjs';
 import { structureAssetSidecarPath } from '../../../../../../../../packages/worldgen/scripts/structure-asset-paths.mjs';
+import { readOptionalJson } from '../../../../../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { structureSourceDirectory } from '../../../../../../../../packages/worldgen/scripts/structure-source-paths.mjs';
 import { willisStudies } from './willis-tower-model.mjs';
 
@@ -152,6 +153,9 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     assetId = `molen.worldgen.structure.${key}`,
     dir = structureSourceDirectory(key),
     modelPath = resolve(dir, 'models/source.glb');
+  const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+  if (reviewScope && reviewScope.fidelityTarget !== 'medium-fi')
+    throw new Error(`${asset.id}: review scope must declare the current medium-fi standard`);
   try {
     const source = JSON.parse(await readFile(resolve(dir, 'source.json'), 'utf8'));
     if (hash(await readFile(modelPath)) !== source.files.models[0].sha256)
@@ -197,7 +201,24 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     assetId,
     category: 'skyscraper',
     quality: 'detailed',
+    ...(reviewScope
+      ? {
+          fidelityTarget: reviewScope.fidelityTarget,
+          appearance: reviewScope.appearance,
+          mediumFiContext: reviewScope.mediumFiContext,
+          runtimeLodOverlay: reviewScope.runtimeLodOverlay,
+          qaLodCameras: reviewScope.qaLodCameras ?? [],
+          limitations: [...asset.limitations, ...(reviewScope.limitations ?? [])],
+        }
+      : {}),
     actualBounds: { min, max },
+    mesh: {
+      triangles: mesh.triangleCount,
+      vertices: mesh.vertexCount,
+      materials: mesh.groups.length,
+      bytes: glb.length,
+      sha256: hash(glb),
+    },
     geometrySource:
       'Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.',
     sourceLicense:
@@ -311,7 +332,14 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
       scripts: [],
       textures: [],
       sounds: [],
-      documents: ['README.md', 'preview.png', ...optional],
+      documents: [
+        ...new Set([
+          'README.md',
+          'preview.png',
+          ...optional,
+          ...(reviewScope?.sourceDocuments ?? []),
+        ]),
+      ],
     },
   };
   const readme = `# ${asset.title} — ${asset.id}\n\n![Lit Molen preview](preview.png)\n\n${asset.visualBrief}\n\n## Identity and evidence\n\nExact catalog identity **${asset.wikidataId}**. Source facts: \`${JSON.stringify(asset.sourceFacts)}\`. The source specification keeps published dimensions separate from reconstructed details.\n\n${asset.referencePages.map((url) => `- ${url}`).join('\n')}\n\n${asset.referenceRights}\n\n## Authored geometry and materials\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles, ${mesh.vertexCount.toLocaleString('en-US')} vertices, ${mesh.groups.length} surface groups; ${glb.length.toLocaleString('en-US')} source bytes. SHA-256: \`${hash(glb)}\`. Actual bounds: ${min.map((n) => n.toFixed(3)).join(', ')} to ${max.map((n) => n.toFixed(3)).join(', ')} m.\n\n${spec.materialMethod} Shared references: ${spec.sharedSurfaces.map((surface) => `\`${surface.ref}\` (${surface.repeatMeters.join(' × ')} m)`).join(', ')}. Model-native axes: ${JSON.stringify(asset.nativeAxes)}.\n\n## Placement proposal\n\n${asset.geographicProposal.notes} Proposed anchor ${asset.geographicProposal.anchor.join(', ')} (longitude, latitude), heading ${asset.geographicProposal.heading} radians. Elevation policy: **${asset.geographicProposal.elevationMode}**. This is a reviewable proposal, not a completed site-fit certification. The tower uses terrain contact at its outside paving grade.\n\n## Limitations and review\n\n${asset.limitations.map((note) => `- ${note}`).join('\n')}\n\nNear/far fixtures are in \`spec.qaCameras\`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Rendering, shared-material alignment, maximum-fidelity and geographic reviews remain pending until their hash-bound reports exist.\n\nRegenerate with \`node content/worldgen/source/places/dp/dp3/willis_tower/models/generate-willis-tower.mjs --ids=${asset.id}\`; add \`--check\` for reproducibility. Editable component recipes are in \`content/worldgen/source/places/dp/dp3/willis_tower/models/willis-tower-model.mjs\`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.\n`;

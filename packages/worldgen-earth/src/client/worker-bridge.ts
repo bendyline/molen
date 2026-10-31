@@ -44,6 +44,11 @@ export interface WorldgenGenerateRequest {
   tierOffset?: number;
   /** Extra keep multiplier on the plant scatter (default 1). */
   keep?: number;
+  /**
+   * How soon the view needs the tile, lower first, read when a worker frees (the terrain
+   * layer context's `priority`). A pool starts the most urgent waiting tile next.
+   */
+  priority?: () => number;
 }
 
 /** Produces tile output somewhere: in a worker, in-thread, or from a cache in front of either. */
@@ -234,6 +239,12 @@ export function createWorldgenWorkerBridge(
  * Several identically configured workers behind one generator: each tile goes to the worker with
  * the fewest tiles in flight. Generation is deterministic per tile, so which worker builds it
  * does not change the output; a city's first view no longer waits on one worker's queue.
+ *
+ * Tiles wait here, not in the workers, and a free worker takes the most urgent (see
+ * `WorldgenGenerateRequest.priority`; request order among equals). Posted at once, a jet's tiles
+ * queued in each worker in request order: by their turn it had flown on, and the nearest ground
+ * waited a second or more behind ground it had passed. Each worker keeps a second tile posted,
+ * so it starts that one as soon as it finishes the first.
  */
 export function createWorldgenWorkerPool(
   workers: readonly WorkerLike[],
@@ -244,20 +255,77 @@ export function createWorldgenWorkerPool(
     bridge: createWorldgenWorkerBridge(worker, options),
     busy: 0,
   }));
+  interface Waiting {
+    request: WorldgenGenerateRequest;
+    signal: AbortSignal;
+    resolve: (output: WorldgenTileOutput | undefined) => void;
+    reject: (error: unknown) => void;
+    cleanup: () => void;
+  }
+  const waiting: Waiting[] = [];
+  let disposed = false;
+  const pump = (): void => {
+    while (!disposed && waiting.length > 0) {
+      let target = members[0] as (typeof members)[number];
+      for (const member of members) if (member.busy < target.busy) target = member;
+      if (target.busy >= POSTED_PER_WORKER) return;
+      let best = 0;
+      let bestPriority = Number.POSITIVE_INFINITY;
+      for (let i = 0; i < waiting.length; i++) {
+        const priority = waiting[i]?.request.priority?.() ?? 0;
+        if (priority < bestPriority) {
+          best = i;
+          bestPriority = priority;
+        }
+      }
+      const job = waiting.splice(best, 1)[0] as Waiting;
+      job.cleanup();
+      const member = target;
+      member.busy++;
+      member.bridge
+        .generate(job.request, job.signal)
+        .then(job.resolve, job.reject)
+        .finally(() => {
+          member.busy--;
+          pump();
+        });
+    }
+  };
   return {
     prepare(request): void {
       (members[0] as (typeof members)[number]).bridge.prepare?.(request);
     },
     generate(request, signal) {
-      let target = members[0] as (typeof members)[number];
-      for (const member of members) if (member.busy < target.busy) target = member;
-      target.busy++;
-      return target.bridge.generate(request, signal).finally(() => {
-        target.busy--;
+      if (disposed || signal.aborted) return Promise.resolve(undefined);
+      return new Promise((resolve, reject) => {
+        // A tile abandoned while it waits settles at once, freeing its stream slot.
+        const abort = (): void => {
+          const index = waiting.indexOf(job);
+          if (index >= 0) waiting.splice(index, 1);
+          resolve(undefined);
+        };
+        const job: Waiting = {
+          request,
+          signal,
+          resolve,
+          reject,
+          cleanup: () => signal.removeEventListener('abort', abort),
+        };
+        signal.addEventListener('abort', abort, { once: true });
+        waiting.push(job);
+        pump();
       });
     },
     dispose(): void {
+      disposed = true;
+      for (const job of waiting.splice(0)) {
+        job.cleanup();
+        job.resolve(undefined);
+      }
       for (const member of members) member.bridge.dispose();
     },
   };
 }
+
+/** Tiles posted to one worker at a time: the one it is building and the next. */
+const POSTED_PER_WORKER = 2;

@@ -1,0 +1,442 @@
+{
+  "id": "akmens_tilts",
+  "title": "Akmens Bridge",
+  "wikidataId": "Q2041341",
+  "referenceCoordinate": {
+    "longitude": 24.10138889,
+    "latitude": 56.94472222
+  },
+  "module": "content/worldgen/source/places/ud/ud1/akmens_tilts/models/akmens-model.mjs",
+  "generator": "content/worldgen/source/places/ud/ud1/akmens_tilts/models/generate-akmens.mjs",
+  "builder": "buildAkmensLevel",
+  "surfaces": {
+    "far": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.93
+    },
+    "fascia": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.62
+    },
+    "road": {
+      "slot": "roof",
+      "graph": "concrete_plain",
+      "roughness": 0.96
+    },
+    "mark": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 1
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.45
+    }
+  },
+  "exportLabel": "Molen original Akmens Bridge",
+  "expectedDraftMasterHash": "sha256:4174dd4eee0cbfef851a50a703a7f5b07746b3dbf4600caf1ded25635a397cf5",
+  "visualBrief": "Granite-pier bridge with dark haunched steel girders, broad roadway and twin tram tracks, stepped sidewalks, iron panel railings and eight distinctive seven-globe torch fixtures; curved modern streetlights and catenary.",
+  "nativeAxes": "+X northeast/Old Riga; -X southwest/Pardaugava; +Z southeast/upstream; -Z northwest/downstream.",
+  "sourceFacts": {
+    "identity": "Exact-QID way170091344 and current PMTiles crossing/track/sidewalk records.",
+    "mappedFootprint": {
+      "length": 521.983,
+      "width": 34.486
+    },
+    "reconstructionControls": {
+      "west": -262,
+      "east": 262,
+      "halfWidth": 13.55,
+      "roadEdges": [
+        -10.35,
+        10.5
+      ],
+      "deckEnds": [
+        7.15,
+        7.35
+      ],
+      "crown": 1.05,
+      "piers": [
+        -196,
+        -137,
+        -78,
+        -19,
+        40,
+        99,
+        174
+      ],
+      "torchStations": [
+        -250,
+        -137,
+        99,
+        242
+      ],
+      "trackCenters": [
+        -1.15,
+        1.95
+      ],
+      "gauge": 1.524
+    }
+  },
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Puente_de_Piedra,_Riga,_Letonia,_2012-08-07,_DD_04.JPG",
+      "author": "Diego Delso",
+      "license": "CC BY-SA 3.0",
+      "use": "Ordinary lamp detail establishes six surrounding globes and one raised central globe, cast metal socket/scroll supports, stepped granite pilaster and railing panels. No photo pixels used."
+    },
+    {
+      "url": "https://www.socintegra.lv/en/audio-3",
+      "imageUrl": "https://www.socintegra.lv/wp-content/uploads/2022/09/Akmens_tilts_Riga_2008.jpg",
+      "license": "Unverified; private inspection only, not redistributed",
+      "use": "Side view: dark haunched girders and vertical stiffeners, granite-faced piers, pale fascia and ornate railings."
+    },
+    {
+      "url": "https://www.lsm.lv/raksts/zinas/latvija/02.05.2026-akmens-tilta-parbuve-varetu-sakties-tikai-pec-vansu-tilta-sakartosanas.a645414/",
+      "imageUrl": "https://static.lsm.lv/media/2026/05/large/1/t7jv.jpg",
+      "license": "Unverified; private inspection only, not redistributed",
+      "use": "Ordinary whole bridge photograph: repeated granite supports and haunched beam silhouette toward Old Riga."
+    },
+    {
+      "url": "https://topgid.net/5711-kamennyj-most.html",
+      "imageUrls": [
+        "https://topgid.net/uploads/posts/2020-01/5e1a226737f38-5711-kamennyj-most.jpeg",
+        "https://topgid.net/uploads/posts/2020-12/1607615328_kamennyj-most-v-rige1.jpg"
+      ],
+      "license": "Unverified; private inspection only, not redistributed",
+      "use": "Ordinary aerial photographs establish the paired tram tracks, sidewalks, four paired decorative lamp stations, modern curved street lights and signed Old Riga/Pardaugava orientation."
+    }
+  ],
+  "limitations": [
+    "Original static medium-fi exterior from ordinary photographs and standard PMTiles. Exact-QID mapped envelope is521.983m by34.486m including wider end platforms; the core bridge is approximately27m wide. The503.12m catalog length remains distinct. Source road/sidewalks extend to524m to overlap coarse mapped bank seams; this is an explicit fit allowance, not a measured structural length.",
+    "Granite-faced intermediate piers, dark haunched steel girders, vertical stiffeners and bearings, pale fascia, complete crowned roadway, two tram tracks, sidewalks, open iron railing cells with solid ornament panels, eight seven-globe fixtures and modern streetlight/catenary poles are modeled. Intermediate support stations, underside sections, pier batter, vertical profiles and ornate motifs are photo/map reconstructions, not surveyed/engineering measurements. The two internal torch stations follow mapped side bulges nearX-137 and99m.",
+    "Detailed master preserves eight longitudinal girders, dense stiffeners and transverse diaphragms, fully modeled cast lamp profiles/scrolls, individual globe/post shapes, raised three-dimensional railing ornaments and masonry course seams. Close-up uses four girders, coarser stiffeners, planar motif badges and texture-led masonry. Street/district aggregate rail cells, supports, lamps and wires; skyline keeps deck, piers and torch-pilaster silhouette.",
+    "Four existing shared256px graphs: stone_granite,stone_limestone_raw,metal_painted and concrete_plain with metric UVs and linear vertex tints; local opaque globe and marking materials. No new/private/embedded images. Granite grain plus modeled courses approximates block masonry; concrete grain approximates road surfacing. Globes are static daytime opaque glass; no night-light/traffic simulation.",
+    "Native placement uses the standard viewer water plane from current PMTiles/Mapzen, not surveyed sea level. Raw river terrain/water and neighboring records are retained. Coarse shore heights and generated road/rail approach supports can produce steep terraces; bank retaining works, ramps, historic buildings and the separate Railway Bridge are outside this asset. Current physical device timings remain unmeasured.",
+    "Bank road-replacement outline includes a small rectangular seam allowance at both ends, to cover coarse vector segmentation. This replaces only the crossing and connected approaches; independent bank roads remain. Model road/sidewalk overlap covers these seams; support grades outside the bridge remain approximate."
+  ],
+  "cameras": [
+    {
+      "name": "granite-piers-and-dark-girders",
+      "position": [
+        70,
+        35,
+        340
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 68
+    },
+    {
+      "name": "haunched-girder-and-granite-pier",
+      "position": [
+        -115,
+        5.8,
+        34
+      ],
+      "lookAt": [
+        -137,
+        5.2,
+        10
+      ],
+      "fov": 65
+    },
+    {
+      "name": "seven-globe-lamp",
+      "position": [
+        106,
+        16.8,
+        23
+      ],
+      "lookAt": [
+        99,
+        12.7,
+        14.2
+      ],
+      "fov": 58
+    },
+    {
+      "name": "tram-deck-and-ornate-rail",
+      "position": [
+        -150,
+        11,
+        11.6
+      ],
+      "lookAt": [
+        85,
+        10,
+        6
+      ],
+      "fov": 65
+    },
+    {
+      "name": "district-context",
+      "position": [
+        300,
+        125,
+        340
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 66
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/ud1/akmens_tilts/models/akmens-model.mjs",
+    "export": "buildAkmensSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "fascia": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.9
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62
+      },
+      "road": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "mark": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45
+      }
+    },
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAkmensDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "fascia": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "street": {
+        "export": "buildAkmensStreet",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "fascia": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        },
+        "errorMeters": 0.13
+      },
+      "closeup": {
+        "export": "buildAkmensCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "fascia": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "road": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "mark": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45
+          }
+        },
+        "errorMeters": 0.065
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.baltic_warehouse",
+    "scale": 1
+  },
+  "appearance": {
+    "identity": "Long low haunched steel beam bridge with granite piers and seven-globe lamp clusters.",
+    "master": "Eight girders with vertical stiffeners, bearings and diaphragms; all eight seven-globe lamp clusters and solid ornamental railing plaques."
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-granite-piers-and-dark-girders",
+      "position": [
+        70,
+        35,
+        340
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "district-haunched-girder-and-granite-pier",
+      "position": [
+        -115,
+        5.8,
+        34
+      ],
+      "lookAt": [
+        -137,
+        5.2,
+        10
+      ],
+      "fov": 65,
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-seven-globe-lamp",
+      "position": [
+        106,
+        16.8,
+        23
+      ],
+      "lookAt": [
+        99,
+        12.7,
+        14.2
+      ],
+      "fov": 58,
+      "reviewLod": "street"
+    },
+    {
+      "name": "closeup-tram-deck-and-ornate-rail",
+      "position": [
+        -150,
+        11,
+        11.6
+      ],
+      "lookAt": [
+        85,
+        10,
+        6
+      ],
+      "fov": 65,
+      "reviewLod": "closeup"
+    }
+  ]
+}

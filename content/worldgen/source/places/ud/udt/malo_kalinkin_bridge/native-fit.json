@@ -1,0 +1,46 @@
+{
+  "format": "molen/structure-native-fit@1",
+  "status": "generation-controls; final acceptance belongs to qa.json",
+  "originMeters": 10.862507820129167,
+  "gridFrame": "east-south meters",
+  "sources": {
+    "vector": {
+      "id": "protomaps-basemap",
+      "release": "2026-10-26",
+      "distribution": "local",
+      "sourceUrl": "https://build.protomaps.com/20261026.pmtiles",
+      "profile": "protomaps-basemap@1",
+      "attribution": "© OpenStreetMap contributors",
+      "extractHash": "sha256:8930a21b0f94c1169030cfded22a8b266f7d245fe5ba9241f1656eff99fb27b1"
+    },
+    "elevation": {
+      "id": "mapzen-terrain-tiles",
+      "urlTemplate": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+      "encoding": "terrarium",
+      "outputEncoding": "png16",
+      "outputHeightRange": {
+        "min": -1000,
+        "max": 9000
+      },
+      "observedHeightRange": [
+        -191.62109375,
+        60.765625
+      ],
+      "attribution": "Mapzen Terrain Tiles; United States 3DEP, GMTED2010, SRTM, ETOPO1 and other national elevation data courtesy of the U.S. Geological Survey and the sources listed in joerd",
+      "extractHash": "sha256:9718af2c075fc0722d8c479e3827b80091ed6430c75bf8a2bfcf7baa6d714200"
+    }
+  },
+  "bounds": [
+    30.280975499691884,
+    59.91663919841627,
+    30.28149680030812,
+    59.91681899757502
+  ],
+  "limitations": [
+    "Original static medium-fi reconstruction from two ordinary exterior pictures and current standard PMTiles. The exact mapped envelope is25.622m by16.201m; underlying road/sidewalk runs are about23.5m long with a skew of approximately-0.138m per transverse meter. Envelope width/length and reconstructed member dimensions are not surveyed dimensions.",
+    "Three open spans with shallow scalloped green girder fascia, two granite-faced transverse piers with round drum ends, four tapering obelisks on curved bases, outboard hanging oval lanterns and gold-colored finials, continuous roadway, raised sidewalks, two tram tracks and ornate iron railings are modeled. Pier positions, batter, vertical profiles, hanging fixture dimensions and repeating scroll/circle motifs are photo/map approximations.",
+    "Detailed master retains eight girders, denser scallops, wrought railing circles and paired scrolling rods, masonry course joints, lantern ribs and rivet-like fasteners. Browser close-up has six girders and coarser circles/scrolls. Street/district merge motifs and lantern profiles; skyline keeps three open spans,round pier ends and four obelisk silhouettes.",
+    "Four existing shared256px graphs: stone_granite,metal_painted,concrete_plain and stone_limestone_raw, metric UV repeats and linear vertex tints. Local opaque lantern glass and gold-colored finials. No private or embedded images. Shared textures approximate stone blocks/painted iron/road rather than exact surface wear. Lanterns are static daylight geometry.",
+    "Native origin follows the standard viewer water plane from PMTiles/Mapzen, not surveyed sea level. Coarse water fragments can have stepped elevations and raw shore ground is approximate. Connected road/rail approaches use generated supports with steep sidewalls. Exact canal embankments, nearby historic buildings, road signs and the surrounding street/catenary network are outside the bridge asset. No physical laptop/phone timing claim."
+  ]
+}

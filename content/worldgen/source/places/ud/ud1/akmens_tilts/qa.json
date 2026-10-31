@@ -1,0 +1,1296 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.akmens_tilts",
+  "reviewedOn": "2026-10-29",
+  "inputHash": "sha256:cf2782ff6734894dc356b65dc31db87aa715beb1c91900f992013d1d04e9a1e2",
+  "sourceHash": "sha256:4174dd4eee0cbfef851a50a703a7f5b07746b3dbf4600caf1ded25635a397cf5",
+  "runtimeHash": "sha256:3fe7acb236b883a7f922ed76c1c018946a614b4e614f90b2c721c14344e3f96b",
+  "captureReportHash": "sha256:0961f3f8a0479f3d12dfef11d1776b13f8f3d0f49f95e5ad1a0f6770e03b26db",
+  "visualReview": {
+    "status": "passed",
+    "inputHash": "sha256:cf2782ff6734894dc356b65dc31db87aa715beb1c91900f992013d1d04e9a1e2",
+    "inspectedFrames": [
+      "shots/scene-preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/granite-piers-and-dark-girders.png",
+      "shots/haunched-girder-and-granite-pier.png",
+      "shots/seven-globe-lamp.png",
+      "shots/tram-deck-and-ornate-rail.png",
+      "shots/district-context.png"
+    ],
+    "captureReportHash": "sha256:0961f3f8a0479f3d12dfef11d1776b13f8f3d0f49f95e5ad1a0f6770e03b26db",
+    "notes": "Inspected66 current frames:10 portable,9 shared-material stage,26 medium-fi/context/LOD and21 native PMTiles views. Complete low beam-bridge exterior: granite-faced piers, dark haunched girders with stiffeners/bearings, pale fascia, crowned roadway and both raised sidewalks, twin tram tracks, iron railings with solid ornament plaques, eight seven-globe torch fixtures, modern curved streetlights and catenary. Actual rays verify open water spans, continuous deck/walks, seven distinct globes on every detailed fixture and genuine open railing cells beside solid panels. Coarser tiers aggregate girders, stiffeners, rails, lamp profiles and wires while retaining the long low silhouette."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inputHash": "sha256:cf2782ff6734894dc356b65dc31db87aa715beb1c91900f992013d1d04e9a1e2",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/granite-piers-and-dark-girders.png",
+      "shots/shared/haunched-girder-and-granite-pier.png",
+      "shots/shared/seven-globe-lamp.png",
+      "shots/shared/tram-deck-and-ornate-rail.png",
+      "shots/shared/district-context.png"
+    ],
+    "captureReportHash": "sha256:46e3cd02aeddc78d2651e5cb05b66751aee3b49ddfc941371a0fa5e512321f75",
+    "notes": "Four existing shared256px graphs: stone_granite for piers/pilasters and paving,stone_limestone_raw for pale fascia,metal_painted for girders/railings/poles and concrete_plain for road. Metric UV repeats and linear sRGB-derived vertex tints. Two local opaque globe/marking materials; no private or embedded images. Granite texture plus source course seams approximates block masonry. Globes remain static daylight geometry. The four graphs load once; model and approach-support geometry dispose.",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:cf2782ff6734894dc356b65dc31db87aa715beb1c91900f992013d1d04e9a1e2",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/granite-piers-and-dark-girders.png",
+      "medium-fi/haunched-girder-and-granite-pier.png",
+      "medium-fi/seven-globe-lamp.png",
+      "medium-fi/tram-deck-and-ornate-rail.png",
+      "medium-fi/district-context.png",
+      "medium-fi/skyline-granite-piers-and-dark-girders.png",
+      "medium-fi/district-haunched-girder-and-granite-pier.png",
+      "medium-fi/street-seven-globe-lamp.png",
+      "medium-fi/closeup-tram-deck-and-ornate-rail.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "captureReportHash": "sha256:56716275ea40387f3e693523e2d747b855ba4a08a83964a1554ad8ba9fe9f2de",
+    "notes": "Detailed source 214156 triangles,25702380bytes. Browser triangles 704 / 3968 / 12548 / 60080,bytes 58104 / 351312 / 1077304 / 5593652,draws 1 / 6 / 6 / 6. Initial skyline+district 409416bytes. All four meet1000/4000/16000/64000triangles and at most6draws,with separate GPU position/normal streams. Detailed master retains eight longitudinal girders,dense stiffeners/diaphragms,masonry seams,cast lamp profiles/scrolls and raised railing ornaments. Browser close-up keeps four girders,coarser stiffeners,planar motif badges and texture-led masonry. No physical laptop/phone timing claim.",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:f2790984409bff2f1004f482318a1ff201589ed07f219f8c767ded53e9d38743",
+    "mapFrameHash": "sha256:f0ff7dd9a525cd43fe8df2eb4ab72ba73b04f437ef9a25b24264b02ba3904b31",
+    "notes": "Exact-QID way170091344 provides mapped521.983m by34.486m envelope including flared end platforms; core width approximately27m. Published503.12m length is retained as a distinct catalog fact. Road/walk geometry extends524m for bank seam overlap. Current PMTiles main crossing35184377084000,tram35184894933680 and distinct walkway records establish fit. Anchor[24.101202266,56.944660601],heading0.732835788672: +X northeast/Old Riga,-X southwest/Pardaugava,+Z southeast/upstream,-Z northwest/downstream. Native water-relative origin5.151400089263916m follows the standard viewer water plane; this is not surveyed sea level. Internal torch stations nearX-137 and99 follow mapped side bulges; support stations,haunches,sections,vertical grades and ornament remain photo/map approximations. All five loaded tiers preserve577 building records,the independent road records,the original1146 raw transportation inputs,rawDEM,ground mesh and water. The bounded crossing/connected approach replacement reduces1146to1123 rendered road records. Six outside-end roadway/tram-width samples stay within0.031371m of the authored end datum across every tier. Small rectangular end allowances fix the earlier skewed-vector tram seam. Other raw roads may remain beneath the visible bridge or have different sidewalk/rail paving lifts. The separate Railway Bridge records remain independent; no replacement or resurvey claim for that structure. Coarse shore heights and generated approach supports create steep terraces at both banks; exact embankment/underpass geometry and the surrounding road system remain outside this bridge asset. Failed model loading retains all1146 roads and native ground/water. Unloading releases all model/support geometry and restores the unmodified viewer inputs."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete scoped static exterior and approximate native placement. Detailed source 214156 triangles,25702380bytes. Browser triangles 704 / 3968 / 12548 / 60080,bytes 58104 / 351312 / 1077304 / 5593652,draws 1 / 6 / 6 / 6. Initial skyline+district 409416bytes. All four meet1000/4000/16000/64000triangles and at most6draws,with separate GPU position/normal streams. Detailed master retains eight longitudinal girders,dense stiffeners/diaphragms,masonry seams,cast lamp profiles/scrolls and raised railing ornaments. Browser close-up keeps four girders,coarser stiffeners,planar motif badges and texture-led masonry. No physical laptop/phone timing claim."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/models/source.glb",
+        "hash": "sha256:4174dd4eee0cbfef851a50a703a7f5b07746b3dbf4600caf1ded25635a397cf5",
+        "bytes": 25702380,
+        "triangles": 214156,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -262.0000915527344,
+          -0.800000011920929,
+          -17.25
+        ],
+        "max": [
+          262.00006103515625,
+          17.600000381469727,
+          17.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/ud/ud1/akmens_tilts/model.glb",
+        "hash": "sha256:3fe7acb236b883a7f922ed76c1c018946a614b4e614f90b2c721c14344e3f96b",
+        "bytes": 25701792,
+        "triangles": 214156,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -262.0000915527344,
+          -0.800000011920929,
+          -17.25
+        ],
+        "max": [
+          262.00006103515625,
+          17.600000381469727,
+          17.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/ud/ud1/akmens_tilts/model.skyline.glb",
+        "hash": "sha256:251b95f87cfba9cc02d6147ffa4e350df202f8263da35f237f7fdef082fa7899",
+        "bytes": 58104,
+        "triangles": 704,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -262,
+          -0.800000011920929,
+          -17.25
+        ],
+        "max": [
+          262,
+          12.03819751739502,
+          17.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/ud/ud1/akmens_tilts/model.district.glb",
+        "hash": "sha256:ffab305d17ba4f242d8e72848b0db537400457eebeeb3cbcf88d8a864057b264",
+        "bytes": 351312,
+        "triangles": 3968,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -262,
+          -0.800000011920929,
+          -17.25
+        ],
+        "max": [
+          262,
+          17.600000381469727,
+          17.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/ud/ud1/akmens_tilts/model.street.glb",
+        "hash": "sha256:06ba9f460b4b4b2c34dc4bb3e51dcb6d717c71ee89244567f0fc4111e78c2f9b",
+        "bytes": 1077304,
+        "triangles": 12548,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -262.0000915527344,
+          -0.800000011920929,
+          -17.25
+        ],
+        "max": [
+          262.00006103515625,
+          17.601022720336914,
+          17.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/ud/ud1/akmens_tilts/model.closeup.glb",
+        "hash": "sha256:237dd0883c6a4ff46d2b6349addc3aaedf54df0ceac1b1e2fdb42da5b223be81",
+        "bytes": 5593652,
+        "triangles": 60080,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -262.0000915527344,
+          -0.800000011920929,
+          -17.25
+        ],
+        "max": [
+          262.00006103515625,
+          17.600000381469727,
+          17.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "checks": [
+      {
+        "check": "six-clean-Khronos-GLBs",
+        "passed": true
+      },
+      {
+        "check": "three-focused-deck-pier-open-span-seven-globe-railing-and-deterministic-LOD-tests",
+        "passed": true,
+        "notes": "Actual GLB rays check source/runtime/all tiers,all eight detailed seven-globe fixtures,real railing openings and solid plaques. Source/master preserved during deterministic LOD rebuild; shared graphs and separate GPU streams checked."
+      },
+      {
+        "check": "scene-and30-ticks",
+        "passed": true,
+        "notes": "Valid scene;30ticks,0events;sha256:4639e3a5549e60f5e836c342a95ece9c00a77ddd4784e5fb9e028f2f90920f62"
+      }
+    ]
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:fdf49d040c479ca8636c5d9d8d7ca1c298f7728bd2644fa98635486cd8828244",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:251b95f87cfba9cc02d6147ffa4e350df202f8263da35f237f7fdef082fa7899",
+        "bytes": 58104,
+        "gzipBytes": 12348,
+        "triangles": 704,
+        "cpuBytes": 56712,
+        "gpuBytes": 56712,
+        "errorMeters": 0.7,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:ffab305d17ba4f242d8e72848b0db537400457eebeeb3cbcf88d8a864057b264",
+        "bytes": 351312,
+        "gzipBytes": 61517,
+        "triangles": 3968,
+        "cpuBytes": 344208,
+        "gpuBytes": 344208,
+        "errorMeters": 0.35,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:06ba9f460b4b4b2c34dc4bb3e51dcb6d717c71ee89244567f0fc4111e78c2f9b",
+        "bytes": 1077304,
+        "gzipBytes": 194070,
+        "triangles": 12548,
+        "cpuBytes": 1070148,
+        "gpuBytes": 1070148,
+        "errorMeters": 0.13,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:237dd0883c6a4ff46d2b6349addc3aaedf54df0ceac1b1e2fdb42da5b223be81",
+        "bytes": 5593652,
+        "gzipBytes": 1086137,
+        "triangles": 60080,
+        "cpuBytes": 5586480,
+        "gpuBytes": 5586480,
+        "errorMeters": 0.065,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 409416,
+    "notes": "Detailed source 214156 triangles,25702380bytes. Browser triangles 704 / 3968 / 12548 / 60080,bytes 58104 / 351312 / 1077304 / 5593652,draws 1 / 6 / 6 / 6. Initial skyline+district 409416bytes. All four meet1000/4000/16000/64000triangles and at most6draws,with separate GPU position/normal streams. Detailed master retains eight longitudinal girders,dense stiffeners/diaphragms,masonry seams,cast lamp profiles/scrolls and raised railing ornaments. Browser close-up keeps four girders,coarser stiffeners,planar motif badges and texture-led masonry. No physical laptop/phone timing claim."
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:cf2782ff6734894dc356b65dc31db87aa715beb1c91900f992013d1d04e9a1e2",
+    "visualFit": {
+      "status": "passed",
+      "basis": "All five loaded tiers preserve577 building records,the independent road records,the original1146 raw transportation inputs,rawDEM,ground mesh and water. The bounded crossing/connected approach replacement reduces1146to1123 rendered road records. Six outside-end roadway/tram-width samples stay within0.031371m of the authored end datum across every tier. Small rectangular end allowances fix the earlier skewed-vector tram seam. Other raw roads may remain beneath the visible bridge or have different sidewalk/rail paving lifts. The separate Railway Bridge records remain independent; no replacement or resurvey claim for that structure. Coarse shore heights and generated approach supports create steep terraces at both banks; exact embankment/underpass geometry and the surrounding road system remain outside this bridge asset. Failed model loading retains all1146 roads and native ground/water. Unloading releases all model/support geometry and restores the unmodified viewer inputs."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:cf2782ff6734894dc356b65dc31db87aa715beb1c91900f992013d1d04e9a1e2",
+      "reviewedOn": "2026-10-29",
+      "method": "Inspected66 current frames:10 portable,9 shared-material stage,26 medium-fi/context/LOD and21 native PMTiles views. Complete low beam-bridge exterior: granite-faced piers, dark haunched girders with stiffeners/bearings, pale fascia, crowned roadway and both raised sidewalks, twin tram tracks, iron railings with solid ornament plaques, eight seven-globe torch fixtures, modern curved streetlights and catenary. Actual rays verify open water spans, continuous deck/walks, seven distinct globes on every detailed fixture and genuine open railing cells beside solid panels. Coarser tiers aggregate girders, stiffeners, rails, lamp profiles and wires while retaining the long low silhouette.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/scene-preview.png",
+          "hash": "sha256:8409d829ad5973156b67719d6c6ac277e9ca9ee6e389f38bb97a6bd4a63a738f"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/turntable/angle_0.png",
+          "hash": "sha256:627eaf5521f70cd88f1ba1838c6066c5a98addfd61903b65f11949055d1d5dba"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/turntable/angle_1.png",
+          "hash": "sha256:998eee20c16bb4bcf21f07afe44f4f44cc1d3ccea951a12fb49f8d4ccc8bc2e7"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/turntable/angle_2.png",
+          "hash": "sha256:570a0180b0fd7476875a09e779b7444b09b0dcf27d27aac7d8717026468622a3"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/turntable/angle_3.png",
+          "hash": "sha256:01459c913cbc73f4255aef69a08c0460180b9671d65e64d57ac1ee5b42969029"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/granite-piers-and-dark-girders.png",
+          "hash": "sha256:8409d829ad5973156b67719d6c6ac277e9ca9ee6e389f38bb97a6bd4a63a738f"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/haunched-girder-and-granite-pier.png",
+          "hash": "sha256:13ff60a6284818822cc526ec3515f273bff09ff04f986a158a0c4888055702fc"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/seven-globe-lamp.png",
+          "hash": "sha256:62d3415afe4697aa3043d5016ec1fc7b06aa05618b97e530a753d864f8e1a99a"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/tram-deck-and-ornate-rail.png",
+          "hash": "sha256:48379f2247649270ccd0bddf8f622222a743624f53171e8f38e45ea81f4dd85d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/district-context.png",
+          "hash": "sha256:edc53104afbc8e752f31de680405c73c42de5dee42dde088cd2b4ace372e79ee"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-0.png",
+          "hash": "sha256:66d12dd9e780b8ffd4593137c178de1c11ebd1805388caf5eb03897dde9b27bc"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-1.png",
+          "hash": "sha256:7fca05adc7874a022a4c7e0fc1d103e7a7f61e249ff8d67b06b029dc736cd5ef"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-2.png",
+          "hash": "sha256:28d06f22dff54d8fb03ed4a62877f77e4367d9493ce2aa85cba2b1881882bbcb"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/angle-3.png",
+          "hash": "sha256:3eb94f09119847485206a0eaf8bfbeb0c229cf9fc098a78e011a32f4de5b41fe"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/granite-piers-and-dark-girders.png",
+          "hash": "sha256:d940c5a7be77f9285e2a6b3449b58eb7de3618ef6061029a3becf31c25b4dc40"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/haunched-girder-and-granite-pier.png",
+          "hash": "sha256:c75e366a9ba42f7b63efd67db6713ed4302b6e3d83ff89f5ccc65a215cd01a17"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/seven-globe-lamp.png",
+          "hash": "sha256:50689c81f065a1cde673a4b9998e21a7b6bebb742fcb22e97e62b74dca5949b1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/tram-deck-and-ornate-rail.png",
+          "hash": "sha256:74e934d6bae6847e3b898f7b6f339a4c05ec5ef8be791319646e260719940704"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/shots/shared/district-context.png",
+          "hash": "sha256:f932b10dfbd6603ba1cc74cd8abba279ea1598e017ad4e24e9357102fd891bc5"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/street-noon-economy.png",
+          "hash": "sha256:a25bb41148e6a74ddd4e01811edb469a91a5d78e8e005299466e452137d4d1ff"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/street-noon-high.png",
+          "hash": "sha256:30a5be816c14320710a3180394ae6cc3e0bd33b9dd9f2a461d1de102e5827b4c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/street-late-economy.png",
+          "hash": "sha256:9584dacb7080d3c951140e8b94a780e2dc10e907ad16c4063c184b99ca866b66"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/street-late-high.png",
+          "hash": "sha256:777560931700dbc4c3cdad636a7f30df1ccce4fd4f7d759d4f7665b335ab8345"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/block-noon-economy.png",
+          "hash": "sha256:13ad0657ffff136450c8668ac3566f8e9017432234b261322e9cb16318015f4c"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/block-noon-high.png",
+          "hash": "sha256:910c79b2631b2139e2ec688a4479a42c67314110b6326c797e4fa6312363a934"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/block-late-economy.png",
+          "hash": "sha256:49c55e0ff213b938fa2cc8a292bfbe3b129b5410d79e125ec122502ea2f65894"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/block-late-high.png",
+          "hash": "sha256:b2daf8ea2e21fdb100210d0d5a51d705cb66bef36f104752cf9d312844e4a71d"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:b9489999435d7277b0fdc05f17cd2933a994807c081097df4240c6b01d2ac553"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:544fc4e7257c8cea8af9d424343ba226f0853f8acd78d1cf03b056c54d9dcf0f"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:195ad3ae80558d0ffaf9298774382062f71fa2a001692196b281bd3567ab0bea"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/skyline-late-high.png",
+          "hash": "sha256:5cc9e4d9835d90bb00f4112b55c2e6856103b674c60ff607683310c677cc58cd"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/silhouette.png",
+          "hash": "sha256:459f3b2ae559fea9940c8806ec4a7cf1ed71571a2e7511c75fa97062ad403861"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/granite-piers-and-dark-girders.png",
+          "hash": "sha256:8962388cf71400a8eb199f7119ad74f197009b3f17697ab91ab277a9130e311e"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/haunched-girder-and-granite-pier.png",
+          "hash": "sha256:671608c31df28ae4da3d03cd18ce1d71dcbe09b8b7705212c52621afc31b7bf3"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/seven-globe-lamp.png",
+          "hash": "sha256:f2b8a99d00a5d22db20696bd8b3531e78869d1753515a179280ecace6b6320cc"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/tram-deck-and-ornate-rail.png",
+          "hash": "sha256:76f0d5c553a3612a27caf4140c8b3da135a8506ed9d183d1833b20274fdca40b"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/district-context.png",
+          "hash": "sha256:39e532a3207165445a29b8c66eb0fefedcba2a677d39414c4ccf8616d9abd258"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/skyline-granite-piers-and-dark-girders.png",
+          "hash": "sha256:37d885b1e940a3fa03f63d2afc54543a211f2c9bcdb23ea58031619c761bad65"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/district-haunched-girder-and-granite-pier.png",
+          "hash": "sha256:1367f44e05385d172fdeec263e7cb691a5c1144ea2894ab0fe07aa08fb21445a"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/street-seven-globe-lamp.png",
+          "hash": "sha256:aca8a0cd09a22c620e2ad416c957e372a391c3fbfb865fea4ad43783266376b1"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/closeup-tram-deck-and-ornate-rail.png",
+          "hash": "sha256:76f0d5c553a3612a27caf4140c8b3da135a8506ed9d183d1833b20274fdca40b"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/transition-skyline.png",
+          "hash": "sha256:fa4a26c16f90e4bc0bcbb6efd45100933344b6a916f13898c24533d7a3ab8e36"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/transition-district.png",
+          "hash": "sha256:910c79b2631b2139e2ec688a4479a42c67314110b6326c797e4fa6312363a934"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/transition-street.png",
+          "hash": "sha256:0d1d6fcab9c14a22e8f5d5894a01093defdc3bff3fadd3df00a232fe64ccf0f5"
+        },
+        {
+          "path": "content/worldgen/source/places/ud/ud1/akmens_tilts/medium-fi/transition-closeup.png",
+          "hash": "sha256:0fabd509ab54bcb27588236311f2255e9839207acb55be370ddb4c4920315d3b"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-closeup-granite-piers-and-dark-girders.png",
+          "hash": "sha256:2ab89507ce85a64e90f3838d6503507f716efeb8d0c57bd7ec892e5607e0006f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-closeup-haunched-girder-and-granite-pier.png",
+          "hash": "sha256:3c735ed46326c6d1be938760e8a7068eff9ceea8e7cfffc9e86686cca23f7021"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-closeup-seven-globe-lamp.png",
+          "hash": "sha256:bebb75f684b65d94a5649362f4c9e49c3d93f4e5cdcb36e0608066b4cee772df"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-closeup-tram-deck-and-ornate-rail.png",
+          "hash": "sha256:a45d8aa12dcae8d27246b54bbb40dc0ce19f4ce64c6d95c2161e5dc1624603b9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-closeup-old-riga-landing.png",
+          "hash": "sha256:15b643ebaff5e9ba343cdace3fd02278c0dc569a5ee26445311ad00ded1f0bea"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-closeup-pardaugava-landing.png",
+          "hash": "sha256:654b979d34ed82b4f94213217bd7eda9fe29907be7a51ef05bfd1d4638eb61cf"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-closeup-district-context.png",
+          "hash": "sha256:0d633c5867e6a74442cda97a6f420dc4b756dfae703a4ed6cbbd662cf021bc38"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-failure-granite-piers-and-dark-girders.png",
+          "hash": "sha256:b9c72a2a40f6b4989b7aa7bc981796f248703f2e0300ea34673ede5d33695d86"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-master-granite-piers-and-dark-girders.png",
+          "hash": "sha256:91ed3f8f404be697d9f8b7972de407a5f541daae41ff9d83a08a1d1590543664"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-master-haunched-girder-and-granite-pier.png",
+          "hash": "sha256:4aaf93aec54699f8f9dcd326b36a7d6b14a876c4f3fa62b76fb7b748ce3e6d35"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-master-seven-globe-lamp.png",
+          "hash": "sha256:a007424e8687bf028a399a3538a97c887eab3a9e7496908477aa1d087f94efd4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-master-tram-deck-and-ornate-rail.png",
+          "hash": "sha256:b93e8330960eb2645fc8460dd8dfc03710df53330570aa225db86349ff3ad277"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-master-old-riga-landing.png",
+          "hash": "sha256:ed272a4e9c11ab7cc244c56c50a2af30a3a67d3956143e34c557ae424ce8cb44"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-master-pardaugava-landing.png",
+          "hash": "sha256:ef941759dbbf57cb26d63dab5d9c75d4353ef735fd31c754ac0c7a61a6a1da89"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-master-district-context.png",
+          "hash": "sha256:f56e158cda9f335a60c94eb1f6b9080ec39d190a528e98477df899a254f94e11"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-skyline-skyline-context.png",
+          "hash": "sha256:b3cf962d50e0c05626a42377902fe5188e5877ab1d0debd30caa3054fc3f55e6"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-district-district-context.png",
+          "hash": "sha256:7662d21eaca75e905d8f6f790e3bf59582069aeb10c61503f68da39f7a4edff7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-street-granite-piers-and-dark-girders.png",
+          "hash": "sha256:4a5d3a5ff8b9117896e450a886766065daaa7edf0767e8b1027428c6097896f7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-street-haunched-girder-and-granite-pier.png",
+          "hash": "sha256:ad113087003b7f2e3f30e1597db1709bd981bff19a8c0d19d1142e1775b231d1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-street-seven-globe-lamp.png",
+          "hash": "sha256:844a1fb861eb5cbba5616de9b238e2c66afe05bbb0c79b8658b69f37d6d1f1ce"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\akmens-review/native/shots/final-street-tram-deck-and-ornate-rail.png",
+          "hash": "sha256:a68a1b4947a4a5685372da2e5af751522855a3b8dc229aad2785bdd6249edc07"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "All five loaded tiers preserve577 building records,the independent road records,the original1146 raw transportation inputs,rawDEM,ground mesh and water. The bounded crossing/connected approach replacement reduces1146to1123 rendered road records. Six outside-end roadway/tram-width samples stay within0.031371m of the authored end datum across every tier. Small rectangular end allowances fix the earlier skewed-vector tram seam. Other raw roads may remain beneath the visible bridge or have different sidewalk/rail paving lifts. The separate Railway Bridge records remain independent; no replacement or resurvey claim for that structure. Coarse shore heights and generated approach supports create steep terraces at both banks; exact embankment/underpass geometry and the surrounding road system remain outside this bridge asset. Failed model loading retains all1146 roads and native ground/water. Unloading releases all model/support geometry and restores the unmodified viewer inputs."
+    },
+    "nativeReport": {
+      "path": ".artifacts/akmens-review/native/final-report.json",
+      "hash": "sha256:18594197de3ae3ab0983dea6edfd5d30fb1b47a7769e0fde4c24ee5880c2ea99"
+    },
+    "reports": [
+      {
+        "level": "closeup",
+        "buildings": 577,
+        "roads": 1123,
+        "independentRoads": 1100,
+        "endpointSamples": [
+          {
+            "name": "south-lane--7",
+            "point": [
+              -262.1,
+              -7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.2994
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.299400329589844,
+            "rawGround": 2.8719026359357436,
+            "modelHeight": null,
+            "visibleHeight": 12.299400329589844
+          },
+          {
+            "name": "south-lane--1",
+            "point": [
+              -262.1,
+              -1
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.285029,
+              12.269574
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.285029069287475,
+            "rawGround": 2.8762292390980697,
+            "modelHeight": null,
+            "visibleHeight": 12.285029069287475
+          },
+          {
+            "name": "south-lane-7",
+            "point": [
+              -262.1,
+              7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.3014
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.301400184631348,
+            "rawGround": 2.8248977641718565,
+            "modelHeight": null,
+            "visibleHeight": 12.301400184631348
+          },
+          {
+            "name": "north-lane--7",
+            "point": [
+              262.1,
+              -7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501242
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.50124207113663,
+            "rawGround": 2.9665522948564895,
+            "modelHeight": null,
+            "visibleHeight": 12.50124207113663
+          },
+          {
+            "name": "north-lane--1",
+            "point": [
+              262.1,
+              -1
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501334,
+              12.496775,
+              12.220857
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.501333509137112,
+            "rawGround": 3.054760970480209,
+            "modelHeight": null,
+            "visibleHeight": 12.501333509137112
+          },
+          {
+            "name": "north-lane-7",
+            "point": [
+              262.1,
+              7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.499135
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.499135184356646,
+            "rawGround": 3.1736170963621264,
+            "modelHeight": null,
+            "visibleHeight": 12.499135184356646
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "buildings": 577,
+        "roads": 1146,
+        "independentRoads": 1100,
+        "endpointSamples": [
+          {
+            "name": "south-lane--7",
+            "point": [
+              -262.1,
+              -7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              3.191973
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 3.191973163731973,
+            "rawGround": 2.8719026359357436,
+            "modelHeight": null,
+            "visibleHeight": 3.191973163731973
+          },
+          {
+            "name": "south-lane--1",
+            "point": [
+              -262.1,
+              -1
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              3.217491,
+              3.21549
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 3.2174905598133137,
+            "rawGround": 2.8762292390980697,
+            "modelHeight": null,
+            "visibleHeight": 3.2174905598133137
+          },
+          {
+            "name": "south-lane-7",
+            "point": [
+              -262.1,
+              7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              3.144898
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 3.1448978465687105,
+            "rawGround": 2.8248977641718565,
+            "modelHeight": null,
+            "visibleHeight": 3.1448978465687105
+          },
+          {
+            "name": "north-lane--7",
+            "point": [
+              262.1,
+              -7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              3.282395
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 3.2823950025460817,
+            "rawGround": 2.9665522948564895,
+            "modelHeight": null,
+            "visibleHeight": 3.2823950025460817
+          },
+          {
+            "name": "north-lane--1",
+            "point": [
+              262.1,
+              -1
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              3.371638,
+              3.371636,
+              3.369638
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 3.3716376749766823,
+            "rawGround": 3.054760970480209,
+            "modelHeight": null,
+            "visibleHeight": 3.3716376749766823
+          },
+          {
+            "name": "north-lane-7",
+            "point": [
+              262.1,
+              7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              3.493621
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 3.4936213552184654,
+            "rawGround": 3.1736170963621264,
+            "modelHeight": null,
+            "visibleHeight": 3.4936213552184654
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "master",
+        "buildings": 577,
+        "roads": 1123,
+        "independentRoads": 1100,
+        "endpointSamples": [
+          {
+            "name": "south-lane--7",
+            "point": [
+              -262.1,
+              -7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.2994
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.299400329589844,
+            "rawGround": 2.8719026359357436,
+            "modelHeight": null,
+            "visibleHeight": 12.299400329589844
+          },
+          {
+            "name": "south-lane--1",
+            "point": [
+              -262.1,
+              -1
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.285029,
+              12.269574
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.285029069287475,
+            "rawGround": 2.8762292390980697,
+            "modelHeight": null,
+            "visibleHeight": 12.285029069287475
+          },
+          {
+            "name": "south-lane-7",
+            "point": [
+              -262.1,
+              7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.3014
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.301400184631348,
+            "rawGround": 2.8248977641718565,
+            "modelHeight": null,
+            "visibleHeight": 12.301400184631348
+          },
+          {
+            "name": "north-lane--7",
+            "point": [
+              262.1,
+              -7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501242
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.50124207113663,
+            "rawGround": 2.9665522948564895,
+            "modelHeight": null,
+            "visibleHeight": 12.50124207113663
+          },
+          {
+            "name": "north-lane--1",
+            "point": [
+              262.1,
+              -1
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501334,
+              12.496775,
+              12.220857
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.501333509137112,
+            "rawGround": 3.054760970480209,
+            "modelHeight": null,
+            "visibleHeight": 12.501333509137112
+          },
+          {
+            "name": "north-lane-7",
+            "point": [
+              262.1,
+              7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.499135
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.499135184356646,
+            "rawGround": 3.1736170963621264,
+            "modelHeight": null,
+            "visibleHeight": 12.499135184356646
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "buildings": 577,
+        "roads": 1123,
+        "independentRoads": 1100,
+        "endpointSamples": [
+          {
+            "name": "south-lane--7",
+            "point": [
+              -262.1,
+              -7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.2994
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.299400329589844,
+            "rawGround": 2.8719026359357436,
+            "modelHeight": null,
+            "visibleHeight": 12.299400329589844
+          },
+          {
+            "name": "south-lane--1",
+            "point": [
+              -262.1,
+              -1
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.285029,
+              12.269574
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.285029069287475,
+            "rawGround": 2.8762292390980697,
+            "modelHeight": null,
+            "visibleHeight": 12.285029069287475
+          },
+          {
+            "name": "south-lane-7",
+            "point": [
+              -262.1,
+              7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.3014
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.301400184631348,
+            "rawGround": 2.8248977641718565,
+            "modelHeight": null,
+            "visibleHeight": 12.301400184631348
+          },
+          {
+            "name": "north-lane--7",
+            "point": [
+              262.1,
+              -7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501242
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.50124207113663,
+            "rawGround": 2.9665522948564895,
+            "modelHeight": null,
+            "visibleHeight": 12.50124207113663
+          },
+          {
+            "name": "north-lane--1",
+            "point": [
+              262.1,
+              -1
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501334,
+              12.496775,
+              12.220857
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.501333509137112,
+            "rawGround": 3.054760970480209,
+            "modelHeight": null,
+            "visibleHeight": 12.501333509137112
+          },
+          {
+            "name": "north-lane-7",
+            "point": [
+              262.1,
+              7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.499135
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.499135184356646,
+            "rawGround": 3.1736170963621264,
+            "modelHeight": null,
+            "visibleHeight": 12.499135184356646
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "buildings": 577,
+        "roads": 1123,
+        "independentRoads": 1100,
+        "endpointSamples": [
+          {
+            "name": "south-lane--7",
+            "point": [
+              -262.1,
+              -7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.2994
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.299400329589844,
+            "rawGround": 2.8719026359357436,
+            "modelHeight": null,
+            "visibleHeight": 12.299400329589844
+          },
+          {
+            "name": "south-lane--1",
+            "point": [
+              -262.1,
+              -1
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.285029,
+              12.269574
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.285029069287475,
+            "rawGround": 2.8762292390980697,
+            "modelHeight": null,
+            "visibleHeight": 12.285029069287475
+          },
+          {
+            "name": "south-lane-7",
+            "point": [
+              -262.1,
+              7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.3014
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.301400184631348,
+            "rawGround": 2.8248977641718565,
+            "modelHeight": null,
+            "visibleHeight": 12.301400184631348
+          },
+          {
+            "name": "north-lane--7",
+            "point": [
+              262.1,
+              -7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501242
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.50124207113663,
+            "rawGround": 2.9665522948564895,
+            "modelHeight": null,
+            "visibleHeight": 12.50124207113663
+          },
+          {
+            "name": "north-lane--1",
+            "point": [
+              262.1,
+              -1
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501334,
+              12.496775,
+              12.220857
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.501333509137112,
+            "rawGround": 3.054760970480209,
+            "modelHeight": null,
+            "visibleHeight": 12.501333509137112
+          },
+          {
+            "name": "north-lane-7",
+            "point": [
+              262.1,
+              7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.499135
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.499135184356646,
+            "rawGround": 3.1736170963621264,
+            "modelHeight": null,
+            "visibleHeight": 12.499135184356646
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "buildings": 577,
+        "roads": 1123,
+        "independentRoads": 1100,
+        "endpointSamples": [
+          {
+            "name": "south-lane--7",
+            "point": [
+              -262.1,
+              -7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.2994
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.299400329589844,
+            "rawGround": 2.8719026359357436,
+            "modelHeight": null,
+            "visibleHeight": 12.299400329589844
+          },
+          {
+            "name": "south-lane--1",
+            "point": [
+              -262.1,
+              -1
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.285029,
+              12.269574
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.285029069287475,
+            "rawGround": 2.8762292390980697,
+            "modelHeight": null,
+            "visibleHeight": 12.285029069287475
+          },
+          {
+            "name": "south-lane-7",
+            "point": [
+              -262.1,
+              7
+            ],
+            "expectedDeck": 12.316400089263917,
+            "roadPavingHeights": [
+              12.3014
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.301400184631348,
+            "rawGround": 2.8248977641718565,
+            "modelHeight": null,
+            "visibleHeight": 12.301400184631348
+          },
+          {
+            "name": "north-lane--7",
+            "point": [
+              262.1,
+              -7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501242
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.50124207113663,
+            "rawGround": 2.9665522948564895,
+            "modelHeight": null,
+            "visibleHeight": 12.50124207113663
+          },
+          {
+            "name": "north-lane--1",
+            "point": [
+              262.1,
+              -1
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.501334,
+              12.496775,
+              12.220857
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.501333509137112,
+            "rawGround": 3.054760970480209,
+            "modelHeight": null,
+            "visibleHeight": 12.501333509137112
+          },
+          {
+            "name": "north-lane-7",
+            "point": [
+              262.1,
+              7
+            ],
+            "expectedDeck": 12.516400089263916,
+            "roadPavingHeights": [
+              12.499135
+            ],
+            "roadSurface": "semantic:transportation",
+            "roadHeight": 12.499135184356646,
+            "rawGround": 3.1736170963621264,
+            "modelHeight": null,
+            "visibleHeight": 12.499135184356646
+          }
+        ],
+        "inputsGroundAndWaterRetained": true,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Original static medium-fi exterior from ordinary photographs and standard PMTiles. Exact-QID mapped envelope is521.983m by34.486m including wider end platforms; the core bridge is approximately27m wide. The503.12m catalog length remains distinct. Source road/sidewalks extend to524m to overlap coarse mapped bank seams; this is an explicit fit allowance, not a measured structural length.",
+    "Granite-faced intermediate piers, dark haunched steel girders, vertical stiffeners and bearings, pale fascia, complete crowned roadway, two tram tracks, sidewalks, open iron railing cells with solid ornament panels, eight seven-globe fixtures and modern streetlight/catenary poles are modeled. Intermediate support stations, underside sections, pier batter, vertical profiles and ornate motifs are photo/map reconstructions, not surveyed/engineering measurements. The two internal torch stations follow mapped side bulges nearX-137 and99m.",
+    "Detailed master preserves eight longitudinal girders, dense stiffeners and transverse diaphragms, fully modeled cast lamp profiles/scrolls, individual globe/post shapes, raised three-dimensional railing ornaments and masonry course seams. Close-up uses four girders, coarser stiffeners, planar motif badges and texture-led masonry. Street/district aggregate rail cells, supports, lamps and wires; skyline keeps deck, piers and torch-pilaster silhouette.",
+    "Four existing shared256px graphs: stone_granite,stone_limestone_raw,metal_painted and concrete_plain with metric UVs and linear vertex tints; local opaque globe and marking materials. No new/private/embedded images. Granite grain plus modeled courses approximates block masonry; concrete grain approximates road surfacing. Globes are static daytime opaque glass; no night-light/traffic simulation.",
+    "Native placement uses the standard viewer water plane from current PMTiles/Mapzen, not surveyed sea level. Raw river terrain/water and neighboring records are retained. Coarse shore heights and generated road/rail approach supports can produce steep terraces; bank retaining works, ramps, historic buildings and the separate Railway Bridge are outside this asset. Current physical device timings remain unmeasured.",
+    "Bank road-replacement outline includes a small rectangular seam allowance at both ends, to cover coarse vector segmentation. This replaces only the crossing and connected approaches; independent bank roads remain. Model road/sidewalk overlap covers these seams; support grades outside the bridge remain approximate.",
+    "Current hash-bound acceptance is in qa.json and placement-report.json. Native-fit.json and integration-review.json preserve source-promotion controls; their pending text is historical. This is a static exterior and scoped approximate map fit, not engineering dimensions, traffic legality or accessibility verification. Native bulk captures remain local."
+  ]
+}

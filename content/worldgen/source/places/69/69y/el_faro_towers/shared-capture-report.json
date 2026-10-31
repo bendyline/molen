@@ -5,10 +5,11 @@
   "sourceHash": "sha256:a8c06f3c6044c723560fc2bed60439a18b4ddf12c4fd7bbb74f493756070553b",
   "runtimeHash": "sha256:74311e5dda3674564f4e6b46e4241d00b0fe66131a679ff36bab9da20516d59e",
   "reviewGroundY": 0,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
   "footprintEvidenceHash": "sha256:6124fbce10fce0239179ccb37c092170d45dfc114f19a2facd292667cc72e3cb",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
   "placementHash": "sha256:c7e00d914fdac54c875c769cefa89c5061f40b598423c27b27ba8b2570966ee9",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -17,7 +18,7 @@
     },
     "matgraph:molen.worldgen.material.membrane": {
       "path": "materials/membrane.matgraph.json",
-      "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
     },
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
@@ -25,40 +26,42 @@
     },
     "matgraph:molen.worldgen.material.window_grid": {
       "path": "materials/window_grid.matgraph.json",
-      "hash": "sha256:be487d8aaf9268a0dd9682d3dd86bfb960e24a92a2dc288c117610c335aa3b85"
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:9c96b0d68c912d8317571826542d0f88e7fb5c85d42babc39b23e806305631c7",
+      "hash": "sha256:30d4240fb7503d23c05e2b560707fe2492ee81d38eb9d710b106a7bd99fb514c",
       "camera": {
         "name": "angle-0",
-        "angle": 0.6,
-        "position": [
-          216.6462226331232,
-          192.36042940235137,
-          311.69976781558336
-        ],
-        "lookAt": [
-          6.3936662673950195,
-          80.65121537446976,
-          4.374458312988281
-        ]
+        "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.el_faro_towers",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "el.faro.towers",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 36068,
         "bounds": {
+          "min": [
+            -14.028450012207031,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815780639648438,
+            162.30999755859375,
+            43.71697998046875
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -14.028451919555664,
             -1.0075668096542358,
@@ -72,16 +75,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "47d29fdd-b67b-47bc-93ab-a833168c5b94",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "98357eb1-7320-4d4f-941e-e2726655b65a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f673f29d-d1b1-4f91-9d6a-4dfea658c483",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "24fc2cb1-f4c3-405d-bc65-319ab36b4947"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a95034a3-0d2f-4df7-947e-1d0f61cc5390",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "42bb853f-6b70-4d21-a9a8-1f7d2d2c1e15",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.el_faro_towers"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -58.360142996170104,
+          -34.61288047979105,
+          -58.35874588382988,
+          -34.61173063622739
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "el.faro.towers",
+            "coordinate": [
+              -58.35944444,
+              -34.61230556
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "el.faro.towers"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -97,34 +117,36 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:0c530f4a7e264c0fa9f5eaa2291d46b550a4d48d4c2e2e05d4ddcdb2b8b8ec25",
+      "hash": "sha256:af51cbda922e44c10f1878e15fbdfd4601d66324ee9f4b56d290149d1c026a56",
       "camera": {
         "name": "angle-1",
-        "angle": 2.1707963267948966,
-        "position": [
-          313.7189757699901,
-          192.36042940235137,
-          -205.8780980527399
-        ],
-        "lookAt": [
-          6.3936662673950195,
-          80.65121537446976,
-          4.374458312988281
-        ]
+        "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.el_faro_towers",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "el.faro.towers",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 36068,
         "bounds": {
+          "min": [
+            -14.028450012207031,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815780639648438,
+            162.30999755859375,
+            43.71697998046875
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -14.028451919555664,
             -1.0075668096542358,
@@ -138,16 +160,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "47d29fdd-b67b-47bc-93ab-a833168c5b94",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "98357eb1-7320-4d4f-941e-e2726655b65a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f673f29d-d1b1-4f91-9d6a-4dfea658c483",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "24fc2cb1-f4c3-405d-bc65-319ab36b4947"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a95034a3-0d2f-4df7-947e-1d0f61cc5390",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "42bb853f-6b70-4d21-a9a8-1f7d2d2c1e15",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.el_faro_towers"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -58.360142996170104,
+          -34.61288047979105,
+          -58.35874588382988,
+          -34.61173063622739
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "el.faro.towers",
+            "coordinate": [
+              -58.35944444,
+              -34.61230556
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "el.faro.towers"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -163,34 +202,36 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:74fa880a06669f50498a181fa0d7b8942b86de1bb2f23d965f58c31e2c738107",
+      "hash": "sha256:a12dba86d084a2b26b157dd9733b9d4cfdf2c1eeca4a2f202e829f6028da86be",
       "camera": {
         "name": "angle-2",
-        "angle": 3.741592653589793,
-        "position": [
-          -203.85889009833315,
-          192.36042940235137,
-          -302.9508511896068
-        ],
-        "lookAt": [
-          6.3936662673950195,
-          80.65121537446976,
-          4.374458312988281
-        ]
+        "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.el_faro_towers",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "el.faro.towers",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 36068,
         "bounds": {
+          "min": [
+            -14.028450012207031,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815780639648438,
+            162.30999755859375,
+            43.71697998046875
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -14.028451919555664,
             -1.0075668096542358,
@@ -204,16 +245,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "47d29fdd-b67b-47bc-93ab-a833168c5b94",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "98357eb1-7320-4d4f-941e-e2726655b65a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f673f29d-d1b1-4f91-9d6a-4dfea658c483",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "24fc2cb1-f4c3-405d-bc65-319ab36b4947"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a95034a3-0d2f-4df7-947e-1d0f61cc5390",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "42bb853f-6b70-4d21-a9a8-1f7d2d2c1e15",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.el_faro_towers"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -58.360142996170104,
+          -34.61288047979105,
+          -58.35874588382988,
+          -34.61173063622739
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "el.faro.towers",
+            "coordinate": [
+              -58.35944444,
+              -34.61230556
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "el.faro.towers"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -229,34 +287,36 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:43aad416aa2cbf435c67739fa8aa7fac84126f71bb29a84e00ec8dbaf3ef1f11",
+      "hash": "sha256:30a67d189b175938f2f866d7633143df56cdcbc3b897013a3b19546ff5dadbcf",
       "camera": {
         "name": "angle-3",
-        "angle": 5.312388980384689,
-        "position": [
-          -300.93164323520017,
-          192.36042940235137,
-          214.62701467871628
-        ],
-        "lookAt": [
-          6.3936662673950195,
-          80.65121537446976,
-          4.374458312988281
-        ]
+        "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.el_faro_towers",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "el.faro.towers",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 36068,
         "bounds": {
+          "min": [
+            -14.028450012207031,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815780639648438,
+            162.30999755859375,
+            43.71697998046875
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -14.028451919555664,
             -1.0075668096542358,
@@ -270,16 +330,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "47d29fdd-b67b-47bc-93ab-a833168c5b94",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "98357eb1-7320-4d4f-941e-e2726655b65a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f673f29d-d1b1-4f91-9d6a-4dfea658c483",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "24fc2cb1-f4c3-405d-bc65-319ab36b4947"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a95034a3-0d2f-4df7-947e-1d0f61cc5390",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "42bb853f-6b70-4d21-a9a8-1f7d2d2c1e15",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.el_faro_towers"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -58.360142996170104,
+          -34.61288047979105,
+          -58.35874588382988,
+          -34.61173063622739
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "el.faro.towers",
+            "coordinate": [
+              -58.35944444,
+              -34.61230556
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "el.faro.towers"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -295,7 +372,7 @@
     },
     {
       "path": "shots/shared/two-angled-shafts-and-three-bridges.png",
-      "hash": "sha256:72e081bc74c135f5e15d9f84420d2277561fa1800a83f8f0265e461e4196eb57",
+      "hash": "sha256:da636ca6c7581503ed02b5cba074f4d1f6158cf2c6b1245a45c094c7e8de8b58",
       "camera": {
         "name": "two-angled-shafts-and-three-bridges",
         "position": [
@@ -312,17 +389,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.el_faro_towers",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "el.faro.towers",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 36068,
         "bounds": {
+          "min": [
+            -14.028450012207031,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815780639648438,
+            162.30999755859375,
+            43.71697998046875
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -14.028451919555664,
             -1.0075668096542358,
@@ -336,16 +425,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "47d29fdd-b67b-47bc-93ab-a833168c5b94",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "98357eb1-7320-4d4f-941e-e2726655b65a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f673f29d-d1b1-4f91-9d6a-4dfea658c483",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "24fc2cb1-f4c3-405d-bc65-319ab36b4947"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a95034a3-0d2f-4df7-947e-1d0f61cc5390",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "42bb853f-6b70-4d21-a9a8-1f7d2d2c1e15",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.el_faro_towers"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -58.360142996170104,
+          -34.61288047979105,
+          -58.35874588382988,
+          -34.61173063622739
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "el.faro.towers",
+            "coordinate": [
+              -58.35944444,
+              -34.61230556
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "el.faro.towers"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -361,7 +467,7 @@
     },
     {
       "path": "shots/shared/glazed-upper-storeys-high-connection-and-louvered-crowns.png",
-      "hash": "sha256:916c7f05e4931e7128cda1ddf386238c024f9f33dbcc27d3cc7d6d28de5fa431",
+      "hash": "sha256:4c6e9fb1d7b4e956bcdc12bfa350cbe23418d9e8fd6f58549c1c85452d78221a",
       "camera": {
         "name": "glazed-upper-storeys-high-connection-and-louvered-crowns",
         "position": [
@@ -378,17 +484,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.el_faro_towers",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "el.faro.towers",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 36068,
         "bounds": {
+          "min": [
+            -14.028450012207031,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815780639648438,
+            162.30999755859375,
+            43.71697998046875
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -14.028451919555664,
             -1.0075668096542358,
@@ -402,16 +520,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "47d29fdd-b67b-47bc-93ab-a833168c5b94",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "98357eb1-7320-4d4f-941e-e2726655b65a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f673f29d-d1b1-4f91-9d6a-4dfea658c483",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "24fc2cb1-f4c3-405d-bc65-319ab36b4947"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a95034a3-0d2f-4df7-947e-1d0f61cc5390",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "42bb853f-6b70-4d21-a9a8-1f7d2d2c1e15",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.el_faro_towers"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -58.360142996170104,
+          -34.61288047979105,
+          -58.35874588382988,
+          -34.61173063622739
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "el.faro.towers",
+            "coordinate": [
+              -58.35944444,
+              -34.61230556
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "el.faro.towers"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -427,7 +562,7 @@
     },
     {
       "path": "shots/shared/recessed-window-grid-and-bounded-entry.png",
-      "hash": "sha256:f91528b34d54eaf6b08d3786122f75ac9ad68f76bf4cc2f922fa2bdd30e501ee",
+      "hash": "sha256:19810cc1979e890f8e8126df95715cd1e5c9bcc1daa34b06ebaecdcc85b050b1",
       "camera": {
         "name": "recessed-window-grid-and-bounded-entry",
         "position": [
@@ -444,17 +579,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.el_faro_towers",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "el.faro.towers",
         "position": [
+          -64,
           0,
-          0,
-          0
+          -64
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 36068,
         "bounds": {
+          "min": [
+            -14.028450012207031,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815780639648438,
+            162.30999755859375,
+            43.71697998046875
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -14.028451919555664,
             -1.0075668096542358,
@@ -468,16 +615,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "47d29fdd-b67b-47bc-93ab-a833168c5b94",
-          "worldgen:matgraph:molen.worldgen.material.membrane": "98357eb1-7320-4d4f-941e-e2726655b65a",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "f673f29d-d1b1-4f91-9d6a-4dfea658c483",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "24fc2cb1-f4c3-405d-bc65-319ab36b4947"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a95034a3-0d2f-4df7-947e-1d0f61cc5390",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "42bb853f-6b70-4d21-a9a8-1f7d2d2c1e15",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
         },
         "loads": [
           "molen.worldgen.structure.el_faro_towers"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -58.360142996170104,
+          -34.61288047979105,
+          -58.35874588382988,
+          -34.61173063622739
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "el.faro.towers",
+            "coordinate": [
+              -58.35944444,
+              -34.61230556
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "el.faro.towers"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -487,7 +651,92 @@
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.window_grid": 1
         },
-        "draws": 5,
+        "draws": 3,
+        "renderedTriangles": 35998
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:cd11e33cd5d4d6e06385e8085621221f0336dddaf3ee2362361b4e8b887d615c",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.el_faro_towers",
+        "mode": "geographic-flat-terrain",
+        "placementId": "el.faro.towers",
+        "position": [
+          -64,
+          0,
+          -64
+        ],
+        "heading": 0,
+        "meshes": 4,
+        "triangles": 36068,
+        "bounds": {
+          "min": [
+            -14.028450012207031,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815780639648438,
+            162.30999755859375,
+            43.71697998046875
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -14.028451919555664,
+            -1.0075668096542358,
+            -34.96805953979492
+          ],
+          "max": [
+            26.815784454345703,
+            162.30999755859375,
+            43.716976165771484
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a95034a3-0d2f-4df7-947e-1d0f61cc5390",
+          "worldgen:matgraph:molen.worldgen.material.membrane": "42bb853f-6b70-4d21-a9a8-1f7d2d2c1e15",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "57291265-983d-4653-90f2-6faac255d783",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "1fa2f153-a319-4414-995f-53f07eb79dab"
+        },
+        "loads": [
+          "molen.worldgen.structure.el_faro_towers"
+        ],
+        "selectionBounds": [
+          -58.360142996170104,
+          -34.61288047979105,
+          -58.35874588382988,
+          -34.61173063622739
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "el.faro.towers",
+            "coordinate": [
+              -58.35944444,
+              -34.61230556
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "el.faro.towers"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1
+        },
+        "draws": 6,
         "renderedTriangles": 36070
       }
     }

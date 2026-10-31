@@ -475,7 +475,30 @@ export function* samplePlacementsSteps(
         .slice(0, Math.max(0, maxModels))
         .map(([model]) => model),
     );
-    const retained = entries.filter((entry) => kept.has(entry.base));
+    // A species past the cap gives its places to its own rule's most common kept species, so a
+    // tight budget simplifies a mixed stand rather than thinning it. A rule with no kept species
+    // (a crop row, a lone riparian stand) still drops out.
+    const ruleCounts = new Map<number, Map<string, number>>();
+    for (const entry of entries) {
+      if (!kept.has(entry.base)) continue;
+      let byBase = ruleCounts.get(entry.rule);
+      if (byBase === undefined) {
+        byBase = new Map();
+        ruleCounts.set(entry.rule, byBase);
+      }
+      byBase.set(entry.base, (byBase.get(entry.base) ?? 0) + 1);
+    }
+    const fallback = new Map<number, string>();
+    for (const [rule, byBase] of ruleCounts)
+      fallback.set(
+        rule,
+        [...byBase.entries()].sort((p, q) => q[1] - p[1] || (p[0] < q[0] ? -1 : 1))[0]?.[0] ?? '',
+      );
+    const retained = entries.flatMap((entry) => {
+      if (kept.has(entry.base)) return [entry];
+      const base = fallback.get(entry.rule);
+      return base === undefined ? [] : [{ ...entry, base, model: base }];
+    });
     const variantCounts = new Map<string, number>();
     for (const entry of retained)
       if (!kept.has(entry.model))

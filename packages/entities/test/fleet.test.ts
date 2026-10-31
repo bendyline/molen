@@ -22,17 +22,23 @@ describe('fleet model contracts', () => {
     const folder = `${root}/assets/${id.replaceAll('.', '/')}`;
     const sidecar = JSON.parse(await readFile(`${folder}/asset.json`, 'utf8'));
     // These are player-view masters. Ambient rendering selects separate instanced proxies.
-    // Bendy generics built on the shared road-vehicle body carry the same cabin and running gear.
+    // Bendy generics share the cabin and running gear. Articulated doors/hatches and lamp
+    // lenses have a bounded 4k-triangle allowance above the former static-shell budgets.
     const closeViewReference =
       (MOLEN_US_VEHICLE_ENTITY_IDS as readonly string[]).includes(id) ||
       (MOLEN_REGIONAL_VEHICLE_ENTITY_IDS as readonly string[]).includes(id) ||
       [
         'molen.entities.vehicle.box_truck',
+        'molen.entities.vehicle.compact',
         'molen.entities.vehicle.electric_hatchback',
         'molen.entities.vehicle.offroad',
+        'molen.entities.vehicle.pickup',
+        'molen.entities.vehicle.sedan',
         'molen.entities.vehicle.sports_coupe',
         'molen.entities.vehicle.station_wagon',
+        'molen.entities.vehicle.suv',
         'molen.entities.vehicle.taxi',
+        'molen.entities.vehicle.van',
       ].includes(id);
     const varietyReference =
       (MOLEN_VARIETY_VEHICLE_ENTITY_IDS as readonly string[]).includes(id) ||
@@ -44,9 +50,9 @@ describe('fleet model contracts', () => {
       (MOLEN_RV_ENTITY_IDS as readonly string[]).includes(id)
         ? 45000
         : varietyReference
-          ? 26000
+          ? 30000
           : closeViewReference
-            ? 22000
+            ? 26000
             : 15000,
     );
     const bytes = await readFile(`${folder}/model.glb`);

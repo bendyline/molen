@@ -2,7 +2,7 @@
  * Dimensions from 7.01.16-E rev5 and the 2024 factory cabin drawing/photo.
  * Composite skin: joints/access fasteners, not a fictitious sheet-metal rivet grid.
  */
-import { panelTools } from '../vehicle-interiors.mjs';
+import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
 import { addG1000Bezels, addG1000Readouts } from './g1000-panel.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
@@ -10,6 +10,7 @@ import {
   cleanGeometry,
   detailKit,
   ellipsoid,
+  fittedFloor,
   group,
   loft,
   mat,
@@ -53,79 +54,114 @@ export function buildDiamond(s) {
     flaps = [],
     ailerons = [];
   // Independent side and plan landmarks; the nose has no central engine cowling.
+  // [z, half width, belly, crown, belt, shoulder, shoulder half width]: the bubble canopy and
+  // the cabin behind it lean in above the widest (belt) line under a round crown.
   const stations = [
     [3.28, 0.012, 1.03, 1.07],
-    [2.94, 0.18, 0.94, 1.19],
-    [2.3, 0.39, 0.82, 1.33],
-    [1.7, 0.51, 0.72, 1.44],
-    [1.1, 0.565, 0.67, 1.77],
-    [0.42, 0.595, 0.64, 1.95],
-    [-0.15, 0.6, 0.65, 1.94],
-    [-0.95, 0.55, 0.7, 1.88],
-    [-1.65, 0.41, 0.77, 1.58],
+    [2.94, 0.25, 0.94, 1.19],
+    [2.3, 0.45, 0.82, 1.33],
+    [1.7, 0.545, 0.72, 1.44, 1.12, 1.33, 0.5],
+    [1.1, 0.565, 0.67, 1.77, 1.2, 1.6, 0.53],
+    [0.42, 0.595, 0.64, 1.95, 1.22, 1.74, 0.53],
+    [-0.15, 0.6, 0.65, 1.94, 1.24, 1.74, 0.53],
+    [-0.95, 0.55, 0.7, 1.88, 1.24, 1.66, 0.49],
+    [-1.65, 0.41, 0.77, 1.58, 1.2, 1.47, 0.35],
     [-2.65, 0.21, 0.9, 1.32],
     [-3.7, 0.1, 1, 1.22],
     [-4.5, 0.065, 1.0, 1.25],
     [-5.28, 0.015, 0.99, 1.08],
   ];
-  const rings = stations.map(([z, w, b, t]) => {
-    const h = t - b,
-      a = Math.min(0.025, h * 0.08),
-      bb = Math.min(0.08, h * 0.2),
-      c = Math.min(0.17, h * 0.32);
-    return {
-      z,
-      points: [
-        [0, t],
-        [w * 0.5, t - a],
-        [w * 0.84, t - bb],
-        [w, t - c],
-        [w, b + c],
-        [w * 0.75, b],
-        [w * 0.35, b - 0.015],
-        [0, b - 0.025],
-        [-w * 0.35, b - 0.015],
-        [-w * 0.75, b],
-        [-w, b + c],
-        [-w, t - c],
-        [-w * 0.84, t - bb],
-        [-w * 0.5, t - a],
-      ],
-    };
-  });
+  // Points: 0 crown, 1-3 roof arc, 4 shoulder, 5 belt, 6-8 lower side, 9 keel, then mirrored.
+  const rings = stations.map(
+    ([z, w, b, t, belt = b + (t - b) * 0.5, shoulder = b + (t - b) * 0.8, ws = w * 0.74]) => {
+      const c = Math.min(0.17, (t - b) * 0.32),
+        right = [
+          ...[1, 2, 3].map((k) => [
+            ws * Math.pow(Math.sin((k * Math.PI) / 8), 2 / 2.8),
+            shoulder + (t - shoulder) * Math.pow(Math.cos((k * Math.PI) / 8), 2 / 2.8),
+          ]),
+          [ws, shoulder],
+          [w, belt],
+          [w, b + c],
+          [w * 0.75, b],
+          [w * 0.35, b - 0.015],
+        ];
+      return {
+        z,
+        points: [[0, t], ...right, [0, b - 0.025], ...right.reverse().map(([x, y]) => [-x, y])],
+      };
+    },
+  );
   const p = (i, j) => [...rings[i].points[j], rings[i].z],
-    topFaces = [0, 1, 2, 11, 12, 13];
+    topFaces = [14, 15, 16, 17, 0, 1, 2, 3];
   loft(d, rings, paint, {
     skip: (i, j) =>
-      (i >= 3 && i <= 5 && topFaces.includes(j)) || (i >= 3 && i <= 7 && [3, 10].includes(j)),
+      i < 3 ||
+      (i >= 3 && i <= 5 && topFaces.includes(j)) ||
+      (i >= 3 && i <= 7 && [4, 13].includes(j)),
   });
+  // Rounded composite nose: 36-point sections blend from the cabin section at the canopy
+  // front frame (shared exactly with ring 3) towards an ellipse at the tip.
+  const noseRings = [1, 0.85, 0.6, 0].map((k, i) => {
+    const [z, w, b, t] = stations[i],
+      c = (t + b) / 2,
+      h = (t - b) / 2;
+    return {
+      z,
+      points: rings[i].points
+        .flatMap((q, j, a) => {
+          const n = a[(j + 1) % a.length];
+          return [q, [(q[0] + n[0]) / 2, (q[1] + n[1]) / 2]];
+        })
+        .map(([x, y]) => {
+          const a = Math.atan2((y - c) / h, x / w);
+          return [x * (1 - k) + w * Math.cos(a) * k, y * (1 - k) + (c + h * Math.sin(a)) * k];
+        }),
+    };
+  });
+  loft(d, noseRings, paint, { caps: false });
   for (let i = 3; i <= 5; i++)
     for (const j of topFaces)
-      quad(d, p(i, j), p(i + 1, j), p(i + 1, (j + 1) % 14), p(i, (j + 1) % 14), glass, [0, 1, 1]);
-  const width = (z) => {
-    let i = stations.findIndex(
-      (a, n) => n < stations.length - 1 && z <= a[0] && z >= stations[n + 1][0],
-    );
-    if (i < 0) i = z > 3.28 ? 0 : stations.length - 2;
-    const a = stations[i],
-      b = stations[i + 1],
-      t = (z - a[0]) / (b[0] - a[0]);
-    return a[1] + (b[1] - a[1]) * t;
+      quad(d, p(i, j), p(i + 1, j), p(i + 1, (j + 1) % 18), p(i, (j + 1) % 18), glass, [0, 1, 1]);
+  // Skin half-width at a station and height (the rounded nose, then the cabin and boom
+  // sections), so windows, doors and trim follow the curved side.
+  const skinX = (z, y) => {
+    const set = z > stations[3][0] ? noseRings : rings.slice(3);
+    let i = set.findIndex((r, n) => n < set.length - 1 && z <= r.z && z >= set[n + 1].z);
+    if (i < 0) i = z > set[0].z ? 0 : set.length - 2;
+    const a = set[i],
+      b = set[i + 1],
+      f = (a.z - z) / (a.z - b.z),
+      ring = a.points.map((q, n) => [
+        q[0] * (1 - f) + b.points[n][0] * f,
+        q[1] * (1 - f) + b.points[n][1] * f,
+      ]);
+    for (let n = 0; n < ring.length / 2; n++) {
+      const [x0, y0] = ring[n],
+        [x1, y1] = ring[n + 1];
+      if ((y - y0) * (y - y1) <= 0 && y0 !== y1) return x0 + ((x1 - x0) * (y - y0)) / (y1 - y0);
+    }
+    return Math.max(...ring.map((q) => q[0]));
   };
   for (const side of [-1, 1]) {
-    const j = side > 0 ? 3 : 10,
-      point = (z, y) => [side * width(z), y, z];
+    const j = side > 0 ? 4 : 13,
+      point = (z, y) => [side * (skinX(z, y) + (z > stations[3][0] ? 0.006 : 0)), y, z];
     // Front canopy side panes join the curved transparent crown; no opaque backing.
     for (let i = 3; i <= 5; i++) {
-      const upper = side > 0 ? 3 : 11,
-        lower = side > 0 ? 4 : 10;
+      const upper = side > 0 ? 4 : 14,
+        lower = side > 0 ? 5 : 13;
       const a = p(i, upper),
         b = p(i + 1, upper),
         c = p(i + 1, lower),
         e = p(i, lower),
         bottom = 1.25;
-      const aa = [a[0], Math.min(a[1] - 0.005, bottom), a[2]],
-        bb = [b[0], Math.min(b[1] - 0.005, bottom), b[2]];
+      // The glazing stops at the sill line on the leaning side, part way down to the belt.
+      const sill = (u, l) => {
+        const f = (u[1] - Math.min(u[1] - 0.005, bottom)) / (u[1] - l[1]);
+        return u.map((v, k) => v + (l[k] - v) * f);
+      };
+      const aa = sill(a, e),
+        bb = sill(b, c);
       quad(d, a, b, bb, aa, glass, [side, 0, 0]);
       quad(d, aa, bb, c, e, paint, [side, 0, 0]);
       outline(d, [aa, bb], 0.012, paint, false);
@@ -144,7 +180,8 @@ export function buildDiamond(s) {
     sheet(d, edge, paint, [side, 0, 0], [hole]);
     sheet(d, hole, glass, [side, 0, 0]);
     outline(d, hole, 0.007, dark);
-    outline(d, [p(3, j), p(4, j), p(5, j), p(6, j)], 0.008, paint, false);
+    const rail = side > 0 ? 4 : 14;
+    outline(d, [p(3, rail), p(4, rail), p(5, rail), p(6, rail)], 0.008, paint, false);
     // Rear passenger door on port side; opposite side has fixed glazing.
     if (side > 0) {
       outline(
@@ -174,13 +211,15 @@ export function buildDiamond(s) {
       const a = stations[i],
         b = stations[i + 1],
         ya = a[2] + 0.16,
-        yb = b[2] + 0.16;
+        yb = b[2] + 0.16,
+        // Flat stripe quads stand clear of the curved (ruled, triangulated) nose skin.
+        sx = (z, y) => side * (skinX(z, y) + (z > stations[3][0] + 0.01 ? 0.014 : 0.002));
       quad(
         d,
-        [side * (a[1] + 0.002), ya, a[0]],
-        [side * (b[1] + 0.002), yb, b[0]],
-        [side * (b[1] + 0.002), yb + 0.034, b[0]],
-        [side * (a[1] + 0.002), ya + 0.034, a[0]],
+        [sx(a[0], ya), ya, a[0]],
+        [sx(b[0], yb), yb, b[0]],
+        [sx(b[0], yb + 0.034), yb + 0.034, b[0]],
+        [sx(a[0], ya + 0.034), ya + 0.034, a[0]],
         accent,
         [side, 0, 0],
       );
@@ -282,7 +321,7 @@ export function buildDiamond(s) {
   for (const i of [3, 6])
     outline(
       d,
-      [p(i, 11), p(i, 12), p(i, 13), p(i, 0), p(i, 1), p(i, 2), p(i, 3)],
+      [14, 15, 16, 17, 0, 1, 2, 3, 4].map((j) => p(i, j)),
       i === 6 ? 0.025 : 0.012,
       paint,
       false,
@@ -353,23 +392,45 @@ export function buildDiamond(s) {
       z = 1.64,
       ng = group(root, `DA42-nacelle-${index}`, [x, cy, 0]),
       nd = detailKit(ng, ng.name);
+    // AE300 cowl: bulky, deep and blunt. The gearbox puts the spinner high in a broad face that
+    // drops about 0.52 m below the propeller axis to a wide chin cooling inlet (D-GOMH close-up;
+    // VH-VMX near-profile scaled by the 1.9 m propeller); full width just behind the spinner.
+    // Superelliptic sections [z, half width, bottom, top].
     const nc = [
-      [1.63, 0.23, -0.2, 0.22],
-      [1.38, 0.36, -0.36, 0.32],
-      [1.08, 0.4, -0.4, 0.29],
-      [0.7, 0.34, -0.35, 0.24],
-      [0.1, 0.32, -0.23, 0.2],
-      [-0.7, 0.27, -0.1, 0.12],
+      [1.63, 0.27, -0.49, 0.17],
+      [1.57, 0.335, -0.52, 0.245],
+      [1.45, 0.375, -0.53, 0.285],
+      [1.2, 0.4, -0.52, 0.3],
+      [0.9, 0.395, -0.49, 0.28],
+      [0.5, 0.36, -0.42, 0.24],
+      [0.1, 0.32, -0.28, 0.2],
+      [-0.7, 0.27, -0.11, 0.12],
       [-1.03, 0.22, -0.02, 0.06],
     ].map(([zz, w, b, t]) => ({
       z: zz,
-      points: Array.from({ length: 16 }, (_, i) => {
-        const a = (i * Math.PI) / 8;
-        return [w * Math.cos(a), (t + b) / 2 + ((t - b) / 2) * Math.sin(a)];
+      w,
+      b,
+      t,
+      points: Array.from({ length: 20 }, (_, i) => {
+        const c = Math.cos((i * Math.PI) / 10),
+          s = Math.sin((i * Math.PI) / 10);
+        return [
+          w * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
+          (t + b) / 2 + ((t - b) / 2) * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
+        ];
       }),
     }));
     loft(nd, nc, paint);
-    for (const r of [nc[1], nc[4]])
+    // Cowl half width at a station and height (same superellipse as the sections).
+    const nx = (zz, yy) => {
+      const n = nc.findIndex((r) => r.z < zz),
+        i = n < 0 ? nc.length - 2 : Math.max(0, n - 1),
+        f = (nc[i].z - zz) / (nc[i].z - nc[i + 1].z),
+        [w, b, t] = ['w', 'b', 't'].map((k) => nc[i][k] + (nc[i + 1][k] - nc[i][k]) * f),
+        v = Math.min(1, Math.abs((yy - (t + b) / 2) / ((t - b) / 2)));
+      return w * Math.pow(1 - Math.pow(v, 2.5), 0.4);
+    };
+    for (const r of [nc[2], nc[6]])
       outline(
         nd,
         r.points.map((p) => [...p, r.z]),
@@ -377,26 +438,53 @@ export function buildDiamond(s) {
         metal,
       );
     for (const sign of [-1, 1]) {
-      // High side intake lips with a dark recessed throat, large chin cooling inlet.
-      const lip = [
-        [sign * 0.18, 0.23, 1.48],
-        [sign * 0.36, 0.23, 1.36],
-        [sign * 0.36, 0.05, 1.35],
-        [sign * 0.19, 0.05, 1.48],
-      ];
-      sheet(nd, lip, dark, [0, 0, 1]);
-      outline(nd, lip, 0.014, paint);
-      for (let zz = 0.2; zz < 1.25; zz += 0.13)
-        nd.add(new T.SphereGeometry(0.003, 6, 4), metal, [sign * 0.348, -0.08, zz]);
+      // Large recessed louvred side intakes high behind the spinner.
+      const at = (zz, yy, out = 0.004) => [sign * (nx(zz, yy) + out), yy, zz];
+      const gill = [at(1.47, -0.08), at(1.45, 0.21), at(1.1, 0.23), at(1.12, -0.05)];
+      sheet(nd, gill, dark, [sign, 0, 0]);
+      outline(nd, gill, 0.013, paint);
+      for (const yy of [-0.02, 0.05, 0.12, 0.18])
+        nd.rod(at(1.45, yy, 0.012), at(1.13, yy + 0.03, 0.012), 0.009, metal);
+      for (let zz = 0.2; zz < 1.1; zz += 0.13)
+        nd.add(new T.SphereGeometry(0.003, 6, 4), metal, at(zz, -0.08, 0.001));
       nd.rod([sign * 0.25, -0.23, 0.17], [sign * 0.29, -0.4, 0.06], 0.024, metal);
     }
-    ellipsoid(nd, [0, -0.22, 1.55], [0.17, 0.08, 0.026], dark, 18);
+    // Wide chin cooling inlet: a short scoop with a polished lip and a dark throat.
+    const scoop = (zz, grow) =>
+      Array.from({ length: 16 }, (_, i) => [
+        (0.18 + grow) * Math.cos((i * Math.PI) / 8),
+        -0.385 + (0.075 + grow) * Math.sin((i * Math.PI) / 8),
+        zz,
+      ]);
+    loft(
+      nd,
+      [1.6, 1.67].map((zz) => ({ z: zz, points: scoop(zz, 0).map(([a, b]) => [a, b]) })),
+      paint,
+      { caps: false },
+    );
+    sheet(nd, scoop(1.645, 0), dark, [0, 0, 1]);
+    outline(nd, scoop(1.67, 0.004), 0.018, metal);
     nd.box([0.21, 0.016, 0.22], [0, -0.39, 0.8], paint);
     nd.finish();
     const eg = group(root, `engine-${index}`, [x, cy, z]),
       prop = group(eg, `DA42-propeller-${index}`),
       pd = detailKit(prop, prop.name);
-    pd.add(new T.ConeGeometry(0.145, 0.36, 24).rotateX(Math.PI / 2), paint, [0, 0, 0.18]);
+    // Long spinner with a slight ogive, 0.37 m diameter, painted so liveries can colour it.
+    pd.add(
+      new T.LatheGeometry(
+        [
+          [0.185, 0],
+          [0.18, 0.06],
+          [0.163, 0.15],
+          [0.13, 0.25],
+          [0.087, 0.34],
+          [0.042, 0.42],
+          [0, 0.48],
+        ].map(([r, h]) => new T.Vector2(r, h)),
+        24,
+      ).rotateX(Math.PI / 2),
+      paint,
+    );
     for (let n = 0; n < 3; n++) {
       const g = group(prop, `DA42-prop-${index}-${n}`);
       g.rotation.z = (n * 2 * Math.PI) / 3 + Math.PI / 2;
@@ -474,7 +562,7 @@ export function buildDiamond(s) {
     });
   }
   d.finish();
-  const interior = cockpit(root, { paint, accent, metal, dark });
+  const interior = cockpit(root, { paint, accent, metal, dark, skinX, rings });
   cleanGeometry(root);
   return {
     root,
@@ -934,8 +1022,8 @@ function cockpit(root, m) {
     beveledBox(d, [0.025, 0.25, 1.5], [side * 0.54, 1.06, -0.1], leather, 0.008);
     d.rod([side * 0.51, 1.15, 0.46], [side * 0.51, 1.15, -0.1], 0.024, m.dark);
     d.box([0.019, 0.03, 0.11], [side * 0.51, 1.09, 0.23], red);
-    d.box([0.21, 0.014, 0.2], [side * 0.25, 1.9, 0.48], m.dark);
-    d.rod([side * 0.4, 1.91, 0.44], [side * 0.3, 1.91, 0.44], 0.005, m.metal);
+    d.box([0.21, 0.014, 0.2], [side * 0.25, 1.89, 0.48], m.dark);
+    d.rod([side * 0.38, 1.895, 0.44], [side * 0.3, 1.9, 0.44], 0.005, m.metal);
   }
   d.box([1.02, 0.027, 2.38], [0, 0.76, 0.1], m.dark);
   // The firewall and molded side panels close the footwells below the dashboard.
@@ -1000,15 +1088,20 @@ function cockpit(root, m) {
     sd.box([0.034, 0.014, 0.025], [0, 0.085, 0], m.metal);
     sd.finish();
   }
-  d.box([0.94, 0.025, 0.65], [0, 0.84, -1.44], leather);
+  // Baggage floor trimmed to the tapering aft cabin so it stays inside the skin.
+  fittedFloor(d, m.rings, leather, {
+    y: 0.8525,
+    front: -1.115,
+    back: -1.765,
+    width: 0.94,
+    thickness: 0.025,
+  });
   sheet(
     d,
-    [
-      [-0.42, 0.85, -1.76],
-      [0.42, 0.85, -1.76],
-      [0.35, 1.45, -1.76],
-      [-0.35, 1.45, -1.76],
-    ],
+    [0.85, 0.85, 1.45, 1.45].map((y, n) => {
+      const x = Math.min(n < 2 ? 0.42 : 0.35, m.skinX(-1.76, y) - 0.015);
+      return [n % 3 ? x : -x, y, -1.76];
+    }),
     headliner,
     [0, 0, 1],
   );

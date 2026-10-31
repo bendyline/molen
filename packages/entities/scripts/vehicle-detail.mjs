@@ -288,94 +288,159 @@ export function addCarDetail(root, s, legacy = false) {
 }
 
 export function addCycleDetail(root, s) {
+  // Rider controls and markings. Frame, wheels, drivetrain and lamps come from fleet-geometry,
+  // whose cycle geometry (s.cycleFrame) also places these in model space.
   const d = detailKit(root),
-    bike = s.family === 'bicycle';
-  const { height: H, width: W, wheelRadius: r, wheelbase: wb } = s;
-  for (const name of ['wheel-front', 'wheel-rear'])
-    addWheelDetail(
-      root.getObjectByName(name),
-      r,
-      bike ? 0.06 : name === 'wheel-front' ? 0.16 : 0.2,
-      bike,
-    );
-  // A scooter's belt drive, engine and fork are enclosed; chains, fins and tubes are not.
+    bike = s.family === 'bicycle',
+    G = s.cycleFrame;
   const scooter = s.shape === 'motor-scooter';
-  if (!scooter) {
-    d.rod([-0.11, r, -wb / 2], [-0.11, r * 0.85, -wb * 0.1], 0.012, d.dark);
-    d.rod([-0.11, r - 0.09, -wb / 2], [-0.11, r * 0.85 - 0.09, -wb * 0.1], 0.012, d.dark);
-    d.ring(bike ? 0.09 : 0.11, 0.018, [-0.12, r * 0.85, -wb * 0.1], d.metal, 'x');
-  }
-  if (scooter)
+  const badge = G.badge;
+  if (badge)
     for (const side of [-1, 1])
-      d.text('BENDY', [side * 0.212, 0.62, -0.48], 0.05, (side * Math.PI) / 2);
-  else if (!bike) {
-    for (let i = 0; i < 6; i++) d.box([0.35, 0.018, 0.32], [0, r * 1.15 + i * 0.04, -0.04], d.dark);
-    for (const x of [-0.13, 0.13]) d.rod([x, r * 1.7, 0.14], [x, r * 0.75, 0.27], 0.027, d.metal);
-    d.ring(0.037, 0.008, [0, H * 0.85 + 0.006, 0.15], d.metal, 'y');
-    d.text('BENDY', [0.225, H * 0.71, 0.05], 0.045, Math.PI / 2);
-    d.text('BENDY', [-0.225, H * 0.71, 0.05], 0.045, -Math.PI / 2);
-  }
-  const handlebars = root.getObjectByName('handlebar');
-  const controls = detailKit(handlebars, 'rider-controls');
-  const sweep = s.handlebarSweep ?? 0;
+      d.text('BENDY', [side * badge[0], badge[1], badge[2]], badge[3], (side * Math.PI) / 2);
+  // Controls are authored in model space inside the handlebar's untilted frame, so they turn
+  // about the real steering axis with the bars.
+  const frame = root.getObjectByName('handlebar-frame');
+  const controls = detailKit(frame, 'rider-controls');
+  const [gx, gy, gz] = G.grips[0];
+  const tilted = (kit, at, tilt, build) => {
+    const face = new T.Group();
+    face.position.set(...at);
+    face.rotation.x = tilt;
+    kit.root.add(face);
+    const k = detailKit(face, 'instrument-face');
+    build(k, panelTools(k));
+    k.finish();
+  };
   for (const side of [-1, 1]) {
-    controls.rod([side * W * 0.3, 0, -sweep], [side * W * 0.44, -0.035, -sweep + 0.07], 0.009);
-    if (!bike) {
-      controls.rod([side * W * 0.25, 0, -sweep], [side * W * 0.38, 0.18, -sweep + 0.04], 0.008);
-      controls.box([0.115, 0.065, 0.018], [side * W * 0.38, 0.2, -sweep + 0.04], controls.metal);
+    const x = side * gx;
+    if (s.shape === 'road-bicycle') {
+      // Brake/shift hoods on the drop bar and their lever blades.
+      const [, cy, cz] = G.clamp;
+      // Rounded hood body rising forward to its horn, as a lever hood is shaped.
+      const hood = controls.add(new T.CapsuleGeometry(0.0155, 0.045, 3, 8), controls.dark, [
+        x,
+        cy + 0.014,
+        cz + 0.086,
+      ]);
+      hood.rotation.x = Math.PI / 2 - 0.4;
+      hood.scale.set(0.95, 1, 1.3);
+      controls.rod([x, cy + 0.01, cz + 0.122], [x, cy - 0.085, cz + 0.112], 0.006);
+    } else if (bike) {
+      // Upright bars: the lever lies along the swept grip, outboard of the fingers.
+      controls.box([0.03, 0.025, 0.04], [x - side * 0.01, gy + 0.008, gz + 0.075], controls.dark);
+      controls.rod(
+        [x + side * 0.03, gy - 0.008, gz + 0.06],
+        [x + side * 0.042, gy - 0.02, gz - 0.035],
+        0.005,
+      );
+    } else {
+      // Motorcycle perch, lever, switch housing and mirror.
+      controls.box([0.045, 0.03, 0.035], [x - side * 0.085, gy + 0.012, gz + 0.03], controls.metal);
+      controls.box([0.05, 0.035, 0.04], [x - side * 0.09, gy, gz + 0.005], controls.dark);
+      controls.rod(
+        [x - side * 0.07, gy + 0.008, gz + 0.045],
+        [x + side * 0.06, gy - 0.004, gz + 0.075],
+        0.006,
+      );
+      // Mirror: a stalk angled up and out to an oval head facing the rider; a scooter's
+      // stalks stand taller than a motorcycle's.
+      const reach = scooter ? 0.16 : 0.1,
+        k = scooter ? 0.85 : 0.8;
+      controls.rod(
+        [x - side * 0.1, gy + 0.025, gz + 0.03],
+        [x + side * 0.035, gy + reach, gz + 0.05],
+        0.0065,
+      );
+      for (const [r, depth, z, material] of [
+        [0.053 * k, 0.022, gz + 0.056, controls.dark],
+        [0.047 * k, 0.004, gz + 0.044, controls.metal],
+      ]) {
+        const head = controls.add(new T.CylinderGeometry(r, r, depth, 16), material, [
+          x + side * 0.06,
+          gy + reach + 0.025 * k,
+          z,
+        ]);
+        head.rotation.x = Math.PI / 2;
+        head.scale.set(1, 1, 0.64);
+      }
     }
   }
-  const p = panelTools(controls);
-  const z = -sweep + 0.04;
   if (bike) {
-    if (s.shape === 'road-bicycle') p.display(0, 0.035, z - 0.012, 0.045, 0.055, 'ride');
-    else if (s.shape === 'city-bicycle') {
-      controls.add(
-        new T.SphereGeometry(0.025, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2),
-        controls.metal,
-        [-W * 0.2, 0.02, z],
+    const [, cy, cz] = G.clamp;
+    if (s.shape === 'road-bicycle') {
+      // Bike computer on an out-front mount.
+      tilted(controls, [0, cy + 0.02, cz + 0.03], 0.9, (_k, p) =>
+        p.display(0, 0, 0, 0.036, 0.046, 'ride'),
       );
-      controls.box([0.026, 0.007, 0.012], [-W * 0.16, 0.02, z - 0.02], controls.dark);
     } else {
-      p.display(-0.025, 0.025, z - 0.01, 0.036, 0.037, 'ride');
-      p.knob(W * 0.2, 0.012, z, 0.013);
+      controls.add(
+        new T.SphereGeometry(0.024, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2),
+        controls.metal,
+        [0.12, cy + 0.018, cz - 0.01],
+      );
+      controls.box([0.026, 0.007, 0.012], [0.15, cy + 0.016, cz - 0.03], controls.dark);
+      if (s.shape === 'cargo-bicycle')
+        tilted(controls, [-0.06, cy + 0.02, cz], 0.9, (_k, p) =>
+          p.display(0, 0, 0, 0.036, 0.037, 'ride'),
+        );
     }
   } else if (s.shape === 'cruiser-motorcycle') {
-    // Tank-top speedometer; mounted to the chassis rather than turning with the handlebars.
-    const instruments = detailKit(root, 'tank-instruments');
-    const face = new T.Group();
-    face.rotation.x = -0.8;
-    face.position.set(0, H * 0.87, 0.04);
-    instruments.root.add(face);
-    const kit = detailKit(face, 'cruiser-gauge');
-    panelTools(kit).gauge(0, 0, 0, 0.069, kit.ivory);
-    kit.finish();
-    instruments.finish();
-  } else if (s.shape === 'motor-scooter') {
-    controls.box([0.21, 0.15, 0.06], [0, 0.05, z + 0.02], controls.dark);
-    p.gauge(0, 0.055, z - 0.018, 0.058, controls.ivory);
-    p.gauge(-0.08, 0.015, z - 0.02, 0.024);
+    // Tank-top speedometer: chassis-mounted, it does not turn with the bars.
+    const console = detailKit(root, 'tank-instruments');
+    console.add(new T.CylinderGeometry(0.085, 0.095, 0.03, 20), console.metal, [0, 0.948, 0.14]);
+    tilted(console, [0, 0.968, 0.14], 1.25, (k, p) => p.gauge(0, 0, 0, 0.066, k.ivory));
+    console.finish();
+  } else if (scooter) {
+    tilted(controls, [0, 1.062, 0.3], 0.75, (k, p) => {
+      p.gauge(0, 0.008, 0, 0.052, k.ivory);
+      p.gauge(-0.075, -0.012, 0.004, 0.022);
+    });
   } else {
-    p.gauge(-0.055, 0.065, z - 0.01, 0.06);
-    p.display(0.065, 0.05, z - 0.012, 0.085, 0.065, 'ride');
+    // Twin clocks above the top yoke.
+    tilted(controls, [0, G.headTop + 0.11, G.pivot[2] + 0.05], 0.75, (k, p) => {
+      p.gauge(-0.062, 0, 0, 0.048, k.ivory);
+      p.gauge(0.062, 0, 0, 0.048);
+    });
   }
-  for (const side of [-1, 1]) {
-    const x = side * W * 0.29;
-    controls.box([0.04, 0.04, 0.035], [x, 0, -sweep], controls.dark);
-    controls.box(
-      [0.014, 0.009, 0.008],
-      [x, 0.012, -sweep - 0.022],
-      side < 0 && !bike ? controls.red : controls.ivory,
-    );
-    if (!bike)
-      controls.box([0.06, 0.045, 0.055], [side * W * 0.2, 0.02, -sweep + 0.03], controls.dark);
-    for (let i = 0; i < 5; i++)
-      controls.rod(
-        [x, -i * 0.035, z + 0.03 + i * 0.025],
-        [x, -(i + 1) * 0.035, z + 0.055 + i * 0.025],
-        0.003,
-        controls.dark,
-      );
+  if (!bike) {
+    // Indicators: amber lenses ahead of the bars (they turn with them) and beside the tail.
+    const lens = (kit, at, size) => {
+      const mesh = kit.add(new T.SphereGeometry(1, 10, 6), kit.amber, at);
+      mesh.scale.set(...size);
+      return mesh;
+    };
+    if (scooter) {
+      // Set into the leg shield's upper corners and the rear body's flanks.
+      for (const side of [-1, 1]) {
+        lens(d, [side * 0.15, 0.8, 0.505], [0.032, 0.02, 0.016]);
+        lens(d, [side * 0.15, 0.62, -0.885], [0.014, 0.018, 0.032]);
+      }
+    } else {
+      // Bullet lamps on stalks: from the fork beside the headlamp, and from the rear fender.
+      const leg = (y) => G.F[2] - (y - G.F[1]) / Math.tan(G.ha);
+      const [, ly, lz] = G.headlamp;
+      const [tz, ty] = G.tail;
+      for (const side of [-1, 1]) {
+        const x = side * G.forkWidth;
+        const tip = [side * (G.forkWidth + 0.1), ly - 0.06, lz - 0.06];
+        controls.rod([x, ly - 0.06, leg(ly - 0.06)], tip, 0.007, controls.dark);
+        controls
+          .add(new T.CylinderGeometry(0.02, 0.026, 0.05, 10), controls.amber, [
+            tip[0],
+            tip[1],
+            tip[2] + 0.02,
+          ])
+          .rotation.set(Math.PI / 2, 0, 0);
+        const back = [side * 0.15, ty + 0.01, tz + 0.06];
+        d.rod([side * 0.06, ty + 0.01, tz + 0.1], back, 0.007, d.dark);
+        d.add(new T.CylinderGeometry(0.026, 0.02, 0.05, 10), d.amber, [
+          back[0],
+          back[1],
+          back[2] - 0.02,
+        ]).rotation.set(Math.PI / 2, 0, 0);
+      }
+    }
   }
   controls.finish();
   d.finish();
@@ -389,24 +454,38 @@ export function addBoatDetail(root, s) {
   // (fleet-geometry) reports its deck edge and topsides for them.
   const hull = s.hull;
   const edge = (z, inset) => Math.min(W * 0.39, hull ? hull.deckAt(z) - inset : W);
+  const sail = s.shape === 'sailboat';
+  const small = s.shape === 'speedboat';
+  // Fittings stand on the deck they serve: a raised forecastle, or a yacht's side decks and a
+  // runabout's gunwales at the sheer.
+  const deckTop = (z) =>
+    (sail || small) && hull ? hull.sheerAt(z) - 0.02 : (hull?.deckYAt?.(z) ?? y);
   for (const side of [-1, 1]) {
     for (const z of [-L * 0.35, L * 0.26]) {
-      const x = side * edge(z, 0.16 * size);
-      d.box([0.17 * size, 0.04, 0.28 * size], [x, y + 0.11, z], d.metal);
-      d.rod([x, y + 0.1, z], [x, y + 0.24 * size, z], 0.035 * size);
+      const x = side * edge(z, 0.16 * size),
+        dy = deckTop(z);
+      d.box([0.17 * size, 0.04, 0.28 * size], [x, dy + 0.11, z], d.metal);
+      d.rod([x, dy + 0.1, z], [x, dy + 0.24 * size, z], 0.035 * size);
       d.rod(
-        [x, y + 0.24 * size, z - 0.15 * size],
-        [x, y + 0.24 * size, z + 0.15 * size],
+        [x, dy + 0.24 * size, z - 0.15 * size],
+        [x, dy + 0.24 * size, z + 0.15 * size],
         0.025 * size,
       );
     }
-    // Hull lettering lies on the topsides (tilted with their flare), not standing off them.
-    const topside = hull?.sideAt(0, y * 0.55) ?? { x: W / 2, tilt: 0 };
+    // Hull lettering lies on the topsides (tilted with their flare), not standing off them. A
+    // runabout's sole sits low in the hull, so its name goes by the gunwale; a tug's goes on the
+    // bow, clear of the tyres along its sides, where the topsides turn in plan and the stem rake
+    // carries them aft.
+    const letterY = small && hull ? hull.sheerAt(0) * 0.5 : y * 0.55;
+    const letterZ = s.shape === 'tugboat' ? L * 0.27 : 0;
+    const topside = hull?.sideAt(letterZ, letterY) ?? { x: W / 2, tilt: 0 };
+    const turn = letterZ ? Math.atan(hull.deckAt(letterZ + 0.5) - hull.deckAt(letterZ - 0.5)) : 0;
+    const raked = letterZ ? letterZ + hull.rake(letterZ, letterY) : 0;
     const name = d.text(
       'BENDY',
-      [side * (topside.x + 0.006), y * 0.55, 0],
-      Math.min(0.42, y * 0.22),
-      (side * Math.PI) / 2,
+      [side * (topside.x + 0.006), letterY, raked],
+      small ? 0.13 : Math.min(0.42, y * 0.22),
+      side * (Math.PI / 2 + turn),
     );
     name.rotation.order = 'YXZ';
     name.rotation.x = topside.tilt;
@@ -420,29 +499,55 @@ export function addBoatDetail(root, s) {
       side > 0 ? d.red : d.green,
     );
   }
-  // Deck hatch with raised coaming and a pair of visible hinges.
-  d.box([W * 0.25, 0.035, Math.min(1.2, L * 0.12)], [0, y + 0.1, L * 0.32], d.dark);
+  // Deck hatch with raised coaming and a pair of visible hinges (a runabout's anchor locker lid
+  // on its foredeck).
+  const [hatchZ, hatchLength] = small ? [L * 0.44, 0.34] : [L * 0.32, Math.min(1.2, L * 0.12)];
+  const hatchY = deckTop(hatchZ) - (small ? 0.08 : 0);
+  d.box([W * 0.25, 0.035, hatchLength], [0, hatchY + 0.1, hatchZ], d.dark);
   for (const x of [-W * 0.09, W * 0.09])
-    d.box([0.09, 0.025, 0.035], [x, y + 0.13, L * 0.32 - Math.min(0.6, L * 0.06)], d.metal);
-  if (L < 30) {
-    for (let i = -3; i <= 3; i++)
-      d.rod([i * W * 0.1, y + 0.086, -L * 0.34], [i * W * 0.1, y + 0.086, L * 0.25], 0.004, d.dark);
+    d.box([0.09, 0.025, 0.035], [x, hatchY + 0.13, hatchZ - hatchLength / 2], d.metal);
+  if (sail || small) {
+    // Teak seams on the open cockpit sole of a yacht or runabout (between a runabout's flared
+    // liner sides, which close in toward the bow).
+    const [from, to] = sail ? [-L * 0.46, -L * 0.13] : [-L * 0.34, L * 0.2];
+    const [n, seamY] = sail ? [3, y + 0.086] : [2, y + 0.01];
+    for (let i = -n; i <= n; i++)
+      d.rod([i * W * 0.1, seamY, from], [i * W * 0.1, seamY, to], 0.004, d.dark);
+  }
+  if (L < 30 && !small) {
+    // Ring buoys: on a yacht's pushpit, on the guard rails of working boats.
     for (const side of [-1, 1]) {
-      const ringY = hull ? Math.max(y + 0.42, hull.sheerAt(-L * 0.28) + 0.25) : y + 0.42;
-      d.ring(0.19, 0.047, [side * W * 0.34, ringY, -L * 0.28], d.ivory, 'x');
-      d.rod(
-        [side * W * 0.34, ringY + 0.25, -L * 0.28],
-        [side * W * 0.34, ringY + 0.19, -L * 0.28],
-        0.01,
-        d.dark,
-      );
+      const z = sail ? -L * 0.45 : -L * 0.28;
+      const x = side * (sail && hull ? hull.deckAt(z) * 0.62 : W * 0.34);
+      const ringY = hull ? Math.max(y + 0.42, hull.sheerAt(z) + (sail ? 0.4 : 0.25)) : y + 0.42;
+      d.ring(0.19, 0.047, [x, ringY, z], d.ivory, sail ? 'z' : 'x');
+      d.rod([x, ringY + 0.25, z], [x, ringY + 0.19, z], 0.01, d.dark);
     }
   }
-  if (s.shape === 'sailboat') {
-    for (const side of [-1, 1])
-      d.rod([0, s.height * 0.82, L * 0.06], [side * W * 0.42, y + 0.15, 0], 0.009, d.metal);
-    d.rod([0, s.height * 0.88, L * 0.06], [0, y + 0.1, L * 0.44], 0.009, d.metal);
-    d.rod([0, s.height * 0.88, L * 0.06], [0, y + 0.1, -L * 0.44], 0.009, d.metal);
+  // Lifebuoys the hull places on a ferry's deck rails.
+  for (const at of hull?.rings ?? []) d.ring(0.3, 0.07, at, d.ivory, 'x');
+  if (sail && hull) {
+    // Fractional rig: cap and lower shrouds to chainplates on the side decks, forestay to the stem
+    // and a backstay to the transom, all from the deck-stepped mast.
+    const mastZ = L * 0.07,
+      plateZ = mastZ - 0.3;
+    for (const side of [-1, 1]) {
+      const plate = [side * (hull.deckAt(plateZ) - 0.08), hull.sheerAt(plateZ), plateZ];
+      d.rod([0, s.height * 0.86, mastZ], plate, 0.009, d.metal);
+      d.rod([0, s.height * 0.43, mastZ], plate, 0.008, d.metal);
+    }
+    d.rod(
+      [0, s.height * 0.86, mastZ],
+      [0, hull.sheerAt(L / 2) + 0.05, L / 2 - 0.15],
+      0.009,
+      d.metal,
+    );
+    d.rod(
+      [0, s.height * 0.99, mastZ - 0.05],
+      [0, hull.sheerAt(-L / 2) + 0.05, -L / 2 + 0.12],
+      0.008,
+      d.metal,
+    );
   }
   d.finish();
   if (s.driverEye) addMarineDashboard(root, s, detailKit);
@@ -474,21 +579,38 @@ export function addRivetRows(root, targets, rows, radius = 0.0035) {
   d.finish();
 }
 
-export function addTransitDetail(root, rail = false) {
+export function addTransitDetail(root, rail = false, shape = {}) {
   const d = detailKit(root);
   const L = rail ? 27 : 12,
     W = rail ? 2.65 : 2.55,
     floor = rail ? 0.95 : 0.36;
   const front = L / 2;
-  d.text(
-    rail ? 'BENDY LIGHT RAIL' : 'BENDY BUS',
-    [0, rail ? 3.37 : 2.68, front + 0.012],
-    0.13,
-    0,
-    d.amber,
-  );
+  // The generator passes its cab surface: face(x, y, inset) is the z of the outer front face,
+  // so the lettering, wipers and fascia follow a raked, rounded cab (default: a flat front).
+  const {
+    face = (_x, _y, inset = 0) => front - inset,
+    signY = rail ? 3.37 : 2.68,
+    signInset = -0.012,
+  } = shape;
+  const lean = Math.atan((face(0, signY - 0.1) - face(0, signY + 0.1)) / 0.2);
+  // Both rail cabs carry the destination; the lettering leans back with the face and each
+  // glyph follows the face's curve in plan.
+  for (const end of rail ? [1, -1] : [1]) {
+    const sign = d.text(
+      rail ? 'BENDY LIGHT RAIL' : 'BENDY BUS',
+      [0, signY, end * face(0, signY, signInset)],
+      0.13,
+      end > 0 ? 0 : Math.PI,
+      d.amber,
+    );
+    sign.rotation.x = -end * lean;
+    for (const glyph of sign.children)
+      glyph.position.z += face(glyph.position.x, signY) - face(0, signY);
+  }
   for (const side of [-1, 1]) {
-    d.text('BENDY', [side * (W / 2 + 0.032), floor + 0.65, 1], 0.18, (side * Math.PI) / 2);
+    // Side lettering below the rail car's livery stripe; on the bus's lower panel.
+    const lettering = floor + (rail ? 0.25 : 0.65);
+    d.text('BENDY', [side * (W / 2 + 0.032), lettering, 1], 0.18, (side * Math.PI) / 2);
     for (const z of rail ? [-9.5, -3.5, 3.5, 9.5] : [-0.4, 4.7]) {
       d.rod(
         [side * (W / 2 + 0.035), floor + 0.1, z],
@@ -498,18 +620,57 @@ export function addTransitDetail(root, rail = false) {
       );
       d.box([0.035, 0.1, 0.07], [side * (W / 2 + 0.04), floor + 1, z - 0.45], d.amber);
     }
-    d.rod([side * 0.3, floor + 0.95, front], [side * 0.85, floor + 1.65, front], 0.016, d.dark);
+    // Wipers lie on the windscreen (both cabs of the rail car).
+    const wiper = [
+      [side * 0.3, floor + 0.95],
+      [side * 0.85, floor + 1.65],
+    ];
+    for (const end of rail ? [1, -1] : [1])
+      d.rod(...wiper.map(([x, y]) => [x, y, end * (face(x, y) + 0.02)]), 0.016, d.dark);
     for (let z = -front + 2; z < front - 2; z += 1.25) {
       d.box([0.75, 0.1, 0.45], [side * 0.7, floor + 0.45, z], d.dark);
       d.box([0.75, 0.65, 0.09], [side * 0.7, floor + 0.8, z - 0.21], d.dark);
     }
-    for (let i = 0; i < 7; i++)
-      d.box([0.65, 0.018, 0.025], [side * 0.5, floor + 0.4 + i * 0.07, -front - 0.025], d.metal);
+    // Louvres in the grille of the bus's tall engine door.
+    if (!rail)
+      for (let i = 0; i < 7; i++)
+        d.box([0.55, 0.018, 0.025], [side * 0.3, floor + 0.8 + i * 0.06, -front - 0.025], d.metal);
   }
   const cab = panelTools(d),
     py = floor + 1.31,
     pz = front - 0.765;
-  d.box([1.9, 0.25, 0.5], [0, floor + 1.26, front - 0.5], d.dark);
+  // Cab furniture stops `gap` behind the cab face over its extent (xs, ys), so a raked,
+  // rounded nose never cuts through it; the rear faces stay where the controls expect them.
+  const behind = (xs, ys, gap) => Math.min(...xs.flatMap((x) => ys.map((y) => face(x, y)))) - gap;
+  const deskFront = Math.min(
+    front - 0.25,
+    behind([-0.95, 0.95], [floor + 1.135, floor + 1.385], 0.03),
+  );
+  d.box(
+    [1.9, 0.25, deskFront - front + 0.75],
+    [0, floor + 1.26, (deskFront + front - 0.75) / 2],
+    d.dark,
+  );
+  // The fascia closes into the front body and has supported returns beside the driver's knees.
+  // It is built in strips set back from the cab face.
+  const fasciaTop = floor + 1.15,
+    span = W - 0.16;
+  for (let i = 0; i < 10; i++) {
+    const x0 = -span / 2 + (i * span) / 10,
+      x1 = x0 + span / 10;
+    const z = behind([x0, x1], [floor, fasciaTop], 0.1);
+    d.box([x1 - x0, 1.15, 0.12], [(x0 + x1) / 2, floor + 0.575, z - 0.06], d.dark);
+  }
+  const returnFront = Math.min(front - 0.19, behind([0.77, 0.95], [floor, fasciaTop], 0.02));
+  for (const side of [-1, 1])
+    d.box(
+      [0.18, 1.15, returnFront - front + 0.77],
+      [side * 0.86, floor + 0.575, (returnFront + front - 0.77) / 2],
+      d.dark,
+    );
+  d.box([0.36, 0.12, 0.45], [0.27, floor + 1.16, front - 0.92], d.dark);
+  if (!rail)
+    d.rod([0.55, floor + 1.25, front - 1.04], [0.55, floor + 0.5, front - 0.48], 0.045, d.dark);
   if (rail) {
     // Driver display, separate vehicle-monitor screen, guarded door and emergency controls.
     cab.display(0.53, py + 0.025, pz, 0.34, 0.2, 'driver');
@@ -546,16 +707,13 @@ export function addTransitDetail(root, rail = false) {
   for (let i = 0; i < 7; i++)
     d.ring(0.013, 0.002, [-0.86, py - 0.1 - i * 0.016, pz - 0.035], d.metal, 'y');
   d.box([0.5, 0.12, 0.5], [0.55, floor + 0.65, front - 1.3], d.dark);
+  d.box([0.24, 0.59, 0.28], [0.55, floor + 0.295, front - 1.3], d.dark);
   d.box([0.5, 0.7, 0.1], [0.55, floor + 1, front - 1.55], d.dark);
-  if (rail) {
+  // Articulation ribs. (Bus wheels are steel disc wheels modelled by the bus generator.)
+  if (rail)
     for (let i = -5; i <= 5; i++)
       for (const side of [-1, 1])
         d.box([0.035, 2.3, 0.035], [side * (W / 2 - 0.1), floor + 1.3, i * 0.085], d.metal);
-  } else {
-    root.traverse((node) => {
-      if (/^wheel-(front|rear)-(left|right)$/.test(node.name)) addWheelDetail(node, 0.5, 0.32);
-    });
-  }
   d.finish();
   const control = new T.Group();
   control.name = rail ? 'traction-lever' : 'steering-wheel';

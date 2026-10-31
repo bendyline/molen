@@ -212,6 +212,20 @@
                     "property": "visible",
                     "scale": 1,
                     "missing": "hide"
+                  },
+                  {
+                    "node": "speed-brake--1",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.9
+                  },
+                  {
+                    "node": "speed-brake-1",
+                    "source": "speedBrake",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.9
                   }
                 ],
                 "derived": {
@@ -252,6 +266,13 @@
                     "component": "aircraftState",
                     "path": [
                       "gearPosition"
+                    ]
+                  },
+                  "speedBrake": {
+                    "component": "aircraftState",
+                    "path": [
+                      "actuators",
+                      "speedBrake"
                     ]
                   }
                 }
@@ -10313,7 +10334,8 @@
               "maxMach": 0.72,
               "maxEquivalentAirspeed": 254.93876792321714,
               "gearLimitSpeed": 130,
-              "flapLimitSpeed": 115
+              "flapLimitSpeed": 115,
+              "speedBrakeDrag": 0.08
             },
             "engines": [
               {
@@ -10412,6 +10434,183 @@
                 "densityExponent": 1,
                 "ratedDensityRatio": 0.4
               }
+            ],
+            "actuators": {
+              "speedBrake": {
+                "seconds": 2
+              }
+            },
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [
+                  0,
+                  3.65,
+                  0
+                ],
+                "massFraction": 0.92,
+                "nodes": [],
+                "probes": [
+                  [
+                    0,
+                    3.65,
+                    19.393
+                  ],
+                  [
+                    0,
+                    3.65,
+                    -19.393
+                  ],
+                  [
+                    19.504,
+                    3.65,
+                    0
+                  ],
+                  [
+                    -19.504,
+                    3.65,
+                    0
+                  ]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-A400-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  12.85,
+                  4.58,
+                  9.3985
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "A400-propeller-1"
+                ],
+                "disc": {
+                  "center": [
+                    12.85,
+                    4.58,
+                    9.3985
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 2.666821,
+                  "halfThickness": 0.0635,
+                  "rotor": "A400-propeller-1"
+                },
+                "engines": [
+                  "engine-1"
+                ]
+              },
+              {
+                "id": "rotor-A400-propeller-2",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  6.85,
+                  4.98,
+                  11.0985
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "A400-propeller-2"
+                ],
+                "disc": {
+                  "center": [
+                    6.85,
+                    4.98,
+                    11.0985
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 2.666821,
+                  "halfThickness": 0.0635,
+                  "rotor": "A400-propeller-2"
+                },
+                "engines": [
+                  "engine-2"
+                ]
+              },
+              {
+                "id": "rotor-A400-propeller-3",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -6.85,
+                  4.98,
+                  11.0985
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "A400-propeller-3"
+                ],
+                "disc": {
+                  "center": [
+                    -6.85,
+                    4.98,
+                    11.0985
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 2.666821,
+                  "halfThickness": 0.0635,
+                  "rotor": "A400-propeller-3"
+                },
+                "engines": [
+                  "engine-3"
+                ]
+              },
+              {
+                "id": "rotor-A400-propeller-4",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [
+                  -12.85,
+                  4.58,
+                  9.3985
+                ],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": [
+                  "A400-propeller-4"
+                ],
+                "disc": {
+                  "center": [
+                    -12.85,
+                    4.58,
+                    9.3985
+                  ],
+                  "normal": [
+                    0,
+                    0,
+                    1
+                  ],
+                  "radius": 2.666821,
+                  "halfThickness": 0.0635,
+                  "rotor": "A400-propeller-4"
+                },
+                "engines": [
+                  "engine-4"
+                ]
+              }
             ]
           }
         },
@@ -10447,7 +10646,10 @@
           "crashed": false,
           "waitingForTerrain": false,
           "gearPosition": 1,
-          "flapPosition": 0
+          "flapPosition": 0,
+          "actuators": {
+            "speedBrake": 0
+          }
         },
         "mountable": {
           "seats": [
@@ -10599,6 +10801,13 @@
                 "engines",
                 "engine-4",
                 "rpm"
+              ]
+            },
+            "speedBrake": {
+              "component": "aircraftState",
+              "path": [
+                "actuators",
+                "speedBrake"
               ]
             }
           },
@@ -20596,6 +20805,20 @@
               "property": "visible",
               "scale": 1,
               "missing": "hide"
+            },
+            {
+              "node": "speed-brake--1",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.9
+            },
+            {
+              "node": "speed-brake-1",
+              "source": "speedBrake",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.9
             }
           ]
         }
