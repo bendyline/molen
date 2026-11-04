@@ -6,6 +6,7 @@ import path from 'node:path';
 import test from 'node:test';
 import { contentHash } from './scan.mjs';
 import {
+  completedBatchEntries,
   completedPhysicalModelIdentity,
   locateCompletedStory,
   syncCompleted,
@@ -13,6 +14,45 @@ import {
   verifyCompletedStory,
   verifySelectedReferenceBytes,
 } from './sync-completed.mjs';
+
+test('a completed declared member links independently while its fixed parent stays unfinished', () => {
+  const parent = {
+    modelIdentity: 'observatory',
+    structureId: 'QS-observatory',
+    modelState: 'preparing-site-collection',
+    storyIds: ['observatory-wp'],
+    stories: [{ id: 'observatory-wp', contentHash: 'original' }],
+  };
+  const member = {
+    ...parent,
+    modelIdentity: 'observatory_control_building',
+    parentModelIdentity: parent.modelIdentity,
+    modelState: 'completed',
+    sourcePath: 'content/worldgen/source/places/aa/aaa/observatory_control_building',
+    workOwner: 'qualla-002',
+  };
+  parent.requiredMembers = [member];
+  const batch = { id: 'qualla-002', entries: [parent] };
+  assert.deepEqual(completedBatchEntries(batch, [member.modelIdentity]), [member]);
+  assert.equal(parent.modelState, 'preparing-site-collection');
+  assert.throws(() => completedBatchEntries(batch, [parent.modelIdentity]), /Not a completed/);
+  for (const patch of [
+    { parentModelIdentity: 'unrelated' },
+    { structureId: 'QS-other' },
+    { workOwner: 'other-device' },
+    { storyIds: ['other-wp'] },
+    { stories: [{ id: 'observatory-wp', contentHash: 'changed' }] },
+    { modelState: 'authored-in-progress' },
+    { sourcePath: undefined },
+  ]) {
+    const changed = structuredClone(batch);
+    Object.assign(changed.entries[0].requiredMembers[0], patch);
+    assert.throws(() => completedBatchEntries(changed, [member.modelIdentity]));
+  }
+  const duplicate = structuredClone(batch);
+  duplicate.entries.push(member);
+  assert.throws(() => completedBatchEntries(duplicate, [member.modelIdentity]), /Not a completed/);
+});
 
 test('reference verification accepts both fingerprint formats and rejects changed bytes', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-reference-'));

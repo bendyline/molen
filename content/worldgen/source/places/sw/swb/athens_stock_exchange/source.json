@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.athens_stock_exchange",
+  "kind": "static-structure",
+  "title": "Athens Stock Exchange — historic Sofokleous building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.athens_stock_exchange",
+        "output": "assets/places/sw/swb/athens_stock_exchange/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:494ed50cfa28b2336b8cabf1f688fbcf4eb941132045c5d77056a87987a0fd6e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-whole-exchange.json",
+      "native-map/original-osm.xml",
+      "reference-rights/primary-owner.txt",
+      "reference-rights/primary-culture.txt",
+      "reference-rights/primary-phase.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-18543-12641.png",
+      "terrain-sources/terrarium-15-18544-12641.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -99,6 +99,10 @@ const osmCaptionFixtureHash =
 // An explicit isolated-stage datum preserves the default rendering path for all other assets.
 const zeroReviewDatumFixtureHash =
   'sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36';
+// Local query centering preserves the native model/camera/outline transforms and
+// flat review plane. Already-valid captures keep their original image evidence.
+const anchorCenteredQueryFixtureHash =
+  'sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754';
 const clippingMode = process.argv.includes('--adaptive-clipping') ? 'bounds' : 'legacy';
 const reflectionMode = process.argv.includes('--reflections') ? 'sky-pmrem' : 'none';
 const reviewBoundedPlacement = process.argv.includes('--bounded-placement');
@@ -212,6 +216,7 @@ try {
           frame.state?.terrainSamples?.some((sample) => sample.placementId === placement.id),
         )) &&
       (matchesEvidenceText(fixtureBytes, prior?.fixtureHash) ||
+        prior?.fixtureHash === anchorCenteredQueryFixtureHash ||
         (prior?.fixtureHash === zeroReviewDatumFixtureHash && reviewGroundY === undefined) ||
         prior?.fixtureHash === osmCaptionFixtureHash ||
         prior?.fixtureHash === originContactFixtureHash ||
@@ -435,8 +440,13 @@ try {
     ];
     await mkdir(resolve(output, 'shots/shared'), { recursive: true });
     const frames = [];
+    assert.equal(
+      new Set(views.map((view) => view.name.toLowerCase())).size,
+      views.length,
+      'Camera names must be unique without regard to case',
+    );
     for (const view of views) {
-      assert(/^[a-z0-9_-]+$/.test(view.name), `Invalid camera name: ${view.name}`);
+      assert(/^[a-z0-9_-]+$/i.test(view.name), `Invalid camera name: ${view.name}`);
       const state = await page.evaluate((input) => window.landmarkLibraryQA.view(input), view);
       assert(state.draws > 0 && state.renderedTriangles > 0);
       if (
@@ -463,7 +473,7 @@ try {
         Object.values(state.surfaceReads).every((count) => count === 1),
         'The shared library should bake each graph once across all models',
       );
-      const path = resolve(output, `shots/shared/${view.name}.png`);
+      const path = resolve(output, `shots/shared/${view.name.toLowerCase()}.png`);
       await page.screenshot({ path });
       frames.push({
         path: relative(output, path).replaceAll('\\', '/'),

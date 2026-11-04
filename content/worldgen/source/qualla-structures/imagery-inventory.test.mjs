@@ -838,6 +838,25 @@ test('Flickr CC0 needs the same creator/photo in the primary dedication, exact b
   photo.creator.image = photo.author.image;
   reference.creatorDedication.catalogName = 'Another author';
   assert.equal(inspect(), false);
+  // A reviewed transfer may name a Commons account while the primary creator
+  // uses an NSID URL. Both creator objects and the exact transfer stay bound.
+  reference.creatorDedication.catalogName = name;
+  meta.Artist.value = `<a href="//commons.wikimedia.org/wiki/User:${encodeURIComponent(name)}">${name}</a>`;
+  const commonsReview = `${review}\n|author=[[User:${name}|${name}]]`;
+  page.revisions[0].slots.main['*'] = commonsReview;
+  photo.author.url = photo.creator.url = `https://www.flickr.com/photos/${nsid}`;
+  photo.acquireLicensePage = `https://www.flickr.com/photos/${nsid}/${id}`;
+  assert.equal(inspect(), true);
+  photo.creator.image = 'https://farm66.staticflickr.com/65535/buddyicons/999@N01.jpg#999@N01';
+  assert.equal(inspect(), false);
+  photo.creator.image = photo.author.image;
+  page.revisions[0].slots.main['*'] = commonsReview.replace('status=passed', 'status=failed');
+  assert.equal(inspect(), false);
+  page.revisions[0].slots.main['*'] = commonsReview.replace(`User:${name}`, 'User:Unrelated');
+  assert.equal(inspect(), false);
+  page.revisions[0].slots.main['*'] = commonsReview;
+  photo.acquireLicensePage = `https://www.flickr.com/photos/${nsid}/999`;
+  assert.equal(inspect(), false);
 });
 
 function habsFixture(t, kind = 'government-photograph') {

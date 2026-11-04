@@ -14,6 +14,8 @@ import {
   reviewedSourceMapFrame,
 } from '../../../../packages/worldgen-earth/scripts/reviewed-source-map-frame.mjs';
 import { inspectImageryInventory } from './imagery-inventory.mjs';
+import { readCurrentReferences } from './member-references.mjs';
+import { inspectLocalCollection } from './collection-progress.mjs';
 import {
   inspectImageryPolicy,
   PUBLIC_DOMAIN_POLICY,
@@ -68,6 +70,19 @@ export async function inspectLocalModel(
     qualla = path.resolve(repository, '../qualla-internal'),
   } = {},
 ) {
+  if (entry.collectionSourcePath)
+    return inspectLocalCollection(
+      entry,
+      {
+        repository,
+        project,
+        stylepack,
+        placements,
+        imageryPolicy,
+        qualla,
+      },
+      inspectLocalModel,
+    );
   const row = {
     candidateId: entry.modelIdentity,
     backlogTargetId: entry.structureId,
@@ -362,7 +377,7 @@ export async function buildProgress({
         project,
         stylepack,
         placements,
-        currentReferences: read(path.join(output, `references/${entry.structureId}.json`)),
+        currentReferences: readCurrentReferences(output, entry),
         imageryPolicy: batch.policy?.imagery,
       }),
     );

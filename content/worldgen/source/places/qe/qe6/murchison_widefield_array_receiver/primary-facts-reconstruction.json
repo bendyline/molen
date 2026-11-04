@@ -1,0 +1,60 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "mro-primary-whole-weather-tight-receiver-integrated-refrigeration-16inferred-instances-2013",
+  "model": "murchison_widefield_array_receiver",
+  "structureId": "QS-73fe16470c60",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "engineering-pdf",
+      "path": "reference-rights/original-mwa-as-built-2012.pdf",
+      "url": "https://arxiv.org/pdf/1206.6945",
+      "use": "written-facts-only",
+      "sha256": "sha256:fcc8db40185c0204f8b0473ae89d4b3fa1746a40db8f1a1590e11243b86a049d"
+    },
+    {
+      "key": "engineering-text",
+      "path": "reference-rights/original-mwa-as-built-2012.txt",
+      "url": "https://arxiv.org/pdf/1206.6945",
+      "use": "factual-text-only",
+      "sha256": "sha256:ec84bac1b10a4ce3667709a76396bfef274ba59d3ed85dc77a9ae9def1e7d200"
+    },
+    {
+      "key": "configuration",
+      "path": "native-map/original-2013-operator-array-configuration.json",
+      "url": "https://ws.mwatelescope.org/metadata/con?obs_id=1072483216&pretty=0",
+      "use": "numeric-connectivity-only",
+      "sha256": "sha256:6a3128bdd7af717e5ee3919e00d0be7ac56f1eeea69856bc8eeaa38e041d1a6f"
+    },
+    {
+      "key": "conditional-positions",
+      "path": "native-map/receiver-position-constraint-research.json",
+      "url": "https://ws.mwatelescope.org/metadata/con?obs_id=1072483216&pretty=0",
+      "use": "explicit-author-range-inference",
+      "sha256": "sha256:6969ca90728b8ba5bc447f2e34d2a22afc701432eee603c89258022cba136f39"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-receiver-primary-control.json",
+    "sha256": "sha256:a35bdf7aad3c8918e85df2b452eec375b32fac7841ddcabe9516e11f721bbbab",
+    "nativeReceiverPointVerified": false
+  },
+  "quallaFirst": {
+    "families": 4,
+    "inventoryHash": "sha256:ab5cd612bbb88c527ef859b58b773fa4bab9074fc2d3d693677091d82015d3cc",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Actualoriginal2013configuration binds16receiverIDs/eighttiles each; onewholecabinetgeometryreusedwith16distinctexplicitlyinferredplacements. No arbitrarymappedbuilding isrelabeledasareceiver. Eighttilecoordinatesarenotreceivercoordinates. Candidatepositionsfromconservativeconditionalrangeintersection areoriginalauthorchoices,not surveyedoperatorpoints ortrueerrorbounds; allper-instanceconditionalradii retained.",
+    "OwnrepresentativeRx11original256m129x129field16641heights/oneoriginaltile/datum377.4826m frozen beforefoundation-.35..+.15/skid.15..+.3/cabinetfloor.3/top2.4/roofcap2.455m. No field/frame/floor/mainsectioncut/mask/flatten/reframe/refitforrenders. Otherreceiverinstancesuseunchangedoriginalwhole-sitefield/retainedrawtiles, with theirderiveddatumsfixedbeforeplacement, notsurveyedverticalties.",
+    "Wholeweather-tightRFshieldedelectronicsreceiverenclosurewithintegratedrefrigeration representedbyclosedmainweatherhousing,closedfrontdoor/rearcoolingaccesscover/estimatedvents/serviceentry/topweathercap/steelbase/fourpadfootings. Rack/electronics/refrigerationmechanisminternalandnotmodeled. Externalmainbody1.6x1.15x2.1m, pad.28square/baselegpositions/door/coolingcover/ventcensus/handles/finish/facing areauthorestimates,notmeasuredsourceform. Height/width1m uncertainty/supports/details.5m; nominal180degfacinguncertainty. No electrical/RFIperformance or construction-clearanceclaim.",
+    "Original2012engineeringpaperwrittensection2.4states rackinweather-tightRFshieldedenclosurewithintegratedrefrigeration; actual2013configurationprovidesconnectivity/positionsofconnectedtiles/effectivelengths only. Everyphoto/figure/graphicpath/plan/map/satellitepixelunused. Effectiveelectrical lengthatc isnotphysicalrouteandclock-adjustedtedisnotlength/height. No sourceimage adopted.",
+    "Qualla-first4families/1conflictunchanged. Approximate2013visualization/currentWorldEligiblefalse; oldacceptedMROgeometry/fields/frames/floors/QAunchanged. Wholeobservatoryseparate; repeatedinstancesnotadditionalassetcompletioncredit."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-02",
+    "notes": "Actualwrittenrackweather-tightRFenclosure/integratedrefrigerationand16originalreceiverIDs/eighttiles each. Allappearanceimageryunused; externalcabinetform/finish/facing/supports andeveryreceiverlocationexplicitlyestimated. Conditionalregionradiiarenottrueerrorbounds; no exactoperatorreceivercoordinateclaimed."
+  }
+}

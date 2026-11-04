@@ -1,0 +1,468 @@
+{
+  "planId": "plasco_building",
+  "id": "plasco_building",
+  "assetId": "molen.worldgen.structure.plasco_building",
+  "title": "Plasco Building — original tower, Tehran",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 51.42074205,
+    "latitude": 35.6947554
+  },
+  "size": [
+    35.86286926269531,
+    57.79999923706055,
+    32.682616233825684
+  ],
+  "actualBounds": {
+    "min": [
+      -17.930932998657227,
+      -1,
+      -16.71257209777832
+    ],
+    "max": [
+      17.931936264038086,
+      56.79999923706055,
+      15.970044136047363
+    ]
+  },
+  "visualBrief": "Whole independent original1962Plasco tower in intact2016phase: original2016four-corner mapped building,15above-groundlevels/oneunexposedbasement, fullroof/parapet, cement east/west walls and open steel-brace/ceramic/glazed north/south elevations, closed south entrance/shopfront. Primary written engineering facts, no imagery. Exact height/plan discrepancy, brace/window census, sections/finish/grade are explicit estimates; independent northern mall and2021replacement excluded.",
+  "nativeAxes": {
+    "x": "along whole original south edge westward",
+    "y": "up",
+    "z": "toward original tower rear/north"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2016-12-31",
+    "validFrom": "2016-01-01",
+    "validUntil": "2017-01-19",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "plasco-building-wp",
+      "url": "https://qualla.com/plasco-building/"
+    }
+  ],
+  "referenceInputHash": "sha256:4a60461f3429adf048ce8362e2a434fc60a0a01a3981fc8682de5a6cb64c2191",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tn/tnk/plasco_building/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tn/tnk/plasco_building/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.12
+      },
+      "ceramic": {
+        "slot": "door",
+        "graph": "tile_glazed",
+        "roughness": 0.48,
+        "metallic": 0.02
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.44,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.12
+          },
+          "ceramic": {
+            "slot": "door",
+            "graph": "tile_glazed",
+            "roughness": 0.48,
+            "metallic": 0.02
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.44,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.12
+          },
+          "ceramic": {
+            "slot": "door",
+            "graph": "tile_glazed",
+            "roughness": 0.48,
+            "metallic": 0.02
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.44,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.12
+          },
+          "ceramic": {
+            "slot": "door",
+            "graph": "tile_glazed",
+            "roughness": 0.48,
+            "metallic": 0.02
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.44,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "membrane",
+    "concrete_boardformed",
+    "metal_painted",
+    "tile_glazed",
+    "window_punched"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 5000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      51.42074205,
+      35.6947554
+    ],
+    "heading": 2.8531380837066544,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        51.42069290022482,
+        35.694620950741296
+      ],
+      "modelHeight": 0,
+      "basis": "Original fullsouthfrontedge midpoint chosen before originalfield/floor/mainsections; not a surveyed threshold."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/211028571"
+    ],
+    "source": "https://www.openstreetmap.org/way/211028571/history",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:714299e19c1dfaf21a9ed5a7ec504620de3ffe7401198f94f50beb65e05562e4",
+    "notes": "Whole original structurally independent1962Plasco tower before2017collapse: complete original2016way211028571 four-corner envelope, all fifteen above-ground levels, south entrance/lobby/shopfront, north/south steel-brace/ceramic/window elevations, east/west cement elevations and entire roof/parapet. Separate five-storey northern shopping-centre building and2021replacement tower are independent structures and excluded; no mall/current-building proxy. Historical2016exterior; all imagery unused, exact sections/roof/brace/window details/finish/grade estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole original structurally independent1962Plasco tower before2017collapse: complete original2016way211028571 four-corner envelope, all fifteen above-ground levels, south entrance/lobby/shopfront, north/south steel-brace/ceramic/window elevations, east/west cement elevations and entire roof/parapet. Separate five-storey northern shopping-centre building and2021replacement tower are independent structures and excluded; no mall/current-building proxy. Historical2016exterior; all imagery unused, exact sections/roof/brace/window details/finish/grade estimated.",
+    "Whole structurally independent original tower, not the separate northern five-storey shopping-centre building. Original2016attic namedway211028571 has four complete corners; currentreplacementway1164854772 and independentmallway1029124094 are excluded. Originalnumeric plan approximately35.57x31.22m is coarser than research29.4x31.9m structuralframe dimensions; retain original geographic envelope, no traced figure or fitted plan.",
+    "Original research describes fifteen above-ground storeys plus one basement, totalabout60mabovefoundation, and2023paper almost60mtall. Original native48mheight tag is not adopted as surveyed height. Nominal above-ground roof56m plus0.8mparapet approximates60mfromfoundation with4m-basement interpretation; detailed sections and6mheight uncertainty explicit. Groundfloor4m plus fourteen3.7moffice/workshoplevels;15rows and closedgroundshopfronts. Basements/interiors unexposed/excluded from exterior. Roof equipment not evidenced is not invented.",
+    "Original independent256m129x129field,16641values/1rawtile,datum1186.7803m/range1169.6879..1198.1131m frozen before floors or mainsections. Original fullsouthfrontedge contact, flatfloor0.2m/foundation-1m/roof56m/parapet56.8m fixed once. Coarse urban composite relief may include canopy/building/DEM artifacts and bury/expose bases. Not a2016groundsurvey or verticaldatum conversion. Original field/frame/floors/mainsections never masked, cut, flattened, refetched, reframed or fit for captures.",
+    "Written primary facts support cement east/west walls and opensteel-brace/ceramic/masonry/glazed north/south elevations. Exact diagonal pattern,12baynear facade, six/eightestimatedsidewindow bays, tileband heights, gridmember sizes, shopdoor census, trim, parapet and mutedgray/green/creamcolors are original estimates, no exact facade census. Plan/component uncertainty6m/height6m/brace ornament30percent; current originalnumeric outline roughlydates historical2016phase. All15abovegroundlevels/wholebody/roof/elevations/entrance retained at everyLOD; distant screenbays/windows coarsened.",
+    "Qualla first16families/zero conflicts, everyimageunused. Uncertain1973Ministrybook and unknownphotographercityphotos, protectedmodernphotos and researchpaperfigures/photos/diagrams unused. Primary published writtenresearch only, no image-derived geometry/texture/rightsrepair. Dated2016proposal/currentWorldEligible false; no collapse/fire/damage or replacement facade mixed into intact originalphase. Groundcontact and verticalregistration remain unverified."
+  ],
+  "sourceLicense": "Original deterministic procedural geometry under repository license. Primary engineering research written architectural facts only; every photograph/figure/diagram unused. Original2016OpenStreetMap numerical whole tower data ODbL; no borrowed mesh or image texture. Exact sections/brace and window pattern/roof/finish/grade estimated; no surveyed contact or currentreplacement.",
+  "qaLodCameras": [
+    {
+      "name": "whole-original-plasco-skyline",
+      "position": [
+        88,
+        70,
+        -112
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-original-plasco-district",
+      "position": [
+        88,
+        70,
+        -112
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-original-plasco-street",
+      "position": [
+        88,
+        70,
+        -112
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-original-plasco-closeup",
+      "position": [
+        88,
+        70,
+        -112
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-tower-south-entrance-and-steel-elevation",
+      "position": [
+        88,
+        70,
+        -112
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ]
+    },
+    {
+      "name": "whole-north-brace-face-and-cement-side",
+      "position": [
+        -88,
+        65,
+        102
+      ],
+      "lookAt": [
+        0,
+        27,
+        0
+      ]
+    },
+    {
+      "name": "complete-original-footprint-roof-and-parapet",
+      "position": [
+        63,
+        116,
+        56
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ]
+    },
+    {
+      "name": "open-steel-braces-ceramic-bands-and-glazing",
+      "position": [
+        1,
+        31,
+        -38
+      ],
+      "lookAt": [
+        1,
+        30,
+        -15.612572489336287
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22238,
+    "vertices": 66714,
+    "materials": 6,
+    "bytes": 2842584,
+    "sha256": "sha256:c88b89a7009f3e3f0cae0c325937e40307407126807e6322bea984ff06dff4b4"
+  }
+}

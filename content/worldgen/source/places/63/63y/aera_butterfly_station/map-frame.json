@@ -1,0 +1,106 @@
+{
+  "format": "molen/structure-map-frame@1",
+  "candidateId": "QS-2ba5044b3ca3",
+  "title": "AERA butterfly radio station",
+  "anchor": [
+    -69.56417899128058,
+    -35.10048790661263
+  ],
+  "heading": 0,
+  "coordinateSpace": "model-local-xz",
+  "nativeAxes": {
+    "x": "estimated east",
+    "y": "up",
+    "z": "estimated south"
+  },
+  "axis": "+X east,+Y up,+Z south; antenna and panel azimuth is an illustrative estimate.",
+  "source": "Known AERA weather-site numerical context and primary written antenna-design facts; station point and service enclosure are explicit original estimates.",
+  "sourceUrl": "https://publikationen.bibliothek.kit.edu/1000083318/14074653",
+  "identityStatus": "real-antenna-family-estimated-station-location-not-surveyed-GPS",
+  "geometryLabel": "Estimated individual station service/fence outline, NOT a mapped station roof or17km²array footprint.",
+  "geometry": {
+    "polygons": [
+      [
+        [
+          -2.6,
+          -2.6
+        ],
+        [
+          2.6,
+          -2.6
+        ],
+        [
+          2.6,
+          2.6
+        ],
+        [
+          -2.6,
+          2.6
+        ]
+      ]
+    ]
+  },
+  "features": [
+    {
+      "id": "estimate/aera_butterfly_station",
+      "role": "estimated-radio-station-hardware-envelope",
+      "points": [
+        [
+          -2.6,
+          -2.6
+        ],
+        [
+          2.6,
+          -2.6
+        ],
+        [
+          2.6,
+          2.6
+        ],
+        [
+          -2.6,
+          2.6
+        ]
+      ],
+      "properties": {
+        "positionSurveyed": false,
+        "antennaFamily": "butterfly"
+      }
+    }
+  ],
+  "mappedIdentity": {
+    "name": "AERA butterfly radio station",
+    "parentCollection": "pierre_auger_observatory",
+    "featureIds": [
+      "estimate/aera_butterfly_station"
+    ],
+    "nativeSource": {
+      "path": "native-map/original-aera-weather-site-reference.json",
+      "hash": "sha256:eff25af865205342e55cdc38bbfb349f1302933fbf733d1b5372a8f6a0cfc471"
+    }
+  },
+  "orientationControl": {
+    "status": "reviewed-approximation",
+    "reviewedOn": "2026-11-03",
+    "headingRadians": 0,
+    "uncertaintyDegrees": 180,
+    "basis": "Two orthogonal polarization planes retained. Absolute magnetic/cardinal yaw and solar-panel azimuth are original estimates.",
+    "referencePages": [
+      "https://publikationen.bibliothek.kit.edu/1000083318/14074653"
+    ]
+  },
+  "terrainContact": {
+    "local": [
+      0,
+      0
+    ],
+    "modelY": 0,
+    "basis": "First anonymous estimated layout point chosen before independent ground and body geometry."
+  },
+  "historicalAppearance": {
+    "representedDate": "2018-04-20",
+    "validFrom": "2015-03-01",
+    "validUntil": "2026-11-03"
+  },
+  "notes": "Whole butterfly radio station: documented orthogonal antenna geometry, mast, electronics, GPS/communications, solar power and cattle fence. Source dimensions retained. Number of dipole elements, rod profiles/visibility thickness, hardware dimensions/arrangement, materials/finish and station positions are original estimates. Known AERAWS point anchors an explicitly estimated anonymous layout; no claimed actual radio GPS/table, WCD substitution or private-data reconstruction."
+}

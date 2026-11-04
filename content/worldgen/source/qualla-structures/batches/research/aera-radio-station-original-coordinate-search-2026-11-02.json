@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-02",
+  "subject": "Actual AERA radio-antenna station coordinates",
+  "status": "actual-coordinate-table-not-publicly-recovered",
+  "geometryAuthored": false,
+  "frameChosen": false,
+  "terrainAcquired": false,
+  "sourceImagesUsed": false,
+  "newOriginalSources": [
+    {
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-69.57,-35.14,-69.48,-35.07",
+      "localPath": ".artifacts/qualla-batch/next-300/aera-original-osm-array-context-2026-11-02.json",
+      "sha256": "sha256:e31f2b07296053cc38c630cbc8bd26a27eff8be1ef4555252dca92dd0afc9fa4",
+      "elements": 3237,
+      "license": "ODbL original numerical map records",
+      "finding": "Named cosmic-ray monitoring nodes are existing surface detectors. No separately tagged AERA radio antenna/weather/laser feature found; generic surface-detector nodes not substituted."
+    },
+    {
+      "author": "Yan Seyffert",
+      "title": "Nanosecond level time synchronization of distributed radio detectors",
+      "date": "2023-09-13",
+      "url": "https://publikationen.bibliothek.kit.edu/1000162809/151441002",
+      "localPath": ".artifacts/qualla-batch/next-300/auger-seyffert-2023-original-time-synchronization-thesis.pdf",
+      "sha256": "sha256:f0425abab60b25e475e1ef7f907627bdc813df25996ee765775aa52a02e6c12e",
+      "pages": 93,
+      "read": "Text only; section5.2.2 printed39, appendix and source references.",
+      "finding": "RdStationPositon module exports detector positions to a file in UTM19H; that numerical file and station coordinate table are not supplied in this thesis. Plotted figures not digitized/traced/viewed."
+    }
+  ],
+  "otherLeads": [
+    {
+      "source": "Ewa Marlen Holt2018 original thesis, section4.4 and AppendixA",
+      "finding": "Positions are stored in Offline XML detector-description files. Appendix contains steering-file examples, not a full antenna station table."
+    },
+    {
+      "source": "nu-radio/NuRadioMC primary public repository",
+      "finding": "Published AERA antenna response models and generic square-grid detector example. Example explicitly describes a generic grid; not actual surveyed AERA layout."
+    },
+    {
+      "source": "Public GitHub searches and original Auger open-data schema",
+      "finding": "No original station-coordinate file found. Main open release positions cover WCD surface detectors/FD pixels. Newer high-level AERA shower summary already reviewed separately is not antenna geometry."
+    },
+    {
+      "source": "Official Offline GitLab link in original2025thesis",
+      "finding": "Public web retrieval unavailable; no login/access denial bypass attempted."
+    }
+  ],
+  "decision": "Keep actual AERA station census unresolved; no153invented grid, no substituted CRS point, no claimed completed radio array. Proceed with independently published AERAWS meter record.",
+  "oldAcceptedModelsReopened": 0
+}

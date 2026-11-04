@@ -1,0 +1,325 @@
+{
+  "planId": "chihaya_second_bailey",
+  "id": "chihaya_second_bailey",
+  "assetId": "molen.worldgen.structure.chihaya_second_bailey",
+  "title": "Chihaya second bailey",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.65227505000001,
+    "latitude": 34.41645135
+  },
+  "size": [
+    49,
+    16.14859962463379,
+    51
+  ],
+  "actualBounds": {
+    "min": [
+      75,
+      22.354799270629883,
+      41
+    ],
+    "max": [
+      124,
+      38.50339889526367,
+      92
+    ]
+  },
+  "visualBrief": "Whole declared surviving second bailey ground constituent at Chihaya Castle, retaining present numerical terrain shape and slope breaks within the explicit estimated precinct perimeter. Current second-enclosure ground around the later shrine, identified as second bailey by the official village description. The shrine footprint only locates this ground precinct; no shrine building is substituted for the castle. The perimeter is an explicit current-ground authoring estimate, not a measured medieval defence line. Later shrine/office/sign/stele/trees and all standing keep reconstructions excluded; surrounding belt terraces and the whole castle remain separately scoped.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2026-11-02",
+    "validFrom": "2026-11-02",
+    "validUntil": "2026-11-03",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chihaya_Castle07.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chihaya_Castle10.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chihaya_Castle11.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chihaya-castle-wp",
+      "url": "https://qualla.com/chihaya-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:ea3bbcdb107d668637252cc2178cb5037fdf4a399c94b5b6b976b9a4b7b432d9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn0/chihaya_second_bailey/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn0/chihaya_second_bailey/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.041,
+    "surfaces": {
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "closure": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.02,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "closure": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.008,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "closure": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.002,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "closure": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "gravel",
+    "earth_rammed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      135.65227505000001,
+      34.41645135
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.65227505000001,
+        34.41645135
+      ],
+      "modelHeight": 0,
+      "basis": "Original native-context extent midpoint selected before independent full field or any model/floor/mainsection geometry. GSI ground elevations are factual source data, not measured archaeological construction phases or a surveyed host-terrain tie."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/397584412",
+      "way/400358672",
+      "authoring/chihaya_second_bailey"
+    ],
+    "source": "https://www.vill.chihayaakasaka.osaka.jp/kakuka/kyoiku/syakaikyoiku/bunnkazai/9118.html",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e939b09a7a2123adc268cc97ce753569efc13aafc4b7829cca25673ff6f9863b",
+    "notes": "Whole declared surviving second bailey ground constituent at Chihaya Castle, retaining present numerical terrain shape and slope breaks within the explicit estimated precinct perimeter. Current second-enclosure ground around the later shrine, identified as second bailey by the official village description. The shrine footprint only locates this ground precinct; no shrine building is substituted for the castle. The perimeter is an explicit current-ground authoring estimate, not a measured medieval defence line. Later shrine/office/sign/stele/trees and all standing keep reconstructions excluded; surrounding belt terraces and the whole castle remain separately scoped. Qualla-first53families/zero conflicts. Three exact published2010creatorPD-self originals already visually inspected, original native first revisions/sole upload signatures/renamed Commons account/nativeSHA1s pinned. Earth, leaf-covered soil and bank character only; no photo texture, protected plan image or invented stone-wall location. Full original512m source field/anchor/heading/axes fixed before new geometry and retained byte-for-byte. Estimated complete precinct perimeter is a bounded authoring approximation, not a native measured roof or archaeological survey."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole declared surviving second bailey ground constituent at Chihaya Castle, retaining present numerical terrain shape and slope breaks within the explicit estimated precinct perimeter. Current second-enclosure ground around the later shrine, identified as second bailey by the official village description. The shrine footprint only locates this ground precinct; no shrine building is substituted for the castle. The perimeter is an explicit current-ground authoring estimate, not a measured medieval defence line. Later shrine/office/sign/stele/trees and all standing keep reconstructions excluded; surrounding belt terraces and the whole castle remain separately scoped.",
+    "Qualla-first53families/zero conflicts. Three exact published2010creatorPD-self originals already visually inspected, original native first revisions/sole upload signatures/renamed Commons account/nativeSHA1s pinned. Earth, leaf-covered soil and bank character only; no photo texture, protected plan image or invented stone-wall location. Full original512m source field/anchor/heading/axes fixed before new geometry and retained byte-for-byte. Estimated complete precinct perimeter is a bounded authoring approximation, not a native measured roof or archaeological survey.",
+    "No surveyed enclosure perimeter is claimed:10m horizontal/archaeological-edge and3m source-ground allowances are explicit authoring estimates, not measured accuracy. Contemporary main summit is not flattened or raised to the nominal historical673m.",
+    "Official village description says former ditch cuts are not clearly identifiable in current terrain; no hypothetical moat is reconstructed. Later trees, shrine/office structures, information signs and statues are not castle proxies. Small stone-faced retaining edge in photo has unverified exact position/date, so no invented stone-wall course is added.",
+    "Original2m full source field and fixed native context frame are unchanged. Mesh follows source terrain triangles with original0.045m rendering separation; closed underground underside is rendering closure, not a surveyed archaeological foundation. No source flattening, masks, ground openings, pose/height fitting or recreated medieval flat floor.",
+    "Four authored levels preserve declared whole precinct plan. Skyline drops buried mesh closure and merges source cells only within0.041m interpolation; district0.02m/street0.008m, close exact2m source-cell topology. Near surface has current-data sampling accuracy, not archaeological precision. No surveyed vertical tie to live host/Terrarium; current-world activation remains off.",
+    "Raw original GSI numeric heights are factual data, not appearance imagery;589outlying full-field values use original coarser data in official no-data hierarchy. Qualla photographic originals are public-domain self-releases; no generated bitmap/photographic texture or protected page graphics."
+  ],
+  "sourceLicense": "Original deterministic present-earthwork geometry under repository license. Original OSM numerical route and building context credited ODbL, GSI factual elevation data credited to GSI. Precinct perimeters are explicit new estimates from primary textual identity/order and native context, not traced plans or measured medieval roof outlines. Exact published Qualla creatorPD-self originals supply ground character; no photographic texture or restored keep/moat/shrine proxy.",
+  "qaLodCameras": [
+    {
+      "name": "original-earthwork-skyline",
+      "position": [
+        184.875,
+        92.00611875000004,
+        141.125
+      ],
+      "lookAt": [
+        96.875,
+        29.00611875000004,
+        66.125
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "original-earthwork-district",
+      "position": [
+        184.875,
+        92.00611875000004,
+        141.125
+      ],
+      "lookAt": [
+        96.875,
+        29.00611875000004,
+        66.125
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "original-earthwork-street",
+      "position": [
+        184.875,
+        92.00611875000004,
+        141.125
+      ],
+      "lookAt": [
+        96.875,
+        29.00611875000004,
+        66.125
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "original-earthwork-closeup",
+      "position": [
+        184.875,
+        92.00611875000004,
+        141.125
+      ],
+      "lookAt": [
+        96.875,
+        29.00611875000004,
+        66.125
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-upper-current-earthwork-and-edge-slopes",
+      "position": [
+        184.875,
+        92.00611875000004,
+        141.125
+      ],
+      "lookAt": [
+        96.875,
+        29.00611875000004,
+        66.125
+      ]
+    },
+    {
+      "name": "opposite-original-upper-enclosure-profile",
+      "position": [
+        11.875,
+        85.00611875000004,
+        -3.875
+      ],
+      "lookAt": [
+        96.875,
+        29.00611875000004,
+        66.125
+      ]
+    },
+    {
+      "name": "current-source-upper-surface",
+      "position": [
+        100.875,
+        125.00611875000004,
+        66.225
+      ],
+      "lookAt": [
+        96.875,
+        29.00611875000004,
+        66.125
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1358,
+    "vertices": 4074,
+    "materials": 2,
+    "bytes": 292344,
+    "sha256": "sha256:2165848e0af4debc12a53018e2651743cbf6b1e06f19ee8ca4f14afadd9d2ba7"
+  }
+}

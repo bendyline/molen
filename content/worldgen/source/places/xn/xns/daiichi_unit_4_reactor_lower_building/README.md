@@ -1,0 +1,25 @@
+# Daiichi Unit 4 reactor building
+
+Whole remainingUnit4concretereactorbody: estimated49NSx47EW lower/intact1-2Fwalls/eastterrace,49NSx38EW upper/exposed5FdeckOP39.92,western3Fwalllossbay/open4Fframe/eightestimatedcolumns/fourwallstrips. Abovegroundplan8m/damage10muncertainty fromunit-specificnumericandnativecontext; no exactoperatorplanclaim. Originalroof/basement/internalcontainment/separateacceptedcoveromitted. Allimageryunused;2021continuity/registrationestimated.
+
+![Molen preview](preview.png)
+
+Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.json](qa.json) and the [completion ledger](../../../../qualla-structures/batches/qualla-002.PROGRESS.md).
+
+- [Fukushima Daiichi Nuclear Power Plant](https://qualla.com/fukushima-daiichi-nuclear-power-plant/)
+
+Whole remaining Unit4concrete reactorbody after above5F removal: estimated49NSx47EWlower/intact1-2Fwalls,estimated49NSx38EWupper/exposed5FoperatingdeckOP39.92,eastlowterrace/part3Fwallloss/mostlyopen4Fframe andremainingwallfragments. Accepted independent fuel-removal cover unchanged/excluded; basement/internalcontainment/wholeplant separate. All appearanceimageryunused;Qualla-first25families/0conflicts,cleared1971DOE originals predateUnit4 andnotapplied. Actualoriginaloperator2012PDF9/12Unit4condition/floorlevels: above5Fremoved,most4Fandpart3Fwallsdestroyed,lower1/2Fwallsundamaged; OP10.20/18.70/26.90/32.30/39.92. OriginalindexedoperatorTable4.2foundation49NSx57.4EW isfoundationonly; indexedregulator~46mexteriorwidth onlyapproximatecontext. Chosenlower49NSx47EW/upper49NSx38EWareexplicit8mplanestimates,nottheoperatorwrittenabovegroundplan. UpperEW38roundedfromnative~37.8mroofobservation;NS49consistentwithfoundationNSandnative53.3mextentwithin8m. NativeUnit4identityinferred from originalsite sequence,notexplicittag. Openwest3Fbay9x20m/eightuppercolumns/fourwallfragments andlaterrepairs/scars10muncertainty;finefinish/entries/slabthicknessestimated2m. Nominal2021nativecontext/2012postdamagecontinuityunverified,currenteligiblefalse. No intactoriginalroof/internalvesselrestored. Everyreportfigure/plan/photo/map/satellitepixelunused.
+
+Actual original2012operator PDF9recordsUnit4OP10.20/18.70/26.90/32.30/39.92/removedroof56.05,and saysabove5Fremoved,most4Fandpart3Fwallsdamaged. PDF12lower1/2Fwallsundamaged. Currentbodyendsat exposed5Foperatingdeck,not original56.05roof or independent53mcover.
+
+Unit4originalindexedoperatorTable4.2writtenfoundation49NSx57.4EW isfoundation-only. Indexedregulator~46mexteriorwidth labelsareapproximatecontextonly. Chosenabovegroundlower49NSx47EW/upper49NSx38EW areexplicit8mplanestimates,not exactwrittenupper/lowerdimensions. UpperEW38roundedfromoriginalnative37.760mroofobservation;NS49consistentwithfoundationNS/native53.3mNSbodyextentwithin8m. Foundation57.4EWnotextrudedabovegrade. DifferentplantDaini4andUnit3exactdimensionsarenotUnit4evidence.
+
+Postdamagebodyhasintactlower1/2Fwalls/east9mterrace,upper3Fwithestimatedwestern9x20mwall-lossbay,full4F/5Fslabs/mostlyopen4Fframe/eightestimated.65mconcretecolumns/fourshortsurvivingwallstrips. Damageextent/scars/laterrepairs10muncertainty. Upperbay,wallstrippositions/columncensus/slab.4mthickness/neutralfinish/closeddoors2/paneljointsestimated2m. No internalcontainment/well/equipment invented.
+
+Original14pointunnamedenvelopecontainscover/serviceparts;Unit4identityinferredbysite sequence,notexplicittag. Writtenfoundationandnativeupperbodycontextprovideapproximatecentre only;lowerwestflushupper/eastterraceinterpretationestimated.8mregisteredplan/3degreeheading/3mheightuncertainty. OriginalfirstfloorOP10.20withinferredgroundOP10 givesmodel floor.25,.05mgradeoffset:3F16.95/4F22.35/5F29.97. Acceptedfuel-removalcoverunchangedandseparate.
+
+Ownoriginal256m129x129field16641values/2rawtiles/datum14.7338m fixed BEFOREfloor.25/foundation-1.2/third16.95/fourth22.35/deck29.97/damagesections. No sourcefield/frame/floor/mainsection mask,flatten,refit,reframe. CompositeDEMmayincludeadjacentbuildingreturns;actualhistoricgrade/verticaltieunverified.
+
+Nominal2021-03-11nativecontext/2012postdamagecontinuityunverified,currentWorldEligiblefalse. Everyappearanceimage/reportfigure/plan/photo/map/satellitepixelunused;Qualla-first25families/0conflicts,1971clearedDOEpreUnit4unused. NRApointcloudonly6KBstructuredmetadataread,no positions/colors/panoramaadopted. Basement/internalcontainment/acceptedcover/wholeplantremainseparate.
+
+Build: `node content/worldgen/source/places/xn/xns/daiichi_unit_4_reactor_lower_building/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 1496 triangles; 4 materials; no embedded photographs.

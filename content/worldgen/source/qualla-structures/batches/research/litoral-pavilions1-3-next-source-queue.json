@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-01",
+  "imageryUsed": false,
+  "parentCompleted": false,
+  "completedPhysicalMembers": 40,
+  "next": "research/litoral-original-google-next-three-source-queue.json",
+  "measurements": "litoral-pavilions1-3-original-numerical-padded-measurements.json",
+  "sourceCoverage": "litoral-pavilions1-3-source-coverage.json",
+  "osmOriginal": "litoral-pavilions1-3-original-osm.xml",
+  "acceptedModelsReopened": 0,
+  "primaryFootprintSourceNext": "Google Open Buildings v3 original 2023 polygon CSVs, official tile metadata, ODbL numerical geometry; imagery excluded. Single relevant tile only; do not fetch the global corpus.",
+  "originalGoogleTile": {
+    "tile": "903",
+    "url": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz",
+    "expectedMegabytes": 408.7,
+    "state": "six-whole-buildings-completed-and-linked",
+    "partialLocalCache": ".artifacts/qualla-batch/next-300/google-original-903-buildings.csv.gz",
+    "resume": true,
+    "scope": "Single relevant original numerical CSV tile; source imagery excluded.",
+    "tilePrecision90ScoreThreshold": 0.87,
+    "extractor": ".artifacts/qualla-batch/next-300/extract-litoral-original-google-footprints.py",
+    "inventory": "litoral-original-google-v3-roof-candidate-inventory.json",
+    "compressedSourceBytes": 408745378,
+    "sourceSha256": "sha256:a3a20d797f23abf9159ecef10b2355be9f8f87aa3b7b67f96ad1537f8529e400",
+    "originalFootprintsInsidePavilionCompounds": 82,
+    "extract": "litoral-original-google-v3-numerical-footprints.json",
+    "sourceRowsRead": 4140157,
+    "next": "Select separate original roofs, reject local intersections, obtain per-roof numerical heights, check next1000 reservations and freeze each own field before floor/main sections."
+  },
+  "nextPreparedModels": [
+    {
+      "model": "litoral_pavilion_1_west_block",
+      "source": "content/worldgen/source/places/6p/6px/litoral_pavilion_1_west_block",
+      "originalSourceId": "google-open-buildings:6792W3X3+PWXJ",
+      "ownFieldFrozenBeforeFloorAndSections": true,
+      "geometryAuthored": true,
+      "completed": true,
+      "storyState": "linked-and-repeat-verified"
+    },
+    {
+      "model": "litoral_pavilion_2_northeast_block",
+      "source": "content/worldgen/source/places/6p/6px/litoral_pavilion_2_northeast_block",
+      "originalSourceId": "google-open-buildings:6792W3X4+M4WH",
+      "ownFieldFrozenBeforeFloorAndSections": true,
+      "geometryAuthored": true,
+      "completed": true,
+      "storyState": "linked-and-repeat-verified"
+    },
+    {
+      "model": "litoral_pavilion_2_southeast_block",
+      "source": "content/worldgen/source/places/6p/6px/litoral_pavilion_2_southeast_block",
+      "originalSourceId": "google-open-buildings:6792W3X4+H5JW",
+      "ownFieldFrozenBeforeFloorAndSections": true,
+      "geometryAuthored": true,
+      "completed": true,
+      "storyState": "linked-and-repeat-verified"
+    },
+    {
+      "model": "litoral_pavilion_2_southwest_block",
+      "source": "content/worldgen/source/places/6p/6px/litoral_pavilion_2_southwest_block",
+      "originalSourceId": "google-open-buildings:6792W3X3+GXR4",
+      "ownFieldFrozenBeforeFloorAndSections": true,
+      "geometryAuthored": true,
+      "completed": true,
+      "storyState": "linked-and-repeat-verified"
+    },
+    {
+      "model": "litoral_pavilion_3_northeast_block",
+      "source": "content/worldgen/source/places/6p/6px/litoral_pavilion_3_northeast_block",
+      "originalSourceId": "google-open-buildings:6792W3X4+G5VM",
+      "ownFieldFrozenBeforeFloorAndSections": true,
+      "geometryAuthored": true,
+      "completed": true,
+      "storyState": "linked-and-repeat-verified"
+    },
+    {
+      "model": "litoral_pavilion_3_central_east_block",
+      "source": "content/worldgen/source/places/6p/6px/litoral_pavilion_3_central_east_block",
+      "originalSourceId": "google-open-buildings:6792W3X4+F5W5",
+      "ownFieldFrozenBeforeFloorAndSections": true,
+      "geometryAuthored": true,
+      "completed": true,
+      "storyState": "linked-and-repeat-verified"
+    }
+  ]
+}

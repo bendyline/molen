@@ -1,0 +1,386 @@
+{
+  "planId": "aera_log_periodic_station",
+  "id": "aera_log_periodic_station",
+  "assetId": "molen.worldgen.structure.aera_log_periodic_station",
+  "title": "AERA log-periodic radio station",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -69.54958512989012,
+    "latitude": -35.10621212514344
+  },
+  "size": [
+    5.360000133514404,
+    4.859999850392342,
+    5.360000133514404
+  ],
+  "actualBounds": {
+    "min": [
+      -2.680000066757202,
+      -0.20000000298023224,
+      -2.680000066757202
+    ],
+    "max": [
+      2.680000066757202,
+      4.659999847412109,
+      2.680000066757202
+    ]
+  },
+  "visualBrief": "Whole lpda radio station: documented orthogonal antenna geometry, mast, electronics, GPS/communications, solar power and cattle fence. Source dimensions retained. Number of dipole elements, rod profiles/visibility thickness, hardware dimensions/arrangement, materials/finish and station positions are original estimates. Known AERAWS point anchors an explicitly estimated anonymous layout; no claimed actual radio GPS/table, WCD substitution or private-data reconstruction. Primary Holt2018station text supplies LPDA4x4x3.5m antenna and electric footpoint around4.5m, butterfly2x2x1m and centre around1.6m, two perpendicular polarizations and6mm aluminum butterfly rods. Each autonomous station has metal pole, local electronics, GPS timing, solar power, communications and animal fence. Eight LPDA elements per polarization, exact wire/strut profiles, visibility rod thickness, box/panel/fence dimensions and layout, support/footings, colors and precise2018condition are original estimates. Known AERAWSweather point anchors an explicitly estimated anonymous main-family layout:24LPDAs,100phaseIIand25phaseIIIbutterfly stations. Original actual stationGPS/names are not available or claimed. Source153total includes additional experimental designs; four minor research stations and exact experimental-type census remain outside bounded main-family scope. Documented144/250/375/750mspacings guide an original illustrative layout, not a traced17km²survey polygon. No private XML, WCD coordinate substitution or source figure tracing. Own independent256m129x129field is sampled before floor0.08m/padbottom-0.2m and all hardware sections. First estimated anonymous slot remains fixed. Original ground/frame/floor/sections retained without mask, flattening or height fitting. Source relief and exact local ground ties are provider-relative approximations. Four levels retain the full antenna family, both polarization planes, mast/feed, power box/solar panel, GPS/communication stub and protective fence. Source6mm butterfly rods are represented by0.018m rectangular wire profiles for readable medium-fi geometry; this is an explicit thin-feature exaggeration, not a measured rod section. Nearby levels add panel-cell boundaries, mast curvature and small feed details. All photographs, diagrams, plots and artwork unused.",
+  "nativeAxes": {
+    "x": "estimated east",
+    "y": "up",
+    "z": "estimated south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2018-04-20",
+    "validFrom": "2015-03-01",
+    "validUntil": "2026-11-03",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "pierre-auger-observatory-wp",
+      "url": "https://qualla.com/pierre-auger-observatory/"
+    }
+  ],
+  "referenceInputHash": "sha256:4d96826f802a2acd83857bfe68fc1320e53413590d75ff9fa25ffdaca39bd6d1",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/63/63y/aera_log_periodic_station/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/63/63y/aera_log_periodic_station/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.08,
+    "surfaces": {
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.6,
+        "metallic": 0.8
+      },
+      "paint": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.1
+      },
+      "pad": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "solar": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.6,
+            "metallic": 0.8
+          },
+          "paint": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "pad": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "solar": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.02,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.6,
+            "metallic": 0.8
+          },
+          "paint": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "pad": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "solar": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.6,
+            "metallic": 0.8
+          },
+          "paint": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "pad": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "solar": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_stainless",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -69.54958512989012,
+      -35.10621212514344
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -69.54958512989012,
+        -35.10621212514344
+      ],
+      "modelHeight": 0,
+      "basis": "First anonymous estimated layout point chosen before independent ground and body geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "estimate/aera_log_periodic_station"
+    ],
+    "source": "https://publikationen.bibliothek.kit.edu/1000083318/14074653",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6affc20563a0fdec4d36d028152899b73f090b41cd7e6aeb26170ae127f13711",
+    "notes": "Whole lpda radio station: documented orthogonal antenna geometry, mast, electronics, GPS/communications, solar power and cattle fence. Source dimensions retained. Number of dipole elements, rod profiles/visibility thickness, hardware dimensions/arrangement, materials/finish and station positions are original estimates. Known AERAWS point anchors an explicitly estimated anonymous layout; no claimed actual radio GPS/table, WCD substitution or private-data reconstruction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole lpda radio station: documented orthogonal antenna geometry, mast, electronics, GPS/communications, solar power and cattle fence. Source dimensions retained. Number of dipole elements, rod profiles/visibility thickness, hardware dimensions/arrangement, materials/finish and station positions are original estimates. Known AERAWS point anchors an explicitly estimated anonymous layout; no claimed actual radio GPS/table, WCD substitution or private-data reconstruction.",
+    "Primary Holt2018station text supplies LPDA4x4x3.5m antenna and electric footpoint around4.5m, butterfly2x2x1m and centre around1.6m, two perpendicular polarizations and6mm aluminum butterfly rods. Each autonomous station has metal pole, local electronics, GPS timing, solar power, communications and animal fence. Eight LPDA elements per polarization, exact wire/strut profiles, visibility rod thickness, box/panel/fence dimensions and layout, support/footings, colors and precise2018condition are original estimates.",
+    "Known AERAWSweather point anchors an explicitly estimated anonymous main-family layout:24LPDAs,100phaseIIand25phaseIIIbutterfly stations. Original actual stationGPS/names are not available or claimed. Source153total includes additional experimental designs; four minor research stations and exact experimental-type census remain outside bounded main-family scope. Documented144/250/375/750mspacings guide an original illustrative layout, not a traced17km²survey polygon. No private XML, WCD coordinate substitution or source figure tracing.",
+    "Own independent256m129x129field is sampled before floor0.08m/padbottom-0.2m and all hardware sections. First estimated anonymous slot remains fixed. Original ground/frame/floor/sections retained without mask, flattening or height fitting. Source relief and exact local ground ties are provider-relative approximations.",
+    "Four levels retain the full antenna family, both polarization planes, mast/feed, power box/solar panel, GPS/communication stub and protective fence. Source6mm butterfly rods are represented by0.018m rectangular wire profiles for readable medium-fi geometry; this is an explicit thin-feature exaggeration, not a measured rod section. Nearby levels add panel-cell boundaries, mast curvature and small feed details. All photographs, diagrams, plots and artwork unused."
+  ],
+  "sourceLicense": "Original deterministic radio-station geometry under repository license from written antenna dimensions and hardware census. All photos, figures and plotted layouts unused. Section details, thin-wire visibility profiles, service hardware, absolute yaw and station positions are explicit original estimates. No actual GPS table or experimental-antenna census claimed.",
+  "qaLodCameras": [
+    {
+      "name": "whole-radio-station-skyline",
+      "position": [
+        8,
+        6,
+        9
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-radio-station-district",
+      "position": [
+        8,
+        6,
+        9
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-radio-station-street",
+      "position": [
+        8,
+        6,
+        9
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-radio-station-closeup",
+      "position": [
+        8,
+        6,
+        9
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-two-polarization-antenna-and-station-hardware",
+      "position": [
+        6,
+        4.8,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ]
+    },
+    {
+      "name": "opposite-antenna-solar-panel-electronics-and-fence",
+      "position": [
+        -7,
+        5,
+        -8
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 784,
+    "vertices": 2352,
+    "materials": 5,
+    "bytes": 180640,
+    "sha256": "sha256:7514708969ab1e8317ec234a6ed2c3d8a3113f3d613e9dcd0d17c445230bf120"
+  }
+}

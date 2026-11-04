@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-02",
+  "parentModelIdentity": "fukushima_daiichi_nuclear_power_plant",
+  "nextModel": "daiichi_units_3_4_exhaust_stack",
+  "stage": "whole-120m-stack-and111m-support-primary-text-bound-position-approximation-next",
+  "sourceURL": "https://stac.overturemaps.org/2026-10-21.0/base/infrastructure/collection.json",
+  "newDataScope": "Original infrastructure dataset, distinct from the already exhausted building-footprint dataset.16partitionmetadata items checked once; oneEastAsia partition matched. No buildingpartition metadata rescan.",
+  "partitionSelection": ".artifacts/qualla-batch/next-300/daiichi-infrastructure-original-partition-selection.json",
+  "query": ".artifacts/qualla-batch/next-300/query-daiichi-original-infrastructure.sql",
+  "queryOutput": ".artifacts/qualla-batch/next-300/daiichi-original-infrastructure-full-records.json",
+  "allAppearanceImageryUnused": true,
+  "frameChosen": false,
+  "terrainAcquired": false,
+  "floorsChosen": false,
+  "sectionsChosen": false,
+  "closedCampaigns": [
+    {
+      "campaign": "Previously retrieved original471southern/202northern building records",
+      "finding": "No named stack/chimney/tower records. Do not repeat those building queries to seek infrastructure."
+    },
+    {
+      "url": "https://www.nra.go.jp/data/000448470.pdf",
+      "retrieval": "web fetch403; no retry/bypass"
+    },
+    {
+      "url": "https://www2.nra.go.jp/data/000444340.pdf",
+      "retrieval": "web indexed text available31pages; fresh directdownload404. Not originalPDFbytes retained; no retry."
+    },
+    {
+      "url": "https://www2.nra.go.jp/data/000440464.pdf",
+      "retrieval": "web indexed text available79pages; fresh directdownload404. Not originalPDFbytes retained; no retry."
+    }
+  ],
+  "primaryIndexedFacts": [
+    {
+      "url": "https://www2.nra.go.jp/data/000452866.pdf",
+      "section": "Printed2.11-77 note1 / original6-unit license comparison",
+      "fact": "Each original shared stack physicalgroundheight120m;5/6effectiveplumeheight65m isnotphysicalheight.",
+      "originalPDFBinaryRetrieved": false,
+      "geometryAdopted": false
+    },
+    {
+      "url": "https://www2.nra.go.jp/data/000465068.pdf",
+      "fact": "Wind reference131mabsolute/95mabove meteorologicalground is not adopted as5/6physicalstackheight.",
+      "originalPDFBinaryRetrieved": false,
+      "geometryAdopted": false
+    }
+  ],
+  "next": "Finish5/6andcentralventilationstacks,then close the bounded six-unit assembly with currentgroupviews and same-passparentstoryannotation. Originalquadrolesinferred and fineprofile/2021continuity estimates retained. Do not omitthe fourthcentralventilationstack.",
+  "originalInfrastructureCampaign": {
+    "status": "closed-no-exhaust-stack-identity",
+    "records": 358,
+    "sha256": "sha256:32b5fcd9629503d06f1fb708b81fe0429381cf4708c1e953f32e356c5a06a04c",
+    "partitionsChecked": 16,
+    "partitionsQueried": 1,
+    "classes": {
+      "power_line": 12,
+      "pipeline": 18,
+      "storage_tank": 306,
+      "substation": 4,
+      "terminal": 7,
+      "power_tower": 3,
+      "plant": 2,
+      "parking": 4,
+      "transformer": 2
+    },
+    "finding": "Three native power_tower records have explicit power=tower tags, not exhaust-stack identities.18pipelines are steam/water/condenser context and lackSGTS/exhaust identity.306storage tanks do not become stackpoints. No model geometry or position adopted. Do not repeat this infrastructure query for the stacks."
+  },
+  "publicDomainLandsatCampaign": {
+    "status": "original-metadata-retained-pixels-not-adopted",
+    "quallaAlreadyCheckedFirst": true,
+    "stac": ".artifacts/qualla-batch/next-300/daiichi-original-usgs-2021-landsat-stac.json",
+    "request": ".artifacts/qualla-batch/next-300/daiichi-original-usgs-2021-stac-request.json",
+    "sceneCandidates": 15,
+    "preferredScene": "LC08_L1TP_106034_20211221_20211229_02_T1",
+    "preferredCloudPercent": 0.9,
+    "panPixelMeters": 15,
+    "geometricRMSEMeters": 7.113,
+    "metadataOnly": true,
+    "access": ".artifacts/qualla-batch/next-300/daiichi-usgs-pan-access.json",
+    "accessFinding": "Original pan HTTPS header request302redirects to USGS Earth Resources login. No account access, login, credential request or pixel retrieval. No retry/bypass.",
+    "primaryRightsURLs": [
+      "https://www.usgs.gov/centers/eros/data-citation",
+      "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-1-data"
+    ],
+    "rightsFinding": "Primary USGS pages identify Landsat as federally created public-domain products with unrestricted use and requested attribution. Read through web extraction; direct HTMLsnapshotfetch403, not originalHTMLbytes retained.",
+    "limitations": "15m panchromatic pixels could only support coarse location/shadow correspondence; not facade or 3.2m flue detail. No stack location/geometry authored from metadata."
+  },
+  "newOriginalArchive": {
+    "recordURL": "https://www.da.nra.go.jp/detail/NRA100010825",
+    "recordSnapshot": ".artifacts/qualla-batch/next-300/daiichi-original-stack3-4-record-20250606.html",
+    "actualListedFileURL": "https://www.da.nra.go.jp/data/NRA100010825-002-002.pdf",
+    "pdf": ".artifacts/qualla-batch/next-300/daiichi-original-stack3-4-operator-20250606.pdf",
+    "text": ".artifacts/qualla-batch/next-300/daiichi-original-stack3-4-operator-20250606.txt",
+    "stage": "original-public-file-and-text-retrieved",
+    "imagesUsed": false,
+    "pdfBytes": 7923956,
+    "pdfSha256": "sha256:59c544bb636e93c50dc291947d4a2826fadab88060e479240ea53d0472191f05",
+    "textSha256": "sha256:ea5ee5c29e65f099ebe6948b9c31bc5958d11db421579936911176136c3e72da",
+    "pdfPages": 72,
+    "relevantPDFPages": [
+      48,
+      65
+    ],
+    "writtenFacts": {
+      "heightAboveGroundMeters": 120,
+      "topTowerSupportAboveGroundMeters": 111,
+      "otherSupportLevelsMeters": [
+        94.2,
+        76.4,
+        54.8,
+        30
+      ],
+      "intermediatePlatformLevelsMeters": [
+        86.16,
+        44.4
+      ],
+      "approximateTotalWeightTonnes": 415,
+      "comparison": "Operator explicitly describes3/4sharedstack as almost the same structure as1/2;3/4also has SGTS pipe inside flue."
+    },
+    "allReportPhotosFiguresPlansUnused": true
+  },
+  "stack34Preparation": {
+    "date": "2026-11-02",
+    "model": "daiichi_units_3_4_exhaust_stack",
+    "parentModelIdentity": "fukushima_daiichi_nuclear_power_plant",
+    "structureId": "QS-2a0dbe21f95c",
+    "sourcePath": "content/worldgen/source/places/xn/xns/daiichi_units_3_4_exhaust_stack",
+    "stage": "original120m-height111m-support-comparison-sections-estimated-position-bound-own-field-next",
+    "frameChosen": true,
+    "terrainAcquired": false,
+    "floorChosen": false,
+    "sectionsChosen": false,
+    "geometryAuthored": false,
+    "reservationsChecked": 1077,
+    "reservationMatches": 0,
+    "allImageryUnused": true,
+    "parentNotCompletedByThisMember": true,
+    "acceptedModelsAndQaUnchanged": true
+  },
+  "stack56Preparation": {
+    "date": "2026-11-02",
+    "model": "daiichi_units_5_6_exhaust_stack",
+    "parentModelIdentity": "fukushima_daiichi_nuclear_power_plant",
+    "structureId": "QS-2a0dbe21f95c",
+    "sourcePath": "content/worldgen/source/places/xn/xns/daiichi_units_5_6_exhaust_stack",
+    "stage": "original-northern-tower-quad-and-primary120m-height-bound-own-field-next",
+    "frameChosen": true,
+    "terrainAcquired": false,
+    "floorChosen": false,
+    "sectionsChosen": false,
+    "geometryAuthored": false,
+    "reservationsChecked": 1077,
+    "reservationMatches": 0,
+    "allImageryUnused": true,
+    "parentNotCompletedByThisMember": true,
+    "acceptedModelsAndQaUnchanged": true
+  },
+  "originalOSMPointCampaign": {
+    "status": "completed-one-normal-original-request-after-prior-day429",
+    "response": ".artifacts/qualla-batch/next-300/daiichi-original-osm-stack-context-20261102.json",
+    "http": ".artifacts/qualla-batch/next-300/daiichi-original-osm-stack-context-20261102-http.json",
+    "elements": 1877,
+    "mappedFlareTowerWays": [
+      743332918,
+      743332931,
+      743332934,
+      743623813
+    ],
+    "identityAssignmentsInferred": true,
+    "explicitNameConflict": {
+      "way": 743332931,
+      "name": "Remote Monitoring System Tower",
+      "resolution": "Preserve originalname; do not claim nativeexplicit3/4exhaustname. Accepted3/4midpointestimate unchanged."
+    },
+    "noImagePixelsUsed": true,
+    "noMirrorsOrBypass": true
+  },
+  "centralVentilationStackPreparation": {
+    "date": "2026-11-02",
+    "model": "daiichi_turbine_ventilation_exhaust_stack",
+    "parentModelIdentity": "fukushima_daiichi_nuclear_power_plant",
+    "structureId": "QS-2a0dbe21f95c",
+    "sourcePath": "content/worldgen/source/places/xn/xns/daiichi_turbine_ventilation_exhaust_stack",
+    "stage": "original-southern-tower-quad-and-primary120m-ventilation-function-bound-own-field-next",
+    "frameChosen": true,
+    "terrainAcquired": false,
+    "floorChosen": false,
+    "sectionsChosen": false,
+    "geometryAuthored": false,
+    "reservationsChecked": 1077,
+    "reservationMatches": 0,
+    "allImageryUnused": true,
+    "parentNotCompletedByThisMember": true,
+    "acceptedModelsAndQaUnchanged": true
+  }
+}

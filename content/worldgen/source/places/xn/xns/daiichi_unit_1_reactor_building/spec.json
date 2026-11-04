@@ -1,0 +1,391 @@
+{
+  "planId": "daiichi_unit_1_reactor_building",
+  "id": "daiichi_unit_1_reactor_building",
+  "assetId": "molen.worldgen.structure.daiichi_unit_1_reactor_building",
+  "title": "Daiichi Unit 1 reactor building",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 141.03293180465698,
+    "latitude": 37.423014801019335
+  },
+  "size": [
+    42.45000076293945,
+    45.000001549720764,
+    42.25
+  ],
+  "actualBounds": {
+    "min": [
+      -21.225000381469727,
+      -0.6000000238418579,
+      -21.125
+    ],
+    "max": [
+      21.225000381469727,
+      44.400001525878906,
+      21.125
+    ]
+  },
+  "visualBrief": "Whole intact circa1971 Unit1reactor building:42x42m concrete lowersection/42x31m whiteclad steelupperhall/fullclosedroof/steppedshoulder. Original primary58m mat-based height minus14m embedment gives44m exterior; originalroof/finish fromclearDOEphotos. Adjacent turbine/radwaste/stack separate.",
+  "nativeAxes": {
+    "x": "east/turbine-side",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1971-06-01",
+    "validFrom": "1970-01-01",
+    "validUntil": "1972-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HD.15.055_(11839699333).jpg",
+    "https://commons.wikimedia.org/wiki/File:HD.15.056_(11839700023).jpg"
+  ],
+  "stories": [
+    {
+      "id": "fukushima-daiichi-nuclear-power-plant-wp",
+      "url": "https://qualla.com/fukushima-daiichi-nuclear-power-plant/"
+    }
+  ],
+  "referenceInputHash": "1e8dbfd074261da0974e01a1a941d709ae6132e12943cd0967457c9395206fac",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xns/daiichi_unit_1_reactor_building/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xns/daiichi_unit_1_reactor_building/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "upper": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.8,
+        "metallic": 0.2
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.18
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.35
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.001,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.18
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_corrugated",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      141.03293180465698,
+      37.423014801019335
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        141.0332258987854,
+        37.423014801019335
+      ],
+      "modelHeight": 0,
+      "basis": "Fixed eastapproach5m beyond42m writtenbody before independentfield/floor/sections. Approximate historic contact, no surveyed verticaltie."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185004080619"
+    ],
+    "source": "https://www.nrc.gov/sites/default/files/doc_library/cdn/legacy/reading-rm/doc-collections/nuregs/contract/cr4432/cr4432.pdf",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ebabbbb6f2b06eb2e370af75d001cab62374a5100162542cea8a397c9872465c",
+    "notes": "Whole independent FukushimaDaiichi Unit1 reactor building in approximate1971 intact phase:42x42m lower concretebody,42x31m upper steel-clad hall, full closed shallow roof, stepped shoulder, estimated facadepanels/closed serviceentries. Structurally separate turbine/radwastebuildings, stack and otherunits are separate; parentwholeplant remains unfinished. No internal reactor/containment machinery, current damaged/decommissioningcover or land/siteextrusion."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole independent FukushimaDaiichi Unit1 reactor building in approximate1971 intact phase:42x42m lower concretebody,42x31m upper steel-clad hall, full closed shallow roof, stepped shoulder, estimated facadepanels/closed serviceentries. Structurally separate turbine/radwastebuildings, stack and otherunits are separate; parentwholeplant remains unfinished. No internal reactor/containment machinery, current damaged/decommissioningcover or land/siteextrusion.",
+    "Original NRC/Argonne1985NUREGCR4432 section2 pp2–3 identifies actual460MWeUnit1 completed1970/operating1971 and lower42x42m/upper42x31m sections. Authored42m square is those written dimensions, NOT the contemporary compiled54x48m observation envelope. Cleared oppositeaerial1971views and coast/switchyard/turbine relationship locate firstcompleted northernreactor of Units1–4. Compiled footprint35185004080619 supplies approximateposition only; original tags unavailable429 and no historicalfootprint claimed. Heading0 follows sourceNS/EW convention,3degree uncertainty; originalupper31mEW/42mNSorientation and setback side estimated.",
+    "Original NRC/Argonne1985NUREGCR4432 section2 printedpp2–3 supplies lower42x42m/upper42x31m,58m fromfoundationbase,14m embedded,43mconcretefrombase. Derived abovegradeheight44m and concrete29m are approximate originalnumericfacts; steelupperhall15m. No58m aboveground or containment-dome substitute. Buried14mfoundation/interior reactorcontainment omitted from exteriorasset.",
+    "Upper31mEW/42mNSorientation/eastflush-west11msetback is an explicit interpretation from two cleared opposite aerialviews and approximateNS/EW convention, not originaldimensionedplan.3degreeheading/8mhorizontalregistration uncertainty. Currentcompiled54x48m observation may include latercover; not extruded as1971building.",
+    "Originalphoto date circa1971; represented1971-06-01 is approximate scheduling date, not exact captureday. Current2026mapcontext is only approximateanchor; historic corners not surveyed. Closedpreaccidentroof/whitecladding retained; no2011damage/moderndecommissioningcover or currentappearance claim.",
+    "Facadepaneljoints/closedserviceentries/frame/shoulderparapet/flatroofdrainage/finish and hiddenlowerwall details estimated2m. Architecturalblankness followscleared unit1 upperhall; dense grid on adjacentunit2construction is not copied. Turbinehall/radwastebuildings/stack/siteinfrastructure/otherunits separate; wholeplant unfinished.",
+    "Original256m129x129field/16641heights/4rawtiles/datum15.2558m fixed BEFORE floor.25/foundation-.6..+.25/concrete29.25/upperroof44.25m. Originalhistoricgrounddatumnotavailable; compositeDEM may contain hill/building/cliff returns. Neverflatten/mask/refetch/reframe/refit sourcefield/floor/mainsections. Qualla-first25families/zero conflicts; two alreadycleared publishedDOEgovernmentworkoriginals; every NRC diagram/photo unused."
+  ],
+  "sourceLicense": "Original procedural geometry under repository license. Two exact publishedQuallaENERGY.GOV/PD-USGov-DOEoriginals credited; NRC/Argonne1985numericaltext only, diagrams/imagesunused. CompiledOSMcontextODbL registration approximate; no photographtextures.",
+  "qaLodCameras": [
+    {
+      "name": "whole-reactor-building-skyline",
+      "position": [
+        85,
+        66,
+        90
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-reactor-building-district",
+      "position": [
+        85,
+        66,
+        90
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-reactor-building-street",
+      "position": [
+        85,
+        66,
+        90
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-reactor-building-closeup",
+      "position": [
+        85,
+        66,
+        90
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-white-upperhall-lowerbody-and-east-entry",
+      "position": [
+        73,
+        50,
+        67
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "whole-west-shoulder-and-rear",
+      "position": [
+        -75,
+        55,
+        -65
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1468,
+    "vertices": 4404,
+    "materials": 5,
+    "bytes": 279328,
+    "sha256": "sha256:6998b3e417f319d6c2fc0a9f35a20262237cd49264423ba6fceebbb2542a59f8"
+  }
+}

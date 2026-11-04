@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.datong_mass_grave_memorial",
+  "kind": "static-structure",
+  "title": "Datong memorial exhibition hall reconstruction",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.datong_mass_grave_memorial",
+        "output": "assets/places/wx/wx0/datong_mass_grave_memorial/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f4594d3333e9938d8b6d1800d15b7c316778de848ac324f7d7b6339d92f01d31"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "primary-facts-reconstruction.json",
+      "primary-source/location-and-register-facts.json",
+      "primary-source/written-site-facts.json",
+      "native-map/original-numerical-building.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-26681-12402.png",
+      "import-report.json",
+      "geometry-review.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

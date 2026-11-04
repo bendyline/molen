@@ -1,0 +1,55 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "tates-primary-whole-main-radar-4047624294T20050430-2019",
+  "model": "tates_cairn_main_radar_building",
+  "structureId": "QS-2f1485311263",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "building",
+      "url": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer",
+      "path": "reference-rights/primary-building.txt",
+      "sha256": "sha256:927b43985f92b7cec41678d6eba5953319bcb9b434dd24a4287eee79f806c078",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-01"
+    },
+    {
+      "key": "radar",
+      "url": "https://www.weather.gov.hk/en/aviat/amt/tc_radar.htm",
+      "path": "reference-rights/primary-radar.txt",
+      "sha256": "sha256:70f288413a2f7c7cfc7d506e7e51119574081f60d6acbcb214443dd094903d61",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-02",
+      "sourceScope": "Authored factual summary of the original public instrument table; not a downloaded original HTML byte claim. Figures/captions/images unused."
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-building-records.json",
+    "sha256": "sha256:d38ca2eb5214ee9ebef0bdb12f5c76acb159751ea1b6cd818635d766fec41703",
+    "featureId": "csdi/4047624294T20050430"
+  },
+  "roofCentreEstimate": {
+    "path": "native-map/original-roof-centre-estimate.json",
+    "sha256": "sha256:593d230d602a9f1e16ffc49577b32d46b1c10d44b8cbe3f1092e5d3a0331da98",
+    "actualLocationVerified": false
+  },
+  "quallaFirst": {
+    "families": 15,
+    "inventoryHash": "sha256:83383a1c0b1ce5e596adca9d70b7c4e5979e44a4eba19fbdb8c07b77854a5a9e",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Whole original eleven-corner Tate's Cairn radar building, including the main body, every attached footprint arm, an original bounded radome enclosure estimate and estimated roof/access details. The two accepted separate service buildings remain independent and unchanged. Official original CSDI eleven-corner outline and generalized BaseHeight575.9/TopHeight579.8m retained as a3.9m body-height fact; these fields do not measure the radome. Primary HKO written instrument table gives4.3m antenna diameter for the system commencing1994, and583m antenna altitude. Antenna diameter is not radome diameter; altitude is not building height. Radome centre, diameter, section, material and roof/support/access details will be explicit original exterior estimates. Pure plan-only centre chosen before terrain/sections; not measured radar position. Every photograph, figure, diagram, plan image, texture and image-derived description remains unused. Qualla first; conflicting hero and unrelated CC0cross excluded. No closed portal/CAPTCHA/history source route repeated.",
+    "Whole original11-corner named radar-building body and every attached footprint arm retained. Official generalized BaseHeight575.9m/TopHeight579.8m imply3.9m relative body height, retained exactly. The official flat numerical envelope does not establish the radome section or actual whole-structure top. Main body roof/finish/parapet/door and access details remain original estimates.",
+    "Radome is an explicit original bounded exterior estimate:8m outside diameter, spherical protective cover truncated at-60degrees latitude,0.6m collar above the generalized body roof. Diameter is chosen as an original enclosure-clearance estimate around the documented4.3m antenna, not an actual radome measurement. Historical antenna system table commenced1994; exact1994-to2019 equipment continuity is not verified. Antenna altitude583m is not used to set model height. Nominal3m diameter and8m centre-placement allowances are not measured bounds.",
+    "Radome position is the pre-field deterministic maximum-clearance roof-plan point, not a measured instrument position. The full original main-building footprint and heading are fixed first, then own source field, then initial floor/body/cover sections. No satellite, map image, photograph, report figure, diagram, plan image, embedded3Dtexture or image-derived description used. Qualla15families/1conflict screened first; conflicting hero and unrelated CC0cross excluded.",
+    "Own original256m129x129/16641height source field and raw tile acquired before floor/main sections. Geographic frame/field/floor/main sections remain frozen. Official absolute base exceeds composite source datum by17.0232m; datums/contact are unregistered. No artificial datum plinth, ground cutout, masking, flattening, roof/floor fitting or source refetch.",
+    "Four authoredLODs retain all11 original plan controls, full attached body, foundation, complete estimated cover/collar and roof outline. Near levels add faceted cover panel divisions, parapet joints, closed service panel and entry frame. Separate accepted service buildings remain independent and closed. Historical2019numerical-body preview/currentWorldEligiblefalse; exact roof/radome appearance continuity unverified."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-02",
+    "notes": "Whole official11-corner building and3.9m generalized body height, original explicitly estimated enclosure and position, no imagery used. Antenna diameter and site altitude never relabeled as measured dome/building dimensions. Two accepted separate service models unchanged."
+  }
+}

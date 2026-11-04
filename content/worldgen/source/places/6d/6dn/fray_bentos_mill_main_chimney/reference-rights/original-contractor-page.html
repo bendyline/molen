@@ -1,0 +1,308 @@
+<!-- Powered By: Leandro Burgoa & Brenda Burgoa (Año 2021) -->
+<!DOCTYPE HTML>
+<html lang="ES">
+<head>
+	<!-- Meta Etiquetas -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Constructora Sudamericana">
+	<meta name="author" content="Constructora Sudamericana">
+	<meta name="theme-color" content="#005BB2">
+	<meta name="msapplication-TileColor" content="#005BB2">
+	<meta property="og:title" content="Constructora Sudamericana">
+	<meta property="og:type" content="Constructora Sudamericana">
+	<meta property="og:url" content="https://www.cosud.com/">
+	<meta property="og:description" content="Constructora Sudamericana">
+	<meta property="og:image" content="/img/logo.png">
+	<!-- Titulo -->
+	<title>Constructora Sudamericana S.A.  - Obra</title>
+	<!-- Iconos -->
+	<link rel="icon" href="/img/favicon.png" type="image/png">
+	<link rel="apple-touch-icon" href="/img/favicon.png">
+	<!-- Estilos -->
+	<link rel="stylesheet" href="/css/uikit/css/uikit.min.css">
+	<link rel="stylesheet" href="/css/estilos.css?v351">
+	</head>
+<body>
+	<!-- Header Mobile -->
+	<header class="uk-hidden@m section-dark header-mobile">
+		<nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>	
+			<div class="nav-overlay uk-navbar-left">
+				<a class="uk-navbar-toggle" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+			</div>
+			<div class="nav-overlay uk-navbar-center">
+				<ul class="uk-navbar-nav">
+					<li><a class="uk-navbar-item uk-logo" href="/"><img src="/img/logo_cosud_white.png" alt="Constructora Sudamerican" title="Constructora Sudamerican"></a></li>
+				</ul>
+			</div>
+			<div class="nav-overlay uk-navbar-right">
+				<ul class="uk-navbar-nav">
+					<li><a uk-toggle="target: #menu" class="no-border" uk-navbar-toggle-icon></a></li>
+				</ul>
+			</div>
+			<div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
+				<div class="uk-navbar-item uk-width-expand">
+					<form action="/buscar" method="GET" class="uk-search uk-search-navbar uk-width-1-1">
+						<input class="uk-search-input uk-search-mobile" type="search" placeholder="Busque una obra..." name="texto" autofocus>
+					</form>
+				</div>
+				<a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+			</div>
+		</nav>
+	</header>
+	<!-- Header Desktop -->
+	<header class="uk-visible@m section-dark uk-padding-small uk-padding-remove-bottom">
+		<div class="uk-container">
+			<nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+				<div class="uk-navbar-left">
+					<ul class="uk-navbar-nav">
+						<li><a href="/" class="no-border"><img src="/img/logo_cosud_white.png" class="logo" alt="Constructora Sudamericana" title="Constructora Sudamericana"></a></li>
+					</ul>
+				</div>
+				<div class="uk-navbar-center">
+					<ul class="uk-navbar-nav">
+						
+						<li>
+							<a href="/categoria" >Nuestras Obras</a>
+							<div class="uk-navbar-dropdown">
+								<ul class="uk-nav uk-navbar-dropdown-nav obras">
+									<li><a href="/categoria/1">Institucionales y Oficinas</a></li>
+									<li><a href="/categoria/2">Laboratorios y Salud</a></li>
+									<li><a href="/categoria/3">Energía e Infraestructura</a></li>
+									<li><a href="/categoria/4">Residenciales y Hotelería</a></li>
+									<li><a href="/categoria/5">Plantas Industriales</a></li>
+									<li><a href="/categoria/6">Edificios Comerciales</a></li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="/quienes-somos" >Quiénes Somos</a></li>
+						<li class="uk-visible@l"><a href="/como-trabajamos" >Cómo Trabajamos</a></li>
+						<li>
+							<a href="#">Dónde Estamos</a>
+							<div class="uk-navbar-dropdown">
+								<ul class="uk-nav uk-navbar-dropdown-nav donde_estamos">
+									<li><a href="/donde-estamos/argentina">Argentina</a></li>
+									<li><a href="/donde-estamos/chile">Chile</a></li>
+									<li><a href="/donde-estamos/uruguay">Uruguay</a></li>
+								</ul>
+							</div>
+						</li>						
+						<li class="uk-visible@l"><a href="/contactate" >Contacto</a></li>
+					</ul>
+				</div>
+				<div class="uk-navbar-right">
+					<ul class="uk-navbar-nav">
+						<li class="contenedorPortalAcceso">
+							<a href="#" aria-expanded="false" class="portalAcceso">Accesos</a>
+							<div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-left" style="left: 469.344px; top: 50px;">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									<li><a href="https://www.cosud.com/login">Empleados</a></li>
+									<li><a href="https://www.cosud.net/">Proveedores</a></li>
+								</ul>
+							</div>
+						</li>
+						<!--<li><a href="/login" class="no-border"><button class="uk-button uk-button-primary uk-text-bold uk-text-capitalize"><span uk-icon="sign-in" class="uk-visible@m"></span> Accesos</button></a></li>-->
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!-- Nav -->
+	<nav id="menu" uk-offcanvas="overlay: true" class="uk-offcanvas">
+		<div class="uk-offcanvas-bar">
+			<ul class="uk-nav uk-nav-primary" uk-nav>
+				<li class="uk-nav-header"><a class="uk-navbar-item uk-logo" href="/"><img src="/img/logo_cosud_white.png" alt="Constructora Sudamericana" title="Constructora Sudamericana"></a></li>
+				<li class="uk-nav-header">Nuestras obras</li>
+					<li><a href="/categoria/1">Institucionales y Oficinas</a></li>
+					<li><a href="/categoria/2">Laboratorios y Salud</a></li>
+					<li><a href="/categoria/3">Energía e Infraestructura</a></li>
+					<li><a href="/categoria/4">Residenciales y Hotelería</a></li>
+					<li><a href="/categoria/5">Plantas Industriales</a></li>
+					<li><a href="/categoria/6">Edificios Comerciales</a></li>
+				<li class="uk-nav-header">Nosotros</li>
+					<li><a href="/quienes-somos">Quiénes Somos</a></li>
+					<li><a href="/como-trabajamos">Cómo Trabajamos</a></li>
+				<li class="uk-nav-header">Dónde Estamos</li>
+					<li><a href="/donde-estamos/argentina">Argentina</a></li>
+					<li><a href="/donde-estamos/chile">Chile</a></li>
+					<li><a href="/donde-estamos/uruguay">Uruguay</a></li>
+				<br>
+				<li><a href="/contactate">Contacto</a></li>
+				<li class="uk-nav-header">Panel</li>
+				<li><a href="/login" class="no-border"><button class="uk-button uk-button-primary uk-text-bold uk-text-capitalize"><span uk-icon="sign-in" class="uk-visible@m"></span> Ingreso Empleados</button></a></li>
+				<li><a href="https://www.cosud.net/" class="no-border"><button class="uk-button uk-button-primary uk-text-bold uk-text-capitalize"><span uk-icon="sign-in" class="uk-visible@m"></span> Ingreso Proveedores</button></a></li>
+			</ul>
+		</div>
+	</nav>
+    <!-- Main -->
+    <main>	<!-- Trabaje Con Nosotros -->
+	<section class="section section-light">
+		<div class="uk-container section-container">
+			<ul class="uk-breadcrumb">
+				<li><a href="/">Inicio</a></li>
+				<li><a href="/categoria">Obras</a></li>
+								<li><a href="/donde-estamos/uruguay">Uruguay</a></li>
+				<li><a href="/donde-estamos/uruguay?categoria=5">Plantas Industriales</a></li>
+				<li><span>Planta de Pasta de Celulosa</span></li>
+							</ul>
+							
+			<h1><b class="color-dark">Obra</b> Planta de Pasta de Celulosa</h1>
+						<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow>
+				<ul class="uk-slideshow-items">
+					<li>
+						<img src="/uploads/obras/109.jpg" alt="Planta de Pasta de Celulosa" title="Planta de Pasta de Celulosa" uk-cover>
+					</li>
+											<li>
+						<img src="/uploads/obras/aTdlip4JKOWglwHZqH6C6ob8hkOKL8uOGCTKD5LNKlsSbwfri7gSqDUTX74e8VH7PiEqFUjEuYcUfjSB6qMmXVKZUAdxbHZuI7xHsmCrVUeGMsM5zEQSxAcWBhfoPnop.jpg" alt="Planta de Pasta de Celulosa" title="Planta de Pasta de Celulosa" uk-cover>
+						</li>
+											<li>
+						<img src="/uploads/obras/HESCKqHWMuaA5UrhvpXOR9mCkrnxPQ6CAkCBuKIcTfqfsgpT9nyUygskHgFCCDP95IZohd4Ge42iNhJHnV7nME8hzRa8M0GcRmxdFSuHlaTtAEZZ4RqK7hZ781nEFwGQ.jpg" alt="Planta de Pasta de Celulosa" title="Planta de Pasta de Celulosa" uk-cover>
+						</li>
+											<li>
+						<img src="/uploads/obras/qxcL5hjFZcXRhjBsR8xYuk6CtNlheK2Oc2lSf5UHDgjAYnH56stpyhdv9zGRRG4rTPNexyUi3aYT5AGtNGE5aWLISedX3RpI0ikxilppXMqJTCjOlnpYEp3m4CbhjaPM.jpg" alt="Planta de Pasta de Celulosa" title="Planta de Pasta de Celulosa" uk-cover>
+						</li>
+											<li>
+						<img src="/uploads/obras/aoSnVtJi9X7vZ0nLtwkStSynr63L6JL1wTvSlEVT3ZrennMLP0VLBgGA5EisNvFQBOGn4oAX1rHdtzSN8sbl2RYEfVpodeUHt1s1SvonNOBpZm5WslPdC1fC7J2pWJc8.jpg" alt="Planta de Pasta de Celulosa" title="Planta de Pasta de Celulosa" uk-cover>
+						</li>
+											<li>
+						<img src="/uploads/obras/rkCgGPSUr8NzVy2kbGPOYS6tgADUBD93Xbm3BVfhbOsG5bsR8t6RyHQhPnR5I0GRx0RNvl7KCYtBJfLD8JOohIpNoJMpS8uLtKI8IKrzkkWf9pdZgoH2WuXkVsUHtzcr.jpg" alt="Planta de Pasta de Celulosa" title="Planta de Pasta de Celulosa" uk-cover>
+						</li>
+											<li>
+						<img src="/uploads/obras/I0W2k7N8I1F3JKtere7SZf6I1wn2vgQ4e22dCIrrrDM8GfnoJxqSlRG8Ys18jxGutGeesnGGug7hMnXJwPB37GhcjPKxRYn9vDmnzZehE3EAXUCeiHtHsH24W7cQPXTU.jpg" alt="Planta de Pasta de Celulosa" title="Planta de Pasta de Celulosa" uk-cover>
+						</li>
+									</ul>
+				<a class="uk-slidenav-large uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+				<a class="uk-slidenav-large uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+			</div>
+		</div>
+	</section>
+	<!-- Detalles Obra -->
+	<section class="section section-dark">
+		<div class="uk-container section-container card-hover">
+			<h1 class="uk-margin-large-bottom"><b class="uk-text-bold">Detalles</b> de Obra</h1>
+			<div class="uk-child-width-1-2@m uk-grid-match" uk-grid>
+				<div>
+					<div class="uk-card uk-card-default">
+						<div>
+							<div class="uk-card-body">
+								<h3 class="uk-text-bold">Nuestras obras</h3>
+								<p>Planta de Pasta de Celulosa</p>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div>
+					<div class="uk-card uk-card-default">
+						<div>
+							<div class="uk-card-body">
+								<h3 class="uk-text-bold">Característica</h3>
+								<p>Altura total de la chimenea 117 m.  | Obras Civiles sector Manipuleo de maderas. Superficie 2.000 m². | Obras Civiles sector Puente de cañerías. Superficie 3.500 m²</p>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div>
+					<div class="uk-card uk-card-default">
+						<div>
+							<div class="uk-card-body uk-position-relative">
+								<h3 class="uk-text-bold">Comitente/Mandante</h3>
+								<p>Metsä Botnia</p>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div>
+					<div class="uk-card uk-card-default">
+						<div>
+							<div class="uk-card-body">
+								<h3 class="uk-text-bold">Ubicación</h3>
+								<p>Fray Bentos, Uruguay</p>
+							</div>
+						</div>
+					</div>
+				</div>
+							</div>
+						<h1 class="uk-margin-large"><b class="uk-text-bold">Ubicación</b> de Obra</h1>
+			<iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=es&amp;q=-33.119000,-58.256365+(Mapa)&amp;t=h&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="300" frameborder="0"></iframe>
+								</div>
+	</section>
+    </main>
+	<!-- Pie Pagina -->
+	<section class="uk-padding section-dark">
+		<div class="uk-container uk-container-large">
+			<div class="uk-child-width-expand@s uk-text-center" uk-grid>
+				<div class="logos">
+					<a href="/"><img src="/img/logo_cosud_white.png" alt="Constructora Sudamericana" title="Constructora Sudamericana" style="height:72px; display: block; margin-bottom: 60px;"></a>
+					<a href="https://ar.linkedin.com/company/constructora-sudamericana" target="_blank" style="display: flex; margin-left: 10px;"><img src="/img/linkedin.png" alt="Linkedin" title="Linkedin" style="height:32px"></a>
+				</div>
+				<div>
+					<h5>Industriales</h5>
+					<ul class="uk-list">
+						<li><a href="/categoria/5">Plantas Industriales</a></li>
+					    <li><a href="/categoria/3">Energía e Infraestructura</a></li>
+					    <li><a href="/categoria/2">Laboratorios y Salud</a></li>
+					</ul>
+				</div>
+				<div>
+					<h5>Comerciales</h5>
+					<ul class="uk-list">
+						<li><a href="/categoria/1">Institucionales y Oficinas</a></li>
+						<li><a href="/categoria/4">Residenciales y Hotelería</a></li>
+					    <li><a href="/categoria/6">Edificios Comerciales</a></li>
+					</ul>
+				</div>
+				<div>
+					<h5>Nosotros</h5>
+					<ul class="uk-list">
+						<li><a href="/quienes-somos">Quiénes Somos</a></li>
+						<li><a href="/como-trabajamos">Cómo Trabajamos</a></li>
+					    
+					    <li><a href="/contactate">Contacto</a></li>
+					</ul>
+				</div>
+				<div>
+					<h5>Idioma</h5>
+					<div class="uk-inline">
+						<span class="uk-form-icon" uk-icon="icon: world"></span>
+						<select class="uk-input uk-select uk-width-small" onchange="if (this.value) window.location.href=this.value">
+							<option value="?cambiarIdioma=es" selected>Español</option>
+							<option value="?cambiarIdioma=en" >Inglés</option>
+						</select>
+					</div>
+					<h5 class="uk-margin-medium-top">Paises</h5>
+					<p>
+                        <a href="/donde-estamos/argentina"><img src="/img/banderas/argentina.svg" title="Argentina" class="bandera"></a>
+                        <a href="/donde-estamos/uruguay"><img src="/img/banderas/uruguay.svg" title="Uruguay" class="bandera"></a>
+                        <a href="/donde-estamos/chile"><img src="/img/banderas/chile.svg" title="Chile" class="bandera"></a>
+                    </p>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!-- Footer -->
+	<footer class="uk-padding-small section-dark">
+		<div class="uk-container uk-container-large">
+			<div class="uk-child-width-expand@s uk-text-center" uk-grid>
+				<div class="uk-text-left@s">
+					<!-- Por ahora -->
+					<a href="/terminos" target="_blank">
+						Términos y Condiciones
+					</a>	
+				<!--<h6><a href="http://qr.afip.gob.ar/?qr=J912HsEYRZf5-5oa-Nf3vQ,," target="_blank"></a></h6>-->
+				</div>
+				<div class="uk-text-center">
+					<h6>Constructora Sudamericana S.A.<br>Todos los derechos reservados.</h6>
+				</div>
+				<div class="uk-text-right@s">
+					<h6><a href="#top" uk-scroll>Ir Arriba.</a></h6>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Scripts -->
+	<script src="/css/uikit/js/uikit.min.js"></script>
+	<script src="/css/uikit/js/uikit-icons.min.js"></script>
+	<script src="/js/script.js"></script>
+</body>
+</html>

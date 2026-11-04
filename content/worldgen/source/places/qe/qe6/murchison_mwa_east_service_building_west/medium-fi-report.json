@@ -1,0 +1,1043 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+    "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c"
+  },
+  "sourceHash": "sha256:95ea855d88514ba6ebbc46be4096ca3aa7f859cacd4c422ecef1cc9fa7d978f6",
+  "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:6e603eda5340c01a630e3cbc0c520d3ded6fe50679f257f4dc5649cda6e17882",
+      "bytes": 24092,
+      "gzipBytes": 4562,
+      "triangles": 216,
+      "cpuBytes": 17856,
+      "gpuBytes": 17856,
+      "errorMeters": 0.15,
+      "drawCalls": 5
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ff5028986d68225cfd4e6c3cb398318910d58f18713d6be697a91b2e5801af4e",
+      "bytes": 41088,
+      "gzipBytes": 7375,
+      "triangles": 420,
+      "cpuBytes": 34848,
+      "gpuBytes": 34848,
+      "errorMeters": 0.1,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:9eca1c8e8ade3780df7f4025be582af2c4fe8d7fdf0d4699df54358b999f0cf9",
+      "bytes": 55064,
+      "gzipBytes": 9506,
+      "triangles": 588,
+      "cpuBytes": 48816,
+      "gpuBytes": 48816,
+      "errorMeters": 0.05,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+      "bytes": 74080,
+      "gzipBytes": 12372,
+      "triangles": 816,
+      "cpuBytes": 67824,
+      "gpuBytes": 67824,
+      "errorMeters": 0.001,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d3da497f6d47a7dc3f228f109f948e454a72fd20d7cb01baf52b21985a15317d"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:3bacce9646859150f41dffb32525790718ab3b9f499f7baa41c5477ffd7c797f"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:41bc96da3afb4d54f617d493bdbb62cef5ed6e4468ab0259210448e56191f201",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39826,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          48.0002,
+          27.36,
+          83.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:9a4795531c7b91f7bdf571dfbdebce1e10c14cc3039ed5e7ce05ad54122c8275",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39826,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          48.0002,
+          27.36,
+          83.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:3c258f10fea83351aaa3fcb808a24a04e8ab766bf874e19d8f8f3a018e3fe4cc",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39826,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          48.0002,
+          27.36,
+          83.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:940a8daaf3db56615b1560194354e9fb792179a348e985a16d6af7c9c89f295c",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39826,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          48.0002,
+          27.36,
+          83.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:15db0827ac34e65ed6664d05bffb4ecb2d0d54d5038679a9a85a3c0866986c0b",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:ff5028986d68225cfd4e6c3cb398318910d58f18713d6be697a91b2e5801af4e",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39430,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          97.0002,
+          63.36,
+          168.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:a18bba1ac566bcc7a6d830e1de57cb729b6e7350b5f22b4bdb69d7c09444a704",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:ff5028986d68225cfd4e6c3cb398318910d58f18713d6be697a91b2e5801af4e",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39430,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          97.0002,
+          63.36,
+          168.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:2e2988362d9d7ebb9d003701b188834022af00bacc07a178771e240ec169511b",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:ff5028986d68225cfd4e6c3cb398318910d58f18713d6be697a91b2e5801af4e",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39430,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          97.0002,
+          63.36,
+          168.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:e6fcddcf43e54f4b92e360fbb1041b314c74ea644031327471ac2c99823f101b",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:ff5028986d68225cfd4e6c3cb398318910d58f18713d6be697a91b2e5801af4e",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39430,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          97.0002,
+          63.36,
+          168.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:ccf2b9619b64d4732feb76677547b47660df80b74d30948c62ec0cda625b9125",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:6e603eda5340c01a630e3cbc0c520d3ded6fe50679f257f4dc5649cda6e17882",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39226,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          194.0002,
+          101.36,
+          336.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:1b9676120a4613353004367c7ac24bee03c86add59ff6433a00ede89ba72e502",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:6e603eda5340c01a630e3cbc0c520d3ded6fe50679f257f4dc5649cda6e17882",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39226,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          194.0002,
+          101.36,
+          336.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:bbf25b03a0a880ade76ad24a495573cdba710a98b38541034cf2e3b4da4166c8",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:6e603eda5340c01a630e3cbc0c520d3ded6fe50679f257f4dc5649cda6e17882",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 39226,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          194.0002,
+          101.36,
+          336.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:8b08a47110665ff2d771d0bae5ed9013e6e788bc56eae40c12d1ffeb78a8b18e",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:6e603eda5340c01a630e3cbc0c520d3ded6fe50679f257f4dc5649cda6e17882",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39226,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          194.0002,
+          101.36,
+          336.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:1db7fe924d9067bdbb3defa14af290c38d01f5c56a6b07311a930917b30a62e9",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:6e603eda5340c01a630e3cbc0c520d3ded6fe50679f257f4dc5649cda6e17882",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 32986,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          194.0002,
+          101.36,
+          336.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-entry-vents-and-roof.png",
+      "hash": "sha256:0a26d3342aebef175bedc0d42ae09ee68397b6e83bb169aa8985deb12f03f71b",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39826,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          14,
+          6,
+          10
+        ],
+        "lookAt": [
+          0,
+          1.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/rear-whole-roof-and-side-vents.png",
+      "hash": "sha256:c855a778c7dca690fb448c6c10f86673691e4002b32ff4661ce10485518e3882",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39826,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          -13,
+          8,
+          -12
+        ],
+        "lookAt": [
+          0,
+          1.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-support-building-skyline.png",
+      "hash": "sha256:ecfb831b7910495982c62dc0983adb6d883e281414c46c7d5e3bbe33e0404b01",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:6e603eda5340c01a630e3cbc0c520d3ded6fe50679f257f4dc5649cda6e17882",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39226,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          11.601,
+          9,
+          12.09
+        ],
+        "lookAt": [
+          0,
+          1.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-support-building-district.png",
+      "hash": "sha256:4d60b40cf577b0263b69d22924dd729d228f130026f450e30e488520aab230e4",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:ff5028986d68225cfd4e6c3cb398318910d58f18713d6be697a91b2e5801af4e",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39430,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          11.601,
+          9,
+          12.09
+        ],
+        "lookAt": [
+          0,
+          1.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-support-building-street.png",
+      "hash": "sha256:85082db0d2abe77cb3f20bd1470f89069e95862f21a693da2b2ec8ef26d3f9c8",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:9eca1c8e8ade3780df7f4025be582af2c4fe8d7fdf0d4699df54358b999f0cf9",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39598,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          11.601,
+          9,
+          12.09
+        ],
+        "lookAt": [
+          0,
+          1.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-support-building-closeup.png",
+      "hash": "sha256:3d09ae1ded56036484f1a815759c30b7c9e585583601a0627e1d02842c0254eb",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39826,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          11.601,
+          9,
+          12.09
+        ],
+        "lookAt": [
+          0,
+          1.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:e708e9f346f93850d9ca178bf027a15a33b2fe27036a4cffa9f6c38fbb57b305",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:6e603eda5340c01a630e3cbc0c520d3ded6fe50679f257f4dc5649cda6e17882",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39226,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          97.0002,
+          63.36,
+          168.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:a18bba1ac566bcc7a6d830e1de57cb729b6e7350b5f22b4bdb69d7c09444a704",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:ff5028986d68225cfd4e6c3cb398318910d58f18713d6be697a91b2e5801af4e",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39430,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          97.0002,
+          63.36,
+          168.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:dbfbaa7dcb6f73f72c0bcf14e832500da95de19360f3e534348768c9c19e12dc",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:9eca1c8e8ade3780df7f4025be582af2c4fe8d7fdf0d4699df54358b999f0cf9",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39598,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          97.0002,
+          63.36,
+          168.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:6970e66ff150bde240162b2636e706fb8e4e64231275c1554b19b6784ec92ae8",
+      "state": {
+        "assetId": "molen.worldgen.structure.murchison_mwa_east_service_building_west",
+        "runtimeHash": "sha256:5faac2ab9e2a3b02532190f588532c905baaa67df72df94a1380108dd225265c",
+        "lodHash": "sha256:b565028281c2548d372172d6207627975dfded8816b9243f7fbba096db6a1269",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 39826,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/qe/qe6/murchison_mwa_east_service_building_west/terrain-review.height.png"
+        },
+        "position": [
+          97.0002,
+          63.36,
+          168.355
+        ],
+        "lookAt": [
+          0.0002,
+          12.36,
+          0.355
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -114,6 +114,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       'commons-native-whitehouse-photo',
       'commons-native-usace-photo',
       'commons-native-doe-photo',
+      'commons-native-nasa-esrs-photo',
       'commons-native-reviewed-state-department-photo',
       'commons-native-state-department-staff-photo',
       'commons-native-nps-photo',
@@ -187,7 +188,34 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
   )
     return failed;
   let basis, creatorAttribution;
-  if (proof.kind === 'commons-native-self-released-photo') {
+  if (proof.kind === 'commons-native-nasa-esrs-photo') {
+    const field = (name) =>
+      wiki.match(new RegExp(`\\|\\s*${name}\\s*=([^\\r\\n]*)`, 'i'))?.[1]?.trim();
+    const id = `${proof.mission}-${proof.roll}-${proof.frame}`;
+    if (
+      !/^ISS\d{3}$/.test(proof.mission ?? '') ||
+      proof.roll !== 'E' ||
+      !/^\d{4,6}$/.test(String(proof.frame ?? '')) ||
+      title !== `File:${id} - View of Earth.jpg` ||
+      !/\{\{ESRS-image\s*\n/.test(wiki) ||
+      field('mission') !== proof.mission ||
+      field('roll') !== proof.roll ||
+      field('frame') !== String(proof.frame) ||
+      !wiki.includes(`{{NASA-image|id=${id}|center=JSC}}`) ||
+      !/\{\{\s*PD-USGov-NASA\s*\}\}/.test(wiki) ||
+      reference.artist !==
+        'Earth Science and Remote Sensing Unit, Lyndon B. Johnson Space Center' ||
+      /contractor|courtesy|provided by/i.test(clean) ||
+      /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+      info.extmetadata?.Copyrighted?.value !== 'False' ||
+      info.extmetadata?.AttributionRequired?.value !== 'false' ||
+      text(info.extmetadata?.Restrictions?.value) ||
+      info.size !== original.length ||
+      !/\.jpe?g$/i.test(nativeUrl.pathname)
+    )
+      return failed;
+    basis = `Exact native NASA JSC Earth Science and Remote Sensing Unit photograph ${id}; pinned mission/roll/frame, NASA-image and PD-USGov-NASA release, original bytes and named agency bound.`;
+  } else if (proof.kind === 'commons-native-self-released-photo') {
     const author = wiki.match(/\|\s*author\s*=([^\r\n]*)/i)?.[1],
       sourceField = wiki.match(/\|\s*source\s*=([^\r\n]*)/i)?.[1];
     const ordinarySelf = !(
@@ -220,7 +248,90 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
       /\.jpe?g$/i.test(nativeUrl.pathname) &&
       !record.continue?.iicontinue &&
       nativeNamedUploaderRelease(page, photographer, proof.nativeCreatorRelease);
-    if (!ordinarySelf && !selfPhotographed && !namedSelf) return failed;
+    // Early Japanese uploads say "the uploader themself" in both fields.
+    // Bind that first-person claim to the original uploading account and time;
+    // a later PD-self tag or a translated artist label alone is insufficient.
+    const binding = proof.nativeCreatorRelease,
+      first = page?.revisions?.[0],
+      japaneseUploaderSelf =
+        binding?.kind === 'contemporaneous-japanese-uploader-self-release' &&
+        /^[A-Za-z0-9_-]+$/.test(binding.username ?? '') &&
+        first?.parentid === 0 &&
+        first.user === binding.username &&
+        first.revid === binding.revision &&
+        page.imageinfo.length === 1 &&
+        !record.continue?.iicontinue &&
+        info.user === binding.username &&
+        Number.isFinite(Date.parse(first.timestamp)) &&
+        Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
+        photographer === '投稿者本人' &&
+        reference.artist === photographer &&
+        author?.trim() === photographer &&
+        sourceField?.trim() === photographer &&
+        text(info.extmetadata?.Artist?.value) === photographer &&
+        text(info.extmetadata?.Credit?.value) === photographer &&
+        /\{\{\s*PD-self\s*\}\}/i.test(wiki) &&
+        !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) &&
+        /\.jpe?g$/i.test(nativeUrl.pathname) &&
+        info.size === original.length &&
+        info.extmetadata?.Copyrighted?.value === 'False' &&
+        info.extmetadata?.AttributionRequired?.value === 'false' &&
+        !text(info.extmetadata?.Restrictions?.value);
+    // Other early Japanese originals sign the source with the uploading account
+    // and say "photographed by the uploader". Require the first native release,
+    // same sole upload and minute-exact signature, including a retained wiki alias.
+    const uploadedAt = new Date(first?.timestamp ?? 0),
+      month = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ][uploadedAt.getUTCMonth()],
+      signatureTime = `${String(uploadedAt.getUTCHours()).padStart(2, '0')}:${String(uploadedAt.getUTCMinutes()).padStart(2, '0')}, ${uploadedAt.getUTCDate()} ${month} ${uploadedAt.getUTCFullYear()} (UTC)`,
+      signatureName = binding?.signatureUsername,
+      japaneseSignedPhotograph =
+        binding?.kind === 'contemporaneous-japanese-signed-photographer-release' &&
+        /^[\p{L}\p{N}_-]+$/u.test(signatureName ?? '') &&
+        [signatureName, `${signatureName}~commonswiki`].includes(binding.username) &&
+        first?.parentid === 0 &&
+        first.user === binding.username &&
+        first.revid === binding.revision &&
+        page.imageinfo.length === 1 &&
+        !record.continue?.iicontinue &&
+        info.user === binding.username &&
+        Number.isFinite(Date.parse(first.timestamp)) &&
+        Math.abs(Date.parse(first.timestamp) - Date.parse(info.timestamp)) < 300000 &&
+        photographer === '投稿者が撮影' &&
+        reference.artist === photographer &&
+        author?.trim() === photographer &&
+        sourceField?.startsWith(`[[User:${signatureName}|${signatureName}]]`) &&
+        sourceField.endsWith(signatureTime) &&
+        text(info.extmetadata?.Artist?.value) === photographer &&
+        text(info.extmetadata?.Credit?.value).includes(signatureName) &&
+        text(info.extmetadata?.Credit?.value).endsWith(signatureTime) &&
+        /\{\{\s*PD-self\s*\}\}/i.test(wiki) &&
+        !/\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) &&
+        /\.jpe?g$/i.test(nativeUrl.pathname) &&
+        info.size === original.length &&
+        info.extmetadata?.Copyrighted?.value === 'False' &&
+        info.extmetadata?.AttributionRequired?.value === 'false' &&
+        !text(info.extmetadata?.Restrictions?.value);
+    if (
+      !ordinarySelf &&
+      !selfPhotographed &&
+      !namedSelf &&
+      !japaneseUploaderSelf &&
+      !japaneseSignedPhotograph
+    )
+      return failed;
     basis = `Exact native creator photograph; pinned own-photo/PD-self or contemporaneous named-native-photographer release by ${photographer}`;
   } else if (proof.kind === 'commons-native-expired-library-photo') {
     // Recover a missing local category only from the exact native library photo.
@@ -421,6 +532,27 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
         text(info.extmetadata?.Restrictions?.value)
       )
         return failed;
+    } else if (proof.recordClass === 'coste-keisaria-1867-engraving') {
+      // Qualla retained the PD label but omitted the native expiry category.
+      // Bind the actual named engraving and its 1867 publication; never infer
+      // expiry from an architectural subject or an anonymous historical date.
+      if (
+        title !== 'File:Bazar tailors by Pascal Coste.jpg' ||
+        reference.artist !== 'Pascal Coste' ||
+        authorField !== '{{Creator:Pascal Coste}}' ||
+        dateField !== '1840' ||
+        year !== 1867 ||
+        proof.creatorBorn !== 1787 ||
+        proof.creatorDied !== 1879 ||
+        sourceField !==
+          'Monuments modernes de la Perse mesurés, dessinés et décrits, éd. Morel, 1867' ||
+        !/\{\{\s*PD-Art\s*\|\s*PD-old-auto-expired\s*\|\s*deathyear=1879\s*\}\}/i.test(wiki) ||
+        /\{\{\s*(?:cc[- ]by|gfdl|copyright)/i.test(wiki) ||
+        info.extmetadata?.Copyrighted?.value !== 'False' ||
+        info.extmetadata?.AttributionRequired?.value !== 'false' ||
+        text(info.extmetadata?.Restrictions?.value)
+      )
+        return failed;
     } else if (proof.recordClass === 'brazilian-periodical') {
       if (
         proof.publicationTitle !== 'A Vida Fluminense' ||
@@ -481,7 +613,7 @@ export function inspectQuallaPrimaryRights(reference, original, root = modelRigh
     } else return failed;
     basis = originalDrawing
       ? 'Exact native original drawing dated 1892-09-24; Mariano Pedrero (1865-1927), collection of Marceliano Pedrero, explicit PD-Scan/PD-old-auto-expired release and original bytes bound'
-      : `Exact native historical print, ${year}; named original creator, matched source citation and explicit ${proof.recordClass.startsWith('brazilian-') ? 'PD-Brazil-media historical print' : proof.recordClass === 'bnf-arnaud-1843-map' ? 'PD-France and PD-US-expired original Arnaud map' : 'PD-old-70-1923 map'} grant`;
+      : `Exact native historical print, ${year}; named original creator, matched source citation and explicit ${proof.recordClass.startsWith('brazilian-') ? 'PD-Brazil-media historical print' : proof.recordClass === 'bnf-arnaud-1843-map' ? 'PD-France and PD-US-expired original Arnaud map' : proof.recordClass === 'coste-keisaria-1867-engraving' ? 'PD-Art/PD-old-auto-expired, Pascal Coste (1787-1879)' : 'PD-old-70-1923 map'} grant`;
   } else if (proof.kind === 'commons-native-usaf-reference-series-photo') {
     // This exact published aerial is independently visible in the official government volume.
     // Do not extend this witness to contractor reports, other aircraft photos or whole books.

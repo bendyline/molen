@@ -5,6 +5,7 @@ import { createRequire } from 'node:module';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
+import { registerSourceDocuments } from '../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { structureSourceDirectory } from '../../../../packages/worldgen/scripts/structure-source-paths.mjs';
 import { verifyMediumFiRender } from './medium-fi-asset.mjs';
 
@@ -59,11 +60,11 @@ try {
       ),
     ]);
     for (const camera of [...spec.qaCameras, ...(spec.qaLodCameras ?? [])]) {
-      if (captureNames.has(camera.name))
+      if (captureNames.has(camera.name.toLowerCase()))
         throw new Error(
           `${id}: duplicate capture name ${camera.name}; give review cameras unique names`,
         );
-      captureNames.add(camera.name);
+      captureNames.add(camera.name.toLowerCase());
     }
     const pack = JSON.parse(await readFile(resolve(root, 'content/worldgen/stylepack.json'))),
       sidecar = JSON.parse(
@@ -152,7 +153,7 @@ try {
           await shot(`${distance}-${time}-${mode}`, { distance, time, mode });
     await shot('silhouette', { distance: 'skyline', mode: 'economy', silhouette: true });
     for (const camera of [...spec.qaCameras, ...(spec.qaLodCameras ?? [])])
-      await shot(camera.name, {
+      await shot(camera.name.toLowerCase(), {
         position: camera.position,
         lookAt: camera.lookAt,
         level: camera.reviewLod,
@@ -181,6 +182,7 @@ try {
     };
     if (errors.length) throw new Error(errors.join('; '));
     await writeFile(resolve(dir, 'medium-fi-report.json'), `${JSON.stringify(report, null, 2)}\n`);
+    await registerSourceDocuments(dir, ['medium-fi-report.json']);
     await page.close();
     console.log(`${id}: ${frames.length} medium-fi frames`);
   }

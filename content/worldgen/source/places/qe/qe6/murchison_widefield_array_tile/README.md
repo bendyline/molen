@@ -1,0 +1,23 @@
+# Murchison Widefield Array Phase-I antenna tile
+
+Whole5x5m open mesh ground screen, all16 crossed vertical bowtie antennas with feet/LNA hubs, adjacent intrinsic beamformer and exposed cable bundle. Primary written mechanical facts and original operator southwest-corner points only. Reusable equipment with128 individual original Phase-I placements; parent observatory remains unfinished.
+
+![Molen preview](preview.png)
+
+Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.json](qa.json) and the [completion ledger](../../../../qualla-structures/batches/qualla-002.PROGRESS.md).
+
+- [Murchison Radio-astronomy Observatory](https://qualla.com/murchison-radio-astronomy-observatory/)
+
+Whole 2013 Phase-I MWA tile: entire 5x5m open wire ground screen, all16 crossed vertical bowtie dipoles in4x4 grid at1.1m, dielectricfeet/LNAhubs, intrinsicbeamformerbox and exposedcablebundle. Original operator tile11 southwestcorner retained asanchor; localenvelope[0..5]east/[-5..0]north isderivedfromwritten5m dimension, not mappedfoundation. All128 originalactualSWcorner placements use samecompleteequipmentasset. Everyimageunused; no one tile stands for wholeobservatory.
+
+All128 original Phase-I southwest-corner points remain exact in separate placements of the complete tile asset. The5m screen extends east/north from each actualcorner; it is a derived dimensional envelope, not a surveyed four-corner footprint. Original GPS heights are retained as source facts but not used as provider ground. LaterPhase-II128 tiles excluded.
+
+Original256m/129x129 field with16641 values/1 rawtiles, datum378.9421m/range377.6174..383.3519m frozen before floor/mainsections/geometry. ScreenY.06m, wire3.15mm atcloseup, elements.10m above screen, .55m bowtieheight/.74m span fixed once after field. Originalframe/field/floors/mainsections never cut/masked/flattened/refetched/refitted for captures. Coarse field may bury or expose some openmesh/feet; no surveyed contact/verticalregistration claimed.
+
+Whole5x5m open mesh/16 crossed vertical bowties/feet/LNA hubs/intrinsic adjacent beamformer and exposed representative cablebundle retained. No solidtile slab/dish/one-element proxy. Small box sizes/feet and cablerouting/metalfinish estimates, .3m componentuncertainty; source2013 mainform pluscurrentoperator elementdimensions approximate2013 casing. Original50mm wires remain atcloseup, coarser .2/.5/1m openmesh atdistance and thickness increases are explicit visibility approximations.
+
+Qualla first4families/1conflict, every image unused. Primary operator and originalsystem written facts only; all photos/maps/figures/schematics/animations unused. Independentreceiverenclosures/hub/support buildings are separate site components; tilealone never completes wholeobservatory.
+
+Approximate2013-12-31 datedproposal/currentWorldEligible false. Same complete equipment atall128 operatorpoints; no compositeGLB/centroidplacement, inventednodeIDs or exactsurveyclaim. Cardinalheading0within2degreewritten tolerance; exacttileorientation estimated.
+
+Build: `node content/worldgen/source/places/qe/qe6/murchison_widefield_array_tile/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 4208 triangles; 6 materials; no embedded photographs.

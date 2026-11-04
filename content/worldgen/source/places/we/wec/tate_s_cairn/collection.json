@@ -1,0 +1,92 @@
+{
+  "format": "molen/structure-collections@1",
+  "collections": [
+    {
+      "id": "tate_s_cairn",
+      "wikidataId": "Q7687926",
+      "title": "Tate's Cairn Meteorological Station",
+      "identityKind": "site-members",
+      "requiredCount": 3,
+      "members": [
+        {
+          "id": "tates_cairn_southwest_service_building",
+          "wikidataId": "Q7687926",
+          "title": "Tate's Cairn southwest service building",
+          "assetId": "molen.worldgen.structure.tates_cairn_southwest_service_building",
+          "sourceKey": "tates_cairn_southwest_service_building",
+          "sourcePath": "content/worldgen/source/places/we/wec/tates_cairn_southwest_service_building",
+          "positionReference": {
+            "source": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer",
+            "basis": "Original Hong Kong Lands Department CSDI numerical BuildingCSUID and whole footprint, at its independent geographic frame. Radome position/size and absolute vertical tie retain explicit estimates."
+          },
+          "mappedContextFeatures": [
+            "csdi/4046724307T20050430"
+          ],
+          "referenceCoordinate": {
+            "longitude": 114.21765791652034,
+            "latitude": 22.3579105697955
+          },
+          "sourceHash": "sha256:e90d00ab185f8667557518260d65e2b5df401228bfa422e142a6e5e48d977c7b",
+          "representedDate": "2019-03-04",
+          "modelState": "completed"
+        },
+        {
+          "id": "tates_cairn_north_service_structure",
+          "wikidataId": "Q7687926",
+          "title": "Tate's Cairn north service structure",
+          "assetId": "molen.worldgen.structure.tates_cairn_north_service_structure",
+          "sourceKey": "tates_cairn_north_service_structure",
+          "sourcePath": "content/worldgen/source/places/we/wec/tates_cairn_north_service_structure",
+          "positionReference": {
+            "source": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer",
+            "basis": "Original Hong Kong Lands Department CSDI numerical BuildingCSUID and whole footprint, at its independent geographic frame. Radome position/size and absolute vertical tie retain explicit estimates."
+          },
+          "mappedContextFeatures": [
+            "csdi/4047524315T20050430"
+          ],
+          "referenceCoordinate": {
+            "longitude": 114.21771618484694,
+            "latitude": 22.3579672218048
+          },
+          "sourceHash": "sha256:71ca97bcb70bb048356cdc973f9eef2e7081242ae85417228e526566c6269b06",
+          "representedDate": "2019-03-04",
+          "modelState": "completed"
+        },
+        {
+          "id": "tates_cairn_main_radar_building",
+          "wikidataId": "Q7687926",
+          "title": "Tate's Cairn main radar building",
+          "assetId": "molen.worldgen.structure.tates_cairn_main_radar_building",
+          "sourceKey": "tates_cairn_main_radar_building",
+          "sourcePath": "content/worldgen/source/places/we/wec/tates_cairn_main_radar_building",
+          "positionReference": {
+            "source": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer",
+            "basis": "Original Hong Kong Lands Department CSDI numerical BuildingCSUID and whole footprint, at its independent geographic frame. Radome position/size and absolute vertical tie retain explicit estimates."
+          },
+          "mappedContextFeatures": [
+            "csdi/4047624294T20050430"
+          ],
+          "referenceCoordinate": {
+            "longitude": 114.2177099152074,
+            "latitude": 22.357805166043583
+          },
+          "sourceHash": "sha256:aa7f467162e83f5659cdedf3e439f963138ffe0f15e8f740af401d04789ac555",
+          "representedDate": "2019-03-04",
+          "modelState": "completed"
+        }
+      ],
+      "membershipEvidence": {
+        "source": "https://portal.csdi.gov.hk/server/rest/services/common/landsd_rcd_1637211194312_35158/FeatureServer/0/query?f=geojson&where=1%3D1&geometry=114.2173%2C22.3574%2C114.2181%2C22.3583&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=*&returnGeometry=true&spatialRel=esriSpatialRelIntersects",
+        "inventoryStatus": "complete",
+        "memberIds": [
+          "tates_cairn_southwest_service_building",
+          "tates_cairn_north_service_structure",
+          "tates_cairn_main_radar_building"
+        ],
+        "featureIds": [],
+        "outstanding": [],
+        "notes": "All three whole official building records in the original station query: named11-corner main radar body and two separate service buildings. Original OSMrelation9561453 independently supplies HKO meteorological-station operator context; it is not a building footprint. Q7687926 is the Qualla story site context, not an invented independent building identity. Main protective cover size/shape/position is an original explicit estimate, not a measured radome. Roof/facade/service-role/ground/phase uncertainties remain explicit. No peak, fence or one service building substitutes for the main radar body; no aggregate GLB or whole-site centroid placement."
+      }
+    }
+  ]
+}

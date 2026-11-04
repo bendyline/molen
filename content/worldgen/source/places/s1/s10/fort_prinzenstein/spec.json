@@ -1,0 +1,467 @@
+{
+  "planId": "fort_prinzenstein",
+  "id": "fort_prinzenstein",
+  "assetId": "molen.worldgen.structure.fort_prinzenstein",
+  "title": "Fort Prinzenstein — Keta,1847",
+  "wikidataId": "Q1438675",
+  "category": "fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 0.99361111,
+    "latitude": 5.92166667
+  },
+  "size": [
+    92.80998611450195,
+    23.25000035762787,
+    98.02171325683594
+  ],
+  "actualBounds": {
+    "min": [
+      -42.69568634033203,
+      -1.149999976158142,
+      -42.893714904785156
+    ],
+    "max": [
+      50.11429977416992,
+      22.100000381469727,
+      55.12799835205078
+    ]
+  },
+  "visualBrief": "Entirehistorical1847FortPrinzenstein/Prinsensten: allfourcornerbastions/fullcurtainterraces, wholeopencentralcourtyard andbothrearprisoncourts, allintrinsicwestern/easternupperrooms/eastattachedservicewing, wholeprojectingentranceoutwork/truearchedentry/octagonalwatchtower. Original1847commanderplan/exteriorininspected1918volume, namedcreator1893death. Fullplannotfacade/cannon/one-room/currentruinproxy. Absolutescale/sections/roof/height/grade/facingestimated; mainplannominal85.3x85.7m with25percentuncertainty. Entirelatererodedportionsincludedonlyasdated1847historicalform, no intactcurrentreplacement.",
+  "nativeAxes": {
+    "x": "diagramrightapproximatelyeast",
+    "y": "up",
+    "z": "diagramdownapproximatelysouth"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1847-08-03",
+    "validFrom": "1847-08-03",
+    "validUntil": "1848-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://slaegtsbibliotek.dk/937166.pdf"
+  ],
+  "stories": [
+    {
+      "id": "fort-prinzenstein-wp",
+      "url": "https://qualla.com/fort-prinzenstein/"
+    }
+  ],
+  "referenceInputHash": "sha256:f8607286c5e1b6d3d55e3ca1ba6d4b11d65326af1b223fc5dbae1c37451c1cf4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/s1/s10/fort_prinzenstein/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/s1/s10/fort_prinzenstein/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "deck": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.12
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.4,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.12
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.12
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.12
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_ashlar",
+    "metal_painted",
+    "wood_plain",
+    "window_punched"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 5000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Entire20controlmainfort/fourcornerbastions/wholecentralopencourtyard/bothrearprisoncourts, completewestern/easternupperrooms/attachedserviceannex/entranceoutwork/octagonalgatetower. Originalhanddrawnplanuniform0.132m/pixel, approximatewholemain85.3x85.7m. Original1788Isertpage33actuallyreadsKönigstein136x130ells; page105saysPrinsensteinlaidoutbysameauthorafterthatplanandsixfeetlarger. This1784templateisscalecontextonly, not certified1847metricplan. All1847absoluteplan andhistoricalpointregistrationuncertainty25percent/30m; compassbearingunverified, approximateheading0with45degreeuncertainty. No anisotropicplanstretch or nearbyhousefootprintproxy. Afteroriginalframe/independent256mfield, floor0.35m/foundation-1.15m fixed. Mainterrace8.35m,1.55mparapet/top9.9m; westupperroomswall12.05m/roof12.4m,eastupperroomswall11.45m/roof11.8m,attachedannexwall11.85m/roof12.2m; flatroofprofiles/parapetsapproximatedfromoriginalperspective. Gateoutworkroof6.25m, octagonalwatchtowerfloor6.25m/wall15.05m/roof15.45m/parapet16.1m, radius4.62mfromdrawing; fullarchedentry1.8mhalfwidthepring2.7m/top4.5m. Exactheights/sections/roof/facing/gradeestimatedwithnominal3mheight/30mregistrationuncertainty. Allfrozenfield/floors/mainsectionsretainedthroughreview. Fullcourtyardandtworearcourtsremainopentosky, truecontinuousarchedentrybarrelconnectsentranceoutworktomaincourtyard. Platformslits/threeopenarchedgunposts/eightroundedports positions/census andstairs/upperfenestration/cordons/cornersentinelhuts/flagmast/roofdetails explicitlyestimatedfrom1847drawing, no claimexact1847hardwareoroperatingstate. Actualoriginaldrawingrighthandannexroomfunctionuncertain, includedwholeasattachedservicewing. Detachedgardens/palmtrees/townbuildings/shorepaths/cannonsnotusedasfortproxy; roominteriors/furniturenotrepresented. Limeplaster/stone/limeflat-roof/wood/shutter/glassfinishpalettesapproximatebecauseoriginal1918reproductionhaslimitedcolor. PrimaryICOMOSconstructiontextreportsstoneimportedAccraandshell-limemortar; no unsupportedstonequarryorspecificcolorclaim. OriginalproceduralsignlessarchitectureandbasicDanishcrossflaggeometry, no copiedmodernart/signage/textures. Historical1847-08-03wholeintactfortonly, validuntil1848-01-01. SourceICOMOS2002reportsmorethanhalferodedby1993; currentruinnotreplacedbyintact1847model. Storypinabout1.2kmwrong, exactarticlelocation/content/curationpreserved; modelusesindependentlypublishedcorrectfortpoint/Q1438675/originalnamedPOI. Originalcurrentcoastalfieldnot1847ground; datum6.9372m/providerfield0.5463..14.6384m,currenturban/canopy/DEM/waterartifacts canburyorfloatlowergeometry. No cutout/mask/flatten/refetch/refit or cosmeticfloor/roofmovement. Ground/verticalregistrationunverified.",
+    "anchor": [
+      0.99361111,
+      5.92166667
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        0.99361111,
+        5.92166667
+      ],
+      "modelHeight": 0,
+      "basis": "Independentpublishedfortpointfixedbeforefieldandfloors. Currentcoastalproviderheightsnot1847groundorhistoricfoundationdatum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "pois/35184619291713",
+      "historical-plan/svedstrup1847-main-fort",
+      "historical-plan/svedstrup1847-attached-annex",
+      "historical-plan/svedstrup1847-entrance-outwork"
+    ],
+    "source": "https://build.protomaps.com/20261029.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ce342adbf90ef5bdd724a48a2a101c300dfc990eee7881af6c6181650052c24a",
+    "notes": "Entirehistorical1847FortPrinzenstein/Prinsensten: allfourcornerbastions/fullcurtainterraces, wholeopencentralcourtyard andbothrearprisoncourts, allintrinsicwestern/easternupperrooms/eastattachedservicewing, wholeprojectingentranceoutwork/truearchedentry/octagonalwatchtower. Original1847commanderplan/exteriorininspected1918volume, namedcreator1893death. Fullplannotfacade/cannon/one-room/currentruinproxy. Absolutescale/sections/roof/height/grade/facingestimated; mainplannominal85.3x85.7m with25percentuncertainty. Entirelatererodedportionsincludedonlyasdated1847historicalform, no intactcurrentreplacement."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Entirehistorical1847FortPrinzenstein/Prinsensten: allfourcornerbastions/fullcurtainterraces, wholeopencentralcourtyard andbothrearprisoncourts, allintrinsicwestern/easternupperrooms/eastattachedservicewing, wholeprojectingentranceoutwork/truearchedentry/octagonalwatchtower. Original1847commanderplan/exteriorininspected1918volume, namedcreator1893death. Fullplannotfacade/cannon/one-room/currentruinproxy. Absolutescale/sections/roof/height/grade/facingestimated; mainplannominal85.3x85.7m with25percentuncertainty. Entirelatererodedportionsincludedonlyasdated1847historicalform, no intactcurrentreplacement.",
+    "Selectedpublicdomain1847Svedstrupexteriorandgroundplan, inoriginal1918LarsenvolumePDF120/124printed121/125; titlepage4andcreditpage145inspected. NationalMuseumprimarytextconfirmscreator1819-1893/drawing1847; cachedtexttransmissionexplicit, directplaceholderunused. Modernlibrarywrapper/logo/allotherimagesunused. Quallafirst31familiesframedphotos/unrelatedinteriors/attribution-onlyexteriorsunused, no sourcequestions/rightsrepair.",
+    "Entire20controlmainfort/fourcornerbastions/wholecentralopencourtyard/bothrearprisoncourts, completewestern/easternupperrooms/attachedserviceannex/entranceoutwork/octagonalgatetower. Originalhanddrawnplanuniform0.132m/pixel, approximatewholemain85.3x85.7m. Original1788Isertpage33actuallyreadsKönigstein136x130ells; page105saysPrinsensteinlaidoutbysameauthorafterthatplanandsixfeetlarger. This1784templateisscalecontextonly, not certified1847metricplan. All1847absoluteplan andhistoricalpointregistrationuncertainty25percent/30m; compassbearingunverified, approximateheading0with45degreeuncertainty. No anisotropicplanstretch or nearbyhousefootprintproxy.",
+    "Afteroriginalframe/independent256mfield, floor0.35m/foundation-1.15m fixed. Mainterrace8.35m,1.55mparapet/top9.9m; westupperroomswall12.05m/roof12.4m,eastupperroomswall11.45m/roof11.8m,attachedannexwall11.85m/roof12.2m; flatroofprofiles/parapetsapproximatedfromoriginalperspective. Gateoutworkroof6.25m, octagonalwatchtowerfloor6.25m/wall15.05m/roof15.45m/parapet16.1m, radius4.62mfromdrawing; fullarchedentry1.8mhalfwidthepring2.7m/top4.5m. Exactheights/sections/roof/facing/gradeestimatedwithnominal3mheight/30mregistrationuncertainty. Allfrozenfield/floors/mainsectionsretainedthroughreview.",
+    "Fullcourtyardandtworearcourtsremainopentosky, truecontinuousarchedentrybarrelconnectsentranceoutworktomaincourtyard. Platformslits/threeopenarchedgunposts/eightroundedports positions/census andstairs/upperfenestration/cordons/cornersentinelhuts/flagmast/roofdetails explicitlyestimatedfrom1847drawing, no claimexact1847hardwareoroperatingstate. Actualoriginaldrawingrighthandannexroomfunctionuncertain, includedwholeasattachedservicewing. Detachedgardens/palmtrees/townbuildings/shorepaths/cannonsnotusedasfortproxy; roominteriors/furniturenotrepresented.",
+    "Limeplaster/stone/limeflat-roof/wood/shutter/glassfinishpalettesapproximatebecauseoriginal1918reproductionhaslimitedcolor. PrimaryICOMOSconstructiontextreportsstoneimportedAccraandshell-limemortar; no unsupportedstonequarryorspecificcolorclaim. OriginalproceduralsignlessarchitectureandbasicDanishcrossflaggeometry, no copiedmodernart/signage/textures.",
+    "Historical1847-08-03wholeintactfortonly, validuntil1848-01-01. SourceICOMOS2002reportsmorethanhalferodedby1993; currentruinnotreplacedbyintact1847model. Storypinabout1.2kmwrong, exactarticlelocation/content/curationpreserved; modelusesindependentlypublishedcorrectfortpoint/Q1438675/originalnamedPOI. Originalcurrentcoastalfieldnot1847ground; datum6.9372m/providerfield0.5463..14.6384m,currenturban/canopy/DEM/waterartifacts canburyorfloatlowergeometry. No cutout/mask/flatten/refetch/refit or cosmeticfloor/roofmovement. Ground/verticalregistrationunverified."
+  ],
+  "sourceLicense": "Original procedural entirehistorical1847fort underrepositorylicense. ArchitecturederivedfromclearlyexpiredSvedstrup1847primaryplan/exteriorinoriginal1918book; creator1819-1893confirmedbyNationalMuseum. Onlyhistoricalplatesused, no modernlibrarywrapper/logo/otherimages. OriginalnumericPOIcontextODbL. Allprotected/questionableQuallaimageryunused; no borrowedmesh or image-texturetrace. Absoluteplan/sections/roof/grade/facingestimatesdeclared; latermajorerosionacknowledged andno intactcurrentreplacement.",
+  "qaLodCameras": [
+    {
+      "name": "whole-prinzenstein-skyline",
+      "position": [
+        140,
+        112,
+        178
+      ],
+      "lookAt": [
+        0,
+        5,
+        4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-prinzenstein-district",
+      "position": [
+        140,
+        112,
+        178
+      ],
+      "lookAt": [
+        0,
+        5,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-prinzenstein-street",
+      "position": [
+        140,
+        112,
+        178
+      ],
+      "lookAt": [
+        0,
+        5,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-prinzenstein-closeup",
+      "position": [
+        140,
+        112,
+        178
+      ],
+      "lookAt": [
+        0,
+        5,
+        4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-historical-fort-four-bastions-all-wings-and-gate",
+      "position": [
+        140,
+        112,
+        178
+      ],
+      "lookAt": [
+        0,
+        5,
+        4
+      ]
+    },
+    {
+      "name": "true-entry-outwork-and-octagonal-watchtower",
+      "position": [
+        35,
+        28,
+        95
+      ],
+      "lookAt": [
+        0,
+        6,
+        37.802
+      ]
+    },
+    {
+      "name": "whole-courtyard-rear-prison-courts-and-both-upper-wings",
+      "position": [
+        -45,
+        100,
+        -92
+      ],
+      "lookAt": [
+        0,
+        3,
+        -3
+      ]
+    },
+    {
+      "name": "complete-attached-service-annex-and-eastern-bastions",
+      "position": [
+        110,
+        48,
+        8
+      ],
+      "lookAt": [
+        32,
+        6,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6918,
+    "vertices": 20754,
+    "materials": 6,
+    "bytes": 992088,
+    "sha256": "sha256:7ba07ae6afb01eb605cb18c5b67650802fce164ef01776987e44dc37957496f3"
+  }
+}

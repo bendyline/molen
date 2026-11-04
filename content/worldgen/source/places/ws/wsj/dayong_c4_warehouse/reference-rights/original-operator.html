@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" url1="stores" url2="info" url3="34">
+<head>
+	<script>
+	var u = navigator.userAgent,
+		ua = navigator.userAgent.toLowerCase(),
+		isLineApp = u.indexOf("Line") > -1;
+
+	// LINE 外部瀏覽器：參數只加一次，保留查詢及錨點，避免反覆重新導向。
+	function open_line_external_browser_once() {
+		if (!isLineApp) {
+			return;
+		}
+		var target = new URL(window.location.href);
+		if (target.searchParams.has('openExternalBrowser')) {
+			return;
+		}
+		target.searchParams.set('openExternalBrowser', '1');
+		location.replace(target.href);
+	}
+	open_line_external_browser_once();
+</script>
+	
+  <!-- css -->
+  <!-- ...................................... -->
+	<link type="text/css" rel="stylesheet" href="/css/style.css?2026091101">
+	<link type="text/css" rel="stylesheet" href="/css/nav.css?2026101201">
+	<link type="text/css" rel="stylesheet" href="/css/footer.css?2026101303">
+	
+	
+	<!-- jquery  -->
+	<script src="/library/jquery/jquery.min.js"></script>
+	
+	<!-- lang -->
+	<script type="text/javascript"> var lang='zh-tw'; </script>
+	<script>var site_public_pages=["CoastalRailway.php","about.php","accessibility.php","activity.php","activityInfo.php","activityList.php","anime.php","artist.php","book.php","campusdiscount.php","cpacess10155550544410.php","cpanel.php","creator.php","download.php","exhibition.php","exhibitionInfo.php","exhibitionList.php","hamasen.php","home.php","learning.php","learningInfo.php","learningList.php","learningsheet.php","livewarehouse.php","maintainShop.php","map.php","map2.php","market.php","marketPage.php","news.php","newsInfo.php","newsList.php","newslist.php","pier2base.php","plan copy.php","plan.php","privacy.php","qa.php","qrcode.php","search.php","shop.php","shopCart.php","shopInfo.php","shopList.php","shopList2.php","shopOrder.php","shopPage.php","shopSearch.php","sitemap.php","spot.php","spot2.php","storeInfo.php","stores.php","storesInfo.php","storesList.php","test.php","ticket.php","tour.php","traffic.php","transport.php","updating.php","vrtheatre.php","workshop.php","youngartspace.php"].map(function(page){ return page.slice(0,-4); });</script>
+	<script src="/js/site_url.js?2026101205"></script>
+
+  <!-- JS -->
+
+	
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3C6A83" />
+
+
+
+<title>eslite  bookstore 誠品書店 | 駁二藝術特區 | 駁二藝術特區</title>
+
+
+<meta t="1" url="/stores/info/34/">
+
+
+<!-- icon -->
+<link rel="icon" type="image/png" href="/upload/setting/JHJAXMEH15247.png">
+
+<!-- ios icon -->
+<link rel="apple-touch-icon" href="/upload/setting/JHJAXMEH15247.png">
+
+<!-- basic -->
+<meta name="author" content="高雄市文化中心">
+<meta name="copyright" content="Copyright © Pier2. All rights reserved.">
+<meta name="description" content="在駁二這個地方，衝突是一股美好的力量。
+被歷史塵封的陳舊倉庫，時光凝結了種種發展跡象，因為藝術文化的呼聲被解放，不斷注入創意靈感而重獲新生，日漸茁壯。在舊與新的衝突中，衝撞出的是勃發的生命力。" />
+<meta name="image" content="https://pier2.orgupload/setting/MUBCURCS810049.jpg" />
+
+<!-- facebook -->
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:title" content="eslite  bookstore 誠品書店 | 駁二藝術特區 | 駁二藝術特區" />
+<meta property="og:image" content="https://pier2.orgupload/setting/MUBCURCS810049.jpg" />
+<meta property="og:description" content="在駁二這個地方，衝突是一股美好的力量。
+被歷史塵封的陳舊倉庫，時光凝結了種種發展跡象，因為藝術文化的呼聲被解放，不斷注入創意靈感而重獲新生，日漸茁壯。在舊與新的衝突中，衝撞出的是勃發的生命力。" />
+<meta property="og:type" content="Website" />
+<meta property="og:url" content="https://pier2.org/stores/info/34/" />
+<meta property="fb:app_id" content="2178715885716249" />
+
+<!-- google plus -->
+<meta itemprop="name" content="eslite  bookstore 誠品書店 | 駁二藝術特區 | 駁二藝術特區">
+<meta itemprop="description" content="在駁二這個地方，衝突是一股美好的力量。
+被歷史塵封的陳舊倉庫，時光凝結了種種發展跡象，因為藝術文化的呼聲被解放，不斷注入創意靈感而重獲新生，日漸茁壯。在舊與新的衝突中，衝撞出的是勃發的生命力。">
+<meta itemprop="image" content="https://pier2.orgupload/setting/MUBCURCS810049.jpg">
+
+<!-- twitter -->
+<meta property="twitter:meta_title" content="eslite  bookstore 誠品書店 | 駁二藝術特區 | 駁二藝術特區">
+<meta property="twitter:description" content="在駁二這個地方，衝突是一股美好的力量。
+被歷史塵封的陳舊倉庫，時光凝結了種種發展跡象，因為藝術文化的呼聲被解放，不斷注入創意靈感而重獲新生，日漸茁壯。在舊與新的衝突中，衝撞出的是勃發的生命力。">
+<meta property="twitter:image" content="https://pier2.orgupload/setting/MUBCURCS810049.jpg">
+<meta property="twitter:card" content="summary_large_image">
+
+
+
+<style>
+.devtag{
+    background-color: #1b1b1b;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    text-align: center;
+    width: 100px;
+    padding: 10px;
+    z-index: 100;
+    color: #FFF;
+}
+
+
+</style>
+
+	
+
+	<!--loadingcover  -->
+	<style type="text/css"> .loadingcover { background-color: #fff; width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 999; } .loadingcover img{ width: 100px; position: absolute; left: 50%; top: 50%; margin-left: -50px; margin-top: -50px;    cursor: progress; } </style>
+	
+	<!--waitingcover  -->
+	<style type="text/css"> .waitingcover { opacity:0.3;background-color: #000; width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 999; } .waitingcover img{ width: 100px; position: absolute; left: 50%; top: 50%; margin-left: -50px; margin-top: -50px;    cursor: progress; } </style>
+</head>
+
+
+
+<body page="storeInfo" type="info">
+
+
+
+<!-- counter -->
+
+<nav c="1">
+	<a class="skip-link" href="#main-content">跳到主要內容</a>
+
+
+	<!-- pc -->
+    <div class="pc_header">
+    	<div class="centerwrap">
+
+    			<!-- logo -->
+
+				<a href="/" aria-label="駁二藝術特區首頁">
+					<img class="logo" src="/images/logo.png" alt="駁二藝術特區 Pier-2 Art Center">
+				</a>
+				
+				<!-- searchWrap：DOM 順序依視覺由左至右，讓鍵盤焦點先到搜尋 -->
+				<form class="searchWrap" role="search" data-nav-search>
+						<label for="site_search" class="sr-only">全站搜尋</label>
+						<input type="search" placeholder="全站搜尋" name="site_search" id="site_search" required>
+						<button type="submit" id="nav_searchBtn" aria-label="搜尋"><i class="fa fa-search" aria-hidden="true"></i></button>
+				</form>
+
+				<!-- others -->
+				<div class="others">
+						<a href="/sitemap/" aria-label="網站導覽"><li><img src="/images/nav/icon_sitemap_pc.png" alt=""></li></a>
+						<button type="button" class="lang_info" aria-haspopup="dialog" aria-controls="lang_dialog" aria-expanded="false">繁中</button>
+				</div>
+
+				<!-- btnWrap -->
+				<div class="btnWrap">
+					<a href="/CoastalRailway/"> <li page="CoastalRailway" class=""  >哈瑪星鐵道</li></a>
+					<a href="/news/">
+						<li page="news">最新消息<div class="selected"></div></li>
+					</a>
+					<a href="/shop/"><li  page="shop">駁二選物<div class="selected"></div></li></a>
+					<a href="/map/">
+						<li page="map">地圖<div class="selected"></div></li>
+					</a>
+					<li page="about" class="a11y-menu-group">
+						<button type="button" class="a11y-submenu-toggle" aria-expanded="false" aria-controls="pc_about_submenu">關於駁二</button>
+							<div class="selected"></div>
+						<div class="sub_menu" id="pc_about_submenu" aria-hidden="true">
+							<a href="/about/"><div class="item" page="about">認識駁二</div></a>
+							<a href="/ticket/"><div class="item" page="ticket">售票資訊</div></a>
+							<a href="/plan/"><div class="item" page="plan">駁二當代館</div></a>
+							<a href="/anime/" ><div class="item" page="anime">動漫倉庫</div></a>							
+							<a href="/artist/"><div class="item" page="artist">藝術家進駐</div></a>
+							<a href="/creator/"><div class="item" page="creator">文創人才</div></a>
+							<!-- <a href="https://pier2-creators.org/pier2star" target="_blank"><div class="item" page="pier2star">文青創星埕</div></a> -->
+							<a href="/pier2base/"><div class="item" page="pier2base">共創基地</div></a>
+							<!-- <a href="/youngartspace/"><div class="item" page="youngartspace">
+								漾藝廊</div>
+							</a> -->
+						</div>
+					</li>
+					<a href="/exhibition/"><li page="exhibition"><span>展演</span><div class="selected"></div></li></a>
+					<a href="/activity/"><li page="activity"><span>活動</span><div class="selected"></div></li></a>
+					<a href="/learning/"><li page="learning"><span>學習資源</span><div class="selected"></div></li></a>
+
+					<a href="/stores/"><li  page="stores">駁二好店<div class="selected"></div></li></a>
+					<li page="service" class="a11y-menu-group">
+						<button type="button" class="a11y-submenu-toggle" aria-expanded="false" aria-controls="pc_service_submenu">貼心服務</button>
+						<div class="selected"></div>
+						<div class="sub_menu" id="pc_service_submenu" aria-hidden="true">
+							<a href="/tour/"><div class="item" page="tour">推薦行程</div></a>
+							<a href="/spot/"><div class="item" page="spot">打卡熱點</div></a>
+							<a href="/book/"><div class="item" page="qa">預約導覽</div></a>
+							<a href="/download/"><div class="item" page="download">表單下載</div></a>
+							<a href="/transport/"><div class="item" page="transport">交通資訊</div></a>
+							<a href="/accessibility/"><div class="item" page="accessibility">無障礙專區</div></a>
+
+							<a href="/qa/"><div class="item" page="qa">常見問題</div></a>
+							
+						</div>
+					</li>
+
+					
+				</div>
+
+		</div>
+    </div>
+
+
+    <!-- m -->
+    <div class="m_header">
+
+		<!--  -->
+
+		<a href="/" aria-label="駁二藝術特區首頁">
+			<img class="logo" src="/images/logo.png" alt="駁二藝術特區 Pier-2 Art Center">
+			<img class="logo_white" src="/images/logo_white.png" alt="">
+		</a>
+		
+		<!--  -->
+		<div class="menuBtn">
+			<div class="in">
+					<li nth="1"></li>
+					<li nth="2"></li>
+					<li nth="3"></li>
+			</div>
+		</div>
+
+
+		
+
+		<!--menuWrap  -->
+		<div class="menuWrap">
+
+
+			<!-- btnWrap -->
+			<div class="btnWrap">
+
+
+					<a href="/CoastalRailway/" ><li  page="CoastalRailway"><span>哈瑪星鐵道</span></li></a>
+					<a href="/news/"><li><span>最新消息</span></li></a>
+					<a href="/shop/"><li>駁二選物</li></a>
+					<a href="/map/"><li><span>地圖</span></li></a>
+					<li class="a11y-menu-group">
+						<button type="button" class="a11y-submenu-toggle" aria-expanded="false" aria-controls="m_about_submenu">關於駁二<img class="icon" src="/images/footer/down-arrow.png" alt=""></button>
+						<div class="sub_menu" id="m_about_submenu" aria-hidden="true">
+							<a href="/about/"><div class="item">認識駁二</div></a>
+							<a href="/ticket/"><div class="item">售票資訊</div></a>
+							<a href="/plan/"><div class="item">駁二當代館</div></a>
+							<a href="/anime/" ><div class="item">動漫倉庫</div></a>
+							<a href="/artist/"><div class="item">藝術家進駐</div></a>
+							<a href="/creator/"><div class="item">文創人才</div></a>
+							<!-- <a href="https://pier2-creators.org/pier2star" target="_blank" ><div class="item" page="pier2star">文青創星埕</div></a> -->
+							<a href="/pier2base/"><div class="item">共創基地</div></a>
+							<!-- <a href="/youngartspace/"><div class="item">漾藝廊</div></a> -->
+						</div>
+					</li>
+					<a href="/exhibition/"><li><span>展演</span></li></a>
+					<a href="/activity/"><li><span>活動</span></li></a>
+					<a href="/learning/"><li><span>學習資源</span></li></a>
+
+					<a href="/stores/"><li>駁二好店</li></a>
+					<li class="a11y-menu-group">
+						<button type="button" class="a11y-submenu-toggle" aria-expanded="false" aria-controls="m_service_submenu">貼心服務<img class="icon" src="/images/footer/down-arrow.png" alt=""></button>
+						<div class="sub_menu" id="m_service_submenu" aria-hidden="true">
+							<a href="/tour/"><div class="item">推薦行程</div></a>
+							<a href="/spot/"><div class="item">打卡熱點</div></a>
+							<a href="/book/"><div class="item">預約導覽</div></a>
+							<a href="/download/"><div class="item" page="download">表單下載</div></a>
+							<a href="/transport/"><div class="item">交通資訊</div></a>
+							<a href="/accessibility/"><div class="item">無障礙專區</div></a>
+							<a href="/qa/"><div class="item">常見問題</div></a>
+						</div>
+					</li>
+					
+			</div>
+			
+		
+			
+			<!-- others -->
+			<div class="others">
+					<a href="/sitemap/" aria-label="網站導覽"><li><img src="/images/nav/icon_sitemap.png" alt=""></li></a>
+					<button type="button" class="lang_info" aria-label="切換語言" aria-haspopup="dialog" aria-controls="lang_dialog" aria-expanded="false"><img src="/images/nav/icon_lang.png" alt=""></button>
+			</div>
+
+			<!-- searchWrap -->
+			<form class="searchWrap" role="search" data-nav-search>
+					<label for="site_search_m" class="sr-only">全站搜尋</label>
+					<input type="search" placeholder="全站搜尋" id="site_search_m" name="site_search_m" required>
+					<button type="submit" id="nav_m_searchBtn" aria-label="搜尋"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</form>
+
+		</div>
+
+
+		
+    </div>
+</nav>
+
+<!-- loadingcover -->
+<div class="loadingcover"><img src="/images/loading.gif" alt=""></div>
+
+<!-- waitingcover -->
+<div class="waitingcover" style="display:none;"><img src="/images/loading.gif" alt=""></div>
+
+
+
+<!-- inpage
+<-- ............................ -->
+<div class="inpage" type="lang" id="lang_dialog" role="dialog" aria-modal="true" aria-labelledby="lang_dialog_title" aria-hidden="true" style="display: none;">
+
+	<div class="cancelarea cancelit"></div>
+	<div class="contentarea">
+		<button type="button" class="cancelBtn cancelit" data-a11y-dialog-close aria-label="關閉語言選單"></button>
+		<div class="wrap">
+
+			<div class="thetitle" id="lang_dialog_title">Language</div>
+			
+			<a href="https://pier2.org/stores/info/34/">
+				<li>					
+					<span>繁中</span>
+				</li>
+			</a>
+
+			<a href="https://en.pier2.org/stores/info/34/">
+				<li>					
+					<span>English</span>
+				</li>
+			</a>
+
+			<a href="https://jp.pier2.org/stores/info/34/">
+				<li>			
+					
+					<span>日本語</span>
+				</li>
+			</a>
+
+			<!-- <a href="https://kr.pier2.org/stores/info/34/">
+				<li>			
+					
+					<span>대한민국</span>
+				</li>
+			</a>
+			
+			<a href="https://th.pier2.org/stores/info/34/">
+				<li>			 
+					 
+					<span>ไทย</span>
+				</li>
+			</a>
+ -->
+
+		</div>
+	</div>
+
+</div>
+
+
+<!-- Top -->
+<button type="button" class="topBtn" aria-label="回到頁首">
+	<img src="/images/top.png" alt="">
+	TOP
+</button>
+
+
+
+
+
+<!-- inpage:event
+<-- ............................ -->
+<div class="inpage" type="event" id="event_dialog" role="dialog" aria-modal="true" aria-labelledby="event_dialog_title" aria-hidden="true" style="display: none;z-index: 11;">
+
+	<div class="cancelarea cancelit"></div>
+	<div class="contentarea">
+		<button type="button" class="cancelBtn cancelit" data-a11y-dialog-close aria-label="關閉活動預覽"></button>
+		<button type="button" class="event-dialog-nav event-dialog-prev" data-event-dialog-direction="previous" aria-label="上一個活動">
+			<i class="fa fa-angle-left" aria-hidden="true"></i>
+		</button>
+		<button type="button" class="event-dialog-nav event-dialog-next" data-event-dialog-direction="next" aria-label="下一個活動">
+			<i class="fa fa-angle-right" aria-hidden="true"></i>
+		</button>
+		<div class="wrap">
+			
+			<div class="thephoto" id="inpage_event_photothumb">
+				<div class="in" id="inpage_event_photo"></div>
+			</div>
+			
+			<div class="thecontent">
+				
+					<div class="thetitle" id="event_dialog_title"><span id="inpage_event_thetitle"></span></div>
+					<div class="fee" id="inpage_event_fee"><!-- 售票 --></div>
+
+					<div class="thedate">
+						<i class="fa fa-calendar" aria-hidden="true"></i>
+						<span  id="inpage_event_dates"></span>
+					</div>
+
+					<div class="theplace">
+						<i class="fa fa-map-marker" aria-hidden="true"></i>
+						<span id="inpage_event_place"></span>
+					</div>
+
+					<div class="theticket">
+						<i class="fa fa-ticket" aria-hidden="true"></i>
+						<span id="inpage_event_ticketnote"></span>
+					</div>
+					
+					
+
+			</div>
+
+			<a id="inpage_event_href" target="_blank">
+						<div class="btn" >查看更多<i class="fa fa-angle-right" aria-hidden="true"></i></div>
+					</a>
+
+		</div>
+	</div>
+
+</div>
+
+
+
+
+<!-- inpage:announcement
+<-- ............................ -->
+<div class="inpage" type="announcement" style="display: none;" publish="0" announcement_day="2021-07-26 18:00:00">
+
+	<div class="cancelarea announcement_read"></div>
+	<div class="contentarea">
+		<div class="cancelBtn announcement_read"></div>
+		<div class="wrap">
+			
+			<div class="thetitle">公告</div>
+			<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i>2021-07-26 18:00:00</div>
+
+			<div class="thecontent">
+				<p style="text-align: center;">/ 駁二藝術特區 防疫措施公告 /</p>
+<p style="text-align: center;"><img style="height: 130px; width: 325px;" src="/upload/others/files/TQG1688.jpg" alt=""></p>
+<p style="text-align: center;">因應全國調整為二級警戒規範，駁二藝術特區適度放寬管制措施，</p>
+<p style="text-align: center;">詳細防疫措施、店家開放資訊請見<a href="https://pier2.org/news/88/">&nbsp;<strong><span style="color: #ffffff;"><span style="background-color: #2980b9;">最新公告</span></span></strong></a>。</p>					
+					
+			</div>
+
+
+
+	
+				<div class="btn announcement_read" >我知道了<i class="fa fa-check" aria-hidden="true"></i></div>
+		
+
+		</div>
+	</div>
+
+</div>
+
+
+<div class="devtag" style="display:none;">開發模式</div>
+
+<!-- 主要內容：所有公開頁共用唯一焦點目標，供「跳到主要內容」使用。 -->
+<main id="main-content" tabindex="-1">
+
+<!-- ................................................................ -->
+
+
+<centerwrap>
+
+	
+	<div class="fee" id="fee"><!-- 售票 --></div>
+	<h1>eslite  bookstore 誠品書店 | 駁二藝術特區</h1>
+
+
+	<div class="area">
+
+		<!-- sidemenu -->
+		<section class="sidemenu">
+
+			<div class="wrap">
+
+				<img id="thephoto" class="thephoto" alt="主圖">
+
+
+				<div class="thetitle">
+					<i class="fa fa-map-marker" aria-hidden="true"></i>
+					 空間位置				</div>
+				<div class="text" >
+
+						<a href="" target="_blank" id="place">地圖網址</a>
+				</div>
+
+
+				<div class="line"></div>
+
+
+
+				<div class="thetitle">
+					<i class="fa fa-clock-o" aria-hidden="true"></i>
+					 營業時間				</div>
+				<div class="timewrap">
+					
+
+				</div>
+
+
+				<div class="line phone_group"></div>
+
+
+				<div class="thetitle phone_group">
+					<i class="fa fa-phone" aria-hidden="true"></i>
+					 洽詢電話				</div>
+				<div class="text phone_group" id="phone">
+					<!-- ( 07 ) - 5310958 -->
+				</div>
+
+
+
+
+				
+				<div class="thetitle sites_title" style="display: none;">
+					<i class="fa fa-globe" aria-hidden="true"></i>
+					網站				</div>
+				<div class="text sites" id="sites">
+					<!-- https://pier-2.khcc.gov.tw/home -->
+				</div>
+
+
+
+				<div class="line"></div>
+				
+
+				<div class="theeach" id="camera">
+					<i class="fa fa-camera" aria-hidden="true"></i>
+					可店內攝影				</div>
+
+				<div class="theeach"  id="percent">
+					<i class="fa fa-percent" aria-hidden="true"></i>
+					加收服務費<span class="value">5%</span>
+				</div>
+
+				<div class="theeach"  id="rent">
+					<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+					可包場／空間租借				</div>
+
+				<div class="theeach"  id="pet">
+					<i class="fa fa-paw" aria-hidden="true"></i>
+					可攜帶寵物				</div>
+
+				<div class="theeach" id="pay">
+					<i class="fa fa-credit-card" aria-hidden="true"></i>
+					
+				</div>
+			
+
+
+
+			</div>
+			
+
+			<pc>
+				<iframe class="fbpage"  width="340" height="400" style="overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="fb-iframe"></iframe>
+				
+				
+				<!-- <div class="igpage"></div> -->
+
+
+			</pc>
+
+			
+
+		</section>
+
+
+
+		<!-- mainarea -->
+		<section class="mainarea">
+				<!-- <img id="thephoto" > -->
+				<div class="wrap" >
+
+
+					<!-- <div class="cover" style="display: none;"></div> -->
+
+					<!-- slider -->
+					<!-- ........................................... -->
+			        <div class="banner-slider" id="store_photos" style="display: none;">
+			                  
+			                 <!--  <div>
+			                      <div class="each" style="background-image: url('http://griffinemblem.project.nasrio.com/images/index2020/banner_p1.jpg');">
+			                      </div>
+			                  </div>
+
+			                  <div>
+			                      <div class="each" style="background-image: url('http://griffinemblem.project.nasrio.com/images/index2020/banner_p4.jpg');">
+			                      </div>
+			                  </div>
+			                 -->
+
+
+			        </div>
+			
+					<h2 class="thecontent_title" style="display: none;">空間介紹</h2>
+					<div id="thecontent"></div>
+
+
+					<h2 class="theservice_title" style="display: none;">營業項目</h2>
+					<div id="theservice"></div>
+						
+
+				</div>
+
+		</section>
+
+		
+		<m>
+			<iframe class="fbpage"  width="340" height="400" style="overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" title="fb-iframe"></iframe>
+			<!-- <div class="igpage"></div> -->
+		</m>
+
+	</div>
+
+
+</centerwrap>
+
+<!-- ................................................................ -->
+
+
+</main>
+
+<footer>
+  		
+	<!-- sitemap -->
+	<div class="footer_sitemapWrap">
+		<div class="centerwrap">
+
+				<button type="button" class="btn" aria-expanded="false" aria-controls="footer_sitemap_panel">
+					<img src="/images/footer/down-arrow.png" alt="">
+					<span>網站導覽</span>
+				</button>
+
+				<div class="sitemap" id="footer_sitemap_panel" aria-hidden="true">
+					<div class="each">
+						<div class="thetitle"><a href="/">首頁</a></div>
+					</div>
+					<div class="each">
+						<div class="thetitle"><a href="/news/">最新消息</a></div>
+					</div>
+					<div class="each">
+						<div class="thetitle"><a href="/map/">地圖</a></div>
+					</div>
+					<div class="each">
+						<div class="thetitle more">關於駁二</div>
+						<li><a href="/about/">認識駁二</a></li>
+						<li><a href="/ticket/">售票資訊</a></li>
+						<li><a href="/plan/">駁二當代館</a></li>
+						<li><a href="/anime/">動漫倉庫</a></li>
+						<li><a href="/artist/">藝術家進駐</a></li>
+						<li><a href="/creator/">文創人才</a></li>
+						<li><a href="/pier2base/">共創基地</a></li>
+						<!-- <li><a href="/youngartspace/">漾藝廊</a></li> -->
+
+					</div>
+					<div class="each">
+						<div class="thetitle more"><a href="/exhibition/">展演</a></div>	
+
+						<li><a href="/exhibition/list/contemp/">駁二當代館</a></li>
+						<!-- <li><a href="/exhibition/list/young/">漾藝廊</a></li> -->
+						<li><a href="/exhibition/list/special/">特展</a></li>
+						<li><a href="/exhibition/list/ket/">正港小劇場</a></li>
+
+						<li><a href="/livewarehouse/">LIVE WAREHOUSE</a></li>
+						<li><a href="/vrtheatre/">VR體感劇院</a></li>
+						<li><a href="/hamasen/">哈瑪星台灣鐵道館</a></li>					
+					</div>
+					<div class="each">
+						<div class="thetitle more"><a href="/activity/">活動</a></div>
+						<li><a href="/market/">市集主辦檔期申請 </a></li>
+					</div>
+					<div class="each">
+						<div class="thetitle more"><a href="/learning/">學習資源</a></div>
+						<li><a href="/learningsheet/">學習單</a></li>
+						<li><a href="/workshop/">研習營</a></li>
+						<li><a href="/campusdiscount/">校園團體優惠</a></li>
+					</div>
+					<div class="each">
+						<div class="thetitle"><a href="/stores/">駁二好店</a></div>
+					</div>
+					<div class="each">
+						<div class="thetitle more">貼心服務</div>
+						<li><a href="/tour/">推薦行程</a></li>
+						<li><a href="/spot/">打卡熱點</a></li>
+						<li><a href="/download/">表單下載</a></li>
+						<li><a href="/book/">預約導覽</a></li>
+						<li><a href="/transport/">交通資訊</a></li>
+						<li><a href="/accessibility/">無障礙專區</a></li>
+						<li><a href="/qa/">常見問題</a></li>
+					</div>
+					<div class="each">
+						<div class="thetitle"><a href="/shop/">駁二選物</a></div>
+					</div>
+
+
+				</div>
+
+		</div>
+ 	</div>
+
+
+ 	 <!-- menu -->
+ 	 <div class="footer_menu">
+		<div class="centerwrap">
+			
+			<!-- logowrap -->
+			<div class="logowrap">
+				<img src="/images/footer/logo.png" alt="駁二藝術特區">
+			</div>
+			
+			<!-- btnWrap -->
+			<div class="itemWrap">
+					
+
+					<!-- 1 -->
+					<div class="item">
+						<li>
+							<img alt="地址" class="icon" src="/images/footer/icon_location.png">
+							<span>高雄市鹽埕區大勇路1號</span>
+						</li>
+						<li>
+							<img alt="電話" class="icon" src="/images/footer/icon_phone.png">
+							<span>(07)521-4899</span>
+						</li>
+						<li>
+							<img alt="傳真" class="icon" src="/images/footer/icon_fax.png">
+							<span>(07)521-4840</span>
+						</li>
+						<li>
+							<img alt="電子郵件" class="icon" src="/images/footer/icon_email.png">
+							<span>piertwoart@gmail.com</span>
+						</li>
+
+					</div>
+		
+					<!-- 2 -->
+					<div class="item">
+						<li>
+							<div class="subtitle">相關連結</div>
+						</li>
+						<li>							
+							<span>駁二藝術特區</span>
+							<a href="https://pier2.org/" target="_blank">
+								<img alt="駁二藝術特區官方網站（另開新視窗）" class="link" src="/images/footer/icon_home.png">
+							</a>
+							<a href="https://www.facebook.com/pier2art/" target="_blank">
+								<img alt="駁二藝術特區 Facebook（另開新視窗）" class="link" src="/images/footer/icon_fb.png">
+							</a>
+							<a href="https://www.instagram.com/pier2art/" target="_blank">
+								<img alt="駁二藝術特區 Instagram（另開新視窗）" class="link" src="/images/footer/icon_ig.png">
+							</a>
+						</li>
+					
+						<li>							
+							<span>駁二共創基地</span>
+							<a href=" http://www.pier2base.tw/" target="_blank">
+								<img alt="駁二共創基地官方網站（另開新視窗）" class="link" src="/images/footer/icon_home.png">
+							</a>
+							<!-- <a href="https://www.facebook.com/pier2base/" target="_blank">
+								<img alt="fb" class="link" src="/images/footer/icon_fb.png">
+							</a> -->
+						</li>
+						<li>							
+							<span>駁二藝術家駐村</span>
+							<a href="https://www.pier2air.tw/tw/" target="_blank">
+								<img alt="PAIR 駁二藝術家駐村官方網站（另開新視窗）" class="link" src="/images/footer/icon_home.png">
+							</a>
+							<a href="https://www.facebook.com/pier2air/" target="_blank">
+								<img alt="PAIR 駁二藝術家駐村 Facebook（另開新視窗）" class="link" src="/images/footer/icon_fb.png">
+							</a>
+							<a href="https://www.instagram.com/pier2air/" target="_blank">
+								<img alt="PAIR 駁二藝術家駐村 Instagram（另開新視窗）" class="link" src="/images/footer/icon_ig.png">
+							</a>
+						</li>
+
+
+						<li>							
+							<span>文創人才駐市計畫</span>
+							<a href="https://pier2-creators.org/" target="_blank">
+								<img alt="人才駐市官方網站（另開新視窗）" class="link" src="/images/footer/icon_home.png">
+							</a>
+						</li>
+
+						<!-- <li>							
+							<span>大駁二文青創星埕</span>
+							<a href="https://pier2-creators.org/pier2star/#/" target="_blank">
+								<img alt="home" class="link" src="/images/footer/icon_home.png">
+							</a>
+						</li> -->
+
+						<li style="color: #B3BDC2;">							
+							<a href="/privacy/">隱私權及資訊安全政策</a>
+						</li>
+						<li style="color: #B3BDC2;">							
+							<a href="/accessibility/">無障礙專區</a>
+						</li>
+					</div>
+
+
+					<!-- 3 -->
+					<div class="item">
+						<li>
+							<div class="subtitle">營業時間</div>
+						</li>
+						<li>							
+							<div class="day">週一</div>
+							<div class="day">週二</div>
+							<div class="day">週三</div>
+							<div class="day">週四</div>
+						</li>
+						<li>							
+							<div class="time">10:00 - 18:00</div>
+						</li>
+							
+						<li>							
+							<div class="day">週五</div>
+							<div class="day">週六</div>
+							<div class="day">週日</div>
+							<div class="day">國定假日</div>
+						</li>
+						<li>							
+							<div class="time">10:00 - 20:00<div class="ex">※除夕休館</div></div>
+						</li>
+					</div>
+			</div>
+
+
+		</div>
+ 	</div>
+
+
+ 	<!-- footer_bottom -->
+	<div class="footer_bottom">
+		<div class="centerwrap">
+			<img alt="駁二藝術特區 Pier-2 Art Center 頁尾標誌" class="logo2" src="/images/footer/logo2.png">
+						<a class="accessibility" href="https://accessibility.moda.gov.tw/Applications/Detail?category=20260911145208" title="無障礙網站">
+				<img src="/images/footer/accessibility.png" border="0" width="88" height="31" alt="通過A無障礙網頁檢測">
+			</a>
+						<div class="copyright">Copyright © 高雄市政府文化局 - 駁二藝術特區 All rights reserved.</div>
+		</div>
+	</div>
+</footer>
+</body>
+
+<!-- <link rel="stylesheet" type="text/css" href="/css/exhibition.css"> -->
+
+
+
+	<!-- font-awesome -->
+		 <link type="text/css" rel="stylesheet" href="/library/font-awesome/css/font-awesome.css">
+
+
+
+	<!-- Adobe Typekit -->
+		 <!-- <link rel="stylesheet" href="https://use.typekit.net/uac2zlo.css"> -->
+
+
+	<!-- Google Fonts  -->
+		 <link href="https://fonts.googleapis.com/css?family=Lusitana" rel="stylesheet">
+
+
+	<!-- jquery  -->
+
+		  <link rel="stylesheet" href="/library/jquery/jquery-ui.css">		  
+	 	  <script src="/library/jquery/jquery-ui.min.js"></script>
+		  <script src="/library/jquery.cookie.js"></script>
+
+	<!-- js -->
+
+		<script src="/js/nav.js?2026101202"></script>
+		<script src="/js/function.js?2026091102"></script>
+		<script src="/js/accessibility.js?2026091102"></script>
+
+    
+	
+
+	<!-- autosize -->
+ 	  <script type="text/javascript" src="/library/jquery-autosize/jquery.autosize-min.js"></script>
+	  <script>
+	        // $(document).ready(function(){
+	        //     $('textarea').autosize();
+	        // });
+	   </script>
+
+
+
+	<!-- library -->
+		
+
+	<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0FXQP0KZ3"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', "G-S0FXQP0KZ3");
+	</script>
+	
+	
+
+
+</html>
+
+
+<script type="text/javascript">
+	var textclosed='休息';
+
+</script>
+
+
+<!-- css/js-->
+<link rel="stylesheet" type="text/css" href="/css/storesInfo.css">
+<script> $.getScript("/js/storesInfo.js?2026101202"); </script>
+
+
+<!-- slick -->
+<link rel="stylesheet" type="text/css" href="/library/slick-1.8.0/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/library/slick-1.8.0/slick/slick-theme.css"/>
+<script type="text/javascript" src="/library/slick-1.8.0/slick/slick.min.js"></script>

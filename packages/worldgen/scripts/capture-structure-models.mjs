@@ -96,8 +96,10 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   const cameras = Array.isArray(spec.qaCameras)
     ? spec.qaCameras.map(({ name, position, lookAt }) => [name, { position, lookAt }])
     : Object.entries(spec.qaCameras ?? {});
+  if (new Set(cameras.map(([name]) => name.toLowerCase())).size !== cameras.length)
+    throw new Error(`${spec.id}: duplicate QA camera name`);
   for (const [name, camera] of cameras) {
-    if (!/^[a-z0-9_-]+$/.test(name)) throw new Error(`${spec.id}: invalid QA camera name`);
+    if (!/^[a-z0-9_-]+$/i.test(name)) throw new Error(`${spec.id}: invalid QA camera name`);
     const shot = await screenshotScene({
       fitShadows,
       antialias,
@@ -107,7 +109,7 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
       ticks: 30,
       camera,
       size: [1600, 1000],
-      outPath: resolve(dir, `shots/${name}.png`),
+      outPath: resolve(dir, `shots/${name.toLowerCase()}.png`),
     });
     if (!shot.ok || (shot.renderStats?.triangles ?? 0) < 100)
       throw new Error(`${spec.id}: ${name} capture failed: ${shot.error ?? 'empty render'}`);

@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mansion_sere",
+  "kind": "static-structure",
+  "title": "Mansión Seré — complete original house, approximate1977",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mansion_sere",
+        "output": "assets/places/69/69y/mansion_sere/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:387a81037cf3e69a0595ed87fa5b3e90c57a95f57572c559406b9fd4e850bdae"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-site-context.json",
+      "native-map/original-context.mvt",
+      "reference-rights/primary-heritage.txt",
+      "reference-rights/primary-memory.txt",
+      "reference-rights/primary-archeology.txt",
+      "reference-rights/primary-testimony.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-11044-19750.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json"
+    ]
+  }
+}

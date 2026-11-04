@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-02",
+  "parentModelIdentity": "olympic_dam_mine",
+  "status": "primary-bibliographic-leads-without-original-headframe-sections",
+  "geometryAdopted": false,
+  "appearanceImageryAdopted": false,
+  "notes": "Only numerical native map points and publicly readable primary written metadata considered. No report graphics, supplier images, mirror copies, or copyrighted photographs used. Underground shaft travel is not aboveground tower height; named shaft identity not assigned to anonymous map nodes.",
+  "originalPointProximity": {
+    "report": "content/worldgen/source/places/r4/r49/olympic_dam_mine/native-map/original-shaft-building-proximity.json",
+    "method": "Approximate numerical local distances from original point and building coordinates; not a survey or named association.",
+    "nearestToEasternShaft": {
+      "nativePoint": "node/1965267073",
+      "buildings": [
+        {
+          "nativeFeature": "way/211360599",
+          "meters": 55.495745
+        },
+        {
+          "nativeFeature": "way/211360617",
+          "meters": 62.390425
+        },
+        {
+          "nativeFeature": "way/211360583",
+          "meters": 80.829232
+        }
+      ]
+    },
+    "conclusion": "Mapped building outlines do not generally establish the mine headframe footprints."
+  },
+  "nativeHistories": {
+    "report": "content/worldgen/source/places/r4/r49/olympic_dam_mine/native-map/shaft-histories/original-shaft-histories.json",
+    "successfulOriginalNodes": [
+      "1965266963",
+      "1965267073"
+    ],
+    "remainingRequests": "Three HTTP429 responses; stopped all additional OSM history queries this session. No alternate hosts or rate-limit evasion.",
+    "conclusion": "Successful original histories provide no shaft names or aboveground dimensions."
+  },
+  "sources": [
+    {
+      "url": "https://www.siemag-tecberg.de/cms/upload/downloads/de//TI_15_Olympic-Dam_de.pdf",
+      "finalUrl": "https://www.siemag-tecberg.com/cms/upload/downloads/de/TI_15_Olympic-Dam_de.pdf",
+      "outcome": "HTTP404 text/html; no original PDF recovered",
+      "adopted": false
+    },
+    {
+      "url": "https://www.siemag-tecberg.com/en/application-news/details?cHash=d7412ab18aeefa0e2df0c08d6005dc60&tx_cccontent_newsview%5Baction%5D=show&tx_cccontent_newsview%5Barticle%5D=37&tx_cccontent_newsview%5Bcontroller%5D=NewsArticle",
+      "title": "Pioneers in the functional safety of shaft hoisting systems",
+      "outcome": "Primary written table identifies CLARK and WHENAN equipment upgrades; no geographic point or headframe height.",
+      "geometryAdopted": false
+    },
+    {
+      "url": "https://www.onetunnel.org/documents/shaft-hoisting-system-for-olympic-dam",
+      "title": "Shaft hoisting system for Olympic Dam",
+      "published": "2003-05-01",
+      "publisher": "Canadian Institute of Mining, Metallurgy and Petroleum",
+      "pages": 8,
+      "outcome": "Public abstract and bibliographic lead only. Original full paper not retrieved; no aboveground section adopted."
+    },
+    {
+      "url": "https://portal.cim.org/public/TOCs/Hoist-and-Haul-2023-TOC.pdf",
+      "title": "Hoist and Haul 2023 table of contents",
+      "lead": {
+        "paper": 17,
+        "title": "Olympic Dam Clark Shaft Technology Upgrade – Case Study",
+        "startsPage": 41,
+        "authors": [
+          "P. J. Moore, BHP Olympic Dam Corporation Pty Ltd",
+          "C. M. Rossetti, AECOM Australia Pty Ltd"
+        ]
+      },
+      "outcome": "Original table of contents only; full case study not retrieved; no geometry adopted."
+    },
+    {
+      "url": "https://www.ga.gov.au/scientific-topics/national-location-information/digital-elevation-data",
+      "catalogue": "https://elevation.fsdf.org.au/",
+      "relatedMetadata": "https://location.sa.gov.au/lms/Reports/ReportMetadata.aspx?p_no=2493",
+      "outcome": "Official portal and catalogue descriptions found. Original public index loaded, but its advertised main script request returned the HTML application shell. No query endpoint, mine coverage, point cloud or surface heights established.",
+      "next": "A bounded public catalogue coverage lookup may be useful later. A bare-earth DTM cannot establish headframe heights. Do not substitute arbitrary mine tower sections."
+    }
+  ]
+}

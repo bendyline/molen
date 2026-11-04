@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.malargue_campus_east_service_building",
+  "kind": "static-structure",
+  "title": "Malargüe campus east service building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.malargue_campus_east_service_building",
+        "output": "assets/places/63/63w/malargue_campus_east_service_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f6d0a08f89e28204ec8cb57c88a09706fcc32cd96f378ee0fd23b96c26df8295"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-building-context.json",
+      "reference-rights/primary-building.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10050-19840.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json"
+    ]
+  }
+}

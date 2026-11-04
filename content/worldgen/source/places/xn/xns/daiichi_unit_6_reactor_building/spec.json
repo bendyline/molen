@@ -1,0 +1,386 @@
+{
+  "planId": "daiichi_unit_6_reactor_building",
+  "id": "daiichi_unit_6_reactor_building",
+  "assetId": "molen.worldgen.structure.daiichi_unit_6_reactor_building",
+  "title": "Daiichi Unit 6 reactor building",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 141.03239175,
+    "latitude": 37.4294247
+  },
+  "size": [
+    45.27270317077637,
+    56.93249821662903,
+    42.97441864013672
+  ],
+  "actualBounds": {
+    "min": [
+      -22.626989364624023,
+      -1.2000000476837158,
+      -21.48720932006836
+    ],
+    "max": [
+      22.645713806152344,
+      55.73249816894531,
+      21.48720932006836
+    ]
+  },
+  "visualBrief": "WholeUnit6abovegroundreactor/all8originalnativecorners,operator42.5x45.5mabovegroundbodyand55.65mabovegradeheight,concretemainwalls/steelroof/closedentries/upperpanel. Largerundergroundbaseandinternalcontainmentomitted. Finefinish/roofnotches/2021continuityestimated;allappearanceimagesunused.",
+  "nativeAxes": {
+    "x": "east / turbine side",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2021-05-09",
+    "validFrom": "2021-01-01",
+    "validUntil": "2022-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "fukushima-daiichi-nuclear-power-plant-wp",
+      "url": "https://qualla.com/fukushima-daiichi-nuclear-power-plant/"
+    }
+  ],
+  "referenceInputHash": "sha256:4f33b50bb48ddd02ba162c6c5f674566895cc1374acd8e61d6790b38e1e495cf",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xns/daiichi_unit_6_reactor_building/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xns/daiichi_unit_6_reactor_building/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "upper": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.86,
+        "metallic": 0.18
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.25
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.35
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.001,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_corrugated",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      141.03239175,
+      37.4294247
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        141.03278767983824,
+        37.4294247
+      ],
+      "modelHeight": 0,
+      "basis": "FixedeastapproachBEFOREownfield/floor/mainsections;originalcompositeDEMnotactualhistoricgroundsurvey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "overture/7bd711f1-dd35-4b75-90f9-45b1080456bb"
+    ],
+    "source": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00510-a2679c58-3fa5-54f8-bca2-c5a4c36806a2-c000.zstd.parquet",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:633a6c8f49f0f1643b26a8e909c84143e526a18d66aeb139bd94e7fc5d325273",
+    "notes": "Whole independentabovegroundUnit6reactorbuildingexterior/all8originalnamednativecorners/completewallsandclosedroof. Originaloperator42.5mNSx45.5mEWabovegroundbody/55.65mabovegradeheight;substantiallylarger68.25x68.50mundergroundfoundationnotextrudedaboveground. Internalcontainment/reactorequipmentandadjacentturbine/wholeplantseparate. Allappearanceimagesunused,currentQualla-first25families/0conflicts. Cleared1971DOEoriginalspredatecompletedUnit6andnotapplied. Originaloperator17August2011section3.1writtenwholeabovegroundplan42.50mNSx45.50mEW,height55.65mabovegradeversus72.65mfromfoundation,6above/2belowfloors,reinforcedconcreteandsteeltrussroof. OriginalnumericOP68.65roof/OP51.50operatingfloor/OP13.20firstfloor/OP13ground. NativeOSMunitname/8cornerscloseprimaryabovegrounddimensions;exactheightpartitions/smallroofnotches/finishesunobserved,8mhorizontal/3degreeheading/3mheight/2mcomponentuncertainty. Nominal2021-05-09sourceupdatepreviewuses2011writtensections;temporalcontinuityunverified,currenteligiblefalse. Originalsourceimages/reportfigures/plans/photos/maps/satellitesunused."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole independentabovegroundUnit6reactorbuildingexterior/all8originalnamednativecorners/completewallsandclosedroof. Originaloperator42.5mNSx45.5mEWabovegroundbody/55.65mabovegradeheight;substantiallylarger68.25x68.50mundergroundfoundationnotextrudedaboveground. Internalcontainment/reactorequipmentandadjacentturbine/wholeplantseparate. Allappearanceimagesunused,currentQualla-first25families/0conflicts. Cleared1971DOEoriginalspredatecompletedUnit6andnotapplied. Originaloperator17August2011section3.1writtenwholeabovegroundplan42.50mNSx45.50mEW,height55.65mabovegradeversus72.65mfromfoundation,6above/2belowfloors,reinforcedconcreteandsteeltrussroof. OriginalnumericOP68.65roof/OP51.50operatingfloor/OP13.20firstfloor/OP13ground. NativeOSMunitname/8cornerscloseprimaryabovegrounddimensions;exactheightpartitions/smallroofnotches/finishesunobserved,8mhorizontal/3degreeheading/3mheight/2mcomponentuncertainty. Nominal2021-05-09sourceupdatepreviewuses2011writtensections;temporalcontinuityunverified,currenteligiblefalse. Originalsourceimages/reportfigures/plans/photos/maps/satellitesunused.",
+    "Originaloperator17August2011section3.1printed3-1/PDFpage5:wholeaboveground42.50mNSx45.50mEWbody/55.65mabovegrade,72.65mfrommat,6above/2belowfloors,reinforcedconcrete/steeltrussroof. Underground68.25mNSx68.50mEWfoundationomittedfromexteriorandnotextrudedaboveground. No internalcontainmentvesselordomeproxy.",
+    "All8fullnativecornersretainabovegroundenvelopewhichcloselymatcheswritten42.5x45.5mplan. Nativewallnotchesandpreciseheightpartsareunsurveyed. OriginalnumericPDFpage7roofOP68.65/firstfloor13.20/ground13/6F51.50/cranelevel62.00. Derivedfirstfloorroofheight55.45m,operatingfloor38.30m,cranelevel48.80m. Floor.25/mainroof55.70 retains55.45mfloorrelativeheight, .05mnominalgroundoffsetversusoriginal.20mfirstfloorabovegradeisexplicitapproximation. Modelconcretetop49.05usescranelevel;upper6.65mmetalcladdingskin/flatgrayroof/paneljoints/twoclosedserviceentries/upperlargeclosedpanel/hiddenfinishesestimated2m. Exteriorcladdingmaterial/colorarenotobserved;floorlevelsdonotimplywindowcensus.",
+    "Ownoriginal256m129x129field16641values/2rawtiles/datum22.0496m frozenBEFOREfloor.25/foundation-1.2/concretetop49.05/mainroof55.70m. No sourcefield/frame/floor/mainsection refit/reframe/flatten/mask. Compositefieldcancontainbuildingreturns;groundcontactandhistoricverticaltieunverified.",
+    "Native2021-05-09updatepreview/2011writtenengineeringcontinuityunverified,currentWorldEligiblefalse. Originalheightassignedtofullnativeenvelope3muncertainty/8mhorizontal/3degreeheading;fineparts2muncertainty. Allappearanceimagesunused;Qualla-first25families/0conflicts,cleared1971DOEoriginalspredatecompletedUnit6andnotapplied. Everyoperatorreportfigure/plan/photo/map/satelliteimageunused. Neighboringturbine/otherunits/siteinfrastructureandwholeplantremainseparateandunfinished."
+  ],
+  "sourceLicense": "Original proceduralgeometryunderrepositorylicense. OriginalOverture/OpenStreetMapnativegeometryODbL-1.0attributed;operatorwritten/numericalfactsused. Allsourceappearanceimages/reportfigures/plansunused; no phototextures. Finefinishandnominal2021continuityestimated.",
+  "qaLodCameras": [
+    {
+      "name": "whole-Unit6-reactor-skyline",
+      "position": [
+        100,
+        85,
+        120
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-Unit6-reactor-district",
+      "position": [
+        100,
+        85,
+        120
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-Unit6-reactor-street",
+      "position": [
+        100,
+        85,
+        120
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-Unit6-reactor-closeup",
+      "position": [
+        100,
+        85,
+        120
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-east-reactor-and-closed-entries",
+      "position": [
+        100,
+        85,
+        120
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ]
+    },
+    {
+      "name": "whole-west-native-notches-and-rear",
+      "position": [
+        -100,
+        82,
+        -120
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2218,
+    "vertices": 6654,
+    "materials": 5,
+    "bytes": 369348,
+    "sha256": "sha256:a873d0469a7cffaba923a89409add7092a2a4aa14342ae28a57d8e407139f260"
+  }
+}

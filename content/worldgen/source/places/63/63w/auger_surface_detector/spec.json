@@ -1,0 +1,329 @@
+{
+  "planId": "auger_surface_detector",
+  "id": "auger_surface_detector",
+  "assetId": "molen.worldgen.structure.auger_surface_detector",
+  "title": "Pierre Auger water-Cherenkov surface detector",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -69.34521842618977,
+    "latitude": -35.31618206330908
+  },
+  "size": [
+    3.700000047683716,
+    4.059999845921993,
+    4.325000047683716
+  ],
+  "actualBounds": {
+    "min": [
+      -1.850000023841858,
+      0.10000000149011612,
+      -2.049999952316284
+    ],
+    "max": [
+      1.850000023841858,
+      4.159999847412109,
+      2.2750000953674316
+    ]
+  },
+  "visualBrief": "Whole pre-upgrade3.6m beige water-Cherenkov tank, raised hatches/electronics cover, two solar panels, mast/radio/GPS and battery box. Written operator facts and dated numerical station records; no imagery used.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2018-08-31",
+    "validFrom": "2018-01-01",
+    "validUntil": "2019-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "pierre-auger-observatory-wp",
+      "url": "https://qualla.com/pierre-auger-observatory/"
+    }
+  ],
+  "referenceInputHash": "sha256:af35fe0bdd01ecb29993bd258741a322debff03d32b3032c4ac382525f46f7f3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/63/63w/auger_surface_detector/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/63/63w/auger_surface_detector/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.15,
+    "surfaces": {
+      "shell": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.67,
+        "metallic": 0.65
+      },
+      "solar": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.67,
+            "metallic": 0.65
+          },
+          "solar": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.67,
+            "metallic": 0.65
+          },
+          "solar": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.001,
+        "surfaces": {
+          "shell": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.67,
+            "metallic": 0.65
+          },
+          "solar": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "metal_stainless_beadblasted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -69.34521842618977,
+      -35.31618206330908
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -69.34521842618977,
+        -35.31618206330908
+      ],
+      "modelHeight": 0,
+      "basis": "Original operator station101 point fixes field datum before floor/sections. Provider-relative terrain, no surveyed contact claim."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "auger-sd/101"
+    ],
+    "source": "https://opendata.auger.org/releases/3/auxiliary/sdMap.csv",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2b47bca61007ee61c9418828333dc868b18e49a3ca8b2bf4affc911db45782b3",
+    "notes": "Whole pre-upgrade3.6m rotomolded tank with curved shoulder/top, three raised service hatches, aluminium electronics cover, two solar panels/brackets, mast/radio/GPS, shaded battery box/conduit and lifting/support lugs. Dimensions of small components/pose/orientation estimates. All imagery unused. This equipment asset cannot complete the whole observatory collection."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole pre-upgrade3.6m rotomolded tank with curved shoulder/top, three raised service hatches, aluminium electronics cover, two solar panels/brackets, mast/radio/GPS, shaded battery box/conduit and lifting/support lugs. Dimensions of small components/pose/orientation estimates. All imagery unused. This equipment asset cannot complete the whole observatory collection.",
+    "Written diameter3.6m; exterior nominal1.55m below published1.6m transport maximum.1.2m is water/liner depth, not adopted as outer height. Beige plastic shell, three raised hatches/one aluminium electronics cover, two55Wp panels, bracket/mast/radio/GPS, shaded battery box/conduit and6lifting+4support lugs included. Exact shoulder curvature, component dimensions/count of aerial elements/colors/finish and orientation estimated, component uncertainty.5m/height.6m.",
+    "Original reference station101 UTM coordinate retained and converted WGS84/UTM19South. Independent256m129x129field16641heights/2rawtiles, datum1376.3824m/range1372.8427..1378.2142m frozen before floor/sections/geometry. Bottom.1m/bodytop1.65m/masttop4.1m fixed once afterward; no field/floor/section refit or surveyed ground claim. Operator station altitude1403.75m is NOT used to refit provider terrain.",
+    "1638 event-active station records on2018-08-31 retained as distinct actual operator IDs/coordinates. First/last event times are not installation/removal dates, nominal1660 census is not fabricated. Not claimed exhaustive physical installation inventory; no per-station equipment variant/orientation survey. Parent remains unfinished until FD houses/HEAT/other intrinsic scope resolved.",
+    "One equipment asset with independent geographic instances, no composite array GLB or centroid placement. Pre-upgrade common equipment, no later scintillator/radio upgrade silently added. Original maps and paper figures unused; written facts only.",
+    "Four detail levels retain full shell/hatches/electronics cover/two panels/mast/battery box; curvature, solar cell grooves, aerial rods/lugs simplify at distance. Illustrative assembly orientation estimated, no functional detector/RFI behavior or internal water/PMT electronics simulation."
+  ],
+  "sourceLicense": "Original procedural geometry under repository license. Operator original numerical records credited with DOI10.5281/zenodo.10488964; numerical facts only. All photographs/figures/diagrams unused.",
+  "qaLodCameras": [
+    {
+      "name": "whole-detector-skyline",
+      "position": [
+        6,
+        4.8,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.7,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-detector-district",
+      "position": [
+        6,
+        4.8,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-detector-street",
+      "position": [
+        6,
+        4.8,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-detector-closeup",
+      "position": [
+        6,
+        4.8,
+        6
+      ],
+      "lookAt": [
+        0,
+        1.7,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "three-hatches-electronics-cover-and-battery",
+      "position": [
+        3.6,
+        4.5,
+        4.6
+      ],
+      "lookAt": [
+        0,
+        1.6,
+        0.1
+      ]
+    },
+    {
+      "name": "solar-panels-mast-and-tank",
+      "position": [
+        4,
+        3.8,
+        -5
+      ],
+      "lookAt": [
+        0,
+        2,
+        -0.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2304,
+    "vertices": 6912,
+    "materials": 3,
+    "bytes": 365128,
+    "sha256": "sha256:a5f8236da206ba4367da3567f093ff6f12d03c12a5281aa93dd2bb784d5ac83b"
+  }
+}

@@ -26,7 +26,7 @@ import {
 } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { reviewClipping } from './landmark-capture-clipping.mjs';
+import { placementReviewTile, reviewClipping } from './landmark-capture-clipping.mjs';
 
 declare const __LANDMARK_CONTENT_ROOT__: string;
 const content = `/@fs/${__LANDMARK_CONTENT_ROOT__}/`;
@@ -224,24 +224,18 @@ async function mount(input: ReviewInput) {
   ) {
     const entry = input.placement;
     const factor = Math.cos((entry.anchor[1] * Math.PI) / 180);
-    const center = wgs84ToWorld(factor, ...entry.anchor);
+    const anchorCenter = wgs84ToWorld(factor, ...entry.anchor);
     const boundCorners = entry.bounds
       ? [
           wgs84ToWorld(factor, entry.bounds[0], entry.bounds[1]),
           wgs84ToWorld(factor, entry.bounds[2], entry.bounds[3]),
         ]
       : [];
-    const boundedSpan = Math.max(
-      0,
-      ...boundCorners.flatMap((point) => point.map((v, i) => 2 * Math.abs(v - center[i]) + 16)),
+    const { origin, tileSize, tileTranslation } = placementReviewTile(
+      anchorCenter,
+      boundCorners,
+      !!input.reviewBoundedPlacement,
     );
-    // Small bounded ruins need a local review query. Preserve the existing stage
-    // size for point placements and larger structures.
-    const tileSize = Math.max(
-      input.reviewBoundedPlacement && entry.bounds && boundedSpan < 128 ? 128 : 256,
-      boundedSpan,
-    );
-    const origin: [number, number] = [center[0] - tileSize / 2, center[1] - tileSize / 2];
     const [west, north] = worldToWgs84(factor, ...origin);
     const [east, south] = worldToWgs84(factor, origin[0] + tileSize, origin[1] + tileSize);
     selectionBounds = [west, south, east, north];
@@ -308,7 +302,7 @@ async function mount(input: ReviewInput) {
       if (child.name.startsWith('structure:')) child.visible = child === object;
     });
     // Translate the geographic tile to the review origin, retaining model heading/scale.
-    tileRoot.position.set(-tileSize / 2, 0, -tileSize / 2);
+    tileRoot.position.set(tileTranslation[0], 0, tileTranslation[1]);
     scene.add(tileRoot);
     if (entry.bounds) {
       // Bounded placement bakes the transform into clipped vertex buffers; its
@@ -342,7 +336,11 @@ async function mount(input: ReviewInput) {
     if (evidenceLines.length || input.footprintPoint) {
       const project = (point: [number, number]) => {
         const [x, z] = wgs84ToWorld(factor, ...point);
-        return new THREE.Vector3(x - center[0], ground.position.y + 0.12, z - center[1]);
+        return new THREE.Vector3(
+          x - anchorCenter[0],
+          ground.position.y + 0.12,
+          z - anchorCenter[1],
+        );
       };
       const material = new THREE.LineBasicMaterial({
         color: '#e241b0',

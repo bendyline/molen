@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.murchison_southwest_service_building",
+  "kind": "static-structure",
+  "title": "Murchison southwestern support building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.murchison_southwest_service_building",
+        "output": "assets/places/qe/qe6/murchison_southwest_service_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2fae8abde426f74c0531cf860c978db0d3ef17fcabab7067a39f7d7bfc6bfe65"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-support-building.json",
+      "reference-rights/primary-building.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-27000-18906.png",
+      "terrain-sources/terrarium-15-27000-18907.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json"
+    ]
+  }
+}

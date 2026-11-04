@@ -214,3 +214,23 @@ test('an exact mapped point remains a point without an invented tower perimeter'
     /Invalid source-local footprint point/,
   );
 });
+
+test('long source descriptions retain their hash and point with a bounded viewer caption', () => {
+  const frame = {
+    sourceUrl: 'https://www.openstreetmap.org/node/2377898985',
+    anchor: [116.6314243, -26.6970007],
+    heading: 0,
+    geometryLabel: 'Full source description. '.repeat(20),
+    geometry: { point: [0, 0] },
+  };
+  const bytes = Buffer.from(JSON.stringify(frame));
+  const hash = `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
+  const result = sourceLocalFootprint(
+    { geographicProposal: { mapGeometrySource: 'map-frame.json', mapGeometryHash: hash } },
+    bytes,
+  );
+  assert.deepEqual(result.point, frame.anchor);
+  assert.equal(result.hash, hash);
+  assert.equal(result.label, `${frame.geometryLabel.slice(0, 196)}…`);
+  assert.equal(JSON.parse(bytes).geometryLabel, frame.geometryLabel);
+});

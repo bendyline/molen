@@ -1,0 +1,59 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "litoral-primary-original-google-whole-pavilion6-central-block-numerical-2023",
+  "model": "litoral_pavilion_6_central_block",
+  "structureId": "QS-b6b2036a0c35",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "roof",
+      "path": "reference-rights/primary-structured-roof.txt",
+      "url": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz",
+      "sha256": "sha256:f16195a0e0bad1fcb230e6421b6c3bd9427e4d604b1bd0e6b1bab3d527a95148",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-01"
+    },
+    {
+      "key": "height",
+      "path": "reference-rights/primary-numerical-height.txt",
+      "url": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/902d4_2023_06_30/tile_FRzHb_Wx0jw.tif",
+      "sha256": "sha256:f91da49050ca25a61430791392e36a5b3300557acc761bdf976e906217fc87f9",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-01"
+    },
+    {
+      "key": "snai",
+      "path": "reference-rights/primary-snai-repair.txt",
+      "url": "https://www.atencionintegral.gob.ec/wp-content/uploads/2024/03/Informe-RDC-2023-VF-2024-02-27-signed.pdf",
+      "sha256": "sha256:fb98f45ea391ae6b526244f45648233bf47785e723ad3ca7975fd73692ed5cba",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-01"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-roof-and-height-record.json",
+    "sha256": "sha256:44417592623eabb617e179c50257bc7f49fcb052f05ea980607d431cc449dede",
+    "featureId": "google-open-buildings:6792W3W4+Q7HC"
+  },
+  "quallaFirst": {
+    "families": 1,
+    "inventoryHash": "sha256:d83f4f8d33fc54e2b57b19f47c0d21f262dfbfd9bfbabccf3b2d9bd6c3f1c1e2",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Whole independently placed central roofed block inside Pavilion 6 of the Litoral Penitentiary. All original full-precision numerical roof controls, complete walls and closed roof. The pavilion compound includes yards and multiple other buildings; those are not filled or substituted by this block. All imagery unused. Qualla-first corpus contains only an unrelated architectural-reference portrait. Original Google v3 building coordinates and numerical height samples establish this roofed body; Original SNAI 2023 written report describes compound-level repairs of Pavilions 6 and 7. It provides no individual roof outline, height or facade census and does not establish the specific work on this block. This block’s exterior details are conservative estimates. Footprint confidence meets the official tile903 85-percent precision threshold .823; the score is a model ranking, not a probability or a survey. Retain5m horizontal uncertainty. Exact height is a learned estimate, not survey: median 4.5 m, at least 3 m uncertainty. Floor census, facade, roof section, paint, small detail and precise 2023 condition are estimates. No photograph, satellite image, map image, plan, figure or texture fetched or viewed. Retain this complete original outline and the accepted west block outline despite a 0.1258205244 square meter boundary overlap, about 0.051 percent of this roof and within stated 5 m mapping uncertainty. Neither outline is trimmed, moved or refitted.",
+    "Whole original Google Open Buildings v3 google-open-buildings:6792W3W4+Q7HC / original CSV record 6792W3W4+Q7HC numerical roof footprint, within original named Pavilion 6 compound. Source footprint is an automated estimate, not survey; 5 m horizontal uncertainty. Numerical 2023 relative height median 4.5 m, 3 m uncertainty. Compound is contextual and is not roofed over.",
+    "Whole original numerical-footprint roofed block, all exterior walls, closed flat roof and full foundation. Numerical relative roof height is 4.5 m (median of 11 selected source samples); height uncertainty at least 3 m and no surveyed floor census. Only 11 of 16 inside-roof samples exceed the .7 presence threshold; this sparse estimate is not a precise height measurement. Source height data has effective 4 m resolution, although distributed at 0.5 m; samples are spaced 4 m. Source confidence is a relative score, not a probability.",
+    "The original SNAI 2023 written report records compound-level repairs to Pavilions 6 and 7. It does not establish the specific work on this block. This record does not specify these individual blocks, facade layout, color, material, floor count or roof section. This model uses estimated plain light rendered walls, flat waterproofed roof, shallow parapet, simple closed entrance/canopy and high barred window recesses. No internal rooms, inmates or security systems modeled. Exact exterior details and current condition are unverified, with 2 m component uncertainty.",
+    "Original own 256 m field, 129 x 129 / 16641 heights, 2 raw terrain tiles and datum 9.0134 m fixed before floor .25 m, foundation -1.2 m, wall eave 4.63 m and closed main roof 4.75 m. A .22 m parapet is an estimated small detail. No field/frame/floor/main section masking, flattening, replacement or refitting. Datum/grade/contact approximate; foundation is an estimated closing extension.",
+    "All four LODs retain every original corner, whole walls/roof/base, closed entrance and estimated window census. Exterior openings use an estimated roughly 4 m rhythm on long walls; this is not an observed opening or floor census. Far levels use flat window cues; near levels use shallow physical recesses/backings, frames and sparse bars. Bar/frame spacing and hidden wall finish are original conservative estimates, not photographic/surveyed reconstruction.",
+    "Every photograph, satellite image, map image, figure, plan and photographic texture unused. Qualla-first corpus contained only a portrait; no architectural imagery adopted. Original Google v3 numerical footprint and Google numerical height data credited under ODbL; no dataset photograph or source pixels used for appearance.",
+    "Approximate 2023-12-31 historical preview, current-world eligible false. Contemporary/2023 continuity, numerical detection boundaries and precise body use remain approximate. Adjacent blocks, open yards, full Pavilion 6 and whole Litoral prison remain separate and unfinished; no courtyard filled as a roof."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-01",
+    "notes": "Whole separate roofed block is bound to full-precision structured footprint, named compound context and original numerical relative heights. Height remains an estimate; complete body and conservative exterior details, no compound-yard roof substitution. All imagery unused."
+  }
+}

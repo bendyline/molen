@@ -1,0 +1,768 @@
+{
+  "sourceUrl": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz",
+  "sourceDatasetHash": "sha256:a3a20d797f23abf9159ecef10b2355be9f8f87aa3b7b67f96ad1537f8529e400",
+  "coordinateFrame": {
+    "anchor": [
+      -79.9439,
+      -2.051
+    ],
+    "axes": "east/south",
+    "metersPerDegree": 111319.49079327358,
+    "eastCosine": 0.9993593664422343
+  },
+  "originalSource": {
+    "sourceId": "google-open-buildings:6792W3W4+V67P",
+    "originalCsvRow": {
+      "latitude": "-2.05283367",
+      "longitude": "-79.94445256",
+      "area_in_meters": "311.4117",
+      "confidence": "0.6891",
+      "geometry": "POLYGON((-79.9442676436698 -2.05282484274046, -79.944282741979 -2.05276590900765, -79.9444073597353 -2.05279822469302, -79.9444127270158 -2.05277727440012, -79.9446166253204 -2.05283014897316, -79.9445961597399 -2.05291003300985, -79.9442676436698 -2.05282484274046))",
+      "full_plus_code": "6792W3W4+V67P"
+    },
+    "originalGeographicRing": [
+      [
+        -79.9442676436698,
+        -2.05282484274046
+      ],
+      [
+        -79.944282741979,
+        -2.05276590900765
+      ],
+      [
+        -79.9444073597353,
+        -2.05279822469302
+      ],
+      [
+        -79.9444127270158,
+        -2.05277727440012
+      ],
+      [
+        -79.9446166253204,
+        -2.05283014897316
+      ],
+      [
+        -79.9445961597399,
+        -2.05291003300985
+      ],
+      [
+        -79.9442676436698,
+        -2.05282484274046
+      ]
+    ],
+    "originalRing": [
+      [
+        -40.89968760715097,
+        203.14056464577422
+      ],
+      [
+        -42.57934696222761,
+        196.5800915188347
+      ],
+      [
+        -56.44284502176509,
+        200.17745715884504
+      ],
+      [
+        -57.039945187247575,
+        197.84528122124075
+      ],
+      [
+        -79.72325962158867,
+        203.73125176800687
+      ],
+      [
+        -77.44650112389232,
+        212.62390205485048
+      ],
+      [
+        -40.89968760715097,
+        203.14056464577422
+      ]
+    ],
+    "sourceAreaSquareMeters": 312.10915498834765,
+    "maskModels": [
+      {
+        "model": "litoral_pavilion_5_west_block",
+        "partIndex": 0,
+        "sourceFrame": "content/worldgen/source/places/6p/6px/litoral_pavilion_5_west_block/map-frame.json",
+        "sourceFrameHash": "sha256:baa1ba87ad7629fce01e8439e19a7d088123ffe4032ce649773d1d9f245a4cc8",
+        "coordinates": [
+          [
+            -91.24575378522438,
+            206.72029440308404
+          ],
+          [
+            -57.036939728651895,
+            197.84813098684603
+          ],
+          [
+            -61.09749814428765,
+            181.98510354881185
+          ],
+          [
+            -95.30631220086012,
+            190.85726696504986
+          ],
+          [
+            -91.24575378522438,
+            206.72029440308404
+          ]
+        ],
+        "overlapSquareMeters": 0.04850762772730377
+      },
+      {
+        "model": "litoral_pavilion_5_central_block",
+        "partIndex": 0,
+        "sourceFrame": "content/worldgen/source/places/6p/6px/litoral_pavilion_5_central_block/map-frame.json",
+        "sourceFrameHash": "sha256:33883bc45ec446f466dda8000d3eb240fd6c649b4d33ad95105976368a80c5e9",
+        "coordinates": [
+          [
+            -43.80427796457534,
+            195.82605453766226
+          ],
+          [
+            -48.18228160563469,
+            178.7624765011077
+          ],
+          [
+            -61.154314624455424,
+            182.13565866837388
+          ],
+          [
+            -56.77631180706147,
+            199.19923762665863
+          ],
+          [
+            -43.80427796457534,
+            195.82605453766226
+          ]
+        ],
+        "overlapSquareMeters": 0.11120451208716986
+      }
+    ],
+    "outsidePolygons": [
+      {
+        "part": 0,
+        "areaSquareMeters": 311.9497274297064,
+        "rings": [
+          [
+            [
+              -79.72310415025579,
+              203.73185901387606
+            ],
+            [
+              -57.11759807905581,
+              197.8690499834673
+            ],
+            [
+              -56.77631180706147,
+              199.19923762665863
+            ],
+            [
+              -56.69847759073721,
+              199.17899800460413
+            ],
+            [
+              -56.44284502176509,
+              200.17745715884504
+            ],
+            [
+              -42.57934696222761,
+              196.5800915188347
+            ],
+            [
+              -40.89968760715097,
+              203.14056464577422
+            ],
+            [
+              -77.44650112389232,
+              212.62390205485048
+            ],
+            [
+              -79.72310415025579,
+              203.73185901387606
+            ]
+          ]
+        ]
+      }
+    ],
+    "outsideAreaSquareMeters": 311.9497274297064,
+    "heightObservationFile": "research/litoral-lower-score-original-2023-presence-height-observations-2026-11-02.json",
+    "heightSummary": null,
+    "interpretation": "Exact source-set difference against accepted roofed-body plans; not proof that every sliver is a physical annex. Full original source retained; no old frame/field/floor/geometry or QA changed. Distinguish broad supported remainder from small competing boundary strips before authoring.",
+    "siteBoundaryControl": {
+      "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-79.947,-2.055,-79.941,-2.049",
+      "sourceResponseHash": "sha256:552d04e94ab444ffc05f5381368361eb416a5db4b8ebdc8e4a5cb493ad549e07",
+      "originalSnapshotHash": "sha256:3a6136ee675f2b93c9718ec7a976cf96b05aa15b6fc23273282ddb945d5385f7",
+      "record": {
+        "type": "way",
+        "id": "46012320",
+        "tags": {
+          "addr:city": "Guayaquil",
+          "addr:street": "Vía a Daule",
+          "amenity": "prison",
+          "barrier": "wall",
+          "name": "Penitenciaría del Litoral",
+          "wikidata": "Q108830348",
+          "wikipedia": "es:Penitenciaría del Litoral"
+        },
+        "nodes": [
+          "586449774",
+          "586449755",
+          "586449758",
+          "586449756",
+          "586449757",
+          "586449780",
+          "586449781",
+          "586449775",
+          "586449774"
+        ],
+        "missingNodes": [],
+        "coordinates": [
+          [
+            -79.9464438,
+            -2.0499961
+          ],
+          [
+            -79.9455104,
+            -2.0540031
+          ],
+          [
+            -79.9452946,
+            -2.0539587
+          ],
+          [
+            -79.9451497,
+            -2.0539289
+          ],
+          [
+            -79.9450543,
+            -2.0543317
+          ],
+          [
+            -79.9419994,
+            -2.0535366
+          ],
+          [
+            -79.9418934,
+            -2.0533882
+          ],
+          [
+            -79.9429541,
+            -2.0491693
+          ],
+          [
+            -79.9464438,
+            -2.0499961
+          ]
+        ],
+        "members": []
+      },
+      "commonLocalRing": [
+        [
+          -282.99310957905357,
+          -111.75363680738612
+        ],
+        [
+          -179.15406229563425,
+          334.3035628012716
+        ],
+        [
+          -155.14670595902822,
+          329.3609774100317
+        ],
+        [
+          -139.02684528733394,
+          326.04365658438326
+        ],
+        [
+          -128.41376931607982,
+          370.8831474759426
+        ],
+        [
+          211.43828290985954,
+          282.37302034621774
+        ],
+        [
+          223.23058954405934,
+          265.8532079124906
+        ],
+        [
+          105.22964948204915,
+          -203.79259179526653
+        ],
+        [
+          -282.99310957905357,
+          -111.75363680738612
+        ]
+      ],
+      "sourceAreaSquareMeters": 312.10915498834765,
+      "insideAreaSquareMeters": 312.10915498834675,
+      "insideFraction": 0.9999999999999971,
+      "roofClippedToPerimeter": false,
+      "wholeOriginalSourceRetained": true,
+      "ownershipSurveyed": false,
+      "interpretation": "Complete original numerical roof shape inside generalized named prison setting; exact physical membership, source boundary and2023continuity remain estimates. Below0.780tile ranking threshold; no per-building precision probability. No yard/site boundary is adopted as a roof."
+    }
+  },
+  "modelPolygons": [
+    [
+      [
+        -21.125833686334595,
+        -3.240776227728585
+      ],
+      [
+        2.227544420536276,
+        -3.2379049758027487
+      ],
+      [
+        2.2237913152581834,
+        -1.8646383824679422
+      ],
+      [
+        2.3042138991168284,
+        -1.8646798686380488
+      ],
+      [
+        2.300872022480015,
+        -0.8340211582706816
+      ],
+      [
+        16.623482914764054,
+        -0.8340256682948528
+      ],
+      [
+        16.601525424621443,
+        5.938017943376356
+      ],
+      [
+        -21.155596315008122,
+        5.9380283365395705
+      ]
+    ]
+  ],
+  "originalHeightControls": {
+    "sourceId": "google-open-buildings:6792W3W4+V67P",
+    "sourceHeightYear": 2023,
+    "relativeHeightLearnedNotSurvey": true,
+    "numericalProjection": "Newton inverse of original WGS84 UTM17S numeric projection, original sample coordinates unchanged; <0.0001m round-trip numerical residual is not source accuracy.",
+    "sourceHeightUrl": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/902d4_2023_06_30/tile_FRzHb_Wx0jw.tif",
+    "wholeSourcePassing": 4,
+    "wholeSourceHeightSummary": {
+      "min": 4,
+      "median": 4,
+      "max": 4.5,
+      "q25": 4,
+      "q75": 4.5
+    },
+    "parts": [
+      {
+        "part": 0,
+        "area": 311.9497274297064,
+        "selectedSamples": 4,
+        "heights": [
+          4,
+          4,
+          4,
+          4.5
+        ],
+        "heightSummary": {
+          "min": 4,
+          "median": 4,
+          "max": 4.5
+        },
+        "observations": [
+          {
+            "pixel": [
+              11679,
+              11924
+            ],
+            "utm": [
+              617379.75,
+              9773061.75
+            ],
+            "values": [
+              0.002599653322249651,
+              4.5,
+              0.7599999904632568
+            ],
+            "coordinate": [
+              -79.94452488725982,
+              -2.052822305196071
+            ],
+            "commonLocal": [
+              -69.51756773029021,
+              202.85808649654362
+            ],
+            "parts": [
+              0
+            ]
+          },
+          {
+            "pixel": [
+              11687,
+              11924
+            ],
+            "utm": [
+              617383.75,
+              9773061.75
+            ],
+            "values": [
+              0.004332755692303181,
+              4,
+              0.7599999904632568
+            ],
+            "coordinate": [
+              -79.94448892348385,
+              -2.0528222813169337
+            ],
+            "commonLocal": [
+              -65.51666325887658,
+              202.855428283135
+            ],
+            "parts": [
+              0
+            ]
+          },
+          {
+            "pixel": [
+              11695,
+              11924
+            ],
+            "utm": [
+              617387.75,
+              9773061.75
+            ],
+            "values": [
+              0.001733102253638208,
+              4,
+              0.7200000286102295
+            ],
+            "coordinate": [
+              -79.9444529597083,
+              -2.052822257436988
+            ],
+            "commonLocal": [
+              -61.51575883489087,
+              202.85276997975325
+            ],
+            "parts": [
+              0
+            ]
+          },
+          {
+            "pixel": [
+              11679,
+              11932
+            ],
+            "utm": [
+              617379.75,
+              9773057.75
+            ],
+            "values": [
+              0.000866551126819104,
+              4,
+              0.7200000286102295
+            ],
+            "coordinate": [
+              -79.9445248635253,
+              -2.05285848780308
+            ],
+            "commonLocal": [
+              -69.51492730881564,
+              206.8859158843333
+            ],
+            "parts": [
+              0
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "adjacency": [
+    {
+      "model": "litoral_pavilion_5_west_block",
+      "sourcePath": "content/worldgen/source/places/6p/6px/litoral_pavilion_5_west_block",
+      "sourceFrameHash": "sha256:baa1ba87ad7629fce01e8439e19a7d088123ffe4032ce649773d1d9f245a4cc8",
+      "sourceFrame": {
+        "format": "molen/structure-map-frame@1",
+        "candidateId": "QS-b6b2036a0c35",
+        "title": "Litoral Pavilion 5 west block",
+        "anchor": [
+          -79.94458470000001,
+          -2.0527459
+        ],
+        "heading": -2.8878303241645207,
+        "coordinateSpace": "model-local-xz",
+        "nativeAxes": {
+          "x": "along the longest original numerical roof edge",
+          "y": "up",
+          "z": "perpendicular across the whole roofed block"
+        },
+        "axis": "+X along longest original edge, +Y up, +Z perpendicular. Entry and window facing estimated.",
+        "source": "Whole original Overture GERS 19ca8554-b331-4f11-b25b-42b32cd6788a / Google Open Buildings record 6792W3W4+W533 numerical roof footprint, within original named Pavilion 5 compound. Source footprint is an automated estimate, not survey; 3 m horizontal uncertainty. Numerical 2023 relative height median 6.5 m, 3 m uncertainty. Compound is contextual and is not roofed over.",
+        "sourceUrl": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00003-cc865024-4c8e-5276-b51f-e8d81cd96612-c000.zstd.parquet",
+        "identityStatus": "Distinct roofed block inside the independently named Pavilion 5 compound; exact cell/service use and historical condition unverified.",
+        "geometryLabel": "All original full-precision numerical roof points, not compound boundaries or simplified inspection-tile corners.",
+        "geometry": {
+          "polygons": [
+            [
+              [
+                17.696213941884473,
+                -8.187201118563422
+              ],
+              [
+                -17.644353225251905,
+                -8.187201118563422
+              ],
+              [
+                -17.696213943427185,
+                8.187201118214384
+              ],
+              [
+                17.644353223709196,
+                8.187201118214386
+              ]
+            ]
+          ]
+        },
+        "features": [
+          {
+            "id": "overture/19ca8554-b331-4f11-b25b-42b32cd6788a",
+            "role": "whole-independent-roofed-building",
+            "points": [
+              [
+                17.696213941884473,
+                -8.187201118563422
+              ],
+              [
+                -17.644353225251905,
+                -8.187201118563422
+              ],
+              [
+                -17.696213943427185,
+                8.187201118214384
+              ],
+              [
+                17.644353223709196,
+                8.187201118214386
+              ]
+            ],
+            "properties": {
+              "id": "19ca8554-b331-4f11-b25b-42b32cd6788a",
+              "names": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "Google Open Buildings",
+                  "license": null,
+                  "record_id": "6792W3W4+W533",
+                  "update_time": "2023-05-01T00:00:00.000Z",
+                  "confidence": 0.8998,
+                  "between": null,
+                  "provider": "google",
+                  "resource": "open_buildings",
+                  "version": "2024-04-16"
+                }
+              ],
+              "level": null,
+              "height": null,
+              "min_height": null,
+              "is_underground": false,
+              "num_floors": null,
+              "num_floors_underground": null,
+              "min_floor": null,
+              "subtype": null,
+              "class": null,
+              "facade_color": null,
+              "facade_material": null,
+              "roof_material": null,
+              "roof_shape": null,
+              "roof_direction": null,
+              "roof_orientation": null,
+              "roof_color": null,
+              "roof_height": null,
+              "has_parts": false,
+              "version": 1,
+              "bbox": {
+                "xmin": -79.94476318359375,
+                "xmax": -79.94441223144531,
+                "ymin": -2.0528571605682373,
+                "ymax": -2.0526347160339355
+              },
+              "theme": "buildings",
+              "type": "building",
+              "geometry_wkb": "01030000000100000005000000B8B7B64B76FC53C0D9EA724A406C00C0551BF74171FC53C0FAC44B81166C00C0EFAE0EDB71FC53C0500D45CBCB6B00C0524BCEE476FC53C02F336C94F56B00C0B8B7B64B76FC53C0D9EA724A406C00C0"
+            }
+          }
+        ],
+        "mappedIdentity": {
+          "name": "Litoral Pavilion 5 west block",
+          "parentCollection": "litoral_penitentiary",
+          "featureIds": [
+            "overture/19ca8554-b331-4f11-b25b-42b32cd6788a"
+          ],
+          "nativeSource": {
+            "path": "native-map/original-roof-and-height-record.json",
+            "hash": "sha256:ee0ce26cea2f0ec5598ff2f10d16b56dd36017b7cf3e0efdf344004723d9022d"
+          }
+        },
+        "orientationControl": {
+          "status": "reviewed-approximation",
+          "reviewedOn": "2026-11-01",
+          "headingRadians": -2.8878303241645207,
+          "uncertaintyDegrees": 10,
+          "basis": "Whole numerical footprint fixes the horizontal frame. Which wall has which exterior detail is unobserved and estimated.",
+          "referencePages": [
+            "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00003-cc865024-4c8e-5276-b51f-e8d81cd96612-c000.zstd.parquet"
+          ]
+        },
+        "terrainContact": {
+          "local": [
+            0,
+            0
+          ],
+          "modelY": 0,
+          "basis": "Whole numerical body center fixed before independent source field, floor and main sections; relative building height does not provide a surveyed vertical tie."
+        },
+        "historicalAppearance": {
+          "representedDate": "2023-12-31",
+          "validFrom": "2023-01-01",
+          "validUntil": "2024-01-01"
+        },
+        "notes": "Whole independently placed west roofed block inside Pavilion 5 of the Litoral Penitentiary. All original full-precision numerical roof controls, complete walls and closed roof. The pavilion compound includes yards and multiple other buildings; those are not filled or substituted by this block. All imagery unused. Qualla-first corpus contains only an unrelated architectural-reference portrait. Structured Overture building coordinates and numerical height samples establish this roofed body; original SNAI 2023 report describes repairs of Pavilions 6 and 7 elsewhere on site; those repair facts are not assigned to Pavilion 5. This block’s exterior details are conservative estimates. Exact height is a learned estimate, not survey: median 6.5 m, at least 3 m uncertainty. Floor census, facade, roof section, paint, small detail and precise 2023 condition are estimates. No photograph, satellite image, map image, plan, figure or texture fetched or viewed."
+      },
+      "sourcePartIndex": 0,
+      "sourceFloor": 0.25,
+      "sourceRoof": 6.75,
+      "sourceDatum": 12.2207,
+      "absoluteFloor": 12.4707,
+      "absoluteRoof": 18.9707
+    },
+    {
+      "model": "litoral_pavilion_5_central_block",
+      "sourcePath": "content/worldgen/source/places/6p/6px/litoral_pavilion_5_central_block",
+      "sourceFrameHash": "sha256:33883bc45ec446f466dda8000d3eb240fd6c649b4d33ad95105976368a80c5e9",
+      "sourceFrame": {
+        "format": "molen/structure-map-frame@1",
+        "candidateId": "QS-b6b2036a0c35",
+        "title": "Litoral Pavilion 5 central block",
+        "anchor": [
+          -79.94437173174865,
+          -2.052697643920995
+        ],
+        "heading": -1.319643992473188,
+        "coordinateSpace": "model-local-xz",
+        "nativeAxes": {
+          "x": "along the longest original numerical roof edge",
+          "y": "up",
+          "z": "perpendicular across the whole roofed block"
+        },
+        "axis": "+X along longest original edge, +Y up, +Z perpendicular. Entry and window facing estimated.",
+        "source": "Whole original Google Open Buildings v3 google-open-buildings:6792W3W4+W7C2 / original CSV record 6792W3W4+W7C2 numerical roof footprint, within original named Pavilion 5 compound. Source footprint is an automated estimate, not survey; 7 m horizontal uncertainty. Numerical 2023 relative height median 7 m, 3 m uncertainty. Compound is contextual and is not roofed over.",
+        "sourceUrl": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz",
+        "identityStatus": "Distinct roofed block inside the independently named Pavilion 5 compound; exact cell/service use and historical condition unverified.",
+        "geometryLabel": "All original full-precision numerical roof points, not compound boundaries or simplified inspection-tile corners.",
+        "geometry": {
+          "polygons": [
+            [
+              [
+                8.786357140569661,
+                -6.701674911997608
+              ],
+              [
+                -8.829901559796676,
+                -6.701673885105499
+              ],
+              [
+                -8.786357484799725,
+                6.701674399323361
+              ],
+              [
+                8.82990190368173,
+                6.7016743993233625
+              ]
+            ]
+          ]
+        },
+        "features": [
+          {
+            "id": "google-open-buildings:6792W3W4+W7C2",
+            "role": "whole-independent-roofed-building",
+            "points": [
+              [
+                8.786357140569661,
+                -6.701674911997608
+              ],
+              [
+                -8.829901559796676,
+                -6.701673885105499
+              ],
+              [
+                -8.786357484799725,
+                6.701674399323361
+              ],
+              [
+                8.82990190368173,
+                6.7016743993233625
+              ]
+            ],
+            "properties": {
+              "latitude": "-2.05269764",
+              "longitude": "-79.94437173",
+              "area_in_meters": "235.5895",
+              "confidence": "0.8060",
+              "geometry": "POLYGON((-79.9442937527753 -2.0527591353782, -79.9443331062623 -2.05260585064868, -79.9444497107183 -2.05263615245965, -79.9444103572387 -2.05278943719745, -79.9442937527753 -2.0527591353782))",
+              "full_plus_code": "6792W3W4+W7C2"
+            }
+          }
+        ],
+        "mappedIdentity": {
+          "name": "Litoral Pavilion 5 central block",
+          "parentCollection": "litoral_penitentiary",
+          "featureIds": [
+            "google-open-buildings:6792W3W4+W7C2"
+          ],
+          "nativeSource": {
+            "path": "native-map/original-roof-and-height-record.json",
+            "hash": "sha256:968a953f0a53da802ccb786fd4452b7abd8743bd705d6e4462e0d0831cfe235e"
+          }
+        },
+        "orientationControl": {
+          "status": "reviewed-approximation",
+          "reviewedOn": "2026-11-01",
+          "headingRadians": -1.319643992473188,
+          "uncertaintyDegrees": 10,
+          "basis": "Whole numerical footprint fixes the horizontal frame. Which wall has which exterior detail is unobserved and estimated.",
+          "referencePages": [
+            "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz"
+          ]
+        },
+        "terrainContact": {
+          "local": [
+            0,
+            0
+          ],
+          "modelY": 0,
+          "basis": "Whole numerical body center fixed before independent source field, floor and main sections; relative building height does not provide a surveyed vertical tie."
+        },
+        "historicalAppearance": {
+          "representedDate": "2023-12-31",
+          "validFrom": "2023-01-01",
+          "validUntil": "2024-01-01"
+        },
+        "notes": "Whole independently placed central roofed block inside Pavilion 5 of the Litoral Penitentiary. All original full-precision numerical roof controls, complete walls and closed roof. The pavilion compound includes yards and multiple other buildings; those are not filled or substituted by this block. All imagery unused. Qualla-first corpus contains only an unrelated architectural-reference portrait. Original Google v3 building coordinates and numerical height samples establish this roofed body; original SNAI 2023 report describes repairs of Pavilions 6 and 7 elsewhere on site; those repair facts are not assigned to Pavilion 5. This block’s exterior details are conservative estimates. Footprint confidence meets the official tile903 80-percent precision threshold .780; the score is a model ranking, not a probability or a survey. Retain7m horizontal uncertainty. Exact height is a learned estimate, not survey: median 7 m, at least 3 m uncertainty. Floor census, facade, roof section, paint, small detail and precise 2023 condition are estimates. No photograph, satellite image, map image, plan, figure or texture fetched or viewed. Retain both complete original outlines despite approximately 1.4269785923 square meters of boundary contact with the accepted west block, about 0.60 percent of this roof; neither original outline is trimmed, moved or refitted."
+      },
+      "sourcePartIndex": 0,
+      "sourceFloor": 0.25,
+      "sourceRoof": 7.25,
+      "sourceDatum": 13.0656,
+      "absoluteFloor": 13.3156,
+      "absoluteRoof": 20.3156
+    }
+  ],
+  "sourceLicense": "Original Google Open Buildings v3 numerical footprints/heights selected ODbL; no source imagery used.",
+  "interpretation": "Exact complete original source outside accepted roofed-body masks. This is an intrinsic complement, not an independently proven new building or a native compound boundary. Source outline/sections/current-condition unverified at survey level. Any source-precision remnant under10m² is explicitly considered for roof-edge reconciliation, not assumed to be a new room."
+}

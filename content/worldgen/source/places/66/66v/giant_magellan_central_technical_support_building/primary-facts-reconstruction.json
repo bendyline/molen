@@ -1,0 +1,58 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "gmt-original-central-technical-support-building-2023",
+  "model": "giant_magellan_central_technical_support_building",
+  "structureId": "QS-f3fcab0bd2d6",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "heights",
+      "path": "primary-source/original-numerical-height-observations.json",
+      "url": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/9690c_2023_06_30/tile_GmMsOY_vR5k.tif",
+      "sha256": "sha256:9c9d0b8c0671fd9ae90a71134ec06e1cda0fbd91c479a2bd8ea9d8c7601bb9f9",
+      "use": "factual-text-and-numerical-data-only",
+      "retrievedOn": "2026-11-03"
+    },
+    {
+      "key": "site",
+      "path": "primary-source/completed-support-site-written-facts.json",
+      "url": "https://giantmagellan.org/wp-content/uploads/2024/09/SPIE24.pdf",
+      "sha256": "sha256:fa00f8157f7f249cddf80ee2c284087628fb18b22328626d7a38a2e4bdff94e5",
+      "use": "factual-text-and-numerical-data-only",
+      "retrievedOn": "2026-11-03"
+    },
+    {
+      "key": "site-context",
+      "path": "native-map/original-technical-site-context.json",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-70.70,-29.065,-70.67,-29.04",
+      "sha256": "sha256:7e704907b52e9af4ffb2242fe91b894b8a74548daf6ab4676da85d5539709efc",
+      "use": "original-numerical-context-only-not-a-roof",
+      "retrievedOn": "2026-11-03"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-building-record.json",
+    "sha256": "sha256:44f53e783f9f7ac0192c749095c5b3a828d78156f574cb267966e9e4b70b594a",
+    "featureId": "google/572FW8X7+XFMJ"
+  },
+  "quallaFirst": {
+    "families": 27,
+    "inventoryHash": "sha256:f130b9a9f24370257abf4239c3b371ef255a0c4f2a031c96f62150eca6f9b15b",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Whole independent original 4-corner central building at the inferred GMTtechnical SS1 support site. Exact room/function/floor census and historical surface detail are estimates. Other buildings, support sites and actual summit works remain separate; no operating-enclosure or whole-project proxy. Full original Google-via-OvertureWKB outline fixed before own source field/floor/sections. 1 qualified original2023height observations, median4.5m; learned relative height, not survey. Provider score is not a probability. Every appearance image unused after Qualla-first screening.",
+    "Individual function, room census, 1 storeys, all door/window positions, shallow pitched metal roof, white panel finish and minor fittings are original visualization estimates. The precise68-room/24-room/operator-named identity is not assigned from size or a photograph. SS1 membership is inferred from the published relative site location and original spatial cluster.",
+    "Original Google full source outline and 1 original2023 qualified height observations, median4.5m retained. Relative heights are learned effective4m estimates, not a physical survey or floor census. At least3m height/10m horizontal/15degree yaw allowances are nominal estimates, not measured confidence bounds; no Chile-specific model performance claimed.",
+    "Original low/upper native corner source grade selected a first-pass floor1.3889m and foundation bottom-1.8098m before geometry. This is a nominal terrace/retaining-base reconstruction from coarse source ground, not an observed historic floor. The actual engineered cut/fill and exact ground datum are unavailable.",
+    "Own original256m129x129source field and rawtiles frozen before floors/mainsections. No masking, flattening, ground cutout, render-based height change, relocation or source-field/frame refit.",
+    "Other buildings, the full personnel/technical sites, actual summit construction and the unbuilt telescope/enclosure remain separate scope. This whole independent support body is not a whole-project proxy.",
+    "Approximate2023appearance based on original numerical observations and later written support-site operational status. Every source photograph/diagram/plan/map image/image-derived description unused; the one Qualla metadata conflict is excluded with all appearance references."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-03",
+    "notes": "Whole original building outline and learned height, with inferred SS1membership and explicit exterior/floor/section estimates. No protected imagery or unbuilt telescope substitution."
+  }
+}
